@@ -1,14 +1,3 @@
-/* prompt for a support error message */
-"
-
-===== tell us what happened above this line =====
-
-" = "
-
-===== Dites-nous ce qui est arrivé au-dessus de cette ligne =====
-
-";
-
 /* The distance in miles that a user is from a school. */
 "%@ miles away" = "%@ à plusieurs miles de distance";
 
@@ -26,6 +15,9 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "Question ou suggestion ordinaire";
+
+/* No comment provided by engineer. */
+"Choose One" = "En choisir une";
 
 /* No comment provided by engineer. */
 "Describe the feature here" = "Décrire la fonctionnalité ici";
@@ -49,13 +41,25 @@
 "Enter your school's domain or tap for help." = "Saisissez le domaine de votre école ou tapez pour obtenir de l'aide.";
 
 /* No comment provided by engineer. */
+"Extremely critical emergency" = "État d'urgence extrêmement critique";
+
+/* No comment provided by engineer. */
 "Find School Domain" = "Recherchez le domaine de l’école";
 
 /* Help View Controller Title */
 "Help" = "Aide";
 
 /* No comment provided by engineer. */
+"Help Menu" = "Menu Aide";
+
+/* No comment provided by engineer. */
 "I am stuck and can't get things done" = "Je suis coincé et je ne peut pas faire avancer les choses";
+
+/* No comment provided by engineer. */
+"I can't get things done until I hear back from you" = "Je ne peux pas continuer mon travail avant d’avoir reçu une réponse de votre part";
+
+/* No comment provided by engineer. */
+"I need help but it's not urgent" = "J'ai besoin d'aide, mais ce n'est pas urgent";
 
 /* No comment provided by engineer. */
 "Invalid Canvas URL." = "URL de Canvas non valide";
@@ -70,7 +74,7 @@
 "Not authorized." = "Non autorisé.";
 
 /* Placeholder for help icon (question mark) on Domain Picker View */
-"Open help menu." = "Ouvrez le menu d'aide.";
+"Open help menu" = "Ouvrir le menu Aide";
 
 /* No comment provided by engineer. */
 "Report a Problem" = "Signaler un problème";

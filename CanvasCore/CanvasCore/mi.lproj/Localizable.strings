@@ -1,0 +1,799 @@
+/* Error message component with the report id */
+" Error report ID: (reportID)" = " Rīpoata hapa ID: (reportID)";
+
+/* Failure reason from the JSON payload from canvas */
+" Failure reason: (reason)." = " Te take i rahua ai: (take)";
+
+/* Shows the number of flagged questions */
+"%@ Flagged" = "%@ karaina";
+
+/* Accessiblity hint for question drawer button */
+"%@ Questions Answered" = "%@ Kua whakautua ngā pātai";
+
+/* Question number in a quiz */
+"%@." = "%@.";
+
+/* Confirmations alerting user of unanswered questions */
+"%d questions not answered" = "%d ngā patai kaore i whakautuhia";
+
+/* Error description for network errors resulting from limited or no internet connection. Includes a localized error message from the system e.g. (The request timed out.) */
+"(localizedDescription)\n\nCheck your connection or applicable carrier data limits and try again." = "(localizedDescription)\n\nTirohia tō hononga me ngā raraunga  kawe e tika ana ka ngana anō";
+
+/* Accessiblity hint for question drawer button */
+"0 Questions Answered" = "0 Pātai Tali";
+
+/* Notification to alert the user that there is only 5 minutes left in the timed quiz */
+"5 minutes remaining" = "5 meneti e toe ana";
+
+/* Notification to alert the user that there is only 30 seconds left in the time quiz */
+"30 seconds remaining" = "30 hēkona toe";
+
+/* Mark student absent
+   Student is present in class */
+"Absent" = "Ngaro";
+
+/* URL submission option */
+"Add Website Address" = "Tāpiri  Wāhitau Paetukutuku";
+
+/* Shows the number questions */
+"All %@ Questions" = "Katoa %@ Ngā Pātai";
+
+/* option to view results for all grading periods */
+"All Grading Periods" = "Ngā wā māka katoa";
+
+/* all pages segmented control title */
+"All Pages" = "Whārangi Katoa";
+
+/* Title for push notification pre-authorization alert */
+"Allow Push Notifications?" = "Tukua Whakamōhiotanga Pana?";
+
+/* label for number of attempts that are allowed */
+"Allowed Attempts" = "Ngā tarai e whakaaetia ana";
+
+/* Default error message displayed when a file fails to upload */
+"An error occured, please try again." = "He hapa i puta, tēnā tarai ano";
+
+/* an unknown error's message */
+"An unknown error has occurred." = "Kua puta tētahi hapa kaore e mōhiotia.";
+
+/* Question to confirm user wants to navigate away from a quiz. */
+"Are you sure you want to leave this quiz?" = "E tino koe e hiahia ana koe ki te waiho i tenei pātaitai?";
+
+/* Confirmation before submitting a quiz */
+"Are you sure you want to submit your answers?" = "E tino koe e hiahia ana koe ki te tuku koutou whakautu?";
+
+/* No comment provided by engineer. */
+"Attendance" = "Taenga mai";
+
+/* Error title for attendance app */
+"Attendance Error" = "Taenga mai Hapa";
+
+/* label for quiz availability date */
+"Available Until" = "E Wātea ana kī";
+
+/* stop record button a11y hint */
+"Begin recording" = "Timata tuhi";
+
+/* Blue course color button */
+"Blue" = "Kikorangi";
+
+/* Title for screen to build a panda avatar */
+"Build Your Panda!" = "Hanga tō Panda!";
+
+/* Alert title when unable to parse JSON for communication channels */
+"Can't Display Communication Channels" = "Kāore e taea te Whakaatu Hongere kōrero";
+
+/* Alert title when unable to parse JSON for notification preferences */
+"Can't Display Notification Preferences" = "Kāore e taea te Whakaatu Manakohanga Whakamōhiotanga";
+
+/* Cancel button title
+   Cancel submission option
+   Cancel upload */
+"Cancel" = "Whakakore";
+
+/* No comment provided by engineer. */
+"Change Section" = "Huri te wāhanga";
+
+/* Description for Chat communication channel */
+"Chat" = "Kōrerorero";
+
+/* No comment provided by engineer. */
+"Choose Date" = "Kōwhiri te rā";
+
+/* Choose a file */
+"Choose a File" = "Kōwhiria he Kōnae";
+
+/* Pick a photo from library */
+"Choose a Photo" = "Kōwhiria he Whakaahua";
+
+/* Pick a photo or video */
+"Choose a Photo or Video" = "Kōwhiria he Whakaahua Ataata ranei";
+
+/* No comment provided by engineer. */
+"Choose a Section" = "Kōwhiria he Wāhanga";
+
+/* Pick a video from library */
+"Choose a Video" = "Kōwhiria he Ataata";
+
+/* Label indicating that the question is a multiple dropdown answer question and answer must be chosen. */
+"Choose your answers below" = "Whiriwhiri ō whakautu i raro";
+
+/* No comment provided by engineer. */
+"Comments" = "Ngā kōrero";
+
+/* File upload completed */
+"Complete" = "Oti";
+
+/* Title of a screen that shows all of our open source components */
+"Components" = "Ngā wāhanga";
+
+/* Button for electing to be late on a quiz */
+"Continue Quiz" = "Tonu Pātaitai";
+
+/* Notification display name for conversations group */
+"Conversations" = "Ngā kōrerorero";
+
+/* Alert title when unable to load notification preferences */
+"Could not load notification preferences" = "Kāore i taea te uta manakohanga whakamōhiotanga";
+
+/* Failure reason for why it couldn't associate a tab with a context */
+"Could not parse context id from URL" = "Kāore i taea te poroporo horopaki id i URL";
+
+/* Error title for being unable to update a push notification preference */
+"Could not update" = "Kāore i taea te whakahōu";
+
+/* Notification display name for course activities group */
+"Course Activities" = "Ngā mahi ākoranga";
+
+/* Button for creating a note from text selection */
+"Create Note" = "Waihanga Tuhipoka";
+
+/* Header label for a screen that customizes a course */
+"Customize" = "Whakaritea";
+
+/* Cyan course color button */
+"Cyan" = "Kawariki";
+
+/* name for upload data */
+"Data" = "Raraunga";
+
+/* Error title for a persistence related data failure */
+"Data Error" = "Hapa Raraunga";
+
+/* No comment provided by engineer. */
+"Date picker" = "Kaitoi rā";
+
+/* DeepOrange course color button */
+"DeepOrange" = "DeepOrange";
+
+/* DeepPurple course color button */
+"DeepPurple" = "DeepPurple";
+
+/* Delete button
+   Delete button for file upload */
+"Delete" = "Muku";
+
+/* message for delete dialog of audio recorder */
+"Delete recording?" = "Mukua tuhi?";
+
+/* Designer role */
+"Designer" = "Kaitātai";
+
+/* Notification display name for discussions group */
+"Discussions" = "Kōrerorero";
+
+/* Error title to alert user their device is out of storage space */
+"Disk Error" = "Hapa kōpae";
+
+/* Dismiss an error alert
+   Dismiss an error dialog
+   Dismiss button for error alert
+   Dismiss button for error messages */
+"Dismiss" = "Pana";
+
+/* Done button
+   Done recording button */
+"Done" = "Kua mahia";
+
+/* due date label for quiz due date */
+"Due Date" = "Rā tika";
+
+/* Description for email communication channel */
+"Email" = "Īmēra";
+
+/* Data encoding error title */
+"Encoding Error" = "Hapa Whakawaehere";
+
+/* Text submission option */
+"Enter Text" = "Whakauru Kuputuhi";
+
+/* Placeholder for URL */
+"Enter URL..." = "E tomo URL ...";
+
+/* Default text for essay cell */
+"Enter answer..." = "E tomo whakahoki ...";
+
+/* Prompt for text upload */
+"Enter your submission..." = "Whakauru i tō tukunga...";
+
+/* Title for quiz loading error */
+"Error Loading Quiz" = "He hapa i te wā uta patapatai";
+
+/* Error title for parsing assignment data from server */
+"Error Updating Assignment" = "Hapa Whakahōu Taumahi";
+
+/* error message for when the cache management database fails to load */
+"Error loading cache management database." = "Hapa uta whakahaere keteroki pātengi raraunga.";
+
+/* No comment provided by engineer. */
+"Error parsing the Roll Call response. Expected (e), received (a)" = "Hapa e poroporo ana te whakautu a te Roll Call I tūmanakohia (e), i taea (a)";
+
+/* No comment provided by engineer. */
+"Error parsing the Roll Call response. Expected (e), received (a) for key (k)" = "Hapa e poroporo ana te whakautu a te Roll Call I tūmanakohia (e), i taea (a) mo te kī (k)";
+
+/* No comment provided by engineer. */
+"Error parsing the Roll Call response. Key not found: (k)" = "Hapa e poroporo ana te whakautu a te Roll Call Kaore i kitea te Kī: (k)";
+
+/* No comment provided by engineer. */
+"Error parsing the Roll Call response. Unexpected null value: (k)" = "Hapa e poroporo ana te whakautu a te Roll Call Uarakore kaore e tūmanakohia (k)";
+
+/* rollcall status error */
+"Error: No data returned from the rollcall api." = "Hapa: Kaore he raraunga i whakahokia mai i rollcall";
+
+/* Exit button to leave the quiz */
+"Exit" = "Puta";
+
+/* Error message when the server returns a invalid response */
+"Expected a response in the 200-299 range. Got %@" = "Te whakahoki i tūmanakohia i roto i te  200-299 tawhititanga. I whiwhia %@";
+
+/* File upload failed */
+"Failed" = "I rāhua";
+
+/* Error when submitting an assignment */
+"Failed to Submit" = "I rahua te Tuku";
+
+/* Error Message when the app can't load an object model from the database */
+"Failed to load (discussionKitModelName) NSManagedObjectModel" = "I rahua te uta (discussionKitModelName) NSManagedObjectModel";
+
+/* favorite courses or groups */
+"Favorites" = "Makau";
+
+/* title for file upload errors */
+"File Upload Error" = "Hapa Tukuake Kōnae";
+
+/* File uploads screen title */
+"File Uploads" = "Ngā Tukuake kōnae";
+
+/* State of the flagged question */
+"Flagged" = "karaina";
+
+/* front page segmented control title */
+"Front Page" = "Whārangi Mua";
+
+/* navigate */
+"Go" = "Haere";
+
+/* Title for grading periods picker */
+"Grading Periods" = "Ngā wāhanga o te kōeke";
+
+/* Green course color button */
+"Green" = "Kākāriki";
+
+/* Notification display name for groups group */
+"Groups" = "Ngā rōpū";
+
+/* Non favorite hidden courses or groups */
+"Hidden" = "Huna";
+
+/* Hides the question list */
+"Hide Question List" = "Huna Rārangi Pātai";
+
+/* No comment provided by engineer. */
+"Inbox" = "Pouakaroto";
+
+/* Indigo course color button */
+"Indigo" = "Indigo";
+
+/* Mark student late
+   Student is present in class */
+"Late" = "Tūreiti";
+
+/* Leave the quiz */
+"Leave" = "Wehe atu";
+
+/* LightBlue course color button */
+"LightBlue" = "LightBlue";
+
+/* LightGreen course color button */
+"LightGreen" = "LightGreen";
+
+/* LightPink course color button */
+"LightPink" = "LightPink";
+
+/* Label indicating that the quiz lock date was reached and the quiz is auto submitting */
+"Lock Date Reached\nSubmitting" = "Kua taea te Rā Maukati\nE tuku ana";
+
+/* Title for when another tool called Lockdown Browser is required to take a quiz */
+"Lockdown Browser Required" = "E hiahiatia ana te Maukati Iho Pūtirotiro";
+
+/* Detail label for when a tool called Lockdown Browser is required to take the quiz */
+"Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "E hiahiatia ana te Maukati Iho Pūtirotiro ki te titiro i ō hua. Tēnā huaki te pātaitai i roto i te Maukati Iho Pūtirotiro kia haere tonu.";
+
+/* No comment provided by engineer. */
+"Mark All as Present" = "Tohua katoa kei nāianei";
+
+/* No comment provided by engineer. */
+"Mark Remaining as Present" = "Tohua ngā toenga o nāianei";
+
+/* Error alert title for network error
+   Title for network errors */
+"Network Error" = "Hapa Whatunga";
+
+/* Next button for advancing a quiz */
+"Next" = "E haere ake nei";
+
+/* Title for no button for push notification pre-authorization alert */
+"No" = "Kāo";
+
+/* Alert title when unable to load communication channels */
+"No Communication Channels Found" = "Kāore he Teihana Kōrero Kitea";
+
+/* A quiz that has no due date */
+"No Due Date" = "Kaore he rā tika";
+
+/* Title for alert when a module item doesn't have mastery paths configured */
+"No Mastery Paths" = "Kaore he ara hinganga";
+
+/* Error when push channel cannot be found in notificaitons */
+"No push channel found" = "Kaore he awakeri pana i kitea";
+
+/* No comment provided by engineer. */
+"No sections available. Please make sure you are enrolled as a teacher or TA in at least on section of this course." = "Kaore ngā wāhanga e wātea ana. Tēnā koa me pono koe ki te whakauru hei kaiako ā TA rānei i roto i te wāhanga kotahi mo tēnei ākoranga.";
+
+/* when a quiz has no time limit */
+"No time limit" = "Kāore he tepe wā";
+
+/* Section header for assignments without an assignment group */
+"None" = "Kaore";
+
+/* can't record because request for mic access was denied title */
+"Not Permitted" = "e kore e Taea";
+
+/* Title for alert showing when a quiz isn't takeable */
+"Not Takeable" = "e kore e taaketia ana";
+
+/* No comment provided by engineer. */
+"Note..." = "Mōhio ...";
+
+/* Error title for push notification registration error */
+"Notification Error" = "Hapa whakamōhiotanga";
+
+/* Title for the notification preferences page */
+"Notification Preferences" = "Ngā Whakamōhiotanga Manakohanga";
+
+/* OK Button Title */
+"OK" = "Ae";
+
+/* Observer role */
+"Observer" = "Kaimatakitaki";
+
+/* No comment provided by engineer. */
+"Open in…" = "Huaki i roto ī…";
+
+/* Accessibility hint for the profile button */
+"Opens profile" = "Whakatuwhera ai kōtaha";
+
+/* Orange course color button */
+"Orange" = "Ārani";
+
+/* Overdue assignmnets (not turned in) */
+"Overdue" = "Tōmuri";
+
+/* Assignments that have been turned in and are past */
+"Past" = "O muri";
+
+/* Pause recording/playback */
+"Pause" = "Okioki";
+
+/* record button a11y hint */
+"Pause playback" = "purei okioki";
+
+/* name for a photo just taken */
+"Photo" = "Whakaahua";
+
+/* Photos backdrops */
+"Photos" = "Whakaahua";
+
+/* Pink course color button */
+"Pink" = "Māwhero";
+
+/* Playback button */
+"Play" = "Tākaro";
+
+/* play button a11y hint */
+"Play back recording" = "tuhi anō";
+
+/* Title for playback error messages */
+"Playback Error" = "Hapa anō";
+
+/* No comment provided by engineer. */
+"Please check your network connection and try again." = "tirohia koa koutou hononga whatunga, me te ngana anō.";
+
+/* label for number of points in a quiz */
+"Points" = "Ngā koinga";
+
+/* Mark student present
+   Student is present in class */
+"Present" = "Nāianei";
+
+/* Accessibility label for the profile button */
+"Profile" = "Kōtaha";
+
+/* Purple course color button */
+"Purple" = "Waiporoporo";
+
+/* Description for Push Notification channel */
+"Push Notifications" = "Pana ngā Whakamōhiotanga";
+
+/* accessibility label for a quiz question */
+"Question" = "Pātai";
+
+/* Shows question position */
+"Question %@" = "Pātai %@";
+
+/* state for a question that has been flagged */
+"Question (questionNumber) Flagged" = "Pātai (questionNumber) Kua tohua";
+
+/* state for unflagged question */
+"Question (questionNumber) Unflagged" = "Pātai (questionNumber) Kaore i tohua";
+
+/* label for the number of questions */
+"Questions" = "Ngā pātai";
+
+/* Title for alert that shows when a quiz hits the due date */
+"Quiz Due" = "Pātaitai Nā";
+
+/* Title for quiz error */
+"Quiz Error" = "Hapa Pātaitai";
+
+/* Label for indication that the quiz submission was successful */
+"Quiz Submitted" = "Pātaitai Tāpaehia";
+
+/* Label for indication that the quiz submission failed */
+"QuizSubmission Failure" = "QuizSubmission Rahunga";
+
+/* tile for error reading cache */
+"Read Error" = "Hapa A tai'oi";
+
+/* button to read more of the description */
+"Read More" = "Pānuitia atu";
+
+/* Record button a11y label */
+"Record" = "Kaute";
+
+/* Choose record audio submission */
+"Record Audio" = "Record Ororongo";
+
+/* permission denied button a11y label */
+"Record Permission Help" = "Record Āwhina Whakaaetanga";
+
+/* title for a recording error */
+"Recording Error" = "Tuhi Hapa";
+
+/* red course color button */
+"Red" = "whero";
+
+/* Remove the formatting of the essay question text */
+"Remove Formatting" = "Tangohia te Hōputu";
+
+/* No comment provided by engineer. */
+"Reply" = "Whakautu";
+
+/* Button to report an error */
+"Report" = "Pūrongo";
+
+/* Record button a11y label */
+"Request Audio Recording Permission" = "Tono Ororongo Tuhi Whakaaetanga";
+
+/* stop record button a11y hint */
+"Request Permission to record audio" = "Tono Whakaaetanga ki te Record ororongo";
+
+/* button for resuming a quiz */
+"Resume Quiz" = "Tīmata Quiz";
+
+/* button for retaking quiz */
+"Retake Quiz" = "Tangohia Pātaitai";
+
+/* Description for SMS communication channel */
+"SMS" = "SMS";
+
+/* Notification display name for scheduling group */
+"Scheduling" = "Hōtaka";
+
+/* Indicates that a matching quiz question needs to have an answer selected */
+"Select Answer" = "Tīpako Whakautu";
+
+/* Label indicating that the question is a multiple answer question and more than 1 answer can be correct */
+"Select all that apply" = "Tīpakohia katoa e te tono";
+
+/* No comment provided by engineer. */
+"Select to change the roll call date" = "Tīpako ki te huri te rā roll call.";
+
+/* when a button is selected */
+"Selected" = "Kua tīpakohia";
+
+/* Shapes backdrops */
+"Shapes" = "Hanga";
+
+/* Hides the question list */
+"Show Question List" = "Whakaatu Rārangi Pātai";
+
+/* Text for a button that toggles to show a timer for a timed quiz */
+"Show Timer" = "Whakaatu Matawā";
+
+/* Error message displayed when the file is unrecognized. */
+"Something went wrong. Check the file format and try again." = "I hē tētahi mea. Tirohia te hōputu kōnae, me tārai anō";
+
+/* Text only quiz question label */
+"Spacer" = "Atahanga";
+
+/* Stay on the quiz view */
+"Stay" = "Noho";
+
+/* stop recording button a11y label */
+"Stop" = "Kāti";
+
+/* File upload was stopped */
+"Stopped" = "Mutu";
+
+/* Student role */
+"Student" = "Ākonga";
+
+/* Submit assignment button
+   Submit button title
+   Turn in this url button */
+"Submit" = "Tuku";
+
+/* Title for button to submit assignment */
+"Submit Assignment" = "Tuku taumahi";
+
+/* No comment provided by engineer. */
+"Submitted!" = "I tukuna!";
+
+/* No comment provided by engineer. */
+"Submitting" = "E tuku ana";
+
+/* Label for indication of submitting quiz */
+"Submitting Quiz" = "Tuku Pātaitai";
+
+/* TA role */
+"TA" = "TA";
+
+/* Take a photo or video submission choice */
+"Take Photo or Video" = "Tangohia Photo Ataata ranei";
+
+/* Button for taking the quiz */
+"Take Quiz" = "Tangohia Pātaitai";
+
+/* Take a photo submission choice */
+"Take a Photo" = "E mau ki te Whakaahua";
+
+/* Take a video submission choice */
+"Take a Video" = "E mau ki te Video";
+
+/* Teacher role */
+"Teacher" = "Kaiako";
+
+/* Teal course color button */
+"Teal" = "Teal";
+
+/* This shouldn't ever happen. */
+"The Pages are gone!? Why are the pages always gone?" = "Kua kore ngā Pagesi!? He aha e kore ana i ngā wā katoa te pages?";
+
+/* Error message for a file missing */
+"The file does not exist." = "Kāore i te tīariari te kōnae.";
+
+/* Description for alert that shows when the quiz hits the due date */
+"The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possibly be late?" = "Kei te tika te quiz i roto i te 1 meneti.. E hiahia ana koe ki te tuku ināianei ki a mau ai koe ki te taima tika, ara haere tonu ki te mahi  i te quiz me te tūreiti pea koe?";
+
+/* Error message for interrupted requests marking a to do as done */
+"The request to mark a to do as done was interrupted" = "Te tono ki te tohu i te ki te mahi i rite ki ta i haukotia";
+
+/* bad url message */
+"The text you entered is not a valid URL" = "E kore te mea te kuputuhi tomo koutou he URL whaimana";
+
+/* Data encoding error message */
+"There was a problem encoding UTF8 Data" = "He ko he whakawaehere raruraru UTF 8 Raraunga";
+
+/* No comment provided by engineer. */
+"There was a problem fetching the list of course sections." = "He raruraru i te wā e tiki ana i te whārangi o ngā wāhanga o te ākoranga.";
+
+/* JSON Parsing error description */
+"There was a problem interpreting a response from the server." = "He ko he raruraru whakamāori i te whakautu i te tūmau.";
+
+/* CalendarKit Database Load Failure Message */
+"There was a problem loading the (kitModelName) database file." = "He raruraru i te wā e uta ana i te (kitModelName) kōnae pātengi raraunga.  ";
+
+/* AssignmentKit database load failure message */
+"There was a problem loading the AssignmentKit database file." = "He raruraru i te wā e uta ana i te AssignmentKit kōnae pātengi rarunga.";
+
+/* CalendarKit Database Load Failure Message */
+"There was a problem loading the CalendarKit database file." = "He raruraru i te wā e uta ana i te CalendarKit kōnae pātengi rarunga.";
+
+/* DiscussionKit Database Load Failure Message */
+"There was a problem loading the DiscussionKit database file." = "He raruraru i te wā e uta ana i te DiscussionKit kōnae pātengi rarunga.";
+
+/* EnrollmentKit Database Load Failure Message */
+"There was a problem loading the EnrollmentKit database file." = "He raruraru i te wā e uta ana i te EnrollmentKit kōnae pātengi rarunga.";
+
+/* FileKit Database Load Failure Message */
+"There was a problem loading the FileKit database file." = "He raruraru i te wā e uta ana i te FileKit kōnae pātengi rarunga.";
+
+/* Page list fails */
+"There was a problem loading the Pages database file." = "He ko he raru uta i te kōnae pātengi raraunga Whārangi.";
+
+/* PeepKit Database Load Failure Message */
+"There was a problem loading the PeepKit database file." = "He raruraru i te wā e uta ana i te PeepKit kōnae pātengi rarunga.";
+
+/* SoEdventurous database load failure message */
+"There was a problem loading the SoEdventurous database file." = "He raruraru i te wā e uta ana i te SoEdventurous kōnae pātengi rarunga.";
+
+/* File upload error message */
+"There was a problem preparing the file for upload" = "He ko he raru faaineine i te kōnae mō te tukuake";
+
+/* Persistence error message */
+"There was a problem reading cached data" = "He ko he raruraru te tai'oraa i raraunga keteroki";
+
+/* Error description for Push Notifications registration error. */
+"There was a problem registering your device for push notifications." = "He raruraru i te wā e rēhita ana i tō pūrere mo ngā whakamōhiotanga pana";
+
+/* Message when fails to submit an assignment */
+"There was a problem submitting your assignment. Please try again later." = "He raruraru i te wā e tuku ana i tō taumahi Tēnā koa ngana anō i muri mai.";
+
+/* Error description for failing to compute the URL to a quiz */
+"There was a problem updating the Quiz URL" = "He ko he raruraru whakahōu i te URL Pātaitai";
+
+/* generic error message */
+"There was a problem with the Canvas request." = "He ko he raruraru ki te tono Canvas.";
+
+/* Error message when parsing contextID for a course or group tab */
+"There was an error associating a tab with a course or group." = "I hapa te amui i te ripa ki te akoranga rōpū ranei.";
+
+/* An error message shown when the Users cache file fails to load */
+"There was an error loading the Users cache." = "I hapa i te utanga i te keteroki Kaiwhakamahi.";
+
+/* Error message for a network fail */
+"There was an error while communicating with the server." = "He ko he hapa i te kōrero ki te tūmau.";
+
+/* No comment provided by engineer. */
+"There was no data!" = "Kahore he raraunga!";
+
+/* Warning to users editing an essay question that was edited on the web. */
+"This essay question has been edited on the web and may contain formatting, links or images. In order to edit this response on your mobile device we will need to clear the formatting (including links and images). Otherwise you may continue editing the question via a web browser." = "Kua pāhitia tēnei pātai tuhinga i runga i te paetukutuku, kei roto hoki i te whakahōputu, ngā hononga, ngā whakaahua rānei. Hei whakatika i tēnei whakahoki ki tō waea rorohiko ka hiahia koe ki te whakakore i te whakahōputu (tae atu ki ngā hono me ngā whakaahua). Ki te kore pea ka taea e koe te whakatika i te pātai mā te pūtirotiro paetukutuku.";
+
+/* Body for alert when a module item doesn't have mastery paths configured */
+"This module item does not have mastery paths configured." = "Kaore he ara hinganga i whirihoatia mo tēnei kowae tūemi.";
+
+/* The HTML page is currently not viewable by the user because it has been locked by the teacher. */
+"This page is currently locked and not viewable." = "Tēnei whārangi ko te kiia tēnei wā, me te kore e viewable.";
+
+/* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
+"This quiz has an IP address filter set." = "Tēnei pātaitai he huinga tātari wāhitau IP.";
+
+/* Message when telling the user they can't take the quiz for some weird reason */
+"This quiz is currently unavailable." = "Ko te wātea i tēnei wā i tēnei pātaitai.";
+
+/* Message when telling the user they can't take the quiz because the quiz is locked */
+"This quiz is locked." = "maukati tēnei pātaitai te.";
+
+/* label for the time limit */
+"Time Limit" = "Wā Whāiti";
+
+/* Toggle flag accessiblity action */
+"Toggle Flag" = "Kara Takahuri";
+
+/* Total grade label */
+"Total Grade" = "Kōeke Tapeke";
+
+/* Description for Twitter communication channel */
+"Twitter" = "Twitter";
+
+/* Alert message when unable to parse JSON for communication channels */
+"Unable to display any Communication Channels returned from the server at this time." = "Kāore e taea te whakaatu i tetahi Takere Kōrero hoki i te tūmau i tenei wa.";
+
+/* Alert message when unable to parse JSON for notification preferences */
+"Unable to display any notification preferences returned from the server at this time." = "Kāore e taea te whakaatu i tetahi manakohanga whakamōhiotanga hoki i te tūmau i tenei wa.";
+
+/* Alert message when unable to load communication channels */
+"Unable to load any Communication Channels at this time.  Error: (result.error?.localizedDescription)" = "Kaore e taea te uta Awakeri Kōrero i tēnei wā.  Hapa: (hua.hapa?.localizedDescription)";
+
+/* Alert message when unable to load notification preferences */
+"Unable to load any notification preferences at this time.  Error: (result.error?.localizedDescription)" = "Kaore e taea te uta ngā whakamōhiotanga manakohanga i tēnei wā.  Hapa: (hua.hapar?.localizedDescription)";
+
+/* Error message when parsing communication preferences */
+"Unable to parse JSON for communication channels" = "Kaore i taea te porporo JSON mo ngā awakeri kōrero";
+
+/* Error message when parsing notification preferences */
+"Unable to parse JSON for notification preferences" = "Kaore i taea te porporo JSON mo ngā manakohanga whakamōhiotanga";
+
+/* Assignments with no dates */
+"Undated" = "Kaore he rā";
+
+/* Unexpected response type */
+"Unexpected response type" = "momo whakautu Ta'e'amanekina";
+
+/* Ungraded quiz */
+"Ungraded" = "Kaore i mākahia";
+
+/* An unknown error title */
+"Unknown Error" = "Hapa Unknown";
+
+/* When a quiz has no limit on the number of attempts */
+"Unlimited" = "Kaore he mutunga";
+
+/* Remove attendance status */
+"Unmark" = "Kaore i mākāhia";
+
+/* Upcoming assignments */
+"Upcoming" = "ka ū mai";
+
+/* File upload submission option */
+"Upload File" = "Tukuake kōnae";
+
+/* Message displayed while a file is being uploaded */
+"Uploading file..." = "E tukuake ana i te kōnae...";
+
+/* permission denied button a11y hint */
+"User has denied record permission" = "He whakakahore whakaaetanga record Kaiwhakamahi";
+
+/* Error message if we can't pull the avatar image */
+"User has no valid avatar image url" = "kahore whaimana avatar image url Kaiwhakamahi";
+
+/* button for viewing quiz results */
+"View Results" = "Tirohia ngā Hua";
+
+/* a warning message */
+"Warning" = "Whakatūpato";
+
+/* Error message for being unable to update a push notification preference */
+"We were not able to update this value with the server" = "kihai i taea e ki te whakahōu i tenei uara ki te tūmau tatou";
+
+/* Message for push notification pre-authorization alert */
+"Would you like to allow Canvas to send you important notifications about announcements, course, assignments, etc?" = "E rite koe ki te tuku Canvas ki tonoa koutou whakamōhiotanga nui e pā ana ki fanongonongó, akoranga, mau ohipa, etc?";
+
+/* Yellow course color button */
+"Yellow" = "Kōwhai";
+
+/* Title for yes button for push notification pre-authorization alert */
+"Yes" = "Āe";
+
+/* Description for Yo communication channel */
+"Yo" = "Yo";
+
+/* Shows time limit on a quiz */
+"You have %d minutes." = "kei ia koe %d ngā meneti";
+
+/* Message when telling the user they can't take the quiz because they used up all their attempts */
+"You have used all your attempts available on this quiz." = "Kua whakamahia e koe ou nganatanga katoa e wātea ana i runga i tēnei pātaitai.";
+
+/* permission was rejected */
+"You must grant (appName) Microphone access in the Settings app in order to record audio." = "Me tuku e koe (appName) te uru ki te Hopuoro i te taupānga Tautuhinga hei tuhi ororongo.";
+
+/* Error description for file out of space */
+"Your device is out of storage space. Please free up space and try again." = "Kua kore te wāhi rokiroki i roto i tō pūrere Tēnā whakawātea ake he wāhi,me te tarai anō";
+
+/* label to be read for visually impaired users with assignment types */
+"assignment" = "taumahi";
+
+/* label to be read for visually impaired users with discusstion topic assignment types */
+"discussion topic" = "kaupapa kōrero";
+
+/* label to be read for visually impaired users with external tool assignment types */
+"external tool" = "taputapu waho";
+
+/* label to be read for visually impaired users with quiz assignment types */
+"quiz" = "patapatai";
+
+/* File upload in progress */
+"uploading..." = "E tukuake ana...";
+

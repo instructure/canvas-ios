@@ -142,9 +142,6 @@
 /* Error description when a user tries to upload a file that's too big */
 "The file you are trying to uploading is %@, but the maximum size is %@." = "您正嘗試上載的檔案大小為 %1$@，但最大大小為 %2$@。";
 
-/* No comment provided by engineer. */
-"This is a media message." = "這是一條媒體郵件。";
-
 /* Media type is video */
 "Video" = "視頻";
 
@@ -162,9 +159,6 @@
 
 /* No comment provided by engineer. */
 "out of %@ points" = "出自 %@ 點數";
-
-/* Name for a photo file, i.e. photo.png */
-"photo" = "照片";
 
 /* When we don't know the name of a file, we display this */
 "unknown" = "未知";

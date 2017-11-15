@@ -1,9 +1,5 @@
 /* prerequisites for unlocking item */
-"
-
-You must first complete:" = "
-
-Vous devez d’abord compléter :";
+"\n\nYou must first complete:" = "\n\nVous devez d’abord compléter :";
 
 /* when locked item will become unlocked */
 " until %@" = "jusqu’à %@";
@@ -11,43 +7,43 @@ Vous devez d’abord compléter :";
 /* explanation for locked module item */
 "\"%@\" is locked as part of \"%@\"" = "« %1$@ » est verrouillé dans le cadre de « %2$@ »";
 
-/* (No Commment) */
+/* (No Comment) */
 "%0.2f GB" = "%0.2f Go";
 
-/* (No Commment) */
+/* (No Comment) */
 "%0.2f KB" = "%0.2f Ko";
 
-/* (No Commment) */
+/* (No Comment) */
 "%0.2f MB" = "%0.2f Mo";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$@ (%2$d)" = "%1$@ (%2$d)";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$@ (%2$g out of %3$@)" = "%1$@ (%2$g sur %3$@ au total)";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$@ at %2$@" = "%1$@ à %2$@";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$@ is due in %2$@" = "%1$@ est dû dans %2$@";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$@ out of %2$@" = "%1$@ sur %2$@ au total";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$@%% (%2$g out of %3$@)" = "%1$@ (%2$g sur %3$@ au total)";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$@. %2$@. Type: %3$@." = "%1$@. %2$@. Type : %3$@.";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$@. %2$@. Type: %3$@. Status: %4$@" = "%1$@. %2$@. Type : %3$@. Statut : %4$@";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$d %2$@" = "%1$@ (%2$d)";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$g out of %2$@" = "%1$@ sur %2$@ au total";
 
 /* Button to submit files to an assignment */
@@ -71,7 +67,7 @@ Vous devez d’abord compléter :";
 /* No comment provided by engineer. */
 "%@ is not a valid URL" = "%@ n'est pas une URL valide";
 
-/* (No Commment) */
+/* (No Comment) */
 "%@ is not a valid host" = "%@ n'est pas un hôte valide";
 
 /* Message for unsupported tab */
@@ -80,7 +76,7 @@ Vous devez d’abord compléter :";
 /* Description for how many times a specific discussion has been liked by other users */
 "%@ likes" = "%@ « j'aime »";
 
-/* (No Commment) */
+/* (No Comment) */
 "%@ need grading" = "%@ doit être noté";
 
 /* 88 out of 100 points */
@@ -89,25 +85,25 @@ Vous devez d’abord compléter :";
 /* 83% (83 out of 100 points */
 "%@%% (%g out of %@)" = "%1$@ (%2$g sur %3$@ au total)";
 
-/* (No Commment) */
+/* (No Comment) */
 "%@..." = "%@...";
 
 /* A number and a collective noun, like '5 pigs' */
 "%d %@" = "%1$@ (%2$d)";
 
-/* (No Commment) */
+/* (No Comment) */
 "%d days ago" = "Il y a %d jours";
 
-/* (No Commment) */
+/* (No Comment) */
 "%d hours ago" = "Il y a %d heures";
 
 /* Number of files/folders inside a folder. (Used for all cases except 1 item.) */
 "%d items" = "%d éléments";
 
-/* (No Commment) */
+/* (No Comment) */
 "%d minutes ago" = "Il y a %d minutes";
 
-/* (No Commment) */
+/* (No Comment) */
 "%d months ago" = "Il y a %d mois";
 
 /* In the context 'Joe, Fred, ((25 more))' */
@@ -119,10 +115,10 @@ Vous devez d’abord compléter :";
 /* Something like '3 unread'. Refers to unread replies in a discsusion. */
 "%d unread" = "%d non-lus";
 
-/* (No Commment) */
+/* (No Comment) */
 "%d years ago" = "Il y a %d ans";
 
-/* (No Commment) */
+/* (No Comment) */
 "%qu bytes" = "%qu octets";
 
 /* offset for one day */
@@ -143,31 +139,31 @@ Vous devez d’abord compléter :";
 /* offset for under an hour */
 "%tu minutes" = "%tu minutes";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "%u Attachments" = "%u pièces jointes";
 
 /* Label indicating multiple files are attached to a single homework submission. %u will be a positive number, and will not be '1' */
 "%u files" = "%u fichiers";
 
-/* (No Commment) */
+/* (No Comment) */
 "&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "&quot;%1$@&quot; est verrouillé dans le cadre de &quot;%2$@&quot;";
 
 /* %@ will be replaced by the filename */
 "'%@' is now ready to submit to assignments" = "« %@ » est maintenant prêt à se soumettre aux tâches";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "1 Attachment" = "1 pièce jointe";
 
 /* one day */
 "1 day" = "1 jour";
 
-/* (No Commment) */
+/* (No Comment) */
 "1 day ago" = "Il y a 1 jour";
 
 /* one hour */
 "1 hour" = "1 heure";
 
-/* (No Commment) */
+/* (No Comment) */
 "1 hour ago" = "Il y a 1 heure";
 
 /* Number of files/folders inside a folder. (Only used when there is exactly 1 item. */
@@ -176,16 +172,16 @@ Vous devez d’abord compléter :";
 /* Description for a post that has been liked once */
 "1 like" = "1 « j'aime »";
 
-/* (No Commment) */
+/* (No Comment) */
 "1 minute ago" = "Il y a 1 minute";
 
-/* (No Commment) */
+/* (No Comment) */
 "1 month ago" = "Il y a 1 mois";
 
-/* (No Commment) */
+/* (No Comment) */
 "1 needs grading" = "1 doit être noté";
 
-/* (No Commment) */
+/* (No Comment) */
 "1 year ago" = "Il y a 1 an";
 
 /* three days */
@@ -197,13 +193,13 @@ Vous devez d’abord compléter :";
 /* Name of a tab displaying Canvas Info including legal info */
 "About" = "À propos";
 
-/* (No Commment) */
+/* (No Comment) */
 "Access Denied" = "Accès refusé";
 
 /* Error handling message when a network request has been denied by a server. Specifically with the HTTP 401 error code. */
 "Access denied. Please check your permissions for the action you're trying to complete." = "Accès refusé. Veuillez vérifier vos permissions pour l'action que vous essayez d'accomplir.";
 
-/* title for Messages attachment action sheet */
+/* (No Comment) */
 "Add Attachment" = "Ajouter une pièce jointe";
 
 /* add comment button */
@@ -227,13 +223,13 @@ Vous devez d’abord compléter :";
 /* Title on the add-inline-media sheet */
 "Add inline media" = "Ajouter du média imbriqué";
 
-/* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
+/* (No Comment) */
 "Add recipients" = "Ajouter des destinataires";
 
-/* Button to select all members of a group */
+/* (No Comment) */
 "All members" = "Tous les membres";
 
-/* (No Commment) */
+/* (No Comment) */
 "An unknown error occurred" = "Un erreur inconnue s'est produite";
 
 /* Title of the new announcement view */
@@ -245,19 +241,16 @@ Vous devez d’abord compléter :";
 /* Assignment submission type for selecting an Arc video */
 "Arc" = "Arc";
 
-/* Archive selected messages button */
+/* (No Comment) */
 "Archive" = "Archiver";
 
-/* archive selected messages */
-"Archive Selected Messages" = "Archiver les messages sélectionnés";
-
-/* (No Commment) */
+/* (No Comment) */
 "Archive Selected Messages Button" = "Bouton d'archivage des messages sélectionnés";
 
-/* (No Commment) */
+/* (No Comment) */
 "Archive all selected messages" = "Archiver tous les messages sélectionnés";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Archived" = "Archiver";
 
 /* Action sheet title verifying that a user wants to logout. */
@@ -266,13 +259,13 @@ Vous devez d’abord compléter :";
 /* Confirmation alert text for submitting an Arc video for an assignment */
 "Are you sure you want to submit this Arc video for this assignment?" = "Êtes-vous certain de vouloir soumettre cette vidéo Arc pour cette tâche?";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Ask me later" = "Me le demander plus tard";
 
 /* Label for an assignment */
 "Assignment" = "Tâche";
 
-/* (No Commment) */
+/* (No Comment) */
 "Assignments" = "Tâches";
 
 /* An item for attaching to a discussion */
@@ -281,10 +274,10 @@ Vous devez d’abord compléter :";
 /* label for an attachment */
 "Attachment %d" = "Pièce jointe %d";
 
-/* An item for attaching to a conversation */
+/* (No Comment) */
 "Attachment %i" = "Pièce jointe %i";
 
-/* Table View Controller for Attachments */
+/* (No Comment) */
 "Attachments" = "Pièces jointes";
 
 /* Label for a discussion */
@@ -293,7 +286,7 @@ Vous devez d’abord compléter :";
 /* Audio file type */
 "Audio" = "Audio";
 
-/* (No Commment) */
+/* (No Comment) */
 "Audio input hardware not available" = "Le matériel d'entrée audio n'est pas disponible";
 
 /* Title for an error popup */
@@ -302,10 +295,10 @@ Vous devez d’abord compléter :";
 /* Link to building panda avatar */
 "Build Avatar" = "Construire un avatar";
 
-/* (No Commment) */
+/* (No Comment) */
 "Cache cleared" = "Mémoire cache vidée";
 
-/* (No Commment) */
+/* (No Comment) */
 "Calendar" = "Calendrier";
 
 /* Invalid LTI tool error title */
@@ -324,19 +317,14 @@ Vous devez d’abord compléter :";
 /* No comment provided by engineer. */
 "Canvas appears to be unavailable. Please try again later." = "Canvas apparait comme étant indisponible. Veuillez réessayer plus tard.";
 
-/* detail text for recipient fetch error message */
+/* (No Comment) */
 "Canvas failed to find recipients for your current search. Please try again later." = "Canvas n'a retourné aucun destinataire correspondant à votre recherche actuelle. Veuillez réessayer plus tard.";
 
 /* mobile quze warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Les questionnaires prennent en charge plusieurs styles d'évaluation. La plupart de ces styles sont pris en charge par les appareils mobiles; cependant, certains ne sont pas. Si vous essayez de remplir un de ces questionnaires non pris en charge sur votre téléphone, vous pourriez être incapable de terminer le questionnaire, vous laissant dans une situation désavantageuse.\n\nLes types de questions non prises en charge comprennent des questions contenant du contenu Adobe Flash™, et autres.\n\nSi vous pensez que un questionnaire contient du contenu non pris en charge, veuillez le remplir sur un ordinateur de bureau ou un ordinateur portable. Si vous êtes certain que le questionnaire contient uniquement du contenu pris en charge, n'hésitez pas à le remplir sur votre appareil mobile.";
 
-Unsupported question types include questions containing Adobe Flash™ content, file uploads, and others.
-
-If you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Les questionnaires Canvas prennent en charge divers styles d'évaluation. La plupart de ces styles sont pris en charge sur les appareils mobiles; cependant, certains ne le sont pas encore. Si vous essayez de répondre à l’un de ces questionnaires non pris en charge sur votre téléphone, vous pourriez être incapable de le terminer dans son ensemble, vous laissant à un certain désavantage.
-
-Les types de questions non pris en charge comprennent les questions contenant du contenu Adobe Flash™, des téléversements de fichier et autres.
-
-Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veuillez y répondre sur un ordinateur de bureau ou sur un ordinateur portable. Si vous savez que le questionnaire contient uniquement des questions au contenu entièrement pris en charge, n’hésitez pas à y répondre sur votre appareil mobile.";
+/* (No Comment) */
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Les questionnaires Canvas prennent en charge divers styles d'évaluation. La plupart de ces styles sont pris en charge sur les appareils mobiles; cependant, certains ne le sont pas encore. Si vous essayez de répondre à l’un de ces questionnaires non pris en charge sur votre téléphone, vous pourriez être incapable de le terminer dans son ensemble, vous laissant à un certain désavantage.\n\nLes types de questions non pris en charge comprennent les questions contenant du contenu Adobe Flash™, des téléversements de fichier et autres.\n\nSi vous pensez qu’un questionnaire contient du contenu non pris en charge, veuillez y répondre sur un ordinateur de bureau ou sur un ordinateur portable. Si vous savez que le questionnaire contient uniquement des questions au contenu entièrement pris en charge, n’hésitez pas à y répondre sur votre appareil mobile.";
 
 /* button to change user's profile image */
 "Change Profile Image" = "Changer l'image de profil";
@@ -389,19 +377,16 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* No comment provided by engineer. */
 "Comments are disabled" = "Les commentaires sont désactivés";
 
-/* (No Commment) */
+/* (No Comment) */
 "Complete" = "Terminer";
 
-/* (No Commment) */
+/* (No Comment) */
 "Completed" = "Terminé";
 
-/* button to compose a message */
-"Compose Message" = "Composer un message";
-
-/* (No Commment) */
+/* (No Comment) */
 "Compose Message Button" = "Bouton de composition de message";
 
-/* (No Commment) */
+/* (No Comment) */
 "Compose a message" = "Composer un message";
 
 /* Title for Conferences tab */
@@ -422,13 +407,13 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* error title for failure to load a file submission */
 "Couldn't Load Submission" = "Impossible de charger l'envoi";
 
-/* title for alert displayed when iCanvas can't fetch recipients */
+/* (No Comment) */
 "Couldn't find recipients" = "Impossible de trouver des destinataires";
 
 /* Title for Course Syllabus view controller */
 "Course Syllabus" = "Programme du cours";
 
-/* (No Commment) */
+/* (No Comment) */
 "Courses" = "Cours";
 
 /* cancel folder creation */
@@ -440,13 +425,14 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* Message telling users that quiz support on mobile is limited */
 "Currently there is limited quiz support on mobile" = "L'aide aux questionnaires est actuellement limitée sur plateforme mobile";
 
-/* (No Commment) */
+/* (No Comment) */
 "Custom Grade" = "Note personnalisée";
 
-/* (No Commment) */
+/* (No Comment) */
 "Customize" = "Personnaliser";
 
-/* Delete Button title */
+/* Default delete button MLVC
+   Delete Button title */
 "Delete" = "Supprimer";
 
 /* Button for deleting files or folders. %d will be the number of selected items */
@@ -458,7 +444,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* delete file confirmation alert */
 "Deleted file: \"%@\"" = "Fichier supprimé : « %@ »";
 
-/* (No Commment) */
+/* (No Comment) */
 "Deleted file: &quot;%@&quot;" = "Fichier supprimé : &quot;%@&quot;";
 
 /* No comment provided by engineer. */
@@ -485,7 +471,8 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* Title for Discussions view controller */
 "Discussions" = "Discussions";
 
-/* Dismiss button title */
+/* Dismiss button title
+   uialertaction button name for dismissing the failed refresh error message */
 "Dismiss" = "Rejeter";
 
 /* Alert title asking if you want to masquerade */
@@ -494,7 +481,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* The domain for the institution/school that the user is currently using */
 "Domain" = "Domaine";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Don't ask me again" = "Ne plus me le demander";
 
 /* Button to cancel deleting folders */
@@ -509,10 +496,10 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* Shown while downloading a file */
 "Downloading..." = "Téléchargement en cours...";
 
-/* (No Commment) */
+/* (No Comment) */
 "Due:" = "Dû :";
 
-/* (No Commment) */
+/* (No Comment) */
 "Due: %1$@ at %2$@" = "Dû : %1$@ à %2$@";
 
 /* Due date label indicating when an assignment is due */
@@ -524,16 +511,16 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* Button to edit a discussion entry */
 "Edit" = "Modifier";
 
-/* (No Commment) */
+/* (No Comment) */
 "Edit Course List" = "Modifier la liste des cours";
 
-/* (No Commment) */
+/* (No Comment) */
 "Edit Group List" = "Modifier la liste des groupes";
 
 /* Button title for deleting items in a folder */
 "Edit items" = "Modifier les éléments";
 
-/* (No Commment) */
+/* (No Comment) */
 "Editing reply by %1$@, %2$@" = "Modifier la réponse avant %1$@, %2$@";
 
 /* Header when editing a discussion entry with name and timestamp */
@@ -542,7 +529,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* the users email */
 "Email" = "Courriel";
 
-/* (No Commment) */
+/* (No Comment) */
 "Enable Push Notifications" = "Activer les notifications Push";
 
 /* masquerade prompt */
@@ -557,16 +544,13 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* Title for an error popup */
 "Error" = "Erreur";
 
-/* (No Commment) */
+/* (No Comment) */
 "Error adding recipeints" = "Erreur lors de l'ajout de destinataires";
-
-/* Title of an alert popup */
-"Error adding recipients" = "Erreur lors de l'ajout de destinataires";
 
 /* Error deleting file alert view title */
 "Error deleting file \"%@\"" = "Erreur lors de la suppression du fichier « %@ »";
 
-/* (No Commment) */
+/* (No Comment) */
 "Error deleting file &quot;%@&quot;" = "Erreur lors de la suppression du fichier &quot;%@&quot;";
 
 /* Error deleting folder alert view title */
@@ -581,16 +565,19 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* Title for an external tool submission */
 "External Tool" = "Outil externe";
 
-/* (No Commment) */
+/* (No Comment) */
 "External URL" = "URL externe";
 
-/* (No Commment) */
+/* Error title for refresh failing on an MLVC tableview controller */
+"Failed to load" = "Échec lors du chargement";
+
+/* (No Comment) */
 "File" = "Fichier";
 
-/* (No Commment) */
+/* (No Comment) */
 "File extension not allowed: %@" = "Extension de fichier non autorisée : %@";
 
-/* (No Commment) */
+/* (No Comment) */
 "File extension(s) permitted for this assignment:" = "Extensions de fichier permises pour cette tâche () :";
 
 /* No comment provided by engineer. */
@@ -602,7 +589,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* File upload submission type */
 "File upload" = "Téléversement de fichier";
 
-/* (No Commment) */
+/* (No Comment) */
 "File upload failed." = "Le téléversement du fichier a échoué.";
 
 /* Title for the files screen */
@@ -611,7 +598,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Téléchargement terminé";
 
-/* (No Commment) */
+/* (No Comment) */
 "Front Page" = "Page de couverture";
 
 /* No comment provided by engineer. */
@@ -632,20 +619,17 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* No comment provided by engineer. */
 "Grade" = "Note";
 
-/* (No Commment) */
+/* (No Comment) */
 "Grade %@" = "Note %@";
 
 /* Launch the SpeedGrader app */
 "Grade in SpeedGrader" = "Noter dans SpeedGrader";
 
-/* (No Commment) */
+/* (No Comment) */
 "Grade: %1$i / %2$g" = "Note : %1$i / %2$g";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Grade: %@" = "Note : %@";
-
-/* No comment provided by engineer. */
-"Grade: %i / %g" = "Note : %1$i / %2$g";
 
 /* Label for a discussion */
 "Graded Discussion" = "Discussion notée";
@@ -656,25 +640,25 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* Graded discussion. 25 points possible */
 "Graded discussion. %g points possible." = "Discussion notée. %g points possibles.";
 
-/* (No Commment) */
+/* (No Comment) */
 "Grades" = "Notes";
 
-/* Button title for starting a group conversation */
+/* (No Comment) */
 "Group conversation" = "Conversation de groupe";
 
-/* (No Commment) */
+/* (No Comment) */
 "Groups" = "Groupes";
 
 /* help button */
 "Help" = "Aide";
 
-/* (No Commment) */
+/* (No Comment) */
 "Hide Grades" = "Masquer les notes";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "How do you like Canvas?" = "Comment appréciez-vous Canvas?";
 
-/* (No Commment) */
+/* (No Comment) */
 "I give you back your time, use it wisely." = "Je libère votre temps, utilisez-le judicieusement.";
 
 /* Image file type */
@@ -686,31 +670,31 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* No comment provided by engineer. */
 "Import from camera" = "Importer de la caméra";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Inbox" = "Boîte de réception";
 
-/* (No Commment) */
+/* (No Comment) */
 "Incomplete" = "Incomplet";
 
-/* Button title for sending a direct message; a private conversation */
+/* (No Comment) */
 "Individual messages" = "Messages individuels";
 
 /* No comment provided by engineer. */
 "Invalid URL" = "URL non valide";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "It has problems" = "Il comporte des problèmes";
 
-/* (No Commment) */
+/* (No Comment) */
 "Item %1$d of %2$d" = "Élément %1$d sur %2$d";
 
 /* No comment provided by engineer. */
 "Item %d of %d" = "Élément %1$d sur %2$d";
 
-/* (No Commment) */
+/* (No Comment) */
 "It’s empty, what are you still doing here." = "C'est vide, que faites-vous encore ici.";
 
-/* (No Commment) */
+/* (No Comment) */
 "Jumps to current day on calendar" = "Se rendre directement au jour présent sur le calendrier";
 
 /* No comment provided by engineer. */
@@ -719,7 +703,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* Title for an LTI launch submitted as an assignment */
 "LTI Tool" = "Outil LTI";
 
-/* (No Commment) */
+/* (No Comment) */
 "Landing Page" = "Page de renvoi";
 
 /* Title for an alert popup */
@@ -737,64 +721,64 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* Generic loading title with ellipsis */
 "Loading..." = "Chargement en cours...";
 
-/* (No Commment) */
+/* (No Comment) */
 "Locked" = "Verrouillé";
 
-/* (No Commment) */
+/* (No Comment) */
 "Locked until %@" = "Verrouillé jusqu'à %@";
 
 /* Typically the email address correlated to the user */
 "Login ID" = "Identifiant de connexion";
 
-/* (No Commment) */
+/* (No Comment) */
 "Login Problem" = "Problème de connexion";
 
 /* Title for a button to logout a user */
 "Logout" = "Déconnexion";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Love it!" = "J'adore!";
 
-/* (No Commment) */
+/* (No Comment) */
 "Mark as Done" = "Marquer comme terminé";
 
 /* Button title for beginning masquerading */
 "Masquerade" = "Se faire passer pour quelqu'un d'autre";
 
-/* (No Commment) */
+/* (No Comment) */
 "Me" = "Moi";
 
-/* (No Commment) */
+/* (No Comment) */
 "Media Comment" = "Commentaire du média";
 
 /* Title for a media submission */
 "Media Submission" = "Envoi du média";
 
-/* (No Commment) */
+/* (No Comment) */
 "Media comment" = "Commentaire du média";
 
 /* Media recording submission type */
 "Media recording" = "Enregistrement du média";
 
-/* (No Commment) */
+/* (No Comment) */
 "Media type selector. %@" = "Sélecteur de type de média. %@";
 
 /* Add message button */
 "Message Instructor" = "Envoyer un message à l’instructeur";
 
-/* notification that a message has been sent succesfully */
+/* (No Comment) */
 "Message Sent." = "Message envoyé.";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Message everyone separately, or add everyone to a group conversation?" = "Envoyer un message séparé à chacun, ou ajouter tout le monde à une discussion de groupe?";
 
-/* Title for the messages screen */
+/* (No Comment) */
 "Messages" = "Messages";
 
 /* Warnging for taking quizzes on a mobile device */
 "Mobile Quiz Warning" = "Avertissement du questionnaire sur plateforme mobile";
 
-/* (No Commment) */
+/* (No Comment) */
 "Modules" = "Modules";
 
 /* Button title for selecting to view more info about the limitations of mobile quizzes */
@@ -803,19 +787,19 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* Title of a link to show additional due dates customized for sections or groups. */
 "Multiple Due Dates" = "Échéances multiples";
 
-/* (No Commment) */
+/* (No Comment) */
 "Must contribute" = "Doit contribuer";
 
-/* (No Commment) */
+/* (No Comment) */
 "Must mark as done" = "Doit marquer comme étant terminé";
 
-/* (No Commment) */
+/* (No Comment) */
 "Must score %@ or higher" = "Doit obtenir au minimum %@";
 
-/* (No Commment) */
+/* (No Comment) */
 "Must submit" = "Doit soumettre";
 
-/* (No Commment) */
+/* (No Comment) */
 "Must view" = "Doit voir";
 
 /* files button */
@@ -845,7 +829,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* No comment provided by engineer. */
 "No Date" = "Pas de date";
 
-/* (No Commment) */
+/* (No Comment) */
 "No Due Date" = "Pas d'échéance";
 
 /* Title for attempting submission without a comment */
@@ -854,7 +838,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* No Submission groupong */
 "No Submission" = "Aucune envoi";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "No Thanks" = "Non merci";
 
 /* Text of alert when attempting to select a file that can't be printed or passed to any other app */
@@ -870,43 +854,43 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* Error message */
 "No installed apps support opening this file" = "Aucune application déjà installée ne permet d'ouvrir ce fichier";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "No recipients" = "Aucun destinataire";
 
-/* Indicates a search found no results */
+/* (No Comment) */
 "No results found" = "Aucun résultat retourné";
 
-/* (No Commment) */
+/* (No Comment) */
 "Not Authorized" = "Non autorisé";
 
-/* (No Commment) */
+/* (No Comment) */
 "Not Complete" = "Non terminé";
 
 /* Accessibility label for points out of points possible label when points are not availiable. */
 "Not available" = "Non disponible";
 
-/* (No Commment) */
+/* (No Comment) */
 "Not graded" = "Non noté";
 
-/* (No Commment) */
+/* (No Comment) */
 "Not graded (0 out of %@)" = "Non noté (0 sur %@ au total)";
 
-/* (No Commment) */
+/* (No Comment) */
 "Note: Media files are not immediately available for playback while they are processed on the server." = "Remarque : Les fichiers de média sont seulement rendus disponibles à la lecture qu'après avoir été traités sur le serveur.";
 
-/* (No Commment) */
+/* (No Comment) */
 "Nothing to do, go play outside!" = "Rien à faire ici, allez donc jouer dehors!";
 
-/* (No Commment) */
+/* (No Comment) */
 "Nothing to see here." = "Rien à voir ici.";
 
-/* (No Commment) */
+/* (No Comment) */
 "Notification" = "Notification";
 
-/* (No Commment) */
+/* (No Comment) */
 "Notification Preferences" = "Préférences de notification";
 
-/* (No Commment) */
+/* (No Comment) */
 "Notifications" = "Notifications";
 
 /* OK Button Title */
@@ -915,7 +899,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* No comment provided by engineer. */
 "Observer" = "Observateur";
 
-/* (No Commment) */
+/* (No Comment) */
 "Ok" = "D'accord";
 
 /* Online URL submission type */
@@ -942,7 +926,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* Title for Outcomes tab */
 "Outcomes" = "Acquis";
 
-/* (No Commment) */
+/* (No Comment) */
 "Page" = "Page";
 
 /* No comment provided by engineer. */
@@ -954,7 +938,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* No comment provided by engineer. */
 "Pinned Discussions" = "Discussions épinglées";
 
-/* (No Commment) */
+/* (No Comment) */
 "Play" = "Lecture";
 
 /* Network error message */
@@ -963,7 +947,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* Button to post new discussion topic */
 "Post" = "Publier";
 
-/* (No Commment) */
+/* (No Comment) */
 "Post Comment" = "Publier un commentaire";
 
 /* No comment provided by engineer. */
@@ -972,7 +956,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* Message shown while posting a discussion entry */
 "Posting…" = "Publication en cours...";
 
-/* (No Commment) */
+/* (No Comment) */
 "Posts your comment" = "Publie votre commentaire";
 
 /* No comment provided by engineer. */
@@ -993,19 +977,19 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* The title for the list of quizzes for a course */
 "Quizzes" = "Questionnaires";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Rate on App Store" = "Évaluer sur l'App Store";
 
-/* (No Commment) */
+/* (No Comment) */
 "Rating for %1$@, Score: %2$g" = "Évaluation pour %1$@, Score : %2$g";
 
 /* Title for a button allowing user to re-submit files for an assignment */
 "Re-submit Assignment" = "Re-soumettre le tâche";
 
-/* Title for the list of users who will receive a message. 15 characters is about all we have room for here. */
+/* (No Comment) */
 "Recipients" = "Destinataires";
 
-/* (No Commment) */
+/* (No Comment) */
 "Record" = "Enregistrer";
 
 /* Record audio submission comment */
@@ -1023,13 +1007,13 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* No comment provided by engineer. */
 "Record video" = "Enregistrer de la vidéo";
 
-/* (No Commment) */
+/* (No Comment) */
 "Refresh Button" = "Bouton d'actualisation";
 
-/* (No Commment) */
+/* (No Comment) */
 "Refreshes the calendar content" = "Actualiser le contenu du calendrier";
 
-/* (No Commment) */
+/* (No Comment) */
 "Refreshing Calendar Events" = "Actualisation des événements du calendrier";
 
 /* Confirmation for removing a file */
@@ -1053,7 +1037,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* Title for Assignment Notifications Sheet */
 "Schedule Notification" = "Programmer une notification";
 
-/* Placeholder text in a search bar used to find conversation recipients */
+/* (No Comment) */
 "Search for recipients" = "Rechercher des destinataires";
 
 /* Title for a file picker window */
@@ -1065,22 +1049,22 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* No comment provided by engineer. */
 "Selected" = "Sélectionné";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Send" = "Envoyer";
 
-/* Action sheet button title for sending a new message to a user. %@ will be replaced with the user's name */
+/* (No Comment) */
 "Send %@ a message" = "Envoyer un message à %@";
 
 /* No comment provided by engineer. */
 "Send Message" = "Envoyer un message";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Sent" = "Envoyé";
 
 /* Title for Settings */
 "Settings" = "Paramètres";
 
-/* (No Commment) */
+/* (No Comment) */
 "Show Grades" = "Afficher les notes";
 
 /* title for quiz assignment submission button */
@@ -1089,7 +1073,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* Title for button confirming showing a file */
 "Show file" = "Afficher le fichier";
 
-/* VoiceOver text for a button that lets you show recipients */
+/* (No Comment) */
 "Show recipients" = "Afficher les destinataires";
 
 /* Message for an error popup */
@@ -1101,10 +1085,10 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* 404 Error for missing assignment */
 "Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Désolé, nous n'avons pa trouvé cette tâche. Il se pourrait qu'il ait été supprimé.";
 
-/* (No Commment) */
+/* (No Comment) */
 "Starts playing your recording" = "Commencer la lecture de votre enregistrement";
 
-/* (No Commment) */
+/* (No Comment) */
 "Starts recording a media comment" = "Commencer l'enregistrement d'un commentaire de média";
 
 /* button title for cancelling a logout. */
@@ -1116,16 +1100,16 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* Button title for stopping masquerading; when a privileged user becomes another user in the system */
 "Stop Masquerading" = "Arrêter l'utilisation d'une identité autre";
 
-/* (No Commment) */
+/* (No Comment) */
 "Stops playing your recording" = "Arrête la lecture de votre enregistrement";
 
-/* (No Commment) */
+/* (No Comment) */
 "Stops recording a media comment" = "Arrête l'enregistrement d'un commentaire de média";
 
 /* No comment provided by engineer. */
 "Student" = "Étudiant";
 
-/* (No Commment) */
+/* (No Comment) */
 "Sub Header" = "Sous-en-tête";
 
 /* View previously submitted assignment */
@@ -1153,22 +1137,22 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* Masquerade success title */
 "Success!" = "Succès!";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Sure!" = "Bien sûr!";
 
-/* (No Commment) */
+/* (No Comment) */
 "Switches media input between audio and video. Currently set to %@" = "Changer l'entrée de média entre audio et vidéo. Actuellement réglée sur %@";
 
-/* (No Commment) */
+/* (No Comment) */
 "Switches to media comment mode" = "Bascule sur le mode de commentaire de média";
 
-/* (No Commment) */
+/* (No Comment) */
 "Switches to text comment mode" = "Bascule sur le mode de commentaire de texte";
 
 /* Title for Syllabus screen */
 "Syllabus" = "Programme";
 
-/* (No Commment) */
+/* (No Comment) */
 "TA" = "Instructeur-assistant";
 
 /* No comment provided by engineer. */
@@ -1189,19 +1173,19 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* Displayed in a row when an error occurs loading more items */
 "Tap to try again" = "Tapoter pour réessayer";
 
-/* (No Commment) */
+/* (No Comment) */
 "Teacher" = "Instructeur";
 
 /* No comment provided by engineer. */
 "Teachers" = "Instructeurs";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Tell us what's wrong" = "Dites-nous ce qui ne va pas";
 
 /* Link to the Terms of Use */
 "Terms of Use" = "Conditions d'utilisation";
 
-/* (No Commment) */
+/* (No Comment) */
 "Text Comment" = "Commentaire de texte";
 
 /* Title for a text submission cell */
@@ -1210,16 +1194,16 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 /* Text entry submission type */
 "Text entry" = "Saisie de texte";
 
-/* Text explaining the error */
+/* (No Comment) */
 "The recipients could not be added. Please try again. (%@)" = "Les destinataires n'ont pas pu être ajoutés. Veuillez réessayer. (%@)";
 
 /* Explanation for while a file is unavailable */
 "The server could not be reached" = "Le serveur n'a pas pu être joint";
 
-/* (No Commment) */
+/* (No Comment) */
 "The server you entered is not authorized for this app." = "Le serveur que vous avez saisi n'est pas autorisé pour cette application.";
 
-/* (No Commment) */
+/* (No Comment) */
 "The user agent for this app is unauthorized." = "L'agent utilisateur de cette application n'est pas autorisé.";
 
 /* Error message */
@@ -1235,11 +1219,7 @@ Si vous pensez qu’un questionnaire contient du contenu non pris en charge, veu
 "There was a network problem while attempting to upload your submission" = "Un problème de réseau est survenu lors de la tentative de téléversement de votre envoi";
 
 /* Error message when fetching a file fails */
-"There was a problem accessing the requested file.
-
-Error: %@" = "Un problème est survenu lors de l'accès au fichier demandé.
-
-Erreur : %@";
+"There was a problem accessing the requested file.\n\nError: %@" = "Un problème est survenu lors de l'accès au fichier demandé.\n\nErreur : %@";
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "Un problème est survenu lors du lancement de Safari";
@@ -1250,7 +1230,7 @@ Erreur : %@";
 /* No comment provided by engineer. */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "Une erreur est survenue lors du chargement de votre contenu. Si le téléversement était celui d’un fichier audio ou vidéo, il se pourrait qu'il soit toujours en cours d'exécution.";
 
-/* (No Commment) */
+/* (No Comment) */
 "This app is not authorized for use." = "Cette application n'est pas autorisée à l'utilisation.";
 
 /* Invalid LTI tool error message */
@@ -1258,6 +1238,9 @@ Erreur : %@";
 
 /* message displayed in the details section if there is no comment. */
 "This assignment has no details." = "Cette tâche ne possède aucun détail.";
+
+/* Error message for refresh failing with an unauthorized code */
+"This can happen if your course hasn't started yet or you don't have permission to access this page." = "Cela peut se produire si votre cours n'a pas encore commencé ou que vous n'avez pas l’autorisation d'accéder à cette page.";
 
 /* No comment provided by engineer. */
 "This entry has been deleted" = "Cette saisie a été supprimée";
@@ -1271,22 +1254,22 @@ Erreur : %@";
 /* Text indicating that a folder cannot be opened */
 "This folder is locked" = "Ce dossier est verrouillé";
 
-/* (No Commment) */
+/* (No Comment) */
 "This is a media message." = "Ceci est un message de média.";
 
-/* (No Commment) */
+/* (No Comment) */
 "This would be a great time to do some extra credit." = "C'est un moment opportun pour effectuer des tâches optionnels.";
 
-/* (No Commment) */
+/* (No Comment) */
 "To Do" = "À faire";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "To:" = "À :";
 
 /* No comment provided by engineer. */
 "Today" = "Aujourd'hui";
 
-/* (No Commment) */
+/* (No Comment) */
 "Today Button" = "Bouton « Aujourd'hui »";
 
 /* No comment provided by engineer. */
@@ -1301,31 +1284,34 @@ Erreur : %@";
 /* title for re-submitting an assignment */
 "Turn In Again" = "Rendre à nouveau";
 
-/* (No Commment) */
+/* (No Comment) */
 "Turn in %@" = "Rendre %@";
 
-/* (No Commment) */
+/* (No Comment) */
 "Uh-oh! No Internet Connection" = "Oh oh! Aucune connexion à Internet";
 
 /* Error title */
 "Unable to load" = "Chargement impossible";
 
-/* Error message */
+/* (No Comment) */
 "Unable to post. Please try again later" = "Publication impossible. Veuillez réessayer plus tard";
 
 /* message saying that avatar couldn't be loaded to server */
 "Unable to upload to server" = "Téléversement sur le serveur impossible";
 
-/* (No Commment) */
+/* Error message for refresh failing on an MLVC tableview controller */
+"Unauthorized" = "Non autorisé";
+
+/* (No Comment) */
 "Unavailable" = "Non disponible";
 
-/* (No Commment) */
+/* (No Comment) */
 "Ungraded" = "Non noté";
 
 /* Unknown file type */
 "Unknown" = "Inconnu";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Unread" = "Non lu";
 
 /* No comment provided by engineer. */
@@ -1334,13 +1320,13 @@ Erreur : %@";
 /* Button title for uploading a file */
 "Upload" = "Téléverser";
 
-/* title for upload error alert */
+/* (No Comment) */
 "Upload Error" = "Erreur de téléversement";
 
 /* No comment provided by engineer. */
 "Upload a file" = "Téléverser un fichier";
 
-/* explanation of upload failure */
+/* (No Comment) */
 "Upload failed. Reason: (%@)" = "Échec du téléversement. Raison : (%@)";
 
 /* Button title for adding a file to a folder */
@@ -1349,13 +1335,13 @@ Erreur : %@";
 /* Error message */
 "Upload to assignment \"%@\" failed" = "Le téléversement au tâche « %@ » a échoué ";
 
-/* (No Commment) */
+/* (No Comment) */
 "Upload to assignment &quot;%@&quot; failed" = "Le téléversement au tâche &quot;%@&quot; a échoué";
 
 /* Error message */
 "Upload to folder \"%@\" failed" = "Le téléversement au dossier « %@ » a échoué";
 
-/* (No Commment) */
+/* (No Comment) */
 "Upload to folder &quot;%@&quot; failed" = "Le téléversement au dossier &quot;%@&quot; a échoué";
 
 /* button for using the recorded audio */
@@ -1370,10 +1356,10 @@ Erreur : %@";
 /* Video file type */
 "Video" = "Vidéo";
 
-/* (No Commment) */
+/* (No Comment) */
 "Video error" = "Erreur du fichier vidéo";
 
-/* (No Commment) */
+/* (No Comment) */
 "View" = "Voir";
 
 /* Title for a warning popup */
@@ -1382,7 +1368,7 @@ Erreur : %@";
 /* error message for failure to load a file submission */
 "We had a problem loading the submission. Please try again later." = "Nous avons rencontré un problème pendant le chargement de l'envoi. Veuillez réessayer plus tard.";
 
-/* (No Commment) */
+/* (No Comment) */
 "We were unable to verify the server for use with this app." = "Nous n'avons pas pu vérifier le serveur pour son utilisation avec cette application.";
 
 /* Error Title */
@@ -1391,13 +1377,13 @@ Erreur : %@";
 /* unlock date for discussion/announcement */
 "Will unlock %@." = "Déverrouillera %@.";
 
-/* Title for action sheet giving the user an option to create a new message for a user. */
+/* (No Comment) */
 "Would you like to create a new message?" = "Désirez-vous créer un nouveau message?";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Would you mind giving us a rating on the app store?" = "Pourriez-vous nous laisser une évaluation sur l'App Store?";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Would you mind letting us know the problems you have been having with the app?" = "Pourriez-vous nous faire connaitre les problèmes que vous auriez rencontré avec l'application?";
 
 /* No comment provided by engineer. */
@@ -1412,7 +1398,7 @@ Erreur : %@";
 /* Message in an alert */
 "You do not have SpeedGrader for iPad. You can download it for free from the App Store." = "Vous ne possédez pas l'application SpeedGrader pour iPad. Vous pouvez la télécharger gratuitement depuis l'App Store.";
 
-/* (No Commment) */
+/* (No Comment) */
 "You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "Vous n'avez pas accès à ce contenu. Le cours, ou groupe, n'a peut-être pas encore commencé, ou est peut-être déjà terminé.";
 
 /* Error message */
@@ -1427,13 +1413,13 @@ Erreur : %@";
 /* An explanation of how to transfer files to the Canvas app. */
 "You have no files available for upload. To add files from other apps, find a file in another app, then find the \"Open In\" button to open it in Canvas. You can also tap and hold on attachments in the Mail app to open them in Canvas." = "Aucun fichier disponible pour le téléversement. Pour ajouter des fichiers depuis d’autres applications, trouver un fichier dans une autre application, puis trouver le bouton « Ouvrir avec » afin de l’ouvrir avec Canvas. Vous pouvez également tapoter et maintenir enfoncé les pièces jointes dans l’application Mail pour les ouvrir dans Canvas.";
 
-/* (No Commment) */
+/* (No Comment) */
 "You must first complete:" = "Vous devez d’abord compléter :";
 
 /* Error message */
 "You need a title and a description to post" = "Vous avez besoin d'un titre et d'une description pour pouvoir publier";
 
-/* (No Commment) */
+/* (No Comment) */
 "You should go rate Canvas on the App Store!" = "Vous devriez aller noter Canvas sur l'App Store!";
 
 /* Error content */
@@ -1442,13 +1428,13 @@ Erreur : %@";
 /* Media submission type selected with no Kaltura set up */
 "Your school's configuration does not allow the type of submission selected for this assignment" = "La configuration de votre école ne permet pas le type de envoi sélectionné pour cette tâche";
 
-/* (No Commment) */
+/* (No Comment) */
 "due on %1$@ at %2$@" = "Dû le %1$@ à %2$@";
 
 /* Assignment is due on a date at a time */
 "due on %@ at %@" = "Dû le %1$@ à %2$@";
 
-/* (No Commment) */
+/* (No Comment) */
 "moments ago" = "Il y a juste un moment";
 
 /* Accessibility label modifier for point out of point possible */
@@ -1457,15 +1443,15 @@ Erreur : %@";
 /* The assignment is out of 100 points */
 "out of %@" = "sur %@ au total";
 
-/* (No Commment) */
+/* (No Comment) */
 "out of %@ points" = "sur %@ points au total";
 
-/* (No Commment) */
+/* (No Comment) */
 "photo" = "photo";
 
-/* (No Commment) */
+/* (No Comment) */
 "unknown" = "inconnu";
 
-/* (No Commment) */
+/* (No Comment) */
 "until %@" = "jusqu’à %@";
 

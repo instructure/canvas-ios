@@ -1,14 +1,3 @@
-/* prompt for a support error message */
-"
-
-===== tell us what happened above this line =====
-
-" = "
-
-===== tell us what happened above this line =====
-
-";
-
 /* The distance in miles that a user is from a school. */
 "%@ miles away" = "%@ miles away";
 
@@ -26,6 +15,9 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "Casual question or suggestion";
+
+/* No comment provided by engineer. */
+"Choose One" = "Choose one";
 
 /* No comment provided by engineer. */
 "Describe the feature here" = "Describe the feature here";
@@ -49,13 +41,25 @@
 "Enter your school's domain or tap for help." = "Enter your school's domain or tap for help.";
 
 /* No comment provided by engineer. */
+"Extremely critical emergency" = "Extremely critical emergency";
+
+/* No comment provided by engineer. */
 "Find School Domain" = "Find school domain";
 
 /* Help View Controller Title */
 "Help" = "Help";
 
 /* No comment provided by engineer. */
+"Help Menu" = "Help menu";
+
+/* No comment provided by engineer. */
 "I am stuck and can't get things done" = "I am stuck and can't get things done";
+
+/* No comment provided by engineer. */
+"I can't get things done until I hear back from you" = "I can't get things done until I hear back from you";
+
+/* No comment provided by engineer. */
+"I need help but it's not urgent" = "I need help but it's not urgent";
 
 /* No comment provided by engineer. */
 "Invalid Canvas URL." = "Invalid Canvas URL.";
@@ -70,7 +74,7 @@
 "Not authorized." = "Not authorised.";
 
 /* Placeholder for help icon (question mark) on Domain Picker View */
-"Open help menu." = "Open help menu.";
+"Open help menu" = "Open help menu";
 
 /* No comment provided by engineer. */
 "Report a Problem" = "Report a problem";

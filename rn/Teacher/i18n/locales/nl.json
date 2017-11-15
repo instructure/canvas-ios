@@ -1,4 +1,7 @@
 {
+  "_376f89ea": {
+	"message": "--"
+  },
   "_4927a5f1": {
 	"message": "?"
   },
@@ -71,9 +74,6 @@
   "all_submissions_3eedfb97": {
 	"message": "Alle inzendingen"
   },
-  "all_submissions_assignmentname_3f4f4a9e": {
-	"message": "Alle inleveringen - { assignmentName }"
-  },
   "all_submissions_b8717440": {
 	"message": "Alle inzendingen"
   },
@@ -140,9 +140,6 @@
   "assignments_list_fe3e54be": {
 	"message": "Opdrachtenlijst"
   },
-  "at_791460b3": {
-	"message": "om"
-  },
   "attachment_deffe5a9": {
 	"message": "Bijlage"
   },
@@ -203,6 +200,9 @@
   "bold_34b9d97e": {
 	"message": "Vet"
   },
+  "can_not_forward_message_2a4d4953": {
+	"message": "Kan het bericht niet doorsturen"
+  },
   "cancel_caeb1e68": {
 	"message": "Annuleren"
   },
@@ -233,8 +233,8 @@
   "clear_filter_inbox_9465e74c": {
 	"message": "Filter voor inbox wissen"
   },
-  "clear_filter_submissions_7def30db": {
-	"message": "Inzendingen filter wissen"
+  "clear_recording_5a97b475": {
+	"message": "Opname wissen"
   },
   "close_for_comments_ce0e5d00": {
 	"message": "Sluiten voor opmerkingen"
@@ -276,25 +276,25 @@
 	"message": "Kan opname niet starten"
   },
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
-	"message": "{ count, plural,\n     =0 {0 cursisten}\n    one {# cursist}\n  other {# cursisten}\n}"
+	"message": "{ count, plural,     =0 {0 cursisten}    one {# cursist}  other {# cursisten}}"
   },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
-	"message": "{ count, plural,\n    one {Moet worden beoordeeld}\n  other {Moeten worden beoordeeld}\n}"
+	"message": "{ count, plural,    one {Moet worden beoordeeld} other {Moeten worden beoordeeld}}"
   },
   "count_plural_one_needs_grading_other_need_grading_7eba188e": {
-	"message": "{ count, plural,\n    one {# Moet worden beoordeeld}\n  other {# Moeten worden beoordeeld}\n}"
+	"message": "{ count, plural,    one {# moet worden beoordeeld} other {# moeten worden beoordeeld}}"
   },
   "count_plural_one_pt_other_pts_c5a3bced": {
-	"message": "{ count, plural,\n    one {# punt}\n  other {# punten}\n}"
+	"message": "{ count, plural,    one {# pt} other {# ptn}}"
   },
   "count_plural_one_question_other_questions_309aafa": {
-	"message": "{ count, plural,\n    one {# Vraag}\n  other {# Vragen}\n}"
+	"message": "{ count, plural,    one {# vraag} other {# vragen}}"
+  },
+  "count_plural_one_reply_other_replies_dbf1832a": {
+	"message": "{ count, plural,    one {# antwoord} other {# antwoorden}}"
   },
   "count_plural_one_there_is_assignee_without_a_grade_15facb89": {
-	"message": "{ count, plural,\n    one {Er is # ontvanger zonder cijfer.}\n  other {Er zijn # ontvangers zonder cijfers.}\n}"
-  },
-  "count_plural_zero_replies_one_reply_other_replies_98b01de5": {
-	"message": "{ count, plural,\n   zero {# Antwoorden}\n    one {# Antwoord}\n  other {# Antwoorden}\n}"
+	"message": "{ count, plural,    one {Er is # ontvanger zonder cijfer.} other {Er zijn # ontvangers zonder cijfer.}}"
   },
   "count_students_4ae780ca": {
 	"message": "{ count } cursisten"
@@ -323,8 +323,14 @@
   "customize_grade_value_964695a3": {
 	"message": "Beoordeling aanpassen { value }"
   },
-  "datestring_at_timestring_183180ce": {
-	"message": "{ dateString } om { timeString }"
+  "date_date_medium_at_date_time_short_2b9ce48b": {
+	"message": "{ date, date, medium } om { date, time, short }"
+  },
+  "date_date_mmm_d_at_date_time_short_61eeb79b": {
+	"message": "{ date, date, 'MMM d' } om { date, time, short }"
+  },
+  "date_date_mmm_d_date_time_short_e82719d6": {
+	"message": "{ date, date, 'MMM d' } { date, time, short }"
   },
   "delay_posting_f45eed7d": {
 	"message": "Posten uitstellen"
@@ -377,6 +383,9 @@
   "due_date_822625d8": {
 	"message": "Inleverdatum"
   },
+  "due_date_date_mmm_d_yyyy_at_date_time_short_76c5900f": {
+	"message": "In te leveren op { date, date, 'MMM d, YYYY' } om { date, time, short }"
+  },
   "due_date_must_be_between_available_from_and_availa_bc4d7904": {
 	"message": "'Inleverdatum' moet liggen tussen de datums voor 'Beschikbaar vanaf' en 'Beschikbaar tot'"
   },
@@ -388,6 +397,12 @@
   },
   "edit_assignment_ebf22a72": {
 	"message": "Opdracht bewerken"
+  },
+  "edit_attachment_count_ae907c46": {
+	"message": "Bijlage bewerken ({ count })"
+  },
+  "edit_attachments_count_5e9276ea": {
+	"message": "Bijlagen bewerken ({ count })"
   },
   "edit_c5fbea07": {
 	"message": "Bewerken"
@@ -410,14 +425,17 @@
   "email_contact_e095f380": {
 	"message": "E-mailcontact"
   },
+  "enjoy_your_day_a4cb2c1": {
+	"message": "Een fijne dag gewenst!"
+  },
   "enter_code_c7ab5104": {
 	"message": "Code invoeren"
   },
   "error_98e81528": {
 	"message": "Fout"
   },
-  "error_sending_e_mail_275383b": {
-	"message": "Fout bij verzenden van e-mail"
+  "error_saving_grade_ef8d2ddc": {
+	"message": "Fout bij opslaan van cijfer"
   },
   "everyone_854554dd": {
 	"message": "Iedereen"
@@ -458,11 +476,17 @@
   "favorite_courses_fbd356f0": {
 	"message": "Favoriete cursussen"
   },
+  "file_count_plural_one_file_other_files_8ae41de8": {
+	"message": "{ file_count, plural,    one {# bestand} other {# bestanden}}"
+  },
   "files_c300e900": {
 	"message": "Bestanden"
   },
-  "files_numberoffiles_66240ab2": {
-	"message": "Bestanden ({ numberOfFiles })"
+  "files_numberoffiles_number_410d9eba": {
+	"message": "Bestanden ({ numberOfFiles, number })"
+  },
+  "filter_by_2f4368a8": {
+	"message": "Filteren op"
   },
   "filter_by_ffcbd05b": {
 	"message": "Filteren op:"
@@ -472,6 +496,9 @@
   },
   "filter_inbox_dae0ff8f": {
 	"message": "Inbox filteren"
+  },
+  "filter_numselected_f4793ab8": {
+	"message": "Filter ({ numSelected })"
   },
   "filter_people_b34b567b": {
 	"message": "Personen filteren"
@@ -509,9 +536,6 @@
   "graded_25cd3fcd": {
 	"message": "Beoordeeld"
   },
-  "graded_assignmentname_f530f81d": {
-	"message": "Beoordeeld - { assignmentName }"
-  },
   "graded_quiz_7fabdf1f": {
 	"message": "Beoordeelde toets"
   },
@@ -539,14 +563,8 @@
   "haven_t_been_graded_1fbfda56": {
 	"message": "Zijn niet beoordeeld"
   },
-  "haven_t_been_graded_assignmentname_eaafdd9f": {
-	"message": "Zijn niet beoordeeld -  { assignmentName }"
-  },
   "haven_t_submitted_yet_3a127a27": {
 	"message": "Zijn nog niet ingediend"
-  },
-  "haven_t_submitted_yet_assignmentname_dd06c39f": {
-	"message": "Hebben nog niets ingeleverd - { assignmentName }"
   },
   "hide_correct_answers_at_b1a59408": {
 	"message": "Juiste antwoorden verbergen Op"
@@ -611,14 +629,14 @@
   "long_description_7d89285c": {
 	"message": "Lange beschrijving"
   },
+  "mail_is_unavailable_on_your_device_fb52a13c": {
+	"message": "Er is geen e-mail beschikbaar op je apparaat."
+  },
   "mark_all_as_read_8f3bdf57": {
 	"message": "Alles als gelezen markeren"
   },
   "me_bf110f4d": {
 	"message": "mij"
-  },
-  "media_attachment_e412aab8": {
-	"message": "Mediabijlage"
   },
   "media_recording_77cddc52": {
 	"message": "Media opnames"
@@ -641,6 +659,9 @@
   "minutes_4aee5a41": {
 	"message": "Minuten"
   },
+  "minutes_plural_one_minute_other_minutes_e2adacfe": {
+	"message": "{ minutes, plural,    one {# minuut} other {# minuten}}"
+  },
   "missing_1a256b3b": {
 	"message": "Ontbrekend"
   },
@@ -656,8 +677,8 @@
   "name_1aed4a1b": {
 	"message": "Naam"
   },
-  "name_count_others_6e5afa7c": {
-	"message": "{ name } + { count } anderen"
+  "name_count_plural_one_other_other_others_f47e51c3": {
+	"message": "{ name } + { count, plural,    one {# andere}  other {# anderen}}"
   },
   "names_count_more_643849d3": {
 	"message": "{ names } + { count } meer"
@@ -725,6 +746,9 @@
   "none_3b5e34d2": {
 	"message": "Geen"
   },
+  "none_9b6c9bec": {
+	"message": "geen"
+  },
   "not_a_teacher_b0d0fc55": {
 	"message": "Geen docent?"
   },
@@ -737,8 +761,11 @@
   "not_submitted_7d05fdb4": {
 	"message": "Niet ingediend"
   },
+  "nothing_more_to_do_b017e8bb": {
+	"message": "Niets meer te doen."
+  },
   "number_plural_one_minute_other_minutes_648ec0e1": {
-	"message": "{ number, plural,\n    one {# Minuut}\n  other {# Minuten}\n}"
+	"message": "{ number, plural,    one {# minuut} other {# minuten}}"
   },
   "observer_248a192e": {
 	"message": "Waarnemer"
@@ -800,8 +827,8 @@
   "out_of_score_c17b26bb": {
 	"message": "Van { score }"
   },
-  "out_of_total_number_188f9a69": {
-	"message": "van { total, number }"
+  "pages_e5414c2c": {
+	"message": "Pagina's"
   },
   "pages_front_page_9ce5188": {
 	"message": "Voorpagina van pagina's"
@@ -833,11 +860,11 @@
   "points_number_out_of_totalpoints_number_291efb47": {
 	"message": "{ points, number } van { totalPoints, number }"
   },
-  "points_possible_b18e4e80": {
-	"message": "{ points }/{ possible }"
-  },
   "points_possible_must_be_a_number_4a592dc6": {
 	"message": "Mogelijke punten moeten een getal zijn"
+  },
+  "pointspossible_number_pts_2d9f157d": {
+	"message": "{ pointsPossible, number } ptn"
   },
   "post_at_a9e0fecb": {
 	"message": "Posten om..."
@@ -853,6 +880,9 @@
   },
   "previewing_this_file_type_is_not_supported_7df9231": {
 	"message": "Voorbeelden van dit bestandstype worden niet ondersteund."
+  },
+  "profile_6bd2baed": {
+	"message": "Profiel"
   },
   "profile_actions_cfcbb476": {
 	"message": "Profielacties"
@@ -899,6 +929,9 @@
   "redo_363c58b7": {
 	"message": "Opnieuw"
   },
+  "remove_attachment_81f30aa3": {
+	"message": "Bijlage verwijderen"
+  },
   "remove_date_edf2f565": {
 	"message": "Datum wissen"
   },
@@ -923,6 +956,9 @@
   "require_an_access_code_46a02601": {
 	"message": "Een toegangscode vereisen"
   },
+  "reset_95a81614": {
+	"message": "Opnieuw instellen"
+  },
   "retry_ebd5f8ba": {
 	"message": "Nogmaals proberen"
   },
@@ -935,8 +971,11 @@
   "saving_2521e616": {
 	"message": "Opslaan"
   },
-  "score_more_than_score_assignmentname_a4fdc7fe": {
-	"message": "Score hoger dan { score } - { assignmentName }"
+  "saving_d55dd90e": {
+	"message": "Bezig met opslaan..."
+  },
+  "score_number_pointspossible_number_fd8705b8": {
+	"message": "{ score, number }/{ pointsPossible, number }"
   },
   "score_to_keep_48ace09b": {
 	"message": "Te behouden score"
@@ -944,14 +983,20 @@
   "scored_less_than_93cde0d2": {
 	"message": "Minder dan ... behaald"
   },
-  "scored_less_than_score_assignmentname_1b20b789": {
-	"message": "Score lager dan { score } - { assignmentName }"
+  "scored_less_than_promptvalue_7e5f2b5d": {
+	"message": "Lager gescoord dan { promptValue }"
   },
   "scored_more_than_2185a818": {
 	"message": "Meer dan ... behaald"
   },
+  "scored_more_than_promptvalue_9097b1f7": {
+	"message": "Hoger gescoord dan { promptValue }"
+  },
   "search_280d00bd": {
 	"message": "Zoeken"
+  },
+  "seconds_plural_one_second_other_seconds_d33cf6e3": {
+	"message": "{ seconds, plural,    one {# seconde} other {# seconden}}"
   },
   "section_sectionname_a455be11": {
 	"message": "Sectie: { sectionName }"
@@ -970,6 +1015,9 @@
   },
   "send_individual_message_to_each_recipient_4fdfc1e5": {
 	"message": "Persoonlijk bericht naar elke geadresseerde verzenden"
+  },
+  "send_recording_82e5a550": {
+	"message": "Opname verzenden"
   },
   "sending_bf324366": {
 	"message": "Bezig met verzenden..."
@@ -1007,6 +1055,15 @@
   "starred_5a9efa8a": {
 	"message": "Met ster"
   },
+  "start_recording_189496b9": {
+	"message": "Opname starten"
+  },
+  "stop_playing_audio_96aed3bc": {
+	"message": "Stoppen met audio afspelen "
+  },
+  "stop_recording_6efe2129": {
+	"message": "Opname stoppen"
+  },
   "student_5da6bfd1": {
 	"message": "Cursist"
   },
@@ -1031,9 +1088,6 @@
   "submitted_late_3741af29": {
 	"message": "Te laat ingezonden"
   },
-  "submitted_late_assignmentname_adf957b2": {
-	"message": "Te laat ingeleverd - { assignmentName }"
-  },
   "subscribe_4b301fb7": {
 	"message": "Aanmelden"
   },
@@ -1055,9 +1109,6 @@
   "tap_the_to_create_a_new_conversation_80f77725": {
 	"message": "Tik op de \"+\" om een nieuw gesprek te maken"
   },
-  "tap_to_record_9d84c163": {
-	"message": "Tik om op te nemen"
-  },
   "tap_to_view_submissions_list_5bfe32f3": {
 	"message": "Tik om lijst met inzendingen weer te geven."
   },
@@ -1073,8 +1124,14 @@
   "text_submission_935eeb5": {
 	"message": "Tekst indieningen"
   },
+  "that_message_can_not_be_forwarded_76cb2b1a": {
+	"message": "Dat bericht kan niet worden doorgestuurd."
+  },
   "the_value_of_possible_points_must_be_zero_or_great_374e175a": {
 	"message": "De waarde van mogelijke punten moet nul of groter zijn"
+  },
+  "the_was_a_problem_saving_the_grade_please_try_agai_2aefe6a8": {
+	"message": "Er is een probleem met het opslaan van het cijfer. Probeer het opnieuw."
   },
   "there_currently_is_no_long_description_for_this_it_ea943d61": {
 	"message": "Er is momenteel geen beschrijving voor dit item."
@@ -1100,8 +1157,14 @@
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
 	"message": "Er is een probleem ontstaan bij het laden van de toetsen."
   },
+  "there_was_an_error_loading_the_attachment_840a55ee": {
+	"message": "Er is een fout met het laden van de bijlage."
+  },
   "there_was_an_error_loading_the_quiz_preview_3f3c8104": {
 	"message": "Er is een fout opgetreden bij het laden van de toetspreview."
+  },
+  "there_was_an_error_loading_this_attachment_408acc12": {
+	"message": "Er is een fout met het laden van deze bijlage."
   },
   "there_was_an_problem_loading_your_messages_b80423ac": {
 	"message": "Er is een probleem met het laden van je berichten."
@@ -1121,6 +1184,9 @@
   "this_assignment_only_allows_on_paper_submissions_f478408a": {
 	"message": "Voor deze opdracht zijn alleen schriftelijke inzendingen toegestaan."
   },
+  "this_folder_is_empty_14af41c": {
+	"message": "Deze map is leeg."
+  },
   "this_group_does_not_have_a_submission_for_this_ass_ca275999": {
 	"message": "Deze groep heeft geen inzending voor deze opdracht."
   },
@@ -1138,6 +1204,9 @@
   },
   "this_will_remove_the_due_date_and_all_of_the_assoc_56d1ea8": {
 	"message": "Hiermee wordt de inleverdatum en alle daaraan gekoppelde ontvangers verwijderd."
+  },
+  "time_elapsed_minutes_seconds_f5d82cb": {
+	"message": "Verstreken tijd: { minutes }, { seconds }."
   },
   "time_limit_a6f1a51e": {
 	"message": "Tijdslimiet"
@@ -1169,11 +1238,17 @@
   "un_starred_8fef021f": {
 	"message": "Zonder ster"
   },
+  "unavailable_46d2c344": {
+	"message": "Niet beschikbaar"
+  },
   "undo_a7be8fef": {
 	"message": "Ongedaan maken"
   },
   "unexpected_error_93991f40": {
 	"message": "Onverwachte fout"
+  },
+  "ungraded_ed0c6f98": {
+	"message": "Niet beoordeeld"
   },
   "ungraded_survey_ad7de790": {
 	"message": "Niet-beoordeelde enquête"
@@ -1205,11 +1280,17 @@
   "upload_cancelled_by_user_ca7723be": {
 	"message": "Upload geannuleerd door gebruiker"
   },
+  "upload_complete_46473c7b": {
+	"message": "Uploaden voltooid"
+  },
   "upload_error_38012123": {
 	"message": "Fout bij uploaden"
   },
   "upload_file_fd2361b8": {
 	"message": "Bestand uploaden"
+  },
+  "upload_in_progress_57b96797": {
+	"message": "Bezig met uploaden"
   },
   "uploading_loaded_of_total_d5c3d555": {
 	"message": "Uploaden van { loaded } van { total }"
@@ -1256,11 +1337,14 @@
   "yes_dde87d5": {
 	"message": "Ja"
   },
-  "you_must_enable_camera_and_microphone_permissions__34eba5a0": {
-	"message": "Je moet Camera- en Microfoontoestemmingen inschakelen in Instellingen om video op te nemen"
+  "you_must_enable_camera_and_microphone_permissions__bf35451f": {
+	"message": "Je moet Camera- en Microfoon-toestemming inschakelen bij Instellingen om de camera te gebruiken."
   },
-  "you_must_enable_microphone_permissions_in_settings_75448e50": {
-	"message": "Je moet Microfoontoestemmingen inschakelen in Instellingen om audio op te nemen"
+  "you_must_enable_microphone_permissions_in_settings_b0cf8b44": {
+	"message": "Je moet Microfoon-toestemming inschakelen bij Instellingen om audio op te nemen."
+  },
+  "you_must_enable_photos_permissions_in_settings_26faf052": {
+	"message": "Je moet Foto's-toestemming inschakelen bij Instellingen."
   },
   "you_must_enter_an_access_code_8c2c7ae0": {
 	"message": "Je moet een toegangscode invoeren"

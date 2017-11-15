@@ -142,9 +142,6 @@
 /* Error description when a user tries to upload a file that's too big */
 "The file you are trying to uploading is %@, but the maximum size is %@." = "読み込もうとしているファイルは %1$@ ですが、最大サイズは %2$@ です。";
 
-/* No comment provided by engineer. */
-"This is a media message." = "これはメディアメッセージです。";
-
 /* Media type is video */
 "Video" = "動画";
 
@@ -162,9 +159,6 @@
 
 /* No comment provided by engineer. */
 "out of %@ points" = "%@ポイント中";
-
-/* Name for a photo file, i.e. photo.png */
-"photo" = "写真";
 
 /* When we don't know the name of a file, we display this */
 "unknown" = "未知の";

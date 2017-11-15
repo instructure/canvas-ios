@@ -1,4 +1,7 @@
 {
+  "_376f89ea": {
+	"message": "--"
+  },
   "_4927a5f1": {
 	"message": "?"
   },
@@ -71,9 +74,6 @@
   "all_submissions_3eedfb97": {
 	"message": "Alle innleveringer"
   },
-  "all_submissions_assignmentname_3f4f4a9e": {
-	"message": "Alle innleveringer { assignmentName }"
-  },
   "all_submissions_b8717440": {
 	"message": "Alle innleveringer"
   },
@@ -140,9 +140,6 @@
   "assignments_list_fe3e54be": {
 	"message": "Oppgaveliste"
   },
-  "at_791460b3": {
-	"message": "den"
-  },
   "attachment_deffe5a9": {
 	"message": "Oppgave"
   },
@@ -203,6 +200,9 @@
   "bold_34b9d97e": {
 	"message": "Fet"
   },
+  "can_not_forward_message_2a4d4953": {
+	"message": "Kan ikke videresende melding"
+  },
   "cancel_caeb1e68": {
 	"message": "Avbryt"
   },
@@ -233,8 +233,8 @@
   "clear_filter_inbox_9465e74c": {
 	"message": "Rydd filter innboks"
   },
-  "clear_filter_submissions_7def30db": {
-	"message": "Tøm innlevering-filter"
+  "clear_recording_5a97b475": {
+	"message": "Fjern opptak"
   },
   "close_for_comments_ce0e5d00": {
 	"message": "Lukk for kommentarer"
@@ -276,25 +276,25 @@
 	"message": "Kunne ikke starte opptaket"
   },
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
-	"message": "{ count, plural,\n     =0 {0 studenter}\n    one {# student}\n  other {# studenter}\n}"
+	"message": "{ count, plural,     =0 {0 studenter}    one {# student}  other {# studenter}}"
   },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
-	"message": "{ count, plural,\n    one {Trenger karakter}\n  other {Trenger karakter}\n}"
+	"message": "{ count, plural,    one {Trenger karakter} other {Trenger karaktersetting}}"
   },
   "count_plural_one_needs_grading_other_need_grading_7eba188e": {
-	"message": "{ count, plural,\n    one {# Trenger karakter}\n  other {# Trenger karakter}\n}"
+	"message": "{ count, plural,    one {# Trenger karaktersetting} other {# Trenger karaktersetting}}"
   },
   "count_plural_one_pt_other_pts_c5a3bced": {
-	"message": "{ count, plural,\n    one {# poeng}\n  other {# poeng}\n}"
+	"message": "{ count, plural,    one {# pt} other {# poeng/p}}"
   },
   "count_plural_one_question_other_questions_309aafa": {
-	"message": "{ count, plural,\n    one {# Spørsmål}\n  other {# Spørsmål}\n}"
+	"message": "{ count, plural,    one {# Spørsmål} other {# Spørsmål}}"
+  },
+  "count_plural_one_reply_other_replies_dbf1832a": {
+	"message": "{ count, plural,    one {# Svar} other {# Svar}}"
   },
   "count_plural_one_there_is_assignee_without_a_grade_15facb89": {
-	"message": "{ count, plural,\n    one {Det er # stedfortreder uten karakter.}\n  other {Det er # stedfortredere uten karakterer.}\n}"
-  },
-  "count_plural_zero_replies_one_reply_other_replies_98b01de5": {
-	"message": "{ count, plural,\n   zero {# Svar}\n    one {# Svar}\n  other {# Svar}\n}"
+	"message": "{ count, plural,    one {Det er # oppgavetaker uten karakter.} other {Det er # oppgavetakere uten karakterer.}}"
   },
   "count_students_4ae780ca": {
 	"message": "{ count } studenter"
@@ -323,8 +323,14 @@
   "customize_grade_value_964695a3": {
 	"message": "Tilpass karakter { value }"
   },
-  "datestring_at_timestring_183180ce": {
-	"message": "{ dateString } den { timeString }"
+  "date_date_medium_at_date_time_short_2b9ce48b": {
+	"message": "{ date, date, medium } på { date, time, short }"
+  },
+  "date_date_mmm_d_at_date_time_short_61eeb79b": {
+	"message": "{ date, date, 'MMM d' } på { date, time, short }"
+  },
+  "date_date_mmm_d_date_time_short_e82719d6": {
+	"message": "{ date, date, 'MMM d' } { date, time, short }"
   },
   "delay_posting_f45eed7d": {
 	"message": "Utsett publisering"
@@ -377,6 +383,9 @@
   "due_date_822625d8": {
 	"message": "Innleveringsfrist"
   },
+  "due_date_date_mmm_d_yyyy_at_date_time_short_76c5900f": {
+	"message": "Leveres { date, date, 'MMM d, YYYY' } den { date, time, short }"
+  },
   "due_date_must_be_between_available_from_and_availa_bc4d7904": {
 	"message": "''Forfallsdatoen'' må være mellom ''tilgjengelig fra'' og ''tilgjengelig til''"
   },
@@ -388,6 +397,12 @@
   },
   "edit_assignment_ebf22a72": {
 	"message": "Rediger oppgave"
+  },
+  "edit_attachment_count_ae907c46": {
+	"message": "Rediger vedlegg ({ count })"
+  },
+  "edit_attachments_count_5e9276ea": {
+	"message": "Rediger vedlegg ({ count })"
   },
   "edit_c5fbea07": {
 	"message": "Rediger"
@@ -410,14 +425,17 @@
   "email_contact_e095f380": {
 	"message": "E-postkontakt"
   },
+  "enjoy_your_day_a4cb2c1": {
+	"message": "Ha en fin dag!"
+  },
   "enter_code_c7ab5104": {
 	"message": "Angi kode"
   },
   "error_98e81528": {
 	"message": "Feil"
   },
-  "error_sending_e_mail_275383b": {
-	"message": "avvik ved sending av e-post"
+  "error_saving_grade_ef8d2ddc": {
+	"message": "Avvik ved lagring av karakter"
   },
   "everyone_854554dd": {
 	"message": "Alle"
@@ -458,11 +476,17 @@
   "favorite_courses_fbd356f0": {
 	"message": "Favorittemner"
   },
+  "file_count_plural_one_file_other_files_8ae41de8": {
+	"message": "{ file_count, plural,    one {# fil} other {# filer}}"
+  },
   "files_c300e900": {
 	"message": "Filer"
   },
-  "files_numberoffiles_66240ab2": {
-	"message": "Filer ({ numberOfFiles })"
+  "files_numberoffiles_number_410d9eba": {
+	"message": "Filer ({ numberOfFiles, number })"
+  },
+  "filter_by_2f4368a8": {
+	"message": "Filtrer etter"
   },
   "filter_by_ffcbd05b": {
 	"message": "Filtrer ut fra:"
@@ -472,6 +496,9 @@
   },
   "filter_inbox_dae0ff8f": {
 	"message": "Filtrere innboksen"
+  },
+  "filter_numselected_f4793ab8": {
+	"message": "Filtrer ({ numSelected })"
   },
   "filter_people_b34b567b": {
 	"message": "Filtrer folk"
@@ -509,9 +536,6 @@
   "graded_25cd3fcd": {
 	"message": "Karaktersatt"
   },
-  "graded_assignmentname_f530f81d": {
-	"message": "Karakter satt { assignmentName }"
-  },
   "graded_quiz_7fabdf1f": {
 	"message": "Karaktersatt test"
   },
@@ -539,14 +563,8 @@
   "haven_t_been_graded_1fbfda56": {
 	"message": "Ikke karaktersatt"
   },
-  "haven_t_been_graded_assignmentname_eaafdd9f": {
-	"message": "Karakter ikke satt { assignmentName }"
-  },
   "haven_t_submitted_yet_3a127a27": {
 	"message": "Ikke innlevert enda"
-  },
-  "haven_t_submitted_yet_assignmentname_dd06c39f": {
-	"message": "Ikke innsendt ennå { assignmentName }"
   },
   "hide_correct_answers_at_b1a59408": {
 	"message": "Skjul riktige svar på"
@@ -611,14 +629,14 @@
   "long_description_7d89285c": {
 	"message": "Lang beskrivelse"
   },
+  "mail_is_unavailable_on_your_device_fb52a13c": {
+	"message": "E-post er ikke tilgjengelig på enheten din."
+  },
   "mark_all_as_read_8f3bdf57": {
 	"message": "Merk alle som lest"
   },
   "me_bf110f4d": {
 	"message": "meg"
-  },
-  "media_attachment_e412aab8": {
-	"message": "Medievedlegg"
   },
   "media_recording_77cddc52": {
 	"message": "Medieinnspilling"
@@ -641,6 +659,9 @@
   "minutes_4aee5a41": {
 	"message": "Minutter"
   },
+  "minutes_plural_one_minute_other_minutes_e2adacfe": {
+	"message": "{ minutes, plural,    one {# minutt} other {# minutter}}"
+  },
   "missing_1a256b3b": {
 	"message": "Mangler"
   },
@@ -656,8 +677,8 @@
   "name_1aed4a1b": {
 	"message": "Navn"
   },
-  "name_count_others_6e5afa7c": {
-	"message": "{ name } + { count } andre"
+  "name_count_plural_one_other_other_others_f47e51c3": {
+	"message": "{ name } + { count, plural,    one {# annen}  other {# andre}}"
   },
   "names_count_more_643849d3": {
 	"message": "{ names } + { count } mer"
@@ -725,6 +746,9 @@
   "none_3b5e34d2": {
 	"message": "Ingen"
   },
+  "none_9b6c9bec": {
+	"message": "ingen"
+  },
   "not_a_teacher_b0d0fc55": {
 	"message": "Ikke lærer?"
   },
@@ -737,8 +761,11 @@
   "not_submitted_7d05fdb4": {
 	"message": "Ikke levert"
   },
+  "nothing_more_to_do_b017e8bb": {
+	"message": "Ingenting mer å gjøre."
+  },
   "number_plural_one_minute_other_minutes_648ec0e1": {
-	"message": "{ number, plural,\n    one {# Minutt}\n  other {# Minutter}\n}"
+	"message": "{ number, plural,    one {# Minutt} other {# Minutter}}"
   },
   "observer_248a192e": {
 	"message": "Observatør"
@@ -800,8 +827,8 @@
   "out_of_score_c17b26bb": {
 	"message": "Ut av { score }"
   },
-  "out_of_total_number_188f9a69": {
-	"message": "ut av { total, number }"
+  "pages_e5414c2c": {
+	"message": "Sider"
   },
   "pages_front_page_9ce5188": {
 	"message": "Sider forside"
@@ -833,11 +860,11 @@
   "points_number_out_of_totalpoints_number_291efb47": {
 	"message": "{ points, number } Ut av { totalPoints, number }"
   },
-  "points_possible_b18e4e80": {
-	"message": "{ points }/{ possible }"
-  },
   "points_possible_must_be_a_number_4a592dc6": {
 	"message": "Oppnåelige poeng må være et tall"
+  },
+  "pointspossible_number_pts_2d9f157d": {
+	"message": "{ pointsPossible, number } poeng"
   },
   "post_at_a9e0fecb": {
 	"message": "Publiser på..."
@@ -853,6 +880,9 @@
   },
   "previewing_this_file_type_is_not_supported_7df9231": {
 	"message": "Forhåndsvisning av denne filtypen støttes ikke"
+  },
+  "profile_6bd2baed": {
+	"message": "Profil"
   },
   "profile_actions_cfcbb476": {
 	"message": "Profil handlinger"
@@ -899,6 +929,9 @@
   "redo_363c58b7": {
 	"message": "Gjør om"
   },
+  "remove_attachment_81f30aa3": {
+	"message": "Fjern vedlegg"
+  },
   "remove_date_edf2f565": {
 	"message": "Fjern dato"
   },
@@ -923,6 +956,9 @@
   "require_an_access_code_46a02601": {
 	"message": "Krever en adgangskode"
   },
+  "reset_95a81614": {
+	"message": "Tilbakestill"
+  },
   "retry_ebd5f8ba": {
 	"message": "Prøv igjen"
   },
@@ -935,8 +971,11 @@
   "saving_2521e616": {
 	"message": "Lagrer"
   },
-  "score_more_than_score_assignmentname_a4fdc7fe": {
-	"message": "Resultat mer enn { score } - { assignmentName }"
+  "saving_d55dd90e": {
+	"message": "Lagrer…"
+  },
+  "score_number_pointspossible_number_fd8705b8": {
+	"message": "{ score, number }/{ pointsPossible, number }"
   },
   "score_to_keep_48ace09b": {
 	"message": "Resultat å beholde"
@@ -944,14 +983,20 @@
   "scored_less_than_93cde0d2": {
 	"message": "Skåret mindre enn…"
   },
-  "scored_less_than_score_assignmentname_1b20b789": {
-	"message": "Scoret mindre enn { score } - { assignmentName }"
+  "scored_less_than_promptvalue_7e5f2b5d": {
+	"message": "Fikk resultat lavere enn { promptValue }"
   },
   "scored_more_than_2185a818": {
 	"message": "Skåret mer enn…"
   },
+  "scored_more_than_promptvalue_9097b1f7": {
+	"message": "Fikk resultat høyere enn { promptValue }"
+  },
   "search_280d00bd": {
 	"message": "Søk"
+  },
+  "seconds_plural_one_second_other_seconds_d33cf6e3": {
+	"message": "{ seconds, plural,    one {# sekund} other {# sekunder}}"
   },
   "section_sectionname_a455be11": {
 	"message": "Avsnitt: { sectionName }"
@@ -970,6 +1015,9 @@
   },
   "send_individual_message_to_each_recipient_4fdfc1e5": {
 	"message": "Send personlig melding til hver mottaker"
+  },
+  "send_recording_82e5a550": {
+	"message": "Send opptak"
   },
   "sending_bf324366": {
 	"message": "Sender..."
@@ -1007,6 +1055,15 @@
   "starred_5a9efa8a": {
 	"message": "Stjernemerket"
   },
+  "start_recording_189496b9": {
+	"message": "Start opptak"
+  },
+  "stop_playing_audio_96aed3bc": {
+	"message": "Stopp avspilling av lyd"
+  },
+  "stop_recording_6efe2129": {
+	"message": "Stopp opptak"
+  },
   "student_5da6bfd1": {
 	"message": "Student"
   },
@@ -1031,9 +1088,6 @@
   "submitted_late_3741af29": {
 	"message": "Levert etter fristen"
   },
-  "submitted_late_assignmentname_adf957b2": {
-	"message": "Innsendt sent - { assignmentName }"
-  },
   "subscribe_4b301fb7": {
 	"message": "Abonner"
   },
@@ -1055,9 +1109,6 @@
   "tap_the_to_create_a_new_conversation_80f77725": {
 	"message": "Trykk \"+\" for å starte en ny samtale"
   },
-  "tap_to_record_9d84c163": {
-	"message": "Trykk for å ta opp"
-  },
   "tap_to_view_submissions_list_5bfe32f3": {
 	"message": "Trykk for å vise innleverings liste."
   },
@@ -1073,8 +1124,14 @@
   "text_submission_935eeb5": {
 	"message": "Tekstinnsending"
   },
+  "that_message_can_not_be_forwarded_76cb2b1a": {
+	"message": "Denne meldingen kan ikke videresendes."
+  },
   "the_value_of_possible_points_must_be_zero_or_great_374e175a": {
 	"message": "Verdien av mulige poeng må være null eller større"
+  },
+  "the_was_a_problem_saving_the_grade_please_try_agai_2aefe6a8": {
+	"message": "Det var et problem med å lagre karakteren. Vennligst prøv igjen."
   },
   "there_currently_is_no_long_description_for_this_it_ea943d61": {
 	"message": "Det er for øyeblikket ingen lang beskrivelse for dette elementet."
@@ -1100,8 +1157,14 @@
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
 	"message": "Det oppstod et problem med lasting av testene."
   },
+  "there_was_an_error_loading_the_attachment_840a55ee": {
+	"message": "Det oppstod et avvik under henting av vedlegget."
+  },
   "there_was_an_error_loading_the_quiz_preview_3f3c8104": {
 	"message": "Det oppstod en feil under innlasting av forhåndsvisningen."
+  },
+  "there_was_an_error_loading_this_attachment_408acc12": {
+	"message": "Det oppstod et avvik under henting av dette vedlegget."
   },
   "there_was_an_problem_loading_your_messages_b80423ac": {
 	"message": "Det oppstod et problem under innlastingen av meldinger."
@@ -1121,6 +1184,9 @@
   "this_assignment_only_allows_on_paper_submissions_f478408a": {
 	"message": "Denne oppgaven tillater kun innlevering på papir."
   },
+  "this_folder_is_empty_14af41c": {
+	"message": "Mappen er tom."
+  },
   "this_group_does_not_have_a_submission_for_this_ass_ca275999": {
 	"message": "Denne gruppen har ikke en innlevering for denne oppgaven."
   },
@@ -1138,6 +1204,9 @@
   },
   "this_will_remove_the_due_date_and_all_of_the_assoc_56d1ea8": {
 	"message": "Dette vil fjerne forfallsdatoen og alle tilknyttede stedfortredere."
+  },
+  "time_elapsed_minutes_seconds_f5d82cb": {
+	"message": "Tid brukt: { minutes }, { seconds }."
   },
   "time_limit_a6f1a51e": {
 	"message": "Tidsgrense"
@@ -1169,11 +1238,17 @@
   "un_starred_8fef021f": {
 	"message": "Stjernemerket fjernet"
   },
+  "unavailable_46d2c344": {
+	"message": "Utilgjengelig"
+  },
   "undo_a7be8fef": {
 	"message": "Angre"
   },
   "unexpected_error_93991f40": {
 	"message": "Uventet feil"
+  },
+  "ungraded_ed0c6f98": {
+	"message": "Ikke vurdert"
   },
   "ungraded_survey_ad7de790": {
 	"message": "Ikke vurdert undersøkelse"
@@ -1205,11 +1280,17 @@
   "upload_cancelled_by_user_ca7723be": {
 	"message": "Opplastingen ble kansellert av brukeren"
   },
+  "upload_complete_46473c7b": {
+	"message": "Opplasting fullført"
+  },
   "upload_error_38012123": {
 	"message": "Last opp feil"
   },
   "upload_file_fd2361b8": {
 	"message": "Last opp fil"
+  },
+  "upload_in_progress_57b96797": {
+	"message": "Opplasting pågår"
   },
   "uploading_loaded_of_total_d5c3d555": {
 	"message": "Laster opp { loaded } av { total }"
@@ -1256,11 +1337,14 @@
   "yes_dde87d5": {
 	"message": "Ja"
   },
-  "you_must_enable_camera_and_microphone_permissions__34eba5a0": {
-	"message": "Du må aktivere Kamera- og Mikrofonrettigheter i Innstillinger for å spille inn video"
+  "you_must_enable_camera_and_microphone_permissions__bf35451f": {
+	"message": "Du må aktivere kamera- og mikrofontillatelser i Innstillinger for å bruke kameraet."
   },
-  "you_must_enable_microphone_permissions_in_settings_75448e50": {
-	"message": "Du må aktivere mikrofonrettigheter i Innstillinger for å ta opp lyd"
+  "you_must_enable_microphone_permissions_in_settings_b0cf8b44": {
+	"message": "Du må aktivere mikrofontillatelser i Innstillinger for å gjøre opptak."
+  },
+  "you_must_enable_photos_permissions_in_settings_26faf052": {
+	"message": "Du må aktivere bildetillatelser i Innstillinger."
   },
   "you_must_enter_an_access_code_8c2c7ae0": {
 	"message": "Du må skrive inn en tilgangskode"

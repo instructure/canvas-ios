@@ -1,0 +1,9 @@
+/* Logout Confirmation */
+"Are you sure you want to logout?" = "Czy na pewno chcesz się wylogować?";
+
+/* Logout Cancel Button */
+"Cancel" = "Anuluj";
+
+/* Logout Confirm Button */
+"Logout" = "Wyloguj się";
+

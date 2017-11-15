@@ -1,9 +1,5 @@
 /* prerequisites for unlocking item */
-"
-
-You must first complete:" = "
-
-Du må først fullføre:";
+"\n\nYou must first complete:" = "\n\nDu må først fullføre:";
 
 /* when locked item will become unlocked */
 " until %@" = "inntil %@";
@@ -11,43 +7,43 @@ Du må først fullføre:";
 /* explanation for locked module item */
 "\"%@\" is locked as part of \"%@\"" = "\"%1$@\" er låst som en del av \"%2$@\"";
 
-/* (No Commment) */
+/* (No Comment) */
 "%0.2f GB" = "%0.2f GB";
 
-/* (No Commment) */
+/* (No Comment) */
 "%0.2f KB" = "%0.2f KB";
 
-/* (No Commment) */
+/* (No Comment) */
 "%0.2f MB" = "%0.2f MB";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$@ (%2$d)" = "%1$@ (%2$d)";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$@ (%2$g out of %3$@)" = "%1$@ (%2$g ut av %3$@)";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$@ at %2$@" = "%1$@ på %2$@";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$@ is due in %2$@" = "%1$@ har frist den %2$@";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$@ out of %2$@" = "%1$@ ut av %2$@";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$@%% (%2$g out of %3$@)" = "%1$@%% (%2$g ut av %3$@)";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$@. %2$@. Type: %3$@." = "%1$@. %2$@. Type: %3$@.";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$@. %2$@. Type: %3$@. Status: %4$@" = "%1$@. %2$@. Type: %3$@. Status: %4$@";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$d %2$@" = "%1$d %2$@";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$g out of %2$@" = "%1$g ut av %2$@";
 
 /* Button to submit files to an assignment */
@@ -71,7 +67,7 @@ Du må først fullføre:";
 /* No comment provided by engineer. */
 "%@ is not a valid URL" = "%@ er ikke en gyldig URL";
 
-/* (No Commment) */
+/* (No Comment) */
 "%@ is not a valid host" = "%@ er ikke en gyldig vert";
 
 /* Message for unsupported tab */
@@ -80,7 +76,7 @@ Du må først fullføre:";
 /* Description for how many times a specific discussion has been liked by other users */
 "%@ likes" = "%@ liker";
 
-/* (No Commment) */
+/* (No Comment) */
 "%@ need grading" = "%@ trenger vurdering";
 
 /* 88 out of 100 points */
@@ -89,25 +85,25 @@ Du må først fullføre:";
 /* 83% (83 out of 100 points */
 "%@%% (%g out of %@)" = "%1$@%% (%2$g ut av %3$@)";
 
-/* (No Commment) */
+/* (No Comment) */
 "%@..." = "%@...";
 
 /* A number and a collective noun, like '5 pigs' */
 "%d %@" = "%1$d %2$@";
 
-/* (No Commment) */
+/* (No Comment) */
 "%d days ago" = "%d dager siden";
 
-/* (No Commment) */
+/* (No Comment) */
 "%d hours ago" = "%d timer siden";
 
 /* Number of files/folders inside a folder. (Used for all cases except 1 item.) */
 "%d items" = "%d objekter";
 
-/* (No Commment) */
+/* (No Comment) */
 "%d minutes ago" = "%d minutter siden";
 
-/* (No Commment) */
+/* (No Comment) */
 "%d months ago" = "%d måneder siden";
 
 /* In the context 'Joe, Fred, ((25 more))' */
@@ -119,10 +115,10 @@ Du må først fullføre:";
 /* Something like '3 unread'. Refers to unread replies in a discsusion. */
 "%d unread" = "%d ulest";
 
-/* (No Commment) */
+/* (No Comment) */
 "%d years ago" = "%d år siden";
 
-/* (No Commment) */
+/* (No Comment) */
 "%qu bytes" = "%qu byte";
 
 /* offset for one day */
@@ -143,31 +139,31 @@ Du må først fullføre:";
 /* offset for under an hour */
 "%tu minutes" = "%tu minutter";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "%u Attachments" = "%u vedlegg";
 
 /* Label indicating multiple files are attached to a single homework submission. %u will be a positive number, and will not be '1' */
 "%u files" = "%u filer";
 
-/* (No Commment) */
+/* (No Comment) */
 "&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "&quot;%1$@&quot; er låst som en del av &quot;%2$@&quot;";
 
 /* %@ will be replaced by the filename */
 "'%@' is now ready to submit to assignments" = "'%@' er nå klar til å sende til oppgaver";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "1 Attachment" = "1 vedlegg";
 
 /* one day */
 "1 day" = "1 dag";
 
-/* (No Commment) */
+/* (No Comment) */
 "1 day ago" = "1 dag siden";
 
 /* one hour */
 "1 hour" = "1 time";
 
-/* (No Commment) */
+/* (No Comment) */
 "1 hour ago" = "1 time siden";
 
 /* Number of files/folders inside a folder. (Only used when there is exactly 1 item. */
@@ -176,16 +172,16 @@ Du må først fullføre:";
 /* Description for a post that has been liked once */
 "1 like" = "1 liker";
 
-/* (No Commment) */
+/* (No Comment) */
 "1 minute ago" = "1 minutt siden";
 
-/* (No Commment) */
+/* (No Comment) */
 "1 month ago" = "1 måned siden";
 
-/* (No Commment) */
+/* (No Comment) */
 "1 needs grading" = "1 trenger vurdering";
 
-/* (No Commment) */
+/* (No Comment) */
 "1 year ago" = "1 år siden";
 
 /* three days */
@@ -197,13 +193,13 @@ Du må først fullføre:";
 /* Name of a tab displaying Canvas Info including legal info */
 "About" = "Om";
 
-/* (No Commment) */
+/* (No Comment) */
 "Access Denied" = "Nektet tilgang";
 
 /* Error handling message when a network request has been denied by a server. Specifically with the HTTP 401 error code. */
 "Access denied. Please check your permissions for the action you're trying to complete." = "Nektet tilgang. Sjekk tillatelsene dine for handlingen du forsøker å fullføre.";
 
-/* title for Messages attachment action sheet */
+/* (No Comment) */
 "Add Attachment" = "Legg til vedlegg";
 
 /* add comment button */
@@ -227,13 +223,13 @@ Du må først fullføre:";
 /* Title on the add-inline-media sheet */
 "Add inline media" = "Legg til integrert media";
 
-/* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
+/* (No Comment) */
 "Add recipients" = "Legg til mottakere";
 
-/* Button to select all members of a group */
+/* (No Comment) */
 "All members" = "Alle medlemmer";
 
-/* (No Commment) */
+/* (No Comment) */
 "An unknown error occurred" = "Det oppsto en ukjent feil";
 
 /* Title of the new announcement view */
@@ -245,19 +241,16 @@ Du må først fullføre:";
 /* Assignment submission type for selecting an Arc video */
 "Arc" = "Arc";
 
-/* Archive selected messages button */
+/* (No Comment) */
 "Archive" = "Arkiv";
 
-/* archive selected messages */
-"Archive Selected Messages" = "Arkiver valgte meldinger";
-
-/* (No Commment) */
+/* (No Comment) */
 "Archive Selected Messages Button" = "Knapp, arkivere valgte meldinger";
 
-/* (No Commment) */
+/* (No Comment) */
 "Archive all selected messages" = "Arkivere alle valgte meldinger";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Archived" = "Arkivert";
 
 /* Action sheet title verifying that a user wants to logout. */
@@ -266,13 +259,13 @@ Du må først fullføre:";
 /* Confirmation alert text for submitting an Arc video for an assignment */
 "Are you sure you want to submit this Arc video for this assignment?" = "Er du sikker på at du vil levere denne Arc-videoen for denne oppgaven?";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Ask me later" = "Spør meg senere";
 
 /* Label for an assignment */
 "Assignment" = "Oppgave";
 
-/* (No Commment) */
+/* (No Comment) */
 "Assignments" = "Oppgaver";
 
 /* An item for attaching to a discussion */
@@ -281,10 +274,10 @@ Du må først fullføre:";
 /* label for an attachment */
 "Attachment %d" = "Vedlegg %d";
 
-/* An item for attaching to a conversation */
+/* (No Comment) */
 "Attachment %i" = "Vedlegg %i";
 
-/* Table View Controller for Attachments */
+/* (No Comment) */
 "Attachments" = "Vedlegg";
 
 /* Label for a discussion */
@@ -293,7 +286,7 @@ Du må først fullføre:";
 /* Audio file type */
 "Audio" = "Lyd";
 
-/* (No Commment) */
+/* (No Comment) */
 "Audio input hardware not available" = "Maskinvare for lyd-input ikke tilgjengelig";
 
 /* Title for an error popup */
@@ -302,10 +295,10 @@ Du må først fullføre:";
 /* Link to building panda avatar */
 "Build Avatar" = "Lag en avatar";
 
-/* (No Commment) */
+/* (No Comment) */
 "Cache cleared" = "Hurtiglager nullstilt";
 
-/* (No Commment) */
+/* (No Comment) */
 "Calendar" = "Kalender";
 
 /* Invalid LTI tool error title */
@@ -324,19 +317,14 @@ Du må først fullføre:";
 /* No comment provided by engineer. */
 "Canvas appears to be unavailable. Please try again later." = "Det ser ikke ut til at Canvas er tilgjengelig. Forsøk igjen senere.";
 
-/* detail text for recipient fetch error message */
+/* (No Comment) */
 "Canvas failed to find recipients for your current search. Please try again later." = "Canvas fant ikke mottakere til søket ditt. Forsøk igjen senere.";
 
 /* mobile quze warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas spørrekonkurranser støtter forskjellige vurderingsmetoder. De fleste av disse metodene støttes på mobilenheter, men ikke alle. Hvis du prøver å ta en av spørrekonkurransene som ikke støttes på mobil, får du kanskje ikke fullført hele konkurransen, noe som er en ulempe for deg.\n\nSpørsmålstyper som ikke støttes består av innhold med bl.a. Adobe Flash™.\n\nHvis du mener at en spørrekonkurranse inneholder innhold som ikke støttes, bør du delta i den på en bærbar eller stasjonær PC. Hvis du vet at spørrekonkurransen kun inneholder støttet innhold, kan du delta i den på mobilenheten.";
 
-Unsupported question types include questions containing Adobe Flash™ content, file uploads, and others.
-
-If you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas tester støtter forskjellige vurderingsstiler. De fleste av disse stilene støttes på mobile enheter, men ikke alle. Hvis du forsøker å ta en av disse testene som ikke støttes på telefonen din er du kanskje ikke i stand til å fullføre hele testen, hvilket gir deg en ulempe.
-
-Spørsmålstyper som ikke støttes inkluderer spørsmål som inneholder Adobe Flash™ innhold, filopplastinger og annet.
-
-Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på stasjonær eller bærbar datamaskin. Hvis du vet at testen inneholder kun innhold som støttes, da må du gjerne gjøre den på din mobile enhet.";
+/* (No Comment) */
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas tester støtter forskjellige vurderingsstiler. De fleste av disse stilene støttes på mobile enheter, men ikke alle. Hvis du forsøker å ta en av disse testene som ikke støttes på telefonen din er du kanskje ikke i stand til å fullføre hele testen, hvilket gir deg en ulempe.\n\nSpørsmålstyper som ikke støttes inkluderer spørsmål som inneholder Adobe Flash™ innhold, filopplastinger og annet.\n\nDersom du tror av testen inneholder innhold som ikke støttes, gjør testen på stasjonær eller bærbar datamaskin. Hvis du vet at testen inneholder kun innhold som støttes, da må du gjerne gjøre den på din mobile enhet.";
 
 /* button to change user's profile image */
 "Change Profile Image" = "Endre profilbilde";
@@ -389,19 +377,16 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* No comment provided by engineer. */
 "Comments are disabled" = "Kommentarer er deaktivert";
 
-/* (No Commment) */
+/* (No Comment) */
 "Complete" = "Fullfør";
 
-/* (No Commment) */
+/* (No Comment) */
 "Completed" = "Fullført";
 
-/* button to compose a message */
-"Compose Message" = "Lag melding";
-
-/* (No Commment) */
+/* (No Comment) */
 "Compose Message Button" = "Knapp, skriv melding";
 
-/* (No Commment) */
+/* (No Comment) */
 "Compose a message" = "Skriv en melding";
 
 /* Title for Conferences tab */
@@ -422,13 +407,13 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* error title for failure to load a file submission */
 "Couldn't Load Submission" = "Kunne ikke laste innlevering";
 
-/* title for alert displayed when iCanvas can't fetch recipients */
+/* (No Comment) */
 "Couldn't find recipients" = "Fant ikke mottakere";
 
 /* Title for Course Syllabus view controller */
 "Course Syllabus" = "Emneoversikt";
 
-/* (No Commment) */
+/* (No Comment) */
 "Courses" = "Emne";
 
 /* cancel folder creation */
@@ -440,13 +425,14 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* Message telling users that quiz support on mobile is limited */
 "Currently there is limited quiz support on mobile" = "Det er begrenset støtte til test på mobil";
 
-/* (No Commment) */
+/* (No Comment) */
 "Custom Grade" = "Tilpasset vurdering";
 
-/* (No Commment) */
+/* (No Comment) */
 "Customize" = "Tilpass";
 
-/* Delete Button title */
+/* Default delete button MLVC
+   Delete Button title */
 "Delete" = "Slett";
 
 /* Button for deleting files or folders. %d will be the number of selected items */
@@ -458,7 +444,7 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* delete file confirmation alert */
 "Deleted file: \"%@\"" = "Slettet fil: \"%@\"";
 
-/* (No Commment) */
+/* (No Comment) */
 "Deleted file: &quot;%@&quot;" = "Slettet fil: &quot;%@&quot;";
 
 /* No comment provided by engineer. */
@@ -485,7 +471,8 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* Title for Discussions view controller */
 "Discussions" = "Diskusjoner";
 
-/* Dismiss button title */
+/* Dismiss button title
+   uialertaction button name for dismissing the failed refresh error message */
 "Dismiss" = "Avvis";
 
 /* Alert title asking if you want to masquerade */
@@ -494,7 +481,7 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* The domain for the institution/school that the user is currently using */
 "Domain" = "Domene";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Don't ask me again" = "Ikke spør meg igjen";
 
 /* Button to cancel deleting folders */
@@ -509,10 +496,10 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* Shown while downloading a file */
 "Downloading..." = "Laster ned ...";
 
-/* (No Commment) */
+/* (No Comment) */
 "Due:" = "Frist:";
 
-/* (No Commment) */
+/* (No Comment) */
 "Due: %1$@ at %2$@" = "Frist: %1$@ innen %2$@";
 
 /* Due date label indicating when an assignment is due */
@@ -524,16 +511,16 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* Button to edit a discussion entry */
 "Edit" = "Rediger";
 
-/* (No Commment) */
+/* (No Comment) */
 "Edit Course List" = "Rediger emneliste";
 
-/* (No Commment) */
+/* (No Comment) */
 "Edit Group List" = "Rediger gruppeliste";
 
 /* Button title for deleting items in a folder */
 "Edit items" = "Rediger objekter";
 
-/* (No Commment) */
+/* (No Comment) */
 "Editing reply by %1$@, %2$@" = "Redigere svar innen %1$@, %2$@";
 
 /* Header when editing a discussion entry with name and timestamp */
@@ -542,7 +529,7 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* the users email */
 "Email" = "E-post";
 
-/* (No Commment) */
+/* (No Comment) */
 "Enable Push Notifications" = "Aktivere push-varsler";
 
 /* masquerade prompt */
@@ -557,16 +544,13 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* Title for an error popup */
 "Error" = "Feil";
 
-/* (No Commment) */
+/* (No Comment) */
 "Error adding recipeints" = "Fikk ikke lagt til mottakere";
-
-/* Title of an alert popup */
-"Error adding recipients" = "Feil med å legge til mottakere";
 
 /* Error deleting file alert view title */
 "Error deleting file \"%@\"" = "Feil ved sletting av fil \"%@\"";
 
-/* (No Commment) */
+/* (No Comment) */
 "Error deleting file &quot;%@&quot;" = "Feil ved sletting av filen &quot;%@&quot;";
 
 /* Error deleting folder alert view title */
@@ -581,16 +565,19 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* Title for an external tool submission */
 "External Tool" = "Eksternt verktøy";
 
-/* (No Commment) */
+/* (No Comment) */
 "External URL" = "Ekstern URL";
 
-/* (No Commment) */
+/* Error title for refresh failing on an MLVC tableview controller */
+"Failed to load" = "Kunne ikke laste";
+
+/* (No Comment) */
 "File" = "Fil";
 
-/* (No Commment) */
+/* (No Comment) */
 "File extension not allowed: %@" = "Filtype ikke tillatt: %@";
 
-/* (No Commment) */
+/* (No Comment) */
 "File extension(s) permitted for this assignment:" = "Filtype(r) tillatt for denne oppgaven:";
 
 /* No comment provided by engineer. */
@@ -602,7 +589,7 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* File upload submission type */
 "File upload" = "Filopplasting";
 
-/* (No Commment) */
+/* (No Comment) */
 "File upload failed." = "Filopplasting feilet.";
 
 /* Title for the files screen */
@@ -611,7 +598,7 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Ferdig nedlastet";
 
-/* (No Commment) */
+/* (No Comment) */
 "Front Page" = "Forside";
 
 /* No comment provided by engineer. */
@@ -632,20 +619,17 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* No comment provided by engineer. */
 "Grade" = "Karakterer";
 
-/* (No Commment) */
+/* (No Comment) */
 "Grade %@" = "Karakter %@";
 
 /* Launch the SpeedGrader app */
 "Grade in SpeedGrader" = "Vurdere i SpeedGrader";
 
-/* (No Commment) */
+/* (No Comment) */
 "Grade: %1$i / %2$g" = "Karakter: %1$i / %2$g";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Grade: %@" = "Karakter: %@";
-
-/* No comment provided by engineer. */
-"Grade: %i / %g" = "Karakter: %1$i / %2$g";
 
 /* Label for a discussion */
 "Graded Discussion" = "Vurdert diskusjon";
@@ -656,25 +640,25 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* Graded discussion. 25 points possible */
 "Graded discussion. %g points possible." = "Vurdert diskusjon. %g mulige poeng.";
 
-/* (No Commment) */
+/* (No Comment) */
 "Grades" = "Karakterer";
 
-/* Button title for starting a group conversation */
+/* (No Comment) */
 "Group conversation" = "Gruppesamtale";
 
-/* (No Commment) */
+/* (No Comment) */
 "Groups" = "Grupper";
 
 /* help button */
 "Help" = "Hjelp";
 
-/* (No Commment) */
+/* (No Comment) */
 "Hide Grades" = "Skjul vurderinger";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "How do you like Canvas?" = "Hvordan liker du Canvas?";
 
-/* (No Commment) */
+/* (No Comment) */
 "I give you back your time, use it wisely." = "Jeg gir deg tiden din tilbake, bruk den fornuftig.";
 
 /* Image file type */
@@ -686,31 +670,31 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* No comment provided by engineer. */
 "Import from camera" = "Importere fra kamera";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Inbox" = "Innboks";
 
-/* (No Commment) */
+/* (No Comment) */
 "Incomplete" = "Ufullstendig";
 
-/* Button title for sending a direct message; a private conversation */
+/* (No Comment) */
 "Individual messages" = "Individuelle meldinger";
 
 /* No comment provided by engineer. */
 "Invalid URL" = "Ugyldig URL";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "It has problems" = "Den har problemer";
 
-/* (No Commment) */
+/* (No Comment) */
 "Item %1$d of %2$d" = "Objekt %1$d av %2$d";
 
 /* No comment provided by engineer. */
 "Item %d of %d" = "Objekt %1$d av %2$d";
 
-/* (No Commment) */
+/* (No Comment) */
 "It’s empty, what are you still doing here." = "Den er tom, hva driver du med her fremdeles.";
 
-/* (No Commment) */
+/* (No Comment) */
 "Jumps to current day on calendar" = "Går til dagen i dag på kalenderen";
 
 /* No comment provided by engineer. */
@@ -719,7 +703,7 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* Title for an LTI launch submitted as an assignment */
 "LTI Tool" = "LTI-verktøy";
 
-/* (No Commment) */
+/* (No Comment) */
 "Landing Page" = "Landingsside";
 
 /* Title for an alert popup */
@@ -737,64 +721,64 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* Generic loading title with ellipsis */
 "Loading..." = "Laster...";
 
-/* (No Commment) */
+/* (No Comment) */
 "Locked" = "Låst";
 
-/* (No Commment) */
+/* (No Comment) */
 "Locked until %@" = "Låst inntil %@";
 
 /* Typically the email address correlated to the user */
 "Login ID" = "Logg inn-ID";
 
-/* (No Commment) */
+/* (No Comment) */
 "Login Problem" = "Påloggingsproblemer";
 
 /* Title for a button to logout a user */
 "Logout" = "Logg ut";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Love it!" = "Elsker det!";
 
-/* (No Commment) */
+/* (No Comment) */
 "Mark as Done" = "Merk som utført";
 
 /* Button title for beginning masquerading */
 "Masquerade" = "Forkledning";
 
-/* (No Commment) */
+/* (No Comment) */
 "Me" = "Meg";
 
-/* (No Commment) */
+/* (No Comment) */
 "Media Comment" = "Mediakommentar";
 
 /* Title for a media submission */
 "Media Submission" = "Mediainnsending";
 
-/* (No Commment) */
+/* (No Comment) */
 "Media comment" = "Mediakommentar";
 
 /* Media recording submission type */
 "Media recording" = "Mediaopptak";
 
-/* (No Commment) */
+/* (No Comment) */
 "Media type selector. %@" = "Velger, mediatype. %@";
 
 /* Add message button */
 "Message Instructor" = "Meldingsinstruktør";
 
-/* notification that a message has been sent succesfully */
+/* (No Comment) */
 "Message Sent." = "Melding sendt.";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Message everyone separately, or add everyone to a group conversation?" = "Send melding til alle hver for seg, eller legg alle til i en gruppesamtale?";
 
-/* Title for the messages screen */
+/* (No Comment) */
 "Messages" = "Meldinger";
 
 /* Warnging for taking quizzes on a mobile device */
 "Mobile Quiz Warning" = "Advarsel mobiltest";
 
-/* (No Commment) */
+/* (No Comment) */
 "Modules" = "Moduler";
 
 /* Button title for selecting to view more info about the limitations of mobile quizzes */
@@ -803,19 +787,19 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* Title of a link to show additional due dates customized for sections or groups. */
 "Multiple Due Dates" = "Flere leveringsfrister";
 
-/* (No Commment) */
+/* (No Comment) */
 "Must contribute" = "Må bidra";
 
-/* (No Commment) */
+/* (No Comment) */
 "Must mark as done" = "Må merkes som utført";
 
-/* (No Commment) */
+/* (No Comment) */
 "Must score %@ or higher" = "Må oppnå %@ eller høyere";
 
-/* (No Commment) */
+/* (No Comment) */
 "Must submit" = "Må sende inn";
 
-/* (No Commment) */
+/* (No Comment) */
 "Must view" = "Må sees";
 
 /* files button */
@@ -845,7 +829,7 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* No comment provided by engineer. */
 "No Date" = "Ingen dato";
 
-/* (No Commment) */
+/* (No Comment) */
 "No Due Date" = "Ingen innleveringsfrist";
 
 /* Title for attempting submission without a comment */
@@ -854,7 +838,7 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* No Submission groupong */
 "No Submission" = "Ingen innlevering";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "No Thanks" = "Nei takk";
 
 /* Text of alert when attempting to select a file that can't be printed or passed to any other app */
@@ -870,43 +854,43 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* Error message */
 "No installed apps support opening this file" = "Ingen installerte apper støtter åpning av denne filen.";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "No recipients" = "Ingen mottakere";
 
-/* Indicates a search found no results */
+/* (No Comment) */
 "No results found" = "Ingen resultater funnet";
 
-/* (No Commment) */
+/* (No Comment) */
 "Not Authorized" = "Ikke autorisert";
 
-/* (No Commment) */
+/* (No Comment) */
 "Not Complete" = "Ikke fullført";
 
 /* Accessibility label for points out of points possible label when points are not availiable. */
 "Not available" = "Ikke tilgjengelig";
 
-/* (No Commment) */
+/* (No Comment) */
 "Not graded" = "Ikke vurdert";
 
-/* (No Commment) */
+/* (No Comment) */
 "Not graded (0 out of %@)" = "Ikke vurdert (0 ut av %@)";
 
-/* (No Commment) */
+/* (No Comment) */
 "Note: Media files are not immediately available for playback while they are processed on the server." = "Merk: Mediafiler er ikke umiddelbart tilgjengelig for avspilling mens de behandles på serveren.";
 
-/* (No Commment) */
+/* (No Comment) */
 "Nothing to do, go play outside!" = "Ingenting å gjøre, gå å lek ute!";
 
-/* (No Commment) */
+/* (No Comment) */
 "Nothing to see here." = "Ingenting å se her.";
 
-/* (No Commment) */
+/* (No Comment) */
 "Notification" = "Varsel";
 
-/* (No Commment) */
+/* (No Comment) */
 "Notification Preferences" = "Varslingspreferanser";
 
-/* (No Commment) */
+/* (No Comment) */
 "Notifications" = "Varslinger";
 
 /* OK Button Title */
@@ -915,7 +899,7 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* No comment provided by engineer. */
 "Observer" = "Observatør";
 
-/* (No Commment) */
+/* (No Comment) */
 "Ok" = "Ok";
 
 /* Online URL submission type */
@@ -942,7 +926,7 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* Title for Outcomes tab */
 "Outcomes" = "Utfall";
 
-/* (No Commment) */
+/* (No Comment) */
 "Page" = "Side";
 
 /* No comment provided by engineer. */
@@ -954,7 +938,7 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* No comment provided by engineer. */
 "Pinned Discussions" = "Merkede diskusjoner";
 
-/* (No Commment) */
+/* (No Comment) */
 "Play" = "Avspil";
 
 /* Network error message */
@@ -963,7 +947,7 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* Button to post new discussion topic */
 "Post" = "Post";
 
-/* (No Commment) */
+/* (No Comment) */
 "Post Comment" = "Poste kommentar";
 
 /* No comment provided by engineer. */
@@ -972,7 +956,7 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* Message shown while posting a discussion entry */
 "Posting…" = "Poster ...";
 
-/* (No Commment) */
+/* (No Comment) */
 "Posts your comment" = "Poste kommentaren din";
 
 /* No comment provided by engineer. */
@@ -993,19 +977,19 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* The title for the list of quizzes for a course */
 "Quizzes" = "Tester";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Rate on App Store" = "Gi vurdering i App Store";
 
-/* (No Commment) */
+/* (No Comment) */
 "Rating for %1$@, Score: %2$g" = "Vurdering for %1$@, Skåring: %2$g";
 
 /* Title for a button allowing user to re-submit files for an assignment */
 "Re-submit Assignment" = "Innlever oppgaven på nytt";
 
-/* Title for the list of users who will receive a message. 15 characters is about all we have room for here. */
+/* (No Comment) */
 "Recipients" = "Mottakere";
 
-/* (No Commment) */
+/* (No Comment) */
 "Record" = "Opptak";
 
 /* Record audio submission comment */
@@ -1023,13 +1007,13 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* No comment provided by engineer. */
 "Record video" = "Ta opp video";
 
-/* (No Commment) */
+/* (No Comment) */
 "Refresh Button" = "Oppfriskningsknapp";
 
-/* (No Commment) */
+/* (No Comment) */
 "Refreshes the calendar content" = "Oppfrisker kalenderinnholdet";
 
-/* (No Commment) */
+/* (No Comment) */
 "Refreshing Calendar Events" = "Oppfrisker kalenderoppføringer";
 
 /* Confirmation for removing a file */
@@ -1053,7 +1037,7 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* Title for Assignment Notifications Sheet */
 "Schedule Notification" = "Tidsplansvarsling";
 
-/* Placeholder text in a search bar used to find conversation recipients */
+/* (No Comment) */
 "Search for recipients" = "Søk etter mottakere";
 
 /* Title for a file picker window */
@@ -1065,22 +1049,22 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* No comment provided by engineer. */
 "Selected" = "Valgt";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Send" = "Send";
 
-/* Action sheet button title for sending a new message to a user. %@ will be replaced with the user's name */
+/* (No Comment) */
 "Send %@ a message" = "Send %@ en melding";
 
 /* No comment provided by engineer. */
 "Send Message" = "Send melding";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Sent" = "Sendt";
 
 /* Title for Settings */
 "Settings" = "Innstillinger";
 
-/* (No Commment) */
+/* (No Comment) */
 "Show Grades" = "Vis vurderinger";
 
 /* title for quiz assignment submission button */
@@ -1089,7 +1073,7 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* Title for button confirming showing a file */
 "Show file" = "Vis fil";
 
-/* VoiceOver text for a button that lets you show recipients */
+/* (No Comment) */
 "Show recipients" = "Vis mottakere";
 
 /* Message for an error popup */
@@ -1101,10 +1085,10 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* 404 Error for missing assignment */
 "Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Beklager, vi kunne ikke finne oppgaven. Denne oppgaven har kanskje blitt slettet.";
 
-/* (No Commment) */
+/* (No Comment) */
 "Starts playing your recording" = "Begynn avspilling av ditt opptak";
 
-/* (No Commment) */
+/* (No Comment) */
 "Starts recording a media comment" = "Begynner opptak av et mediainnhold";
 
 /* button title for cancelling a logout. */
@@ -1116,16 +1100,16 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* Button title for stopping masquerading; when a privileged user becomes another user in the system */
 "Stop Masquerading" = "Stopp forkledning";
 
-/* (No Commment) */
+/* (No Comment) */
 "Stops playing your recording" = "Stopper avspilling av opptaket ditt";
 
-/* (No Commment) */
+/* (No Comment) */
 "Stops recording a media comment" = "Stopper avspilling av mediakommentar";
 
 /* No comment provided by engineer. */
 "Student" = "Student";
 
-/* (No Commment) */
+/* (No Comment) */
 "Sub Header" = "Underoverskrift";
 
 /* View previously submitted assignment */
@@ -1153,22 +1137,22 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* Masquerade success title */
 "Success!" = "Vellykket!";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Sure!" = "Sikkert!";
 
-/* (No Commment) */
+/* (No Comment) */
 "Switches media input between audio and video. Currently set to %@" = "Bytter media-input mellom lyd og video. For øyeblikket satt til %@";
 
-/* (No Commment) */
+/* (No Comment) */
 "Switches to media comment mode" = "Bytter til media kommentarmodus";
 
-/* (No Commment) */
+/* (No Comment) */
 "Switches to text comment mode" = "Bytter til tekstkommentarmodus";
 
 /* Title for Syllabus screen */
 "Syllabus" = "Emneoversikt";
 
-/* (No Commment) */
+/* (No Comment) */
 "TA" = "TA";
 
 /* No comment provided by engineer. */
@@ -1189,19 +1173,19 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* Displayed in a row when an error occurs loading more items */
 "Tap to try again" = "Trykk for å prøve igjen";
 
-/* (No Commment) */
+/* (No Comment) */
 "Teacher" = "Lærer";
 
 /* No comment provided by engineer. */
 "Teachers" = "Lærere";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Tell us what's wrong" = "Fortell oss hva som er feil";
 
 /* Link to the Terms of Use */
 "Terms of Use" = "Brukervilkår";
 
-/* (No Commment) */
+/* (No Comment) */
 "Text Comment" = "Tekstkommentar";
 
 /* Title for a text submission cell */
@@ -1210,16 +1194,16 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 /* Text entry submission type */
 "Text entry" = "Tekstinntasting";
 
-/* Text explaining the error */
+/* (No Comment) */
 "The recipients could not be added. Please try again. (%@)" = "Mottakere kunne ikke legges til. Forsøk igjen. (%@)";
 
 /* Explanation for while a file is unavailable */
 "The server could not be reached" = "Fikk ikke kontakt med server";
 
-/* (No Commment) */
+/* (No Comment) */
 "The server you entered is not authorized for this app." = "Serveren du la inn er ikke autorisert for denne appen";
 
-/* (No Commment) */
+/* (No Comment) */
 "The user agent for this app is unauthorized." = "Brukeragenten for denne appen er uautorisert.";
 
 /* Error message */
@@ -1235,11 +1219,7 @@ Dersom du tror av testen inneholder innhold som ikke støttes, gjør testen på 
 "There was a network problem while attempting to upload your submission" = "Det var et nettverksproblem under forsøket på å laste opp innleveringen din";
 
 /* Error message when fetching a file fails */
-"There was a problem accessing the requested file.
-
-Error: %@" = "Det oppsto et problem med å få tilgang til forspurt fil
-
-Feil: %@";
+"There was a problem accessing the requested file.\n\nError: %@" = "Det oppsto et problem med å få tilgang til forspurt fil\n\nFeil: %@";
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "Det oppsto et problem med å starte Safari";
@@ -1250,7 +1230,7 @@ Feil: %@";
 /* No comment provided by engineer. */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "Det oppsto en feil med lastingen av innholdet ditt. Dersom det er en lyd- eller video-opplasting er det mulig den fremdeles behandles.";
 
-/* (No Commment) */
+/* (No Comment) */
 "This app is not authorized for use." = "Denne appen er ikke autorisert for bruk.";
 
 /* Invalid LTI tool error message */
@@ -1258,6 +1238,9 @@ Feil: %@";
 
 /* message displayed in the details section if there is no comment. */
 "This assignment has no details." = "Denne oppgaven har ingen detaljer.";
+
+/* Error message for refresh failing with an unauthorized code */
+"This can happen if your course hasn't started yet or you don't have permission to access this page." = "Dette kan skje hvis emnet ditt ikke har startet ennå, eller du ikke har tillatelse til å få tilgang til denne siden.";
 
 /* No comment provided by engineer. */
 "This entry has been deleted" = "Dette innlegget har blitt slettet";
@@ -1271,22 +1254,22 @@ Feil: %@";
 /* Text indicating that a folder cannot be opened */
 "This folder is locked" = "Denne mappen er låst";
 
-/* (No Commment) */
+/* (No Comment) */
 "This is a media message." = "Dette er en mediamelding.";
 
-/* (No Commment) */
+/* (No Comment) */
 "This would be a great time to do some extra credit." = "Dette bør være et flott tidspunkt for å få gjort unna litt ekstra kreditt.";
 
-/* (No Commment) */
+/* (No Comment) */
 "To Do" = "Gjøremål";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "To:" = "Til:";
 
 /* No comment provided by engineer. */
 "Today" = "I dag";
 
-/* (No Commment) */
+/* (No Comment) */
 "Today Button" = "I dag-knapp";
 
 /* No comment provided by engineer. */
@@ -1301,31 +1284,34 @@ Feil: %@";
 /* title for re-submitting an assignment */
 "Turn In Again" = "Lever inn på nytt";
 
-/* (No Commment) */
+/* (No Comment) */
 "Turn in %@" = "Lever inn %@";
 
-/* (No Commment) */
+/* (No Comment) */
 "Uh-oh! No Internet Connection" = "Ups! Ingen internettilkobling";
 
 /* Error title */
 "Unable to load" = "Kunne ikke laste";
 
-/* Error message */
+/* (No Comment) */
 "Unable to post. Please try again later" = "Kunne ikke poste. Forsøk igjen senere";
 
 /* message saying that avatar couldn't be loaded to server */
 "Unable to upload to server" = "Kunne ikke laste opp til server";
 
-/* (No Commment) */
+/* Error message for refresh failing on an MLVC tableview controller */
+"Unauthorized" = "Uautorisert";
+
+/* (No Comment) */
 "Unavailable" = "Utilgjengelig";
 
-/* (No Commment) */
+/* (No Comment) */
 "Ungraded" = "Ikke vurdert";
 
 /* Unknown file type */
 "Unknown" = "Ukjent";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Unread" = "Ulest";
 
 /* No comment provided by engineer. */
@@ -1334,13 +1320,13 @@ Feil: %@";
 /* Button title for uploading a file */
 "Upload" = "Last opp";
 
-/* title for upload error alert */
+/* (No Comment) */
 "Upload Error" = "Feil med opplastingen";
 
 /* No comment provided by engineer. */
 "Upload a file" = "Last opp en fil";
 
-/* explanation of upload failure */
+/* (No Comment) */
 "Upload failed. Reason: (%@)" = "Ble ikke lastet opp. Årsak: (%@)";
 
 /* Button title for adding a file to a folder */
@@ -1349,13 +1335,13 @@ Feil: %@";
 /* Error message */
 "Upload to assignment \"%@\" failed" = "Opplasting til oppgave \"%@\" feilet";
 
-/* (No Commment) */
+/* (No Comment) */
 "Upload to assignment &quot;%@&quot; failed" = "Opplasting til oppgaven &quot;%@&quot; mislyktes";
 
 /* Error message */
 "Upload to folder \"%@\" failed" = "Opplastingen til mappe \"%@\" feilet";
 
-/* (No Commment) */
+/* (No Comment) */
 "Upload to folder &quot;%@&quot; failed" = "Opplasting til mappen &quot;%@&quot; mislyktes";
 
 /* button for using the recorded audio */
@@ -1370,10 +1356,10 @@ Feil: %@";
 /* Video file type */
 "Video" = "Video";
 
-/* (No Commment) */
+/* (No Comment) */
 "Video error" = "Videofeil";
 
-/* (No Commment) */
+/* (No Comment) */
 "View" = "Vis";
 
 /* Title for a warning popup */
@@ -1382,7 +1368,7 @@ Feil: %@";
 /* error message for failure to load a file submission */
 "We had a problem loading the submission. Please try again later." = "Vi hadde et problem med å laste innleveringen. Forsøk igjen senere";
 
-/* (No Commment) */
+/* (No Comment) */
 "We were unable to verify the server for use with this app." = "Vi kunne ikke bekrefte serveren som skulle brukes med denne appen";
 
 /* Error Title */
@@ -1391,13 +1377,13 @@ Feil: %@";
 /* unlock date for discussion/announcement */
 "Will unlock %@." = "Vil låses opp %@.";
 
-/* Title for action sheet giving the user an option to create a new message for a user. */
+/* (No Comment) */
 "Would you like to create a new message?" = "Ønsker du å lage en ny melding?";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Would you mind giving us a rating on the app store?" = "Kunne du ha gitt oss en vurdering i app-store?";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Would you mind letting us know the problems you have been having with the app?" = "Fint om du kunne si ifra til oss om problemer du har med appen";
 
 /* No comment provided by engineer. */
@@ -1412,7 +1398,7 @@ Feil: %@";
 /* Message in an alert */
 "You do not have SpeedGrader for iPad. You can download it for free from the App Store." = "Du har ikke SpeedGrader til iPad. Du kan laste den ned gratis i App-Store.";
 
-/* (No Commment) */
+/* (No Comment) */
 "You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "Du har ikke tilgang til dette innholdet. Emnet eller gruppen har kanskje ikke startet, eller kanskje det er avsluttet.";
 
 /* Error message */
@@ -1427,13 +1413,13 @@ Feil: %@";
 /* An explanation of how to transfer files to the Canvas app. */
 "You have no files available for upload. To add files from other apps, find a file in another app, then find the \"Open In\" button to open it in Canvas. You can also tap and hold on attachments in the Mail app to open them in Canvas." = "Du har ingen tilgjengelige filer for opplasting. For å legge til filer fra andre apper, finn en fil i en annen app, så finner du \"Åpne i\"-knappen for å åpne den i Canvas. Du kan også trykke på og holde på vedlegg i Mail-appen for å åpne dem i Canvas.";
 
-/* (No Commment) */
+/* (No Comment) */
 "You must first complete:" = "Du må først fullføre:";
 
 /* Error message */
 "You need a title and a description to post" = "Du trenger en tittel og en beskrivelse å poste";
 
-/* (No Commment) */
+/* (No Comment) */
 "You should go rate Canvas on the App Store!" = "Du bør gi en vurdering på Canvas i App Store!";
 
 /* Error content */
@@ -1442,13 +1428,13 @@ Feil: %@";
 /* Media submission type selected with no Kaltura set up */
 "Your school's configuration does not allow the type of submission selected for this assignment" = "Din skolekonfigurasjon tillater ikke innleveringstypen valgt for denne oppgaven";
 
-/* (No Commment) */
+/* (No Comment) */
 "due on %1$@ at %2$@" = "frist den %1$@ kl. %2$@";
 
 /* Assignment is due on a date at a time */
 "due on %@ at %@" = "frist den %1$@ kl. %2$@";
 
-/* (No Commment) */
+/* (No Comment) */
 "moments ago" = "øyeblikk siden";
 
 /* Accessibility label modifier for point out of point possible */
@@ -1457,15 +1443,15 @@ Feil: %@";
 /* The assignment is out of 100 points */
 "out of %@" = "ut av %@";
 
-/* (No Commment) */
+/* (No Comment) */
 "out of %@ points" = "ut av %@ poeng";
 
-/* (No Commment) */
+/* (No Comment) */
 "photo" = "bilde";
 
-/* (No Commment) */
+/* (No Comment) */
 "unknown" = "ukjent";
 
-/* (No Commment) */
+/* (No Comment) */
 "until %@" = "til %@";
 

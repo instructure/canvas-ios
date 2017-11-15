@@ -1,59 +1,58 @@
-/* (No Commment) */
+/* (No Comment) */
 "%0.2f GB" = "%0.2f GB";
 
-/* (No Commment) */
+/* (No Comment) */
 "%0.2f KB" = "%0.2f KB";
 
-/* (No Commment) */
+/* (No Comment) */
 "%0.2f MB" = "%0.2f MB";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$@ (%2$d)" = "%1$@ (%2$d)";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$@ (%2$g out of %3$@)" = "%1$@ (%3$@中%2$g)";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$@ at %2$@" = " %2$@の%1$@";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$@ is due in %2$@" = "%1$@ の期限は %2$@ です";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$@ out of %2$@" = "%2$@ 中 %1$@ ";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$@%% (%2$g out of %3$@)" = "%1$@%% (%3$@ 中 %2$g)";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$@. %2$@. Type: %3$@." = "%1$@。 %2$@。 タイプ： %3$@。";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$@. %2$@. Type: %3$@. Status: %4$@" = "%1$@。 %2$@。 タイプ： %3$@。ステータス： %4$@";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$d %2$@" = "%1$d %2$@";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$g out of %2$@" = "%2$@ 中 %1$g ";
 
-/* (No Commment) */
-"%@ is coming soon!" = "%@は近日公開！
- ";
+/* (No Comment) */
+"%@ is coming soon!" = "%@は近日公開！\n ";
 
-/* (No Commment) */
+/* (No Comment) */
 "%@ is locked" = "%@ はロックされています";
 
-/* (No Commment) */
+/* (No Comment) */
 "%@ is not a valid URL" = "%@ は有効なURLではありません";
 
-/* (No Commment) */
+/* (No Comment) */
 "%@ is not a valid host" = "%@ は有効なホストではありません";
 
-/* (No Commment) */
+/* (No Comment) */
 "%@ is not currently supported." = "%@ は現在サポートされていません。";
 
-/* (No Commment) */
+/* (No Comment) */
 "%@ likes" = "%@ いいね";
 
 /* Label indicating multiple submissions need grading */
@@ -65,106 +64,106 @@
 /* Label to be read for visually impaired users. Name of assingment, then the type of assingment */
 "%@. Type: %@" = "%1$@.タイプ:%2$@";
 
-/* (No Commment) */
+/* (No Comment) */
 "%@..." = "%@...";
 
-/* (No Commment) */
+/* (No Comment) */
 "%d days ago" = "%d 日前";
 
-/* (No Commment) */
+/* (No Comment) */
 "%d hours ago" = "%d 時間前";
 
-/* (No Commment) */
+/* (No Comment) */
 "%d items" = "%d アイテム";
 
-/* (No Commment) */
+/* (No Comment) */
 "%d minutes ago" = "%d 分前";
 
-/* (No Commment) */
+/* (No Comment) */
 "%d months ago" = "%d カ月前";
 
-/* (No Commment) */
+/* (No Comment) */
 "%d more" = "%d 以上";
 
-/* (No Commment) */
+/* (No Comment) */
 "%d replies" = "%d 返信";
 
-/* (No Commment) */
+/* (No Comment) */
 "%d unread" = "%d 未読";
 
-/* (No Commment) */
+/* (No Comment) */
 "%d years ago" = "%d 年前";
 
-/* (No Commment) */
+/* (No Comment) */
 "%qu bytes" = "%qu バイト";
 
-/* (No Commment) */
+/* (No Comment) */
 "%tu day" = "%tu 日";
 
-/* (No Commment) */
+/* (No Comment) */
 "%tu days" = "%tu 日";
 
-/* (No Commment) */
+/* (No Comment) */
 "%tu hour" = "%tu 時間";
 
-/* (No Commment) */
+/* (No Comment) */
 "%tu hours" = "%tu 時間";
 
-/* (No Commment) */
+/* (No Comment) */
 "%tu minute" = "%tu 分";
 
-/* (No Commment) */
+/* (No Comment) */
 "%tu minutes" = "%tu 分";
 
-/* (No Commment) */
+/* (No Comment) */
 "%u Attachments" = "%uの添付ファイル";
 
-/* (No Commment) */
+/* (No Comment) */
 "%u files" = "%u ファイル";
 
-/* (No Commment) */
+/* (No Comment) */
 "&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "&quot;%1$@&quot;は &quot;%2$@&quot;の一部としてロックされています";
 
-/* (No Commment) */
+/* (No Comment) */
 "'%@' is now ready to submit to assignments" = "'%@' は、課題を提出する準備ができています";
 
-/* (No Commment) */
+/* (No Comment) */
 "1 Attachment" = "1 つの添付ファイル";
 
-/* (No Commment) */
+/* (No Comment) */
 "1 day" = "1 日";
 
-/* (No Commment) */
+/* (No Comment) */
 "1 day ago" = "1 日前";
 
-/* (No Commment) */
+/* (No Comment) */
 "1 hour" = "1 時間";
 
-/* (No Commment) */
+/* (No Comment) */
 "1 hour ago" = "1 時間前";
 
-/* (No Commment) */
+/* (No Comment) */
 "1 item" = "1 アイテム";
 
-/* (No Commment) */
+/* (No Comment) */
 "1 like" = "1 いいね";
 
-/* (No Commment) */
+/* (No Comment) */
 "1 minute ago" = "1 分前";
 
-/* (No Commment) */
+/* (No Comment) */
 "1 month ago" = "1 カ月前";
 
 /* Label indicating a submission need grading */
 "1 needs grading" = "1 つ採点が必要です";
 
-/* (No Commment) */
+/* (No Comment) */
 "1 year ago" = "1 年前";
 
-/* (No Commment) */
+/* (No Comment) */
 "3 days" = "3 日";
 
-/* (No Commment) */
+/* (No Comment) */
 "5 minutes" = "5 分";
 
 /* Settings entry title for About */
@@ -173,64 +172,67 @@
 /* Access Denied from the server */
 "Access Denied" = "アクセスが拒否されました";
 
-/* (No Commment) */
+/* (No Comment) */
 "Access denied. Please check your permissions for the action you're trying to complete." = "アクセスが拒否されました。完了しようとしているアクションに対するあなたの承認を確認してください。";
 
-/* (No Commment) */
+/* (No Comment) */
 "Add Attachment" = "添付ファイルを追加";
 
-/* (No Commment) */
+/* (No Comment) */
 "Add Comment" = "コメントを追加";
 
-/* (No Commment) */
+/* (No Comment) */
 "Add Cover Photo" = "カバー写真を追加";
 
-/* (No Commment) */
+/* (No Comment) */
 "Add a folder" = "フォルダーを追加";
 
-/* (No Commment) */
+/* (No Comment) */
 "Add attachment" = "添付ファイルを追加";
 
-/* (No Commment) */
+/* (No Comment) */
 "Add comment" = "コメントを追加";
 
-/* (No Commment) */
+/* (No Comment) */
 "Add folder" = "フォルダーを追加";
 
-/* (No Commment) */
+/* (No Comment) */
 "Add inline media" = "インラインメディアを追加";
 
-/* (No Commment) */
+/* (No Comment) */
 "Add recipients" = "受信者を追加";
 
-/* (No Commment) */
+/* (No Comment) */
 "All members" = "すべてのメンバー";
 
-/* (No Commment) */
+/* Allow Notifications in Settings */
+"Allow Notifications in Settings" = "通知の設定を許可";
+
+/* (No Comment) */
 "An unknown error occurred" = "不明なエラーが発生しました";
 
-/* (No Commment) */
+/* (No Comment) */
 "Announcement" = "アナウンスメント";
 
-/* (No Commment) */
+/* (No Comment) */
 "Announcements" = "アナウンスメント";
 
-/* (No Commment) */
+/* (No Comment) */
 "Archive" = "アーカイブ";
 
-/* (No Commment) */
+/* (No Comment) */
 "Archive Selected Messages Button" = "選択されたメッセージボタンをアーカイブに保存";
 
-/* (No Commment) */
+/* (No Comment) */
 "Archive all selected messages" = "すべての選択されたメッセージをアーカイブに保存";
 
-/* (No Commment) */
+/* (No Comment) */
 "Archived" = "アーカイブに保存されました";
 
-/* (No Commment) */
+/* (No Comment) */
 "Are you ready to logout?" = "ログアウトしますか？";
 
-/* (No Commment) */
+/* (No Comment) */
 "Ask me later" = "後ほど聞いてください";
 
 /* Assignment icon a11y label
@@ -240,31 +242,31 @@
 /* Title for Assignments view controller */
 "Assignments" = "課題";
 
-/* (No Commment) */
+/* (No Comment) */
 "Attachment" = "添付ファイル";
 
-/* (No Commment) */
+/* (No Comment) */
 "Attachment %d" = "%dの添付ファイル ";
 
-/* (No Commment) */
+/* (No Comment) */
 "Attachment %i" = "%iの添付ファイル";
 
-/* (No Commment) */
+/* (No Comment) */
 "Attachments" = "添付ファイル";
 
-/* (No Commment) */
+/* (No Comment) */
 "Attendance" = "出席";
 
-/* (No Commment) */
+/* (No Comment) */
 "Audio" = "オーディオ";
 
-/* (No Commment) */
+/* (No Comment) */
 "Audio input hardware not available" = "オーディオのインプットハードウェアがありません";
 
-/* (No Commment) */
+/* (No Comment) */
 "Authentication error" = "認証エラー";
 
-/* (No Commment) */
+/* (No Comment) */
 "Build Avatar" = "アバターを作る";
 
 /* No comment provided by engineer. */
@@ -274,217 +276,209 @@
    Calendar page title */
 "Calendar" = "カレンダー";
 
-/* (No Commment) */
+/* (No Comment) */
 "Can't load tool" = "ツールの読み込みができません";
 
-/* (No Commment) */
+/* (No Comment) */
 "Can't submit media" = "メディアを提出できません";
 
-/* (No Commment) */
+/* (No Comment) */
 "Cancel" = "キャンセル";
 
-/* (No Commment) */
+/* (No Comment) */
 "Cancel Message" = "メッセージを取り消し";
 
-/* (No Commment) */
+/* (No Comment) */
 "Canvas appears to be unavailable. Please try again later." = "Canvasが利用できないようです。時間をおいて再度お試しください。";
 
-/* (No Commment) */
+/* (No Comment) */
 "Canvas failed to find recipients for your current search. Please try again later." = "Canvasは、現在の検索で受信者を見つけることができませんでした。時間をおいて再度お試しください。";
 
-/* (No Commment) */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
+/* (No Comment) */
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvasクイズは様々な評価の形式をサポートしています。クイズの形式の多くは携帯端末でサポートされていますが、そうでないものもあります。もし携帯端末で、そのようなサポートされていないクイズを受ける場合、クイズを全部終えることができずに不利が生じる恐れがあります。\n\nサポートされていないクイズの形式には、Adobe Flash™のコンテンツ、ファイルのアップロードその他が含まれています。\n\nクイズにサポートされていない内容がある場合には、デスクトップやノートパソコンをご使用ください。クイズのコンテンツがすべてサポートされていることが分かっている場合には、ご自由に携帯端末を使用してください。";
 
-Unsupported question types include questions containing Adobe Flash™ content, file uploads, and others.
-
-If you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvasクイズは様々な評価の形式をサポートしています。クイズの形式の多くは携帯端末でサポートされていますが、そうでないものもあります。もし携帯端末で、そのようなサポートされていないクイズを受ける場合、クイズを全部終えることができずに不利が生じる恐れがあります。
-
-サポートされていないクイズの形式には、Adobe Flash™のコンテンツ、ファイルのアップロードその他が含まれています。
-
-クイズにサポートされていない内容がある場合には、デスクトップやノートパソコンをご使用ください。クイズのコンテンツがすべてサポートされていることが分かっている場合には、ご自由に携帯端末を使用してください。";
-
-/* (No Commment) */
+/* (No Comment) */
 "Change User" = "ユーザーを変更する";
 
 /* Button to select a landing page */
 "Choose Landing Page" = "ランディングページを選択する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Choose Photo" = "写真を選択する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Choose Profile Picture" = "プロフィール写真を選択する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Choose Video" = "動画を選択する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Choose a name for the new folder" = "新しいフォルダ名を選択する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Choose a name for the new folder." = "新しいフォルダ名を選択する。";
 
-/* (No Commment) */
+/* (No Comment) */
 "Choose a submission type" = "提出の形式を選択する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Choose from Library..." = "ライブラリから選択...";
 
 /* Text for button to allow user to choose a set of assignments to do */
 "Choose option" = "オプションを選択する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Choose video" = "動画を選択する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Close" = "閉じる";
 
-/* (No Commment) */
+/* (No Comment) */
 "Closed for Comments" = "コメント締切";
 
-/* (No Commment) */
+/* (No Comment) */
 "Collaborations" = "コラボレーション";
 
-/* (No Commment) */
+/* (No Comment) */
 "Comment" = "コメント";
 
-/* (No Commment) */
+/* (No Comment) */
 "Comment Error" = "コメントエラー";
 
-/* (No Commment) */
+/* (No Comment) */
 "Comments" = "コメント";
 
-/* (No Commment) */
+/* (No Comment) */
 "Comments are disabled" = "コメントは無効です";
 
-/* (No Commment) */
+/* (No Comment) */
 "Complete" = "完了";
 
-/* (No Commment) */
+/* (No Comment) */
 "Completed" = "完了済み";
 
-/* (No Commment) */
+/* (No Comment) */
 "Compose Message Button" = "メッセージボタンを作成する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Compose a message" = "メッセージを作成する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Conferences" = "カンファレンス";
 
-/* (No Commment) */
+/* (No Comment) */
 "Confirm deletion" = "削除を確認する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Continue" = "続ける";
 
-/* (No Commment) */
+/* (No Comment) */
 "Could not authenticate with server" = "サーバーで認証できませんでした。";
 
-/* (No Commment) */
+/* (No Comment) */
 "Couldn't Load Submission" = "提出の読み込みができませんでした";
 
-/* (No Commment) */
+/* (No Comment) */
 "Couldn't find recipients" = "受信者を見つけることができませんでした";
 
-/* (No Commment) */
+/* (No Comment) */
 "Course Syllabus" = "コースシラバス";
 
 /* Courses landing page title
    Courses page title */
 "Courses" = "コース";
 
-/* (No Commment) */
+/* (No Comment) */
 "Create Folder" = "フォルダを作成する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Current Submission" = "現在の提出";
 
-/* (No Commment) */
+/* (No Comment) */
 "Currently there is limited quiz support on mobile" = "現在、携帯端末を使用してのクイズのサポートには制限があります";
 
-/* (No Commment) */
+/* (No Comment) */
 "Custom Grade" = "成績をカスタムする";
 
-/* (No Commment) */
+/* (No Comment) */
 "Customize" = "カスタマイズする";
 
-/* (No Commment) */
+/* (No Comment) */
 "Delete" = "消去する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Delete (%d)" = "消去 (%d)";
 
-/* (No Commment) */
+/* (No Comment) */
 "Delete this reply?" = "この返信を消去しますか？";
 
-/* (No Commment) */
+/* (No Comment) */
 "Deleted file: &quot;%@&quot;" = "削除されたファイル：&quot;%@&quot;";
 
-/* (No Commment) */
+/* (No Comment) */
 "Detail" = "詳細";
 
 /* No comment provided by engineer. */
 "Details" = "詳細";
 
-/* (No Commment) */
+/* (No Comment) */
 "Discard" = "破棄する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Discard this entry?" = "このエントリを破棄しますか？";
 
 /* Discussion module item type */
 "Discussion" = "ディスカッション";
 
-/* (No Commment) */
+/* (No Comment) */
 "Discussion Entry" = "ディスカッションエントリ";
 
-/* (No Commment) */
+/* (No Comment) */
 "Discussion Topics" = "ディスカッションのトピック";
 
-/* (No Commment) */
+/* (No Comment) */
 "Discussions" = "ディスカッション";
 
 /* Dismiss an alert dialog */
 "Dismiss" = "棄却する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Do you want to masquerade as this user?" = "このユーザーとしてマスカレードしますか？";
 
-/* (No Commment) */
+/* (No Comment) */
 "Domain" = "ドメイン";
 
-/* (No Commment) */
+/* (No Comment) */
 "Don't ask me again" = "二度と聞かないでください";
 
-/* (No Commment) */
+/* (No Comment) */
 "Don't delete" = "消去しないでください";
 
 /* Button title to mark a to do item as done */
 "Done" = "完了";
 
-/* (No Commment) */
+/* (No Comment) */
 "Download Canceled" = "ダウンロードはキャンセルされました";
 
-/* (No Commment) */
+/* (No Comment) */
 "Downloading..." = "ダウンロード中...";
 
 /* Formatted string for showing an assingment due date (date already localized by system) */
 "Due %@" = "期限%@";
 
-/* (No Commment) */
+/* (No Comment) */
 "Due:" = "期限：";
 
-/* (No Commment) */
+/* (No Comment) */
 "Due: %1$@ at %2$@" = "期限: %2$@の%1$@ ";
 
 /* Due date label for to do items, first placeholder is date, second is time */
 "Due: %@ at %@" = "期限: %2$@の%1$@ ";
 
-/* (No Commment) */
+/* (No Comment) */
 "EULA" = "EULA";
 
-/* (No Commment) */
+/* (No Comment) */
 "Edit" = "編集する";
 
 /* Edit course list title */
@@ -493,46 +487,46 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Edit group list title */
 "Edit Group List" = "グループリストを編集する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Edit items" = "アイテムを編集する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Editing reply by %1$@, %2$@" = "%1$@, %2$@で編集返信する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Email" = "Eメール";
 
 /* Prompt asking user to enable push notifications */
 "Enable Push Notifications" = "プッシュ通知を有効にする";
 
-/* (No Commment) */
+/* (No Comment) */
 "Enter User ID and Domain." = "ユーザーIDとドメインを入力する。";
 
-/* (No Commment) */
+/* (No Comment) */
 "Enter submission" = "提出を入力する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Entry posted" = "エントリがポストされました";
 
-/* (No Commment) */
+/* (No Comment) */
 "Error" = "エラー";
 
-/* (No Commment) */
+/* (No Comment) */
 "Error adding recipeints" = "受信者の追加中にエラーが発生しました";
 
-/* (No Commment) */
+/* (No Comment) */
 "Error deleting file &quot;%@&quot;" = "ファイル &quot;%@&quot;削除中にエラーが起こりました";
 
-/* (No Commment) */
+/* (No Comment) */
 "Error deleting folder" = "フォルダの消去中にエラーが発生しました";
 
-/* (No Commment) */
+/* (No Comment) */
 "Event" = "イベント";
 
-/* (No Commment) */
+/* (No Comment) */
 "Existing Attachments..." = "既存の添付ファイル...";
 
-/* (No Commment) */
+/* (No Comment) */
 "External Tool" = "外部ツール";
 
 /* External URL module item type */
@@ -541,118 +535,118 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* File module item type */
 "File" = "ファイル";
 
-/* (No Commment) */
+/* (No Comment) */
 "File extension not allowed: %@" = "使用が許可されていないファイル拡張子: %@";
 
-/* (No Commment) */
+/* (No Comment) */
 "File extension(s) permitted for this assignment:" = "この課題に使用が許可されているファイル拡張子：";
 
-/* (No Commment) */
+/* (No Comment) */
 "File received" = "受信したファイル";
 
-/* (No Commment) */
+/* (No Comment) */
 "File unavailable" = "ファイルが利用出来ません";
 
-/* (No Commment) */
+/* (No Comment) */
 "File upload" = "ファイルのアップロード";
 
-/* (No Commment) */
+/* (No Comment) */
 "File upload failed." = "ファイルのアップロードに失敗しました。";
 
-/* (No Commment) */
+/* (No Comment) */
 "Files" = "ファイル";
 
-/* (No Commment) */
+/* (No Comment) */
 "Finished downloading" = "ダウンロードが終了しました";
 
 /* badge indicating front page */
 "Front Page" = "フロントページ";
 
-/* (No Commment) */
+/* (No Comment) */
 "Future" = "未来";
 
-/* (No Commment) */
+/* (No Comment) */
 "Go To Discussion" = "ディスカッションへ移動";
 
-/* (No Commment) */
+/* (No Comment) */
 "Go to App Store" = "アプリストアへ移動";
 
-/* (No Commment) */
+/* (No Comment) */
 "Go to Quiz" = "クイズへ移動";
 
-/* (No Commment) */
+/* (No Comment) */
 "Go to discussion" = "ディスカッションへ移動";
 
-/* (No Commment) */
+/* (No Comment) */
 "Grade" = "成績";
 
-/* (No Commment) */
+/* (No Comment) */
 "Grade %@" = "成績 %@";
 
-/* (No Commment) */
+/* (No Comment) */
 "Grade in SpeedGrader" = "SpeedGraderで採点する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Grade: %1$i / %2$g" = "成績: %1$i / %2$g";
 
-/* (No Commment) */
+/* (No Comment) */
 "Grade: %@" = "成績: %@";
 
-/* (No Commment) */
+/* (No Comment) */
 "Graded Discussion" = "採点されたディスカッション";
 
-/* (No Commment) */
+/* (No Comment) */
 "Graded discussion." = "採点されたディスカッション。";
 
-/* (No Commment) */
+/* (No Comment) */
 "Graded discussion. %g points possible." = "採点されたディスカッション。 %g ポイントが可能です。";
 
 /* Title for Grades view controller */
 "Grades" = "成績";
 
-/* (No Commment) */
+/* (No Comment) */
 "Group conversation" = "グループでの会話";
 
 /* Groups page title */
 "Groups" = "グループ";
 
-/* (No Commment) */
+/* (No Comment) */
 "Help" = "ヘルプ";
 
 /* Accessibility label for toggling grades to hidden */
 "Hide Grades" = "成績を非表示にする";
 
-/* (No Commment) */
+/* (No Comment) */
 "How do you like Canvas?" = "Canvasがどのくらい好きですか？";
 
 /* I give you back your time, use it wisely. */
 "I give you back your time, use it wisely." = "時間をお返ししますので、有効にお使いください。";
 
-/* (No Commment) */
+/* (No Comment) */
 "Image" = "画像";
 
-/* (No Commment) */
+/* (No Comment) */
 "Import from Dropbox" = "Dropboxからインポートする";
 
-/* (No Commment) */
+/* (No Comment) */
 "Import from camera" = "カメラからインポートする";
 
-/* (No Commment) */
+/* (No Comment) */
 "Inbox" = "インボックス";
 
-/* (No Commment) */
+/* (No Comment) */
 "Incomplete" = "不完全";
 
-/* (No Commment) */
+/* (No Comment) */
 "Individual messages" = "個人メッセージ";
 
-/* (No Commment) */
+/* (No Comment) */
 "Invalid URL" = "無効なURL";
 
-/* (No Commment) */
+/* (No Comment) */
 "It has problems" = "問題があります";
 
-/* (No Commment) */
+/* (No Comment) */
 "Item %1$d of %2$d" = "%2$dの%1$dアイテム";
 
 /* table header for module items */
@@ -664,31 +658,31 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Jumps to current day on calendar" = "カレンダーの現在の日付まで移動する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Keep" = "保存する";
 
 /* Settings entry title for Choosing a Landing Page */
 "Landing Page" = "ランディングページ";
 
-/* (No Commment) */
+/* (No Comment) */
 "Large file" = "大きなファイル";
 
 /* No comment provided by engineer. */
 "Later" = "後で";
 
-/* (No Commment) */
+/* (No Comment) */
 "Launch External Tool" = "外部ツールを起動する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Legal" = "法的な";
 
 /* Web URL link item label */
 "Link" = "リンク";
 
-/* (No Commment) */
+/* (No Comment) */
 "Loading..." = "ロード中...";
 
-/* (No Commment) */
+/* (No Comment) */
 "Locked" = "ロックされています";
 
 /* Displayed when next assignment is locked until current assignment is graded. Placeholder is an assignment's name. */
@@ -697,67 +691,67 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* locked date */
 "Locked until %@" = "%@までロック";
 
-/* (No Commment) */
+/* (No Comment) */
 "Login ID" = "ログイン ID";
 
-/* (No Commment) */
+/* (No Comment) */
 "Login Problem" = "ログインでの問題";
 
-/* (No Commment) */
+/* (No Comment) */
 "Logout" = "ログアウト";
 
-/* (No Commment) */
+/* (No Comment) */
 "Love it!" = "大好きです！";
 
 /* Button title for mark as done. */
 "Mark as Done" = "完了としてマークする";
 
-/* (No Commment) */
+/* (No Comment) */
 "Masquerade" = "マスカレード";
 
 /* Master Path module item type */
 "Mastery Path" = "達成パス";
 
-/* (No Commment) */
+/* (No Comment) */
 "Me" = "私";
 
-/* (No Commment) */
+/* (No Comment) */
 "Media Comment" = "メディアのコメント";
 
-/* (No Commment) */
+/* (No Comment) */
 "Media Submission" = "メディアの提出";
 
-/* (No Commment) */
+/* (No Comment) */
 "Media comment" = "メディアのコメント";
 
-/* (No Commment) */
+/* (No Comment) */
 "Media recording" = "メディアの記録";
 
-/* (No Commment) */
+/* (No Comment) */
 "Media type selector. %@" = "メディアタイプセレクター。%@";
 
-/* (No Commment) */
+/* (No Comment) */
 "Message Instructor" = "メッセージインストラクター";
 
-/* (No Commment) */
+/* (No Comment) */
 "Message Sent." = "メッセージが送信されました。";
 
-/* (No Commment) */
+/* (No Comment) */
 "Message everyone separately, or add everyone to a group conversation?" = "メッセージをそれぞれ別々に送りますか、または全員をグループカンバセイションに追加しますか？";
 
 /* Messages landing page title */
 "Messages" = "メッセージ";
 
-/* (No Commment) */
+/* (No Comment) */
 "Mobile Quiz Warning" = "モバイルクイズの注意";
 
 /* Modules title */
 "Modules" = "モジュール";
 
-/* (No Commment) */
+/* (No Comment) */
 "More Info" = "詳細な情報";
 
-/* (No Commment) */
+/* (No Comment) */
 "Multiple Due Dates" = "複数の期限日";
 
 /* user must contribute to complete requirement */
@@ -775,19 +769,19 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* user must view item to complete requirement */
 "Must view" = "必ず閲覧しなければならない";
 
-/* (No Commment) */
+/* (No Comment) */
 "My Files" = "マイファイル";
 
-/* (No Commment) */
+/* (No Comment) */
 "Name" = "名前";
 
-/* (No Commment) */
+/* (No Comment) */
 "Need SpeedGrader for iPad" = "iPadにSpeedGraderが必要です";
 
-/* (No Commment) */
+/* (No Comment) */
 "Network Error" = "ネットワークエラー";
 
-/* (No Commment) */
+/* (No Comment) */
 "New Folder" = "新しいフォルダ";
 
 /* No comment provided by engineer. */
@@ -796,19 +790,19 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Button title for next module item. */
 "Next" = "次へ";
 
-/* (No Commment) */
+/* (No Comment) */
 "Next 7 Days" = "次の7日間";
 
 /* Button to navigate to the next day on the calendar */
 "Next Day" = "翌日";
 
-/* (No Commment) */
+/* (No Comment) */
 "Next item" = "次のアイテム";
 
-/* (No Commment) */
+/* (No Comment) */
 "No" = "いいえ";
 
-/* (No Commment) */
+/* (No Comment) */
 "No Date" = "日付なし";
 
 /* Label shown for a to do that doesn't have a due date */
@@ -817,49 +811,49 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title for alert when a module item hasn't been set up with mastery paths */
 "No Mastery Paths" = "達成パスなし";
 
-/* (No Commment) */
+/* (No Comment) */
 "No Recorded Audio" = "録音された音声はありません";
 
-/* (No Commment) */
+/* (No Comment) */
 "No Submission" = "提出はありません";
 
-/* (No Commment) */
+/* (No Comment) */
 "No Thanks" = "結構です";
 
-/* (No Commment) */
+/* (No Comment) */
 "No actions available for this file" = "このファイルに利用できるアクションがありません";
 
-/* (No Commment) */
+/* (No Comment) */
 "No audio was recorded." = "音声は録音されていません。";
 
-/* (No Commment) */
+/* (No Comment) */
 "No due date" = "期限日なし";
 
-/* (No Commment) */
+/* (No Comment) */
 "No installed apps support opening this file" = "このファイルを開くことができるアプリがインストールされていません";
 
-/* (No Commment) */
+/* (No Comment) */
 "No recipients" = "受信者がいません";
 
-/* (No Commment) */
+/* (No Comment) */
 "No results found" = "結果が見つかりませんでした";
 
-/* (No Commment) */
+/* (No Comment) */
 "Not Authorized" = "承認されていません";
 
-/* (No Commment) */
+/* (No Comment) */
 "Not Complete" = "未完了";
 
-/* (No Commment) */
+/* (No Comment) */
 "Not available" = "利用できません";
 
-/* (No Commment) */
+/* (No Comment) */
 "Not graded" = "採点されていません";
 
-/* (No Commment) */
+/* (No Comment) */
 "Not graded (0 out of %@)" = "採点されていません ( %@ 中 0)";
 
-/* (No Commment) */
+/* (No Comment) */
 "Note: Media files are not immediately available for playback while they are processed on the server." = "注意： メディアファイルはサーバー上で処理されるため、すぐに再生することはできません。";
 
 /* Nothing to do, go play outside! */
@@ -880,70 +874,70 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* OK Button Title */
 "OK" = "OK";
 
-/* (No Commment) */
+/* (No Comment) */
 "Observer" = "評者";
 
-/* (No Commment) */
+/* (No Comment) */
 "Ok" = "Ok";
 
-/* (No Commment) */
+/* (No Comment) */
 "Online URL" = "オンラインURL";
 
-/* (No Commment) */
+/* (No Comment) */
 "Oops!" = "しまった！";
 
-/* (No Commment) */
+/* (No Comment) */
 "Open in Safari" = "Safariで開く";
 
-/* (No Commment) */
+/* (No Comment) */
 "Open in SpeedGrader" = "SpeedGraderで開く";
 
-/* (No Commment) */
+/* (No Comment) */
 "Open in..." = "...で開く";
 
 /* Button title for selecting an option given a number */
 "Option %d" = "オプション%d";
 
-/* (No Commment) */
+/* (No Comment) */
 "Other" = "その他";
 
-/* (No Commment) */
+/* (No Comment) */
 "Other replies hidden until you reply" = "返信するまで非表示になっている他の返信";
 
-/* (No Commment) */
+/* (No Comment) */
 "Outcomes" = "結果";
 
 /* Page module item type */
 "Page" = "ページ";
 
-/* (No Commment) */
+/* (No Comment) */
 "Past" = "過去";
 
-/* (No Commment) */
+/* (No Comment) */
 "People" = "人";
 
-/* (No Commment) */
+/* (No Comment) */
 "Pinned Discussions" = "ピン留めされたディスカッション";
 
-/* (No Commment) */
+/* (No Comment) */
 "Play" = "再生";
 
-/* (No Commment) */
+/* (No Comment) */
 "Please check your network connection and try again." = "ネットワークの接続を確認して再度お試しください。";
 
-/* (No Commment) */
+/* (No Comment) */
 "Post" = "ポスト";
 
-/* (No Commment) */
+/* (No Comment) */
 "Post Comment" = "コメントをポストする";
 
-/* (No Commment) */
+/* (No Comment) */
 "Post comment" = "コメントをポストする";
 
-/* (No Commment) */
+/* (No Comment) */
 "Posting…" = "ポストしています…";
 
-/* (No Commment) */
+/* (No Comment) */
 "Posts your comment" = "コメントをポストする";
 
 /* Table header for prerequisite modules */
@@ -955,52 +949,52 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Button to navigate to the previous day on the calendar */
 "Previous Day" = "前日";
 
-/* (No Commment) */
+/* (No Comment) */
 "Previous item" = "前のアイテム";
 
-/* (No Commment) */
+/* (No Comment) */
 "Privacy Policy" = "個人情報保護方針";
 
-/* (No Commment) */
+/* (No Comment) */
 "Profile" = "プロファイル";
 
 /* Quiz module item type */
 "Quiz" = "クイズ";
 
-/* (No Commment) */
+/* (No Comment) */
 "Quiz Alert" = "クイズのアラート";
 
-/* (No Commment) */
+/* (No Comment) */
 "Quizzes" = "クイズ";
 
-/* (No Commment) */
+/* (No Comment) */
 "Rate on App Store" = "アプリストアを評価する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Rating for %1$@, Score: %2$g" = "%1$@の評価、スコア:%2$g";
 
-/* (No Commment) */
+/* (No Comment) */
 "Re-submit Assignment" = "課題の再提出";
 
-/* (No Commment) */
+/* (No Comment) */
 "Recipients" = "受信者";
 
-/* (No Commment) */
+/* (No Comment) */
 "Record" = "録音";
 
-/* (No Commment) */
+/* (No Comment) */
 "Record Audio" = "オーディオを録音する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Record Audio..." = "オーディオを録音しています...";
 
-/* (No Commment) */
+/* (No Comment) */
 "Record Video" = "動画を録画する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Record audio" = "オーディオを録音する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Record video" = "動画を録画する";
 
 /* Button to refresh the calendar events */
@@ -1015,28 +1009,28 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Refreshing Calendar Events */
 "Refreshing Calendar Events" = "カレンダーの内容をリフレッシュしています";
 
-/* (No Commment) */
+/* (No Comment) */
 "Remove" = "削除する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Remove this file?" = "このファイルを削除しますか？";
 
-/* (No Commment) */
+/* (No Comment) */
 "Report a problem" = "問題を報告する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Request a feature" = "機能をリクエストする";
 
-/* (No Commment) */
+/* (No Comment) */
 "Rubric" = "解説";
 
-/* (No Commment) */
+/* (No Comment) */
 "Save" = "保存する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Schedule Notification" = "通知を設定する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Search for recipients" = "受信者を検索する";
 
 /* Placeholder text for search bar on assignments page */
@@ -1048,55 +1042,55 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Button title to select a certain assignment set option */
 "Select Option %d" = "オプションを選択%d";
 
-/* (No Commment) */
+/* (No Comment) */
 "Select file(s)" = "ファイルを選択する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Select or deselect" = "選択または非選択にする";
 
-/* (No Commment) */
+/* (No Comment) */
 "Selected" = "選択された";
 
-/* (No Commment) */
+/* (No Comment) */
 "Send" = "送信";
 
-/* (No Commment) */
+/* (No Comment) */
 "Send %@ a message" = "メッセージを%@に送信する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Send Message" = "メッセージを送信 する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Sent" = "送信しました";
 
-/* (No Commment) */
+/* (No Comment) */
 "Settings" = "設定";
 
 /* Accessibility label for toggling grades to visible */
 "Show Grades" = "成績を表示する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Show Quiz" = "クイズを表示する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Show file" = "ファイルを表示する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Show recipients" = "受信者を表示する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Some items could not be deleted" = "いくつかのアイテムは、消去することができませんでした";
 
-/* (No Commment) */
+/* (No Comment) */
 "Some selected folders are not empty. Are you sure you want to delete them?" = "いくつかの選択されたフォルダは空ではありません。消去しますか？";
 
-/* (No Commment) */
+/* (No Comment) */
 "Sorry, we couldn't find the assignment. This assignment may have been deleted." = "申し訳ありませんが、課題が見つかりません。この課題は消去された可能性があります。";
 
-/* (No Commment) */
+/* (No Comment) */
 "Starts playing your recording" = "録音を再生する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Starts recording a media comment" = "メディアコメントの録音を開始する";
 
 /* Label read aloud when item status is completed.
@@ -1113,170 +1107,166 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Module status label when started */
 "Status: Started" = "ステータス：開始しました";
 
-/* (No Commment) */
+/* (No Comment) */
 "Stay Logged In" = "ログイン状態にしておく";
 
-/* (No Commment) */
+/* (No Comment) */
 "Stop" = "中止する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Stop Masquerading" = "マスカレードを中止する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Stops playing your recording" = "録音の再生を停止する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Stops recording a media comment" = "メディアコメントの録音を停止する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Student" = "受講生";
 
 /* Header item label */
 "Sub Header" = "サブヘッダー";
 
-/* (No Commment) */
+/* (No Comment) */
 "Submission" = "提出";
 
-/* (No Commment) */
+/* (No Comment) */
 "Submission Error" = "提出エラー";
 
-/* (No Commment) */
+/* (No Comment) */
 "Submission complete" = "提出完了";
 
-/* (No Commment) */
+/* (No Comment) */
 "Submit" = "提出する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Submitted" = "提出済み";
 
-/* (No Commment) */
+/* (No Comment) */
 "Submitting..." = "提出しています...";
 
-/* (No Commment) */
+/* (No Comment) */
 "Subscribe to calendar feed" = "カレンダーフィードに登録する";
 
-/* (No Commment) */
+/* (No Comment) */
 "Success!" = "成功です！";
 
-/* (No Commment) */
+/* (No Comment) */
 "Sure!" = "もちろん！";
 
-/* (No Commment) */
+/* (No Comment) */
 "Switches media input between audio and video. Currently set to %@" = "メディアインプットをオーディオと動画のどちらかに切り替える。現在は%@に設定されています";
 
-/* (No Commment) */
+/* (No Comment) */
 "Switches to media comment mode" = "メディアコメントモードに切り替える";
 
-/* (No Commment) */
+/* (No Comment) */
 "Switches to text comment mode" = "テキストコメントモードに切り替える";
 
-/* (No Commment) */
+/* (No Comment) */
 "Syllabus" = "シラバス";
 
-/* (No Commment) */
+/* (No Comment) */
 "TA" = "TA";
 
-/* (No Commment) */
+/* (No Comment) */
 "TAs" = "TA";
 
-/* (No Commment) */
+/* (No Comment) */
 "Take Photo" = "写真を撮る";
 
-/* (No Commment) */
+/* (No Comment) */
 "Take Photo or Video..." = "写真または動画を撮影...";
 
-/* (No Commment) */
+/* (No Comment) */
 "Take a Photo..." = "写真を撮る...";
 
-/* (No Commment) */
+/* (No Comment) */
 "Take a Video..." = "動画を撮影...";
 
-/* (No Commment) */
+/* (No Comment) */
 "Tap to try again" = "タップして、再度試してください";
 
-/* (No Commment) */
+/* (No Comment) */
 "Teacher" = "講師";
 
-/* (No Commment) */
+/* (No Comment) */
 "Teachers" = "講師";
 
-/* (No Commment) */
+/* (No Comment) */
 "Tell us what's wrong" = "何が問題なのかを教えてください";
 
-/* (No Commment) */
+/* (No Comment) */
 "Terms of Use" = "利用規約";
 
-/* (No Commment) */
+/* (No Comment) */
 "Text Comment" = "テキストコメント";
 
-/* (No Commment) */
+/* (No Comment) */
 "Text Submission" = "テキストの提出";
 
-/* (No Commment) */
+/* (No Comment) */
 "Text entry" = "テキストの入力";
 
-/* (No Commment) */
+/* (No Comment) */
 "The recipients could not be added. Please try again. (%@)" = "受信者を追加することができませんでした。時間をおいて再度お試しください。(%@)";
 
-/* (No Commment) */
+/* (No Comment) */
 "The server could not be reached" = "サーバーに到達できませんでした";
 
-/* (No Commment) */
+/* (No Comment) */
 "The server you entered is not authorized for this app." = "入力したサーバーはこのアプリでは承認されていません。";
 
-/* (No Commment) */
+/* (No Comment) */
 "The user agent for this app is unauthorized." = "ユーザーの代理人はこのアプリで承認されていません。";
 
-/* (No Commment) */
+/* (No Comment) */
 "There are no actions for this item" = "このアイテムへのアクションはありません";
 
-/* (No Commment) */
+/* (No Comment) */
 "There are no items to display" = "表示するアイテムはりません";
 
-/* (No Commment) */
+/* (No Comment) */
 "There was a network error posting your comment." = "コメントのポスト中にネットワークエラーが発生しました。";
 
-/* (No Commment) */
+/* (No Comment) */
 "There was a network problem while attempting to upload your submission" = "提出をアップロード中にネットワーク上の問題が発生しました";
 
-/* (No Commment) */
-"There was a problem accessing the requested file.
+/* (No Comment) */
+"There was a problem accessing the requested file.\n\nError: %@" = "リクエストされたファイルへのアクセス中に問題が発生しました。\n\nエラー: %@";
 
-Error: %@" = "リクエストされたファイルへのアクセス中に問題が発生しました。
-
-エラー: %@";
-
-/* (No Commment) */
+/* (No Comment) */
 "There was a problem launching Safari" = "サファリの起動中に問題が発生しました";
 
-/* (No Commment) */
+/* (No Comment) */
 "There was an error loading the document." = "ドキュメントのロード中にエラーが発生しました。";
 
-/* (No Commment) */
+/* (No Comment) */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "コンテンツのロード中にエラーが発生しました。コンテンツがオーディオまたは動画のアップロードである場合、処理が継続中の可能性があります。";
 
-/* (No Commment) */
+/* (No Comment) */
 "This app is not authorized for use." = "このアプリは使用を許可されていません。";
 
-/* (No Commment) */
+/* (No Comment) */
 "This assignment doesn't appear to be a valid external tool or is misconfigured." = "この課題は有効な外部ツールではないか、設定が正しくない可能性があります。";
 
-/* (No Commment) */
+/* (No Comment) */
 "This assignment has no details." = "この課題には詳細説明がありません。";
 
-/* (No Commment) */
+/* (No Comment) */
 "This entry has been deleted" = "このエントリは消去されています";
 
-/* (No Commment) */
+/* (No Comment) */
 "This file cannot be displayed on this device." = "このファイルは、このデバイス上には表示できません。";
 
-/* (No Commment) */
+/* (No Comment) */
 "This file is locked" = "このファイルはロックされています";
 
-/* (No Commment) */
+/* (No Comment) */
 "This folder is locked" = "このフォルダはロックされています";
 
-/* (No Commment) */
+/* (No Comment) */
 "This is a media message." = "これはメディアメッセージです。";
 
 /* Description for alert when a module item doesn't have mastery paths configured */
@@ -1291,7 +1281,7 @@ Error: %@" = "リクエストされたファイルへのアクセス中に問題
 /* To-Do List landing page title */
 "To-Do List" = "するべきことのリスト";
 
-/* (No Commment) */
+/* (No Comment) */
 "To:" = "以下へ:";
 
 /* Button to scroll to 'today' on the calendar */
@@ -1300,19 +1290,19 @@ Error: %@" = "リクエストされたファイルへのアクセス中に問題
 /* No comment provided by engineer. */
 "Today Button" = "今日のボタン";
 
-/* (No Commment) */
+/* (No Comment) */
 "Toggles selection of current item" = "現在のアイテムのトグル選択";
 
-/* (No Commment) */
+/* (No Comment) */
 "Toggles selection of item" = "アイテムのトグル選択";
 
-/* (No Commment) */
+/* (No Comment) */
 "Turn In" = "提出";
 
-/* (No Commment) */
+/* (No Comment) */
 "Turn In Again" = "再提出";
 
-/* (No Commment) */
+/* (No Comment) */
 "Turn in %@" = "%@を提出";
 
 /* Label read aloud to describe module item type */
@@ -1321,13 +1311,13 @@ Error: %@" = "リクエストされたファイルへのアクセス中に問題
 /* Notification over status bar that displays when not connected to the internet. */
 "Uh-oh! No Internet Connection" = "おっと！インターネットが接続されていません";
 
-/* (No Commment) */
+/* (No Comment) */
 "Unable to load" = "ロードできません";
 
-/* (No Commment) */
+/* (No Comment) */
 "Unable to post. Please try again later" = "ポストできません。時間をおいて再度お試しください";
 
-/* (No Commment) */
+/* (No Comment) */
 "Unable to upload to server" = "サーバーにアップロードすることができません";
 
 /* Grade unavailable */
@@ -1336,138 +1326,138 @@ Error: %@" = "リクエストされたファイルへのアクセス中に問題
 /* Title for grade button when no grade is present */
 "Ungraded" = "未採点";
 
-/* (No Commment) */
+/* (No Comment) */
 "Unknown" = "未知の";
 
-/* (No Commment) */
+/* (No Comment) */
 "Unread" = "未読";
 
-/* (No Commment) */
+/* (No Comment) */
 "Unsaved Reply" = "未保存の返信";
 
-/* (No Commment) */
+/* (No Comment) */
 "Upload" = "アップロード";
 
-/* (No Commment) */
+/* (No Comment) */
 "Upload Error" = "アップロードエラー";
 
-/* (No Commment) */
+/* (No Comment) */
 "Upload a file" = "ファイルをアップロード";
 
-/* (No Commment) */
+/* (No Comment) */
 "Upload failed. Reason: (%@)" = "アップロードに失敗しました。理由: (%@)";
 
-/* (No Commment) */
+/* (No Comment) */
 "Upload file" = "ファイルをアップロード";
 
-/* (No Commment) */
+/* (No Comment) */
 "Upload to assignment &quot;%@&quot; failed" = "課題&quot;%@&quot;へアップロードできませんでした";
 
-/* (No Commment) */
+/* (No Comment) */
 "Upload to folder &quot;%@&quot; failed" = "フォルダ&quot;%@&quot;へアップロードできませんでした";
 
-/* (No Commment) */
+/* (No Comment) */
 "Use" = "使用";
 
-/* (No Commment) */
+/* (No Comment) */
 "User ID" = "ユーザーID";
 
-/* (No Commment) */
+/* (No Comment) */
 "User Info" = "ユーザー情報";
 
-/* (No Commment) */
+/* (No Comment) */
 "Video" = "動画";
 
-/* (No Commment) */
+/* (No Comment) */
 "Video error" = "動画のエラー";
 
 /* No comment provided by engineer. */
 "View" = "表示";
 
-/* (No Commment) */
+/* (No Comment) */
 "Warning" = "警告";
 
-/* (No Commment) */
+/* (No Comment) */
 "We had a problem loading the submission. Please try again later." = "提出の読み込み中に問題が発生しました。時間をおいて再度お試しください。";
 
-/* (No Commment) */
+/* (No Comment) */
 "We were unable to verify the server for use with this app." = "このアプリでサーバーを使用するための確認ができませんでした。";
 
-/* (No Commment) */
+/* (No Comment) */
 "Whoops!" = "しまった！";
 
-/* (No Commment) */
+/* (No Comment) */
 "Will unlock %@." = "%@のロックが解除されます";
 
-/* (No Commment) */
+/* (No Comment) */
 "Would you like to create a new message?" = "新しいメッセージを作成しますか？";
 
-/* (No Commment) */
+/* (No Comment) */
 "Would you mind giving us a rating on the app store?" = "アプリストアの評価をしていただけますか？";
 
-/* (No Commment) */
+/* (No Comment) */
 "Would you mind letting us know the problems you have been having with the app?" = "このアプリの使用に関する問題を教えていただけますか？";
 
-/* (No Commment) */
+/* (No Comment) */
 "Yes" = "はい";
 
-/* (No Commment) */
+/* (No Comment) */
 "You are now masquerading as %@" = "現在 %@としてマスカレードしています";
 
-/* (No Commment) */
+/* (No Comment) */
 "You are now masquerading as %@. To Stop Masquerading go to your Profile." = "現在 %@としてマスカレードしています。マスカレードを中止するには、プロフィールへ移動してください。";
 
-/* (No Commment) */
+/* (No Comment) */
 "You do not have SpeedGrader for iPad. You can download it for free from the App Store." = "iPadにSpeedGraderがありません。アプリストアから無料でダウンロードすることができます。";
 
 /* Error message for an unauthorized course or group. */
 "You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "このコンテンツへアクセスできません。コースまたはグループが開始していないか、完了している可能性があります。";
 
-/* (No Commment) */
+/* (No Comment) */
 "You do not have permission to delete this reply" = "この返信を消去することを許可されていません";
 
-/* (No Commment) */
+/* (No Comment) */
 "You don't have permission to masquerade as this user or there is no user with that ID" = "このユーザーとしてマスカレードすることを許可されていないか、ユーザーとそのIDが存在しません";
 
-/* (No Commment) */
+/* (No Comment) */
 "You have an unsaved reply. Would you like to discard that reply?" = "未保存の返信があります。その返信を破棄しますか？";
 
-/* (No Commment) */
+/* (No Comment) */
 "You must first complete:" = "まずは終了してください:";
 
-/* (No Commment) */
+/* (No Comment) */
 "You need a title and a description to post" = "ポストするタイトルと説明が必要です";
 
 /* You should go rate Canvas on the App Store! */
 "You should go rate Canvas on the App Store!" = "アプリストアでCanvasを評価してください！";
 
-/* (No Commment) */
+/* (No Comment) */
 "Your files could not be found" = "ファイルが見つかりませんでした";
 
-/* (No Commment) */
+/* (No Comment) */
 "Your school's configuration does not allow the type of submission selected for this assignment" = "あなたの学校の設定は、この課題用に選択された提出の形式を許可していません";
 
-/* (No Commment) */
+/* (No Comment) */
 "due on %1$@ at %2$@" = "%2$@の%1$@ が期限です";
 
-/* (No Commment) */
+/* (No Comment) */
 "moments ago" = "数秒前";
 
-/* (No Commment) */
+/* (No Comment) */
 "out of" = "中";
 
-/* (No Commment) */
+/* (No Comment) */
 "out of %@" = "%@中";
 
-/* (No Commment) */
+/* (No Comment) */
 "out of %@ points" = "%@ポイント中";
 
-/* (No Commment) */
+/* (No Comment) */
 "photo" = "写真";
 
-/* (No Commment) */
+/* (No Comment) */
 "unknown" = "未知の";
 
-/* (No Commment) */
+/* (No Comment) */
 "until %@" = "まで%@";
 

@@ -1,4 +1,7 @@
 {
+  "_376f89ea": {
+	"message": "--"
+  },
   "_4927a5f1": {
 	"message": "?"
   },
@@ -71,9 +74,6 @@
   "all_submissions_3eedfb97": {
 	"message": "Alle Abgaben"
   },
-  "all_submissions_assignmentname_3f4f4a9e": {
-	"message": "Alle Abgaben ... { assignmentName }"
-  },
   "all_submissions_b8717440": {
 	"message": "Alle Abgaben"
   },
@@ -140,9 +140,6 @@
   "assignments_list_fe3e54be": {
 	"message": "Aufgabenliste"
   },
-  "at_791460b3": {
-	"message": "um"
-  },
   "attachment_deffe5a9": {
 	"message": "Anhang"
   },
@@ -203,6 +200,9 @@
   "bold_34b9d97e": {
 	"message": "Fett"
   },
+  "can_not_forward_message_2a4d4953": {
+	"message": "Kann Nachricht nicht weiterleiten"
+  },
   "cancel_caeb1e68": {
 	"message": "Abbrechen"
   },
@@ -233,8 +233,8 @@
   "clear_filter_inbox_9465e74c": {
 	"message": "Filterfeld löschen"
   },
-  "clear_filter_submissions_7def30db": {
-	"message": "Abgabefilter löschen"
+  "clear_recording_5a97b475": {
+	"message": "Aufzeichnung löschen"
   },
   "close_for_comments_ce0e5d00": {
 	"message": "Für Kommentare schließen"
@@ -276,25 +276,25 @@
 	"message": "Aufnahme konnte nicht gestartet werden"
   },
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
-	"message": "{ count, plural,\n     =0 {0 Studenten}\n    one {# Student}\n  other {# Studenten}\n}"
+	"message": "{ count, plural,     =0 {0 Studenten}    one {# Student}  other {# Studenten}}"
   },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
-	"message": "{ count, plural,\n    one {Muss benotet werden}\n  other { Müssen benotet werden}\n}"
+	"message": "{ count, plural,    one {Muss benotet werden} other {Müssen benotet werden}}"
   },
   "count_plural_one_needs_grading_other_need_grading_7eba188e": {
-	"message": "{ count, plural,\n    one {# Muss benotet werden}\n  other {# Müssen benotet werden}\n}"
+	"message": "{ count, plural,    one {# muss benotet werden} other {# müssen benotet werden}}"
   },
   "count_plural_one_pt_other_pts_c5a3bced": {
-	"message": "{ count, plural,\n    one {# Pkt.}\n  other {# Pkte.}\n}"
+	"message": "{ count, plural,    one {# Pkt.} other {# Pkt.}}"
   },
   "count_plural_one_question_other_questions_309aafa": {
-	"message": "{ count, plural,\n    one {# Frage}\n  other {# Fragen}\n}"
+	"message": "{ count, plural,    one {# Frage} other {# Fragen}}"
+  },
+  "count_plural_one_reply_other_replies_dbf1832a": {
+	"message": "{ count, plural,    one {# Antwort} other {# Antworten}}"
   },
   "count_plural_one_there_is_assignee_without_a_grade_15facb89": {
-	"message": "{ count, plural,\n    one {Es gibt # Aufgabenempfänger ohne eine Note.}\n  other {Es gibt # Aufgabenempfänger ohne Noten.}\n}"
-  },
-  "count_plural_zero_replies_one_reply_other_replies_98b01de5": {
-	"message": "{ count, plural,\n   zero {# Antworten}\n    one {# Antwort}\n  other {# Antworten}\n}"
+	"message": "{ count, plural,    one {Es gibt # Aufgabenempfänger ohne eine Note.} other {Es gibt # Aufgabenempfänger ohne Noten.}}"
   },
   "count_students_4ae780ca": {
 	"message": "{ count } Studenten"
@@ -323,8 +323,14 @@
   "customize_grade_value_964695a3": {
 	"message": "Note anpassen { value }"
   },
-  "datestring_at_timestring_183180ce": {
-	"message": "{ dateString } um { timeString }"
+  "date_date_medium_at_date_time_short_2b9ce48b": {
+	"message": "{ date, date, medium } um { date, time, short }"
+  },
+  "date_date_mmm_d_at_date_time_short_61eeb79b": {
+	"message": "{ date, date, 'MMM d' } um { date, time, short }"
+  },
+  "date_date_mmm_d_date_time_short_e82719d6": {
+	"message": "{ date, date, 'MMM d' } { date, time, short }"
   },
   "delay_posting_f45eed7d": {
 	"message": "Posting verzögern"
@@ -377,6 +383,9 @@
   "due_date_822625d8": {
 	"message": "Abgabedatum"
   },
+  "due_date_date_mmm_d_yyyy_at_date_time_short_76c5900f": {
+	"message": "Fällig { date, date, 'MMM d, YYYY' } bei { date, time, short }"
+  },
   "due_date_must_be_between_available_from_and_availa_bc4d7904": {
 	"message": "„Fälligkeitsdatum“ muss zwischen „Verfügbar von“ und „Verfügbar bis“ liegen."
   },
@@ -388,6 +397,12 @@
   },
   "edit_assignment_ebf22a72": {
 	"message": "Aufgabe ändern"
+  },
+  "edit_attachment_count_ae907c46": {
+	"message": "Anhänge bearbeiten ({ count })"
+  },
+  "edit_attachments_count_5e9276ea": {
+	"message": "Anhänge bearbeiten ({ count })"
   },
   "edit_c5fbea07": {
 	"message": "Bearbeiten"
@@ -410,14 +425,17 @@
   "email_contact_e095f380": {
 	"message": "E-Mail-Kontakt"
   },
+  "enjoy_your_day_a4cb2c1": {
+	"message": "Genießen Sie Ihren Tag!"
+  },
   "enter_code_c7ab5104": {
 	"message": "Code eingeben"
   },
   "error_98e81528": {
 	"message": "Fehler"
   },
-  "error_sending_e_mail_275383b": {
-	"message": "Fehler beim Senden der E-Mail"
+  "error_saving_grade_ef8d2ddc": {
+	"message": "Fehler beim Speichern der Note"
   },
   "everyone_854554dd": {
 	"message": "Jeder"
@@ -458,11 +476,17 @@
   "favorite_courses_fbd356f0": {
 	"message": "Lieblingskurse"
   },
+  "file_count_plural_one_file_other_files_8ae41de8": {
+	"message": "{ file_count, plural,    one {# Datei} other {# Dateien}}"
+  },
   "files_c300e900": {
 	"message": "Dateien"
   },
-  "files_numberoffiles_66240ab2": {
-	"message": "Dateien ({ numberOfFiles })"
+  "files_numberoffiles_number_410d9eba": {
+	"message": "Dateien ({ numberOfFiles, number })"
+  },
+  "filter_by_2f4368a8": {
+	"message": "Filtern nach"
   },
   "filter_by_ffcbd05b": {
 	"message": "Filtern nach:"
@@ -472,6 +496,9 @@
   },
   "filter_inbox_dae0ff8f": {
 	"message": "Postfach filtern"
+  },
+  "filter_numselected_f4793ab8": {
+	"message": "Filter ({ numSelected })"
   },
   "filter_people_b34b567b": {
 	"message": "Personen filtern"
@@ -509,9 +536,6 @@
   "graded_25cd3fcd": {
 	"message": "Benotet"
   },
-  "graded_assignmentname_f530f81d": {
-	"message": "Benotet – { assignmentName }"
-  },
   "graded_quiz_7fabdf1f": {
 	"message": "Benotetes Quiz"
   },
@@ -539,14 +563,8 @@
   "haven_t_been_graded_1fbfda56": {
 	"message": "Wurden nicht benotet"
   },
-  "haven_t_been_graded_assignmentname_eaafdd9f": {
-	"message": "Wurde nicht benotet – { assignmentName }"
-  },
   "haven_t_submitted_yet_3a127a27": {
 	"message": "Haben noch nicht abgegeben"
-  },
-  "haven_t_submitted_yet_assignmentname_dd06c39f": {
-	"message": "Haben noch nicht abgegeben – { assignmentName }"
   },
   "hide_correct_answers_at_b1a59408": {
 	"message": "Richtige Antworten ausblenden bei"
@@ -611,14 +629,14 @@
   "long_description_7d89285c": {
 	"message": "Ausführliche Beschreibung"
   },
+  "mail_is_unavailable_on_your_device_fb52a13c": {
+	"message": "E-Mail ist auf Ihrem Gerät nicht verfügbar."
+  },
   "mark_all_as_read_8f3bdf57": {
 	"message": "Alle als gelesen markieren"
   },
   "me_bf110f4d": {
 	"message": "Ich"
-  },
-  "media_attachment_e412aab8": {
-	"message": "Medienanhang"
   },
   "media_recording_77cddc52": {
 	"message": "Medienaufzeichnung"
@@ -641,6 +659,9 @@
   "minutes_4aee5a41": {
 	"message": "Minuten"
   },
+  "minutes_plural_one_minute_other_minutes_e2adacfe": {
+	"message": "{ minutes, plural,    one {# Minute} other {# Minuten}}"
+  },
   "missing_1a256b3b": {
 	"message": "Fehlend"
   },
@@ -656,8 +677,8 @@
   "name_1aed4a1b": {
 	"message": "Name"
   },
-  "name_count_others_6e5afa7c": {
-	"message": "{ name } + { count } andere"
+  "name_count_plural_one_other_other_others_f47e51c3": {
+	"message": "{ name } + { count, plural,    one {# Andere}  other {# Andere }}"
   },
   "names_count_more_643849d3": {
 	"message": "{ names } + { count } mehr"
@@ -725,6 +746,9 @@
   "none_3b5e34d2": {
 	"message": "Nichts"
   },
+  "none_9b6c9bec": {
+	"message": "keine"
+  },
   "not_a_teacher_b0d0fc55": {
 	"message": "Kein Lehrer?"
   },
@@ -737,8 +761,11 @@
   "not_submitted_7d05fdb4": {
 	"message": "Nicht eingereicht"
   },
+  "nothing_more_to_do_b017e8bb": {
+	"message": "Nichts weiter zu tun."
+  },
   "number_plural_one_minute_other_minutes_648ec0e1": {
-	"message": "{ number, plural,\n    one {# Minute}\n  other {# Minuten}\n}"
+	"message": "{ number, plural,    one {# Minute} other {# Minuten}}"
   },
   "observer_248a192e": {
 	"message": "Beobachter"
@@ -800,8 +827,8 @@
   "out_of_score_c17b26bb": {
 	"message": "Von insgesamt { score }"
   },
-  "out_of_total_number_188f9a69": {
-	"message": "von insgesamt { total, number }"
+  "pages_e5414c2c": {
+	"message": "Seiten"
   },
   "pages_front_page_9ce5188": {
 	"message": "Seiten – Startseite"
@@ -833,11 +860,11 @@
   "points_number_out_of_totalpoints_number_291efb47": {
 	"message": "{ points, number } von insgesamt { totalPoints, number }"
   },
-  "points_possible_b18e4e80": {
-	"message": "{ points }/{ possible }"
-  },
   "points_possible_must_be_a_number_4a592dc6": {
 	"message": "Der Wert für die möglichen Punkte muss eine Zahl sein."
+  },
+  "pointspossible_number_pts_2d9f157d": {
+	"message": "{ pointsPossible, number } Pkte."
   },
   "post_at_a9e0fecb": {
 	"message": "Posten um ..."
@@ -853,6 +880,9 @@
   },
   "previewing_this_file_type_is_not_supported_7df9231": {
 	"message": "Eine Vorschau auf diesen Dateityp wird nicht unterstützt."
+  },
+  "profile_6bd2baed": {
+	"message": "Profil"
   },
   "profile_actions_cfcbb476": {
 	"message": "Profilaktionen"
@@ -899,6 +929,9 @@
   "redo_363c58b7": {
 	"message": "Wiederholen"
   },
+  "remove_attachment_81f30aa3": {
+	"message": "Anhang entfernen"
+  },
   "remove_date_edf2f565": {
 	"message": "Datum entfernen"
   },
@@ -923,6 +956,9 @@
   "require_an_access_code_46a02601": {
 	"message": "Erfordern einen Zugriffscode"
   },
+  "reset_95a81614": {
+	"message": "Zurücksetzen"
+  },
   "retry_ebd5f8ba": {
 	"message": "Erneut versuchen"
   },
@@ -935,8 +971,11 @@
   "saving_2521e616": {
 	"message": "Wird gespeichert"
   },
-  "score_more_than_score_assignmentname_a4fdc7fe": {
-	"message": "Punktzahl über { score } – { assignmentName }"
+  "saving_d55dd90e": {
+	"message": "Speichervorgang läuft ..."
+  },
+  "score_number_pointspossible_number_fd8705b8": {
+	"message": "{ score, number }/{ pointsPossible, number }"
   },
   "score_to_keep_48ace09b": {
 	"message": "Zu übernehmende Punktzahl"
@@ -944,14 +983,20 @@
   "scored_less_than_93cde0d2": {
 	"message": "Punktzahl unter ..."
   },
-  "scored_less_than_score_assignmentname_1b20b789": {
-	"message": "Punktzahl unter { score } – { assignmentName }"
+  "scored_less_than_promptvalue_7e5f2b5d": {
+	"message": "Punktzahl unter { promptValue }"
   },
   "scored_more_than_2185a818": {
 	"message": "Punktzahl über ..."
   },
+  "scored_more_than_promptvalue_9097b1f7": {
+	"message": "Punktzahl über { promptValue }"
+  },
   "search_280d00bd": {
 	"message": "Suchen"
+  },
+  "seconds_plural_one_second_other_seconds_d33cf6e3": {
+	"message": "{ seconds, plural,    one {# Sekunde} other {# Sekunden}}"
   },
   "section_sectionname_a455be11": {
 	"message": "Abschnitt: { sectionName }"
@@ -970,6 +1015,9 @@
   },
   "send_individual_message_to_each_recipient_4fdfc1e5": {
 	"message": "Eine einzelne Nachricht an jeden Empfänger senden."
+  },
+  "send_recording_82e5a550": {
+	"message": "Aufzeichnung senden"
   },
   "sending_bf324366": {
 	"message": "Wird gesendet ..."
@@ -1007,6 +1055,15 @@
   "starred_5a9efa8a": {
 	"message": "Mit Stern markiert"
   },
+  "start_recording_189496b9": {
+	"message": "Aufzeichnung starten"
+  },
+  "stop_playing_audio_96aed3bc": {
+	"message": "Audio-Wiedergabe stoppen"
+  },
+  "stop_recording_6efe2129": {
+	"message": "Aufzeichnung stoppen"
+  },
   "student_5da6bfd1": {
 	"message": "Student"
   },
@@ -1031,9 +1088,6 @@
   "submitted_late_3741af29": {
 	"message": "Verspätet abgegeben"
   },
-  "submitted_late_assignmentname_adf957b2": {
-	"message": "Verspätet abgegeben { assignmentName }"
-  },
   "subscribe_4b301fb7": {
 	"message": "Anmelden"
   },
@@ -1055,9 +1109,6 @@
   "tap_the_to_create_a_new_conversation_80f77725": {
 	"message": "Tippen Sie auf das \"+\", um eine neue Konversation zu beginnen."
   },
-  "tap_to_record_9d84c163": {
-	"message": "Zum Aufzeichnen antippen"
-  },
   "tap_to_view_submissions_list_5bfe32f3": {
 	"message": "Zum Anzeigen der Abgabeliste tippen."
   },
@@ -1073,8 +1124,14 @@
   "text_submission_935eeb5": {
 	"message": "Texteinreichung"
   },
+  "that_message_can_not_be_forwarded_76cb2b1a": {
+	"message": "Diese Nachricht kann nicht weitergeleitet werden."
+  },
   "the_value_of_possible_points_must_be_zero_or_great_374e175a": {
 	"message": "Der Wert der möglichen Punkte muss Null oder höher sein."
+  },
+  "the_was_a_problem_saving_the_grade_please_try_agai_2aefe6a8": {
+	"message": "Beim Speichern der Note ist ein Problem aufgetreten. Bitte versuchen Sie es noch einmal."
   },
   "there_currently_is_no_long_description_for_this_it_ea943d61": {
 	"message": "Aktuell gibt es keine lange Beschreibung für dieses Objekt."
@@ -1100,8 +1157,14 @@
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
 	"message": "Beim Laden des Quizze ist ein Problem aufgetreten."
   },
+  "there_was_an_error_loading_the_attachment_840a55ee": {
+	"message": "Beim Laden des Anhangs ist ein Fehler aufgetreten."
+  },
   "there_was_an_error_loading_the_quiz_preview_3f3c8104": {
 	"message": "Fehler beim Laden der Quizvorschau"
+  },
+  "there_was_an_error_loading_this_attachment_408acc12": {
+	"message": "Beim Laden dieses Anhangs ist ein Fehler aufgetreten."
   },
   "there_was_an_problem_loading_your_messages_b80423ac": {
 	"message": "Beim Laden Ihrer Nachrichten ist ein Problem aufgetreten."
@@ -1121,6 +1184,9 @@
   "this_assignment_only_allows_on_paper_submissions_f478408a": {
 	"message": "Diese Aufgabe erlaubt nur Abgaben auf Papier."
   },
+  "this_folder_is_empty_14af41c": {
+	"message": "Dieser Ordner ist leer."
+  },
   "this_group_does_not_have_a_submission_for_this_ass_ca275999": {
 	"message": "Diese Gruppe hat keine Abgabe für diese Aufgabe."
   },
@@ -1138,6 +1204,9 @@
   },
   "this_will_remove_the_due_date_and_all_of_the_assoc_56d1ea8": {
 	"message": "Dadurch werden das Fälligkeitsdatum und alle zugehörigen Aufgabenempfänger entfernt."
+  },
+  "time_elapsed_minutes_seconds_f5d82cb": {
+	"message": "Verstrichene Zeit: { minutes }, { seconds }."
   },
   "time_limit_a6f1a51e": {
 	"message": "Zeitlimit"
@@ -1169,11 +1238,17 @@
   "un_starred_8fef021f": {
 	"message": "Unmarkiert"
   },
+  "unavailable_46d2c344": {
+	"message": "Nicht verfügbar"
+  },
   "undo_a7be8fef": {
 	"message": "Rückgängig machen"
   },
   "unexpected_error_93991f40": {
 	"message": "Unerwarteter Fehler"
+  },
+  "ungraded_ed0c6f98": {
+	"message": "Unbenotet"
   },
   "ungraded_survey_ad7de790": {
 	"message": "Unbenotete Befragung"
@@ -1205,11 +1280,17 @@
   "upload_cancelled_by_user_ca7723be": {
 	"message": "Hochladen durch Benutzer abgebrochen"
   },
+  "upload_complete_46473c7b": {
+	"message": "Upload abgeschlossen"
+  },
   "upload_error_38012123": {
 	"message": "Fehler beim Hochladen"
   },
   "upload_file_fd2361b8": {
 	"message": "Datei hochladen"
+  },
+  "upload_in_progress_57b96797": {
+	"message": "Upload in Arbeit"
   },
   "uploading_loaded_of_total_d5c3d555": {
 	"message": "{ loaded } von [...] wird hochgeladen { total }"
@@ -1256,11 +1337,14 @@
   "yes_dde87d5": {
 	"message": "Ja"
   },
-  "you_must_enable_camera_and_microphone_permissions__34eba5a0": {
-	"message": "Aktivieren Sie die Berechtigungen für Kamera und Mikrofon in den Einstellungen zum Aufnehmen von Videos"
+  "you_must_enable_camera_and_microphone_permissions__bf35451f": {
+	"message": "Um die Kamera nutzen zu können, müssen Sie die Berechtigungen für Kamera und Mikrofon aktivieren."
   },
-  "you_must_enable_microphone_permissions_in_settings_75448e50": {
-	"message": "Aktivieren Sie die Berechtigungen für Mikrofon in den Einstellungen zum Aufzeichnen von Audio"
+  "you_must_enable_microphone_permissions_in_settings_b0cf8b44": {
+	"message": "Aktivieren Sie die Berechtigungen für Mikrofon in den Einstellungen Zum Aufzeichnen von Audio."
+  },
+  "you_must_enable_photos_permissions_in_settings_26faf052": {
+	"message": " Zum Aufzeichnen von Audio müssen Sie in den Einstellungen die Berechtigungen für Mikrofon aktivieren-"
   },
   "you_must_enter_an_access_code_8c2c7ae0": {
 	"message": "Sie müssen einen Zugriffscode eingeben."

@@ -1,4 +1,7 @@
 {
+  "_376f89ea": {
+	"message": "--"
+  },
   "_4927a5f1": {
 	"message": "?"
   },
@@ -71,9 +74,6 @@
   "all_submissions_3eedfb97": {
 	"message": "すべての提出物"
   },
-  "all_submissions_assignmentname_3f4f4a9e": {
-	"message": "すべての提出物 -{ assignmentName }"
-  },
   "all_submissions_b8717440": {
 	"message": "すべての提出物"
   },
@@ -140,9 +140,6 @@
   "assignments_list_fe3e54be": {
 	"message": "課題リスト"
   },
-  "at_791460b3": {
-	"message": "おいて"
-  },
   "attachment_deffe5a9": {
 	"message": "添付ファイル"
   },
@@ -203,6 +200,9 @@
   "bold_34b9d97e": {
 	"message": "ボールド"
   },
+  "can_not_forward_message_2a4d4953": {
+	"message": "メッセージを転送できません"
+  },
   "cancel_caeb1e68": {
 	"message": "キャンセル"
   },
@@ -233,8 +233,8 @@
   "clear_filter_inbox_9465e74c": {
 	"message": "クリアフィルター受信トレイ"
   },
-  "clear_filter_submissions_7def30db": {
-	"message": "フィルタークリアを提出する"
+  "clear_recording_5a97b475": {
+	"message": "録音をクリアする"
   },
   "close_for_comments_ce0e5d00": {
 	"message": "コメントを閉じる"
@@ -276,25 +276,25 @@
 	"message": "録音を開始できませんでした"
   },
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
-	"message": "{ count, plural,\n     =0 {0 の受講生}\n    one {# 受講生}\n  other {# 受講生}\n}"
+	"message": "{ count, plural,     =0 {0 の受講生}    one {# 受講生}  other {# 受講生}}"
   },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
-	"message": "{ count, plural,\n    one {採点が必要}\n  other {採点が必要}\n}"
+	"message": "{ count, plural,    other {採点が必要です}}"
   },
   "count_plural_one_needs_grading_other_need_grading_7eba188e": {
-	"message": "{ count, plural,\n    one {# 採点が必要}\n  other {# 採点が必要}\n}"
+	"message": "{ count, plural,    other {# が採点が必要です}}"
   },
   "count_plural_one_pt_other_pts_c5a3bced": {
-	"message": "{ count, plural,\n    one {# ポイント}\n  other {# ポイント}\n}"
+	"message": "{ count, plural,    other {# ポイント}}"
   },
   "count_plural_one_question_other_questions_309aafa": {
-	"message": "{ count, plural,\n    one {# 質問}\n  other {# 質問}\n}"
+	"message": "{ count, plural,    other {# の質問}}"
+  },
+  "count_plural_one_reply_other_replies_dbf1832a": {
+	"message": "{ count, plural,    other {# の返信}}"
   },
   "count_plural_one_there_is_assignee_without_a_grade_15facb89": {
-	"message": "{ count, plural,\n    one {グレードのない課題対象者が # 名います。}\n  other {グレードのない課題対象者が # 名います。}\n}"
-  },
-  "count_plural_zero_replies_one_reply_other_replies_98b01de5": {
-	"message": "{ count, plural,\n   zero {# 返信}\n    one {# 返信}\n  other {# 返信}\n}"
+	"message": "{ count, plural,    other {# の成績のない課題提出者がいます。}}"
   },
   "count_students_4ae780ca": {
 	"message": "{ count } 受講生"
@@ -323,8 +323,14 @@
   "customize_grade_value_964695a3": {
 	"message": "グレードを最適化{ value }"
   },
-  "datestring_at_timestring_183180ce": {
-	"message": "{ dateString }おいて{ timeString }"
+  "date_date_medium_at_date_time_short_2b9ce48b": {
+	"message": "{ date, date, medium } おいて{ date, time, short }"
+  },
+  "date_date_mmm_d_at_date_time_short_61eeb79b": {
+	"message": "{ date, date, 'MMM d' } おいて{ date, time, short }"
+  },
+  "date_date_mmm_d_date_time_short_e82719d6": {
+	"message": "{ date, date, 'MMM d' } { date, time, short }"
   },
   "delay_posting_f45eed7d": {
 	"message": "転記遅延"
@@ -377,6 +383,9 @@
   "due_date_822625d8": {
 	"message": "期限日"
   },
+  "due_date_date_mmm_d_yyyy_at_date_time_short_76c5900f": {
+	"message": "{ date, date, 'MMM d, YYYY' }期限{ date, time, short }"
+  },
   "due_date_must_be_between_available_from_and_availa_bc4d7904": {
 	"message": "'期日'は '利用可能初日'と '利用可能最終日'の間の日付である必要があります"
   },
@@ -388,6 +397,12 @@
   },
   "edit_assignment_ebf22a72": {
 	"message": "課題を編集する"
+  },
+  "edit_attachment_count_ae907c46": {
+	"message": "添付を ({ count }) 編集する"
+  },
+  "edit_attachments_count_5e9276ea": {
+	"message": "添付を ({ count }) 編集する"
   },
   "edit_c5fbea07": {
 	"message": "編集する"
@@ -410,14 +425,17 @@
   "email_contact_e095f380": {
 	"message": "Eメール連絡先"
   },
+  "enjoy_your_day_a4cb2c1": {
+	"message": "よい一日を！"
+  },
   "enter_code_c7ab5104": {
 	"message": "コードを入力する"
   },
   "error_98e81528": {
 	"message": "エラー"
   },
-  "error_sending_e_mail_275383b": {
-	"message": "電子メール送付中にエラー"
+  "error_saving_grade_ef8d2ddc": {
+	"message": "成績保存中エラー"
   },
   "everyone_854554dd": {
 	"message": "全員"
@@ -458,11 +476,17 @@
   "favorite_courses_fbd356f0": {
 	"message": "お気に入りのコース"
   },
+  "file_count_plural_one_file_other_files_8ae41de8": {
+	"message": "{ file_count, plural,    other {# のファイル}}"
+  },
   "files_c300e900": {
 	"message": "ファイル"
   },
-  "files_numberoffiles_66240ab2": {
-	"message": "ファイル ({ numberOfFiles })"
+  "files_numberoffiles_number_410d9eba": {
+	"message": "ファイル ({ numberOfFiles, number })"
+  },
+  "filter_by_2f4368a8": {
+	"message": "フィルター要素"
   },
   "filter_by_ffcbd05b": {
 	"message": "フィルター要素："
@@ -472,6 +496,9 @@
   },
   "filter_inbox_dae0ff8f": {
 	"message": "受信トレイをフィルタリングする"
+  },
+  "filter_numselected_f4793ab8": {
+	"message": "フィルター ({ numSelected })"
   },
   "filter_people_b34b567b": {
 	"message": "人々をフィルタリングする"
@@ -509,9 +536,6 @@
   "graded_25cd3fcd": {
 	"message": "採点済み"
   },
-  "graded_assignmentname_f530f81d": {
-	"message": "成績評価 -{ assignmentName }"
-  },
   "graded_quiz_7fabdf1f": {
 	"message": "採点済みのクイズ"
   },
@@ -539,14 +563,8 @@
   "haven_t_been_graded_1fbfda56": {
 	"message": "まだ採点されていません"
   },
-  "haven_t_been_graded_assignmentname_eaafdd9f": {
-	"message": "まだ採点されていません -{ assignmentName }"
-  },
   "haven_t_submitted_yet_3a127a27": {
 	"message": "まだ提出されていません"
-  },
-  "haven_t_submitted_yet_assignmentname_dd06c39f": {
-	"message": "まだ提出されていません -{ assignmentName }"
   },
   "hide_correct_answers_at_b1a59408": {
 	"message": "正解を非表示にする"
@@ -611,14 +629,14 @@
   "long_description_7d89285c": {
 	"message": "長い説明"
   },
+  "mail_is_unavailable_on_your_device_fb52a13c": {
+	"message": "お使いのデバイスではメールが利用できません。"
+  },
   "mark_all_as_read_8f3bdf57": {
 	"message": "すべて既読にする"
   },
   "me_bf110f4d": {
 	"message": "私"
-  },
-  "media_attachment_e412aab8": {
-	"message": "メディア添付ファイル"
   },
   "media_recording_77cddc52": {
 	"message": "メディアレコーディング"
@@ -641,6 +659,9 @@
   "minutes_4aee5a41": {
 	"message": "分"
   },
+  "minutes_plural_one_minute_other_minutes_e2adacfe": {
+	"message": "{ minutes, plural,    other {# 分}}"
+  },
   "missing_1a256b3b": {
 	"message": "紛失"
   },
@@ -656,8 +677,8 @@
   "name_1aed4a1b": {
 	"message": "名前"
   },
-  "name_count_others_6e5afa7c": {
-	"message": "{ name } + { count } その他"
+  "name_count_plural_one_other_other_others_f47e51c3": {
+	"message": "{ name } + { count, plural,    one {# 他に}  other {# 他に}}"
   },
   "names_count_more_643849d3": {
 	"message": "{ names } + { count } より多く"
@@ -725,6 +746,9 @@
   "none_3b5e34d2": {
 	"message": "なし"
   },
+  "none_9b6c9bec": {
+	"message": "なし"
+  },
   "not_a_teacher_b0d0fc55": {
 	"message": "講師ではありませんか？"
   },
@@ -737,8 +761,11 @@
   "not_submitted_7d05fdb4": {
 	"message": "未提出"
   },
+  "nothing_more_to_do_b017e8bb": {
+	"message": "他にすることはありません。"
+  },
   "number_plural_one_minute_other_minutes_648ec0e1": {
-	"message": "{ number, plural,\n    one {# 分}\n  other {# 分}\n}"
+	"message": "{ number, plural,    other {# 分}}"
   },
   "observer_248a192e": {
 	"message": "評者"
@@ -800,8 +827,8 @@
   "out_of_score_c17b26bb": {
 	"message": "配点{ score }"
   },
-  "out_of_total_number_188f9a69": {
-	"message": "中{ total, number }"
+  "pages_e5414c2c": {
+	"message": "ページ"
   },
   "pages_front_page_9ce5188": {
 	"message": "ページ/トップ ページ"
@@ -833,11 +860,11 @@
   "points_number_out_of_totalpoints_number_291efb47": {
 	"message": "{ points, number } 中{ totalPoints, number }"
   },
-  "points_possible_b18e4e80": {
-	"message": "{ points }/{ possible }"
-  },
   "points_possible_must_be_a_number_4a592dc6": {
 	"message": "配点は数値で入力してください"
+  },
+  "pointspossible_number_pts_2d9f157d": {
+	"message": "{ pointsPossible, number } ポイント"
   },
   "post_at_a9e0fecb": {
 	"message": "投稿先..."
@@ -853,6 +880,9 @@
   },
   "previewing_this_file_type_is_not_supported_7df9231": {
 	"message": "このファイルタイプのプレビューはサポートされていません"
+  },
+  "profile_6bd2baed": {
+	"message": "プロファイル"
   },
   "profile_actions_cfcbb476": {
 	"message": "プロフィールアクション"
@@ -899,6 +929,9 @@
   "redo_363c58b7": {
 	"message": "やり直し"
   },
+  "remove_attachment_81f30aa3": {
+	"message": "添付ファイルの削除"
+  },
   "remove_date_edf2f565": {
 	"message": "日付を削除"
   },
@@ -923,6 +956,9 @@
   "require_an_access_code_46a02601": {
 	"message": "アクセスコードが必要"
   },
+  "reset_95a81614": {
+	"message": "リセット"
+  },
   "retry_ebd5f8ba": {
 	"message": "やり直す"
   },
@@ -935,8 +971,11 @@
   "saving_2521e616": {
 	"message": "保存"
   },
-  "score_more_than_score_assignmentname_a4fdc7fe": {
-	"message": "{ score } ...を上回るスコアを-{ assignmentName }"
+  "saving_d55dd90e": {
+	"message": "保存中..."
+  },
+  "score_number_pointspossible_number_fd8705b8": {
+	"message": "{ score, number }/{ pointsPossible, number }"
   },
   "score_to_keep_48ace09b": {
 	"message": "保持するスコア"
@@ -944,14 +983,20 @@
   "scored_less_than_93cde0d2": {
 	"message": "... 未満のスコア"
   },
-  "scored_less_than_score_assignmentname_1b20b789": {
-	"message": "{ score } 未満のスコア-{ assignmentName }"
+  "scored_less_than_promptvalue_7e5f2b5d": {
+	"message": "次のスコアに満たない:{ promptValue }"
   },
   "scored_more_than_2185a818": {
 	"message": "...を上回るスコアを"
   },
+  "scored_more_than_promptvalue_9097b1f7": {
+	"message": "～を上回るスコアを{ promptValue }"
+  },
   "search_280d00bd": {
 	"message": "検索"
+  },
+  "seconds_plural_one_second_other_seconds_d33cf6e3": {
+	"message": "{ seconds, plural,    other {# 秒}}"
   },
   "section_sectionname_a455be11": {
 	"message": "セクション：{ sectionName }"
@@ -970,6 +1015,9 @@
   },
   "send_individual_message_to_each_recipient_4fdfc1e5": {
 	"message": "各受信者に個別のメッセージを送信する"
+  },
+  "send_recording_82e5a550": {
+	"message": "録画を送信する"
   },
   "sending_bf324366": {
 	"message": "送信しています..."
@@ -1007,6 +1055,15 @@
   "starred_5a9efa8a": {
 	"message": "スターあり"
   },
+  "start_recording_189496b9": {
+	"message": "録画開始"
+  },
+  "stop_playing_audio_96aed3bc": {
+	"message": "音声再生を中止する"
+  },
+  "stop_recording_6efe2129": {
+	"message": "録画停止"
+  },
   "student_5da6bfd1": {
 	"message": "受講生"
   },
@@ -1031,9 +1088,6 @@
   "submitted_late_3741af29": {
 	"message": "遅れて提出"
   },
-  "submitted_late_assignmentname_adf957b2": {
-	"message": "遅れて提出 - { assignmentName }"
-  },
   "subscribe_4b301fb7": {
 	"message": "定期購読"
   },
@@ -1055,9 +1109,6 @@
   "tap_the_to_create_a_new_conversation_80f77725": {
 	"message": "\"+\" をタップして新しい会話を作成する"
   },
-  "tap_to_record_9d84c163": {
-	"message": "タップして録画する"
-  },
   "tap_to_view_submissions_list_5bfe32f3": {
 	"message": "タップして提出リストを表示します。"
   },
@@ -1073,8 +1124,14 @@
   "text_submission_935eeb5": {
 	"message": "テキストの提出"
   },
+  "that_message_can_not_be_forwarded_76cb2b1a": {
+	"message": "そのメッセージは転送できません。"
+  },
   "the_value_of_possible_points_must_be_zero_or_great_374e175a": {
 	"message": "可能なポイントの値は0以上でなければなりません"
+  },
+  "the_was_a_problem_saving_the_grade_please_try_agai_2aefe6a8": {
+	"message": "成績を保存する際に問題がありました。再度試してください。"
   },
   "there_currently_is_no_long_description_for_this_it_ea943d61": {
 	"message": "現在、この項目の詳細な説明はありません。"
@@ -1100,8 +1157,14 @@
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
 	"message": "クイズを読み込み中、問題がありました。."
   },
+  "there_was_an_error_loading_the_attachment_840a55ee": {
+	"message": "添付読み込み中にエラーが発生しました。"
+  },
   "there_was_an_error_loading_the_quiz_preview_3f3c8104": {
 	"message": "クイズプレビューの読み込み中にエラーが発生しました。"
+  },
+  "there_was_an_error_loading_this_attachment_408acc12": {
+	"message": "添付読み込み中にエラーが発生しました。"
   },
   "there_was_an_problem_loading_your_messages_b80423ac": {
 	"message": "メッセージの読み込み中、問題がありました。"
@@ -1121,6 +1184,9 @@
   "this_assignment_only_allows_on_paper_submissions_f478408a": {
 	"message": "この課題は、論文の提出のみを許可します。"
   },
+  "this_folder_is_empty_14af41c": {
+	"message": "フォルダが空白です"
+  },
   "this_group_does_not_have_a_submission_for_this_ass_ca275999": {
 	"message": "このグループには、この課題の提出はありません。"
   },
@@ -1138,6 +1204,9 @@
   },
   "this_will_remove_the_due_date_and_all_of_the_assoc_56d1ea8": {
 	"message": "これにより、期日と関連するすべての課題対象者が削除されます。"
+  },
+  "time_elapsed_minutes_seconds_f5d82cb": {
+	"message": "経過時間：{ minutes }, { seconds }."
   },
   "time_limit_a6f1a51e": {
 	"message": "時間制限"
@@ -1169,11 +1238,17 @@
   "un_starred_8fef021f": {
 	"message": "スターなし"
   },
+  "unavailable_46d2c344": {
+	"message": "利用不可能"
+  },
   "undo_a7be8fef": {
 	"message": "アンドゥーする"
   },
   "unexpected_error_93991f40": {
 	"message": "予期しないエラー"
+  },
+  "ungraded_ed0c6f98": {
+	"message": "未採点"
   },
   "ungraded_survey_ad7de790": {
 	"message": "未採点のサーベイ"
@@ -1205,11 +1280,17 @@
   "upload_cancelled_by_user_ca7723be": {
 	"message": "アップロードはユーザーによりキャンセルされました。"
   },
+  "upload_complete_46473c7b": {
+	"message": "アップロード完了"
+  },
   "upload_error_38012123": {
 	"message": "アップロードエラー"
   },
   "upload_file_fd2361b8": {
 	"message": "ファイルアップロード"
+  },
+  "upload_in_progress_57b96797": {
+	"message": "アップロード進行中"
   },
   "uploading_loaded_of_total_d5c3d555": {
 	"message": "～の { loaded } をアップロード中{ total }"
@@ -1256,11 +1337,14 @@
   "yes_dde87d5": {
 	"message": "はい"
   },
-  "you_must_enable_camera_and_microphone_permissions__34eba5a0": {
-	"message": "ビデオを録画するには、「設定」でカメラとマイクの許可を有効にしなければなりません"
+  "you_must_enable_camera_and_microphone_permissions__bf35451f": {
+	"message": "カメラを使用するには、「設定」でカメラとマイクの許可を有効にしなければなりません。"
   },
-  "you_must_enable_microphone_permissions_in_settings_75448e50": {
-	"message": "音声を録音するには、「設定」でマイクのアクセス許可を有効にしなければなりません"
+  "you_must_enable_microphone_permissions_in_settings_b0cf8b44": {
+	"message": "音声を録音するには、「設定」でマイクのアクセス許可を有効にしなければなりません。"
+  },
+  "you_must_enable_photos_permissions_in_settings_26faf052": {
+	"message": "「設定」で写真の許可を有効にしなければなりません。"
   },
   "you_must_enter_an_access_code_8c2c7ae0": {
 	"message": "アクセス コードを入力する必要があります"

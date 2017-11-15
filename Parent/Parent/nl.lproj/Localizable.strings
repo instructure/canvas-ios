@@ -49,11 +49,20 @@
 /* No comment provided by engineer. */
 "Assignment reminder: %@ is due at %@" = "Opdracht herinnering: %1$@ moet ingeleverd zijn op  %2$@";
 
+/* No comment provided by engineer. */
+"Australia" = "Australië";
+
 /* Authorization Failed Title */
 "Authorization Failed." = "Toestemming mislukt.";
 
+/* Back Button Title */
+"Back" = "Terug";
+
 /* Courses Tab */
 "COURSES" = "CURSUSSEN";
+
+/* No comment provided by engineer. */
+"Canada" = "Canada";
 
 /* Cancel button title */
 "Cancel" = "Annuleren";
@@ -64,11 +73,20 @@
 /* Percent value is under 0 */
 "Cannot use percent that is less than 0" = "Kan geen percentage gebruiken dat lager is dan 100";
 
+/* Cancel the question/suggestion form */
+"Casual question or suggestion" = "Informele vraag of suggestie";
+
 /* Empty Alerts Text */
 "Caught up on Alerts" = "Waarschuwingen bijgewerkt";
 
+/* title for status selection field */
+"Choose One" = "Kies er een";
+
 /* Close Button Title */
 "Close" = "Sluiten";
+
+/* Error alert message */
+"Could not create domain.  Please check your school's domain and try again." = "Kan domein niet maken.  Controleer het domein van je school en probeer het opnieuw.";
 
 /* Course Announcement Description */
 "Course announcements" = "Cursusaankondigingen";
@@ -82,6 +100,9 @@
 /* Submits the form to create an account */
 "Create Account" = "Account aanmaken";
 
+/* Title for field */
+"Describe your problem" = "Beschrijf je probleem";
+
 /* No comment provided by engineer. */
 "Dismiss" = "Verwijderen";
 
@@ -91,13 +112,16 @@
 /* Title for alert shown when user attempts to reset their password */
 "Email Sent" = "E-mail verzonden";
 
+/* Empty Response */
+"Empty Response." = "Antwoord leeg.";
+
 /* Prompt for logging in as student */
 "Enter student's login information" = "Inloggegevens van studenten invoeren";
 
 /* prompt for canvas observer login page */
 "Enter your Canvas Observer credentials" = "Voer je Canvas Observer-inloggegevens in";
 
-/* No comment provided by engineer. */
+/* Title for an error popup */
 "Error" = "Fout";
 
 /* No comment provided by engineer. */
@@ -109,8 +133,17 @@
 /* No comment provided by engineer. */
 "Excused" = "Verontschuldigd";
 
+/* Status level for issue being reported */
+"Extremely critical emergency" = "Extreem noodgeval";
+
+/* Domain Picker Search Placeholder */
+"Find your school or district" = "Vind je school of district";
+
 /* Domain Picker Search Placeholder */
 "Find your student's school or district" = "Vind de school of het district van je cursist";
+
+/* No comment provided by engineer. */
+"Germany" = "Duitsland";
 
 /* Help Button Title */
 "Help" = "Help";
@@ -127,11 +160,23 @@
 /* Help Menu Message */
 "How can we help?" = "Hoe kunnen wij helpen?";
 
+/* Status level for issue being reported */
+"I can't get things done until fixed" = "Ik kan niets doen voordat het opgelost is";
+
+/* Status level for issue being reported */
+"I need help but it's not urgent" = "Ik heb hulp nodig maar het is niet dringend";
+
+/* Impact Title */
+"Impact:" = "Impact:";
+
 /* No comment provided by engineer. */
 "In-Class" = "In-Klas";
 
 /* Institution Announcement Description */
 "Institution announcements" = "Aankondigingen van de instelling";
+
+/* Invalid Canvas URL */
+"Invalid Canvas URL." = "Ongeldige Canvas-URL.";
 
 /* Alert title when logging in with invalid credentials */
 "Invalid Credentials" = "Ongeldige referenties";
@@ -139,10 +184,20 @@
 /* Title for an alert view */
 "Invalid Input" = "Ongeldige invoer";
 
+/* Support Ticket Invalid Input Message */
+"Invalid Input.  Check fields and try again." = "Ongeldige invoer.  Controleer velden en probeer het nogmaals.";
+
+/* Invalid User Agent */
+"Invalid User Agent." = "Ongeldige gebruikersagent.";
+
 /* Alert Message for invalid domain */
-"Invalid student domain.
-Please double-check the domain and try again." = "Ongeldig cursistdomein.
-Dubbel check het domein en probeer nogmaals.";
+"Invalid student domain.\nPlease double-check the domain and try again." = "Ongeldig cursistdomein.\nDubbel check het domein en probeer nogmaals.";
+
+/* No comment provided by engineer. */
+"Ireland" = "Ierland";
+
+/* JSON Parsing Error */
+"JSON Parsing Error." = "JSON-parseerfout.";
 
 /* Last Week Button Accessibility Label */
 "Last Week" = "Vorige week";
@@ -156,11 +211,13 @@ Dubbel check het domein en probeer nogmaals.";
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Laat: %1$@ (%2$@/%3$@)";
 
+/* No comment provided by engineer. */
+"Log In" = "Aanmelden";
+
 /* Submits the login form */
 "Login" = "Inloggen";
 
-/* Button title to log out the user
-   Logout Confirm Button */
+/* Logout Confirm Button */
 "Logout" = "Afmelden";
 
 /* Low Assignment Grade too High */
@@ -187,6 +244,9 @@ Dubbel check het domein en probeer nogmaals.";
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "Geen beoordeling";
 
+/* No Result */
+"No Result." = "Geen resultaat.";
+
 /* Empty Students Text */
 "No Students" = "Geen cursisten";
 
@@ -194,10 +254,13 @@ Dubbel check het domein en probeer nogmaals.";
 "No installed apps support opening this file" = "Geen geïnstalleerde apps die het openen van dit bestand ondersteunen";
 
 /* Not Authorized Error Title */
-"Not Authorized" = "Niet toegestaan";
+"Not Authorized" = "Geen toestemming";
 
 /* Not Found Error Title */
-"Not Found" = "Niet aangetroffen";
+"Not Found" = "Niet gevonden";
+
+/* Not authorized */
+"Not authorized." = "Niet toegestaan.";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Niets deze week";
@@ -235,11 +298,20 @@ Dubbel check het domein en probeer nogmaals.";
 /* Report Problem Button */
 "Report a Problem" = "Een probleem melden";
 
+/* Support Ticket Creation Failed */
+"Request Failed!  Check network and try again!" = "Verzoek mislukt!  Controleer het netwerk en probeer het nogmaals!";
+
 /* Feature Request Button */
 "Request a Feature" = "Een functie aanvragen";
 
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "Bron niet gevonden. Probeer het nogmaals.";
+
+/* Select Impact Placeholder */
+"Select Impact" = "Impact selecteren";
+
+/* No comment provided by engineer. */
+"Select Region" = "Selecteer regio";
 
 /* Server Error Title */
 "Server Error" = "Serverfout";
@@ -251,11 +323,20 @@ Dubbel check het domein en probeer nogmaals.";
 /* Share Some Love Button */
 "Share Some Love" = "Deel wat liefde";
 
+/* No comment provided by engineer. */
+"Singapore" = "Singapore";
+
+/* Status level for issue being reported */
+"Something is broken but I can work around it" = "Er is iets kapot maar ik kan er wel omheen werken";
+
 /* Body for alert shown when something goes wrong resetting the password */
 "Something went wrong while attempting to reset your password. Try again later." = "Er is iets fout gegaan bij het herstellen van je wachtwoord. Probeer het later nogmaals.";
 
 /* Body for alert shown when something goes wrong resetting the password */
 "Something went wrong while attempting to send a password reset email. Try again later." = "Er is iets fout gegaan bij het verzenden van een wachtwoordherstel e-mail. Probeer het later nogmaals.";
+
+/* Title for the subject field */
+"Subject" = "Vak";
 
 /* Button title for forgot password */
 "Submit" = "Indienen";
@@ -272,11 +353,26 @@ Dubbel check het domein en probeer nogmaals.";
 /* Syllabus Button Title */
 "Syllabus" = "Syllabus";
 
-/* Alert message when logging in with invalid credentials */
+/* Support Ticket Created Successfully */
+"Thanks, your request was received!" = "Dank je, je verzoek is ontvangen!";
+
+/* Alert message when logging in with invalid credentials. Please check your region and try again. */
 "The email and password combination were invalid" = "De combinatie van e-mail en wachtwoord is ongeldig";
 
 /* Error message */
 "There are no actions for this item" = "Er zijn geen handelingen voor dit item";
+
+/* AccountDomain Database Load Failure Message */
+"There was a problem loading the AccountDomain database file." = "Er is een probleem met het laden van het AccountDomain-databasebestand.";
+
+/* AlertKit Database Load Failure Message */
+"There was a problem loading the AlertKit database file." = "Er is een probleem met het laden van het AlertKit-databasebestand.";
+
+/* Airwolf database error message */
+"There was a problem loading the database." = "Er is een probleem met het laden van de database.";
+
+/* Message for an error alert */
+"There was a problem verifying the following domain: (stringURL)" = "Er is een probleem met het verifiëren van het volgende domein. (stringURL)";
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Er was een probleem bij het laden van je content. Als het een audio of video upload is, wordt het misschien nog verwerkt.";
@@ -284,17 +380,33 @@ Dubbel check het domein en probeer nogmaals.";
 /* Alert Message for institution not authorized */
 "This institution has not enabled access to the Canvas Parent mobile app." = "Het instituut heeft toegang tot de Canvas Ouders mobiele app niet ingeschakeld.";
 
+/* No comment provided by engineer. */
+"This institution is located outside of your selected region. To add a student at this institution, please use the “Region Picker” option on the login page to select the region of (region), and create a new account." = "Deze instelling bevindt zich buiten uw geselecteerde regio. Als u een cursist van deze instelling wilt toevoegen, gebruikt u de optie “Regio selecteren” op de aanmeldingspagina om een account te maken in de regio (regio) en maak een nieuw account.";
+
 /* Title for alert when failing to add student domain */
 "Unable to Add Student" = "Kon cursist niet toevoegen";
 
 /* Title for alert when failing to create account */
 "Unable to Create Account" = "Kon geen account aanmaken";
 
+/* No comment provided by engineer. */
+"Unauthorized Region" = "Niet-geautoriseerde regio";
+
 /* Auth Failed Message */
 "Unexpected Authentication Error.  Please try logging in again" = "Onverwachte verificatiefout. Probeer opnieuw in te loggen";
 
-/* Unknown T`hreshold Description */
+/* No comment provided by engineer. */
+"United States" = "Verenigde Staten";
+
+/* Unknown region for student account
+   Unknown T`hreshold Description */
 "Unknown" = "Onbekend";
+
+/* Default name given a user until we find their real name */
+"Unknown User" = "Onbekende gebruiker";
+
+/* Default user name, the computer-friendly version of their name, until we find their real user name */
+"Unknown User Name" = "Onbekende gebruikersnaam";
 
 /* Name of action when viewing a reminder */
 "View" = "Bekijken";
@@ -306,13 +418,19 @@ Dubbel check het domein en probeer nogmaals.";
 "We couldn't create your account. Double check your information or try again later." = "We konden je account niet aanmaken. Dubbel check je gegevens of probeer het later nogmaals.";
 
 /* Body for alert shown when the server couldn't find an email to reset the password for */
-"We couldn't find an account associated with that email. Double check that you entered it correctly and try again." = "We konden geen account vinden die overeenkomt met die e-mail. Dubbel check dat je het juist hebt ingevoerd en probeer het nogmaals.";
+"We couldn't find an account associated with that email. Double check that you entered it correctly, check your region, and try again." = "We kunnen geen account vinden dat aan die e-mail gekoppeld is. Controleer of u de naam goed hebt ingevoerd, controleer de regio en probeer het opnieuw.";
+
+/* Title for field */
+"What can we do better?" = "Wat kunnen we beter doen?";
 
 /* Not Authorized Error Message */
 "You are unauthorized to access this information.  Check your user permissions and try again." = "Je hebt geen toestemming voor toegang tot deze informatie. Controleer je gebruikersvergunningen en probeer het nogmaals.";
 
 /* Body for alert shown when resetting password */
 "You will receive an email shortly to finish the process of resetting your password." = "Je ontvangt binnenkort een e-mail om het proces van het herstellen van je wachtwoord te voltooien.";
+
+/* Title for the email field */
+"Your Email" = "Jouw E-mail";
 
 /* Body for alert after having successfully reset the password */
 "Your password has been successfully reset. Please log in now." = "Je wachtwoord is succesvol opnieuw ingesteld. Log nu in.";

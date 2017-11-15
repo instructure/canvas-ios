@@ -142,9 +142,6 @@
 /* Error description when a user tries to upload a file that's too big */
 "The file you are trying to uploading is %@, but the maximum size is %@." = "Le fichier que vous tentez d'envoyer fait %1$@, mais la taille maximum est de %2$@.";
 
-/* No comment provided by engineer. */
-"This is a media message." = "Ceci est un message de média.";
-
 /* Media type is video */
 "Video" = "Vidéo";
 
@@ -162,9 +159,6 @@
 
 /* No comment provided by engineer. */
 "out of %@ points" = "sur %@ points au total";
-
-/* Name for a photo file, i.e. photo.png */
-"photo" = "photo";
 
 /* When we don't know the name of a file, we display this */
 "unknown" = "inconnu";

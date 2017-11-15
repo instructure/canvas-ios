@@ -49,11 +49,20 @@
 /* No comment provided by engineer. */
 "Assignment reminder: %@ is due at %@" = "Lembrete de tarefa: %1$@ é devido em %2$@";
 
+/* No comment provided by engineer. */
+"Australia" = "Austrália";
+
 /* Authorization Failed Title */
 "Authorization Failed." = "Autorização Falhou.";
 
+/* Back Button Title */
+"Back" = "Voltar";
+
 /* Courses Tab */
 "COURSES" = "CURSOS";
+
+/* No comment provided by engineer. */
+"Canada" = "Canadá";
 
 /* Cancel button title */
 "Cancel" = "Cancelar";
@@ -64,11 +73,20 @@
 /* Percent value is under 0 */
 "Cannot use percent that is less than 0" = "Não é possível usar um percentual menor que 0";
 
+/* Cancel the question/suggestion form */
+"Casual question or suggestion" = "Pergunta casual ou sugestão";
+
 /* Empty Alerts Text */
 "Caught up on Alerts" = "Apanhados em Alertas";
 
+/* title for status selection field */
+"Choose One" = "Escolher um";
+
 /* Close Button Title */
 "Close" = "Fechar";
+
+/* Error alert message */
+"Could not create domain.  Please check your school's domain and try again." = "Não foi possível criar o domínio.  Verifique o domínio da sua escola e tente novamente.";
 
 /* Course Announcement Description */
 "Course announcements" = "Anúncios do curso";
@@ -82,6 +100,9 @@
 /* Submits the form to create an account */
 "Create Account" = "Criar Conta";
 
+/* Title for field */
+"Describe your problem" = "Descreva seu problema";
+
 /* No comment provided by engineer. */
 "Dismiss" = "Recusar";
 
@@ -91,13 +112,16 @@
 /* Title for alert shown when user attempts to reset their password */
 "Email Sent" = "Email Enviado";
 
+/* Empty Response */
+"Empty Response." = "Resposta vazia.";
+
 /* Prompt for logging in as student */
 "Enter student's login information" = "Digite as informações de login do estudante";
 
 /* prompt for canvas observer login page */
 "Enter your Canvas Observer credentials" = "Insira as suas credenciais de Observador do Canvas";
 
-/* No comment provided by engineer. */
+/* Title for an error popup */
 "Error" = "Erro";
 
 /* No comment provided by engineer. */
@@ -109,8 +133,17 @@
 /* No comment provided by engineer. */
 "Excused" = "Dispensado";
 
+/* Status level for issue being reported */
+"Extremely critical emergency" = "Emergência extremamente crítica";
+
+/* Domain Picker Search Placeholder */
+"Find your school or district" = "Encontre sua escola ou distrito";
+
 /* Domain Picker Search Placeholder */
 "Find your student's school or district" = "Encontre os estudante de sua escola ou distrito.";
+
+/* No comment provided by engineer. */
+"Germany" = "Alemanha";
 
 /* Help Button Title */
 "Help" = "Ajuda";
@@ -127,11 +160,23 @@
 /* Help Menu Message */
 "How can we help?" = "Como podemos ajudar?";
 
+/* Status level for issue being reported */
+"I can't get things done until fixed" = "Eu não posso fazer as coisas até que seja corrigido";
+
+/* Status level for issue being reported */
+"I need help but it's not urgent" = "Eu preciso de ajuda, mas não é urgente";
+
+/* Impact Title */
+"Impact:" = "Impacto:";
+
 /* No comment provided by engineer. */
 "In-Class" = "Em Classe";
 
 /* Institution Announcement Description */
 "Institution announcements" = "Anúncios da instituição";
+
+/* Invalid Canvas URL */
+"Invalid Canvas URL." = "URL inválido do Canvas.";
 
 /* Alert title when logging in with invalid credentials */
 "Invalid Credentials" = "Credenciais Inválidas";
@@ -139,10 +184,20 @@
 /* Title for an alert view */
 "Invalid Input" = "Entrada inválida";
 
+/* Support Ticket Invalid Input Message */
+"Invalid Input.  Check fields and try again." = "Entrada inválida.  Verifique os campos e tente novamente.";
+
+/* Invalid User Agent */
+"Invalid User Agent." = "Agente do usuário inválido.";
+
 /* Alert Message for invalid domain */
-"Invalid student domain.
-Please double-check the domain and try again." = "Domínio inválido de estudante.
-Por favor cheque de novo o domínio e tente novamente.";
+"Invalid student domain.\nPlease double-check the domain and try again." = "Domínio inválido de estudante.\nPor favor cheque de novo o domínio e tente novamente.";
+
+/* No comment provided by engineer. */
+"Ireland" = "Irlanda";
+
+/* JSON Parsing Error */
+"JSON Parsing Error." = "Erro de análise JSON.";
 
 /* Last Week Button Accessibility Label */
 "Last Week" = "Última Semana";
@@ -156,11 +211,13 @@ Por favor cheque de novo o domínio e tente novamente.";
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Atrasado: %1$@ (%2$@/%3$@)";
 
+/* No comment provided by engineer. */
+"Log In" = "Entrar";
+
 /* Submits the login form */
 "Login" = "Login";
 
-/* Button title to log out the user
-   Logout Confirm Button */
+/* Logout Confirm Button */
 "Logout" = "Logout";
 
 /* Low Assignment Grade too High */
@@ -187,6 +244,9 @@ Por favor cheque de novo o domínio e tente novamente.";
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "Sem Nota";
 
+/* No Result */
+"No Result." = "Sem resultado.";
+
 /* Empty Students Text */
 "No Students" = "Sem Estudantes";
 
@@ -194,10 +254,13 @@ Por favor cheque de novo o domínio e tente novamente.";
 "No installed apps support opening this file" = "Não há aplicativos instalados que suportem a abertura deste arquivo.";
 
 /* Not Authorized Error Title */
-"Not Authorized" = "Não Autorizado";
+"Not Authorized" = "Não autorizado";
 
 /* Not Found Error Title */
-"Not Found" = "Não Encontrado";
+"Not Found" = "Não encontrado";
+
+/* Not authorized */
+"Not authorized." = "Não autorizado.";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Nada esta semana";
@@ -235,11 +298,20 @@ Por favor cheque de novo o domínio e tente novamente.";
 /* Report Problem Button */
 "Report a Problem" = "Reportar um problema";
 
+/* Support Ticket Creation Failed */
+"Request Failed!  Check network and try again!" = "Solicitação falhou!  Verifique a rede e tente novamente!";
+
 /* Feature Request Button */
 "Request a Feature" = "Solicitar uma Funcionalidade";
 
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "Recurso não encontrado. Por favor tente novamente.";
+
+/* Select Impact Placeholder */
+"Select Impact" = "Selecione Impacto";
+
+/* No comment provided by engineer. */
+"Select Region" = "Selecionar região";
 
 /* Server Error Title */
 "Server Error" = "Erro de Servidor";
@@ -251,11 +323,20 @@ Por favor cheque de novo o domínio e tente novamente.";
 /* Share Some Love Button */
 "Share Some Love" = "Compartilhe Um Pouco de Amor";
 
+/* No comment provided by engineer. */
+"Singapore" = "Singapura";
+
+/* Status level for issue being reported */
+"Something is broken but I can work around it" = "Algo não está funcionando, mas eu posso contornar isto";
+
 /* Body for alert shown when something goes wrong resetting the password */
 "Something went wrong while attempting to reset your password. Try again later." = "Algo deu errado durante a tentativa de redefinir sua senha. Tente novamente mais tarde.";
 
 /* Body for alert shown when something goes wrong resetting the password */
 "Something went wrong while attempting to send a password reset email. Try again later." = "Algo deu errado ao tentar enviar um e-mail de redefinição de senha. Tente novamente mais tarde.";
+
+/* Title for the subject field */
+"Subject" = "Assunto";
 
 /* Button title for forgot password */
 "Submit" = "Enviar";
@@ -272,11 +353,26 @@ Por favor cheque de novo o domínio e tente novamente.";
 /* Syllabus Button Title */
 "Syllabus" = "Programa ";
 
-/* Alert message when logging in with invalid credentials */
+/* Support Ticket Created Successfully */
+"Thanks, your request was received!" = "Obrigado, sua solicitação foi recebida!";
+
+/* Alert message when logging in with invalid credentials. Please check your region and try again. */
 "The email and password combination were invalid" = "A combinação de e-mail e senha estão inválidos";
 
 /* Error message */
 "There are no actions for this item" = "Não há ações para este item.";
+
+/* AccountDomain Database Load Failure Message */
+"There was a problem loading the AccountDomain database file." = "Houve um problema ao carregar o arquivo do banco de dados AccountDomain .";
+
+/* AlertKit Database Load Failure Message */
+"There was a problem loading the AlertKit database file." = "Houve um problema ao carregar o arquivo do banco de dados AlertKit .";
+
+/* Airwolf database error message */
+"There was a problem loading the database." = "Houve um problema ao carregar o banco de dados.";
+
+/* Message for an error alert */
+"There was a problem verifying the following domain: (stringURL)" = "Houve um problema ao verificar o seguinte domínio: (stringURL)";
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Houve um erro ao carregar o seu conteúdo. Se for um upload de áudio ou vídeo pode ainda estar processando.";
@@ -284,17 +380,33 @@ Por favor cheque de novo o domínio e tente novamente.";
 /* Alert Message for institution not authorized */
 "This institution has not enabled access to the Canvas Parent mobile app." = "Esta instituição não permitiu acesso ao aplicativo Canvas Parent para celular.";
 
+/* No comment provided by engineer. */
+"This institution is located outside of your selected region. To add a student at this institution, please use the “Region Picker” option on the login page to select the region of (region), and create a new account." = "Esta instituição está localizada fora da sua região selecionada. Para adicionar um aluno nesta instituição, use a opção “Seletor de Região” na página de login para selecionar a região de (região), e crie uma nova conta.";
+
 /* Title for alert when failing to add student domain */
 "Unable to Add Student" = "Não é Possível Adicionar Estudante";
 
 /* Title for alert when failing to create account */
 "Unable to Create Account" = "Não é Possível Criar Conta";
 
+/* No comment provided by engineer. */
+"Unauthorized Region" = "Região não autorizada";
+
 /* Auth Failed Message */
 "Unexpected Authentication Error.  Please try logging in again" = "Erro Inesperado de Autenticação. Por favor tente fazer login novamente.";
 
-/* Unknown T`hreshold Description */
+/* No comment provided by engineer. */
+"United States" = "Estados Unidos";
+
+/* Unknown region for student account
+   Unknown T`hreshold Description */
 "Unknown" = "Desconhecido";
+
+/* Default name given a user until we find their real name */
+"Unknown User" = "Usuário desconhecido";
+
+/* Default user name, the computer-friendly version of their name, until we find their real user name */
+"Unknown User Name" = "Nome de Usuário Desconhecido";
 
 /* Name of action when viewing a reminder */
 "View" = "Visualizar";
@@ -306,13 +418,19 @@ Por favor cheque de novo o domínio e tente novamente.";
 "We couldn't create your account. Double check your information or try again later." = "Nós não conseguimos criar sua conta. Cheque de novo suas informações ou tente novamente mais tarde.";
 
 /* Body for alert shown when the server couldn't find an email to reset the password for */
-"We couldn't find an account associated with that email. Double check that you entered it correctly and try again." = "Não encontramos uma conta associada a esse e-mail. Verifique de novo se digitou corretamente e tente novamente.";
+"We couldn't find an account associated with that email. Double check that you entered it correctly, check your region, and try again." = "Não conseguimos encontrar uma conta associada a este e-mail. Verifique novamente a inserção correta, verifique sua região e tente novamente.";
+
+/* Title for field */
+"What can we do better?" = "O que podemos fazer melhor?";
 
 /* Not Authorized Error Message */
 "You are unauthorized to access this information.  Check your user permissions and try again." = "Você está sem autorização para acessar esta informação. Verifique suas permissões de usuário e tente novamente.";
 
 /* Body for alert shown when resetting password */
 "You will receive an email shortly to finish the process of resetting your password." = "Você receberá um e-mail em breve para terminar o processo de redefinição de sua senha.";
+
+/* Title for the email field */
+"Your Email" = "Seu E-mail";
 
 /* Body for alert after having successfully reset the password */
 "Your password has been successfully reset. Please log in now." = "Sua senha foi redefinida com sucesso. Por favor efetue o login agora.";

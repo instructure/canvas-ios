@@ -142,9 +142,6 @@
 /* Error description when a user tries to upload a file that's too big */
 "The file you are trying to uploading is %@, but the maximum size is %@." = "Filen du prøver å laste opp er %1$@, men maksimal størrelse er %2$@.";
 
-/* No comment provided by engineer. */
-"This is a media message." = "Dette er en mediamelding.";
-
 /* Media type is video */
 "Video" = "Video";
 
@@ -162,9 +159,6 @@
 
 /* No comment provided by engineer. */
 "out of %@ points" = "ut av %@ poeng";
-
-/* Name for a photo file, i.e. photo.png */
-"photo" = "bilde";
 
 /* When we don't know the name of a file, we display this */
 "unknown" = "ukjent";

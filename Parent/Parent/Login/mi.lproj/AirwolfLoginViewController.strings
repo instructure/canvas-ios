@@ -31,6 +31,9 @@
 /* Class = "UITextField"; placeholder = "Last name"; ObjectID = "lHP-23-IvG"; */
 "lHP-23-IvG.placeholder" = "ingoa whakamutunga";
 
+/* Class = "UIButton"; normalTitle = "Region Picker"; ObjectID = "lrh-s1-05r"; */
+"lrh-s1-05r.normalTitle" = "Kaiwhiwhi Rohe";
+
 /* Class = "UITextField"; accessibilityLabel = "Confirm Password"; ObjectID = "qMf-5a-PCQ"; */
 "qMf-5a-PCQ.accessibilityLabel" = "Whakaū Kupuhipa";
 

@@ -49,11 +49,20 @@
 /* No comment provided by engineer. */
 "Assignment reminder: %@ is due at %@" = "Напоминание о задании: %1$@ необходимо выполнить %2$@";
 
+/* No comment provided by engineer. */
+"Australia" = "Австралия";
+
 /* Authorization Failed Title */
 "Authorization Failed." = "Авторизация не удалась.";
 
+/* Back Button Title */
+"Back" = "Назад";
+
 /* Courses Tab */
 "COURSES" = "КУРСЫ";
+
+/* No comment provided by engineer. */
+"Canada" = "Канада";
 
 /* Cancel button title */
 "Cancel" = "Отменить";
@@ -64,11 +73,20 @@
 /* Percent value is under 0 */
 "Cannot use percent that is less than 0" = "Нельзя использовать проценты меньше 0";
 
+/* Cancel the question/suggestion form */
+"Casual question or suggestion" = "Обычный вопрос или предложение";
+
 /* Empty Alerts Text */
 "Caught up on Alerts" = "Выполнить задания по оповещениям";
 
+/* title for status selection field */
+"Choose One" = "Выбрать один вариант";
+
 /* Close Button Title */
 "Close" = "Закрыть";
+
+/* Error alert message */
+"Could not create domain.  Please check your school's domain and try again." = "Не удалось создать домен.  Проверьте домен вашего учебного заведения и попробуйте еще раз.";
 
 /* Course Announcement Description */
 "Course announcements" = "Объявления курса";
@@ -82,6 +100,9 @@
 /* Submits the form to create an account */
 "Create Account" = "Создать аккаунт";
 
+/* Title for field */
+"Describe your problem" = "Опишите вашу проблему";
+
 /* No comment provided by engineer. */
 "Dismiss" = "Отклонить";
 
@@ -91,13 +112,16 @@
 /* Title for alert shown when user attempts to reset their password */
 "Email Sent" = "Email отправлен";
 
+/* Empty Response */
+"Empty Response." = "Пустой ответ.";
+
 /* Prompt for logging in as student */
 "Enter student's login information" = "Введите информацию для входа студента";
 
 /* prompt for canvas observer login page */
 "Enter your Canvas Observer credentials" = "Введите ваши идентификационные данные Canvas Observer";
 
-/* No comment provided by engineer. */
+/* Title for an error popup */
 "Error" = "Ошибка";
 
 /* No comment provided by engineer. */
@@ -109,8 +133,17 @@
 /* No comment provided by engineer. */
 "Excused" = "По уважительной причине";
 
+/* Status level for issue being reported */
+"Extremely critical emergency" = "Крайне критическая ситуация";
+
+/* Domain Picker Search Placeholder */
+"Find your school or district" = "Найдите свое учебное заведение или район";
+
 /* Domain Picker Search Placeholder */
 "Find your student's school or district" = "Найди школу или район своего студента";
+
+/* No comment provided by engineer. */
+"Germany" = "Германия";
 
 /* Help Button Title */
 "Help" = "Справка";
@@ -127,11 +160,23 @@
 /* Help Menu Message */
 "How can we help?" = "Как мы можем помочь?";
 
+/* Status level for issue being reported */
+"I can't get things done until fixed" = "Я не могу добиться цели до решения проблемы";
+
+/* Status level for issue being reported */
+"I need help but it's not urgent" = "Мне нужна помощь, но это не срочно";
+
+/* Impact Title */
+"Impact:" = "Влияние:";
+
 /* No comment provided by engineer. */
 "In-Class" = "Аудиторный";
 
 /* Institution Announcement Description */
 "Institution announcements" = "Объявления заведения";
+
+/* Invalid Canvas URL */
+"Invalid Canvas URL." = "Неправильный URL Canvas.";
 
 /* Alert title when logging in with invalid credentials */
 "Invalid Credentials" = "Неверные учетные данные";
@@ -139,10 +184,20 @@
 /* Title for an alert view */
 "Invalid Input" = "Некорректный ввод";
 
+/* Support Ticket Invalid Input Message */
+"Invalid Input.  Check fields and try again." = "Неправильный ввод.  Проверьте поля и попробуйте еще раз.";
+
+/* Invalid User Agent */
+"Invalid User Agent." = "Неправильный пользовательский агент.";
+
 /* Alert Message for invalid domain */
-"Invalid student domain.
-Please double-check the domain and try again." = "Недопустимый домен студента.
-Пожалуйста, дважды проверьте домен и повторите попытку.";
+"Invalid student domain.\nPlease double-check the domain and try again." = "Недопустимый домен студента.\nПожалуйста, дважды проверьте домен и повторите попытку.";
+
+/* No comment provided by engineer. */
+"Ireland" = "Ирландия";
+
+/* JSON Parsing Error */
+"JSON Parsing Error." = "Ошибка при синтаксическом разборе JSON.";
 
 /* Last Week Button Accessibility Label */
 "Last Week" = "На прошлой неделе";
@@ -156,11 +211,13 @@ Please double-check the domain and try again." = "Недопустимый до�
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "С опозданием: %1$@ (%2$@/%3$@)";
 
+/* No comment provided by engineer. */
+"Log In" = "Войти";
+
 /* Submits the login form */
 "Login" = "Логин";
 
-/* Button title to log out the user
-   Logout Confirm Button */
+/* Logout Confirm Button */
 "Logout" = "Выйти";
 
 /* Low Assignment Grade too High */
@@ -187,6 +244,9 @@ Please double-check the domain and try again." = "Недопустимый до�
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "Без оценки";
 
+/* No Result */
+"No Result." = "Результат отсутствует.";
+
 /* Empty Students Text */
 "No Students" = "Студенты отсутствуют";
 
@@ -194,10 +254,13 @@ Please double-check the domain and try again." = "Недопустимый до�
 "No installed apps support opening this file" = "Установленные приложения не поддерживают открытие этого файла";
 
 /* Not Authorized Error Title */
-"Not Authorized" = "Не авторизовано";
+"Not Authorized" = "Нет авторизации";
 
 /* Not Found Error Title */
 "Not Found" = "Не найдено";
+
+/* Not authorized */
+"Not authorized." = "Не разрешено.";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Ничего на этой неделе";
@@ -235,11 +298,20 @@ Please double-check the domain and try again." = "Недопустимый до�
 /* Report Problem Button */
 "Report a Problem" = "Сообщить о проблеме";
 
+/* Support Ticket Creation Failed */
+"Request Failed!  Check network and try again!" = "Сбой при выполнении запроса!  Проверьте сеть и попробуйте еще раз!";
+
 /* Feature Request Button */
 "Request a Feature" = "Запрос функции";
 
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "Ресурс не найден. Пожалуйста, попробуйте еще раз.";
+
+/* Select Impact Placeholder */
+"Select Impact" = "Выберите влияние";
+
+/* No comment provided by engineer. */
+"Select Region" = "Выбрать регион";
 
 /* Server Error Title */
 "Server Error" = "Ошибка сервера";
@@ -251,11 +323,20 @@ Please double-check the domain and try again." = "Недопустимый до�
 /* Share Some Love Button */
 "Share Some Love" = "Поделись своей любовью";
 
+/* No comment provided by engineer. */
+"Singapore" = "Сингапур";
+
+/* Status level for issue being reported */
+"Something is broken but I can work around it" = "Что-то сломалось, но я могу работать и без этого";
+
 /* Body for alert shown when something goes wrong resetting the password */
 "Something went wrong while attempting to reset your password. Try again later." = "Что-то пошло не так при попытке сбрасываются пароль. Попробуйте позже.";
 
 /* Body for alert shown when something goes wrong resetting the password */
 "Something went wrong while attempting to send a password reset email. Try again later." = "Что-то пошло не так при попытке отправить письмо для сброса пароля. Попробуйте позже.";
+
+/* Title for the subject field */
+"Subject" = "Тема";
 
 /* Button title for forgot password */
 "Submit" = "Отправить";
@@ -272,11 +353,26 @@ Please double-check the domain and try again." = "Недопустимый до�
 /* Syllabus Button Title */
 "Syllabus" = "Учебный план";
 
-/* Alert message when logging in with invalid credentials */
+/* Support Ticket Created Successfully */
+"Thanks, your request was received!" = "Спасибо, ваш запрос был получен!";
+
+/* Alert message when logging in with invalid credentials. Please check your region and try again. */
 "The email and password combination were invalid" = "Комбинация электронной почты и пароля недействительна";
 
 /* Error message */
 "There are no actions for this item" = "Отсутствуют действия для этого элемента";
+
+/* AccountDomain Database Load Failure Message */
+"There was a problem loading the AccountDomain database file." = "Возникла проблема при загрузке файла базы данных AccountDomain.";
+
+/* AlertKit Database Load Failure Message */
+"There was a problem loading the AlertKit database file." = "Возникла проблема при загрузке файла базы данных AlertKit.";
+
+/* Airwolf database error message */
+"There was a problem loading the database." = "Возникла проблема при загрузке базы данных.";
+
+/* Message for an error alert */
+"There was a problem verifying the following domain: (stringURL)" = "Возникла проблема при верификации следующего домена: (stringURL)";
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Возникла ошибка при загрузке контента. Если это загрузка аудио или видео, она все еще может быть в обработке.";
@@ -284,17 +380,33 @@ Please double-check the domain and try again." = "Недопустимый до�
 /* Alert Message for institution not authorized */
 "This institution has not enabled access to the Canvas Parent mobile app." = "Это заведение не включило доступ к Родительскому мобильному приложению Canvas.";
 
+/* No comment provided by engineer. */
+"This institution is located outside of your selected region. To add a student at this institution, please use the “Region Picker” option on the login page to select the region of (region), and create a new account." = "Этот институт расположен за пределами выбранного вами региона. Для добавления студента в этот институт воспользуйтесь опцией \"Region Picker\" (Выборщик региона) на странице регистрации, чтобы выбрать регион из (регион) и создать новую учетную запись.";
+
 /* Title for alert when failing to add student domain */
 "Unable to Add Student" = "Невозможно добавить студента";
 
 /* Title for alert when failing to create account */
 "Unable to Create Account" = "Невозможно создать учетную запись";
 
+/* No comment provided by engineer. */
+"Unauthorized Region" = "Недопустимый регион";
+
 /* Auth Failed Message */
 "Unexpected Authentication Error.  Please try logging in again" = "Непредвиденная ошибка аутентификации. Пожалуйста, попробуйте войти снова";
 
-/* Unknown T`hreshold Description */
+/* No comment provided by engineer. */
+"United States" = "Соединенные Штаты";
+
+/* Unknown region for student account
+   Unknown T`hreshold Description */
 "Unknown" = "Неизвестно";
+
+/* Default name given a user until we find their real name */
+"Unknown User" = "Неизвестный пользователь";
+
+/* Default user name, the computer-friendly version of their name, until we find their real user name */
+"Unknown User Name" = "Неизвестное имя пользователя";
 
 /* Name of action when viewing a reminder */
 "View" = "Просмотр";
@@ -306,13 +418,19 @@ Please double-check the domain and try again." = "Недопустимый до�
 "We couldn't create your account. Double check your information or try again later." = "Мы не смогли создать учетную запись. Дважды проверьте вашу информацию или повторите попытку позже.";
 
 /* Body for alert shown when the server couldn't find an email to reset the password for */
-"We couldn't find an account associated with that email. Double check that you entered it correctly and try again." = "Мы не смогли найти аккаунт, связанный с этим электронным письмом. Дважды проверьте, что вы ввели его правильно, и повторите попытку.";
+"We couldn't find an account associated with that email. Double check that you entered it correctly, check your region, and try again." = "Учетная запись, связанная с данным адресом эл. почты, не найдена. Дважды проверьте, правильно ли вы указали учетную запись, проверьте регион и повторите попытку.";
+
+/* Title for field */
+"What can we do better?" = "Что мы можем сделать лучше?";
 
 /* Not Authorized Error Message */
 "You are unauthorized to access this information.  Check your user permissions and try again." = "Вы не авторизованы для доступа к этой информации. Проверьте права доступа пользователя и повторите попытку.";
 
 /* Body for alert shown when resetting password */
 "You will receive an email shortly to finish the process of resetting your password." = "В ближайшее время вы получите письмо по электронной почте, чтобы завершить процесс восстановления пароля.";
+
+/* Title for the email field */
+"Your Email" = "Ваша электронная почта";
 
 /* Body for alert after having successfully reset the password */
 "Your password has been successfully reset. Please log in now." = "Ваш пароль был успешно восстановлен. Теперь вы можете войти в систему.";

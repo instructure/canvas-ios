@@ -1,0 +1,9 @@
+/* Logout Confirmation */
+"Are you sure you want to logout?" = "ログアウトしますか？";
+
+/* Logout Cancel Button */
+"Cancel" = "キャンセル";
+
+/* Logout Confirm Button */
+"Logout" = "ログアウト";
+

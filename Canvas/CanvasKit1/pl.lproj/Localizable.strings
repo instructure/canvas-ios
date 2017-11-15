@@ -26,8 +26,7 @@
 "%@..." = "%@...";
 
 /* 88 out of 100 points */
-"%g out of %@" = "%1$g z %2$@
-";
+"%g out of %@" = "%1$g z %2$@\n";
 
 /* As in, '15 bytes' */
 "%qu bytes" = "%qu bitów";
@@ -143,9 +142,6 @@
 /* Error description when a user tries to upload a file that's too big */
 "The file you are trying to uploading is %@, but the maximum size is %@." = "Rozmiar pliku, który próbujesz wysłać, to %1$@, ale maksymalny rozmiar wynosi %2$@.";
 
-/* No comment provided by engineer. */
-"This is a media message." = "To jest wiadomość medialna.";
-
 /* Media type is video */
 "Video" = "Wideo";
 
@@ -163,9 +159,6 @@
 
 /* No comment provided by engineer. */
 "out of %@ points" = "z %@ punktów";
-
-/* Name for a photo file, i.e. photo.png */
-"photo" = "zdjęcie";
 
 /* When we don't know the name of a file, we display this */
 "unknown" = "nieznany";

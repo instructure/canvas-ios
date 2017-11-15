@@ -49,11 +49,20 @@
 /* No comment provided by engineer. */
 "Assignment reminder: %@ is due at %@" = "Rapèl Sesyon: %1$@ gen delè %2$@";
 
+/* No comment provided by engineer. */
+"Australia" = "Ostrali";
+
 /* Authorization Failed Title */
 "Authorization Failed." = "Otorizasyon Echwe.";
 
+/* Back Button Title */
+"Back" = "Retounen";
+
 /* Courses Tab */
 "COURSES" = "KOU";
+
+/* No comment provided by engineer. */
+"Canada" = "Kanada";
 
 /* Cancel button title */
 "Cancel" = "Anile";
@@ -64,11 +73,20 @@
 /* Percent value is under 0 */
 "Cannot use percent that is less than 0" = "Pa kapab itilize pousantaj ki mwens ke 0";
 
+/* Cancel the question/suggestion form */
+"Casual question or suggestion" = "Kesyon oswa sijesyon pa aza";
+
 /* Empty Alerts Text */
 "Caught up on Alerts" = "Pran nan Avètisman";
 
+/* title for status selection field */
+"Choose One" = "Chwazi Yonn";
+
 /* Close Button Title */
 "Close" = "Fèmen";
+
+/* Error alert message */
+"Could not create domain.  Please check your school's domain and try again." = "Pa kapab kreye domèn.  Tanpri verifye domèn lekòl ou a epi eseye ankò.";
 
 /* Course Announcement Description */
 "Course announcements" = "Anons kou";
@@ -82,6 +100,9 @@
 /* Submits the form to create an account */
 "Create Account" = "Kreye Kont";
 
+/* Title for field */
+"Describe your problem" = "Dekri Pwoblèm ou a";
+
 /* No comment provided by engineer. */
 "Dismiss" = "Rejte";
 
@@ -91,13 +112,16 @@
 /* Title for alert shown when user attempts to reset their password */
 "Email Sent" = "Imèl Ale";
 
+/* Empty Response */
+"Empty Response." = "Repons Vid.";
+
 /* Prompt for logging in as student */
 "Enter student's login information" = "Antre enfòmasyon koneksyon elèv";
 
 /* prompt for canvas observer login page */
 "Enter your Canvas Observer credentials" = "Antre idantifyan Obsèvatè Cancas ou";
 
-/* No comment provided by engineer. */
+/* Title for an error popup */
 "Error" = "Erè";
 
 /* No comment provided by engineer. */
@@ -109,8 +133,17 @@
 /* No comment provided by engineer. */
 "Excused" = "Eskize";
 
+/* Status level for issue being reported */
+"Extremely critical emergency" = "Ijans Trè Kritik";
+
+/* Domain Picker Search Placeholder */
+"Find your school or district" = "Jwenn lekòl oswa distri ou a";
+
 /* Domain Picker Search Placeholder */
 "Find your student's school or district" = "Jwenn lekòl oswa distri elèv ou a";
+
+/* No comment provided by engineer. */
+"Germany" = "Almay";
 
 /* Help Button Title */
 "Help" = "Èd";
@@ -127,11 +160,23 @@
 /* Help Menu Message */
 "How can we help?" = "Kijan nou ka ede?";
 
+/* Status level for issue being reported */
+"I can't get things done until fixed" = "Mwen paka fè anyen jiskaske li ranje";
+
+/* Status level for issue being reported */
+"I need help but it's not urgent" = "Mwen bezwen èd men li pa ijan";
+
+/* Impact Title */
+"Impact:" = "Enpa";
+
 /* No comment provided by engineer. */
 "In-Class" = "Nan Klas";
 
 /* Institution Announcement Description */
 "Institution announcements" = "Anons Enstitisyon";
+
+/* Invalid Canvas URL */
+"Invalid Canvas URL." = "URL Canvas Envalid.";
 
 /* Alert title when logging in with invalid credentials */
 "Invalid Credentials" = "Kalifikasyon Envalid";
@@ -139,10 +184,20 @@
 /* Title for an alert view */
 "Invalid Input" = "Antre Envalid";
 
+/* Support Ticket Invalid Input Message */
+"Invalid Input.  Check fields and try again." = "Antre envalid  Verifye espas yo epi eseye ankò.";
+
+/* Invalid User Agent */
+"Invalid User Agent." = "Ajan Itilizatè envalid.";
+
 /* Alert Message for invalid domain */
-"Invalid student domain.
-Please double-check the domain and try again." = "Domèn etidyan envalid
-Tanpri byen verifye domèn nan epi eseye ankò.";
+"Invalid student domain.\nPlease double-check the domain and try again." = "Domèn etidyan envalid\nTanpri byen verifye domèn nan epi eseye ankò.";
+
+/* No comment provided by engineer. */
+"Ireland" = "Iland";
+
+/* JSON Parsing Error */
+"JSON Parsing Error." = "Erè Analiz sentaksik.";
 
 /* Last Week Button Accessibility Label */
 "Last Week" = "Semenn Pase";
@@ -156,11 +211,13 @@ Tanpri byen verifye domèn nan epi eseye ankò.";
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Ta: %1$@ (%2$@/%3$@)";
 
+/* No comment provided by engineer. */
+"Log In" = "Konekte";
+
 /* Submits the login form */
 "Login" = "Koneksyon";
 
-/* Button title to log out the user
-   Logout Confirm Button */
+/* Logout Confirm Button */
 "Logout" = "Dekoneksyon";
 
 /* Low Assignment Grade too High */
@@ -187,6 +244,9 @@ Tanpri byen verifye domèn nan epi eseye ankò.";
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "Pa gen Klas";
 
+/* No Result */
+"No Result." = "San Rezilta.";
+
 /* Empty Students Text */
 "No Students" = "Pa gen Elèv";
 
@@ -198,6 +258,9 @@ Tanpri byen verifye domèn nan epi eseye ankò.";
 
 /* Not Found Error Title */
 "Not Found" = "Entwouvab";
+
+/* Not authorized */
+"Not authorized." = "Pa Otorize.";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Pa gen anyen pou semenn sa a";
@@ -235,11 +298,20 @@ Tanpri byen verifye domèn nan epi eseye ankò.";
 /* Report Problem Button */
 "Report a Problem" = "Rapòte yon Pwoblèm";
 
+/* Support Ticket Creation Failed */
+"Request Failed!  Check network and try again!" = "Demann Echwe!  Verifye rezo epi eseye ankò!";
+
 /* Feature Request Button */
 "Request a Feature" = "Mande yon Opsyon";
 
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "Resous entwouvab. Tanpri eseye ankò.";
+
+/* Select Impact Placeholder */
+"Select Impact" = "Seleksyone Enpak";
+
+/* No comment provided by engineer. */
+"Select Region" = "Seleksyone Rejyon";
 
 /* Server Error Title */
 "Server Error" = "Erè Sèvè";
@@ -251,11 +323,20 @@ Tanpri byen verifye domèn nan epi eseye ankò.";
 /* Share Some Love Button */
 "Share Some Love" = "Pataje yon ti Lanmou";
 
+/* No comment provided by engineer. */
+"Singapore" = "Sengapou";
+
+/* Status level for issue being reported */
+"Something is broken but I can work around it" = "Gen yon bagay ki kase mwen mwen ka jere sa";
+
 /* Body for alert shown when something goes wrong resetting the password */
 "Something went wrong while attempting to reset your password. Try again later." = "Gen yon bagay ki mal fèt pandan w t ap eseye retabli modpas ou a. Eseye ankò.";
 
 /* Body for alert shown when something goes wrong resetting the password */
 "Something went wrong while attempting to send a password reset email. Try again later." = "Gen yon bagay ki mal fèt pandan w t ap eseye voye imèl pou retablisman modpas la. Eseye ankò.";
+
+/* Title for the subject field */
+"Subject" = "Sijè";
 
 /* Button title for forgot password */
 "Submit" = "Soumèt";
@@ -272,11 +353,26 @@ Tanpri byen verifye domèn nan epi eseye ankò.";
 /* Syllabus Button Title */
 "Syllabus" = "Pwogram";
 
-/* Alert message when logging in with invalid credentials */
+/* Support Ticket Created Successfully */
+"Thanks, your request was received!" = "Mèsi, nou resevwa demann ou an!";
+
+/* Alert message when logging in with invalid credentials. Please check your region and try again. */
 "The email and password combination were invalid" = "Konbinezon imèl ak modpas la envalid";
 
 /* Error message */
 "There are no actions for this item" = "Pa gen aksyon pou atik sa a";
+
+/* AccountDomain Database Load Failure Message */
+"There was a problem loading the AccountDomain database file." = "Te gen yon pwoblèm nan chajman fichye baz de done AccountDomain a,";
+
+/* AlertKit Database Load Failure Message */
+"There was a problem loading the AlertKit database file." = "Te gen yon pwoblèm nan chajman fichye baz de done AlertKit a,";
+
+/* Airwolf database error message */
+"There was a problem loading the database." = "Te gen yon pwoblèm nan chajman baz de done a.";
+
+/* Message for an error alert */
+"There was a problem verifying the following domain: (stringURL)" = "Te gen yon pwoblèm nan verifikasyon domèn annapre yo: (stringURL)";
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Te gen yon erè nan chajman kontni ou an. Si se yon odyo oswa videyo li kapab ap chaje toujou.";
@@ -284,17 +380,33 @@ Tanpri byen verifye domèn nan epi eseye ankò.";
 /* Alert Message for institution not authorized */
 "This institution has not enabled access to the Canvas Parent mobile app." = "Enstitisyon sa a pa otorize nan app mobil Canvas Parent lan.";
 
+/* No comment provided by engineer. */
+"This institution is located outside of your selected region. To add a student at this institution, please use the “Region Picker” option on the login page to select the region of (region), and create a new account." = "Enstitisyon sa a pa nan rejyon ou te seleksyone yo. Pou ajoute yon elèv nan enstitisyon sa a, tanpri itilize opsyon \"Seleksyonè Rejyon\" ki nan paj koneksyon an pou ka seleksyone rejyon an, epi kreye yon nouvo kont.";
+
 /* Title for alert when failing to add student domain */
 "Unable to Add Student" = "Enposib pou Ajoute Elèv";
 
 /* Title for alert when failing to create account */
 "Unable to Create Account" = "Enposib pou Kreye Kont";
 
+/* No comment provided by engineer. */
+"Unauthorized Region" = "Rejyon non Otorize";
+
 /* Auth Failed Message */
 "Unexpected Authentication Error.  Please try logging in again" = "Erè Otantifikasyon Sanzatann. Tanpri eseye konekte ankò.";
 
-/* Unknown T`hreshold Description */
+/* No comment provided by engineer. */
+"United States" = "Etazini";
+
+/* Unknown region for student account
+   Unknown T`hreshold Description */
 "Unknown" = "Enkoni";
+
+/* Default name given a user until we find their real name */
+"Unknown User" = "Itilizatè Enkoni";
+
+/* Default user name, the computer-friendly version of their name, until we find their real user name */
+"Unknown User Name" = "Non Itilizatè Enkoni";
 
 /* Name of action when viewing a reminder */
 "View" = "Gade";
@@ -306,13 +418,19 @@ Tanpri byen verifye domèn nan epi eseye ankò.";
 "We couldn't create your account. Double check your information or try again later." = "Nou pa kapab kreye kont ou a. Byen verifye enfòmasyon ou yo oswa eseye ankò.";
 
 /* Body for alert shown when the server couldn't find an email to reset the password for */
-"We couldn't find an account associated with that email. Double check that you entered it correctly and try again." = "Nou pa kapab jwenn yon kont ki asosye ak imèl sa a. Byen verifye ke ou ekri li kòrèkteman epi eseye ankò.";
+"We couldn't find an account associated with that email. Double check that you entered it correctly, check your region, and try again." = "Nou paka jwenn yon kont ki asosye ak imèl sa a. Verifye pou wè si w ekri li byen, verifye rejyon an epi eseye ankò.";
+
+/* Title for field */
+"What can we do better?" = "Kisa nou ka amelyore?";
 
 /* Not Authorized Error Message */
 "You are unauthorized to access this information.  Check your user permissions and try again." = "Ou pa otorize pou gen aksè a enfòmasyon sa a. Verifye pèmisyon itilizatè ou epi eseye ankò.";
 
 /* Body for alert shown when resetting password */
 "You will receive an email shortly to finish the process of resetting your password." = "Nan yon ti tan ankò w ap resevwa yon imèl pou fini pwosesis retablisman modpas la.";
+
+/* Title for the email field */
+"Your Email" = "Imèl Ou";
 
 /* Body for alert after having successfully reset the password */
 "Your password has been successfully reset. Please log in now." = "Ou reyisi retabli modpas ou a.Tanpri konekte kounye a.";

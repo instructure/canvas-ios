@@ -47,7 +47,7 @@ raise 'no projects to import' unless projects.count > 0
 projects.each do |project|
     project_file = project.fetch('location')
     name = project.fetch('name')
-    is_json = project.fetch('json')
+    is_json = project['json'] || false
     if is_json
         Dir.glob("#{project_file}/*.json") do |file|
             next if file.include? "temp.json"

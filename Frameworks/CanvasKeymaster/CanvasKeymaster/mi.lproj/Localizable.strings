@@ -1,14 +1,3 @@
-/* prompt for a support error message */
-"
-
-===== tell us what happened above this line =====
-
-" = "
-
-===== Kōrero mai ki a matou he aha te mahi i runga ake i tēnei raina =====
-
-";
-
 /* The distance in miles that a user is from a school. */
 "%@ miles away" = "%@ maero atu";
 
@@ -26,6 +15,9 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "pātai causal mana'o ranei";
+
+/* No comment provided by engineer. */
+"Choose One" = "Kōwhiri Kotahi";
 
 /* No comment provided by engineer. */
 "Describe the feature here" = "Whakāhua te āhuatanga i konei";
@@ -49,13 +41,25 @@
 "Enter your school's domain or tap for help." = "Whakauru te rohe o tō kura ā pāto mo te awhina rānei.";
 
 /* No comment provided by engineer. */
+"Extremely critical emergency" = "whawhati tata tino nui";
+
+/* No comment provided by engineer. */
 "Find School Domain" = "Kimihia te Rohe Kura";
 
 /* Help View Controller Title */
 "Help" = "Āwhina";
 
 /* No comment provided by engineer. */
+"Help Menu" = "Tahua Āwhina";
+
+/* No comment provided by engineer. */
 "I am stuck and can't get things done" = "Kei te raru ahau a kaore e taea ki te whakaoti mahi";
+
+/* No comment provided by engineer. */
+"I can't get things done until I hear back from you" = "Kaore e taea e ahau te whakaoti ngā mea , kia hoki mai he rongo ki ahau mai ia koe";
+
+/* No comment provided by engineer. */
+"I need help but it's not urgent" = "Me ahau te tauturu engari e kore te mea kōhukihuki";
 
 /* No comment provided by engineer. */
 "Invalid Canvas URL." = "Koremana Canvas URL";
@@ -70,7 +74,7 @@
 "Not authorized." = "Kaore i whakamanahia";
 
 /* Placeholder for help icon (question mark) on Domain Picker View */
-"Open help menu." = "Huaki te tahua awhina";
+"Open help menu" = "Huaki tahua āwhina";
 
 /* No comment provided by engineer. */
 "Report a Problem" = "Pūrongo i te Raruraru";

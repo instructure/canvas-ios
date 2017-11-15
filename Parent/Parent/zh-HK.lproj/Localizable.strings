@@ -49,11 +49,20 @@
 /* No comment provided by engineer. */
 "Assignment reminder: %@ is due at %@" = "任務提醒：%1$@  的截止到期日在 %2$@";
 
+/* No comment provided by engineer. */
+"Australia" = "澳大利亞";
+
 /* Authorization Failed Title */
 "Authorization Failed." = "驗證失敗。";
 
+/* Back Button Title */
+"Back" = "返回";
+
 /* Courses Tab */
 "COURSES" = "課程";
+
+/* No comment provided by engineer. */
+"Canada" = "加拿大";
 
 /* Cancel button title */
 "Cancel" = "取消";
@@ -64,11 +73,20 @@
 /* Percent value is under 0 */
 "Cannot use percent that is less than 0" = "無法使用小於0的百分比數字";
 
+/* Cancel the question/suggestion form */
+"Casual question or suggestion" = "隨意的問題或建議";
+
 /* Empty Alerts Text */
 "Caught up on Alerts" = "趕上提示的進度";
 
+/* title for status selection field */
+"Choose One" = "選擇一個";
+
 /* Close Button Title */
 "Close" = "關閉";
+
+/* Error alert message */
+"Could not create domain.  Please check your school's domain and try again." = "無法創建域名。請檢查您學校的域名，然後重試。";
 
 /* Course Announcement Description */
 "Course announcements" = "課程宣告";
@@ -82,6 +100,9 @@
 /* Submits the form to create an account */
 "Create Account" = "創建帳戶";
 
+/* Title for field */
+"Describe your problem" = "描述您的問題";
+
 /* No comment provided by engineer. */
 "Dismiss" = "取消";
 
@@ -91,13 +112,16 @@
 /* Title for alert shown when user attempts to reset their password */
 "Email Sent" = "電子郵件已發送";
 
+/* Empty Response */
+"Empty Response." = "沒有響應。";
+
 /* Prompt for logging in as student */
 "Enter student's login information" = "輸入學生的登入資訊";
 
 /* prompt for canvas observer login page */
 "Enter your Canvas Observer credentials" = "輸入您的 Canvas 監督人憑證";
 
-/* No comment provided by engineer. */
+/* Title for an error popup */
 "Error" = "錯誤";
 
 /* No comment provided by engineer. */
@@ -109,8 +133,17 @@
 /* No comment provided by engineer. */
 "Excused" = "已豁免";
 
+/* Status level for issue being reported */
+"Extremely critical emergency" = "萬分危急的緊急情況";
+
+/* Domain Picker Search Placeholder */
+"Find your school or district" = "搜尋您的學校或區域";
+
 /* Domain Picker Search Placeholder */
 "Find your student's school or district" = "搜尋您的學校或區域";
+
+/* No comment provided by engineer. */
+"Germany" = "德國";
 
 /* Help Button Title */
 "Help" = "幫助";
@@ -127,11 +160,23 @@
 /* Help Menu Message */
 "How can we help?" = "請問您需要什麼幫助？";
 
+/* Status level for issue being reported */
+"I can't get things done until fixed" = "在問題得到修復之前我無法完成工作";
+
+/* Status level for issue being reported */
+"I need help but it's not urgent" = "我需要支援但情況並不緊急";
+
+/* Impact Title */
+"Impact:" = "影響：";
+
 /* No comment provided by engineer. */
 "In-Class" = "課堂內的";
 
 /* Institution Announcement Description */
 "Institution announcements" = "機構宣告";
+
+/* Invalid Canvas URL */
+"Invalid Canvas URL." = "Canvas URL 無效。";
 
 /* Alert title when logging in with invalid credentials */
 "Invalid Credentials" = "無效的驗證信息";
@@ -139,10 +184,20 @@
 /* Title for an alert view */
 "Invalid Input" = "無效的導入";
 
+/* Support Ticket Invalid Input Message */
+"Invalid Input.  Check fields and try again." = "無效的輸入。請檢查欄位並重試。";
+
+/* Invalid User Agent */
+"Invalid User Agent." = "用戶代理無效。";
+
 /* Alert Message for invalid domain */
-"Invalid student domain.
-Please double-check the domain and try again." = "無效的學生域名。
-請再次檢查域名然後重試。";
+"Invalid student domain.\nPlease double-check the domain and try again." = "無效的學生域名。\n請再次檢查域名然後重試。";
+
+/* No comment provided by engineer. */
+"Ireland" = "愛爾蘭";
+
+/* JSON Parsing Error */
+"JSON Parsing Error." = "解析 JSON 出現錯誤。";
 
 /* Last Week Button Accessibility Label */
 "Last Week" = "上週";
@@ -156,11 +211,13 @@ Please double-check the domain and try again." = "無效的學生域名。
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "遲交： %1$@ (%2$@/%3$@)";
 
+/* No comment provided by engineer. */
+"Log In" = "登入";
+
 /* Submits the login form */
 "Login" = "登入";
 
-/* Button title to log out the user
-   Logout Confirm Button */
+/* Logout Confirm Button */
 "Logout" = "登出";
 
 /* Low Assignment Grade too High */
@@ -187,6 +244,9 @@ Please double-check the domain and try again." = "無效的學生域名。
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "無評分";
 
+/* No Result */
+"No Result." = "沒有結果。";
+
 /* Empty Students Text */
 "No Students" = "無學生";
 
@@ -194,10 +254,13 @@ Please double-check the domain and try again." = "無效的學生域名。
 "No installed apps support opening this file" = "已安裝的app中，無法支持打開這個資料夾";
 
 /* Not Authorized Error Title */
-"Not Authorized" = "未經授權";
+"Not Authorized" = "未授權";
 
 /* Not Found Error Title */
-"Not Found" = "未找到";
+"Not Found" = "找不到";
+
+/* Not authorized */
+"Not authorized." = "未經授權。";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "本週無事";
@@ -235,11 +298,20 @@ Please double-check the domain and try again." = "無效的學生域名。
 /* Report Problem Button */
 "Report a Problem" = "報告問題";
 
+/* Support Ticket Creation Failed */
+"Request Failed!  Check network and try again!" = "請求失敗！請檢查網路並重試！";
+
 /* Feature Request Button */
 "Request a Feature" = "請求一項功能";
 
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "資源未找到。請重試。";
+
+/* Select Impact Placeholder */
+"Select Impact" = "選擇影響的種類";
+
+/* No comment provided by engineer. */
+"Select Region" = "選擇地區";
 
 /* Server Error Title */
 "Server Error" = "伺服器錯誤";
@@ -251,11 +323,20 @@ Please double-check the domain and try again." = "無效的學生域名。
 /* Share Some Love Button */
 "Share Some Love" = "分享一些喜愛";
 
+/* No comment provided by engineer. */
+"Singapore" = "新加坡";
+
+/* Status level for issue being reported */
+"Something is broken but I can work around it" = "出現某些故障但我能解決它";
+
 /* Body for alert shown when something goes wrong resetting the password */
 "Something went wrong while attempting to reset your password. Try again later." = "在嘗試重設您的密碼時出現錯誤。請稍後重試。";
 
 /* Body for alert shown when something goes wrong resetting the password */
 "Something went wrong while attempting to send a password reset email. Try again later." = "在試圖發送密碼重設電子郵件時出現錯誤。請稍後重試。";
+
+/* Title for the subject field */
+"Subject" = "主題";
 
 /* Button title for forgot password */
 "Submit" = "提交";
@@ -272,11 +353,26 @@ Please double-check the domain and try again." = "無效的學生域名。
 /* Syllabus Button Title */
 "Syllabus" = "課程大綱";
 
-/* Alert message when logging in with invalid credentials */
+/* Support Ticket Created Successfully */
+"Thanks, your request was received!" = "謝謝，您的請求已經被接收！";
+
+/* Alert message when logging in with invalid credentials. Please check your region and try again. */
 "The email and password combination were invalid" = "電子郵件和密碼組合無效";
 
 /* Error message */
 "There are no actions for this item" = "無法對此項目進行操作";
+
+/* AccountDomain Database Load Failure Message */
+"There was a problem loading the AccountDomain database file." = "載入 AccountDomain 資料庫檔案時出現問題。";
+
+/* AlertKit Database Load Failure Message */
+"There was a problem loading the AlertKit database file." = "載入 AlertKit 資料庫檔案時出現問題。";
+
+/* Airwolf database error message */
+"There was a problem loading the database." = "載入資料庫時出現問題。";
+
+/* Message for an error alert */
+"There was a problem verifying the following domain: (stringURL)" = "驗證以下網域時出現問題：(stringURL)";
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it  is an audio or video upload it may still be processing." = "載入您的內容時出錯。如果內容是音頻或視頻資料，可能依然正在上載中。";
@@ -284,17 +380,33 @@ Please double-check the domain and try again." = "無效的學生域名。
 /* Alert Message for institution not authorized */
 "This institution has not enabled access to the Canvas Parent mobile app." = "此機構沒有給 Canvas 家長移動端程式發放讀取權限。";
 
+/* No comment provided by engineer. */
+"This institution is located outside of your selected region. To add a student at this institution, please use the “Region Picker” option on the login page to select the region of (region), and create a new account." = "該機構位於您選擇的地區以外。要在此機構添加一名學生，請使用登入頁面上的「地區選擇器」選項選擇（地區）地區，並創建一個新帳戶。";
+
 /* Title for alert when failing to add student domain */
 "Unable to Add Student" = "無法添加學生";
 
 /* Title for alert when failing to create account */
 "Unable to Create Account" = "無法創建帳戶";
 
+/* No comment provided by engineer. */
+"Unauthorized Region" = "未經授權的地區";
+
 /* Auth Failed Message */
 "Unexpected Authentication Error.  Please try logging in again" = "出現意外驗證故障。請重試登入。";
 
-/* Unknown T`hreshold Description */
+/* No comment provided by engineer. */
+"United States" = "美國";
+
+/* Unknown region for student account
+   Unknown T`hreshold Description */
 "Unknown" = "未知";
+
+/* Default name given a user until we find their real name */
+"Unknown User" = "未知使用者";
+
+/* Default user name, the computer-friendly version of their name, until we find their real user name */
+"Unknown User Name" = "未知使用者名稱";
 
 /* Name of action when viewing a reminder */
 "View" = "檢視";
@@ -306,13 +418,19 @@ Please double-check the domain and try again." = "無效的學生域名。
 "We couldn't create your account. Double check your information or try again later." = "無法創建您的帳戶。請再次核對您的資訊或稍後重試。";
 
 /* Body for alert shown when the server couldn't find an email to reset the password for */
-"We couldn't find an account associated with that email. Double check that you entered it correctly and try again." = "無法找到與此電子郵件關聯的帳戶。請再次核對您鍵入的內容並重試。";
+"We couldn't find an account associated with that email. Double check that you entered it correctly, check your region, and try again." = "我們找不到與該電子郵件相關聯的帳戶。仔細檢查您是否輸入正確，檢查您的地區，然後重試。";
+
+/* Title for field */
+"What can we do better?" = "我們有何可改進之處？";
 
 /* Not Authorized Error Message */
 "You are unauthorized to access this information.  Check your user permissions and try again." = "您未獲得存取此資訊的權限。請核對您的使用者許可並重試。";
 
 /* Body for alert shown when resetting password */
 "You will receive an email shortly to finish the process of resetting your password." = "您稍後將會收到一封電子郵件以完成重設密碼。";
+
+/* Title for the email field */
+"Your Email" = "您的電子郵件";
 
 /* Body for alert after having successfully reset the password */
 "Your password has been successfully reset. Please log in now." = "您的密碼已成功重設。請現在登入。";

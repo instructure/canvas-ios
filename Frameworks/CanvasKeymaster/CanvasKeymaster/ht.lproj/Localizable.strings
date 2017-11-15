@@ -1,14 +1,3 @@
-/* prompt for a support error message */
-"
-
-===== tell us what happened above this line =====
-
-" = "
-
-===== di nou kisa ki pase pi wo liy sa a =====
-
-";
-
 /* The distance in miles that a user is from a school. */
 "%@ miles away" = "%@ kilomèt de distans";
 
@@ -26,6 +15,9 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "Kesyon oswa sijesyon pa aza";
+
+/* No comment provided by engineer. */
+"Choose One" = "Chwazi Yonn";
 
 /* No comment provided by engineer. */
 "Describe the feature here" = "Dekri fonksyon an la";
@@ -49,13 +41,25 @@
 "Enter your school's domain or tap for help." = "Antre domèn lekòl ou a oswa tape pou jwenn èd.";
 
 /* No comment provided by engineer. */
+"Extremely critical emergency" = "Ijans Trè Kritik";
+
+/* No comment provided by engineer. */
 "Find School Domain" = "Jwenn Domèn Lekòl";
 
 /* Help View Controller Title */
 "Help" = "Èd";
 
 /* No comment provided by engineer. */
+"Help Menu" = "Meni Èd";
+
+/* No comment provided by engineer. */
 "I am stuck and can't get things done" = "Mwen kolo e mwen paka fè bagay yo";
+
+/* No comment provided by engineer. */
+"I can't get things done until I hear back from you" = "Mwen paka fè bagay yo jiskaske mwen tounen tande w";
+
+/* No comment provided by engineer. */
+"I need help but it's not urgent" = "Mwen bezwen èd men li pa ijan";
 
 /* No comment provided by engineer. */
 "Invalid Canvas URL." = "URL Canvas Envalid.";
@@ -70,7 +74,7 @@
 "Not authorized." = "Pa Otorize.";
 
 /* Placeholder for help icon (question mark) on Domain Picker View */
-"Open help menu." = "Ouvri meni èd.";
+"Open help menu" = "Ouvri meni èd";
 
 /* No comment provided by engineer. */
 "Report a Problem" = "Rapòte yon Pwoblèm";

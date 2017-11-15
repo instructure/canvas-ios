@@ -1,0 +1,9 @@
+/* Logout Confirmation */
+"Are you sure you want to logout?" = "你是否確定要登出？";
+
+/* Logout Cancel Button */
+"Cancel" = "取消";
+
+/* Logout Confirm Button */
+"Logout" = "登出";
+

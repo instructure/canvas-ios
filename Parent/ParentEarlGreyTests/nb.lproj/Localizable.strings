@@ -1,0 +1,9 @@
+/* Logout Confirmation */
+"Are you sure you want to logout?" = "Er du sikker på at du ønsker å logge av?";
+
+/* Logout Cancel Button */
+"Cancel" = "Avbryt";
+
+/* Logout Confirm Button */
+"Logout" = "Logg ut";
+

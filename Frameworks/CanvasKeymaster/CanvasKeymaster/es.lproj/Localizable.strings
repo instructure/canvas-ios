@@ -1,14 +1,3 @@
-/* prompt for a support error message */
-"
-
-===== tell us what happened above this line =====
-
-" = "
-
-===== cuéntenos qué sucedió sobre esta línea =====
-
-";
-
 /* The distance in miles that a user is from a school. */
 "%@ miles away" = "%@ a millas";
 
@@ -26,6 +15,9 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "Pregunta casual o sugerencia";
+
+/* No comment provided by engineer. */
+"Choose One" = "Escoja uno";
 
 /* No comment provided by engineer. */
 "Describe the feature here" = "Describa la característica aquí";
@@ -49,13 +41,25 @@
 "Enter your school's domain or tap for help." = "Ingrese el dominio de su colegio o toque para obtener ayuda.";
 
 /* No comment provided by engineer. */
+"Extremely critical emergency" = "Emergencia extremadamente crítica";
+
+/* No comment provided by engineer. */
 "Find School Domain" = "Encontrar el dominio del colegio.";
 
 /* Help View Controller Title */
 "Help" = "Ayuda";
 
 /* No comment provided by engineer. */
+"Help Menu" = "Menú de ayuda";
+
+/* No comment provided by engineer. */
 "I am stuck and can't get things done" = "Estoy bloqueado y no puedo terminar mis tareas";
+
+/* No comment provided by engineer. */
+"I can't get things done until I hear back from you" = "No puedo hacer nada hasta que me conteste";
+
+/* No comment provided by engineer. */
+"I need help but it's not urgent" = "Necesito ayuda, pero no es urgente";
 
 /* No comment provided by engineer. */
 "Invalid Canvas URL." = "URL de Canvas inválida.";
@@ -70,7 +74,7 @@
 "Not authorized." = "No autorizado.";
 
 /* Placeholder for help icon (question mark) on Domain Picker View */
-"Open help menu." = "Abrir menú de ayuda.";
+"Open help menu" = "Abrir el menú de ayuda";
 
 /* No comment provided by engineer. */
 "Report a Problem" = "Reportar un problema";

@@ -1,0 +1,799 @@
+/* Error message component with the report id */
+" Error report ID: (reportID)" = " 报告 ID 出错：(reportID)";
+
+/* Failure reason from the JSON payload from canvas */
+" Failure reason: (reason)." = " 失败原因：（原因）。";
+
+/* Shows the number of flagged questions */
+"%@ Flagged" = "%@ 标记";
+
+/* Accessiblity hint for question drawer button */
+"%@ Questions Answered" = "%@ 已回答的问题";
+
+/* Question number in a quiz */
+"%@." = "%@。";
+
+/* Confirmations alerting user of unanswered questions */
+"%d questions not answered" = "%d 未回答的问题";
+
+/* Error description for network errors resulting from limited or no internet connection. Includes a localized error message from the system e.g. (The request timed out.) */
+"(localizedDescription)\n\nCheck your connection or applicable carrier data limits and try again." = "(localizedDescription)\n\n请检查您的连接或相关载体数据限制，并重试。";
+
+/* Accessiblity hint for question drawer button */
+"0 Questions Answered" = "回答了0 个问题";
+
+/* Notification to alert the user that there is only 5 minutes left in the timed quiz */
+"5 minutes remaining" = "剩下 5 分钟";
+
+/* Notification to alert the user that there is only 30 seconds left in the time quiz */
+"30 seconds remaining" = "剩下 30 秒";
+
+/* Mark student absent
+   Student is present in class */
+"Absent" = "缺席";
+
+/* URL submission option */
+"Add Website Address" = "添加网址";
+
+/* Shows the number questions */
+"All %@ Questions" = "所有%@问题";
+
+/* option to view results for all grading periods */
+"All Grading Periods" = "所有评分周期";
+
+/* all pages segmented control title */
+"All Pages" = "所有页面";
+
+/* Title for push notification pre-authorization alert */
+"Allow Push Notifications?" = "允许推送通知？";
+
+/* label for number of attempts that are allowed */
+"Allowed Attempts" = "允许的尝试次数";
+
+/* Default error message displayed when a file fails to upload */
+"An error occured, please try again." = "发生错误，请重试。";
+
+/* an unknown error's message */
+"An unknown error has occurred." = "发生未知错误。";
+
+/* Question to confirm user wants to navigate away from a quiz. */
+"Are you sure you want to leave this quiz?" = "您确认想离开测验吗？";
+
+/* Confirmation before submitting a quiz */
+"Are you sure you want to submit your answers?" = "您确认想提交答案吗？";
+
+/* No comment provided by engineer. */
+"Attendance" = "出勤";
+
+/* Error title for attendance app */
+"Attendance Error" = "出勤错误";
+
+/* label for quiz availability date */
+"Available Until" = "截止时间";
+
+/* stop record button a11y hint */
+"Begin recording" = "开始录制";
+
+/* Blue course color button */
+"Blue" = "蓝色";
+
+/* Title for screen to build a panda avatar */
+"Build Your Panda!" = "建立您的熊猫！";
+
+/* Alert title when unable to parse JSON for communication channels */
+"Can't Display Communication Channels" = "无法显示通讯频道";
+
+/* Alert title when unable to parse JSON for notification preferences */
+"Can't Display Notification Preferences" = "无法显示通知首选项";
+
+/* Cancel button title
+   Cancel submission option
+   Cancel upload */
+"Cancel" = "取消";
+
+/* No comment provided by engineer. */
+"Change Section" = "更改部分";
+
+/* Description for Chat communication channel */
+"Chat" = "Chat";
+
+/* No comment provided by engineer. */
+"Choose Date" = "选择日期";
+
+/* Choose a file */
+"Choose a File" = "选择文件";
+
+/* Pick a photo from library */
+"Choose a Photo" = "选择一张照片";
+
+/* Pick a photo or video */
+"Choose a Photo or Video" = "选择照片或视频";
+
+/* No comment provided by engineer. */
+"Choose a Section" = "选择部分";
+
+/* Pick a video from library */
+"Choose a Video" = "选择视频";
+
+/* Label indicating that the question is a multiple dropdown answer question and answer must be chosen. */
+"Choose your answers below" = "在下方选择您的答案";
+
+/* No comment provided by engineer. */
+"Comments" = "评论";
+
+/* File upload completed */
+"Complete" = "完成";
+
+/* Title of a screen that shows all of our open source components */
+"Components" = "组件";
+
+/* Button for electing to be late on a quiz */
+"Continue Quiz" = "继续测验";
+
+/* Notification display name for conversations group */
+"Conversations" = "会话";
+
+/* Alert title when unable to load notification preferences */
+"Could not load notification preferences" = "不能加载通知首选项";
+
+/* Failure reason for why it couldn't associate a tab with a context */
+"Could not parse context id from URL" = "无法解析来自URL的上下文ID";
+
+/* Error title for being unable to update a push notification preference */
+"Could not update" = "不能更新";
+
+/* Notification display name for course activities group */
+"Course Activities" = "课程活动";
+
+/* Button for creating a note from text selection */
+"Create Note" = "创建备注";
+
+/* Header label for a screen that customizes a course */
+"Customize" = "自定义";
+
+/* Cyan course color button */
+"Cyan" = "青色";
+
+/* name for upload data */
+"Data" = "数据";
+
+/* Error title for a persistence related data failure */
+"Data Error" = "数据错误";
+
+/* No comment provided by engineer. */
+"Date picker" = "日期选取器";
+
+/* DeepOrange course color button */
+"DeepOrange" = "DeepOrange";
+
+/* DeepPurple course color button */
+"DeepPurple" = "DeepPurple";
+
+/* Delete button
+   Delete button for file upload */
+"Delete" = "删除";
+
+/* message for delete dialog of audio recorder */
+"Delete recording?" = "删除录制？";
+
+/* Designer role */
+"Designer" = "设计者";
+
+/* Notification display name for discussions group */
+"Discussions" = "讨论";
+
+/* Error title to alert user their device is out of storage space */
+"Disk Error" = "磁盘错误";
+
+/* Dismiss an error alert
+   Dismiss an error dialog
+   Dismiss button for error alert
+   Dismiss button for error messages */
+"Dismiss" = "撤销";
+
+/* Done button
+   Done recording button */
+"Done" = "完成";
+
+/* due date label for quiz due date */
+"Due Date" = "截止日期";
+
+/* Description for email communication channel */
+"Email" = "电子邮件";
+
+/* Data encoding error title */
+"Encoding Error" = "编码错误";
+
+/* Text submission option */
+"Enter Text" = "输入文本";
+
+/* Placeholder for URL */
+"Enter URL..." = "输入URL...";
+
+/* Default text for essay cell */
+"Enter answer..." = "输入答案...";
+
+/* Prompt for text upload */
+"Enter your submission..." = "输入您的提交项……";
+
+/* Title for quiz loading error */
+"Error Loading Quiz" = "加载测验时出现错误";
+
+/* Error title for parsing assignment data from server */
+"Error Updating Assignment" = "更新作业错误";
+
+/* error message for when the cache management database fails to load */
+"Error loading cache management database." = "加载缓存管理数据库出现错误。";
+
+/* No comment provided by engineer. */
+"Error parsing the Roll Call response. Expected (e), received (a)" = "解析点名响应时出错。预期 (e)，收到 (a)";
+
+/* No comment provided by engineer. */
+"Error parsing the Roll Call response. Expected (e), received (a) for key (k)" = "解析点名应答时出错。密钥 (k) 预期 (e)，收到 (a)";
+
+/* No comment provided by engineer. */
+"Error parsing the Roll Call response. Key not found: (k)" = "解析点名应答时出错。找不到密钥：(k)";
+
+/* No comment provided by engineer. */
+"Error parsing the Roll Call response. Unexpected null value: (k)" = "解析点名应答时出错。意外的无效值：(k)";
+
+/* rollcall status error */
+"Error: No data returned from the rollcall api." = "错误：没有数据从点名单 API 中返回。";
+
+/* Exit button to leave the quiz */
+"Exit" = "退出";
+
+/* Error message when the server returns a invalid response */
+"Expected a response in the 200-299 range. Got %@" = "预计响应介于 200-299 范围内。获取%@";
+
+/* File upload failed */
+"Failed" = "失败";
+
+/* Error when submitting an assignment */
+"Failed to Submit" = "提交失败";
+
+/* Error Message when the app can't load an object model from the database */
+"Failed to load (discussionKitModelName) NSManagedObjectModel" = "加载失败（discussionKitModelName）NSManagedObjectModel";
+
+/* favorite courses or groups */
+"Favorites" = "收藏夹";
+
+/* title for file upload errors */
+"File Upload Error" = "文件上传错误";
+
+/* File uploads screen title */
+"File Uploads" = "文件上传";
+
+/* State of the flagged question */
+"Flagged" = "标记";
+
+/* front page segmented control title */
+"Front Page" = "首页";
+
+/* navigate */
+"Go" = "开始";
+
+/* Title for grading periods picker */
+"Grading Periods" = "评分周期";
+
+/* Green course color button */
+"Green" = "绿色";
+
+/* Notification display name for groups group */
+"Groups" = "小组";
+
+/* Non favorite hidden courses or groups */
+"Hidden" = "隐藏";
+
+/* Hides the question list */
+"Hide Question List" = "隐藏问题列表";
+
+/* No comment provided by engineer. */
+"Inbox" = "收件箱";
+
+/* Indigo course color button */
+"Indigo" = "靛蓝色";
+
+/* Mark student late
+   Student is present in class */
+"Late" = "延迟";
+
+/* Leave the quiz */
+"Leave" = "离开";
+
+/* LightBlue course color button */
+"LightBlue" = "LightBlue";
+
+/* LightGreen course color button */
+"LightGreen" = "LightGreen";
+
+/* LightPink course color button */
+"LightPink" = "LightPink";
+
+/* Label indicating that the quiz lock date was reached and the quiz is auto submitting */
+"Lock Date Reached\nSubmitting" = "达到锁定日期\n提交";
+
+/* Title for when another tool called Lockdown Browser is required to take a quiz */
+"Lockdown Browser Required" = "必须使用锁定浏览器";
+
+/* Detail label for when a tool called Lockdown Browser is required to take the quiz */
+"Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "必须使用锁定浏览器才能查看您的结果。请在锁定浏览器中打开测验以继续。";
+
+/* No comment provided by engineer. */
+"Mark All as Present" = "将所有标记为出勤";
+
+/* No comment provided by engineer. */
+"Mark Remaining as Present" = "将其余的标记为出勤";
+
+/* Error alert title for network error
+   Title for network errors */
+"Network Error" = "网络错误";
+
+/* Next button for advancing a quiz */
+"Next" = "下一步";
+
+/* Title for no button for push notification pre-authorization alert */
+"No" = "否";
+
+/* Alert title when unable to load communication channels */
+"No Communication Channels Found" = "没有找到通讯频道";
+
+/* A quiz that has no due date */
+"No Due Date" = "无截止日期";
+
+/* Title for alert when a module item doesn't have mastery paths configured */
+"No Mastery Paths" = "无掌握途径";
+
+/* Error when push channel cannot be found in notificaitons */
+"No push channel found" = "未找到推送渠道";
+
+/* No comment provided by engineer. */
+"No sections available. Please make sure you are enrolled as a teacher or TA in at least on section of this course." = "没有可用的部分。请确保您至少在本课程部分登记为教师或助教。";
+
+/* when a quiz has no time limit */
+"No time limit" = "没有时间限制";
+
+/* Section header for assignments without an assignment group */
+"None" = "无";
+
+/* can't record because request for mic access was denied title */
+"Not Permitted" = "不允许";
+
+/* Title for alert showing when a quiz isn't takeable */
+"Not Takeable" = "不能参加";
+
+/* No comment provided by engineer. */
+"Note..." = "备注...";
+
+/* Error title for push notification registration error */
+"Notification Error" = "通知错误";
+
+/* Title for the notification preferences page */
+"Notification Preferences" = "通知首选项";
+
+/* OK Button Title */
+"OK" = "确定";
+
+/* Observer role */
+"Observer" = "观察员";
+
+/* No comment provided by engineer. */
+"Open in…" = "打开...";
+
+/* Accessibility hint for the profile button */
+"Opens profile" = "打开档案";
+
+/* Orange course color button */
+"Orange" = "橙色";
+
+/* Overdue assignmnets (not turned in) */
+"Overdue" = "过期";
+
+/* Assignments that have been turned in and are past */
+"Past" = "过去";
+
+/* Pause recording/playback */
+"Pause" = "暂停";
+
+/* record button a11y hint */
+"Pause playback" = "暂停播放";
+
+/* name for a photo just taken */
+"Photo" = "照片";
+
+/* Photos backdrops */
+"Photos" = "照片";
+
+/* Pink course color button */
+"Pink" = "粉红色";
+
+/* Playback button */
+"Play" = "播放";
+
+/* play button a11y hint */
+"Play back recording" = "播放录制";
+
+/* Title for playback error messages */
+"Playback Error" = "回播错误";
+
+/* No comment provided by engineer. */
+"Please check your network connection and try again." = "请检查您的网络连接并再次尝试。";
+
+/* label for number of points in a quiz */
+"Points" = "得分";
+
+/* Mark student present
+   Student is present in class */
+"Present" = "出席";
+
+/* Accessibility label for the profile button */
+"Profile" = "个人资料";
+
+/* Purple course color button */
+"Purple" = "紫色";
+
+/* Description for Push Notification channel */
+"Push Notifications" = "推送通知";
+
+/* accessibility label for a quiz question */
+"Question" = "问题";
+
+/* Shows question position */
+"Question %@" = "问题%@";
+
+/* state for a question that has been flagged */
+"Question (questionNumber) Flagged" = "问题（questionNumber）已标记";
+
+/* state for unflagged question */
+"Question (questionNumber) Unflagged" = "问题（questionNumber）未标记";
+
+/* label for the number of questions */
+"Questions" = "问题";
+
+/* Title for alert that shows when a quiz hits the due date */
+"Quiz Due" = "测验截止";
+
+/* Title for quiz error */
+"Quiz Error" = "测验错误";
+
+/* Label for indication that the quiz submission was successful */
+"Quiz Submitted" = "测验提交";
+
+/* Label for indication that the quiz submission failed */
+"QuizSubmission Failure" = "QuizSubmission 失败";
+
+/* tile for error reading cache */
+"Read Error" = "阅读错误";
+
+/* button to read more of the description */
+"Read More" = "阅读更多";
+
+/* Record button a11y label */
+"Record" = "记录";
+
+/* Choose record audio submission */
+"Record Audio" = "录制音频";
+
+/* permission denied button a11y label */
+"Record Permission Help" = "录制权限帮助";
+
+/* title for a recording error */
+"Recording Error" = "录制错误";
+
+/* red course color button */
+"Red" = "红色";
+
+/* Remove the formatting of the essay question text */
+"Remove Formatting" = "移除格式化";
+
+/* No comment provided by engineer. */
+"Reply" = "回复";
+
+/* Button to report an error */
+"Report" = "报告";
+
+/* Record button a11y label */
+"Request Audio Recording Permission" = "请求音频录制权限";
+
+/* stop record button a11y hint */
+"Request Permission to record audio" = "请求权限录制音频";
+
+/* button for resuming a quiz */
+"Resume Quiz" = "恢复测验";
+
+/* button for retaking quiz */
+"Retake Quiz" = "重考测验";
+
+/* Description for SMS communication channel */
+"SMS" = "短信";
+
+/* Notification display name for scheduling group */
+"Scheduling" = "日程安排";
+
+/* Indicates that a matching quiz question needs to have an answer selected */
+"Select Answer" = "选择答案";
+
+/* Label indicating that the question is a multiple answer question and more than 1 answer can be correct */
+"Select all that apply" = "选择所有适用";
+
+/* No comment provided by engineer. */
+"Select to change the roll call date" = "选择以更改点名单日期";
+
+/* when a button is selected */
+"Selected" = "已选择";
+
+/* Shapes backdrops */
+"Shapes" = "形状";
+
+/* Hides the question list */
+"Show Question List" = "显示问题清单";
+
+/* Text for a button that toggles to show a timer for a timed quiz */
+"Show Timer" = "显示计时器";
+
+/* Error message displayed when the file is unrecognized. */
+"Something went wrong. Check the file format and try again." = "出了些问题。请检查文件格式，并重试。";
+
+/* Text only quiz question label */
+"Spacer" = "间隔";
+
+/* Stay on the quiz view */
+"Stay" = "留下";
+
+/* stop recording button a11y label */
+"Stop" = "停止";
+
+/* File upload was stopped */
+"Stopped" = "已阻止";
+
+/* Student role */
+"Student" = "学生";
+
+/* Submit assignment button
+   Submit button title
+   Turn in this url button */
+"Submit" = "提交";
+
+/* Title for button to submit assignment */
+"Submit Assignment" = "提交作业";
+
+/* No comment provided by engineer. */
+"Submitted!" = "已提交！";
+
+/* No comment provided by engineer. */
+"Submitting" = "提交";
+
+/* Label for indication of submitting quiz */
+"Submitting Quiz" = "提交测验";
+
+/* TA role */
+"TA" = "助教";
+
+/* Take a photo or video submission choice */
+"Take Photo or Video" = "拍摄相片或视频";
+
+/* Button for taking the quiz */
+"Take Quiz" = "参加测验";
+
+/* Take a photo submission choice */
+"Take a Photo" = "拍摄照片";
+
+/* Take a video submission choice */
+"Take a Video" = "拍摄视频";
+
+/* Teacher role */
+"Teacher" = "教师";
+
+/* Teal course color button */
+"Teal" = "青色";
+
+/* This shouldn't ever happen. */
+"The Pages are gone!? Why are the pages always gone?" = "页面丢失？为什么总是丢失页面？";
+
+/* Error message for a file missing */
+"The file does not exist." = "文件不存在。";
+
+/* Description for alert that shows when the quiz hits the due date */
+"The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possibly be late?" = "测验在 1 分钟后截止。是否要现在及时提交或继续测验但有可能迟交？";
+
+/* Error message for interrupted requests marking a to do as done */
+"The request to mark a to do as done was interrupted" = "将待办事项标识为完成的请求被打断";
+
+/* bad url message */
+"The text you entered is not a valid URL" = "您输入的文字不是有效的URL";
+
+/* Data encoding error message */
+"There was a problem encoding UTF8 Data" = "编码UTF8数据时出现问题";
+
+/* No comment provided by engineer. */
+"There was a problem fetching the list of course sections." = "提取课程部分名单时出现问题。";
+
+/* JSON Parsing error description */
+"There was a problem interpreting a response from the server." = "解读服务器的响应时出现问题。";
+
+/* CalendarKit Database Load Failure Message */
+"There was a problem loading the (kitModelName) database file." = "加载（kitModelName）数据库文件时出现问题。";
+
+/* AssignmentKit database load failure message */
+"There was a problem loading the AssignmentKit database file." = "加载AssignmentKit数据库文件时出现问题。";
+
+/* CalendarKit Database Load Failure Message */
+"There was a problem loading the CalendarKit database file." = "加载CalendarKit数据库文件时出现问题。";
+
+/* DiscussionKit Database Load Failure Message */
+"There was a problem loading the DiscussionKit database file." = "加载DiscussionKit数据库文件时出现问题。";
+
+/* EnrollmentKit Database Load Failure Message */
+"There was a problem loading the EnrollmentKit database file." = "加载EnrollmentKit数据库文件时出现问题。";
+
+/* FileKit Database Load Failure Message */
+"There was a problem loading the FileKit database file." = "加载FileKit数据库文件时出现问题。";
+
+/* Page list fails */
+"There was a problem loading the Pages database file." = "加载页面数据文件时出现问题。";
+
+/* PeepKit Database Load Failure Message */
+"There was a problem loading the PeepKit database file." = "加载PeepKit数据库文件时出现问题。";
+
+/* SoEdventurous database load failure message */
+"There was a problem loading the SoEdventurous database file." = "加载SoEdventurous数据库文件时出现问题。";
+
+/* File upload error message */
+"There was a problem preparing the file for upload" = "准备上传该文件时出现问题";
+
+/* Persistence error message */
+"There was a problem reading cached data" = "阅读缓存数据时出现问题";
+
+/* Error description for Push Notifications registration error. */
+"There was a problem registering your device for push notifications." = "注册您的设备接收推送通知时出现问题。";
+
+/* Message when fails to submit an assignment */
+"There was a problem submitting your assignment. Please try again later." = "提交作业时发生问题。请稍后再试。";
+
+/* Error description for failing to compute the URL to a quiz */
+"There was a problem updating the Quiz URL" = "更新测验URL时出现问题";
+
+/* generic error message */
+"There was a problem with the Canvas request." = "带有Canvas请求出现问题。";
+
+/* Error message when parsing contextID for a course or group tab */
+"There was an error associating a tab with a course or group." = "选项卡与课程或小组相联时出现错误。";
+
+/* An error message shown when the Users cache file fails to load */
+"There was an error loading the Users cache." = "加载用户缓存时出错。";
+
+/* Error message for a network fail */
+"There was an error while communicating with the server." = "联系服务器时出现错误。";
+
+/* No comment provided by engineer. */
+"There was no data!" = "没有数据！";
+
+/* Warning to users editing an essay question that was edited on the web. */
+"This essay question has been edited on the web and may contain formatting, links or images. In order to edit this response on your mobile device we will need to clear the formatting (including links and images). Otherwise you may continue editing the question via a web browser." = "本论文问题已在网页上进行编辑并且可能包含格式、链接或图片。若要在移动设备上编辑此响应，我们需要清除格式（包括链接和图片）。或者您也可以继续通过网页浏览器编辑问题。";
+
+/* Body for alert when a module item doesn't have mastery paths configured */
+"This module item does not have mastery paths configured." = "此模块项目没有配置掌握途径。";
+
+/* The HTML page is currently not viewable by the user because it has been locked by the teacher. */
+"This page is currently locked and not viewable." = "此页面目前被锁定且不能查看。";
+
+/* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
+"This quiz has an IP address filter set." = "此测验设置了一个IP地址过滤器。";
+
+/* Message when telling the user they can't take the quiz for some weird reason */
+"This quiz is currently unavailable." = "此测验目前不可用。";
+
+/* Message when telling the user they can't take the quiz because the quiz is locked */
+"This quiz is locked." = "此测验被锁定。";
+
+/* label for the time limit */
+"Time Limit" = "时间限制";
+
+/* Toggle flag accessiblity action */
+"Toggle Flag" = "切换标记";
+
+/* Total grade label */
+"Total Grade" = "总分";
+
+/* Description for Twitter communication channel */
+"Twitter" = "Twitter";
+
+/* Alert message when unable to parse JSON for communication channels */
+"Unable to display any Communication Channels returned from the server at this time." = "此时无法显示任何从服务器返回的通讯频道。";
+
+/* Alert message when unable to parse JSON for notification preferences */
+"Unable to display any notification preferences returned from the server at this time." = "此时无法显示任何从服务器返回的通知首选项。";
+
+/* Alert message when unable to load communication channels */
+"Unable to load any Communication Channels at this time.  Error: (result.error?.localizedDescription)" = "暂时无法加载任何通信通道。错误：(result.error?.localizedDescription)";
+
+/* Alert message when unable to load notification preferences */
+"Unable to load any notification preferences at this time.  Error: (result.error?.localizedDescription)" = "暂时无法加载任何通知首选项。错误：(result.error?.localizedDescription)";
+
+/* Error message when parsing communication preferences */
+"Unable to parse JSON for communication channels" = "无法解析 JSON 的信道";
+
+/* Error message when parsing notification preferences */
+"Unable to parse JSON for notification preferences" = "无法解析 JSON 的通知首选项";
+
+/* Assignments with no dates */
+"Undated" = "无限期";
+
+/* Unexpected response type */
+"Unexpected response type" = "意外的响应类型";
+
+/* Ungraded quiz */
+"Ungraded" = "未评分";
+
+/* An unknown error title */
+"Unknown Error" = "未知错误";
+
+/* When a quiz has no limit on the number of attempts */
+"Unlimited" = "无限制";
+
+/* Remove attendance status */
+"Unmark" = "取消标记";
+
+/* Upcoming assignments */
+"Upcoming" = "即将到来";
+
+/* File upload submission option */
+"Upload File" = "上传文件";
+
+/* Message displayed while a file is being uploaded */
+"Uploading file..." = "正在上传文件……";
+
+/* permission denied button a11y hint */
+"User has denied record permission" = "用户已拒绝录制权限";
+
+/* Error message if we can't pull the avatar image */
+"User has no valid avatar image url" = "用户有无效的avatar图像url";
+
+/* button for viewing quiz results */
+"View Results" = "查看结果";
+
+/* a warning message */
+"Warning" = "警告";
+
+/* Error message for being unable to update a push notification preference */
+"We were not able to update this value with the server" = "我们无法更新服务器的价值";
+
+/* Message for push notification pre-authorization alert */
+"Would you like to allow Canvas to send you important notifications about announcements, course, assignments, etc?" = "您允许Canvas 向您发送有关通告、课程、作业等的重要通知吗？";
+
+/* Yellow course color button */
+"Yellow" = "黄色";
+
+/* Title for yes button for push notification pre-authorization alert */
+"Yes" = "是";
+
+/* Description for Yo communication channel */
+"Yo" = "哟";
+
+/* Shows time limit on a quiz */
+"You have %d minutes." = "您有 %d 分钟时间。";
+
+/* Message when telling the user they can't take the quiz because they used up all their attempts */
+"You have used all your attempts available on this quiz." = "您已用尽此测验的全部可用的尝试。";
+
+/* permission was rejected */
+"You must grant (appName) Microphone access in the Settings app in order to record audio." = "您必须在“设置”应用中允许（appName）访问麦克风才能录制音频。";
+
+/* Error description for file out of space */
+"Your device is out of storage space. Please free up space and try again." = "您的设备的存储空间不足。请释放空间，然后重试。";
+
+/* label to be read for visually impaired users with assignment types */
+"assignment" = "作业";
+
+/* label to be read for visually impaired users with discusstion topic assignment types */
+"discussion topic" = "讨论话题";
+
+/* label to be read for visually impaired users with external tool assignment types */
+"external tool" = "外部工具";
+
+/* label to be read for visually impaired users with quiz assignment types */
+"quiz" = "测验";
+
+/* File upload in progress */
+"uploading..." = "正在上传……";
+

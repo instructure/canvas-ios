@@ -142,9 +142,6 @@
 /* Error description when a user tries to upload a file that's too big */
 "The file you are trying to uploading is %@, but the maximum size is %@." = "Fichye w ap eseye transfere a se %1$@, men gwosè maksimòm nan se %2$@.";
 
-/* No comment provided by engineer. */
-"This is a media message." = "Sa se yon mesaj medya.";
-
 /* Media type is video */
 "Video" = "Videyo";
 
@@ -162,9 +159,6 @@
 
 /* No comment provided by engineer. */
 "out of %@ points" = "sou %@ pwen";
-
-/* Name for a photo file, i.e. photo.png */
-"photo" = "foto";
 
 /* When we don't know the name of a file, we display this */
 "unknown" = "enkoni";

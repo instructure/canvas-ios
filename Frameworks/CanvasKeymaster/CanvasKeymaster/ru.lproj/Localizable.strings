@@ -1,14 +1,3 @@
-/* prompt for a support error message */
-"
-
-===== tell us what happened above this line =====
-
-" = "
-
-===== расскажите нам, что произошло над этой строкой =====
-
-";
-
 /* The distance in miles that a user is from a school. */
 "%@ miles away" = "%@ на расстоянии";
 
@@ -26,6 +15,9 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "Обычный вопрос или предложение";
+
+/* No comment provided by engineer. */
+"Choose One" = "Выберите один";
 
 /* No comment provided by engineer. */
 "Describe the feature here" = "Опишите функцию здесь";
@@ -49,13 +41,25 @@
 "Enter your school's domain or tap for help." = "Введите домен вашего учебного заведения или нажмите для получения справки.";
 
 /* No comment provided by engineer. */
+"Extremely critical emergency" = "Крайне критическая ситуация";
+
+/* No comment provided by engineer. */
 "Find School Domain" = "Введите домен учебного заведения";
 
 /* Help View Controller Title */
 "Help" = "Справка";
 
 /* No comment provided by engineer. */
+"Help Menu" = "Меню Справка";
+
+/* No comment provided by engineer. */
 "I am stuck and can't get things done" = "Я зашел в тупик и не могу завершить начатое";
+
+/* No comment provided by engineer. */
+"I can't get things done until I hear back from you" = "Я не могу закончить, пока не услышу ваш ответ";
+
+/* No comment provided by engineer. */
+"I need help but it's not urgent" = "Мне нужна помощь, но это не срочно";
 
 /* No comment provided by engineer. */
 "Invalid Canvas URL." = "Неправильный URL Canvas.";
@@ -70,7 +74,7 @@
 "Not authorized." = "Не разрешено.";
 
 /* Placeholder for help icon (question mark) on Domain Picker View */
-"Open help menu." = "Откройте меню справки.";
+"Open help menu" = "Открыть меню Справка";
 
 /* No comment provided by engineer. */
 "Report a Problem" = "Сообщить о проблеме";

@@ -1,0 +1,9 @@
+/* Logout Confirmation */
+"Are you sure you want to logout?" = "Вы действительно хотите выйти?";
+
+/* Logout Cancel Button */
+"Cancel" = "Отменить";
+
+/* Logout Confirm Button */
+"Logout" = "Выйти";
+

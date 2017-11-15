@@ -1,9 +1,5 @@
 /* prerequisites for unlocking item */
-"
-
-You must first complete:" = "
-
-您必须首先完成：";
+"\n\nYou must first complete:" = "\n\n您必须首先完成：";
 
 /* when locked item will become unlocked */
 " until %@" = "直到%@";
@@ -11,43 +7,43 @@ You must first complete:" = "
 /* explanation for locked module item */
 "\"%@\" is locked as part of \"%@\"" = "\"%1$@\" 作为 \"%2$@\" 的一部分被锁定";
 
-/* (No Commment) */
+/* (No Comment) */
 "%0.2f GB" = "%0.2f GB";
 
-/* (No Commment) */
+/* (No Comment) */
 "%0.2f KB" = "%0.2f KB";
 
-/* (No Commment) */
+/* (No Comment) */
 "%0.2f MB" = "%0.2f MB";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$@ (%2$d)" = "%1$@ (%2$d)";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$@ (%2$g out of %3$@)" = "%1$@ (%3$@ 中的 %2$g)";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$@ at %2$@" = "%1$@ 在 %2$@";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$@ is due in %2$@" = "%1$@ 截止在 %2$@";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$@ out of %2$@" = "%1$@ 在 %2$@之外";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$@%% (%2$g out of %3$@)" = "%1$@%% (%2$g 在 %3$@之外)";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$@. %2$@. Type: %3$@." = "%1$@。 %2$@。类型: %3$@。";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$@. %2$@. Type: %3$@. Status: %4$@" = "%1$@。 %2$@。类型: %3$@。状态: %4$@";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$d %2$@" = "%1$d %2$@";
 
-/* (No Commment) */
+/* (No Comment) */
 "%1$g out of %2$@" = "%1$g 在 %2$@之外";
 
 /* Button to submit files to an assignment */
@@ -71,7 +67,7 @@ You must first complete:" = "
 /* No comment provided by engineer. */
 "%@ is not a valid URL" = "%@ 不是有效的URL";
 
-/* (No Commment) */
+/* (No Comment) */
 "%@ is not a valid host" = "%@ 不是有效的主机";
 
 /* Message for unsupported tab */
@@ -80,7 +76,7 @@ You must first complete:" = "
 /* Description for how many times a specific discussion has been liked by other users */
 "%@ likes" = "%@ 喜欢";
 
-/* (No Commment) */
+/* (No Comment) */
 "%@ need grading" = "%@ 需要评改";
 
 /* 88 out of 100 points */
@@ -89,25 +85,25 @@ You must first complete:" = "
 /* 83% (83 out of 100 points */
 "%@%% (%g out of %@)" = "%1$@%% (%2$g 在 %3$@之外)";
 
-/* (No Commment) */
+/* (No Comment) */
 "%@..." = "%@...";
 
 /* A number and a collective noun, like '5 pigs' */
 "%d %@" = "%1$d %2$@";
 
-/* (No Commment) */
+/* (No Comment) */
 "%d days ago" = "%d 天前";
 
-/* (No Commment) */
+/* (No Comment) */
 "%d hours ago" = "%d 小时前";
 
 /* Number of files/folders inside a folder. (Used for all cases except 1 item.) */
 "%d items" = "%d 项目";
 
-/* (No Commment) */
+/* (No Comment) */
 "%d minutes ago" = "%d 分钟前";
 
-/* (No Commment) */
+/* (No Comment) */
 "%d months ago" = "%d 月前";
 
 /* In the context 'Joe, Fred, ((25 more))' */
@@ -119,10 +115,10 @@ You must first complete:" = "
 /* Something like '3 unread'. Refers to unread replies in a discsusion. */
 "%d unread" = "%d 未读";
 
-/* (No Commment) */
+/* (No Comment) */
 "%d years ago" = "%d 年前";
 
-/* (No Commment) */
+/* (No Comment) */
 "%qu bytes" = "%qu 字节";
 
 /* offset for one day */
@@ -143,31 +139,31 @@ You must first complete:" = "
 /* offset for under an hour */
 "%tu minutes" = "%tu 分钟";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "%u Attachments" = "%u 附件";
 
 /* Label indicating multiple files are attached to a single homework submission. %u will be a positive number, and will not be '1' */
 "%u files" = "%u 文件";
 
-/* (No Commment) */
+/* (No Comment) */
 "&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "&quot;%1$@&quot; 被锁定作为 &quot;%2$@&quot;";
 
 /* %@ will be replaced by the filename */
 "'%@' is now ready to submit to assignments" = "'%@' 现在准备提交到作业";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "1 Attachment" = "1个附件";
 
 /* one day */
 "1 day" = "1 天";
 
-/* (No Commment) */
+/* (No Comment) */
 "1 day ago" = "1 天前";
 
 /* one hour */
 "1 hour" = "1 小时";
 
-/* (No Commment) */
+/* (No Comment) */
 "1 hour ago" = "1 小时前";
 
 /* Number of files/folders inside a folder. (Only used when there is exactly 1 item. */
@@ -176,16 +172,16 @@ You must first complete:" = "
 /* Description for a post that has been liked once */
 "1 like" = "1 个喜欢";
 
-/* (No Commment) */
+/* (No Comment) */
 "1 minute ago" = "1 分钟前";
 
-/* (No Commment) */
+/* (No Comment) */
 "1 month ago" = "1 个月前";
 
-/* (No Commment) */
+/* (No Comment) */
 "1 needs grading" = "1 个需要评分";
 
-/* (No Commment) */
+/* (No Comment) */
 "1 year ago" = "1 年前";
 
 /* three days */
@@ -197,13 +193,13 @@ You must first complete:" = "
 /* Name of a tab displaying Canvas Info including legal info */
 "About" = "关于";
 
-/* (No Commment) */
+/* (No Comment) */
 "Access Denied" = "拒绝访问";
 
 /* Error handling message when a network request has been denied by a server. Specifically with the HTTP 401 error code. */
 "Access denied. Please check your permissions for the action you're trying to complete." = "拒绝访问。请查看您想完成的动作权限。";
 
-/* title for Messages attachment action sheet */
+/* (No Comment) */
 "Add Attachment" = "添加附件";
 
 /* add comment button */
@@ -227,13 +223,13 @@ You must first complete:" = "
 /* Title on the add-inline-media sheet */
 "Add inline media" = "添加在线媒体";
 
-/* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
+/* (No Comment) */
 "Add recipients" = "添加收件人";
 
-/* Button to select all members of a group */
+/* (No Comment) */
 "All members" = "全体成员";
 
-/* (No Commment) */
+/* (No Comment) */
 "An unknown error occurred" = "未知错误出现";
 
 /* Title of the new announcement view */
@@ -245,19 +241,16 @@ You must first complete:" = "
 /* Assignment submission type for selecting an Arc video */
 "Arc" = "Arc";
 
-/* Archive selected messages button */
+/* (No Comment) */
 "Archive" = "存档";
 
-/* archive selected messages */
-"Archive Selected Messages" = "将选择的消息存档";
-
-/* (No Commment) */
+/* (No Comment) */
 "Archive Selected Messages Button" = "存档选择信息按钮";
 
-/* (No Commment) */
+/* (No Comment) */
 "Archive all selected messages" = "存档所有选择的信息";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Archived" = "存档";
 
 /* Action sheet title verifying that a user wants to logout. */
@@ -266,13 +259,13 @@ You must first complete:" = "
 /* Confirmation alert text for submitting an Arc video for an assignment */
 "Are you sure you want to submit this Arc video for this assignment?" = "是否确定要为此作业提交此Arc视频？";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Ask me later" = "稍候再问";
 
 /* Label for an assignment */
 "Assignment" = "作业";
 
-/* (No Commment) */
+/* (No Comment) */
 "Assignments" = "作业";
 
 /* An item for attaching to a discussion */
@@ -281,10 +274,10 @@ You must first complete:" = "
 /* label for an attachment */
 "Attachment %d" = "附件 %d";
 
-/* An item for attaching to a conversation */
+/* (No Comment) */
 "Attachment %i" = "附件 %i";
 
-/* Table View Controller for Attachments */
+/* (No Comment) */
 "Attachments" = "附件";
 
 /* Label for a discussion */
@@ -293,7 +286,7 @@ You must first complete:" = "
 /* Audio file type */
 "Audio" = "音频";
 
-/* (No Commment) */
+/* (No Comment) */
 "Audio input hardware not available" = "音频输入的硬件不可用";
 
 /* Title for an error popup */
@@ -302,10 +295,10 @@ You must first complete:" = "
 /* Link to building panda avatar */
 "Build Avatar" = "建立Avatar";
 
-/* (No Commment) */
+/* (No Comment) */
 "Cache cleared" = "清除缓存";
 
-/* (No Commment) */
+/* (No Comment) */
 "Calendar" = "日历";
 
 /* Invalid LTI tool error title */
@@ -324,19 +317,14 @@ You must first complete:" = "
 /* No comment provided by engineer. */
 "Canvas appears to be unavailable. Please try again later." = "Canvas 看来不可用。请稍候再试。";
 
-/* detail text for recipient fetch error message */
+/* (No Comment) */
 "Canvas failed to find recipients for your current search. Please try again later." = "Canvas 无法找到您当前搜索的收件人。 请稍后再试。";
 
 /* mobile quze warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas 测验支持多种评估风格。这些风格大多受移动设备支持；但有些风格不受移动设备支持。如果您试图进行的测验在手机上不受支持，您可能无法完成整个测验，进而让自己处于劣势。\n\n不受支持的问题类型包括含有Adobe Flash™内容等的问题。\n\n如果您认为测验包含不受支持的内容，请在台式计算机或便携式计算机上参加测验。如果您知道测验只包含受支持的内容，请在移动设备上参加测验。";
 
-Unsupported question types include questions containing Adobe Flash™ content, file uploads, and others.
-
-If you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas测验支持各样的测验类型。手机支持大部分类型；但是，有些不受支持。如果您在手机上尝试参加某个不受支持的测验，您可能无法完成整个测验，并留下后患。
-
-不受支持的问题类型包括含有 Adobe Flash™ 内容、文件上传和其它问题。
-
-如果您认为一个测验包含不受支持的内容，请在台式电脑或手提电脑上进行测验。如果您知道测验只包含受支持的内容，您可随意在手机上进行测验。";
+/* (No Comment) */
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas测验支持各样的测验类型。手机支持大部分类型；但是，有些不受支持。如果您在手机上尝试参加某个不受支持的测验，您可能无法完成整个测验，并留下后患。\n\n不受支持的问题类型包括含有 Adobe Flash™ 内容、文件上传和其它问题。\n\n如果您认为一个测验包含不受支持的内容，请在台式电脑或手提电脑上进行测验。如果您知道测验只包含受支持的内容，您可随意在手机上进行测验。";
 
 /* button to change user's profile image */
 "Change Profile Image" = "更改个人资料图片";
@@ -389,19 +377,16 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Comments are disabled" = "评论被关闭";
 
-/* (No Commment) */
+/* (No Comment) */
 "Complete" = "完成";
 
-/* (No Commment) */
+/* (No Comment) */
 "Completed" = "完成";
 
-/* button to compose a message */
-"Compose Message" = "撰写消息";
-
-/* (No Commment) */
+/* (No Comment) */
 "Compose Message Button" = "撰写信息按钮";
 
-/* (No Commment) */
+/* (No Comment) */
 "Compose a message" = "撰写信息";
 
 /* Title for Conferences tab */
@@ -422,13 +407,13 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* error title for failure to load a file submission */
 "Couldn't Load Submission" = "不能加载提交";
 
-/* title for alert displayed when iCanvas can't fetch recipients */
+/* (No Comment) */
 "Couldn't find recipients" = "无法到收件人";
 
 /* Title for Course Syllabus view controller */
 "Course Syllabus" = "课程教学大纲";
 
-/* (No Commment) */
+/* (No Comment) */
 "Courses" = "课程";
 
 /* cancel folder creation */
@@ -440,13 +425,14 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Message telling users that quiz support on mobile is limited */
 "Currently there is limited quiz support on mobile" = "目前，有限的受支持的测验可在手机进行";
 
-/* (No Commment) */
+/* (No Comment) */
 "Custom Grade" = "自定义评分";
 
-/* (No Commment) */
+/* (No Comment) */
 "Customize" = "自定义";
 
-/* Delete Button title */
+/* Default delete button MLVC
+   Delete Button title */
 "Delete" = "删除";
 
 /* Button for deleting files or folders. %d will be the number of selected items */
@@ -458,7 +444,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* delete file confirmation alert */
 "Deleted file: \"%@\"" = "删除文件：\"%@\"";
 
-/* (No Commment) */
+/* (No Comment) */
 "Deleted file: &quot;%@&quot;" = "删除文件：&quot;%@&quot;";
 
 /* No comment provided by engineer. */
@@ -485,7 +471,8 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title for Discussions view controller */
 "Discussions" = "讨论";
 
-/* Dismiss button title */
+/* Dismiss button title
+   uialertaction button name for dismissing the failed refresh error message */
 "Dismiss" = "解散";
 
 /* Alert title asking if you want to masquerade */
@@ -494,7 +481,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* The domain for the institution/school that the user is currently using */
 "Domain" = "域名";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Don't ask me again" = "不要再问我";
 
 /* Button to cancel deleting folders */
@@ -509,10 +496,10 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Shown while downloading a file */
 "Downloading..." = "正在下载...";
 
-/* (No Commment) */
+/* (No Comment) */
 "Due:" = "截止：";
 
-/* (No Commment) */
+/* (No Comment) */
 "Due: %1$@ at %2$@" = "截止: %1$@ 在 %2$@";
 
 /* Due date label indicating when an assignment is due */
@@ -524,16 +511,16 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Button to edit a discussion entry */
 "Edit" = "编辑";
 
-/* (No Commment) */
+/* (No Comment) */
 "Edit Course List" = "编辑课程表";
 
-/* (No Commment) */
+/* (No Comment) */
 "Edit Group List" = "编辑小组名单";
 
 /* Button title for deleting items in a folder */
 "Edit items" = "编辑项目";
 
-/* (No Commment) */
+/* (No Comment) */
 "Editing reply by %1$@, %2$@" = "通过 %1$@, %2$@ 编辑回复";
 
 /* Header when editing a discussion entry with name and timestamp */
@@ -542,7 +529,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* the users email */
 "Email" = "电子邮件";
 
-/* (No Commment) */
+/* (No Comment) */
 "Enable Push Notifications" = "启用推送通知";
 
 /* masquerade prompt */
@@ -557,16 +544,13 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title for an error popup */
 "Error" = "错误";
 
-/* (No Commment) */
+/* (No Comment) */
 "Error adding recipeints" = "错误添加收件人";
-
-/* Title of an alert popup */
-"Error adding recipients" = "添加收件人时出错";
 
 /* Error deleting file alert view title */
 "Error deleting file \"%@\"" = "错误删除文件 \"%@\"";
 
-/* (No Commment) */
+/* (No Comment) */
 "Error deleting file &quot;%@&quot;" = "删除文件 &quot;%@&quot;出错";
 
 /* Error deleting folder alert view title */
@@ -581,16 +565,19 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title for an external tool submission */
 "External Tool" = "外部工具";
 
-/* (No Commment) */
+/* (No Comment) */
 "External URL" = "外部 URL";
 
-/* (No Commment) */
+/* Error title for refresh failing on an MLVC tableview controller */
+"Failed to load" = "加载失败";
+
+/* (No Comment) */
 "File" = "文件";
 
-/* (No Commment) */
+/* (No Comment) */
 "File extension not allowed: %@" = "文件扩展名不允许： %@";
 
-/* (No Commment) */
+/* (No Comment) */
 "File extension(s) permitted for this assignment:" = "文件扩展名可以使用于此作业：";
 
 /* No comment provided by engineer. */
@@ -602,7 +589,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* File upload submission type */
 "File upload" = "文件上传";
 
-/* (No Commment) */
+/* (No Comment) */
 "File upload failed." = "文件上传失败。";
 
 /* Title for the files screen */
@@ -611,7 +598,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Shown when we finish downloading a file */
 "Finished downloading" = "完成下载";
 
-/* (No Commment) */
+/* (No Comment) */
 "Front Page" = "首页";
 
 /* No comment provided by engineer. */
@@ -632,20 +619,17 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Grade" = "评分";
 
-/* (No Commment) */
+/* (No Comment) */
 "Grade %@" = "评分: %@";
 
 /* Launch the SpeedGrader app */
 "Grade in SpeedGrader" = "在 SpeedGrader 评分";
 
-/* (No Commment) */
+/* (No Comment) */
 "Grade: %1$i / %2$g" = "评分: %1$i / %2$g";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Grade: %@" = "评分: %@";
-
-/* No comment provided by engineer. */
-"Grade: %i / %g" = "评分: %1$i / %2$g";
 
 /* Label for a discussion */
 "Graded Discussion" = "评分讨论";
@@ -656,25 +640,25 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Graded discussion. 25 points possible */
 "Graded discussion. %g points possible." = "评分讨论。 %g 可能分值。";
 
-/* (No Commment) */
+/* (No Comment) */
 "Grades" = "评分";
 
-/* Button title for starting a group conversation */
+/* (No Comment) */
 "Group conversation" = "小组会话";
 
-/* (No Commment) */
+/* (No Comment) */
 "Groups" = "组群";
 
 /* help button */
 "Help" = "帮助";
 
-/* (No Commment) */
+/* (No Comment) */
 "Hide Grades" = "隐藏评分";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "How do you like Canvas?" = "您喜欢 Canvas 吗？";
 
-/* (No Commment) */
+/* (No Comment) */
 "I give you back your time, use it wisely." = "我给您更多时间，明智地使用它。";
 
 /* Image file type */
@@ -686,31 +670,31 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Import from camera" = "从照相机导入";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Inbox" = "收件箱";
 
-/* (No Commment) */
+/* (No Comment) */
 "Incomplete" = "未完成";
 
-/* Button title for sending a direct message; a private conversation */
+/* (No Comment) */
 "Individual messages" = "个别信息";
 
 /* No comment provided by engineer. */
 "Invalid URL" = "无效 URL";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "It has problems" = "它有问题";
 
-/* (No Commment) */
+/* (No Comment) */
 "Item %1$d of %2$d" = "%2$d 的 %1$d 项目";
 
 /* No comment provided by engineer. */
 "Item %d of %d" = "%2$d 的 %1$d 项目";
 
-/* (No Commment) */
+/* (No Comment) */
 "It’s empty, what are you still doing here." = "是空的，您还在这里干什么。";
 
-/* (No Commment) */
+/* (No Comment) */
 "Jumps to current day on calendar" = "在日历跳跃到今天";
 
 /* No comment provided by engineer. */
@@ -719,7 +703,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title for an LTI launch submitted as an assignment */
 "LTI Tool" = "LTI工具";
 
-/* (No Commment) */
+/* (No Comment) */
 "Landing Page" = "登录页面";
 
 /* Title for an alert popup */
@@ -737,64 +721,64 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Generic loading title with ellipsis */
 "Loading..." = "正在载入中...";
 
-/* (No Commment) */
+/* (No Comment) */
 "Locked" = "锁定";
 
-/* (No Commment) */
+/* (No Comment) */
 "Locked until %@" = "锁定直到 %@";
 
 /* Typically the email address correlated to the user */
 "Login ID" = "登录 ID";
 
-/* (No Commment) */
+/* (No Comment) */
 "Login Problem" = "登录问题";
 
 /* Title for a button to logout a user */
 "Logout" = "退出";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Love it!" = "爱它！";
 
-/* (No Commment) */
+/* (No Comment) */
 "Mark as Done" = "标记为已完成";
 
 /* Button title for beginning masquerading */
 "Masquerade" = "冒充";
 
-/* (No Commment) */
+/* (No Comment) */
 "Me" = "我";
 
-/* (No Commment) */
+/* (No Comment) */
 "Media Comment" = "媒体评论";
 
 /* Title for a media submission */
 "Media Submission" = "媒体提交";
 
-/* (No Commment) */
+/* (No Comment) */
 "Media comment" = "媒体评论";
 
 /* Media recording submission type */
 "Media recording" = "媒体录制";
 
-/* (No Commment) */
+/* (No Comment) */
 "Media type selector. %@" = "媒体类型选择器。%@";
 
 /* Add message button */
 "Message Instructor" = "给讲师发送信息";
 
-/* notification that a message has been sent succesfully */
+/* (No Comment) */
 "Message Sent." = "发送信息。";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Message everyone separately, or add everyone to a group conversation?" = "要分别向每个人发送消息或添加每个人到一个小组会话吗？";
 
-/* Title for the messages screen */
+/* (No Comment) */
 "Messages" = "消息、邮件";
 
 /* Warnging for taking quizzes on a mobile device */
 "Mobile Quiz Warning" = "手机测验警告";
 
-/* (No Commment) */
+/* (No Comment) */
 "Modules" = "单元";
 
 /* Button title for selecting to view more info about the limitations of mobile quizzes */
@@ -803,19 +787,19 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title of a link to show additional due dates customized for sections or groups. */
 "Multiple Due Dates" = "多个截止日期";
 
-/* (No Commment) */
+/* (No Comment) */
 "Must contribute" = "必须有助于";
 
-/* (No Commment) */
+/* (No Comment) */
 "Must mark as done" = "必须标记为已完成";
 
-/* (No Commment) */
+/* (No Comment) */
 "Must score %@ or higher" = "必须获得 ％@ 或更高的得分";
 
-/* (No Commment) */
+/* (No Comment) */
 "Must submit" = "必须提交";
 
-/* (No Commment) */
+/* (No Comment) */
 "Must view" = "必须查看";
 
 /* files button */
@@ -845,7 +829,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "No Date" = "无日期";
 
-/* (No Commment) */
+/* (No Comment) */
 "No Due Date" = "无截止日期";
 
 /* Title for attempting submission without a comment */
@@ -854,7 +838,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No Submission groupong */
 "No Submission" = "没有提交";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "No Thanks" = "不用了，谢谢";
 
 /* Text of alert when attempting to select a file that can't be printed or passed to any other app */
@@ -870,43 +854,43 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Error message */
 "No installed apps support opening this file" = "没有安装的应用程序支持打开此文件";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "No recipients" = "没有收件人";
 
-/* Indicates a search found no results */
+/* (No Comment) */
 "No results found" = "未找到结果";
 
-/* (No Commment) */
+/* (No Comment) */
 "Not Authorized" = "不授权";
 
-/* (No Commment) */
+/* (No Comment) */
 "Not Complete" = "未完成";
 
 /* Accessibility label for points out of points possible label when points are not availiable. */
 "Not available" = "不可用";
 
-/* (No Commment) */
+/* (No Comment) */
 "Not graded" = "未评分";
 
-/* (No Commment) */
+/* (No Comment) */
 "Not graded (0 out of %@)" = "未评分(%@之0)";
 
-/* (No Commment) */
+/* (No Comment) */
 "Note: Media files are not immediately available for playback while they are processed on the server." = "注意：服务器正在处理的媒体文件不会立即回播。";
 
-/* (No Commment) */
+/* (No Comment) */
 "Nothing to do, go play outside!" = "没有事做，出去玩吧！";
 
-/* (No Commment) */
+/* (No Comment) */
 "Nothing to see here." = "这里没有东西看。";
 
-/* (No Commment) */
+/* (No Comment) */
 "Notification" = "通知";
 
-/* (No Commment) */
+/* (No Comment) */
 "Notification Preferences" = "通知首选项";
 
-/* (No Commment) */
+/* (No Comment) */
 "Notifications" = "通知";
 
 /* OK Button Title */
@@ -915,7 +899,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Observer" = "观察员";
 
-/* (No Commment) */
+/* (No Comment) */
 "Ok" = "Ok";
 
 /* Online URL submission type */
@@ -942,7 +926,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title for Outcomes tab */
 "Outcomes" = "结果、成果";
 
-/* (No Commment) */
+/* (No Comment) */
 "Page" = "页面";
 
 /* No comment provided by engineer. */
@@ -954,7 +938,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Pinned Discussions" = "既定讨论";
 
-/* (No Commment) */
+/* (No Comment) */
 "Play" = "播放";
 
 /* Network error message */
@@ -963,7 +947,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Button to post new discussion topic */
 "Post" = "发布";
 
-/* (No Commment) */
+/* (No Comment) */
 "Post Comment" = "发布评论";
 
 /* No comment provided by engineer. */
@@ -972,7 +956,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Message shown while posting a discussion entry */
 "Posting…" = "正在发布...";
 
-/* (No Commment) */
+/* (No Comment) */
 "Posts your comment" = "发布您的评论";
 
 /* No comment provided by engineer. */
@@ -993,19 +977,19 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* The title for the list of quizzes for a course */
 "Quizzes" = "测验";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Rate on App Store" = "在应用程序商店评级";
 
-/* (No Commment) */
+/* (No Comment) */
 "Rating for %1$@, Score: %2$g" = "评价%1$@，评分：%2$g";
 
 /* Title for a button allowing user to re-submit files for an assignment */
 "Re-submit Assignment" = "重新提交作业";
 
-/* Title for the list of users who will receive a message. 15 characters is about all we have room for here. */
+/* (No Comment) */
 "Recipients" = "收件人";
 
-/* (No Commment) */
+/* (No Comment) */
 "Record" = "录制";
 
 /* Record audio submission comment */
@@ -1023,13 +1007,13 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Record video" = "录制视频";
 
-/* (No Commment) */
+/* (No Comment) */
 "Refresh Button" = "刷新按钮";
 
-/* (No Commment) */
+/* (No Comment) */
 "Refreshes the calendar content" = "刷新日历内容";
 
-/* (No Commment) */
+/* (No Comment) */
 "Refreshing Calendar Events" = "刷新日历事件";
 
 /* Confirmation for removing a file */
@@ -1053,7 +1037,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title for Assignment Notifications Sheet */
 "Schedule Notification" = "调度通知";
 
-/* Placeholder text in a search bar used to find conversation recipients */
+/* (No Comment) */
 "Search for recipients" = "搜索收件人";
 
 /* Title for a file picker window */
@@ -1065,22 +1049,22 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* No comment provided by engineer. */
 "Selected" = "已选择";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Send" = "发送";
 
-/* Action sheet button title for sending a new message to a user. %@ will be replaced with the user's name */
+/* (No Comment) */
 "Send %@ a message" = "给 %@ 发送一条消息";
 
 /* No comment provided by engineer. */
 "Send Message" = "发送消息";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Sent" = "已发送";
 
 /* Title for Settings */
 "Settings" = "设置";
 
-/* (No Commment) */
+/* (No Comment) */
 "Show Grades" = "显示评分";
 
 /* title for quiz assignment submission button */
@@ -1089,7 +1073,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Title for button confirming showing a file */
 "Show file" = "显示文件";
 
-/* VoiceOver text for a button that lets you show recipients */
+/* (No Comment) */
 "Show recipients" = "显示收件人";
 
 /* Message for an error popup */
@@ -1101,10 +1085,10 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* 404 Error for missing assignment */
 "Sorry, we couldn't find the assignment. This assignment may have been deleted." = "对不起，我们无法找到作业。此作业可能已被删除。";
 
-/* (No Commment) */
+/* (No Comment) */
 "Starts playing your recording" = "开始播放您的录制";
 
-/* (No Commment) */
+/* (No Comment) */
 "Starts recording a media comment" = "开始录制媒体评论";
 
 /* button title for cancelling a logout. */
@@ -1116,16 +1100,16 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Button title for stopping masquerading; when a privileged user becomes another user in the system */
 "Stop Masquerading" = "停止冒充";
 
-/* (No Commment) */
+/* (No Comment) */
 "Stops playing your recording" = "停止播放您的录制";
 
-/* (No Commment) */
+/* (No Comment) */
 "Stops recording a media comment" = "停止录制媒体评论";
 
 /* No comment provided by engineer. */
 "Student" = "学生";
 
-/* (No Commment) */
+/* (No Comment) */
 "Sub Header" = "子标题";
 
 /* View previously submitted assignment */
@@ -1153,22 +1137,22 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Masquerade success title */
 "Success!" = "成功";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Sure!" = "肯定！";
 
-/* (No Commment) */
+/* (No Comment) */
 "Switches media input between audio and video. Currently set to %@" = "在音频和视频之间转换媒体输入。目前设置到%@";
 
-/* (No Commment) */
+/* (No Comment) */
 "Switches to media comment mode" = "转换媒体评论的模式";
 
-/* (No Commment) */
+/* (No Comment) */
 "Switches to text comment mode" = "转换文体评论的模式";
 
 /* Title for Syllabus screen */
 "Syllabus" = "教学大纲";
 
-/* (No Commment) */
+/* (No Comment) */
 "TA" = "助教";
 
 /* No comment provided by engineer. */
@@ -1189,19 +1173,19 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Displayed in a row when an error occurs loading more items */
 "Tap to try again" = "点击重试";
 
-/* (No Commment) */
+/* (No Comment) */
 "Teacher" = "教师";
 
 /* No comment provided by engineer. */
 "Teachers" = "教师";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Tell us what's wrong" = "请告诉我们什么不对";
 
 /* Link to the Terms of Use */
 "Terms of Use" = "使用条款";
 
-/* (No Commment) */
+/* (No Comment) */
 "Text Comment" = "文体评论";
 
 /* Title for a text submission cell */
@@ -1210,16 +1194,16 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 /* Text entry submission type */
 "Text entry" = "文体输入";
 
-/* Text explaining the error */
+/* (No Comment) */
 "The recipients could not be added. Please try again. (%@)" = "无法添加收件人， 请再试一次。(%@)";
 
 /* Explanation for while a file is unavailable */
 "The server could not be reached" = "服务器无法连接";
 
-/* (No Commment) */
+/* (No Comment) */
 "The server you entered is not authorized for this app." = "您输入的服务器没有授权此应用程序。";
 
-/* (No Commment) */
+/* (No Comment) */
 "The user agent for this app is unauthorized." = "此应用程序的用户代理不授权。";
 
 /* Error message */
@@ -1235,11 +1219,7 @@ If you believe that a quiz contains unsupported content, please take it on deskt
 "There was a network problem while attempting to upload your submission" = "尝试上传您的提交时网络出现问题";
 
 /* Error message when fetching a file fails */
-"There was a problem accessing the requested file.
-
-Error: %@" = "访问请求文件时出现问题。
-
-错误：%@";
+"There was a problem accessing the requested file.\n\nError: %@" = "访问请求文件时出现问题。\n\n错误：%@";
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "启动Safari时出现问题";
@@ -1250,7 +1230,7 @@ Error: %@" = "访问请求文件时出现问题。
 /* No comment provided by engineer. */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "加载您的内容时出现错误。如果上传音频或视频，则可能仍在处理中。";
 
-/* (No Commment) */
+/* (No Comment) */
 "This app is not authorized for use." = "此程序没有被授权使用。";
 
 /* Invalid LTI tool error message */
@@ -1258,6 +1238,9 @@ Error: %@" = "访问请求文件时出现问题。
 
 /* message displayed in the details section if there is no comment. */
 "This assignment has no details." = "此作业没有细节。";
+
+/* Error message for refresh failing with an unauthorized code */
+"This can happen if your course hasn't started yet or you don't have permission to access this page." = "如果您的课程尚未开始或您没有权限访问此页面，就可能会出现这种情况。";
 
 /* No comment provided by engineer. */
 "This entry has been deleted" = "此输入已被删除";
@@ -1271,22 +1254,22 @@ Error: %@" = "访问请求文件时出现问题。
 /* Text indicating that a folder cannot be opened */
 "This folder is locked" = "此文件夹已被锁定";
 
-/* (No Commment) */
+/* (No Comment) */
 "This is a media message." = "这是一条媒体信息。";
 
-/* (No Commment) */
+/* (No Comment) */
 "This would be a great time to do some extra credit." = "此为获取额外学分的好时机。";
 
-/* (No Commment) */
+/* (No Comment) */
 "To Do" = "待办事项";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "To:" = "至：";
 
 /* No comment provided by engineer. */
 "Today" = "今天";
 
-/* (No Commment) */
+/* (No Comment) */
 "Today Button" = "今天按钮";
 
 /* No comment provided by engineer. */
@@ -1301,31 +1284,34 @@ Error: %@" = "访问请求文件时出现问题。
 /* title for re-submitting an assignment */
 "Turn In Again" = "再次提交";
 
-/* (No Commment) */
+/* (No Comment) */
 "Turn in %@" = "提交%@";
 
-/* (No Commment) */
+/* (No Comment) */
 "Uh-oh! No Internet Connection" = "糟糕！没有网络连接";
 
 /* Error title */
 "Unable to load" = "无法加载";
 
-/* Error message */
+/* (No Comment) */
 "Unable to post. Please try again later" = "无法发布。请稍候再试";
 
 /* message saying that avatar couldn't be loaded to server */
 "Unable to upload to server" = "无法上传到服务器";
 
-/* (No Commment) */
+/* Error message for refresh failing on an MLVC tableview controller */
+"Unauthorized" = "未授权";
+
+/* (No Comment) */
 "Unavailable" = "不可用";
 
-/* (No Commment) */
+/* (No Comment) */
 "Ungraded" = "未评分";
 
 /* Unknown file type */
 "Unknown" = "未知";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Unread" = "未读";
 
 /* No comment provided by engineer. */
@@ -1334,13 +1320,13 @@ Error: %@" = "访问请求文件时出现问题。
 /* Button title for uploading a file */
 "Upload" = "上传";
 
-/* title for upload error alert */
+/* (No Comment) */
 "Upload Error" = "上传错误";
 
 /* No comment provided by engineer. */
 "Upload a file" = "上传一个文件";
 
-/* explanation of upload failure */
+/* (No Comment) */
 "Upload failed. Reason: (%@)" = "上传失败。原因：(%@)";
 
 /* Button title for adding a file to a folder */
@@ -1349,13 +1335,13 @@ Error: %@" = "访问请求文件时出现问题。
 /* Error message */
 "Upload to assignment \"%@\" failed" = "上传到 \"%@\" 作业失败";
 
-/* (No Commment) */
+/* (No Comment) */
 "Upload to assignment &quot;%@&quot; failed" = "上传至作业&quot;%@&quot;失败";
 
 /* Error message */
 "Upload to folder \"%@\" failed" = "上传到 \"%@\" 文件夹失败";
 
-/* (No Commment) */
+/* (No Comment) */
 "Upload to folder &quot;%@&quot; failed" = "上传至文件夹&quot;%@&quot;失败";
 
 /* button for using the recorded audio */
@@ -1370,10 +1356,10 @@ Error: %@" = "访问请求文件时出现问题。
 /* Video file type */
 "Video" = "视频";
 
-/* (No Commment) */
+/* (No Comment) */
 "Video error" = "视频错误";
 
-/* (No Commment) */
+/* (No Comment) */
 "View" = "查看";
 
 /* Title for a warning popup */
@@ -1382,7 +1368,7 @@ Error: %@" = "访问请求文件时出现问题。
 /* error message for failure to load a file submission */
 "We had a problem loading the submission. Please try again later." = "我们加载提交时遇到问题。请稍候再试。";
 
-/* (No Commment) */
+/* (No Comment) */
 "We were unable to verify the server for use with this app." = "我们无法验证使用此应用程序的服务器。";
 
 /* Error Title */
@@ -1391,13 +1377,13 @@ Error: %@" = "访问请求文件时出现问题。
 /* unlock date for discussion/announcement */
 "Will unlock %@." = "将解锁 %@。";
 
-/* Title for action sheet giving the user an option to create a new message for a user. */
+/* (No Comment) */
 "Would you like to create a new message?" = "您想创建一条新信息吗？";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Would you mind giving us a rating on the app store?" = "您介意在应用程序商店中给我们评级吗？";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Would you mind letting us know the problems you have been having with the app?" = "您介意让我们知道您已遇到的应用程序问题吗？";
 
 /* No comment provided by engineer. */
@@ -1412,7 +1398,7 @@ Error: %@" = "访问请求文件时出现问题。
 /* Message in an alert */
 "You do not have SpeedGrader for iPad. You can download it for free from the App Store." = "您没有iPad的SpeedGrader。您可以从应用程序商店中免费下载。";
 
-/* (No Commment) */
+/* (No Comment) */
 "You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "您无法访问此内容。 课程或小组可能还未开始或可能已经结束。";
 
 /* Error message */
@@ -1427,13 +1413,13 @@ Error: %@" = "访问请求文件时出现问题。
 /* An explanation of how to transfer files to the Canvas app. */
 "You have no files available for upload. To add files from other apps, find a file in another app, then find the \"Open In\" button to open it in Canvas. You can also tap and hold on attachments in the Mail app to open them in Canvas." = "您没有文件可以上传。要从其他应用程序添加文件，请从其他应用程序查找文件，然后找到“打开方式”按钮以在 Canvas 中打开该文件。您还可以按住邮件中的附件以在 Canvas 中打开附件。";
 
-/* (No Commment) */
+/* (No Comment) */
 "You must first complete:" = "您必须首先完成：";
 
 /* Error message */
 "You need a title and a description to post" = "要发布，您需要一个标题与描述";
 
-/* (No Commment) */
+/* (No Comment) */
 "You should go rate Canvas on the App Store!" = "您应该去应用程序商店评级Canvas!";
 
 /* Error content */
@@ -1442,13 +1428,13 @@ Error: %@" = "访问请求文件时出现问题。
 /* Media submission type selected with no Kaltura set up */
 "Your school's configuration does not allow the type of submission selected for this assignment" = "您学校的配置不允许为此作业而选择提交类型";
 
-/* (No Commment) */
+/* (No Comment) */
 "due on %1$@ at %2$@" = "在 %1$@ 的 %2$@ 截止";
 
 /* Assignment is due on a date at a time */
 "due on %@ at %@" = "在 %1$@ 的 %2$@ 截止";
 
-/* (No Commment) */
+/* (No Comment) */
 "moments ago" = "刚才";
 
 /* Accessibility label modifier for point out of point possible */
@@ -1457,15 +1443,15 @@ Error: %@" = "访问请求文件时出现问题。
 /* The assignment is out of 100 points */
 "out of %@" = "%@之中";
 
-/* (No Commment) */
+/* (No Comment) */
 "out of %@ points" = "在%@分之外";
 
-/* (No Commment) */
+/* (No Comment) */
 "photo" = "照片";
 
-/* (No Commment) */
+/* (No Comment) */
 "unknown" = "未知";
 
-/* (No Commment) */
+/* (No Comment) */
 "until %@" = "直到%@";
 

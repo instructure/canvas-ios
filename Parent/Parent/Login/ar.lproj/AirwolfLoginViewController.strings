@@ -31,6 +31,9 @@
 /* Class = "UITextField"; placeholder = "Last name"; ObjectID = "lHP-23-IvG"; */
 "lHP-23-IvG.placeholder" = "اسم العائلة";
 
+/* Class = "UIButton"; normalTitle = "Region Picker"; ObjectID = "lrh-s1-05r"; */
+"lrh-s1-05r.normalTitle" = "أداة انتقاء المنطقة";
+
 /* Class = "UITextField"; accessibilityLabel = "Confirm Password"; ObjectID = "qMf-5a-PCQ"; */
 "qMf-5a-PCQ.accessibilityLabel" = "تأكيد كلمة المرور";
 

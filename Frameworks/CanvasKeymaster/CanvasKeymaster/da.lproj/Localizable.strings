@@ -1,14 +1,3 @@
-/* prompt for a support error message */
-"
-
-===== tell us what happened above this line =====
-
-" = "
-
-===== fortæl os, hvad der skete over denne linje =====
-
-";
-
 /* The distance in miles that a user is from a school. */
 "%@ miles away" = "%@ kilometer væk";
 
@@ -26,6 +15,9 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "Uformelt spørgsmål eller forslag";
+
+/* No comment provided by engineer. */
+"Choose One" = "Vælg en";
 
 /* No comment provided by engineer. */
 "Describe the feature here" = "Beskriv funktionen her";
@@ -49,13 +41,25 @@
 "Enter your school's domain or tap for help." = "Indtast din skoles domæne eller tryk for hjælp";
 
 /* No comment provided by engineer. */
+"Extremely critical emergency" = "Ekstrem kritisk nødsituation";
+
+/* No comment provided by engineer. */
 "Find School Domain" = "Find skolens domæne";
 
 /* Help View Controller Title */
 "Help" = "Hjælp";
 
 /* No comment provided by engineer. */
+"Help Menu" = "Hjælpemenu";
+
+/* No comment provided by engineer. */
 "I am stuck and can't get things done" = "Jeg er gået i stå og kan ikke få noget gjort";
+
+/* No comment provided by engineer. */
+"I can't get things done until I hear back from you" = "Jeg kan ikke gøre noget, før jeg hører fra dig";
+
+/* No comment provided by engineer. */
+"I need help but it's not urgent" = "Jeg behøver hjælp, men det er ikke en hastesag";
 
 /* No comment provided by engineer. */
 "Invalid Canvas URL." = "Ugyldig Canvas-webadresse.";
@@ -70,7 +74,7 @@
 "Not authorized." = "Ikke godkendt.";
 
 /* Placeholder for help icon (question mark) on Domain Picker View */
-"Open help menu." = "Åbn hjælpemenu";
+"Open help menu" = "Åbn hjælpemenu";
 
 /* No comment provided by engineer. */
 "Report a Problem" = "Rapporter et problem";
