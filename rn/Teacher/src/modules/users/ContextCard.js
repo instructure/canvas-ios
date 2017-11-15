@@ -244,14 +244,12 @@ export class ContextCard extends Component<any, ContextCardProps, any> {
 
   _navigateToSpeedGrader = (assignment: Assignment) => {
     let userID = this.props.user.id
-    let filter = {
-      filterFunc: (submissions: any) => submissions.filter((s) => s.userID === userID),
-    }
+    let filter = (submissions: any) => submissions.filter((s) => s.userID === userID)
 
     let url = `${assignment.html_url}/submissions/${userID}`
     this.props.navigator.show(url, { modal: true, modalPresentationStyle: 'fullscreen' }, {
       studentIndex: 0,
-      selectedFilter: { filter },
+      filter,
     })
   }
 }
