@@ -36,8 +36,9 @@ export function getExternalTool (courseID: string, id: string, options: GetExter
   let params = {}
   const url = `courses/${courseID}/external_tools/${id}`
 
-  if (assignment && assignment.external_tool_tag_attributes) {
-    params.url = assignment.external_tool_tag_attributes.url
+  if (assignment) {
+    params['launch_type'] = 'assessment'
+    params['assignment_id'] = assignment.id
   }
 
   return httpClient().get(url, { params })
