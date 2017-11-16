@@ -14,20 +14,8 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-/* @flow */
+// @flow
 
-import { createAction } from 'redux-actions'
-
-export let Actions = (): * => ({
-  filesUpdated: createAction('files.update', (files: [File], path: string, id: string, type: string) => {
-    return { files, path, id, type }
-  }),
-  foldersUpdated: createAction('folders.update', (folders: [Folder], path: string, id: string, type: string) => {
-    return { folders, path, id, type }
-  }),
-  folderUpdated: createAction('folder.update', (folder: Folder, id: string, type: string) => {
-    return { folder, id, type }
-  }),
-})
-
-export default (Actions(): *)
+export async function wait (milliseconds: number): void {
+  await new Promise(resolve => setTimeout(resolve, milliseconds))
+}

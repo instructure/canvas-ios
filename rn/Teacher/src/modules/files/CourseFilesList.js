@@ -44,6 +44,9 @@ import images from '../../images'
 import bytes from 'bytes'
 import DropView from '../../common/components/DropView'
 import SavingBanner from '../../common/components/SavingBanner'
+import AttachmentPicker from '../attachments/AttachmentPicker'
+import uuid from 'uuid/v1'
+import { wait } from '../../utils/async-wait'
 
 type CourseFilesListProps = {
   data: [any], // The folders and files that are currently being shown
@@ -59,10 +62,14 @@ type Props = CourseFilesListProps & CourseFileListNavProps
 
 export class CourseFilesList extends Component<Props, any> {
 
+  attachmentPicker: AttachmentPicker
+
   constructor (props: any) {
     super(props)
     this.state = {
       pending: false,
+      uploadPending: false,
+      uploadMessage: null,
     }
   }
 
@@ -74,21 +81,17 @@ export class CourseFilesList extends Component<Props, any> {
     this.setState({ pending: true })
     try {
       const courseID = this.props.courseID
-      const updateFolder = async (folderID: string, path: string) => {
-        const folders = await this.props.getFolderFolders(folderID)
-        this.props.foldersUpdated(folders.data, path, courseID, 'Course')
-        const files = await this.props.getFolderFiles(folderID)
-        this.props.filesUpdated(files.data, path, courseID, 'Course')
+      let folder = this.props.folder
+      if (!folder) {
+        folder = (await this.props.getCourseFolder(courseID, 'root')).data
+        this.props.foldersUpdated([folder], 'root', courseID, 'Course')
       }
-
-      if (this.props.folder) {
-        await updateFolder(this.props.folder.id, this.props.folder.full_name)
-      } else {
-        const response = await this.props.getCourseFolder(courseID, 'root')
-        const root = response.data
-        this.props.foldersUpdated([root], 'root', courseID, 'Course')
-        await updateFolder(root.id, root.full_name)
-      }
+      const foldersPromise = this.props.getFolderFolders(folder.id)
+      const filesPromise = this.props.getFolderFiles(folder.id)
+      const folderPromise = this.props.getFolder(folder.id)
+      this.props.foldersUpdated((await foldersPromise).data, folder.full_name, courseID, 'Course')
+      this.props.filesUpdated((await filesPromise).data, folder.full_name, courseID, 'Course')
+      this.props.folderUpdated((await folderPromise).data, courseID, 'Course')
     } catch (error) {
       alertError(error)
     }
@@ -114,6 +117,7 @@ export class CourseFilesList extends Component<Props, any> {
   addItem = () => {
     const options = [
       i18n('Create Folder'),
+      i18n('Add File'),
       i18n('Cancel'),
     ]
     ActionSheetIOS.showActionSheetWithOptions(
@@ -130,6 +134,9 @@ export class CourseFilesList extends Component<Props, any> {
       case 0:
         this.promptForNewFolder()
         break
+      case 1:
+        this.addFile()
+        break
     }
   }
 
@@ -143,7 +150,7 @@ export class CourseFilesList extends Component<Props, any> {
 
   createNewFolder = async (name: string) => {
     LayoutAnimation.easeInEaseOut()
-    this.setState({ folderPending: true })
+    this.setState({ uploadPending: true })
     try {
       const folder: NewFolder = {
         name,
@@ -156,7 +163,54 @@ export class CourseFilesList extends Component<Props, any> {
       alertError(error)
     }
     LayoutAnimation.easeInEaseOut()
-    this.setState({ folderPending: false })
+    this.setState({ uploadPending: false, uploadMessage: null })
+  }
+
+  addFile = () => {
+    this.attachmentPicker.show(null, this.finishAddFile)
+  }
+
+  finishAddFile = async (attachment: Attachment, type: MediaType) => {
+    if (type === 'audio') {
+      // RN Modal component is bugged. :(
+      // If state is updated before it goes away, it comes back like it's all mad or something.
+      // If we wait a bit, and then update state, it's all good
+
+      // This can be removed if we stop using the <Modal> component
+      await wait(500)
+    }
+    LayoutAnimation.easeInEaseOut()
+    this.setState({ uploadPending: true, uploadMessage: i18n('Uploading') })
+    attachment.id = uuid()
+    const path = `folders/${this.props.folder.id}/files`
+    try {
+      const file = await this.props.uploadFile(attachment, {
+        path,
+        onProgress: this.updateUploadProgress,
+      })
+      await this.props.updateFile({ id: file.id, locked: true })
+      await this.update()
+    } catch (error) {
+      alertError(error)
+    }
+    LayoutAnimation.easeInEaseOut()
+    this.setState({ uploadPending: false, uploadMessage: null })
+  }
+
+  updateUploadProgress = (progress: Progress) => {
+    let amountUploaded = bytes(progress.loaded, { decimalPlaces: 0, unitSeparator: ';' })
+    if (amountUploaded) {
+      amountUploaded = amountUploaded.split(';')[0]
+    }
+    const amountTotal = bytes(progress.total, { decimalPlaces: 0 })
+    if (amountUploaded && amountTotal) {
+      const uploadMessage = i18n('Uploading {amountUploaded}/{amountTotal}', { amountUploaded, amountTotal })
+      this.setState({ uploadMessage })
+    }
+  }
+
+  captureAttachmentPicker = (ref: AttachmentPicker) => {
+    this.attachmentPicker = ref
   }
 
   renderRow = ({ item, index }: any) => {
@@ -203,12 +257,15 @@ export class CourseFilesList extends Component<Props, any> {
     const title = this.props.subFolder ? this.props.subFolder.split('/').pop() : i18n('Files')
     const empty = <ListEmptyComponent title={i18n('This folder is empty.')} />
 
-    const rightBarButtons = [{
-      image: images.add,
-      testID: 'course-files.add.button',
-      action: this.addItem,
-      accessibilityLabel: i18n('Add Item'),
-    }]
+    const rightBarButtons = []
+    if (!this.state.uploadPending) {
+      rightBarButtons.push({
+        image: images.add,
+        testID: 'course-files.add.button',
+        action: this.addItem,
+        accessibilityLabel: i18n('Add Item'),
+      })
+    }
     return (
       <Screen
         title={title}
@@ -216,16 +273,20 @@ export class CourseFilesList extends Component<Props, any> {
         rightBarButtons={rightBarButtons}
       >
         <DropView style={{ flex: 1 }}>
-          { this.state.folderPending && <SavingBanner /> }
+          { this.state.uploadPending && <SavingBanner title={this.state.uploadMessage} /> }
           <FlatList
             data={this.props.data}
             renderItem={this.renderRow}
             onRefresh={this.update}
-            refreshing={Boolean(this.state.pending) && !this.state.folderPending}
+            refreshing={Boolean(this.state.pending) && !this.state.uploadPending}
             ItemSeparatorComponent={RowSeparator}
             ListHeaderComponent={this.props.data.length > 0 ? RowSeparator : null}
             ListFooterComponent={this.props.data.length > 0 ? RowSeparator : null}
             ListEmptyComponent={this.state.pending ? null : empty} />
+            <AttachmentPicker
+              style={styles.attachmentPicker}
+              ref={this.captureAttachmentPicker}
+            />
         </DropView>
       </Screen>
     )
@@ -236,7 +297,10 @@ CourseFilesList.defaultProps = {
   getCourseFolder: canvas.getCourseFolder,
   getFolderFolders: canvas.getFolderFolders,
   getFolderFiles: canvas.getFolderFiles,
+  getFolder: canvas.getFolder,
   createFolder: canvas.createFolder,
+  uploadFile: canvas.uploadAttachment,
+  updateFile: canvas.updateFile,
 }
 
 export function mapStateToProps (state: AppState, props: CourseFileListNavProps): CourseFilesListProps {
@@ -286,6 +350,13 @@ const styles = StyleSheet.create({
     bottom: 4,
     left: 0,
     width: 3,
+  },
+  attachmentPicker: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
   },
 })
 

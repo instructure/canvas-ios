@@ -76,6 +76,20 @@ export function getCourseFolder (courseID: string, folderID: string): Promise<Ap
   return httpClient().get(url, options)
 }
 
+export function getFolder (folderID: string): Promise<ApiResponse<Folder>> {
+  const url = `folders/${folderID}`
+  const options = {
+    params: {
+      include: ['usage_rights'],
+    },
+  }
+  return httpClient().get(url, options)
+}
+
 export function createFolder (courseID: string, folder: NewFolder): Promise<ApiResponse<Folder>> {
   return httpClient().post(`courses/${courseID}/folders`, folder)
+}
+
+export function updateFile (file: File) {
+  return httpClient().put(`files/${file.id}`, file)
 }
