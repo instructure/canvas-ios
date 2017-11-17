@@ -18,7 +18,7 @@
     "extract-strings": "format-message extract \"src/**/*.js\" index.ios.js -o i18n/locales/en.json",
     "danger": "danger",
     "packager:kill": "react-native-kill-packager",
-    "postinstall": "./fix-rn-crap.sh",
+    "postinstall": "./rn-mods.sh",
     "prepush": "yarn test --coverage && yarn lint:fix && yarn flow"
   },
   "dependencies": {
