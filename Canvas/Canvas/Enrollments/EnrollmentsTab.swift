@@ -28,6 +28,13 @@ public func EnrollmentsTab(session: Session) throws -> UIViewController {
         masterNav.delegate = split
         masterNav.interactivePopGestureRecognizer?.isEnabled = false
         
+        let handleEmpty = {
+            let empty = UIViewController()
+            empty.view.backgroundColor = .white
+            let emptyNav = UINavigationController(rootViewController: empty)
+            split.viewControllers = [masterNav, emptyNav]
+        }
+        
         if url.lastPathComponent == "tabs" {
             let tabsVC = Router.shared().controller(forHandling: url) as! TabsTableViewController
             masterNav.viewControllers = [UIViewController(), tabsVC]
@@ -37,12 +44,11 @@ public func EnrollmentsTab(session: Session) throws -> UIViewController {
                 if let homeTabVC = Router.shared().controller(forHandling: routingURL) {
                     let detailNav = UINavigationController(rootViewController: homeTabVC)
                     split.viewControllers = [masterNav, detailNav]
+                } else {
+                    handleEmpty()
                 }
             } else {
-                let empty = UIViewController()
-                empty.view.backgroundColor = .white
-                let emptyNav = UINavigationController(rootViewController: empty)
-                split.viewControllers = [masterNav, emptyNav]
+                handleEmpty()
             }
         } else {
             if let ctx = ContextID(url: url) {
@@ -57,6 +63,8 @@ public func EnrollmentsTab(session: Session) throws -> UIViewController {
 
                     split.viewControllers = [masterNav, detailNav]
                     split.shouldCollapseDetail = false
+                } else {
+                    handleEmpty()
                 }
             }
         }
