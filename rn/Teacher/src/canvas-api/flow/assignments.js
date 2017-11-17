@@ -55,7 +55,7 @@ export type AssignmentGroup = {
   rules?: any,
 }
 
-export type GradingType = 'pass_fail' | 'percent' | 'letter_grade' | 'gpa_scale' | 'points'
+export type GradingType = 'pass_fail' | 'percent' | 'letter_grade' | 'gpa_scale' | 'points' | 'not_graded'
 
 export type Assignment = {
   id: string,

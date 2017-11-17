@@ -60,7 +60,7 @@ export default class AssignmentListRow extends Component<Props, any> {
   }
 
   ungradedBubble (assignment: Assignment) {
-    if (!assignment.needs_grading_count) {
+    if (!assignment.needs_grading_count || assignment.grading_type === 'not_graded') {
       return <View />
     }
 

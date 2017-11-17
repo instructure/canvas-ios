@@ -82,6 +82,14 @@ test('renders as a designer', () => {
   expect(tree).toMatchSnapshot()
 })
 
+test('renders with not_graded submission type', () => {
+  defaultProps.assignmentDetails = template.assignment({ submission_types: ['not_graded'] })
+  let tree = renderer.create(
+    <AssignmentDetails {...defaultProps} />
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
 test('renders loading', () => {
   defaultProps.pending = 1
   let tree = renderer.create(

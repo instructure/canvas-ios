@@ -314,7 +314,7 @@ type GradePickerDataProps = {
   grade: string,
   score: number,
   pending: boolean,
-  gradingType: 'pass_fail' | 'percent' | 'letter_grade' | 'gpa_scale' | 'points' | 'not_graded',
+  gradingType: GradingType,
   pointsPossible: number,
 }
 

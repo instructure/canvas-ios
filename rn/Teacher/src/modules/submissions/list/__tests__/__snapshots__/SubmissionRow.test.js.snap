@@ -610,6 +610,145 @@ exports[`missing ungraded row renders correctly 1`] = `
 </View>
 `;
 
+exports[`submitted not_graded row renders correctly 1`] = `
+<View>
+  <TouchableHighlight
+    accessibilityTraits={
+      Array [
+        "button",
+      ]
+    }
+    onPress={[Function]}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+    testID="submission-1"
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "backgroundColor": "white",
+          "flex": 1,
+          "flexDirection": "row",
+          "paddingBottom": 10,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 10,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "height": 40,
+            "marginRight": 8,
+            "width": 40,
+          }
+        }
+      >
+        <Avatar
+          avatarURL="https://cats.pajamas/"
+          onPress={undefined}
+          userName="Green Latern"
+        />
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "paddingLeft": 8,
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          numberOfLines={2}
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#2D3B45",
+                "flex": 1,
+                "fontSize": 16,
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          Green Latern
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Array [
+                Object {
+                  "fontSize": 14,
+                  "paddingTop": 2,
+                },
+                undefined,
+                Object {
+                  "color": "#07AF1F",
+                },
+              ],
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+            ]
+          }
+        >
+          Submitted
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignSelf": "center",
+            "backgroundColor": "transparent",
+            "borderColor": "#c7c7cc",
+            "borderRightWidth": 2,
+            "borderTopWidth": 2,
+            "height": 10,
+            "marginLeft": 7,
+            "transform": Array [
+              Object {
+                "rotate": "45deg",
+              },
+            ],
+            "width": 10,
+          }
+        }
+      />
+    </View>
+  </TouchableHighlight>
+</View>
+`;
+
 exports[`submitted ungraded row renders correctly 1`] = `
 <View>
   <TouchableHighlight

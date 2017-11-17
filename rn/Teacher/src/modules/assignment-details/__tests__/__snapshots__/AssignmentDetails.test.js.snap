@@ -2441,9 +2441,7 @@ exports[`renders loading 1`] = `
                   ]
                 }
                 testID="assignment-details.submission-type.details-lbl"
-              >
-                None
-              </Text>
+              />
             </View>
           </View>
         </View>
@@ -3276,6 +3274,825 @@ exports[`renders with no submission types 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#8B969E",
+              "fontSize": 16,
+              "fontWeight": "500",
+              "marginBottom": 4,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-medium",
+            },
+          ]
+        }
+        testID="assignment-details.description-section-title-lbl"
+      >
+        Description
+      </Text>
+      <View
+        onLayout={[Function]}
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+        testID="web-container.view"
+      />
+    </View>
+  </View>
+</RCTScrollView>
+`;
+
+exports[`renders with not_graded submission type 1`] = `
+<RCTScrollView
+  onRefresh={[Function]}
+  refreshControl={
+    <RefreshControlMock
+      onRefresh={[Function]}
+      refreshing={false}
+    />
+  }
+  refreshing={false}
+>
+  <RCTRefreshControl />
+  <View>
+    <TouchableHighlight
+      onPress={undefined}
+      testID={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+            },
+            Object {
+              "paddingBottom": 17,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 14,
+            },
+          ]
+        }
+      >
+        <View
+          style={Object {}}
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              accessibilityLabel={undefined}
+              accessible={false}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 4,
+                }
+              }
+            />
+            <Text
+              accessibilityTraits="header"
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 20,
+                  },
+                  undefined,
+                ]
+              }
+              testID="assignment-details.assignment-name-lbl"
+            >
+              learn to write code
+            </Text>
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "marginTop": 2,
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#8B969E",
+                      "fontWeight": "500",
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-medium",
+                    },
+                  ]
+                }
+                testID="assignment-details.points-possible-lbl"
+              >
+                20 pts
+              </Text>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "marginLeft": 14,
+                    },
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                      "flexDirection": "row",
+                    },
+                  ]
+                }
+              >
+                <Image
+                  source={1}
+                  style={
+                    Array [
+                      Object {
+                        "height": 21,
+                        "tintColor": "#8B969E",
+                        "width": 21,
+                      },
+                      Object {},
+                    ]
+                  }
+                  testID="assignment-details.published-icon.unpublished-status-img"
+                />
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Array [
+                        Object {
+                          "color": "#8B969E",
+                          "fontWeight": "500",
+                          "marginLeft": 5,
+                        },
+                        Object {
+                          "color": "#8B969E",
+                        },
+                      ],
+                      Object {
+                        "fontFamily": ".SFUIDisplay-medium",
+                      },
+                    ]
+                  }
+                  testID="assignment-details.published-icon.publish-status-lbl"
+                >
+                  Unpublished
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </TouchableHighlight>
+    <TouchableHighlight
+      onPress={[Function]}
+      testID="assignment-details.assignment-section.due"
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+            },
+            undefined,
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+              "paddingBottom": 16,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              accessibilityLabel="Due Dates, Double tap for details."
+              accessible={true}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 4,
+                }
+              }
+            >
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "height": 19,
+                    "marginRight": 5,
+                    "tintColor": "#8B969E",
+                    "width": 19,
+                  }
+                }
+                testID="assignment-details.assignment-section.due-title-img"
+              />
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#8B969E",
+                      "fontSize": 16,
+                      "fontWeight": "500",
+                      "paddingTop": 2,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-medium",
+                    },
+                  ]
+                }
+                testID="assignment-details.assignment-section.due-title-lbl"
+              >
+                Due
+              </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                }
+              }
+            >
+              <View
+                accessibilityLabel={undefined}
+                accessible={true}
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "paddingTop": 4,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                    ]
+                  }
+                  testID="assignment-details.assignment-dates.due-date-lbl"
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-semibold",
+                        },
+                      ]
+                    }
+                  >
+                    Due:
+                  </Text>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {},
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
+                     May 31, 2037 at 11:59 PM
+                  </Text>
+                </Text>
+              </View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "paddingTop": 4,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+                testID="assignment-details.assignment-dates.due-for-lbl"
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  For:
+                </Text>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {},
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                    ]
+                  }
+                >
+                   -
+                </Text>
+              </Text>
+              <View>
+                <View
+                  accessibilityLabel={undefined}
+                  accessible={true}
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "paddingTop": 4,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                    testID="assignment-details.assignment-dates.available-from-lbl"
+                  >
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      disabled={false}
+                      ellipsizeMode="tail"
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Object {
+                            "fontWeight": "600",
+                          },
+                          Object {
+                            "fontFamily": ".SFUIDisplay-semibold",
+                          },
+                        ]
+                      }
+                    >
+                      Available From:
+                    </Text>
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      disabled={false}
+                      ellipsizeMode="tail"
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Object {},
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                        ]
+                      }
+                    >
+                       Mar 17, 2017 at 12:00 AM
+                    </Text>
+                  </Text>
+                </View>
+                <View
+                  accessibilityLabel={undefined}
+                  accessible={true}
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "paddingTop": 4,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                    testID="assignment-details.assignment-dates.available-to-lbl"
+                  >
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      disabled={false}
+                      ellipsizeMode="tail"
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Object {
+                            "fontWeight": "600",
+                          },
+                          Object {
+                            "fontFamily": ".SFUIDisplay-semibold",
+                          },
+                        ]
+                      }
+                    >
+                      Available Until:
+                    </Text>
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      disabled={false}
+                      ellipsizeMode="tail"
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Object {},
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                        ]
+                      }
+                    >
+                       May 31, 2037 at 11:59 PM
+                    </Text>
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 0,
+                "flexDirection": "row",
+                "justifyContent": "flex-end",
+                "paddingRight": 2,
+                "width": 10,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignSelf": "center",
+                  "backgroundColor": "transparent",
+                  "borderColor": "#c7c7cc",
+                  "borderRightWidth": 2,
+                  "borderTopWidth": 2,
+                  "height": 10,
+                  "marginLeft": 7,
+                  "transform": Array [
+                    Object {
+                      "rotate": "45deg",
+                    },
+                  ],
+                  "width": 10,
+                }
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </TouchableHighlight>
+    <TouchableHighlight
+      onPress={false}
+      testID="assignment-details.assignment-section.submission-type"
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 1,
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+            },
+            undefined,
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+              "paddingBottom": 16,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              accessibilityLabel={undefined}
+              accessible={false}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 4,
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#8B969E",
+                      "fontSize": 16,
+                      "fontWeight": "500",
+                      "paddingTop": 2,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-medium",
+                    },
+                  ]
+                }
+                testID="assignment-details.assignment-section.submission-type-title-lbl"
+              >
+                Submission Types
+              </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "flexDirection": "column",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "flex": 1,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+                testID="assignment-details.submission-type.details-lbl"
+              />
+            </View>
+          </View>
+        </View>
+      </View>
+    </TouchableHighlight>
+    <View
+      style={
+        Object {
+          "backgroundColor": "white",
+          "borderTopColor": "#C7CDD1",
+          "borderTopWidth": 0.5,
+          "flex": 1,
+          "paddingBottom": 16,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 16,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
