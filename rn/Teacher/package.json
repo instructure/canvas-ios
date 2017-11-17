@@ -73,6 +73,9 @@
     "babel-jest": "^20.0.3",
     "babel-preset-react-native": "2.1.0",
     "danger": "https://github.com/benkraus/danger-js/tarball/with-distribution",
+    "enzyme": "^3.2.0",
+    "enzyme-adapter-react-16": "^1.1.0",
+    "enzyme-to-json": "^3.2.2",
     "eslint": "^3.16.0",
     "eslint-config-standard": "^6.2.1",
     "eslint-plugin-flowtype": "^2.39.1",
@@ -86,8 +89,9 @@
     "format-message-cli": "^5.1.1",
     "format-message-generate-id": "^5.1.0",
     "jest": "^20.0.4",
+    "react-dom": "^16.1.1",
     "react-native-kill-packager": "^1.0.0",
-    "react-test-renderer": "16.0.0-alpha.12",
+    "react-test-renderer": "^16.1.1",
     "redux-freeze": "^0.1.5",
     "redux-logger": "^3.0.6",
     "redux-mock-store": "^1.2.3",
@@ -105,6 +109,9 @@
     "moduleNameMapper": {
       "^.+\\.html$": "<rootDir>/test/scripts/html-mock"
     },
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
     "verbose": true,
     "collectCoverage": false,
     "coveragePathIgnorePatterns": [

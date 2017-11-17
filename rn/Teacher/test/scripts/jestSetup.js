@@ -15,6 +15,11 @@
 //
 
 /* @flow */
+// import 'react-native-mock/mock'
+import Enzyme from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
+Enzyme.configure({ adapter: new Adapter() })
+
 import setupI18n from '../../i18n/setup'
 import { shouldTrackAsyncActions } from '../../src/redux/middleware/redux-promise'
 setupI18n('en')
