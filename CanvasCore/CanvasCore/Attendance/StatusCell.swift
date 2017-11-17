@@ -22,9 +22,9 @@ extension Status {
         guard let attendance = attendance else { return ("", .white) }
         
         switch attendance {
-        case .present: return (NSLocalizedString("Present", comment: "Student is present in class"), #colorLiteral(red: 0, green: 0.6745098039, blue: 0.09411764706, alpha: 1))
-        case .late: return (NSLocalizedString("Late", comment: "Student is present in class"), #colorLiteral(red: 0.9882352941, green: 0.368627451, blue: 0.07450980392, alpha: 1))
-        case .absent: return (NSLocalizedString("Absent", comment: "Student is present in class"), #colorLiteral(red: 0.9333333333, green: 0.02352941176, blue: 0.07058823529, alpha: 1))
+        case .present: return (NSLocalizedString("Present", tableName: "Localizable", bundle: .core, value: "", comment: "Student is present in class"), #colorLiteral(red: 0, green: 0.6745098039, blue: 0.09411764706, alpha: 1))
+        case .late: return (NSLocalizedString("Late", tableName: "Localizable", bundle: .core, value: "", comment: "Student is present in class"), #colorLiteral(red: 0.9882352941, green: 0.368627451, blue: 0.07450980392, alpha: 1))
+        case .absent: return (NSLocalizedString("Absent", tableName: "Localizable", bundle: .core, value: "", comment: "Student is present in class"), #colorLiteral(red: 0.9333333333, green: 0.02352941176, blue: 0.07058823529, alpha: 1))
         }
     }
     
@@ -85,14 +85,20 @@ class StatusCell: UITableViewCell {
     
     var status: Status? {
         didSet {
-            nameLabel.text = status?.student.name
+            guard let status = status else { return }
+            nameLabel.text = status.student.name
+            var i18nLabel = status.student.name
+            if status.attendance != nil {
+                i18nLabel += " — \(status.subtitle.label)"
+            }
+            accessibilityLabel = i18nLabel
             
             avatarImage.image = UIImage(named: "People", in: .core, compatibleWith: nil)
-            if let avatar = status?.student.avatarURL {
+            if let avatar = status.student.avatarURL {
                 avatarImage.setImageWith(avatar)
             }
             
-            accessoryView = UIImageView(image: status?.icon)
+            accessoryView = UIImageView(image: status.icon)
         }
     }
 }
