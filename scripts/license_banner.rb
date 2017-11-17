@@ -16,7 +16,7 @@ OptionParser.new do |opts|
 end.parse!
 
 # The folders which to recursively check for source files
-folders = %w[Frameworks Canvas Parent Teacher SpeedGrader rn]
+folders = %w[Frameworks Canvas Parent Teacher rn]
 files = []
 
 # Returns the correct banner based on the file
@@ -57,7 +57,7 @@ def appropriate_banner(file)
     return apache_header if file.include? "Tests"
     return apache_header if file.include? 'test'
     return apache_header if file.include? '__tests__'
-    return apache_header if file.include? 'modules/canvas-api'
+    return apache_header if file.include? 'modules/instructure-canvas-api'
     gpl_header
 end
 

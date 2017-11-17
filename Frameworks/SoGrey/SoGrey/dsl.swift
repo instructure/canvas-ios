@@ -13,7 +13,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-// DSL that auto waits for elements to exist. Enables react-native compatability.
 
 import Foundation
 import EarlGrey
