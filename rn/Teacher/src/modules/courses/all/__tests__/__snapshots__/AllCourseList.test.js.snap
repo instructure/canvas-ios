@@ -237,7 +237,11 @@ exports[`AllCourseList render 1`] = `
                 underlayColor="#ffffff00"
               >
                 <Image
-                  source={1}
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/kabob.png",
+                    }
+                  }
                   style={
                     Object {
                       "height": 18,
@@ -262,7 +266,6 @@ exports[`AllCourseList render 1`] = `
               <Text
                 accessible={false}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={2}
                 style={
@@ -290,7 +293,6 @@ exports[`AllCourseList render 1`] = `
               <Text
                 accessible={false}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
@@ -411,7 +413,11 @@ exports[`AllCourseList render 1`] = `
                 underlayColor="#ffffff00"
               >
                 <Image
-                  source={1}
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/kabob.png",
+                    }
+                  }
                   style={
                     Object {
                       "height": 18,
@@ -436,7 +442,6 @@ exports[`AllCourseList render 1`] = `
               <Text
                 accessible={false}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={2}
                 style={
@@ -464,7 +469,6 @@ exports[`AllCourseList render 1`] = `
               <Text
                 accessible={false}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
@@ -585,7 +589,11 @@ exports[`AllCourseList render 1`] = `
                 underlayColor="#ffffff00"
               >
                 <Image
-                  source={1}
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/kabob.png",
+                    }
+                  }
                   style={
                     Object {
                       "height": 18,
@@ -610,7 +618,6 @@ exports[`AllCourseList render 1`] = `
               <Text
                 accessible={false}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={2}
                 style={
@@ -638,7 +645,6 @@ exports[`AllCourseList render 1`] = `
               <Text
                 accessible={false}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={

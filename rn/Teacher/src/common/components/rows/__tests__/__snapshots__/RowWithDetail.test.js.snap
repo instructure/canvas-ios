@@ -63,7 +63,6 @@ exports[`Render row with detail label 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={0}
         style={
@@ -118,7 +117,6 @@ exports[`Render row with detail label 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={1}
             style={

@@ -20,7 +20,11 @@ exports[`my chat bubbles render correctly 1`] = `
 >
   <Image
     resizeMode="center"
-    source={1}
+    source={
+      Object {
+        "testUri": "../../../src/images/Document.png",
+      }
+    }
     style={
       Object {
         "height": 18,
@@ -41,7 +45,6 @@ exports[`my chat bubbles render correctly 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
-      disabled={false}
       ellipsizeMode="tail"
       numberOfLines={1}
       style={
@@ -64,7 +67,6 @@ exports[`my chat bubbles render correctly 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
-      disabled={false}
       ellipsizeMode="tail"
       numberOfLines={1}
       style={

@@ -153,7 +153,11 @@ exports[`render 1`] = `
             }
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/star-filled.png",
+                }
+              }
               style={
                 Object {
                   "height": 18,
@@ -167,7 +171,6 @@ exports[`render 1`] = `
               accessibilityTraits="header"
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -206,7 +209,6 @@ exports[`render 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -348,7 +350,11 @@ exports[`render 1`] = `
                 underlayColor="#ffffff00"
               >
                 <Image
-                  source={1}
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/kabob.png",
+                    }
+                  }
                   style={
                     Object {
                       "height": 18,
@@ -373,7 +379,6 @@ exports[`render 1`] = `
               <Text
                 accessible={false}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={2}
                 style={
@@ -401,7 +406,6 @@ exports[`render 1`] = `
               <Text
                 accessible={false}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
@@ -522,7 +526,11 @@ exports[`render 1`] = `
                 underlayColor="#ffffff00"
               >
                 <Image
-                  source={1}
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/kabob.png",
+                    }
+                  }
                   style={
                     Object {
                       "height": 18,
@@ -547,7 +555,6 @@ exports[`render 1`] = `
               <Text
                 accessible={false}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={2}
                 style={
@@ -575,7 +582,6 @@ exports[`render 1`] = `
               <Text
                 accessible={false}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
@@ -696,7 +702,11 @@ exports[`render 1`] = `
                 underlayColor="#ffffff00"
               >
                 <Image
-                  source={1}
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/kabob.png",
+                    }
+                  }
                   style={
                     Object {
                       "height": 18,
@@ -721,7 +731,6 @@ exports[`render 1`] = `
               <Text
                 accessible={false}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={2}
                 style={
@@ -749,7 +758,6 @@ exports[`render 1`] = `
               <Text
                 accessible={false}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
@@ -892,7 +900,11 @@ exports[`render without courses and *zero* total courses 1`] = `
             }
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/star-filled.png",
+                }
+              }
               style={
                 Object {
                   "height": 18,
@@ -906,7 +918,6 @@ exports[`render without courses and *zero* total courses 1`] = `
               accessibilityTraits="header"
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -945,7 +956,6 @@ exports[`render without courses and *zero* total courses 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -1004,7 +1014,6 @@ exports[`render without favorite courses 1`] = `
   <Text
     accessible={true}
     allowFontScaling={true}
-    disabled={false}
     ellipsizeMode="tail"
     style={
       Array [
@@ -1033,7 +1042,6 @@ exports[`render without favorite courses 1`] = `
   <Text
     accessible={true}
     allowFontScaling={true}
-    disabled={false}
     ellipsizeMode="tail"
     style={
       Array [
@@ -1095,7 +1103,6 @@ exports[`render without favorite courses 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
-      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [

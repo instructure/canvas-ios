@@ -10,7 +10,9 @@ exports[`ConversationDetails doesnt render messages that are pendingDelete 1`] =
       Object {
         "accessibilityLabel": "Conversation options",
         "action": [Function],
-        "image": 1,
+        "image": Object {
+          "testUri": "../../../src/images/kabob.png",
+        },
         "testID": "inbox.detail.options.button",
       },
     ]
@@ -68,7 +70,11 @@ exports[`ConversationDetails doesnt render messages that are pendingDelete 1`] =
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/star-lined.png",
+                  }
+                }
                 style={
                   Object {
                     "height": 24,
@@ -98,7 +104,6 @@ exports[`ConversationDetails doesnt render messages that are pendingDelete 1`] =
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
       onScrollEndDrag={[Function]}
-      onViewableItemsChanged={undefined}
       refreshing={undefined}
       renderItem={[Function]}
       scrollEventThrottle={50}
@@ -109,6 +114,7 @@ exports[`ConversationDetails doesnt render messages that are pendingDelete 1`] =
         }
       }
       updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
       windowSize={21}
     >
       <View>
@@ -133,7 +139,6 @@ exports[`ConversationDetails doesnt render messages that are pendingDelete 1`] =
               accessibilityTraits="header"
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -190,7 +195,11 @@ exports[`ConversationDetails doesnt render messages that are pendingDelete 1`] =
                 }
               >
                 <Image
-                  source={1}
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/star-lined.png",
+                    }
+                  }
                   style={
                     Object {
                       "height": 24,
@@ -219,7 +228,9 @@ exports[`ConversationDetails renders correctly 1`] = `
       Object {
         "accessibilityLabel": "Conversation options",
         "action": [Function],
-        "image": 1,
+        "image": Object {
+          "testUri": "../../../src/images/kabob.png",
+        },
         "testID": "inbox.detail.options.button",
       },
     ]
@@ -277,7 +288,11 @@ exports[`ConversationDetails renders correctly 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/star-lined.png",
+                  }
+                }
                 style={
                   Object {
                     "height": 24,
@@ -307,7 +322,6 @@ exports[`ConversationDetails renders correctly 1`] = `
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
       onScrollEndDrag={[Function]}
-      onViewableItemsChanged={undefined}
       refreshing={undefined}
       renderItem={[Function]}
       scrollEventThrottle={50}
@@ -318,6 +332,7 @@ exports[`ConversationDetails renders correctly 1`] = `
         }
       }
       updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
       windowSize={21}
     >
       <View>
@@ -342,7 +357,6 @@ exports[`ConversationDetails renders correctly 1`] = `
               accessibilityTraits="header"
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -399,7 +413,11 @@ exports[`ConversationDetails renders correctly 1`] = `
                 }
               >
                 <Image
-                  source={1}
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/star-lined.png",
+                    }
+                  }
                   style={
                     Object {
                       "height": 24,
@@ -428,7 +446,9 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
       Object {
         "accessibilityLabel": "Conversation options",
         "action": [Function],
-        "image": 1,
+        "image": Object {
+          "testUri": "../../../src/images/kabob.png",
+        },
         "testID": "inbox.detail.options.button",
       },
     ]
@@ -486,7 +506,11 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/star-lined.png",
+                  }
+                }
                 style={
                   Object {
                     "height": 24,
@@ -532,7 +556,6 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
       onScrollEndDrag={[Function]}
-      onViewableItemsChanged={undefined}
       refreshing={undefined}
       renderItem={[Function]}
       scrollEventThrottle={50}
@@ -543,6 +566,7 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
         }
       }
       updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
       windowSize={21}
     >
       <View>
@@ -567,7 +591,6 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
               accessibilityTraits="header"
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -624,7 +647,11 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                 }
               >
                 <Image
-                  source={1}
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/star-lined.png",
+                    }
+                  }
                   style={
                     Object {
                       "height": 24,
@@ -713,7 +740,6 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                         <Text
                           accessible={false}
                           allowFontScaling={true}
-                          disabled={false}
                           ellipsizeMode="tail"
                           style={
                             Array [
@@ -737,7 +763,6 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                     <Text
                       accessible={true}
                       allowFontScaling={true}
-                      disabled={false}
                       ellipsizeMode="tail"
                       style={
                         Array [
@@ -758,7 +783,6 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                       <Text
                         accessible={true}
                         allowFontScaling={true}
-                        disabled={false}
                         ellipsizeMode="tail"
                         style={
                           Array [
@@ -785,7 +809,6 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                       <Text
                         accessible={true}
                         allowFontScaling={true}
-                        disabled={false}
                         ellipsizeMode="tail"
                         style={
                           Array [
@@ -812,7 +835,6 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                     <Text
                       accessible={true}
                       allowFontScaling={true}
-                      disabled={false}
                       ellipsizeMode="tail"
                       style={
                         Array [
@@ -866,7 +888,11 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                   tvParallaxProperties={undefined}
                 >
                   <Image
-                    source={1}
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/kabob.png",
+                      }
+                    }
                     style={
                       Object {
                         "height": 18,
@@ -907,7 +933,6 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   numberOfLines={0}
                   style={
@@ -966,7 +991,11 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                   }
                 >
                   <Image
-                    source={1}
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/attachment.png",
+                      }
+                    }
                     style={
                       Object {
                         "tintColor": "#008EE2",
@@ -976,7 +1005,6 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -1039,7 +1067,6 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -1096,7 +1123,9 @@ exports[`ConversationDetails renders with alternate data 1`] = `
       Object {
         "accessibilityLabel": "Conversation options",
         "action": [Function],
-        "image": 1,
+        "image": Object {
+          "testUri": "../../../src/images/kabob.png",
+        },
         "testID": "inbox.detail.options.button",
       },
     ]
@@ -1154,7 +1183,11 @@ exports[`ConversationDetails renders with alternate data 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/star-filled.png",
+                  }
+                }
                 style={
                   Object {
                     "height": 24,
@@ -1184,7 +1217,6 @@ exports[`ConversationDetails renders with alternate data 1`] = `
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
       onScrollEndDrag={[Function]}
-      onViewableItemsChanged={undefined}
       refreshing={undefined}
       renderItem={[Function]}
       scrollEventThrottle={50}
@@ -1195,6 +1227,7 @@ exports[`ConversationDetails renders with alternate data 1`] = `
         }
       }
       updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
       windowSize={21}
     >
       <View>
@@ -1219,7 +1252,6 @@ exports[`ConversationDetails renders with alternate data 1`] = `
               accessibilityTraits="header"
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1276,7 +1308,11 @@ exports[`ConversationDetails renders with alternate data 1`] = `
                 }
               >
                 <Image
-                  source={1}
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/star-filled.png",
+                    }
+                  }
                   style={
                     Object {
                       "height": 24,

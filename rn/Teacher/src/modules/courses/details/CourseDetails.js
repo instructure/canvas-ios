@@ -52,6 +52,9 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
     super(props)
     this.state = { windowTraits: { horizontal: 'compact', vertical: 'regular' } }
     this.animatedValue = new Animated.Value(-235)
+    this.animate = Animated.event(
+      [{ nativeEvent: { contentOffset: { y: this.animatedValue } } }],
+    )
   }
 
   componentDidMount () {
@@ -100,6 +103,15 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
     })
   }
 
+  onScroll = (event) => {
+    const offsetY = event.nativeEvent.contentOffset.y
+    // Random bug/issue with rn or ios
+    // Sometimes this would randomly be reported as 0, which is impossible based on our content inset/offsets
+    if (offsetY !== 0) {
+      this.animate(event)
+    }
+  }
+
   renderTab = (tab: Tab) => {
     return <CourseDetailsTab key={tab.id} tab={tab} courseColor={this.props.color} onPress={this.selectTab} attendanceTabID={this.props.attendanceTabID} />
   }
@@ -137,15 +149,13 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
       inputRange: [-235, -navbarHeight],
       outputRange: [0, 1],
     })
-
     let inOffsets = {}
     if (compactMode) {
       inOffsets = {
         contentInset: { top: 235 },
-        contentOffset: { y: 0 },
+        contentOffset: { y: -235 },
       }
     }
-
     return (
       <Screen
         title={courseCode}
@@ -175,9 +185,7 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
                 scrollEventThrottle={1}
                 contentInsetAdjustmentBehavior='never'
                 automaticallyAdjustContentInsets={false}
-                onScroll={Animated.event(
-                  [{ nativeEvent: { contentOffset: { y: this.animatedValue } } }],
-                )}
+                onScroll={this.onScroll}
                 refreshControl={
                   <RefreshControl
                     refreshing={this.props.refreshing}

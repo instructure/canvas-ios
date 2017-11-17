@@ -97,7 +97,6 @@ exports[`error occurs when done pressed 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -159,7 +158,6 @@ exports[`error occurs when done pressed 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -228,7 +226,6 @@ exports[`error occurs when done pressed 1`] = `
             accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -273,6 +270,7 @@ exports[`error occurs when done pressed 1`] = `
           }
         >
           <TextInput
+            allowFontScaling={true}
             blurOnSubmit={true}
             keyboardType="default"
             onChangeText={[Function]}
@@ -321,7 +319,6 @@ exports[`error occurs when done pressed 1`] = `
             accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -386,7 +383,11 @@ exports[`error occurs when done pressed 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/edit.png",
+                  }
+                }
                 style={
                   Array [
                     Object {
@@ -404,7 +405,6 @@ exports[`error occurs when done pressed 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -474,7 +474,6 @@ exports[`error occurs when done pressed 1`] = `
             accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -549,7 +548,6 @@ exports[`error occurs when done pressed 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -602,6 +600,7 @@ exports[`error occurs when done pressed 1`] = `
                   }
                 >
                   <TextInput
+                    allowFontScaling={true}
                     defaultValue="20"
                     keyboardType="number-pad"
                     onChangeText={[Function]}
@@ -675,7 +674,6 @@ exports[`error occurs when done pressed 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -730,7 +728,6 @@ exports[`error occurs when done pressed 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={1}
                     style={
@@ -809,7 +806,6 @@ exports[`error occurs when done pressed 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -1024,7 +1020,6 @@ exports[`modal saving is shown on assignment update 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -1086,7 +1081,6 @@ exports[`modal saving is shown on assignment update 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -1155,7 +1149,6 @@ exports[`modal saving is shown on assignment update 1`] = `
             accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1200,6 +1193,7 @@ exports[`modal saving is shown on assignment update 1`] = `
           }
         >
           <TextInput
+            allowFontScaling={true}
             blurOnSubmit={true}
             keyboardType="default"
             onChangeText={[Function]}
@@ -1248,7 +1242,6 @@ exports[`modal saving is shown on assignment update 1`] = `
             accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1313,7 +1306,11 @@ exports[`modal saving is shown on assignment update 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/edit.png",
+                  }
+                }
                 style={
                   Array [
                     Object {
@@ -1331,7 +1328,6 @@ exports[`modal saving is shown on assignment update 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -1401,7 +1397,6 @@ exports[`modal saving is shown on assignment update 1`] = `
             accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1476,7 +1471,6 @@ exports[`modal saving is shown on assignment update 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -1529,6 +1523,7 @@ exports[`modal saving is shown on assignment update 1`] = `
                   }
                 >
                   <TextInput
+                    allowFontScaling={true}
                     defaultValue="20"
                     keyboardType="number-pad"
                     onChangeText={[Function]}
@@ -1602,7 +1597,6 @@ exports[`modal saving is shown on assignment update 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -1657,7 +1651,6 @@ exports[`modal saving is shown on assignment update 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={1}
                     style={
@@ -1736,7 +1729,6 @@ exports[`modal saving is shown on assignment update 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -1951,7 +1943,6 @@ exports[`renders 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -2013,7 +2004,6 @@ exports[`renders 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -2082,7 +2072,6 @@ exports[`renders 1`] = `
             accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -2127,6 +2116,7 @@ exports[`renders 1`] = `
           }
         >
           <TextInput
+            allowFontScaling={true}
             blurOnSubmit={true}
             keyboardType="default"
             onChangeText={[Function]}
@@ -2175,7 +2165,6 @@ exports[`renders 1`] = `
             accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -2240,7 +2229,11 @@ exports[`renders 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/edit.png",
+                  }
+                }
                 style={
                   Array [
                     Object {
@@ -2258,7 +2251,6 @@ exports[`renders 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -2328,7 +2320,6 @@ exports[`renders 1`] = `
             accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -2403,7 +2394,6 @@ exports[`renders 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -2456,6 +2446,7 @@ exports[`renders 1`] = `
                   }
                 >
                   <TextInput
+                    allowFontScaling={true}
                     defaultValue="20"
                     keyboardType="number-pad"
                     onChangeText={[Function]}
@@ -2529,7 +2520,6 @@ exports[`renders 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -2584,7 +2574,6 @@ exports[`renders 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={1}
                     style={
@@ -2663,7 +2652,6 @@ exports[`renders 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -2878,7 +2866,6 @@ exports[`saving invalid dates displays banner 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -2940,7 +2927,6 @@ exports[`saving invalid dates displays banner 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -3009,7 +2995,6 @@ exports[`saving invalid dates displays banner 1`] = `
             accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -3054,6 +3039,7 @@ exports[`saving invalid dates displays banner 1`] = `
           }
         >
           <TextInput
+            allowFontScaling={true}
             blurOnSubmit={true}
             keyboardType="default"
             onChangeText={[Function]}
@@ -3102,7 +3088,6 @@ exports[`saving invalid dates displays banner 1`] = `
             accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -3167,7 +3152,11 @@ exports[`saving invalid dates displays banner 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/edit.png",
+                  }
+                }
                 style={
                   Array [
                     Object {
@@ -3185,7 +3174,6 @@ exports[`saving invalid dates displays banner 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -3255,7 +3243,6 @@ exports[`saving invalid dates displays banner 1`] = `
             accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -3330,7 +3317,6 @@ exports[`saving invalid dates displays banner 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -3383,6 +3369,7 @@ exports[`saving invalid dates displays banner 1`] = `
                   }
                 >
                   <TextInput
+                    allowFontScaling={true}
                     defaultValue="20"
                     keyboardType="number-pad"
                     onChangeText={[Function]}
@@ -3456,7 +3443,6 @@ exports[`saving invalid dates displays banner 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -3511,7 +3497,6 @@ exports[`saving invalid dates displays banner 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={1}
                     style={
@@ -3590,7 +3575,6 @@ exports[`saving invalid dates displays banner 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -3809,7 +3793,6 @@ exports[`saving invalid name displays banner 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -3874,7 +3857,6 @@ exports[`saving invalid name displays banner 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -3943,7 +3925,6 @@ exports[`saving invalid name displays banner 1`] = `
             accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -3988,6 +3969,7 @@ exports[`saving invalid name displays banner 1`] = `
           }
         >
           <TextInput
+            allowFontScaling={true}
             blurOnSubmit={true}
             keyboardType="default"
             onChangeText={[Function]}
@@ -4028,7 +4010,6 @@ exports[`saving invalid name displays banner 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -4072,7 +4053,6 @@ exports[`saving invalid name displays banner 1`] = `
             accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -4137,7 +4117,11 @@ exports[`saving invalid name displays banner 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/edit.png",
+                  }
+                }
                 style={
                   Array [
                     Object {
@@ -4155,7 +4139,6 @@ exports[`saving invalid name displays banner 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -4225,7 +4208,6 @@ exports[`saving invalid name displays banner 1`] = `
             accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -4300,7 +4282,6 @@ exports[`saving invalid name displays banner 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -4353,6 +4334,7 @@ exports[`saving invalid name displays banner 1`] = `
                   }
                 >
                   <TextInput
+                    allowFontScaling={true}
                     defaultValue="20"
                     keyboardType="number-pad"
                     onChangeText={[Function]}
@@ -4426,7 +4408,6 @@ exports[`saving invalid name displays banner 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -4481,7 +4462,6 @@ exports[`saving invalid name displays banner 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={1}
                     style={
@@ -4560,7 +4540,6 @@ exports[`saving invalid name displays banner 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -4775,7 +4754,6 @@ exports[`saving invalid points possible displays banner 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -4840,7 +4818,6 @@ exports[`saving invalid points possible displays banner 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -4909,7 +4886,6 @@ exports[`saving invalid points possible displays banner 1`] = `
             accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -4954,6 +4930,7 @@ exports[`saving invalid points possible displays banner 1`] = `
           }
         >
           <TextInput
+            allowFontScaling={true}
             blurOnSubmit={true}
             keyboardType="default"
             onChangeText={[Function]}
@@ -5002,7 +4979,6 @@ exports[`saving invalid points possible displays banner 1`] = `
             accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -5067,7 +5043,11 @@ exports[`saving invalid points possible displays banner 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/edit.png",
+                  }
+                }
                 style={
                   Array [
                     Object {
@@ -5085,7 +5065,6 @@ exports[`saving invalid points possible displays banner 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -5155,7 +5134,6 @@ exports[`saving invalid points possible displays banner 1`] = `
             accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -5230,7 +5208,6 @@ exports[`saving invalid points possible displays banner 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -5283,6 +5260,7 @@ exports[`saving invalid points possible displays banner 1`] = `
                   }
                 >
                   <TextInput
+                    allowFontScaling={true}
                     defaultValue="D"
                     keyboardType="number-pad"
                     onChangeText={[Function]}
@@ -5356,7 +5334,6 @@ exports[`saving invalid points possible displays banner 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -5411,7 +5388,6 @@ exports[`saving invalid points possible displays banner 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={1}
                     style={
@@ -5490,7 +5466,6 @@ exports[`saving invalid points possible displays banner 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -5575,7 +5550,6 @@ exports[`saving invalid points possible displays banner 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -5741,7 +5715,6 @@ exports[`saving negative points possible displays banner 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -5806,7 +5779,6 @@ exports[`saving negative points possible displays banner 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -5875,7 +5847,6 @@ exports[`saving negative points possible displays banner 1`] = `
             accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -5920,6 +5891,7 @@ exports[`saving negative points possible displays banner 1`] = `
           }
         >
           <TextInput
+            allowFontScaling={true}
             blurOnSubmit={true}
             keyboardType="default"
             onChangeText={[Function]}
@@ -5968,7 +5940,6 @@ exports[`saving negative points possible displays banner 1`] = `
             accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -6033,7 +6004,11 @@ exports[`saving negative points possible displays banner 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/edit.png",
+                  }
+                }
                 style={
                   Array [
                     Object {
@@ -6051,7 +6026,6 @@ exports[`saving negative points possible displays banner 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -6121,7 +6095,6 @@ exports[`saving negative points possible displays banner 1`] = `
             accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -6196,7 +6169,6 @@ exports[`saving negative points possible displays banner 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -6249,6 +6221,7 @@ exports[`saving negative points possible displays banner 1`] = `
                   }
                 >
                   <TextInput
+                    allowFontScaling={true}
                     defaultValue="-1"
                     keyboardType="number-pad"
                     onChangeText={[Function]}
@@ -6322,7 +6295,6 @@ exports[`saving negative points possible displays banner 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -6377,7 +6349,6 @@ exports[`saving negative points possible displays banner 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={1}
                     style={
@@ -6456,7 +6427,6 @@ exports[`saving negative points possible displays banner 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -6541,7 +6511,6 @@ exports[`saving negative points possible displays banner 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [

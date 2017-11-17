@@ -36,7 +36,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           accessibilityTraits="header"
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -99,7 +98,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -175,7 +173,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -208,7 +205,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -310,7 +306,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -347,7 +342,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -411,7 +405,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             tvParallaxProperties={undefined}
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/Clear.png",
+                }
+              }
             />
           </View>
         </View>
@@ -495,7 +493,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -532,7 +529,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -596,7 +592,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             tvParallaxProperties={undefined}
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/Clear.png",
+                }
+              }
             />
           </View>
         </View>
@@ -680,7 +680,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -717,7 +716,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -781,7 +779,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             tvParallaxProperties={undefined}
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/Clear.png",
+                }
+              }
             />
           </View>
         </View>
@@ -819,7 +821,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           accessibilityTraits="header"
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -882,7 +883,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -958,7 +958,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -991,7 +990,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1093,7 +1091,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -1130,7 +1127,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -1194,7 +1190,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             tvParallaxProperties={undefined}
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/Clear.png",
+                }
+              }
             />
           </View>
         </View>
@@ -1278,7 +1278,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -1315,7 +1314,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -1379,7 +1377,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             tvParallaxProperties={undefined}
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/Clear.png",
+                }
+              }
             />
           </View>
         </View>
@@ -1463,7 +1465,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -1500,7 +1501,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -1564,7 +1564,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             tvParallaxProperties={undefined}
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/Clear.png",
+                }
+              }
             />
           </View>
         </View>
@@ -1602,7 +1606,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           accessibilityTraits="header"
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -1665,7 +1668,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -1741,7 +1743,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1774,7 +1775,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1876,7 +1876,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -1913,7 +1912,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -1977,7 +1975,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             tvParallaxProperties={undefined}
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/Clear.png",
+                }
+              }
             />
           </View>
         </View>
@@ -2061,7 +2063,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -2098,7 +2099,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -2162,7 +2162,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             tvParallaxProperties={undefined}
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/Clear.png",
+                }
+              }
             />
           </View>
         </View>
@@ -2246,7 +2250,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -2283,7 +2286,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -2347,7 +2349,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             tvParallaxProperties={undefined}
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/Clear.png",
+                }
+              }
             />
           </View>
         </View>
@@ -2413,7 +2419,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         }
       >
         <Image
-          source={1}
+          source={
+            Object {
+              "testUri": "../../../src/images/Add.png",
+            }
+          }
           style={
             Array [
               Object {
@@ -2430,7 +2440,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -2509,7 +2518,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
           accessibilityTraits="header"
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -2582,7 +2590,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -2615,7 +2622,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -2717,7 +2723,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -2754,7 +2759,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -2818,7 +2822,11 @@ exports[`snapshots! render with multiple due dates 1`] = `
             tvParallaxProperties={undefined}
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/Clear.png",
+                }
+              }
             />
           </View>
         </View>
@@ -2902,7 +2910,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -2939,7 +2946,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -3003,7 +3009,11 @@ exports[`snapshots! render with multiple due dates 1`] = `
             tvParallaxProperties={undefined}
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/Clear.png",
+                }
+              }
             />
           </View>
         </View>
@@ -3087,7 +3097,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -3124,7 +3133,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -3188,7 +3196,11 @@ exports[`snapshots! render with multiple due dates 1`] = `
             tvParallaxProperties={undefined}
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/Clear.png",
+                }
+              }
             />
           </View>
         </View>
@@ -3226,7 +3238,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
           accessibilityTraits="header"
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -3289,7 +3300,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -3365,7 +3375,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -3398,7 +3407,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -3500,7 +3508,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -3537,7 +3544,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -3601,7 +3607,11 @@ exports[`snapshots! render with multiple due dates 1`] = `
             tvParallaxProperties={undefined}
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/Clear.png",
+                }
+              }
             />
           </View>
         </View>
@@ -3685,7 +3695,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -3722,7 +3731,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -3786,7 +3794,11 @@ exports[`snapshots! render with multiple due dates 1`] = `
             tvParallaxProperties={undefined}
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/Clear.png",
+                }
+              }
             />
           </View>
         </View>
@@ -3870,7 +3882,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -3907,7 +3918,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -3971,7 +3981,11 @@ exports[`snapshots! render with multiple due dates 1`] = `
             tvParallaxProperties={undefined}
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/Clear.png",
+                }
+              }
             />
           </View>
         </View>
@@ -4037,7 +4051,11 @@ exports[`snapshots! render with multiple due dates 1`] = `
         }
       >
         <Image
-          source={1}
+          source={
+            Object {
+              "testUri": "../../../src/images/Add.png",
+            }
+          }
           style={
             Array [
               Object {
@@ -4054,7 +4072,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -4133,7 +4150,6 @@ exports[`snapshots! render with single due date 1`] = `
           accessibilityTraits="header"
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -4206,7 +4222,6 @@ exports[`snapshots! render with single due date 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -4239,7 +4254,6 @@ exports[`snapshots! render with single due date 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -4341,7 +4355,6 @@ exports[`snapshots! render with single due date 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -4378,7 +4391,6 @@ exports[`snapshots! render with single due date 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -4442,7 +4454,11 @@ exports[`snapshots! render with single due date 1`] = `
             tvParallaxProperties={undefined}
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/Clear.png",
+                }
+              }
             />
           </View>
         </View>
@@ -4526,7 +4542,6 @@ exports[`snapshots! render with single due date 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -4563,7 +4578,6 @@ exports[`snapshots! render with single due date 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -4627,7 +4641,11 @@ exports[`snapshots! render with single due date 1`] = `
             tvParallaxProperties={undefined}
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/Clear.png",
+                }
+              }
             />
           </View>
         </View>
@@ -4711,7 +4729,6 @@ exports[`snapshots! render with single due date 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -4748,7 +4765,6 @@ exports[`snapshots! render with single due date 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -4812,7 +4828,11 @@ exports[`snapshots! render with single due date 1`] = `
             tvParallaxProperties={undefined}
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/Clear.png",
+                }
+              }
             />
           </View>
         </View>
@@ -4878,7 +4898,11 @@ exports[`snapshots! render with single due date 1`] = `
         }
       >
         <Image
-          source={1}
+          source={
+            Object {
+              "testUri": "../../../src/images/Add.png",
+            }
+          }
           style={
             Array [
               Object {
@@ -4895,7 +4919,6 @@ exports[`snapshots! render with single due date 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [

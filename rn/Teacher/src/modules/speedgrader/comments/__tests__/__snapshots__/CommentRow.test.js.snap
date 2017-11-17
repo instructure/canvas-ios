@@ -38,7 +38,6 @@ exports[`My message rows render correctly 1`] = `
         accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -66,7 +65,6 @@ exports[`My message rows render correctly 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -129,7 +127,11 @@ exports[`My message rows render correctly 1`] = `
           }
         }
         resizeMode="stretch"
-        source={1}
+        source={
+          Object {
+            "testUri": "../../../src/images/speedgrader/bubble-me.png",
+          }
+        }
         style={
           Object {
             "bottom": 0,
@@ -147,7 +149,6 @@ exports[`My message rows render correctly 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -225,7 +226,6 @@ exports[`Their message rows render correctly 1`] = `
         accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -253,7 +253,6 @@ exports[`Their message rows render correctly 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -310,7 +309,11 @@ exports[`Their message rows render correctly 1`] = `
           }
         }
         resizeMode="stretch"
-        source={1}
+        source={
+          Object {
+            "testUri": "../../../src/images/speedgrader/bubble-them.png",
+          }
+        }
         style={
           Object {
             "bottom": 0,
@@ -328,7 +331,6 @@ exports[`Their message rows render correctly 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -406,7 +408,6 @@ exports[`their submissions render correctly 1`] = `
         accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -434,7 +435,6 @@ exports[`their submissions render correctly 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -519,7 +519,6 @@ exports[`video comments without url render correctly 1`] = `
         accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -547,7 +546,6 @@ exports[`video comments without url render correctly 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [

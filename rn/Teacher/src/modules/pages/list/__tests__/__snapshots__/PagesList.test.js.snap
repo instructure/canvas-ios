@@ -42,7 +42,6 @@ exports[`PagesList renders 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
     refreshControl={
       <RefreshControlMock
         onRefresh={[Function]}
@@ -56,6 +55,7 @@ exports[`PagesList renders 1`] = `
     stickyHeaderIndices={Array []}
     testID="pages.list.list"
     updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
     <RCTRefreshControl />
@@ -122,7 +122,11 @@ exports[`PagesList renders 1`] = `
                 }
               >
                 <Image
-                  source={1}
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/course/Pages.png",
+                    }
+                  }
                   style={
                     Array [
                       Object {
@@ -150,7 +154,11 @@ exports[`PagesList renders 1`] = `
                   }
                 >
                   <Image
-                    source={1}
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/Published.png",
+                      }
+                    }
                     style={
                       Object {
                         "height": 12,
@@ -174,7 +182,6 @@ exports[`PagesList renders 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -203,7 +210,6 @@ exports[`PagesList renders 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -303,7 +309,6 @@ exports[`PagesList renders empty 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
     refreshControl={
       <RefreshControlMock
         onRefresh={[Function]}
@@ -317,6 +322,7 @@ exports[`PagesList renders empty 1`] = `
     stickyHeaderIndices={Array []}
     testID="pages.list.list"
     updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
     <RCTRefreshControl />

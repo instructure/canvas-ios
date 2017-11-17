@@ -56,7 +56,6 @@ exports[`anonymous grading doesnt show users names 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           numberOfLines={2}
           style={
@@ -85,7 +84,6 @@ exports[`anonymous grading doesnt show users names 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -195,7 +193,6 @@ exports[`excused row renders correctly 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           numberOfLines={2}
           style={
@@ -224,7 +221,6 @@ exports[`excused row renders correctly 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -257,7 +253,6 @@ exports[`excused row renders correctly 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -366,7 +361,6 @@ exports[`late graded row renders correctly 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           numberOfLines={2}
           style={
@@ -395,7 +389,6 @@ exports[`late graded row renders correctly 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -428,7 +421,6 @@ exports[`late graded row renders correctly 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -537,7 +529,6 @@ exports[`missing ungraded row renders correctly 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           numberOfLines={2}
           style={
@@ -566,7 +557,6 @@ exports[`missing ungraded row renders correctly 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -676,7 +666,6 @@ exports[`submitted ungraded row renders correctly 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           numberOfLines={2}
           style={
@@ -705,7 +694,6 @@ exports[`submitted ungraded row renders correctly 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -738,7 +726,6 @@ exports[`submitted ungraded row renders correctly 1`] = `
           accessible={true}
           allowFontScaling={true}
           color="#368BD8"
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -861,7 +848,6 @@ exports[`unsubmitted ungraded row renders correctly 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           numberOfLines={2}
           style={
@@ -890,7 +876,6 @@ exports[`unsubmitted ungraded row renders correctly 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [

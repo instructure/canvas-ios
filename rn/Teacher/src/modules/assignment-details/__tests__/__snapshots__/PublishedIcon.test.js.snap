@@ -14,7 +14,11 @@ exports[`render larger icon size 1`] = `
   }
 >
   <Image
-    source={1}
+    source={
+      Object {
+        "testUri": "../../../src/images/Published.png",
+      }
+    }
     style={
       Array [
         Object {
@@ -33,7 +37,6 @@ exports[`render larger icon size 1`] = `
   <Text
     accessible={true}
     allowFontScaling={true}
-    disabled={false}
     ellipsizeMode="tail"
     style={
       Array [
@@ -80,7 +83,11 @@ exports[`render published 1`] = `
   }
 >
   <Image
-    source={1}
+    source={
+      Object {
+        "testUri": "../../../src/images/Published.png",
+      }
+    }
     style={
       Array [
         Object {
@@ -96,7 +103,6 @@ exports[`render published 1`] = `
   <Text
     accessible={true}
     allowFontScaling={true}
-    disabled={false}
     ellipsizeMode="tail"
     style={
       Array [
@@ -143,7 +149,11 @@ exports[`render unpublished 1`] = `
   }
 >
   <Image
-    source={1}
+    source={
+      Object {
+        "testUri": "../../../src/images/Unpublished.png",
+      }
+    }
     style={
       Array [
         Object {
@@ -159,7 +169,6 @@ exports[`render unpublished 1`] = `
   <Text
     accessible={true}
     allowFontScaling={true}
-    disabled={false}
     ellipsizeMode="tail"
     style={
       Array [

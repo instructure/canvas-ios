@@ -31,7 +31,6 @@ exports[`SubmissionPicker closes the picker 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -59,7 +58,11 @@ exports[`SubmissionPicker closes the picker 1`] = `
         Dec 31, 2015 at 5:01 PM
       </Text>
       <Image
-        source={1}
+        source={
+          Object {
+            "testUri": "../../../src/images/picker-arrow.png",
+          }
+        }
         style={
           Array [
             Object {
@@ -105,7 +108,6 @@ exports[`SubmissionPicker opens the picker 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -133,7 +135,11 @@ exports[`SubmissionPicker opens the picker 1`] = `
         Dec 31, 2015 at 5:01 PM
       </Text>
       <Image
-        source={1}
+        source={
+          Object {
+            "testUri": "../../../src/images/picker-arrow.png",
+          }
+        }
         style={
           Array [
             Object {
@@ -179,7 +185,6 @@ exports[`SubmissionPicker renders the picker with a 0 index 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -209,7 +214,11 @@ exports[`SubmissionPicker renders the picker with a 0 index 1`] = `
         Apr 26, 2017 at 11:46 AM
       </Text>
       <Image
-        source={1}
+        source={
+          Object {
+            "testUri": "../../../src/images/picker-arrow.png",
+          }
+        }
         style={
           Array [
             Object {
@@ -275,7 +284,6 @@ exports[`SubmissionPicker renders the picker with a non-zero index 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -305,7 +313,11 @@ exports[`SubmissionPicker renders the picker with a non-zero index 1`] = `
         Dec 31, 2015 at 5:01 PM
       </Text>
       <Image
-        source={1}
+        source={
+          Object {
+            "testUri": "../../../src/images/picker-arrow.png",
+          }
+        }
         style={
           Array [
             Object {
@@ -371,7 +383,6 @@ exports[`SubmissionPicker renders with a submission 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -399,7 +410,11 @@ exports[`SubmissionPicker renders with a submission 1`] = `
         Apr 26, 2017 at 11:46 AM
       </Text>
       <Image
-        source={1}
+        source={
+          Object {
+            "testUri": "../../../src/images/picker-arrow.png",
+          }
+        }
         style={
           Array [
             Object {
@@ -459,7 +474,6 @@ exports[`SubmissionPicker renders with only one submission history 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
-      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [

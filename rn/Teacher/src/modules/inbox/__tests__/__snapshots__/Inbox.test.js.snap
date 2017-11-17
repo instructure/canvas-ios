@@ -63,7 +63,6 @@ exports[`filters conversations based on course 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -140,7 +139,6 @@ exports[`filters conversations based on course 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -196,7 +194,6 @@ exports[`filters conversations based on course 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -252,7 +249,6 @@ exports[`filters conversations based on course 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -308,7 +304,6 @@ exports[`filters conversations based on course 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -360,7 +355,6 @@ exports[`filters conversations based on course 1`] = `
         accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={1}
         style={
@@ -420,7 +414,6 @@ exports[`filters conversations based on course 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -500,12 +493,12 @@ exports[`filters conversations based on course 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
     refreshing={undefined}
     renderItem={[Function]}
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
     <View>
@@ -612,7 +605,6 @@ exports[`filters conversations based on course 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={1}
                     style={
@@ -644,7 +636,6 @@ exports[`filters conversations based on course 1`] = `
                     <Text
                       accessible={true}
                       allowFontScaling={true}
-                      disabled={false}
                       ellipsizeMode="tail"
                       style={
                         Array [
@@ -674,7 +665,6 @@ exports[`filters conversations based on course 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
@@ -701,7 +691,6 @@ exports[`filters conversations based on course 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
@@ -797,7 +786,6 @@ exports[`refreshed component 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -874,7 +862,6 @@ exports[`refreshed component 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -930,7 +917,6 @@ exports[`refreshed component 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -986,7 +972,6 @@ exports[`refreshed component 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1042,7 +1027,6 @@ exports[`refreshed component 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1094,7 +1078,6 @@ exports[`refreshed component 1`] = `
         accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={1}
         style={
@@ -1156,7 +1139,6 @@ exports[`refreshed component 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1213,7 +1195,6 @@ exports[`refreshed component 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
     refreshControl={
       <RefreshControlMock
         onRefresh={[Function]}
@@ -1226,6 +1207,7 @@ exports[`refreshed component 1`] = `
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
     <RCTRefreshControl />
@@ -1246,7 +1228,11 @@ exports[`refreshed component 1`] = `
           }
         >
           <Image
-            source={1}
+            source={
+              Object {
+                "testUri": "../../../src/images/Mail.png",
+              }
+            }
             style={
               Object {
                 "marginBottom": 36,
@@ -1256,7 +1242,6 @@ exports[`refreshed component 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1284,7 +1269,6 @@ exports[`refreshed component 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1378,7 +1362,6 @@ exports[`renders correctly 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1455,7 +1438,6 @@ exports[`renders correctly 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1511,7 +1493,6 @@ exports[`renders correctly 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1567,7 +1548,6 @@ exports[`renders correctly 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1623,7 +1603,6 @@ exports[`renders correctly 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1675,7 +1654,6 @@ exports[`renders correctly 1`] = `
         accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={1}
         style={
@@ -1737,7 +1715,6 @@ exports[`renders correctly 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1837,12 +1814,12 @@ exports[`renders correctly 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
     refreshing={undefined}
     renderItem={[Function]}
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
     <View>
@@ -1949,7 +1926,6 @@ exports[`renders correctly 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={1}
                     style={
@@ -1981,7 +1957,6 @@ exports[`renders correctly 1`] = `
                     <Text
                       accessible={true}
                       allowFontScaling={true}
-                      disabled={false}
                       ellipsizeMode="tail"
                       style={
                         Array [
@@ -2011,7 +1986,6 @@ exports[`renders correctly 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
@@ -2038,7 +2012,6 @@ exports[`renders correctly 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
@@ -2176,7 +2149,6 @@ exports[`renders correctly 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={1}
                     style={
@@ -2208,7 +2180,6 @@ exports[`renders correctly 1`] = `
                     <Text
                       accessible={true}
                       allowFontScaling={true}
-                      disabled={false}
                       ellipsizeMode="tail"
                       style={
                         Array [
@@ -2238,7 +2209,6 @@ exports[`renders correctly 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
@@ -2265,7 +2235,6 @@ exports[`renders correctly 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
@@ -2361,7 +2330,6 @@ exports[`renders the activity indicator when loading conversations 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -2438,7 +2406,6 @@ exports[`renders the activity indicator when loading conversations 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -2494,7 +2461,6 @@ exports[`renders the activity indicator when loading conversations 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -2550,7 +2516,6 @@ exports[`renders the activity indicator when loading conversations 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -2606,7 +2571,6 @@ exports[`renders the activity indicator when loading conversations 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -2658,7 +2622,6 @@ exports[`renders the activity indicator when loading conversations 1`] = `
         accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={1}
         style={
@@ -2720,7 +2683,6 @@ exports[`renders the activity indicator when loading conversations 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -2833,7 +2795,6 @@ exports[`renders the starred empty state 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -2889,7 +2850,6 @@ exports[`renders the starred empty state 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -2950,7 +2910,6 @@ exports[`renders the starred empty state 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -3027,7 +2986,6 @@ exports[`renders the starred empty state 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -3083,7 +3041,6 @@ exports[`renders the starred empty state 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -3135,7 +3092,6 @@ exports[`renders the starred empty state 1`] = `
         accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={1}
         style={
@@ -3197,7 +3153,6 @@ exports[`renders the starred empty state 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -3254,12 +3209,12 @@ exports[`renders the starred empty state 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
     refreshing={undefined}
     renderItem={[Function]}
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
     <View>
@@ -3279,7 +3234,11 @@ exports[`renders the starred empty state 1`] = `
           }
         >
           <Image
-            source={1}
+            source={
+              Object {
+                "testUri": "../../../src/images/Mail.png",
+              }
+            }
             style={
               Object {
                 "marginBottom": 36,
@@ -3289,7 +3248,6 @@ exports[`renders the starred empty state 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -3317,7 +3275,6 @@ exports[`renders the starred empty state 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -3411,7 +3368,6 @@ exports[`renders with an empty state 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -3488,7 +3444,6 @@ exports[`renders with an empty state 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -3544,7 +3499,6 @@ exports[`renders with an empty state 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -3600,7 +3554,6 @@ exports[`renders with an empty state 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -3656,7 +3609,6 @@ exports[`renders with an empty state 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -3708,7 +3660,6 @@ exports[`renders with an empty state 1`] = `
         accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={1}
         style={
@@ -3770,7 +3721,6 @@ exports[`renders with an empty state 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -3827,12 +3777,12 @@ exports[`renders with an empty state 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
     refreshing={undefined}
     renderItem={[Function]}
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
     <View>
@@ -3852,7 +3802,11 @@ exports[`renders with an empty state 1`] = `
           }
         >
           <Image
-            source={1}
+            source={
+              Object {
+                "testUri": "../../../src/images/Mail.png",
+              }
+            }
             style={
               Object {
                 "marginBottom": 36,
@@ -3862,7 +3816,6 @@ exports[`renders with an empty state 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -3890,7 +3843,6 @@ exports[`renders with an empty state 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [

@@ -122,7 +122,6 @@ exports[`render correctly 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={1}
             style={
@@ -149,7 +148,6 @@ exports[`render correctly 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={1}
             style={
@@ -209,7 +207,11 @@ exports[`render correctly 1`] = `
             tvParallaxProperties={undefined}
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/x-icon.png",
+                }
+              }
             />
           </View>
         </View>
@@ -294,7 +296,6 @@ exports[`render correctly 1`] = `
             <Text
               accessible={false}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -324,7 +325,6 @@ exports[`render correctly 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={1}
             style={
@@ -351,7 +351,6 @@ exports[`render correctly 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={1}
             style={
@@ -411,7 +410,11 @@ exports[`render correctly 1`] = `
             tvParallaxProperties={undefined}
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/x-icon.png",
+                }
+              }
             />
           </View>
         </View>
@@ -496,7 +499,6 @@ exports[`render correctly 1`] = `
             <Text
               accessible={false}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -526,7 +528,6 @@ exports[`render correctly 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={1}
             style={
@@ -553,7 +554,6 @@ exports[`render correctly 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={1}
             style={
@@ -613,7 +613,11 @@ exports[`render correctly 1`] = `
             tvParallaxProperties={undefined}
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/x-icon.png",
+                }
+              }
             />
           </View>
         </View>
@@ -687,7 +691,11 @@ exports[`render correctly 1`] = `
           }
         >
           <Image
-            source={1}
+            source={
+              Object {
+                "testUri": "../../../src/images/Add.png",
+              }
+            }
             style={
               Object {
                 "height": 18,
@@ -700,7 +708,6 @@ exports[`render correctly 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [

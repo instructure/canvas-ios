@@ -27,7 +27,9 @@ exports[`Compose renders 1`] = `
         "accessibilityLabel": "Edit attachments (0)",
         "action": [Function],
         "badge": false,
-        "image": 1,
+        "image": Object {
+          "testUri": "../../../src/images/attachment-large.png",
+        },
         "testID": "compose-message.attach",
       },
     ]
@@ -105,7 +107,6 @@ exports[`Compose renders 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -220,7 +221,6 @@ exports[`Compose renders 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -278,6 +278,7 @@ exports[`Compose renders 1`] = `
           }
         >
           <TextInput
+            allowFontScaling={true}
             editable={true}
             onChangeText={[Function]}
             placeholder="Subject"
@@ -361,7 +362,6 @@ exports[`Compose renders 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -452,6 +452,7 @@ exports[`Compose renders 1`] = `
           }
         >
           <TextInput
+            allowFontScaling={true}
             defaultHeight={54}
             extraHeight={20}
             multiline={true}
@@ -507,7 +508,9 @@ exports[`Compose renders after picking a course 1`] = `
         "accessibilityLabel": "Edit attachments (0)",
         "action": [Function],
         "badge": false,
-        "image": 1,
+        "image": Object {
+          "testUri": "../../../src/images/attachment-large.png",
+        },
         "testID": "compose-message.attach",
       },
     ]
@@ -585,7 +588,6 @@ exports[`Compose renders after picking a course 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -700,7 +702,6 @@ exports[`Compose renders after picking a course 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -781,7 +782,6 @@ exports[`Compose renders after picking a course 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -832,7 +832,11 @@ exports[`Compose renders after picking a course 1`] = `
             }
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/Add.png",
+                }
+              }
               style={
                 Object {
                   "tintColor": "#368BD8",
@@ -851,6 +855,7 @@ exports[`Compose renders after picking a course 1`] = `
           }
         >
           <TextInput
+            allowFontScaling={true}
             editable={true}
             onChangeText={[Function]}
             placeholder="Subject"
@@ -934,7 +939,6 @@ exports[`Compose renders after picking a course 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -1025,6 +1029,7 @@ exports[`Compose renders after picking a course 1`] = `
           }
         >
           <TextInput
+            allowFontScaling={true}
             defaultHeight={54}
             extraHeight={20}
             multiline={true}
@@ -1080,7 +1085,9 @@ exports[`Compose renders reply 1`] = `
         "accessibilityLabel": "Edit attachments (0)",
         "action": [Function],
         "badge": false,
-        "image": 1,
+        "image": Object {
+          "testUri": "../../../src/images/attachment-large.png",
+        },
         "testID": "compose-message.attach",
       },
     ]
@@ -1158,7 +1165,6 @@ exports[`Compose renders reply 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -1273,7 +1279,6 @@ exports[`Compose renders reply 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1335,7 +1340,6 @@ exports[`Compose renders reply 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1386,7 +1390,11 @@ exports[`Compose renders reply 1`] = `
             }
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/Add.png",
+                }
+              }
               style={
                 Object {
                   "tintColor": "#368BD8",
@@ -1405,6 +1413,7 @@ exports[`Compose renders reply 1`] = `
           }
         >
           <TextInput
+            allowFontScaling={true}
             editable={false}
             onChangeText={[Function]}
             placeholder="Subject"
@@ -1488,7 +1497,6 @@ exports[`Compose renders reply 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -1579,6 +1587,7 @@ exports[`Compose renders reply 1`] = `
           }
         >
           <TextInput
+            allowFontScaling={true}
             defaultHeight={54}
             extraHeight={20}
             multiline={true}
@@ -1634,7 +1643,9 @@ exports[`Compose renders with passed in recipients 1`] = `
         "accessibilityLabel": "Edit attachments (0)",
         "action": [Function],
         "badge": false,
-        "image": 1,
+        "image": Object {
+          "testUri": "../../../src/images/attachment-large.png",
+        },
         "testID": "compose-message.attach",
       },
     ]
@@ -1712,7 +1723,6 @@ exports[`Compose renders with passed in recipients 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -1827,7 +1837,6 @@ exports[`Compose renders with passed in recipients 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1885,6 +1894,7 @@ exports[`Compose renders with passed in recipients 1`] = `
           }
         >
           <TextInput
+            allowFontScaling={true}
             editable={true}
             onChangeText={[Function]}
             placeholder="Subject"
@@ -1968,7 +1978,6 @@ exports[`Compose renders with passed in recipients 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -2059,6 +2068,7 @@ exports[`Compose renders with passed in recipients 1`] = `
           }
         >
           <TextInput
+            allowFontScaling={true}
             defaultHeight={54}
             extraHeight={20}
             multiline={true}

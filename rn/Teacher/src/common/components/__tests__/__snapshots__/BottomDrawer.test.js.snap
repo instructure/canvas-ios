@@ -145,7 +145,6 @@ exports[`BottomDrawer renders any children 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
       >
         Yo yo yo

@@ -10,7 +10,9 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
       Object {
         "accessibilityLabel": "Options",
         "action": [Function],
-        "image": 1,
+        "image": Object {
+          "testUri": "../../../src/images/kabob.png",
+        },
         "testID": "discussions.details.edit.button",
       },
     ]
@@ -300,7 +302,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                       accessibilityTraits="header"
                       accessible={true}
                       allowFontScaling={true}
-                      disabled={false}
                       ellipsizeMode="tail"
                       style={
                         Array [
@@ -391,7 +392,11 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                       }
                     >
                       <Image
-                        source={1}
+                        source={
+                          Object {
+                            "testUri": "../../../src/images/assignments/Calendar.png",
+                          }
+                        }
                         style={
                           Object {
                             "height": 19,
@@ -405,7 +410,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                       <Text
                         accessible={true}
                         allowFontScaling={true}
-                        disabled={false}
                         ellipsizeMode="tail"
                         style={
                           Array [
@@ -446,7 +450,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                         <Text
                           accessible={true}
                           allowFontScaling={true}
-                          disabled={false}
                           ellipsizeMode="tail"
                           style={
                             Array [
@@ -470,7 +473,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                           <Text
                             accessible={true}
                             allowFontScaling={true}
-                            disabled={false}
                             ellipsizeMode="tail"
                             style={
                               Array [
@@ -495,7 +497,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                           <Text
                             accessible={true}
                             allowFontScaling={true}
-                            disabled={false}
                             ellipsizeMode="tail"
                             style={
                               Array [
@@ -520,7 +521,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                       <Text
                         accessible={true}
                         allowFontScaling={true}
-                        disabled={false}
                         ellipsizeMode="tail"
                         style={
                           Array [
@@ -544,7 +544,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                         <Text
                           accessible={true}
                           allowFontScaling={true}
-                          disabled={false}
                           ellipsizeMode="tail"
                           style={
                             Array [
@@ -569,7 +568,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                         <Text
                           accessible={true}
                           allowFontScaling={true}
-                          disabled={false}
                           ellipsizeMode="tail"
                           style={
                             Array [
@@ -598,7 +596,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                           <Text
                             accessible={true}
                             allowFontScaling={true}
-                            disabled={false}
                             ellipsizeMode="tail"
                             style={
                               Array [
@@ -622,7 +619,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                             <Text
                               accessible={true}
                               allowFontScaling={true}
-                              disabled={false}
                               ellipsizeMode="tail"
                               style={
                                 Array [
@@ -647,7 +643,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                             <Text
                               accessible={true}
                               allowFontScaling={true}
-                              disabled={false}
                               ellipsizeMode="tail"
                               style={
                                 Array [
@@ -676,7 +671,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                           <Text
                             accessible={true}
                             allowFontScaling={true}
-                            disabled={false}
                             ellipsizeMode="tail"
                             style={
                               Array [
@@ -700,7 +694,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                             <Text
                               accessible={true}
                               allowFontScaling={true}
-                              disabled={false}
                               ellipsizeMode="tail"
                               style={
                                 Array [
@@ -725,7 +718,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                             <Text
                               accessible={true}
                               allowFontScaling={true}
-                              disabled={false}
                               ellipsizeMode="tail"
                               style={
                                 Array [
@@ -842,7 +834,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                       <Text
                         accessible={true}
                         allowFontScaling={true}
-                        disabled={false}
                         ellipsizeMode="tail"
                         style={
                           Array [
@@ -958,7 +949,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -984,7 +974,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -1054,7 +1043,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                     <Text
                       accessible={true}
                       allowFontScaling={true}
-                      disabled={false}
                       ellipsizeMode="tail"
                       style={
                         Array [
@@ -1140,7 +1128,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                       accessibilityTraits="header"
                       accessible={true}
                       allowFontScaling={true}
-                      disabled={false}
                       ellipsizeMode="tail"
                       style={
                         Array [
@@ -1253,7 +1240,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                     accessibilityTraits="header"
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -1279,7 +1265,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -1352,7 +1337,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                         <Text
                           accessible={true}
                           allowFontScaling={true}
-                          disabled={false}
                           ellipsizeMode="tail"
                           style={
                             Array [
@@ -1392,7 +1376,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                     <Text
                       accessible={false}
                       allowFontScaling={true}
-                      disabled={false}
                       ellipsizeMode="tail"
                       style={
                         Array [
@@ -1457,7 +1440,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                         <Text
                           accessible={true}
                           allowFontScaling={true}
-                          disabled={false}
                           ellipsizeMode="tail"
                           style={
                             Array [
@@ -1521,7 +1503,9 @@ exports[`DiscussionDetails renders no replies 1`] = `
       Object {
         "accessibilityLabel": "Options",
         "action": [Function],
-        "image": 1,
+        "image": Object {
+          "testUri": "../../../src/images/kabob.png",
+        },
         "testID": "discussions.details.edit.button",
       },
     ]
@@ -1790,7 +1774,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                       accessibilityTraits="header"
                       accessible={true}
                       allowFontScaling={true}
-                      disabled={false}
                       ellipsizeMode="tail"
                       style={
                         Array [
@@ -1821,7 +1804,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                       <Text
                         accessible={true}
                         allowFontScaling={true}
-                        disabled={false}
                         ellipsizeMode="tail"
                         style={
                           Array [
@@ -1908,7 +1890,11 @@ exports[`DiscussionDetails renders no replies 1`] = `
                       }
                     >
                       <Image
-                        source={1}
+                        source={
+                          Object {
+                            "testUri": "../../../src/images/assignments/Calendar.png",
+                          }
+                        }
                         style={
                           Object {
                             "height": 19,
@@ -1922,7 +1908,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                       <Text
                         accessible={true}
                         allowFontScaling={true}
-                        disabled={false}
                         ellipsizeMode="tail"
                         style={
                           Array [
@@ -1963,7 +1948,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                         <Text
                           accessible={true}
                           allowFontScaling={true}
-                          disabled={false}
                           ellipsizeMode="tail"
                           style={
                             Array [
@@ -1987,7 +1971,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                           <Text
                             accessible={true}
                             allowFontScaling={true}
-                            disabled={false}
                             ellipsizeMode="tail"
                             style={
                               Array [
@@ -2012,7 +1995,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                           <Text
                             accessible={true}
                             allowFontScaling={true}
-                            disabled={false}
                             ellipsizeMode="tail"
                             style={
                               Array [
@@ -2037,7 +2019,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                       <Text
                         accessible={true}
                         allowFontScaling={true}
-                        disabled={false}
                         ellipsizeMode="tail"
                         style={
                           Array [
@@ -2061,7 +2042,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                         <Text
                           accessible={true}
                           allowFontScaling={true}
-                          disabled={false}
                           ellipsizeMode="tail"
                           style={
                             Array [
@@ -2086,7 +2066,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                         <Text
                           accessible={true}
                           allowFontScaling={true}
-                          disabled={false}
                           ellipsizeMode="tail"
                           style={
                             Array [
@@ -2115,7 +2094,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                           <Text
                             accessible={true}
                             allowFontScaling={true}
-                            disabled={false}
                             ellipsizeMode="tail"
                             style={
                               Array [
@@ -2139,7 +2117,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                             <Text
                               accessible={true}
                               allowFontScaling={true}
-                              disabled={false}
                               ellipsizeMode="tail"
                               style={
                                 Array [
@@ -2164,7 +2141,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                             <Text
                               accessible={true}
                               allowFontScaling={true}
-                              disabled={false}
                               ellipsizeMode="tail"
                               style={
                                 Array [
@@ -2193,7 +2169,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                           <Text
                             accessible={true}
                             allowFontScaling={true}
-                            disabled={false}
                             ellipsizeMode="tail"
                             style={
                               Array [
@@ -2217,7 +2192,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                             <Text
                               accessible={true}
                               allowFontScaling={true}
-                              disabled={false}
                               ellipsizeMode="tail"
                               style={
                                 Array [
@@ -2242,7 +2216,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                             <Text
                               accessible={true}
                               allowFontScaling={true}
-                              disabled={false}
                               ellipsizeMode="tail"
                               style={
                                 Array [
@@ -2359,7 +2332,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                       <Text
                         accessible={true}
                         allowFontScaling={true}
-                        disabled={false}
                         ellipsizeMode="tail"
                         style={
                           Array [
@@ -2475,7 +2447,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -2501,7 +2472,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -2571,7 +2541,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                     <Text
                       accessible={true}
                       allowFontScaling={true}
-                      disabled={false}
                       ellipsizeMode="tail"
                       style={
                         Array [
@@ -2619,7 +2588,9 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
       Object {
         "accessibilityLabel": "Options",
         "action": [Function],
-        "image": 1,
+        "image": Object {
+          "testUri": "../../../src/images/kabob.png",
+        },
         "testID": "discussions.details.edit.button",
       },
     ]
@@ -3113,7 +3084,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       accessibilityTraits="header"
                       accessible={true}
                       allowFontScaling={true}
-                      disabled={false}
                       ellipsizeMode="tail"
                       style={
                         Array [
@@ -3144,7 +3114,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       <Text
                         accessible={true}
                         allowFontScaling={true}
-                        disabled={false}
                         ellipsizeMode="tail"
                         style={
                           Array [
@@ -3231,7 +3200,11 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       }
                     >
                       <Image
-                        source={1}
+                        source={
+                          Object {
+                            "testUri": "../../../src/images/assignments/Calendar.png",
+                          }
+                        }
                         style={
                           Object {
                             "height": 19,
@@ -3245,7 +3218,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       <Text
                         accessible={true}
                         allowFontScaling={true}
-                        disabled={false}
                         ellipsizeMode="tail"
                         style={
                           Array [
@@ -3286,7 +3258,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                         <Text
                           accessible={true}
                           allowFontScaling={true}
-                          disabled={false}
                           ellipsizeMode="tail"
                           style={
                             Array [
@@ -3310,7 +3281,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                           <Text
                             accessible={true}
                             allowFontScaling={true}
-                            disabled={false}
                             ellipsizeMode="tail"
                             style={
                               Array [
@@ -3335,7 +3305,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                           <Text
                             accessible={true}
                             allowFontScaling={true}
-                            disabled={false}
                             ellipsizeMode="tail"
                             style={
                               Array [
@@ -3360,7 +3329,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       <Text
                         accessible={true}
                         allowFontScaling={true}
-                        disabled={false}
                         ellipsizeMode="tail"
                         style={
                           Array [
@@ -3384,7 +3352,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                         <Text
                           accessible={true}
                           allowFontScaling={true}
-                          disabled={false}
                           ellipsizeMode="tail"
                           style={
                             Array [
@@ -3409,7 +3376,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                         <Text
                           accessible={true}
                           allowFontScaling={true}
-                          disabled={false}
                           ellipsizeMode="tail"
                           style={
                             Array [
@@ -3438,7 +3404,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                           <Text
                             accessible={true}
                             allowFontScaling={true}
-                            disabled={false}
                             ellipsizeMode="tail"
                             style={
                               Array [
@@ -3462,7 +3427,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                             <Text
                               accessible={true}
                               allowFontScaling={true}
-                              disabled={false}
                               ellipsizeMode="tail"
                               style={
                                 Array [
@@ -3487,7 +3451,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                             <Text
                               accessible={true}
                               allowFontScaling={true}
-                              disabled={false}
                               ellipsizeMode="tail"
                               style={
                                 Array [
@@ -3516,7 +3479,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                           <Text
                             accessible={true}
                             allowFontScaling={true}
-                            disabled={false}
                             ellipsizeMode="tail"
                             style={
                               Array [
@@ -3540,7 +3502,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                             <Text
                               accessible={true}
                               allowFontScaling={true}
-                              disabled={false}
                               ellipsizeMode="tail"
                               style={
                                 Array [
@@ -3565,7 +3526,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                             <Text
                               accessible={true}
                               allowFontScaling={true}
-                              disabled={false}
                               ellipsizeMode="tail"
                               style={
                                 Array [
@@ -3682,7 +3642,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       <Text
                         accessible={true}
                         allowFontScaling={true}
-                        disabled={false}
                         ellipsizeMode="tail"
                         style={
                           Array [
@@ -3798,7 +3757,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -3824,7 +3782,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -3894,7 +3851,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     <Text
                       accessible={true}
                       allowFontScaling={true}
-                      disabled={false}
                       ellipsizeMode="tail"
                       style={
                         Array [
@@ -3999,7 +3955,11 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                         }
                       >
                         <Image
-                          source={1}
+                          source={
+                            Object {
+                              "testUri": "../../../src/images/Back-icon.png",
+                            }
+                          }
                           style={
                             Object {
                               "tintColor": "#008EE2",
@@ -4009,7 +3969,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                         <Text
                           accessible={true}
                           allowFontScaling={true}
-                          disabled={false}
                           ellipsizeMode="tail"
                           style={
                             Array [
@@ -4128,7 +4087,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     accessibilityTraits="header"
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -4154,7 +4112,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -4227,7 +4184,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                         <Text
                           accessible={true}
                           allowFontScaling={true}
-                          disabled={false}
                           ellipsizeMode="tail"
                           style={
                             Array [
@@ -4267,7 +4223,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     <Text
                       accessible={false}
                       allowFontScaling={true}
-                      disabled={false}
                       ellipsizeMode="tail"
                       style={
                         Array [
@@ -4332,7 +4287,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                         <Text
                           accessible={true}
                           allowFontScaling={true}
-                          disabled={false}
                           ellipsizeMode="tail"
                           style={
                             Array [
@@ -4476,7 +4430,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     accessibilityTraits="header"
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -4502,7 +4455,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -4575,7 +4527,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                         <Text
                           accessible={true}
                           allowFontScaling={true}
-                          disabled={false}
                           ellipsizeMode="tail"
                           style={
                             Array [
@@ -4615,7 +4566,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     <Text
                       accessible={false}
                       allowFontScaling={true}
-                      disabled={false}
                       ellipsizeMode="tail"
                       style={
                         Array [
@@ -4680,7 +4630,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                         <Text
                           accessible={true}
                           allowFontScaling={true}
-                          disabled={false}
                           ellipsizeMode="tail"
                           style={
                             Array [
@@ -4744,7 +4693,9 @@ exports[`DiscussionDetails renders with no discussion 1`] = `
       Object {
         "accessibilityLabel": "Options",
         "action": [Function],
-        "image": 1,
+        "image": Object {
+          "testUri": "../../../src/images/kabob.png",
+        },
         "testID": "discussions.details.edit.button",
       },
     ]
@@ -4812,7 +4763,9 @@ exports[`DiscussionDetails renders with replies 1`] = `
       Object {
         "accessibilityLabel": "Options",
         "action": [Function],
-        "image": 1,
+        "image": Object {
+          "testUri": "../../../src/images/kabob.png",
+        },
         "testID": "discussions.details.edit.button",
       },
     ]
@@ -5152,7 +5105,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                       accessibilityTraits="header"
                       accessible={true}
                       allowFontScaling={true}
-                      disabled={false}
                       ellipsizeMode="tail"
                       style={
                         Array [
@@ -5183,7 +5135,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                       <Text
                         accessible={true}
                         allowFontScaling={true}
-                        disabled={false}
                         ellipsizeMode="tail"
                         style={
                           Array [
@@ -5270,7 +5221,11 @@ exports[`DiscussionDetails renders with replies 1`] = `
                       }
                     >
                       <Image
-                        source={1}
+                        source={
+                          Object {
+                            "testUri": "../../../src/images/assignments/Calendar.png",
+                          }
+                        }
                         style={
                           Object {
                             "height": 19,
@@ -5284,7 +5239,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                       <Text
                         accessible={true}
                         allowFontScaling={true}
-                        disabled={false}
                         ellipsizeMode="tail"
                         style={
                           Array [
@@ -5325,7 +5279,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                         <Text
                           accessible={true}
                           allowFontScaling={true}
-                          disabled={false}
                           ellipsizeMode="tail"
                           style={
                             Array [
@@ -5349,7 +5302,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                           <Text
                             accessible={true}
                             allowFontScaling={true}
-                            disabled={false}
                             ellipsizeMode="tail"
                             style={
                               Array [
@@ -5374,7 +5326,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                           <Text
                             accessible={true}
                             allowFontScaling={true}
-                            disabled={false}
                             ellipsizeMode="tail"
                             style={
                               Array [
@@ -5399,7 +5350,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                       <Text
                         accessible={true}
                         allowFontScaling={true}
-                        disabled={false}
                         ellipsizeMode="tail"
                         style={
                           Array [
@@ -5423,7 +5373,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                         <Text
                           accessible={true}
                           allowFontScaling={true}
-                          disabled={false}
                           ellipsizeMode="tail"
                           style={
                             Array [
@@ -5448,7 +5397,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                         <Text
                           accessible={true}
                           allowFontScaling={true}
-                          disabled={false}
                           ellipsizeMode="tail"
                           style={
                             Array [
@@ -5477,7 +5425,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                           <Text
                             accessible={true}
                             allowFontScaling={true}
-                            disabled={false}
                             ellipsizeMode="tail"
                             style={
                               Array [
@@ -5501,7 +5448,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                             <Text
                               accessible={true}
                               allowFontScaling={true}
-                              disabled={false}
                               ellipsizeMode="tail"
                               style={
                                 Array [
@@ -5526,7 +5472,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                             <Text
                               accessible={true}
                               allowFontScaling={true}
-                              disabled={false}
                               ellipsizeMode="tail"
                               style={
                                 Array [
@@ -5555,7 +5500,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                           <Text
                             accessible={true}
                             allowFontScaling={true}
-                            disabled={false}
                             ellipsizeMode="tail"
                             style={
                               Array [
@@ -5579,7 +5523,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                             <Text
                               accessible={true}
                               allowFontScaling={true}
-                              disabled={false}
                               ellipsizeMode="tail"
                               style={
                                 Array [
@@ -5604,7 +5547,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                             <Text
                               accessible={true}
                               allowFontScaling={true}
-                              disabled={false}
                               ellipsizeMode="tail"
                               style={
                                 Array [
@@ -5721,7 +5663,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                       <Text
                         accessible={true}
                         allowFontScaling={true}
-                        disabled={false}
                         ellipsizeMode="tail"
                         style={
                           Array [
@@ -5837,7 +5778,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -5863,7 +5803,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -5933,7 +5872,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                     <Text
                       accessible={true}
                       allowFontScaling={true}
-                      disabled={false}
                       ellipsizeMode="tail"
                       style={
                         Array [
@@ -6019,7 +5957,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                       accessibilityTraits="header"
                       accessible={true}
                       allowFontScaling={true}
-                      disabled={false}
                       ellipsizeMode="tail"
                       style={
                         Array [
@@ -6132,7 +6069,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                     accessibilityTraits="header"
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -6158,7 +6094,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -6231,7 +6166,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                         <Text
                           accessible={true}
                           allowFontScaling={true}
-                          disabled={false}
                           ellipsizeMode="tail"
                           style={
                             Array [
@@ -6271,7 +6205,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                     <Text
                       accessible={false}
                       allowFontScaling={true}
-                      disabled={false}
                       ellipsizeMode="tail"
                       style={
                         Array [
@@ -6336,7 +6269,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                         <Text
                           accessible={true}
                           allowFontScaling={true}
-                          disabled={false}
                           ellipsizeMode="tail"
                           style={
                             Array [
@@ -6400,7 +6332,9 @@ exports[`DiscussionDetails renders without a discussion 1`] = `
       Object {
         "accessibilityLabel": "Options",
         "action": [Function],
-        "image": 1,
+        "image": Object {
+          "testUri": "../../../src/images/kabob.png",
+        },
         "testID": "discussions.details.edit.button",
       },
     ]

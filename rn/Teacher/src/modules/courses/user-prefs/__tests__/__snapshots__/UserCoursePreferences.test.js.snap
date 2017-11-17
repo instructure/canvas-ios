@@ -92,7 +92,6 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -194,7 +193,6 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -217,6 +215,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
               Nickname
             </Text>
             <TextInput
+              allowFontScaling={true}
               onChangeText={[Function]}
               style={
                 Array [
@@ -259,7 +258,6 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -286,7 +284,6 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -865,7 +862,6 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -967,7 +963,6 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -990,6 +985,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
               Nickname
             </Text>
             <TextInput
+              allowFontScaling={true}
               onChangeText={[Function]}
               style={
                 Array [
@@ -1032,7 +1028,6 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1059,7 +1054,6 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1667,7 +1661,6 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -1769,7 +1762,6 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1792,6 +1784,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
               Nickname
             </Text>
             <TextInput
+              allowFontScaling={true}
               onChangeText={[Function]}
               style={
                 Array [
@@ -1834,7 +1827,6 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1861,7 +1853,6 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -2643,7 +2634,6 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -2745,7 +2735,6 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -2768,6 +2757,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
               Nickname
             </Text>
             <TextInput
+              allowFontScaling={true}
               onChangeText={[Function]}
               style={
                 Array [
@@ -2810,7 +2800,6 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -2837,7 +2826,6 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -3619,7 +3607,6 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -3721,7 +3708,6 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -3744,6 +3730,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
               Nickname
             </Text>
             <TextInput
+              allowFontScaling={true}
               onChangeText={[Function]}
               style={
                 Array [
@@ -3786,7 +3773,6 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -3813,7 +3799,6 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -4595,7 +4580,6 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -4697,7 +4681,6 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -4720,6 +4703,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
               Nickname
             </Text>
             <TextInput
+              allowFontScaling={true}
               onChangeText={[Function]}
               style={
                 Array [
@@ -4762,7 +4746,6 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -4789,7 +4772,6 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -5571,7 +5553,6 @@ exports[`UserCoursePreferences renders 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -5689,7 +5670,6 @@ exports[`UserCoursePreferences renders 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -5712,6 +5692,7 @@ exports[`UserCoursePreferences renders 1`] = `
               Nickname
             </Text>
             <TextInput
+              allowFontScaling={true}
               onChangeText={[Function]}
               style={
                 Array [
@@ -5754,7 +5735,6 @@ exports[`UserCoursePreferences renders 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -5781,7 +5761,6 @@ exports[`UserCoursePreferences renders 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -6563,7 +6542,6 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -6665,7 +6643,6 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -6688,6 +6665,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
               Nickname
             </Text>
             <TextInput
+              allowFontScaling={true}
               onChangeText={[Function]}
               style={
                 Array [
@@ -6730,7 +6708,6 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -6757,7 +6734,6 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -7539,7 +7515,6 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -7641,7 +7616,6 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -7664,6 +7638,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
               Nickname
             </Text>
             <TextInput
+              allowFontScaling={true}
               onChangeText={[Function]}
               style={
                 Array [
@@ -7706,7 +7681,6 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -7733,7 +7707,6 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [

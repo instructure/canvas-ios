@@ -40,7 +40,9 @@ exports[`AnnouncementEdit renders 1`] = `
         "accessibilityLabel": "Add attachment",
         "action": [Function],
         "badge": null,
-        "image": 1,
+        "image": Object {
+          "testUri": "../../../src/images/attachment-large.png",
+        },
         "testID": "announcements.edit.attachment-btn",
       },
     ]
@@ -118,7 +120,6 @@ exports[`AnnouncementEdit renders 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -195,7 +196,6 @@ exports[`AnnouncementEdit renders 1`] = `
           accessibilityTraits="header"
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -270,6 +270,7 @@ exports[`AnnouncementEdit renders 1`] = `
               }
             >
               <TextInput
+                allowFontScaling={true}
                 defaultValue="Cursed Hollow"
                 keyboardType={undefined}
                 onChangeText={[Function]}
@@ -292,7 +293,6 @@ exports[`AnnouncementEdit renders 1`] = `
           accessibilityTraits="header"
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -354,7 +354,6 @@ exports[`AnnouncementEdit renders 1`] = `
           accessibilityTraits="header"
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -431,7 +430,6 @@ exports[`AnnouncementEdit renders 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -540,7 +538,6 @@ exports[`AnnouncementEdit renders 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -627,7 +624,9 @@ exports[`AnnouncementEdit updates with new props 1`] = `
         "accessibilityLabel": "Add attachment",
         "action": [Function],
         "badge": null,
-        "image": 1,
+        "image": Object {
+          "testUri": "../../../src/images/attachment-large.png",
+        },
         "testID": "announcements.edit.attachment-btn",
       },
     ]
@@ -705,7 +704,6 @@ exports[`AnnouncementEdit updates with new props 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -782,7 +780,6 @@ exports[`AnnouncementEdit updates with new props 1`] = `
           accessibilityTraits="header"
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -857,6 +854,7 @@ exports[`AnnouncementEdit updates with new props 1`] = `
               }
             >
               <TextInput
+                allowFontScaling={true}
                 defaultValue="Cursed Hollow"
                 keyboardType={undefined}
                 onChangeText={[Function]}
@@ -879,7 +877,6 @@ exports[`AnnouncementEdit updates with new props 1`] = `
           accessibilityTraits="header"
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -941,7 +938,6 @@ exports[`AnnouncementEdit updates with new props 1`] = `
           accessibilityTraits="header"
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -1018,7 +1014,6 @@ exports[`AnnouncementEdit updates with new props 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -1127,7 +1122,6 @@ exports[`AnnouncementEdit updates with new props 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={

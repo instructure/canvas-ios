@@ -5,7 +5,6 @@ exports[`renders heading1 correctly 1`] = `
   accessibilityTraits="header"
   accessible={true}
   allowFontScaling={true}
-  disabled={false}
   ellipsizeMode="tail"
   style={
     Array [
@@ -27,7 +26,6 @@ exports[`renders heading2 correctly 1`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
-  disabled={false}
   ellipsizeMode="tail"
   style={
     Array [
@@ -49,7 +47,6 @@ exports[`renders modalActivityIndicatorAlertText correctly 1`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
-  disabled={false}
   ellipsizeMode="tail"
   style={
     Array [
@@ -71,7 +68,6 @@ exports[`renders paragraph correctly 1`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
-  disabled={false}
   ellipsizeMode="tail"
   style={
     Array [
@@ -100,7 +96,6 @@ exports[`renders separated correctly 1`] = `
   <Text
     accessible={true}
     allowFontScaling={true}
-    disabled={false}
     ellipsizeMode="tail"
     separated={
       Array [
@@ -131,7 +126,6 @@ exports[`renders separated correctly 1`] = `
   <Text
     accessible={true}
     allowFontScaling={true}
-    disabled={false}
     ellipsizeMode="tail"
     style={
       Array [
@@ -161,7 +155,6 @@ exports[`renders separated correctly 1`] = `
   <Text
     accessible={true}
     allowFontScaling={true}
-    disabled={false}
     ellipsizeMode="tail"
     separated={
       Array [
@@ -192,7 +185,6 @@ exports[`renders separated correctly 1`] = `
   <Text
     accessible={true}
     allowFontScaling={true}
-    disabled={false}
     ellipsizeMode="tail"
     style={
       Array [
@@ -222,7 +214,6 @@ exports[`renders separated correctly 1`] = `
   <Text
     accessible={true}
     allowFontScaling={true}
-    disabled={false}
     ellipsizeMode="tail"
     separated={
       Array [
@@ -264,7 +255,6 @@ exports[`renders separated with one item 1`] = `
   <Text
     accessible={true}
     allowFontScaling={true}
-    disabled={false}
     ellipsizeMode="tail"
     separated={
       Array [
@@ -297,7 +287,6 @@ exports[`renders text correctly 1`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
-  disabled={false}
   ellipsizeMode="tail"
   style={
     Array [
@@ -321,7 +310,6 @@ exports[`renders text with fontWeight bold 1`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
-  disabled={false}
   ellipsizeMode="tail"
   style={
     Array [
@@ -347,7 +335,6 @@ exports[`renders text with fontWeight semibold 1`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
-  disabled={false}
   ellipsizeMode="tail"
   style={
     Array [
@@ -371,6 +358,7 @@ exports[`renders text with fontWeight semibold 1`] = `
 
 exports[`renders textInput correctly 1`] = `
 <TextInput
+  allowFontScaling={true}
   style={
     Array [
       Object {

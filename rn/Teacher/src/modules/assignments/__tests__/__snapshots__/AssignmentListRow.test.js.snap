@@ -86,7 +86,11 @@ exports[`renders correctly 1`] = `
             }
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/course/Assignment.png",
+                }
+              }
               style={
                 Array [
                   Object {
@@ -114,7 +118,11 @@ exports[`renders correctly 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/Unpublished.png",
+                  }
+                }
                 style={
                   Object {
                     "height": 12,
@@ -138,7 +146,6 @@ exports[`renders correctly 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -167,7 +174,6 @@ exports[`renders correctly 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -325,7 +331,11 @@ exports[`renders correctly assignment icon 1`] = `
             }
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/course/Assignment.png",
+                }
+              }
               style={
                 Array [
                   Object {
@@ -353,7 +363,11 @@ exports[`renders correctly assignment icon 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/Unpublished.png",
+                  }
+                }
                 style={
                   Object {
                     "height": 12,
@@ -377,7 +391,6 @@ exports[`renders correctly assignment icon 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -406,7 +419,6 @@ exports[`renders correctly assignment icon 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -564,7 +576,11 @@ exports[`renders correctly discussion icon 1`] = `
             }
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/course/Discussions.png",
+                }
+              }
               style={
                 Array [
                   Object {
@@ -592,7 +608,11 @@ exports[`renders correctly discussion icon 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/Unpublished.png",
+                  }
+                }
                 style={
                   Object {
                     "height": 12,
@@ -616,7 +636,6 @@ exports[`renders correctly discussion icon 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -645,7 +664,6 @@ exports[`renders correctly discussion icon 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -803,7 +821,11 @@ exports[`renders correctly not published icon 1`] = `
             }
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/course/Assignment.png",
+                }
+              }
               style={
                 Array [
                   Object {
@@ -831,7 +853,11 @@ exports[`renders correctly not published icon 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/Unpublished.png",
+                  }
+                }
                 style={
                   Object {
                     "height": 12,
@@ -855,7 +881,6 @@ exports[`renders correctly not published icon 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -884,7 +909,6 @@ exports[`renders correctly not published icon 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1042,7 +1066,11 @@ exports[`renders correctly published icon 1`] = `
             }
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/course/Assignment.png",
+                }
+              }
               style={
                 Array [
                   Object {
@@ -1070,7 +1098,11 @@ exports[`renders correctly published icon 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/Published.png",
+                  }
+                }
                 style={
                   Object {
                     "height": 12,
@@ -1094,7 +1126,6 @@ exports[`renders correctly published icon 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -1123,7 +1154,6 @@ exports[`renders correctly published icon 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1292,7 +1322,11 @@ exports[`renders correctly quiz icon 1`] = `
             }
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/course/Quiz.png",
+                }
+              }
               style={
                 Array [
                   Object {
@@ -1320,7 +1354,11 @@ exports[`renders correctly quiz icon 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/Unpublished.png",
+                  }
+                }
                 style={
                   Object {
                     "height": 12,
@@ -1344,7 +1382,6 @@ exports[`renders correctly quiz icon 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -1373,7 +1410,6 @@ exports[`renders correctly quiz icon 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1531,7 +1567,11 @@ exports[`renders correctly with closed due dates 1`] = `
             }
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/course/Assignment.png",
+                }
+              }
               style={
                 Array [
                   Object {
@@ -1559,7 +1599,11 @@ exports[`renders correctly with closed due dates 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/Unpublished.png",
+                  }
+                }
                 style={
                   Object {
                     "height": 12,
@@ -1583,7 +1627,6 @@ exports[`renders correctly with closed due dates 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -1612,7 +1655,6 @@ exports[`renders correctly with closed due dates 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1770,7 +1812,11 @@ exports[`renders correctly with needs_grading_count 1`] = `
             }
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/course/Assignment.png",
+                }
+              }
               style={
                 Array [
                   Object {
@@ -1798,7 +1844,11 @@ exports[`renders correctly with needs_grading_count 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/Unpublished.png",
+                  }
+                }
                 style={
                   Object {
                     "height": 12,
@@ -1822,7 +1872,6 @@ exports[`renders correctly with needs_grading_count 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -1851,7 +1900,6 @@ exports[`renders correctly with needs_grading_count 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1879,7 +1927,6 @@ exports[`renders correctly with needs_grading_count 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -2047,7 +2094,11 @@ exports[`renders correctly with open due dates 1`] = `
             }
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/course/Assignment.png",
+                }
+              }
               style={
                 Array [
                   Object {
@@ -2075,7 +2126,11 @@ exports[`renders correctly with open due dates 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/Unpublished.png",
+                  }
+                }
                 style={
                   Object {
                     "height": 12,
@@ -2099,7 +2154,6 @@ exports[`renders correctly with open due dates 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -2128,7 +2182,6 @@ exports[`renders correctly with open due dates 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -2286,7 +2339,11 @@ exports[`renders correctly with selected props 1`] = `
             }
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/course/Assignment.png",
+                }
+              }
               style={
                 Array [
                   Object {
@@ -2314,7 +2371,11 @@ exports[`renders correctly with selected props 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/Unpublished.png",
+                  }
+                }
                 style={
                   Object {
                     "height": 12,
@@ -2338,7 +2399,6 @@ exports[`renders correctly with selected props 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -2367,7 +2427,6 @@ exports[`renders correctly with selected props 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [

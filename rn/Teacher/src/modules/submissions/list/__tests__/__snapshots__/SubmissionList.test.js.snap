@@ -35,7 +35,6 @@ exports[`SubmissionList loaded 1`] = `
         accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={1}
         style={
@@ -96,7 +95,6 @@ exports[`SubmissionList loaded 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -191,7 +189,6 @@ exports[`SubmissionList loaded 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
     refreshControl={
       <RefreshControlMock
         onRefresh={[Function]}
@@ -205,6 +202,7 @@ exports[`SubmissionList loaded 1`] = `
     stickyHeaderIndices={Array []}
     testID="submission-list"
     updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
     <RCTRefreshControl />
@@ -344,7 +342,6 @@ exports[`SubmissionList loaded 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
@@ -373,7 +370,6 @@ exports[`SubmissionList loaded 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -572,7 +568,6 @@ exports[`SubmissionList loaded 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
@@ -601,7 +596,6 @@ exports[`SubmissionList loaded 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -634,7 +628,6 @@ exports[`SubmissionList loaded 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -832,7 +825,6 @@ exports[`SubmissionList loaded 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
@@ -861,7 +853,6 @@ exports[`SubmissionList loaded 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -894,7 +885,6 @@ exports[`SubmissionList loaded 1`] = `
                   accessible={true}
                   allowFontScaling={true}
                   color="#368BD8"
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -1106,7 +1096,6 @@ exports[`SubmissionList loaded 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
@@ -1135,7 +1124,6 @@ exports[`SubmissionList loaded 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -1168,7 +1156,6 @@ exports[`SubmissionList loaded 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -1276,7 +1263,6 @@ exports[`SubmissionList renders correctly with empty list 1`] = `
         accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={1}
         style={
@@ -1337,7 +1323,6 @@ exports[`SubmissionList renders correctly with empty list 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -1397,7 +1382,6 @@ exports[`SubmissionList renders correctly with empty list 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
     refreshControl={
       <RefreshControlMock
         onRefresh={[Function]}
@@ -1411,6 +1395,7 @@ exports[`SubmissionList renders correctly with empty list 1`] = `
     stickyHeaderIndices={Array []}
     testID="submission-list"
     updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
     <RCTRefreshControl />
@@ -1432,7 +1417,6 @@ exports[`SubmissionList renders correctly with empty list 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1508,7 +1492,6 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
         accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={1}
         style={
@@ -1569,7 +1552,6 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -1657,7 +1639,6 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
     refreshControl={
       <RefreshControlMock
         onRefresh={[Function]}
@@ -1671,6 +1652,7 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
     stickyHeaderIndices={Array []}
     testID="submission-list"
     updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
     <RCTRefreshControl />
@@ -1810,7 +1792,6 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
@@ -1839,7 +1820,6 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -1872,7 +1852,6 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -2070,7 +2049,6 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
@@ -2099,7 +2077,6 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -2132,7 +2109,6 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -2330,7 +2306,6 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
@@ -2359,7 +2334,6 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -2392,7 +2366,6 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -2500,7 +2473,6 @@ exports[`SubmissionList renders correctly with not_submitted filter 1`] = `
         accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={1}
         style={
@@ -2561,7 +2533,6 @@ exports[`SubmissionList renders correctly with not_submitted filter 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -2632,7 +2603,6 @@ exports[`SubmissionList renders correctly with not_submitted filter 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
     refreshControl={
       <RefreshControlMock
         onRefresh={[Function]}
@@ -2646,6 +2616,7 @@ exports[`SubmissionList renders correctly with not_submitted filter 1`] = `
     stickyHeaderIndices={Array []}
     testID="submission-list"
     updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
     <RCTRefreshControl />
@@ -2785,7 +2756,6 @@ exports[`SubmissionList renders correctly with not_submitted filter 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
@@ -2814,7 +2784,6 @@ exports[`SubmissionList renders correctly with not_submitted filter 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -2923,7 +2892,6 @@ exports[`SubmissionList renders correctly with ungraded filter 1`] = `
         accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={1}
         style={
@@ -2984,7 +2952,6 @@ exports[`SubmissionList renders correctly with ungraded filter 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -3055,7 +3022,6 @@ exports[`SubmissionList renders correctly with ungraded filter 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
     refreshControl={
       <RefreshControlMock
         onRefresh={[Function]}
@@ -3069,6 +3035,7 @@ exports[`SubmissionList renders correctly with ungraded filter 1`] = `
     stickyHeaderIndices={Array []}
     testID="submission-list"
     updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
     <RCTRefreshControl />
@@ -3208,7 +3175,6 @@ exports[`SubmissionList renders correctly with ungraded filter 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
@@ -3237,7 +3203,6 @@ exports[`SubmissionList renders correctly with ungraded filter 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -3270,7 +3235,6 @@ exports[`SubmissionList renders correctly with ungraded filter 1`] = `
                   accessible={true}
                   allowFontScaling={true}
                   color="#368BD8"
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [

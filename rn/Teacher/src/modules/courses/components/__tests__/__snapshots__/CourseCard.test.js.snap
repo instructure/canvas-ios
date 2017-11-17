@@ -91,7 +91,11 @@ exports[`renders 1`] = `
         underlayColor="#ffffff00"
       >
         <Image
-          source={1}
+          source={
+            Object {
+              "testUri": "../../../src/images/kabob.png",
+            }
+          }
           style={
             Object {
               "height": 18,
@@ -116,7 +120,6 @@ exports[`renders 1`] = `
       <Text
         accessible={false}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={2}
         style={
@@ -144,7 +147,6 @@ exports[`renders 1`] = `
       <Text
         accessible={false}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={1}
         style={
@@ -254,7 +256,11 @@ exports[`renders with empty image url 1`] = `
         underlayColor="#ffffff00"
       >
         <Image
-          source={1}
+          source={
+            Object {
+              "testUri": "../../../src/images/kabob.png",
+            }
+          }
           style={
             Object {
               "height": 18,
@@ -279,7 +285,6 @@ exports[`renders with empty image url 1`] = `
       <Text
         accessible={false}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={2}
         style={
@@ -307,7 +312,6 @@ exports[`renders with empty image url 1`] = `
       <Text
         accessible={false}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={1}
         style={
@@ -429,7 +433,11 @@ exports[`renders with image url 1`] = `
         underlayColor="#ffffff00"
       >
         <Image
-          source={1}
+          source={
+            Object {
+              "testUri": "../../../src/images/kabob.png",
+            }
+          }
           style={
             Object {
               "height": 18,
@@ -454,7 +462,6 @@ exports[`renders with image url 1`] = `
       <Text
         accessible={false}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={2}
         style={
@@ -482,7 +489,6 @@ exports[`renders with image url 1`] = `
       <Text
         accessible={false}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={1}
         style={
@@ -592,7 +598,11 @@ exports[`renders without image url 1`] = `
         underlayColor="#ffffff00"
       >
         <Image
-          source={1}
+          source={
+            Object {
+              "testUri": "../../../src/images/kabob.png",
+            }
+          }
           style={
             Object {
               "height": 18,
@@ -617,7 +627,6 @@ exports[`renders without image url 1`] = `
       <Text
         accessible={false}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={2}
         style={
@@ -645,7 +654,6 @@ exports[`renders without image url 1`] = `
       <Text
         accessible={false}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={1}
         style={

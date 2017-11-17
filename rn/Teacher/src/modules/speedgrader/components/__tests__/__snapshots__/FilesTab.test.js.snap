@@ -34,12 +34,12 @@ exports[`SpeedGraderFilesTab ignores attachments for URL Submissions 1`] = `
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
       onScrollEndDrag={[Function]}
-      onViewableItemsChanged={undefined}
       renderItem={[Function]}
       scrollEventThrottle={50}
       stickyHeaderIndices={Array []}
       testID="speedgrader.files.list"
       updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
       windowSize={21}
     >
       <View>
@@ -76,7 +76,11 @@ exports[`SpeedGraderFilesTab ignores attachments for URL Submissions 1`] = `
                   }
                 >
                   <Image
-                    source={1}
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/speedgrader/page.png",
+                      }
+                    }
                     style={
                       Object {
                         "resizeMode": "contain",
@@ -98,7 +102,6 @@ exports[`SpeedGraderFilesTab ignores attachments for URL Submissions 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -174,12 +177,12 @@ exports[`SpeedGraderFilesTab renders a selected 0 index item 1`] = `
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
       onScrollEndDrag={[Function]}
-      onViewableItemsChanged={undefined}
       renderItem={[Function]}
       scrollEventThrottle={50}
       stickyHeaderIndices={Array []}
       testID="speedgrader.files.list"
       updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
       windowSize={21}
     >
       <View>
@@ -216,7 +219,11 @@ exports[`SpeedGraderFilesTab renders a selected 0 index item 1`] = `
                   }
                 >
                   <Image
-                    source={1}
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/speedgrader/page.png",
+                      }
+                    }
                     style={
                       Object {
                         "resizeMode": "contain",
@@ -238,7 +245,6 @@ exports[`SpeedGraderFilesTab renders a selected 0 index item 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -271,7 +277,11 @@ exports[`SpeedGraderFilesTab renders a selected 0 index item 1`] = `
                   }
                 >
                   <Image
-                    source={1}
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/check-white.png",
+                      }
+                    }
                     style={
                       Object {
                         "height": 10,
@@ -350,12 +360,12 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
       onScrollEndDrag={[Function]}
-      onViewableItemsChanged={undefined}
       renderItem={[Function]}
       scrollEventThrottle={50}
       stickyHeaderIndices={Array []}
       testID="speedgrader.files.list"
       updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
       windowSize={21}
     >
       <View>
@@ -392,7 +402,11 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
                   }
                 >
                   <Image
-                    source={1}
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/speedgrader/page.png",
+                      }
+                    }
                     style={
                       Object {
                         "resizeMode": "contain",
@@ -414,7 +428,6 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -508,7 +521,6 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -541,7 +553,11 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
                   }
                 >
                   <Image
-                    source={1}
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/check-white.png",
+                      }
+                    }
                     style={
                       Object {
                         "height": 10,
@@ -589,7 +605,11 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
                   }
                 >
                   <Image
-                    source={1}
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/speedgrader/icon_video_clip.png",
+                      }
+                    }
                     style={
                       Object {
                         "resizeMode": "contain",
@@ -611,7 +631,6 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -680,7 +699,11 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
                   }
                 >
                   <Image
-                    source={1}
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/speedgrader/icon_audio.png",
+                      }
+                    }
                     style={
                       Object {
                         "resizeMode": "contain",
@@ -702,7 +725,6 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -771,7 +793,11 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
                   }
                 >
                   <Image
-                    source={1}
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/speedgrader/pdf-icon.png",
+                      }
+                    }
                     style={
                       Object {
                         "resizeMode": "contain",
@@ -793,7 +819,6 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -869,12 +894,12 @@ exports[`SpeedGraderFilesTab renders with a submission 1`] = `
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
       onScrollEndDrag={[Function]}
-      onViewableItemsChanged={undefined}
       renderItem={[Function]}
       scrollEventThrottle={50}
       stickyHeaderIndices={Array []}
       testID="speedgrader.files.list"
       updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
       windowSize={21}
     >
       <View>
@@ -911,7 +936,11 @@ exports[`SpeedGraderFilesTab renders with a submission 1`] = `
                   }
                 >
                   <Image
-                    source={1}
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/speedgrader/page.png",
+                      }
+                    }
                     style={
                       Object {
                         "resizeMode": "contain",
@@ -933,7 +962,6 @@ exports[`SpeedGraderFilesTab renders with a submission 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -1009,12 +1037,12 @@ exports[`SpeedGraderFilesTab renders without a submission 1`] = `
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
       onScrollEndDrag={[Function]}
-      onViewableItemsChanged={undefined}
       renderItem={[Function]}
       scrollEventThrottle={50}
       stickyHeaderIndices={Array []}
       testID="speedgrader.files.list"
       updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
       windowSize={21}
     >
       <View>
@@ -1051,7 +1079,11 @@ exports[`SpeedGraderFilesTab renders without a submission 1`] = `
                   }
                 >
                   <Image
-                    source={1}
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/speedgrader/page.png",
+                      }
+                    }
                     style={
                       Object {
                         "resizeMode": "contain",
@@ -1073,7 +1105,6 @@ exports[`SpeedGraderFilesTab renders without a submission 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [

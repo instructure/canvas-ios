@@ -62,7 +62,6 @@ exports[`QuizzesList renders 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -290,7 +289,6 @@ exports[`QuizzesList renders in correct order 1`] = `
             accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -385,7 +383,11 @@ exports[`QuizzesList renders in correct order 1`] = `
                     }
                   >
                     <Image
-                      source={1}
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/course/Quiz.png",
+                        }
+                      }
                       style={
                         Array [
                           Object {
@@ -413,7 +415,11 @@ exports[`QuizzesList renders in correct order 1`] = `
                       }
                     >
                       <Image
-                        source={1}
+                        source={
+                          Object {
+                            "testUri": "../../../src/images/Published.png",
+                          }
+                        }
                         style={
                           Object {
                             "height": 12,
@@ -437,7 +443,6 @@ exports[`QuizzesList renders in correct order 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={2}
                     style={
@@ -473,7 +478,6 @@ exports[`QuizzesList renders in correct order 1`] = `
                     <Text
                       accessible={true}
                       allowFontScaling={true}
-                      disabled={false}
                       ellipsizeMode="tail"
                       separated={
                         Array [
@@ -521,7 +525,6 @@ exports[`QuizzesList renders in correct order 1`] = `
                       <Text
                         accessible={true}
                         allowFontScaling={true}
-                        disabled={false}
                         ellipsizeMode="tail"
                         separated={
                           Array [
@@ -551,7 +554,6 @@ exports[`QuizzesList renders in correct order 1`] = `
                       <Text
                         accessible={true}
                         allowFontScaling={true}
-                        disabled={false}
                         ellipsizeMode="tail"
                         style={
                           Array [
@@ -581,7 +583,6 @@ exports[`QuizzesList renders in correct order 1`] = `
                       <Text
                         accessible={true}
                         allowFontScaling={true}
-                        disabled={false}
                         ellipsizeMode="tail"
                         separated={
                           Array [
@@ -736,7 +737,11 @@ exports[`QuizzesList renders in correct order 1`] = `
                     }
                   >
                     <Image
-                      source={1}
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/course/Quiz.png",
+                        }
+                      }
                       style={
                         Array [
                           Object {
@@ -764,7 +769,11 @@ exports[`QuizzesList renders in correct order 1`] = `
                       }
                     >
                       <Image
-                        source={1}
+                        source={
+                          Object {
+                            "testUri": "../../../src/images/Published.png",
+                          }
+                        }
                         style={
                           Object {
                             "height": 12,
@@ -788,7 +797,6 @@ exports[`QuizzesList renders in correct order 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={2}
                     style={
@@ -824,7 +832,6 @@ exports[`QuizzesList renders in correct order 1`] = `
                     <Text
                       accessible={true}
                       allowFontScaling={true}
-                      disabled={false}
                       ellipsizeMode="tail"
                       separated={
                         Array [
@@ -872,7 +879,6 @@ exports[`QuizzesList renders in correct order 1`] = `
                       <Text
                         accessible={true}
                         allowFontScaling={true}
-                        disabled={false}
                         ellipsizeMode="tail"
                         separated={
                           Array [
@@ -902,7 +908,6 @@ exports[`QuizzesList renders in correct order 1`] = `
                       <Text
                         accessible={true}
                         allowFontScaling={true}
-                        disabled={false}
                         ellipsizeMode="tail"
                         style={
                           Array [
@@ -932,7 +937,6 @@ exports[`QuizzesList renders in correct order 1`] = `
                       <Text
                         accessible={true}
                         allowFontScaling={true}
-                        disabled={false}
                         ellipsizeMode="tail"
                         separated={
                           Array [
@@ -1229,7 +1233,6 @@ exports[`QuizzesList renders quizzes 1`] = `
             accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1324,7 +1327,11 @@ exports[`QuizzesList renders quizzes 1`] = `
                     }
                   >
                     <Image
-                      source={1}
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/course/Quiz.png",
+                        }
+                      }
                       style={
                         Array [
                           Object {
@@ -1352,7 +1359,11 @@ exports[`QuizzesList renders quizzes 1`] = `
                       }
                     >
                       <Image
-                        source={1}
+                        source={
+                          Object {
+                            "testUri": "../../../src/images/Published.png",
+                          }
+                        }
                         style={
                           Object {
                             "height": 12,
@@ -1376,7 +1387,6 @@ exports[`QuizzesList renders quizzes 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={2}
                     style={
@@ -1412,7 +1422,6 @@ exports[`QuizzesList renders quizzes 1`] = `
                     <Text
                       accessible={true}
                       allowFontScaling={true}
-                      disabled={false}
                       ellipsizeMode="tail"
                       separated={
                         Array [
@@ -1460,7 +1469,6 @@ exports[`QuizzesList renders quizzes 1`] = `
                       <Text
                         accessible={true}
                         allowFontScaling={true}
-                        disabled={false}
                         ellipsizeMode="tail"
                         separated={
                           Array [
@@ -1490,7 +1498,6 @@ exports[`QuizzesList renders quizzes 1`] = `
                       <Text
                         accessible={true}
                         allowFontScaling={true}
-                        disabled={false}
                         ellipsizeMode="tail"
                         style={
                           Array [
@@ -1520,7 +1527,6 @@ exports[`QuizzesList renders quizzes 1`] = `
                       <Text
                         accessible={true}
                         allowFontScaling={true}
-                        disabled={false}
                         ellipsizeMode="tail"
                         separated={
                           Array [
@@ -1675,7 +1681,11 @@ exports[`QuizzesList renders quizzes 1`] = `
                     }
                   >
                     <Image
-                      source={1}
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/course/Quiz.png",
+                        }
+                      }
                       style={
                         Array [
                           Object {
@@ -1703,7 +1713,11 @@ exports[`QuizzesList renders quizzes 1`] = `
                       }
                     >
                       <Image
-                        source={1}
+                        source={
+                          Object {
+                            "testUri": "../../../src/images/Published.png",
+                          }
+                        }
                         style={
                           Object {
                             "height": 12,
@@ -1727,7 +1741,6 @@ exports[`QuizzesList renders quizzes 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={2}
                     style={
@@ -1763,7 +1776,6 @@ exports[`QuizzesList renders quizzes 1`] = `
                     <Text
                       accessible={true}
                       allowFontScaling={true}
-                      disabled={false}
                       ellipsizeMode="tail"
                       separated={
                         Array [
@@ -1811,7 +1823,6 @@ exports[`QuizzesList renders quizzes 1`] = `
                       <Text
                         accessible={true}
                         allowFontScaling={true}
-                        disabled={false}
                         ellipsizeMode="tail"
                         separated={
                           Array [
@@ -1841,7 +1852,6 @@ exports[`QuizzesList renders quizzes 1`] = `
                       <Text
                         accessible={true}
                         allowFontScaling={true}
-                        disabled={false}
                         ellipsizeMode="tail"
                         style={
                           Array [
@@ -1871,7 +1881,6 @@ exports[`QuizzesList renders quizzes 1`] = `
                       <Text
                         accessible={true}
                         allowFontScaling={true}
-                        disabled={false}
                         ellipsizeMode="tail"
                         separated={
                           Array [

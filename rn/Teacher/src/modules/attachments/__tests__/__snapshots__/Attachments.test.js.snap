@@ -19,7 +19,9 @@ exports[`Attachments renders attachments 1`] = `
       Object {
         "accessibilityLabel": "Add attachment",
         "action": [Function],
-        "image": 1,
+        "image": Object {
+          "testUri": "../../../src/images/Add.png",
+        },
         "testID": "attachments.add-btn",
       },
     ]
@@ -94,12 +96,12 @@ exports[`Attachments renders attachments 1`] = `
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
       onScrollEndDrag={[Function]}
-      onViewableItemsChanged={undefined}
       renderItem={[Function]}
       scrollEventThrottle={50}
       stickyHeaderIndices={Array []}
       testID="attachments.list.list"
       updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
       windowSize={21}
     >
       <View>
@@ -154,7 +156,11 @@ exports[`Attachments renders attachments 1`] = `
                 }
               >
                 <Image
-                  source={1}
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/attachments/complete-icon.png",
+                    }
+                  }
                   testID="attachments.attachment-row.0.icon.complete"
                 />
               </View>
@@ -170,7 +176,6 @@ exports[`Attachments renders attachments 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   numberOfLines={0}
                   style={
@@ -230,7 +235,11 @@ exports[`Attachments renders attachments 1`] = `
                     underlayColor="white"
                   >
                     <Image
-                      source={1}
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/x-icon.png",
+                        }
+                      }
                       style={
                         Object {
                           "height": 14,
@@ -307,7 +316,11 @@ exports[`Attachments renders attachments 1`] = `
                 }
               >
                 <Image
-                  source={1}
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/attachments/complete-icon.png",
+                    }
+                  }
                   testID="attachments.attachment-row.1.icon.complete"
                 />
               </View>
@@ -323,7 +336,6 @@ exports[`Attachments renders attachments 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   numberOfLines={0}
                   style={
@@ -383,7 +395,11 @@ exports[`Attachments renders attachments 1`] = `
                     underlayColor="white"
                   >
                     <Image
-                      source={1}
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/x-icon.png",
+                        }
+                      }
                       style={
                         Object {
                           "height": 14,
@@ -434,7 +450,9 @@ exports[`Attachments renders empty state 1`] = `
       Object {
         "accessibilityLabel": "Add attachment",
         "action": [Function],
-        "image": 1,
+        "image": Object {
+          "testUri": "../../../src/images/Add.png",
+        },
         "testID": "attachments.add-btn",
       },
     ]
@@ -468,12 +486,12 @@ exports[`Attachments renders empty state 1`] = `
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
       onScrollEndDrag={[Function]}
-      onViewableItemsChanged={undefined}
       renderItem={[Function]}
       scrollEventThrottle={50}
       stickyHeaderIndices={Array []}
       testID="attachments.list.list"
       updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
       windowSize={21}
     >
       <View>
@@ -493,7 +511,11 @@ exports[`Attachments renders empty state 1`] = `
             }
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/attachment-80.png",
+                }
+              }
               style={
                 Object {
                   "marginBottom": 36,
@@ -503,7 +525,6 @@ exports[`Attachments renders empty state 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -531,7 +552,6 @@ exports[`Attachments renders empty state 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [

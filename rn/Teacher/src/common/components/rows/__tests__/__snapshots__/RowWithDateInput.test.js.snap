@@ -80,7 +80,6 @@ exports[`Render row with date 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -117,7 +116,6 @@ exports[`Render row with date 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -224,7 +222,6 @@ exports[`Render row with date and the clear button 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -261,7 +258,6 @@ exports[`Render row with date and the clear button 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -325,7 +321,11 @@ exports[`Render row with date and the clear button 1`] = `
       tvParallaxProperties={undefined}
     >
       <Image
-        source={1}
+        source={
+          Object {
+            "testUri": "../../../src/images/Clear.png",
+          }
+        }
       />
     </View>
   </View>

@@ -2,6 +2,7 @@
 
 exports[`AutoGrowingTextInput adjusts the height when content size is updated 1`] = `
 <TextInput
+  allowFontScaling={true}
   defaultHeight={54}
   multiline={true}
   onContentSizeChange={[Function]}
@@ -18,6 +19,7 @@ exports[`AutoGrowingTextInput adjusts the height when content size is updated 1`
 
 exports[`AutoGrowingTextInput renders 1`] = `
 <TextInput
+  allowFontScaling={true}
   defaultHeight={54}
   multiline={true}
   onContentSizeChange={[Function]}

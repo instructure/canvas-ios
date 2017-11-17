@@ -25,7 +25,6 @@ exports[`CourseFilter renders correctly 1`] = `
       accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
-      disabled={false}
       ellipsizeMode="tail"
       numberOfLines={1}
       style={
@@ -74,7 +73,6 @@ exports[`CourseFilter renders correctly 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [

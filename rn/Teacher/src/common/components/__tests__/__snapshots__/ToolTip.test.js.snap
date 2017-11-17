@@ -87,7 +87,6 @@ exports[`ToolTip renders something interesting when showToolTip is called 1`] = 
       <Text
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={3}
         style={

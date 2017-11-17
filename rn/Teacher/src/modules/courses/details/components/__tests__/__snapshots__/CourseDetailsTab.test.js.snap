@@ -70,7 +70,6 @@ exports[`default icon 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={0}
         style={
@@ -201,7 +200,11 @@ exports[`renders correctly 1`] = `
     }
   >
     <Image
-      source={1}
+      source={
+        Object {
+          "testUri": "../../../src/images/course/Assignment.png",
+        }
+      }
       style={
         Array [
           Object {
@@ -228,7 +231,6 @@ exports[`renders correctly 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={0}
         style={
