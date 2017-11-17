@@ -71,7 +71,7 @@
     
     [super viewDidLoad];
     self.view.tintColor = Brand.current.tintColor;
-    
+
     self.title = [self.createDiscussionStrategy createDiscussionViewTitle];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
@@ -135,18 +135,8 @@
     iPadHeader.userInteractionEnabled = !iPadToolbarHidden;
 }
 
-- (void)setFirstResonder {
-    if (titleField.text.length == 0) {
-        [titleField becomeFirstResponder];
-    } else {
-        [descriptionInputView becomeFirstResponder];
-    }
-}
-
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    [self setFirstResonder];
     
     DDLogVerbose(@"%@ - viewDidAppear", NSStringFromClass([self class]));
     [Analytics logScreenView:kGAIScreenCreateDiscussion];
@@ -200,8 +190,14 @@
 {
     [super viewDidLayoutSubviews];
     UIEdgeInsets inset = self.tableView.contentInset;
-    CGFloat height = self.view.bounds.size.height - 88.f - inset.top - inset.bottom;
-    if (self.descriptionInputViewHeight != height) {
+    CGFloat top = inset.top;
+    CGFloat bottom = inset.bottom;
+    if (@available(iOS 11, *)) {
+        top = top + self.tableView.adjustedContentInset.top;
+        bottom = bottom + self.tableView.adjustedContentInset.bottom;
+    }
+    CGFloat height = self.view.bounds.size.height - 88.f - top - bottom;
+    if (self.descriptionInputViewHeight != height && height > 0) {
         self.descriptionInputViewHeight = height;
         [self.tableView beginUpdates];
         [self.tableView endUpdates];
