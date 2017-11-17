@@ -3383,7 +3383,6 @@ exports[`renders with not_graded submission type 1`] = `
               accessibilityTraits="header"
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -3415,7 +3414,6 @@ exports[`renders with not_graded submission type 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -3454,7 +3452,11 @@ exports[`renders with not_graded submission type 1`] = `
                 }
               >
                 <Image
-                  source={1}
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/Unpublished.png",
+                    }
+                  }
                   style={
                     Array [
                       Object {
@@ -3470,7 +3472,6 @@ exports[`renders with not_graded submission type 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -3561,7 +3562,11 @@ exports[`renders with not_graded submission type 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/assignments/Calendar.png",
+                  }
+                }
                 style={
                   Object {
                     "height": 19,
@@ -3575,7 +3580,6 @@ exports[`renders with not_graded submission type 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -3616,7 +3620,6 @@ exports[`renders with not_graded submission type 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -3640,7 +3643,6 @@ exports[`renders with not_graded submission type 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -3665,7 +3667,6 @@ exports[`renders with not_graded submission type 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -3690,7 +3691,6 @@ exports[`renders with not_graded submission type 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -3714,7 +3714,6 @@ exports[`renders with not_graded submission type 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -3739,7 +3738,6 @@ exports[`renders with not_graded submission type 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -3768,7 +3766,6 @@ exports[`renders with not_graded submission type 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -3792,7 +3789,6 @@ exports[`renders with not_graded submission type 1`] = `
                     <Text
                       accessible={true}
                       allowFontScaling={true}
-                      disabled={false}
                       ellipsizeMode="tail"
                       style={
                         Array [
@@ -3817,7 +3813,6 @@ exports[`renders with not_graded submission type 1`] = `
                     <Text
                       accessible={true}
                       allowFontScaling={true}
-                      disabled={false}
                       ellipsizeMode="tail"
                       style={
                         Array [
@@ -3846,7 +3841,6 @@ exports[`renders with not_graded submission type 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -3870,7 +3864,6 @@ exports[`renders with not_graded submission type 1`] = `
                     <Text
                       accessible={true}
                       allowFontScaling={true}
-                      disabled={false}
                       ellipsizeMode="tail"
                       style={
                         Array [
@@ -3895,7 +3888,6 @@ exports[`renders with not_graded submission type 1`] = `
                     <Text
                       accessible={true}
                       allowFontScaling={true}
-                      disabled={false}
                       ellipsizeMode="tail"
                       style={
                         Array [
@@ -4012,7 +4004,6 @@ exports[`renders with not_graded submission type 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -4049,7 +4040,6 @@ exports[`renders with not_graded submission type 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -4092,7 +4082,6 @@ exports[`renders with not_graded submission type 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
