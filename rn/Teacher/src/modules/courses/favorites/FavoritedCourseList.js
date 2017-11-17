@@ -220,7 +220,11 @@ const styles = StyleSheet.create({
 
 export function mapStateToProps (state: AppState): FavoritedCourseListDataProps {
   const allCourses = state.entities.courses
-  const totalCourseCount = Object.keys(allCourses).length
+  const totalCourseCount = Object.values(allCourses)
+    .map(({ course }) => course)
+    .filter(App.current().filterCourse)
+    .length
+
   const { pending, error, courseRefs } = state.favoriteCourses
   const courses: Array<CourseProps> = courseRefs
     .map(ref => allCourses[ref])
