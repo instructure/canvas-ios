@@ -26,6 +26,7 @@ import { CourseFilesList, mapStateToProps } from '../CourseFilesList'
 const template = {
   ...require('../../../__templates__/file'),
   ...require('../../../__templates__/folder'),
+  ...require('../../../__templates__/attachment'),
   ...require('../../../redux/__templates__/app-state'),
   ...require('../../../__templates__/helm'),
 }
@@ -35,6 +36,8 @@ const data = [
   template.file({ type: 'file', key: 'file-1' }),
   template.file({ type: 'file', locked: true, key: 'file-2' }),
 ]
+
+jest.mock('../../attachments/AttachmentPicker', () => 'AttachmentPicker')
 
 describe('CourseFileList', () => {
   it('should render', () => {
@@ -63,9 +66,9 @@ describe('CourseFileList', () => {
 
   it('should call the right methods on update at the root folder', async () => {
     const courseID = '5'
-    const getCourseFolder = jest.fn(() => Promise.resolve({ data: template.folder() }))
-    const getFolderFolders = jest.fn(() => Promise.resolve([]))
-    const getFolderFiles = jest.fn(() => Promise.resolve([]))
+    const getCourseFolder = () => Promise.resolve({ data: template.folder() })
+    const getFolderFolders = () => Promise.resolve({ data: [] })
+    const getFolderFiles = () => Promise.resolve({ data: [] })
     const filesUpdated = jest.fn()
     const foldersUpdated = jest.fn()
 
@@ -81,34 +84,6 @@ describe('CourseFileList', () => {
     )
 
     await tree.getInstance().update()
-    expect(getCourseFolder).toHaveBeenCalled()
-    expect(getFolderFolders).toHaveBeenCalled()
-    expect(getFolderFiles).toHaveBeenCalled()
-    expect(filesUpdated).toHaveBeenCalled()
-    expect(foldersUpdated).toHaveBeenCalled()
-  })
-
-  it('should call the right methods on update at the root folder', async () => {
-    const courseID = '5'
-    const getFolderFolders = jest.fn(() => Promise.resolve([]))
-    const getFolderFiles = jest.fn(() => Promise.resolve([]))
-    const filesUpdated = jest.fn()
-    const foldersUpdated = jest.fn()
-
-    let tree = renderer.create(
-      <CourseFilesList
-        courseID={courseID}
-        data={[]}
-        folder={ template.folder() }
-        getFolderFolders={getFolderFolders}
-        getFolderFiles={getFolderFiles}
-        filesUpdated={filesUpdated}
-        foldersUpdated={foldersUpdated} />
-    )
-
-    await tree.getInstance().update()
-    expect(getFolderFolders).toHaveBeenCalled()
-    expect(getFolderFiles).toHaveBeenCalled()
     expect(filesUpdated).toHaveBeenCalled()
     expect(foldersUpdated).toHaveBeenCalled()
   })
@@ -158,7 +133,7 @@ describe('CourseFileList', () => {
 
     ActionSheetIOS.showActionSheetWithOptions = jest.fn()
     instance.addItem()
-    expect(ActionSheetIOS.showActionSheetWithOptions).toHaveBeenCalledWith({ 'cancelButtonIndex': 1, 'options': ['Create Folder', 'Cancel'] }, instance.handleAddItem)
+    expect(ActionSheetIOS.showActionSheetWithOptions).toHaveBeenCalledWith({ 'cancelButtonIndex': 2, 'options': ['Create Folder', 'Add File', 'Cancel'] }, instance.handleAddItem)
   })
 
   it('adding folder should alert for text', () => {
@@ -171,6 +146,19 @@ describe('CourseFileList', () => {
     AlertIOS.prompt = jest.fn()
     instance.handleAddItem(0)
     expect(AlertIOS.prompt).toHaveBeenCalledWith('Create Folder', null, instance.createNewFolder)
+  })
+
+  it('adding file should show the file picker stuff', () => {
+    const courseID = '1'
+    const navigator = template.navigator({ show: jest.fn() })
+    let instance = renderer.create(
+      <CourseFilesList data={data} navigator={navigator} courseID={courseID}/>
+    ).getInstance()
+
+    instance.attachmentPicker = {}
+    instance.attachmentPicker.show = jest.fn()
+    instance.handleAddItem(1)
+    expect(instance.attachmentPicker.show).toHaveBeenCalled()
   })
 
   it('add folder to the api should work', async () => {
@@ -186,7 +174,7 @@ describe('CourseFileList', () => {
     expect(createFolder).toHaveBeenCalledWith(courseID, { locked: true, name: 'folder name', parent_folder_id: folder.id })
   })
 
-  it('add folder to the api should work', async () => {
+  it('error thrown when adding a folder', async () => {
     const courseID = '1'
     const navigator = template.navigator({ show: jest.fn() })
     const createFolder = jest.fn(() => Promise.reject(new Error('this is messed up')))
@@ -198,6 +186,84 @@ describe('CourseFileList', () => {
     Alert.alert = jest.fn()
     await instance.createNewFolder('folder name')
     expect(Alert.alert).toHaveBeenCalled()
+  })
+
+  it('upload a file please', async () => {
+    const courseID = '1'
+    const navigator = template.navigator({ show: jest.fn() })
+    const uploadFile = jest.fn(() => Promise.resolve([]))
+    const getFolderFolders = () => Promise.resolve({ data: [] })
+    const getFolderFiles = () => Promise.resolve({ data: [] })
+    const filesUpdated = jest.fn()
+    const folder = template.folder()
+    let instance = renderer.create(
+      <CourseFilesList data={data}
+                       navigator={navigator}
+                       courseID={courseID}
+                       uploadFile={uploadFile}
+                       folder={folder}
+                       getFolderFiles={getFolderFiles}
+                       getFolderFolders={getFolderFolders}
+                       filesUpdated={filesUpdated}
+                       foldersUpdated={jest.fn()} />
+    ).getInstance()
+
+    await instance.finishAddFile(template.attachment())
+    expect(uploadFile).toHaveBeenCalled()
+    expect(filesUpdated).toHaveBeenCalled()
+  })
+
+  it('upload a file has an error', async () => {
+    const courseID = '1'
+    const navigator = template.navigator({ show: jest.fn() })
+    const uploadFile = jest.fn(() => Promise.reject(new Error('this is messed up')))
+    const folder = template.folder()
+    let instance = renderer.create(
+      <CourseFilesList data={data}
+                       navigator={navigator}
+                       courseID={courseID}
+                       uploadFile={uploadFile}
+                       folder={folder} />
+    ).getInstance()
+
+    Alert.alert = jest.fn()
+    await instance.finishAddFile(template.attachment())
+    expect(uploadFile).toHaveBeenCalled()
+    expect(Alert.alert).toHaveBeenCalled()
+  })
+
+  it('progress function should update the UI correctly', async () => {
+    const courseID = '1'
+    const navigator = template.navigator({ show: jest.fn() })
+    const folder = template.folder()
+    let tree = renderer.create(
+      <CourseFilesList data={data}
+                       navigator={navigator}
+                       courseID={courseID}
+                       folder={folder} />
+    )
+    const instance = tree.getInstance()
+    instance.updateUploadProgress({ loaded: 0, total: 100 })
+    expect(tree.toJSON()).toMatchSnapshot()
+    instance.updateUploadProgress({ loaded: 50, total: 100 })
+    expect(tree.toJSON()).toMatchSnapshot()
+    instance.updateUploadProgress({ loaded: 100, total: 100 })
+    expect(tree.toJSON()).toMatchSnapshot()
+  })
+
+  it('sending weird data into the progress update function should not break all the things', async () => {
+    const courseID = '1'
+    const navigator = template.navigator({ show: jest.fn() })
+    const folder = template.folder()
+    let tree = renderer.create(
+      <CourseFilesList data={data}
+                       navigator={navigator}
+                       courseID={courseID}
+                       folder={folder} />
+    )
+    const instance = tree.getInstance()
+    instance.updateUploadProgress({ loaded: 'sdfsdjkf', total: 100 })
+    expect(tree.toJSON()).toMatchSnapshot()
   })
 
   describe('map state to props', () => {

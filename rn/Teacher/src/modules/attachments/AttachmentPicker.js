@@ -30,7 +30,8 @@ import AudioRecorder from '../../common/components/AudioRecorder'
 import i18n from 'format-message'
 import Permissions from '../../common/permissions'
 
-type Callback = (Attachment) => *
+type MediaType = 'camera' | 'audio' | 'photo_library' | 'file'
+type Callback = (Attachment, MediaType) => *
 
 type Options = {
   imagePicker: any, // options passed to react-native-image-picker
@@ -78,7 +79,7 @@ export default class AttachmentPicker extends Component<Props, any> {
 
   useCamera (options: ?Options, callback: Callback) {
     const opts = options && options.imagePicker || DEFAULT_OPTIONS.imagePicker
-    ImagePicker.launchCamera(opts, this._handleImagePickerResponse(callback))
+    ImagePicker.launchCamera(opts, this._handleImagePickerResponse(callback, 'camera'))
   }
 
   async recordAudio (options: ?Options, callback: Callback) {
@@ -95,7 +96,7 @@ export default class AttachmentPicker extends Component<Props, any> {
 
   useLibrary (options: ?Options, callback: Callback) {
     const opts = options && options.imagePicker || DEFAULT_OPTIONS.imagePicker
-    ImagePicker.launchImageLibrary(opts, this._handleImagePickerResponse(callback))
+    ImagePicker.launchImageLibrary(opts, this._handleImagePickerResponse(callback, 'photo_library'))
   }
 
   pickDocument (options: ?Options, callback: Callback) {
@@ -151,7 +152,7 @@ export default class AttachmentPicker extends Component<Props, any> {
     }
   }
 
-  _handleImagePickerResponse (callback: Callback) {
+  _handleImagePickerResponse (callback: Callback, type: MediaType) {
     return (response: any) => {
       if (response.error) {
         if (IMAGE_PICKER_PERMISSION_ERRORS[response.error]) {
@@ -177,7 +178,7 @@ export default class AttachmentPicker extends Component<Props, any> {
         display_name: name,
         mime_class: extension.toLowerCase() === '.mov' ? 'video' : 'image',
       }
-      callback(attachment)
+      callback(attachment, type)
     }
   }
 
@@ -188,7 +189,7 @@ export default class AttachmentPicker extends Component<Props, any> {
       display_name: response.fileName,
       mime_class: 'audio',
     }
-    this.state.recordAudioCallback(attachment)
+    this.state.recordAudioCallback(attachment, 'audio')
   }
 
   _onAudioRecorderCancel = () => {
@@ -208,7 +209,7 @@ export default class AttachmentPicker extends Component<Props, any> {
         size: fileSize,
         mime_class: 'file',
       }
-      callback(attachment)
+      callback(attachment, 'file')
     }
   }
 }

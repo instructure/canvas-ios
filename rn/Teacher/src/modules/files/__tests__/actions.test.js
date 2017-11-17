@@ -37,4 +37,10 @@ describe('CourseFileList', () => {
     const action = Actions.foldersUpdated([folder], 'path', 'id', 'type')
     expect(action).toMatchObject({ payload: { folders: [folder], path: 'path', id: 'id', type: 'type' } })
   })
+
+  it('folder updated', () => {
+    const folder = template.folder()
+    const action = Actions.folderUpdated(folder, 'id', 'type')
+    expect(action).toMatchObject({ payload: { folder: folder, id: 'id', type: 'type' } })
+  })
 })

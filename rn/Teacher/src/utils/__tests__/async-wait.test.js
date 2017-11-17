@@ -14,20 +14,20 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-/* @flow */
+// @flow
 
-import { createAction } from 'redux-actions'
+import { wait } from '../async-wait'
 
-export let Actions = (): * => ({
-  filesUpdated: createAction('files.update', (files: [File], path: string, id: string, type: string) => {
-    return { files, path, id, type }
-  }),
-  foldersUpdated: createAction('folders.update', (folders: [Folder], path: string, id: string, type: string) => {
-    return { folders, path, id, type }
-  }),
-  folderUpdated: createAction('folder.update', (folder: Folder, id: string, type: string) => {
-    return { folder, id, type }
-  }),
+describe('async-await', () => {
+  it('should wait the right amount of time', async () => {
+    const testOne = jest.fn()
+    const testTwo = jest.fn()
+    setTimeout(() => {
+      testTwo()
+    }, 200)
+    await wait(50)
+    testOne()
+    expect(testOne).toHaveBeenCalled()
+    expect(testTwo).not.toHaveBeenCalled()
+  })
 })
-
-export default (Actions(): *)

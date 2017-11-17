@@ -103,7 +103,7 @@ describe('AttachmentPicker', () => {
       display_name: expect.stringMatching(/.jpg$/),
       size: undefined,
       mime_class: 'image',
-    })
+    }, 'camera')
   })
 
   it('returns attachment from ImagePicker video', () => {
@@ -118,7 +118,7 @@ describe('AttachmentPicker', () => {
       display_name: expect.stringMatching(/.MOV$/),
       size: undefined,
       mime_class: 'video',
-    })
+    }, 'photo_library')
   })
 
   it('does not return when ImagePicker cancels', () => {
@@ -185,7 +185,7 @@ describe('AttachmentPicker', () => {
       display_name: doc.fileName,
       size: doc.fileSize,
       mime_class: 'file',
-    })
+    }, 'file')
   })
 
   it('shows audio recorder', async () => {
@@ -220,7 +220,7 @@ describe('AttachmentPicker', () => {
       uri: recording.filePath,
       display_name: recording.fileName,
       mime_class: 'audio',
-    })
+    }, 'audio')
   })
 
   it('cancels without error', () => {

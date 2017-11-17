@@ -25,10 +25,15 @@ import {
 } from 'react-native'
 import i18n from 'format-message'
 
-export default class SavingBanner extends Component<any, any, any> {
+export type SavingBannerProps = {
+  title?: string,
+}
+
+export default class SavingBanner extends Component<any, SavingBannerProps, any> {
   render () {
+    const title = this.props.title || i18n('Saving...')
     return (<View style={[style.container, this.props.style]}>
-              <Text style={style.text}>{i18n('Saving...')}</Text>
+              <Text style={style.text}>{title}</Text>
               <ActivityIndicator style={style.activityIndicator}/>
             </View>)
   }

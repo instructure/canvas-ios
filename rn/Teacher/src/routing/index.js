@@ -100,11 +100,10 @@ export function route (url: string, additionalProps: Object = {}): RouteOptions 
       params = Object.assign(params, additionalProps)
     }
     if (params) {
-      const screen = r.spec.replace('(/api/v1)', '')
-      params.screenInstanceID = screen
-      routeProps.set(screen, params)
+      params.screenInstanceID = Math.random().toString(36).slice(2)
+      routeProps.set(params.screenInstanceID, params)
       return {
-        screen,
+        screen: r.spec.replace('(/api/v1)', ''),
         passProps: params,
         config: routes.get(r),
       }

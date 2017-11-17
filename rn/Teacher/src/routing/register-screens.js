@@ -64,6 +64,7 @@ import ToDoList from '../modules/to-do/list/ToDoList'
 import CourseFilesList from '../modules/files/CourseFilesList'
 import PagesList from '../modules/pages/list/PagesList'
 import PageDetails from '../modules/pages/details/PageDetails'
+import UI from '../common/UI'
 
 import { Store } from 'redux'
 import { registerScreen } from './'
@@ -132,4 +133,5 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/pages', wrap(PagesList), store, { canBecomeMaster: true })
   registerScreen('/courses/:courseID/wiki/:url', wrap(PageDetails), store)
   registerScreen('/courses/:courseID/pages/:url', wrap(PageDetails), store)
+  registerScreen('/ui', wrap(UI), store)
 }

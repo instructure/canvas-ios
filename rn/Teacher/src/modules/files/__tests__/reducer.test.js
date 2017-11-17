@@ -55,4 +55,37 @@ describe('CourseFileList', () => {
       },
     })
   })
+
+  it('folder updated edge case', () => {
+    const folder = template.folder({ full_name: 'course files/folder' })
+    const path = 'course files'
+    const id = '123'
+    const type = 'Course'
+    const action = Actions.folderUpdated(folder, id, type)
+    const result = foldersData({}, action)
+    expect(result).toMatchObject({
+      [`${type}-${id}`]: {
+        [path]: [folder],
+      },
+    })
+  })
+
+  it('folder updated edge case', () => {
+    const folder = template.folder({ full_name: 'course files/folder', locked: true })
+    const path = 'course files'
+    const id = '123'
+    const type = 'Course'
+    const action = Actions.folderUpdated(folder, id, type)
+    const state = {
+      [`${type}-${id}`]: {
+        [path]: [{ ...folder, locked: false }],
+      },
+    }
+    const result = foldersData(state, action)
+    expect(result).toMatchObject({
+      [`${type}-${id}`]: {
+        [path]: [folder],
+      },
+    })
+  })
 })

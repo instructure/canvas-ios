@@ -29,3 +29,13 @@ describe('SavingBanner', () => {
     expect(tree).toMatchSnapshot()
   })
 })
+
+describe('SavingBanner', () => {
+  it('renders', () => {
+    let tree = renderer.create(
+      <SavingBanner title="this is a custom title" />
+    ).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+})
