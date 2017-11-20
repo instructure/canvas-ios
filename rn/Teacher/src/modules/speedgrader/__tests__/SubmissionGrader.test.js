@@ -21,6 +21,7 @@ import SubmissionGrader from '../SubmissionGrader'
 import renderer from 'react-test-renderer'
 import DrawerState from '../utils/drawer-state'
 import explore from '../../../../test/helpers/explore'
+import { shallow } from 'enzyme'
 
 jest
   .mock('TouchableOpacity', () => 'TouchableOpacity')
@@ -53,21 +54,21 @@ describe('SubmissionGrader', () => {
   })
 
   it('renders', () => {
-    let tree = renderer.create(
+    let tree = shallow(
       <SubmissionGrader {...defaultProps} />
     )
 
-    let instance = tree.getInstance()
-    let event = {
-      nativeEvent: {
-        layout: {
-          height: 200,
-          width: 200,
-        },
-      },
-    }
-    instance.onLayout(event)
-    // expect(tree.toJSON()).toMatchSnapshot()
+    tree.setState({ width: 200, height: 200 })
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('renders wide', () => {
+    let tree = shallow(
+      <SubmissionGrader {...defaultProps} />
+    )
+
+    tree.setState({ width: 1000, height: 200 })
+    expect(tree).toMatchSnapshot()
   })
 
   it('can render the handle content', () => {

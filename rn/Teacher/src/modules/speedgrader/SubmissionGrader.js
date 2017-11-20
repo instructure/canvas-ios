@@ -257,6 +257,7 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
           assignmentID={this.props.assignmentID}
           courseID={this.props.courseID}
           navigator={this.props.navigator}
+          userID={this.props.userID}
         />
         <View style={styles.splitView}>
           <A11yGroup style={styles.left}>
