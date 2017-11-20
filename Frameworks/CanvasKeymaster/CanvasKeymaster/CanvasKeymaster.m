@@ -127,6 +127,11 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
     }
 }
 
+- (NSInteger)numberOfClients
+{
+    return [[FXKeychain sharedCanvasKeychain] clients].count;
+}
+
 - (void)removeExtraClientsIfNecessary {
     // Previously we were saving a new client in the keychain each time the app was open.
     // We are removing all clients that are not needed.

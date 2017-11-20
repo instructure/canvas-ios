@@ -74,6 +74,8 @@ FOUNDATION_EXPORT const unsigned char CanvasKeymasterVersionString[];
 
 @property (nonatomic, readonly) NSString *logFilePath;
 
+@property (nonatomic, readonly) NSInteger numberOfClients;
+
 /**
  Logout
  */
