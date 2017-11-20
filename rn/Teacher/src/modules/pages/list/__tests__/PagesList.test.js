@@ -26,6 +26,7 @@ jest
   .mock('Button', () => 'Button')
   .mock('TouchableHighlight', () => 'TouchableHighlight')
   .mock('TouchableOpacity', () => 'TouchableOpacity')
+  .mock('../../../../routing/Screen')
 
 const template = {
   ...require('../../../../__templates__/page'),
@@ -90,6 +91,21 @@ describe('PagesList', () => {
     const row: any = explore(view.toJSON()).selectByID('pages.list.page.row-0')
     row.props.onPress()
     expect(spy).toHaveBeenCalledWith('/courses/1/pages/abc', { modal: false })
+  })
+
+  it('navigates to new page', () => {
+    const spy = jest.fn()
+    props.navigator = template.navigator({
+      show: spy,
+    })
+    props.courseID = '1'
+    const view = render(props)
+    const done: any = explore(view.toJSON()).selectRightBarButton('pages.list.add.button')
+    done.action()
+    expect(spy).toHaveBeenCalledWith('/courses/1/pages/new', {
+      modal: true,
+      modalPresentationStyle: 'formsheet',
+    })
   })
 
   function render (props: Props, options: any = {}): any {

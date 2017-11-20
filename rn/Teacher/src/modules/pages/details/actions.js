@@ -24,6 +24,10 @@ export let Actions = (api: CanvasApi): * => ({
     page,
     courseID,
   })),
+  deletedPage: createAction('pages.details.delete', (page: Page, courseID: string) => ({
+    page,
+    courseID,
+  })),
 })
 
 export default (Actions(canvas): *)

@@ -1,43 +1,125 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PageDetails renders 1`] = `
-<View
-  style={
-    Object {
-      "flex": 1,
-      "padding": 16,
-    }
+<Screen
+  navBarStyle="dark"
+  rightBarButtons={
+    Array [
+      Object {
+        "accessibilityLabel": "Options",
+        "action": [Function],
+        "image": Object {
+          "testUri": "../../../src/images/kabob.png",
+        },
+        "testID": "pages.details.editButton",
+      },
+    ]
   }
+  subtitle="Course 1"
+  title="Page Details"
 >
   <View
-    onLayout={[Function]}
     style={
       Object {
         "flex": 1,
+        "padding": 16,
       }
     }
-    testID="web-container.view"
-  />
-</View>
+  >
+    <Text
+      accessibilityTraits="header"
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontFamily": ".SFUIDisplay-semibold",
+            "fontSize": 20,
+          },
+          Object {
+            "paddingBottom": 17,
+          },
+        ]
+      }
+    >
+      Page 1
+    </Text>
+    <View
+      onLayout={[Function]}
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+      testID="web-container.view"
+    />
+  </View>
+</Screen>
 `;
 
 exports[`PageDetails renders without page 1`] = `
-<View
-  style={
-    Object {
-      "flex": 1,
-      "padding": 16,
-    }
+<Screen
+  navBarStyle="dark"
+  rightBarButtons={
+    Array [
+      Object {
+        "accessibilityLabel": "Options",
+        "action": [Function],
+        "image": Object {
+          "testUri": "../../../src/images/kabob.png",
+        },
+        "testID": "pages.details.editButton",
+      },
+    ]
   }
+  subtitle="Course 1"
+  title="Page Details"
 >
   <View
-    onLayout={[Function]}
     style={
       Object {
         "flex": 1,
+        "padding": 16,
       }
     }
-    testID="web-container.view"
-  />
-</View>
+  >
+    <Text
+      accessibilityTraits="header"
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontFamily": ".SFUIDisplay-semibold",
+            "fontSize": 20,
+          },
+          Object {
+            "paddingBottom": 17,
+          },
+        ]
+      }
+    >
+      
+    </Text>
+    <View
+      onLayout={[Function]}
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+      testID="web-container.view"
+    />
+  </View>
+</Screen>
 `;

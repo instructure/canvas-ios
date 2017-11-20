@@ -22,18 +22,23 @@ import { default as ListActions } from './list/actions'
 import { default as DetailsActions } from './details/actions'
 
 const { refreshedPages } = ListActions
-const { refreshedPage } = DetailsActions
+const { refreshedPage, deletedPage } = DetailsActions
 
 export const refs: Reducer<AsyncRefs, any> = handleActions({
   [refreshedPages.toString()]: (state, { payload: { pages } }) => ({
     ...state,
     pending: 0,
-    refs: pages.map(({ url }) => url),
+    refs: pages.map(p => p.page_id),
   }),
   [refreshedPage.toString()]: (state, { payload: { page } }) => ({
     ...state,
     pending: 0,
-    refs: [...(state.refs || []).filter(ref => ref !== page.url), page.url],
+    refs: [...(state.refs || []).filter(ref => ref !== page.page_id), page.page_id],
+  }),
+  [deletedPage.toString()]: (state, { payload: { page } }) => ({
+    ...state,
+    pending: 0,
+    refs: [...(state.refs || []).filter(ref => ref !== page.page_id)],
   }),
 }, {})
 
@@ -42,11 +47,56 @@ export const entities: Reducer<PagesState, any> = handleActions({
     ...state,
     ...pages.reduce((memo, page) => ({
       ...memo,
-      [page.url]: { data: page },
+      [page.page_id]: {
+        data: {
+          ...page,
+          body: state[page.page_id] && state[page.page_id].data && state[page.page_id].data.body,
+        },
+      },
     }), {}),
   }),
   [refreshedPage.toString()]: (state, { payload: { page } }) => ({
     ...state,
-    [page.url]: { data: page },
+    [page.page_id]: { data: page },
   }),
+  [deletedPage.toString()]: (state, { payload: { page } }) => {
+    return Object.keys(state).reduce((memo, pageID) => {
+      if (pageID === page.page_id) return memo
+      return { ...memo, [pageID]: state[pageID] }
+    }, {})
+  },
+}, {})
+
+// Responsible for removing the front_page flag from the page
+// that was the front page before the refreshed page became the new
+// front page.
+export const frontPage: Reducer<PagesState, any> = handleActions({
+  [refreshedPage.toString()]: (state, { payload: { page, courseID } }) => {
+    if (!page.front_page) {
+      return state
+    }
+    const frontPage = state.courses[courseID].pages.refs
+      .map(r => state.pages[r])
+      .filter(p => p)
+      .map(p => p.data)
+      .find(p => p.front_page)
+
+    if (!frontPage || frontPage.page_id === page.page_id) {
+      return state
+    }
+
+    return {
+      ...state,
+      pages: {
+        ...state.pages,
+        [frontPage.page_id]: {
+          ...state.pages[frontPage.page_id],
+          data: {
+            ...frontPage,
+            front_page: false,
+          },
+        },
+      },
+    }
+  },
 }, {})

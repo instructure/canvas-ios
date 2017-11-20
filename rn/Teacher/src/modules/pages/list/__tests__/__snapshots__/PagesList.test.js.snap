@@ -1,332 +1,369 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PagesList renders 1`] = `
-<View
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
->
-  <RCTScrollView
-    ItemSeparatorComponent={[Function]}
-    ListEmptyComponent={null}
-    data={
-      Array [
-        Object {
-          "body": "<p>Hello, World!</p>",
-          "created_at": "2017-03-17T19:15:25Z",
-          "editing_roles": "teachers",
-          "front_page": false,
-          "hide_from_students": false,
-          "published": true,
-          "title": "Page 1",
-          "updated_at": "2017-03-17T19:15:25Z",
-          "url": "page-1",
+<Screen
+  navBarStyle="dark"
+  rightBarButtons={
+    Array [
+      Object {
+        "accessibilityLabel": "New Page",
+        "action": [Function],
+        "image": Object {
+          "testUri": "../../../src/images/Add.png",
         },
-      ]
+        "testID": "pages.list.add.button",
+      },
+    ]
+  }
+  subtitle={undefined}
+  title="Pages"
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
     }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    numColumns={1}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onRefresh={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    refreshControl={
-      <RefreshControlMock
-        onRefresh={[Function]}
-        progressViewOffset={undefined}
-        refreshing={true}
-      />
-    }
-    refreshing={true}
-    renderItem={[Function]}
-    scrollEventThrottle={50}
-    stickyHeaderIndices={Array []}
-    testID="pages.list.list"
-    updateCellsBatchingPeriod={50}
-    viewabilityConfigCallbackPairs={Array []}
-    windowSize={21}
   >
-    <RCTRefreshControl />
-    <View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <TouchableHighlight
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
-          onPress={[Function]}
-          style={
-            Array [
-              undefined,
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-            ]
-          }
-          testID="pages.list.page.row-0"
+    <RCTScrollView
+      ItemSeparatorComponent={[Function]}
+      ListEmptyComponent={null}
+      data={
+        Array [
+          Object {
+            "body": "<p>Hello, World!</p>",
+            "created_at": "2017-03-17T19:15:25Z",
+            "editing_roles": "teachers",
+            "front_page": false,
+            "hide_from_students": false,
+            "page_id": "1",
+            "published": true,
+            "title": "Page 1",
+            "updated_at": "2017-03-17T19:15:25Z",
+            "url": "page-1",
+          },
+        ]
+      }
+      disableVirtualization={false}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      numColumns={1}
+      onContentSizeChange={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onRefresh={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      refreshControl={
+        <RefreshControlMock
+          onRefresh={[Function]}
+          progressViewOffset={undefined}
+          refreshing={true}
+        />
+      }
+      refreshing={true}
+      renderItem={[Function]}
+      scrollEventThrottle={50}
+      stickyHeaderIndices={Array []}
+      testID="pages.list.list"
+      updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
+      windowSize={21}
+    >
+      <RCTRefreshControl />
+      <View>
+        <View
+          onLayout={[Function]}
+          style={null}
         >
-          <View
+          <TouchableHighlight
+            accessibilityLabel={undefined}
+            accessibilityTraits={
+              Array [
+                "button",
+              ]
+            }
+            onPress={[Function]}
             style={
               Array [
+                undefined,
                 Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "minHeight": 54,
-                  "paddingBottom": 12,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 12,
-                },
-                Object {
-                  "backgroundColor": "white",
+                  "borderBottomColor": "#C7CDD1",
+                  "borderBottomWidth": 0.5,
                 },
               ]
             }
+            testID="pages.list.page.row-0"
           >
             <View
               style={
-                Object {
-                  "alignSelf": "flex-start",
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "flex": 1,
+                    "flexDirection": "row",
+                    "minHeight": 54,
+                    "paddingBottom": 12,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 12,
+                  },
+                  Object {
+                    "backgroundColor": "white",
+                  },
+                ]
               }
             >
               <View
-                accessibilityLabel="Published"
                 style={
                   Object {
-                    "alignItems": "center",
-                    "flex": 0,
-                    "height": 32,
-                    "width": 46,
+                    "alignSelf": "flex-start",
                   }
                 }
               >
-                <Image
-                  source={
-                    Object {
-                      "testUri": "../../../src/images/course/Pages.png",
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "position": "absolute",
-                      },
-                      Object {
-                        "tintColor": undefined,
-                      },
-                    ]
-                  }
-                />
                 <View
+                  accessibilityLabel="Published"
                   style={
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
-                      "borderRadius": 8,
-                      "height": 16,
-                      "justifyContent": "center",
-                      "left": 20,
-                      "position": "absolute",
-                      "top": 10,
-                      "width": 16,
+                      "flex": 0,
+                      "height": 32,
+                      "width": 46,
                     }
                   }
                 >
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/course/Pages.png",
                       }
                     }
                     style={
-                      Object {
-                        "height": 12,
-                        "tintColor": "#00AC18",
-                        "width": 12,
-                      }
+                      Array [
+                        Object {
+                          "position": "absolute",
+                        },
+                        Object {
+                          "tintColor": undefined,
+                        },
+                      ]
                     }
                   />
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "white",
+                        "borderRadius": 8,
+                        "height": 16,
+                        "justifyContent": "center",
+                        "left": 20,
+                        "position": "absolute",
+                        "top": 10,
+                        "width": 16,
+                      }
+                    }
+                  >
+                    <Image
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/Published.png",
+                        }
+                      }
+                      style={
+                        Object {
+                          "height": 12,
+                          "tintColor": "#00AC18",
+                          "width": 12,
+                        }
+                      }
+                    />
+                  </View>
                 </View>
               </View>
-            </View>
-            <View
-              style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={0}
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "fontWeight": "600",
-                      },
-                      undefined,
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                Page 1
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#8B969E",
-                      "fontSize": 14,
-                      "marginTop": 2,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                  ]
-                }
-                testID="pages.list.page.row-0-subtitle-lbl"
-              >
-                Mar 17 at 1:15 PM
-              </Text>
-            </View>
-            <View
-              style={
-                Object {
-                  "flex": 0,
-                }
-              }
-            >
               <View
                 style={
                   Object {
-                    "alignItems": "center",
                     "flex": 1,
-                    "flexDirection": "row",
-                    "justifyContent": "flex-end",
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={0}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Array [
+                        Object {
+                          "fontWeight": "600",
+                        },
+                        undefined,
+                      ],
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Page 1
+                </Text>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#8B969E",
+                        "fontSize": 14,
+                        "marginTop": 2,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                    ]
+                  }
+                  testID="pages.list.page.row-0-subtitle-lbl"
+                >
+                  Mar 17 at 1:15 PM
+                </Text>
+              </View>
+              <View
+                style={
+                  Object {
+                    "flex": 0,
                   }
                 }
               >
                 <View
                   style={
                     Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#c7c7cc",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                      "width": 10,
+                      "alignItems": "center",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "justifyContent": "flex-end",
                     }
                   }
-                />
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignSelf": "center",
+                        "backgroundColor": "transparent",
+                        "borderColor": "#c7c7cc",
+                        "borderRightWidth": 2,
+                        "borderTopWidth": 2,
+                        "height": 10,
+                        "marginLeft": 7,
+                        "transform": Array [
+                          Object {
+                            "rotate": "45deg",
+                          },
+                        ],
+                        "width": 10,
+                      }
+                    }
+                  />
+                </View>
               </View>
             </View>
-          </View>
-        </TouchableHighlight>
+          </TouchableHighlight>
+        </View>
       </View>
-    </View>
-  </RCTScrollView>
-</View>
+    </RCTScrollView>
+  </View>
+</Screen>
 `;
 
 exports[`PagesList renders empty 1`] = `
-<View
-  style={
-    Object {
-      "flex": 1,
-    }
+<Screen
+  navBarStyle="dark"
+  rightBarButtons={
+    Array [
+      Object {
+        "accessibilityLabel": "New Page",
+        "action": [Function],
+        "image": Object {
+          "testUri": "../../../src/images/Add.png",
+        },
+        "testID": "pages.list.add.button",
+      },
+    ]
   }
+  subtitle={undefined}
+  title="Pages"
 >
-  <RCTScrollView
-    ItemSeparatorComponent={[Function]}
-    ListEmptyComponent={null}
-    data={Array []}
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    numColumns={1}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onRefresh={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    refreshControl={
-      <RefreshControlMock
-        onRefresh={[Function]}
-        progressViewOffset={undefined}
-        refreshing={true}
-      />
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
     }
-    refreshing={true}
-    renderItem={[Function]}
-    scrollEventThrottle={50}
-    stickyHeaderIndices={Array []}
-    testID="pages.list.list"
-    updateCellsBatchingPeriod={50}
-    viewabilityConfigCallbackPairs={Array []}
-    windowSize={21}
   >
-    <RCTRefreshControl />
-    <View />
-  </RCTScrollView>
-</View>
+    <RCTScrollView
+      ItemSeparatorComponent={[Function]}
+      ListEmptyComponent={null}
+      data={Array []}
+      disableVirtualization={false}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      numColumns={1}
+      onContentSizeChange={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onRefresh={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      refreshControl={
+        <RefreshControlMock
+          onRefresh={[Function]}
+          progressViewOffset={undefined}
+          refreshing={true}
+        />
+      }
+      refreshing={true}
+      renderItem={[Function]}
+      scrollEventThrottle={50}
+      stickyHeaderIndices={Array []}
+      testID="pages.list.list"
+      updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
+      windowSize={21}
+    >
+      <RCTRefreshControl />
+      <View />
+    </RCTScrollView>
+  </View>
+</Screen>
 `;

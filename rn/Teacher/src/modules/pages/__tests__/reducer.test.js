@@ -16,12 +16,12 @@
 
 // @flow
 
-import { refs, entities } from '../reducer'
+import { refs, entities, frontPage } from '../reducer'
 import { default as ListActions } from '../list/actions'
 import { default as DetailsActions } from '../details/actions'
 
 const { refreshedPages } = ListActions
-const { refreshedPage } = DetailsActions
+const { refreshedPage, deletedPage } = DetailsActions
 
 const template = {
   ...require('../../../__templates__/page'),
@@ -30,8 +30,8 @@ const template = {
 describe('refs', () => {
   describe('refreshedPages', () => {
     const pages = [
-      template.page({ url: 'page-1' }),
-      template.page({ url: 'page-2' }),
+      template.page({ page_id: 'page-1' }),
+      template.page({ page_id: 'page-2' }),
     ]
     const action = refreshedPages(pages, '1')
 
@@ -44,7 +44,7 @@ describe('refs', () => {
   })
 
   describe('refreshedPage', () => {
-    const page = template.page({ url: 'page-1' })
+    const page = template.page({ page_id: 'page-1' })
     const action = refreshedPage(page, '1')
 
     it('adds url to refs if it doesnt exist', () => {
@@ -65,30 +65,147 @@ describe('refs', () => {
       })
     })
   })
+
+  describe('deletedPage', () => {
+    const page = template.page({ page_id: '1' })
+    const action = deletedPage(page, '1')
+
+    it('removes page ref', () => {
+      const initialState = {
+        pending: 0,
+        refs: ['1', '2'],
+      }
+      expect(refs(initialState, action)).toEqual({
+        pending: 0,
+        refs: ['2'],
+      })
+    })
+  })
 })
 
 describe('entities', () => {
   describe('refreshedPages', () => {
-    const one = template.page({ url: 'page-1' })
-    const two = template.page({ url: 'page-2' })
+    const one = template.page({ page_id: 'page-1', body: undefined })
+    const two = template.page({ page_id: 'page-2', body: undefined })
     const action = refreshedPages([one, two], '1')
 
-    it('organizes pages by url', () => {
+    it('adds pages by page_id', () => {
       expect(entities({}, action)).toEqual({
         'page-1': { data: one },
         'page-2': { data: two },
       })
     })
+
+    it('does not override page body', () => {
+      const initialState = {
+        [one.page_id]: {
+          data: { ...one, body: 'keep me' },
+        },
+      }
+      expect(entities(initialState, action)).toMatchObject({
+        [one.page_id]: { data: { ...one, body: 'keep me' } },
+      })
+    })
   })
 
   describe('refreshedPage', () => {
-    const page = template.page({ url: 'page-1' })
+    const page = template.page({ page_id: 'page-1' })
     const action = refreshedPage(page, '1')
 
     it('adds page', () => {
       expect(entities({}, action)).toEqual({
         'page-1': { data: page },
       })
+    })
+  })
+
+  describe('deletedPage', () => {
+    const page = template.page({ page_id: '1' })
+    const action = deletedPage(page, '1')
+
+    it('removes page', () => {
+      const initialState = {
+        [page.page_id]: {
+          data: page,
+        },
+      }
+      expect(entities(initialState, action)).toEqual({})
+    })
+  })
+})
+
+describe('frontPage', () => {
+  it('returns state if the new page is not the front page', () => {
+    const state = {}
+    const page = template.page({ front_page: false })
+    const action = refreshedPage(page, '1')
+    expect(frontPage(state, action)).toEqual(state)
+  })
+
+  it('returns state if there is not an old front page', () => {
+    const state = {
+      courses: {
+        '1': {
+          pages: {
+            refs: [],
+          },
+        },
+      },
+    }
+    const page = template.page({ front_page: true })
+    const action = refreshedPage(page, '1')
+    expect(frontPage(state, action)).toEqual(state)
+  })
+
+  it('returns state if the front page didnt change', () => {
+    const page = template.page({ page_id: '1', front_page: true })
+    const state = {
+      courses: {
+        '1': {
+          pages: {
+            refs: ['1'],
+          },
+        },
+      },
+      pages: {
+        '1': {
+          data: page,
+        },
+      },
+    }
+    const action = refreshedPage(page, '1')
+    expect(frontPage(state, action)).toEqual(state)
+  })
+
+  it('updates old front page', () => {
+    const oldFrontPage = template.page({ page_id: '1', front_page: true })
+    const newFrontPage = template.page({ page_id: '2', front_page: false })
+    const state = {
+      courses: {
+        '1': {
+          pages: {
+            refs: [oldFrontPage.page_id, newFrontPage.page_id],
+          },
+        },
+      },
+      pages: {
+        [oldFrontPage.page_id]: {
+          data: oldFrontPage,
+        },
+        [newFrontPage.page_id]: {
+          data: newFrontPage,
+        },
+      },
+    }
+    const action = refreshedPage({ ...newFrontPage, front_page: true }, '1')
+    expect(frontPage(state, action)).toEqual({
+      ...state,
+      pages: {
+        ...state.pages,
+        [oldFrontPage.page_id]: {
+          data: { ...oldFrontPage, front_page: false },
+        },
+      },
     })
   })
 })

@@ -26,4 +26,5 @@ export type Page = {
   body: string,
   published: boolean,
   front_page: boolean,
+  page_id: string,
 }

@@ -34,6 +34,7 @@ import { getPages } from '../../../canvas-api'
 import { alertError } from '../../../redux/middleware/error-handler'
 import PublishedIcon from '../../../common/components/PublishedIcon'
 import { Text } from '../../../common/text'
+import localeSort from '../../../utils/locale-sort'
 import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
 
 type StateProps = AsyncState & {
@@ -71,6 +72,14 @@ export class PagesList extends Component<Props, any> {
         navBarStyle='dark'
         title={i18n('Pages')}
         subtitle={this.props.courseName}
+        rightBarButtons={[
+          {
+            image: Images.add,
+            testID: 'pages.list.add.button',
+            accessibilityLabel: i18n('New Page'),
+            action: this.addPage,
+          },
+        ]}
       >
         <View style={styles.container}>
           <FlatList
@@ -131,6 +140,10 @@ export class PagesList extends Component<Props, any> {
     }
     this.setState({ pending: false })
   }
+
+  addPage = () => {
+    this.props.navigator.show(`/courses/${this.props.courseID}/pages/new`, { modal: true, modalPresentationStyle: 'formsheet' })
+  }
 }
 
 const styles = StyleSheet.create({
@@ -168,7 +181,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID }: OwnProps)
     }
     pages = refs
       .map(ref => entities.pages[ref].data)
-      .sort((a, b) => a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1)
+      .sort((a, b) => localeSort(a.title, b.title))
   }
   return {
     pages,
