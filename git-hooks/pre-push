@@ -1,6 +1,6 @@
 #!/bin/bash
 current="$(pwd)"
-diff="$(git --no-pager diff --name-only develop)"
+diff="$(git --no-pager diff --name-only master)"
 
 find . -path '*/node_modules' -prune -o  -name 'package.json' -print0 | while IFS= read -r -d $'\0' line; do
   path="$(dirname ${line:2})"
