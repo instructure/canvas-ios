@@ -185,7 +185,7 @@ static NSUInteger const CBIAssignmentDetailNumMinutesInDay = 60 * 24;
     CKAssignment *backwardsCompatibleAssignment = [[CKAssignment new] initWithInfo:[assignment JSONDictionary]];
     
     self.detailsController = [AssignmentDetailsViewController new];
-    [self.detailsController setPrependAssignmentInfoToContent:YES];
+    self.detailsController.prependAssignmentInfoToContent = YES;
     [self.detailsController setAssignment:backwardsCompatibleAssignment];
 
     self.rubricController = [[RubricViewController alloc] init];
@@ -211,7 +211,7 @@ static NSUInteger const CBIAssignmentDetailNumMinutesInDay = 60 * 24;
     self.detailsController.view.backgroundColor = [UIColor whiteColor];
     self.rubricController.view.backgroundColor = [UIColor whiteColor];
     
-    [self.detailsController.webView setAccessibilityElementsHidden:YES];
+    [self.detailsController.view setAccessibilityElementsHidden:YES];
     [self.submissionController.tableView setAccessibilityElementsHidden:YES];
     [self.rubricController.rubricTableView setAccessibilityElementsHidden:YES];
 }
@@ -288,7 +288,7 @@ static NSUInteger const CBIAssignmentDetailNumMinutesInDay = 60 * 24;
         newController = self.detailsController;
         self.detailsController.topContentInset = [self getContentInset];
         self.detailsController.bottomContentInset = self.tabBarController.tabBar.frame.size.height;
-        [self.detailsController.webView setAccessibilityElementsHidden:NO];
+        [self.detailsController.view setAccessibilityElementsHidden:NO];
         [self.submissionController.tableView setAccessibilityElementsHidden:YES];
         [self.rubricController.rubricTableView setAccessibilityElementsHidden:YES];
     } else if (index == GRADE_TAB_INDEX) {
@@ -296,7 +296,7 @@ static NSUInteger const CBIAssignmentDetailNumMinutesInDay = 60 * 24;
         [self.rubricController.rubricTableView setContentInset:UIEdgeInsetsMake([self getContentInset], 0, self.tabBarController.tabBar.frame.size.height, 0)];
         [self.rubricController.rubricTableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
         [self.rubricController.rubricTableView setAccessibilityElementsHidden:NO];
-        [self.detailsController.webView setAccessibilityElementsHidden:YES];
+        [self.detailsController.view setAccessibilityElementsHidden:YES];
         [self.submissionController.tableView setAccessibilityElementsHidden:YES];
     } else if (index == SUBMISSION_TAB_INDEX) {
         newController = self.submissionController;
@@ -304,7 +304,7 @@ static NSUInteger const CBIAssignmentDetailNumMinutesInDay = 60 * 24;
         UIEdgeInsets insets = UIEdgeInsetsMake([self getContentInset], 0, self.tabBarController.tabBar.frame.size.height, 0);
         scrollView.scrollIndicatorInsets = scrollView.contentInset = insets;
         [self.submissionController.tableView setAccessibilityElementsHidden:NO];
-        [self.detailsController.webView setAccessibilityElementsHidden:YES];
+        [self.detailsController.view setAccessibilityElementsHidden:YES];
         [self.rubricController.rubricTableView setAccessibilityElementsHidden:YES];
     }
     

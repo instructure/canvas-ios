@@ -23,7 +23,6 @@
 
 #import <CanvasKit1/CanvasKit1.h>
 #import <CanvasKit/CKIAssignment.h>
-#import "LTIViewController.h"
 #import "ThreadedDiscussionViewController.h"
 #import "CBISubmissionInputViewController.h"
 #import "Router.h"
@@ -164,12 +163,14 @@
                     break;
                 }
                 
-                LTIViewController *lti = [[LTIViewController alloc] init];
                 CKIExternalTool *externalTool = [CKIExternalTool modelWithID:[NSString stringWithFormat: @"%lld", self.legacyAssignment.ident]];
                 externalTool.name = self.legacyAssignment.name;
                 externalTool.url = self.legacyAssignment.url;
-                lti.externalTool = externalTool;
-                [self.viewController.navigationController pushViewController:lti animated:YES];
+                if (externalTool.name && externalTool.url && self.legacyAssignment.courseIdent) {
+                    NSString *courseID = [NSString stringWithFormat:@"%lld", self.legacyAssignment.courseIdent];
+                    LTIViewController *lti = [[LTIViewController alloc] initWithToolName:externalTool.name courseID:courseID launchURL:externalTool.url in:TheKeymaster.currentClient.authSession showDoneButton:NO];
+                    [self.viewController.navigationController pushViewController:lti animated:YES];
+                }
                 break;
             }
             default:

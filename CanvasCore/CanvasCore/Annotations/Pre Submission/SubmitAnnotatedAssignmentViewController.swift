@@ -18,8 +18,6 @@
 
 import UIKit
 import PSPDFKit
-import CanvasCore
-
 import ReactiveSwift
 import ReactiveCocoa
 

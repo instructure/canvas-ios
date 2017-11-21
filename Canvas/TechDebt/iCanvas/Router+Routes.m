@@ -31,19 +31,15 @@
 #import "CBISyllabusViewModel.h"
 #import "CBICalendarEventViewModel.h"
 
-#import "ScheduleItem.h"
 #import "WebBrowserViewController.h"
 #import "ThreadedDiscussionViewController.h"
 #import "CBIDiscussionsTabViewModel.h"
 #import "CBIFilesTabViewModel.h"
 #import "CBIFolderViewModel.h"
 #import "CBISyllabusDetailViewController.h"
-#import "ScheduleItem.h"
-#import "ScheduleItemController.h"
+#import "UIViewController+AnalyticsTracking.h"
 
 #import "UnsupportedViewController.h"
-#import "CBIExternalToolViewModel.h"
-#import "CBILTIViewController.h"
 #import "CBIFileViewModel.h"
 #import "CBIFileViewController.h"
 #import "CBIPeopleTabViewModel.h"
@@ -418,24 +414,6 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
             
             return syllabusViewController;
         },
-        @"/calendar_events/:eventID" : ^ (NSDictionary *params, CBICalendarEventViewModel *viewModel) {
-            if(viewModel == nil){
-                CKICalendarEvent *calendarEvent = [CKICalendarEvent modelWithID:[params[@"eventID"] description]];
-                viewModel = [CBICalendarEventViewModel viewModelForModel:calendarEvent];
-            }
-        ScheduleItemController *calendarEventViewController = [ScheduleItemController new];
-        [calendarEventViewController trackScreenViewWithScreenName:@"Calendar Event Screen"];
-
-        [[TheKeymaster.currentClient refreshModel:viewModel.model parameters:nil] subscribeCompleted:^{
-            CKICalendarEvent *calendarEvent = ((CBICalendarEventViewModel *)viewModel).model;
-            CKCalendarItem *model = [CKCalendarItem new];
-            model = [model initWithInfo:[calendarEvent JSONDictionary]];
-            ScheduleItem *event = [[ScheduleItem new] initWithObject:model];
-            [calendarEventViewController loadDetailsForScheduleItem:event];
-        }];
-        
-            return calendarEventViewController;
-        },
         @"/courses/:courseID/quizzes": ^(NSDictionary *params, CBIQuizzesTabViewModel *quizzesTabViewModel) {
             NSString *contextID = [params[@"courseID"] description];
             if (quizzesTabViewModel == nil) {
@@ -446,17 +424,6 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
             quizzesTabViewModel.tintColor = [self tintColorForContextID:contextID contextClass:[CKICourse class]];
         
             return [self MLVCTableViewControllerForViewModel:quizzesTabViewModel screenName:@"Quizzes List Screen" canBeMaster:YES style:UITableViewStylePlain];
-        },
-        @"/courses/:courseID/external_tools/:toolID": ^(NSDictionary *params, CBIExternalToolViewModel *toolViewModel) {
-            if (toolViewModel == nil) {
-                CKIExternalTool *tool = [CKIExternalTool modelWithID:[params[@"toolID"] description] context:[CKICourse modelWithID:[params[@"courseID"] description]]];
-                tool.url = params[@"url"];
-                toolViewModel = [CBIExternalToolViewModel viewModelForModel:tool];
-            }
-        
-            CBILTIViewController *ltiViewController = [CBILTIViewController new];
-            ltiViewController.viewModel = toolViewModel;
-            return ltiViewController;
         },
         @"/courses/:courseIdent/files/:fileIdent" : ^(NSDictionary *params, CBIFileViewModel *viewModel) {
             if (viewModel == nil) {

@@ -33,7 +33,6 @@
 #import "CKIUser+SwiftCompatibility.h"
 #import "CKCanvasAPI+CurrentAPI.h"
 #import "Analytics.h"
-#import "LTIViewController.h"
 
 @import CanvasCore;
 @import CanvasKit;
@@ -542,8 +541,7 @@ CGFloat square(CGFloat x){return x*x;}
     // Don't need to localize this: this is a proper noun, our product name
     tool.name = @"Gauge";
     
-    LTIViewController *ltiVC = [[LTIViewController alloc] init];
-    ltiVC.externalTool = tool;
+    LTIViewController *ltiVC = [[LTIViewController alloc] initWithToolName:tool.name courseID:@"" launchURL:tool.url in:TheKeymaster.currentClient.authSession showDoneButton:NO];
     [self.navigationController pushViewController:ltiVC animated:YES];
 }
 

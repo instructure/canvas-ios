@@ -76,6 +76,9 @@ public enum Icon: String {
     case expand
     case collapse
     
+    case forward
+    case backward
+    
     /** name of the icon of the form "icon_lined"
      */
     func imageName(_ filled: Bool, size: Size = .standard) -> String {

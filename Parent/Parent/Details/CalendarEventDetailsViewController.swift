@@ -73,7 +73,10 @@ class CalendarEventDetailsViewController: CalendarEventDetailViewController {
             .observeValues { _ in
         }
 
-        session.enrollmentsDataSource(withScope: studentID).producer(ContextID(id: courseID, context: .course)).observe(on: UIScheduler()).startWithValues { next in
+        session.enrollmentsDataSource(withScope: studentID)
+            .producer(ContextID(id: courseID, context: .course))
+            .observe(on: UIScheduler())
+            .startWithValues { next in
             guard let course = next as? Course else { return }
             self.title = course.name
         }

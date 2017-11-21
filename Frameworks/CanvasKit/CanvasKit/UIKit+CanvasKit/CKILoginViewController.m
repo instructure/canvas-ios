@@ -76,11 +76,15 @@
     [self unregisterUserAgentForGoogle];
 }
 
++ (NSString *)safariUserAgent {
+    return @"Mozilla/5.0 (iPhone; CPU iPhone OS %@ like Mac OS X) AppleWebKit/603.1.23 (KHTML, like Gecko) Version/10.0 Mobile/14E5239e Safari/602.1";
+}
+
 - (void)registerUserAgentForGoogle
 {
     // Google auth does not support WebViews so we have to send a Safari user agent
     NSString *systemVersion = [[UIDevice currentDevice] systemVersion];
-    NSString *userAgent = [NSString stringWithFormat: @"Mozilla/5.0 (iPhone; CPU iPhone OS %@ like Mac OS X) AppleWebKit/603.1.23 (KHTML, like Gecko) Version/10.0 Mobile/14E5239e Safari/602.1", [systemVersion stringByReplacingOccurrencesOfString:@"." withString:@"_"]];
+    NSString *userAgent = [NSString stringWithFormat: [CKILoginViewController safariUserAgent], [systemVersion stringByReplacingOccurrencesOfString:@"." withString:@"_"]];
     [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent": userAgent}];
 }
 

@@ -22,7 +22,6 @@ import errorHandler from './middleware/error-handler'
 import createPersistMiddleware from './middleware/persist'
 import freeze from 'redux-freeze'
 import rootReducer from './root-reducer'
-import logger from 'redux-logger'
 import gateKeeperMiddleware from './middleware/gate-keeper'
 
 const { __DEV__ } = global
@@ -31,11 +30,6 @@ let middleware = [gateKeeperMiddleware, promiseMiddleware, errorHandler, createP
 
 if (__DEV__) {
   middleware.push(freeze)
-}
-
-// Enable detailed logging
-if (__DEV__) {
-  middleware.push(logger)
 }
 
 export default (createStore(

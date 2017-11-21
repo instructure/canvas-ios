@@ -25,6 +25,8 @@
 		2CE40C9B1F87D36E00ECEACB /* CanvadocView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B01F843B58001A8F31 /* CanvadocView.swift */; };
 		2CE40C9C1F87D37100ECEACB /* PSPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B11F843B58001A8F31 /* PSPDFView.swift */; };
 		2CE40C9D1F87D37300ECEACB /* PSPDFViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B31F843B59001A8F31 /* PSPDFViewManager.m */; };
+		4902ADBE1FB26E860004837D /* LTIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4902ADBD1FB26E860004837D /* LTIViewController.swift */; };
+		490F91F11FB0F94A00A7DA38 /* CanvasWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490F91F01FB0F94A00A7DA38 /* CanvasWebViewController.swift */; };
 		49295B501F86D3B2001DAB1F /* HelmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49295B4F1F86D3B2001DAB1F /* HelmTests.swift */; };
 		49301FBD1F901260006BD777 /* Activity+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FB61F90125E006BD777 /* Activity+Network.swift */; };
 		49301FBE1F901260006BD777 /* Activity+Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FB71F90125E006BD777 /* Activity+Collections.swift */; };
@@ -280,6 +282,7 @@
 		49698D801F8FA2D000E38B78 /* StatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49698D761F8FA2D000E38B78 /* StatusCell.swift */; };
 		496C7D641F8BEF690010DC03 /* UnreadMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C7D631F8BEF690010DC03 /* UnreadMessages.swift */; };
 		496C7D661F8C00250010DC03 /* UnreadMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = 496C7D651F8C00250010DC03 /* UnreadMessages.m */; };
+		497C0F8A1FACD0D200084032 /* CanvasWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C0F891FACD0D200084032 /* CanvasWebView.swift */; };
 		497CA76E1F82D19600501613 /* Helm.m in Sources */ = {isa = PBXBuildFile; fileRef = 497CA75F1F82D18900501613 /* Helm.m */; };
 		497CA76F1F82D19600501613 /* Helm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA7661F82D18B00501613 /* Helm.swift */; };
 		497CA7701F82D19600501613 /* HelmConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA7621F82D18900501613 /* HelmConstants.swift */; };
@@ -293,6 +296,7 @@
 		497CA77A1F82D19A00501613 /* UIViewControllerRotationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA76C1F82D18B00501613 /* UIViewControllerRotationExtensions.swift */; };
 		497CA77B1F82D19A00501613 /* UIUserInterfaceSizeClassExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA76D1F82D18B00501613 /* UIUserInterfaceSizeClassExtensions.swift */; };
 		4988D47D1F82DCC10006D18C /* LoadingStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4988D47C1F82DCBF0006D18C /* LoadingStateViewController.swift */; };
+		498C9A601FB3663C009FBE33 /* URL+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498C9A5F1FB3663C009FBE33 /* URL+Core.swift */; };
 		49A667D31F96B1B900A5166E /* UIApplication+Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A667D21F96B1B900A5166E /* UIApplication+Reactive.swift */; };
 		49CE96571F8FF41B00121A43 /* Quizzes.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49CE95F01F8FF41900121A43 /* Quizzes.xcassets */; };
 		49CE96581F8FF41B00121A43 /* UIButton+QuizKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE95F21F8FF41900121A43 /* UIButton+QuizKit.swift */; };
@@ -422,7 +426,6 @@
 		49CE973F1F8FFEA600121A43 /* Submission+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE970D1F8FFEA200121A43 /* Submission+Network.swift */; };
 		49CE97401F8FFEA600121A43 /* Upload+SubmissionDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE970E1F8FFEA200121A43 /* Upload+SubmissionDetails.swift */; };
 		49CE97411F8FFEA600121A43 /* Scratch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49CE970F1F8FFEA300121A43 /* Scratch.xcdatamodeld */; };
-		49CE97421F8FFEA600121A43 /* AssignmentDetails.html in Resources */ = {isa = PBXBuildFile; fileRef = 49CE97111F8FFEA300121A43 /* AssignmentDetails.html */; };
 		49CE97431F8FFEA600121A43 /* rewrite-api-links.js in Resources */ = {isa = PBXBuildFile; fileRef = 49CE97121F8FFEA300121A43 /* rewrite-api-links.js */; };
 		49CE97441F8FFEA600121A43 /* ScheduleItemDetails.js in Resources */ = {isa = PBXBuildFile; fileRef = 49CE97131F8FFEA300121A43 /* ScheduleItemDetails.js */; };
 		49CE97451F8FFEA600121A43 /* AssignmentGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE97151F8FFEA300121A43 /* AssignmentGroup.swift */; };
@@ -501,6 +504,8 @@
 		2CAF1B3C1F72B295007225DF /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		2CD20D741FA125EC00F339F7 /* DropViewManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DropViewManager.h; sourceTree = "<group>"; };
 		2CD20D751FA125EC00F339F7 /* DropViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DropViewManager.m; sourceTree = "<group>"; };
+		4902ADBD1FB26E860004837D /* LTIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTIViewController.swift; sourceTree = "<group>"; };
+		490F91F01FB0F94A00A7DA38 /* CanvasWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasWebViewController.swift; sourceTree = "<group>"; };
 		4917183B1F8EE797008B4599 /* DiscussionEntry+Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiscussionEntry+Network.swift"; sourceTree = "<group>"; };
 		4917183C1F8EE797008B4599 /* DiscussionEntry+Collections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiscussionEntry+Collections.swift"; sourceTree = "<group>"; };
 		4917183D1F8EE797008B4599 /* DiscussionEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionEntry.swift; sourceTree = "<group>"; };
@@ -769,6 +774,7 @@
 		49698D761F8FA2D000E38B78 /* StatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusCell.swift; sourceTree = "<group>"; };
 		496C7D631F8BEF690010DC03 /* UnreadMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnreadMessages.swift; sourceTree = "<group>"; };
 		496C7D651F8C00250010DC03 /* UnreadMessages.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnreadMessages.m; sourceTree = "<group>"; };
+		497C0F891FACD0D200084032 /* CanvasWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasWebView.swift; sourceTree = "<group>"; };
 		497CA75F1F82D18900501613 /* Helm.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Helm.m; sourceTree = "<group>"; };
 		497CA7601F82D18900501613 /* NoAnimatedTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoAnimatedTransitioning.swift; sourceTree = "<group>"; };
 		497CA7611F82D18900501613 /* HelmNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelmNavigationViewController.swift; sourceTree = "<group>"; };
@@ -782,6 +788,7 @@
 		497CA76C1F82D18B00501613 /* UIViewControllerRotationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerRotationExtensions.swift; sourceTree = "<group>"; };
 		497CA76D1F82D18B00501613 /* UIUserInterfaceSizeClassExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUserInterfaceSizeClassExtensions.swift; sourceTree = "<group>"; };
 		4988D47C1F82DCBF0006D18C /* LoadingStateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingStateViewController.swift; sourceTree = "<group>"; };
+		498C9A5F1FB3663C009FBE33 /* URL+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Core.swift"; sourceTree = "<group>"; };
 		49A667D21F96B1B900A5166E /* UIApplication+Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Reactive.swift"; sourceTree = "<group>"; };
 		49CE95F01F8FF41900121A43 /* Quizzes.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Quizzes.xcassets; sourceTree = "<group>"; };
 		49CE95F21F8FF41900121A43 /* UIButton+QuizKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+QuizKit.swift"; sourceTree = "<group>"; };
@@ -930,7 +937,6 @@
 		49CE970D1F8FFEA200121A43 /* Submission+Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Submission+Network.swift"; sourceTree = "<group>"; };
 		49CE970E1F8FFEA200121A43 /* Upload+SubmissionDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Upload+SubmissionDetails.swift"; sourceTree = "<group>"; };
 		49CE97101F8FFEA300121A43 /* Scratch.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Scratch.xcdatamodel; sourceTree = "<group>"; };
-		49CE97111F8FFEA300121A43 /* AssignmentDetails.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AssignmentDetails.html; sourceTree = "<group>"; };
 		49CE97121F8FFEA300121A43 /* rewrite-api-links.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "rewrite-api-links.js"; sourceTree = "<group>"; };
 		49CE97131F8FFEA300121A43 /* ScheduleItemDetails.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ScheduleItemDetails.js; sourceTree = "<group>"; };
 		49CE97151F8FFEA300121A43 /* AssignmentGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentGroup.swift; sourceTree = "<group>"; };
@@ -1123,6 +1129,7 @@
 				49383CF41F849921009C8F8E /* Inbox */,
 				2CAF1B181F72AEDB007225DF /* Info.plist */,
 				4988D47B1F82DC450006D18C /* Login */,
+				493BEFA81FB14560006E8EFC /* LTI */,
 				4961F5441F8FAEE70093EC86 /* Media */,
 				49CE96C11F8FFC0B00121A43 /* Modules */,
 				2C3421191F74093000D8E158 /* OSSAttribution */,
@@ -1411,6 +1418,7 @@
 				493020271F902360006BD777 /* UIDevice+Model.swift */,
 				493020401F902363006BD777 /* UIFont+SoLazy.swift */,
 				493020411F902364006BD777 /* UIImage+SoLazy.swift */,
+				498C9A5F1FB3663C009FBE33 /* URL+Core.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1535,6 +1543,14 @@
 			path = Todo;
 			sourceTree = "<group>";
 		};
+		493BEFA81FB14560006E8EFC /* LTI */ = {
+			isa = PBXGroup;
+			children = (
+				4902ADBD1FB26E860004837D /* LTIViewController.swift */,
+			);
+			path = LTI;
+			sourceTree = "<group>";
+		};
 		494AE08C1F8439A8001A8F31 /* React Native Modules */ = {
 			isa = PBXGroup;
 			children = (
@@ -1601,6 +1617,8 @@
 				4961F5351F8FAD930093EC86 /* WhizzyWigTemplate.html */,
 				4961F5361F8FAD930093EC86 /* WhizzyWigView.swift */,
 				4961F5341F8FAD920093EC86 /* WhizzyWigViewController.swift */,
+				497C0F891FACD0D200084032 /* CanvasWebView.swift */,
+				490F91F01FB0F94A00A7DA38 /* CanvasWebViewController.swift */,
 			);
 			path = WhizzyWig;
 			sourceTree = "<group>";
@@ -2418,7 +2436,6 @@
 				49CE96F41F8FFEA200121A43 /* Assignment */,
 				49CE97141F8FFEA300121A43 /* Assignment Group */,
 				49CE971B1F8FFEA400121A43 /* Assignment.storyboard */,
-				49CE97111F8FFEA300121A43 /* AssignmentDetails.html */,
 				49CE97171F8FFEA300121A43 /* LocalNotifications */,
 				49CE971D1F8FFEA400121A43 /* Model */,
 				49CE96EE1F8FFEA200121A43 /* Network */,
@@ -2794,7 +2811,6 @@
 				49CE97AB1F900D0000121A43 /* PandaImages.xcassets in Resources */,
 				49CE96831F8FF41B00121A43 /* HTMLAnswerCell.xib in Resources */,
 				49CE96731F8FF41B00121A43 /* TextAnswerCell.xib in Resources */,
-				49CE97421F8FFEA600121A43 /* AssignmentDetails.html in Resources */,
 				49CE967F1F8FF41B00121A43 /* DropdownAnswerCell.xib in Resources */,
 				4961F6251F8FB7010093EC86 /* CustomizeEnrollmentViewController.xib in Resources */,
 				4961F5411F8FAD9A0093EC86 /* WhizzyWigTemplate.html in Resources */,
@@ -2937,6 +2953,7 @@
 				4961F6871F8FB9620093EC86 /* Folder.swift in Sources */,
 				4961F5E01F8FB3EF0093EC86 /* ManagedObjectsObserver.swift in Sources */,
 				4961F5A01F8FB2970093EC86 /* UIColor+ShadesOfGray.swift in Sources */,
+				4902ADBE1FB26E860004837D /* LTIViewController.swift in Sources */,
 				4961F63C1F8FB7180093EC86 /* GradingPeriodAPI.swift in Sources */,
 				49CE97341F8FFEA600121A43 /* SubmissionType.swift in Sources */,
 				4961F6721F8FB9620093EC86 /* FileUploadsViewModel.swift in Sources */,
@@ -2966,6 +2983,7 @@
 				49CE96A11F8FF4A700121A43 /* ProgressDispatcher.swift in Sources */,
 				4961F5D71F8FB3EB0093EC86 /* FetchedDetailsCollection.swift in Sources */,
 				49CE972E1F8FFEA600121A43 /* Assignment+Collections.swift in Sources */,
+				490F91F11FB0F94A00A7DA38 /* CanvasWebViewController.swift in Sources */,
 				49CE96611F8FF41B00121A43 /* TimedQuizViewController.swift in Sources */,
 				497CA77B1F82D19A00501613 /* UIUserInterfaceSizeClassExtensions.swift in Sources */,
 				496C7D641F8BEF690010DC03 /* UnreadMessages.swift in Sources */,
@@ -3032,6 +3050,7 @@
 				49698D7F1F8FA2D000E38B78 /* DatePickerViewController.swift in Sources */,
 				49301FF01F901854006BD777 /* NotificationPreferencesViewController.swift in Sources */,
 				49CE96881F8FF41B00121A43 /* SubmissionQuestionsController.swift in Sources */,
+				498C9A601FB3663C009FBE33 /* URL+Core.swift in Sources */,
 				493020461F902364006BD777 /* NSError+Categorization.swift in Sources */,
 				49CE96601F8FF41B00121A43 /* AnswersFinalViewController.swift in Sources */,
 				49CE979D1F900D0000121A43 /* UserEnrollment.swift in Sources */,
@@ -3105,6 +3124,7 @@
 				493020701F902462006BD777 /* HTTPHeaders.swift in Sources */,
 				49CE973B1F8FFEA600121A43 /* Submission.swift in Sources */,
 				493020181F901CF5006BD777 /* CanvadocsAnnotationToolbar.swift in Sources */,
+				497C0F8A1FACD0D200084032 /* CanvasWebView.swift in Sources */,
 				49CE979B1F900D0000121A43 /* UserAPI.swift in Sources */,
 				4961F6781F8FB9620093EC86 /* FileUploadsViewController.swift in Sources */,
 				4961F6211F8FB6F00093EC86 /* EnrollmentCollectionViewCell.swift in Sources */,

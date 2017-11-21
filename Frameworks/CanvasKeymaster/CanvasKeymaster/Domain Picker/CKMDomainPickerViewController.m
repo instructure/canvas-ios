@@ -49,6 +49,7 @@ int ddLogLevel =
 @property (weak, nonatomic) IBOutlet UIButton *connectToCanvasNetworkButton;
 @property (nonatomic, weak) IBOutlet UILabel *forceCanvasLoginLabel;
 @property (nonatomic, weak) IBOutlet UIButton *helpButton;
+@property (nonatomic, strong) UIView *backgroundView;
 
 // Animation related properties
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *textFieldContainerToSuperViewConstraint;
@@ -58,6 +59,7 @@ int ddLogLevel =
 // Signal Stuff
 @property (nonatomic, strong) RACSubject *domainSubject;
 @property (nonatomic, strong) RACSubject *userSubject;
+@property (nonatomic, strong) RACScopedDisposable *loginGestureDisposable;
 
 // Domain Suggestions
 @property (nonatomic, weak) IBOutlet UIView *suggestionContainer;
@@ -95,6 +97,7 @@ int ddLogLevel =
 
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"gray_dots_bg"]];
     
+    [self styleDomainPicker];
     [self setupForceCanvasLoginGestureRecognizer];
     [self setupForceCanvasLoginLabel];
     [self setupTextFieldContainer];
@@ -103,7 +106,6 @@ int ddLogLevel =
     [self setupConnectButton];
     [self setupHelpButton];
     [self setupMultiUserLogin];
-    [self styleDomainPicker];
     [self startUpdatingLocation];
     
     UITapGestureRecognizer *dismissKeyboardGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
@@ -197,13 +199,19 @@ int ddLogLevel =
 - (void)setupForceCanvasLoginGestureRecognizer
 {
     UITapGestureRecognizer *doubleDoubleTapGestureRecognizer = [UITapGestureRecognizer new];
+#if TARGET_IPHONE_SIMULATOR
+    doubleDoubleTapGestureRecognizer.numberOfTapsRequired = 1;
+#else
     doubleDoubleTapGestureRecognizer.numberOfTapsRequired = 2;
+#endif
     doubleDoubleTapGestureRecognizer.numberOfTouchesRequired = 2;
-    [[doubleDoubleTapGestureRecognizer rac_gestureSignal] subscribeNext:^(id x) {
-       self.authenticationMethod = (self.authenticationMethod + 1) % CKIAuthenticationMethodCount;
-    }];
+    @weakify(self);
+    self.loginGestureDisposable = [[[doubleDoubleTapGestureRecognizer rac_gestureSignal] subscribeNext:^(id x) {
+        @strongify(self);
+        self.authenticationMethod = (self.authenticationMethod + 1) % CKIAuthenticationMethodCount;
+    }] asScopedDisposable];
 
-    [self.view addGestureRecognizer:doubleDoubleTapGestureRecognizer];
+    [self.backgroundView addGestureRecognizer:doubleDoubleTapGestureRecognizer];
 }
 
 - (void)setupConnectButton
@@ -257,6 +265,7 @@ int ddLogLevel =
     background.frame = self.view.bounds;
     background.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view insertSubview:background atIndex:0];
+    self.backgroundView = background;
 }
 
 - (void)setupTextFieldContainer

@@ -99,6 +99,12 @@ extension Router {
         addContextRoute([.course, .group], subPath: "pages_home") { contextID, _ in
             return try PagesHomeViewController(session: currentSession, contextID: contextID, listViewModelFactory: pagesListViewModelFactory, route: route)
         }
+        addContextRoute([.course], subPath: "external_tools/:toolID") { contextID, params in
+            guard let url = params["url"] as? URL else {
+                fatalError("Router passes URL as parameter to route handlers.")
+            }
+            return LTIViewController(toolName: "", courseID: contextID.id, launchURL: url, in: currentSession, showDoneButton: false)
+        }
 
         // Modules
         addContextRoute([.course], subPath: "modules") { contextID, _ in
@@ -125,7 +131,17 @@ extension Router {
             }
             return HelmViewController(moduleName: "/conversations/:conversationID", props: ["conversationID": convoID])
         }
-        
+        addRoute("/calendar_events/:calendarEventID") { parameters, _ in
+            guard
+                let params = parameters,
+                let eventID = try? params.stringID("calendarEventID"),
+                let eventVC = try? CalendarEventDetailViewController(forEventWithID: eventID, in: currentSession)
+            else {
+                fatalError("How did this path match if there is no calendarEventID?")
+            }
+            return eventVC
+        }
+
         CBIConversationStarter.setConversationStarter { recipients, context in
             guard
                 let contextID = ContextID(canvasContext: context),

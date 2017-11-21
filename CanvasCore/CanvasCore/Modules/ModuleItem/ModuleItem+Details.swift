@@ -17,7 +17,6 @@
 
 import Marshal
 import CoreData
-import CanvasCore
 
 extension ModuleItem {
     public static func detailsCacheKey(context: NSManagedObjectContext, courseID: String, moduleItemID: String) -> String {
