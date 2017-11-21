@@ -86,7 +86,11 @@ exports[`UserSubmissionRow renders 1`] = `
             }
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/course/Assignment.png",
+                }
+              }
               style={
                 Array [
                   Object {
@@ -114,7 +118,11 @@ exports[`UserSubmissionRow renders 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/Unpublished.png",
+                  }
+                }
                 style={
                   Object {
                     "height": 12,
@@ -138,7 +146,6 @@ exports[`UserSubmissionRow renders 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -167,7 +174,6 @@ exports[`UserSubmissionRow renders 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -265,7 +271,6 @@ exports[`UserSubmissionRow renders 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -386,7 +391,11 @@ exports[`UserSubmissionRow renders complete 1`] = `
             }
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/course/Assignment.png",
+                }
+              }
               style={
                 Array [
                   Object {
@@ -414,7 +423,11 @@ exports[`UserSubmissionRow renders complete 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/Unpublished.png",
+                  }
+                }
                 style={
                   Object {
                     "height": 12,
@@ -438,7 +451,6 @@ exports[`UserSubmissionRow renders complete 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -467,7 +479,6 @@ exports[`UserSubmissionRow renders complete 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -565,7 +576,6 @@ exports[`UserSubmissionRow renders complete 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -686,7 +696,11 @@ exports[`UserSubmissionRow renders excused 1`] = `
             }
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/course/Assignment.png",
+                }
+              }
               style={
                 Array [
                   Object {
@@ -714,7 +728,11 @@ exports[`UserSubmissionRow renders excused 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/Unpublished.png",
+                  }
+                }
                 style={
                   Object {
                     "height": 12,
@@ -738,7 +756,6 @@ exports[`UserSubmissionRow renders excused 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -767,7 +784,6 @@ exports[`UserSubmissionRow renders excused 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -892,7 +908,11 @@ exports[`UserSubmissionRow renders incomplete 1`] = `
             }
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/course/Assignment.png",
+                }
+              }
               style={
                 Array [
                   Object {
@@ -920,7 +940,11 @@ exports[`UserSubmissionRow renders incomplete 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/Unpublished.png",
+                  }
+                }
                 style={
                   Object {
                     "height": 12,
@@ -944,7 +968,6 @@ exports[`UserSubmissionRow renders incomplete 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -973,7 +996,6 @@ exports[`UserSubmissionRow renders incomplete 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1071,7 +1093,6 @@ exports[`UserSubmissionRow renders incomplete 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1192,7 +1213,11 @@ exports[`UserSubmissionRow renders needs grading 1`] = `
             }
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/course/Assignment.png",
+                }
+              }
               style={
                 Array [
                   Object {
@@ -1220,7 +1245,11 @@ exports[`UserSubmissionRow renders needs grading 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/Unpublished.png",
+                  }
+                }
                 style={
                   Object {
                     "height": 12,
@@ -1244,7 +1273,6 @@ exports[`UserSubmissionRow renders needs grading 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -1273,7 +1301,6 @@ exports[`UserSubmissionRow renders needs grading 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1315,7 +1342,6 @@ exports[`UserSubmissionRow renders needs grading 1`] = `
               accessible={true}
               allowFontScaling={true}
               color="#FC5E13"
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [

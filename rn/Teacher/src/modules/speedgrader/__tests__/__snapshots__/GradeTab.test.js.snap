@@ -61,11 +61,11 @@ exports[`Rubric has the correct score 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
     renderItem={[Function]}
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
     <View>
@@ -167,7 +167,6 @@ exports[`Rubric has the correct score 1`] = `
                 accessibilityTraits="header"
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -188,7 +187,6 @@ exports[`Rubric has the correct score 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -231,7 +229,6 @@ exports[`Rubric has the correct score 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -309,7 +306,6 @@ exports[`Rubric has the correct score 1`] = `
                   accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -378,7 +374,6 @@ exports[`Rubric has the correct score 1`] = `
                   accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -447,7 +442,6 @@ exports[`Rubric has the correct score 1`] = `
                   accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -512,7 +506,11 @@ exports[`Rubric has the correct score 1`] = `
                 }
               >
                 <Image
-                  source={1}
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/Add.png",
+                    }
+                  }
                   style={
                     Object {
                       "tintColor": "#8B969E",
@@ -546,7 +544,6 @@ exports[`Rubric has the correct score 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -656,11 +653,11 @@ exports[`Rubric renders a rubric 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
     renderItem={[Function]}
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
     <View>
@@ -762,7 +759,6 @@ exports[`Rubric renders a rubric 1`] = `
                 accessibilityTraits="header"
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -783,7 +779,6 @@ exports[`Rubric renders a rubric 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -826,7 +821,6 @@ exports[`Rubric renders a rubric 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -904,7 +898,6 @@ exports[`Rubric renders a rubric 1`] = `
                   accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -973,7 +966,6 @@ exports[`Rubric renders a rubric 1`] = `
                   accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -1042,7 +1034,6 @@ exports[`Rubric renders a rubric 1`] = `
                   accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -1107,7 +1098,11 @@ exports[`Rubric renders a rubric 1`] = `
                 }
               >
                 <Image
-                  source={1}
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/Add.png",
+                    }
+                  }
                   style={
                     Object {
                       "tintColor": "#8B969E",
@@ -1141,7 +1136,6 @@ exports[`Rubric renders a rubric 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -1251,11 +1245,11 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
     renderItem={[Function]}
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
     <View>
@@ -1358,7 +1352,6 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                 accessibilityTraits="header"
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -1379,7 +1372,6 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -1422,7 +1414,6 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1496,7 +1487,11 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                 }
               >
                 <Image
-                  source={1}
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/Add.png",
+                    }
+                  }
                   style={
                     Object {
                       "tintColor": "#8B969E",
@@ -1530,7 +1525,6 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -1571,7 +1565,6 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
             <Text
               accessible={false}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1613,7 +1606,6 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -1688,6 +1680,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
         }
       >
         <TextInput
+          allowFontScaling={true}
           autoFocus={false}
           maxHeight={76}
           multiline={true}
@@ -1767,11 +1760,11 @@ exports[`Rubric renders the grade picker when there is no rubric 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
     renderItem={[Function]}
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
     <View>
@@ -1902,11 +1895,11 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
     renderItem={[Function]}
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
     <View>
@@ -2008,7 +2001,6 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                 accessibilityTraits="header"
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -2029,7 +2021,6 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -2078,7 +2069,6 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -2156,7 +2146,6 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                   accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -2225,7 +2214,6 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                   accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -2294,7 +2282,6 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                   accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -2359,7 +2346,11 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                 }
               >
                 <Image
-                  source={1}
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/Add.png",
+                    }
+                  }
                   style={
                     Object {
                       "tintColor": "#8B969E",
@@ -2393,7 +2384,6 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [

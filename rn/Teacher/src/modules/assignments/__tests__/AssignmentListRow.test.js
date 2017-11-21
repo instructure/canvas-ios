@@ -48,6 +48,18 @@ test('renders correctly with needs_grading_count', () => {
   expect(tree).toMatchSnapshot()
 })
 
+test('renders correctly with needs_grading_count and set to not_graded', () => {
+  let assignment = template.assignment({
+    due_at: null,
+    needs_grading_count: 5,
+    grading_type: 'not_graded',
+  })
+  let tree = renderer.create(
+    <AssignmentListRow assignment={assignment} tintColor='#fff' />
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
 test('renders correctly with closed due dates', () => {
   const one = PAST_DATE.toISOString()
   const two = PAST_DATE.toISOString()

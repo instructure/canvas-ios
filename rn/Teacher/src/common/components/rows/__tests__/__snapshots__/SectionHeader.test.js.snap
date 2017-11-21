@@ -25,7 +25,6 @@ exports[`render 1`] = `
     accessibilityTraits="header"
     accessible={true}
     allowFontScaling={true}
-    disabled={false}
     ellipsizeMode="tail"
     style={
       Array [
@@ -80,7 +79,6 @@ exports[`render without key 1`] = `
     accessibilityTraits="header"
     accessible={true}
     allowFontScaling={true}
-    disabled={false}
     ellipsizeMode="tail"
     style={
       Array [

@@ -84,7 +84,11 @@ exports[`RichTextToolbar renders active items 1`] = `
           underlayColor="#f5f5f5"
         >
           <Image
-            source={1}
+            source={
+              Object {
+                "testUri": "../../../src/images/rce/bold-active.png",
+              }
+            }
           />
         </TouchableHighlight>
         <TouchableHighlight

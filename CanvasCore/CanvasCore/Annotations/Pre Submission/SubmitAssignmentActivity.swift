@@ -19,8 +19,6 @@
 import UIKit
 
 
-import CanvasCore
-
 class SubmitAssignmentActivity: UIActivity {
     let session: Session
     let defaultCourseID: String?

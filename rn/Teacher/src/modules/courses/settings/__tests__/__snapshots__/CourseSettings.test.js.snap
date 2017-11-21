@@ -72,7 +72,6 @@ exports[`CourseSettings dismisses modal activity upon save error 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -218,7 +217,6 @@ exports[`CourseSettings dismisses modal activity upon save error 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -246,6 +244,7 @@ exports[`CourseSettings dismisses modal activity upon save error 1`] = `
             Name
           </Text>
           <TextInput
+            allowFontScaling={true}
             onChangeText={[Function]}
             style={
               Array [
@@ -308,7 +307,6 @@ exports[`CourseSettings dismisses modal activity upon save error 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -338,7 +336,6 @@ exports[`CourseSettings dismisses modal activity upon save error 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -469,7 +466,6 @@ exports[`CourseSettings renders 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -615,7 +611,6 @@ exports[`CourseSettings renders 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -643,6 +638,7 @@ exports[`CourseSettings renders 1`] = `
             Name
           </Text>
           <TextInput
+            allowFontScaling={true}
             onChangeText={[Function]}
             style={
               Array [
@@ -705,7 +701,6 @@ exports[`CourseSettings renders 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -735,7 +730,6 @@ exports[`CourseSettings renders 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -866,7 +860,6 @@ exports[`CourseSettings renders a modal activity when saving 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1012,7 +1005,6 @@ exports[`CourseSettings renders a modal activity when saving 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1040,6 +1032,7 @@ exports[`CourseSettings renders a modal activity when saving 1`] = `
             Name
           </Text>
           <TextInput
+            allowFontScaling={true}
             onChangeText={[Function]}
             style={
               Array [
@@ -1102,7 +1095,6 @@ exports[`CourseSettings renders a modal activity when saving 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1132,7 +1124,6 @@ exports[`CourseSettings renders a modal activity when saving 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1263,7 +1254,6 @@ exports[`CourseSettings renders with empty image url 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1393,7 +1383,6 @@ exports[`CourseSettings renders with empty image url 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1421,6 +1410,7 @@ exports[`CourseSettings renders with empty image url 1`] = `
             Name
           </Text>
           <TextInput
+            allowFontScaling={true}
             onChangeText={[Function]}
             style={
               Array [
@@ -1483,7 +1473,6 @@ exports[`CourseSettings renders with empty image url 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1513,7 +1502,6 @@ exports[`CourseSettings renders with empty image url 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1644,7 +1632,6 @@ exports[`CourseSettings renders with image url 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1790,7 +1777,6 @@ exports[`CourseSettings renders with image url 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1818,6 +1804,7 @@ exports[`CourseSettings renders with image url 1`] = `
             Name
           </Text>
           <TextInput
+            allowFontScaling={true}
             onChangeText={[Function]}
             style={
               Array [
@@ -1880,7 +1867,6 @@ exports[`CourseSettings renders with image url 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1910,7 +1896,6 @@ exports[`CourseSettings renders with image url 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -2041,7 +2026,6 @@ exports[`CourseSettings renders without image url 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -2171,7 +2155,6 @@ exports[`CourseSettings renders without image url 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -2199,6 +2182,7 @@ exports[`CourseSettings renders without image url 1`] = `
             Name
           </Text>
           <TextInput
+            allowFontScaling={true}
             onChangeText={[Function]}
             style={
               Array [
@@ -2261,7 +2245,6 @@ exports[`CourseSettings renders without image url 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -2291,7 +2274,6 @@ exports[`CourseSettings renders without image url 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -2422,7 +2404,6 @@ exports[`CourseSettings shows home view picker when home row tapped 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -2568,7 +2549,6 @@ exports[`CourseSettings shows home view picker when home row tapped 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -2596,6 +2576,7 @@ exports[`CourseSettings shows home view picker when home row tapped 1`] = `
             Name
           </Text>
           <TextInput
+            allowFontScaling={true}
             onChangeText={[Function]}
             style={
               Array [
@@ -2658,7 +2639,6 @@ exports[`CourseSettings shows home view picker when home row tapped 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -2688,7 +2668,6 @@ exports[`CourseSettings shows home view picker when home row tapped 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [

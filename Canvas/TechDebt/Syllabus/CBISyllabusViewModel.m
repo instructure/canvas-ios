@@ -40,30 +40,4 @@
     return self;
 }
 
-+ (NSString *)syllabusHTMLFromCourse:(CKCourse *)course {
-    
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSBundle *canvasFrameworkBundle = [NSBundle bundleForClass:[CKCourse class]];
-    
-    NSURL *cssURL = [bundle URLForResource:@"ScheduleItemDetails" withExtension:@"css"];
-    NSURL *jsURL = [bundle URLForResource:@"ScheduleItemDetails" withExtension:@"js"];
-    NSURL *rewriteLinkURL = [canvasFrameworkBundle URLForResource:@"rewrite-api-links" withExtension:@"js"];
-    NSURL *templateURL = [bundle URLForResource:@"SyllabusDetails" withExtension:@"html"];
-    
-    NSString *css = [NSString stringWithContentsOfURL:cssURL encoding:NSUTF8StringEncoding error:nil];
-    NSString *js = [NSString stringWithContentsOfURL:jsURL encoding:NSUTF8StringEncoding error:nil];
-    NSString *rewriteJS = [NSString stringWithContentsOfURL:rewriteLinkURL encoding:NSUTF8StringEncoding error:nil];
-    NSString *htmlTemplate = [NSString stringWithContentsOfURL:templateURL encoding:NSUTF8StringEncoding error:nil];
-    
-    NSString *scrubbedHTML = [htmlTemplate stringByReplacingOccurrencesOfString:@"{$TITLE$}" withString:course.name ?: @""];
-    scrubbedHTML = [scrubbedHTML stringByReplacingOccurrencesOfString:@"{$COURSE_CODE$}" withString:course.courseCode ?: @""];
-    scrubbedHTML = [scrubbedHTML stringByReplacingOccurrencesOfString:@"{$CONTENT$}" withString:course.syllabusBody ?: @""];
-    
-    scrubbedHTML = [scrubbedHTML stringByReplacingOccurrencesOfString:@"{$CSS$}" withString:css ?: @""];
-    scrubbedHTML = [scrubbedHTML stringByReplacingOccurrencesOfString:@"{$JS$}" withString:js ?: @""];
-    scrubbedHTML = [scrubbedHTML stringByReplacingOccurrencesOfString:@"{$REWRITE_API_LINKS$}" withString:rewriteJS ?: @""];
-    
-    return scrubbedHTML;
-}
-
 @end

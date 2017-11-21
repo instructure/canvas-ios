@@ -189,7 +189,6 @@ exports[`AttachmentView renders unsupported stuffs 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
-      disabled={false}
       ellipsizeMode="tail"
       style={
         Object {

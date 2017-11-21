@@ -33,7 +33,6 @@ exports[`LinkModal renders 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Object {
@@ -60,6 +59,7 @@ exports[`LinkModal renders 1`] = `
         }
       >
         <TextInput
+          allowFontScaling={true}
           autoCapitalize="none"
           autoFocus={false}
           defaultValue={undefined}
@@ -87,6 +87,7 @@ exports[`LinkModal renders 1`] = `
         }
       >
         <TextInput
+          allowFontScaling={true}
           autoCapitalize="none"
           autoCorrect={false}
           defaultValue={undefined}

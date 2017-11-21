@@ -1,3 +1,2 @@
-pod install
 cd rn/Teacher
-yarn
+yarn build

@@ -99,11 +99,11 @@ extension Page {
 
     }
 
-    open class DetailViewController: UIViewController, UIWebViewDelegate {
+    open class DetailViewController: UIViewController {
 
         // MARK: - Properties
 
-        open let webView = WKWebView(frame: CGRect.zero)
+        open let webView: CanvasWebView
 
         open var refresher: Refresher
         open var observer: ManagedObjectObserver<Page>
@@ -122,8 +122,16 @@ extension Page {
             self.contextID = contextID
             self.session = session
             self.route = route
+            self.webView = CanvasWebView()
 
             super.init(nibName: nil, bundle: nil)
+            
+            webView.navigation = .external({ [weak self] url in
+                guard let me = self else {
+                    return
+                }
+                route(me, url)
+            })
         }
 
 
@@ -135,8 +143,6 @@ extension Page {
 
         override open func viewDidLoad() {
             super.viewDidLoad()
-            webView.navigationDelegate = self
-            
             view.backgroundColor = .white
 
             configureObserver()
@@ -210,7 +216,7 @@ extension Page {
                 showLockExplanation(lockExplanation: page.lockExplanation)
                 return
             }
-            webView.loadHTMLString(PageTemplateRenderer.htmlStringForPage(page), baseURL: session.baseURL)
+            webView.loadHTMLString(PageTemplateRenderer.htmlStringForPage(page, viewportWidth: view.bounds.width), baseURL: session.baseURL)
         }
 
         open func refresh() {
@@ -231,63 +237,3 @@ extension Page {
     }
 }
 
-extension Page.DetailViewController: WKNavigationDelegate {
-    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        let request = navigationAction.request
-        guard let requestURL = request.url else {
-            return decisionHandler(.cancel)
-        }
-        
-        if requestURL.scheme == "mailto" ||
-           navigationAction.navigationType != .linkActivated ||
-           requestURL.absoluteString.contains("external_tools/retrieve?") {
-            return decisionHandler(.allow)
-        }
-        
-        if Secrets.openExternalResourceIfNecessary(aURL: requestURL) {
-            return decisionHandler(.cancel)
-        }
-        
-        if requestURL.absoluteString.localizedCaseInsensitiveContains("slideshare.net") {
-            var requestWithReferer = request
-            requestWithReferer.url = requestURL
-            requestWithReferer.setValue(session.baseURL.description, forHTTPHeaderField: "Referer")
-            requestWithReferer.cachePolicy = .useProtocolCachePolicy
-            self.relaunchRequest(requestWithReferer)
-            return decisionHandler(.cancel)
-        }
-        
-        let components = requestURL.pathComponents
-        if let component = components.last, let fragment = requestURL.fragment, components.count > 0 {
-            let selfReferencingFragment = String(format: "%@#%@", session.baseURL.absoluteString, fragment)
-            let jsScrollToAnchor = jsScrollToHashTag(fragment)
-            
-            if requestURL.absoluteString == selfReferencingFragment {
-                self.webView.evaluateJavaScript(jsScrollToAnchor, completionHandler: nil)
-                return decisionHandler(.cancel)
-            }
-            
-            let requestBaseURL = requestURL.deletingPathExtension().absoluteString
-            if let currentBaseURL = URL(string: session.baseURL.absoluteString + self.contextID.htmlPath)?.absoluteString,
-                let currentAPIBaseURL = URL(string: session.baseURL.absoluteString + self.contextID.apiPath)?.absoluteString {
-                
-                if requestBaseURL.localizedCaseInsensitiveContains(currentBaseURL) || requestBaseURL.localizedCaseInsensitiveContains(currentAPIBaseURL) {
-                    let pageIdentifierWithFragmentSymbol = self.url + "#"
-                    if component.caseInsensitiveCompare(self.url) == .orderedSame || component.localizedCaseInsensitiveContains(pageIdentifierWithFragmentSymbol) {
-                        self.webView.evaluateJavaScript(jsScrollToAnchor, completionHandler: nil)
-                        return decisionHandler(.cancel)
-                    }
-                }
-            }
-        } else if let fragment = requestURL.fragment {
-            let components = requestURL.pathComponents
-            if (components.count == 0 && requestURL.scheme == "applewebdata") {
-                self.webView.evaluateJavaScript(jsScrollToHashTag(fragment), completionHandler: nil)
-                return decisionHandler(.cancel)
-            }
-        }
-        
-        route(self, requestURL)
-        return decisionHandler(.cancel)
-    }
-}

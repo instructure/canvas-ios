@@ -52,7 +52,6 @@ exports[`MediaComment renders videos 1`] = `
         accessibilityLabel="Time elapsed: 0 minutes, 0 seconds."
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Object {
@@ -100,7 +99,11 @@ exports[`MediaComment renders videos 1`] = `
       underlayColor="transparent"
     >
       <Image
-        source={1}
+        source={
+          Object {
+            "testUri": "../../../src/images/media-comments/Close.png",
+          }
+        }
         style={
           Object {
             "tintColor": "white",

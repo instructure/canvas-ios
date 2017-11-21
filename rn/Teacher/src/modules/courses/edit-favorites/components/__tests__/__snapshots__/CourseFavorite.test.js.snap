@@ -29,7 +29,11 @@ exports[`renders favorited correctly 1`] = `
     }
   >
     <Image
-      source={1}
+      source={
+        Object {
+          "testUri": "../../../src/images/star-filled.png",
+        }
+      }
       style={
         Array [
           Object {
@@ -46,7 +50,6 @@ exports[`renders favorited correctly 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
-      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -101,7 +104,11 @@ exports[`renders unfavorited correctly 1`] = `
     }
   >
     <Image
-      source={1}
+      source={
+        Object {
+          "testUri": "../../../src/images/star-lined.png",
+        }
+      }
       style={
         Array [
           Object {
@@ -118,7 +125,6 @@ exports[`renders unfavorited correctly 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
-      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [

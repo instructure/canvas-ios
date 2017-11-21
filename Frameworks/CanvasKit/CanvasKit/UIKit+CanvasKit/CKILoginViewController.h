@@ -34,4 +34,5 @@
 - (id)initWithRequest:(NSURLRequest *)request method:(CKIAuthenticationMethod)method;
 - (void)cancelOAuth;
 
++ (NSString *)safariUserAgent;
 @end

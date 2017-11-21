@@ -17,9 +17,14 @@
     
 
 import Foundation
+import UIKit
+
+private func format(_ width: CGFloat) -> String {
+    return "\(Int(width))"
+}
 
 
-open class PageTemplateRenderer: NSObject {
+public class PageTemplateRenderer: NSObject {
     
     fileprivate override init() { }
     
@@ -27,13 +32,18 @@ open class PageTemplateRenderer: NSObject {
         return Bundle(for: Page.self).url(forResource: "PageTemplate", withExtension: "html")!
     }
 
-    static func htmlStringForPage(_ page: Page) -> String {
-        return htmlString(title: page.title, body: page.body ?? "")
+    static func htmlStringForPage(_ page: Page, viewportWidth: CGFloat) -> String {
+        return htmlString(title: page.title, body: page.body ?? "", viewportWidth: viewportWidth)
     }
     
-    open class func htmlString(title: String, body: String) -> String {
+    public class func htmlString(title: String? = nil, body: String, viewportWidth: CGFloat) -> String {
+        let htmlTitle = title
+            .map { "<h1 id=\"title\">\($0)</h1>" }
+            ?? ""
+
         var template = try! String(contentsOf: templateUrl, encoding: String.Encoding.utf8)
-        template = template.replacingOccurrences(of: "{$TITLE$}", with: title)
+        template = template.replacingOccurrences(of: "{$CONTENT_WIDTH$}", with: format(viewportWidth))
+        template = template.replacingOccurrences(of: "{$TITLE$}", with: htmlTitle)
         template = template.replacingOccurrences(of: "{$PAGE_BODY$}", with: body)
         
         return template

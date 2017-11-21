@@ -58,7 +58,7 @@ class SubmissionViewController: UITableViewController {
     fileprivate let dropdownToolbarTitleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 40, height: 20))
     fileprivate let invisibleTextFieldForDropdowns = UITextField()
     lazy var dropdownsPicker: UIPickerView = {
-        let picker = UIPickerView(frame: CGRect(x: 0, y: 0, width: 0, height: DropdownPickerHeight))
+        let picker = UIPickerView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         picker.backgroundColor = .white
         picker.delegate = self
         picker.dataSource = self
@@ -326,7 +326,6 @@ extension SubmissionViewController: UIPickerViewDelegate, UIPickerViewDataSource
                 picker.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 picker.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 picker.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-                picker.heightAnchor.constraint(equalToConstant: DropdownPickerHeight)
             ])
         }
     }

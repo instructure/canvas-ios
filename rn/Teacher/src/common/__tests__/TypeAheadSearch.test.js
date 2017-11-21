@@ -18,14 +18,9 @@
 
 import React from 'react'
 import 'react-native'
-import renderer from 'react-test-renderer'
+import { shallow } from 'enzyme'
 import TypeAheadSearch, { type Props } from '../TypeAheadSearch'
 import { httpClient } from '../../canvas-api'
-import explore from '../../../test/helpers/explore'
-
-jest
-  .mock('react-native-search-bar', () => 'SearchBar')
-  .mock('../../canvas-api')
 
 describe('TypeAheadSearch', () => {
   let props: Props = {
@@ -40,15 +35,14 @@ describe('TypeAheadSearch', () => {
   })
 
   it('renders a search bar', () => {
-    expect(render(props).toJSON()).toMatchSnapshot()
+    expect(shallow(<TypeAheadSearch {...props} />)).toMatchSnapshot()
   })
 
   it('executes search on mount with default query', () => {
     props.defaultQuery = 'Malfurion'
     props.endpoint = '/defaultQuery'
     props.parameters = (query) => ({ search: query })
-    const screen = render(props)
-    screen.getInstance().componentDidMount()
+    shallow(<TypeAheadSearch {...props} />)
     expect(httpClient().get).toHaveBeenCalledWith('/defaultQuery', {
       params: { search: 'Malfurion' },
       cancelToken: expect.anything(),
@@ -57,9 +51,8 @@ describe('TypeAheadSearch', () => {
 
   it('notifies of text change', () => {
     props.onChangeText = jest.fn()
-    const screen = render(props)
-    const searchBar: any = explore(screen.toJSON()).selectByType('SearchBar')
-    searchBar.props.onChangeText('gather tribute')
+    const screen = shallow(<TypeAheadSearch {...props} />)
+    screen.find('SearchBar').simulate('ChangeText', 'gather tribute')
     expect(props.onChangeText).toHaveBeenCalledWith('gather tribute')
   })
 
@@ -68,10 +61,8 @@ describe('TypeAheadSearch', () => {
     let p = Promise.resolve({ data, headers: {} })
     httpClient().get.mockReturnValueOnce(p)
 
-    const screen = render(props)
-    const searchBar: any = explore(screen.toJSON()).selectByType('SearchBar')
-    searchBar.props.onChangeText('uther')
-
+    const screen = shallow(<TypeAheadSearch {...props} />)
+    screen.find('SearchBar').simulate('ChangeText', 'uther')
     await p
     expect(props.onRequestFinished).toHaveBeenCalledWith(data, null)
   })
@@ -87,15 +78,14 @@ describe('TypeAheadSearch', () => {
     let p1 = Promise.resolve({ data, headers })
     httpClient().get.mockReturnValueOnce(p1)
 
-    const screen = render(props)
-    const searchBar: any = explore(screen.toJSON()).selectByType('SearchBar')
-    searchBar.props.onChangeText('uther')
+    const screen = shallow(<TypeAheadSearch {...props} />)
+    screen.find('SearchBar').simulate('ChangeText', 'uther')
     await p1
     expect(props.onRequestFinished).toHaveBeenCalled()
 
     let p2 = Promise.resolve({ data, headers: {} })
     httpClient().get.mockReturnValueOnce(p2)
-    screen.getInstance().next()
+    screen.instance().next()
 
     await p2
     expect(props.onNextRequestFinished).toHaveBeenCalledWith(data, null)
@@ -105,9 +95,8 @@ describe('TypeAheadSearch', () => {
     let rejectedPromise = Promise.reject({ message: 'uh oh' })
     httpClient().get.mockReturnValueOnce(rejectedPromise)
 
-    const screen = render(props)
-    const searchBar: any = explore(screen.toJSON()).selectByType('SearchBar')
-    searchBar.props.onChangeText('uther')
+    const screen = shallow(<TypeAheadSearch {...props} />)
+    screen.find('SearchBar').simulate('ChangeText', 'uther')
 
     rejectedPromise.catch(() => {
       expect(props.onRequestFinished).toHaveBeenCalledWith(null, 'uh oh')
@@ -116,43 +105,24 @@ describe('TypeAheadSearch', () => {
 
   it('should notify when request starts', () => {
     httpClient().get.mockReturnValueOnce(Promise.resolve())
-    const screen = render(props)
-    const searchBar: any = explore(screen.toJSON()).selectByType('SearchBar')
-    searchBar.props.onChangeText('gather tribute')
+    const screen = shallow(<TypeAheadSearch {...props} />)
+    screen.find('SearchBar').simulate('ChangeText', 'gather tribute')
     expect(props.onRequestStarted).toHaveBeenCalled()
   })
 
   it('unfocuses searchbar on search button presses', () => {
-    const mock = jest.fn()
-    const createNodeMock = ({ type }) => {
-      if (type === 'SearchBar') {
-        return {
-          unFocus: mock,
-        }
-      }
-    }
-    const screen = render(props, { createNodeMock })
-    const searchBar: any = explore(screen.toJSON()).selectByType('SearchBar')
-    searchBar.props.onSearchButtonPress()
-    expect(mock).toHaveBeenCalled()
+    const unFocus = jest.fn()
+    const screen = shallow(<TypeAheadSearch {...props} />)
+    screen.find('SearchBar').getElement().ref({ unFocus })
+    screen.find('SearchBar').simulate('SearchButtonPress')
+    expect(unFocus).toHaveBeenCalled()
   })
 
   it('unfocuses searchbar on cancel button presses', () => {
-    const mock = jest.fn()
-    const createNodeMock = ({ type }) => {
-      if (type === 'SearchBar') {
-        return {
-          unFocus: mock,
-        }
-      }
-    }
-    const screen = render(props, { createNodeMock })
-    const searchBar: any = explore(screen.toJSON()).selectByType('SearchBar')
-    searchBar.props.onCancelButtonPress()
-    expect(mock).toHaveBeenCalled()
+    const unFocus = jest.fn()
+    const screen = shallow(<TypeAheadSearch {...props} />)
+    screen.find('SearchBar').getElement().ref({ unFocus })
+    screen.find('SearchBar').simulate('CancelButtonPress')
+    expect(unFocus).toHaveBeenCalled()
   })
-
-  function render (props: Props, options: Object = {}): any {
-    return renderer.create(<TypeAheadSearch {...props} />, options)
-  }
 })

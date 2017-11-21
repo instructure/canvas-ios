@@ -2,9 +2,12 @@
 
 exports[`TypeAheadSearch renders a search bar 1`] = `
 <SearchBar
+  barStyle="default"
+  editable={true}
   onCancelButtonPress={[Function]}
   onChangeText={[Function]}
   onSearchButtonPress={[Function]}
   placeholder="Search"
+  searchBarStyle="default"
 />
 `;

@@ -141,18 +141,18 @@ export class FavoritedCourseList extends Component {
   }
 
   render () {
-    let avatarURL
-    const session = getSession()
-    if (session) {
-      avatarURL = session.user.avatar_url
-    }
+    // let avatarURL
+    // const session = getSession()
+    // if (session) {
+    //   avatarURL = session.user.avatar_url
+    // }
 
-    const avatarConfig = {
-      uri: avatarURL,
-      width: 32,
-      height: 32,
-      borderRadius: 16,
-    }
+    // const avatarConfig = {
+    //   uri: avatarURL,
+    //   width: 32,
+    //   height: 32,
+    //   borderRadius: 16,
+    // }
 
     return (
       <Screen
@@ -169,14 +169,14 @@ export class FavoritedCourseList extends Component {
             disabled: !this.props.totalCourseCount,
           },
         ]}
-        leftBarButtons={[
-          {
-            image: avatarURL ? avatarConfig : Images.profile,
-            testID: 'favorited-course-list.profile-btn',
-            action: this.goToProfile,
-            accessibilityLabel: i18n('Profile'),
-          },
-        ]}
+        // leftBarButtons={[
+        //   {
+        //     image: avatarURL ? avatarConfig : Images.profile,
+        //     testID: 'favorited-course-list.profile-btn',
+        //     action: this.goToProfile,
+        //     accessibilityLabel: i18n('Profile'),
+        //   },
+        // ]}
         >
         { this._renderComponent() }
       </Screen>
@@ -220,7 +220,11 @@ const styles = StyleSheet.create({
 
 export function mapStateToProps (state: AppState): FavoritedCourseListDataProps {
   const allCourses = state.entities.courses
-  const totalCourseCount = Object.keys(allCourses).length
+  const totalCourseCount = Object.values(allCourses)
+    .map(({ course }) => course)
+    .filter(App.current().filterCourse)
+    .length
+
   const { pending, error, courseRefs } = state.favoriteCourses
   const courses: Array<CourseProps> = courseRefs
     .map(ref => allCourses[ref])

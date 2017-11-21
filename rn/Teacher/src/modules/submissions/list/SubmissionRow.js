@@ -77,8 +77,8 @@ class Row extends Component<any, RowProps, any> {
   }
 }
 
-const Grade = ({ grade, gradingType }: {grade: ?GradeProp, gradingType: GradingType}): * => {
-  if (!grade || grade === 'not_submitted' || grade === 'ungraded') {
+const Grade = ({ grade, gradingType }: {grade: ?GradeProp, gradingType: GradingType}) => {
+  if (!grade || grade === 'not_submitted' || grade === 'ungraded' || gradingType === 'not_graded') {
     return null
   }
 
@@ -104,7 +104,7 @@ class SubmissionRow extends Component<any, SubmissionRowProps, any> {
   }
 
   render () {
-    let { userID, avatarURL, name, status, grade, disclosure } = this.props
+    let { userID, avatarURL, name, status, grade, gradingType, disclosure } = this.props
     if (disclosure === undefined) {
       disclosure = true
     }
@@ -128,13 +128,13 @@ class SubmissionRow extends Component<any, SubmissionRowProps, any> {
             ellipsizeMode='tail'
             numberOfLines={2}>{name}</Text>
           <SubmissionStatus status={status} />
-          {grade === 'ungraded' &&
+          {grade === 'ungraded' && gradingType !== 'not_graded' &&
             <Token style={{ alignSelf: 'flex-start', marginTop: 8 }} color={ colors.primaryButton }>
               {i18n('Needs Grading')}
             </Token>
           }
         </View>
-        <Grade grade={grade} gradingType={this.props.gradingType} />
+        <Grade grade={grade} gradingType={gradingType} />
       </Row>
     )
   }

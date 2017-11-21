@@ -24,7 +24,6 @@
 @property (nonatomic) BOOL prependAssignmentInfoToContent;
 @property (nonatomic) CGFloat topContentInset;
 @property (nonatomic) CGFloat bottomContentInset;
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 - (UIScrollView *)scrollView;
 

@@ -77,6 +77,15 @@ test('submitted ungraded row renders correctly', () => {
   expect(tree).toMatchSnapshot()
 })
 
+test('submitted not_graded row renders correctly', () => {
+  const submission = mockSubmission('submitted', 'ungraded')
+  submission.gradingType = 'not_graded'
+  let tree = renderer.create(
+    <SubmissionRow {...submission} onPress={jest.fn()} />
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
 test('excused row renders correctly', () => {
   const submission = mockSubmission('missing', 'excused')
   let tree = renderer.create(

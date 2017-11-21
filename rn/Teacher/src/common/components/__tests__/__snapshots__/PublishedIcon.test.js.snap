@@ -13,7 +13,11 @@ exports[`renders published correctly 1`] = `
   }
 >
   <Image
-    source={1}
+    source={
+      Object {
+        "testUri": "../../../src/images/kabob.png",
+      }
+    }
     style={
       Array [
         Object {
@@ -41,7 +45,11 @@ exports[`renders published correctly 1`] = `
     }
   >
     <Image
-      source={1}
+      source={
+        Object {
+          "testUri": "../../../src/images/Published.png",
+        }
+      }
       style={
         Object {
           "height": 12,
@@ -67,7 +75,11 @@ exports[`renders unpublished correctly 1`] = `
   }
 >
   <Image
-    source={1}
+    source={
+      Object {
+        "testUri": "../../../src/images/kabob.png",
+      }
+    }
     style={
       Array [
         Object {
@@ -95,7 +107,11 @@ exports[`renders unpublished correctly 1`] = `
     }
   >
     <Image
-      source={1}
+      source={
+        Object {
+          "testUri": "../../../src/images/Unpublished.png",
+        }
+      }
       style={
         Object {
           "height": 12,

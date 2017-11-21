@@ -35,7 +35,6 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
         accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={1}
         style={
@@ -96,7 +95,6 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -168,7 +166,6 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
     refreshControl={
       <RefreshControlMock
         onRefresh={[Function]}
@@ -182,6 +179,7 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
     stickyHeaderIndices={Array []}
     testID="quiz-submission-list"
     updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
     <RCTRefreshControl />
@@ -293,7 +291,6 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
@@ -322,7 +319,6 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -355,7 +351,6 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -452,7 +447,6 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
         accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={1}
         style={
@@ -513,7 +507,6 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -585,7 +578,6 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
     refreshControl={
       <RefreshControlMock
         onRefresh={[Function]}
@@ -599,6 +591,7 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
     stickyHeaderIndices={Array []}
     testID="quiz-submission-list"
     updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
     <RCTRefreshControl />
@@ -710,7 +703,6 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
@@ -739,7 +731,6 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -772,7 +763,6 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -845,7 +835,6 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
         accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={1}
         style={
@@ -906,7 +895,6 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -978,7 +966,6 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
     refreshControl={
       <RefreshControlMock
         onRefresh={[Function]}
@@ -992,6 +979,7 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
     stickyHeaderIndices={Array []}
     testID="quiz-submission-list"
     updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
     <RCTRefreshControl />
@@ -1103,7 +1091,6 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
@@ -1132,7 +1119,6 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -1165,7 +1151,6 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [

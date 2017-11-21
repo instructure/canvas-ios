@@ -78,7 +78,6 @@ exports[`renders with overrides 1`] = `
             accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -102,7 +101,6 @@ exports[`renders with overrides 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -129,7 +127,6 @@ exports[`renders with overrides 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -167,7 +164,6 @@ exports[`renders with overrides 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -194,7 +190,6 @@ exports[`renders with overrides 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -232,7 +227,6 @@ exports[`renders with overrides 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -259,7 +253,6 @@ exports[`renders with overrides 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -339,7 +332,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -363,7 +355,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -390,7 +381,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -428,7 +418,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -455,7 +444,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -493,7 +481,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -520,7 +507,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -563,7 +549,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -587,7 +572,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -614,7 +598,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -652,7 +635,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -679,7 +661,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -717,7 +698,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -744,7 +724,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -787,7 +766,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -811,7 +789,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -838,7 +815,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -876,7 +852,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -903,7 +878,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -941,7 +915,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -968,7 +941,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1011,7 +983,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1035,7 +1006,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1062,7 +1032,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1100,7 +1069,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1127,7 +1095,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1165,7 +1132,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1192,7 +1158,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [

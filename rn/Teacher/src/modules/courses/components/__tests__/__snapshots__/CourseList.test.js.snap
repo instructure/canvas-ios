@@ -193,7 +193,11 @@ exports[`render courses 1`] = `
                 underlayColor="#ffffff00"
               >
                 <Image
-                  source={1}
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/kabob.png",
+                    }
+                  }
                   style={
                     Object {
                       "height": 18,
@@ -218,7 +222,6 @@ exports[`render courses 1`] = `
               <Text
                 accessible={false}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={2}
                 style={
@@ -246,7 +249,6 @@ exports[`render courses 1`] = `
               <Text
                 accessible={false}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
@@ -482,7 +484,11 @@ exports[`render courses pending 1`] = `
                 underlayColor="#ffffff00"
               >
                 <Image
-                  source={1}
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/kabob.png",
+                    }
+                  }
                   style={
                     Object {
                       "height": 18,
@@ -507,7 +513,6 @@ exports[`render courses pending 1`] = `
               <Text
                 accessible={false}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={2}
                 style={
@@ -535,7 +540,6 @@ exports[`render courses pending 1`] = `
               <Text
                 accessible={false}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
@@ -771,7 +775,11 @@ exports[`render narrow width 1`] = `
                 underlayColor="#ffffff00"
               >
                 <Image
-                  source={1}
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/kabob.png",
+                    }
+                  }
                   style={
                     Object {
                       "height": 18,
@@ -796,7 +804,6 @@ exports[`render narrow width 1`] = `
               <Text
                 accessible={false}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={2}
                 style={
@@ -824,7 +831,6 @@ exports[`render narrow width 1`] = `
               <Text
                 accessible={false}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
@@ -1060,7 +1066,11 @@ exports[`render wide width 1`] = `
                 underlayColor="#ffffff00"
               >
                 <Image
-                  source={1}
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/kabob.png",
+                    }
+                  }
                   style={
                     Object {
                       "height": 18,
@@ -1085,7 +1095,6 @@ exports[`render wide width 1`] = `
               <Text
                 accessible={false}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={2}
                 style={
@@ -1113,7 +1122,6 @@ exports[`render wide width 1`] = `
               <Text
                 accessible={false}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={

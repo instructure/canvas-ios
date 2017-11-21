@@ -144,7 +144,6 @@ exports[`QuizPreview renders error if needed 2`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
-      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -188,7 +187,6 @@ exports[`QuizPreview renders on error 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
-      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -267,7 +265,6 @@ exports[`QuizPreview renders on timeout 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
-      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [

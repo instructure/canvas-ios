@@ -4,7 +4,6 @@ exports[`SubmissionStatus status \`excused\` renders properly 1`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
-  disabled={false}
   ellipsizeMode="tail"
   style={
     Array [
@@ -39,7 +38,6 @@ exports[`SubmissionStatus status \`late\` renders properly 1`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
-  disabled={false}
   ellipsizeMode="tail"
   style={
     Array [
@@ -74,7 +72,6 @@ exports[`SubmissionStatus status \`missing\` renders properly 1`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
-  disabled={false}
   ellipsizeMode="tail"
   style={
     Array [
@@ -109,7 +106,6 @@ exports[`SubmissionStatus status \`none\` renders properly 1`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
-  disabled={false}
   ellipsizeMode="tail"
   style={
     Array [
@@ -144,7 +140,6 @@ exports[`SubmissionStatus status \`submitted\` renders properly 1`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
-  disabled={false}
   ellipsizeMode="tail"
   style={
     Array [

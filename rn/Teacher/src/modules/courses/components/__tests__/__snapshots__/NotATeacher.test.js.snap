@@ -23,7 +23,6 @@ exports[`renders NotATeacher correctly 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
-      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -49,7 +48,6 @@ exports[`renders NotATeacher correctly 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
-      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -89,7 +87,11 @@ exports[`renders NotATeacher correctly 1`] = `
       testID="no-teacher.open-student"
     >
       <Image
-        source={1}
+        source={
+          Object {
+            "testUri": "../../../src/images/Canvas-Student.png",
+          }
+        }
       />
     </TouchableOpacity>
     <TouchableOpacity
@@ -104,7 +106,11 @@ exports[`renders NotATeacher correctly 1`] = `
       testID="no-teacher.open-parent"
     >
       <Image
-        source={1}
+        source={
+          Object {
+            "testUri": "../../../src/images/Canvas-Parent.png",
+          }
+        }
       />
     </TouchableOpacity>
   </View>
@@ -138,7 +144,7 @@ exports[`renders NotATeacher correctly 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
+          disabled={undefined}
           ellipsizeMode="tail"
           style={
             Array [

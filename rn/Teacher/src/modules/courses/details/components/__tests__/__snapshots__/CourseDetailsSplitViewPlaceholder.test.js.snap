@@ -23,7 +23,11 @@ exports[`renders correctly 1`] = `
   >
     <Image
       resizeMode="contain"
-      source={1}
+      source={
+        Object {
+          "testUri": "../../../src/images/course/Placeholder.png",
+        }
+      }
       style={
         Object {
           "height": 80,
@@ -35,7 +39,6 @@ exports[`renders correctly 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
-      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -63,7 +66,6 @@ exports[`renders correctly 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
-      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -114,7 +116,11 @@ exports[`renders correctly 2`] = `
   >
     <Image
       resizeMode="contain"
-      source={1}
+      source={
+        Object {
+          "testUri": "../../../src/images/course/Placeholder.png",
+        }
+      }
       style={
         Object {
           "height": 80,
@@ -126,7 +132,6 @@ exports[`renders correctly 2`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
-      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -154,7 +159,6 @@ exports[`renders correctly 2`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
-      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [

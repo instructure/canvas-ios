@@ -53,9 +53,9 @@ import A11yGroup from '../../common/components/A11yGroup'
 type State = {
   size: { width: number, height: number },
   currentStudentID: ?string,
-  filteredIDs?: Array<string>,
   drawerInset: number,
   hasScrolledToInitialSubmission: boolean,
+  submissions: Array<SubmissionDataProps>,
 }
 
 const PAGE_GUTTER_HALF_WIDTH = 10.0
@@ -84,6 +84,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
       currentStudentID: props.userID,
       drawerInset: SpeedGrader.drawerState.drawerHeight(position, height),
       hasScrolledToInitialSubmission: false,
+      submissions: [],
     }
     SpeedGrader.drawerState.registerDrawer(this)
     this.currentPageIndex = props.studentIndex
@@ -91,6 +92,22 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
 
   snapTo = (position: DrawerPosition) => {
     this.setState({ drawerInset: SpeedGrader.drawerState.drawerHeight(position, this.state.size.height) })
+  }
+
+  componentWillMount () {
+    this.setSubmissions(this.props)
+  }
+
+  componentWillReceiveProps (nextProps: SpeedGraderProps) {
+    this.setSubmissions(nextProps)
+  }
+
+  setSubmissions (props: SpeedGraderProps) {
+    if (this.state.submissions.length) return
+    const submissions = props.filter
+      ? props.filter(props.submissions)
+      : props.submissions
+    this.setState({ submissions })
   }
 
   componentWillUnmount () {
@@ -166,7 +183,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
   scrollEnded = (event: Object) => {
     const index = event.nativeEvent.contentOffset.x / this.state.size.width
     this.currentPageIndex = index
-    const submission = this.filteredSubmissions()[index]
+    const submission = this.state.submissions[index]
     if (submission) {
       const currentStudentID = submission.userID
       if (currentStudentID !== this.state.currentStudentID) {
@@ -181,17 +198,12 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
     index,
   })
 
-  filteredSubmissions (): Array<SubmissionItem> {
-    if (!this.props.filter) return this.props.submissions
-    return this.props.filter(this.props.submissions)
-  }
-
   renderBody = () => {
-    if (this.props.refreshing || !this.props.submissions.length) {
+    if (this.props.refreshing || !this.state.submissions.length) {
       return <View style={styles.loadingWrapper}><ActivityIndicator /></View>
     }
 
-    const items = this.filteredSubmissions()
+    const items = this.state.submissions
       .map(submission => ({ key: submission.userID, submission }))
 
     return (

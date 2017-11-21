@@ -89,15 +89,15 @@ open class AttendanceViewController: UIViewController {
         view.backgroundColor = .white
         
         
-        let titleStuff = self.titleView(with: NSLocalizedString("Attendance", comment: ""), and: AttendanceViewController.dateFormatter.string(from: date))
+        let titleStuff = self.titleView(with: NSLocalizedString("Attendance", tableName: "Localizable", bundle: .core, value: "", comment: ""), and: AttendanceViewController.dateFormatter.string(from: date))
         titleStuff.titleLabel.textColor = .white
         titleStuff.subtitleLabel.textColor = .white
         navigationItem.titleView = titleStuff.titleView
         dateLabel = titleStuff.subtitleLabel
         
         let datePickerButton = UIBarButtonItem(image: UIImage(named: "attendance-calendar", in: .core, compatibleWith: nil), style: .plain, target: self, action: #selector(showDatePicker(_:)))
-        datePickerButton.accessibilityLabel = NSLocalizedString("Date picker", comment: "")
-        datePickerButton.accessibilityHint = NSLocalizedString("Select to change the roll call date", comment: "")
+        datePickerButton.accessibilityLabel = NSLocalizedString("Date picker", tableName: "Localizable", bundle: .core, value: "", comment: "")
+        datePickerButton.accessibilityHint = NSLocalizedString("Select to change the roll call date", tableName: "Localizable", bundle: .core, value: "", comment: "")
         navigationItem.rightBarButtonItem = datePickerButton
         
         header.translatesAutoresizingMaskIntoConstraints = false
@@ -117,7 +117,7 @@ open class AttendanceViewController: UIViewController {
         changeSectionButton.translatesAutoresizingMaskIntoConstraints = false
         changeSectionButton.setContentHuggingPriority(UILayoutPriorityRequired, for: .horizontal)
         changeSectionButton.titleLabel?.font = .preferredFont(forTextStyle: .caption1)
-        changeSectionButton.setTitle(NSLocalizedString("Change Section", comment: ""), for: .normal)
+        changeSectionButton.setTitle(NSLocalizedString("Change Section", tableName: "Localizable", bundle: .core, value: "", comment: ""), for: .normal)
         changeSectionButton.sizeToFit()
         changeSectionButton.addTarget(self, action: #selector(changeSection(_:)), for: .touchUpInside)
         header.addSubview(changeSectionButton)
@@ -184,9 +184,9 @@ open class AttendanceViewController: UIViewController {
         
         let containsNonNull = statii.contains(where: { $0.status.attendance != nil })
         if !containsNonNull {
-            bigBlueButton.setTitle(NSLocalizedString("Mark All as Present", comment: ""), for: .normal)
+            bigBlueButton.setTitle(NSLocalizedString("Mark All as Present", tableName: "Localizable", bundle: .core, value: "", comment: ""), for: .normal)
         } else {
-            bigBlueButton.setTitle(NSLocalizedString("Mark Remaining as Present", comment: ""), for: .normal)
+            bigBlueButton.setTitle(NSLocalizedString("Mark Remaining as Present", tableName: "Localizable", bundle: .core, value: "", comment: ""), for: .normal)
         }
         
         showOrHideBigBlueButton()
@@ -212,13 +212,13 @@ open class AttendanceViewController: UIViewController {
     
     func alertError(_ error: Error) {
         let alert = UIAlertController(
-            title: NSLocalizedString("Attendance Error", comment: "Error title for attendance app"),
+            title: NSLocalizedString("Attendance Error", tableName: "Localizable", bundle: .core, value: "", comment: "Error title for attendance app"),
             message: error.localizedDescription,
             preferredStyle: .alert
         )
         
         alert.addAction(UIAlertAction(
-            title: NSLocalizedString("Dismiss", comment: "Dismiss an error alert"),
+            title: NSLocalizedString("Dismiss", tableName: "Localizable", bundle: .core, value: "", comment: "Dismiss an error alert"),
             style: .default,
             handler: nil
         ))
@@ -280,7 +280,7 @@ open class AttendanceViewController: UIViewController {
             
             guard sections.count > 0 else {
                 me.alertError(attendanceError(message:
-                    NSLocalizedString("There was a problem fetching the list of course sections.", comment: "")
+                    NSLocalizedString("There was a problem fetching the list of course sections.", tableName: "Localizable", bundle: .core, value: "", comment: "")
                 ))
                 sender?.endRefreshing()
                 return
@@ -294,7 +294,7 @@ open class AttendanceViewController: UIViewController {
                     me.sectionID = firstID
                 } else {
                     me.alertError(attendanceError(message:
-                        NSLocalizedString("No sections available. Please make sure you are enrolled as a teacher or TA in at least on section of this course.", comment: "")
+                        NSLocalizedString("No sections available. Please make sure you are enrolled as a teacher or TA in at least on section of this course.", tableName: "Localizable", bundle: .core, value: "", comment: "")
                     ))
                     return
                 }
@@ -406,25 +406,25 @@ extension AttendanceViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         if sc.status.attendance != .present {
-            let action = UITableViewRowAction(style: .normal, title: NSLocalizedString("Present", comment: "Mark student present"), handler: newStatus(.present))
+            let action = UITableViewRowAction(style: .normal, title: NSLocalizedString("Present", tableName: "Localizable", bundle: .core, value: "", comment: "Mark student present"), handler: newStatus(.present))
             action.backgroundColor = #colorLiteral(red: 0, green: 0.6745098039, blue: 0.09411764706, alpha: 1)
             actions.append(action)
         }
 
         if sc.status.attendance != .absent {
-            let action = UITableViewRowAction(style: .normal, title: NSLocalizedString("Absent", comment: "Mark student absent"), handler: newStatus(.absent))
+            let action = UITableViewRowAction(style: .normal, title: NSLocalizedString("Absent", tableName: "Localizable", bundle: .core, value: "", comment: "Mark student absent"), handler: newStatus(.absent))
             action.backgroundColor = #colorLiteral(red: 0.9333333333, green: 0.02352941176, blue: 0.07058823529, alpha: 1)
             actions.append(action)
         }
         
         if sc.status.attendance != .late {
-            let action = UITableViewRowAction(style: .normal, title: NSLocalizedString("Late", comment: "Mark student late"), handler: newStatus(.late))
+            let action = UITableViewRowAction(style: .normal, title: NSLocalizedString("Late", tableName: "Localizable", bundle: .core, value: "", comment: "Mark student late"), handler: newStatus(.late))
             action.backgroundColor = #colorLiteral(red: 0.9882352941, green: 0.368627451, blue: 0.07450980392, alpha: 1)
             actions.append(action)
         }
 
         if sc.status.attendance != nil {
-            let action = UITableViewRowAction(style: .normal, title: NSLocalizedString("Unmark", comment: "Remove attendance status"), handler: newStatus(nil))
+            let action = UITableViewRowAction(style: .normal, title: NSLocalizedString("Unmark", tableName: "Localizable", bundle: .core, value: "", comment: "Remove attendance status"), handler: newStatus(nil))
             action.backgroundColor = #colorLiteral(red: 0.4509803922, green: 0.5058823529, blue: 0.5490196078, alpha: 1)
             actions.append(action)
         }
@@ -503,7 +503,7 @@ extension AttendanceViewController {
     @objc
     fileprivate func changeSection(_ sender: UIButton) {
         let alert = UIAlertController(
-            title: NSLocalizedString("Choose a Section", comment: ""),
+            title: NSLocalizedString("Choose a Section", tableName: "Localizable", bundle: .core, value: "", comment: ""),
             message: nil,
             preferredStyle: .actionSheet
         )
@@ -521,7 +521,7 @@ extension AttendanceViewController {
             )
         }
         alert.addAction(
-            UIAlertAction(title: NSLocalizedString("Cancel", comment: ""),style: .cancel, handler: nil)
+            UIAlertAction(title: NSLocalizedString("Cancel", tableName: "Localizable", bundle: .core, value: "", comment: ""),style: .cancel, handler: nil)
         )
 
         if let popover = alert.popoverPresentationController {

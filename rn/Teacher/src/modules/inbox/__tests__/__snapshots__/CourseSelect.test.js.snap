@@ -218,7 +218,6 @@ exports[`CourseSelect renders 1`] = `
           accessibilityTraits="header"
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -301,7 +300,6 @@ exports[`CourseSelect renders 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -363,7 +361,6 @@ exports[`CourseSelect renders 1`] = `
           accessibilityTraits="header"
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -446,7 +443,6 @@ exports[`CourseSelect renders 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -531,7 +527,6 @@ exports[`CourseSelect renders 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -787,7 +782,6 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
           accessibilityTraits="header"
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -870,7 +864,6 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -932,7 +925,6 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
           accessibilityTraits="header"
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -1015,7 +1007,6 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -1100,7 +1091,6 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={

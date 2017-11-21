@@ -104,7 +104,7 @@ class DatePickerViewController: UIViewController {
         
         view.backgroundColor = .white
         
-        navigationItem.title = NSLocalizedString("Choose Date", comment: "")
+        navigationItem.title = NSLocalizedString("Choose Date", tableName: "Localizable", bundle: .core, value: "", comment: "")
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done(_:)))
         
         layout.minimumLineSpacing = 0.0

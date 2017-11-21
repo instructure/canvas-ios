@@ -25,8 +25,8 @@ unless options[:skip_clean]
   puts "Warning: this will remove any uncommitted code. Press any key to continue."
   gets
 
-  # Export from develop. Remove files not tracked in git.
-  ['git checkout develop', 'git clean -dfx', 'git reset --hard'].each do |command|
+  # Export from master. Remove files not tracked in git.
+  ['git checkout master', 'git clean -dfx', 'git reset --hard'].each do |command|
     raise "command failed: #{command}" unless system(command)
   end
 end
@@ -55,9 +55,7 @@ podfile_path         = File.join(destination, 'Podfile')
 groups_to_remove = %w[]
 
 # Frameworks that should be removed as well
-# DoNotShipThis - has auth tokens for test accounts
-# SoAutomated - has DVR network recordings with private data
-frameworks_to_remove = %w[DoNotShipThis SoAutomated]
+frameworks_to_remove = %w[]
 
 puts "Copying all required files and folders"
 unless options[:skip_copy]
@@ -147,14 +145,8 @@ prune_plist File.join(canvas_core_path, 'CanvasCore', 'Secrets', 'feature_toggle
 opensource_files_dir    = File.join('opensource', 'files')
 external_frameworks_dir = File.join(destination, 'ExternalFrameworks')
 
-# Copy over the readme files
+# Copy over the readme file
 FileUtils.cp File.join(opensource_files_dir, 'README.md'), File.join(destination, 'README.md')
-FileUtils.mkdir external_frameworks_dir unless File.exist? external_frameworks_dir
-FileUtils.cp File.join(opensource_files_dir, 'EFREADME.md'), File.join(external_frameworks_dir, 'README.md')
-
-# Remove PSPDFKit from ExternalFrameworks
-pspdfkit_dir = File.join(external_frameworks_dir, 'PSPDFKit.framework')
-FileUtils.rm_r pspdfkit_dir if File.exists? pspdfkit_dir
 
 # Remove GoogleServices plist
 google_services_path = File.join(destination, 'Canvas', 'Canvas', 'Shrug', 'GoogleService-Info.plist')

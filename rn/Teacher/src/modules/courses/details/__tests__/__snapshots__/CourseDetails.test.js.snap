@@ -54,7 +54,7 @@ exports[`refresh function second test 1`] = `
       contentInsetAdjustmentBehavior="never"
       contentOffset={
         Object {
-          "y": 0,
+          "y": -235,
         }
       }
       onScroll={[Function]}
@@ -177,7 +177,6 @@ exports[`refresh function second test 1`] = `
         accessible={true}
         allowFontScaling={true}
         collapsable={undefined}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Object {
@@ -198,7 +197,6 @@ exports[`refresh function second test 1`] = `
         accessible={true}
         allowFontScaling={true}
         collapsable={undefined}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Object {
@@ -218,7 +216,6 @@ exports[`refresh function second test 1`] = `
     accessible={false}
     allowFontScaling={true}
     collapsable={undefined}
-    disabled={false}
     ellipsizeMode="tail"
     numberOfLines={1}
     style={
@@ -243,7 +240,6 @@ exports[`refresh function second test 1`] = `
     accessible={false}
     allowFontScaling={true}
     collapsable={undefined}
-    disabled={false}
     ellipsizeMode="tail"
     numberOfLines={1}
     style={
@@ -321,7 +317,7 @@ exports[`renders correctly 1`] = `
       contentInsetAdjustmentBehavior="never"
       contentOffset={
         Object {
-          "y": 0,
+          "y": -235,
         }
       }
       onScroll={[Function]}
@@ -393,7 +389,11 @@ exports[`renders correctly 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/course/Assignment.png",
+                  }
+                }
                 style={
                   Array [
                     Object {
@@ -420,7 +420,6 @@ exports[`renders correctly 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   numberOfLines={0}
                   style={
@@ -582,7 +581,6 @@ exports[`renders correctly 1`] = `
         accessible={true}
         allowFontScaling={true}
         collapsable={undefined}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Object {
@@ -603,7 +601,6 @@ exports[`renders correctly 1`] = `
         accessible={true}
         allowFontScaling={true}
         collapsable={undefined}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Object {
@@ -623,7 +620,6 @@ exports[`renders correctly 1`] = `
     accessible={false}
     allowFontScaling={true}
     collapsable={undefined}
-    disabled={false}
     ellipsizeMode="tail"
     numberOfLines={1}
     style={
@@ -648,7 +644,6 @@ exports[`renders correctly 1`] = `
     accessible={false}
     allowFontScaling={true}
     collapsable={undefined}
-    disabled={false}
     ellipsizeMode="tail"
     numberOfLines={1}
     style={
@@ -702,7 +697,7 @@ exports[`renders correctly without tabs 1`] = `
       contentInsetAdjustmentBehavior="never"
       contentOffset={
         Object {
-          "y": 0,
+          "y": -235,
         }
       }
       onScroll={[Function]}
@@ -825,7 +820,6 @@ exports[`renders correctly without tabs 1`] = `
         accessible={true}
         allowFontScaling={true}
         collapsable={undefined}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Object {
@@ -846,7 +840,6 @@ exports[`renders correctly without tabs 1`] = `
         accessible={true}
         allowFontScaling={true}
         collapsable={undefined}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Object {
@@ -866,7 +859,6 @@ exports[`renders correctly without tabs 1`] = `
     accessible={false}
     allowFontScaling={true}
     collapsable={undefined}
-    disabled={false}
     ellipsizeMode="tail"
     numberOfLines={1}
     style={
@@ -891,7 +883,6 @@ exports[`renders correctly without tabs 1`] = `
     accessible={false}
     allowFontScaling={true}
     collapsable={undefined}
-    disabled={false}
     ellipsizeMode="tail"
     numberOfLines={1}
     style={
@@ -945,7 +936,7 @@ exports[`renders with empty image url 1`] = `
       contentInsetAdjustmentBehavior="never"
       contentOffset={
         Object {
-          "y": 0,
+          "y": -235,
         }
       }
       onScroll={[Function]}
@@ -1017,7 +1008,11 @@ exports[`renders with empty image url 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/course/Assignment.png",
+                  }
+                }
                 style={
                   Array [
                     Object {
@@ -1044,7 +1039,6 @@ exports[`renders with empty image url 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   numberOfLines={0}
                   style={
@@ -1189,7 +1183,6 @@ exports[`renders with empty image url 1`] = `
         accessible={true}
         allowFontScaling={true}
         collapsable={undefined}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Object {
@@ -1210,7 +1203,6 @@ exports[`renders with empty image url 1`] = `
         accessible={true}
         allowFontScaling={true}
         collapsable={undefined}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Object {
@@ -1230,7 +1222,6 @@ exports[`renders with empty image url 1`] = `
     accessible={false}
     allowFontScaling={true}
     collapsable={undefined}
-    disabled={false}
     ellipsizeMode="tail"
     numberOfLines={1}
     style={
@@ -1255,7 +1246,6 @@ exports[`renders with empty image url 1`] = `
     accessible={false}
     allowFontScaling={true}
     collapsable={undefined}
-    disabled={false}
     ellipsizeMode="tail"
     numberOfLines={1}
     style={
@@ -1309,7 +1299,7 @@ exports[`renders with image url 1`] = `
       contentInsetAdjustmentBehavior="never"
       contentOffset={
         Object {
-          "y": 0,
+          "y": -235,
         }
       }
       onScroll={[Function]}
@@ -1381,7 +1371,11 @@ exports[`renders with image url 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/course/Assignment.png",
+                  }
+                }
                 style={
                   Array [
                     Object {
@@ -1408,7 +1402,6 @@ exports[`renders with image url 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   numberOfLines={0}
                   style={
@@ -1570,7 +1563,6 @@ exports[`renders with image url 1`] = `
         accessible={true}
         allowFontScaling={true}
         collapsable={undefined}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Object {
@@ -1591,7 +1583,6 @@ exports[`renders with image url 1`] = `
         accessible={true}
         allowFontScaling={true}
         collapsable={undefined}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Object {
@@ -1611,7 +1602,6 @@ exports[`renders with image url 1`] = `
     accessible={false}
     allowFontScaling={true}
     collapsable={undefined}
-    disabled={false}
     ellipsizeMode="tail"
     numberOfLines={1}
     style={
@@ -1636,7 +1626,6 @@ exports[`renders with image url 1`] = `
     accessible={false}
     allowFontScaling={true}
     collapsable={undefined}
-    disabled={false}
     ellipsizeMode="tail"
     numberOfLines={1}
     style={
@@ -1690,7 +1679,7 @@ exports[`renders without image url 1`] = `
       contentInsetAdjustmentBehavior="never"
       contentOffset={
         Object {
-          "y": 0,
+          "y": -235,
         }
       }
       onScroll={[Function]}
@@ -1762,7 +1751,11 @@ exports[`renders without image url 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/course/Assignment.png",
+                  }
+                }
                 style={
                   Array [
                     Object {
@@ -1789,7 +1782,6 @@ exports[`renders without image url 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   numberOfLines={0}
                   style={
@@ -1934,7 +1926,6 @@ exports[`renders without image url 1`] = `
         accessible={true}
         allowFontScaling={true}
         collapsable={undefined}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Object {
@@ -1955,7 +1946,6 @@ exports[`renders without image url 1`] = `
         accessible={true}
         allowFontScaling={true}
         collapsable={undefined}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Object {
@@ -1975,7 +1965,6 @@ exports[`renders without image url 1`] = `
     accessible={false}
     allowFontScaling={true}
     collapsable={undefined}
-    disabled={false}
     ellipsizeMode="tail"
     numberOfLines={1}
     style={
@@ -2000,7 +1989,6 @@ exports[`renders without image url 1`] = `
     accessible={false}
     allowFontScaling={true}
     collapsable={undefined}
-    disabled={false}
     ellipsizeMode="tail"
     numberOfLines={1}
     style={

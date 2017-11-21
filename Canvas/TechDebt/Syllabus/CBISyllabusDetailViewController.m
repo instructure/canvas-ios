@@ -27,9 +27,10 @@
 @import CanvasKeymaster;
 #import "CBILog.h"
 @import Crashlytics;
+@import CanvasCore;
 
 @interface CBISyllabusDetailViewController () <UIWebViewDelegate>
-@property (nonatomic, strong) UIWebView *webView;
+@property (nonatomic, strong) CanvasWebView *webView;
 @end
 
 @implementation CBISyllabusDetailViewController
@@ -54,8 +55,8 @@
     [super viewDidLoad];
     CLS_LOG(@"Loaded Syllabus Detail View");
     
-    self.webView = [[UIWebView alloc] init];
-    self.webView.delegate = self;
+    self.webView = [[CanvasWebView alloc] init];
+    self.webView.presentingViewController = self;
     [self.view addSubview:self.webView];
     
     [self.webView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -73,21 +74,15 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 
-
-- (void)dealloc
-{
-    self.webView.delegate = nil;
-}
-
 - (void)updateWebView
 {
     if (self.course) {
-        
-        self.webView.dataDetectorTypes = UIDataDetectorTypeAll;
-        
-        NSString *html = [CBISyllabusViewModel syllabusHTMLFromCourse:self.course];
         Session *session = TheKeymaster.currentClient.authSession;
-        [self.webView loadHTMLString:html baseURL:session.baseURL];
+        @weakify(self);
+        [self.webView loadWithHtml:self.course.syllabusBody title:self.course.name baseURL:session.baseURL routeToURL:^(NSURL * _Nonnull url) {
+            @strongify(self);
+            [[Router sharedRouter] routeFromController:self toURL:url];
+        }];
     }
 }
 
@@ -95,24 +90,6 @@
 {
     _course = course;
     [self updateWebView];
-}
-
-#pragma mark - UIWebViewDelegate
-
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    
-    if (navigationType == UIWebViewNavigationTypeOther) {
-        return YES;
-    }
-
-    [[Router sharedRouter] routeFromController:self toURL:request.URL];
-    return NO;
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-    [webView replaceHREFsWithAPISafeURLs];
-    
-    [webView.scrollView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
 }
 
 @end

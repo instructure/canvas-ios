@@ -16,7 +16,11 @@ exports[`SimilarityScore renders error status 1`] = `
   testID="speedgrader.similarity-score.status.container"
 >
   <Image
-    source={1}
+    source={
+      Object {
+        "testUri": "../../../src/images/Warning.png",
+      }
+    }
     style={
       Object {
         "height": 18,
@@ -45,7 +49,11 @@ exports[`SimilarityScore renders pending status 1`] = `
   testID="speedgrader.similarity-score.status.container"
 >
   <Image
-    source={1}
+    source={
+      Object {
+        "testUri": "../../../src/images/clock.png",
+      }
+    }
     style={
       Object {
         "height": 18,

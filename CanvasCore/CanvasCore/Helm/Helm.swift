@@ -297,7 +297,7 @@ open class HelmManager: NSObject {
         let enumerator = viewControllers.objectEnumerator()
         while let object = enumerator?.nextObject() {
             guard let vc = object as? HelmViewController else { continue }
-            vc.view = nil
+            vc.view = UIView() // nil causes `loadView` to be called again during the dismiss process
         }
         viewControllers.removeAllObjects()
         dismissAllModals(["animated": false])

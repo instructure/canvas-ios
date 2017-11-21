@@ -98,6 +98,10 @@ abstract_target 'defaults' do
   target 'Canvas' do
     project 'Canvas/Canvas.xcodeproj'
   end
+  
+  target 'GradesWidget' do
+    project 'Canvas/Canvas.xcodeproj'
+  end
 
   target 'CanvasCore' do
     project 'CanvasCore/CanvasCore.xcodeproj'

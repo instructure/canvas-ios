@@ -7,7 +7,9 @@ exports[`AnnouncementsList renders 1`] = `
     Array [
       Object {
         "action": [Function],
-        "image": 1,
+        "image": Object {
+          "testUri": "../../../src/images/Add.png",
+        },
         "testID": "announcements.list.addButton",
       },
     ]
@@ -177,7 +179,6 @@ exports[`AnnouncementsList renders 1`] = `
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
       onScrollEndDrag={[Function]}
-      onViewableItemsChanged={undefined}
       refreshControl={
         <RefreshControlMock
           onRefresh={[Function]}
@@ -191,6 +192,7 @@ exports[`AnnouncementsList renders 1`] = `
       stickyHeaderIndices={Array []}
       testID="announcements.list.list"
       updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
       windowSize={21}
     >
       <RCTRefreshControl />
@@ -250,7 +252,6 @@ exports[`AnnouncementsList renders 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   numberOfLines={0}
                   style={
@@ -279,7 +280,6 @@ exports[`AnnouncementsList renders 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -412,7 +412,6 @@ exports[`AnnouncementsList renders 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   numberOfLines={0}
                   style={
@@ -441,7 +440,6 @@ exports[`AnnouncementsList renders 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -521,7 +519,9 @@ exports[`AnnouncementsList renders empty list 1`] = `
     Array [
       Object {
         "action": [Function],
-        "image": 1,
+        "image": Object {
+          "testUri": "../../../src/images/Add.png",
+        },
         "testID": "announcements.list.addButton",
       },
     ]
@@ -560,7 +560,6 @@ exports[`AnnouncementsList renders empty list 1`] = `
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
       onScrollEndDrag={[Function]}
-      onViewableItemsChanged={undefined}
       refreshControl={
         <RefreshControlMock
           onRefresh={[Function]}
@@ -574,6 +573,7 @@ exports[`AnnouncementsList renders empty list 1`] = `
       stickyHeaderIndices={Array []}
       testID="announcements.list.list"
       updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
       windowSize={21}
     >
       <RCTRefreshControl />
@@ -595,7 +595,6 @@ exports[`AnnouncementsList renders empty list 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -652,7 +651,9 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
     Array [
       Object {
         "action": [Function],
-        "image": 1,
+        "image": Object {
+          "testUri": "../../../src/images/Add.png",
+        },
         "testID": "announcements.list.addButton",
       },
     ]
@@ -822,7 +823,6 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
       onScrollEndDrag={[Function]}
-      onViewableItemsChanged={undefined}
       refreshControl={
         <RefreshControlMock
           onRefresh={[Function]}
@@ -836,6 +836,7 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
       stickyHeaderIndices={Array []}
       testID="announcements.list.list"
       updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
       windowSize={21}
     >
       <RCTRefreshControl />
@@ -895,7 +896,6 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   numberOfLines={0}
                   style={
@@ -924,7 +924,6 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -1057,7 +1056,6 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   numberOfLines={0}
                   style={
@@ -1086,7 +1084,6 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [

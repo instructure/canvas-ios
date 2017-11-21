@@ -116,11 +116,26 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
            testID='assignment-details.assignment-section.submission-type'
            onPress={isExternalTool && this.launchExternalTool}
            showDisclosureIndicator={isExternalTool}
-         >
+          >
             <SubmissionType data={assignment.submission_types} />
           </AssignmentSection>
 
-          {this.props.showSubmissionSummary &&
+          {this.props.showSubmissionSummary && (submissionTypes.includes('not_graded') ? (
+            <View style={style.section}>
+              <TouchableOpacity
+                testID='assignment-details.assignment-section.submissions'
+                accessibilityLabel={i18n('View all submissions')}
+                accessibilityTraits='button'
+                accessible={!noSubmissions}
+                onPress={this.viewAllSubmissions}
+              >
+                <View style={style.notGradedSubmissions}>
+                  <Text style={style.header} testID='assignment-details.description-section-title-lbl'>{i18n('Submissions')}</Text>
+                  <DisclosureIndicator />
+                </View>
+              </TouchableOpacity>
+            </View>
+          ) : (
             <View style={style.section}>
               <Text style={style.header} testID='assignment-details.assignment-section.submissions-title-lbl'>{sectionTitleSubmissions}</Text>
               <View style={style.submissions} {...submissionContainerAccessibilityTraits}>
@@ -132,7 +147,7 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
                   accessibilityLabel={i18n('View all submissions')}
                   accessibilityTraits='button'
                   accessible={!noSubmissions}
-                  onPress={() => this.viewSubmissions()}
+                  onPress={this.viewAllSubmissions}
                   style={{
                     justifyContent: 'center',
                     width: 44,
@@ -145,7 +160,7 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
                 </TouchableOpacity>
               </View>
             </View>
-          }
+          ))}
 
           <View style={style.section}>
             <Text style={style.header} testID='assignment-details.description-section-title-lbl'>{i18n('Description')}</Text>
@@ -269,6 +284,11 @@ const style = StyleSheet.create({
     backgroundColor: 'white',
     borderTopWidth: StyleSheet.hairlineWidth,
     borderTopColor: colors.grey2,
+  },
+  notGradedSubmissions: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   launchExternalToolButton: {
     flex: 1,

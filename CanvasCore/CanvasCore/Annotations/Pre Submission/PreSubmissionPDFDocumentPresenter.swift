@@ -18,8 +18,6 @@
 
 import Foundation
 import PSPDFKit
-import CanvasCore
-
 open class PreSubmissionPDFDocumentPresenter: NSObject {
     var pdfDocument: PSPDFDocument
     let session: Session?

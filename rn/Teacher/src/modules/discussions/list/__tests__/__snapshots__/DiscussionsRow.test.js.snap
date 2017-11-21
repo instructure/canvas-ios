@@ -71,7 +71,11 @@ exports[`DiscussionsRow renders 1`] = `
             }
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/course/Assignment.png",
+                }
+              }
               style={
                 Array [
                   Object {
@@ -99,7 +103,11 @@ exports[`DiscussionsRow renders 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/Published.png",
+                  }
+                }
                 style={
                   Object {
                     "height": 12,
@@ -123,7 +131,6 @@ exports[`DiscussionsRow renders 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -178,7 +185,6 @@ exports[`DiscussionsRow renders 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   separated={
                     Array [
@@ -220,7 +226,6 @@ exports[`DiscussionsRow renders 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -261,7 +266,6 @@ exports[`DiscussionsRow renders 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     separated={
                       Array [
@@ -293,7 +297,6 @@ exports[`DiscussionsRow renders 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -325,7 +328,6 @@ exports[`DiscussionsRow renders 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     separated={
                       Array [
@@ -378,7 +380,11 @@ exports[`DiscussionsRow renders 1`] = `
               underlayColor="#ffffff00"
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/kabob.png",
+                  }
+                }
                 style={
                   Object {
                     "alignSelf": "center",
@@ -498,7 +504,11 @@ exports[`DiscussionsRow renders published 1`] = `
             }
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/course/Assignment.png",
+                }
+              }
               style={
                 Array [
                   Object {
@@ -526,7 +536,11 @@ exports[`DiscussionsRow renders published 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/Published.png",
+                  }
+                }
                 style={
                   Object {
                     "height": 12,
@@ -550,7 +564,6 @@ exports[`DiscussionsRow renders published 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -605,7 +618,6 @@ exports[`DiscussionsRow renders published 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   separated={
                     Array [
@@ -647,7 +659,6 @@ exports[`DiscussionsRow renders published 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -688,7 +699,6 @@ exports[`DiscussionsRow renders published 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     separated={
                       Array [
@@ -720,7 +730,6 @@ exports[`DiscussionsRow renders published 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -752,7 +761,6 @@ exports[`DiscussionsRow renders published 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     separated={
                       Array [
@@ -805,7 +813,11 @@ exports[`DiscussionsRow renders published 1`] = `
               underlayColor="#ffffff00"
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/kabob.png",
+                  }
+                }
                 style={
                   Object {
                     "alignSelf": "center",
@@ -925,7 +937,11 @@ exports[`DiscussionsRow renders unpublished 1`] = `
             }
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/course/Assignment.png",
+                }
+              }
               style={
                 Array [
                   Object {
@@ -953,7 +969,11 @@ exports[`DiscussionsRow renders unpublished 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/Unpublished.png",
+                  }
+                }
                 style={
                   Object {
                     "height": 12,
@@ -977,7 +997,6 @@ exports[`DiscussionsRow renders unpublished 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -1032,7 +1051,6 @@ exports[`DiscussionsRow renders unpublished 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   separated={
                     Array [
@@ -1074,7 +1092,6 @@ exports[`DiscussionsRow renders unpublished 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -1115,7 +1132,6 @@ exports[`DiscussionsRow renders unpublished 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     separated={
                       Array [
@@ -1147,7 +1163,6 @@ exports[`DiscussionsRow renders unpublished 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -1179,7 +1194,6 @@ exports[`DiscussionsRow renders unpublished 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     separated={
                       Array [
@@ -1232,7 +1246,11 @@ exports[`DiscussionsRow renders unpublished 1`] = `
               underlayColor="#ffffff00"
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/kabob.png",
+                  }
+                }
                 style={
                   Object {
                     "alignSelf": "center",
@@ -1341,7 +1359,11 @@ exports[`DiscussionsRow renders with no assignment 1`] = `
             }
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/course/Discussions.png",
+                }
+              }
               style={
                 Array [
                   Object {
@@ -1369,7 +1391,11 @@ exports[`DiscussionsRow renders with no assignment 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/Published.png",
+                  }
+                }
                 style={
                   Object {
                     "height": 12,
@@ -1393,7 +1419,6 @@ exports[`DiscussionsRow renders with no assignment 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -1448,7 +1473,6 @@ exports[`DiscussionsRow renders with no assignment 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   separated={
                     Array [
@@ -1497,7 +1521,6 @@ exports[`DiscussionsRow renders with no assignment 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     separated={
                       Array [
@@ -1529,7 +1552,6 @@ exports[`DiscussionsRow renders with no assignment 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -1561,7 +1583,6 @@ exports[`DiscussionsRow renders with no assignment 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     separated={
                       Array [
@@ -1614,7 +1635,11 @@ exports[`DiscussionsRow renders with no assignment 1`] = `
               underlayColor="#ffffff00"
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/kabob.png",
+                  }
+                }
                 style={
                   Object {
                     "alignSelf": "center",
@@ -1734,7 +1759,11 @@ exports[`DiscussionsRow renders with no unread count 1`] = `
             }
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/course/Assignment.png",
+                }
+              }
               style={
                 Array [
                   Object {
@@ -1762,7 +1791,11 @@ exports[`DiscussionsRow renders with no unread count 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/Published.png",
+                  }
+                }
                 style={
                   Object {
                     "height": 12,
@@ -1786,7 +1819,6 @@ exports[`DiscussionsRow renders with no unread count 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -1841,7 +1873,6 @@ exports[`DiscussionsRow renders with no unread count 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   separated={
                     Array [
@@ -1883,7 +1914,6 @@ exports[`DiscussionsRow renders with no unread count 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -1924,7 +1954,6 @@ exports[`DiscussionsRow renders with no unread count 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     separated={
                       Array [
@@ -1956,7 +1985,6 @@ exports[`DiscussionsRow renders with no unread count 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -1988,7 +2016,6 @@ exports[`DiscussionsRow renders with no unread count 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     separated={
                       Array [
@@ -2041,7 +2068,11 @@ exports[`DiscussionsRow renders with no unread count 1`] = `
               underlayColor="#ffffff00"
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/kabob.png",
+                  }
+                }
                 style={
                   Object {
                     "alignSelf": "center",
@@ -2149,7 +2180,11 @@ exports[`DiscussionsRow renders with points possible 1`] = `
             }
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/course/Assignment.png",
+                }
+              }
               style={
                 Array [
                   Object {
@@ -2177,7 +2212,11 @@ exports[`DiscussionsRow renders with points possible 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/Published.png",
+                  }
+                }
                 style={
                   Object {
                     "height": 12,
@@ -2201,7 +2240,6 @@ exports[`DiscussionsRow renders with points possible 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -2256,7 +2294,6 @@ exports[`DiscussionsRow renders with points possible 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   separated={
                     Array [
@@ -2298,7 +2335,6 @@ exports[`DiscussionsRow renders with points possible 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -2339,7 +2375,6 @@ exports[`DiscussionsRow renders with points possible 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     separated={
                       Array [
@@ -2371,7 +2406,6 @@ exports[`DiscussionsRow renders with points possible 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -2403,7 +2437,6 @@ exports[`DiscussionsRow renders with points possible 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     separated={
                       Array [
@@ -2456,7 +2489,11 @@ exports[`DiscussionsRow renders with points possible 1`] = `
               underlayColor="#ffffff00"
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/kabob.png",
+                  }
+                }
                 style={
                   Object {
                     "alignSelf": "center",
@@ -2576,7 +2613,11 @@ exports[`DiscussionsRow renders without points possible 1`] = `
             }
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/images/course/Assignment.png",
+                }
+              }
               style={
                 Array [
                   Object {
@@ -2604,7 +2645,11 @@ exports[`DiscussionsRow renders without points possible 1`] = `
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/Published.png",
+                  }
+                }
                 style={
                   Object {
                     "height": 12,
@@ -2628,7 +2673,6 @@ exports[`DiscussionsRow renders without points possible 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -2683,7 +2727,6 @@ exports[`DiscussionsRow renders without points possible 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   separated={
                     Array [
@@ -2732,7 +2775,6 @@ exports[`DiscussionsRow renders without points possible 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     separated={
                       Array [
@@ -2764,7 +2806,6 @@ exports[`DiscussionsRow renders without points possible 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -2796,7 +2837,6 @@ exports[`DiscussionsRow renders without points possible 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     separated={
                       Array [
@@ -2849,7 +2889,11 @@ exports[`DiscussionsRow renders without points possible 1`] = `
               underlayColor="#ffffff00"
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/kabob.png",
+                  }
+                }
                 style={
                   Object {
                     "alignSelf": "center",

@@ -73,7 +73,6 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
     pagingEnabled={true}
     renderItem={[Function]}
     scrollEventThrottle={50}
@@ -86,12 +85,20 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
       }
     }
     updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
     windowSize={5}
   >
     <View>
       <View
         onLayout={undefined}
-        style={null}
+        style={
+          Array [
+            Object {
+              "flexDirection": "row",
+            },
+            null,
+          ]
+        }
       >
         <A11yGroup
           style={
@@ -169,7 +176,6 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -259,7 +265,6 @@ exports[`SpeedGrader renders with a filter 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
     pagingEnabled={true}
     renderItem={[Function]}
     scrollEventThrottle={50}
@@ -272,12 +277,20 @@ exports[`SpeedGrader renders with a filter 1`] = `
       }
     }
     updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
     windowSize={5}
   >
     <View>
       <View
         onLayout={undefined}
-        style={null}
+        style={
+          Array [
+            Object {
+              "flexDirection": "row",
+            },
+            null,
+          ]
+        }
       >
         <A11yGroup
           style={
@@ -355,7 +368,6 @@ exports[`SpeedGrader renders with a filter 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -385,7 +397,14 @@ exports[`SpeedGrader renders with a filter 1`] = `
       </View>
       <View
         onLayout={undefined}
-        style={null}
+        style={
+          Array [
+            Object {
+              "flexDirection": "row",
+            },
+            null,
+          ]
+        }
       >
         <A11yGroup
           style={
@@ -463,7 +482,6 @@ exports[`SpeedGrader renders with a filter 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [

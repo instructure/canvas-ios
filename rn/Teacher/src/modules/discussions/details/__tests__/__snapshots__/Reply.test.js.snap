@@ -68,7 +68,6 @@ exports[`DiscussionReplies edit action sheet calls cancel 1`] = `
         accessibilityTraits="none"
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -94,7 +93,6 @@ exports[`DiscussionReplies edit action sheet calls cancel 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -167,7 +165,6 @@ exports[`DiscussionReplies edit action sheet calls cancel 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -207,7 +204,6 @@ exports[`DiscussionReplies edit action sheet calls cancel 1`] = `
         <Text
           accessible={false}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -272,7 +268,6 @@ exports[`DiscussionReplies edit action sheet calls cancel 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -384,7 +379,6 @@ exports[`DiscussionReplies renders 1`] = `
         accessibilityTraits="none"
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -410,7 +404,6 @@ exports[`DiscussionReplies renders 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -483,7 +476,6 @@ exports[`DiscussionReplies renders 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -523,7 +515,6 @@ exports[`DiscussionReplies renders 1`] = `
         <Text
           accessible={false}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -588,7 +579,6 @@ exports[`DiscussionReplies renders 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -700,7 +690,6 @@ exports[`DiscussionReplies renders deleted 1`] = `
         accessibilityTraits="none"
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -726,7 +715,6 @@ exports[`DiscussionReplies renders deleted 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -911,7 +899,6 @@ exports[`DiscussionReplies renders more button with some deleted replies 1`] = `
         accessibilityTraits="none"
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -937,7 +924,6 @@ exports[`DiscussionReplies renders more button with some deleted replies 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -1010,7 +996,6 @@ exports[`DiscussionReplies renders more button with some deleted replies 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1050,7 +1035,6 @@ exports[`DiscussionReplies renders more button with some deleted replies 1`] = `
         <Text
           accessible={false}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -1115,7 +1099,6 @@ exports[`DiscussionReplies renders more button with some deleted replies 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1227,7 +1210,6 @@ exports[`DiscussionReplies renders with no user 1`] = `
         accessibilityTraits="none"
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -1253,7 +1235,6 @@ exports[`DiscussionReplies renders with no user 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -1326,7 +1307,6 @@ exports[`DiscussionReplies renders with no user 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1366,7 +1346,6 @@ exports[`DiscussionReplies renders with no user 1`] = `
         <Text
           accessible={false}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -1431,7 +1410,6 @@ exports[`DiscussionReplies renders with no user 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [

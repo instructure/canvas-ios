@@ -57,7 +57,6 @@ exports[`renders correctly 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -78,7 +77,6 @@ exports[`renders correctly 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -105,7 +103,6 @@ exports[`renders correctly 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -132,7 +129,6 @@ exports[`renders correctly 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -174,7 +170,11 @@ exports[`renders correctly 1`] = `
         underlayColor="#ffffff00"
       >
         <Image
-          source={1}
+          source={
+            Object {
+              "testUri": "../../../src/images/kabob.png",
+            }
+          }
           style={
             Object {
               "height": 18,
@@ -215,7 +215,6 @@ exports[`renders correctly 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={2}
         style={
@@ -254,7 +253,11 @@ exports[`renders correctly 1`] = `
         }
       >
         <Image
-          source={1}
+          source={
+            Object {
+              "testUri": "../../../src/images/attachment.png",
+            }
+          }
           style={
             Object {
               "tintColor": "#008EE2",
@@ -264,7 +267,6 @@ exports[`renders correctly 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -352,7 +354,6 @@ exports[`renders correctly with author being the logged in user 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -373,7 +374,6 @@ exports[`renders correctly with author being the logged in user 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -400,7 +400,6 @@ exports[`renders correctly with author being the logged in user 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -427,7 +426,6 @@ exports[`renders correctly with author being the logged in user 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -469,7 +467,11 @@ exports[`renders correctly with author being the logged in user 1`] = `
         underlayColor="#ffffff00"
       >
         <Image
-          source={1}
+          source={
+            Object {
+              "testUri": "../../../src/images/kabob.png",
+            }
+          }
           style={
             Object {
               "height": 18,
@@ -510,7 +512,6 @@ exports[`renders correctly with author being the logged in user 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={2}
         style={
@@ -549,7 +550,11 @@ exports[`renders correctly with author being the logged in user 1`] = `
         }
       >
         <Image
-          source={1}
+          source={
+            Object {
+              "testUri": "../../../src/images/attachment.png",
+            }
+          }
           style={
             Object {
               "tintColor": "#008EE2",
@@ -559,7 +564,6 @@ exports[`renders correctly with author being the logged in user 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -647,7 +651,6 @@ exports[`renders correctly with author lots of participants 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -668,7 +671,6 @@ exports[`renders correctly with author lots of participants 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -695,7 +697,6 @@ exports[`renders correctly with author lots of participants 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -722,7 +723,6 @@ exports[`renders correctly with author lots of participants 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -764,7 +764,11 @@ exports[`renders correctly with author lots of participants 1`] = `
         underlayColor="#ffffff00"
       >
         <Image
-          source={1}
+          source={
+            Object {
+              "testUri": "../../../src/images/kabob.png",
+            }
+          }
           style={
             Object {
               "height": 18,
@@ -805,7 +809,6 @@ exports[`renders correctly with author lots of participants 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={2}
         style={
@@ -844,7 +847,11 @@ exports[`renders correctly with author lots of participants 1`] = `
         }
       >
         <Image
-          source={1}
+          source={
+            Object {
+              "testUri": "../../../src/images/attachment.png",
+            }
+          }
           style={
             Object {
               "tintColor": "#008EE2",
@@ -854,7 +861,6 @@ exports[`renders correctly with author lots of participants 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [

@@ -95,7 +95,6 @@ exports[`comments render properly 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
     renderItem={[Function]}
     scrollEventThrottle={50}
     showsVerticalScrollIndicator={false}
@@ -110,6 +109,7 @@ exports[`comments render properly 1`] = `
       }
     }
     updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
     <View>
@@ -160,7 +160,6 @@ exports[`comments render properly 1`] = `
                 accessibilityTraits="header"
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -188,7 +187,6 @@ exports[`comments render properly 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -308,7 +306,11 @@ exports[`comments render properly 1`] = `
                   }
                 }
                 resizeMode="stretch"
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/speedgrader/bubble-me.png",
+                  }
+                }
                 style={
                   Object {
                     "bottom": 0,
@@ -326,7 +328,6 @@ exports[`comments render properly 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -469,7 +470,6 @@ exports[`comments render properly 1`] = `
                 accessibilityTraits="header"
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -497,7 +497,6 @@ exports[`comments render properly 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -554,7 +553,11 @@ exports[`comments render properly 1`] = `
                   }
                 }
                 resizeMode="stretch"
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/images/speedgrader/bubble-them.png",
+                  }
+                }
                 style={
                   Object {
                     "bottom": 0,
@@ -572,7 +575,6 @@ exports[`comments render properly 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -653,7 +655,6 @@ exports[`comments render properly 1`] = `
                 accessibilityTraits="header"
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -681,7 +682,6 @@ exports[`comments render properly 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -895,7 +895,6 @@ exports[`comments render properly 1`] = `
                 accessibilityTraits="header"
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -923,7 +922,6 @@ exports[`comments render properly 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -1011,7 +1009,6 @@ exports[`comments render properly 1`] = `
                 accessibilityTraits="header"
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -1039,7 +1036,6 @@ exports[`comments render properly 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -1257,7 +1253,6 @@ exports[`comments render properly 1`] = `
                 accessibilityTraits="header"
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -1285,7 +1280,6 @@ exports[`comments render properly 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
-                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -1378,7 +1372,9 @@ Object {
         "items": Array [
           Object {
             "contentID": "attachment-media-comment",
-            "icon": 1,
+            "icon": Object {
+              "testUri": "../../../src/images/speedgrader/submission-types/audio.png",
+            },
             "subtitle": "Audio",
             "title": "Media Submission",
           },
@@ -1399,7 +1395,9 @@ Object {
         "items": Array [
           Object {
             "contentID": "attachment-lti-submission",
-            "icon": 1,
+            "icon": Object {
+              "testUri": "../../../src/images/speedgrader/submission-types/LTI.png",
+            },
             "subtitle": "",
             "title": "External Tool Submission",
           },
@@ -1420,7 +1418,9 @@ Object {
         "items": Array [
           Object {
             "contentID": "attachment-quiz-submission",
-            "icon": 1,
+            "icon": Object {
+              "testUri": "../../../src/images/speedgrader/submission-types/quiz.png",
+            },
             "subtitle": "Attempt 6",
             "title": "Quiz Submission",
           },
@@ -1441,7 +1441,9 @@ Object {
         "items": Array [
           Object {
             "contentID": "attachment-discussion-entry",
-            "icon": 1,
+            "icon": Object {
+              "testUri": "../../../src/images/speedgrader/submission-types/discussion.png",
+            },
             "subtitle": "You're wrong because I said.",
             "title": "Discussion Submission",
           },
@@ -1501,7 +1503,9 @@ Object {
         "items": Array [
           Object {
             "contentID": "text",
-            "icon": 1,
+            "icon": Object {
+              "testUri": "../../../src/images/speedgrader/submission-types/document.png",
+            },
             "subtitle": "This is my submission!",
             "title": "Text Submission",
           },
@@ -1522,7 +1526,9 @@ Object {
         "items": Array [
           Object {
             "contentID": "url",
-            "icon": 1,
+            "icon": Object {
+              "testUri": "../../../src/images/speedgrader/submission-types/link.png",
+            },
             "subtitle": "https://google.com/homeworks",
             "title": "URL Submission",
           },
@@ -1543,7 +1549,9 @@ Object {
         "items": Array [
           Object {
             "contentID": "attachment-111",
-            "icon": 1,
+            "icon": Object {
+              "testUri": "../../../src/images/speedgrader/submission-types/document.png",
+            },
             "subtitle": "476.77 KB",
             "title": "Book Report",
           },
@@ -1564,7 +1572,9 @@ Object {
         "items": Array [
           Object {
             "contentID": "attachment-media-comment",
-            "icon": 1,
+            "icon": Object {
+              "testUri": "../../../src/images/speedgrader/submission-types/video.png",
+            },
             "subtitle": "Video",
             "title": "Media Submission",
           },

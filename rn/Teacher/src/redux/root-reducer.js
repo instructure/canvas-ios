@@ -38,7 +38,7 @@ import { groups } from '../modules/groups/group-entities-reducer'
 import { asyncActions } from './actions/async-tracker'
 import toDo from '../modules/to-do/reducer'
 import { filesData as files, foldersData as folders } from '../modules/files/reducer'
-import { entities as pages } from '../modules/pages/reducer'
+import { entities as pages, frontPage } from '../modules/pages/reducer'
 
 const entities = combineReducers({
   courses,
@@ -62,7 +62,7 @@ const actualRootReducer: Reducer<AppState, Action> = combineReducers({
   inbox,
   files,
   folders,
-  entities,
+  entities: composeReducers(entities, frontPage),
   asyncActions,
   toDo,
 })

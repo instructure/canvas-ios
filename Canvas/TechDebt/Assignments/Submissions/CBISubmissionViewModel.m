@@ -23,11 +23,10 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "SubmissionAttachmentsController.h"
 #import "Router+Routes.h"
-#import "CBIExternalToolViewModel.h"
-#import "CBILTIViewController.h"
 #import "CBIQuizViewModel.h"
 #import "CBISubmissionAnnotationPreviewHelper.h"
 #import "UIImage+TechDebt.h"
+#import "CKIClient+CBIClient.h"
 @import CanvasKeymaster;
 @import PSPDFKit;
 @import CanvasKit;
@@ -149,10 +148,15 @@ static UIImage *(^iconForSubmissionType)(NSString *) = ^(NSString *submissionTyp
 
 - (void)tableViewController:(MLVCTableViewController *)controller didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([self.model.submissionType isEqualToString:CKISubmissionTypeOnlineTextEntry]) {
-        NSString *html = [PageTemplateRenderer htmlStringWithTitle:@"" body:self.model.body ?: @""];
-        UINavigationController *nav = (UINavigationController *)[[UIStoryboard storyboardWithName:@"Storyboard-WebBrowser" bundle:[NSBundle bundleForClass:[self class]]] instantiateInitialViewController];
-        WebBrowserViewController *browser = nav.viewControllers[0];
-        [browser setContentHTML:html baseURL:TheKeymaster.currentClient.baseURL];
+        NSString *body = self.model.body ?: @"";
+        CanvasWebViewController *web = [[CanvasWebViewController alloc] init];
+        
+        @weakify(web);
+        [web.webView loadWithHtml:body title:nil baseURL:TheKeymaster.currentClient.baseURL routeToURL:^(NSURL * _Nonnull url) {
+            @strongify(web);
+            [[Router sharedRouter] routeFromController:web toURL:url];
+        }];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:web];
         [controller presentViewController:nav animated:YES completion:nil];
     } else if ([self.model.submissionType isEqualToString:CKISubmissionTypeDiscussion]) {
         NSURL *url = self.model.urlForLocalDiscussionEntriesHTMLFile;
@@ -175,13 +179,7 @@ static UIImage *(^iconForSubmissionType)(NSString *) = ^(NSString *submissionTyp
         // For now we don't do anything
         [controller.tableView deselectRowAtIndexPath:indexPath animated:YES];
     } else if ([self.assignment.submissionTypes containsObject:CKISubmissionTypeExternalTool]) {
-        CKIExternalTool *tool = [CKIExternalTool new];
-        tool.name = self.assignment.name;
-        tool.url = self.assignment.url;
-        CBIExternalToolViewModel *toolViewModel = [CBIExternalToolViewModel viewModelForModel:tool];
-        toolViewModel.tintColor = self.tintColor;
-        CBILTIViewController *lti = [CBILTIViewController new];
-        lti.viewModel = toolViewModel;
+        LTIViewController *lti = [[LTIViewController alloc] initWithToolName:self.assignment.name courseID:self.assignment.courseID launchURL:self.assignment.url in:TheKeymaster.currentClient.authSession showDoneButton:NO];
         [controller.navigationController pushViewController:lti animated:YES];
     } else if ([self.model.submissionType isEqualToString:CKISubmissionTypeQuiz]) {
         CKIQuiz *quiz = [CKIQuiz modelWithID:self.assignment.quizID context:self.assignment.context];

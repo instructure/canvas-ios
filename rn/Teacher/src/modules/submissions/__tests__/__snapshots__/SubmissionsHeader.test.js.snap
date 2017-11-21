@@ -28,7 +28,6 @@ exports[`SubmissionHeader anonymous and muted 1`] = `
       accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
-      disabled={false}
       ellipsizeMode="tail"
       numberOfLines={1}
       style={
@@ -54,7 +53,6 @@ exports[`SubmissionHeader anonymous and muted 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
-      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -103,7 +101,6 @@ exports[`SubmissionHeader anonymous and muted 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -168,7 +165,6 @@ exports[`SubmissionHeader anonymous grading 1`] = `
       accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
-      disabled={false}
       ellipsizeMode="tail"
       numberOfLines={1}
       style={
@@ -194,7 +190,6 @@ exports[`SubmissionHeader anonymous grading 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
-      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -243,7 +238,6 @@ exports[`SubmissionHeader anonymous grading 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -308,7 +302,6 @@ exports[`SubmissionHeader muted grading 1`] = `
       accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
-      disabled={false}
       ellipsizeMode="tail"
       numberOfLines={1}
       style={
@@ -334,7 +327,6 @@ exports[`SubmissionHeader muted grading 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
-      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -383,7 +375,6 @@ exports[`SubmissionHeader muted grading 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [

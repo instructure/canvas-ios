@@ -27,7 +27,11 @@ exports[`AudioComment moves the scrubber with the current time 1`] = `
   >
     <Image
       resizeMode="contain"
-      source={1}
+      source={
+        Object {
+          "testUri": "../../../src/images/speedgrader/submission-types/audio.png",
+        }
+      }
       style={
         Object {
           "height": 18,
@@ -165,7 +169,11 @@ exports[`AudioComment renders default 1`] = `
     >
       <Image
         resizeMode="contain"
-        source={1}
+        source={
+          Object {
+            "testUri": "../../../src/images/speedgrader/submission-types/audio.png",
+          }
+        }
         style={
           Object {
             "height": 18,
@@ -178,7 +186,6 @@ exports[`AudioComment renders default 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -248,7 +255,11 @@ exports[`AudioComment renders from them 1`] = `
     >
       <Image
         resizeMode="contain"
-        source={1}
+        source={
+          Object {
+            "testUri": "../../../src/images/speedgrader/submission-types/audio.png",
+          }
+        }
         style={
           Object {
             "height": 18,
@@ -261,7 +272,6 @@ exports[`AudioComment renders from them 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [

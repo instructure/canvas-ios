@@ -97,6 +97,9 @@ open class SignalProducerRefresher<SP: SignalProducerProtocol>: NSObject, Refres
         } else if let cv = viewController as? UICollectionViewController {
             cv.collectionView?.alwaysBounceVertical = true
             cv.collectionView?.addSubview(refreshControl)
+        } else if let scrollView = viewController.view as? UIScrollView {
+            scrollView.alwaysBounceVertical = true
+            scrollView.refreshControl = refreshControl
         } else {
             ❨╯°□°❩╯⌢"Can't do it. Sorry."
         }

@@ -48,7 +48,6 @@ exports[`GroupList renders empty list 1`] = `
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
       onScrollEndDrag={[Function]}
-      onViewableItemsChanged={undefined}
       refreshControl={
         <RefreshControlMock
           onRefresh={[Function]}
@@ -61,6 +60,7 @@ exports[`GroupList renders empty list 1`] = `
       scrollEventThrottle={50}
       stickyHeaderIndices={Array []}
       updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
       windowSize={21}
     >
       <RCTRefreshControl />
@@ -82,7 +82,6 @@ exports[`GroupList renders empty list 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -167,7 +166,6 @@ exports[`GroupList renders properly 1`] = `
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
       onScrollEndDrag={[Function]}
-      onViewableItemsChanged={undefined}
       refreshControl={
         <RefreshControlMock
           onRefresh={[Function]}
@@ -180,6 +178,7 @@ exports[`GroupList renders properly 1`] = `
       scrollEventThrottle={50}
       stickyHeaderIndices={Array []}
       updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
       windowSize={21}
     >
       <RCTRefreshControl />
@@ -328,7 +327,6 @@ exports[`GroupList renders properly 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
-                  disabled={false}
                   ellipsizeMode="tail"
                   numberOfLines={0}
                   style={
@@ -412,7 +410,6 @@ exports[`GroupList renders without a group 1`] = `
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
       onScrollEndDrag={[Function]}
-      onViewableItemsChanged={undefined}
       refreshControl={
         <RefreshControlMock
           onRefresh={[Function]}
@@ -425,6 +422,7 @@ exports[`GroupList renders without a group 1`] = `
       scrollEventThrottle={50}
       stickyHeaderIndices={Array []}
       updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
       windowSize={21}
     >
       <RCTRefreshControl />
@@ -446,7 +444,6 @@ exports[`GroupList renders without a group 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
-              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [

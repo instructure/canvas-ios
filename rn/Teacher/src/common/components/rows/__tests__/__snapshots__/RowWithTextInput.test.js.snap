@@ -47,6 +47,7 @@ exports[`RowWithTextInput renders 1`] = `
       }
     >
       <TextInput
+        allowFontScaling={true}
         defaultValue={undefined}
         keyboardType={undefined}
         onChangeText={[Function]}
@@ -116,7 +117,6 @@ exports[`RowWithTextInput renders with a title 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={0}
         style={
@@ -169,6 +169,7 @@ exports[`RowWithTextInput renders with a title 1`] = `
           }
         >
           <TextInput
+            allowFontScaling={true}
             defaultValue={undefined}
             keyboardType={undefined}
             onChangeText={[Function]}

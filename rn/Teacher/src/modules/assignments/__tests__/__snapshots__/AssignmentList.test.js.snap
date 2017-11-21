@@ -28,7 +28,6 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
       accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
-      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -74,7 +73,6 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -335,7 +333,6 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
             accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -431,7 +428,11 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                     }
                   >
                     <Image
-                      source={1}
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/course/Assignment.png",
+                        }
+                      }
                       style={
                         Array [
                           Object {
@@ -459,7 +460,11 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                       }
                     >
                       <Image
-                        source={1}
+                        source={
+                          Object {
+                            "testUri": "../../../src/images/Unpublished.png",
+                          }
+                        }
                         style={
                           Object {
                             "height": 12,
@@ -483,7 +488,6 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={2}
                     style={
@@ -512,7 +516,6 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -620,7 +623,6 @@ exports[`applyFilter will apply a new filter 1`] = `
       accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
-      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -666,7 +668,6 @@ exports[`applyFilter will apply a new filter 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -911,7 +912,6 @@ exports[`applyFilter will apply a new filter 1`] = `
             accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1007,7 +1007,11 @@ exports[`applyFilter will apply a new filter 1`] = `
                     }
                   >
                     <Image
-                      source={1}
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/course/Assignment.png",
+                        }
+                      }
                       style={
                         Array [
                           Object {
@@ -1035,7 +1039,11 @@ exports[`applyFilter will apply a new filter 1`] = `
                       }
                     >
                       <Image
-                        source={1}
+                        source={
+                          Object {
+                            "testUri": "../../../src/images/Unpublished.png",
+                          }
+                        }
                         style={
                           Object {
                             "height": 12,
@@ -1059,7 +1067,6 @@ exports[`applyFilter will apply a new filter 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={2}
                     style={
@@ -1088,7 +1095,6 @@ exports[`applyFilter will apply a new filter 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -1196,7 +1202,6 @@ exports[`filter button only shows when there are grading periods 1`] = `
       accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
-      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -1447,7 +1452,6 @@ exports[`filter button only shows when there are grading periods 1`] = `
             accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1543,7 +1547,11 @@ exports[`filter button only shows when there are grading periods 1`] = `
                     }
                   >
                     <Image
-                      source={1}
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/course/Assignment.png",
+                        }
+                      }
                       style={
                         Array [
                           Object {
@@ -1571,7 +1579,11 @@ exports[`filter button only shows when there are grading periods 1`] = `
                       }
                     >
                       <Image
-                        source={1}
+                        source={
+                          Object {
+                            "testUri": "../../../src/images/Unpublished.png",
+                          }
+                        }
                         style={
                           Object {
                             "height": 12,
@@ -1595,7 +1607,6 @@ exports[`filter button only shows when there are grading periods 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={2}
                     style={
@@ -1624,7 +1635,6 @@ exports[`filter button only shows when there are grading periods 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -1732,7 +1742,6 @@ exports[`renders correctly 1`] = `
       accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
-      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -1778,7 +1787,6 @@ exports[`renders correctly 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -2023,7 +2031,6 @@ exports[`renders correctly 1`] = `
             accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -2119,7 +2126,11 @@ exports[`renders correctly 1`] = `
                     }
                   >
                     <Image
-                      source={1}
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/course/Assignment.png",
+                        }
+                      }
                       style={
                         Array [
                           Object {
@@ -2147,7 +2158,11 @@ exports[`renders correctly 1`] = `
                       }
                     >
                       <Image
-                        source={1}
+                        source={
+                          Object {
+                            "testUri": "../../../src/images/Unpublished.png",
+                          }
+                        }
                         style={
                           Object {
                             "height": 12,
@@ -2171,7 +2186,6 @@ exports[`renders correctly 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={2}
                     style={
@@ -2200,7 +2214,6 @@ exports[`renders correctly 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -2332,7 +2345,6 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
       accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
-      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -2378,7 +2390,6 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -2639,7 +2650,6 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
             accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
-            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -2735,7 +2745,11 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                     }
                   >
                     <Image
-                      source={1}
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/course/Assignment.png",
+                        }
+                      }
                       style={
                         Array [
                           Object {
@@ -2763,7 +2777,11 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                       }
                     >
                       <Image
-                        source={1}
+                        source={
+                          Object {
+                            "testUri": "../../../src/images/Unpublished.png",
+                          }
+                        }
                         style={
                           Object {
                             "height": 12,
@@ -2787,7 +2805,6 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={2}
                     style={
@@ -2816,7 +2833,6 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [

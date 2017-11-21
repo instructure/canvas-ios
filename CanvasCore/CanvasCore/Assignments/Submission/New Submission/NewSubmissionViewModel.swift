@@ -180,8 +180,6 @@ public class NewSubmissionViewModel: NSObject, NewSubmissionViewModelType, NewSu
 }
 
 private func apiPathForFileSubmissions(in session: Session, for assignment: AssignmentProtocol) -> SignalProducer<String, NSError> {
-    let id = assignment.id
-    let courseID = assignment.courseID
     let groupSetID = assignment.groupSetID
 
     let singleSubmissionPath = SignalProducer<String, NSError>(value: "/api/v1/courses/\(assignment.courseID)/assignments/\(assignment.id)/submissions/self/files")

@@ -150,7 +150,13 @@ extension AddStudentViewController: UIWebViewDelegate {
             if commonErrorResults.failedLogin {
                 return commonErrorResults.shouldStartLoad
             }
-            
+
+            // Prevents us from accidentally showing canvas web
+            // logged in as the student.
+            if url.queryItemForKey("login_success") != nil {
+                return false
+            }
+
             if url.absoluteString.contains("/oauthSuccess") {
                 // Clear the cookies so you're not automatically logged into a session on the next browser launch
                 clearExistingCookies()

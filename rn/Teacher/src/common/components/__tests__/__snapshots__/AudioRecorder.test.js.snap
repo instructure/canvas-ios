@@ -41,7 +41,6 @@ exports[`AudioRecorder renders default state 1`] = `
         accessibilityLabel="Time elapsed: 0 minutes, 0 seconds."
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Object {
@@ -84,7 +83,11 @@ exports[`AudioRecorder renders default state 1`] = `
         underlayColor="transparent"
       >
         <Image
-          source={1}
+          source={
+            Object {
+              "testUri": "../../../src/images/media-comments/Close.png",
+            }
+          }
           style={
             Object {
               "height": 24,
@@ -180,7 +183,6 @@ exports[`AudioRecorder renders recording state 1`] = `
         accessibilityLabel="Time elapsed: 0 minutes, 0 seconds."
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Object {
@@ -223,7 +225,11 @@ exports[`AudioRecorder renders recording state 1`] = `
         underlayColor="transparent"
       >
         <Image
-          source={1}
+          source={
+            Object {
+              "testUri": "../../../src/images/media-comments/Close.png",
+            }
+          }
           style={
             Object {
               "height": 24,
@@ -318,7 +324,6 @@ exports[`AudioRecorder renders reset state 1`] = `
         accessibilityLabel="Time elapsed: 0 minutes, 0 seconds."
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Object {
@@ -361,7 +366,11 @@ exports[`AudioRecorder renders reset state 1`] = `
         underlayColor="transparent"
       >
         <Image
-          source={1}
+          source={
+            Object {
+              "testUri": "../../../src/images/media-comments/Close.png",
+            }
+          }
           style={
             Object {
               "height": 24,
@@ -460,7 +469,11 @@ exports[`AudioRecorder renders stopped state 1`] = `
         underlayColor="transparent"
       >
         <Image
-          source={1}
+          source={
+            Object {
+              "testUri": "../../../src/images/media-comments/Trash.png",
+            }
+          }
           style={
             Object {
               "height": 24,
@@ -484,7 +497,6 @@ exports[`AudioRecorder renders stopped state 1`] = `
         accessibilityLabel="Time elapsed: 0 minutes, 0 seconds."
         accessible={true}
         allowFontScaling={true}
-        disabled={false}
         ellipsizeMode="tail"
         style={
           Object {
@@ -527,7 +539,11 @@ exports[`AudioRecorder renders stopped state 1`] = `
         underlayColor="transparent"
       >
         <Image
-          source={1}
+          source={
+            Object {
+              "testUri": "../../../src/images/media-comments/Close.png",
+            }
+          }
           style={
             Object {
               "height": 24,
@@ -571,7 +587,6 @@ exports[`AudioRecorder renders stopped state 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [

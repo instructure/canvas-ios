@@ -36,7 +36,11 @@ exports[`renders button correctly 1`] = `
     }
   >
     <Image
-      source={1}
+      source={
+        Object {
+          "testUri": "../../../src/images/Back-icon.png",
+        }
+      }
       style={undefined}
     />
   </View>

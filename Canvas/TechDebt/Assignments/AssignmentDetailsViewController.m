@@ -21,8 +21,6 @@
 
 #import "AssignmentDetailsViewController.h"
 #import "iCanvasErrorHandler.h"
-#import "UIWebView+RemoveShadow.h"
-#import "UIWebView+SafeAPIURL.h"
 #import "Router.h"
 #import "CBIModuleProgressNotifications.h"
 @import CanvasKit;
@@ -30,7 +28,8 @@
 @import CanvasKeymaster;
 @import CanvasCore;
 
-@interface AssignmentDetailsViewController () <UIWebViewDelegate>
+@interface AssignmentDetailsViewController ()
+@property (nonatomic) CanvasWebView *webView;
 @end
 
 @implementation AssignmentDetailsViewController
@@ -42,14 +41,28 @@
 }
 
 #pragma mark - View Lifecycle
-- (id)init
-{
-    return self = [[UIStoryboard storyboardWithName:@"AssignmentDetails" bundle:[NSBundle bundleForClass:[self class]]] instantiateViewControllerWithIdentifier:@"AssignmentDetailsViewController"];
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.webView = [[CanvasWebView alloc] init];
+    }
+    return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    @weakify(self);
+    self.webView.presentingViewController = self;
+    self.webView.finishedLoading = ^{
+        @strongify(self);
+        [self finshedLoadingContent];
+    };
+    
+    [self.view addSubview:self.webView];
+    self.webView.frame = self.view.bounds;
+    self.webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
     [self loadDetailsForAssignment];
     self.view.backgroundColor = [UIColor prettyLightGray];
@@ -59,8 +72,6 @@
     if(self.prependAssignmentInfoToContent){
         self.webView.layer.borderWidth = 0.0f;
     }
-    
-    [self.webView removeShadow];
     
     if (@available(iOS 11.0, *)) {
         self.webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
@@ -86,6 +97,15 @@
     [super viewWillDisappear:animated];
 
     [NSHTTPCookieStorage sharedHTTPCookieStorage].cookieAcceptPolicy = NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain;
+}
+
+- (void)finshedLoadingContent {
+    [self.webView.scrollView setContentInset:UIEdgeInsetsMake(self.topContentInset, 0, self.bottomContentInset, 0)];
+    [self.webView.scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(self.topContentInset, 0, self.bottomContentInset, 0)];
+    [self.webView.scrollView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
+    
+    DDLogVerbose(@"AssignmentDetailViewController posting module item progress update");
+    CBIPostModuleItemProgressUpdate([@(self.assignment.ident) description], CKIModuleItemCompletionRequirementMustView);
 }
 
 #pragma mark - Assignment Management
@@ -117,9 +137,12 @@
         }
     }
 
-    NSString *htmlContents = [PageTemplateRenderer htmlStringWithTitle:self.assignment.name ?: @"" body:details ?: @""];
     NSURL *baseURL = TheKeymaster.currentClient.baseURL;
-    [self.webView loadHTMLString:htmlContents baseURL:baseURL];
+    @weakify(self);
+    [self.webView loadWithHtml:details title:nil baseURL:baseURL routeToURL:^(NSURL *url){
+        @strongify(self);
+        [[Router sharedRouter] routeFromController:self toURL:url];
+    }];
 }
 
 - (void)setAssignment:(CKAssignment *)assignment
@@ -132,51 +155,4 @@
     [self loadDetailsForAssignment];
 }
 
-
-#pragma mark - UIWebViewDelegate
-
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
-{
-    if ([Secrets openExternalResourceIfNecessaryWithAURL:request.URL]) {
-        return NO;
-    }
-    
-    if (navigationType == UIWebViewNavigationTypeOther
-        || navigationType == UIWebViewNavigationTypeFormSubmitted
-        || navigationType == UIWebViewNavigationTypeFormResubmitted) {
-        return YES;
-    }
-    
-    NSArray<NSString *> *components = request.URL.pathComponents;
-    if (components.lastObject != nil && request.URL.fragment != nil && components.count > 0) {
-        NSString *selfReferencingFragment = [NSString stringWithFormat:@"%@#%@", TheKeymaster.currentClient.baseURL.absoluteString, request.URL.fragment];
-        NSString *jsScrollToAnchor = [NSString stringWithFormat:@"window.location.href=\'#%@\';", request.URL.fragment];
-        
-        if ([request.URL.absoluteString isEqualToString:selfReferencingFragment]) {
-            [webView stringByEvaluatingJavaScriptFromString:jsScrollToAnchor];
-            return NO;
-        }
-    } else if (request.URL.fragment != nil && request.URL.pathComponents.count == 0 && [request.URL.scheme isEqualToString: @"applewebdata"]) {
-        [webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"window.location.href=\'#%@\';", request.URL.fragment]];
-        return NO;
-    }
-    
-    [[Router sharedRouter] routeFromController:self.parentViewController toURL:request.URL];
-
-    return NO;
-}
-
--(void)webViewDidFinishLoad:(UIWebView *)webView
-{
-    [webView.scrollView setContentInset:UIEdgeInsetsMake(self.topContentInset, 0, self.bottomContentInset, 0)];
-    [webView.scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(self.topContentInset, 0, self.bottomContentInset, 0)];
-    [webView.scrollView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
-    
-    if (webView.loading == NO) {
-        [webView replaceHREFsWithAPISafeURLs];
-    }
-    
-    DDLogVerbose(@"AssignmentDetailViewController posting module item progress update");
-    CBIPostModuleItemProgressUpdate([@(self.assignment.ident) description], CKIModuleItemCompletionRequirementMustView);
-}
 @end

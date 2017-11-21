@@ -63,7 +63,6 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
     refreshControl={
       <RefreshControlMock
         onRefresh={[Function]}
@@ -76,6 +75,7 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
     <RCTRefreshControl />
@@ -181,7 +181,11 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                     }
                   >
                     <Image
-                      source={1}
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/course/Files.png",
+                        }
+                      }
                       style={
                         Array [
                           Object {
@@ -209,7 +213,11 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                       }
                     >
                       <Image
-                        source={1}
+                        source={
+                          Object {
+                            "testUri": "../../../src/images/Published.png",
+                          }
+                        }
                         style={
                           Object {
                             "height": 12,
@@ -233,7 +241,6 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -262,7 +269,6 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -439,7 +445,11 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                     }
                   >
                     <Image
-                      source={1}
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/Document.png",
+                        }
+                      }
                       style={
                         Array [
                           Object {
@@ -467,7 +477,11 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                       }
                     >
                       <Image
-                        source={1}
+                        source={
+                          Object {
+                            "testUri": "../../../src/images/Published.png",
+                          }
+                        }
                         style={
                           Object {
                             "height": 12,
@@ -491,7 +505,6 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -520,7 +533,6 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -697,7 +709,11 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                     }
                   >
                     <Image
-                      source={1}
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/Document.png",
+                        }
+                      }
                       style={
                         Array [
                           Object {
@@ -725,7 +741,11 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                       }
                     >
                       <Image
-                        source={1}
+                        source={
+                          Object {
+                            "testUri": "../../../src/images/Unpublished.png",
+                          }
+                        }
                         style={
                           Object {
                             "height": 12,
@@ -749,7 +769,6 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -778,7 +797,6 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -943,7 +961,6 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
     refreshControl={
       <RefreshControlMock
         onRefresh={[Function]}
@@ -956,6 +973,7 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
     <RCTRefreshControl />
@@ -1061,7 +1079,11 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                     }
                   >
                     <Image
-                      source={1}
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/course/Files.png",
+                        }
+                      }
                       style={
                         Array [
                           Object {
@@ -1089,7 +1111,11 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                       }
                     >
                       <Image
-                        source={1}
+                        source={
+                          Object {
+                            "testUri": "../../../src/images/Published.png",
+                          }
+                        }
                         style={
                           Object {
                             "height": 12,
@@ -1113,7 +1139,6 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -1142,7 +1167,6 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -1319,7 +1343,11 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                     }
                   >
                     <Image
-                      source={1}
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/Document.png",
+                        }
+                      }
                       style={
                         Array [
                           Object {
@@ -1347,7 +1375,11 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                       }
                     >
                       <Image
-                        source={1}
+                        source={
+                          Object {
+                            "testUri": "../../../src/images/Published.png",
+                          }
+                        }
                         style={
                           Object {
                             "height": 12,
@@ -1371,7 +1403,6 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -1400,7 +1431,6 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -1577,7 +1607,11 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                     }
                   >
                     <Image
-                      source={1}
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/Document.png",
+                        }
+                      }
                       style={
                         Array [
                           Object {
@@ -1605,7 +1639,11 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                       }
                     >
                       <Image
-                        source={1}
+                        source={
+                          Object {
+                            "testUri": "../../../src/images/Unpublished.png",
+                          }
+                        }
                         style={
                           Object {
                             "height": 12,
@@ -1629,7 +1667,6 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -1658,7 +1695,6 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -1823,7 +1859,6 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
     refreshControl={
       <RefreshControlMock
         onRefresh={[Function]}
@@ -1836,6 +1871,7 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
     <RCTRefreshControl />
@@ -1941,7 +1977,11 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                     }
                   >
                     <Image
-                      source={1}
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/course/Files.png",
+                        }
+                      }
                       style={
                         Array [
                           Object {
@@ -1969,7 +2009,11 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                       }
                     >
                       <Image
-                        source={1}
+                        source={
+                          Object {
+                            "testUri": "../../../src/images/Published.png",
+                          }
+                        }
                         style={
                           Object {
                             "height": 12,
@@ -1993,7 +2037,6 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -2022,7 +2065,6 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -2199,7 +2241,11 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                     }
                   >
                     <Image
-                      source={1}
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/Document.png",
+                        }
+                      }
                       style={
                         Array [
                           Object {
@@ -2227,7 +2273,11 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                       }
                     >
                       <Image
-                        source={1}
+                        source={
+                          Object {
+                            "testUri": "../../../src/images/Published.png",
+                          }
+                        }
                         style={
                           Object {
                             "height": 12,
@@ -2251,7 +2301,6 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -2280,7 +2329,6 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -2457,7 +2505,11 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                     }
                   >
                     <Image
-                      source={1}
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/Document.png",
+                        }
+                      }
                       style={
                         Array [
                           Object {
@@ -2485,7 +2537,11 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                       }
                     >
                       <Image
-                        source={1}
+                        source={
+                          Object {
+                            "testUri": "../../../src/images/Unpublished.png",
+                          }
+                        }
                         style={
                           Object {
                             "height": 12,
@@ -2509,7 +2565,6 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -2538,7 +2593,6 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -2703,7 +2757,6 @@ exports[`CourseFileList sending weird data into the progress update function sho
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
     refreshControl={
       <RefreshControlMock
         onRefresh={[Function]}
@@ -2716,6 +2769,7 @@ exports[`CourseFileList sending weird data into the progress update function sho
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
     <RCTRefreshControl />
@@ -2821,7 +2875,11 @@ exports[`CourseFileList sending weird data into the progress update function sho
                     }
                   >
                     <Image
-                      source={1}
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/course/Files.png",
+                        }
+                      }
                       style={
                         Array [
                           Object {
@@ -2849,7 +2907,11 @@ exports[`CourseFileList sending weird data into the progress update function sho
                       }
                     >
                       <Image
-                        source={1}
+                        source={
+                          Object {
+                            "testUri": "../../../src/images/Published.png",
+                          }
+                        }
                         style={
                           Object {
                             "height": 12,
@@ -2873,7 +2935,6 @@ exports[`CourseFileList sending weird data into the progress update function sho
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -2902,7 +2963,6 @@ exports[`CourseFileList sending weird data into the progress update function sho
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -3079,7 +3139,11 @@ exports[`CourseFileList sending weird data into the progress update function sho
                     }
                   >
                     <Image
-                      source={1}
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/Document.png",
+                        }
+                      }
                       style={
                         Array [
                           Object {
@@ -3107,7 +3171,11 @@ exports[`CourseFileList sending weird data into the progress update function sho
                       }
                     >
                       <Image
-                        source={1}
+                        source={
+                          Object {
+                            "testUri": "../../../src/images/Published.png",
+                          }
+                        }
                         style={
                           Object {
                             "height": 12,
@@ -3131,7 +3199,6 @@ exports[`CourseFileList sending weird data into the progress update function sho
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -3160,7 +3227,6 @@ exports[`CourseFileList sending weird data into the progress update function sho
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -3337,7 +3403,11 @@ exports[`CourseFileList sending weird data into the progress update function sho
                     }
                   >
                     <Image
-                      source={1}
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/Document.png",
+                        }
+                      }
                       style={
                         Array [
                           Object {
@@ -3365,7 +3435,11 @@ exports[`CourseFileList sending weird data into the progress update function sho
                       }
                     >
                       <Image
-                        source={1}
+                        source={
+                          Object {
+                            "testUri": "../../../src/images/Unpublished.png",
+                          }
+                        }
                         style={
                           Object {
                             "height": 12,
@@ -3389,7 +3463,6 @@ exports[`CourseFileList sending weird data into the progress update function sho
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -3418,7 +3491,6 @@ exports[`CourseFileList sending weird data into the progress update function sho
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -3583,7 +3655,6 @@ exports[`CourseFileList should render 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
     refreshControl={
       <RefreshControlMock
         onRefresh={[Function]}
@@ -3596,6 +3667,7 @@ exports[`CourseFileList should render 1`] = `
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
     <RCTRefreshControl />
@@ -3701,7 +3773,11 @@ exports[`CourseFileList should render 1`] = `
                     }
                   >
                     <Image
-                      source={1}
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/course/Files.png",
+                        }
+                      }
                       style={
                         Array [
                           Object {
@@ -3729,7 +3805,11 @@ exports[`CourseFileList should render 1`] = `
                       }
                     >
                       <Image
-                        source={1}
+                        source={
+                          Object {
+                            "testUri": "../../../src/images/Published.png",
+                          }
+                        }
                         style={
                           Object {
                             "height": 12,
@@ -3753,7 +3833,6 @@ exports[`CourseFileList should render 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -3782,7 +3861,6 @@ exports[`CourseFileList should render 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -3959,7 +4037,11 @@ exports[`CourseFileList should render 1`] = `
                     }
                   >
                     <Image
-                      source={1}
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/Document.png",
+                        }
+                      }
                       style={
                         Array [
                           Object {
@@ -3987,7 +4069,11 @@ exports[`CourseFileList should render 1`] = `
                       }
                     >
                       <Image
-                        source={1}
+                        source={
+                          Object {
+                            "testUri": "../../../src/images/Published.png",
+                          }
+                        }
                         style={
                           Object {
                             "height": 12,
@@ -4011,7 +4097,6 @@ exports[`CourseFileList should render 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -4040,7 +4125,6 @@ exports[`CourseFileList should render 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -4217,7 +4301,11 @@ exports[`CourseFileList should render 1`] = `
                     }
                   >
                     <Image
-                      source={1}
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/Document.png",
+                        }
+                      }
                       style={
                         Array [
                           Object {
@@ -4245,7 +4333,11 @@ exports[`CourseFileList should render 1`] = `
                       }
                     >
                       <Image
-                        source={1}
+                        source={
+                          Object {
+                            "testUri": "../../../src/images/Unpublished.png",
+                          }
+                        }
                         style={
                           Object {
                             "height": 12,
@@ -4269,7 +4361,6 @@ exports[`CourseFileList should render 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -4298,7 +4389,6 @@ exports[`CourseFileList should render 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -4463,7 +4553,6 @@ exports[`CourseFileList should render with folders 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
     refreshControl={
       <RefreshControlMock
         onRefresh={[Function]}
@@ -4476,6 +4565,7 @@ exports[`CourseFileList should render with folders 1`] = `
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
     <RCTRefreshControl />
@@ -4581,7 +4671,11 @@ exports[`CourseFileList should render with folders 1`] = `
                     }
                   >
                     <Image
-                      source={1}
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/course/Files.png",
+                        }
+                      }
                       style={
                         Array [
                           Object {
@@ -4609,7 +4703,11 @@ exports[`CourseFileList should render with folders 1`] = `
                       }
                     >
                       <Image
-                        source={1}
+                        source={
+                          Object {
+                            "testUri": "../../../src/images/Published.png",
+                          }
+                        }
                         style={
                           Object {
                             "height": 12,
@@ -4633,7 +4731,6 @@ exports[`CourseFileList should render with folders 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -4662,7 +4759,6 @@ exports[`CourseFileList should render with folders 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -4839,7 +4935,11 @@ exports[`CourseFileList should render with folders 1`] = `
                     }
                   >
                     <Image
-                      source={1}
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/Document.png",
+                        }
+                      }
                       style={
                         Array [
                           Object {
@@ -4867,7 +4967,11 @@ exports[`CourseFileList should render with folders 1`] = `
                       }
                     >
                       <Image
-                        source={1}
+                        source={
+                          Object {
+                            "testUri": "../../../src/images/Published.png",
+                          }
+                        }
                         style={
                           Object {
                             "height": 12,
@@ -4891,7 +4995,6 @@ exports[`CourseFileList should render with folders 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -4920,7 +5023,6 @@ exports[`CourseFileList should render with folders 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -5097,7 +5199,11 @@ exports[`CourseFileList should render with folders 1`] = `
                     }
                   >
                     <Image
-                      source={1}
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/Document.png",
+                        }
+                      }
                       style={
                         Array [
                           Object {
@@ -5125,7 +5231,11 @@ exports[`CourseFileList should render with folders 1`] = `
                       }
                     >
                       <Image
-                        source={1}
+                        source={
+                          Object {
+                            "testUri": "../../../src/images/Unpublished.png",
+                          }
+                        }
                         style={
                           Object {
                             "height": 12,
@@ -5149,7 +5259,6 @@ exports[`CourseFileList should render with folders 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -5178,7 +5287,6 @@ exports[`CourseFileList should render with folders 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
-                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -5310,7 +5418,6 @@ exports[`CourseFileList should render with no data at all 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
     refreshControl={
       <RefreshControlMock
         onRefresh={[Function]}
@@ -5323,6 +5430,7 @@ exports[`CourseFileList should render with no data at all 1`] = `
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
     <RCTRefreshControl />
