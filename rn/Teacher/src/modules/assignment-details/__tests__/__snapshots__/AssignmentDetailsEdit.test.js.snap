@@ -617,6 +617,7 @@ exports[`error occurs when done pressed 1`] = `
                       ]
                     }
                     testID="assignmentDetails.edit.points_possible.input"
+                    value={undefined}
                   />
                 </View>
               </View>
@@ -1540,6 +1541,7 @@ exports[`modal saving is shown on assignment update 1`] = `
                       ]
                     }
                     testID="assignmentDetails.edit.points_possible.input"
+                    value={undefined}
                   />
                 </View>
               </View>
@@ -2463,6 +2465,7 @@ exports[`renders 1`] = `
                       ]
                     }
                     testID="assignmentDetails.edit.points_possible.input"
+                    value={undefined}
                   />
                 </View>
               </View>
@@ -3386,6 +3389,7 @@ exports[`saving invalid dates displays banner 1`] = `
                       ]
                     }
                     testID="assignmentDetails.edit.points_possible.input"
+                    value={undefined}
                   />
                 </View>
               </View>
@@ -4351,6 +4355,7 @@ exports[`saving invalid name displays banner 1`] = `
                       ]
                     }
                     testID="assignmentDetails.edit.points_possible.input"
+                    value={undefined}
                   />
                 </View>
               </View>
@@ -5277,6 +5282,7 @@ exports[`saving invalid points possible displays banner 1`] = `
                       ]
                     }
                     testID="assignmentDetails.edit.points_possible.input"
+                    value={undefined}
                   />
                 </View>
               </View>
@@ -6238,6 +6244,7 @@ exports[`saving negative points possible displays banner 1`] = `
                       ]
                     }
                     testID="assignmentDetails.edit.points_possible.input"
+                    value={undefined}
                   />
                 </View>
               </View>

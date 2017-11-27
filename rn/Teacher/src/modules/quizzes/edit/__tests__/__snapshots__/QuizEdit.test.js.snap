@@ -154,6 +154,7 @@ exports[`QuizEdit changes assignment group 1`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -1394,6 +1395,7 @@ exports[`QuizEdit changes assignment group 1`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -2233,6 +2235,7 @@ exports[`QuizEdit changes quiz type 1`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -3479,6 +3482,7 @@ exports[`QuizEdit changes quiz type 1`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -4318,6 +4322,7 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -5540,6 +5545,7 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -5928,7 +5934,6 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
                       },
                       Object {
                         "alignItems": "center",
-                        "flex": 0.5,
                         "flexDirection": "row",
                         "justifyContent": "flex-end",
                         "minWidth": 90,
@@ -5965,9 +5970,6 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
                       <View
                         style={
                           Object {
-                            "flex": 0.5,
-                            "flexDirection": "column",
-                            "justifyContent": "center",
                             "paddingRight": 32,
                           }
                         }
@@ -6001,7 +6003,6 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
                         style={
                           Object {
                             "alignItems": "center",
-                            "flex": 0.5,
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                             "minWidth": 90,
@@ -6063,7 +6064,6 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
                       },
                       Object {
                         "alignItems": "center",
-                        "flex": 0.5,
                         "flexDirection": "row",
                         "justifyContent": "flex-end",
                         "minWidth": 90,
@@ -6100,9 +6100,6 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
                       <View
                         style={
                           Object {
-                            "flex": 0.5,
-                            "flexDirection": "column",
-                            "justifyContent": "center",
                             "paddingRight": 32,
                           }
                         }
@@ -6136,7 +6133,6 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
                         style={
                           Object {
                             "alignItems": "center",
-                            "flex": 0.5,
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                             "minWidth": 90,
@@ -6651,6 +6647,7 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -7873,6 +7870,7 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -8261,7 +8259,6 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
                       },
                       Object {
                         "alignItems": "center",
-                        "flex": 0.5,
                         "flexDirection": "row",
                         "justifyContent": "flex-end",
                         "minWidth": 90,
@@ -8298,9 +8295,6 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
                       <View
                         style={
                           Object {
-                            "flex": 0.5,
-                            "flexDirection": "column",
-                            "justifyContent": "center",
                             "paddingRight": 32,
                           }
                         }
@@ -8334,7 +8328,6 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
                         style={
                           Object {
                             "alignItems": "center",
-                            "flex": 0.5,
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                             "minWidth": 90,
@@ -8396,7 +8389,6 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
                       },
                       Object {
                         "alignItems": "center",
-                        "flex": 0.5,
                         "flexDirection": "row",
                         "justifyContent": "flex-end",
                         "minWidth": 90,
@@ -8433,9 +8425,6 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
                       <View
                         style={
                           Object {
-                            "flex": 0.5,
-                            "flexDirection": "column",
-                            "justifyContent": "center",
                             "paddingRight": 32,
                           }
                         }
@@ -8469,7 +8458,6 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
                         style={
                           Object {
                             "alignItems": "center",
-                            "flex": 0.5,
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                             "minWidth": 90,
@@ -9027,6 +9015,7 @@ exports[`QuizEdit hides modal when save finishes 1`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -10249,6 +10238,7 @@ exports[`QuizEdit hides modal when save finishes 1`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -11088,6 +11078,7 @@ exports[`QuizEdit renders 1`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -12310,6 +12301,7 @@ exports[`QuizEdit renders 1`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -13189,6 +13181,7 @@ exports[`QuizEdit saving invalid due dates displays banner 1`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -14411,6 +14404,7 @@ exports[`QuizEdit saving invalid due dates displays banner 1`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -15293,6 +15287,7 @@ exports[`QuizEdit saving invalid name displays banner 1`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -16550,6 +16545,7 @@ exports[`QuizEdit saving invalid name displays banner 1`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -17432,6 +17428,7 @@ exports[`QuizEdit saving invalid viewing dates displays banner 1`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -18654,6 +18651,7 @@ exports[`QuizEdit saving invalid viewing dates displays banner 1`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -19042,7 +19040,6 @@ exports[`QuizEdit saving invalid viewing dates displays banner 1`] = `
                       },
                       Object {
                         "alignItems": "center",
-                        "flex": 0.5,
                         "flexDirection": "row",
                         "justifyContent": "flex-end",
                         "minWidth": 90,
@@ -19079,9 +19076,6 @@ exports[`QuizEdit saving invalid viewing dates displays banner 1`] = `
                       <View
                         style={
                           Object {
-                            "flex": 0.5,
-                            "flexDirection": "column",
-                            "justifyContent": "center",
                             "paddingRight": 32,
                           }
                         }
@@ -19115,7 +19109,6 @@ exports[`QuizEdit saving invalid viewing dates displays banner 1`] = `
                         style={
                           Object {
                             "alignItems": "center",
-                            "flex": 0.5,
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                             "minWidth": 90,
@@ -19216,7 +19209,6 @@ exports[`QuizEdit saving invalid viewing dates displays banner 1`] = `
                       },
                       Object {
                         "alignItems": "center",
-                        "flex": 0.5,
                         "flexDirection": "row",
                         "justifyContent": "flex-end",
                         "minWidth": 90,
@@ -19253,9 +19245,6 @@ exports[`QuizEdit saving invalid viewing dates displays banner 1`] = `
                       <View
                         style={
                           Object {
-                            "flex": 0.5,
-                            "flexDirection": "column",
-                            "justifyContent": "center",
                             "paddingRight": 32,
                           }
                         }
@@ -19289,7 +19278,6 @@ exports[`QuizEdit saving invalid viewing dates displays banner 1`] = `
                         style={
                           Object {
                             "alignItems": "center",
-                            "flex": 0.5,
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                             "minWidth": 90,
@@ -19921,6 +19909,7 @@ exports[`QuizEdit saving password displays banner 1`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -21143,6 +21132,7 @@ exports[`QuizEdit saving password displays banner 1`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -21899,6 +21889,7 @@ exports[`QuizEdit saving password displays banner 1`] = `
                       ]
                     }
                     testID={undefined}
+                    value={undefined}
                   />
                 </View>
               </View>
@@ -22142,6 +22133,7 @@ exports[`QuizEdit shows Assignment Group picker 1`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -23376,6 +23368,7 @@ exports[`QuizEdit shows Assignment Group picker 1`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -24258,6 +24251,7 @@ exports[`QuizEdit shows modal while saving 1`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -25480,6 +25474,7 @@ exports[`QuizEdit shows modal while saving 1`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -26319,6 +26314,7 @@ exports[`QuizEdit shows quiz time picker 1`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -27565,6 +27561,7 @@ exports[`QuizEdit shows quiz time picker 1`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -28404,6 +28401,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 1`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -29626,6 +29624,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 1`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -30573,6 +30572,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 2`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -31795,6 +31795,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 2`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -32742,6 +32743,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 1`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -33964,6 +33966,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 1`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -34911,6 +34914,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 2`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -36133,6 +36137,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 2`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -36972,6 +36977,7 @@ exports[`QuizEdit toggles "access code" 1`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -38194,6 +38200,7 @@ exports[`QuizEdit toggles "access code" 1`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -38950,6 +38957,7 @@ exports[`QuizEdit toggles "access code" 1`] = `
                       ]
                     }
                     testID={undefined}
+                    value={undefined}
                   />
                 </View>
               </View>
@@ -39158,6 +39166,7 @@ exports[`QuizEdit toggles "access code" 2`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -40380,6 +40389,7 @@ exports[`QuizEdit toggles "access code" 2`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -41219,6 +41229,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -42441,6 +42452,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -42829,7 +42841,6 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
                       },
                       Object {
                         "alignItems": "center",
-                        "flex": 0.5,
                         "flexDirection": "row",
                         "justifyContent": "flex-end",
                         "minWidth": 90,
@@ -42866,9 +42877,6 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
                       <View
                         style={
                           Object {
-                            "flex": 0.5,
-                            "flexDirection": "column",
-                            "justifyContent": "center",
                             "paddingRight": 32,
                           }
                         }
@@ -42902,7 +42910,6 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
                         style={
                           Object {
                             "alignItems": "center",
-                            "flex": 0.5,
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                             "minWidth": 90,
@@ -42964,7 +42971,6 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
                       },
                       Object {
                         "alignItems": "center",
-                        "flex": 0.5,
                         "flexDirection": "row",
                         "justifyContent": "flex-end",
                         "minWidth": 90,
@@ -43001,9 +43007,6 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
                       <View
                         style={
                           Object {
-                            "flex": 0.5,
-                            "flexDirection": "column",
-                            "justifyContent": "center",
                             "paddingRight": 32,
                           }
                         }
@@ -43037,7 +43040,6 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
                         style={
                           Object {
                             "alignItems": "center",
-                            "flex": 0.5,
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                             "minWidth": 90,
@@ -43598,6 +43600,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -44820,6 +44823,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -45208,7 +45212,6 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
                       },
                       Object {
                         "alignItems": "center",
-                        "flex": 0.5,
                         "flexDirection": "row",
                         "justifyContent": "flex-end",
                         "minWidth": 90,
@@ -45245,9 +45248,6 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
                       <View
                         style={
                           Object {
-                            "flex": 0.5,
-                            "flexDirection": "column",
-                            "justifyContent": "center",
                             "paddingRight": 32,
                           }
                         }
@@ -45281,7 +45281,6 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
                         style={
                           Object {
                             "alignItems": "center",
-                            "flex": 0.5,
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                             "minWidth": 90,
@@ -45343,7 +45342,6 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
                       },
                       Object {
                         "alignItems": "center",
-                        "flex": 0.5,
                         "flexDirection": "row",
                         "justifyContent": "flex-end",
                         "minWidth": 90,
@@ -45380,9 +45378,6 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
                       <View
                         style={
                           Object {
-                            "flex": 0.5,
-                            "flexDirection": "column",
-                            "justifyContent": "center",
                             "paddingRight": 32,
                           }
                         }
@@ -45416,7 +45411,6 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
                         style={
                           Object {
                             "alignItems": "center",
-                            "flex": 0.5,
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                             "minWidth": 90,
@@ -45970,6 +45964,7 @@ exports[`QuizEdit toggles "let students see responses" 1`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -47192,6 +47187,7 @@ exports[`QuizEdit toggles "let students see responses" 1`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -48031,6 +48027,7 @@ exports[`QuizEdit toggles "one question at a time" 1`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -49253,6 +49250,7 @@ exports[`QuizEdit toggles "one question at a time" 1`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -50200,6 +50198,7 @@ exports[`QuizEdit toggles "only once after each attempt" 1`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -51422,6 +51421,7 @@ exports[`QuizEdit toggles "only once after each attempt" 1`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -52261,6 +52261,7 @@ exports[`QuizEdit toggles "only once after each attempt" 2`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -53483,6 +53484,7 @@ exports[`QuizEdit toggles "only once after each attempt" 2`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -54322,6 +54324,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -55544,6 +55547,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -55932,7 +55936,6 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
                       },
                       Object {
                         "alignItems": "center",
-                        "flex": 0.5,
                         "flexDirection": "row",
                         "justifyContent": "flex-end",
                         "minWidth": 90,
@@ -55969,9 +55972,6 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
                       <View
                         style={
                           Object {
-                            "flex": 0.5,
-                            "flexDirection": "column",
-                            "justifyContent": "center",
                             "paddingRight": 32,
                           }
                         }
@@ -56005,7 +56005,6 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
                         style={
                           Object {
                             "alignItems": "center",
-                            "flex": 0.5,
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                             "minWidth": 90,
@@ -56113,7 +56112,6 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
                       },
                       Object {
                         "alignItems": "center",
-                        "flex": 0.5,
                         "flexDirection": "row",
                         "justifyContent": "flex-end",
                         "minWidth": 90,
@@ -56150,9 +56148,6 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
                       <View
                         style={
                           Object {
-                            "flex": 0.5,
-                            "flexDirection": "column",
-                            "justifyContent": "center",
                             "paddingRight": 32,
                           }
                         }
@@ -56186,7 +56181,6 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
                         style={
                           Object {
                             "alignItems": "center",
-                            "flex": 0.5,
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                             "minWidth": 90,
@@ -56701,6 +56695,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -57923,6 +57918,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -58311,7 +58307,6 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
                       },
                       Object {
                         "alignItems": "center",
-                        "flex": 0.5,
                         "flexDirection": "row",
                         "justifyContent": "flex-end",
                         "minWidth": 90,
@@ -58348,9 +58343,6 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
                       <View
                         style={
                           Object {
-                            "flex": 0.5,
-                            "flexDirection": "column",
-                            "justifyContent": "center",
                             "paddingRight": 32,
                           }
                         }
@@ -58384,7 +58376,6 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
                         style={
                           Object {
                             "alignItems": "center",
-                            "flex": 0.5,
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                             "minWidth": 90,
@@ -58485,7 +58476,6 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
                       },
                       Object {
                         "alignItems": "center",
-                        "flex": 0.5,
                         "flexDirection": "row",
                         "justifyContent": "flex-end",
                         "minWidth": 90,
@@ -58522,9 +58512,6 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
                       <View
                         style={
                           Object {
-                            "flex": 0.5,
-                            "flexDirection": "column",
-                            "justifyContent": "center",
                             "paddingRight": 32,
                           }
                         }
@@ -58558,7 +58545,6 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
                         style={
                           Object {
                             "alignItems": "center",
-                            "flex": 0.5,
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                             "minWidth": 90,
@@ -59073,6 +59059,7 @@ exports[`QuizEdit toggles "show correct answers" options 1`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -60295,6 +60282,7 @@ exports[`QuizEdit toggles "show correct answers" options 1`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -61134,6 +61122,7 @@ exports[`QuizEdit toggles publish 1`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -62356,6 +62345,7 @@ exports[`QuizEdit toggles publish 1`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -63195,6 +63185,7 @@ exports[`QuizEdit toggles publish 2`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -64417,6 +64408,7 @@ exports[`QuizEdit toggles publish 2`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -65256,6 +65248,7 @@ exports[`QuizEdit toggles shuffle answers 1`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -66478,6 +66471,7 @@ exports[`QuizEdit toggles shuffle answers 1`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -67317,6 +67311,7 @@ exports[`QuizEdit toggles shuffle answers 2`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -68539,6 +68534,7 @@ exports[`QuizEdit toggles shuffle answers 2`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -69378,6 +69374,7 @@ exports[`QuizEdit toggles time limit 1`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -70313,6 +70310,7 @@ exports[`QuizEdit toggles time limit 1`] = `
                       ]
                     }
                     testID={undefined}
+                    value={undefined}
                   />
                 </View>
               </View>
@@ -70725,6 +70723,7 @@ exports[`QuizEdit toggles time limit 1`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -71564,6 +71563,7 @@ exports[`QuizEdit toggles time limit 2`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -72786,6 +72786,7 @@ exports[`QuizEdit toggles time limit 2`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -73625,6 +73626,7 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -74847,6 +74849,7 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -75235,7 +75238,6 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
                       },
                       Object {
                         "alignItems": "center",
-                        "flex": 0.5,
                         "flexDirection": "row",
                         "justifyContent": "flex-end",
                         "minWidth": 90,
@@ -75272,9 +75274,6 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
                       <View
                         style={
                           Object {
-                            "flex": 0.5,
-                            "flexDirection": "column",
-                            "justifyContent": "center",
                             "paddingRight": 32,
                           }
                         }
@@ -75308,7 +75307,6 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
                         style={
                           Object {
                             "alignItems": "center",
-                            "flex": 0.5,
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                             "minWidth": 90,
@@ -75370,7 +75368,6 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
                       },
                       Object {
                         "alignItems": "center",
-                        "flex": 0.5,
                         "flexDirection": "row",
                         "justifyContent": "flex-end",
                         "minWidth": 90,
@@ -75407,9 +75404,6 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
                       <View
                         style={
                           Object {
-                            "flex": 0.5,
-                            "flexDirection": "column",
-                            "justifyContent": "center",
                             "paddingRight": 32,
                           }
                         }
@@ -75443,7 +75437,6 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
                         style={
                           Object {
                             "alignItems": "center",
-                            "flex": 0.5,
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                             "minWidth": 90,
@@ -76004,6 +75997,7 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
                   ]
                 }
                 testID={undefined}
+                value={undefined}
               />
             </View>
           </View>
@@ -77226,6 +77220,7 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
                         ]
                       }
                       testID={undefined}
+                      value={undefined}
                     />
                   </View>
                 </View>
@@ -77614,7 +77609,6 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
                       },
                       Object {
                         "alignItems": "center",
-                        "flex": 0.5,
                         "flexDirection": "row",
                         "justifyContent": "flex-end",
                         "minWidth": 90,
@@ -77651,9 +77645,6 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
                       <View
                         style={
                           Object {
-                            "flex": 0.5,
-                            "flexDirection": "column",
-                            "justifyContent": "center",
                             "paddingRight": 32,
                           }
                         }
@@ -77687,7 +77678,6 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
                         style={
                           Object {
                             "alignItems": "center",
-                            "flex": 0.5,
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                             "minWidth": 90,
@@ -77795,7 +77785,6 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
                       },
                       Object {
                         "alignItems": "center",
-                        "flex": 0.5,
                         "flexDirection": "row",
                         "justifyContent": "flex-end",
                         "minWidth": 90,
@@ -77832,9 +77821,6 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
                       <View
                         style={
                           Object {
-                            "flex": 0.5,
-                            "flexDirection": "column",
-                            "justifyContent": "center",
                             "paddingRight": 32,
                           }
                         }
@@ -77868,7 +77854,6 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
                         style={
                           Object {
                             "alignItems": "center",
-                            "flex": 0.5,
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                             "minWidth": 90,

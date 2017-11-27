@@ -100,7 +100,7 @@
         [request setHTTPShouldHandleCookies:YES];
         NSDictionary *cookieProperties = @{
                                            NSHTTPCookieValue: @"1",
-                                           NSHTTPCookieDomain: request.URL.host,
+                                           NSHTTPCookieDomain: @".instructure.com",
                                            NSHTTPCookieName: @"canvas_sa_delegated",
                                            NSHTTPCookiePath: @"/"
                                            };

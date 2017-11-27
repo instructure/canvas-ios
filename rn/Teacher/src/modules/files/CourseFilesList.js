@@ -114,6 +114,19 @@ export class CourseFilesList extends Component<Props, any> {
     }
   }
 
+  handleEditFolder = () => {
+    const { folder } = this.props
+    this.props.navigator.show(`/folders/${folder.id}/edit`, { modal: true }, {
+      folder,
+      onChange: this.update,
+      onDelete: this.handleDeleteFolder,
+    })
+  }
+
+  handleDeleteFolder = () => {
+    this.props.navigator.pop()
+  }
+
   addItem = () => {
     const options = [
       i18n('Create Folder'),
@@ -254,7 +267,9 @@ export class CourseFilesList extends Component<Props, any> {
   }
 
   render () {
-    const title = this.props.subFolder ? this.props.subFolder.split('/').pop() : i18n('Files')
+    const title = this.props.subFolder && this.props.folder
+      ? this.props.folder.name
+      : i18n('Files')
     const empty = <ListEmptyComponent title={i18n('This folder is empty.')} />
 
     const rightBarButtons = []
@@ -264,6 +279,13 @@ export class CourseFilesList extends Component<Props, any> {
         testID: 'course-files.add.button',
         action: this.addItem,
         accessibilityLabel: i18n('Add Item'),
+      })
+    }
+    if (this.props.folder && this.props.subFolder) {
+      rightBarButtons.push({
+        testID: 'course-files.edit-folder.button',
+        title: i18n('Edit'),
+        action: this.handleEditFolder,
       })
     }
     return (

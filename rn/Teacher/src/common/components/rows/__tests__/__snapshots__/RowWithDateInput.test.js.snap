@@ -13,7 +13,6 @@ exports[`Render row with date 1`] = `
       },
       Object {
         "alignItems": "center",
-        "flex": 0.5,
         "flexDirection": "row",
         "justifyContent": "flex-end",
         "minWidth": 90,
@@ -70,9 +69,6 @@ exports[`Render row with date 1`] = `
       <View
         style={
           Object {
-            "flex": 0.5,
-            "flexDirection": "column",
-            "justifyContent": "center",
             "paddingRight": 32,
           }
         }
@@ -106,7 +102,6 @@ exports[`Render row with date 1`] = `
         style={
           Object {
             "alignItems": "center",
-            "flex": 0.5,
             "flexDirection": "row",
             "justifyContent": "flex-end",
             "minWidth": 90,
@@ -155,7 +150,6 @@ exports[`Render row with date and the clear button 1`] = `
       },
       Object {
         "alignItems": "center",
-        "flex": 0.5,
         "flexDirection": "row",
         "justifyContent": "flex-end",
         "minWidth": 90,
@@ -212,9 +206,6 @@ exports[`Render row with date and the clear button 1`] = `
       <View
         style={
           Object {
-            "flex": 0.5,
-            "flexDirection": "column",
-            "justifyContent": "center",
             "paddingRight": 32,
           }
         }
@@ -248,7 +239,6 @@ exports[`Render row with date and the clear button 1`] = `
         style={
           Object {
             "alignItems": "center",
-            "flex": 0.5,
             "flexDirection": "row",
             "justifyContent": "flex-end",
             "minWidth": 90,

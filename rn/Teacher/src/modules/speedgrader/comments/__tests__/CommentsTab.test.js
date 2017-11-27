@@ -32,6 +32,8 @@ const templates = {
   ...require('../../../../__templates__/session'),
   ...require('../../../../__templates__/attachment'),
   ...require('../../../../__templates__/mediaComment'),
+  ...require('../../../../__templates__/assignments'),
+  ...require('../../../../__templates__/quiz'),
 }
 
 jest
@@ -279,6 +281,11 @@ test('mapStateToProps returns no comments for no submissionID', () => {
   }
 
   let state = templates.appState()
+  state.entities.courses = {
+    '123': {
+      enabledFeatures: [],
+    },
+  }
   state.entities.assignments = {
     '245': {
       data: {},
@@ -414,4 +421,98 @@ test('mapStateToProps returns comment and submission rows', () => {
 
   expect(mapStateToProps(appState, ownProps))
   .toMatchSnapshot()
+})
+
+test('mapStateToProps returns anonymous true when anonymous grading is turned on', () => {
+  const props = {
+    courseID: '123',
+    assignmentID: '245',
+    userID: '55',
+    submissionID: undefined,
+    drawerState: new DrawerState(),
+    gradeIndividually: true,
+    navigator: {},
+  }
+
+  let state = templates.appState()
+  state.entities.assignments = {
+    '245': {
+      data: {},
+      anonymousGradingOn: true,
+      pendingComments: {},
+      submissions: { refs: [], pending: 0 },
+      submissionSummary: { data: {}, pending: 0, error: null },
+      gradeableStudents: { refs: [], pending: 0 },
+      pending: 0,
+      groups: { refs: [], pending: 0 },
+    },
+  }
+
+  expect(mapStateToProps(state, props).anonymous).toEqual(true)
+})
+
+test('mapStateToProps returns true when the assignment is a quiz that is an anonymous survey', () => {
+  const props = {
+    courseID: '123',
+    assignmentID: '245',
+    userID: '55',
+    submissionID: undefined,
+    drawerState: new DrawerState(),
+    gradeIndividually: true,
+    navigator: {},
+  }
+
+  let state = templates.appState()
+  state.entities.assignments = {
+    '245': {
+      data: templates.assignment({ id: '245', quiz_id: '678' }),
+      anonymousGradingOn: false,
+      pendingComments: {},
+      submissions: { refs: [], pending: 0 },
+      submissionSummary: { data: {}, pending: 0, error: null },
+      gradeableStudents: { refs: [], pending: 0 },
+      pending: 0,
+      groups: { refs: [], pending: 0 },
+    },
+  }
+  state.entities.quizzes = {
+    '678': {
+      data: templates.quiz({ id: '678', anonymous_submissions: true }),
+    },
+  }
+
+  expect(mapStateToProps(state, props).anonymous).toEqual(true)
+})
+
+test('mapSTateToProps returns true when the course has anonymous grading turned on', () => {
+  const props = {
+    courseID: '123',
+    assignmentID: '245',
+    userID: '55',
+    submissionID: undefined,
+    drawerState: new DrawerState(),
+    gradeIndividually: true,
+    navigator: {},
+  }
+
+  let state = templates.appState()
+  state.entities.courses = {
+    '123': {
+      enabledFeatures: ['anonymous_grading'],
+    },
+  }
+  state.entities.assignments = {
+    '245': {
+      data: {},
+      anonymousGradingOn: false,
+      pendingComments: {},
+      submissions: { refs: [], pending: 0 },
+      submissionSummary: { data: {}, pending: 0, error: null },
+      gradeableStudents: { refs: [], pending: 0 },
+      pending: 0,
+      groups: { refs: [], pending: 0 },
+    },
+  }
+
+  expect(mapStateToProps(state, props).anonymous).toEqual(true)
 })

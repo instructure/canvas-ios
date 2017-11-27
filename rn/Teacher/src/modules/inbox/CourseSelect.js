@@ -28,6 +28,7 @@ import CourseActions from '../courses/actions'
 import GroupActions from '../groups/actions'
 import Row from '../../common/components/rows/Row'
 import SectionHeader from '../../common/components/rows/SectionHeader'
+import App from '../app'
 
 type CourseSelectSection = {
   key: number,
@@ -116,6 +117,7 @@ const Refreshed = refresh(
 export function mapStateToProps (state: AppState): CourseSelectDataProps {
   let courses = Object.keys(state.entities.courses)
     .map(id => state.entities.courses[id].course)
+    .filter(App.current().filterCourse)
   let pending = !!state.favoriteCourses.pending
 
   const favoriteCourses = courses.filter((course) => course.is_favorite)

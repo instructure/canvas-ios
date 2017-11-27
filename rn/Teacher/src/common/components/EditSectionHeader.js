@@ -19,14 +19,14 @@
  */
 
 import React, { Component } from 'react'
-import { Heading1 } from '../../../common/text'
-import color from '../../../common/colors'
+import { Heading1 } from '../text'
+import color from '../colors'
 import {
   View,
   StyleSheet,
 } from 'react-native'
 
-export default class AssignmentSection extends Component {
+export default class EditSectionHeader extends Component {
   render () {
     return (
       <View style={[style.container, this.props.style]}>

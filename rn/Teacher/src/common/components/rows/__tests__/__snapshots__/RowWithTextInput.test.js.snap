@@ -62,6 +62,7 @@ exports[`RowWithTextInput renders 1`] = `
           ]
         }
         testID={undefined}
+        value={undefined}
       />
     </View>
   </View>
@@ -186,6 +187,7 @@ exports[`RowWithTextInput renders with a title 1`] = `
               ]
             }
             testID={undefined}
+            value={undefined}
           />
         </View>
       </View>

@@ -422,7 +422,7 @@ function extractPendingComments (assignments: ?AssignmentContentState, userID): 
 }
 
 export function mapStateToProps ({ entities }: AppState, ownProps: RoutingProps): CommentRows {
-  const { submissionID, userID, assignmentID } = ownProps
+  const { submissionID, userID, assignmentID, courseID } = ownProps
 
   const submission = submissionID &&
     entities.submissions[submissionID]
@@ -431,9 +431,20 @@ export function mapStateToProps ({ entities }: AppState, ownProps: RoutingProps)
 
   const assignments = entities.assignments[assignmentID]
 
+  const assignmentData = assignments && assignments.data
+  const quiz = assignmentData && assignmentData.quiz_id && entities.quizzes[assignmentData.quiz_id].data
+
+  const courseContent = entities.courses[courseID]
+
   const pendingComments = extractPendingComments(assignments, userID)
   const comments = submission && submission.submission_comments ? extractComments(submission.submission_comments) : []
   const attempts = submission ? extractAttempts(submission, assignments.data) : []
+
+  let anonymous = (
+    assignments && assignments.anonymousGradingOn ||
+    quiz && quiz.anonymous_submissions ||
+    courseContent && courseContent.enabledFeatures.includes('anonymous_grading')
+  )
 
   const commentRows = [
     ...comments,
@@ -443,7 +454,7 @@ export function mapStateToProps ({ entities }: AppState, ownProps: RoutingProps)
 
   return {
     commentRows,
-    anonymous: !!assignments.anonymousGradingOn,
+    anonymous,
   }
 }
 
