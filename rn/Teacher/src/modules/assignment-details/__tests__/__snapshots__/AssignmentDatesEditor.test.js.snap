@@ -239,7 +239,6 @@ exports[`render correctly 1`] = `
             },
             Object {
               "alignItems": "center",
-              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
               "minWidth": 90,
@@ -296,9 +295,6 @@ exports[`render correctly 1`] = `
             <View
               style={
                 Object {
-                  "flex": 0.5,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
                   "paddingRight": 32,
                 }
               }
@@ -332,7 +328,6 @@ exports[`render correctly 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
                   "minWidth": 90,
@@ -426,7 +421,6 @@ exports[`render correctly 1`] = `
             },
             Object {
               "alignItems": "center",
-              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
               "minWidth": 90,
@@ -483,9 +477,6 @@ exports[`render correctly 1`] = `
             <View
               style={
                 Object {
-                  "flex": 0.5,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
                   "paddingRight": 32,
                 }
               }
@@ -519,7 +510,6 @@ exports[`render correctly 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
                   "minWidth": 90,
@@ -613,7 +603,6 @@ exports[`render correctly 1`] = `
             },
             Object {
               "alignItems": "center",
-              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
               "minWidth": 90,
@@ -670,9 +659,6 @@ exports[`render correctly 1`] = `
             <View
               style={
                 Object {
-                  "flex": 0.5,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
                   "paddingRight": 32,
                 }
               }
@@ -706,7 +692,6 @@ exports[`render correctly 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
                   "minWidth": 90,
@@ -1153,7 +1138,6 @@ exports[`render correctly with overide 1`] = `
             },
             Object {
               "alignItems": "center",
-              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
               "minWidth": 90,
@@ -1210,9 +1194,6 @@ exports[`render correctly with overide 1`] = `
             <View
               style={
                 Object {
-                  "flex": 0.5,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
                   "paddingRight": 32,
                 }
               }
@@ -1246,7 +1227,6 @@ exports[`render correctly with overide 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
                   "minWidth": 90,
@@ -1340,7 +1320,6 @@ exports[`render correctly with overide 1`] = `
             },
             Object {
               "alignItems": "center",
-              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
               "minWidth": 90,
@@ -1397,9 +1376,6 @@ exports[`render correctly with overide 1`] = `
             <View
               style={
                 Object {
-                  "flex": 0.5,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
                   "paddingRight": 32,
                 }
               }
@@ -1433,7 +1409,6 @@ exports[`render correctly with overide 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
                   "minWidth": 90,
@@ -1527,7 +1502,6 @@ exports[`render correctly with overide 1`] = `
             },
             Object {
               "alignItems": "center",
-              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
               "minWidth": 90,
@@ -1584,9 +1558,6 @@ exports[`render correctly with overide 1`] = `
             <View
               style={
                 Object {
-                  "flex": 0.5,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
                   "paddingRight": 32,
                 }
               }
@@ -1620,7 +1591,6 @@ exports[`render correctly with overide 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
                   "minWidth": 90,

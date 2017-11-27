@@ -38,3 +38,13 @@ export type Folder = {
   locked_for_user: boolean,
   for_submissions: boolean,
 }
+
+export type UpdateFolderParameters = {
+  name?: string,
+  parent_folder_id?: ?string,
+  lock_at?: ?string,
+  unlock_at?: ?string,
+  locked?: boolean,
+  hidden?: boolean,
+  position?: number,
+}

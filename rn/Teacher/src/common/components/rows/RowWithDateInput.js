@@ -55,7 +55,7 @@ export default class RowWithDateInput extends Component<any, DateRowProps, any> 
             <TouchableHighlight style={{ flex: 1 }} onPress={this.props.onPress} testID={this.props.testID}>
               <View style={[styles.rowContainer, { paddingRight: paddingRightWhenEmpty }]}>
                 <View style={styles.titlesContainer}>
-                    <Text style={styles.titleText}>{this.props.title}</Text>
+                  <Text style={styles.titleText}>{this.props.title}</Text>
                 </View>
                 <View style={styles.detailsRowContainer}>
                   <Text style={detailTextStyle} testID={this.props.dateTestID}>{date}</Text>
@@ -101,13 +101,9 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     flexDirection: 'row',
     alignItems: 'center',
-    flex: 0.5,
     minWidth: 90,
   },
   titlesContainer: {
-    flex: 0.5,
-    flexDirection: 'column',
-    justifyContent: 'center',
     paddingRight: 32,
   },
   titleText: {

@@ -26,6 +26,7 @@ import Row, { type RowProps } from './Row'
 
 type Props = RowProps & {
   defaultValue?: ?string,
+  value?: ?string,
   onChangeText?: (text: string, identifier: string) => void,
   inputWidth?: number, // only applies with title, default is 50
   inputHeight?: number, // only applies with title, default is 50
@@ -63,6 +64,7 @@ export default class RowWithTextInput extends Component<Props, any> {
     return (
       <TextInput
         defaultValue={this.props.defaultValue}
+        value={this.props.value}
         onChangeText={this._onChangeText}
         testID={this.props.identifier}
         style={[style.input, styles]}

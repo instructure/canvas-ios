@@ -150,6 +150,7 @@ exports[`PageEdit renders 1`] = `
                   ]
                 }
                 testID="pages.edit.titleInput"
+                value={undefined}
               />
             </View>
           </View>

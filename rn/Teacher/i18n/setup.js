@@ -34,6 +34,7 @@ export default function (locale: string): void {
     locale: sanitizedLocale,
     generateId,
     translations,
+    missingTranslation: 'ignore',
     formats: {
       number: {
         default: {

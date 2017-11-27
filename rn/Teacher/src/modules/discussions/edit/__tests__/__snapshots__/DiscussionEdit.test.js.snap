@@ -269,6 +269,7 @@ exports[`DiscussionEdit renders 1`] = `
                   ]
                 }
                 testID="discussions.edit.titleInput"
+                value={undefined}
               />
             </View>
           </View>
@@ -833,7 +834,6 @@ exports[`DiscussionEdit renders 1`] = `
                 },
                 Object {
                   "alignItems": "center",
-                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
                   "minWidth": 90,
@@ -870,9 +870,6 @@ exports[`DiscussionEdit renders 1`] = `
                 <View
                   style={
                     Object {
-                      "flex": 0.5,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
                       "paddingRight": 32,
                     }
                   }
@@ -906,7 +903,6 @@ exports[`DiscussionEdit renders 1`] = `
                   style={
                     Object {
                       "alignItems": "center",
-                      "flex": 0.5,
                       "flexDirection": "row",
                       "justifyContent": "flex-end",
                       "minWidth": 90,
@@ -952,7 +948,6 @@ exports[`DiscussionEdit renders 1`] = `
                 },
                 Object {
                   "alignItems": "center",
-                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
                   "minWidth": 90,
@@ -989,9 +984,6 @@ exports[`DiscussionEdit renders 1`] = `
                 <View
                   style={
                     Object {
-                      "flex": 0.5,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
                       "paddingRight": 32,
                     }
                   }
@@ -1025,7 +1017,6 @@ exports[`DiscussionEdit renders 1`] = `
                   style={
                     Object {
                       "alignItems": "center",
-                      "flex": 0.5,
                       "flexDirection": "row",
                       "justifyContent": "flex-end",
                       "minWidth": 90,
@@ -1335,6 +1326,7 @@ exports[`DiscussionEdit renders new form 1`] = `
                   ]
                 }
                 testID="discussions.edit.titleInput"
+                value={undefined}
               />
             </View>
           </View>
@@ -1783,7 +1775,6 @@ exports[`DiscussionEdit renders new form 1`] = `
                 },
                 Object {
                   "alignItems": "center",
-                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
                   "minWidth": 90,
@@ -1820,9 +1811,6 @@ exports[`DiscussionEdit renders new form 1`] = `
                 <View
                   style={
                     Object {
-                      "flex": 0.5,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
                       "paddingRight": 32,
                     }
                   }
@@ -1856,7 +1844,6 @@ exports[`DiscussionEdit renders new form 1`] = `
                   style={
                     Object {
                       "alignItems": "center",
-                      "flex": 0.5,
                       "flexDirection": "row",
                       "justifyContent": "flex-end",
                       "minWidth": 90,
@@ -1902,7 +1889,6 @@ exports[`DiscussionEdit renders new form 1`] = `
                 },
                 Object {
                   "alignItems": "center",
-                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
                   "minWidth": 90,
@@ -1939,9 +1925,6 @@ exports[`DiscussionEdit renders new form 1`] = `
                 <View
                   style={
                     Object {
-                      "flex": 0.5,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
                       "paddingRight": 32,
                     }
                   }
@@ -1975,7 +1958,6 @@ exports[`DiscussionEdit renders new form 1`] = `
                   style={
                     Object {
                       "alignItems": "center",
-                      "flex": 0.5,
                       "flexDirection": "row",
                       "justifyContent": "flex-end",
                       "minWidth": 90,
@@ -2285,6 +2267,7 @@ exports[`DiscussionEdit updates from props 1`] = `
                   ]
                 }
                 testID="discussions.edit.titleInput"
+                value={undefined}
               />
             </View>
           </View>
@@ -2733,7 +2716,6 @@ exports[`DiscussionEdit updates from props 1`] = `
                 },
                 Object {
                   "alignItems": "center",
-                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
                   "minWidth": 90,
@@ -2770,9 +2752,6 @@ exports[`DiscussionEdit updates from props 1`] = `
                 <View
                   style={
                     Object {
-                      "flex": 0.5,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
                       "paddingRight": 32,
                     }
                   }
@@ -2806,7 +2785,6 @@ exports[`DiscussionEdit updates from props 1`] = `
                   style={
                     Object {
                       "alignItems": "center",
-                      "flex": 0.5,
                       "flexDirection": "row",
                       "justifyContent": "flex-end",
                       "minWidth": 90,
@@ -2852,7 +2830,6 @@ exports[`DiscussionEdit updates from props 1`] = `
                 },
                 Object {
                   "alignItems": "center",
-                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
                   "minWidth": 90,
@@ -2889,9 +2866,6 @@ exports[`DiscussionEdit updates from props 1`] = `
                 <View
                   style={
                     Object {
-                      "flex": 0.5,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
                       "paddingRight": 32,
                     }
                   }
@@ -2925,7 +2899,6 @@ exports[`DiscussionEdit updates from props 1`] = `
                   style={
                     Object {
                       "alignItems": "center",
-                      "flex": 0.5,
                       "flexDirection": "row",
                       "justifyContent": "flex-end",
                       "minWidth": 90,
@@ -3235,6 +3208,7 @@ exports[`DiscussionEdit updates with new props 1`] = `
                   ]
                 }
                 testID="discussions.edit.titleInput"
+                value={undefined}
               />
             </View>
           </View>
@@ -3799,7 +3773,6 @@ exports[`DiscussionEdit updates with new props 1`] = `
                 },
                 Object {
                   "alignItems": "center",
-                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
                   "minWidth": 90,
@@ -3836,9 +3809,6 @@ exports[`DiscussionEdit updates with new props 1`] = `
                 <View
                   style={
                     Object {
-                      "flex": 0.5,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
                       "paddingRight": 32,
                     }
                   }
@@ -3872,7 +3842,6 @@ exports[`DiscussionEdit updates with new props 1`] = `
                   style={
                     Object {
                       "alignItems": "center",
-                      "flex": 0.5,
                       "flexDirection": "row",
                       "justifyContent": "flex-end",
                       "minWidth": 90,
@@ -3918,7 +3887,6 @@ exports[`DiscussionEdit updates with new props 1`] = `
                 },
                 Object {
                   "alignItems": "center",
-                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
                   "minWidth": 90,
@@ -3955,9 +3923,6 @@ exports[`DiscussionEdit updates with new props 1`] = `
                 <View
                   style={
                     Object {
-                      "flex": 0.5,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
                       "paddingRight": 32,
                     }
                   }
@@ -3991,7 +3956,6 @@ exports[`DiscussionEdit updates with new props 1`] = `
                   style={
                     Object {
                       "alignItems": "center",
-                      "flex": 0.5,
                       "flexDirection": "row",
                       "justifyContent": "flex-end",
                       "minWidth": 90,

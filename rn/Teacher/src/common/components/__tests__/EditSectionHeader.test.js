@@ -20,7 +20,7 @@
 
 import 'react-native'
 import React from 'react'
-import EditSectionHeader from '../components/EditSectionHeader'
+import EditSectionHeader from '../EditSectionHeader'
 import renderer from 'react-test-renderer'
 
 const defaultProps = {

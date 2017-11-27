@@ -62,10 +62,12 @@ import PeopleList from '../modules/people/PeopleList'
 import Filter from '../modules/filter/Filter'
 import ToDoList from '../modules/to-do/list/ToDoList'
 import CourseFilesList from '../modules/files/CourseFilesList'
+import EditFolder from '../modules/files/EditFolder'
 import PagesList from '../modules/pages/list/PagesList'
 import PageDetails from '../modules/pages/details/PageDetails'
 import PageEdit from '../modules/pages/edit/PageEdit'
 import UI from '../common/UI'
+import PickerPage from '../common/components/PickerPage'
 
 import { Store } from 'redux'
 import { registerScreen } from './'
@@ -108,6 +110,8 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/files', wrap(CourseFilesList), store)
   registerScreen('/courses/:courseID/files/folder/*subFolder', wrap(CourseFilesList), store)
   registerScreen('/courses/:courseID/file/:fileID', wrap(CourseFilesList), store)
+  registerScreen('/folders/:folderID/edit', wrap(EditFolder), store)
+  registerScreen('/picker', wrap(PickerPage), store)
   registerScreen('/groups/:groupID/users', wrap(GroupList), store)
   registerScreen('/conversations', wrap(Inbox), store, { canBecomeMaster: true })
   registerScreen('/conversations/compose', wrap(Compose), store)

@@ -90,6 +90,14 @@ export function createFolder (courseID: string, folder: NewFolder): Promise<ApiR
   return httpClient().post(`courses/${courseID}/folders`, folder)
 }
 
+export function updateFolder (folderID: string, folder: UpdateFolderParameters): Promise<ApiResponse<Folder>> {
+  return httpClient().put(`folders/${folderID}`, folder)
+}
+
+export function deleteFolder (folderID: string, force: boolean): Promise<ApiResponse<>> {
+  return httpClient().delete(`folders/${folderID}`, { params: { force } })
+}
+
 export function updateFile (file: File) {
   return httpClient().put(`files/${file.id}`, file)
 }

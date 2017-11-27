@@ -239,7 +239,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             },
             Object {
               "alignItems": "center",
-              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
               "minWidth": 90,
@@ -296,9 +295,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             <View
               style={
                 Object {
-                  "flex": 0.5,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
                   "paddingRight": 32,
                 }
               }
@@ -332,7 +328,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
                   "minWidth": 90,
@@ -426,7 +421,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             },
             Object {
               "alignItems": "center",
-              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
               "minWidth": 90,
@@ -483,9 +477,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             <View
               style={
                 Object {
-                  "flex": 0.5,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
                   "paddingRight": 32,
                 }
               }
@@ -519,7 +510,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
                   "minWidth": 90,
@@ -613,7 +603,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             },
             Object {
               "alignItems": "center",
-              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
               "minWidth": 90,
@@ -670,9 +659,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             <View
               style={
                 Object {
-                  "flex": 0.5,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
                   "paddingRight": 32,
                 }
               }
@@ -706,7 +692,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
                   "minWidth": 90,
@@ -1024,7 +1009,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             },
             Object {
               "alignItems": "center",
-              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
               "minWidth": 90,
@@ -1081,9 +1065,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             <View
               style={
                 Object {
-                  "flex": 0.5,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
                   "paddingRight": 32,
                 }
               }
@@ -1117,7 +1098,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
                   "minWidth": 90,
@@ -1211,7 +1191,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             },
             Object {
               "alignItems": "center",
-              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
               "minWidth": 90,
@@ -1268,9 +1247,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             <View
               style={
                 Object {
-                  "flex": 0.5,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
                   "paddingRight": 32,
                 }
               }
@@ -1304,7 +1280,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
                   "minWidth": 90,
@@ -1398,7 +1373,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             },
             Object {
               "alignItems": "center",
-              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
               "minWidth": 90,
@@ -1455,9 +1429,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             <View
               style={
                 Object {
-                  "flex": 0.5,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
                   "paddingRight": 32,
                 }
               }
@@ -1491,7 +1462,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
                   "minWidth": 90,
@@ -1809,7 +1779,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             },
             Object {
               "alignItems": "center",
-              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
               "minWidth": 90,
@@ -1866,9 +1835,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             <View
               style={
                 Object {
-                  "flex": 0.5,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
                   "paddingRight": 32,
                 }
               }
@@ -1902,7 +1868,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
                   "minWidth": 90,
@@ -1996,7 +1961,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             },
             Object {
               "alignItems": "center",
-              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
               "minWidth": 90,
@@ -2053,9 +2017,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             <View
               style={
                 Object {
-                  "flex": 0.5,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
                   "paddingRight": 32,
                 }
               }
@@ -2089,7 +2050,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
                   "minWidth": 90,
@@ -2183,7 +2143,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             },
             Object {
               "alignItems": "center",
-              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
               "minWidth": 90,
@@ -2240,9 +2199,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             <View
               style={
                 Object {
-                  "flex": 0.5,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
                   "paddingRight": 32,
                 }
               }
@@ -2276,7 +2232,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
                   "minWidth": 90,
@@ -2656,7 +2611,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
             },
             Object {
               "alignItems": "center",
-              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
               "minWidth": 90,
@@ -2713,9 +2667,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
             <View
               style={
                 Object {
-                  "flex": 0.5,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
                   "paddingRight": 32,
                 }
               }
@@ -2749,7 +2700,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
                   "minWidth": 90,
@@ -2843,7 +2793,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
             },
             Object {
               "alignItems": "center",
-              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
               "minWidth": 90,
@@ -2900,9 +2849,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
             <View
               style={
                 Object {
-                  "flex": 0.5,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
                   "paddingRight": 32,
                 }
               }
@@ -2936,7 +2882,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
                   "minWidth": 90,
@@ -3030,7 +2975,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
             },
             Object {
               "alignItems": "center",
-              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
               "minWidth": 90,
@@ -3087,9 +3031,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
             <View
               style={
                 Object {
-                  "flex": 0.5,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
                   "paddingRight": 32,
                 }
               }
@@ -3123,7 +3064,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
                   "minWidth": 90,
@@ -3441,7 +3381,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
             },
             Object {
               "alignItems": "center",
-              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
               "minWidth": 90,
@@ -3498,9 +3437,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
             <View
               style={
                 Object {
-                  "flex": 0.5,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
                   "paddingRight": 32,
                 }
               }
@@ -3534,7 +3470,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
                   "minWidth": 90,
@@ -3628,7 +3563,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
             },
             Object {
               "alignItems": "center",
-              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
               "minWidth": 90,
@@ -3685,9 +3619,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
             <View
               style={
                 Object {
-                  "flex": 0.5,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
                   "paddingRight": 32,
                 }
               }
@@ -3721,7 +3652,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
                   "minWidth": 90,
@@ -3815,7 +3745,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
             },
             Object {
               "alignItems": "center",
-              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
               "minWidth": 90,
@@ -3872,9 +3801,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
             <View
               style={
                 Object {
-                  "flex": 0.5,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
                   "paddingRight": 32,
                 }
               }
@@ -3908,7 +3834,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
                   "minWidth": 90,
@@ -4288,7 +4213,6 @@ exports[`snapshots! render with single due date 1`] = `
             },
             Object {
               "alignItems": "center",
-              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
               "minWidth": 90,
@@ -4345,9 +4269,6 @@ exports[`snapshots! render with single due date 1`] = `
             <View
               style={
                 Object {
-                  "flex": 0.5,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
                   "paddingRight": 32,
                 }
               }
@@ -4381,7 +4302,6 @@ exports[`snapshots! render with single due date 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
                   "minWidth": 90,
@@ -4475,7 +4395,6 @@ exports[`snapshots! render with single due date 1`] = `
             },
             Object {
               "alignItems": "center",
-              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
               "minWidth": 90,
@@ -4532,9 +4451,6 @@ exports[`snapshots! render with single due date 1`] = `
             <View
               style={
                 Object {
-                  "flex": 0.5,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
                   "paddingRight": 32,
                 }
               }
@@ -4568,7 +4484,6 @@ exports[`snapshots! render with single due date 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
                   "minWidth": 90,
@@ -4662,7 +4577,6 @@ exports[`snapshots! render with single due date 1`] = `
             },
             Object {
               "alignItems": "center",
-              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
               "minWidth": 90,
@@ -4719,9 +4633,6 @@ exports[`snapshots! render with single due date 1`] = `
             <View
               style={
                 Object {
-                  "flex": 0.5,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
                   "paddingRight": 32,
                 }
               }
@@ -4755,7 +4666,6 @@ exports[`snapshots! render with single due date 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
                   "minWidth": 90,
