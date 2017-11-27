@@ -39,6 +39,7 @@ export type Course = {
   term: Term,
   enrollments?: ?CourseEnrollment[],
   sections?: Section[],
+  access_restricted_by_date?: boolean,
 }
 
 export type CustomColors = {
