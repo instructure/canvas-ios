@@ -1,13 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EditFolder passes the correct props to EditItem 1`] = `
+exports[`EditFile passes the correct props to EditItem 1`] = `
 <EditItem
   delete={[Function]}
   item={
     Object {
-      "full_name": "course files/some_folder",
+      "display_name": "Book Report",
       "id": "111",
-      "name": "some folder",
+      "mime_class": "document",
+      "preview_url": "/",
+      "size": 488212,
+      "thumbnail_url": "http://fillmurray.com/322/200",
+      "url": "http://canvaslms.com/bookreport",
     }
   }
   itemID="12345"

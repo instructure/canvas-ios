@@ -41,7 +41,7 @@ const colors: { [name: string]: string } = {
   primaryButtonTextColor: 'white',
   primaryButtonColor: '#374A59',
   primaryBrandColor: '#374A59',
-  dangerButtonColor: '#EE0612',
+  destructiveButtonColor: '#EE0612',
 }
 
 export default colors

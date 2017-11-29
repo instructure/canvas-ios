@@ -35,6 +35,14 @@ export function getCourseTabs (courseID: string): Promise<ApiResponse<Tab[]>> {
   return exhaust(tabs)
 }
 
+export function getCourse (courseID: string): Promise<ApiResponse<Course>> {
+  return httpClient().get(`/courses/${courseID}`, {
+    params: {
+      include: ['term', 'favorites', 'course_image', 'sections'],
+    },
+  })
+}
+
 export function updateCourse (course: Course): Promise<ApiResponse<Course>> {
   const safeParams = {
     name: course.name,

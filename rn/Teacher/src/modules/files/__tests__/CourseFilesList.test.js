@@ -119,9 +119,10 @@ describe('CourseFileList', () => {
 
     instance.onSelectRow(1)
     expect(navigator.show).toHaveBeenCalledWith(
-      '/attachment',
+      '/courses/1/file/111',
       { modal: true },
-      { attachment: data[1] })
+      { file: data[1], onChange: expect.any(Function) }
+    )
   })
 
   it('add item should open an action sheet', () => {

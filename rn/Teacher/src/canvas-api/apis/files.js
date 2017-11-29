@@ -98,6 +98,10 @@ export function deleteFolder (folderID: string, force: boolean): Promise<ApiResp
   return httpClient().delete(`folders/${folderID}`, { params: { force } })
 }
 
-export function updateFile (file: File) {
-  return httpClient().put(`files/${file.id}`, file)
+export function updateFile (fileID: string, file: UpdateFileParameters): Promise<ApiResponse<File>> {
+  return httpClient().put(`files/${fileID}`, file)
+}
+
+export function deleteFile (fileID: string): Promise<ApiResponse<>> {
+  return httpClient().delete(`files/${fileID}`)
 }

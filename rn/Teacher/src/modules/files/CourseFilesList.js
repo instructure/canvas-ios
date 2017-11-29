@@ -102,7 +102,10 @@ export class CourseFilesList extends Component<Props, any> {
     const item = this.props.data[index]
 
     if (item.type === 'file') {
-      this.props.navigator.show('/attachment', { modal: true }, { attachment: item })
+      this.props.navigator.show(`/courses/${this.props.courseID}/file/${item.id}`, { modal: true }, {
+        file: item,
+        onChange: this.update,
+      })
     } else {
       let route
       if (this.props.subFolder) {

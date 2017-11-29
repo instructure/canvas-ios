@@ -1606,7 +1606,7 @@ exports[`renders UI correctly 1`] = `
               ]
             }
           >
-            dangerButtonColor
+            destructiveButtonColor
           </Text>
           <Text
             accessible={true}

@@ -62,7 +62,9 @@ import PeopleList from '../modules/people/PeopleList'
 import Filter from '../modules/filter/Filter'
 import ToDoList from '../modules/to-do/list/ToDoList'
 import CourseFilesList from '../modules/files/CourseFilesList'
+import EditFile from '../modules/files/EditFile'
 import EditFolder from '../modules/files/EditFolder'
+import ViewFile from '../modules/files/ViewFile'
 import PagesList from '../modules/pages/list/PagesList'
 import PageDetails from '../modules/pages/details/PageDetails'
 import PageEdit from '../modules/pages/edit/PageEdit'
@@ -109,7 +111,8 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/address-book', wrap(AddressBook), store)
   registerScreen('/courses/:courseID/files', wrap(CourseFilesList), store)
   registerScreen('/courses/:courseID/files/folder/*subFolder', wrap(CourseFilesList), store)
-  registerScreen('/courses/:courseID/file/:fileID', wrap(CourseFilesList), store)
+  registerScreen('/courses/:courseID/file/:fileID', wrap(ViewFile), store)
+  registerScreen('/courses/:courseID/file/:fileID/edit', wrap(EditFile), store)
   registerScreen('/folders/:folderID/edit', wrap(EditFolder), store)
   registerScreen('/picker', wrap(PickerPage), store)
   registerScreen('/groups/:groupID/users', wrap(GroupList), store)

@@ -18,18 +18,18 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 
-import EditFolder from '../EditFolder'
+import EditFile from '../EditFile'
 
 const template = {
-  ...require('../../../__templates__/folder'),
+  ...require('../../../__templates__/file'),
 }
 
-describe('EditFolder', () => {
+describe('EditFile', () => {
   it('passes the correct props to EditItem', () => {
     const tree = shallow(
-      <EditFolder
-        folder={template.folder()}
-        folderID='12345'
+      <EditFile
+        file={template.file()}
+        fileID='12345'
         navigator={{
           show: () => {},
           dismiss: () => {},

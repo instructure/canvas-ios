@@ -12,33 +12,35 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//
 
 // @flow
 import React from 'react'
-import { shallow } from 'enzyme'
+import api from '../../canvas-api'
+import EditItem from './EditItem'
 
-import EditFolder from '../EditFolder'
-
-const template = {
-  ...require('../../../__templates__/folder'),
-}
-
-describe('EditFolder', () => {
-  it('passes the correct props to EditItem', () => {
-    const tree = shallow(
-      <EditFolder
-        folder={template.folder()}
-        folderID='12345'
-        navigator={{
-          show: () => {},
-          dismiss: () => {},
-          pop: () => {},
-        }}
-        onChange={() => {}}
-        onDelete={() => {}}
-      />
-    )
-    expect(tree).toMatchSnapshot()
-  })
-})
+export default ({
+  deleteFile = api.deleteFile,
+  file,
+  fileID,
+  navigator,
+  onChange,
+  onDelete,
+  updateFile = api.updateFile,
+}: {
+  deleteFile: typeof api.deleteFile,
+  file: File,
+  fileID: string,
+  navigator: Navigator,
+  onChange?: (File) => any,
+  onDelete?: (File) => any,
+  updateFile: typeof api.updateFile,
+}) =>
+  <EditItem
+    delete={deleteFile}
+    item={file}
+    itemID={fileID}
+    navigator={navigator}
+    onChange={onChange}
+    onDelete={onDelete}
+    update={updateFile}
+  />
