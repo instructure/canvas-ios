@@ -116,17 +116,17 @@ export default class Profile extends Component {
         navBarStyle='dark'
         leftBarButtons={[
           {
+            title: i18n('Done'),
+            testID: 'profile.navigation-dismiss-btn',
+            action: this.props.navigator.dismiss,
+            accessibilityLabel: i18n('Done'),
+          },
+          {
             image: Images.course.settings,
             testID: 'profile.navigation-settings-btn',
             action: this.settings,
             accessibilityLabel: i18n('Profile actions'),
           },
-          // {
-          //   title: i18n('Done'),
-          //   testID: 'profile.navigation-dismiss-btn',
-          //   action: this.props.navigator.dismiss,
-          //   accessibilityLabel: i18n('Done'),
-          // },
         ]}
         rightBarButtons={[
           {

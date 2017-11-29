@@ -34,7 +34,7 @@ class RootTabBarController: UITabBarController {
     }
     
     func configureTabs() {
-        var controllers = [coursesTab(),  inboxTab(), profileTab()]
+        var controllers = [coursesTab(),  toDoTab(), inboxTab()]
         #if DEBUG
         controllers.append(stagingTab())
         #endif
