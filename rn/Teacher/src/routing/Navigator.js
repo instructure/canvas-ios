@@ -49,6 +49,11 @@ export default class Navigator {
     }
   }
 
+  replace (url: string, options: Object = { modal: false, modalPresentationStyle: 'formsheet' }, additionalProps: Object = {}): void {
+    const r = route(url, additionalProps)
+    NativeModules.Helm.pushFrom(this.moduleName, r.screen, r.passProps, { ...r.config, replace: true })
+  }
+
   push (route: RouteOptions) {
     NativeModules.Helm.pushFrom(this.moduleName, route.screen, route.passProps, route.config)
   }

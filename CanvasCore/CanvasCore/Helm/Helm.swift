@@ -93,13 +93,22 @@ open class HelmManager: NSObject {
         let viewController: UIViewController
         let pushOntoNav: (UINavigationController) -> Void
         let replaceInNav: (UINavigationController) -> Void
+        let pushToReplace = options["replace"] as? Bool ?? false
         
         if let factory = nativeViewControllerFactories[destinationModule]?.factory {
             guard let vc = factory(props) else { return }
             viewController = vc
             
-            pushOntoNav = { nav in
-                nav.pushViewController(viewController, animated: true)
+            if pushToReplace {
+                pushOntoNav = { nav in
+                    var stack = nav.viewControllers
+                    stack[max(stack.count - 1, 0)] = viewController
+                    nav.viewControllers = stack
+                }
+            } else {
+                pushOntoNav = { nav in
+                    nav.pushViewController(viewController, animated: true)
+                }
             }
             replaceInNav = { nav in
                 nav.viewControllers = [viewController]
@@ -111,8 +120,17 @@ open class HelmManager: NSObject {
             
             pushOntoNav = { nav in
                 helmViewController.loadViewIfNeeded()
-                helmViewController.onReadyToPresent = { [weak nav, helmViewController] in
-                    nav?.pushViewController(helmViewController, animated: options["animated"] as? Bool ?? true)
+                if pushToReplace {
+                    helmViewController.onReadyToPresent = { [weak nav, helmViewController] in
+                        guard let nav = nav else { return }
+                        var stack = nav.viewControllers
+                        stack[max(stack.count - 1, 0)] = helmViewController
+                        nav.setViewControllers(stack, animated: false)
+                    }
+                } else {
+                    helmViewController.onReadyToPresent = { [weak nav, helmViewController] in
+                        nav?.pushViewController(helmViewController, animated: options["animated"] as? Bool ?? true)
+                    }
                 }
             }
             

@@ -60,17 +60,20 @@ type CourseFileListNavProps = {
 
 type Props = CourseFilesListProps & CourseFileListNavProps
 
-export class CourseFilesList extends Component<Props, any> {
+type State = {
+  pending: boolean,
+  uploadPending: boolean,
+  uploadMessage: ?string,
+}
+
+export class CourseFilesList extends Component<Props, State> {
 
   attachmentPicker: AttachmentPicker
 
-  constructor (props: any) {
-    super(props)
-    this.state = {
-      pending: false,
-      uploadPending: false,
-      uploadMessage: null,
-    }
+  state = {
+    pending: false,
+    uploadPending: false,
+    uploadMessage: null,
   }
 
   componentWillMount () {
@@ -121,9 +124,23 @@ export class CourseFilesList extends Component<Props, any> {
     const { folder } = this.props
     this.props.navigator.show(`/folders/${folder.id}/edit`, { modal: true }, {
       folder,
-      onChange: this.update,
+      onChange: this.handleChangeFolder,
       onDelete: this.handleDeleteFolder,
     })
+  }
+
+  handleChangeFolder = async (updated: Folder) => {
+    const { folder, courseID, subFolder } = this.props
+    if (folder.name !== updated.name) {
+      let prefix = (subFolder || '').split('/').slice(0, -1).join('/')
+      if (prefix) prefix += '/'
+      await this.update() // make sure the new folder name is loaded before routing to it
+      this.props.navigator.replace(
+        `/courses/${courseID}/files/folder/${prefix}${updated.name}`
+      )
+    } else {
+      this.update()
+    }
   }
 
   handleDeleteFolder = () => {
