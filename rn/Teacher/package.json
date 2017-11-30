@@ -112,7 +112,6 @@
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
     ],
-    "verbose": true,
     "collectCoverage": false,
     "coveragePathIgnorePatterns": [
       "/node_modules/",

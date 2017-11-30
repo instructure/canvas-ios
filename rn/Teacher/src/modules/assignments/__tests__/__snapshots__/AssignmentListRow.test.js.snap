@@ -75,7 +75,7 @@ exports[`renders correctly 1`] = `
           testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
         >
           <View
-            accessibilityLabel="Not Published"
+            accessibilityLabel="Restricted"
             style={
               Object {
                 "alignItems": "center",
@@ -120,14 +120,14 @@ exports[`renders correctly 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Unpublished.png",
+                    "testUri": "../../../src/images/Restricted.png",
                   }
                 }
                 style={
                   Object {
-                    "height": 12,
-                    "tintColor": "#8B969E",
-                    "width": 12,
+                    "height": 14,
+                    "tintColor": "#FF0000",
+                    "width": 14,
                   }
                 }
               />
@@ -320,7 +320,7 @@ exports[`renders correctly assignment icon 1`] = `
           testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
         >
           <View
-            accessibilityLabel="Not Published"
+            accessibilityLabel="Restricted"
             style={
               Object {
                 "alignItems": "center",
@@ -365,14 +365,14 @@ exports[`renders correctly assignment icon 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Unpublished.png",
+                    "testUri": "../../../src/images/Restricted.png",
                   }
                 }
                 style={
                   Object {
-                    "height": 12,
-                    "tintColor": "#8B969E",
-                    "width": 12,
+                    "height": 14,
+                    "tintColor": "#FF0000",
+                    "width": 14,
                   }
                 }
               />
@@ -565,7 +565,7 @@ exports[`renders correctly discussion icon 1`] = `
           testID="assignment-list-row-discussion-icon-not-published-123456789.icon-img"
         >
           <View
-            accessibilityLabel="Not Published"
+            accessibilityLabel="Restricted"
             style={
               Object {
                 "alignItems": "center",
@@ -610,14 +610,14 @@ exports[`renders correctly discussion icon 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Unpublished.png",
+                    "testUri": "../../../src/images/Restricted.png",
                   }
                 }
                 style={
                   Object {
-                    "height": 12,
-                    "tintColor": "#8B969E",
-                    "width": 12,
+                    "height": 14,
+                    "tintColor": "#FF0000",
+                    "width": 14,
                   }
                 }
               />
@@ -1311,7 +1311,7 @@ exports[`renders correctly quiz icon 1`] = `
           testID="assignment-list-row-quiz-icon-not-published-123456789.icon-img"
         >
           <View
-            accessibilityLabel="Not Published"
+            accessibilityLabel="Restricted"
             style={
               Object {
                 "alignItems": "center",
@@ -1356,14 +1356,14 @@ exports[`renders correctly quiz icon 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Unpublished.png",
+                    "testUri": "../../../src/images/Restricted.png",
                   }
                 }
                 style={
                   Object {
-                    "height": 12,
-                    "tintColor": "#8B969E",
-                    "width": 12,
+                    "height": 14,
+                    "tintColor": "#FF0000",
+                    "width": 14,
                   }
                 }
               />
@@ -1556,7 +1556,7 @@ exports[`renders correctly with closed due dates 1`] = `
           testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
         >
           <View
-            accessibilityLabel="Not Published"
+            accessibilityLabel="Restricted"
             style={
               Object {
                 "alignItems": "center",
@@ -1601,14 +1601,14 @@ exports[`renders correctly with closed due dates 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Unpublished.png",
+                    "testUri": "../../../src/images/Restricted.png",
                   }
                 }
                 style={
                   Object {
-                    "height": 12,
-                    "tintColor": "#8B969E",
-                    "width": 12,
+                    "height": 14,
+                    "tintColor": "#FF0000",
+                    "width": 14,
                   }
                 }
               />
@@ -1801,7 +1801,7 @@ exports[`renders correctly with needs_grading_count 1`] = `
           testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
         >
           <View
-            accessibilityLabel="Not Published"
+            accessibilityLabel="Restricted"
             style={
               Object {
                 "alignItems": "center",
@@ -1846,14 +1846,14 @@ exports[`renders correctly with needs_grading_count 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Unpublished.png",
+                    "testUri": "../../../src/images/Restricted.png",
                   }
                 }
                 style={
                   Object {
-                    "height": 12,
-                    "tintColor": "#8B969E",
-                    "width": 12,
+                    "height": 14,
+                    "tintColor": "#FF0000",
+                    "width": 14,
                   }
                 }
               />
@@ -2083,7 +2083,7 @@ exports[`renders correctly with needs_grading_count and set to not_graded 1`] = 
           testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
         >
           <View
-            accessibilityLabel="Not Published"
+            accessibilityLabel="Restricted"
             style={
               Object {
                 "alignItems": "center",
@@ -2128,14 +2128,14 @@ exports[`renders correctly with needs_grading_count and set to not_graded 1`] = 
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Unpublished.png",
+                    "testUri": "../../../src/images/Restricted.png",
                   }
                 }
                 style={
                   Object {
-                    "height": 12,
-                    "tintColor": "#8B969E",
-                    "width": 12,
+                    "height": 14,
+                    "tintColor": "#FF0000",
+                    "width": 14,
                   }
                 }
               />
@@ -2328,7 +2328,7 @@ exports[`renders correctly with open due dates 1`] = `
           testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
         >
           <View
-            accessibilityLabel="Not Published"
+            accessibilityLabel="Restricted"
             style={
               Object {
                 "alignItems": "center",
@@ -2373,14 +2373,14 @@ exports[`renders correctly with open due dates 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Unpublished.png",
+                    "testUri": "../../../src/images/Restricted.png",
                   }
                 }
                 style={
                   Object {
-                    "height": 12,
-                    "tintColor": "#8B969E",
-                    "width": 12,
+                    "height": 14,
+                    "tintColor": "#FF0000",
+                    "width": 14,
                   }
                 }
               />
@@ -2573,7 +2573,7 @@ exports[`renders correctly with selected props 1`] = `
           testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
         >
           <View
-            accessibilityLabel="Not Published"
+            accessibilityLabel="Restricted"
             style={
               Object {
                 "alignItems": "center",
@@ -2618,14 +2618,14 @@ exports[`renders correctly with selected props 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Unpublished.png",
+                    "testUri": "../../../src/images/Restricted.png",
                   }
                 }
                 style={
                   Object {
-                    "height": 12,
-                    "tintColor": "#8B969E",
-                    "width": 12,
+                    "height": 14,
+                    "tintColor": "#FF0000",
+                    "width": 14,
                   }
                 }
               />

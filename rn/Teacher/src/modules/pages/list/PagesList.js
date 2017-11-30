@@ -32,7 +32,7 @@ import Images from '../../../images'
 import RowSeparator from '../../../common/components/rows/RowSeparator'
 import { getPages } from '../../../canvas-api'
 import { alertError } from '../../../redux/middleware/error-handler'
-import PublishedIcon from '../../../common/components/PublishedIcon'
+import AccessIcon from '../../../common/components/AccessIcon'
 import { Text } from '../../../common/text'
 import localeSort from '../../../utils/locale-sort'
 import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
@@ -103,7 +103,7 @@ export class PagesList extends Component<Props, any> {
   renderRow = ({ item, index }: { item: Page, index: number }) => {
     let icon = (
       <View style={styles.rowIcon}>
-        <PublishedIcon published={item.published} tintColor={this.props.courseColor} image={Images.course.pages} />
+        <AccessIcon entry={item} tintColor={this.props.courseColor} image={Images.course.pages} />
       </View>
     )
     return (

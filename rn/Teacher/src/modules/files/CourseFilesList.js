@@ -38,7 +38,7 @@ import Row from '../../common/components/rows/Row'
 import RowSeparator from '../../common/components/rows/RowSeparator'
 import find from 'lodash/find'
 import localeSort from '../../utils/locale-sort'
-import PublishedIcon from '../../common/components/PublishedIcon'
+import AccessIcon from '../../common/components/AccessIcon'
 import ListEmptyComponent from '../../common/components/ListEmptyComponent'
 import images from '../../images'
 import bytes from 'bytes'
@@ -250,7 +250,6 @@ export class CourseFilesList extends Component<Props, State> {
     let name
     let icon
     let subtitle
-    let published = !item.locked
     if (item.type === 'file') {
       name = item.display_name
       icon = images.document
@@ -267,7 +266,7 @@ export class CourseFilesList extends Component<Props, State> {
 
     const renderImage = () => {
       return <View style={styles.icon}>
-               <PublishedIcon published={published} image={icon} style={styles.icon} />
+               <AccessIcon entry={item} image={icon} style={styles.icon} />
              </View>
     }
 
@@ -282,7 +281,11 @@ export class CourseFilesList extends Component<Props, State> {
                   disclosureIndicator
                   testID={`course-file-list.course-file-list-row.cell-${item.key}`} />
               </View>
-              { published ? <View style={styles.publishedIndicatorLine} /> : <View /> }
+              {(item.hidden || item.lock_at || item.unlock_at) ? (
+                <View style={styles.restrictedIndicatorLine} />
+              ) : (
+                !item.locked && <View style={styles.publishedIndicatorLine} />
+              )}
             </View>)
   }
 
@@ -387,6 +390,14 @@ const styles = StyleSheet.create({
   },
   publishedIndicatorLine: {
     backgroundColor: '#00AC18',
+    position: 'absolute',
+    top: 4,
+    bottom: 4,
+    left: 0,
+    width: 3,
+  },
+  restrictedIndicatorLine: {
+    backgroundColor: '#FF0000',
     position: 'absolute',
     top: 4,
     bottom: 4,

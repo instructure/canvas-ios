@@ -863,7 +863,6 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
               </View>
             </View>
           </View>
-          <View />
         </View>
       </View>
       <View
@@ -1761,7 +1760,6 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
               </View>
             </View>
           </View>
-          <View />
         </View>
       </View>
       <View
@@ -2659,7 +2657,6 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
               </View>
             </View>
           </View>
-          <View />
         </View>
       </View>
       <View
@@ -3557,7 +3554,6 @@ exports[`CourseFileList sending weird data into the progress update function sho
               </View>
             </View>
           </View>
-          <View />
         </View>
       </View>
       <View
@@ -4455,7 +4451,6 @@ exports[`CourseFileList should render 1`] = `
               </View>
             </View>
           </View>
-          <View />
         </View>
       </View>
       <View
@@ -5353,7 +5348,6 @@ exports[`CourseFileList should render with folders 1`] = `
               </View>
             </View>
           </View>
-          <View />
         </View>
       </View>
       <View

@@ -24,7 +24,7 @@ import {
 } from 'react-native'
 import Row from '../../../common/components/rows/Row'
 import { Text } from '../../../common/text'
-import PublishedIcon from '../../../common/components/PublishedIcon'
+import AccessIcon from '../../../common/components/AccessIcon'
 import colors from '../../../common/colors'
 import i18n from 'format-message'
 import images from '../../../images/'
@@ -62,7 +62,7 @@ export class ToDoListItem extends Component<Props, any> {
       assignment.name,
       assignment.due_at,
       needsGradingCount,
-      assignment.published,
+      assignment,
       image
     )
   }
@@ -72,17 +72,17 @@ export class ToDoListItem extends Component<Props, any> {
       quiz.title,
       quiz.due_at,
       needsGradingCount,
-      quiz.published,
+      quiz,
       images.course.quizzes
     )
   }
 
-  _renderNeedsGrading (title: string, dueAt: ?string, count: number, published: boolean, image: any) {
+  _renderNeedsGrading (title: string, dueAt: ?string, count: number, entry: Quiz | Assignment, image: any) {
     const renderIcon = () => {
       return (
         <View style={styles.icon}>
-          <PublishedIcon
-            published={published}
+          <AccessIcon
+            entry={entry}
             tintColor={this.props.courseColor}
             image={image}
           />
@@ -133,7 +133,7 @@ export class ToDoListItem extends Component<Props, any> {
             </View>
           </Row>
         </View>
-        { published &&
+        { entry.published &&
           <View style={styles.publishedIndicator} />
         }
       </View>

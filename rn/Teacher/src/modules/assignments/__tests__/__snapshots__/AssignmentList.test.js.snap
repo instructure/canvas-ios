@@ -417,7 +417,7 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                   testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
                 >
                   <View
-                    accessibilityLabel="Not Published"
+                    accessibilityLabel="Restricted"
                     style={
                       Object {
                         "alignItems": "center",
@@ -462,14 +462,14 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/Unpublished.png",
+                            "testUri": "../../../src/images/Restricted.png",
                           }
                         }
                         style={
                           Object {
-                            "height": 12,
-                            "tintColor": "#8B969E",
-                            "width": 12,
+                            "height": 14,
+                            "tintColor": "#FF0000",
+                            "width": 14,
                           }
                         }
                       />
@@ -996,7 +996,7 @@ exports[`applyFilter will apply a new filter 1`] = `
                   testID="assignment-list-row-assignment-icon-not-published-1.icon-img"
                 >
                   <View
-                    accessibilityLabel="Not Published"
+                    accessibilityLabel="Restricted"
                     style={
                       Object {
                         "alignItems": "center",
@@ -1041,14 +1041,14 @@ exports[`applyFilter will apply a new filter 1`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/Unpublished.png",
+                            "testUri": "../../../src/images/Restricted.png",
                           }
                         }
                         style={
                           Object {
-                            "height": 12,
-                            "tintColor": "#8B969E",
-                            "width": 12,
+                            "height": 14,
+                            "tintColor": "#FF0000",
+                            "width": 14,
                           }
                         }
                       />
@@ -1536,7 +1536,7 @@ exports[`filter button only shows when there are grading periods 1`] = `
                   testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
                 >
                   <View
-                    accessibilityLabel="Not Published"
+                    accessibilityLabel="Restricted"
                     style={
                       Object {
                         "alignItems": "center",
@@ -1581,14 +1581,14 @@ exports[`filter button only shows when there are grading periods 1`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/Unpublished.png",
+                            "testUri": "../../../src/images/Restricted.png",
                           }
                         }
                         style={
                           Object {
-                            "height": 12,
-                            "tintColor": "#8B969E",
-                            "width": 12,
+                            "height": 14,
+                            "tintColor": "#FF0000",
+                            "width": 14,
                           }
                         }
                       />
@@ -2115,7 +2115,7 @@ exports[`renders correctly 1`] = `
                   testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
                 >
                   <View
-                    accessibilityLabel="Not Published"
+                    accessibilityLabel="Restricted"
                     style={
                       Object {
                         "alignItems": "center",
@@ -2160,14 +2160,14 @@ exports[`renders correctly 1`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/Unpublished.png",
+                            "testUri": "../../../src/images/Restricted.png",
                           }
                         }
                         style={
                           Object {
-                            "height": 12,
-                            "tintColor": "#8B969E",
-                            "width": 12,
+                            "height": 14,
+                            "tintColor": "#FF0000",
+                            "width": 14,
                           }
                         }
                       />
@@ -2734,7 +2734,7 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                   testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
                 >
                   <View
-                    accessibilityLabel="Not Published"
+                    accessibilityLabel="Restricted"
                     style={
                       Object {
                         "alignItems": "center",
@@ -2779,14 +2779,14 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/Unpublished.png",
+                            "testUri": "../../../src/images/Restricted.png",
                           }
                         }
                         style={
                           Object {
-                            "height": 12,
-                            "tintColor": "#8B969E",
-                            "width": 12,
+                            "height": 14,
+                            "tintColor": "#FF0000",
+                            "width": 14,
                           }
                         }
                       />

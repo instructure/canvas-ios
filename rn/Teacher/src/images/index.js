@@ -109,6 +109,7 @@ const images = {
   profile: require('./profile.png'),
   published: require('./Published.png'),
   unpublished: require('./Unpublished.png'),
+  restricted: require('./Restricted.png'),
   upArrow: require('./mini-arrow-up.png'),
   document: require('./Document.png'),
   attachment: require('./attachment.png'),

@@ -54,7 +54,7 @@ exports[`ToDoListItem renders 1`] = `
           }
         >
           <View
-            accessibilityLabel="Not Published"
+            accessibilityLabel="Restricted"
             style={
               Object {
                 "alignItems": "center",
@@ -99,14 +99,14 @@ exports[`ToDoListItem renders 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Unpublished.png",
+                    "testUri": "../../../src/images/Restricted.png",
                   }
                 }
                 style={
                   Object {
-                    "height": 12,
-                    "tintColor": "#8B969E",
-                    "width": 12,
+                    "height": 14,
+                    "tintColor": "#FF0000",
+                    "width": 14,
                   }
                 }
               />
@@ -356,7 +356,7 @@ exports[`ToDoListItem renders discussion 1`] = `
           }
         >
           <View
-            accessibilityLabel="Not Published"
+            accessibilityLabel="Restricted"
             style={
               Object {
                 "alignItems": "center",
@@ -401,14 +401,14 @@ exports[`ToDoListItem renders discussion 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Unpublished.png",
+                    "testUri": "../../../src/images/Restricted.png",
                   }
                 }
                 style={
                   Object {
-                    "height": 12,
-                    "tintColor": "#8B969E",
-                    "width": 12,
+                    "height": 14,
+                    "tintColor": "#FF0000",
+                    "width": 14,
                   }
                 }
               />
@@ -658,7 +658,7 @@ exports[`ToDoListItem renders null due date 1`] = `
           }
         >
           <View
-            accessibilityLabel="Not Published"
+            accessibilityLabel="Restricted"
             style={
               Object {
                 "alignItems": "center",
@@ -703,14 +703,14 @@ exports[`ToDoListItem renders null due date 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Unpublished.png",
+                    "testUri": "../../../src/images/Restricted.png",
                   }
                 }
                 style={
                   Object {
-                    "height": 12,
-                    "tintColor": "#8B969E",
-                    "width": 12,
+                    "height": 14,
+                    "tintColor": "#FF0000",
+                    "width": 14,
                   }
                 }
               />
