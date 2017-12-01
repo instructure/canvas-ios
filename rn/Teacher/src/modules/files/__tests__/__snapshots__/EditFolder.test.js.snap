@@ -3,6 +3,8 @@
 exports[`EditFolder passes the correct props to EditItem 1`] = `
 <EditItem
   delete={[Function]}
+  getCourseEnabledFeatures={[Function]}
+  getCourseLicenses={[Function]}
   item={
     Object {
       "full_name": "course files/some_folder",

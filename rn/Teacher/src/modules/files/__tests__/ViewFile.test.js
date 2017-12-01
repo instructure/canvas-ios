@@ -180,7 +180,12 @@ describe('ViewFile', () => {
     expect(props.navigator.show).toHaveBeenLastCalledWith(
       '/courses/1/file/24/edit',
       { modal: true },
-      { file: props.file, onChange: expect.any(Function), onDelete: expect.any(Function) },
+      {
+        courseID: '1',
+        file: props.file,
+        onChange: expect.any(Function),
+        onDelete: expect.any(Function),
+      },
     )
     props.navigator.show.mock.calls[0][2].onChange({
       ...props.file,

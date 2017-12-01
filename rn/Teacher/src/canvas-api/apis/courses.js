@@ -106,3 +106,8 @@ export function getCourseEnabledFeatures (courseID: string): Promise<AxiosRespon
   })
   return exhaust(features)
 }
+
+export function getCourseLicenses (courseID: string): Promise<ApiResponse<License[]>> {
+  const licenses = paginate(`courses/${courseID}/content_licenses`, { params: { per_page: 99 } })
+  return exhaust(licenses)
+}

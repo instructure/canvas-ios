@@ -105,3 +105,10 @@ export function updateFile (fileID: string, file: UpdateFileParameters): Promise
 export function deleteFile (fileID: string): Promise<ApiResponse<>> {
   return httpClient().delete(`files/${fileID}`)
 }
+
+export function updateCourseFileUsageRights (courseID: string, fileID: string, params: UpdateUsageRightsParameters): Promise<ApiResponse<UsageRights>> {
+  return httpClient().put(`courses/${courseID}/usage_rights`, {
+    file_ids: [ fileID ],
+    usage_rights: params,
+  })
+}

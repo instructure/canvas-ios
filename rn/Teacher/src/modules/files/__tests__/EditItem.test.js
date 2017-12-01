@@ -326,6 +326,7 @@ describe('EditItem file', () => {
   let props
   beforeEach(() => {
     props = {
+      courseID: '1',
       itemID: '123',
       item: template.file({ id: '123', display_name: 'passwords.txt' }),
       navigator: {
@@ -333,6 +334,12 @@ describe('EditItem file', () => {
         dismiss: jest.fn(),
         pop: jest.fn(),
       },
+      getCourseEnabledFeatures: jest.fn(() => Promise.resolve({ data: [] })),
+      getCourseLicenses: jest.fn(() => Promise.resolve({ data: [
+        { id: 'private', name: 'Private (Copyrighted)' },
+        { id: 'cc_by', name: 'CC Attribution' },
+        { id: 'cc_by_nc_sa', name: 'CC Attribution Non-Commercial Share Alike' },
+      ] })),
     }
   })
 
@@ -360,5 +367,42 @@ describe('EditItem file', () => {
 
     await dismissing
     expect(props.navigator.dismiss).toHaveBeenCalled()
+  })
+
+  it('renders usage rights editing when feature is enabled', async () => {
+    const getting = Promise.resolve({ data: [ 'usage_rights_required' ] })
+    props.getCourseEnabledFeatures = jest.fn(() => getting)
+    props.item.usage_rights = {
+      legal_copyright: '',
+      use_justification: 'creative_commons',
+      license: 'cc_by',
+    }
+    const tree = shallow(<EditItem {...props} />)
+    await getting
+    await updatedState(tree)
+    expect(tree.state('features')).toEqual([ 'usage_rights_required' ])
+    expect(tree.find('EditUsageRights').prop('rights')).toBe(props.item.usage_rights)
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('calls updateUsageRights if changed', async () => {
+    const dismissing = Promise.resolve()
+    const getting = Promise.resolve({ data: [ 'usage_rights_required' ] })
+    props.getCourseEnabledFeatures = jest.fn(() => getting)
+    props.update = jest.fn(() => Promise.resolve())
+    props.updateUsageRights = jest.fn(() => Promise.resolve())
+    props.navigator.dismiss = jest.fn(() => dismissing)
+    const tree = shallow(<EditItem {...props} />)
+    await getting
+    await Promise.resolve()
+    await updatedState(tree)
+    const updatedRights = {
+      legal_copyright: '(c) 2017 My Buddy',
+      use_justification: 'used_by_permission',
+    }
+    tree.find('EditUsageRights').simulate('Change', updatedRights)
+    tree.find('Screen').prop('rightBarButtons')[0].action()
+    await dismissing
+    expect(props.updateUsageRights).toHaveBeenCalledWith(updatedRights)
   })
 })

@@ -24,6 +24,7 @@ import ReactNative, {
   View,
 } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import api from '../../canvas-api'
 import Screen from '../../routing/Screen'
 import Colors from '../../common/colors'
 import Images from '../../images'
@@ -35,10 +36,12 @@ import RowWithTextInput from '../../common/components/rows/RowWithTextInput'
 import RowSeparator from '../../common/components/rows/RowSeparator'
 import SavingBanner from '../../common/components/SavingBanner'
 import { alertError } from '../../redux/middleware/error-handler'
+import EditUsageRights from './EditUsageRights'
 
 type Item = File | Folder
 
 type Props = {
+  courseID?: string,
   delete: (string, force?: boolean) => Promise,
   item: Item,
   itemID: string,
@@ -48,6 +51,9 @@ type Props = {
   onDelete?: (Item) => any,
   style?: any,
   update: (string, Item) => Promise,
+  updateUsageRights?: (UpdateUsageRightsParameters) => Promise,
+  getCourseEnabledFeatures: typeof api.getCourseEnabledFeatures,
+  getCourseLicenses: typeof api.getCourseLicenses,
 }
 
 type State = {
@@ -56,6 +62,8 @@ type State = {
   showAvailability: boolean,
   showLockedAt: boolean,
   showUnlockedAt: boolean,
+  licenses: License[],
+  features: string[],
   validate: {
     title: string,
     unlock_at: string,
@@ -64,6 +72,11 @@ type State = {
 }
 
 export default class EditItem extends Component<Props, State> {
+  static defaultProps = {
+    getCourseEnabledFeatures: api.getCourseEnabledFeatures,
+    getCourseLicenses: api.getCourseLicenses,
+  }
+
   state = {
     updated: {
       ...this.props.item,
@@ -73,11 +86,29 @@ export default class EditItem extends Component<Props, State> {
     showAvailability: !!(this.props.item.lock_at || this.props.item.unlock_at),
     showLockedAt: false,
     showUnlockedAt: false,
+    licenses: [],
+    features: [],
     validation: {
       name: '',
       unlock_at: '',
       lock_at: '',
     },
+  }
+
+  componentWillMount () {
+    this.loadCourseLicenses()
+  }
+
+  async loadCourseLicenses () {
+    const { courseID, getCourseLicenses, getCourseEnabledFeatures } = this.props
+    if (!courseID || !this.isFile()) return
+    try {
+      const [ { data: licenses }, { data: features } ] = await Promise.all([
+        getCourseLicenses(courseID),
+        getCourseEnabledFeatures(courseID),
+      ])
+      this.setState({ licenses, features })
+    } catch (e) {}
   }
 
   handleDone = async () => {
@@ -103,6 +134,9 @@ export default class EditItem extends Component<Props, State> {
       this.setState({ pending: true })
       try {
         await this.props.update(item.id, updated)
+        if (this.props.updateUsageRights && updated.usage_rights !== item.usage_rights) {
+          await this.props.updateUsageRights(updated.usage_rights)
+        }
       } catch (error) {
         this.setState({ pending: false })
         setTimeout(() => { alertError(error) }, 1000)
@@ -244,6 +278,8 @@ export default class EditItem extends Component<Props, State> {
     const {
       updated,
       pending,
+      features,
+      licenses,
       showAvailability,
       showLockedAt,
       showUnlockedAt,
@@ -349,6 +385,15 @@ export default class EditItem extends Component<Props, State> {
                 }
                 <RequiredFieldSubscript title={validation.lock_at} visible={!!validation.lock_at} />
               </View>
+            }
+
+            {/* Usage Rights */}
+            {features.includes('usage_rights_required') &&
+              <EditUsageRights
+                licenses={licenses}
+                rights={updated.usage_rights || undefined}
+                onChange={value => this.setState({ updated: { ...this.state.updated, usage_rights: value } })}
+              />
             }
 
             {/* Delete */}

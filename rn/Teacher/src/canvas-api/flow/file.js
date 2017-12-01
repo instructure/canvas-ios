@@ -45,9 +45,9 @@ export type UpdateFileParameters = {
 export type UsageRights = {
   legal_copyright: string,
   use_justification: 'own_copyright' | 'public_domain' | 'used_by_permission' | 'fair_use' | 'creative_commons',
-  license: string,
-  license_name: string,
-  message: string,
+  license?: string,
+  license_name?: string,
+  message?: string,
 }
 
 export type UpdateUsageRightsParameters = {

@@ -3,6 +3,8 @@
 exports[`EditFile passes the correct props to EditItem 1`] = `
 <EditItem
   delete={[Function]}
+  getCourseEnabledFeatures={[Function]}
+  getCourseLicenses={[Function]}
   item={
     Object {
       "display_name": "Book Report",
@@ -25,5 +27,6 @@ exports[`EditFile passes the correct props to EditItem 1`] = `
   onChange={[Function]}
   onDelete={[Function]}
   update={[Function]}
+  updateUsageRights={[Function]}
 />
 `;
