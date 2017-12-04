@@ -16,7 +16,6 @@
 
 // @flow
 
-import FavoritedCourseList from '../modules/courses/favorites/FavoritedCourseList'
 import AllCourseList from '../modules/courses/all/AllCourseList'
 import EditFavorites from '../modules/courses/edit-favorites/EditFavorites'
 import CourseDetails from '../modules/courses/details/CourseDetails'
@@ -70,6 +69,7 @@ import PageDetails from '../modules/pages/details/PageDetails'
 import PageEdit from '../modules/pages/edit/PageEdit'
 import UI from '../common/UI'
 import PickerPage from '../common/components/PickerPage'
+import Dashboard from '../modules/dashboard/Dashboard'
 
 import { Store } from 'redux'
 import { registerScreen } from './'
@@ -79,7 +79,7 @@ export function wrap (name: any): Function {
 }
 
 export function registerScreens (store: Store): void {
-  registerScreen('/', wrap(FavoritedCourseList), store)
+  registerScreen('/', wrap(Dashboard), store)
   registerScreen('/courses', wrap(AllCourseList), store, { canBecomeMaster: true })
   registerScreen('/course_favorites', wrap(EditFavorites), store)
   registerScreen('/courses/:courseID', wrap(CourseDetails), store, { canBecomeMaster: true })

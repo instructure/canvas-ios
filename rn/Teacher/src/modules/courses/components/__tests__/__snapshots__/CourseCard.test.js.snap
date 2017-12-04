@@ -23,7 +23,7 @@ exports[`renders 1`] = `
       },
     ]
   }
-  testID="rn 101"
+  testID="course-1"
   underlayColor="transparent"
 >
   <View
@@ -200,7 +200,7 @@ exports[`renders with empty image url 1`] = `
       },
     ]
   }
-  testID="rn 101"
+  testID="course-1"
   underlayColor="transparent"
 >
   <View
@@ -365,7 +365,7 @@ exports[`renders with image url 1`] = `
       },
     ]
   }
-  testID="rn 101"
+  testID="course-1"
   underlayColor="transparent"
 >
   <View
@@ -542,7 +542,7 @@ exports[`renders without image url 1`] = `
       },
     ]
   }
-  testID="rn 101"
+  testID="course-1"
   underlayColor="transparent"
 >
   <View

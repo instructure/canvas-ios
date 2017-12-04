@@ -128,7 +128,7 @@ exports[`renders UI correctly 1`] = `
             ]
           }
         >
-          Subtitle
+          SubTitle
         </Text>
         <Text
           accessible={true}

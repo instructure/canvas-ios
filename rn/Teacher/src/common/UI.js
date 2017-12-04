@@ -53,7 +53,7 @@ const TextStyles = () => (
     <Heading1 style={styles.textStyle}>Heading1</Heading1>
     <Heading2 style={styles.textStyle}>Heading2</Heading2>
     <Title style={styles.textStyle}>Title</Title>
-    <SubTitle style={styles.textStyle}>Subtitle</SubTitle>
+    <SubTitle style={styles.textStyle}>SubTitle</SubTitle>
     <Paragraph style={styles.textStyle}>Paragraph</Paragraph>
   </StyleRow>
 )

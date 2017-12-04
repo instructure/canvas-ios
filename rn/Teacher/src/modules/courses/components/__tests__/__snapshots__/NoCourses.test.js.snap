@@ -3,13 +3,15 @@
 exports[`renders NoCourses correctly 1`] = `
 <View
   style={
-    Object {
-      "alignItems": "center",
-      "flex": 1,
-      "flexDirection": "column",
-      "justifyContent": "center",
-      "paddingHorizontal": 40,
-    }
+    Array [
+      Object {
+        "alignItems": "center",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "paddingHorizontal": 40,
+      },
+      undefined,
+    ]
   }
 >
   <Text

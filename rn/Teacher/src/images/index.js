@@ -30,6 +30,9 @@ const images = {
     placeholder: require('./course/Placeholder.png'),
     attendance: require('./course/attendance-icon.png'),
   },
+  dashboard: {
+    announcement: require('./dashboard/announcement.png'),
+  },
   tabbar: {
     courses: require('./tabbar/courses.png'),
     inbox: require('./tabbar/inbox.png'),
