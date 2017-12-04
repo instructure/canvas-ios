@@ -1,681 +1,63 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`render correctly 1`] = `
-<RCTScrollView
+<RCTSafeAreaView
   style={
     Object {
-      "backgroundColor": "#f5f5f5",
       "flex": 1,
     }
   }
 >
-  <View>
-    <View
-      style={
-        Object {
-          "backgroundColor": "#f5f5f5",
-          "borderBottomColor": "#C7CDD1",
-          "borderBottomWidth": 0.5,
-          "height": 40,
-        }
+  <RCTScrollView
+    style={
+      Object {
+        "backgroundColor": "#f5f5f5",
+        "flex": 1,
       }
-    />
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
-      accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Array [
-          Object {
-            "backgroundColor": "transparent",
-          },
-          Object {
-            "borderBottomColor": "#C7CDD1",
-            "borderBottomWidth": 0.5,
-            "flex": 1,
-            "height": "auto",
-          },
-        ]
-      }
-      testID={undefined}
-      tvParallaxProperties={undefined}
-    >
+    }
+  >
+    <View>
       <View
         style={
           Object {
-            "alignItems": "center",
-            "backgroundColor": "white",
-            "flex": 1,
-            "flexDirection": "row",
-            "paddingLeft": 16,
-            "paddingRight": 16,
-            "paddingVertical": 8,
+            "backgroundColor": "#f5f5f5",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "height": 40,
           }
         }
-      >
-        <View
-          style={
+      />
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        hasTVPreferredFocus={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
             Object {
-              "borderRadius": 20,
-              "height": 40,
-              "marginRight": 16,
-              "overflow": "hidden",
-              "width": 40,
-            }
-          }
-        >
-          <View
-            accessibilityLabel=""
-            style={
-              Array [
-                Object {
-                  "overflow": "hidden",
-                },
-                Object {
-                  "height": 40,
-                  "width": 40,
-                },
-                Object {
-                  "borderRadius": 20,
-                },
-                Object {
-                  "backgroundColor": "#F5F5F5",
-                },
-              ]
-            }
-          >
-            <Image
-              source={
-                Object {
-                  "uri": "http://www.fillmurray.com/100/100",
-                }
-              }
-              style={
-                Object {
-                  "height": 40,
-                  "width": 40,
-                }
-              }
-            />
-          </View>
-        </View>
-        <View
-          style={
+              "backgroundColor": "transparent",
+            },
             Object {
-              "flexDirection": "column",
-              "justifyContent": "center",
-            }
-          }
-        >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            numberOfLines={1}
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
-              ]
-            }
-          >
-            Bill Murray
-          </Text>
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            numberOfLines={1}
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Object {
-                  "color": "#8B969E",
-                  "fontSize": 14,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-              ]
-            }
-          >
-            john@schimdt.com
-          </Text>
-        </View>
-        <View
-          style={
-            Object {
-              "alignItems": "flex-end",
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
               "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "flex-end",
-            }
-          }
-        >
-          <View
-            accessibilityComponentType="button"
-            accessibilityLabel={undefined}
-            accessibilityTraits="button"
-            accessible={true}
-            collapsable={undefined}
-            hitSlop={undefined}
-            isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              Object {
-                "opacity": 1,
-              }
-            }
-            testID={undefined}
-            tvParallaxProperties={undefined}
-          >
-            <Image
-              source={
-                Object {
-                  "testUri": "../../../src/images/x-icon.png",
-                }
-              }
-            />
-          </View>
-        </View>
-      </View>
-    </View>
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
-      accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Array [
-          Object {
-            "backgroundColor": "transparent",
-          },
-          Object {
-            "borderBottomColor": "#C7CDD1",
-            "borderBottomWidth": 0.5,
-            "flex": 1,
-            "height": "auto",
-          },
-        ]
-      }
-      testID={undefined}
-      tvParallaxProperties={undefined}
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "white",
-            "flex": 1,
-            "flexDirection": "row",
-            "paddingLeft": 16,
-            "paddingRight": 16,
-            "paddingVertical": 8,
-          }
+              "height": "auto",
+            },
+          ]
         }
-      >
-        <View
-          style={
-            Object {
-              "borderRadius": 20,
-              "height": 40,
-              "marginRight": 16,
-              "overflow": "hidden",
-              "width": 40,
-            }
-          }
-        >
-          <View
-            accessibilityLabel=""
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderColor": "#C7CDD1",
-                  "borderWidth": 0.5,
-                  "justifyContent": "center",
-                  "overflow": "hidden",
-                },
-                Object {
-                  "borderRadius": 20,
-                  "height": 40,
-                  "width": 40,
-                },
-              ]
-            }
-          >
-            <Text
-              accessible={false}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                    "color": "#73818C",
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "fontSize": 18,
-                  },
-                ]
-              }
-            >
-              BM
-            </Text>
-          </View>
-        </View>
-        <View
-          style={
-            Object {
-              "flexDirection": "column",
-              "justifyContent": "center",
-            }
-          }
-        >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            numberOfLines={1}
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
-              ]
-            }
-          >
-            Bill Murray
-          </Text>
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            numberOfLines={1}
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Object {
-                  "color": "#8B969E",
-                  "fontSize": 14,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-              ]
-            }
-          >
-            john@schimdt.com
-          </Text>
-        </View>
-        <View
-          style={
-            Object {
-              "alignItems": "flex-end",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "flex-end",
-            }
-          }
-        >
-          <View
-            accessibilityComponentType="button"
-            accessibilityLabel={undefined}
-            accessibilityTraits="button"
-            accessible={true}
-            collapsable={undefined}
-            hitSlop={undefined}
-            isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              Object {
-                "opacity": 1,
-              }
-            }
-            testID={undefined}
-            tvParallaxProperties={undefined}
-          >
-            <Image
-              source={
-                Object {
-                  "testUri": "../../../src/images/x-icon.png",
-                }
-              }
-            />
-          </View>
-        </View>
-      </View>
-    </View>
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
-      accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Array [
-          Object {
-            "backgroundColor": "transparent",
-          },
-          Object {
-            "borderBottomColor": "#C7CDD1",
-            "borderBottomWidth": 0.5,
-            "flex": 1,
-            "height": "auto",
-          },
-        ]
-      }
-      testID={undefined}
-      tvParallaxProperties={undefined}
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "white",
-            "flex": 1,
-            "flexDirection": "row",
-            "paddingLeft": 16,
-            "paddingRight": 16,
-            "paddingVertical": 8,
-          }
-        }
-      >
-        <View
-          style={
-            Object {
-              "borderRadius": 20,
-              "height": 40,
-              "marginRight": 16,
-              "overflow": "hidden",
-              "width": 40,
-            }
-          }
-        >
-          <View
-            accessibilityLabel=""
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderColor": "#C7CDD1",
-                  "borderWidth": 0.5,
-                  "justifyContent": "center",
-                  "overflow": "hidden",
-                },
-                Object {
-                  "borderRadius": 20,
-                  "height": 40,
-                  "width": 40,
-                },
-              ]
-            }
-          >
-            <Text
-              accessible={false}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                    "color": "#73818C",
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "fontSize": 18,
-                  },
-                ]
-              }
-            >
-              HS
-            </Text>
-          </View>
-        </View>
-        <View
-          style={
-            Object {
-              "flexDirection": "column",
-              "justifyContent": "center",
-            }
-          }
-        >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            numberOfLines={1}
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
-              ]
-            }
-          >
-            Horrible Students
-          </Text>
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            numberOfLines={1}
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Object {
-                  "color": "#8B969E",
-                  "fontSize": 14,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-              ]
-            }
-          >
-            889334 students
-          </Text>
-        </View>
-        <View
-          style={
-            Object {
-              "alignItems": "flex-end",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "flex-end",
-            }
-          }
-        >
-          <View
-            accessibilityComponentType="button"
-            accessibilityLabel={undefined}
-            accessibilityTraits="button"
-            accessible={true}
-            collapsable={undefined}
-            hitSlop={undefined}
-            isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              Object {
-                "opacity": 1,
-              }
-            }
-            testID={undefined}
-            tvParallaxProperties={undefined}
-          >
-            <Image
-              source={
-                Object {
-                  "testUri": "../../../src/images/x-icon.png",
-                }
-              }
-            />
-          </View>
-        </View>
-      </View>
-    </View>
-    <View
-      style={
-        Object {
-          "backgroundColor": "#f5f5f5",
-          "borderBottomColor": "#C7CDD1",
-          "borderBottomWidth": 0.5,
-          "height": 40,
-        }
-      }
-    />
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
-      accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Array [
-          Object {
-            "backgroundColor": "transparent",
-          },
-          Object {
-            "borderBottomColor": "#C7CDD1",
-            "borderBottomWidth": 0.5,
-            "height": "auto",
-          },
-        ]
-      }
-      testID={undefined}
-      tvParallaxProperties={undefined}
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "white",
-            "flex": 1,
-            "flexDirection": "row",
-            "justifyContent": "space-between",
-            "paddingRight": 16,
-            "paddingVertical": 8,
-          }
-        }
+        testID={undefined}
+        tvParallaxProperties={undefined}
       >
         <View
           style={
@@ -690,69 +72,695 @@ exports[`render correctly 1`] = `
             }
           }
         >
-          <Image
-            source={
-              Object {
-                "testUri": "../../../src/images/Add.png",
-              }
-            }
+          <View
             style={
               Object {
-                "height": 18,
-                "marginRight": 8,
-                "tintColor": "#368BD8",
-                "width": 18,
+                "borderRadius": 20,
+                "height": 40,
+                "marginRight": 16,
+                "overflow": "hidden",
+                "width": 40,
               }
-            }
-          />
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Object {
-                  "color": "#368BD8",
-                  "fontSize": 16,
-                  "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
-              ]
             }
           >
-            Add Assignee
-          </Text>
+            <View
+              accessibilityLabel=""
+              style={
+                Array [
+                  Object {
+                    "overflow": "hidden",
+                  },
+                  Object {
+                    "height": 40,
+                    "width": 40,
+                  },
+                  Object {
+                    "borderRadius": 20,
+                  },
+                  Object {
+                    "backgroundColor": "#F5F5F5",
+                  },
+                ]
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "uri": "http://www.fillmurray.com/100/100",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 40,
+                    "width": 40,
+                  }
+                }
+              />
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "flexDirection": "column",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontWeight": "600",
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
+              }
+            >
+              Bill Murray
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 14,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                ]
+              }
+            >
+              john@schimdt.com
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "flex-end",
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "flex-end",
+              }
+            }
+          >
+            <View
+              accessibilityComponentType="button"
+              accessibilityLabel={undefined}
+              accessibilityTraits="button"
+              accessible={true}
+              collapsable={undefined}
+              hitSlop={undefined}
+              isTVSelectable={true}
+              nativeID={undefined}
+              onLayout={undefined}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+              testID={undefined}
+              tvParallaxProperties={undefined}
+            >
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/images/x-icon.png",
+                  }
+                }
+              />
+            </View>
+          </View>
         </View>
+      </View>
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        hasTVPreferredFocus={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+              "flex": 1,
+              "height": "auto",
+            },
+          ]
+        }
+        testID={undefined}
+        tvParallaxProperties={undefined}
+      >
         <View
           style={
             Object {
-              "alignSelf": "center",
-              "backgroundColor": "transparent",
-              "borderColor": "#c7c7cc",
-              "borderRightWidth": 2,
-              "borderTopWidth": 2,
-              "height": 10,
-              "marginLeft": 7,
-              "transform": Array [
-                Object {
-                  "rotate": "45deg",
-                },
-              ],
-              "width": 10,
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "flex": 1,
+              "flexDirection": "row",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingVertical": 8,
             }
           }
-        />
+        >
+          <View
+            style={
+              Object {
+                "borderRadius": 20,
+                "height": 40,
+                "marginRight": 16,
+                "overflow": "hidden",
+                "width": 40,
+              }
+            }
+          >
+            <View
+              accessibilityLabel=""
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderColor": "#C7CDD1",
+                    "borderWidth": 0.5,
+                    "justifyContent": "center",
+                    "overflow": "hidden",
+                  },
+                  Object {
+                    "borderRadius": 20,
+                    "height": 40,
+                    "width": 40,
+                  },
+                ]
+              }
+            >
+              <Text
+                accessible={false}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "color": "#73818C",
+                      "fontWeight": "600",
+                    },
+                    Object {
+                      "fontSize": 18,
+                    },
+                  ]
+                }
+              >
+                BM
+              </Text>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "flexDirection": "column",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontWeight": "600",
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
+              }
+            >
+              Bill Murray
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 14,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                ]
+              }
+            >
+              john@schimdt.com
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "flex-end",
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "flex-end",
+              }
+            }
+          >
+            <View
+              accessibilityComponentType="button"
+              accessibilityLabel={undefined}
+              accessibilityTraits="button"
+              accessible={true}
+              collapsable={undefined}
+              hitSlop={undefined}
+              isTVSelectable={true}
+              nativeID={undefined}
+              onLayout={undefined}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+              testID={undefined}
+              tvParallaxProperties={undefined}
+            >
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/images/x-icon.png",
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        hasTVPreferredFocus={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+              "flex": 1,
+              "height": "auto",
+            },
+          ]
+        }
+        testID={undefined}
+        tvParallaxProperties={undefined}
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "flex": 1,
+              "flexDirection": "row",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingVertical": 8,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "borderRadius": 20,
+                "height": 40,
+                "marginRight": 16,
+                "overflow": "hidden",
+                "width": 40,
+              }
+            }
+          >
+            <View
+              accessibilityLabel=""
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderColor": "#C7CDD1",
+                    "borderWidth": 0.5,
+                    "justifyContent": "center",
+                    "overflow": "hidden",
+                  },
+                  Object {
+                    "borderRadius": 20,
+                    "height": 40,
+                    "width": 40,
+                  },
+                ]
+              }
+            >
+              <Text
+                accessible={false}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "color": "#73818C",
+                      "fontWeight": "600",
+                    },
+                    Object {
+                      "fontSize": 18,
+                    },
+                  ]
+                }
+              >
+                HS
+              </Text>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "flexDirection": "column",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontWeight": "600",
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
+              }
+            >
+              Horrible Students
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 14,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                ]
+              }
+            >
+              889334 students
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "flex-end",
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "flex-end",
+              }
+            }
+          >
+            <View
+              accessibilityComponentType="button"
+              accessibilityLabel={undefined}
+              accessibilityTraits="button"
+              accessible={true}
+              collapsable={undefined}
+              hitSlop={undefined}
+              isTVSelectable={true}
+              nativeID={undefined}
+              onLayout={undefined}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+              testID={undefined}
+              tvParallaxProperties={undefined}
+            >
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/images/x-icon.png",
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#f5f5f5",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "height": 40,
+          }
+        }
+      />
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        hasTVPreferredFocus={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+              "height": "auto",
+            },
+          ]
+        }
+        testID={undefined}
+        tvParallaxProperties={undefined}
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "paddingRight": 16,
+              "paddingVertical": 8,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingVertical": 8,
+              }
+            }
+          >
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../src/images/Add.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 18,
+                  "marginRight": 8,
+                  "tintColor": "#368BD8",
+                  "width": 18,
+                }
+              }
+            />
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#368BD8",
+                    "fontSize": 16,
+                    "fontWeight": "600",
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
+              }
+            >
+              Add Assignee
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "alignSelf": "center",
+                "backgroundColor": "transparent",
+                "borderColor": "#c7c7cc",
+                "borderRightWidth": 2,
+                "borderTopWidth": 2,
+                "height": 10,
+                "marginLeft": 7,
+                "transform": Array [
+                  Object {
+                    "rotate": "45deg",
+                  },
+                ],
+                "width": 10,
+              }
+            }
+          />
+        </View>
       </View>
     </View>
-  </View>
-</RCTScrollView>
+  </RCTScrollView>
+</RCTSafeAreaView>
 `;

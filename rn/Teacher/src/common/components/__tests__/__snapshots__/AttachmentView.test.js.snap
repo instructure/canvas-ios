@@ -1,65 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AttachmentView renders a pdf 1`] = `
-<View
+<RCTSafeAreaView
   style={
     Object {
       "flex": 1,
     }
   }
 >
-  <WebView
-    source={
-      Object {
-        "uri": "file://caches/ed075ce5e86325eed0f5138a4613fdd6.pdf",
-      }
-    }
+  <View
     style={
       Object {
         "flex": 1,
       }
     }
-  />
-</View>
+  >
+    <WebView
+      source={
+        Object {
+          "uri": "file://caches/ed075ce5e86325eed0f5138a4613fdd6.pdf",
+        }
+      }
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    />
+  </View>
+</RCTSafeAreaView>
 `;
 
 exports[`AttachmentView renders a video 1`] = `
-<View
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
->
-  <View
-    onLayout={[Function]}
-    style={
-      Object {
-        "alignItems": "center",
-        "flex": 1,
-        "justifyContent": "center",
-      }
-    }
-  >
-    <VideoContainer
-      source={
-        Object {
-          "uri": "file://caches/d41d8cd98f00b204e9800998ecf8427e.mp4",
-        }
-      }
-      style={
-        Object {
-          "height": 0,
-          "width": 0,
-        }
-      }
-    />
-  </View>
-</View>
-`;
-
-exports[`AttachmentView renders an image 1`] = `
-<View
+<RCTSafeAreaView
   style={
     Object {
       "flex": 1,
@@ -69,137 +42,212 @@ exports[`AttachmentView renders an image 1`] = `
   <View
     style={
       Object {
-        "alignItems": "center",
-        "backgroundColor": "#f5f5f5",
         "flex": 1,
-        "justifyContent": "center",
-        "position": "relative",
       }
     }
   >
-    <Image
-      onError={[Function]}
-      resizeMode="contain"
-      source={
-        Object {
-          "uri": "file://caches/ed075ce5e86325eed0f5138a4613fdd6.png",
-        }
-      }
+    <View
+      onLayout={[Function]}
       style={
         Object {
-          "bottom": 0,
-          "left": 0,
-          "position": "absolute",
-          "right": 0,
-          "top": 0,
-        }
-      }
-    />
-  </View>
-</View>
-`;
-
-exports[`AttachmentView renders audio 1`] = `
-<View
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
->
-  <View
-    onLayout={[Function]}
-    style={
-      Object {
-        "alignItems": "center",
-        "flex": 1,
-        "justifyContent": "center",
-      }
-    }
-  >
-    <VideoContainer
-      source={
-        Object {
-          "uri": "file://caches/d41d8cd98f00b204e9800998ecf8427e.mp3",
-        }
-      }
-      style={
-        Object {
-          "height": 0,
-          "width": 0,
-        }
-      }
-    />
-  </View>
-</View>
-`;
-
-exports[`AttachmentView renders audio with unknown mime class 1`] = `
-<View
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
->
-  <View
-    onLayout={[Function]}
-    style={
-      Object {
-        "alignItems": "center",
-        "flex": 1,
-        "justifyContent": "center",
-      }
-    }
-  >
-    <VideoContainer
-      source={
-        Object {
-          "uri": "file://caches/d41d8cd98f00b204e9800998ecf8427e.mp3",
-        }
-      }
-      style={
-        Object {
-          "height": 0,
-          "width": 0,
-        }
-      }
-    />
-  </View>
-</View>
-`;
-
-exports[`AttachmentView renders unsupported stuffs 1`] = `
-<View
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
->
-  <View
-    style={
-      Object {
-        "alignItems": "center",
-        "flex": 1,
-        "justifyContent": "center",
-      }
-    }
-  >
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Object {
-          "color": "#2D3B45",
-          "fontSize": 14,
-          "textAlign": "center",
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "center",
         }
       }
     >
-      Previewing this file type is not supported
-    </Text>
+      <VideoContainer
+        source={
+          Object {
+            "uri": "file://caches/d41d8cd98f00b204e9800998ecf8427e.mp4",
+          }
+        }
+        style={
+          Object {
+            "height": 0,
+            "width": 0,
+          }
+        }
+      />
+    </View>
   </View>
-</View>
+</RCTSafeAreaView>
+`;
+
+exports[`AttachmentView renders an image 1`] = `
+<RCTSafeAreaView
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#f5f5f5",
+          "flex": 1,
+          "justifyContent": "center",
+          "position": "relative",
+        }
+      }
+    >
+      <Image
+        onError={[Function]}
+        resizeMode="contain"
+        source={
+          Object {
+            "uri": "file://caches/ed075ce5e86325eed0f5138a4613fdd6.png",
+          }
+        }
+        style={
+          Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      />
+    </View>
+  </View>
+</RCTSafeAreaView>
+`;
+
+exports[`AttachmentView renders audio 1`] = `
+<RCTSafeAreaView
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      onLayout={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "center",
+        }
+      }
+    >
+      <VideoContainer
+        source={
+          Object {
+            "uri": "file://caches/d41d8cd98f00b204e9800998ecf8427e.mp3",
+          }
+        }
+        style={
+          Object {
+            "height": 0,
+            "width": 0,
+          }
+        }
+      />
+    </View>
+  </View>
+</RCTSafeAreaView>
+`;
+
+exports[`AttachmentView renders audio with unknown mime class 1`] = `
+<RCTSafeAreaView
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      onLayout={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "center",
+        }
+      }
+    >
+      <VideoContainer
+        source={
+          Object {
+            "uri": "file://caches/d41d8cd98f00b204e9800998ecf8427e.mp3",
+          }
+        }
+        style={
+          Object {
+            "height": 0,
+            "width": 0,
+          }
+        }
+      />
+    </View>
+  </View>
+</RCTSafeAreaView>
+`;
+
+exports[`AttachmentView renders unsupported stuffs 1`] = `
+<RCTSafeAreaView
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "center",
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 14,
+            "textAlign": "center",
+          }
+        }
+      >
+        Previewing this file type is not supported
+      </Text>
+    </View>
+  </View>
+</RCTSafeAreaView>
 `;

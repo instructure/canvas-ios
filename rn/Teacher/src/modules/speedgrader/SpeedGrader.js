@@ -23,6 +23,7 @@ import {
   ActivityIndicator,
   FlatList,
   Dimensions,
+  DeviceInfo,
 } from 'react-native'
 import refresh from '../../utils/refresh'
 import { connect } from 'react-redux'
@@ -243,7 +244,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
     return (
       <Screen
         navBarHidden={true}
-        statusBarHidden={true}
+        statusBarHidden={!DeviceInfo.isIPhoneX_deprecated}
         noRotationInVerticallyCompact={true}
       >
         <View style={styles.speedGrader}>

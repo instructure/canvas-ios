@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SpeedGrader renders 1`] = `
-<View
+<RCTSafeAreaView
   style={
     Object {
       "flex": 1,
@@ -11,511 +11,535 @@ exports[`SpeedGrader renders 1`] = `
   <View
     style={
       Object {
-        "alignItems": "center",
         "flex": 1,
-        "justifyContent": "center",
       }
     }
   >
-    <ActivityIndicator
-      animating={true}
-      color="#999999"
-      hidesWhenStopped={true}
-      size="small"
-    />
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "center",
+        }
+      }
+    >
+      <ActivityIndicator
+        animating={true}
+        color="#999999"
+        hidesWhenStopped={true}
+        size="small"
+      />
+    </View>
   </View>
-</View>
+</RCTSafeAreaView>
 `;
 
 exports[`SpeedGrader renders submissions if there are some 1`] = `
-<View
+<RCTSafeAreaView
   style={
     Object {
       "flex": 1,
     }
   }
 >
-  <RCTScrollView
-    contentOffset={
-      Object {
-        "x": NaN,
-      }
-    }
-    data={
-      Array [
-        Object {
-          "key": "55",
-          "submission": Object {
-            "avatarURL": "http://www.fillmurray.com/100/100",
-            "grade": "B-",
-            "name": "Donald Trump",
-            "sectionID": "1",
-            "status": "submitted",
-            "userID": "55",
-          },
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    getItemLayout={[Function]}
-    horizontal={true}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    keyboardShouldPersistTaps="handled"
-    maxToRenderPerBatch={10}
-    numColumns={1}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    pagingEnabled={true}
-    renderItem={[Function]}
-    scrollEventThrottle={50}
-    showsHorizontalScrollIndicator={false}
-    stickyHeaderIndices={Array []}
+  <View
     style={
       Object {
-        "marginLeft": -10,
-        "marginRight": -10,
+        "flex": 1,
       }
     }
-    updateCellsBatchingPeriod={50}
-    viewabilityConfigCallbackPairs={Array []}
-    windowSize={5}
   >
-    <View>
-      <View
-        onLayout={undefined}
-        style={
-          Array [
-            Object {
-              "flexDirection": "row",
-            },
-            null,
-          ]
+    <RCTScrollView
+      contentOffset={
+        Object {
+          "x": NaN,
         }
-      >
-        <A11yGroup
+      }
+      data={
+        Array [
+          Object {
+            "key": "55",
+            "submission": Object {
+              "avatarURL": "http://www.fillmurray.com/100/100",
+              "grade": "B-",
+              "name": "Donald Trump",
+              "sectionID": "1",
+              "status": "submitted",
+              "userID": "55",
+            },
+          },
+        ]
+      }
+      disableVirtualization={false}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      getItemLayout={[Function]}
+      horizontal={true}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      keyboardShouldPersistTaps="handled"
+      maxToRenderPerBatch={10}
+      numColumns={1}
+      onContentSizeChange={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      pagingEnabled={true}
+      renderItem={[Function]}
+      scrollEventThrottle={50}
+      showsHorizontalScrollIndicator={false}
+      stickyHeaderIndices={Array []}
+      style={
+        Object {
+          "marginLeft": -10,
+          "marginRight": -10,
+        }
+      }
+      updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
+      windowSize={5}
+    >
+      <View>
+        <View
+          onLayout={undefined}
           style={
             Array [
               Object {
-                "overflow": "hidden",
-                "paddingLeft": 10,
-                "paddingRight": 10,
+                "flexDirection": "row",
               },
-              Object {
-                "height": 1334,
-                "width": 770,
-              },
+              null,
             ]
           }
         >
           <A11yGroup
-            onLayout={[Function]}
             style={
-              Object {
-                "flex": 1,
-              }
+              Array [
+                Object {
+                  "overflow": "hidden",
+                  "paddingLeft": 10,
+                  "paddingRight": 10,
+                },
+                Object {
+                  "height": 1334,
+                  "width": 770,
+                },
+              ]
             }
           >
-            <Header
-              assignmentID="1"
-              closeModal={[Function]}
-              courseID="1"
-              navigator={
-                Object {
-                  "dismiss": [Function],
-                  "dismissAllModals": [Function],
-                  "pop": [Function],
-                  "show": [Function],
-                  "traitCollection": [Function],
-                }
-              }
-              submissionID={undefined}
-              submissionProps={
-                Object {
-                  "avatarURL": "http://www.fillmurray.com/100/100",
-                  "grade": "B-",
-                  "name": "Donald Trump",
-                  "sectionID": "1",
-                  "status": "submitted",
-                  "userID": "55",
-                }
-              }
-              userID="55"
-            />
-            <SimilarityScore
-              submissionID={undefined}
-            />
-            <View
+            <A11yGroup
+              onLayout={[Function]}
               style={
                 Object {
-                  "backgroundColor": "white",
                   "flex": 1,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 16,
                 }
               }
             >
+              <Header
+                assignmentID="1"
+                closeModal={[Function]}
+                courseID="1"
+                navigator={
+                  Object {
+                    "dismiss": [Function],
+                    "dismissAllModals": [Function],
+                    "pop": [Function],
+                    "show": [Function],
+                    "traitCollection": [Function],
+                  }
+                }
+                submissionID={undefined}
+                submissionProps={
+                  Object {
+                    "avatarURL": "http://www.fillmurray.com/100/100",
+                    "grade": "B-",
+                    "name": "Donald Trump",
+                    "sectionID": "1",
+                    "status": "submitted",
+                    "userID": "55",
+                  }
+                }
+                userID="55"
+              />
+              <SimilarityScore
+                submissionID={undefined}
+              />
               <View
                 style={
                   Object {
-                    "alignItems": "center",
-                    "flex": 0,
-                    "height": 200,
-                    "justifyContent": "center",
+                    "backgroundColor": "white",
+                    "flex": 1,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 16,
                   }
                 }
               >
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
+                <View
                   style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-medium",
-                        "textAlign": "center",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                    ]
+                    Object {
+                      "alignItems": "center",
+                      "flex": 0,
+                      "height": 200,
+                      "justifyContent": "center",
+                    }
                   }
                 >
-                  This assignment does not allow submissions.
-                </Text>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-medium",
+                          "textAlign": "center",
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
+                    This assignment does not allow submissions.
+                  </Text>
+                </View>
               </View>
-            </View>
+            </A11yGroup>
           </A11yGroup>
-        </A11yGroup>
+        </View>
       </View>
-    </View>
-  </RCTScrollView>
-</View>
+    </RCTScrollView>
+  </View>
+</RCTSafeAreaView>
 `;
 
 exports[`SpeedGrader renders with a filter 1`] = `
-<View
+<RCTSafeAreaView
   style={
     Object {
       "flex": 1,
     }
   }
 >
-  <RCTScrollView
-    contentOffset={
-      Object {
-        "x": NaN,
-      }
-    }
-    data={
-      Array [
-        Object {
-          "key": "55",
-          "submission": Object {
-            "avatarURL": "http://www.fillmurray.com/100/100",
-            "grade": "B-",
-            "name": "Donald Trump",
-            "sectionID": "1",
-            "status": "submitted",
-            "userID": "55",
-          },
-        },
-        Object {
-          "key": "55",
-          "submission": Object {
-            "avatarURL": "http://www.fillmurray.com/100/100",
-            "grade": "B-",
-            "name": "Donald Trump",
-            "sectionID": "1",
-            "status": "missing",
-            "userID": "55",
-          },
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    getItemLayout={[Function]}
-    horizontal={true}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    keyboardShouldPersistTaps="handled"
-    maxToRenderPerBatch={10}
-    numColumns={1}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    pagingEnabled={true}
-    renderItem={[Function]}
-    scrollEventThrottle={50}
-    showsHorizontalScrollIndicator={false}
-    stickyHeaderIndices={Array []}
+  <View
     style={
       Object {
-        "marginLeft": -10,
-        "marginRight": -10,
+        "flex": 1,
       }
     }
-    updateCellsBatchingPeriod={50}
-    viewabilityConfigCallbackPairs={Array []}
-    windowSize={5}
   >
-    <View>
-      <View
-        onLayout={undefined}
-        style={
-          Array [
-            Object {
-              "flexDirection": "row",
-            },
-            null,
-          ]
+    <RCTScrollView
+      contentOffset={
+        Object {
+          "x": NaN,
         }
-      >
-        <A11yGroup
+      }
+      data={
+        Array [
+          Object {
+            "key": "55",
+            "submission": Object {
+              "avatarURL": "http://www.fillmurray.com/100/100",
+              "grade": "B-",
+              "name": "Donald Trump",
+              "sectionID": "1",
+              "status": "submitted",
+              "userID": "55",
+            },
+          },
+          Object {
+            "key": "55",
+            "submission": Object {
+              "avatarURL": "http://www.fillmurray.com/100/100",
+              "grade": "B-",
+              "name": "Donald Trump",
+              "sectionID": "1",
+              "status": "missing",
+              "userID": "55",
+            },
+          },
+        ]
+      }
+      disableVirtualization={false}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      getItemLayout={[Function]}
+      horizontal={true}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      keyboardShouldPersistTaps="handled"
+      maxToRenderPerBatch={10}
+      numColumns={1}
+      onContentSizeChange={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      pagingEnabled={true}
+      renderItem={[Function]}
+      scrollEventThrottle={50}
+      showsHorizontalScrollIndicator={false}
+      stickyHeaderIndices={Array []}
+      style={
+        Object {
+          "marginLeft": -10,
+          "marginRight": -10,
+        }
+      }
+      updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
+      windowSize={5}
+    >
+      <View>
+        <View
+          onLayout={undefined}
           style={
             Array [
               Object {
-                "overflow": "hidden",
-                "paddingLeft": 10,
-                "paddingRight": 10,
+                "flexDirection": "row",
               },
-              Object {
-                "height": 1334,
-                "width": 770,
-              },
+              null,
             ]
           }
         >
           <A11yGroup
-            onLayout={[Function]}
             style={
-              Object {
-                "flex": 1,
-              }
+              Array [
+                Object {
+                  "overflow": "hidden",
+                  "paddingLeft": 10,
+                  "paddingRight": 10,
+                },
+                Object {
+                  "height": 1334,
+                  "width": 770,
+                },
+              ]
             }
           >
-            <Header
-              assignmentID="1"
-              closeModal={[Function]}
-              courseID="1"
-              navigator={
-                Object {
-                  "dismiss": [Function],
-                  "dismissAllModals": [Function],
-                  "pop": [Function],
-                  "show": [Function],
-                  "traitCollection": [Function],
-                }
-              }
-              submissionID={undefined}
-              submissionProps={
-                Object {
-                  "avatarURL": "http://www.fillmurray.com/100/100",
-                  "grade": "B-",
-                  "name": "Donald Trump",
-                  "sectionID": "1",
-                  "status": "submitted",
-                  "userID": "55",
-                }
-              }
-              userID="55"
-            />
-            <SimilarityScore
-              submissionID={undefined}
-            />
-            <View
+            <A11yGroup
+              onLayout={[Function]}
               style={
                 Object {
-                  "backgroundColor": "white",
                   "flex": 1,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 16,
                 }
               }
             >
+              <Header
+                assignmentID="1"
+                closeModal={[Function]}
+                courseID="1"
+                navigator={
+                  Object {
+                    "dismiss": [Function],
+                    "dismissAllModals": [Function],
+                    "pop": [Function],
+                    "show": [Function],
+                    "traitCollection": [Function],
+                  }
+                }
+                submissionID={undefined}
+                submissionProps={
+                  Object {
+                    "avatarURL": "http://www.fillmurray.com/100/100",
+                    "grade": "B-",
+                    "name": "Donald Trump",
+                    "sectionID": "1",
+                    "status": "submitted",
+                    "userID": "55",
+                  }
+                }
+                userID="55"
+              />
+              <SimilarityScore
+                submissionID={undefined}
+              />
               <View
                 style={
                   Object {
-                    "alignItems": "center",
-                    "flex": 0,
-                    "height": 200,
-                    "justifyContent": "center",
+                    "backgroundColor": "white",
+                    "flex": 1,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 16,
                   }
                 }
               >
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
+                <View
                   style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-medium",
-                        "textAlign": "center",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                    ]
+                    Object {
+                      "alignItems": "center",
+                      "flex": 0,
+                      "height": 200,
+                      "justifyContent": "center",
+                    }
                   }
                 >
-                  This assignment does not allow submissions.
-                </Text>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-medium",
+                          "textAlign": "center",
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
+                    This assignment does not allow submissions.
+                  </Text>
+                </View>
               </View>
-            </View>
+            </A11yGroup>
           </A11yGroup>
-        </A11yGroup>
-      </View>
-      <View
-        onLayout={undefined}
-        style={
-          Array [
-            Object {
-              "flexDirection": "row",
-            },
-            null,
-          ]
-        }
-      >
-        <A11yGroup
+        </View>
+        <View
+          onLayout={undefined}
           style={
             Array [
               Object {
-                "overflow": "hidden",
-                "paddingLeft": 10,
-                "paddingRight": 10,
+                "flexDirection": "row",
               },
-              Object {
-                "height": 1334,
-                "width": 770,
-              },
+              null,
             ]
           }
         >
           <A11yGroup
-            onLayout={[Function]}
             style={
-              Object {
-                "flex": 1,
-              }
+              Array [
+                Object {
+                  "overflow": "hidden",
+                  "paddingLeft": 10,
+                  "paddingRight": 10,
+                },
+                Object {
+                  "height": 1334,
+                  "width": 770,
+                },
+              ]
             }
           >
-            <Header
-              assignmentID="1"
-              closeModal={[Function]}
-              courseID="1"
-              navigator={
-                Object {
-                  "dismiss": [Function],
-                  "dismissAllModals": [Function],
-                  "pop": [Function],
-                  "show": [Function],
-                  "traitCollection": [Function],
-                }
-              }
-              submissionID={undefined}
-              submissionProps={
-                Object {
-                  "avatarURL": "http://www.fillmurray.com/100/100",
-                  "grade": "B-",
-                  "name": "Donald Trump",
-                  "sectionID": "1",
-                  "status": "missing",
-                  "userID": "55",
-                }
-              }
-              userID="55"
-            />
-            <SimilarityScore
-              submissionID={undefined}
-            />
-            <View
+            <A11yGroup
+              onLayout={[Function]}
               style={
                 Object {
-                  "backgroundColor": "white",
                   "flex": 1,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 16,
                 }
               }
             >
+              <Header
+                assignmentID="1"
+                closeModal={[Function]}
+                courseID="1"
+                navigator={
+                  Object {
+                    "dismiss": [Function],
+                    "dismissAllModals": [Function],
+                    "pop": [Function],
+                    "show": [Function],
+                    "traitCollection": [Function],
+                  }
+                }
+                submissionID={undefined}
+                submissionProps={
+                  Object {
+                    "avatarURL": "http://www.fillmurray.com/100/100",
+                    "grade": "B-",
+                    "name": "Donald Trump",
+                    "sectionID": "1",
+                    "status": "missing",
+                    "userID": "55",
+                  }
+                }
+                userID="55"
+              />
+              <SimilarityScore
+                submissionID={undefined}
+              />
               <View
                 style={
                   Object {
-                    "alignItems": "center",
-                    "flex": 0,
-                    "height": 200,
-                    "justifyContent": "center",
+                    "backgroundColor": "white",
+                    "flex": 1,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 16,
                   }
                 }
               >
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
+                <View
                   style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-medium",
-                        "textAlign": "center",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                    ]
+                    Object {
+                      "alignItems": "center",
+                      "flex": 0,
+                      "height": 200,
+                      "justifyContent": "center",
+                    }
                   }
                 >
-                  This assignment does not allow submissions.
-                </Text>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-medium",
+                          "textAlign": "center",
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
+                    This assignment does not allow submissions.
+                  </Text>
+                </View>
               </View>
-            </View>
+            </A11yGroup>
           </A11yGroup>
-        </A11yGroup>
+        </View>
       </View>
-    </View>
-  </RCTScrollView>
-</View>
+    </RCTScrollView>
+  </View>
+</RCTSafeAreaView>
 `;
 
 exports[`SpeedGrader shows the loading spinner when pending and not refreshing 1`] = `
-<View
+<RCTSafeAreaView
   style={
     Object {
       "flex": 1,
@@ -525,24 +549,32 @@ exports[`SpeedGrader shows the loading spinner when pending and not refreshing 1
   <View
     style={
       Object {
-        "alignItems": "center",
         "flex": 1,
-        "justifyContent": "center",
       }
     }
   >
-    <ActivityIndicator
-      animating={true}
-      color="#999999"
-      hidesWhenStopped={true}
-      size="small"
-    />
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "center",
+        }
+      }
+    >
+      <ActivityIndicator
+        animating={true}
+        color="#999999"
+        hidesWhenStopped={true}
+        size="small"
+      />
+    </View>
   </View>
-</View>
+</RCTSafeAreaView>
 `;
 
 exports[`SpeedGrader shows the loading spinner when there are no submissions 1`] = `
-<View
+<RCTSafeAreaView
   style={
     Object {
       "flex": 1,
@@ -552,18 +584,26 @@ exports[`SpeedGrader shows the loading spinner when there are no submissions 1`]
   <View
     style={
       Object {
-        "alignItems": "center",
         "flex": 1,
-        "justifyContent": "center",
       }
     }
   >
-    <ActivityIndicator
-      animating={true}
-      color="#999999"
-      hidesWhenStopped={true}
-      size="small"
-    />
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "center",
+        }
+      }
+    >
+      <ActivityIndicator
+        animating={true}
+        color="#999999"
+        hidesWhenStopped={true}
+        size="small"
+      />
+    </View>
   </View>
-</View>
+</RCTSafeAreaView>
 `;

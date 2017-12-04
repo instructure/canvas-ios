@@ -1,226 +1,181 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders UI correctly 1`] = `
-<RCTScrollView>
-  <View>
-    <View
-      style={
-        Object {
-          "flexDirection": "row",
-          "margin": 16,
-        }
-      }
-    >
+<RCTSafeAreaView
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <RCTScrollView>
+    <View>
       <View
         style={
           Object {
-            "width": "16%",
+            "flexDirection": "row",
+            "margin": 16,
           }
         }
       >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
+        <View
           style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 16,
-              },
-              undefined,
-            ]
+            Object {
+              "width": "16%",
+            }
           }
         >
-          Text
-        </Text>
-      </View>
-      <View
-        style={undefined}
-      >
-        <Text
-          accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "paddingBottom": 8,
-              },
-            ]
-          }
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 16,
+                },
+                undefined,
+              ]
+            }
+          >
+            Text
+          </Text>
+        </View>
+        <View
+          style={undefined}
         >
-          Heading1
-        </Text>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-bold",
-                "fontSize": 16,
-              },
-              Object {
-                "paddingBottom": 8,
-              },
-            ]
-          }
-        >
-          Heading2
-        </Text>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 16,
-              },
-              Object {
-                "paddingBottom": 8,
-              },
-            ]
-          }
-        >
-          Title
-        </Text>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#7F91A7",
-                "fontSize": 14,
-              },
-              Object {
-                "paddingBottom": 8,
-              },
-            ]
-          }
-        >
-          SubTitle
-        </Text>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#7F91A7",
-                "fontSize": 16,
-                "lineHeight": 23,
-              },
-              Object {
-                "paddingBottom": 8,
-              },
-            ]
-          }
-        >
-          Paragraph
-        </Text>
-      </View>
-    </View>
-    <View
-      style={
-        Object {
-          "flexDirection": "row",
-          "margin": 16,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "width": "16%",
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 16,
-              },
-              undefined,
-            ]
-          }
-        >
-          Colors
-        </Text>
+          <Text
+            accessibilityTraits="header"
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 20,
+                },
+                Object {
+                  "paddingBottom": 8,
+                },
+              ]
+            }
+          >
+            Heading1
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontFamily": ".SFUIDisplay-bold",
+                  "fontSize": 16,
+                },
+                Object {
+                  "paddingBottom": 8,
+                },
+              ]
+            }
+          >
+            Heading2
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 16,
+                },
+                Object {
+                  "paddingBottom": 8,
+                },
+              ]
+            }
+          >
+            Title
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#7F91A7",
+                  "fontSize": 14,
+                },
+                Object {
+                  "paddingBottom": 8,
+                },
+              ]
+            }
+          >
+            SubTitle
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#7F91A7",
+                  "fontSize": 16,
+                  "lineHeight": 23,
+                },
+                Object {
+                  "paddingBottom": 8,
+                },
+              ]
+            }
+          >
+            Paragraph
+          </Text>
+        </View>
       </View>
       <View
         style={
           Object {
             "flexDirection": "row",
-            "flexWrap": "wrap",
+            "margin": 16,
           }
         }
       >
         <View
           style={
             Object {
-              "paddingBottom": 12,
+              "width": "16%",
             }
           }
         >
-          <View
-            style={
-              Array [
-                Object {
-                  "borderColor": "#C7CDD1",
-                  "borderWidth": 0.5,
-                  "height": 80,
-                  "marginRight": 20,
-                  "width": 80,
-                },
-                Object {
-                  "backgroundColor": "#008EE2",
-                },
-              ]
-            }
-          />
           <Text
             accessible={true}
             allowFontScaling={true}
@@ -235,1401 +190,1454 @@ exports[`renders UI correctly 1`] = `
                   "fontFamily": ".SFUIDisplay-semibold",
                   "fontSize": 16,
                 },
-                Object {
-                  "fontSize": 10,
-                },
-              ]
-            }
-          >
-            link
-          </Text>
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#7F91A7",
-                  "fontSize": 14,
-                },
                 undefined,
               ]
             }
           >
-            #008EE2
+            Colors
           </Text>
         </View>
         <View
           style={
             Object {
-              "paddingBottom": 12,
+              "flexDirection": "row",
+              "flexWrap": "wrap",
             }
           }
         >
           <View
             style={
-              Array [
-                Object {
-                  "borderColor": "#C7CDD1",
-                  "borderWidth": 0.5,
-                  "height": 80,
-                  "marginRight": 20,
-                  "width": 80,
-                },
-                Object {
-                  "backgroundColor": "#fff",
-                },
-              ]
-            }
-          />
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 16,
-                },
-                Object {
-                  "fontSize": 10,
-                },
-              ]
+              Object {
+                "paddingBottom": 12,
+              }
             }
           >
-            tabBarBg
-          </Text>
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#7F91A7",
-                  "fontSize": 14,
-                },
-                undefined,
-              ]
-            }
-          >
-            #fff
-          </Text>
-        </View>
-        <View
-          style={
-            Object {
-              "paddingBottom": 12,
-            }
-          }
-        >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderColor": "#C7CDD1",
+                    "borderWidth": 0.5,
+                    "height": 80,
+                    "marginRight": 20,
+                    "width": 80,
+                  },
+                  Object {
+                    "backgroundColor": "#008EE2",
+                  },
+                ]
+              }
+            />
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontSize": 10,
+                  },
+                ]
+              }
+            >
+              link
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#7F91A7",
+                    "fontSize": 14,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              #008EE2
+            </Text>
+          </View>
           <View
             style={
-              Array [
-                Object {
-                  "borderColor": "#C7CDD1",
-                  "borderWidth": 0.5,
-                  "height": 80,
-                  "marginRight": 20,
-                  "width": 80,
-                },
-                Object {
-                  "backgroundColor": "#73818C",
-                },
-              ]
-            }
-          />
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 16,
-                },
-                Object {
-                  "fontSize": 10,
-                },
-              ]
+              Object {
+                "paddingBottom": 12,
+              }
             }
           >
-            tabBarTab
-          </Text>
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#7F91A7",
-                  "fontSize": 14,
-                },
-                undefined,
-              ]
-            }
-          >
-            #73818C
-          </Text>
-        </View>
-        <View
-          style={
-            Object {
-              "paddingBottom": 12,
-            }
-          }
-        >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderColor": "#C7CDD1",
+                    "borderWidth": 0.5,
+                    "height": 80,
+                    "marginRight": 20,
+                    "width": 80,
+                  },
+                  Object {
+                    "backgroundColor": "#fff",
+                  },
+                ]
+              }
+            />
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontSize": 10,
+                  },
+                ]
+              }
+            >
+              tabBarBg
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#7F91A7",
+                    "fontSize": 14,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              #fff
+            </Text>
+          </View>
           <View
             style={
-              Array [
-                Object {
-                  "borderColor": "#C7CDD1",
-                  "borderWidth": 0.5,
-                  "height": 80,
-                  "marginRight": 20,
-                  "width": 80,
-                },
-                Object {
-                  "backgroundColor": "#374A59",
-                },
-              ]
-            }
-          />
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 16,
-                },
-                Object {
-                  "fontSize": 10,
-                },
-              ]
+              Object {
+                "paddingBottom": 12,
+              }
             }
           >
-            navBarBg
-          </Text>
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#7F91A7",
-                  "fontSize": 14,
-                },
-                undefined,
-              ]
-            }
-          >
-            #374A59
-          </Text>
-        </View>
-        <View
-          style={
-            Object {
-              "paddingBottom": 12,
-            }
-          }
-        >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderColor": "#C7CDD1",
+                    "borderWidth": 0.5,
+                    "height": 80,
+                    "marginRight": 20,
+                    "width": 80,
+                  },
+                  Object {
+                    "backgroundColor": "#73818C",
+                  },
+                ]
+              }
+            />
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontSize": 10,
+                  },
+                ]
+              }
+            >
+              tabBarTab
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#7F91A7",
+                    "fontSize": 14,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              #73818C
+            </Text>
+          </View>
           <View
             style={
-              Array [
-                Object {
-                  "borderColor": "#C7CDD1",
-                  "borderWidth": 0.5,
-                  "height": 80,
-                  "marginRight": 20,
-                  "width": 80,
-                },
-                Object {
-                  "backgroundColor": "#2D3B45",
-                },
-              ]
-            }
-          />
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 16,
-                },
-                Object {
-                  "fontSize": 10,
-                },
-              ]
+              Object {
+                "paddingBottom": 12,
+              }
             }
           >
-            darkText
-          </Text>
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#7F91A7",
-                  "fontSize": 14,
-                },
-                undefined,
-              ]
-            }
-          >
-            #2D3B45
-          </Text>
-        </View>
-        <View
-          style={
-            Object {
-              "paddingBottom": 12,
-            }
-          }
-        >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderColor": "#C7CDD1",
+                    "borderWidth": 0.5,
+                    "height": 80,
+                    "marginRight": 20,
+                    "width": 80,
+                  },
+                  Object {
+                    "backgroundColor": "#374A59",
+                  },
+                ]
+              }
+            />
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontSize": 10,
+                  },
+                ]
+              }
+            >
+              navBarBg
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#7F91A7",
+                    "fontSize": 14,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              #374A59
+            </Text>
+          </View>
           <View
             style={
-              Array [
-                Object {
-                  "borderColor": "#C7CDD1",
-                  "borderWidth": 0.5,
-                  "height": 80,
-                  "marginRight": 20,
-                  "width": 80,
-                },
-                Object {
-                  "backgroundColor": "#7F91A7",
-                },
-              ]
-            }
-          />
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 16,
-                },
-                Object {
-                  "fontSize": 10,
-                },
-              ]
+              Object {
+                "paddingBottom": 12,
+              }
             }
           >
-            lightText
-          </Text>
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#7F91A7",
-                  "fontSize": 14,
-                },
-                undefined,
-              ]
-            }
-          >
-            #7F91A7
-          </Text>
-        </View>
-        <View
-          style={
-            Object {
-              "paddingBottom": 12,
-            }
-          }
-        >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderColor": "#C7CDD1",
+                    "borderWidth": 0.5,
+                    "height": 80,
+                    "marginRight": 20,
+                    "width": 80,
+                  },
+                  Object {
+                    "backgroundColor": "#2D3B45",
+                  },
+                ]
+              }
+            />
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontSize": 10,
+                  },
+                ]
+              }
+            >
+              darkText
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#7F91A7",
+                    "fontSize": 14,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              #2D3B45
+            </Text>
+          </View>
           <View
             style={
-              Array [
-                Object {
-                  "borderColor": "#C7CDD1",
-                  "borderWidth": 0.5,
-                  "height": 80,
-                  "marginRight": 20,
-                  "width": 80,
-                },
-                Object {
-                  "backgroundColor": "#f5f5f5",
-                },
-              ]
-            }
-          />
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 16,
-                },
-                Object {
-                  "fontSize": 10,
-                },
-              ]
+              Object {
+                "paddingBottom": 12,
+              }
             }
           >
-            grey1
-          </Text>
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#7F91A7",
-                  "fontSize": 14,
-                },
-                undefined,
-              ]
-            }
-          >
-            #f5f5f5
-          </Text>
-        </View>
-        <View
-          style={
-            Object {
-              "paddingBottom": 12,
-            }
-          }
-        >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderColor": "#C7CDD1",
+                    "borderWidth": 0.5,
+                    "height": 80,
+                    "marginRight": 20,
+                    "width": 80,
+                  },
+                  Object {
+                    "backgroundColor": "#7F91A7",
+                  },
+                ]
+              }
+            />
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontSize": 10,
+                  },
+                ]
+              }
+            >
+              lightText
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#7F91A7",
+                    "fontSize": 14,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              #7F91A7
+            </Text>
+          </View>
           <View
             style={
-              Array [
-                Object {
-                  "borderColor": "#C7CDD1",
-                  "borderWidth": 0.5,
-                  "height": 80,
-                  "marginRight": 20,
-                  "width": 80,
-                },
-                Object {
-                  "backgroundColor": "#C7CDD1",
-                },
-              ]
-            }
-          />
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 16,
-                },
-                Object {
-                  "fontSize": 10,
-                },
-              ]
+              Object {
+                "paddingBottom": 12,
+              }
             }
           >
-            grey2
-          </Text>
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#7F91A7",
-                  "fontSize": 14,
-                },
-                undefined,
-              ]
-            }
-          >
-            #C7CDD1
-          </Text>
-        </View>
-        <View
-          style={
-            Object {
-              "paddingBottom": 12,
-            }
-          }
-        >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderColor": "#C7CDD1",
+                    "borderWidth": 0.5,
+                    "height": 80,
+                    "marginRight": 20,
+                    "width": 80,
+                  },
+                  Object {
+                    "backgroundColor": "#f5f5f5",
+                  },
+                ]
+              }
+            />
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontSize": 10,
+                  },
+                ]
+              }
+            >
+              grey1
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#7F91A7",
+                    "fontSize": 14,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              #f5f5f5
+            </Text>
+          </View>
           <View
             style={
-              Array [
-                Object {
-                  "borderColor": "#C7CDD1",
-                  "borderWidth": 0.5,
-                  "height": 80,
-                  "marginRight": 20,
-                  "width": 80,
-                },
-                Object {
-                  "backgroundColor": "#A5AFB5",
-                },
-              ]
-            }
-          />
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 16,
-                },
-                Object {
-                  "fontSize": 10,
-                },
-              ]
+              Object {
+                "paddingBottom": 12,
+              }
             }
           >
-            grey3
-          </Text>
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#7F91A7",
-                  "fontSize": 14,
-                },
-                undefined,
-              ]
-            }
-          >
-            #A5AFB5
-          </Text>
-        </View>
-        <View
-          style={
-            Object {
-              "paddingBottom": 12,
-            }
-          }
-        >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderColor": "#C7CDD1",
+                    "borderWidth": 0.5,
+                    "height": 80,
+                    "marginRight": 20,
+                    "width": 80,
+                  },
+                  Object {
+                    "backgroundColor": "#C7CDD1",
+                  },
+                ]
+              }
+            />
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontSize": 10,
+                  },
+                ]
+              }
+            >
+              grey2
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#7F91A7",
+                    "fontSize": 14,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              #C7CDD1
+            </Text>
+          </View>
           <View
             style={
-              Array [
-                Object {
-                  "borderColor": "#C7CDD1",
-                  "borderWidth": 0.5,
-                  "height": 80,
-                  "marginRight": 20,
-                  "width": 80,
-                },
-                Object {
-                  "backgroundColor": "#8B969E",
-                },
-              ]
-            }
-          />
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 16,
-                },
-                Object {
-                  "fontSize": 10,
-                },
-              ]
+              Object {
+                "paddingBottom": 12,
+              }
             }
           >
-            grey4
-          </Text>
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#7F91A7",
-                  "fontSize": 14,
-                },
-                undefined,
-              ]
-            }
-          >
-            #8B969E
-          </Text>
-        </View>
-        <View
-          style={
-            Object {
-              "paddingBottom": 12,
-            }
-          }
-        >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderColor": "#C7CDD1",
+                    "borderWidth": 0.5,
+                    "height": 80,
+                    "marginRight": 20,
+                    "width": 80,
+                  },
+                  Object {
+                    "backgroundColor": "#A5AFB5",
+                  },
+                ]
+              }
+            />
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontSize": 10,
+                  },
+                ]
+              }
+            >
+              grey3
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#7F91A7",
+                    "fontSize": 14,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              #A5AFB5
+            </Text>
+          </View>
           <View
             style={
-              Array [
-                Object {
-                  "borderColor": "#C7CDD1",
-                  "borderWidth": 0.5,
-                  "height": 80,
-                  "marginRight": 20,
-                  "width": 80,
-                },
-                Object {
-                  "backgroundColor": "#368BD8",
-                },
-              ]
-            }
-          />
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 16,
-                },
-                Object {
-                  "fontSize": 10,
-                },
-              ]
+              Object {
+                "paddingBottom": 12,
+              }
             }
           >
-            primaryButton
-          </Text>
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#7F91A7",
-                  "fontSize": 14,
-                },
-                undefined,
-              ]
-            }
-          >
-            #368BD8
-          </Text>
-        </View>
-        <View
-          style={
-            Object {
-              "paddingBottom": 12,
-            }
-          }
-        >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderColor": "#C7CDD1",
+                    "borderWidth": 0.5,
+                    "height": 80,
+                    "marginRight": 20,
+                    "width": 80,
+                  },
+                  Object {
+                    "backgroundColor": "#8B969E",
+                  },
+                ]
+              }
+            />
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontSize": 10,
+                  },
+                ]
+              }
+            >
+              grey4
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#7F91A7",
+                    "fontSize": 14,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              #8B969E
+            </Text>
+          </View>
           <View
             style={
-              Array [
-                Object {
-                  "borderColor": "#C7CDD1",
-                  "borderWidth": 0.5,
-                  "height": 80,
-                  "marginRight": 20,
-                  "width": 80,
-                },
-                Object {
-                  "backgroundColor": "#fff",
-                },
-              ]
-            }
-          />
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 16,
-                },
-                Object {
-                  "fontSize": 10,
-                },
-              ]
+              Object {
+                "paddingBottom": 12,
+              }
             }
           >
-            primaryButtonText
-          </Text>
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#7F91A7",
-                  "fontSize": 14,
-                },
-                undefined,
-              ]
-            }
-          >
-            #fff
-          </Text>
-        </View>
-        <View
-          style={
-            Object {
-              "paddingBottom": 12,
-            }
-          }
-        >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderColor": "#C7CDD1",
+                    "borderWidth": 0.5,
+                    "height": 80,
+                    "marginRight": 20,
+                    "width": 80,
+                  },
+                  Object {
+                    "backgroundColor": "#368BD8",
+                  },
+                ]
+              }
+            />
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontSize": 10,
+                  },
+                ]
+              }
+            >
+              primaryButton
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#7F91A7",
+                    "fontSize": 14,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              #368BD8
+            </Text>
+          </View>
           <View
             style={
-              Array [
-                Object {
-                  "borderColor": "#C7CDD1",
-                  "borderWidth": 0.5,
-                  "height": 80,
-                  "marginRight": 20,
-                  "width": 80,
-                },
-                Object {
-                  "backgroundColor": "#73818C",
-                },
-              ]
-            }
-          />
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 16,
-                },
-                Object {
-                  "fontSize": 10,
-                },
-              ]
+              Object {
+                "paddingBottom": 12,
+              }
             }
           >
-            secondaryButton
-          </Text>
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#7F91A7",
-                  "fontSize": 14,
-                },
-                undefined,
-              ]
-            }
-          >
-            #73818C
-          </Text>
-        </View>
-        <View
-          style={
-            Object {
-              "paddingBottom": 12,
-            }
-          }
-        >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderColor": "#C7CDD1",
+                    "borderWidth": 0.5,
+                    "height": 80,
+                    "marginRight": 20,
+                    "width": 80,
+                  },
+                  Object {
+                    "backgroundColor": "#fff",
+                  },
+                ]
+              }
+            />
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontSize": 10,
+                  },
+                ]
+              }
+            >
+              primaryButtonText
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#7F91A7",
+                    "fontSize": 14,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              #fff
+            </Text>
+          </View>
           <View
             style={
-              Array [
-                Object {
-                  "borderColor": "#C7CDD1",
-                  "borderWidth": 0.5,
-                  "height": 80,
-                  "marginRight": 20,
-                  "width": 80,
-                },
-                Object {
-                  "backgroundColor": "#00AC18",
-                },
-              ]
-            }
-          />
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 16,
-                },
-                Object {
-                  "fontSize": 10,
-                },
-              ]
+              Object {
+                "paddingBottom": 12,
+              }
             }
           >
-            checkmarkGreen
-          </Text>
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#7F91A7",
-                  "fontSize": 14,
-                },
-                undefined,
-              ]
-            }
-          >
-            #00AC18
-          </Text>
-        </View>
-        <View
-          style={
-            Object {
-              "paddingBottom": 12,
-            }
-          }
-        >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderColor": "#C7CDD1",
+                    "borderWidth": 0.5,
+                    "height": 80,
+                    "marginRight": 20,
+                    "width": 80,
+                  },
+                  Object {
+                    "backgroundColor": "#73818C",
+                  },
+                ]
+              }
+            />
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontSize": 10,
+                  },
+                ]
+              }
+            >
+              secondaryButton
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#7F91A7",
+                    "fontSize": 14,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              #73818C
+            </Text>
+          </View>
           <View
             style={
-              Array [
-                Object {
-                  "borderColor": "#C7CDD1",
-                  "borderWidth": 0.5,
-                  "height": 80,
-                  "marginRight": 20,
-                  "width": 80,
-                },
-                Object {
-                  "backgroundColor": "#C7CDD1",
-                },
-              ]
-            }
-          />
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 16,
-                },
-                Object {
-                  "fontSize": 10,
-                },
-              ]
+              Object {
+                "paddingBottom": 12,
+              }
             }
           >
-            seperatorColor
-          </Text>
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#7F91A7",
-                  "fontSize": 14,
-                },
-                undefined,
-              ]
-            }
-          >
-            #C7CDD1
-          </Text>
-        </View>
-        <View
-          style={
-            Object {
-              "paddingBottom": 12,
-            }
-          }
-        >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderColor": "#C7CDD1",
+                    "borderWidth": 0.5,
+                    "height": 80,
+                    "marginRight": 20,
+                    "width": 80,
+                  },
+                  Object {
+                    "backgroundColor": "#00AC18",
+                  },
+                ]
+              }
+            />
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontSize": 10,
+                  },
+                ]
+              }
+            >
+              checkmarkGreen
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#7F91A7",
+                    "fontSize": 14,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              #00AC18
+            </Text>
+          </View>
           <View
             style={
-              Array [
-                Object {
-                  "borderColor": "#C7CDD1",
-                  "borderWidth": 0.5,
-                  "height": 80,
-                  "marginRight": 20,
-                  "width": 80,
-                },
-                Object {
-                  "backgroundColor": "#374A59",
-                },
-              ]
-            }
-          />
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 16,
-                },
-                Object {
-                  "fontSize": 10,
-                },
-              ]
+              Object {
+                "paddingBottom": 12,
+              }
             }
           >
-            navBarColor
-          </Text>
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#7F91A7",
-                  "fontSize": 14,
-                },
-                undefined,
-              ]
-            }
-          >
-            #374A59
-          </Text>
-        </View>
-        <View
-          style={
-            Object {
-              "paddingBottom": 12,
-            }
-          }
-        >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderColor": "#C7CDD1",
+                    "borderWidth": 0.5,
+                    "height": 80,
+                    "marginRight": 20,
+                    "width": 80,
+                  },
+                  Object {
+                    "backgroundColor": "#C7CDD1",
+                  },
+                ]
+              }
+            />
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontSize": 10,
+                  },
+                ]
+              }
+            >
+              seperatorColor
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#7F91A7",
+                    "fontSize": 14,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              #C7CDD1
+            </Text>
+          </View>
           <View
             style={
-              Array [
-                Object {
-                  "borderColor": "#C7CDD1",
-                  "borderWidth": 0.5,
-                  "height": 80,
-                  "marginRight": 20,
-                  "width": 80,
-                },
-                Object {
-                  "backgroundColor": "#374A59",
-                },
-              ]
-            }
-          />
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 16,
-                },
-                Object {
-                  "fontSize": 10,
-                },
-              ]
+              Object {
+                "paddingBottom": 12,
+              }
             }
           >
-            navBarButtonColor
-          </Text>
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#7F91A7",
-                  "fontSize": 14,
-                },
-                undefined,
-              ]
-            }
-          >
-            #374A59
-          </Text>
-        </View>
-        <View
-          style={
-            Object {
-              "paddingBottom": 12,
-            }
-          }
-        >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderColor": "#C7CDD1",
+                    "borderWidth": 0.5,
+                    "height": 80,
+                    "marginRight": 20,
+                    "width": 80,
+                  },
+                  Object {
+                    "backgroundColor": "#374A59",
+                  },
+                ]
+              }
+            />
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontSize": 10,
+                  },
+                ]
+              }
+            >
+              navBarColor
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#7F91A7",
+                    "fontSize": 14,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              #374A59
+            </Text>
+          </View>
           <View
             style={
-              Array [
-                Object {
-                  "borderColor": "#C7CDD1",
-                  "borderWidth": 0.5,
-                  "height": 80,
-                  "marginRight": 20,
-                  "width": 80,
-                },
-                Object {
-                  "backgroundColor": "#374A59",
-                },
-              ]
-            }
-          />
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 16,
-                },
-                Object {
-                  "fontSize": 10,
-                },
-              ]
+              Object {
+                "paddingBottom": 12,
+              }
             }
           >
-            navBarTextColor
-          </Text>
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#7F91A7",
-                  "fontSize": 14,
-                },
-                undefined,
-              ]
-            }
-          >
-            #374A59
-          </Text>
-        </View>
-        <View
-          style={
-            Object {
-              "paddingBottom": 12,
-            }
-          }
-        >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderColor": "#C7CDD1",
+                    "borderWidth": 0.5,
+                    "height": 80,
+                    "marginRight": 20,
+                    "width": 80,
+                  },
+                  Object {
+                    "backgroundColor": "#374A59",
+                  },
+                ]
+              }
+            />
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontSize": 10,
+                  },
+                ]
+              }
+            >
+              navBarButtonColor
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#7F91A7",
+                    "fontSize": 14,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              #374A59
+            </Text>
+          </View>
           <View
             style={
-              Array [
-                Object {
-                  "borderColor": "#C7CDD1",
-                  "borderWidth": 0.5,
-                  "height": 80,
-                  "marginRight": 20,
-                  "width": 80,
-                },
-                Object {
-                  "backgroundColor": "white",
-                },
-              ]
-            }
-          />
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 16,
-                },
-                Object {
-                  "fontSize": 10,
-                },
-              ]
+              Object {
+                "paddingBottom": 12,
+              }
             }
           >
-            primaryButtonTextColor
-          </Text>
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#7F91A7",
-                  "fontSize": 14,
-                },
-                undefined,
-              ]
-            }
-          >
-            white
-          </Text>
-        </View>
-        <View
-          style={
-            Object {
-              "paddingBottom": 12,
-            }
-          }
-        >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderColor": "#C7CDD1",
+                    "borderWidth": 0.5,
+                    "height": 80,
+                    "marginRight": 20,
+                    "width": 80,
+                  },
+                  Object {
+                    "backgroundColor": "#374A59",
+                  },
+                ]
+              }
+            />
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontSize": 10,
+                  },
+                ]
+              }
+            >
+              navBarTextColor
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#7F91A7",
+                    "fontSize": 14,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              #374A59
+            </Text>
+          </View>
           <View
             style={
-              Array [
-                Object {
-                  "borderColor": "#C7CDD1",
-                  "borderWidth": 0.5,
-                  "height": 80,
-                  "marginRight": 20,
-                  "width": 80,
-                },
-                Object {
-                  "backgroundColor": "#374A59",
-                },
-              ]
-            }
-          />
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 16,
-                },
-                Object {
-                  "fontSize": 10,
-                },
-              ]
+              Object {
+                "paddingBottom": 12,
+              }
             }
           >
-            primaryButtonColor
-          </Text>
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#7F91A7",
-                  "fontSize": 14,
-                },
-                undefined,
-              ]
-            }
-          >
-            #374A59
-          </Text>
-        </View>
-        <View
-          style={
-            Object {
-              "paddingBottom": 12,
-            }
-          }
-        >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderColor": "#C7CDD1",
+                    "borderWidth": 0.5,
+                    "height": 80,
+                    "marginRight": 20,
+                    "width": 80,
+                  },
+                  Object {
+                    "backgroundColor": "white",
+                  },
+                ]
+              }
+            />
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontSize": 10,
+                  },
+                ]
+              }
+            >
+              primaryButtonTextColor
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#7F91A7",
+                    "fontSize": 14,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              white
+            </Text>
+          </View>
           <View
             style={
-              Array [
-                Object {
-                  "borderColor": "#C7CDD1",
-                  "borderWidth": 0.5,
-                  "height": 80,
-                  "marginRight": 20,
-                  "width": 80,
-                },
-                Object {
-                  "backgroundColor": "#374A59",
-                },
-              ]
-            }
-          />
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 16,
-                },
-                Object {
-                  "fontSize": 10,
-                },
-              ]
+              Object {
+                "paddingBottom": 12,
+              }
             }
           >
-            primaryBrandColor
-          </Text>
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#7F91A7",
-                  "fontSize": 14,
-                },
-                undefined,
-              ]
-            }
-          >
-            #374A59
-          </Text>
-        </View>
-        <View
-          style={
-            Object {
-              "paddingBottom": 12,
-            }
-          }
-        >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderColor": "#C7CDD1",
+                    "borderWidth": 0.5,
+                    "height": 80,
+                    "marginRight": 20,
+                    "width": 80,
+                  },
+                  Object {
+                    "backgroundColor": "#374A59",
+                  },
+                ]
+              }
+            />
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontSize": 10,
+                  },
+                ]
+              }
+            >
+              primaryButtonColor
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#7F91A7",
+                    "fontSize": 14,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              #374A59
+            </Text>
+          </View>
           <View
             style={
-              Array [
-                Object {
-                  "borderColor": "#C7CDD1",
-                  "borderWidth": 0.5,
-                  "height": 80,
-                  "marginRight": 20,
-                  "width": 80,
-                },
-                Object {
-                  "backgroundColor": "#EE0612",
-                },
-              ]
-            }
-          />
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 16,
-                },
-                Object {
-                  "fontSize": 10,
-                },
-              ]
+              Object {
+                "paddingBottom": 12,
+              }
             }
           >
-            destructiveButtonColor
-          </Text>
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderColor": "#C7CDD1",
+                    "borderWidth": 0.5,
+                    "height": 80,
+                    "marginRight": 20,
+                    "width": 80,
+                  },
+                  Object {
+                    "backgroundColor": "#374A59",
+                  },
+                ]
+              }
+            />
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontSize": 10,
+                  },
+                ]
+              }
+            >
+              primaryBrandColor
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#7F91A7",
+                    "fontSize": 14,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              #374A59
+            </Text>
+          </View>
+          <View
             style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#7F91A7",
-                  "fontSize": 14,
-                },
-                undefined,
-              ]
+              Object {
+                "paddingBottom": 12,
+              }
             }
           >
-            #EE0612
-          </Text>
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderColor": "#C7CDD1",
+                    "borderWidth": 0.5,
+                    "height": 80,
+                    "marginRight": 20,
+                    "width": 80,
+                  },
+                  Object {
+                    "backgroundColor": "#EE0612",
+                  },
+                ]
+              }
+            />
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontSize": 10,
+                  },
+                ]
+              }
+            >
+              destructiveButtonColor
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#7F91A7",
+                    "fontSize": 14,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              #EE0612
+            </Text>
+          </View>
         </View>
       </View>
     </View>
-  </View>
-</RCTScrollView>
+  </RCTScrollView>
+</RCTSafeAreaView>
 `;

@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
-<View
+<RCTSafeAreaView
   style={
     Object {
       "flex": 1,
@@ -9,411 +9,427 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
   }
 >
   <View
-    style={
-      Object {
-        "alignItems": "center",
-        "borderBottomColor": "lightgrey",
-        "borderBottomWidth": 0.5,
-        "flexDirection": "row",
-        "height": "auto",
-        "justifyContent": "space-between",
-        "paddingBottom": 8,
-        "paddingHorizontal": 16,
-        "paddingTop": 16,
-      }
-    }
-  >
-    <View
-      style={
-        Object {
-          "flex": 1,
-          "flexDirection": "column",
-        }
-      }
-    >
-      <Text
-        accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={1}
-        style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-semibold",
-              "fontSize": 20,
-            },
-            Object {
-              "color": "#2d3b44",
-              "fontSize": 20,
-              "fontWeight": "600",
-            },
-          ]
-        }
-      >
-        All Submissions
-      </Text>
-    </View>
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel="Filter Submissions"
-      accessibilityTraits="button"
-      accessible={true}
-      collapsable={undefined}
-      hitSlop={
-        Object {
-          "bottom": 15,
-          "left": 15,
-          "right": 15,
-          "top": 15,
-        }
-      }
-      isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Object {
-          "marginBottom": 1,
-          "opacity": 1,
-          "width": "auto",
-        }
-      }
-      testID="submission-list.filter"
-      tvParallaxProperties={undefined}
-    >
-      <View>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Array [
-                Object {
-                  "color": "#374A59",
-                  "fontSize": 14,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-bold",
-                },
-                Object {
-                  "color": "#374A59",
-                },
-                Object {},
-              ],
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-            ]
-          }
-        >
-          Filter
-        </Text>
-      </View>
-    </View>
-  </View>
-  <RCTScrollView
-    ItemSeparatorComponent={[Function]}
-    ListEmptyComponent={
-      <ListEmptyComponent
-        title="No results"
-      />
-    }
-    data={
-      Array [
-        Object {
-          "avatarURL": "http://www.fillmurray.com/200/300",
-          "disclosure": true,
-          "grade": "8",
-          "name": "Bill Murray",
-          "score": 8,
-          "sectionID": "1",
-          "status": "submitted",
-          "userID": "1",
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    numColumns={1}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onRefresh={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    refreshControl={
-      <RefreshControlMock
-        onRefresh={[Function]}
-        progressViewOffset={undefined}
-        refreshing={false}
-      />
-    }
-    refreshing={false}
-    renderItem={[Function]}
-    scrollEventThrottle={50}
-    stickyHeaderIndices={Array []}
-    testID="quiz-submission-list"
-    updateCellsBatchingPeriod={50}
-    viewabilityConfigCallbackPairs={Array []}
-    windowSize={21}
-  >
-    <RCTRefreshControl />
-    <View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View>
-          <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={
-              Array [
-                "button",
-              ]
-            }
-            accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
-            isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                Object {
-                  "flex": 1,
-                },
-              ]
-            }
-            testID="submission-1"
-            tvParallaxProperties={undefined}
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "flex-start",
-                  "backgroundColor": "white",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingBottom": 10,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 10,
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "height": 40,
-                    "marginRight": 8,
-                    "width": 40,
-                  }
-                }
-              >
-                <View
-                  accessibilityLabel=""
-                  style={
-                    Array [
-                      Object {
-                        "overflow": "hidden",
-                      },
-                      Object {
-                        "height": 40,
-                        "width": 40,
-                      },
-                      Object {
-                        "borderRadius": 20,
-                      },
-                      Object {
-                        "backgroundColor": "#F5F5F5",
-                      },
-                    ]
-                  }
-                >
-                  <Image
-                    source={
-                      Object {
-                        "uri": "http://www.fillmurray.com/200/300",
-                      }
-                    }
-                    style={
-                      Object {
-                        "height": 40,
-                        "width": 40,
-                      }
-                    }
-                  />
-                </View>
-              </View>
-              <View
-                style={
-                  Object {
-                    "flex": 1,
-                    "paddingLeft": 8,
-                  }
-                }
-              >
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  numberOfLines={2}
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "flex": 1,
-                        "fontSize": 16,
-                        "fontWeight": "600",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
-                      },
-                    ]
-                  }
-                >
-                  Bill Murray
-                </Text>
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Array [
-                        Object {
-                          "fontSize": 14,
-                          "paddingTop": 2,
-                        },
-                        undefined,
-                        Object {
-                          "color": "#07AF1F",
-                        },
-                      ],
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                    ]
-                  }
-                >
-                  Submitted
-                </Text>
-              </View>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "color": "#374A59",
-                        "fontSize": 14,
-                        "fontWeight": "600",
-                      },
-                      Object {
-                        "alignSelf": "center",
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                8
-              </Text>
-            </View>
-          </View>
-        </View>
-      </View>
-    </View>
-  </RCTScrollView>
-</View>
-`;
-
-exports[`QuizSubmissionList loads while pending 1`] = `
-<View
-  style={
-    Object {
-      "alignItems": "center",
-      "flex": 1,
-      "justifyContent": "center",
-    }
-  }
->
-  <ActivityIndicator
-    animating={true}
-    color="#999999"
-    hidesWhenStopped={true}
-    size="small"
     style={
       Object {
         "flex": 1,
       }
     }
-  />
-</View>
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "borderBottomColor": "lightgrey",
+          "borderBottomWidth": 0.5,
+          "flexDirection": "row",
+          "height": "auto",
+          "justifyContent": "space-between",
+          "paddingBottom": 8,
+          "paddingHorizontal": 16,
+          "paddingTop": 16,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }
+      >
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={1}
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 20,
+              },
+              Object {
+                "color": "#2d3b44",
+                "fontSize": 20,
+                "fontWeight": "600",
+              },
+            ]
+          }
+        >
+          All Submissions
+        </Text>
+      </View>
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel="Filter Submissions"
+        accessibilityTraits="button"
+        accessible={true}
+        collapsable={undefined}
+        hitSlop={
+          Object {
+            "bottom": 15,
+            "left": 15,
+            "right": 15,
+            "top": 15,
+          }
+        }
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "marginBottom": 1,
+            "opacity": 1,
+            "width": "auto",
+          }
+        }
+        testID="submission-list.filter"
+        tvParallaxProperties={undefined}
+      >
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Array [
+                  Object {
+                    "color": "#374A59",
+                    "fontSize": 14,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-bold",
+                  },
+                  Object {
+                    "color": "#374A59",
+                  },
+                  Object {},
+                ],
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+          >
+            Filter
+          </Text>
+        </View>
+      </View>
+    </View>
+    <RCTScrollView
+      ItemSeparatorComponent={[Function]}
+      ListEmptyComponent={
+        <ListEmptyComponent
+          title="No results"
+        />
+      }
+      data={
+        Array [
+          Object {
+            "avatarURL": "http://www.fillmurray.com/200/300",
+            "disclosure": true,
+            "grade": "8",
+            "name": "Bill Murray",
+            "score": 8,
+            "sectionID": "1",
+            "status": "submitted",
+            "userID": "1",
+          },
+        ]
+      }
+      disableVirtualization={false}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      numColumns={1}
+      onContentSizeChange={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onRefresh={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      refreshControl={
+        <RefreshControlMock
+          onRefresh={[Function]}
+          progressViewOffset={undefined}
+          refreshing={false}
+        />
+      }
+      refreshing={false}
+      renderItem={[Function]}
+      scrollEventThrottle={50}
+      stickyHeaderIndices={Array []}
+      testID="quiz-submission-list"
+      updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
+      windowSize={21}
+    >
+      <RCTRefreshControl />
+      <View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View>
+            <View
+              accessibilityComponentType={undefined}
+              accessibilityLabel={undefined}
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              accessible={true}
+              hasTVPreferredFocus={undefined}
+              hitSlop={undefined}
+              isTVSelectable={true}
+              nativeID={undefined}
+              onLayout={undefined}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                  },
+                  Object {
+                    "flex": 1,
+                  },
+                ]
+              }
+              testID="submission-1"
+              tvParallaxProperties={undefined}
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "flex-start",
+                    "backgroundColor": "white",
+                    "flex": 1,
+                    "flexDirection": "row",
+                    "paddingBottom": 10,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 10,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "height": 40,
+                      "marginRight": 8,
+                      "width": 40,
+                    }
+                  }
+                >
+                  <View
+                    accessibilityLabel=""
+                    style={
+                      Array [
+                        Object {
+                          "overflow": "hidden",
+                        },
+                        Object {
+                          "height": 40,
+                          "width": 40,
+                        },
+                        Object {
+                          "borderRadius": 20,
+                        },
+                        Object {
+                          "backgroundColor": "#F5F5F5",
+                        },
+                      ]
+                    }
+                  >
+                    <Image
+                      source={
+                        Object {
+                          "uri": "http://www.fillmurray.com/200/300",
+                        }
+                      }
+                      style={
+                        Object {
+                          "height": 40,
+                          "width": 40,
+                        }
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flex": 1,
+                      "paddingLeft": 8,
+                    }
+                  }
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    numberOfLines={2}
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "flex": 1,
+                          "fontSize": 16,
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-semibold",
+                        },
+                      ]
+                    }
+                  >
+                    Bill Murray
+                  </Text>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Array [
+                          Object {
+                            "fontSize": 14,
+                            "paddingTop": 2,
+                          },
+                          undefined,
+                          Object {
+                            "color": "#07AF1F",
+                          },
+                        ],
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
+                    Submitted
+                  </Text>
+                </View>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Array [
+                        Object {
+                          "color": "#374A59",
+                          "fontSize": 14,
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "alignSelf": "center",
+                        },
+                      ],
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  8
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</RCTSafeAreaView>
+`;
+
+exports[`QuizSubmissionList loads while pending 1`] = `
+<RCTSafeAreaView
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <ActivityIndicator
+      animating={true}
+      color="#999999"
+      hidesWhenStopped={true}
+      size="small"
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    />
+  </View>
+</RCTSafeAreaView>
 `;
 
 exports[`QuizSubmissionList loads with a filter type 1`] = `
-<View
+<RCTSafeAreaView
   style={
     Object {
       "flex": 1,
@@ -423,91 +439,39 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
   <View
     style={
       Object {
-        "alignItems": "center",
-        "borderBottomColor": "lightgrey",
-        "borderBottomWidth": 0.5,
-        "flexDirection": "row",
-        "height": "auto",
-        "justifyContent": "space-between",
-        "paddingBottom": 8,
-        "paddingHorizontal": 16,
-        "paddingTop": 16,
+        "flex": 1,
       }
     }
   >
     <View
       style={
         Object {
-          "flex": 1,
-          "flexDirection": "column",
+          "alignItems": "center",
+          "borderBottomColor": "lightgrey",
+          "borderBottomWidth": 0.5,
+          "flexDirection": "row",
+          "height": "auto",
+          "justifyContent": "space-between",
+          "paddingBottom": 8,
+          "paddingHorizontal": 16,
+          "paddingTop": 16,
         }
       }
     >
-      <Text
-        accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={1}
+      <View
         style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-semibold",
-              "fontSize": 20,
-            },
-            Object {
-              "color": "#2d3b44",
-              "fontSize": 20,
-              "fontWeight": "600",
-            },
-          ]
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+          }
         }
       >
-        Graded
-      </Text>
-    </View>
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel="Filter Submissions"
-      accessibilityTraits="button"
-      accessible={true}
-      collapsable={undefined}
-      hitSlop={
-        Object {
-          "bottom": 15,
-          "left": 15,
-          "right": 15,
-          "top": 15,
-        }
-      }
-      isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Object {
-          "marginBottom": 1,
-          "opacity": 1,
-          "width": "auto",
-        }
-      }
-      testID="submission-list.filter"
-      tvParallaxProperties={undefined}
-    >
-      <View>
         <Text
+          accessibilityTraits="header"
           accessible={true}
           allowFontScaling={true}
           ellipsizeMode="tail"
+          numberOfLines={1}
           style={
             Array [
               Object {
@@ -515,219 +479,310 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
               },
               Object {
                 "color": "#2D3B45",
-                "fontSize": 16,
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 20,
               },
-              Array [
-                Object {
-                  "color": "#374A59",
-                  "fontSize": 14,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-bold",
-                },
-                Object {
-                  "color": "#374A59",
-                },
-                Object {},
-              ],
               Object {
-                "fontFamily": ".SFUIDisplay",
+                "color": "#2d3b44",
+                "fontSize": 20,
+                "fontWeight": "600",
               },
             ]
           }
         >
-          Filter (1)
+          Graded
         </Text>
       </View>
-    </View>
-  </View>
-  <RCTScrollView
-    ItemSeparatorComponent={[Function]}
-    ListEmptyComponent={
-      <ListEmptyComponent
-        title="No results"
-      />
-    }
-    data={
-      Array [
-        Object {
-          "avatarURL": "http://www.fillmurray.com/200/300",
-          "disclosure": true,
-          "grade": "8",
-          "name": "Bill Murray",
-          "score": 8,
-          "sectionID": "1",
-          "status": "submitted",
-          "userID": "1",
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    numColumns={1}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onRefresh={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    refreshControl={
-      <RefreshControlMock
-        onRefresh={[Function]}
-        progressViewOffset={undefined}
-        refreshing={false}
-      />
-    }
-    refreshing={false}
-    renderItem={[Function]}
-    scrollEventThrottle={50}
-    stickyHeaderIndices={Array []}
-    testID="quiz-submission-list"
-    updateCellsBatchingPeriod={50}
-    viewabilityConfigCallbackPairs={Array []}
-    windowSize={21}
-  >
-    <RCTRefreshControl />
-    <View>
       <View
-        onLayout={[Function]}
-        style={null}
+        accessibilityComponentType={undefined}
+        accessibilityLabel="Filter Submissions"
+        accessibilityTraits="button"
+        accessible={true}
+        collapsable={undefined}
+        hitSlop={
+          Object {
+            "bottom": 15,
+            "left": 15,
+            "right": 15,
+            "top": 15,
+          }
+        }
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "marginBottom": 1,
+            "opacity": 1,
+            "width": "auto",
+          }
+        }
+        testID="submission-list.filter"
+        tvParallaxProperties={undefined}
       >
         <View>
-          <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={
-              Array [
-                "button",
-              ]
-            }
+          <Text
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
-            isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
             style={
               Array [
                 Object {
-                  "backgroundColor": "transparent",
+                  "fontFamily": ".SFUIDisplay",
                 },
                 Object {
-                  "flex": 1,
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Array [
+                  Object {
+                    "color": "#374A59",
+                    "fontSize": 14,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-bold",
+                  },
+                  Object {
+                    "color": "#374A59",
+                  },
+                  Object {},
+                ],
+                Object {
+                  "fontFamily": ".SFUIDisplay",
                 },
               ]
             }
-            testID="submission-1"
-            tvParallaxProperties={undefined}
           >
+            Filter (1)
+          </Text>
+        </View>
+      </View>
+    </View>
+    <RCTScrollView
+      ItemSeparatorComponent={[Function]}
+      ListEmptyComponent={
+        <ListEmptyComponent
+          title="No results"
+        />
+      }
+      data={
+        Array [
+          Object {
+            "avatarURL": "http://www.fillmurray.com/200/300",
+            "disclosure": true,
+            "grade": "8",
+            "name": "Bill Murray",
+            "score": 8,
+            "sectionID": "1",
+            "status": "submitted",
+            "userID": "1",
+          },
+        ]
+      }
+      disableVirtualization={false}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      numColumns={1}
+      onContentSizeChange={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onRefresh={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      refreshControl={
+        <RefreshControlMock
+          onRefresh={[Function]}
+          progressViewOffset={undefined}
+          refreshing={false}
+        />
+      }
+      refreshing={false}
+      renderItem={[Function]}
+      scrollEventThrottle={50}
+      stickyHeaderIndices={Array []}
+      testID="quiz-submission-list"
+      updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
+      windowSize={21}
+    >
+      <RCTRefreshControl />
+      <View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View>
             <View
-              style={
-                Object {
-                  "alignItems": "flex-start",
-                  "backgroundColor": "white",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingBottom": 10,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 10,
-                }
+              accessibilityComponentType={undefined}
+              accessibilityLabel={undefined}
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
               }
+              accessible={true}
+              hasTVPreferredFocus={undefined}
+              hitSlop={undefined}
+              isTVSelectable={true}
+              nativeID={undefined}
+              onLayout={undefined}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                  },
+                  Object {
+                    "flex": 1,
+                  },
+                ]
+              }
+              testID="submission-1"
+              tvParallaxProperties={undefined}
             >
               <View
                 style={
                   Object {
-                    "height": 40,
-                    "marginRight": 8,
-                    "width": 40,
+                    "alignItems": "flex-start",
+                    "backgroundColor": "white",
+                    "flex": 1,
+                    "flexDirection": "row",
+                    "paddingBottom": 10,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 10,
                   }
                 }
               >
                 <View
-                  accessibilityLabel=""
                   style={
-                    Array [
-                      Object {
-                        "overflow": "hidden",
-                      },
-                      Object {
-                        "height": 40,
-                        "width": 40,
-                      },
-                      Object {
-                        "borderRadius": 20,
-                      },
-                      Object {
-                        "backgroundColor": "#F5F5F5",
-                      },
-                    ]
+                    Object {
+                      "height": 40,
+                      "marginRight": 8,
+                      "width": 40,
+                    }
                   }
                 >
-                  <Image
-                    source={
-                      Object {
-                        "uri": "http://www.fillmurray.com/200/300",
-                      }
-                    }
+                  <View
+                    accessibilityLabel=""
                     style={
-                      Object {
-                        "height": 40,
-                        "width": 40,
-                      }
+                      Array [
+                        Object {
+                          "overflow": "hidden",
+                        },
+                        Object {
+                          "height": 40,
+                          "width": 40,
+                        },
+                        Object {
+                          "borderRadius": 20,
+                        },
+                        Object {
+                          "backgroundColor": "#F5F5F5",
+                        },
+                      ]
                     }
-                  />
+                  >
+                    <Image
+                      source={
+                        Object {
+                          "uri": "http://www.fillmurray.com/200/300",
+                        }
+                      }
+                      style={
+                        Object {
+                          "height": 40,
+                          "width": 40,
+                        }
+                      }
+                    />
+                  </View>
                 </View>
-              </View>
-              <View
-                style={
-                  Object {
-                    "flex": 1,
-                    "paddingLeft": 8,
-                  }
-                }
-              >
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  numberOfLines={2}
+                <View
                   style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "flex": 1,
-                        "fontSize": 16,
-                        "fontWeight": "600",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
-                      },
-                    ]
+                    Object {
+                      "flex": 1,
+                      "paddingLeft": 8,
+                    }
                   }
                 >
-                  Bill Murray
-                </Text>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    numberOfLines={2}
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "flex": 1,
+                          "fontSize": 16,
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-semibold",
+                        },
+                      ]
+                    }
+                  >
+                    Bill Murray
+                  </Text>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Array [
+                          Object {
+                            "fontSize": 14,
+                            "paddingTop": 2,
+                          },
+                          undefined,
+                          Object {
+                            "color": "#07AF1F",
+                          },
+                        ],
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
+                    Submitted
+                  </Text>
+                </View>
                 <Text
                   accessible={true}
                   allowFontScaling={true}
@@ -743,65 +798,34 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
                       },
                       Array [
                         Object {
+                          "color": "#374A59",
                           "fontSize": 14,
-                          "paddingTop": 2,
+                          "fontWeight": "600",
                         },
-                        undefined,
                         Object {
-                          "color": "#07AF1F",
+                          "alignSelf": "center",
                         },
                       ],
                       Object {
-                        "fontFamily": ".SFUIDisplay",
+                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
                 >
-                  Submitted
+                  8
                 </Text>
               </View>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "color": "#374A59",
-                        "fontSize": 14,
-                        "fontWeight": "600",
-                      },
-                      Object {
-                        "alignSelf": "center",
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                8
-              </Text>
             </View>
           </View>
         </View>
       </View>
-    </View>
-  </RCTScrollView>
-</View>
+    </RCTScrollView>
+  </View>
+</RCTSafeAreaView>
 `;
 
 exports[`QuizSubmissionList navigate to submission settings 1`] = `
-<View
+<RCTSafeAreaView
   style={
     Object {
       "flex": 1,
@@ -811,91 +835,39 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
   <View
     style={
       Object {
-        "alignItems": "center",
-        "borderBottomColor": "lightgrey",
-        "borderBottomWidth": 0.5,
-        "flexDirection": "row",
-        "height": "auto",
-        "justifyContent": "space-between",
-        "paddingBottom": 8,
-        "paddingHorizontal": 16,
-        "paddingTop": 16,
+        "flex": 1,
       }
     }
   >
     <View
       style={
         Object {
-          "flex": 1,
-          "flexDirection": "column",
+          "alignItems": "center",
+          "borderBottomColor": "lightgrey",
+          "borderBottomWidth": 0.5,
+          "flexDirection": "row",
+          "height": "auto",
+          "justifyContent": "space-between",
+          "paddingBottom": 8,
+          "paddingHorizontal": 16,
+          "paddingTop": 16,
         }
       }
     >
-      <Text
-        accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={1}
+      <View
         style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-semibold",
-              "fontSize": 20,
-            },
-            Object {
-              "color": "#2d3b44",
-              "fontSize": 20,
-              "fontWeight": "600",
-            },
-          ]
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+          }
         }
       >
-        All Submissions
-      </Text>
-    </View>
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel="Filter Submissions"
-      accessibilityTraits="button"
-      accessible={true}
-      collapsable={undefined}
-      hitSlop={
-        Object {
-          "bottom": 15,
-          "left": 15,
-          "right": 15,
-          "top": 15,
-        }
-      }
-      isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Object {
-          "marginBottom": 1,
-          "opacity": 1,
-          "width": "auto",
-        }
-      }
-      testID="submission-list.filter"
-      tvParallaxProperties={undefined}
-    >
-      <View>
         <Text
+          accessibilityTraits="header"
           accessible={true}
           allowFontScaling={true}
           ellipsizeMode="tail"
+          numberOfLines={1}
           style={
             Array [
               Object {
@@ -903,219 +875,310 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
               },
               Object {
                 "color": "#2D3B45",
-                "fontSize": 16,
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 20,
               },
-              Array [
-                Object {
-                  "color": "#374A59",
-                  "fontSize": 14,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-bold",
-                },
-                Object {
-                  "color": "#374A59",
-                },
-                Object {},
-              ],
               Object {
-                "fontFamily": ".SFUIDisplay",
+                "color": "#2d3b44",
+                "fontSize": 20,
+                "fontWeight": "600",
               },
             ]
           }
         >
-          Filter
+          All Submissions
         </Text>
       </View>
-    </View>
-  </View>
-  <RCTScrollView
-    ItemSeparatorComponent={[Function]}
-    ListEmptyComponent={
-      <ListEmptyComponent
-        title="No results"
-      />
-    }
-    data={
-      Array [
-        Object {
-          "avatarURL": "http://www.fillmurray.com/200/300",
-          "disclosure": true,
-          "grade": "8",
-          "name": "Bill Murray",
-          "score": 8,
-          "sectionID": "1",
-          "status": "submitted",
-          "userID": "1",
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    numColumns={1}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onRefresh={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    refreshControl={
-      <RefreshControlMock
-        onRefresh={[Function]}
-        progressViewOffset={undefined}
-        refreshing={false}
-      />
-    }
-    refreshing={false}
-    renderItem={[Function]}
-    scrollEventThrottle={50}
-    stickyHeaderIndices={Array []}
-    testID="quiz-submission-list"
-    updateCellsBatchingPeriod={50}
-    viewabilityConfigCallbackPairs={Array []}
-    windowSize={21}
-  >
-    <RCTRefreshControl />
-    <View>
       <View
-        onLayout={[Function]}
-        style={null}
+        accessibilityComponentType={undefined}
+        accessibilityLabel="Filter Submissions"
+        accessibilityTraits="button"
+        accessible={true}
+        collapsable={undefined}
+        hitSlop={
+          Object {
+            "bottom": 15,
+            "left": 15,
+            "right": 15,
+            "top": 15,
+          }
+        }
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "marginBottom": 1,
+            "opacity": 1,
+            "width": "auto",
+          }
+        }
+        testID="submission-list.filter"
+        tvParallaxProperties={undefined}
       >
         <View>
-          <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={
-              Array [
-                "button",
-              ]
-            }
+          <Text
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
-            isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
             style={
               Array [
                 Object {
-                  "backgroundColor": "transparent",
+                  "fontFamily": ".SFUIDisplay",
                 },
                 Object {
-                  "flex": 1,
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Array [
+                  Object {
+                    "color": "#374A59",
+                    "fontSize": 14,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-bold",
+                  },
+                  Object {
+                    "color": "#374A59",
+                  },
+                  Object {},
+                ],
+                Object {
+                  "fontFamily": ".SFUIDisplay",
                 },
               ]
             }
-            testID="submission-1"
-            tvParallaxProperties={undefined}
           >
+            Filter
+          </Text>
+        </View>
+      </View>
+    </View>
+    <RCTScrollView
+      ItemSeparatorComponent={[Function]}
+      ListEmptyComponent={
+        <ListEmptyComponent
+          title="No results"
+        />
+      }
+      data={
+        Array [
+          Object {
+            "avatarURL": "http://www.fillmurray.com/200/300",
+            "disclosure": true,
+            "grade": "8",
+            "name": "Bill Murray",
+            "score": 8,
+            "sectionID": "1",
+            "status": "submitted",
+            "userID": "1",
+          },
+        ]
+      }
+      disableVirtualization={false}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      numColumns={1}
+      onContentSizeChange={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onRefresh={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      refreshControl={
+        <RefreshControlMock
+          onRefresh={[Function]}
+          progressViewOffset={undefined}
+          refreshing={false}
+        />
+      }
+      refreshing={false}
+      renderItem={[Function]}
+      scrollEventThrottle={50}
+      stickyHeaderIndices={Array []}
+      testID="quiz-submission-list"
+      updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
+      windowSize={21}
+    >
+      <RCTRefreshControl />
+      <View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View>
             <View
-              style={
-                Object {
-                  "alignItems": "flex-start",
-                  "backgroundColor": "white",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingBottom": 10,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 10,
-                }
+              accessibilityComponentType={undefined}
+              accessibilityLabel={undefined}
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
               }
+              accessible={true}
+              hasTVPreferredFocus={undefined}
+              hitSlop={undefined}
+              isTVSelectable={true}
+              nativeID={undefined}
+              onLayout={undefined}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                  },
+                  Object {
+                    "flex": 1,
+                  },
+                ]
+              }
+              testID="submission-1"
+              tvParallaxProperties={undefined}
             >
               <View
                 style={
                   Object {
-                    "height": 40,
-                    "marginRight": 8,
-                    "width": 40,
+                    "alignItems": "flex-start",
+                    "backgroundColor": "white",
+                    "flex": 1,
+                    "flexDirection": "row",
+                    "paddingBottom": 10,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 10,
                   }
                 }
               >
                 <View
-                  accessibilityLabel=""
                   style={
-                    Array [
-                      Object {
-                        "overflow": "hidden",
-                      },
-                      Object {
-                        "height": 40,
-                        "width": 40,
-                      },
-                      Object {
-                        "borderRadius": 20,
-                      },
-                      Object {
-                        "backgroundColor": "#F5F5F5",
-                      },
-                    ]
+                    Object {
+                      "height": 40,
+                      "marginRight": 8,
+                      "width": 40,
+                    }
                   }
                 >
-                  <Image
-                    source={
-                      Object {
-                        "uri": "http://www.fillmurray.com/200/300",
-                      }
-                    }
+                  <View
+                    accessibilityLabel=""
                     style={
-                      Object {
-                        "height": 40,
-                        "width": 40,
-                      }
+                      Array [
+                        Object {
+                          "overflow": "hidden",
+                        },
+                        Object {
+                          "height": 40,
+                          "width": 40,
+                        },
+                        Object {
+                          "borderRadius": 20,
+                        },
+                        Object {
+                          "backgroundColor": "#F5F5F5",
+                        },
+                      ]
                     }
-                  />
+                  >
+                    <Image
+                      source={
+                        Object {
+                          "uri": "http://www.fillmurray.com/200/300",
+                        }
+                      }
+                      style={
+                        Object {
+                          "height": 40,
+                          "width": 40,
+                        }
+                      }
+                    />
+                  </View>
                 </View>
-              </View>
-              <View
-                style={
-                  Object {
-                    "flex": 1,
-                    "paddingLeft": 8,
-                  }
-                }
-              >
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  numberOfLines={2}
+                <View
                   style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "flex": 1,
-                        "fontSize": 16,
-                        "fontWeight": "600",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
-                      },
-                    ]
+                    Object {
+                      "flex": 1,
+                      "paddingLeft": 8,
+                    }
                   }
                 >
-                  Bill Murray
-                </Text>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    numberOfLines={2}
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "flex": 1,
+                          "fontSize": 16,
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-semibold",
+                        },
+                      ]
+                    }
+                  >
+                    Bill Murray
+                  </Text>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Array [
+                          Object {
+                            "fontSize": 14,
+                            "paddingTop": 2,
+                          },
+                          undefined,
+                          Object {
+                            "color": "#07AF1F",
+                          },
+                        ],
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
+                    Submitted
+                  </Text>
+                </View>
                 <Text
                   accessible={true}
                   allowFontScaling={true}
@@ -1131,78 +1194,47 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
                       },
                       Array [
                         Object {
+                          "color": "#374A59",
                           "fontSize": 14,
-                          "paddingTop": 2,
+                          "fontWeight": "600",
                         },
-                        undefined,
                         Object {
-                          "color": "#07AF1F",
+                          "alignSelf": "center",
                         },
                       ],
                       Object {
-                        "fontFamily": ".SFUIDisplay",
+                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
                 >
-                  Submitted
+                  8
                 </Text>
-              </View>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
+                <View
+                  style={
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "color": "#374A59",
-                        "fontSize": 14,
-                        "fontWeight": "600",
-                      },
-                      Object {
-                        "alignSelf": "center",
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                8
-              </Text>
-              <View
-                style={
-                  Object {
-                    "alignSelf": "center",
-                    "backgroundColor": "transparent",
-                    "borderColor": "#c7c7cc",
-                    "borderRightWidth": 2,
-                    "borderTopWidth": 2,
-                    "height": 10,
-                    "marginLeft": 7,
-                    "transform": Array [
-                      Object {
-                        "rotate": "45deg",
-                      },
-                    ],
-                    "width": 10,
+                      "alignSelf": "center",
+                      "backgroundColor": "transparent",
+                      "borderColor": "#c7c7cc",
+                      "borderRightWidth": 2,
+                      "borderTopWidth": 2,
+                      "height": 10,
+                      "marginLeft": 7,
+                      "transform": Array [
+                        Object {
+                          "rotate": "45deg",
+                        },
+                      ],
+                      "width": 10,
+                    }
                   }
-                }
-              />
+                />
+              </View>
             </View>
           </View>
         </View>
       </View>
-    </View>
-  </RCTScrollView>
-</View>
+    </RCTScrollView>
+  </View>
+</RCTSafeAreaView>
 `;

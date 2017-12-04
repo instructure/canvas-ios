@@ -28,6 +28,8 @@ import {
   Animated,
   RefreshControl,
   processColor,
+  SafeAreaView,
+  DeviceInfo,
 } from 'react-native'
 
 import Images from '../../../images'
@@ -55,6 +57,12 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
     this.animate = Animated.event(
       [{ nativeEvent: { contentOffset: { y: this.animatedValue } } }],
     )
+  }
+
+  componentWillMount () {
+    this.props.navigator.traitCollection((traits) => {
+      this.setState({ windowTraits: traits.window })
+    })
   }
 
   componentDidMount () {
@@ -140,31 +148,36 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
     let bothCompact = this.state.windowTraits.horizontal === 'compact' && this.state.windowTraits.vertical === 'compact'
 
     let navbarHeight = bothCompact ? 52 : 64
+    let headerHeight = bothCompact ? 150 : 235
+    let headerBottomContainerMarginTop = bothCompact ? 8 : 44
+    let headerBottomContainerHorizontalMargin = bothCompact ? 44 : 0
+
+    // David made me do it
+    if (DeviceInfo.isIPhoneX_deprecated) {
+      navbarHeight = bothCompact ? 32 : 88
+    }
 
     let fadeOut = this.animatedValue.interpolate({
-      inputRange: [-235, -navbarHeight],
+      inputRange: [-headerHeight, -navbarHeight],
       outputRange: [1, 0],
-    })
-    let fadeIn = this.animatedValue.interpolate({
-      inputRange: [-235, -navbarHeight],
-      outputRange: [0, 1],
     })
     let inOffsets = {}
     if (compactMode) {
       inOffsets = {
-        contentInset: { top: 235 },
-        contentOffset: { y: -235 },
+        contentInset: { top: headerHeight },
+        contentOffset: { y: -headerHeight },
       }
     }
     return (
       <Screen
         title={courseCode}
-        navBarTitleColor={compactMode ? 'transparent' : '#fff'}
+        navBarTitleColor={'#fff'}
         statusBarStyle='light'
         navBarColor={courseColor}
         navBarStyle='dark'
         onTraitCollectionChange={this.onTraitCollectionChange.bind(this)}
         {...screenProps}
+        disableGlobalSafeArea
         rightBarButtons={[
           {
             image: Images.course.settings,
@@ -190,15 +203,15 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
                   <RefreshControl
                     refreshing={this.props.refreshing}
                     onRefresh={this.props.refresh}
-                    style={{ position: 'absolute', top: 235 }}
+                    style={{ position: 'absolute', top: headerHeight }}
                   />
                 }
                 style={{ flex: 1 }}
                 {...inOffsets}
               >
-                <View style={{ minHeight: height - navbarHeight }}>
+                <SafeAreaView style={{ minHeight: height - navbarHeight }}>
                   {this.props.tabs.map(this.renderTab)}
-                </View>
+                </SafeAreaView>
               </Animated.ScrollView>
             )}
           </OnLayout>
@@ -207,8 +220,8 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
             <Animated.View
               style={[styles.header, {
                 height: this.animatedValue.interpolate({
-                  inputRange: [-235, -navbarHeight],
-                  outputRange: [235, navbarHeight],
+                  inputRange: [-headerHeight, -navbarHeight],
+                  outputRange: [headerHeight, navbarHeight],
                   extrapolate: 'clamp',
                 }),
               }]}
@@ -223,8 +236,8 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
                           style={[styles.headerImage, {
                             width,
                             height: this.animatedValue.interpolate({
-                              inputRange: [-235, -navbarHeight],
-                              outputRange: [235, navbarHeight],
+                              inputRange: [-headerHeight, -navbarHeight],
+                              outputRange: [headerHeight, navbarHeight],
                               extrapolate: 'clamp',
                             }),
                             opacity: fadeOut,
@@ -237,7 +250,7 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
                         backgroundColor: courseColor,
                         opacity: this.props.course.image_download_url
                           ? this.animatedValue.interpolate({
-                            inputRange: [-235, -navbarHeight],
+                            inputRange: [-headerHeight, -navbarHeight],
                             outputRange: [0.8, 1],
                             extrapolate: 'clamp',
                           })
@@ -248,12 +261,16 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
                 )}
               </OnLayout>
 
-              <View style={styles.headerBottomContainer} >
+              <View style={[styles.headerBottomContainer, {
+                marginTop: headerBottomContainerMarginTop,
+                marginHorizontal: headerBottomContainerHorizontalMargin,
+              }]} >
                 <Animated.Text
                   style={[styles.headerTitle, {
-                    opacity: fadeOut, // Make it go a tiny bit faster...
+                    opacity: fadeOut,
                   }]}
                   testID='course-details.title-lbl'
+                  numberOfLines={3}
                 >
                   {name}
                 </Animated.Text>
@@ -268,28 +285,6 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
               </View>
             </Animated.View>
           }
-          <Animated.Text
-            style={[styles.navBarTitle, {
-              opacity: fadeOut,
-              top: bothCompact ? 24.5 : 33,
-            }]}
-            numberOfLines={1}
-            ellipsizeMode='tail'
-            accessible={false}
-          >
-            {courseCode}
-          </Animated.Text>
-          <Animated.Text
-            style={[styles.navBarTitle, {
-              opacity: fadeIn,
-              top: bothCompact ? 24.5 : 33,
-            }]}
-            numberOfLines={1}
-            ellipsizeMode='tail'
-            accessible={false}
-          >
-            {name}
-          </Animated.Text>
         </View>
       </Screen>
     )
@@ -334,7 +329,6 @@ const styles = StyleSheet.create({
   },
   headerImage: {
     position: 'absolute',
-    height: 235,
   },
   headerImageOverlay: {
     position: 'absolute',
@@ -348,7 +342,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 44,
   },
   settingsButton: {
     width: 24,
@@ -365,17 +358,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  navBarTitle: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    backgroundColor: 'transparent',
-    color: '#fff',
-    fontSize: 17,
-    fontWeight: '600',
-    paddingHorizontal: 75,
-    textAlign: 'center',
   },
 })
 

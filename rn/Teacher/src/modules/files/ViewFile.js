@@ -25,6 +25,7 @@ import {
   ActionSheetIOS,
   ActivityIndicator,
   TouchableHighlight,
+  SafeAreaView,
 } from 'react-native'
 import {
   downloadFile,
@@ -205,6 +206,7 @@ export default class ViewFile extends Component<Props, State> {
         navBarTitleColor={Colors.darkText}
         navBarButtonColor={Colors.link}
         drawUnderNavBar={true}
+        disableGlobalSafeArea
         leftBarButtons={[{
           testID: 'view-file.edit-btn',
           title: i18n('Edit'),
@@ -225,7 +227,7 @@ export default class ViewFile extends Component<Props, State> {
           ) : (
             this.renderPreview()
           )}
-          <View style={styles.bottomToolbar}>
+          <SafeAreaView style={styles.bottomToolbar}>
             <TouchableHighlight
               onPress={this.handleShare}
               style={styles.toolbarButton}
@@ -235,7 +237,7 @@ export default class ViewFile extends Component<Props, State> {
             >
               <Image source={Images.share} style={styles.toolbarIcon} />
             </TouchableHighlight>
-          </View>
+          </SafeAreaView>
         </View>
       </Screen>
     )

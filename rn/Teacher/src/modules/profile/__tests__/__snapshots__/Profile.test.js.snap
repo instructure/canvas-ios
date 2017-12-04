@@ -3,181 +3,189 @@
 exports[`Profile Tests render with no session 1`] = `null`;
 
 exports[`Profile Tests renders correctly 1`] = `
-<View
-  accessible={true}
+<RCTSafeAreaView
   style={
     Object {
       "flex": 1,
     }
   }
-  testID="module.profile"
 >
   <View
+    accessible={true}
     style={
       Object {
-        "backgroundColor": "lightgrey",
+        "flex": 1,
       }
     }
-  >
-    <Image
-      source={
-        Object {
-          "testUri": "../../../src/images/Pencil-BG.jpg",
-        }
-      }
-      style={
-        Object {
-          "height": 170,
-          "width": 750,
-        }
-      }
-    />
-  </View>
-  <View
-    style={
-      Object {
-        "flex": 0,
-        "flexDirection": "row",
-        "justifyContent": "center",
-        "marginBottom": 20,
-        "top": -80,
-      }
-    }
+    testID="module.profile"
   >
     <View
-      accessibilityLabel=""
       style={
-        Array [
-          Object {
-            "overflow": "hidden",
-          },
-          Object {
-            "height": 160,
-            "width": 160,
-          },
-          Object {
-            "borderColor": "white",
-            "borderRadius": 80,
-            "borderStyle": "solid",
-            "borderWidth": 4,
-          },
-          Object {
-            "backgroundColor": "#F5F5F5",
-          },
-        ]
+        Object {
+          "backgroundColor": "lightgrey",
+        }
       }
     >
       <Image
         source={
           Object {
-            "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+            "testUri": "../../../src/images/Pencil-BG.jpg",
           }
         }
         style={
           Object {
-            "height": 160,
-            "width": 160,
+            "height": 170,
+            "width": 750,
           }
         }
       />
     </View>
-  </View>
-  <View
-    style={
-      Object {
-        "alignItems": "center",
-        "top": -80,
-      }
-    }
-  >
-    <Text
-      accessibilityTraits="header"
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
+    <View
       style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontFamily": ".SFUIDisplay-semibold",
-            "fontSize": 20,
-          },
-          undefined,
-        ]
+        Object {
+          "flex": 0,
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "marginBottom": 20,
+          "top": -80,
+        }
       }
     >
-      Key and Peele
-    </Text>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
+      <View
+        accessibilityLabel=""
+        style={
+          Array [
+            Object {
+              "overflow": "hidden",
+            },
+            Object {
+              "height": 160,
+              "width": 160,
+            },
+            Object {
+              "borderColor": "white",
+              "borderRadius": 80,
+              "borderStyle": "solid",
+              "borderWidth": 4,
+            },
+            Object {
+              "backgroundColor": "#F5F5F5",
+            },
+          ]
+        }
+      >
+        <Image
+          source={
+            Object {
+              "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+            }
+          }
+          style={
+            Object {
+              "height": 160,
+              "width": 160,
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
       style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#7F91A7",
-            "fontSize": 16,
-            "lineHeight": 23,
-          },
-          undefined,
-        ]
+        Object {
+          "alignItems": "center",
+          "top": -80,
+        }
       }
     >
-      keyandpeele@instructure.com
-    </Text>
-  </View>
-  <View
-    style={
-      Object {
-        "alignItems": "center",
-        "bottom": -125,
-      }
-    }
-  >
-    <Text
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      hitSlop={undefined}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
+      <Text
+        accessibilityTraits="header"
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-semibold",
+              "fontSize": 20,
+            },
+            undefined,
+          ]
+        }
+      >
+        Key and Peele
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#7F91A7",
+              "fontSize": 16,
+              "lineHeight": 23,
+            },
+            undefined,
+          ]
+        }
+      >
+        keyandpeele@instructure.com
+      </Text>
+    </View>
+    <View
       style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-          },
-          Object {
-            "color": "#73818C",
-            "fontSize": 12,
-          },
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-        ]
+        Object {
+          "alignItems": "center",
+          "bottom": -125,
+        }
       }
-      testID="profile-btn-secret-tap"
     >
-      Version 0.1.1992
-    </Text>
+      <Text
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        hitSlop={undefined}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#73818C",
+              "fontSize": 12,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+        testID="profile-btn-secret-tap"
+      >
+        Version 0.1.1992
+      </Text>
+    </View>
   </View>
-</View>
+</RCTSafeAreaView>
 `;

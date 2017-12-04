@@ -87,6 +87,14 @@ class DatePickerMonthHeaderView: UICollectionReusableView {
         monthLabel.textColor = #colorLiteral(red: 0.1764705882, green: 0.231372549, blue: 0.2705882353, alpha: 1)
         monthLabel.translatesAutoresizingMaskIntoConstraints = false
         
+        var leadingAnchor = self.leadingAnchor
+        var trailingAnchor = self.trailingAnchor
+        
+        if #available(iOS 11, *) {
+            leadingAnchor = safeAreaLayoutGuide.leadingAnchor
+            trailingAnchor = safeAreaLayoutGuide.trailingAnchor
+        }
+        
         NSLayoutConstraint.activate([
             stack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             stack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 8),

@@ -1,2743 +1,2685 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Only renders courses when !isFullDashboard 1`] = `
-<RCTScrollView
-  ItemSeparatorComponent={undefined}
-  contentContainerStyle={
+<RCTSafeAreaView
+  style={
     Object {
-      "flexDirection": "row",
-      "flexWrap": "wrap",
-      "padding": 8,
+      "flex": 1,
     }
   }
-  data={
-    Array [
-      Object {
-        "data": Array [
-          Object {
-            "color": "#27B9CD",
-            "course_code": "BIO 101",
-            "default_view": "wiki",
-            "enrollments": Array [
-              Object {
-                "enrollment_state": "active",
-                "role": "TeacherEnrollment",
-                "role_id": "1",
-                "type": "teacher",
-                "user_id": "1",
-              },
-            ],
-            "id": "1",
-            "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-            "is_favorite": true,
-            "name": "Biology 101",
-            "short_name": "BIO 101",
-            "term": Object {
-              "name": "Default Term",
-            },
-          },
-          Object {
-            "color": "#8F3E97",
-            "course_code": "LIT 401",
-            "default_view": "wiki",
-            "enrollments": Array [
-              Object {
-                "enrollment_state": "active",
-                "role": "TeacherEnrollment",
-                "role_id": "1",
-                "type": "teacher",
-                "user_id": "1",
-              },
-            ],
-            "id": "2",
-            "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-            "is_favorite": false,
-            "name": "American Literature Psysicks foobar hello world 401",
-            "short_name": "LIT 401",
-            "term": Object {
-              "name": "Default Term",
-            },
-          },
-          Object {
-            "color": "#8F3E99",
-            "course_code": "FOO 102",
-            "default_view": "wiki",
-            "enrollments": Array [
-              Object {
-                "enrollment_state": "active",
-                "role": "TeacherEnrollment",
-                "role_id": "1",
-                "type": "teacher",
-                "user_id": "1",
-              },
-            ],
-            "id": "3",
-            "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-            "is_favorite": true,
-            "name": "Foobar 102",
-            "short_name": "FOO 102",
-            "term": Object {
-              "name": "Default Term",
-            },
-          },
-        ],
-        "renderItem": [Function],
-      },
-    ]
-  }
-  disableVirtualization={false}
-  getItem={[Function]}
-  getItemCount={[Function]}
-  horizontal={false}
-  initialNumToRender={10}
-  keyExtractor={[Function]}
-  maxToRenderPerBatch={10}
-  onContentSizeChange={[Function]}
-  onEndReachedThreshold={2}
-  onLayout={[Function]}
-  onMomentumScrollEnd={[Function]}
-  onRefresh={[Function]}
-  onScroll={[Function]}
-  onScrollBeginDrag={[Function]}
-  onScrollEndDrag={[Function]}
-  onViewableItemsChanged={undefined}
-  refreshControl={
-    <RefreshControlMock
-      onRefresh={[Function]}
-      progressViewOffset={undefined}
-      refreshing={false}
-    />
-  }
-  refreshing={false}
-  renderItem={[Function]}
-  renderSectionHeader={[Function]}
-  scrollEventThrottle={50}
-  sections={
-    Array [
-      Object {
-        "data": Array [
-          Object {
-            "color": "#27B9CD",
-            "course_code": "BIO 101",
-            "default_view": "wiki",
-            "enrollments": Array [
-              Object {
-                "enrollment_state": "active",
-                "role": "TeacherEnrollment",
-                "role_id": "1",
-                "type": "teacher",
-                "user_id": "1",
-              },
-            ],
-            "id": "1",
-            "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-            "is_favorite": true,
-            "name": "Biology 101",
-            "short_name": "BIO 101",
-            "term": Object {
-              "name": "Default Term",
-            },
-          },
-          Object {
-            "color": "#8F3E97",
-            "course_code": "LIT 401",
-            "default_view": "wiki",
-            "enrollments": Array [
-              Object {
-                "enrollment_state": "active",
-                "role": "TeacherEnrollment",
-                "role_id": "1",
-                "type": "teacher",
-                "user_id": "1",
-              },
-            ],
-            "id": "2",
-            "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-            "is_favorite": false,
-            "name": "American Literature Psysicks foobar hello world 401",
-            "short_name": "LIT 401",
-            "term": Object {
-              "name": "Default Term",
-            },
-          },
-          Object {
-            "color": "#8F3E99",
-            "course_code": "FOO 102",
-            "default_view": "wiki",
-            "enrollments": Array [
-              Object {
-                "enrollment_state": "active",
-                "role": "TeacherEnrollment",
-                "role_id": "1",
-                "type": "teacher",
-                "user_id": "1",
-              },
-            ],
-            "id": "3",
-            "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-            "is_favorite": true,
-            "name": "Foobar 102",
-            "short_name": "FOO 102",
-            "term": Object {
-              "name": "Default Term",
-            },
-          },
-        ],
-        "renderItem": [Function],
-      },
-    ]
-  }
-  stickyHeaderIndices={Array []}
-  stickySectionHeadersEnabled={false}
-  updateCellsBatchingPeriod={50}
-  windowSize={21}
 >
-  <RCTRefreshControl />
-  <View>
-    <View
-      onLayout={[Function]}
-      style={null}
-    />
-    <View
-      onLayout={[Function]}
-      style={null}
-    >
-      <TouchableHighlight
-        accessible={false}
-        onLayout={[Function]}
-        onPress={[Function]}
-        style={
-          Array [
-            Object {
-              "backgroundColor": "#ffffff01",
-              "height": 160,
-              "shadowColor": "#000",
-              "shadowOffset": Object {
-                "height": 1,
-                "width": 0,
-              },
-              "shadowOpacity": 0.2,
-              "shadowRadius": 1,
-            },
-            Object {
-              "height": 0,
-              "padding": 8,
-              "width": undefined,
-            },
-          ]
-        }
-        testID="course-1"
-        underlayColor="transparent"
-      >
-        <View
-          style={
-            Object {
-              "backgroundColor": "white",
-              "borderColor": "#e3e3e3",
-              "borderRadius": 4,
-              "borderWidth": 0.5,
-              "flex": 1,
-              "overflow": "hidden",
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "flex": 1,
-              }
-            }
-          >
-            <Image
-              source={
-                Object {
-                  "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-                }
-              }
-              style={
-                Object {
-                  "flex": 1,
-                }
-              }
-            />
-            <View
-              accessibilityLabel="Biology 101"
-              accessibilityTraits="button"
-              accessible={true}
-              style={
-                Object {
-                  "backgroundColor": "#27B9CD",
-                  "bottom": 0,
-                  "left": 0,
-                  "opacity": 0.8,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                }
-              }
-            />
-            <TouchableHighlight
-              accessibilityLabel="Open Biology 101 user preferences"
-              accessibilityTraits="button"
-              accessible={true}
-              onPress={[Function]}
-              style={
-                Object {
-                  "height": 43,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                  "width": 43,
-                }
-              }
-              testID="course-card.kabob-1"
-              underlayColor="#ffffff00"
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/kabob.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "position": "absolute",
-                    "right": 8,
-                    "top": 10,
-                    "width": 18,
-                  }
-                }
-              />
-            </TouchableHighlight>
-          </View>
-          <View
-            accessible={false}
-            style={
-              Object {
-                "flex": 1,
-                "paddingHorizontal": 10,
-              }
-            }
-          >
-            <Text
-              accessible={false}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={2}
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "color": "#27B9CD",
-                    "fontWeight": "600",
-                    "marginTop": 8,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              Biology 101
-            </Text>
-            <Text
-              accessible={false}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={1}
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "color": "#8B969D",
-                    "fontSize": 12,
-                    "fontWeight": "600",
-                    "marginTop": 2,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              BIO 101
-            </Text>
-          </View>
-        </View>
-      </TouchableHighlight>
-    </View>
-    <View
-      onLayout={[Function]}
-      style={null}
-    >
-      <TouchableHighlight
-        accessible={false}
-        onLayout={[Function]}
-        onPress={[Function]}
-        style={
-          Array [
-            Object {
-              "backgroundColor": "#ffffff01",
-              "height": 160,
-              "shadowColor": "#000",
-              "shadowOffset": Object {
-                "height": 1,
-                "width": 0,
-              },
-              "shadowOpacity": 0.2,
-              "shadowRadius": 1,
-            },
-            Object {
-              "height": 0,
-              "padding": 8,
-              "width": undefined,
-            },
-          ]
-        }
-        testID="course-2"
-        underlayColor="transparent"
-      >
-        <View
-          style={
-            Object {
-              "backgroundColor": "white",
-              "borderColor": "#e3e3e3",
-              "borderRadius": 4,
-              "borderWidth": 0.5,
-              "flex": 1,
-              "overflow": "hidden",
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "flex": 1,
-              }
-            }
-          >
-            <Image
-              source={
-                Object {
-                  "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-                }
-              }
-              style={
-                Object {
-                  "flex": 1,
-                }
-              }
-            />
-            <View
-              accessibilityLabel="American Literature Psysicks foobar hello world 401"
-              accessibilityTraits="button"
-              accessible={true}
-              style={
-                Object {
-                  "backgroundColor": "#8F3E97",
-                  "bottom": 0,
-                  "left": 0,
-                  "opacity": 0.8,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                }
-              }
-            />
-            <TouchableHighlight
-              accessibilityLabel="Open American Literature Psysicks foobar hello world 401 user preferences"
-              accessibilityTraits="button"
-              accessible={true}
-              onPress={[Function]}
-              style={
-                Object {
-                  "height": 43,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                  "width": 43,
-                }
-              }
-              testID="course-card.kabob-2"
-              underlayColor="#ffffff00"
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/kabob.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "position": "absolute",
-                    "right": 8,
-                    "top": 10,
-                    "width": 18,
-                  }
-                }
-              />
-            </TouchableHighlight>
-          </View>
-          <View
-            accessible={false}
-            style={
-              Object {
-                "flex": 1,
-                "paddingHorizontal": 10,
-              }
-            }
-          >
-            <Text
-              accessible={false}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={2}
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "color": "#8F3E97",
-                    "fontWeight": "600",
-                    "marginTop": 8,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              American Literature Psysicks foobar hello world 401
-            </Text>
-            <Text
-              accessible={false}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={1}
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "color": "#8B969D",
-                    "fontSize": 12,
-                    "fontWeight": "600",
-                    "marginTop": 2,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              LIT 401
-            </Text>
-          </View>
-        </View>
-      </TouchableHighlight>
-    </View>
-    <View
-      onLayout={[Function]}
-      style={null}
-    >
-      <TouchableHighlight
-        accessible={false}
-        onLayout={[Function]}
-        onPress={[Function]}
-        style={
-          Array [
-            Object {
-              "backgroundColor": "#ffffff01",
-              "height": 160,
-              "shadowColor": "#000",
-              "shadowOffset": Object {
-                "height": 1,
-                "width": 0,
-              },
-              "shadowOpacity": 0.2,
-              "shadowRadius": 1,
-            },
-            Object {
-              "height": 0,
-              "padding": 8,
-              "width": undefined,
-            },
-          ]
-        }
-        testID="course-3"
-        underlayColor="transparent"
-      >
-        <View
-          style={
-            Object {
-              "backgroundColor": "white",
-              "borderColor": "#e3e3e3",
-              "borderRadius": 4,
-              "borderWidth": 0.5,
-              "flex": 1,
-              "overflow": "hidden",
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "flex": 1,
-              }
-            }
-          >
-            <Image
-              source={
-                Object {
-                  "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-                }
-              }
-              style={
-                Object {
-                  "flex": 1,
-                }
-              }
-            />
-            <View
-              accessibilityLabel="Foobar 102"
-              accessibilityTraits="button"
-              accessible={true}
-              style={
-                Object {
-                  "backgroundColor": "#8F3E99",
-                  "bottom": 0,
-                  "left": 0,
-                  "opacity": 0.8,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                }
-              }
-            />
-            <TouchableHighlight
-              accessibilityLabel="Open Foobar 102 user preferences"
-              accessibilityTraits="button"
-              accessible={true}
-              onPress={[Function]}
-              style={
-                Object {
-                  "height": 43,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                  "width": 43,
-                }
-              }
-              testID="course-card.kabob-3"
-              underlayColor="#ffffff00"
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/kabob.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "position": "absolute",
-                    "right": 8,
-                    "top": 10,
-                    "width": 18,
-                  }
-                }
-              />
-            </TouchableHighlight>
-          </View>
-          <View
-            accessible={false}
-            style={
-              Object {
-                "flex": 1,
-                "paddingHorizontal": 10,
-              }
-            }
-          >
-            <Text
-              accessible={false}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={2}
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "color": "#8F3E99",
-                    "fontWeight": "600",
-                    "marginTop": 8,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              Foobar 102
-            </Text>
-            <Text
-              accessible={false}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={1}
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "color": "#8B969D",
-                    "fontSize": 12,
-                    "fontWeight": "600",
-                    "marginTop": 2,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              FOO 102
-            </Text>
-          </View>
-        </View>
-      </TouchableHighlight>
-    </View>
-    <View
-      onLayout={[Function]}
-      style={null}
-    />
-    <View
-      style={
-        Object {
-          "height": 0,
-        }
+  <RCTScrollView
+    ItemSeparatorComponent={undefined}
+    contentContainerStyle={
+      Object {
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "padding": 8,
       }
-    />
-  </View>
-</RCTScrollView>
+    }
+    data={
+      Array [
+        Object {
+          "data": Array [
+            Object {
+              "color": "#27B9CD",
+              "course_code": "BIO 101",
+              "default_view": "wiki",
+              "enrollments": Array [
+                Object {
+                  "enrollment_state": "active",
+                  "role": "TeacherEnrollment",
+                  "role_id": "1",
+                  "type": "teacher",
+                  "user_id": "1",
+                },
+              ],
+              "id": "1",
+              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+              "is_favorite": true,
+              "name": "Biology 101",
+              "short_name": "BIO 101",
+              "term": Object {
+                "name": "Default Term",
+              },
+            },
+            Object {
+              "color": "#8F3E97",
+              "course_code": "LIT 401",
+              "default_view": "wiki",
+              "enrollments": Array [
+                Object {
+                  "enrollment_state": "active",
+                  "role": "TeacherEnrollment",
+                  "role_id": "1",
+                  "type": "teacher",
+                  "user_id": "1",
+                },
+              ],
+              "id": "2",
+              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+              "is_favorite": false,
+              "name": "American Literature Psysicks foobar hello world 401",
+              "short_name": "LIT 401",
+              "term": Object {
+                "name": "Default Term",
+              },
+            },
+            Object {
+              "color": "#8F3E99",
+              "course_code": "FOO 102",
+              "default_view": "wiki",
+              "enrollments": Array [
+                Object {
+                  "enrollment_state": "active",
+                  "role": "TeacherEnrollment",
+                  "role_id": "1",
+                  "type": "teacher",
+                  "user_id": "1",
+                },
+              ],
+              "id": "3",
+              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+              "is_favorite": true,
+              "name": "Foobar 102",
+              "short_name": "FOO 102",
+              "term": Object {
+                "name": "Default Term",
+              },
+            },
+          ],
+          "renderItem": [Function],
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onRefresh={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    onViewableItemsChanged={undefined}
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        progressViewOffset={undefined}
+        refreshing={false}
+      />
+    }
+    refreshing={false}
+    renderItem={[Function]}
+    renderSectionHeader={[Function]}
+    scrollEventThrottle={50}
+    sections={
+      Array [
+        Object {
+          "data": Array [
+            Object {
+              "color": "#27B9CD",
+              "course_code": "BIO 101",
+              "default_view": "wiki",
+              "enrollments": Array [
+                Object {
+                  "enrollment_state": "active",
+                  "role": "TeacherEnrollment",
+                  "role_id": "1",
+                  "type": "teacher",
+                  "user_id": "1",
+                },
+              ],
+              "id": "1",
+              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+              "is_favorite": true,
+              "name": "Biology 101",
+              "short_name": "BIO 101",
+              "term": Object {
+                "name": "Default Term",
+              },
+            },
+            Object {
+              "color": "#8F3E97",
+              "course_code": "LIT 401",
+              "default_view": "wiki",
+              "enrollments": Array [
+                Object {
+                  "enrollment_state": "active",
+                  "role": "TeacherEnrollment",
+                  "role_id": "1",
+                  "type": "teacher",
+                  "user_id": "1",
+                },
+              ],
+              "id": "2",
+              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+              "is_favorite": false,
+              "name": "American Literature Psysicks foobar hello world 401",
+              "short_name": "LIT 401",
+              "term": Object {
+                "name": "Default Term",
+              },
+            },
+            Object {
+              "color": "#8F3E99",
+              "course_code": "FOO 102",
+              "default_view": "wiki",
+              "enrollments": Array [
+                Object {
+                  "enrollment_state": "active",
+                  "role": "TeacherEnrollment",
+                  "role_id": "1",
+                  "type": "teacher",
+                  "user_id": "1",
+                },
+              ],
+              "id": "3",
+              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+              "is_favorite": true,
+              "name": "Foobar 102",
+              "short_name": "FOO 102",
+              "term": Object {
+                "name": "Default Term",
+              },
+            },
+          ],
+          "renderItem": [Function],
+        },
+      ]
+    }
+    stickyHeaderIndices={Array []}
+    stickySectionHeadersEnabled={false}
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  >
+    <RCTRefreshControl />
+    <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      />
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <TouchableHighlight
+          accessible={false}
+          onLayout={[Function]}
+          onPress={[Function]}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#ffffff01",
+                "height": 160,
+                "shadowColor": "#000",
+                "shadowOffset": Object {
+                  "height": 1,
+                  "width": 0,
+                },
+                "shadowOpacity": 0.2,
+                "shadowRadius": 1,
+              },
+              Object {
+                "height": 0,
+                "padding": 8,
+                "width": undefined,
+              },
+            ]
+          }
+          testID="course-1"
+          underlayColor="transparent"
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "white",
+                "borderColor": "#e3e3e3",
+                "borderRadius": 4,
+                "borderWidth": 0.5,
+                "flex": 1,
+                "overflow": "hidden",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+                  }
+                }
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              />
+              <View
+                accessibilityLabel="Biology 101"
+                accessibilityTraits="button"
+                accessible={true}
+                style={
+                  Object {
+                    "backgroundColor": "#27B9CD",
+                    "bottom": 0,
+                    "left": 0,
+                    "opacity": 0.8,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              />
+              <TouchableHighlight
+                accessibilityLabel="Open Biology 101 user preferences"
+                accessibilityTraits="button"
+                accessible={true}
+                onPress={[Function]}
+                style={
+                  Object {
+                    "height": 43,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                    "width": 43,
+                  }
+                }
+                testID="course-card.kabob-1"
+                underlayColor="#ffffff00"
+              >
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/kabob.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 18,
+                      "position": "absolute",
+                      "right": 8,
+                      "top": 10,
+                      "width": 18,
+                    }
+                  }
+                />
+              </TouchableHighlight>
+            </View>
+            <View
+              accessible={false}
+              style={
+                Object {
+                  "flex": 1,
+                  "paddingHorizontal": 10,
+                }
+              }
+            >
+              <Text
+                accessible={false}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={2}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#27B9CD",
+                      "fontWeight": "600",
+                      "marginTop": 8,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
+                }
+              >
+                Biology 101
+              </Text>
+              <Text
+                accessible={false}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={1}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#8B969D",
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "marginTop": 2,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
+                }
+              >
+                BIO 101
+              </Text>
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <TouchableHighlight
+          accessible={false}
+          onLayout={[Function]}
+          onPress={[Function]}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#ffffff01",
+                "height": 160,
+                "shadowColor": "#000",
+                "shadowOffset": Object {
+                  "height": 1,
+                  "width": 0,
+                },
+                "shadowOpacity": 0.2,
+                "shadowRadius": 1,
+              },
+              Object {
+                "height": 0,
+                "padding": 8,
+                "width": undefined,
+              },
+            ]
+          }
+          testID="course-2"
+          underlayColor="transparent"
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "white",
+                "borderColor": "#e3e3e3",
+                "borderRadius": 4,
+                "borderWidth": 0.5,
+                "flex": 1,
+                "overflow": "hidden",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+                  }
+                }
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              />
+              <View
+                accessibilityLabel="American Literature Psysicks foobar hello world 401"
+                accessibilityTraits="button"
+                accessible={true}
+                style={
+                  Object {
+                    "backgroundColor": "#8F3E97",
+                    "bottom": 0,
+                    "left": 0,
+                    "opacity": 0.8,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              />
+              <TouchableHighlight
+                accessibilityLabel="Open American Literature Psysicks foobar hello world 401 user preferences"
+                accessibilityTraits="button"
+                accessible={true}
+                onPress={[Function]}
+                style={
+                  Object {
+                    "height": 43,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                    "width": 43,
+                  }
+                }
+                testID="course-card.kabob-2"
+                underlayColor="#ffffff00"
+              >
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/kabob.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 18,
+                      "position": "absolute",
+                      "right": 8,
+                      "top": 10,
+                      "width": 18,
+                    }
+                  }
+                />
+              </TouchableHighlight>
+            </View>
+            <View
+              accessible={false}
+              style={
+                Object {
+                  "flex": 1,
+                  "paddingHorizontal": 10,
+                }
+              }
+            >
+              <Text
+                accessible={false}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={2}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#8F3E97",
+                      "fontWeight": "600",
+                      "marginTop": 8,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
+                }
+              >
+                American Literature Psysicks foobar hello world 401
+              </Text>
+              <Text
+                accessible={false}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={1}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#8B969D",
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "marginTop": 2,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
+                }
+              >
+                LIT 401
+              </Text>
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <TouchableHighlight
+          accessible={false}
+          onLayout={[Function]}
+          onPress={[Function]}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#ffffff01",
+                "height": 160,
+                "shadowColor": "#000",
+                "shadowOffset": Object {
+                  "height": 1,
+                  "width": 0,
+                },
+                "shadowOpacity": 0.2,
+                "shadowRadius": 1,
+              },
+              Object {
+                "height": 0,
+                "padding": 8,
+                "width": undefined,
+              },
+            ]
+          }
+          testID="course-3"
+          underlayColor="transparent"
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "white",
+                "borderColor": "#e3e3e3",
+                "borderRadius": 4,
+                "borderWidth": 0.5,
+                "flex": 1,
+                "overflow": "hidden",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+                  }
+                }
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              />
+              <View
+                accessibilityLabel="Foobar 102"
+                accessibilityTraits="button"
+                accessible={true}
+                style={
+                  Object {
+                    "backgroundColor": "#8F3E99",
+                    "bottom": 0,
+                    "left": 0,
+                    "opacity": 0.8,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              />
+              <TouchableHighlight
+                accessibilityLabel="Open Foobar 102 user preferences"
+                accessibilityTraits="button"
+                accessible={true}
+                onPress={[Function]}
+                style={
+                  Object {
+                    "height": 43,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                    "width": 43,
+                  }
+                }
+                testID="course-card.kabob-3"
+                underlayColor="#ffffff00"
+              >
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/kabob.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 18,
+                      "position": "absolute",
+                      "right": 8,
+                      "top": 10,
+                      "width": 18,
+                    }
+                  }
+                />
+              </TouchableHighlight>
+            </View>
+            <View
+              accessible={false}
+              style={
+                Object {
+                  "flex": 1,
+                  "paddingHorizontal": 10,
+                }
+              }
+            >
+              <Text
+                accessible={false}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={2}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#8F3E99",
+                      "fontWeight": "600",
+                      "marginTop": 8,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
+                }
+              >
+                Foobar 102
+              </Text>
+              <Text
+                accessible={false}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={1}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#8B969D",
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "marginTop": 2,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
+                }
+              >
+                FOO 102
+              </Text>
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      />
+      <View
+        style={
+          Object {
+            "height": 0,
+          }
+        }
+      />
+    </View>
+  </RCTScrollView>
+</RCTSafeAreaView>
 `;
 
 exports[`render 1`] = `
-<RCTScrollView
-  ItemSeparatorComponent={undefined}
-  contentContainerStyle={
+<RCTSafeAreaView
+  style={
     Object {
-      "flexDirection": "row",
-      "flexWrap": "wrap",
-      "padding": 8,
+      "flex": 1,
     }
   }
-  data={
-    Array [
-      Object {
-        "data": Array [
-          Object {
-            "color": "#27B9CD",
-            "course_code": "BIO 101",
-            "default_view": "wiki",
-            "enrollments": Array [
-              Object {
-                "enrollment_state": "active",
-                "role": "TeacherEnrollment",
-                "role_id": "1",
-                "type": "teacher",
-                "user_id": "1",
-              },
-            ],
-            "id": "1",
-            "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-            "is_favorite": true,
-            "name": "Biology 101",
-            "short_name": "BIO 101",
-            "term": Object {
-              "name": "Default Term",
-            },
-          },
-          Object {
-            "color": "#8F3E97",
-            "course_code": "LIT 401",
-            "default_view": "wiki",
-            "enrollments": Array [
-              Object {
-                "enrollment_state": "active",
-                "role": "TeacherEnrollment",
-                "role_id": "1",
-                "type": "teacher",
-                "user_id": "1",
-              },
-            ],
-            "id": "2",
-            "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-            "is_favorite": false,
-            "name": "American Literature Psysicks foobar hello world 401",
-            "short_name": "LIT 401",
-            "term": Object {
-              "name": "Default Term",
-            },
-          },
-          Object {
-            "color": "#8F3E99",
-            "course_code": "FOO 102",
-            "default_view": "wiki",
-            "enrollments": Array [
-              Object {
-                "enrollment_state": "active",
-                "role": "TeacherEnrollment",
-                "role_id": "1",
-                "type": "teacher",
-                "user_id": "1",
-              },
-            ],
-            "id": "3",
-            "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-            "is_favorite": true,
-            "name": "Foobar 102",
-            "short_name": "FOO 102",
-            "term": Object {
-              "name": "Default Term",
-            },
-          },
-        ],
-        "renderItem": [Function],
-        "sectionID": "dashboard.courses",
-        "seeAll": [Function],
-        "title": "Courses",
-      },
-    ]
-  }
-  disableVirtualization={false}
-  getItem={[Function]}
-  getItemCount={[Function]}
-  horizontal={false}
-  initialNumToRender={10}
-  keyExtractor={[Function]}
-  maxToRenderPerBatch={10}
-  onContentSizeChange={[Function]}
-  onEndReachedThreshold={2}
-  onLayout={[Function]}
-  onMomentumScrollEnd={[Function]}
-  onRefresh={[Function]}
-  onScroll={[Function]}
-  onScrollBeginDrag={[Function]}
-  onScrollEndDrag={[Function]}
-  onViewableItemsChanged={undefined}
-  refreshControl={
-    <RefreshControlMock
-      onRefresh={[Function]}
-      progressViewOffset={undefined}
-      refreshing={false}
-    />
-  }
-  refreshing={false}
-  renderItem={[Function]}
-  renderSectionHeader={[Function]}
-  scrollEventThrottle={50}
-  sections={
-    Array [
-      Object {
-        "data": Array [
-          Object {
-            "color": "#27B9CD",
-            "course_code": "BIO 101",
-            "default_view": "wiki",
-            "enrollments": Array [
-              Object {
-                "enrollment_state": "active",
-                "role": "TeacherEnrollment",
-                "role_id": "1",
-                "type": "teacher",
-                "user_id": "1",
-              },
-            ],
-            "id": "1",
-            "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-            "is_favorite": true,
-            "name": "Biology 101",
-            "short_name": "BIO 101",
-            "term": Object {
-              "name": "Default Term",
-            },
-          },
-          Object {
-            "color": "#8F3E97",
-            "course_code": "LIT 401",
-            "default_view": "wiki",
-            "enrollments": Array [
-              Object {
-                "enrollment_state": "active",
-                "role": "TeacherEnrollment",
-                "role_id": "1",
-                "type": "teacher",
-                "user_id": "1",
-              },
-            ],
-            "id": "2",
-            "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-            "is_favorite": false,
-            "name": "American Literature Psysicks foobar hello world 401",
-            "short_name": "LIT 401",
-            "term": Object {
-              "name": "Default Term",
-            },
-          },
-          Object {
-            "color": "#8F3E99",
-            "course_code": "FOO 102",
-            "default_view": "wiki",
-            "enrollments": Array [
-              Object {
-                "enrollment_state": "active",
-                "role": "TeacherEnrollment",
-                "role_id": "1",
-                "type": "teacher",
-                "user_id": "1",
-              },
-            ],
-            "id": "3",
-            "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-            "is_favorite": true,
-            "name": "Foobar 102",
-            "short_name": "FOO 102",
-            "term": Object {
-              "name": "Default Term",
-            },
-          },
-        ],
-        "renderItem": [Function],
-        "sectionID": "dashboard.courses",
-        "seeAll": [Function],
-        "title": "Courses",
-      },
-    ]
-  }
-  stickyHeaderIndices={Array []}
-  stickySectionHeadersEnabled={false}
-  updateCellsBatchingPeriod={50}
-  windowSize={21}
 >
-  <RCTRefreshControl />
-  <View>
-    <View
-      onLayout={[Function]}
-      style={null}
-    >
+  <RCTScrollView
+    ItemSeparatorComponent={undefined}
+    contentContainerStyle={
+      Object {
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "padding": 8,
+      }
+    }
+    data={
+      Array [
+        Object {
+          "data": Array [
+            Object {
+              "color": "#27B9CD",
+              "course_code": "BIO 101",
+              "default_view": "wiki",
+              "enrollments": Array [
+                Object {
+                  "enrollment_state": "active",
+                  "role": "TeacherEnrollment",
+                  "role_id": "1",
+                  "type": "teacher",
+                  "user_id": "1",
+                },
+              ],
+              "id": "1",
+              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+              "is_favorite": true,
+              "name": "Biology 101",
+              "short_name": "BIO 101",
+              "term": Object {
+                "name": "Default Term",
+              },
+            },
+            Object {
+              "color": "#8F3E97",
+              "course_code": "LIT 401",
+              "default_view": "wiki",
+              "enrollments": Array [
+                Object {
+                  "enrollment_state": "active",
+                  "role": "TeacherEnrollment",
+                  "role_id": "1",
+                  "type": "teacher",
+                  "user_id": "1",
+                },
+              ],
+              "id": "2",
+              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+              "is_favorite": false,
+              "name": "American Literature Psysicks foobar hello world 401",
+              "short_name": "LIT 401",
+              "term": Object {
+                "name": "Default Term",
+              },
+            },
+            Object {
+              "color": "#8F3E99",
+              "course_code": "FOO 102",
+              "default_view": "wiki",
+              "enrollments": Array [
+                Object {
+                  "enrollment_state": "active",
+                  "role": "TeacherEnrollment",
+                  "role_id": "1",
+                  "type": "teacher",
+                  "user_id": "1",
+                },
+              ],
+              "id": "3",
+              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+              "is_favorite": true,
+              "name": "Foobar 102",
+              "short_name": "FOO 102",
+              "term": Object {
+                "name": "Default Term",
+              },
+            },
+          ],
+          "renderItem": [Function],
+          "sectionID": "dashboard.courses",
+          "seeAll": [Function],
+          "title": "Courses",
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onRefresh={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    onViewableItemsChanged={undefined}
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        progressViewOffset={undefined}
+        refreshing={false}
+      />
+    }
+    refreshing={false}
+    renderItem={[Function]}
+    renderSectionHeader={[Function]}
+    scrollEventThrottle={50}
+    sections={
+      Array [
+        Object {
+          "data": Array [
+            Object {
+              "color": "#27B9CD",
+              "course_code": "BIO 101",
+              "default_view": "wiki",
+              "enrollments": Array [
+                Object {
+                  "enrollment_state": "active",
+                  "role": "TeacherEnrollment",
+                  "role_id": "1",
+                  "type": "teacher",
+                  "user_id": "1",
+                },
+              ],
+              "id": "1",
+              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+              "is_favorite": true,
+              "name": "Biology 101",
+              "short_name": "BIO 101",
+              "term": Object {
+                "name": "Default Term",
+              },
+            },
+            Object {
+              "color": "#8F3E97",
+              "course_code": "LIT 401",
+              "default_view": "wiki",
+              "enrollments": Array [
+                Object {
+                  "enrollment_state": "active",
+                  "role": "TeacherEnrollment",
+                  "role_id": "1",
+                  "type": "teacher",
+                  "user_id": "1",
+                },
+              ],
+              "id": "2",
+              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+              "is_favorite": false,
+              "name": "American Literature Psysicks foobar hello world 401",
+              "short_name": "LIT 401",
+              "term": Object {
+                "name": "Default Term",
+              },
+            },
+            Object {
+              "color": "#8F3E99",
+              "course_code": "FOO 102",
+              "default_view": "wiki",
+              "enrollments": Array [
+                Object {
+                  "enrollment_state": "active",
+                  "role": "TeacherEnrollment",
+                  "role_id": "1",
+                  "type": "teacher",
+                  "user_id": "1",
+                },
+              ],
+              "id": "3",
+              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+              "is_favorite": true,
+              "name": "Foobar 102",
+              "short_name": "FOO 102",
+              "term": Object {
+                "name": "Default Term",
+              },
+            },
+          ],
+          "renderItem": [Function],
+          "sectionID": "dashboard.courses",
+          "seeAll": [Function],
+          "title": "Courses",
+        },
+      ]
+    }
+    stickyHeaderIndices={Array []}
+    stickySectionHeadersEnabled={false}
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  >
+    <RCTRefreshControl />
+    <View>
       <View
-        accessibitilityTraits="heading"
-        style={
-          Array [
-            Object {
-              "padding": 8,
-              "width": 359,
-            },
-            Object {
-              "alignItems": "flex-end",
-              "flexDirection": "row",
-              "justifyContent": "space-between",
-              "paddingBottom": 0,
-              "paddingTop": 16,
-            },
-          ]
-        }
+        onLayout={[Function]}
+        style={null}
       >
-        <Text
-          accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
+        <View
+          accessibitilityTraits="heading"
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
+                "padding": 8,
+                "width": 359,
               },
               Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
+                "alignItems": "flex-end",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "paddingBottom": 0,
+                "paddingTop": 16,
               },
-              undefined,
             ]
           }
-          testID="dashboard.courses.heading-lbl"
         >
-          Courses
-        </Text>
-        <TouchableOpacity
-          accessibilityTraits="button"
-          hitSlop={
-            Object {
-              "bottom": 15,
-              "left": 15,
-              "right": 15,
-              "top": 15,
+          <Text
+            accessibilityTraits="header"
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 20,
+                },
+                undefined,
+              ]
             }
-          }
-          onPress={[Function]}
-          testID="dashboard.courses.see-all-btn"
-        >
-          <View>
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
+            testID="dashboard.courses.heading-lbl"
+          >
+            Courses
+          </Text>
+          <TouchableOpacity
+            accessibilityTraits="button"
+            hitSlop={
+              Object {
+                "bottom": 15,
+                "left": 15,
+                "right": 15,
+                "top": 15,
+              }
+            }
+            onPress={[Function]}
+            testID="dashboard.courses.see-all-btn"
+          >
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
                   Array [
                     Object {
-                      "color": "#374A59",
-                      "fontSize": 14,
+                      "fontFamily": ".SFUIDisplay",
                     },
                     Object {
-                      "fontFamily": ".SFUIDisplay-bold",
+                      "color": "#2D3B45",
+                      "fontSize": 16,
                     },
+                    Array [
+                      Object {
+                        "color": "#374A59",
+                        "fontSize": 14,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-bold",
+                      },
+                      Object {
+                        "color": "#374A59",
+                      },
+                      Object {},
+                    ],
                     Object {
-                      "color": "#374A59",
+                      "fontFamily": ".SFUIDisplay",
                     },
-                    Object {},
-                  ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                ]
-              }
-            >
-              See All
-            </Text>
-          </View>
-        </TouchableOpacity>
+                  ]
+                }
+              >
+                See All
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
-    <View
-      onLayout={[Function]}
-      style={null}
-    >
-      <TouchableHighlight
-        accessible={false}
+      <View
         onLayout={[Function]}
-        onPress={[Function]}
-        style={
-          Array [
-            Object {
-              "backgroundColor": "#ffffff01",
-              "height": 160,
-              "shadowColor": "#000",
-              "shadowOffset": Object {
-                "height": 1,
-                "width": 0,
-              },
-              "shadowOpacity": 0.2,
-              "shadowRadius": 1,
-            },
-            Object {
-              "height": 0,
-              "padding": 8,
-              "width": undefined,
-            },
-          ]
-        }
-        testID="course-1"
-        underlayColor="transparent"
+        style={null}
       >
-        <View
+        <TouchableHighlight
+          accessible={false}
+          onLayout={[Function]}
+          onPress={[Function]}
           style={
-            Object {
-              "backgroundColor": "white",
-              "borderColor": "#e3e3e3",
-              "borderRadius": 4,
-              "borderWidth": 0.5,
-              "flex": 1,
-              "overflow": "hidden",
-            }
+            Array [
+              Object {
+                "backgroundColor": "#ffffff01",
+                "height": 160,
+                "shadowColor": "#000",
+                "shadowOffset": Object {
+                  "height": 1,
+                  "width": 0,
+                },
+                "shadowOpacity": 0.2,
+                "shadowRadius": 1,
+              },
+              Object {
+                "height": 0,
+                "padding": 8,
+                "width": undefined,
+              },
+            ]
           }
+          testID="course-1"
+          underlayColor="transparent"
         >
           <View
             style={
               Object {
+                "backgroundColor": "white",
+                "borderColor": "#e3e3e3",
+                "borderRadius": 4,
+                "borderWidth": 0.5,
                 "flex": 1,
+                "overflow": "hidden",
               }
             }
           >
-            <Image
-              source={
-                Object {
-                  "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-                }
-              }
+            <View
               style={
                 Object {
                   "flex": 1,
                 }
               }
-            />
-            <View
-              accessibilityLabel="Biology 101"
-              accessibilityTraits="button"
-              accessible={true}
-              style={
-                Object {
-                  "backgroundColor": "#27B9CD",
-                  "bottom": 0,
-                  "left": 0,
-                  "opacity": 0.8,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                }
-              }
-            />
-            <TouchableHighlight
-              accessibilityLabel="Open Biology 101 user preferences"
-              accessibilityTraits="button"
-              accessible={true}
-              onPress={[Function]}
-              style={
-                Object {
-                  "height": 43,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                  "width": 43,
-                }
-              }
-              testID="course-card.kabob-1"
-              underlayColor="#ffffff00"
             >
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/kabob.png",
+                    "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
                   }
                 }
                 style={
                   Object {
-                    "height": 18,
-                    "position": "absolute",
-                    "right": 8,
-                    "top": 10,
-                    "width": 18,
+                    "flex": 1,
                   }
                 }
               />
-            </TouchableHighlight>
-          </View>
-          <View
-            accessible={false}
-            style={
-              Object {
-                "flex": 1,
-                "paddingHorizontal": 10,
-              }
-            }
-          >
-            <Text
+              <View
+                accessibilityLabel="Biology 101"
+                accessibilityTraits="button"
+                accessible={true}
+                style={
+                  Object {
+                    "backgroundColor": "#27B9CD",
+                    "bottom": 0,
+                    "left": 0,
+                    "opacity": 0.8,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              />
+              <TouchableHighlight
+                accessibilityLabel="Open Biology 101 user preferences"
+                accessibilityTraits="button"
+                accessible={true}
+                onPress={[Function]}
+                style={
+                  Object {
+                    "height": 43,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                    "width": 43,
+                  }
+                }
+                testID="course-card.kabob-1"
+                underlayColor="#ffffff00"
+              >
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/kabob.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 18,
+                      "position": "absolute",
+                      "right": 8,
+                      "top": 10,
+                      "width": 18,
+                    }
+                  }
+                />
+              </TouchableHighlight>
+            </View>
+            <View
               accessible={false}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={2}
               style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "color": "#27B9CD",
-                    "fontWeight": "600",
-                    "marginTop": 8,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
+                Object {
+                  "flex": 1,
+                  "paddingHorizontal": 10,
+                }
               }
             >
-              Biology 101
-            </Text>
-            <Text
-              accessible={false}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={1}
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "color": "#8B969D",
-                    "fontSize": 12,
-                    "fontWeight": "600",
-                    "marginTop": 2,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              BIO 101
-            </Text>
+              <Text
+                accessible={false}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={2}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#27B9CD",
+                      "fontWeight": "600",
+                      "marginTop": 8,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
+                }
+              >
+                Biology 101
+              </Text>
+              <Text
+                accessible={false}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={1}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#8B969D",
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "marginTop": 2,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
+                }
+              >
+                BIO 101
+              </Text>
+            </View>
           </View>
-        </View>
-      </TouchableHighlight>
-    </View>
-    <View
-      onLayout={[Function]}
-      style={null}
-    >
-      <TouchableHighlight
-        accessible={false}
+        </TouchableHighlight>
+      </View>
+      <View
         onLayout={[Function]}
-        onPress={[Function]}
-        style={
-          Array [
-            Object {
-              "backgroundColor": "#ffffff01",
-              "height": 160,
-              "shadowColor": "#000",
-              "shadowOffset": Object {
-                "height": 1,
-                "width": 0,
-              },
-              "shadowOpacity": 0.2,
-              "shadowRadius": 1,
-            },
-            Object {
-              "height": 0,
-              "padding": 8,
-              "width": undefined,
-            },
-          ]
-        }
-        testID="course-2"
-        underlayColor="transparent"
+        style={null}
       >
-        <View
+        <TouchableHighlight
+          accessible={false}
+          onLayout={[Function]}
+          onPress={[Function]}
           style={
-            Object {
-              "backgroundColor": "white",
-              "borderColor": "#e3e3e3",
-              "borderRadius": 4,
-              "borderWidth": 0.5,
-              "flex": 1,
-              "overflow": "hidden",
-            }
+            Array [
+              Object {
+                "backgroundColor": "#ffffff01",
+                "height": 160,
+                "shadowColor": "#000",
+                "shadowOffset": Object {
+                  "height": 1,
+                  "width": 0,
+                },
+                "shadowOpacity": 0.2,
+                "shadowRadius": 1,
+              },
+              Object {
+                "height": 0,
+                "padding": 8,
+                "width": undefined,
+              },
+            ]
           }
+          testID="course-2"
+          underlayColor="transparent"
         >
           <View
             style={
               Object {
+                "backgroundColor": "white",
+                "borderColor": "#e3e3e3",
+                "borderRadius": 4,
+                "borderWidth": 0.5,
                 "flex": 1,
+                "overflow": "hidden",
               }
             }
           >
-            <Image
-              source={
-                Object {
-                  "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-                }
-              }
+            <View
               style={
                 Object {
                   "flex": 1,
                 }
               }
-            />
-            <View
-              accessibilityLabel="American Literature Psysicks foobar hello world 401"
-              accessibilityTraits="button"
-              accessible={true}
-              style={
-                Object {
-                  "backgroundColor": "#8F3E97",
-                  "bottom": 0,
-                  "left": 0,
-                  "opacity": 0.8,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                }
-              }
-            />
-            <TouchableHighlight
-              accessibilityLabel="Open American Literature Psysicks foobar hello world 401 user preferences"
-              accessibilityTraits="button"
-              accessible={true}
-              onPress={[Function]}
-              style={
-                Object {
-                  "height": 43,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                  "width": 43,
-                }
-              }
-              testID="course-card.kabob-2"
-              underlayColor="#ffffff00"
             >
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/kabob.png",
+                    "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
                   }
                 }
                 style={
                   Object {
-                    "height": 18,
-                    "position": "absolute",
-                    "right": 8,
-                    "top": 10,
-                    "width": 18,
+                    "flex": 1,
                   }
                 }
               />
-            </TouchableHighlight>
-          </View>
-          <View
-            accessible={false}
-            style={
-              Object {
-                "flex": 1,
-                "paddingHorizontal": 10,
-              }
-            }
-          >
-            <Text
+              <View
+                accessibilityLabel="American Literature Psysicks foobar hello world 401"
+                accessibilityTraits="button"
+                accessible={true}
+                style={
+                  Object {
+                    "backgroundColor": "#8F3E97",
+                    "bottom": 0,
+                    "left": 0,
+                    "opacity": 0.8,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              />
+              <TouchableHighlight
+                accessibilityLabel="Open American Literature Psysicks foobar hello world 401 user preferences"
+                accessibilityTraits="button"
+                accessible={true}
+                onPress={[Function]}
+                style={
+                  Object {
+                    "height": 43,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                    "width": 43,
+                  }
+                }
+                testID="course-card.kabob-2"
+                underlayColor="#ffffff00"
+              >
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/kabob.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 18,
+                      "position": "absolute",
+                      "right": 8,
+                      "top": 10,
+                      "width": 18,
+                    }
+                  }
+                />
+              </TouchableHighlight>
+            </View>
+            <View
               accessible={false}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={2}
               style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "color": "#8F3E97",
-                    "fontWeight": "600",
-                    "marginTop": 8,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
+                Object {
+                  "flex": 1,
+                  "paddingHorizontal": 10,
+                }
               }
             >
-              American Literature Psysicks foobar hello world 401
-            </Text>
-            <Text
-              accessible={false}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={1}
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "color": "#8B969D",
-                    "fontSize": 12,
-                    "fontWeight": "600",
-                    "marginTop": 2,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              LIT 401
-            </Text>
+              <Text
+                accessible={false}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={2}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#8F3E97",
+                      "fontWeight": "600",
+                      "marginTop": 8,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
+                }
+              >
+                American Literature Psysicks foobar hello world 401
+              </Text>
+              <Text
+                accessible={false}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={1}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#8B969D",
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "marginTop": 2,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
+                }
+              >
+                LIT 401
+              </Text>
+            </View>
           </View>
-        </View>
-      </TouchableHighlight>
-    </View>
-    <View
-      onLayout={[Function]}
-      style={null}
-    >
-      <TouchableHighlight
-        accessible={false}
+        </TouchableHighlight>
+      </View>
+      <View
         onLayout={[Function]}
-        onPress={[Function]}
-        style={
-          Array [
-            Object {
-              "backgroundColor": "#ffffff01",
-              "height": 160,
-              "shadowColor": "#000",
-              "shadowOffset": Object {
-                "height": 1,
-                "width": 0,
-              },
-              "shadowOpacity": 0.2,
-              "shadowRadius": 1,
-            },
-            Object {
-              "height": 0,
-              "padding": 8,
-              "width": undefined,
-            },
-          ]
-        }
-        testID="course-3"
-        underlayColor="transparent"
+        style={null}
       >
-        <View
+        <TouchableHighlight
+          accessible={false}
+          onLayout={[Function]}
+          onPress={[Function]}
           style={
-            Object {
-              "backgroundColor": "white",
-              "borderColor": "#e3e3e3",
-              "borderRadius": 4,
-              "borderWidth": 0.5,
-              "flex": 1,
-              "overflow": "hidden",
-            }
+            Array [
+              Object {
+                "backgroundColor": "#ffffff01",
+                "height": 160,
+                "shadowColor": "#000",
+                "shadowOffset": Object {
+                  "height": 1,
+                  "width": 0,
+                },
+                "shadowOpacity": 0.2,
+                "shadowRadius": 1,
+              },
+              Object {
+                "height": 0,
+                "padding": 8,
+                "width": undefined,
+              },
+            ]
           }
+          testID="course-3"
+          underlayColor="transparent"
         >
           <View
             style={
               Object {
+                "backgroundColor": "white",
+                "borderColor": "#e3e3e3",
+                "borderRadius": 4,
+                "borderWidth": 0.5,
                 "flex": 1,
+                "overflow": "hidden",
               }
             }
           >
-            <Image
-              source={
-                Object {
-                  "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-                }
-              }
+            <View
               style={
                 Object {
                   "flex": 1,
                 }
               }
-            />
-            <View
-              accessibilityLabel="Foobar 102"
-              accessibilityTraits="button"
-              accessible={true}
-              style={
-                Object {
-                  "backgroundColor": "#8F3E99",
-                  "bottom": 0,
-                  "left": 0,
-                  "opacity": 0.8,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                }
-              }
-            />
-            <TouchableHighlight
-              accessibilityLabel="Open Foobar 102 user preferences"
-              accessibilityTraits="button"
-              accessible={true}
-              onPress={[Function]}
-              style={
-                Object {
-                  "height": 43,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                  "width": 43,
-                }
-              }
-              testID="course-card.kabob-3"
-              underlayColor="#ffffff00"
             >
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/kabob.png",
+                    "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
                   }
                 }
                 style={
                   Object {
-                    "height": 18,
-                    "position": "absolute",
-                    "right": 8,
-                    "top": 10,
-                    "width": 18,
+                    "flex": 1,
                   }
                 }
               />
-            </TouchableHighlight>
-          </View>
-          <View
-            accessible={false}
-            style={
-              Object {
-                "flex": 1,
-                "paddingHorizontal": 10,
-              }
-            }
-          >
-            <Text
+              <View
+                accessibilityLabel="Foobar 102"
+                accessibilityTraits="button"
+                accessible={true}
+                style={
+                  Object {
+                    "backgroundColor": "#8F3E99",
+                    "bottom": 0,
+                    "left": 0,
+                    "opacity": 0.8,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              />
+              <TouchableHighlight
+                accessibilityLabel="Open Foobar 102 user preferences"
+                accessibilityTraits="button"
+                accessible={true}
+                onPress={[Function]}
+                style={
+                  Object {
+                    "height": 43,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                    "width": 43,
+                  }
+                }
+                testID="course-card.kabob-3"
+                underlayColor="#ffffff00"
+              >
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/kabob.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 18,
+                      "position": "absolute",
+                      "right": 8,
+                      "top": 10,
+                      "width": 18,
+                    }
+                  }
+                />
+              </TouchableHighlight>
+            </View>
+            <View
               accessible={false}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={2}
               style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "color": "#8F3E99",
-                    "fontWeight": "600",
-                    "marginTop": 8,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
+                Object {
+                  "flex": 1,
+                  "paddingHorizontal": 10,
+                }
               }
             >
-              Foobar 102
-            </Text>
-            <Text
-              accessible={false}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={1}
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "color": "#8B969D",
-                    "fontSize": 12,
-                    "fontWeight": "600",
-                    "marginTop": 2,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              FOO 102
-            </Text>
+              <Text
+                accessible={false}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={2}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#8F3E99",
+                      "fontWeight": "600",
+                      "marginTop": 8,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
+                }
+              >
+                Foobar 102
+              </Text>
+              <Text
+                accessible={false}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={1}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#8B969D",
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "marginTop": 2,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
+                }
+              >
+                FOO 102
+              </Text>
+            </View>
           </View>
-        </View>
-      </TouchableHighlight>
-    </View>
-    <View
-      onLayout={[Function]}
-      style={null}
-    />
-    <View
-      style={
-        Object {
-          "height": 0,
+        </TouchableHighlight>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      />
+      <View
+        style={
+          Object {
+            "height": 0,
+          }
         }
-      }
-    />
-  </View>
-</RCTScrollView>
+      />
+    </View>
+  </RCTScrollView>
+</RCTSafeAreaView>
 `;
 
 exports[`render while pending 1`] = `
-<RCTScrollView
-  ItemSeparatorComponent={undefined}
-  contentContainerStyle={
+<RCTSafeAreaView
+  style={
     Object {
-      "flexDirection": "row",
-      "flexWrap": "wrap",
-      "padding": 8,
+      "flex": 1,
     }
   }
-  data={
-    Array [
-      Object {
-        "data": Array [
-          Object {
-            "color": "#27B9CD",
-            "course_code": "BIO 101",
-            "default_view": "wiki",
-            "enrollments": Array [
-              Object {
-                "enrollment_state": "active",
-                "role": "TeacherEnrollment",
-                "role_id": "1",
-                "type": "teacher",
-                "user_id": "1",
-              },
-            ],
-            "id": "1",
-            "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-            "is_favorite": true,
-            "name": "Biology 101",
-            "short_name": "BIO 101",
-            "term": Object {
-              "name": "Default Term",
-            },
-          },
-          Object {
-            "color": "#8F3E97",
-            "course_code": "LIT 401",
-            "default_view": "wiki",
-            "enrollments": Array [
-              Object {
-                "enrollment_state": "active",
-                "role": "TeacherEnrollment",
-                "role_id": "1",
-                "type": "teacher",
-                "user_id": "1",
-              },
-            ],
-            "id": "2",
-            "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-            "is_favorite": false,
-            "name": "American Literature Psysicks foobar hello world 401",
-            "short_name": "LIT 401",
-            "term": Object {
-              "name": "Default Term",
-            },
-          },
-          Object {
-            "color": "#8F3E99",
-            "course_code": "FOO 102",
-            "default_view": "wiki",
-            "enrollments": Array [
-              Object {
-                "enrollment_state": "active",
-                "role": "TeacherEnrollment",
-                "role_id": "1",
-                "type": "teacher",
-                "user_id": "1",
-              },
-            ],
-            "id": "3",
-            "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-            "is_favorite": true,
-            "name": "Foobar 102",
-            "short_name": "FOO 102",
-            "term": Object {
-              "name": "Default Term",
-            },
-          },
-        ],
-        "renderItem": [Function],
-        "sectionID": "dashboard.courses",
-        "seeAll": [Function],
-        "title": "Courses",
-      },
-    ]
-  }
-  disableVirtualization={false}
-  getItem={[Function]}
-  getItemCount={[Function]}
-  horizontal={false}
-  initialNumToRender={10}
-  keyExtractor={[Function]}
-  maxToRenderPerBatch={10}
-  onContentSizeChange={[Function]}
-  onEndReachedThreshold={2}
-  onLayout={[Function]}
-  onMomentumScrollEnd={[Function]}
-  onRefresh={[Function]}
-  onScroll={[Function]}
-  onScrollBeginDrag={[Function]}
-  onScrollEndDrag={[Function]}
-  onViewableItemsChanged={undefined}
-  refreshControl={
-    <RefreshControlMock
-      onRefresh={[Function]}
-      progressViewOffset={undefined}
-      refreshing={false}
-    />
-  }
-  refreshing={false}
-  renderItem={[Function]}
-  renderSectionHeader={[Function]}
-  scrollEventThrottle={50}
-  sections={
-    Array [
-      Object {
-        "data": Array [
-          Object {
-            "color": "#27B9CD",
-            "course_code": "BIO 101",
-            "default_view": "wiki",
-            "enrollments": Array [
-              Object {
-                "enrollment_state": "active",
-                "role": "TeacherEnrollment",
-                "role_id": "1",
-                "type": "teacher",
-                "user_id": "1",
-              },
-            ],
-            "id": "1",
-            "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-            "is_favorite": true,
-            "name": "Biology 101",
-            "short_name": "BIO 101",
-            "term": Object {
-              "name": "Default Term",
-            },
-          },
-          Object {
-            "color": "#8F3E97",
-            "course_code": "LIT 401",
-            "default_view": "wiki",
-            "enrollments": Array [
-              Object {
-                "enrollment_state": "active",
-                "role": "TeacherEnrollment",
-                "role_id": "1",
-                "type": "teacher",
-                "user_id": "1",
-              },
-            ],
-            "id": "2",
-            "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-            "is_favorite": false,
-            "name": "American Literature Psysicks foobar hello world 401",
-            "short_name": "LIT 401",
-            "term": Object {
-              "name": "Default Term",
-            },
-          },
-          Object {
-            "color": "#8F3E99",
-            "course_code": "FOO 102",
-            "default_view": "wiki",
-            "enrollments": Array [
-              Object {
-                "enrollment_state": "active",
-                "role": "TeacherEnrollment",
-                "role_id": "1",
-                "type": "teacher",
-                "user_id": "1",
-              },
-            ],
-            "id": "3",
-            "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-            "is_favorite": true,
-            "name": "Foobar 102",
-            "short_name": "FOO 102",
-            "term": Object {
-              "name": "Default Term",
-            },
-          },
-        ],
-        "renderItem": [Function],
-        "sectionID": "dashboard.courses",
-        "seeAll": [Function],
-        "title": "Courses",
-      },
-    ]
-  }
-  stickyHeaderIndices={Array []}
-  stickySectionHeadersEnabled={false}
-  updateCellsBatchingPeriod={50}
-  windowSize={21}
 >
-  <RCTRefreshControl />
-  <View>
-    <View
-      onLayout={[Function]}
-      style={null}
-    >
+  <RCTScrollView
+    ItemSeparatorComponent={undefined}
+    contentContainerStyle={
+      Object {
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "padding": 8,
+      }
+    }
+    data={
+      Array [
+        Object {
+          "data": Array [
+            Object {
+              "color": "#27B9CD",
+              "course_code": "BIO 101",
+              "default_view": "wiki",
+              "enrollments": Array [
+                Object {
+                  "enrollment_state": "active",
+                  "role": "TeacherEnrollment",
+                  "role_id": "1",
+                  "type": "teacher",
+                  "user_id": "1",
+                },
+              ],
+              "id": "1",
+              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+              "is_favorite": true,
+              "name": "Biology 101",
+              "short_name": "BIO 101",
+              "term": Object {
+                "name": "Default Term",
+              },
+            },
+            Object {
+              "color": "#8F3E97",
+              "course_code": "LIT 401",
+              "default_view": "wiki",
+              "enrollments": Array [
+                Object {
+                  "enrollment_state": "active",
+                  "role": "TeacherEnrollment",
+                  "role_id": "1",
+                  "type": "teacher",
+                  "user_id": "1",
+                },
+              ],
+              "id": "2",
+              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+              "is_favorite": false,
+              "name": "American Literature Psysicks foobar hello world 401",
+              "short_name": "LIT 401",
+              "term": Object {
+                "name": "Default Term",
+              },
+            },
+            Object {
+              "color": "#8F3E99",
+              "course_code": "FOO 102",
+              "default_view": "wiki",
+              "enrollments": Array [
+                Object {
+                  "enrollment_state": "active",
+                  "role": "TeacherEnrollment",
+                  "role_id": "1",
+                  "type": "teacher",
+                  "user_id": "1",
+                },
+              ],
+              "id": "3",
+              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+              "is_favorite": true,
+              "name": "Foobar 102",
+              "short_name": "FOO 102",
+              "term": Object {
+                "name": "Default Term",
+              },
+            },
+          ],
+          "renderItem": [Function],
+          "sectionID": "dashboard.courses",
+          "seeAll": [Function],
+          "title": "Courses",
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onRefresh={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    onViewableItemsChanged={undefined}
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        progressViewOffset={undefined}
+        refreshing={false}
+      />
+    }
+    refreshing={false}
+    renderItem={[Function]}
+    renderSectionHeader={[Function]}
+    scrollEventThrottle={50}
+    sections={
+      Array [
+        Object {
+          "data": Array [
+            Object {
+              "color": "#27B9CD",
+              "course_code": "BIO 101",
+              "default_view": "wiki",
+              "enrollments": Array [
+                Object {
+                  "enrollment_state": "active",
+                  "role": "TeacherEnrollment",
+                  "role_id": "1",
+                  "type": "teacher",
+                  "user_id": "1",
+                },
+              ],
+              "id": "1",
+              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+              "is_favorite": true,
+              "name": "Biology 101",
+              "short_name": "BIO 101",
+              "term": Object {
+                "name": "Default Term",
+              },
+            },
+            Object {
+              "color": "#8F3E97",
+              "course_code": "LIT 401",
+              "default_view": "wiki",
+              "enrollments": Array [
+                Object {
+                  "enrollment_state": "active",
+                  "role": "TeacherEnrollment",
+                  "role_id": "1",
+                  "type": "teacher",
+                  "user_id": "1",
+                },
+              ],
+              "id": "2",
+              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+              "is_favorite": false,
+              "name": "American Literature Psysicks foobar hello world 401",
+              "short_name": "LIT 401",
+              "term": Object {
+                "name": "Default Term",
+              },
+            },
+            Object {
+              "color": "#8F3E99",
+              "course_code": "FOO 102",
+              "default_view": "wiki",
+              "enrollments": Array [
+                Object {
+                  "enrollment_state": "active",
+                  "role": "TeacherEnrollment",
+                  "role_id": "1",
+                  "type": "teacher",
+                  "user_id": "1",
+                },
+              ],
+              "id": "3",
+              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+              "is_favorite": true,
+              "name": "Foobar 102",
+              "short_name": "FOO 102",
+              "term": Object {
+                "name": "Default Term",
+              },
+            },
+          ],
+          "renderItem": [Function],
+          "sectionID": "dashboard.courses",
+          "seeAll": [Function],
+          "title": "Courses",
+        },
+      ]
+    }
+    stickyHeaderIndices={Array []}
+    stickySectionHeadersEnabled={false}
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  >
+    <RCTRefreshControl />
+    <View>
       <View
-        accessibitilityTraits="heading"
-        style={
-          Array [
-            Object {
-              "padding": 8,
-              "width": 359,
-            },
-            Object {
-              "alignItems": "flex-end",
-              "flexDirection": "row",
-              "justifyContent": "space-between",
-              "paddingBottom": 0,
-              "paddingTop": 16,
-            },
-          ]
-        }
+        onLayout={[Function]}
+        style={null}
       >
-        <Text
-          accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
+        <View
+          accessibitilityTraits="heading"
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
+                "padding": 8,
+                "width": 359,
               },
               Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
+                "alignItems": "flex-end",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "paddingBottom": 0,
+                "paddingTop": 16,
               },
-              undefined,
             ]
           }
-          testID="dashboard.courses.heading-lbl"
         >
-          Courses
-        </Text>
-        <TouchableOpacity
-          accessibilityTraits="button"
-          hitSlop={
-            Object {
-              "bottom": 15,
-              "left": 15,
-              "right": 15,
-              "top": 15,
+          <Text
+            accessibilityTraits="header"
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 20,
+                },
+                undefined,
+              ]
             }
-          }
-          onPress={[Function]}
-          testID="dashboard.courses.see-all-btn"
-        >
-          <View>
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
+            testID="dashboard.courses.heading-lbl"
+          >
+            Courses
+          </Text>
+          <TouchableOpacity
+            accessibilityTraits="button"
+            hitSlop={
+              Object {
+                "bottom": 15,
+                "left": 15,
+                "right": 15,
+                "top": 15,
+              }
+            }
+            onPress={[Function]}
+            testID="dashboard.courses.see-all-btn"
+          >
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
                   Array [
                     Object {
-                      "color": "#374A59",
-                      "fontSize": 14,
+                      "fontFamily": ".SFUIDisplay",
                     },
                     Object {
-                      "fontFamily": ".SFUIDisplay-bold",
+                      "color": "#2D3B45",
+                      "fontSize": 16,
                     },
+                    Array [
+                      Object {
+                        "color": "#374A59",
+                        "fontSize": 14,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-bold",
+                      },
+                      Object {
+                        "color": "#374A59",
+                      },
+                      Object {},
+                    ],
                     Object {
-                      "color": "#374A59",
+                      "fontFamily": ".SFUIDisplay",
                     },
-                    Object {},
-                  ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                ]
-              }
-            >
-              See All
-            </Text>
-          </View>
-        </TouchableOpacity>
+                  ]
+                }
+              >
+                See All
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
-    <View
-      onLayout={[Function]}
-      style={null}
-    >
-      <TouchableHighlight
-        accessible={false}
+      <View
         onLayout={[Function]}
-        onPress={[Function]}
-        style={
-          Array [
-            Object {
-              "backgroundColor": "#ffffff01",
-              "height": 160,
-              "shadowColor": "#000",
-              "shadowOffset": Object {
-                "height": 1,
-                "width": 0,
-              },
-              "shadowOpacity": 0.2,
-              "shadowRadius": 1,
-            },
-            Object {
-              "height": 0,
-              "padding": 8,
-              "width": undefined,
-            },
-          ]
-        }
-        testID="course-1"
-        underlayColor="transparent"
+        style={null}
       >
-        <View
+        <TouchableHighlight
+          accessible={false}
+          onLayout={[Function]}
+          onPress={[Function]}
           style={
-            Object {
-              "backgroundColor": "white",
-              "borderColor": "#e3e3e3",
-              "borderRadius": 4,
-              "borderWidth": 0.5,
-              "flex": 1,
-              "overflow": "hidden",
-            }
+            Array [
+              Object {
+                "backgroundColor": "#ffffff01",
+                "height": 160,
+                "shadowColor": "#000",
+                "shadowOffset": Object {
+                  "height": 1,
+                  "width": 0,
+                },
+                "shadowOpacity": 0.2,
+                "shadowRadius": 1,
+              },
+              Object {
+                "height": 0,
+                "padding": 8,
+                "width": undefined,
+              },
+            ]
           }
+          testID="course-1"
+          underlayColor="transparent"
         >
           <View
             style={
               Object {
+                "backgroundColor": "white",
+                "borderColor": "#e3e3e3",
+                "borderRadius": 4,
+                "borderWidth": 0.5,
                 "flex": 1,
+                "overflow": "hidden",
               }
             }
           >
-            <Image
-              source={
-                Object {
-                  "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-                }
-              }
+            <View
               style={
                 Object {
                   "flex": 1,
                 }
               }
-            />
-            <View
-              accessibilityLabel="Biology 101"
-              accessibilityTraits="button"
-              accessible={true}
-              style={
-                Object {
-                  "backgroundColor": "#27B9CD",
-                  "bottom": 0,
-                  "left": 0,
-                  "opacity": 0.8,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                }
-              }
-            />
-            <TouchableHighlight
-              accessibilityLabel="Open Biology 101 user preferences"
-              accessibilityTraits="button"
-              accessible={true}
-              onPress={[Function]}
-              style={
-                Object {
-                  "height": 43,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                  "width": 43,
-                }
-              }
-              testID="course-card.kabob-1"
-              underlayColor="#ffffff00"
             >
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/kabob.png",
+                    "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
                   }
                 }
                 style={
                   Object {
-                    "height": 18,
-                    "position": "absolute",
-                    "right": 8,
-                    "top": 10,
-                    "width": 18,
+                    "flex": 1,
                   }
                 }
               />
-            </TouchableHighlight>
-          </View>
-          <View
-            accessible={false}
-            style={
-              Object {
-                "flex": 1,
-                "paddingHorizontal": 10,
-              }
-            }
-          >
-            <Text
+              <View
+                accessibilityLabel="Biology 101"
+                accessibilityTraits="button"
+                accessible={true}
+                style={
+                  Object {
+                    "backgroundColor": "#27B9CD",
+                    "bottom": 0,
+                    "left": 0,
+                    "opacity": 0.8,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              />
+              <TouchableHighlight
+                accessibilityLabel="Open Biology 101 user preferences"
+                accessibilityTraits="button"
+                accessible={true}
+                onPress={[Function]}
+                style={
+                  Object {
+                    "height": 43,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                    "width": 43,
+                  }
+                }
+                testID="course-card.kabob-1"
+                underlayColor="#ffffff00"
+              >
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/kabob.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 18,
+                      "position": "absolute",
+                      "right": 8,
+                      "top": 10,
+                      "width": 18,
+                    }
+                  }
+                />
+              </TouchableHighlight>
+            </View>
+            <View
               accessible={false}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={2}
               style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "color": "#27B9CD",
-                    "fontWeight": "600",
-                    "marginTop": 8,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
+                Object {
+                  "flex": 1,
+                  "paddingHorizontal": 10,
+                }
               }
             >
-              Biology 101
-            </Text>
-            <Text
-              accessible={false}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={1}
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "color": "#8B969D",
-                    "fontSize": 12,
-                    "fontWeight": "600",
-                    "marginTop": 2,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              BIO 101
-            </Text>
+              <Text
+                accessible={false}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={2}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#27B9CD",
+                      "fontWeight": "600",
+                      "marginTop": 8,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
+                }
+              >
+                Biology 101
+              </Text>
+              <Text
+                accessible={false}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={1}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#8B969D",
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "marginTop": 2,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
+                }
+              >
+                BIO 101
+              </Text>
+            </View>
           </View>
-        </View>
-      </TouchableHighlight>
-    </View>
-    <View
-      onLayout={[Function]}
-      style={null}
-    >
-      <TouchableHighlight
-        accessible={false}
+        </TouchableHighlight>
+      </View>
+      <View
         onLayout={[Function]}
-        onPress={[Function]}
-        style={
-          Array [
-            Object {
-              "backgroundColor": "#ffffff01",
-              "height": 160,
-              "shadowColor": "#000",
-              "shadowOffset": Object {
-                "height": 1,
-                "width": 0,
-              },
-              "shadowOpacity": 0.2,
-              "shadowRadius": 1,
-            },
-            Object {
-              "height": 0,
-              "padding": 8,
-              "width": undefined,
-            },
-          ]
-        }
-        testID="course-2"
-        underlayColor="transparent"
+        style={null}
       >
-        <View
+        <TouchableHighlight
+          accessible={false}
+          onLayout={[Function]}
+          onPress={[Function]}
           style={
-            Object {
-              "backgroundColor": "white",
-              "borderColor": "#e3e3e3",
-              "borderRadius": 4,
-              "borderWidth": 0.5,
-              "flex": 1,
-              "overflow": "hidden",
-            }
+            Array [
+              Object {
+                "backgroundColor": "#ffffff01",
+                "height": 160,
+                "shadowColor": "#000",
+                "shadowOffset": Object {
+                  "height": 1,
+                  "width": 0,
+                },
+                "shadowOpacity": 0.2,
+                "shadowRadius": 1,
+              },
+              Object {
+                "height": 0,
+                "padding": 8,
+                "width": undefined,
+              },
+            ]
           }
+          testID="course-2"
+          underlayColor="transparent"
         >
           <View
             style={
               Object {
+                "backgroundColor": "white",
+                "borderColor": "#e3e3e3",
+                "borderRadius": 4,
+                "borderWidth": 0.5,
                 "flex": 1,
+                "overflow": "hidden",
               }
             }
           >
-            <Image
-              source={
-                Object {
-                  "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-                }
-              }
+            <View
               style={
                 Object {
                   "flex": 1,
                 }
               }
-            />
-            <View
-              accessibilityLabel="American Literature Psysicks foobar hello world 401"
-              accessibilityTraits="button"
-              accessible={true}
-              style={
-                Object {
-                  "backgroundColor": "#8F3E97",
-                  "bottom": 0,
-                  "left": 0,
-                  "opacity": 0.8,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                }
-              }
-            />
-            <TouchableHighlight
-              accessibilityLabel="Open American Literature Psysicks foobar hello world 401 user preferences"
-              accessibilityTraits="button"
-              accessible={true}
-              onPress={[Function]}
-              style={
-                Object {
-                  "height": 43,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                  "width": 43,
-                }
-              }
-              testID="course-card.kabob-2"
-              underlayColor="#ffffff00"
             >
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/kabob.png",
+                    "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
                   }
                 }
                 style={
                   Object {
-                    "height": 18,
-                    "position": "absolute",
-                    "right": 8,
-                    "top": 10,
-                    "width": 18,
+                    "flex": 1,
                   }
                 }
               />
-            </TouchableHighlight>
-          </View>
-          <View
-            accessible={false}
-            style={
-              Object {
-                "flex": 1,
-                "paddingHorizontal": 10,
-              }
-            }
-          >
-            <Text
+              <View
+                accessibilityLabel="American Literature Psysicks foobar hello world 401"
+                accessibilityTraits="button"
+                accessible={true}
+                style={
+                  Object {
+                    "backgroundColor": "#8F3E97",
+                    "bottom": 0,
+                    "left": 0,
+                    "opacity": 0.8,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              />
+              <TouchableHighlight
+                accessibilityLabel="Open American Literature Psysicks foobar hello world 401 user preferences"
+                accessibilityTraits="button"
+                accessible={true}
+                onPress={[Function]}
+                style={
+                  Object {
+                    "height": 43,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                    "width": 43,
+                  }
+                }
+                testID="course-card.kabob-2"
+                underlayColor="#ffffff00"
+              >
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/kabob.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 18,
+                      "position": "absolute",
+                      "right": 8,
+                      "top": 10,
+                      "width": 18,
+                    }
+                  }
+                />
+              </TouchableHighlight>
+            </View>
+            <View
               accessible={false}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={2}
               style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "color": "#8F3E97",
-                    "fontWeight": "600",
-                    "marginTop": 8,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
+                Object {
+                  "flex": 1,
+                  "paddingHorizontal": 10,
+                }
               }
             >
-              American Literature Psysicks foobar hello world 401
-            </Text>
-            <Text
-              accessible={false}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={1}
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "color": "#8B969D",
-                    "fontSize": 12,
-                    "fontWeight": "600",
-                    "marginTop": 2,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              LIT 401
-            </Text>
+              <Text
+                accessible={false}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={2}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#8F3E97",
+                      "fontWeight": "600",
+                      "marginTop": 8,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
+                }
+              >
+                American Literature Psysicks foobar hello world 401
+              </Text>
+              <Text
+                accessible={false}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={1}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#8B969D",
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "marginTop": 2,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
+                }
+              >
+                LIT 401
+              </Text>
+            </View>
           </View>
-        </View>
-      </TouchableHighlight>
-    </View>
-    <View
-      onLayout={[Function]}
-      style={null}
-    >
-      <TouchableHighlight
-        accessible={false}
+        </TouchableHighlight>
+      </View>
+      <View
         onLayout={[Function]}
-        onPress={[Function]}
-        style={
-          Array [
-            Object {
-              "backgroundColor": "#ffffff01",
-              "height": 160,
-              "shadowColor": "#000",
-              "shadowOffset": Object {
-                "height": 1,
-                "width": 0,
-              },
-              "shadowOpacity": 0.2,
-              "shadowRadius": 1,
-            },
-            Object {
-              "height": 0,
-              "padding": 8,
-              "width": undefined,
-            },
-          ]
-        }
-        testID="course-3"
-        underlayColor="transparent"
+        style={null}
       >
-        <View
+        <TouchableHighlight
+          accessible={false}
+          onLayout={[Function]}
+          onPress={[Function]}
           style={
-            Object {
-              "backgroundColor": "white",
-              "borderColor": "#e3e3e3",
-              "borderRadius": 4,
-              "borderWidth": 0.5,
-              "flex": 1,
-              "overflow": "hidden",
-            }
+            Array [
+              Object {
+                "backgroundColor": "#ffffff01",
+                "height": 160,
+                "shadowColor": "#000",
+                "shadowOffset": Object {
+                  "height": 1,
+                  "width": 0,
+                },
+                "shadowOpacity": 0.2,
+                "shadowRadius": 1,
+              },
+              Object {
+                "height": 0,
+                "padding": 8,
+                "width": undefined,
+              },
+            ]
           }
+          testID="course-3"
+          underlayColor="transparent"
         >
           <View
             style={
               Object {
+                "backgroundColor": "white",
+                "borderColor": "#e3e3e3",
+                "borderRadius": 4,
+                "borderWidth": 0.5,
                 "flex": 1,
+                "overflow": "hidden",
               }
             }
           >
-            <Image
-              source={
-                Object {
-                  "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-                }
-              }
+            <View
               style={
                 Object {
                   "flex": 1,
                 }
               }
-            />
-            <View
-              accessibilityLabel="Foobar 102"
-              accessibilityTraits="button"
-              accessible={true}
-              style={
-                Object {
-                  "backgroundColor": "#8F3E99",
-                  "bottom": 0,
-                  "left": 0,
-                  "opacity": 0.8,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                }
-              }
-            />
-            <TouchableHighlight
-              accessibilityLabel="Open Foobar 102 user preferences"
-              accessibilityTraits="button"
-              accessible={true}
-              onPress={[Function]}
-              style={
-                Object {
-                  "height": 43,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                  "width": 43,
-                }
-              }
-              testID="course-card.kabob-3"
-              underlayColor="#ffffff00"
             >
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/kabob.png",
+                    "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
                   }
                 }
                 style={
                   Object {
-                    "height": 18,
-                    "position": "absolute",
-                    "right": 8,
-                    "top": 10,
-                    "width": 18,
+                    "flex": 1,
                   }
                 }
               />
-            </TouchableHighlight>
-          </View>
-          <View
-            accessible={false}
-            style={
-              Object {
-                "flex": 1,
-                "paddingHorizontal": 10,
-              }
-            }
-          >
-            <Text
+              <View
+                accessibilityLabel="Foobar 102"
+                accessibilityTraits="button"
+                accessible={true}
+                style={
+                  Object {
+                    "backgroundColor": "#8F3E99",
+                    "bottom": 0,
+                    "left": 0,
+                    "opacity": 0.8,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              />
+              <TouchableHighlight
+                accessibilityLabel="Open Foobar 102 user preferences"
+                accessibilityTraits="button"
+                accessible={true}
+                onPress={[Function]}
+                style={
+                  Object {
+                    "height": 43,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                    "width": 43,
+                  }
+                }
+                testID="course-card.kabob-3"
+                underlayColor="#ffffff00"
+              >
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/kabob.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 18,
+                      "position": "absolute",
+                      "right": 8,
+                      "top": 10,
+                      "width": 18,
+                    }
+                  }
+                />
+              </TouchableHighlight>
+            </View>
+            <View
               accessible={false}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={2}
               style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "color": "#8F3E99",
-                    "fontWeight": "600",
-                    "marginTop": 8,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
+                Object {
+                  "flex": 1,
+                  "paddingHorizontal": 10,
+                }
               }
             >
-              Foobar 102
-            </Text>
-            <Text
-              accessible={false}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={1}
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "color": "#8B969D",
-                    "fontSize": 12,
-                    "fontWeight": "600",
-                    "marginTop": 2,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              FOO 102
-            </Text>
+              <Text
+                accessible={false}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={2}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#8F3E99",
+                      "fontWeight": "600",
+                      "marginTop": 8,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
+                }
+              >
+                Foobar 102
+              </Text>
+              <Text
+                accessible={false}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={1}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#8B969D",
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "marginTop": 2,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
+                }
+              >
+                FOO 102
+              </Text>
+            </View>
           </View>
-        </View>
-      </TouchableHighlight>
-    </View>
-    <View
-      onLayout={[Function]}
-      style={null}
-    />
-    <View
-      style={
-        Object {
-          "height": 0,
+        </TouchableHighlight>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      />
+      <View
+        style={
+          Object {
+            "height": 0,
+          }
         }
-      }
-    />
-  </View>
-</RCTScrollView>
+      />
+    </View>
+  </RCTScrollView>
+</RCTSafeAreaView>
 `;
 
 exports[`render without courses and *zero* total courses 1`] = `
-<RCTScrollView
-  ItemSeparatorComponent={undefined}
-  contentContainerStyle={
+<RCTSafeAreaView
+  style={
     Object {
-      "flexDirection": "row",
-      "flexWrap": "wrap",
-      "padding": 8,
+      "flex": 1,
     }
   }
-  data={
-    Array [
-      Object {
-        "data": Array [
-          Object {},
-        ],
-        "renderItem": [Function],
-        "sectionID": "dashboard.courses",
-        "seeAll": [Function],
-        "title": "Courses",
-      },
-    ]
-  }
-  disableVirtualization={false}
-  getItem={[Function]}
-  getItemCount={[Function]}
-  horizontal={false}
-  initialNumToRender={10}
-  keyExtractor={[Function]}
-  maxToRenderPerBatch={10}
-  onContentSizeChange={[Function]}
-  onEndReachedThreshold={2}
-  onLayout={[Function]}
-  onMomentumScrollEnd={[Function]}
-  onRefresh={[Function]}
-  onScroll={[Function]}
-  onScrollBeginDrag={[Function]}
-  onScrollEndDrag={[Function]}
-  onViewableItemsChanged={undefined}
-  refreshControl={
-    <RefreshControlMock
-      onRefresh={[Function]}
-      progressViewOffset={undefined}
-      refreshing={false}
-    />
-  }
-  refreshing={false}
-  renderItem={[Function]}
-  renderSectionHeader={[Function]}
-  scrollEventThrottle={50}
-  sections={
-    Array [
-      Object {
-        "data": Array [
-          Object {},
-        ],
-        "renderItem": [Function],
-        "sectionID": "dashboard.courses",
-        "seeAll": [Function],
-        "title": "Courses",
-      },
-    ]
-  }
-  stickyHeaderIndices={Array []}
-  stickySectionHeadersEnabled={false}
-  updateCellsBatchingPeriod={50}
-  windowSize={21}
 >
-  <RCTRefreshControl />
-  <View>
-    <View
-      onLayout={[Function]}
-      style={null}
-    >
+  <RCTScrollView
+    ItemSeparatorComponent={undefined}
+    contentContainerStyle={
+      Object {
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "padding": 8,
+      }
+    }
+    data={
+      Array [
+        Object {
+          "data": Array [
+            Object {},
+          ],
+          "renderItem": [Function],
+          "sectionID": "dashboard.courses",
+          "seeAll": [Function],
+          "title": "Courses",
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onRefresh={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    onViewableItemsChanged={undefined}
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        progressViewOffset={undefined}
+        refreshing={false}
+      />
+    }
+    refreshing={false}
+    renderItem={[Function]}
+    renderSectionHeader={[Function]}
+    scrollEventThrottle={50}
+    sections={
+      Array [
+        Object {
+          "data": Array [
+            Object {},
+          ],
+          "renderItem": [Function],
+          "sectionID": "dashboard.courses",
+          "seeAll": [Function],
+          "title": "Courses",
+        },
+      ]
+    }
+    stickyHeaderIndices={Array []}
+    stickySectionHeadersEnabled={false}
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  >
+    <RCTRefreshControl />
+    <View>
       <View
-        accessibitilityTraits="heading"
-        style={
-          Array [
-            Object {
-              "padding": 8,
-              "width": 359,
-            },
-            Object {
-              "alignItems": "flex-end",
-              "flexDirection": "row",
-              "justifyContent": "space-between",
-              "paddingBottom": 0,
-              "paddingTop": 16,
-            },
-          ]
-        }
+        onLayout={[Function]}
+        style={null}
       >
-        <Text
-          accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
+        <View
+          accessibitilityTraits="heading"
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
+                "padding": 8,
+                "width": 359,
               },
               Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
+                "alignItems": "flex-end",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "paddingBottom": 0,
+                "paddingTop": 16,
               },
-              undefined,
             ]
           }
-          testID="dashboard.courses.heading-lbl"
         >
-          Courses
-        </Text>
-        <TouchableOpacity
-          accessibilityTraits="button"
-          hitSlop={
-            Object {
-              "bottom": 15,
-              "left": 15,
-              "right": 15,
-              "top": 15,
+          <Text
+            accessibilityTraits="header"
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 20,
+                },
+                undefined,
+              ]
             }
-          }
-          onPress={[Function]}
-          testID="dashboard.courses.see-all-btn"
-        >
-          <View>
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
+            testID="dashboard.courses.heading-lbl"
+          >
+            Courses
+          </Text>
+          <TouchableOpacity
+            accessibilityTraits="button"
+            hitSlop={
+              Object {
+                "bottom": 15,
+                "left": 15,
+                "right": 15,
+                "top": 15,
+              }
+            }
+            onPress={[Function]}
+            testID="dashboard.courses.see-all-btn"
+          >
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
                   Array [
                     Object {
-                      "color": "#374A59",
-                      "fontSize": 14,
+                      "fontFamily": ".SFUIDisplay",
                     },
                     Object {
-                      "fontFamily": ".SFUIDisplay-bold",
+                      "color": "#2D3B45",
+                      "fontSize": 16,
                     },
+                    Array [
+                      Object {
+                        "color": "#374A59",
+                        "fontSize": 14,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-bold",
+                      },
+                      Object {
+                        "color": "#374A59",
+                      },
+                      Object {},
+                    ],
                     Object {
-                      "color": "#374A59",
+                      "fontFamily": ".SFUIDisplay",
                     },
-                    Object {},
-                  ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                ]
-              }
-            >
-              See All
-            </Text>
-          </View>
-        </TouchableOpacity>
+                  ]
+                }
+              >
+                See All
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
-    <View
-      onLayout={[Function]}
-      style={null}
-    >
       <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flexDirection": "column",
-              "justifyContent": "center",
-              "paddingHorizontal": 40,
-            },
-            Object {
-              "height": 300,
-              "width": 359,
-            },
-          ]
-        }
+        onLayout={[Function]}
+        style={null}
       >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
+        <View
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
+                "alignItems": "center",
+                "flexDirection": "column",
+                "justifyContent": "center",
+                "paddingHorizontal": 40,
               },
               Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 30,
-                "lineHeight": 36,
-                "marginBottom": 8,
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay",
+                "height": 300,
+                "width": 359,
               },
             ]
           }
-          testID="no-courses.welcome-lbl"
-        >
-          Welcome!
-        </Text>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Object {
-                "color": "#8B969E",
-                "fontSize": 16,
-                "lineHeight": 19,
-                "marginBottom": 40,
-                "paddingHorizontal": 10,
-                "textAlign": "center",
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-            ]
-          }
-          testID="no-courses.description-lbl"
-        >
-          Add a few of your favorite courses to make this place your home.
-        </Text>
-        <TouchableOpacity
-          accessibilityComponentType="button"
-          accessibilityTraits="button"
-          activeOpacity={0.2}
-          delayLongPress={undefined}
-          delayPressIn={undefined}
-          delayPressOut={undefined}
-          onLongPress={undefined}
-          onPress={[Function]}
-          onPressIn={undefined}
-          onPressOut={undefined}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#374A59",
-                "borderRadius": 8,
-                "overflow": "hidden",
-                "padding": 10,
-              },
-              Object {
-                "backgroundColor": "#374A59",
-              },
-              Object {
-                "borderRadius": 4,
-                "paddingHorizontal": 24,
-                "paddingVertical": 16,
-              },
-            ]
-          }
-          testID="no-courses.add-courses-btn"
         >
           <Text
             accessible={true}
@@ -2746,322 +2688,330 @@ exports[`render without courses and *zero* total courses 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#007aff",
-                  "fontSize": 17,
-                  "fontWeight": "500",
-                  "textAlign": "center",
+                  "fontFamily": ".SFUIDisplay",
                 },
-                null,
-                Array [
-                  Object {
-                    "color": "white",
-                  },
-                  Object {
-                    "color": "white",
-                  },
-                  Object {
-                    "fontSize": 16,
-                    "lineHeight": 19,
-                  },
-                ],
-                null,
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 30,
+                  "lineHeight": 36,
+                  "marginBottom": 8,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
               ]
             }
+            testID="no-courses.welcome-lbl"
           >
-            Add Courses
+            Welcome!
           </Text>
-        </TouchableOpacity>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 16,
+                  "lineHeight": 19,
+                  "marginBottom": 40,
+                  "paddingHorizontal": 10,
+                  "textAlign": "center",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+            testID="no-courses.description-lbl"
+          >
+            Add a few of your favorite courses to make this place your home.
+          </Text>
+          <TouchableOpacity
+            accessibilityComponentType="button"
+            accessibilityTraits="button"
+            activeOpacity={0.2}
+            delayLongPress={undefined}
+            delayPressIn={undefined}
+            delayPressOut={undefined}
+            onLongPress={undefined}
+            onPress={[Function]}
+            onPressIn={undefined}
+            onPressOut={undefined}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#374A59",
+                  "borderRadius": 8,
+                  "overflow": "hidden",
+                  "padding": 10,
+                },
+                Object {
+                  "backgroundColor": "#374A59",
+                },
+                Object {
+                  "borderRadius": 4,
+                  "paddingHorizontal": 24,
+                  "paddingVertical": 16,
+                },
+              ]
+            }
+            testID="no-courses.add-courses-btn"
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "color": "#007aff",
+                    "fontSize": 17,
+                    "fontWeight": "500",
+                    "textAlign": "center",
+                  },
+                  null,
+                  Array [
+                    Object {
+                      "color": "white",
+                    },
+                    Object {
+                      "color": "white",
+                    },
+                    Object {
+                      "fontSize": 16,
+                      "lineHeight": 19,
+                    },
+                  ],
+                  null,
+                ]
+              }
+            >
+              Add Courses
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
-    <View
-      onLayout={[Function]}
-      style={null}
-    />
-    <View
-      style={
-        Object {
-          "height": 0,
+      <View
+        onLayout={[Function]}
+        style={null}
+      />
+      <View
+        style={
+          Object {
+            "height": 0,
+          }
         }
-      }
-    />
-  </View>
-</RCTScrollView>
+      />
+    </View>
+  </RCTScrollView>
+</RCTSafeAreaView>
 `;
 
 exports[`render without favorite courses 1`] = `
-<RCTScrollView
-  ItemSeparatorComponent={undefined}
-  contentContainerStyle={
+<RCTSafeAreaView
+  style={
     Object {
-      "flexDirection": "row",
-      "flexWrap": "wrap",
-      "padding": 8,
+      "flex": 1,
     }
   }
-  data={
-    Array [
-      Object {
-        "data": Array [
-          Object {},
-        ],
-        "renderItem": [Function],
-        "sectionID": "dashboard.courses",
-        "seeAll": [Function],
-        "title": "Courses",
-      },
-    ]
-  }
-  disableVirtualization={false}
-  getItem={[Function]}
-  getItemCount={[Function]}
-  horizontal={false}
-  initialNumToRender={10}
-  keyExtractor={[Function]}
-  maxToRenderPerBatch={10}
-  onContentSizeChange={[Function]}
-  onEndReachedThreshold={2}
-  onLayout={[Function]}
-  onMomentumScrollEnd={[Function]}
-  onRefresh={[Function]}
-  onScroll={[Function]}
-  onScrollBeginDrag={[Function]}
-  onScrollEndDrag={[Function]}
-  onViewableItemsChanged={undefined}
-  refreshControl={
-    <RefreshControlMock
-      onRefresh={[Function]}
-      progressViewOffset={undefined}
-      refreshing={false}
-    />
-  }
-  refreshing={false}
-  renderItem={[Function]}
-  renderSectionHeader={[Function]}
-  scrollEventThrottle={50}
-  sections={
-    Array [
-      Object {
-        "data": Array [
-          Object {},
-        ],
-        "renderItem": [Function],
-        "sectionID": "dashboard.courses",
-        "seeAll": [Function],
-        "title": "Courses",
-      },
-    ]
-  }
-  stickyHeaderIndices={Array []}
-  stickySectionHeadersEnabled={false}
-  updateCellsBatchingPeriod={50}
-  windowSize={21}
 >
-  <RCTRefreshControl />
-  <View>
-    <View
-      onLayout={[Function]}
-      style={null}
-    >
+  <RCTScrollView
+    ItemSeparatorComponent={undefined}
+    contentContainerStyle={
+      Object {
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "padding": 8,
+      }
+    }
+    data={
+      Array [
+        Object {
+          "data": Array [
+            Object {},
+          ],
+          "renderItem": [Function],
+          "sectionID": "dashboard.courses",
+          "seeAll": [Function],
+          "title": "Courses",
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onRefresh={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    onViewableItemsChanged={undefined}
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        progressViewOffset={undefined}
+        refreshing={false}
+      />
+    }
+    refreshing={false}
+    renderItem={[Function]}
+    renderSectionHeader={[Function]}
+    scrollEventThrottle={50}
+    sections={
+      Array [
+        Object {
+          "data": Array [
+            Object {},
+          ],
+          "renderItem": [Function],
+          "sectionID": "dashboard.courses",
+          "seeAll": [Function],
+          "title": "Courses",
+        },
+      ]
+    }
+    stickyHeaderIndices={Array []}
+    stickySectionHeadersEnabled={false}
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  >
+    <RCTRefreshControl />
+    <View>
       <View
-        accessibitilityTraits="heading"
-        style={
-          Array [
-            Object {
-              "padding": 8,
-              "width": 359,
-            },
-            Object {
-              "alignItems": "flex-end",
-              "flexDirection": "row",
-              "justifyContent": "space-between",
-              "paddingBottom": 0,
-              "paddingTop": 16,
-            },
-          ]
-        }
+        onLayout={[Function]}
+        style={null}
       >
-        <Text
-          accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
+        <View
+          accessibitilityTraits="heading"
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
+                "padding": 8,
+                "width": 359,
               },
               Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
+                "alignItems": "flex-end",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "paddingBottom": 0,
+                "paddingTop": 16,
               },
-              undefined,
             ]
           }
-          testID="dashboard.courses.heading-lbl"
         >
-          Courses
-        </Text>
-        <TouchableOpacity
-          accessibilityTraits="button"
-          hitSlop={
-            Object {
-              "bottom": 15,
-              "left": 15,
-              "right": 15,
-              "top": 15,
+          <Text
+            accessibilityTraits="header"
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 20,
+                },
+                undefined,
+              ]
             }
-          }
-          onPress={[Function]}
-          testID="dashboard.courses.see-all-btn"
-        >
-          <View>
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
+            testID="dashboard.courses.heading-lbl"
+          >
+            Courses
+          </Text>
+          <TouchableOpacity
+            accessibilityTraits="button"
+            hitSlop={
+              Object {
+                "bottom": 15,
+                "left": 15,
+                "right": 15,
+                "top": 15,
+              }
+            }
+            onPress={[Function]}
+            testID="dashboard.courses.see-all-btn"
+          >
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
                   Array [
                     Object {
-                      "color": "#374A59",
-                      "fontSize": 14,
+                      "fontFamily": ".SFUIDisplay",
                     },
                     Object {
-                      "fontFamily": ".SFUIDisplay-bold",
+                      "color": "#2D3B45",
+                      "fontSize": 16,
                     },
+                    Array [
+                      Object {
+                        "color": "#374A59",
+                        "fontSize": 14,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-bold",
+                      },
+                      Object {
+                        "color": "#374A59",
+                      },
+                      Object {},
+                    ],
                     Object {
-                      "color": "#374A59",
+                      "fontFamily": ".SFUIDisplay",
                     },
-                    Object {},
-                  ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                ]
-              }
-            >
-              See All
-            </Text>
-          </View>
-        </TouchableOpacity>
+                  ]
+                }
+              >
+                See All
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
-    <View
-      onLayout={[Function]}
-      style={null}
-    >
       <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flexDirection": "column",
-              "justifyContent": "center",
-              "paddingHorizontal": 40,
-            },
-            Object {
-              "height": 300,
-              "width": 359,
-            },
-          ]
-        }
+        onLayout={[Function]}
+        style={null}
       >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
+        <View
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
+                "alignItems": "center",
+                "flexDirection": "column",
+                "justifyContent": "center",
+                "paddingHorizontal": 40,
               },
               Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 30,
-                "lineHeight": 36,
-                "marginBottom": 8,
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay",
+                "height": 300,
+                "width": 359,
               },
             ]
           }
-          testID="no-courses.welcome-lbl"
-        >
-          Welcome!
-        </Text>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Object {
-                "color": "#8B969E",
-                "fontSize": 16,
-                "lineHeight": 19,
-                "marginBottom": 40,
-                "paddingHorizontal": 10,
-                "textAlign": "center",
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-            ]
-          }
-          testID="no-courses.description-lbl"
-        >
-          Add a few of your favorite courses to make this place your home.
-        </Text>
-        <TouchableOpacity
-          accessibilityComponentType="button"
-          accessibilityTraits="button"
-          activeOpacity={0.2}
-          delayLongPress={undefined}
-          delayPressIn={undefined}
-          delayPressOut={undefined}
-          onLongPress={undefined}
-          onPress={[Function]}
-          onPressIn={undefined}
-          onPressOut={undefined}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#374A59",
-                "borderRadius": 8,
-                "overflow": "hidden",
-                "padding": 10,
-              },
-              Object {
-                "backgroundColor": "#374A59",
-              },
-              Object {
-                "borderRadius": 4,
-                "paddingHorizontal": 24,
-                "paddingVertical": 16,
-              },
-            ]
-          }
-          testID="no-courses.add-courses-btn"
         >
           <Text
             accessible={true}
@@ -3070,44 +3020,134 @@ exports[`render without favorite courses 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#007aff",
-                  "fontSize": 17,
-                  "fontWeight": "500",
-                  "textAlign": "center",
+                  "fontFamily": ".SFUIDisplay",
                 },
-                null,
-                Array [
-                  Object {
-                    "color": "white",
-                  },
-                  Object {
-                    "color": "white",
-                  },
-                  Object {
-                    "fontSize": 16,
-                    "lineHeight": 19,
-                  },
-                ],
-                null,
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 30,
+                  "lineHeight": 36,
+                  "marginBottom": 8,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
               ]
             }
+            testID="no-courses.welcome-lbl"
           >
-            Add Courses
+            Welcome!
           </Text>
-        </TouchableOpacity>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 16,
+                  "lineHeight": 19,
+                  "marginBottom": 40,
+                  "paddingHorizontal": 10,
+                  "textAlign": "center",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+            testID="no-courses.description-lbl"
+          >
+            Add a few of your favorite courses to make this place your home.
+          </Text>
+          <TouchableOpacity
+            accessibilityComponentType="button"
+            accessibilityTraits="button"
+            activeOpacity={0.2}
+            delayLongPress={undefined}
+            delayPressIn={undefined}
+            delayPressOut={undefined}
+            onLongPress={undefined}
+            onPress={[Function]}
+            onPressIn={undefined}
+            onPressOut={undefined}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#374A59",
+                  "borderRadius": 8,
+                  "overflow": "hidden",
+                  "padding": 10,
+                },
+                Object {
+                  "backgroundColor": "#374A59",
+                },
+                Object {
+                  "borderRadius": 4,
+                  "paddingHorizontal": 24,
+                  "paddingVertical": 16,
+                },
+              ]
+            }
+            testID="no-courses.add-courses-btn"
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "color": "#007aff",
+                    "fontSize": 17,
+                    "fontWeight": "500",
+                    "textAlign": "center",
+                  },
+                  null,
+                  Array [
+                    Object {
+                      "color": "white",
+                    },
+                    Object {
+                      "color": "white",
+                    },
+                    Object {
+                      "fontSize": 16,
+                      "lineHeight": 19,
+                    },
+                  ],
+                  null,
+                ]
+              }
+            >
+              Add Courses
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
-    <View
-      onLayout={[Function]}
-      style={null}
-    />
-    <View
-      style={
-        Object {
-          "height": 0,
+      <View
+        onLayout={[Function]}
+        style={null}
+      />
+      <View
+        style={
+          Object {
+            "height": 0,
+          }
         }
-      }
-    />
-  </View>
-</RCTScrollView>
+      />
+    </View>
+  </RCTScrollView>
+</RCTSafeAreaView>
 `;

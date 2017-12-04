@@ -1,477 +1,457 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`QuizzesList renders 1`] = `
-<View
+<RCTSafeAreaView
   style={
     Object {
       "flex": 1,
     }
   }
 >
-  <RCTScrollView
-    ItemSeparatorComponent={undefined}
-    ListEmptyComponent={
-      <ListEmptyComponent
-        title="There are no quizzes to display."
-      />
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
     }
-    data={Array []}
-    disableVirtualization={false}
-    extraData={true}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onRefresh={undefined}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
-    refreshing={false}
-    renderItem={[Function]}
-    renderSectionHeader={[Function]}
-    scrollEventThrottle={50}
-    sections={Array []}
-    stickyHeaderIndices={Array []}
-    stickySectionHeadersEnabled={true}
-    testID="quiz-list.list"
-    updateCellsBatchingPeriod={50}
-    windowSize={21}
   >
-    <View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
+    <RCTScrollView
+      ItemSeparatorComponent={undefined}
+      ListEmptyComponent={
+        <ListEmptyComponent
+          title="There are no quizzes to display."
+        />
+      }
+      data={Array []}
+      disableVirtualization={false}
+      extraData={true}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      onContentSizeChange={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onRefresh={undefined}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      onViewableItemsChanged={undefined}
+      refreshing={false}
+      renderItem={[Function]}
+      renderSectionHeader={[Function]}
+      scrollEventThrottle={50}
+      sections={Array []}
+      stickyHeaderIndices={Array []}
+      stickySectionHeadersEnabled={true}
+      testID="quiz-list.list"
+      updateCellsBatchingPeriod={50}
+      windowSize={21}
+    >
+      <View>
         <View
-          style={
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "height": 100,
-              "justifyContent": "center",
-            }
-          }
+          onLayout={[Function]}
+          style={null}
         >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
+          <View
             style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 16,
-                },
-                undefined,
-              ]
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "height": 100,
+                "justifyContent": "center",
+              }
             }
           >
-            There are no quizzes to display.
-          </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 16,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              There are no quizzes to display.
+            </Text>
+          </View>
         </View>
       </View>
-    </View>
-  </RCTScrollView>
-</View>
+    </RCTScrollView>
+  </View>
+</RCTSafeAreaView>
 `;
 
 exports[`QuizzesList renders in correct order 1`] = `
-<View
+<RCTSafeAreaView
   style={
     Object {
       "flex": 1,
     }
   }
 >
-  <RCTScrollView
-    ItemSeparatorComponent={undefined}
-    ListEmptyComponent={
-      <ListEmptyComponent
-        title="There are no quizzes to display."
-      />
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
     }
-    data={
-      Array [
-        Object {
-          "data": Array [
-            Object {
-              "access_code": null,
-              "all_dates": Array [],
-              "allowed_attempts": -1,
-              "assignment_group_id": null,
-              "cant_go_back": false,
-              "description": "This is quiz 1",
-              "due_at": "2117-03-28T15:07:56.312Z",
-              "hide_correct_answers_at": null,
-              "hide_results": null,
-              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
-              "id": "2",
-              "lock_at": null,
-              "one_question_at_a_time": false,
-              "points_possible": 20,
-              "published": true,
-              "question_count": 12,
-              "quiz_type": "assignment",
-              "scoring_policy": "keep_latest",
-              "show_correct_answers": false,
-              "show_correct_answers_at": null,
-              "show_correct_answers_last_attempt": false,
-              "shuffle_answers": false,
-              "time_limit": null,
-              "title": "Second",
-            },
-            Object {
-              "access_code": null,
-              "all_dates": Array [],
-              "allowed_attempts": -1,
-              "assignment_group_id": null,
-              "cant_go_back": false,
-              "description": "This is quiz 1",
-              "due_at": "2118-03-28T15:07:56.312Z",
-              "hide_correct_answers_at": null,
-              "hide_results": null,
-              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
-              "id": "1",
-              "lock_at": null,
-              "one_question_at_a_time": false,
-              "points_possible": 20,
-              "published": true,
-              "question_count": 12,
-              "quiz_type": "assignment",
-              "scoring_policy": "keep_latest",
-              "show_correct_answers": false,
-              "show_correct_answers_at": null,
-              "show_correct_answers_last_attempt": false,
-              "shuffle_answers": false,
-              "time_limit": null,
-              "title": "First",
-            },
-          ],
-          "index": 0,
-          "key": "assignment",
-        },
-      ]
-    }
-    disableVirtualization={false}
-    extraData={true}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onRefresh={undefined}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
-    refreshing={false}
-    renderItem={[Function]}
-    renderSectionHeader={[Function]}
-    scrollEventThrottle={50}
-    sections={
-      Array [
-        Object {
-          "data": Array [
-            Object {
-              "access_code": null,
-              "all_dates": Array [],
-              "allowed_attempts": -1,
-              "assignment_group_id": null,
-              "cant_go_back": false,
-              "description": "This is quiz 1",
-              "due_at": "2117-03-28T15:07:56.312Z",
-              "hide_correct_answers_at": null,
-              "hide_results": null,
-              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
-              "id": "2",
-              "lock_at": null,
-              "one_question_at_a_time": false,
-              "points_possible": 20,
-              "published": true,
-              "question_count": 12,
-              "quiz_type": "assignment",
-              "scoring_policy": "keep_latest",
-              "show_correct_answers": false,
-              "show_correct_answers_at": null,
-              "show_correct_answers_last_attempt": false,
-              "shuffle_answers": false,
-              "time_limit": null,
-              "title": "Second",
-            },
-            Object {
-              "access_code": null,
-              "all_dates": Array [],
-              "allowed_attempts": -1,
-              "assignment_group_id": null,
-              "cant_go_back": false,
-              "description": "This is quiz 1",
-              "due_at": "2118-03-28T15:07:56.312Z",
-              "hide_correct_answers_at": null,
-              "hide_results": null,
-              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
-              "id": "1",
-              "lock_at": null,
-              "one_question_at_a_time": false,
-              "points_possible": 20,
-              "published": true,
-              "question_count": 12,
-              "quiz_type": "assignment",
-              "scoring_policy": "keep_latest",
-              "show_correct_answers": false,
-              "show_correct_answers_at": null,
-              "show_correct_answers_last_attempt": false,
-              "shuffle_answers": false,
-              "time_limit": null,
-              "title": "First",
-            },
-          ],
-          "index": 0,
-          "key": "assignment",
-        },
-      ]
-    }
-    stickyHeaderIndices={
-      Array [
-        0,
-      ]
-    }
-    stickySectionHeadersEnabled={true}
-    testID="quiz-list.list"
-    updateCellsBatchingPeriod={50}
-    windowSize={21}
   >
-    <View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
+    <RCTScrollView
+      ItemSeparatorComponent={undefined}
+      ListEmptyComponent={
+        <ListEmptyComponent
+          title="There are no quizzes to display."
+        />
+      }
+      data={
+        Array [
+          Object {
+            "data": Array [
+              Object {
+                "access_code": null,
+                "all_dates": Array [],
+                "allowed_attempts": -1,
+                "assignment_group_id": null,
+                "cant_go_back": false,
+                "description": "This is quiz 1",
+                "due_at": "2117-03-28T15:07:56.312Z",
+                "hide_correct_answers_at": null,
+                "hide_results": null,
+                "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+                "id": "2",
+                "lock_at": null,
+                "one_question_at_a_time": false,
+                "points_possible": 20,
+                "published": true,
+                "question_count": 12,
+                "quiz_type": "assignment",
+                "scoring_policy": "keep_latest",
+                "show_correct_answers": false,
+                "show_correct_answers_at": null,
+                "show_correct_answers_last_attempt": false,
+                "shuffle_answers": false,
+                "time_limit": null,
+                "title": "Second",
+              },
+              Object {
+                "access_code": null,
+                "all_dates": Array [],
+                "allowed_attempts": -1,
+                "assignment_group_id": null,
+                "cant_go_back": false,
+                "description": "This is quiz 1",
+                "due_at": "2118-03-28T15:07:56.312Z",
+                "hide_correct_answers_at": null,
+                "hide_results": null,
+                "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+                "id": "1",
+                "lock_at": null,
+                "one_question_at_a_time": false,
+                "points_possible": 20,
+                "published": true,
+                "question_count": 12,
+                "quiz_type": "assignment",
+                "scoring_policy": "keep_latest",
+                "show_correct_answers": false,
+                "show_correct_answers_at": null,
+                "show_correct_answers_last_attempt": false,
+                "shuffle_answers": false,
+                "time_limit": null,
+                "title": "First",
+              },
+            ],
+            "index": 0,
+            "key": "assignment",
+          },
+        ]
+      }
+      disableVirtualization={false}
+      extraData={true}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      onContentSizeChange={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onRefresh={undefined}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      onViewableItemsChanged={undefined}
+      refreshing={false}
+      renderItem={[Function]}
+      renderSectionHeader={[Function]}
+      scrollEventThrottle={50}
+      sections={
+        Array [
+          Object {
+            "data": Array [
+              Object {
+                "access_code": null,
+                "all_dates": Array [],
+                "allowed_attempts": -1,
+                "assignment_group_id": null,
+                "cant_go_back": false,
+                "description": "This is quiz 1",
+                "due_at": "2117-03-28T15:07:56.312Z",
+                "hide_correct_answers_at": null,
+                "hide_results": null,
+                "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+                "id": "2",
+                "lock_at": null,
+                "one_question_at_a_time": false,
+                "points_possible": 20,
+                "published": true,
+                "question_count": 12,
+                "quiz_type": "assignment",
+                "scoring_policy": "keep_latest",
+                "show_correct_answers": false,
+                "show_correct_answers_at": null,
+                "show_correct_answers_last_attempt": false,
+                "shuffle_answers": false,
+                "time_limit": null,
+                "title": "Second",
+              },
+              Object {
+                "access_code": null,
+                "all_dates": Array [],
+                "allowed_attempts": -1,
+                "assignment_group_id": null,
+                "cant_go_back": false,
+                "description": "This is quiz 1",
+                "due_at": "2118-03-28T15:07:56.312Z",
+                "hide_correct_answers_at": null,
+                "hide_results": null,
+                "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+                "id": "1",
+                "lock_at": null,
+                "one_question_at_a_time": false,
+                "points_possible": 20,
+                "published": true,
+                "question_count": 12,
+                "quiz_type": "assignment",
+                "scoring_policy": "keep_latest",
+                "show_correct_answers": false,
+                "show_correct_answers_at": null,
+                "show_correct_answers_last_attempt": false,
+                "shuffle_answers": false,
+                "time_limit": null,
+                "title": "First",
+              },
+            ],
+            "index": 0,
+            "key": "assignment",
+          },
+        ]
+      }
+      stickyHeaderIndices={
+        Array [
+          0,
+        ]
+      }
+      stickySectionHeadersEnabled={true}
+      testID="quiz-list.list"
+      updateCellsBatchingPeriod={50}
+      windowSize={21}
+    >
+      <View>
         <View
-          accessibilityTraits="header"
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#F5F5F5",
-                "flex": 1,
-                "height": "auto",
-                "justifyContent": "center",
-                "paddingLeft": 16,
-                "paddingRight": 8,
-                "paddingVertical": 4,
-              },
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
-              },
-            ]
-          }
+          onLayout={[Function]}
+          style={null}
         >
-          <Text
+          <View
             accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
-                },
-                Object {
                   "backgroundColor": "#F5F5F5",
-                  "color": "#73818C",
-                  "fontSize": 14,
-                  "fontWeight": "600",
+                  "flex": 1,
+                  "height": "auto",
+                  "justifyContent": "center",
+                  "paddingLeft": 16,
+                  "paddingRight": 8,
+                  "paddingVertical": 4,
+                },
+                Object {
+                  "borderBottomColor": "#C7CDD1",
+                  "borderBottomWidth": 0.5,
+                },
+                Object {
+                  "borderTopColor": "#C7CDD1",
+                  "borderTopWidth": 0.5,
                 },
               ]
             }
           >
-            Assignments
-          </Text>
-        </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View>
-          <View
-            style={
-              Object {
-                "marginLeft": -12,
-              }
-            }
-          >
-            <TouchableHighlight
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
-              onPress={[Function]}
+            <Text
+              accessibilityTraits="header"
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
               style={
                 Array [
-                  undefined,
                   Object {
-                    "borderBottomColor": "#C7CDD1",
-                    "borderBottomWidth": 0.5,
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 20,
+                  },
+                  Object {
+                    "backgroundColor": "#F5F5F5",
+                    "color": "#73818C",
+                    "fontSize": 14,
+                    "fontWeight": "600",
                   },
                 ]
               }
-              testID="quiz-row-0"
             >
-              <View
+              Assignments
+            </Text>
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View>
+            <View
+              style={
+                Object {
+                  "marginLeft": -12,
+                }
+              }
+            >
+              <TouchableHighlight
+                accessibilityLabel={undefined}
+                accessibilityTraits={
+                  Array [
+                    "button",
+                  ]
+                }
+                onPress={[Function]}
                 style={
                   Array [
+                    undefined,
                     Object {
-                      "alignItems": "center",
-                      "backgroundColor": "white",
-                      "flex": 1,
-                      "flexDirection": "row",
-                      "minHeight": 54,
-                      "paddingBottom": 12,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                      "paddingTop": 12,
-                    },
-                    Object {
-                      "backgroundColor": "white",
+                      "borderBottomColor": "#C7CDD1",
+                      "borderBottomWidth": 0.5,
                     },
                   ]
                 }
+                testID="quiz-row-0"
               >
                 <View
                   style={
-                    Object {
-                      "alignSelf": "flex-start",
-                    }
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "white",
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "minHeight": 54,
+                        "paddingBottom": 12,
+                        "paddingLeft": 16,
+                        "paddingRight": 16,
+                        "paddingTop": 12,
+                      },
+                      Object {
+                        "backgroundColor": "white",
+                      },
+                    ]
                   }
                 >
                   <View
-                    accessibilityLabel="Published"
                     style={
                       Object {
-                        "alignItems": "center",
-                        "flex": 0,
-                        "height": 32,
-                        "width": 46,
+                        "alignSelf": "flex-start",
                       }
                     }
                   >
-                    <Image
-                      source={
-                        Object {
-                          "testUri": "../../../src/images/course/Quiz.png",
-                        }
-                      }
-                      style={
-                        Array [
-                          Object {
-                            "position": "absolute",
-                          },
-                          Object {
-                            "tintColor": null,
-                          },
-                        ]
-                      }
-                    />
                     <View
+                      accessibilityLabel="Published"
                       style={
                         Object {
                           "alignItems": "center",
-                          "backgroundColor": "white",
-                          "borderRadius": 8,
-                          "height": 16,
-                          "justifyContent": "center",
-                          "left": 20,
-                          "position": "absolute",
-                          "top": 10,
-                          "width": 16,
+                          "flex": 0,
+                          "height": 32,
+                          "width": 46,
                         }
                       }
                     >
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/Published.png",
+                            "testUri": "../../../src/images/course/Quiz.png",
                           }
                         }
                         style={
-                          Object {
-                            "height": 12,
-                            "tintColor": "#00AC18",
-                            "width": 12,
-                          }
+                          Array [
+                            Object {
+                              "position": "absolute",
+                            },
+                            Object {
+                              "tintColor": null,
+                            },
+                          ]
                         }
                       />
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "left": 20,
+                            "position": "absolute",
+                            "top": 10,
+                            "width": 16,
+                          }
+                        }
+                      >
+                        <Image
+                          source={
+                            Object {
+                              "testUri": "../../../src/images/Published.png",
+                            }
+                          }
+                          style={
+                            Object {
+                              "height": 12,
+                              "tintColor": "#00AC18",
+                              "width": 12,
+                            }
+                          }
+                        />
+                      </View>
                     </View>
                   </View>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "flex": 1,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    numberOfLines={2}
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Array [
-                          Object {
-                            "fontWeight": "600",
-                          },
-                          undefined,
-                        ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
-                      ]
-                    }
-                  >
-                    Second
-                  </Text>
                   <View
                     style={
                       Object {
-                        "flexDirection": "row",
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
                       }
                     }
                   >
@@ -479,12 +459,7 @@ exports[`QuizzesList renders in correct order 1`] = `
                       accessible={true}
                       allowFontScaling={true}
                       ellipsizeMode="tail"
-                      separated={
-                        Array [
-                          "Due Mar 28, 2117 at 9:07 AM",
-                        ]
-                      }
-                      separator="  •  "
+                      numberOfLines={2}
                       style={
                         Array [
                           Object {
@@ -494,27 +469,20 @@ exports[`QuizzesList renders in correct order 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
+                          Array [
+                            Object {
+                              "fontWeight": "600",
+                            },
+                            undefined,
+                          ],
                           Object {
-                            "color": "#8B969E",
-                            "fontSize": 14,
-                            "marginTop": 2,
-                          },
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
+                            "fontFamily": ".SFUIDisplay-semibold",
                           },
                         ]
                       }
                     >
-                      Due Mar 28, 2117 at 9:07 AM
+                      Second
                     </Text>
-                  </View>
-                  <View
-                    style={
-                      Object {
-                        "flexDirection": "row",
-                      }
-                    }
-                  >
                     <View
                       style={
                         Object {
@@ -528,8 +496,7 @@ exports[`QuizzesList renders in correct order 1`] = `
                         ellipsizeMode="tail"
                         separated={
                           Array [
-                            "20 pts",
-                            "12 Questions",
+                            "Due Mar 28, 2117 at 9:07 AM",
                           ]
                         }
                         separator="  •  "
@@ -542,290 +509,303 @@ exports[`QuizzesList renders in correct order 1`] = `
                               "color": "#2D3B45",
                               "fontSize": 16,
                             },
-                            undefined,
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
                             Object {
                               "fontFamily": ".SFUIDisplay",
                             },
                           ]
                         }
                       >
-                        20 pts
-                      </Text>
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Array [
-                              undefined,
-                              Object {
-                                "alignSelf": "center",
-                                "color": "#8B969E",
-                                "fontSize": 10,
-                              },
-                            ],
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                          ]
-                        }
-                      >
-                          •  
-                      </Text>
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
-                        separated={
-                          Array [
-                            "20 pts",
-                            "12 Questions",
-                          ]
-                        }
-                        separator="  •  "
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            undefined,
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                          ]
-                        }
-                      >
-                        12 Questions
+                        Due Mar 28, 2117 at 9:07 AM
                       </Text>
                     </View>
-                  </View>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "flex": 0,
-                    }
-                  }
-                >
-                  <View
-                    style={
-                      Object {
-                        "alignItems": "center",
-                        "flex": 1,
-                        "flexDirection": "row",
-                        "justifyContent": "flex-end",
-                      }
-                    }
-                  >
                     <View
                       style={
                         Object {
-                          "alignSelf": "center",
-                          "backgroundColor": "transparent",
-                          "borderColor": "#c7c7cc",
-                          "borderRightWidth": 2,
-                          "borderTopWidth": 2,
-                          "height": 10,
-                          "marginLeft": 7,
-                          "transform": Array [
-                            Object {
-                              "rotate": "45deg",
-                            },
-                          ],
-                          "width": 10,
+                          "flexDirection": "row",
                         }
                       }
-                    />
+                    >
+                      <View
+                        style={
+                          Object {
+                            "flexDirection": "row",
+                          }
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          separated={
+                            Array [
+                              "20 pts",
+                              "12 Questions",
+                            ]
+                          }
+                          separator="  •  "
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              undefined,
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                          20 pts
+                        </Text>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Array [
+                                undefined,
+                                Object {
+                                  "alignSelf": "center",
+                                  "color": "#8B969E",
+                                  "fontSize": 10,
+                                },
+                              ],
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                            •  
+                        </Text>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          separated={
+                            Array [
+                              "20 pts",
+                              "12 Questions",
+                            ]
+                          }
+                          separator="  •  "
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              undefined,
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                          12 Questions
+                        </Text>
+                      </View>
+                    </View>
                   </View>
-                </View>
-              </View>
-            </TouchableHighlight>
-          </View>
-          <View
-            style={
-              Object {
-                "backgroundColor": "#00AC18",
-                "bottom": 4,
-                "left": 0,
-                "position": "absolute",
-                "top": 4,
-                "width": 3,
-              }
-            }
-          />
-        </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View>
-          <View
-            style={
-              Object {
-                "marginLeft": -12,
-              }
-            }
-          >
-            <TouchableHighlight
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
-              onPress={[Function]}
-              style={
-                Array [
-                  undefined,
-                  Object {
-                    "borderBottomColor": "#C7CDD1",
-                    "borderBottomWidth": 0.5,
-                  },
-                ]
-              }
-              testID="quiz-row-1"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "white",
-                      "flex": 1,
-                      "flexDirection": "row",
-                      "minHeight": 54,
-                      "paddingBottom": 12,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                      "paddingTop": 12,
-                    },
-                    Object {
-                      "backgroundColor": "white",
-                    },
-                  ]
-                }
-              >
-                <View
-                  style={
-                    Object {
-                      "alignSelf": "flex-start",
-                    }
-                  }
-                >
                   <View
-                    accessibilityLabel="Published"
                     style={
                       Object {
-                        "alignItems": "center",
                         "flex": 0,
-                        "height": 32,
-                        "width": 46,
                       }
                     }
                   >
-                    <Image
-                      source={
-                        Object {
-                          "testUri": "../../../src/images/course/Quiz.png",
-                        }
-                      }
-                      style={
-                        Array [
-                          Object {
-                            "position": "absolute",
-                          },
-                          Object {
-                            "tintColor": null,
-                          },
-                        ]
-                      }
-                    />
                     <View
                       style={
                         Object {
                           "alignItems": "center",
-                          "backgroundColor": "white",
-                          "borderRadius": 8,
-                          "height": 16,
-                          "justifyContent": "center",
-                          "left": 20,
-                          "position": "absolute",
-                          "top": 10,
-                          "width": 16,
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "justifyContent": "flex-end",
                         }
                       }
                     >
-                      <Image
-                        source={
-                          Object {
-                            "testUri": "../../../src/images/Published.png",
-                          }
-                        }
+                      <View
                         style={
                           Object {
-                            "height": 12,
-                            "tintColor": "#00AC18",
-                            "width": 12,
+                            "alignSelf": "center",
+                            "backgroundColor": "transparent",
+                            "borderColor": "#c7c7cc",
+                            "borderRightWidth": 2,
+                            "borderTopWidth": 2,
+                            "height": 10,
+                            "marginLeft": 7,
+                            "transform": Array [
+                              Object {
+                                "rotate": "45deg",
+                              },
+                            ],
+                            "width": 10,
                           }
                         }
                       />
                     </View>
                   </View>
                 </View>
+              </TouchableHighlight>
+            </View>
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#00AC18",
+                  "bottom": 4,
+                  "left": 0,
+                  "position": "absolute",
+                  "top": 4,
+                  "width": 3,
+                }
+              }
+            />
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View>
+            <View
+              style={
+                Object {
+                  "marginLeft": -12,
+                }
+              }
+            >
+              <TouchableHighlight
+                accessibilityLabel={undefined}
+                accessibilityTraits={
+                  Array [
+                    "button",
+                  ]
+                }
+                onPress={[Function]}
+                style={
+                  Array [
+                    undefined,
+                    Object {
+                      "borderBottomColor": "#C7CDD1",
+                      "borderBottomWidth": 0.5,
+                    },
+                  ]
+                }
+                testID="quiz-row-1"
+              >
                 <View
                   style={
-                    Object {
-                      "flex": 1,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
-                    }
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "white",
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "minHeight": 54,
+                        "paddingBottom": 12,
+                        "paddingLeft": 16,
+                        "paddingRight": 16,
+                        "paddingTop": 12,
+                      },
+                      Object {
+                        "backgroundColor": "white",
+                      },
+                    ]
                   }
                 >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    numberOfLines={2}
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Array [
-                          Object {
-                            "fontWeight": "600",
-                          },
-                          undefined,
-                        ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
-                      ]
-                    }
-                  >
-                    First
-                  </Text>
                   <View
                     style={
                       Object {
-                        "flexDirection": "row",
+                        "alignSelf": "flex-start",
+                      }
+                    }
+                  >
+                    <View
+                      accessibilityLabel="Published"
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "flex": 0,
+                          "height": 32,
+                          "width": 46,
+                        }
+                      }
+                    >
+                      <Image
+                        source={
+                          Object {
+                            "testUri": "../../../src/images/course/Quiz.png",
+                          }
+                        }
+                        style={
+                          Array [
+                            Object {
+                              "position": "absolute",
+                            },
+                            Object {
+                              "tintColor": null,
+                            },
+                          ]
+                        }
+                      />
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "left": 20,
+                            "position": "absolute",
+                            "top": 10,
+                            "width": 16,
+                          }
+                        }
+                      >
+                        <Image
+                          source={
+                            Object {
+                              "testUri": "../../../src/images/Published.png",
+                            }
+                          }
+                          style={
+                            Object {
+                              "height": 12,
+                              "tintColor": "#00AC18",
+                              "width": 12,
+                            }
+                          }
+                        />
+                      </View>
+                    </View>
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
                       }
                     }
                   >
@@ -833,12 +813,7 @@ exports[`QuizzesList renders in correct order 1`] = `
                       accessible={true}
                       allowFontScaling={true}
                       ellipsizeMode="tail"
-                      separated={
-                        Array [
-                          "Due Mar 28, 2118 at 9:07 AM",
-                        ]
-                      }
-                      separator="  •  "
+                      numberOfLines={2}
                       style={
                         Array [
                           Object {
@@ -848,27 +823,20 @@ exports[`QuizzesList renders in correct order 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
+                          Array [
+                            Object {
+                              "fontWeight": "600",
+                            },
+                            undefined,
+                          ],
                           Object {
-                            "color": "#8B969E",
-                            "fontSize": 14,
-                            "marginTop": 2,
-                          },
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
+                            "fontFamily": ".SFUIDisplay-semibold",
                           },
                         ]
                       }
                     >
-                      Due Mar 28, 2118 at 9:07 AM
+                      First
                     </Text>
-                  </View>
-                  <View
-                    style={
-                      Object {
-                        "flexDirection": "row",
-                      }
-                    }
-                  >
                     <View
                       style={
                         Object {
@@ -882,8 +850,7 @@ exports[`QuizzesList renders in correct order 1`] = `
                         ellipsizeMode="tail"
                         separated={
                           Array [
-                            "20 pts",
-                            "12 Questions",
+                            "Due Mar 28, 2118 at 9:07 AM",
                           ]
                         }
                         separator="  •  "
@@ -896,526 +863,547 @@ exports[`QuizzesList renders in correct order 1`] = `
                               "color": "#2D3B45",
                               "fontSize": 16,
                             },
-                            undefined,
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
                             Object {
                               "fontFamily": ".SFUIDisplay",
                             },
                           ]
                         }
                       >
-                        20 pts
-                      </Text>
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Array [
-                              undefined,
-                              Object {
-                                "alignSelf": "center",
-                                "color": "#8B969E",
-                                "fontSize": 10,
-                              },
-                            ],
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                          ]
-                        }
-                      >
-                          •  
-                      </Text>
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
-                        separated={
-                          Array [
-                            "20 pts",
-                            "12 Questions",
-                          ]
-                        }
-                        separator="  •  "
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            undefined,
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                          ]
-                        }
-                      >
-                        12 Questions
+                        Due Mar 28, 2118 at 9:07 AM
                       </Text>
                     </View>
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Object {
+                            "flexDirection": "row",
+                          }
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          separated={
+                            Array [
+                              "20 pts",
+                              "12 Questions",
+                            ]
+                          }
+                          separator="  •  "
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              undefined,
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                          20 pts
+                        </Text>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Array [
+                                undefined,
+                                Object {
+                                  "alignSelf": "center",
+                                  "color": "#8B969E",
+                                  "fontSize": 10,
+                                },
+                              ],
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                            •  
+                        </Text>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          separated={
+                            Array [
+                              "20 pts",
+                              "12 Questions",
+                            ]
+                          }
+                          separator="  •  "
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              undefined,
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                          12 Questions
+                        </Text>
+                      </View>
+                    </View>
                   </View>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "flex": 0,
-                    }
-                  }
-                >
                   <View
                     style={
                       Object {
-                        "alignItems": "center",
-                        "flex": 1,
-                        "flexDirection": "row",
-                        "justifyContent": "flex-end",
+                        "flex": 0,
                       }
                     }
                   >
                     <View
                       style={
                         Object {
-                          "alignSelf": "center",
-                          "backgroundColor": "transparent",
-                          "borderColor": "#c7c7cc",
-                          "borderRightWidth": 2,
-                          "borderTopWidth": 2,
-                          "height": 10,
-                          "marginLeft": 7,
-                          "transform": Array [
-                            Object {
-                              "rotate": "45deg",
-                            },
-                          ],
-                          "width": 10,
+                          "alignItems": "center",
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "justifyContent": "flex-end",
                         }
                       }
-                    />
+                    >
+                      <View
+                        style={
+                          Object {
+                            "alignSelf": "center",
+                            "backgroundColor": "transparent",
+                            "borderColor": "#c7c7cc",
+                            "borderRightWidth": 2,
+                            "borderTopWidth": 2,
+                            "height": 10,
+                            "marginLeft": 7,
+                            "transform": Array [
+                              Object {
+                                "rotate": "45deg",
+                              },
+                            ],
+                            "width": 10,
+                          }
+                        }
+                      />
+                    </View>
                   </View>
                 </View>
-              </View>
-            </TouchableHighlight>
-          </View>
-          <View
-            style={
-              Object {
-                "backgroundColor": "#00AC18",
-                "bottom": 4,
-                "left": 0,
-                "position": "absolute",
-                "top": 4,
-                "width": 3,
+              </TouchableHighlight>
+            </View>
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#00AC18",
+                  "bottom": 4,
+                  "left": 0,
+                  "position": "absolute",
+                  "top": 4,
+                  "width": 3,
+                }
               }
-            }
-          />
+            />
+          </View>
         </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        />
       </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      />
-    </View>
-  </RCTScrollView>
-</View>
+    </RCTScrollView>
+  </View>
+</RCTSafeAreaView>
 `;
 
 exports[`QuizzesList renders quizzes 1`] = `
-<View
+<RCTSafeAreaView
   style={
     Object {
       "flex": 1,
     }
   }
 >
-  <RCTScrollView
-    ItemSeparatorComponent={undefined}
-    ListEmptyComponent={
-      <ListEmptyComponent
-        title="There are no quizzes to display."
-      />
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
     }
-    data={
-      Array [
-        Object {
-          "data": Array [
-            Object {
-              "access_code": null,
-              "all_dates": Array [],
-              "allowed_attempts": -1,
-              "assignment_group_id": null,
-              "cant_go_back": false,
-              "description": "This is quiz 1",
-              "due_at": "2013-01-23T23:59:00-07:00",
-              "hide_correct_answers_at": null,
-              "hide_results": null,
-              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
-              "id": "2",
-              "lock_at": null,
-              "one_question_at_a_time": false,
-              "points_possible": 20,
-              "published": true,
-              "question_count": 12,
-              "quiz_type": "assignment",
-              "scoring_policy": "keep_latest",
-              "show_correct_answers": false,
-              "show_correct_answers_at": null,
-              "show_correct_answers_last_attempt": false,
-              "shuffle_answers": false,
-              "time_limit": null,
-              "title": "Quiz 2",
-            },
-            Object {
-              "access_code": null,
-              "all_dates": Array [],
-              "allowed_attempts": -1,
-              "assignment_group_id": null,
-              "cant_go_back": false,
-              "description": "This is quiz 1",
-              "due_at": "2013-01-23T23:59:00-07:00",
-              "hide_correct_answers_at": null,
-              "hide_results": null,
-              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
-              "id": "1",
-              "lock_at": null,
-              "one_question_at_a_time": false,
-              "points_possible": 20,
-              "published": true,
-              "question_count": 12,
-              "quiz_type": "assignment",
-              "scoring_policy": "keep_latest",
-              "show_correct_answers": false,
-              "show_correct_answers_at": null,
-              "show_correct_answers_last_attempt": false,
-              "shuffle_answers": false,
-              "time_limit": null,
-              "title": "Quiz 1",
-            },
-          ],
-          "index": 0,
-          "key": "assignment",
-        },
-      ]
-    }
-    disableVirtualization={false}
-    extraData={true}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onRefresh={undefined}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
-    refreshing={false}
-    renderItem={[Function]}
-    renderSectionHeader={[Function]}
-    scrollEventThrottle={50}
-    sections={
-      Array [
-        Object {
-          "data": Array [
-            Object {
-              "access_code": null,
-              "all_dates": Array [],
-              "allowed_attempts": -1,
-              "assignment_group_id": null,
-              "cant_go_back": false,
-              "description": "This is quiz 1",
-              "due_at": "2013-01-23T23:59:00-07:00",
-              "hide_correct_answers_at": null,
-              "hide_results": null,
-              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
-              "id": "2",
-              "lock_at": null,
-              "one_question_at_a_time": false,
-              "points_possible": 20,
-              "published": true,
-              "question_count": 12,
-              "quiz_type": "assignment",
-              "scoring_policy": "keep_latest",
-              "show_correct_answers": false,
-              "show_correct_answers_at": null,
-              "show_correct_answers_last_attempt": false,
-              "shuffle_answers": false,
-              "time_limit": null,
-              "title": "Quiz 2",
-            },
-            Object {
-              "access_code": null,
-              "all_dates": Array [],
-              "allowed_attempts": -1,
-              "assignment_group_id": null,
-              "cant_go_back": false,
-              "description": "This is quiz 1",
-              "due_at": "2013-01-23T23:59:00-07:00",
-              "hide_correct_answers_at": null,
-              "hide_results": null,
-              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
-              "id": "1",
-              "lock_at": null,
-              "one_question_at_a_time": false,
-              "points_possible": 20,
-              "published": true,
-              "question_count": 12,
-              "quiz_type": "assignment",
-              "scoring_policy": "keep_latest",
-              "show_correct_answers": false,
-              "show_correct_answers_at": null,
-              "show_correct_answers_last_attempt": false,
-              "shuffle_answers": false,
-              "time_limit": null,
-              "title": "Quiz 1",
-            },
-          ],
-          "index": 0,
-          "key": "assignment",
-        },
-      ]
-    }
-    stickyHeaderIndices={
-      Array [
-        0,
-      ]
-    }
-    stickySectionHeadersEnabled={true}
-    testID="quiz-list.list"
-    updateCellsBatchingPeriod={50}
-    windowSize={21}
   >
-    <View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
+    <RCTScrollView
+      ItemSeparatorComponent={undefined}
+      ListEmptyComponent={
+        <ListEmptyComponent
+          title="There are no quizzes to display."
+        />
+      }
+      data={
+        Array [
+          Object {
+            "data": Array [
+              Object {
+                "access_code": null,
+                "all_dates": Array [],
+                "allowed_attempts": -1,
+                "assignment_group_id": null,
+                "cant_go_back": false,
+                "description": "This is quiz 1",
+                "due_at": "2013-01-23T23:59:00-07:00",
+                "hide_correct_answers_at": null,
+                "hide_results": null,
+                "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+                "id": "2",
+                "lock_at": null,
+                "one_question_at_a_time": false,
+                "points_possible": 20,
+                "published": true,
+                "question_count": 12,
+                "quiz_type": "assignment",
+                "scoring_policy": "keep_latest",
+                "show_correct_answers": false,
+                "show_correct_answers_at": null,
+                "show_correct_answers_last_attempt": false,
+                "shuffle_answers": false,
+                "time_limit": null,
+                "title": "Quiz 2",
+              },
+              Object {
+                "access_code": null,
+                "all_dates": Array [],
+                "allowed_attempts": -1,
+                "assignment_group_id": null,
+                "cant_go_back": false,
+                "description": "This is quiz 1",
+                "due_at": "2013-01-23T23:59:00-07:00",
+                "hide_correct_answers_at": null,
+                "hide_results": null,
+                "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+                "id": "1",
+                "lock_at": null,
+                "one_question_at_a_time": false,
+                "points_possible": 20,
+                "published": true,
+                "question_count": 12,
+                "quiz_type": "assignment",
+                "scoring_policy": "keep_latest",
+                "show_correct_answers": false,
+                "show_correct_answers_at": null,
+                "show_correct_answers_last_attempt": false,
+                "shuffle_answers": false,
+                "time_limit": null,
+                "title": "Quiz 1",
+              },
+            ],
+            "index": 0,
+            "key": "assignment",
+          },
+        ]
+      }
+      disableVirtualization={false}
+      extraData={true}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      onContentSizeChange={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onRefresh={undefined}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      onViewableItemsChanged={undefined}
+      refreshing={false}
+      renderItem={[Function]}
+      renderSectionHeader={[Function]}
+      scrollEventThrottle={50}
+      sections={
+        Array [
+          Object {
+            "data": Array [
+              Object {
+                "access_code": null,
+                "all_dates": Array [],
+                "allowed_attempts": -1,
+                "assignment_group_id": null,
+                "cant_go_back": false,
+                "description": "This is quiz 1",
+                "due_at": "2013-01-23T23:59:00-07:00",
+                "hide_correct_answers_at": null,
+                "hide_results": null,
+                "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+                "id": "2",
+                "lock_at": null,
+                "one_question_at_a_time": false,
+                "points_possible": 20,
+                "published": true,
+                "question_count": 12,
+                "quiz_type": "assignment",
+                "scoring_policy": "keep_latest",
+                "show_correct_answers": false,
+                "show_correct_answers_at": null,
+                "show_correct_answers_last_attempt": false,
+                "shuffle_answers": false,
+                "time_limit": null,
+                "title": "Quiz 2",
+              },
+              Object {
+                "access_code": null,
+                "all_dates": Array [],
+                "allowed_attempts": -1,
+                "assignment_group_id": null,
+                "cant_go_back": false,
+                "description": "This is quiz 1",
+                "due_at": "2013-01-23T23:59:00-07:00",
+                "hide_correct_answers_at": null,
+                "hide_results": null,
+                "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+                "id": "1",
+                "lock_at": null,
+                "one_question_at_a_time": false,
+                "points_possible": 20,
+                "published": true,
+                "question_count": 12,
+                "quiz_type": "assignment",
+                "scoring_policy": "keep_latest",
+                "show_correct_answers": false,
+                "show_correct_answers_at": null,
+                "show_correct_answers_last_attempt": false,
+                "shuffle_answers": false,
+                "time_limit": null,
+                "title": "Quiz 1",
+              },
+            ],
+            "index": 0,
+            "key": "assignment",
+          },
+        ]
+      }
+      stickyHeaderIndices={
+        Array [
+          0,
+        ]
+      }
+      stickySectionHeadersEnabled={true}
+      testID="quiz-list.list"
+      updateCellsBatchingPeriod={50}
+      windowSize={21}
+    >
+      <View>
         <View
-          accessibilityTraits="header"
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#F5F5F5",
-                "flex": 1,
-                "height": "auto",
-                "justifyContent": "center",
-                "paddingLeft": 16,
-                "paddingRight": 8,
-                "paddingVertical": 4,
-              },
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
-              },
-            ]
-          }
+          onLayout={[Function]}
+          style={null}
         >
-          <Text
+          <View
             accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
-                },
-                Object {
                   "backgroundColor": "#F5F5F5",
-                  "color": "#73818C",
-                  "fontSize": 14,
-                  "fontWeight": "600",
+                  "flex": 1,
+                  "height": "auto",
+                  "justifyContent": "center",
+                  "paddingLeft": 16,
+                  "paddingRight": 8,
+                  "paddingVertical": 4,
+                },
+                Object {
+                  "borderBottomColor": "#C7CDD1",
+                  "borderBottomWidth": 0.5,
+                },
+                Object {
+                  "borderTopColor": "#C7CDD1",
+                  "borderTopWidth": 0.5,
                 },
               ]
             }
           >
-            Assignments
-          </Text>
-        </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View>
-          <View
-            style={
-              Object {
-                "marginLeft": -12,
-              }
-            }
-          >
-            <TouchableHighlight
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
-              onPress={[Function]}
+            <Text
+              accessibilityTraits="header"
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
               style={
                 Array [
-                  undefined,
                   Object {
-                    "borderBottomColor": "#C7CDD1",
-                    "borderBottomWidth": 0.5,
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 20,
+                  },
+                  Object {
+                    "backgroundColor": "#F5F5F5",
+                    "color": "#73818C",
+                    "fontSize": 14,
+                    "fontWeight": "600",
                   },
                 ]
               }
-              testID="quiz-row-0"
             >
-              <View
+              Assignments
+            </Text>
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View>
+            <View
+              style={
+                Object {
+                  "marginLeft": -12,
+                }
+              }
+            >
+              <TouchableHighlight
+                accessibilityLabel={undefined}
+                accessibilityTraits={
+                  Array [
+                    "button",
+                  ]
+                }
+                onPress={[Function]}
                 style={
                   Array [
+                    undefined,
                     Object {
-                      "alignItems": "center",
-                      "backgroundColor": "white",
-                      "flex": 1,
-                      "flexDirection": "row",
-                      "minHeight": 54,
-                      "paddingBottom": 12,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                      "paddingTop": 12,
-                    },
-                    Object {
-                      "backgroundColor": "white",
+                      "borderBottomColor": "#C7CDD1",
+                      "borderBottomWidth": 0.5,
                     },
                   ]
                 }
+                testID="quiz-row-0"
               >
                 <View
                   style={
-                    Object {
-                      "alignSelf": "flex-start",
-                    }
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "white",
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "minHeight": 54,
+                        "paddingBottom": 12,
+                        "paddingLeft": 16,
+                        "paddingRight": 16,
+                        "paddingTop": 12,
+                      },
+                      Object {
+                        "backgroundColor": "white",
+                      },
+                    ]
                   }
                 >
                   <View
-                    accessibilityLabel="Published"
                     style={
                       Object {
-                        "alignItems": "center",
-                        "flex": 0,
-                        "height": 32,
-                        "width": 46,
+                        "alignSelf": "flex-start",
                       }
                     }
                   >
-                    <Image
-                      source={
-                        Object {
-                          "testUri": "../../../src/images/course/Quiz.png",
-                        }
-                      }
-                      style={
-                        Array [
-                          Object {
-                            "position": "absolute",
-                          },
-                          Object {
-                            "tintColor": null,
-                          },
-                        ]
-                      }
-                    />
                     <View
+                      accessibilityLabel="Published"
                       style={
                         Object {
                           "alignItems": "center",
-                          "backgroundColor": "white",
-                          "borderRadius": 8,
-                          "height": 16,
-                          "justifyContent": "center",
-                          "left": 20,
-                          "position": "absolute",
-                          "top": 10,
-                          "width": 16,
+                          "flex": 0,
+                          "height": 32,
+                          "width": 46,
                         }
                       }
                     >
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/Published.png",
+                            "testUri": "../../../src/images/course/Quiz.png",
                           }
                         }
                         style={
-                          Object {
-                            "height": 12,
-                            "tintColor": "#00AC18",
-                            "width": 12,
-                          }
+                          Array [
+                            Object {
+                              "position": "absolute",
+                            },
+                            Object {
+                              "tintColor": null,
+                            },
+                          ]
                         }
                       />
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "left": 20,
+                            "position": "absolute",
+                            "top": 10,
+                            "width": 16,
+                          }
+                        }
+                      >
+                        <Image
+                          source={
+                            Object {
+                              "testUri": "../../../src/images/Published.png",
+                            }
+                          }
+                          style={
+                            Object {
+                              "height": 12,
+                              "tintColor": "#00AC18",
+                              "width": 12,
+                            }
+                          }
+                        />
+                      </View>
                     </View>
                   </View>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "flex": 1,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    numberOfLines={2}
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Array [
-                          Object {
-                            "fontWeight": "600",
-                          },
-                          undefined,
-                        ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
-                      ]
-                    }
-                  >
-                    Quiz 2
-                  </Text>
                   <View
                     style={
                       Object {
-                        "flexDirection": "row",
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
                       }
                     }
                   >
@@ -1423,12 +1411,7 @@ exports[`QuizzesList renders quizzes 1`] = `
                       accessible={true}
                       allowFontScaling={true}
                       ellipsizeMode="tail"
-                      separated={
-                        Array [
-                          "Due Jan 23, 2013 at 11:59 PM",
-                        ]
-                      }
-                      separator="  •  "
+                      numberOfLines={2}
                       style={
                         Array [
                           Object {
@@ -1438,27 +1421,20 @@ exports[`QuizzesList renders quizzes 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
+                          Array [
+                            Object {
+                              "fontWeight": "600",
+                            },
+                            undefined,
+                          ],
                           Object {
-                            "color": "#8B969E",
-                            "fontSize": 14,
-                            "marginTop": 2,
-                          },
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
+                            "fontFamily": ".SFUIDisplay-semibold",
                           },
                         ]
                       }
                     >
-                      Due Jan 23, 2013 at 11:59 PM
+                      Quiz 2
                     </Text>
-                  </View>
-                  <View
-                    style={
-                      Object {
-                        "flexDirection": "row",
-                      }
-                    }
-                  >
                     <View
                       style={
                         Object {
@@ -1472,8 +1448,7 @@ exports[`QuizzesList renders quizzes 1`] = `
                         ellipsizeMode="tail"
                         separated={
                           Array [
-                            "20 pts",
-                            "12 Questions",
+                            "Due Jan 23, 2013 at 11:59 PM",
                           ]
                         }
                         separator="  •  "
@@ -1486,290 +1461,303 @@ exports[`QuizzesList renders quizzes 1`] = `
                               "color": "#2D3B45",
                               "fontSize": 16,
                             },
-                            undefined,
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
                             Object {
                               "fontFamily": ".SFUIDisplay",
                             },
                           ]
                         }
                       >
-                        20 pts
-                      </Text>
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Array [
-                              undefined,
-                              Object {
-                                "alignSelf": "center",
-                                "color": "#8B969E",
-                                "fontSize": 10,
-                              },
-                            ],
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                          ]
-                        }
-                      >
-                          •  
-                      </Text>
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
-                        separated={
-                          Array [
-                            "20 pts",
-                            "12 Questions",
-                          ]
-                        }
-                        separator="  •  "
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            undefined,
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                          ]
-                        }
-                      >
-                        12 Questions
+                        Due Jan 23, 2013 at 11:59 PM
                       </Text>
                     </View>
-                  </View>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "flex": 0,
-                    }
-                  }
-                >
-                  <View
-                    style={
-                      Object {
-                        "alignItems": "center",
-                        "flex": 1,
-                        "flexDirection": "row",
-                        "justifyContent": "flex-end",
-                      }
-                    }
-                  >
                     <View
                       style={
                         Object {
-                          "alignSelf": "center",
-                          "backgroundColor": "transparent",
-                          "borderColor": "#c7c7cc",
-                          "borderRightWidth": 2,
-                          "borderTopWidth": 2,
-                          "height": 10,
-                          "marginLeft": 7,
-                          "transform": Array [
-                            Object {
-                              "rotate": "45deg",
-                            },
-                          ],
-                          "width": 10,
+                          "flexDirection": "row",
                         }
                       }
-                    />
+                    >
+                      <View
+                        style={
+                          Object {
+                            "flexDirection": "row",
+                          }
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          separated={
+                            Array [
+                              "20 pts",
+                              "12 Questions",
+                            ]
+                          }
+                          separator="  •  "
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              undefined,
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                          20 pts
+                        </Text>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Array [
+                                undefined,
+                                Object {
+                                  "alignSelf": "center",
+                                  "color": "#8B969E",
+                                  "fontSize": 10,
+                                },
+                              ],
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                            •  
+                        </Text>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          separated={
+                            Array [
+                              "20 pts",
+                              "12 Questions",
+                            ]
+                          }
+                          separator="  •  "
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              undefined,
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                          12 Questions
+                        </Text>
+                      </View>
+                    </View>
                   </View>
-                </View>
-              </View>
-            </TouchableHighlight>
-          </View>
-          <View
-            style={
-              Object {
-                "backgroundColor": "#00AC18",
-                "bottom": 4,
-                "left": 0,
-                "position": "absolute",
-                "top": 4,
-                "width": 3,
-              }
-            }
-          />
-        </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View>
-          <View
-            style={
-              Object {
-                "marginLeft": -12,
-              }
-            }
-          >
-            <TouchableHighlight
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
-              onPress={[Function]}
-              style={
-                Array [
-                  undefined,
-                  Object {
-                    "borderBottomColor": "#C7CDD1",
-                    "borderBottomWidth": 0.5,
-                  },
-                ]
-              }
-              testID="quiz-row-1"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "white",
-                      "flex": 1,
-                      "flexDirection": "row",
-                      "minHeight": 54,
-                      "paddingBottom": 12,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                      "paddingTop": 12,
-                    },
-                    Object {
-                      "backgroundColor": "white",
-                    },
-                  ]
-                }
-              >
-                <View
-                  style={
-                    Object {
-                      "alignSelf": "flex-start",
-                    }
-                  }
-                >
                   <View
-                    accessibilityLabel="Published"
                     style={
                       Object {
-                        "alignItems": "center",
                         "flex": 0,
-                        "height": 32,
-                        "width": 46,
                       }
                     }
                   >
-                    <Image
-                      source={
-                        Object {
-                          "testUri": "../../../src/images/course/Quiz.png",
-                        }
-                      }
-                      style={
-                        Array [
-                          Object {
-                            "position": "absolute",
-                          },
-                          Object {
-                            "tintColor": null,
-                          },
-                        ]
-                      }
-                    />
                     <View
                       style={
                         Object {
                           "alignItems": "center",
-                          "backgroundColor": "white",
-                          "borderRadius": 8,
-                          "height": 16,
-                          "justifyContent": "center",
-                          "left": 20,
-                          "position": "absolute",
-                          "top": 10,
-                          "width": 16,
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "justifyContent": "flex-end",
                         }
                       }
                     >
-                      <Image
-                        source={
-                          Object {
-                            "testUri": "../../../src/images/Published.png",
-                          }
-                        }
+                      <View
                         style={
                           Object {
-                            "height": 12,
-                            "tintColor": "#00AC18",
-                            "width": 12,
+                            "alignSelf": "center",
+                            "backgroundColor": "transparent",
+                            "borderColor": "#c7c7cc",
+                            "borderRightWidth": 2,
+                            "borderTopWidth": 2,
+                            "height": 10,
+                            "marginLeft": 7,
+                            "transform": Array [
+                              Object {
+                                "rotate": "45deg",
+                              },
+                            ],
+                            "width": 10,
                           }
                         }
                       />
                     </View>
                   </View>
                 </View>
+              </TouchableHighlight>
+            </View>
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#00AC18",
+                  "bottom": 4,
+                  "left": 0,
+                  "position": "absolute",
+                  "top": 4,
+                  "width": 3,
+                }
+              }
+            />
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View>
+            <View
+              style={
+                Object {
+                  "marginLeft": -12,
+                }
+              }
+            >
+              <TouchableHighlight
+                accessibilityLabel={undefined}
+                accessibilityTraits={
+                  Array [
+                    "button",
+                  ]
+                }
+                onPress={[Function]}
+                style={
+                  Array [
+                    undefined,
+                    Object {
+                      "borderBottomColor": "#C7CDD1",
+                      "borderBottomWidth": 0.5,
+                    },
+                  ]
+                }
+                testID="quiz-row-1"
+              >
                 <View
                   style={
-                    Object {
-                      "flex": 1,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
-                    }
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "white",
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "minHeight": 54,
+                        "paddingBottom": 12,
+                        "paddingLeft": 16,
+                        "paddingRight": 16,
+                        "paddingTop": 12,
+                      },
+                      Object {
+                        "backgroundColor": "white",
+                      },
+                    ]
                   }
                 >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    numberOfLines={2}
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Array [
-                          Object {
-                            "fontWeight": "600",
-                          },
-                          undefined,
-                        ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
-                      ]
-                    }
-                  >
-                    Quiz 1
-                  </Text>
                   <View
                     style={
                       Object {
-                        "flexDirection": "row",
+                        "alignSelf": "flex-start",
+                      }
+                    }
+                  >
+                    <View
+                      accessibilityLabel="Published"
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "flex": 0,
+                          "height": 32,
+                          "width": 46,
+                        }
+                      }
+                    >
+                      <Image
+                        source={
+                          Object {
+                            "testUri": "../../../src/images/course/Quiz.png",
+                          }
+                        }
+                        style={
+                          Array [
+                            Object {
+                              "position": "absolute",
+                            },
+                            Object {
+                              "tintColor": null,
+                            },
+                          ]
+                        }
+                      />
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "left": 20,
+                            "position": "absolute",
+                            "top": 10,
+                            "width": 16,
+                          }
+                        }
+                      >
+                        <Image
+                          source={
+                            Object {
+                              "testUri": "../../../src/images/Published.png",
+                            }
+                          }
+                          style={
+                            Object {
+                              "height": 12,
+                              "tintColor": "#00AC18",
+                              "width": 12,
+                            }
+                          }
+                        />
+                      </View>
+                    </View>
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
                       }
                     }
                   >
@@ -1777,12 +1765,7 @@ exports[`QuizzesList renders quizzes 1`] = `
                       accessible={true}
                       allowFontScaling={true}
                       ellipsizeMode="tail"
-                      separated={
-                        Array [
-                          "Due Jan 23, 2013 at 11:59 PM",
-                        ]
-                      }
-                      separator="  •  "
+                      numberOfLines={2}
                       style={
                         Array [
                           Object {
@@ -1792,27 +1775,20 @@ exports[`QuizzesList renders quizzes 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
+                          Array [
+                            Object {
+                              "fontWeight": "600",
+                            },
+                            undefined,
+                          ],
                           Object {
-                            "color": "#8B969E",
-                            "fontSize": 14,
-                            "marginTop": 2,
-                          },
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
+                            "fontFamily": ".SFUIDisplay-semibold",
                           },
                         ]
                       }
                     >
-                      Due Jan 23, 2013 at 11:59 PM
+                      Quiz 1
                     </Text>
-                  </View>
-                  <View
-                    style={
-                      Object {
-                        "flexDirection": "row",
-                      }
-                    }
-                  >
                     <View
                       style={
                         Object {
@@ -1826,8 +1802,7 @@ exports[`QuizzesList renders quizzes 1`] = `
                         ellipsizeMode="tail"
                         separated={
                           Array [
-                            "20 pts",
-                            "12 Questions",
+                            "Due Jan 23, 2013 at 11:59 PM",
                           ]
                         }
                         separator="  •  "
@@ -1840,138 +1815,187 @@ exports[`QuizzesList renders quizzes 1`] = `
                               "color": "#2D3B45",
                               "fontSize": 16,
                             },
-                            undefined,
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
                             Object {
                               "fontFamily": ".SFUIDisplay",
                             },
                           ]
                         }
                       >
-                        20 pts
-                      </Text>
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Array [
-                              undefined,
-                              Object {
-                                "alignSelf": "center",
-                                "color": "#8B969E",
-                                "fontSize": 10,
-                              },
-                            ],
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                          ]
-                        }
-                      >
-                          •  
-                      </Text>
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
-                        separated={
-                          Array [
-                            "20 pts",
-                            "12 Questions",
-                          ]
-                        }
-                        separator="  •  "
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            undefined,
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                          ]
-                        }
-                      >
-                        12 Questions
+                        Due Jan 23, 2013 at 11:59 PM
                       </Text>
                     </View>
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Object {
+                            "flexDirection": "row",
+                          }
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          separated={
+                            Array [
+                              "20 pts",
+                              "12 Questions",
+                            ]
+                          }
+                          separator="  •  "
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              undefined,
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                          20 pts
+                        </Text>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Array [
+                                undefined,
+                                Object {
+                                  "alignSelf": "center",
+                                  "color": "#8B969E",
+                                  "fontSize": 10,
+                                },
+                              ],
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                            •  
+                        </Text>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          separated={
+                            Array [
+                              "20 pts",
+                              "12 Questions",
+                            ]
+                          }
+                          separator="  •  "
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              undefined,
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                          12 Questions
+                        </Text>
+                      </View>
+                    </View>
                   </View>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "flex": 0,
-                    }
-                  }
-                >
                   <View
                     style={
                       Object {
-                        "alignItems": "center",
-                        "flex": 1,
-                        "flexDirection": "row",
-                        "justifyContent": "flex-end",
+                        "flex": 0,
                       }
                     }
                   >
                     <View
                       style={
                         Object {
-                          "alignSelf": "center",
-                          "backgroundColor": "transparent",
-                          "borderColor": "#c7c7cc",
-                          "borderRightWidth": 2,
-                          "borderTopWidth": 2,
-                          "height": 10,
-                          "marginLeft": 7,
-                          "transform": Array [
-                            Object {
-                              "rotate": "45deg",
-                            },
-                          ],
-                          "width": 10,
+                          "alignItems": "center",
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "justifyContent": "flex-end",
                         }
                       }
-                    />
+                    >
+                      <View
+                        style={
+                          Object {
+                            "alignSelf": "center",
+                            "backgroundColor": "transparent",
+                            "borderColor": "#c7c7cc",
+                            "borderRightWidth": 2,
+                            "borderTopWidth": 2,
+                            "height": 10,
+                            "marginLeft": 7,
+                            "transform": Array [
+                              Object {
+                                "rotate": "45deg",
+                              },
+                            ],
+                            "width": 10,
+                          }
+                        }
+                      />
+                    </View>
                   </View>
                 </View>
-              </View>
-            </TouchableHighlight>
-          </View>
-          <View
-            style={
-              Object {
-                "backgroundColor": "#00AC18",
-                "bottom": 4,
-                "left": 0,
-                "position": "absolute",
-                "top": 4,
-                "width": 3,
+              </TouchableHighlight>
+            </View>
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#00AC18",
+                  "bottom": 4,
+                  "left": 0,
+                  "position": "absolute",
+                  "top": 4,
+                  "width": 3,
+                }
               }
-            }
-          />
+            />
+          </View>
         </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        />
       </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      />
-    </View>
-  </RCTScrollView>
-</View>
+    </RCTScrollView>
+  </View>
+</RCTSafeAreaView>
 `;
 
 exports[`QuizzesList renders the activity indicator when loading 1`] = `

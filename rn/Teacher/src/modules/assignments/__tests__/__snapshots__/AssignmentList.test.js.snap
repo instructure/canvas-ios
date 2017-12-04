@@ -1,336 +1,83 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1`] = `
-<View
+<RCTSafeAreaView
   style={
     Object {
       "flex": 1,
     }
   }
-  testID="assignment-list.container-view"
 >
   <View
     style={
       Object {
-        "alignItems": "flex-end",
-        "borderBottomColor": "lightgrey",
-        "borderBottomWidth": 0.5,
-        "flexDirection": "row",
-        "justifyContent": "space-between",
-        "paddingBottom": 8,
-        "paddingHorizontal": 16,
-        "paddingTop": 16,
+        "flex": 1,
       }
     }
-    testID="assignment-list.filter-header-view"
+    testID="assignment-list.container-view"
   >
-    <Text
-      accessibilityTraits="header"
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontFamily": ".SFUIDisplay-semibold",
-            "fontSize": 20,
-          },
-          Object {
-            "color": "#2d3b44",
-            "flex": 1,
-            "fontSize": 20,
-            "fontWeight": "600",
-          },
-        ]
-      }
-      testID="assignment-list.filter-title-lbl"
-    >
-      All Grading Periods
-    </Text>
-    <TouchableOpacity
-      accessibilityTraits="button"
-      hitSlop={
-        Object {
-          "bottom": 15,
-          "left": 15,
-          "right": 15,
-          "top": 15,
-        }
-      }
-      onPress={[Function]}
+    <View
       style={
         Object {
-          "marginBottom": 1,
+          "alignItems": "flex-end",
+          "borderBottomColor": "lightgrey",
+          "borderBottomWidth": 0.5,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 8,
+          "paddingHorizontal": 16,
+          "paddingTop": 16,
         }
       }
-      testID="assignment-list.filter"
+      testID="assignment-list.filter-header-view"
     >
-      <View>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Array [
-                Object {
-                  "color": "#374A59",
-                  "fontSize": 14,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-bold",
-                },
-                Object {
-                  "color": "#374A59",
-                },
-                Object {},
-              ],
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-            ]
-          }
-        >
-          Filter
-        </Text>
-      </View>
-    </TouchableOpacity>
-  </View>
-  <RCTScrollView
-    ItemSeparatorComponent={undefined}
-    ListEmptyComponent={
-      <ListEmptyComponent
-        title="There are no assignments to display."
-      />
-    }
-    data={
-      Array [
-        Object {
-          "assignments": Array [
+      <Text
+        accessibilityTraits="header"
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
             Object {
-              "assignment_group_id": 1376,
-              "automatic_peer_reviews": false,
-              "course_id": "987654321",
-              "created_at": "2017-03-17T19:15:25Z",
-              "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "discussion_topic": Object {
-                "id": "1",
-              },
-              "due_at": "2037-06-01T05:59:00Z",
-              "grading_type": "points",
-              "html_url": "http://hostname.tld/whatever",
-              "id": "123456789",
-              "lock_at": "2037-06-01T05:59:59Z",
-              "name": "learn to write code",
-              "needs_grading_count": 0,
-              "overrides": Array [],
-              "peer_reviews": false,
-              "points_possible": 20,
-              "position": 1,
-              "quiz_id": "1",
-              "submission_types": Array [
-                "online_text_entry",
-                "online_url",
-                "media_recording",
-                "online_upload",
-              ],
-              "unlock_at": "2017-03-17T06:00:00Z",
-              "updated_at": "2017-03-17T19:15:25Z",
+              "fontFamily": ".SFUIDisplay",
             },
-          ],
-          "data": Array [
             Object {
-              "assignment_group_id": 1376,
-              "automatic_peer_reviews": false,
-              "course_id": "987654321",
-              "created_at": "2017-03-17T19:15:25Z",
-              "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "discussion_topic": Object {
-                "id": "1",
-              },
-              "due_at": "2037-06-01T05:59:00Z",
-              "grading_type": "points",
-              "html_url": "http://hostname.tld/whatever",
-              "id": "123456789",
-              "lock_at": "2037-06-01T05:59:59Z",
-              "name": "learn to write code",
-              "needs_grading_count": 0,
-              "overrides": Array [],
-              "peer_reviews": false,
-              "points_possible": 20,
-              "position": 1,
-              "quiz_id": "1",
-              "submission_types": Array [
-                "online_text_entry",
-                "online_url",
-                "media_recording",
-                "online_upload",
-              ],
-              "unlock_at": "2017-03-17T06:00:00Z",
-              "updated_at": "2017-03-17T19:15:25Z",
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-semibold",
+              "fontSize": 20,
             },
-          ],
-          "id": "1",
-          "key": "1",
-          "name": "Learn React Native",
-          "position": 1,
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onRefresh={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
-    refreshControl={
-      <RefreshControlMock
-        onRefresh={[Function]}
-        progressViewOffset={undefined}
-        refreshing={false}
-      />
-    }
-    refreshing={false}
-    renderItem={[Function]}
-    renderSectionHeader={[Function]}
-    scrollEventThrottle={50}
-    sections={
-      Array [
-        Object {
-          "assignments": Array [
             Object {
-              "assignment_group_id": 1376,
-              "automatic_peer_reviews": false,
-              "course_id": "987654321",
-              "created_at": "2017-03-17T19:15:25Z",
-              "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "discussion_topic": Object {
-                "id": "1",
-              },
-              "due_at": "2037-06-01T05:59:00Z",
-              "grading_type": "points",
-              "html_url": "http://hostname.tld/whatever",
-              "id": "123456789",
-              "lock_at": "2037-06-01T05:59:59Z",
-              "name": "learn to write code",
-              "needs_grading_count": 0,
-              "overrides": Array [],
-              "peer_reviews": false,
-              "points_possible": 20,
-              "position": 1,
-              "quiz_id": "1",
-              "submission_types": Array [
-                "online_text_entry",
-                "online_url",
-                "media_recording",
-                "online_upload",
-              ],
-              "unlock_at": "2017-03-17T06:00:00Z",
-              "updated_at": "2017-03-17T19:15:25Z",
+              "color": "#2d3b44",
+              "flex": 1,
+              "fontSize": 20,
+              "fontWeight": "600",
             },
-          ],
-          "data": Array [
-            Object {
-              "assignment_group_id": 1376,
-              "automatic_peer_reviews": false,
-              "course_id": "987654321",
-              "created_at": "2017-03-17T19:15:25Z",
-              "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "discussion_topic": Object {
-                "id": "1",
-              },
-              "due_at": "2037-06-01T05:59:00Z",
-              "grading_type": "points",
-              "html_url": "http://hostname.tld/whatever",
-              "id": "123456789",
-              "lock_at": "2037-06-01T05:59:59Z",
-              "name": "learn to write code",
-              "needs_grading_count": 0,
-              "overrides": Array [],
-              "peer_reviews": false,
-              "points_possible": 20,
-              "position": 1,
-              "quiz_id": "1",
-              "submission_types": Array [
-                "online_text_entry",
-                "online_url",
-                "media_recording",
-                "online_upload",
-              ],
-              "unlock_at": "2017-03-17T06:00:00Z",
-              "updated_at": "2017-03-17T19:15:25Z",
-            },
-          ],
-          "id": "1",
-          "key": "1",
-          "name": "Learn React Native",
-          "position": 1,
-        },
-      ]
-    }
-    stickyHeaderIndices={
-      Array [
-        0,
-      ]
-    }
-    stickySectionHeadersEnabled={true}
-    testID="assignment-list.list"
-    updateCellsBatchingPeriod={50}
-    windowSize={21}
-  >
-    <RCTRefreshControl />
-    <View>
-      <View
-        onLayout={[Function]}
-        style={null}
+          ]
+        }
+        testID="assignment-list.filter-title-lbl"
       >
-        <View
-          accessibilityTraits="header"
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#F5F5F5",
-                "flex": 1,
-                "height": "auto",
-                "justifyContent": "center",
-                "paddingLeft": 16,
-                "paddingRight": 8,
-                "paddingVertical": 4,
-              },
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
-              },
-            ]
+        All Grading Periods
+      </Text>
+      <TouchableOpacity
+        accessibilityTraits="button"
+        hitSlop={
+          Object {
+            "bottom": 15,
+            "left": 15,
+            "right": 15,
+            "top": 15,
           }
-        >
+        }
+        onPress={[Function]}
+        style={
+          Object {
+            "marginBottom": 1,
+          }
+        }
+        testID="assignment-list.filter"
+      >
+        <View>
           <Text
-            accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
             ellipsizeMode="tail"
@@ -341,575 +88,599 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
+                  "fontSize": 16,
                 },
+                Array [
+                  Object {
+                    "color": "#374A59",
+                    "fontSize": 14,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-bold",
+                  },
+                  Object {
+                    "color": "#374A59",
+                  },
+                  Object {},
+                ],
                 Object {
-                  "backgroundColor": "#F5F5F5",
-                  "color": "#73818C",
-                  "fontSize": 14,
-                  "fontWeight": "600",
+                  "fontFamily": ".SFUIDisplay",
                 },
               ]
             }
           >
-            Learn React Native
+            Filter
           </Text>
         </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View>
-          <View
-            style={
+      </TouchableOpacity>
+    </View>
+    <RCTScrollView
+      ItemSeparatorComponent={undefined}
+      ListEmptyComponent={
+        <ListEmptyComponent
+          title="There are no assignments to display."
+        />
+      }
+      data={
+        Array [
+          Object {
+            "assignments": Array [
               Object {
-                "marginLeft": -10,
-              }
+                "assignment_group_id": 1376,
+                "automatic_peer_reviews": false,
+                "course_id": "987654321",
+                "created_at": "2017-03-17T19:15:25Z",
+                "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+                "discussion_topic": Object {
+                  "id": "1",
+                },
+                "due_at": "2037-06-01T05:59:00Z",
+                "grading_type": "points",
+                "html_url": "http://hostname.tld/whatever",
+                "id": "123456789",
+                "lock_at": "2037-06-01T05:59:59Z",
+                "name": "learn to write code",
+                "needs_grading_count": 0,
+                "overrides": Array [],
+                "peer_reviews": false,
+                "points_possible": 20,
+                "position": 1,
+                "quiz_id": "1",
+                "submission_types": Array [
+                  "online_text_entry",
+                  "online_url",
+                  "media_recording",
+                  "online_upload",
+                ],
+                "unlock_at": "2017-03-17T06:00:00Z",
+                "updated_at": "2017-03-17T19:15:25Z",
+              },
+            ],
+            "data": Array [
+              Object {
+                "assignment_group_id": 1376,
+                "automatic_peer_reviews": false,
+                "course_id": "987654321",
+                "created_at": "2017-03-17T19:15:25Z",
+                "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+                "discussion_topic": Object {
+                  "id": "1",
+                },
+                "due_at": "2037-06-01T05:59:00Z",
+                "grading_type": "points",
+                "html_url": "http://hostname.tld/whatever",
+                "id": "123456789",
+                "lock_at": "2037-06-01T05:59:59Z",
+                "name": "learn to write code",
+                "needs_grading_count": 0,
+                "overrides": Array [],
+                "peer_reviews": false,
+                "points_possible": 20,
+                "position": 1,
+                "quiz_id": "1",
+                "submission_types": Array [
+                  "online_text_entry",
+                  "online_url",
+                  "media_recording",
+                  "online_upload",
+                ],
+                "unlock_at": "2017-03-17T06:00:00Z",
+                "updated_at": "2017-03-17T19:15:25Z",
+              },
+            ],
+            "id": "1",
+            "key": "1",
+            "name": "Learn React Native",
+            "position": 1,
+          },
+        ]
+      }
+      disableVirtualization={false}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      onContentSizeChange={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onRefresh={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      onViewableItemsChanged={undefined}
+      refreshControl={
+        <RefreshControlMock
+          onRefresh={[Function]}
+          progressViewOffset={undefined}
+          refreshing={false}
+        />
+      }
+      refreshing={false}
+      renderItem={[Function]}
+      renderSectionHeader={[Function]}
+      scrollEventThrottle={50}
+      sections={
+        Array [
+          Object {
+            "assignments": Array [
+              Object {
+                "assignment_group_id": 1376,
+                "automatic_peer_reviews": false,
+                "course_id": "987654321",
+                "created_at": "2017-03-17T19:15:25Z",
+                "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+                "discussion_topic": Object {
+                  "id": "1",
+                },
+                "due_at": "2037-06-01T05:59:00Z",
+                "grading_type": "points",
+                "html_url": "http://hostname.tld/whatever",
+                "id": "123456789",
+                "lock_at": "2037-06-01T05:59:59Z",
+                "name": "learn to write code",
+                "needs_grading_count": 0,
+                "overrides": Array [],
+                "peer_reviews": false,
+                "points_possible": 20,
+                "position": 1,
+                "quiz_id": "1",
+                "submission_types": Array [
+                  "online_text_entry",
+                  "online_url",
+                  "media_recording",
+                  "online_upload",
+                ],
+                "unlock_at": "2017-03-17T06:00:00Z",
+                "updated_at": "2017-03-17T19:15:25Z",
+              },
+            ],
+            "data": Array [
+              Object {
+                "assignment_group_id": 1376,
+                "automatic_peer_reviews": false,
+                "course_id": "987654321",
+                "created_at": "2017-03-17T19:15:25Z",
+                "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+                "discussion_topic": Object {
+                  "id": "1",
+                },
+                "due_at": "2037-06-01T05:59:00Z",
+                "grading_type": "points",
+                "html_url": "http://hostname.tld/whatever",
+                "id": "123456789",
+                "lock_at": "2037-06-01T05:59:59Z",
+                "name": "learn to write code",
+                "needs_grading_count": 0,
+                "overrides": Array [],
+                "peer_reviews": false,
+                "points_possible": 20,
+                "position": 1,
+                "quiz_id": "1",
+                "submission_types": Array [
+                  "online_text_entry",
+                  "online_url",
+                  "media_recording",
+                  "online_upload",
+                ],
+                "unlock_at": "2017-03-17T06:00:00Z",
+                "updated_at": "2017-03-17T19:15:25Z",
+              },
+            ],
+            "id": "1",
+            "key": "1",
+            "name": "Learn React Native",
+            "position": 1,
+          },
+        ]
+      }
+      stickyHeaderIndices={
+        Array [
+          0,
+        ]
+      }
+      stickySectionHeadersEnabled={true}
+      testID="assignment-list.list"
+      updateCellsBatchingPeriod={50}
+      windowSize={21}
+    >
+      <RCTRefreshControl />
+      <View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View
+            accessibilityTraits="header"
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#F5F5F5",
+                  "flex": 1,
+                  "height": "auto",
+                  "justifyContent": "center",
+                  "paddingLeft": 16,
+                  "paddingRight": 8,
+                  "paddingVertical": 4,
+                },
+                Object {
+                  "borderBottomColor": "#C7CDD1",
+                  "borderBottomWidth": 0.5,
+                },
+                Object {
+                  "borderTopColor": "#C7CDD1",
+                  "borderTopWidth": 0.5,
+                },
+              ]
             }
           >
-            <TouchableHighlight
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
-              onPress={[Function]}
+            <Text
+              accessibilityTraits="header"
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
               style={
                 Array [
-                  undefined,
                   Object {
-                    "borderBottomColor": "#C7CDD1",
-                    "borderBottomWidth": 0.5,
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 20,
+                  },
+                  Object {
+                    "backgroundColor": "#F5F5F5",
+                    "color": "#73818C",
+                    "fontSize": 14,
+                    "fontWeight": "600",
                   },
                 ]
               }
-              testID="assignment-list.assignment-list-row.cell-123456789"
             >
-              <View
+              Learn React Native
+            </Text>
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View>
+            <View
+              style={
+                Object {
+                  "marginLeft": -10,
+                }
+              }
+            >
+              <TouchableHighlight
+                accessibilityLabel={undefined}
+                accessibilityTraits={
+                  Array [
+                    "button",
+                  ]
+                }
+                onPress={[Function]}
                 style={
                   Array [
+                    undefined,
                     Object {
-                      "alignItems": "center",
-                      "backgroundColor": "white",
-                      "flex": 1,
-                      "flexDirection": "row",
-                      "minHeight": 54,
-                      "paddingBottom": 12,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                      "paddingTop": 12,
-                    },
-                    Object {
-                      "backgroundColor": "white",
+                      "borderBottomColor": "#C7CDD1",
+                      "borderBottomWidth": 0.5,
                     },
                   ]
                 }
+                testID="assignment-list.assignment-list-row.cell-123456789"
               >
                 <View
                   style={
-                    Object {
-                      "alignSelf": "flex-start",
-                    }
-                  }
-                  testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
-                >
-                  <View
-                    accessibilityLabel="Restricted"
-                    style={
+                    Array [
                       Object {
                         "alignItems": "center",
-                        "flex": 0,
-                        "height": 32,
-                        "width": 46,
+                        "backgroundColor": "white",
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "minHeight": 54,
+                        "paddingBottom": 12,
+                        "paddingLeft": 16,
+                        "paddingRight": 16,
+                        "paddingTop": 12,
+                      },
+                      Object {
+                        "backgroundColor": "white",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignSelf": "flex-start",
                       }
                     }
+                    testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
                   >
-                    <Image
-                      source={
-                        Object {
-                          "testUri": "../../../src/images/course/Assignment.png",
-                        }
-                      }
-                      style={
-                        Array [
-                          Object {
-                            "position": "absolute",
-                          },
-                          Object {
-                            "tintColor": "#fff",
-                          },
-                        ]
-                      }
-                    />
                     <View
+                      accessibilityLabel="Restricted"
                       style={
                         Object {
                           "alignItems": "center",
-                          "backgroundColor": "white",
-                          "borderRadius": 8,
-                          "height": 16,
-                          "justifyContent": "center",
-                          "left": 20,
-                          "position": "absolute",
-                          "top": 10,
-                          "width": 16,
+                          "flex": 0,
+                          "height": 32,
+                          "width": 46,
                         }
                       }
                     >
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/Restricted.png",
+                            "testUri": "../../../src/images/course/Assignment.png",
                           }
                         }
                         style={
-                          Object {
-                            "height": 14,
-                            "tintColor": "#FF0000",
-                            "width": 14,
-                          }
+                          Array [
+                            Object {
+                              "position": "absolute",
+                            },
+                            Object {
+                              "tintColor": "#fff",
+                            },
+                          ]
                         }
                       />
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "left": 20,
+                            "position": "absolute",
+                            "top": 10,
+                            "width": 16,
+                          }
+                        }
+                      >
+                        <Image
+                          source={
+                            Object {
+                              "testUri": "../../../src/images/Restricted.png",
+                            }
+                          }
+                          style={
+                            Object {
+                              "height": 14,
+                              "tintColor": "#FF0000",
+                              "width": 14,
+                            }
+                          }
+                        />
+                      </View>
                     </View>
                   </View>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "flex": 1,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    numberOfLines={2}
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Array [
-                          Object {
-                            "fontWeight": "600",
-                          },
-                          undefined,
-                        ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
-                      ]
-                    }
-                  >
-                    learn to write code
-                  </Text>
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "color": "#8B969E",
-                          "fontSize": 14,
-                          "marginTop": 2,
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                      ]
-                    }
-                    testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
-                  >
-                    Due May 31, 2037 at 11:59 PM
-                  </Text>
-                  <View />
-                </View>
-                <View
-                  style={
-                    Object {
-                      "flex": 0,
-                    }
-                  }
-                >
                   <View
                     style={
                       Object {
-                        "alignItems": "center",
                         "flex": 1,
-                        "flexDirection": "row",
-                        "justifyContent": "flex-end",
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      }
+                    }
+                  >
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
+                      numberOfLines={2}
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Array [
+                            Object {
+                              "fontWeight": "600",
+                            },
+                            undefined,
+                          ],
+                          Object {
+                            "fontFamily": ".SFUIDisplay-semibold",
+                          },
+                        ]
+                      }
+                    >
+                      learn to write code
+                    </Text>
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Object {
+                            "color": "#8B969E",
+                            "fontSize": 14,
+                            "marginTop": 2,
+                          },
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                        ]
+                      }
+                      testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
+                    >
+                      Due May 31, 2037 at 11:59 PM
+                    </Text>
+                    <View />
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "flex": 0,
                       }
                     }
                   >
                     <View
                       style={
                         Object {
-                          "alignSelf": "center",
-                          "backgroundColor": "transparent",
-                          "borderColor": "#c7c7cc",
-                          "borderRightWidth": 2,
-                          "borderTopWidth": 2,
-                          "height": 10,
-                          "marginLeft": 7,
-                          "transform": Array [
-                            Object {
-                              "rotate": "45deg",
-                            },
-                          ],
-                          "width": 10,
+                          "alignItems": "center",
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "justifyContent": "flex-end",
                         }
                       }
-                    />
+                    >
+                      <View
+                        style={
+                          Object {
+                            "alignSelf": "center",
+                            "backgroundColor": "transparent",
+                            "borderColor": "#c7c7cc",
+                            "borderRightWidth": 2,
+                            "borderTopWidth": 2,
+                            "height": 10,
+                            "marginLeft": 7,
+                            "transform": Array [
+                              Object {
+                                "rotate": "45deg",
+                              },
+                            ],
+                            "width": 10,
+                          }
+                        }
+                      />
+                    </View>
                   </View>
                 </View>
-              </View>
-            </TouchableHighlight>
+              </TouchableHighlight>
+            </View>
+            <View />
           </View>
-          <View />
         </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        />
       </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      />
-    </View>
-  </RCTScrollView>
-</View>
+    </RCTScrollView>
+  </View>
+</RCTSafeAreaView>
 `;
 
 exports[`applyFilter will apply a new filter 1`] = `
-<View
+<RCTSafeAreaView
   style={
     Object {
       "flex": 1,
     }
   }
-  testID="assignment-list.container-view"
 >
   <View
     style={
       Object {
-        "alignItems": "flex-end",
-        "borderBottomColor": "lightgrey",
-        "borderBottomWidth": 0.5,
-        "flexDirection": "row",
-        "justifyContent": "space-between",
-        "paddingBottom": 8,
-        "paddingHorizontal": 16,
-        "paddingTop": 16,
+        "flex": 1,
       }
     }
-    testID="assignment-list.filter-header-view"
+    testID="assignment-list.container-view"
   >
-    <Text
-      accessibilityTraits="header"
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontFamily": ".SFUIDisplay-semibold",
-            "fontSize": 20,
-          },
-          Object {
-            "color": "#2d3b44",
-            "flex": 1,
-            "fontSize": 20,
-            "fontWeight": "600",
-          },
-        ]
-      }
-      testID="assignment-list.filter-title-lbl"
-    >
-      First Block
-    </Text>
-    <TouchableOpacity
-      accessibilityTraits="button"
-      hitSlop={
-        Object {
-          "bottom": 15,
-          "left": 15,
-          "right": 15,
-          "top": 15,
-        }
-      }
-      onPress={[Function]}
+    <View
       style={
         Object {
-          "marginBottom": 1,
+          "alignItems": "flex-end",
+          "borderBottomColor": "lightgrey",
+          "borderBottomWidth": 0.5,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 8,
+          "paddingHorizontal": 16,
+          "paddingTop": 16,
         }
       }
-      testID="assignment-list.filter"
+      testID="assignment-list.filter-header-view"
     >
-      <View>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Array [
-                Object {
-                  "color": "#374A59",
-                  "fontSize": 14,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-bold",
-                },
-                Object {
-                  "color": "#374A59",
-                },
-                Object {},
-              ],
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-            ]
-          }
-        >
-          Clear filter
-        </Text>
-      </View>
-    </TouchableOpacity>
-  </View>
-  <RCTScrollView
-    ItemSeparatorComponent={undefined}
-    ListEmptyComponent={
-      <ListEmptyComponent
-        title="There are no assignments to display."
-      />
-    }
-    data={
-      Array [
-        Object {
-          "assignments": Array [
+      <Text
+        accessibilityTraits="header"
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
             Object {
-              "assignment_group_id": 1376,
-              "automatic_peer_reviews": false,
-              "course_id": "987654321",
-              "created_at": "2017-03-17T19:15:25Z",
-              "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "due_at": "2037-06-01T05:59:00Z",
-              "grading_type": "points",
-              "html_url": "http://hostname.tld/whatever",
-              "id": 1,
-              "lock_at": "2037-06-01T05:59:59Z",
-              "name": "learn to write code",
-              "needs_grading_count": 0,
-              "overrides": Array [],
-              "peer_reviews": false,
-              "points_possible": 20,
-              "position": 1,
-              "submission_types": Array [
-                "online_text_entry",
-                "online_url",
-                "media_recording",
-                "online_upload",
-              ],
-              "unlock_at": "2017-03-17T06:00:00Z",
-              "updated_at": "2017-03-17T19:15:25Z",
+              "fontFamily": ".SFUIDisplay",
             },
-          ],
-          "data": Array [
             Object {
-              "assignment_group_id": 1376,
-              "automatic_peer_reviews": false,
-              "course_id": "987654321",
-              "created_at": "2017-03-17T19:15:25Z",
-              "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "due_at": "2037-06-01T05:59:00Z",
-              "grading_type": "points",
-              "html_url": "http://hostname.tld/whatever",
-              "id": 1,
-              "lock_at": "2037-06-01T05:59:59Z",
-              "name": "learn to write code",
-              "needs_grading_count": 0,
-              "overrides": Array [],
-              "peer_reviews": false,
-              "points_possible": 20,
-              "position": 1,
-              "submission_types": Array [
-                "online_text_entry",
-                "online_url",
-                "media_recording",
-                "online_upload",
-              ],
-              "unlock_at": "2017-03-17T06:00:00Z",
-              "updated_at": "2017-03-17T19:15:25Z",
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-semibold",
+              "fontSize": 20,
             },
-          ],
-          "id": 1,
-          "key": 1,
-          "name": "Learn React Native",
-          "position": 1,
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onRefresh={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
-    refreshControl={
-      <RefreshControlMock
-        onRefresh={[Function]}
-        progressViewOffset={undefined}
-        refreshing={false}
-      />
-    }
-    refreshing={false}
-    renderItem={[Function]}
-    renderSectionHeader={[Function]}
-    scrollEventThrottle={50}
-    sections={
-      Array [
-        Object {
-          "assignments": Array [
             Object {
-              "assignment_group_id": 1376,
-              "automatic_peer_reviews": false,
-              "course_id": "987654321",
-              "created_at": "2017-03-17T19:15:25Z",
-              "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "due_at": "2037-06-01T05:59:00Z",
-              "grading_type": "points",
-              "html_url": "http://hostname.tld/whatever",
-              "id": 1,
-              "lock_at": "2037-06-01T05:59:59Z",
-              "name": "learn to write code",
-              "needs_grading_count": 0,
-              "overrides": Array [],
-              "peer_reviews": false,
-              "points_possible": 20,
-              "position": 1,
-              "submission_types": Array [
-                "online_text_entry",
-                "online_url",
-                "media_recording",
-                "online_upload",
-              ],
-              "unlock_at": "2017-03-17T06:00:00Z",
-              "updated_at": "2017-03-17T19:15:25Z",
+              "color": "#2d3b44",
+              "flex": 1,
+              "fontSize": 20,
+              "fontWeight": "600",
             },
-          ],
-          "data": Array [
-            Object {
-              "assignment_group_id": 1376,
-              "automatic_peer_reviews": false,
-              "course_id": "987654321",
-              "created_at": "2017-03-17T19:15:25Z",
-              "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "due_at": "2037-06-01T05:59:00Z",
-              "grading_type": "points",
-              "html_url": "http://hostname.tld/whatever",
-              "id": 1,
-              "lock_at": "2037-06-01T05:59:59Z",
-              "name": "learn to write code",
-              "needs_grading_count": 0,
-              "overrides": Array [],
-              "peer_reviews": false,
-              "points_possible": 20,
-              "position": 1,
-              "submission_types": Array [
-                "online_text_entry",
-                "online_url",
-                "media_recording",
-                "online_upload",
-              ],
-              "unlock_at": "2017-03-17T06:00:00Z",
-              "updated_at": "2017-03-17T19:15:25Z",
-            },
-          ],
-          "id": 1,
-          "key": 1,
-          "name": "Learn React Native",
-          "position": 1,
-        },
-      ]
-    }
-    stickyHeaderIndices={
-      Array [
-        0,
-      ]
-    }
-    stickySectionHeadersEnabled={true}
-    testID="assignment-list.list"
-    updateCellsBatchingPeriod={50}
-    windowSize={21}
-  >
-    <RCTRefreshControl />
-    <View>
-      <View
-        onLayout={[Function]}
-        style={null}
+          ]
+        }
+        testID="assignment-list.filter-title-lbl"
       >
-        <View
-          accessibilityTraits="header"
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#F5F5F5",
-                "flex": 1,
-                "height": "auto",
-                "justifyContent": "center",
-                "paddingLeft": 16,
-                "paddingRight": 8,
-                "paddingVertical": 4,
-              },
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
-              },
-            ]
+        First Block
+      </Text>
+      <TouchableOpacity
+        accessibilityTraits="button"
+        hitSlop={
+          Object {
+            "bottom": 15,
+            "left": 15,
+            "right": 15,
+            "top": 15,
           }
-        >
+        }
+        onPress={[Function]}
+        style={
+          Object {
+            "marginBottom": 1,
+          }
+        }
+        testID="assignment-list.filter"
+      >
+        <View>
           <Text
-            accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
             ellipsizeMode="tail"
@@ -920,1115 +691,1131 @@ exports[`applyFilter will apply a new filter 1`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
+                  "fontSize": 16,
                 },
+                Array [
+                  Object {
+                    "color": "#374A59",
+                    "fontSize": 14,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-bold",
+                  },
+                  Object {
+                    "color": "#374A59",
+                  },
+                  Object {},
+                ],
                 Object {
-                  "backgroundColor": "#F5F5F5",
-                  "color": "#73818C",
-                  "fontSize": 14,
-                  "fontWeight": "600",
+                  "fontFamily": ".SFUIDisplay",
                 },
               ]
             }
           >
-            Learn React Native
+            Clear filter
           </Text>
         </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View>
-          <View
-            style={
+      </TouchableOpacity>
+    </View>
+    <RCTScrollView
+      ItemSeparatorComponent={undefined}
+      ListEmptyComponent={
+        <ListEmptyComponent
+          title="There are no assignments to display."
+        />
+      }
+      data={
+        Array [
+          Object {
+            "assignments": Array [
               Object {
-                "marginLeft": -10,
-              }
+                "assignment_group_id": 1376,
+                "automatic_peer_reviews": false,
+                "course_id": "987654321",
+                "created_at": "2017-03-17T19:15:25Z",
+                "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+                "due_at": "2037-06-01T05:59:00Z",
+                "grading_type": "points",
+                "html_url": "http://hostname.tld/whatever",
+                "id": 1,
+                "lock_at": "2037-06-01T05:59:59Z",
+                "name": "learn to write code",
+                "needs_grading_count": 0,
+                "overrides": Array [],
+                "peer_reviews": false,
+                "points_possible": 20,
+                "position": 1,
+                "submission_types": Array [
+                  "online_text_entry",
+                  "online_url",
+                  "media_recording",
+                  "online_upload",
+                ],
+                "unlock_at": "2017-03-17T06:00:00Z",
+                "updated_at": "2017-03-17T19:15:25Z",
+              },
+            ],
+            "data": Array [
+              Object {
+                "assignment_group_id": 1376,
+                "automatic_peer_reviews": false,
+                "course_id": "987654321",
+                "created_at": "2017-03-17T19:15:25Z",
+                "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+                "due_at": "2037-06-01T05:59:00Z",
+                "grading_type": "points",
+                "html_url": "http://hostname.tld/whatever",
+                "id": 1,
+                "lock_at": "2037-06-01T05:59:59Z",
+                "name": "learn to write code",
+                "needs_grading_count": 0,
+                "overrides": Array [],
+                "peer_reviews": false,
+                "points_possible": 20,
+                "position": 1,
+                "submission_types": Array [
+                  "online_text_entry",
+                  "online_url",
+                  "media_recording",
+                  "online_upload",
+                ],
+                "unlock_at": "2017-03-17T06:00:00Z",
+                "updated_at": "2017-03-17T19:15:25Z",
+              },
+            ],
+            "id": 1,
+            "key": 1,
+            "name": "Learn React Native",
+            "position": 1,
+          },
+        ]
+      }
+      disableVirtualization={false}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      onContentSizeChange={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onRefresh={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      onViewableItemsChanged={undefined}
+      refreshControl={
+        <RefreshControlMock
+          onRefresh={[Function]}
+          progressViewOffset={undefined}
+          refreshing={false}
+        />
+      }
+      refreshing={false}
+      renderItem={[Function]}
+      renderSectionHeader={[Function]}
+      scrollEventThrottle={50}
+      sections={
+        Array [
+          Object {
+            "assignments": Array [
+              Object {
+                "assignment_group_id": 1376,
+                "automatic_peer_reviews": false,
+                "course_id": "987654321",
+                "created_at": "2017-03-17T19:15:25Z",
+                "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+                "due_at": "2037-06-01T05:59:00Z",
+                "grading_type": "points",
+                "html_url": "http://hostname.tld/whatever",
+                "id": 1,
+                "lock_at": "2037-06-01T05:59:59Z",
+                "name": "learn to write code",
+                "needs_grading_count": 0,
+                "overrides": Array [],
+                "peer_reviews": false,
+                "points_possible": 20,
+                "position": 1,
+                "submission_types": Array [
+                  "online_text_entry",
+                  "online_url",
+                  "media_recording",
+                  "online_upload",
+                ],
+                "unlock_at": "2017-03-17T06:00:00Z",
+                "updated_at": "2017-03-17T19:15:25Z",
+              },
+            ],
+            "data": Array [
+              Object {
+                "assignment_group_id": 1376,
+                "automatic_peer_reviews": false,
+                "course_id": "987654321",
+                "created_at": "2017-03-17T19:15:25Z",
+                "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+                "due_at": "2037-06-01T05:59:00Z",
+                "grading_type": "points",
+                "html_url": "http://hostname.tld/whatever",
+                "id": 1,
+                "lock_at": "2037-06-01T05:59:59Z",
+                "name": "learn to write code",
+                "needs_grading_count": 0,
+                "overrides": Array [],
+                "peer_reviews": false,
+                "points_possible": 20,
+                "position": 1,
+                "submission_types": Array [
+                  "online_text_entry",
+                  "online_url",
+                  "media_recording",
+                  "online_upload",
+                ],
+                "unlock_at": "2017-03-17T06:00:00Z",
+                "updated_at": "2017-03-17T19:15:25Z",
+              },
+            ],
+            "id": 1,
+            "key": 1,
+            "name": "Learn React Native",
+            "position": 1,
+          },
+        ]
+      }
+      stickyHeaderIndices={
+        Array [
+          0,
+        ]
+      }
+      stickySectionHeadersEnabled={true}
+      testID="assignment-list.list"
+      updateCellsBatchingPeriod={50}
+      windowSize={21}
+    >
+      <RCTRefreshControl />
+      <View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View
+            accessibilityTraits="header"
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#F5F5F5",
+                  "flex": 1,
+                  "height": "auto",
+                  "justifyContent": "center",
+                  "paddingLeft": 16,
+                  "paddingRight": 8,
+                  "paddingVertical": 4,
+                },
+                Object {
+                  "borderBottomColor": "#C7CDD1",
+                  "borderBottomWidth": 0.5,
+                },
+                Object {
+                  "borderTopColor": "#C7CDD1",
+                  "borderTopWidth": 0.5,
+                },
+              ]
             }
           >
-            <TouchableHighlight
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
-              onPress={[Function]}
+            <Text
+              accessibilityTraits="header"
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
               style={
                 Array [
-                  undefined,
                   Object {
-                    "borderBottomColor": "#C7CDD1",
-                    "borderBottomWidth": 0.5,
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 20,
+                  },
+                  Object {
+                    "backgroundColor": "#F5F5F5",
+                    "color": "#73818C",
+                    "fontSize": 14,
+                    "fontWeight": "600",
                   },
                 ]
               }
-              testID="assignment-list.assignment-list-row.cell-1"
             >
-              <View
+              Learn React Native
+            </Text>
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View>
+            <View
+              style={
+                Object {
+                  "marginLeft": -10,
+                }
+              }
+            >
+              <TouchableHighlight
+                accessibilityLabel={undefined}
+                accessibilityTraits={
+                  Array [
+                    "button",
+                  ]
+                }
+                onPress={[Function]}
                 style={
                   Array [
+                    undefined,
                     Object {
-                      "alignItems": "center",
-                      "backgroundColor": "white",
-                      "flex": 1,
-                      "flexDirection": "row",
-                      "minHeight": 54,
-                      "paddingBottom": 12,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                      "paddingTop": 12,
-                    },
-                    Object {
-                      "backgroundColor": "white",
+                      "borderBottomColor": "#C7CDD1",
+                      "borderBottomWidth": 0.5,
                     },
                   ]
                 }
+                testID="assignment-list.assignment-list-row.cell-1"
               >
                 <View
                   style={
-                    Object {
-                      "alignSelf": "flex-start",
-                    }
-                  }
-                  testID="assignment-list-row-assignment-icon-not-published-1.icon-img"
-                >
-                  <View
-                    accessibilityLabel="Restricted"
-                    style={
+                    Array [
                       Object {
                         "alignItems": "center",
-                        "flex": 0,
-                        "height": 32,
-                        "width": 46,
+                        "backgroundColor": "white",
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "minHeight": 54,
+                        "paddingBottom": 12,
+                        "paddingLeft": 16,
+                        "paddingRight": 16,
+                        "paddingTop": 12,
+                      },
+                      Object {
+                        "backgroundColor": "white",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignSelf": "flex-start",
                       }
                     }
+                    testID="assignment-list-row-assignment-icon-not-published-1.icon-img"
                   >
-                    <Image
-                      source={
-                        Object {
-                          "testUri": "../../../src/images/course/Assignment.png",
-                        }
-                      }
-                      style={
-                        Array [
-                          Object {
-                            "position": "absolute",
-                          },
-                          Object {
-                            "tintColor": "#fff",
-                          },
-                        ]
-                      }
-                    />
                     <View
+                      accessibilityLabel="Restricted"
                       style={
                         Object {
                           "alignItems": "center",
-                          "backgroundColor": "white",
-                          "borderRadius": 8,
-                          "height": 16,
-                          "justifyContent": "center",
-                          "left": 20,
-                          "position": "absolute",
-                          "top": 10,
-                          "width": 16,
+                          "flex": 0,
+                          "height": 32,
+                          "width": 46,
                         }
                       }
                     >
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/Restricted.png",
+                            "testUri": "../../../src/images/course/Assignment.png",
                           }
                         }
                         style={
-                          Object {
-                            "height": 14,
-                            "tintColor": "#FF0000",
-                            "width": 14,
-                          }
+                          Array [
+                            Object {
+                              "position": "absolute",
+                            },
+                            Object {
+                              "tintColor": "#fff",
+                            },
+                          ]
                         }
                       />
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "left": 20,
+                            "position": "absolute",
+                            "top": 10,
+                            "width": 16,
+                          }
+                        }
+                      >
+                        <Image
+                          source={
+                            Object {
+                              "testUri": "../../../src/images/Restricted.png",
+                            }
+                          }
+                          style={
+                            Object {
+                              "height": 14,
+                              "tintColor": "#FF0000",
+                              "width": 14,
+                            }
+                          }
+                        />
+                      </View>
                     </View>
                   </View>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "flex": 1,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    numberOfLines={2}
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Array [
-                          Object {
-                            "fontWeight": "600",
-                          },
-                          undefined,
-                        ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
-                      ]
-                    }
-                  >
-                    learn to write code
-                  </Text>
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "color": "#8B969E",
-                          "fontSize": 14,
-                          "marginTop": 2,
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                      ]
-                    }
-                    testID="assignment-list.assignment-list-row.cell-1-subtitle-lbl"
-                  >
-                    Due May 31, 2037 at 11:59 PM
-                  </Text>
-                  <View />
-                </View>
-                <View
-                  style={
-                    Object {
-                      "flex": 0,
-                    }
-                  }
-                >
                   <View
                     style={
                       Object {
-                        "alignItems": "center",
                         "flex": 1,
-                        "flexDirection": "row",
-                        "justifyContent": "flex-end",
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      }
+                    }
+                  >
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
+                      numberOfLines={2}
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Array [
+                            Object {
+                              "fontWeight": "600",
+                            },
+                            undefined,
+                          ],
+                          Object {
+                            "fontFamily": ".SFUIDisplay-semibold",
+                          },
+                        ]
+                      }
+                    >
+                      learn to write code
+                    </Text>
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Object {
+                            "color": "#8B969E",
+                            "fontSize": 14,
+                            "marginTop": 2,
+                          },
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                        ]
+                      }
+                      testID="assignment-list.assignment-list-row.cell-1-subtitle-lbl"
+                    >
+                      Due May 31, 2037 at 11:59 PM
+                    </Text>
+                    <View />
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "flex": 0,
                       }
                     }
                   >
                     <View
                       style={
                         Object {
-                          "alignSelf": "center",
-                          "backgroundColor": "transparent",
-                          "borderColor": "#c7c7cc",
-                          "borderRightWidth": 2,
-                          "borderTopWidth": 2,
-                          "height": 10,
-                          "marginLeft": 7,
-                          "transform": Array [
-                            Object {
-                              "rotate": "45deg",
-                            },
-                          ],
-                          "width": 10,
+                          "alignItems": "center",
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "justifyContent": "flex-end",
                         }
                       }
-                    />
+                    >
+                      <View
+                        style={
+                          Object {
+                            "alignSelf": "center",
+                            "backgroundColor": "transparent",
+                            "borderColor": "#c7c7cc",
+                            "borderRightWidth": 2,
+                            "borderTopWidth": 2,
+                            "height": 10,
+                            "marginLeft": 7,
+                            "transform": Array [
+                              Object {
+                                "rotate": "45deg",
+                              },
+                            ],
+                            "width": 10,
+                          }
+                        }
+                      />
+                    </View>
                   </View>
                 </View>
-              </View>
-            </TouchableHighlight>
+              </TouchableHighlight>
+            </View>
+            <View />
           </View>
-          <View />
         </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        />
       </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      />
-    </View>
-  </RCTScrollView>
-</View>
+    </RCTScrollView>
+  </View>
+</RCTSafeAreaView>
 `;
 
 exports[`filter button only shows when there are grading periods 1`] = `
-<View
+<RCTSafeAreaView
   style={
     Object {
       "flex": 1,
     }
   }
-  testID="assignment-list.container-view"
 >
   <View
     style={
       Object {
-        "alignItems": "flex-end",
-        "borderBottomColor": "lightgrey",
-        "borderBottomWidth": 0.5,
-        "flexDirection": "row",
-        "justifyContent": "space-between",
-        "paddingBottom": 8,
-        "paddingHorizontal": 16,
-        "paddingTop": 16,
+        "flex": 1,
       }
     }
-    testID="assignment-list.filter-header-view"
+    testID="assignment-list.container-view"
   >
-    <Text
-      accessibilityTraits="header"
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
+    <View
       style={
+        Object {
+          "alignItems": "flex-end",
+          "borderBottomColor": "lightgrey",
+          "borderBottomWidth": 0.5,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 8,
+          "paddingHorizontal": 16,
+          "paddingTop": 16,
+        }
+      }
+      testID="assignment-list.filter-header-view"
+    >
+      <Text
+        accessibilityTraits="header"
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-semibold",
+              "fontSize": 20,
+            },
+            Object {
+              "color": "#2d3b44",
+              "flex": 1,
+              "fontSize": 20,
+              "fontWeight": "600",
+            },
+          ]
+        }
+        testID="assignment-list.filter-title-lbl"
+      >
+        All Grading Periods
+      </Text>
+    </View>
+    <RCTScrollView
+      ItemSeparatorComponent={undefined}
+      ListEmptyComponent={
+        <ListEmptyComponent
+          title="There are no assignments to display."
+        />
+      }
+      data={
         Array [
           Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontFamily": ".SFUIDisplay-semibold",
-            "fontSize": 20,
-          },
-          Object {
-            "color": "#2d3b44",
-            "flex": 1,
-            "fontSize": 20,
-            "fontWeight": "600",
+            "assignments": Array [
+              Object {
+                "assignment_group_id": 1376,
+                "automatic_peer_reviews": false,
+                "course_id": "987654321",
+                "created_at": "2017-03-17T19:15:25Z",
+                "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+                "discussion_topic": Object {
+                  "id": "1",
+                },
+                "due_at": "2037-06-01T05:59:00Z",
+                "grading_type": "points",
+                "html_url": "http://hostname.tld/whatever",
+                "id": "123456789",
+                "lock_at": "2037-06-01T05:59:59Z",
+                "name": "learn to write code",
+                "needs_grading_count": 0,
+                "overrides": Array [],
+                "peer_reviews": false,
+                "points_possible": 20,
+                "position": 1,
+                "quiz_id": "1",
+                "submission_types": Array [
+                  "online_text_entry",
+                  "online_url",
+                  "media_recording",
+                  "online_upload",
+                ],
+                "unlock_at": "2017-03-17T06:00:00Z",
+                "updated_at": "2017-03-17T19:15:25Z",
+              },
+            ],
+            "data": Array [
+              Object {
+                "assignment_group_id": 1376,
+                "automatic_peer_reviews": false,
+                "course_id": "987654321",
+                "created_at": "2017-03-17T19:15:25Z",
+                "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+                "discussion_topic": Object {
+                  "id": "1",
+                },
+                "due_at": "2037-06-01T05:59:00Z",
+                "grading_type": "points",
+                "html_url": "http://hostname.tld/whatever",
+                "id": "123456789",
+                "lock_at": "2037-06-01T05:59:59Z",
+                "name": "learn to write code",
+                "needs_grading_count": 0,
+                "overrides": Array [],
+                "peer_reviews": false,
+                "points_possible": 20,
+                "position": 1,
+                "quiz_id": "1",
+                "submission_types": Array [
+                  "online_text_entry",
+                  "online_url",
+                  "media_recording",
+                  "online_upload",
+                ],
+                "unlock_at": "2017-03-17T06:00:00Z",
+                "updated_at": "2017-03-17T19:15:25Z",
+              },
+            ],
+            "id": "1",
+            "key": "1",
+            "name": "Learn React Native",
+            "position": 1,
           },
         ]
       }
-      testID="assignment-list.filter-title-lbl"
+      disableVirtualization={false}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      onContentSizeChange={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onRefresh={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      onViewableItemsChanged={undefined}
+      refreshControl={
+        <RefreshControlMock
+          onRefresh={[Function]}
+          progressViewOffset={undefined}
+          refreshing={false}
+        />
+      }
+      refreshing={false}
+      renderItem={[Function]}
+      renderSectionHeader={[Function]}
+      scrollEventThrottle={50}
+      sections={
+        Array [
+          Object {
+            "assignments": Array [
+              Object {
+                "assignment_group_id": 1376,
+                "automatic_peer_reviews": false,
+                "course_id": "987654321",
+                "created_at": "2017-03-17T19:15:25Z",
+                "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+                "discussion_topic": Object {
+                  "id": "1",
+                },
+                "due_at": "2037-06-01T05:59:00Z",
+                "grading_type": "points",
+                "html_url": "http://hostname.tld/whatever",
+                "id": "123456789",
+                "lock_at": "2037-06-01T05:59:59Z",
+                "name": "learn to write code",
+                "needs_grading_count": 0,
+                "overrides": Array [],
+                "peer_reviews": false,
+                "points_possible": 20,
+                "position": 1,
+                "quiz_id": "1",
+                "submission_types": Array [
+                  "online_text_entry",
+                  "online_url",
+                  "media_recording",
+                  "online_upload",
+                ],
+                "unlock_at": "2017-03-17T06:00:00Z",
+                "updated_at": "2017-03-17T19:15:25Z",
+              },
+            ],
+            "data": Array [
+              Object {
+                "assignment_group_id": 1376,
+                "automatic_peer_reviews": false,
+                "course_id": "987654321",
+                "created_at": "2017-03-17T19:15:25Z",
+                "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+                "discussion_topic": Object {
+                  "id": "1",
+                },
+                "due_at": "2037-06-01T05:59:00Z",
+                "grading_type": "points",
+                "html_url": "http://hostname.tld/whatever",
+                "id": "123456789",
+                "lock_at": "2037-06-01T05:59:59Z",
+                "name": "learn to write code",
+                "needs_grading_count": 0,
+                "overrides": Array [],
+                "peer_reviews": false,
+                "points_possible": 20,
+                "position": 1,
+                "quiz_id": "1",
+                "submission_types": Array [
+                  "online_text_entry",
+                  "online_url",
+                  "media_recording",
+                  "online_upload",
+                ],
+                "unlock_at": "2017-03-17T06:00:00Z",
+                "updated_at": "2017-03-17T19:15:25Z",
+              },
+            ],
+            "id": "1",
+            "key": "1",
+            "name": "Learn React Native",
+            "position": 1,
+          },
+        ]
+      }
+      stickyHeaderIndices={
+        Array [
+          0,
+        ]
+      }
+      stickySectionHeadersEnabled={true}
+      testID="assignment-list.list"
+      updateCellsBatchingPeriod={50}
+      windowSize={21}
     >
-      All Grading Periods
-    </Text>
-  </View>
-  <RCTScrollView
-    ItemSeparatorComponent={undefined}
-    ListEmptyComponent={
-      <ListEmptyComponent
-        title="There are no assignments to display."
-      />
-    }
-    data={
-      Array [
-        Object {
-          "assignments": Array [
-            Object {
-              "assignment_group_id": 1376,
-              "automatic_peer_reviews": false,
-              "course_id": "987654321",
-              "created_at": "2017-03-17T19:15:25Z",
-              "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "discussion_topic": Object {
-                "id": "1",
-              },
-              "due_at": "2037-06-01T05:59:00Z",
-              "grading_type": "points",
-              "html_url": "http://hostname.tld/whatever",
-              "id": "123456789",
-              "lock_at": "2037-06-01T05:59:59Z",
-              "name": "learn to write code",
-              "needs_grading_count": 0,
-              "overrides": Array [],
-              "peer_reviews": false,
-              "points_possible": 20,
-              "position": 1,
-              "quiz_id": "1",
-              "submission_types": Array [
-                "online_text_entry",
-                "online_url",
-                "media_recording",
-                "online_upload",
-              ],
-              "unlock_at": "2017-03-17T06:00:00Z",
-              "updated_at": "2017-03-17T19:15:25Z",
-            },
-          ],
-          "data": Array [
-            Object {
-              "assignment_group_id": 1376,
-              "automatic_peer_reviews": false,
-              "course_id": "987654321",
-              "created_at": "2017-03-17T19:15:25Z",
-              "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "discussion_topic": Object {
-                "id": "1",
-              },
-              "due_at": "2037-06-01T05:59:00Z",
-              "grading_type": "points",
-              "html_url": "http://hostname.tld/whatever",
-              "id": "123456789",
-              "lock_at": "2037-06-01T05:59:59Z",
-              "name": "learn to write code",
-              "needs_grading_count": 0,
-              "overrides": Array [],
-              "peer_reviews": false,
-              "points_possible": 20,
-              "position": 1,
-              "quiz_id": "1",
-              "submission_types": Array [
-                "online_text_entry",
-                "online_url",
-                "media_recording",
-                "online_upload",
-              ],
-              "unlock_at": "2017-03-17T06:00:00Z",
-              "updated_at": "2017-03-17T19:15:25Z",
-            },
-          ],
-          "id": "1",
-          "key": "1",
-          "name": "Learn React Native",
-          "position": 1,
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onRefresh={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
-    refreshControl={
-      <RefreshControlMock
-        onRefresh={[Function]}
-        progressViewOffset={undefined}
-        refreshing={false}
-      />
-    }
-    refreshing={false}
-    renderItem={[Function]}
-    renderSectionHeader={[Function]}
-    scrollEventThrottle={50}
-    sections={
-      Array [
-        Object {
-          "assignments": Array [
-            Object {
-              "assignment_group_id": 1376,
-              "automatic_peer_reviews": false,
-              "course_id": "987654321",
-              "created_at": "2017-03-17T19:15:25Z",
-              "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "discussion_topic": Object {
-                "id": "1",
-              },
-              "due_at": "2037-06-01T05:59:00Z",
-              "grading_type": "points",
-              "html_url": "http://hostname.tld/whatever",
-              "id": "123456789",
-              "lock_at": "2037-06-01T05:59:59Z",
-              "name": "learn to write code",
-              "needs_grading_count": 0,
-              "overrides": Array [],
-              "peer_reviews": false,
-              "points_possible": 20,
-              "position": 1,
-              "quiz_id": "1",
-              "submission_types": Array [
-                "online_text_entry",
-                "online_url",
-                "media_recording",
-                "online_upload",
-              ],
-              "unlock_at": "2017-03-17T06:00:00Z",
-              "updated_at": "2017-03-17T19:15:25Z",
-            },
-          ],
-          "data": Array [
-            Object {
-              "assignment_group_id": 1376,
-              "automatic_peer_reviews": false,
-              "course_id": "987654321",
-              "created_at": "2017-03-17T19:15:25Z",
-              "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "discussion_topic": Object {
-                "id": "1",
-              },
-              "due_at": "2037-06-01T05:59:00Z",
-              "grading_type": "points",
-              "html_url": "http://hostname.tld/whatever",
-              "id": "123456789",
-              "lock_at": "2037-06-01T05:59:59Z",
-              "name": "learn to write code",
-              "needs_grading_count": 0,
-              "overrides": Array [],
-              "peer_reviews": false,
-              "points_possible": 20,
-              "position": 1,
-              "quiz_id": "1",
-              "submission_types": Array [
-                "online_text_entry",
-                "online_url",
-                "media_recording",
-                "online_upload",
-              ],
-              "unlock_at": "2017-03-17T06:00:00Z",
-              "updated_at": "2017-03-17T19:15:25Z",
-            },
-          ],
-          "id": "1",
-          "key": "1",
-          "name": "Learn React Native",
-          "position": 1,
-        },
-      ]
-    }
-    stickyHeaderIndices={
-      Array [
-        0,
-      ]
-    }
-    stickySectionHeadersEnabled={true}
-    testID="assignment-list.list"
-    updateCellsBatchingPeriod={50}
-    windowSize={21}
-  >
-    <RCTRefreshControl />
-    <View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
+      <RCTRefreshControl />
+      <View>
         <View
-          accessibilityTraits="header"
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#F5F5F5",
-                "flex": 1,
-                "height": "auto",
-                "justifyContent": "center",
-                "paddingLeft": 16,
-                "paddingRight": 8,
-                "paddingVertical": 4,
-              },
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
-              },
-            ]
-          }
+          onLayout={[Function]}
+          style={null}
         >
-          <Text
+          <View
             accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
-                },
-                Object {
                   "backgroundColor": "#F5F5F5",
-                  "color": "#73818C",
-                  "fontSize": 14,
-                  "fontWeight": "600",
+                  "flex": 1,
+                  "height": "auto",
+                  "justifyContent": "center",
+                  "paddingLeft": 16,
+                  "paddingRight": 8,
+                  "paddingVertical": 4,
+                },
+                Object {
+                  "borderBottomColor": "#C7CDD1",
+                  "borderBottomWidth": 0.5,
+                },
+                Object {
+                  "borderTopColor": "#C7CDD1",
+                  "borderTopWidth": 0.5,
                 },
               ]
             }
           >
-            Learn React Native
-          </Text>
-        </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View>
-          <View
-            style={
-              Object {
-                "marginLeft": -10,
-              }
-            }
-          >
-            <TouchableHighlight
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
-              onPress={[Function]}
+            <Text
+              accessibilityTraits="header"
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
               style={
                 Array [
-                  undefined,
                   Object {
-                    "borderBottomColor": "#C7CDD1",
-                    "borderBottomWidth": 0.5,
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 20,
+                  },
+                  Object {
+                    "backgroundColor": "#F5F5F5",
+                    "color": "#73818C",
+                    "fontSize": 14,
+                    "fontWeight": "600",
                   },
                 ]
               }
-              testID="assignment-list.assignment-list-row.cell-123456789"
             >
-              <View
+              Learn React Native
+            </Text>
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View>
+            <View
+              style={
+                Object {
+                  "marginLeft": -10,
+                }
+              }
+            >
+              <TouchableHighlight
+                accessibilityLabel={undefined}
+                accessibilityTraits={
+                  Array [
+                    "button",
+                  ]
+                }
+                onPress={[Function]}
                 style={
                   Array [
+                    undefined,
                     Object {
-                      "alignItems": "center",
-                      "backgroundColor": "white",
-                      "flex": 1,
-                      "flexDirection": "row",
-                      "minHeight": 54,
-                      "paddingBottom": 12,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                      "paddingTop": 12,
-                    },
-                    Object {
-                      "backgroundColor": "white",
+                      "borderBottomColor": "#C7CDD1",
+                      "borderBottomWidth": 0.5,
                     },
                   ]
                 }
+                testID="assignment-list.assignment-list-row.cell-123456789"
               >
                 <View
                   style={
-                    Object {
-                      "alignSelf": "flex-start",
-                    }
-                  }
-                  testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
-                >
-                  <View
-                    accessibilityLabel="Restricted"
-                    style={
+                    Array [
                       Object {
                         "alignItems": "center",
-                        "flex": 0,
-                        "height": 32,
-                        "width": 46,
+                        "backgroundColor": "white",
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "minHeight": 54,
+                        "paddingBottom": 12,
+                        "paddingLeft": 16,
+                        "paddingRight": 16,
+                        "paddingTop": 12,
+                      },
+                      Object {
+                        "backgroundColor": "white",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignSelf": "flex-start",
                       }
                     }
+                    testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
                   >
-                    <Image
-                      source={
-                        Object {
-                          "testUri": "../../../src/images/course/Assignment.png",
-                        }
-                      }
-                      style={
-                        Array [
-                          Object {
-                            "position": "absolute",
-                          },
-                          Object {
-                            "tintColor": "#fff",
-                          },
-                        ]
-                      }
-                    />
                     <View
+                      accessibilityLabel="Restricted"
                       style={
                         Object {
                           "alignItems": "center",
-                          "backgroundColor": "white",
-                          "borderRadius": 8,
-                          "height": 16,
-                          "justifyContent": "center",
-                          "left": 20,
-                          "position": "absolute",
-                          "top": 10,
-                          "width": 16,
+                          "flex": 0,
+                          "height": 32,
+                          "width": 46,
                         }
                       }
                     >
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/Restricted.png",
+                            "testUri": "../../../src/images/course/Assignment.png",
                           }
                         }
                         style={
-                          Object {
-                            "height": 14,
-                            "tintColor": "#FF0000",
-                            "width": 14,
-                          }
+                          Array [
+                            Object {
+                              "position": "absolute",
+                            },
+                            Object {
+                              "tintColor": "#fff",
+                            },
+                          ]
                         }
                       />
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "left": 20,
+                            "position": "absolute",
+                            "top": 10,
+                            "width": 16,
+                          }
+                        }
+                      >
+                        <Image
+                          source={
+                            Object {
+                              "testUri": "../../../src/images/Restricted.png",
+                            }
+                          }
+                          style={
+                            Object {
+                              "height": 14,
+                              "tintColor": "#FF0000",
+                              "width": 14,
+                            }
+                          }
+                        />
+                      </View>
                     </View>
                   </View>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "flex": 1,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    numberOfLines={2}
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Array [
-                          Object {
-                            "fontWeight": "600",
-                          },
-                          undefined,
-                        ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
-                      ]
-                    }
-                  >
-                    learn to write code
-                  </Text>
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "color": "#8B969E",
-                          "fontSize": 14,
-                          "marginTop": 2,
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                      ]
-                    }
-                    testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
-                  >
-                    Due May 31, 2037 at 11:59 PM
-                  </Text>
-                  <View />
-                </View>
-                <View
-                  style={
-                    Object {
-                      "flex": 0,
-                    }
-                  }
-                >
                   <View
                     style={
                       Object {
-                        "alignItems": "center",
                         "flex": 1,
-                        "flexDirection": "row",
-                        "justifyContent": "flex-end",
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      }
+                    }
+                  >
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
+                      numberOfLines={2}
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Array [
+                            Object {
+                              "fontWeight": "600",
+                            },
+                            undefined,
+                          ],
+                          Object {
+                            "fontFamily": ".SFUIDisplay-semibold",
+                          },
+                        ]
+                      }
+                    >
+                      learn to write code
+                    </Text>
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Object {
+                            "color": "#8B969E",
+                            "fontSize": 14,
+                            "marginTop": 2,
+                          },
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                        ]
+                      }
+                      testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
+                    >
+                      Due May 31, 2037 at 11:59 PM
+                    </Text>
+                    <View />
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "flex": 0,
                       }
                     }
                   >
                     <View
                       style={
                         Object {
-                          "alignSelf": "center",
-                          "backgroundColor": "transparent",
-                          "borderColor": "#c7c7cc",
-                          "borderRightWidth": 2,
-                          "borderTopWidth": 2,
-                          "height": 10,
-                          "marginLeft": 7,
-                          "transform": Array [
-                            Object {
-                              "rotate": "45deg",
-                            },
-                          ],
-                          "width": 10,
+                          "alignItems": "center",
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "justifyContent": "flex-end",
                         }
                       }
-                    />
+                    >
+                      <View
+                        style={
+                          Object {
+                            "alignSelf": "center",
+                            "backgroundColor": "transparent",
+                            "borderColor": "#c7c7cc",
+                            "borderRightWidth": 2,
+                            "borderTopWidth": 2,
+                            "height": 10,
+                            "marginLeft": 7,
+                            "transform": Array [
+                              Object {
+                                "rotate": "45deg",
+                              },
+                            ],
+                            "width": 10,
+                          }
+                        }
+                      />
+                    </View>
                   </View>
                 </View>
-              </View>
-            </TouchableHighlight>
+              </TouchableHighlight>
+            </View>
+            <View />
           </View>
-          <View />
         </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        />
       </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      />
-    </View>
-  </RCTScrollView>
-</View>
+    </RCTScrollView>
+  </View>
+</RCTSafeAreaView>
 `;
 
 exports[`renders correctly 1`] = `
-<View
+<RCTSafeAreaView
   style={
     Object {
       "flex": 1,
     }
   }
-  testID="assignment-list.container-view"
 >
   <View
     style={
       Object {
-        "alignItems": "flex-end",
-        "borderBottomColor": "lightgrey",
-        "borderBottomWidth": 0.5,
-        "flexDirection": "row",
-        "justifyContent": "space-between",
-        "paddingBottom": 8,
-        "paddingHorizontal": 16,
-        "paddingTop": 16,
+        "flex": 1,
       }
     }
-    testID="assignment-list.filter-header-view"
+    testID="assignment-list.container-view"
   >
-    <Text
-      accessibilityTraits="header"
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontFamily": ".SFUIDisplay-semibold",
-            "fontSize": 20,
-          },
-          Object {
-            "color": "#2d3b44",
-            "flex": 1,
-            "fontSize": 20,
-            "fontWeight": "600",
-          },
-        ]
-      }
-      testID="assignment-list.filter-title-lbl"
-    >
-      All Grading Periods
-    </Text>
-    <TouchableOpacity
-      accessibilityTraits="button"
-      hitSlop={
-        Object {
-          "bottom": 15,
-          "left": 15,
-          "right": 15,
-          "top": 15,
-        }
-      }
-      onPress={[Function]}
+    <View
       style={
         Object {
-          "marginBottom": 1,
+          "alignItems": "flex-end",
+          "borderBottomColor": "lightgrey",
+          "borderBottomWidth": 0.5,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 8,
+          "paddingHorizontal": 16,
+          "paddingTop": 16,
         }
       }
-      testID="assignment-list.filter"
+      testID="assignment-list.filter-header-view"
     >
-      <View>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Array [
-                Object {
-                  "color": "#374A59",
-                  "fontSize": 14,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-bold",
-                },
-                Object {
-                  "color": "#374A59",
-                },
-                Object {},
-              ],
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-            ]
-          }
-        >
-          Filter
-        </Text>
-      </View>
-    </TouchableOpacity>
-  </View>
-  <RCTScrollView
-    ItemSeparatorComponent={undefined}
-    ListEmptyComponent={
-      <ListEmptyComponent
-        title="There are no assignments to display."
-      />
-    }
-    data={
-      Array [
-        Object {
-          "assignments": Array [
+      <Text
+        accessibilityTraits="header"
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
             Object {
-              "assignment_group_id": 1376,
-              "automatic_peer_reviews": false,
-              "course_id": "987654321",
-              "created_at": "2017-03-17T19:15:25Z",
-              "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "due_at": "2037-06-01T05:59:00Z",
-              "grading_type": "points",
-              "html_url": "http://hostname.tld/whatever",
-              "id": "123456789",
-              "lock_at": "2037-06-01T05:59:59Z",
-              "name": "learn to write code",
-              "needs_grading_count": 0,
-              "overrides": Array [],
-              "peer_reviews": false,
-              "points_possible": 20,
-              "position": 1,
-              "submission_types": Array [
-                "online_text_entry",
-                "online_url",
-                "media_recording",
-                "online_upload",
-              ],
-              "unlock_at": "2017-03-17T06:00:00Z",
-              "updated_at": "2017-03-17T19:15:25Z",
+              "fontFamily": ".SFUIDisplay",
             },
-          ],
-          "data": Array [
             Object {
-              "assignment_group_id": 1376,
-              "automatic_peer_reviews": false,
-              "course_id": "987654321",
-              "created_at": "2017-03-17T19:15:25Z",
-              "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "due_at": "2037-06-01T05:59:00Z",
-              "grading_type": "points",
-              "html_url": "http://hostname.tld/whatever",
-              "id": "123456789",
-              "lock_at": "2037-06-01T05:59:59Z",
-              "name": "learn to write code",
-              "needs_grading_count": 0,
-              "overrides": Array [],
-              "peer_reviews": false,
-              "points_possible": 20,
-              "position": 1,
-              "submission_types": Array [
-                "online_text_entry",
-                "online_url",
-                "media_recording",
-                "online_upload",
-              ],
-              "unlock_at": "2017-03-17T06:00:00Z",
-              "updated_at": "2017-03-17T19:15:25Z",
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-semibold",
+              "fontSize": 20,
             },
-          ],
-          "id": "1",
-          "key": "1",
-          "name": "Learn React Native",
-          "position": 1,
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onRefresh={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
-    refreshControl={
-      <RefreshControlMock
-        onRefresh={[Function]}
-        progressViewOffset={undefined}
-        refreshing={false}
-      />
-    }
-    refreshing={false}
-    renderItem={[Function]}
-    renderSectionHeader={[Function]}
-    scrollEventThrottle={50}
-    sections={
-      Array [
-        Object {
-          "assignments": Array [
             Object {
-              "assignment_group_id": 1376,
-              "automatic_peer_reviews": false,
-              "course_id": "987654321",
-              "created_at": "2017-03-17T19:15:25Z",
-              "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "due_at": "2037-06-01T05:59:00Z",
-              "grading_type": "points",
-              "html_url": "http://hostname.tld/whatever",
-              "id": "123456789",
-              "lock_at": "2037-06-01T05:59:59Z",
-              "name": "learn to write code",
-              "needs_grading_count": 0,
-              "overrides": Array [],
-              "peer_reviews": false,
-              "points_possible": 20,
-              "position": 1,
-              "submission_types": Array [
-                "online_text_entry",
-                "online_url",
-                "media_recording",
-                "online_upload",
-              ],
-              "unlock_at": "2017-03-17T06:00:00Z",
-              "updated_at": "2017-03-17T19:15:25Z",
+              "color": "#2d3b44",
+              "flex": 1,
+              "fontSize": 20,
+              "fontWeight": "600",
             },
-          ],
-          "data": Array [
-            Object {
-              "assignment_group_id": 1376,
-              "automatic_peer_reviews": false,
-              "course_id": "987654321",
-              "created_at": "2017-03-17T19:15:25Z",
-              "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "due_at": "2037-06-01T05:59:00Z",
-              "grading_type": "points",
-              "html_url": "http://hostname.tld/whatever",
-              "id": "123456789",
-              "lock_at": "2037-06-01T05:59:59Z",
-              "name": "learn to write code",
-              "needs_grading_count": 0,
-              "overrides": Array [],
-              "peer_reviews": false,
-              "points_possible": 20,
-              "position": 1,
-              "submission_types": Array [
-                "online_text_entry",
-                "online_url",
-                "media_recording",
-                "online_upload",
-              ],
-              "unlock_at": "2017-03-17T06:00:00Z",
-              "updated_at": "2017-03-17T19:15:25Z",
-            },
-          ],
-          "id": "1",
-          "key": "1",
-          "name": "Learn React Native",
-          "position": 1,
-        },
-      ]
-    }
-    stickyHeaderIndices={
-      Array [
-        0,
-      ]
-    }
-    stickySectionHeadersEnabled={true}
-    testID="assignment-list.list"
-    updateCellsBatchingPeriod={50}
-    windowSize={21}
-  >
-    <RCTRefreshControl />
-    <View>
-      <View
-        onLayout={[Function]}
-        style={null}
+          ]
+        }
+        testID="assignment-list.filter-title-lbl"
       >
-        <View
-          accessibilityTraits="header"
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#F5F5F5",
-                "flex": 1,
-                "height": "auto",
-                "justifyContent": "center",
-                "paddingLeft": 16,
-                "paddingRight": 8,
-                "paddingVertical": 4,
-              },
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
-              },
-            ]
+        All Grading Periods
+      </Text>
+      <TouchableOpacity
+        accessibilityTraits="button"
+        hitSlop={
+          Object {
+            "bottom": 15,
+            "left": 15,
+            "right": 15,
+            "top": 15,
           }
-        >
+        }
+        onPress={[Function]}
+        style={
+          Object {
+            "marginBottom": 1,
+          }
+        }
+        testID="assignment-list.filter"
+      >
+        <View>
           <Text
-            accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
             ellipsizeMode="tail"
@@ -2039,258 +1826,503 @@ exports[`renders correctly 1`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
+                  "fontSize": 16,
                 },
+                Array [
+                  Object {
+                    "color": "#374A59",
+                    "fontSize": 14,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-bold",
+                  },
+                  Object {
+                    "color": "#374A59",
+                  },
+                  Object {},
+                ],
                 Object {
-                  "backgroundColor": "#F5F5F5",
-                  "color": "#73818C",
-                  "fontSize": 14,
-                  "fontWeight": "600",
+                  "fontFamily": ".SFUIDisplay",
                 },
               ]
             }
           >
-            Learn React Native
+            Filter
           </Text>
         </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View>
-          <View
-            style={
+      </TouchableOpacity>
+    </View>
+    <RCTScrollView
+      ItemSeparatorComponent={undefined}
+      ListEmptyComponent={
+        <ListEmptyComponent
+          title="There are no assignments to display."
+        />
+      }
+      data={
+        Array [
+          Object {
+            "assignments": Array [
               Object {
-                "marginLeft": -10,
-              }
+                "assignment_group_id": 1376,
+                "automatic_peer_reviews": false,
+                "course_id": "987654321",
+                "created_at": "2017-03-17T19:15:25Z",
+                "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+                "due_at": "2037-06-01T05:59:00Z",
+                "grading_type": "points",
+                "html_url": "http://hostname.tld/whatever",
+                "id": "123456789",
+                "lock_at": "2037-06-01T05:59:59Z",
+                "name": "learn to write code",
+                "needs_grading_count": 0,
+                "overrides": Array [],
+                "peer_reviews": false,
+                "points_possible": 20,
+                "position": 1,
+                "submission_types": Array [
+                  "online_text_entry",
+                  "online_url",
+                  "media_recording",
+                  "online_upload",
+                ],
+                "unlock_at": "2017-03-17T06:00:00Z",
+                "updated_at": "2017-03-17T19:15:25Z",
+              },
+            ],
+            "data": Array [
+              Object {
+                "assignment_group_id": 1376,
+                "automatic_peer_reviews": false,
+                "course_id": "987654321",
+                "created_at": "2017-03-17T19:15:25Z",
+                "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+                "due_at": "2037-06-01T05:59:00Z",
+                "grading_type": "points",
+                "html_url": "http://hostname.tld/whatever",
+                "id": "123456789",
+                "lock_at": "2037-06-01T05:59:59Z",
+                "name": "learn to write code",
+                "needs_grading_count": 0,
+                "overrides": Array [],
+                "peer_reviews": false,
+                "points_possible": 20,
+                "position": 1,
+                "submission_types": Array [
+                  "online_text_entry",
+                  "online_url",
+                  "media_recording",
+                  "online_upload",
+                ],
+                "unlock_at": "2017-03-17T06:00:00Z",
+                "updated_at": "2017-03-17T19:15:25Z",
+              },
+            ],
+            "id": "1",
+            "key": "1",
+            "name": "Learn React Native",
+            "position": 1,
+          },
+        ]
+      }
+      disableVirtualization={false}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      onContentSizeChange={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onRefresh={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      onViewableItemsChanged={undefined}
+      refreshControl={
+        <RefreshControlMock
+          onRefresh={[Function]}
+          progressViewOffset={undefined}
+          refreshing={false}
+        />
+      }
+      refreshing={false}
+      renderItem={[Function]}
+      renderSectionHeader={[Function]}
+      scrollEventThrottle={50}
+      sections={
+        Array [
+          Object {
+            "assignments": Array [
+              Object {
+                "assignment_group_id": 1376,
+                "automatic_peer_reviews": false,
+                "course_id": "987654321",
+                "created_at": "2017-03-17T19:15:25Z",
+                "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+                "due_at": "2037-06-01T05:59:00Z",
+                "grading_type": "points",
+                "html_url": "http://hostname.tld/whatever",
+                "id": "123456789",
+                "lock_at": "2037-06-01T05:59:59Z",
+                "name": "learn to write code",
+                "needs_grading_count": 0,
+                "overrides": Array [],
+                "peer_reviews": false,
+                "points_possible": 20,
+                "position": 1,
+                "submission_types": Array [
+                  "online_text_entry",
+                  "online_url",
+                  "media_recording",
+                  "online_upload",
+                ],
+                "unlock_at": "2017-03-17T06:00:00Z",
+                "updated_at": "2017-03-17T19:15:25Z",
+              },
+            ],
+            "data": Array [
+              Object {
+                "assignment_group_id": 1376,
+                "automatic_peer_reviews": false,
+                "course_id": "987654321",
+                "created_at": "2017-03-17T19:15:25Z",
+                "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+                "due_at": "2037-06-01T05:59:00Z",
+                "grading_type": "points",
+                "html_url": "http://hostname.tld/whatever",
+                "id": "123456789",
+                "lock_at": "2037-06-01T05:59:59Z",
+                "name": "learn to write code",
+                "needs_grading_count": 0,
+                "overrides": Array [],
+                "peer_reviews": false,
+                "points_possible": 20,
+                "position": 1,
+                "submission_types": Array [
+                  "online_text_entry",
+                  "online_url",
+                  "media_recording",
+                  "online_upload",
+                ],
+                "unlock_at": "2017-03-17T06:00:00Z",
+                "updated_at": "2017-03-17T19:15:25Z",
+              },
+            ],
+            "id": "1",
+            "key": "1",
+            "name": "Learn React Native",
+            "position": 1,
+          },
+        ]
+      }
+      stickyHeaderIndices={
+        Array [
+          0,
+        ]
+      }
+      stickySectionHeadersEnabled={true}
+      testID="assignment-list.list"
+      updateCellsBatchingPeriod={50}
+      windowSize={21}
+    >
+      <RCTRefreshControl />
+      <View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View
+            accessibilityTraits="header"
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#F5F5F5",
+                  "flex": 1,
+                  "height": "auto",
+                  "justifyContent": "center",
+                  "paddingLeft": 16,
+                  "paddingRight": 8,
+                  "paddingVertical": 4,
+                },
+                Object {
+                  "borderBottomColor": "#C7CDD1",
+                  "borderBottomWidth": 0.5,
+                },
+                Object {
+                  "borderTopColor": "#C7CDD1",
+                  "borderTopWidth": 0.5,
+                },
+              ]
             }
           >
-            <TouchableHighlight
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
-              onPress={[Function]}
+            <Text
+              accessibilityTraits="header"
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
               style={
                 Array [
-                  undefined,
                   Object {
-                    "borderBottomColor": "#C7CDD1",
-                    "borderBottomWidth": 0.5,
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 20,
+                  },
+                  Object {
+                    "backgroundColor": "#F5F5F5",
+                    "color": "#73818C",
+                    "fontSize": 14,
+                    "fontWeight": "600",
                   },
                 ]
               }
-              testID="assignment-list.assignment-list-row.cell-123456789"
             >
-              <View
+              Learn React Native
+            </Text>
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View>
+            <View
+              style={
+                Object {
+                  "marginLeft": -10,
+                }
+              }
+            >
+              <TouchableHighlight
+                accessibilityLabel={undefined}
+                accessibilityTraits={
+                  Array [
+                    "button",
+                  ]
+                }
+                onPress={[Function]}
                 style={
                   Array [
+                    undefined,
                     Object {
-                      "alignItems": "center",
-                      "backgroundColor": "white",
-                      "flex": 1,
-                      "flexDirection": "row",
-                      "minHeight": 54,
-                      "paddingBottom": 12,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                      "paddingTop": 12,
-                    },
-                    Object {
-                      "backgroundColor": "white",
+                      "borderBottomColor": "#C7CDD1",
+                      "borderBottomWidth": 0.5,
                     },
                   ]
                 }
+                testID="assignment-list.assignment-list-row.cell-123456789"
               >
                 <View
                   style={
-                    Object {
-                      "alignSelf": "flex-start",
-                    }
-                  }
-                  testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
-                >
-                  <View
-                    accessibilityLabel="Restricted"
-                    style={
+                    Array [
                       Object {
                         "alignItems": "center",
-                        "flex": 0,
-                        "height": 32,
-                        "width": 46,
+                        "backgroundColor": "white",
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "minHeight": 54,
+                        "paddingBottom": 12,
+                        "paddingLeft": 16,
+                        "paddingRight": 16,
+                        "paddingTop": 12,
+                      },
+                      Object {
+                        "backgroundColor": "white",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignSelf": "flex-start",
                       }
                     }
+                    testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
                   >
-                    <Image
-                      source={
-                        Object {
-                          "testUri": "../../../src/images/course/Assignment.png",
-                        }
-                      }
-                      style={
-                        Array [
-                          Object {
-                            "position": "absolute",
-                          },
-                          Object {
-                            "tintColor": "#fff",
-                          },
-                        ]
-                      }
-                    />
                     <View
+                      accessibilityLabel="Restricted"
                       style={
                         Object {
                           "alignItems": "center",
-                          "backgroundColor": "white",
-                          "borderRadius": 8,
-                          "height": 16,
-                          "justifyContent": "center",
-                          "left": 20,
-                          "position": "absolute",
-                          "top": 10,
-                          "width": 16,
+                          "flex": 0,
+                          "height": 32,
+                          "width": 46,
                         }
                       }
                     >
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/Restricted.png",
+                            "testUri": "../../../src/images/course/Assignment.png",
                           }
                         }
                         style={
-                          Object {
-                            "height": 14,
-                            "tintColor": "#FF0000",
-                            "width": 14,
-                          }
+                          Array [
+                            Object {
+                              "position": "absolute",
+                            },
+                            Object {
+                              "tintColor": "#fff",
+                            },
+                          ]
                         }
                       />
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "left": 20,
+                            "position": "absolute",
+                            "top": 10,
+                            "width": 16,
+                          }
+                        }
+                      >
+                        <Image
+                          source={
+                            Object {
+                              "testUri": "../../../src/images/Restricted.png",
+                            }
+                          }
+                          style={
+                            Object {
+                              "height": 14,
+                              "tintColor": "#FF0000",
+                              "width": 14,
+                            }
+                          }
+                        />
+                      </View>
                     </View>
                   </View>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "flex": 1,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    numberOfLines={2}
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Array [
-                          Object {
-                            "fontWeight": "600",
-                          },
-                          undefined,
-                        ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
-                      ]
-                    }
-                  >
-                    learn to write code
-                  </Text>
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "color": "#8B969E",
-                          "fontSize": 14,
-                          "marginTop": 2,
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                      ]
-                    }
-                    testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
-                  >
-                    Due May 31, 2037 at 11:59 PM
-                  </Text>
-                  <View />
-                </View>
-                <View
-                  style={
-                    Object {
-                      "flex": 0,
-                    }
-                  }
-                >
                   <View
                     style={
                       Object {
-                        "alignItems": "center",
                         "flex": 1,
-                        "flexDirection": "row",
-                        "justifyContent": "flex-end",
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      }
+                    }
+                  >
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
+                      numberOfLines={2}
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Array [
+                            Object {
+                              "fontWeight": "600",
+                            },
+                            undefined,
+                          ],
+                          Object {
+                            "fontFamily": ".SFUIDisplay-semibold",
+                          },
+                        ]
+                      }
+                    >
+                      learn to write code
+                    </Text>
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Object {
+                            "color": "#8B969E",
+                            "fontSize": 14,
+                            "marginTop": 2,
+                          },
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                        ]
+                      }
+                      testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
+                    >
+                      Due May 31, 2037 at 11:59 PM
+                    </Text>
+                    <View />
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "flex": 0,
                       }
                     }
                   >
                     <View
                       style={
                         Object {
-                          "alignSelf": "center",
-                          "backgroundColor": "transparent",
-                          "borderColor": "#c7c7cc",
-                          "borderRightWidth": 2,
-                          "borderTopWidth": 2,
-                          "height": 10,
-                          "marginLeft": 7,
-                          "transform": Array [
-                            Object {
-                              "rotate": "45deg",
-                            },
-                          ],
-                          "width": 10,
+                          "alignItems": "center",
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "justifyContent": "flex-end",
                         }
                       }
-                    />
+                    >
+                      <View
+                        style={
+                          Object {
+                            "alignSelf": "center",
+                            "backgroundColor": "transparent",
+                            "borderColor": "#c7c7cc",
+                            "borderRightWidth": 2,
+                            "borderTopWidth": 2,
+                            "height": 10,
+                            "marginLeft": 7,
+                            "transform": Array [
+                              Object {
+                                "rotate": "45deg",
+                              },
+                            ],
+                            "width": 10,
+                          }
+                        }
+                      />
+                    </View>
                   </View>
                 </View>
-              </View>
-            </TouchableHighlight>
+              </TouchableHighlight>
+            </View>
+            <View />
           </View>
-          <View />
         </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        />
       </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      />
-    </View>
-  </RCTScrollView>
-</View>
+    </RCTScrollView>
+  </View>
+</RCTSafeAreaView>
 `;
 
 exports[`renders correctly when pending 1`] = `
@@ -2318,336 +2350,83 @@ exports[`renders correctly when pending 1`] = `
 `;
 
 exports[`selecting clear filter will remove any applied filters 1`] = `
-<View
+<RCTSafeAreaView
   style={
     Object {
       "flex": 1,
     }
   }
-  testID="assignment-list.container-view"
 >
   <View
     style={
       Object {
-        "alignItems": "flex-end",
-        "borderBottomColor": "lightgrey",
-        "borderBottomWidth": 0.5,
-        "flexDirection": "row",
-        "justifyContent": "space-between",
-        "paddingBottom": 8,
-        "paddingHorizontal": 16,
-        "paddingTop": 16,
+        "flex": 1,
       }
     }
-    testID="assignment-list.filter-header-view"
+    testID="assignment-list.container-view"
   >
-    <Text
-      accessibilityTraits="header"
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontFamily": ".SFUIDisplay-semibold",
-            "fontSize": 20,
-          },
-          Object {
-            "color": "#2d3b44",
-            "flex": 1,
-            "fontSize": 20,
-            "fontWeight": "600",
-          },
-        ]
-      }
-      testID="assignment-list.filter-title-lbl"
-    >
-      All Grading Periods
-    </Text>
-    <TouchableOpacity
-      accessibilityTraits="button"
-      hitSlop={
-        Object {
-          "bottom": 15,
-          "left": 15,
-          "right": 15,
-          "top": 15,
-        }
-      }
-      onPress={[Function]}
+    <View
       style={
         Object {
-          "marginBottom": 1,
+          "alignItems": "flex-end",
+          "borderBottomColor": "lightgrey",
+          "borderBottomWidth": 0.5,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 8,
+          "paddingHorizontal": 16,
+          "paddingTop": 16,
         }
       }
-      testID="assignment-list.filter"
+      testID="assignment-list.filter-header-view"
     >
-      <View>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Array [
-                Object {
-                  "color": "#374A59",
-                  "fontSize": 14,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-bold",
-                },
-                Object {
-                  "color": "#374A59",
-                },
-                Object {},
-              ],
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-            ]
-          }
-        >
-          Filter
-        </Text>
-      </View>
-    </TouchableOpacity>
-  </View>
-  <RCTScrollView
-    ItemSeparatorComponent={undefined}
-    ListEmptyComponent={
-      <ListEmptyComponent
-        title="There are no assignments to display."
-      />
-    }
-    data={
-      Array [
-        Object {
-          "assignments": Array [
+      <Text
+        accessibilityTraits="header"
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
             Object {
-              "assignment_group_id": 1376,
-              "automatic_peer_reviews": false,
-              "course_id": "987654321",
-              "created_at": "2017-03-17T19:15:25Z",
-              "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "discussion_topic": Object {
-                "id": "1",
-              },
-              "due_at": "2037-06-01T05:59:00Z",
-              "grading_type": "points",
-              "html_url": "http://hostname.tld/whatever",
-              "id": "123456789",
-              "lock_at": "2037-06-01T05:59:59Z",
-              "name": "learn to write code",
-              "needs_grading_count": 0,
-              "overrides": Array [],
-              "peer_reviews": false,
-              "points_possible": 20,
-              "position": 1,
-              "quiz_id": "1",
-              "submission_types": Array [
-                "online_text_entry",
-                "online_url",
-                "media_recording",
-                "online_upload",
-              ],
-              "unlock_at": "2017-03-17T06:00:00Z",
-              "updated_at": "2017-03-17T19:15:25Z",
+              "fontFamily": ".SFUIDisplay",
             },
-          ],
-          "data": Array [
             Object {
-              "assignment_group_id": 1376,
-              "automatic_peer_reviews": false,
-              "course_id": "987654321",
-              "created_at": "2017-03-17T19:15:25Z",
-              "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "discussion_topic": Object {
-                "id": "1",
-              },
-              "due_at": "2037-06-01T05:59:00Z",
-              "grading_type": "points",
-              "html_url": "http://hostname.tld/whatever",
-              "id": "123456789",
-              "lock_at": "2037-06-01T05:59:59Z",
-              "name": "learn to write code",
-              "needs_grading_count": 0,
-              "overrides": Array [],
-              "peer_reviews": false,
-              "points_possible": 20,
-              "position": 1,
-              "quiz_id": "1",
-              "submission_types": Array [
-                "online_text_entry",
-                "online_url",
-                "media_recording",
-                "online_upload",
-              ],
-              "unlock_at": "2017-03-17T06:00:00Z",
-              "updated_at": "2017-03-17T19:15:25Z",
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-semibold",
+              "fontSize": 20,
             },
-          ],
-          "id": "1",
-          "key": "1",
-          "name": "Learn React Native",
-          "position": 1,
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onRefresh={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
-    refreshControl={
-      <RefreshControlMock
-        onRefresh={[Function]}
-        progressViewOffset={undefined}
-        refreshing={false}
-      />
-    }
-    refreshing={false}
-    renderItem={[Function]}
-    renderSectionHeader={[Function]}
-    scrollEventThrottle={50}
-    sections={
-      Array [
-        Object {
-          "assignments": Array [
             Object {
-              "assignment_group_id": 1376,
-              "automatic_peer_reviews": false,
-              "course_id": "987654321",
-              "created_at": "2017-03-17T19:15:25Z",
-              "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "discussion_topic": Object {
-                "id": "1",
-              },
-              "due_at": "2037-06-01T05:59:00Z",
-              "grading_type": "points",
-              "html_url": "http://hostname.tld/whatever",
-              "id": "123456789",
-              "lock_at": "2037-06-01T05:59:59Z",
-              "name": "learn to write code",
-              "needs_grading_count": 0,
-              "overrides": Array [],
-              "peer_reviews": false,
-              "points_possible": 20,
-              "position": 1,
-              "quiz_id": "1",
-              "submission_types": Array [
-                "online_text_entry",
-                "online_url",
-                "media_recording",
-                "online_upload",
-              ],
-              "unlock_at": "2017-03-17T06:00:00Z",
-              "updated_at": "2017-03-17T19:15:25Z",
+              "color": "#2d3b44",
+              "flex": 1,
+              "fontSize": 20,
+              "fontWeight": "600",
             },
-          ],
-          "data": Array [
-            Object {
-              "assignment_group_id": 1376,
-              "automatic_peer_reviews": false,
-              "course_id": "987654321",
-              "created_at": "2017-03-17T19:15:25Z",
-              "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "discussion_topic": Object {
-                "id": "1",
-              },
-              "due_at": "2037-06-01T05:59:00Z",
-              "grading_type": "points",
-              "html_url": "http://hostname.tld/whatever",
-              "id": "123456789",
-              "lock_at": "2037-06-01T05:59:59Z",
-              "name": "learn to write code",
-              "needs_grading_count": 0,
-              "overrides": Array [],
-              "peer_reviews": false,
-              "points_possible": 20,
-              "position": 1,
-              "quiz_id": "1",
-              "submission_types": Array [
-                "online_text_entry",
-                "online_url",
-                "media_recording",
-                "online_upload",
-              ],
-              "unlock_at": "2017-03-17T06:00:00Z",
-              "updated_at": "2017-03-17T19:15:25Z",
-            },
-          ],
-          "id": "1",
-          "key": "1",
-          "name": "Learn React Native",
-          "position": 1,
-        },
-      ]
-    }
-    stickyHeaderIndices={
-      Array [
-        0,
-      ]
-    }
-    stickySectionHeadersEnabled={true}
-    testID="assignment-list.list"
-    updateCellsBatchingPeriod={50}
-    windowSize={21}
-  >
-    <RCTRefreshControl />
-    <View>
-      <View
-        onLayout={[Function]}
-        style={null}
+          ]
+        }
+        testID="assignment-list.filter-title-lbl"
       >
-        <View
-          accessibilityTraits="header"
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#F5F5F5",
-                "flex": 1,
-                "height": "auto",
-                "justifyContent": "center",
-                "paddingLeft": 16,
-                "paddingRight": 8,
-                "paddingVertical": 4,
-              },
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
-              },
-            ]
+        All Grading Periods
+      </Text>
+      <TouchableOpacity
+        accessibilityTraits="button"
+        hitSlop={
+          Object {
+            "bottom": 15,
+            "left": 15,
+            "right": 15,
+            "top": 15,
           }
-        >
+        }
+        onPress={[Function]}
+        style={
+          Object {
+            "marginBottom": 1,
+          }
+        }
+        testID="assignment-list.filter"
+      >
+        <View>
           <Text
-            accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
             ellipsizeMode="tail"
@@ -2658,263 +2437,524 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
+                  "fontSize": 16,
                 },
+                Array [
+                  Object {
+                    "color": "#374A59",
+                    "fontSize": 14,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-bold",
+                  },
+                  Object {
+                    "color": "#374A59",
+                  },
+                  Object {},
+                ],
                 Object {
-                  "backgroundColor": "#F5F5F5",
-                  "color": "#73818C",
-                  "fontSize": 14,
-                  "fontWeight": "600",
+                  "fontFamily": ".SFUIDisplay",
                 },
               ]
             }
           >
-            Learn React Native
+            Filter
           </Text>
         </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View>
-          <View
-            style={
+      </TouchableOpacity>
+    </View>
+    <RCTScrollView
+      ItemSeparatorComponent={undefined}
+      ListEmptyComponent={
+        <ListEmptyComponent
+          title="There are no assignments to display."
+        />
+      }
+      data={
+        Array [
+          Object {
+            "assignments": Array [
               Object {
-                "marginLeft": -10,
-              }
+                "assignment_group_id": 1376,
+                "automatic_peer_reviews": false,
+                "course_id": "987654321",
+                "created_at": "2017-03-17T19:15:25Z",
+                "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+                "discussion_topic": Object {
+                  "id": "1",
+                },
+                "due_at": "2037-06-01T05:59:00Z",
+                "grading_type": "points",
+                "html_url": "http://hostname.tld/whatever",
+                "id": "123456789",
+                "lock_at": "2037-06-01T05:59:59Z",
+                "name": "learn to write code",
+                "needs_grading_count": 0,
+                "overrides": Array [],
+                "peer_reviews": false,
+                "points_possible": 20,
+                "position": 1,
+                "quiz_id": "1",
+                "submission_types": Array [
+                  "online_text_entry",
+                  "online_url",
+                  "media_recording",
+                  "online_upload",
+                ],
+                "unlock_at": "2017-03-17T06:00:00Z",
+                "updated_at": "2017-03-17T19:15:25Z",
+              },
+            ],
+            "data": Array [
+              Object {
+                "assignment_group_id": 1376,
+                "automatic_peer_reviews": false,
+                "course_id": "987654321",
+                "created_at": "2017-03-17T19:15:25Z",
+                "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+                "discussion_topic": Object {
+                  "id": "1",
+                },
+                "due_at": "2037-06-01T05:59:00Z",
+                "grading_type": "points",
+                "html_url": "http://hostname.tld/whatever",
+                "id": "123456789",
+                "lock_at": "2037-06-01T05:59:59Z",
+                "name": "learn to write code",
+                "needs_grading_count": 0,
+                "overrides": Array [],
+                "peer_reviews": false,
+                "points_possible": 20,
+                "position": 1,
+                "quiz_id": "1",
+                "submission_types": Array [
+                  "online_text_entry",
+                  "online_url",
+                  "media_recording",
+                  "online_upload",
+                ],
+                "unlock_at": "2017-03-17T06:00:00Z",
+                "updated_at": "2017-03-17T19:15:25Z",
+              },
+            ],
+            "id": "1",
+            "key": "1",
+            "name": "Learn React Native",
+            "position": 1,
+          },
+        ]
+      }
+      disableVirtualization={false}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      onContentSizeChange={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onRefresh={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      onViewableItemsChanged={undefined}
+      refreshControl={
+        <RefreshControlMock
+          onRefresh={[Function]}
+          progressViewOffset={undefined}
+          refreshing={false}
+        />
+      }
+      refreshing={false}
+      renderItem={[Function]}
+      renderSectionHeader={[Function]}
+      scrollEventThrottle={50}
+      sections={
+        Array [
+          Object {
+            "assignments": Array [
+              Object {
+                "assignment_group_id": 1376,
+                "automatic_peer_reviews": false,
+                "course_id": "987654321",
+                "created_at": "2017-03-17T19:15:25Z",
+                "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+                "discussion_topic": Object {
+                  "id": "1",
+                },
+                "due_at": "2037-06-01T05:59:00Z",
+                "grading_type": "points",
+                "html_url": "http://hostname.tld/whatever",
+                "id": "123456789",
+                "lock_at": "2037-06-01T05:59:59Z",
+                "name": "learn to write code",
+                "needs_grading_count": 0,
+                "overrides": Array [],
+                "peer_reviews": false,
+                "points_possible": 20,
+                "position": 1,
+                "quiz_id": "1",
+                "submission_types": Array [
+                  "online_text_entry",
+                  "online_url",
+                  "media_recording",
+                  "online_upload",
+                ],
+                "unlock_at": "2017-03-17T06:00:00Z",
+                "updated_at": "2017-03-17T19:15:25Z",
+              },
+            ],
+            "data": Array [
+              Object {
+                "assignment_group_id": 1376,
+                "automatic_peer_reviews": false,
+                "course_id": "987654321",
+                "created_at": "2017-03-17T19:15:25Z",
+                "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+                "discussion_topic": Object {
+                  "id": "1",
+                },
+                "due_at": "2037-06-01T05:59:00Z",
+                "grading_type": "points",
+                "html_url": "http://hostname.tld/whatever",
+                "id": "123456789",
+                "lock_at": "2037-06-01T05:59:59Z",
+                "name": "learn to write code",
+                "needs_grading_count": 0,
+                "overrides": Array [],
+                "peer_reviews": false,
+                "points_possible": 20,
+                "position": 1,
+                "quiz_id": "1",
+                "submission_types": Array [
+                  "online_text_entry",
+                  "online_url",
+                  "media_recording",
+                  "online_upload",
+                ],
+                "unlock_at": "2017-03-17T06:00:00Z",
+                "updated_at": "2017-03-17T19:15:25Z",
+              },
+            ],
+            "id": "1",
+            "key": "1",
+            "name": "Learn React Native",
+            "position": 1,
+          },
+        ]
+      }
+      stickyHeaderIndices={
+        Array [
+          0,
+        ]
+      }
+      stickySectionHeadersEnabled={true}
+      testID="assignment-list.list"
+      updateCellsBatchingPeriod={50}
+      windowSize={21}
+    >
+      <RCTRefreshControl />
+      <View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View
+            accessibilityTraits="header"
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#F5F5F5",
+                  "flex": 1,
+                  "height": "auto",
+                  "justifyContent": "center",
+                  "paddingLeft": 16,
+                  "paddingRight": 8,
+                  "paddingVertical": 4,
+                },
+                Object {
+                  "borderBottomColor": "#C7CDD1",
+                  "borderBottomWidth": 0.5,
+                },
+                Object {
+                  "borderTopColor": "#C7CDD1",
+                  "borderTopWidth": 0.5,
+                },
+              ]
             }
           >
-            <TouchableHighlight
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
-              onPress={[Function]}
+            <Text
+              accessibilityTraits="header"
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
               style={
                 Array [
-                  undefined,
                   Object {
-                    "borderBottomColor": "#C7CDD1",
-                    "borderBottomWidth": 0.5,
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 20,
+                  },
+                  Object {
+                    "backgroundColor": "#F5F5F5",
+                    "color": "#73818C",
+                    "fontSize": 14,
+                    "fontWeight": "600",
                   },
                 ]
               }
-              testID="assignment-list.assignment-list-row.cell-123456789"
             >
-              <View
+              Learn React Native
+            </Text>
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View>
+            <View
+              style={
+                Object {
+                  "marginLeft": -10,
+                }
+              }
+            >
+              <TouchableHighlight
+                accessibilityLabel={undefined}
+                accessibilityTraits={
+                  Array [
+                    "button",
+                  ]
+                }
+                onPress={[Function]}
                 style={
                   Array [
+                    undefined,
                     Object {
-                      "alignItems": "center",
-                      "backgroundColor": "white",
-                      "flex": 1,
-                      "flexDirection": "row",
-                      "minHeight": 54,
-                      "paddingBottom": 12,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                      "paddingTop": 12,
-                    },
-                    Object {
-                      "backgroundColor": "white",
+                      "borderBottomColor": "#C7CDD1",
+                      "borderBottomWidth": 0.5,
                     },
                   ]
                 }
+                testID="assignment-list.assignment-list-row.cell-123456789"
               >
                 <View
                   style={
-                    Object {
-                      "alignSelf": "flex-start",
-                    }
-                  }
-                  testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
-                >
-                  <View
-                    accessibilityLabel="Restricted"
-                    style={
+                    Array [
                       Object {
                         "alignItems": "center",
-                        "flex": 0,
-                        "height": 32,
-                        "width": 46,
+                        "backgroundColor": "white",
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "minHeight": 54,
+                        "paddingBottom": 12,
+                        "paddingLeft": 16,
+                        "paddingRight": 16,
+                        "paddingTop": 12,
+                      },
+                      Object {
+                        "backgroundColor": "white",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignSelf": "flex-start",
                       }
                     }
+                    testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
                   >
-                    <Image
-                      source={
-                        Object {
-                          "testUri": "../../../src/images/course/Assignment.png",
-                        }
-                      }
-                      style={
-                        Array [
-                          Object {
-                            "position": "absolute",
-                          },
-                          Object {
-                            "tintColor": "#fff",
-                          },
-                        ]
-                      }
-                    />
                     <View
+                      accessibilityLabel="Restricted"
                       style={
                         Object {
                           "alignItems": "center",
-                          "backgroundColor": "white",
-                          "borderRadius": 8,
-                          "height": 16,
-                          "justifyContent": "center",
-                          "left": 20,
-                          "position": "absolute",
-                          "top": 10,
-                          "width": 16,
+                          "flex": 0,
+                          "height": 32,
+                          "width": 46,
                         }
                       }
                     >
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/Restricted.png",
+                            "testUri": "../../../src/images/course/Assignment.png",
                           }
                         }
                         style={
-                          Object {
-                            "height": 14,
-                            "tintColor": "#FF0000",
-                            "width": 14,
-                          }
+                          Array [
+                            Object {
+                              "position": "absolute",
+                            },
+                            Object {
+                              "tintColor": "#fff",
+                            },
+                          ]
                         }
                       />
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "left": 20,
+                            "position": "absolute",
+                            "top": 10,
+                            "width": 16,
+                          }
+                        }
+                      >
+                        <Image
+                          source={
+                            Object {
+                              "testUri": "../../../src/images/Restricted.png",
+                            }
+                          }
+                          style={
+                            Object {
+                              "height": 14,
+                              "tintColor": "#FF0000",
+                              "width": 14,
+                            }
+                          }
+                        />
+                      </View>
                     </View>
                   </View>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "flex": 1,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    numberOfLines={2}
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Array [
-                          Object {
-                            "fontWeight": "600",
-                          },
-                          undefined,
-                        ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
-                      ]
-                    }
-                  >
-                    learn to write code
-                  </Text>
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "color": "#8B969E",
-                          "fontSize": 14,
-                          "marginTop": 2,
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                      ]
-                    }
-                    testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
-                  >
-                    Due May 31, 2037 at 11:59 PM
-                  </Text>
-                  <View />
-                </View>
-                <View
-                  style={
-                    Object {
-                      "flex": 0,
-                    }
-                  }
-                >
                   <View
                     style={
                       Object {
-                        "alignItems": "center",
                         "flex": 1,
-                        "flexDirection": "row",
-                        "justifyContent": "flex-end",
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      }
+                    }
+                  >
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
+                      numberOfLines={2}
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Array [
+                            Object {
+                              "fontWeight": "600",
+                            },
+                            undefined,
+                          ],
+                          Object {
+                            "fontFamily": ".SFUIDisplay-semibold",
+                          },
+                        ]
+                      }
+                    >
+                      learn to write code
+                    </Text>
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Object {
+                            "color": "#8B969E",
+                            "fontSize": 14,
+                            "marginTop": 2,
+                          },
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                        ]
+                      }
+                      testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
+                    >
+                      Due May 31, 2037 at 11:59 PM
+                    </Text>
+                    <View />
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "flex": 0,
                       }
                     }
                   >
                     <View
                       style={
                         Object {
-                          "alignSelf": "center",
-                          "backgroundColor": "transparent",
-                          "borderColor": "#c7c7cc",
-                          "borderRightWidth": 2,
-                          "borderTopWidth": 2,
-                          "height": 10,
-                          "marginLeft": 7,
-                          "transform": Array [
-                            Object {
-                              "rotate": "45deg",
-                            },
-                          ],
-                          "width": 10,
+                          "alignItems": "center",
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "justifyContent": "flex-end",
                         }
                       }
-                    />
+                    >
+                      <View
+                        style={
+                          Object {
+                            "alignSelf": "center",
+                            "backgroundColor": "transparent",
+                            "borderColor": "#c7c7cc",
+                            "borderRightWidth": 2,
+                            "borderTopWidth": 2,
+                            "height": 10,
+                            "marginLeft": 7,
+                            "transform": Array [
+                              Object {
+                                "rotate": "45deg",
+                              },
+                            ],
+                            "width": 10,
+                          }
+                        }
+                      />
+                    </View>
                   </View>
                 </View>
-              </View>
-            </TouchableHighlight>
+              </TouchableHighlight>
+            </View>
+            <View />
           </View>
-          <View />
         </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      />
-      <View
-        style={
-          Object {
-            "height": 0,
+        <View
+          onLayout={[Function]}
+          style={null}
+        />
+        <View
+          style={
+            Object {
+              "height": 0,
+            }
           }
-        }
-      />
-    </View>
-  </RCTScrollView>
-</View>
+        />
+      </View>
+    </RCTScrollView>
+  </View>
+</RCTSafeAreaView>
 `;
