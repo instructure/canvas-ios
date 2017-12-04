@@ -317,7 +317,7 @@ export class Compose extends PureComponent {
                 editable={this.props.canEditSubject}
               />
             </View>
-            { !this.props.onlySendIndividualMessages &&
+            { !this.props.onlySendIndividualMessages && !this.props.conversationID &&
               <RowWithSwitch
                 border='bottom'
                 title={i18n('Send individual message to each recipient')}
