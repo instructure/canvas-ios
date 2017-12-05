@@ -52,6 +52,12 @@ open class HelmSplitViewController: UISplitViewController {
     override open var prefersStatusBarHidden: Bool {
         return viewControllers.first?.prefersStatusBarHidden ?? false
     }
+    
+    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        let notification = Notification.Name(rawValue: "HelmSplitViewControllerTraitsUpdated")
+        NotificationCenter.default.post(name: notification, object: nil, userInfo: nil)
+    }
 }
 
 extension HelmSplitViewController: UISplitViewControllerDelegate {

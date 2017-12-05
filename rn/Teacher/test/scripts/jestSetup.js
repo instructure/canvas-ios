@@ -44,6 +44,10 @@ NativeModules.NativeLogin = {
   logout: jest.fn(),
 }
 
+NativeModules.WindowTraitsManager = {
+  currentWindowTraits: jest.fn(),
+}
+
 NativeModules.PushNotifications = {
   requestPermissions: jest.fn(),
   scheduleLocalNotification: jest.fn(),
@@ -68,6 +72,8 @@ NativeModules.RNSound = {
   isAudio: jest.fn(),
   isWindows: jest.fn(),
 }
+
+jest.mock('NativeEventEmitter')
 
 jest.mock('NetInfo', () => ({
   addEventListener: jest.fn(),

@@ -107,7 +107,7 @@ test('select course', () => {
 
   const courseCard = explore(tree).selectByID('course-' + course.id) || {}
   courseCard.props.onPress()
-  expect(props.navigator.show).toHaveBeenCalledWith('/courses/1', { modal: true })
+  expect(props.navigator.show).toHaveBeenCalledWith('/courses/1')
 })
 
 test('opens course preferences', () => {

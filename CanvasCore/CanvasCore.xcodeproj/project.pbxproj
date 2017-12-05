@@ -21,10 +21,13 @@
 		2CAF1B3D1F72B295007225DF /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAF1B3C1F72B295007225DF /* Secrets.swift */; };
 		2CD20D761FA125EC00F339F7 /* DropViewManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CD20D741FA125EC00F339F7 /* DropViewManager.h */; };
 		2CD20D771FA125EC00F339F7 /* DropViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD20D751FA125EC00F339F7 /* DropViewManager.m */; };
+		2CD6B5701FD20A9800C7DE15 /* WindowTraitsManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CD6B56E1FD20A9800C7DE15 /* WindowTraitsManager.h */; };
+		2CD6B5711FD20A9800C7DE15 /* WindowTraitsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD6B56F1FD20A9800C7DE15 /* WindowTraitsManager.m */; };
 		2CE40C9A1F87D36900ECEACB /* CanvadocViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B21F843B59001A8F31 /* CanvadocViewManager.m */; };
 		2CE40C9B1F87D36E00ECEACB /* CanvadocView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B01F843B58001A8F31 /* CanvadocView.swift */; };
 		2CE40C9C1F87D37100ECEACB /* PSPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B11F843B58001A8F31 /* PSPDFView.swift */; };
 		2CE40C9D1F87D37300ECEACB /* PSPDFViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B31F843B59001A8F31 /* PSPDFViewManager.m */; };
+		2CFAFBD11FD21B3800F22C7F /* WindowTraits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFAFBD01FD21B3800F22C7F /* WindowTraits.swift */; };
 		4902ADBE1FB26E860004837D /* LTIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4902ADBD1FB26E860004837D /* LTIViewController.swift */; };
 		490BA0D71FCDDA2A004643EA /* Session+ContentAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490BA0D61FCDDA2A004643EA /* Session+ContentAccess.swift */; };
 		490F91F11FB0F94A00A7DA38 /* CanvasWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490F91F01FB0F94A00A7DA38 /* CanvasWebViewController.swift */; };
@@ -293,7 +296,7 @@
 		497CA7741F82D19600501613 /* HelmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA7631F82D18A00501613 /* HelmViewController.swift */; };
 		497CA7751F82D19600501613 /* NoAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA7601F82D18900501613 /* NoAnimatedTransitioning.swift */; };
 		497CA7761F82D19600501613 /* PushAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA7671F82D18B00501613 /* PushAnimatedTransitioning.swift */; };
-		497CA7781F82D19A00501613 /* UISplitViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA76A1F82D18B00501613 /* UISplitViewControllerExtensions.swift */; };
+		497CA7781F82D19A00501613 /* HelmSplitViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA76A1F82D18B00501613 /* HelmSplitViewControllerExtensions.swift */; };
 		497CA7791F82D19A00501613 /* UITraitEnvironmentExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA76B1F82D18B00501613 /* UITraitEnvironmentExtensions.swift */; };
 		497CA77A1F82D19A00501613 /* UIViewControllerRotationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA76C1F82D18B00501613 /* UIViewControllerRotationExtensions.swift */; };
 		497CA77B1F82D19A00501613 /* UIUserInterfaceSizeClassExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA76D1F82D18B00501613 /* UIUserInterfaceSizeClassExtensions.swift */; };
@@ -506,6 +509,9 @@
 		2CAF1B3C1F72B295007225DF /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		2CD20D741FA125EC00F339F7 /* DropViewManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DropViewManager.h; sourceTree = "<group>"; };
 		2CD20D751FA125EC00F339F7 /* DropViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DropViewManager.m; sourceTree = "<group>"; };
+		2CD6B56E1FD20A9800C7DE15 /* WindowTraitsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WindowTraitsManager.h; sourceTree = "<group>"; };
+		2CD6B56F1FD20A9800C7DE15 /* WindowTraitsManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WindowTraitsManager.m; sourceTree = "<group>"; };
+		2CFAFBD01FD21B3800F22C7F /* WindowTraits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowTraits.swift; sourceTree = "<group>"; };
 		4902ADBD1FB26E860004837D /* LTIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTIViewController.swift; sourceTree = "<group>"; };
 		490BA0D61FCDDA2A004643EA /* Session+ContentAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+ContentAccess.swift"; sourceTree = "<group>"; };
 		490F91F01FB0F94A00A7DA38 /* CanvasWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasWebViewController.swift; sourceTree = "<group>"; };
@@ -787,7 +793,7 @@
 		497CA7651F82D18A00501613 /* HelmSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelmSplitViewController.swift; sourceTree = "<group>"; };
 		497CA7661F82D18B00501613 /* Helm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helm.swift; sourceTree = "<group>"; };
 		497CA7671F82D18B00501613 /* PushAnimatedTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushAnimatedTransitioning.swift; sourceTree = "<group>"; };
-		497CA76A1F82D18B00501613 /* UISplitViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISplitViewControllerExtensions.swift; sourceTree = "<group>"; };
+		497CA76A1F82D18B00501613 /* HelmSplitViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelmSplitViewControllerExtensions.swift; sourceTree = "<group>"; };
 		497CA76B1F82D18B00501613 /* UITraitEnvironmentExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITraitEnvironmentExtensions.swift; sourceTree = "<group>"; };
 		497CA76C1F82D18B00501613 /* UIViewControllerRotationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerRotationExtensions.swift; sourceTree = "<group>"; };
 		497CA76D1F82D18B00501613 /* UIUserInterfaceSizeClassExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUserInterfaceSizeClassExtensions.swift; sourceTree = "<group>"; };
@@ -2104,6 +2110,9 @@
 				497CA7631F82D18A00501613 /* HelmViewController.swift */,
 				497CA7601F82D18900501613 /* NoAnimatedTransitioning.swift */,
 				497CA7671F82D18B00501613 /* PushAnimatedTransitioning.swift */,
+				2CD6B56E1FD20A9800C7DE15 /* WindowTraitsManager.h */,
+				2CD6B56F1FD20A9800C7DE15 /* WindowTraitsManager.m */,
+				2CFAFBD01FD21B3800F22C7F /* WindowTraits.swift */,
 			);
 			path = Helm;
 			sourceTree = "<group>";
@@ -2111,7 +2120,7 @@
 		497CA7681F82D18B00501613 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				497CA76A1F82D18B00501613 /* UISplitViewControllerExtensions.swift */,
+				497CA76A1F82D18B00501613 /* HelmSplitViewControllerExtensions.swift */,
 				497CA76B1F82D18B00501613 /* UITraitEnvironmentExtensions.swift */,
 				497CA76C1F82D18B00501613 /* UIViewControllerRotationExtensions.swift */,
 				497CA76D1F82D18B00501613 /* UIUserInterfaceSizeClassExtensions.swift */,
@@ -2664,6 +2673,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CD20D761FA125EC00F339F7 /* DropViewManager.h in Headers */,
+				2CD6B5701FD20A9800C7DE15 /* WindowTraitsManager.h in Headers */,
 				494AE09B1F843A09001A8F31 /* HapticFeedback.h in Headers */,
 				494AE0991F843A09001A8F31 /* DrawerHandleViewManager.h in Headers */,
 				2CAF1B251F72AEDB007225DF /* CanvasCore.h in Headers */,
@@ -3159,7 +3169,7 @@
 				49CE965C1F8FF41B00121A43 /* QuizIntroViewController.swift in Sources */,
 				49CE968C1F8FF41B00121A43 /* CanvasQuizSubmissionService.swift in Sources */,
 				4961F5A41F8FB2A10093EC86 /* TokenLabelView.swift in Sources */,
-				497CA7781F82D19A00501613 /* UISplitViewControllerExtensions.swift in Sources */,
+				497CA7781F82D19A00501613 /* HelmSplitViewControllerExtensions.swift in Sources */,
 				49698D7C1F8FA2D000E38B78 /* Status.swift in Sources */,
 				4961F5E31F8FB3F20093EC86 /* Marshal+SoPersistent.swift in Sources */,
 				4961F5D11F8FB3E80093EC86 /* CollectionViewDataSource.swift in Sources */,
@@ -3222,6 +3232,7 @@
 				4961F5D41F8FB3EB0093EC86 /* Collection.swift in Sources */,
 				4961F67C1F8FB9620093EC86 /* File+Network.swift in Sources */,
 				49CE97A71F900D0000121A43 /* BackdropPickerViewController.swift in Sources */,
+				2CFAFBD11FD21B3800F22C7F /* WindowTraits.swift in Sources */,
 				4961F59D1F8FB2970093EC86 /* UIColor+Hex.swift in Sources */,
 				49CE979E1F900D0000121A43 /* UserEnrollment+Network.swift in Sources */,
 				4961F6201F8FB6E40093EC86 /* CustomizeEnrollmentViewController.swift in Sources */,
@@ -3238,6 +3249,7 @@
 				4930204D1F902364006BD777 /* Errors.swift in Sources */,
 				493020751F902462006BD777 /* SignalProducer+SoPersistent.swift in Sources */,
 				49301FF21F901854006BD777 /* PushState.swift in Sources */,
+				2CD6B5711FD20A9800C7DE15 /* WindowTraitsManager.m in Sources */,
 				4961F5EB1F8FB4070093EC86 /* TableViewDataSource.swift in Sources */,
 				497CA7701F82D19600501613 /* HelmConstants.swift in Sources */,
 				4961F55A1F8FAF310093EC86 /* NSTimeInterval+MediaKit.swift in Sources */,

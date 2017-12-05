@@ -239,7 +239,7 @@ export class Dashboard extends React.Component<Props, State> {
   }
 
   selectCourse = (course: Course) => {
-    this.props.navigator.show(`/courses/${course.id}`, { modal: true })
+    this.props.navigator.show(`/courses/${course.id}`)
   }
 
   showAllCourses = () => {

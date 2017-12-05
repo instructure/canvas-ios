@@ -142,7 +142,7 @@ open class HelmManager: NSObject {
             }
         }
         
-        if let splitViewController = topViewController as? UISplitViewController {
+        if let splitViewController = topViewController as? HelmSplitViewController {
             let canBecomeMaster = (options["canBecomeMaster"] as? NSNumber)?.boolValue ?? false
             if canBecomeMaster {
                 masterModules.insert(destinationModule)
@@ -172,7 +172,7 @@ open class HelmManager: NSObject {
         guard let topViewController = topMostViewController() else { return }
         
         var nav: UINavigationController? = nil
-        if let splitViewController = topViewController as? UISplitViewController {
+        if let splitViewController = topViewController as? HelmSplitViewController {
             let sourceViewController = splitViewController.sourceController(moduleName: sourceModule)
             if sourceViewController == splitViewController.detailTopViewController {
                 nav = splitViewController.detailNavigationController
@@ -324,7 +324,7 @@ open class HelmManager: NSObject {
 }
 
 extension HelmManager {
-    func navigationControllerForSplitViewControllerPush(splitViewController: UISplitViewController?, sourceModule: ModuleName, destinationModule: ModuleName, props: [String: Any], options: [String: Any]) -> HelmNavigationController? {
+    func navigationControllerForSplitViewControllerPush(splitViewController: HelmSplitViewController?, sourceModule: ModuleName, destinationModule: ModuleName, props: [String: Any], options: [String: Any]) -> HelmNavigationController? {
 
         if let detailViewController = splitViewController?.detailTopViewController, detailViewController.moduleName == sourceModule {
             return splitViewController?.detailNavigationController

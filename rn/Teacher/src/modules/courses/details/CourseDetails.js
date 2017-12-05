@@ -44,6 +44,7 @@ import Navigator from '../../../routing/Navigator'
 import i18n from 'format-message'
 import ActivityIndicatorView from '../../../common/components/ActivityIndicatorView'
 import OnLayout from 'react-native-on-layout'
+import currentWindowTraits from '../../../utils/windowTraits'
 
 export class CourseDetails extends Component<any, CourseDetailsProps, any> {
   props: CourseDetailsProps
@@ -52,7 +53,7 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
 
   constructor (props: CourseDetailsProps) {
     super(props)
-    this.state = { windowTraits: { horizontal: 'compact', vertical: 'regular' } }
+    this.state = { windowTraits: currentWindowTraits() }
     this.animatedValue = new Animated.Value(-235)
     this.animate = Animated.event(
       [{ nativeEvent: { contentOffset: { y: this.animatedValue } } }],

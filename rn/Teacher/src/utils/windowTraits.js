@@ -14,17 +14,22 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-import UIKit
+// @flow
 
-extension UITraitEnvironment {
-    public func sizeClassInfoForJavascriptConsumption() -> [String: String] {
-        let horizontalKey = "horizontal"
-        let verticalKey = "vertical"
-        var data = [String:String]()
-        let horizontalSizeClass = self.traitCollection.horizontalSizeClass
-        let verticalSizeClass  = self.traitCollection.verticalSizeClass
-        data[horizontalKey] = horizontalSizeClass.description
-        data[verticalKey] = verticalSizeClass.description
-        return data
-    }
+import { NativeModules, NativeEventEmitter } from 'react-native'
+import { type TraitCollection } from '../routing/Navigator'
+
+const Manager = NativeModules.WindowTraitsManager
+
+let windowTraits = { horizontal: 'compact', vertical: 'regular' }
+export default function currentWindowTraits (): TraitCollection {
+  return windowTraits
 }
+
+const updater = (traits) => {
+  windowTraits = traits.window
+}
+
+const emitter = new NativeEventEmitter(Manager)
+emitter.addListener('Update', updater)
+Manager.currentWindowTraits(updater)
