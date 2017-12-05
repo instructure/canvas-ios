@@ -119,39 +119,6 @@ public final class HelmViewController: UIViewController, HelmScreen {
     private var _screenDidRender = false
     private func screenDidRender() {
         if (_screenDidRender) { return }
-        if let title = screenConfig[PropKeys.title] as? String {
-            if let subtitle = screenConfig[PropKeys.subtitle] as? String, subtitle.characters.count > 0 {
-                let titleStuff = self.titleView(with: title, and: subtitle, given: screenConfig)
-                let titleView = titleStuff.titleView
-                titleView.isAccessibilityElement = true
-                titleView.accessibilityLabel = "\(title), \(subtitle)"
-                titleView.accessibilityTraits = UIAccessibilityTraitHeader
-                self.navigationItem.titleView = titleView
-                self.navigationItem.title = nil
-                
-                self.titleViewTitleLabel = titleStuff.titleLabel
-                self.titleViewSubtitleLabel = titleStuff.subtitleLabel
-            }
-            self.title = title
-        }
-        
-        if let navBarImagePath = screenConfig[PropKeys.navBarImage] {
-            if let titleView: UIView = titleViewFromNavBarImagePath(navBarImagePath: navBarImagePath) {
-                titleView.contentMode = .scaleAspectFit
-                let container = UIView(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
-                titleView.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
-                container.addSubview(titleView)
-                self.navigationItem.titleView = container
-            }
-            else {
-                self.navigationItem.titleView = nil
-            }
-        }
-
-        if let backgroundColor = screenConfig[PropKeys.backgroundColor] {
-            view.backgroundColor = RCTConvert.uiColor(backgroundColor)
-        }
-        
         _screenDidRender = true
     }
     
@@ -210,6 +177,39 @@ public final class HelmViewController: UIViewController, HelmScreen {
     // MARK: - Styles
     
     public func handleStyles() {
+        if let title = screenConfig[PropKeys.title] as? String {
+            if let subtitle = screenConfig[PropKeys.subtitle] as? String, subtitle.characters.count > 0 {
+                let titleStuff = self.titleView(with: title, and: subtitle, given: screenConfig)
+                let titleView = titleStuff.titleView
+                titleView.isAccessibilityElement = true
+                titleView.accessibilityLabel = "\(title), \(subtitle)"
+                titleView.accessibilityTraits = UIAccessibilityTraitHeader
+                self.navigationItem.titleView = titleView
+                self.navigationItem.title = nil
+                
+                self.titleViewTitleLabel = titleStuff.titleLabel
+                self.titleViewSubtitleLabel = titleStuff.subtitleLabel
+            }
+            self.title = title
+        }
+        
+        if let navBarImagePath = screenConfig[PropKeys.navBarImage] {
+            if let titleView: UIView = titleViewFromNavBarImagePath(navBarImagePath: navBarImagePath) {
+                titleView.contentMode = .scaleAspectFit
+                let container = UIView(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
+                titleView.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
+                container.addSubview(titleView)
+                self.navigationItem.titleView = container
+            }
+            else {
+                self.navigationItem.titleView = nil
+            }
+        }
+        
+        if let backgroundColor = screenConfig[PropKeys.backgroundColor] {
+            view.backgroundColor = RCTConvert.uiColor(backgroundColor)
+        }
+
         // Nav bar props
         let drawUnderNavBar = screenConfig[PropKeys.drawUnderNavBar] as? Bool ?? false
         if (drawUnderNavBar) {

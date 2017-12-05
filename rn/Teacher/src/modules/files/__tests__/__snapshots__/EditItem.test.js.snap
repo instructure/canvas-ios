@@ -1,0 +1,675 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditItem file renders usage rights editing when feature is enabled 1`] = `
+<Screen
+  drawUnderNavBar={true}
+  leftBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "testID": "edit-item.cancel-btn",
+        "title": "Cancel",
+      },
+    ]
+  }
+  navBarButtonColor="#008EE2"
+  navBarStyle="light"
+  navBarTitleColors="#2D3B45"
+  rightBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "testID": "edit-item.done-btn",
+        "title": "Done",
+      },
+    ]
+  }
+  title="Edit File"
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <KeyboardAwareScrollView
+      enableAutoAutomaticScroll={true}
+      enableResetScrollToCoords={true}
+      extraHeight={75}
+      extraScrollHeight={0}
+      keyboardOpeningTime={250}
+      style={
+        Object {
+          "backgroundColor": "#f5f5f5",
+          "flex": 1,
+        }
+      }
+    >
+      <EditSectionHeader
+        title="Title"
+      />
+      <RowWithTextInput
+        border="both"
+        identifier="edit-item.name"
+        onChangeText={[Function]}
+        onFocus={[Function]}
+        placeholder="Title"
+        style={
+          Object {
+            "height": 45,
+          }
+        }
+        value="passwords.txt"
+      />
+      <RequiredFieldSubscript
+        title=""
+        visible={false}
+      />
+      <EditSectionHeader
+        title="Access"
+      />
+      <Row
+        border="both"
+        disclosureIndicator={true}
+        onPress={[Function]}
+        testID="edit-item.publish"
+        title="Publish"
+        titleStyles={
+          Object {
+            "fontWeight": "normal",
+          }
+        }
+      />
+      <EditUsageRights
+        licenses={
+          Array [
+            Object {
+              "id": "private",
+              "name": "Private (Copyrighted)",
+            },
+            Object {
+              "id": "cc_by",
+              "name": "CC Attribution",
+            },
+            Object {
+              "id": "cc_by_nc_sa",
+              "name": "CC Attribution Non-Commercial Share Alike",
+            },
+          ]
+        }
+        onChange={[Function]}
+        rights={
+          Object {
+            "legal_copyright": "",
+            "license": "cc_by",
+            "use_justification": "creative_commons",
+          }
+        }
+      />
+      <View
+        style={
+          Object {
+            "height": 48,
+          }
+        }
+      />
+      <Row
+        border="both"
+        image={
+          Object {
+            "testUri": "../../../src/images/trash.png",
+          }
+        }
+        imageTint="#EE0612"
+        onPress={[Function]}
+        testID="edit-item.delete"
+        title="Delete File"
+        titleStyles={
+          Object {
+            "color": "#EE0612",
+          }
+        }
+      />
+    </KeyboardAwareScrollView>
+  </View>
+</Screen>
+`;
+
+exports[`EditItem folder should render 1`] = `
+<Screen
+  drawUnderNavBar={true}
+  leftBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "testID": "edit-item.cancel-btn",
+        "title": "Cancel",
+      },
+    ]
+  }
+  navBarButtonColor="#008EE2"
+  navBarStyle="light"
+  navBarTitleColors="#2D3B45"
+  rightBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "testID": "edit-item.done-btn",
+        "title": "Done",
+      },
+    ]
+  }
+  title="Edit Folder"
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <KeyboardAwareScrollView
+      enableAutoAutomaticScroll={true}
+      enableResetScrollToCoords={true}
+      extraHeight={75}
+      extraScrollHeight={0}
+      keyboardOpeningTime={250}
+      style={
+        Object {
+          "backgroundColor": "#f5f5f5",
+          "flex": 1,
+        }
+      }
+    >
+      <EditSectionHeader
+        title="Title"
+      />
+      <RowWithTextInput
+        border="both"
+        identifier="edit-item.name"
+        onChangeText={[Function]}
+        onFocus={[Function]}
+        placeholder="Title"
+        style={
+          Object {
+            "height": 45,
+          }
+        }
+        value="Folder"
+      />
+      <RequiredFieldSubscript
+        title=""
+        visible={false}
+      />
+      <EditSectionHeader
+        title="Access"
+      />
+      <Row
+        border="both"
+        disclosureIndicator={true}
+        onPress={[Function]}
+        testID="edit-item.publish"
+        title="Publish"
+        titleStyles={
+          Object {
+            "fontWeight": "normal",
+          }
+        }
+      />
+      <View
+        style={
+          Object {
+            "height": 48,
+          }
+        }
+      />
+      <Row
+        border="both"
+        image={
+          Object {
+            "testUri": "../../../src/images/trash.png",
+          }
+        }
+        imageTint="#EE0612"
+        onPress={[Function]}
+        testID="edit-item.delete"
+        title="Delete Folder"
+        titleStyles={
+          Object {
+            "color": "#EE0612",
+          }
+        }
+      />
+    </KeyboardAwareScrollView>
+  </View>
+</Screen>
+`;
+
+exports[`EditItem folder shows availability when there is a lock_at date 1`] = `
+<Screen
+  drawUnderNavBar={true}
+  leftBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "testID": "edit-item.cancel-btn",
+        "title": "Cancel",
+      },
+    ]
+  }
+  navBarButtonColor="#008EE2"
+  navBarStyle="light"
+  navBarTitleColors="#2D3B45"
+  rightBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "testID": "edit-item.done-btn",
+        "title": "Done",
+      },
+    ]
+  }
+  title="Edit Folder"
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <KeyboardAwareScrollView
+      enableAutoAutomaticScroll={true}
+      enableResetScrollToCoords={true}
+      extraHeight={75}
+      extraScrollHeight={0}
+      keyboardOpeningTime={250}
+      style={
+        Object {
+          "backgroundColor": "#f5f5f5",
+          "flex": 1,
+        }
+      }
+    >
+      <EditSectionHeader
+        title="Title"
+      />
+      <RowWithTextInput
+        border="both"
+        identifier="edit-item.name"
+        onChangeText={[Function]}
+        onFocus={[Function]}
+        placeholder="Title"
+        style={
+          Object {
+            "height": 45,
+          }
+        }
+        value="Folder"
+      />
+      <RequiredFieldSubscript
+        title=""
+        visible={false}
+      />
+      <EditSectionHeader
+        title="Access"
+      />
+      <Row
+        border="both"
+        disclosureIndicator={true}
+        onPress={[Function]}
+        testID="edit-item.publish"
+        title="Restricted Access"
+        titleStyles={
+          Object {
+            "fontWeight": "normal",
+          }
+        }
+      />
+      <Row
+        border="bottom"
+        disclosureIndicator={true}
+        onPress={[Function]}
+        testID="edit-item.hidden"
+        title="Schedule student availability"
+        titleStyles={
+          Object {
+            "fontWeight": "normal",
+          }
+        }
+      />
+      <View>
+        <EditSectionHeader
+          title="Availability"
+        />
+        <RowSeparator />
+        <RowWithDateInput
+          border="both"
+          onPress={[Function]}
+          onRemoveDatePress={[Function]}
+          showRemoveButton={true}
+          testID="edit-item.unlock_at"
+          title="Available from"
+        />
+        <RequiredFieldSubscript
+          title=""
+          visible={false}
+        />
+        <RowWithDateInput
+          border="bottom"
+          date="2017-11-17T00:00:00Z"
+          onPress={[Function]}
+          onRemoveDatePress={[Function]}
+          showRemoveButton={true}
+          testID="edit-item.lock_at"
+          title="Available to"
+        />
+        <RequiredFieldSubscript
+          title=""
+          visible={false}
+        />
+      </View>
+      <View
+        style={
+          Object {
+            "height": 48,
+          }
+        }
+      />
+      <Row
+        border="both"
+        image={
+          Object {
+            "testUri": "../../../src/images/trash.png",
+          }
+        }
+        imageTint="#EE0612"
+        onPress={[Function]}
+        testID="edit-item.delete"
+        title="Delete Folder"
+        titleStyles={
+          Object {
+            "color": "#EE0612",
+          }
+        }
+      />
+    </KeyboardAwareScrollView>
+  </View>
+</Screen>
+`;
+
+exports[`EditItem folder shows availability when there is an unlock_at date 1`] = `
+<Screen
+  drawUnderNavBar={true}
+  leftBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "testID": "edit-item.cancel-btn",
+        "title": "Cancel",
+      },
+    ]
+  }
+  navBarButtonColor="#008EE2"
+  navBarStyle="light"
+  navBarTitleColors="#2D3B45"
+  rightBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "testID": "edit-item.done-btn",
+        "title": "Done",
+      },
+    ]
+  }
+  title="Edit Folder"
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <KeyboardAwareScrollView
+      enableAutoAutomaticScroll={true}
+      enableResetScrollToCoords={true}
+      extraHeight={75}
+      extraScrollHeight={0}
+      keyboardOpeningTime={250}
+      style={
+        Object {
+          "backgroundColor": "#f5f5f5",
+          "flex": 1,
+        }
+      }
+    >
+      <EditSectionHeader
+        title="Title"
+      />
+      <RowWithTextInput
+        border="both"
+        identifier="edit-item.name"
+        onChangeText={[Function]}
+        onFocus={[Function]}
+        placeholder="Title"
+        style={
+          Object {
+            "height": 45,
+          }
+        }
+        value="Folder"
+      />
+      <RequiredFieldSubscript
+        title=""
+        visible={false}
+      />
+      <EditSectionHeader
+        title="Access"
+      />
+      <Row
+        border="both"
+        disclosureIndicator={true}
+        onPress={[Function]}
+        testID="edit-item.publish"
+        title="Restricted Access"
+        titleStyles={
+          Object {
+            "fontWeight": "normal",
+          }
+        }
+      />
+      <Row
+        border="bottom"
+        disclosureIndicator={true}
+        onPress={[Function]}
+        testID="edit-item.hidden"
+        title="Schedule student availability"
+        titleStyles={
+          Object {
+            "fontWeight": "normal",
+          }
+        }
+      />
+      <View>
+        <EditSectionHeader
+          title="Availability"
+        />
+        <RowSeparator />
+        <RowWithDateInput
+          border="both"
+          date="2017-11-17T00:00:00Z"
+          onPress={[Function]}
+          onRemoveDatePress={[Function]}
+          showRemoveButton={true}
+          testID="edit-item.unlock_at"
+          title="Available from"
+        />
+        <RequiredFieldSubscript
+          title=""
+          visible={false}
+        />
+        <RowWithDateInput
+          border="bottom"
+          onPress={[Function]}
+          onRemoveDatePress={[Function]}
+          showRemoveButton={true}
+          testID="edit-item.lock_at"
+          title="Available to"
+        />
+        <RequiredFieldSubscript
+          title=""
+          visible={false}
+        />
+      </View>
+      <View
+        style={
+          Object {
+            "height": 48,
+          }
+        }
+      />
+      <Row
+        border="both"
+        image={
+          Object {
+            "testUri": "../../../src/images/trash.png",
+          }
+        }
+        imageTint="#EE0612"
+        onPress={[Function]}
+        testID="edit-item.delete"
+        title="Delete Folder"
+        titleStyles={
+          Object {
+            "color": "#EE0612",
+          }
+        }
+      />
+    </KeyboardAwareScrollView>
+  </View>
+</Screen>
+`;
+
+exports[`EditItem folder shows the type of restriction when hidden 1`] = `
+<Screen
+  drawUnderNavBar={true}
+  leftBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "testID": "edit-item.cancel-btn",
+        "title": "Cancel",
+      },
+    ]
+  }
+  navBarButtonColor="#008EE2"
+  navBarStyle="light"
+  navBarTitleColors="#2D3B45"
+  rightBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "testID": "edit-item.done-btn",
+        "title": "Done",
+      },
+    ]
+  }
+  title="Edit Folder"
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <KeyboardAwareScrollView
+      enableAutoAutomaticScroll={true}
+      enableResetScrollToCoords={true}
+      extraHeight={75}
+      extraScrollHeight={0}
+      keyboardOpeningTime={250}
+      style={
+        Object {
+          "backgroundColor": "#f5f5f5",
+          "flex": 1,
+        }
+      }
+    >
+      <EditSectionHeader
+        title="Title"
+      />
+      <RowWithTextInput
+        border="both"
+        identifier="edit-item.name"
+        onChangeText={[Function]}
+        onFocus={[Function]}
+        placeholder="Title"
+        style={
+          Object {
+            "height": 45,
+          }
+        }
+        value="Folder"
+      />
+      <RequiredFieldSubscript
+        title=""
+        visible={false}
+      />
+      <EditSectionHeader
+        title="Access"
+      />
+      <Row
+        border="both"
+        disclosureIndicator={true}
+        onPress={[Function]}
+        testID="edit-item.publish"
+        title="Restricted Access"
+        titleStyles={
+          Object {
+            "fontWeight": "normal",
+          }
+        }
+      />
+      <Row
+        border="bottom"
+        disclosureIndicator={true}
+        onPress={[Function]}
+        testID="edit-item.hidden"
+        title="Hidden. Files inside will be available with links."
+        titleStyles={
+          Object {
+            "fontWeight": "normal",
+          }
+        }
+      />
+      <View
+        style={
+          Object {
+            "height": 48,
+          }
+        }
+      />
+      <Row
+        border="both"
+        image={
+          Object {
+            "testUri": "../../../src/images/trash.png",
+          }
+        }
+        imageTint="#EE0612"
+        onPress={[Function]}
+        testID="edit-item.delete"
+        title="Delete Folder"
+        titleStyles={
+          Object {
+            "color": "#EE0612",
+          }
+        }
+      />
+    </KeyboardAwareScrollView>
+  </View>
+</Screen>
+`;

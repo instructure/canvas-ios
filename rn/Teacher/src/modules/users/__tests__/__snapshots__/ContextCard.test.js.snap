@@ -710,7 +710,7 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
                   testID="user-submission-row-icon-not-published-1.icon-img"
                 >
                   <View
-                    accessibilityLabel="Not Published"
+                    accessibilityLabel="Restricted"
                     style={
                       Object {
                         "alignItems": "center",
@@ -755,14 +755,14 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/Unpublished.png",
+                            "testUri": "../../../src/images/Restricted.png",
                           }
                         }
                         style={
                           Object {
-                            "height": 12,
-                            "tintColor": "#8B969E",
-                            "width": 12,
+                            "height": 14,
+                            "tintColor": "#FF0000",
+                            "width": 14,
                           }
                         }
                       />
@@ -1654,7 +1654,7 @@ exports[`ContextCard renders 1`] = `
                   testID="user-submission-row-icon-not-published-1.icon-img"
                 >
                   <View
-                    accessibilityLabel="Not Published"
+                    accessibilityLabel="Restricted"
                     style={
                       Object {
                         "alignItems": "center",
@@ -1699,14 +1699,14 @@ exports[`ContextCard renders 1`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/Unpublished.png",
+                            "testUri": "../../../src/images/Restricted.png",
                           }
                         }
                         style={
                           Object {
-                            "height": 12,
-                            "tintColor": "#8B969E",
-                            "width": 12,
+                            "height": 14,
+                            "tintColor": "#FF0000",
+                            "width": 14,
                           }
                         }
                       />
@@ -3570,7 +3570,7 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
                   testID="user-submission-row-icon-not-published-1.icon-img"
                 >
                   <View
-                    accessibilityLabel="Not Published"
+                    accessibilityLabel="Restricted"
                     style={
                       Object {
                         "alignItems": "center",
@@ -3615,14 +3615,14 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/Unpublished.png",
+                            "testUri": "../../../src/images/Restricted.png",
                           }
                         }
                         style={
                           Object {
-                            "height": 12,
-                            "tintColor": "#8B969E",
-                            "width": 12,
+                            "height": 14,
+                            "tintColor": "#FF0000",
+                            "width": 14,
                           }
                         }
                       />

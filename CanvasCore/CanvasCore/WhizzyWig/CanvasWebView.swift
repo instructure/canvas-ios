@@ -10,6 +10,7 @@ import WebKit
 import CanvasKeymaster
 import CanvasKit
 
+let sharedPool = WKProcessPool()
 public class CanvasWebView: WKWebView {
     
     public enum Navigation {
@@ -72,7 +73,9 @@ public class CanvasWebView: WKWebView {
     }
     
     public convenience init() {
-        self.init(config: WKWebViewConfiguration())
+        let config = WKWebViewConfiguration()
+        config.processPool = sharedPool
+        self.init(config: config)
     }
     
     public required init?(coder: NSCoder) {

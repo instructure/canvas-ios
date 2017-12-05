@@ -1,96 +1,112 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RubricDescription renders 1`] = `
-<View
+<RCTSafeAreaView
   style={
     Object {
-      "paddingHorizontal": 16,
-      "paddingTop": 24,
+      "flex": 1,
     }
   }
 >
-  <RCTScrollView
-    DEPRECATED_sendUpdatedChildFrames={false}
-    alwaysBounceHorizontal={undefined}
-    alwaysBounceVertical={true}
-    bounces={false}
-    onContentSizeChange={null}
-    onMomentumScrollBegin={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onResponderGrant={[Function]}
-    onResponderReject={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={undefined}
-    onResponderTerminationRequest={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    onScrollShouldSetResponder={[Function]}
-    onStartShouldSetResponder={[Function]}
-    onStartShouldSetResponderCapture={[Function]}
-    onTouchEnd={[Function]}
-    onTouchMove={[Function]}
-    onTouchStart={[Function]}
-    scrollEventThrottle={undefined}
-    sendMomentumEvents={false}
+  <View
     style={
-      Array [
-        Object {
-          "flexDirection": "column",
-          "flexGrow": 1,
-          "flexShrink": 1,
-          "overflow": "scroll",
-        },
-        undefined,
-      ]
+      Object {
+        "paddingHorizontal": 16,
+        "paddingTop": 24,
+      }
     }
   >
-    <RCTScrollContentView
-      collapsable={false}
-      removeClippedSubviews={undefined}
+    <RCTScrollView
+      DEPRECATED_sendUpdatedChildFrames={false}
+      alwaysBounceHorizontal={undefined}
+      alwaysBounceVertical={true}
+      bounces={false}
+      onContentSizeChange={null}
+      onMomentumScrollBegin={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onResponderGrant={[Function]}
+      onResponderReject={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={undefined}
+      onResponderTerminationRequest={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      onScrollShouldSetResponder={[Function]}
+      onStartShouldSetResponder={[Function]}
+      onStartShouldSetResponderCapture={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      scrollEventThrottle={undefined}
+      sendMomentumEvents={false}
       style={
         Array [
-          undefined,
+          Object {
+            "flexDirection": "column",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "overflow": "scroll",
+          },
           undefined,
         ]
       }
     >
-      <View
-        onLayout={[Function]}
-        style={undefined}
-        testID="web-container.view"
-      />
-    </RCTScrollContentView>
-  </RCTScrollView>
-</View>
+      <RCTScrollContentView
+        collapsable={false}
+        removeClippedSubviews={undefined}
+        style={
+          Array [
+            undefined,
+            undefined,
+          ]
+        }
+      >
+        <View
+          onLayout={[Function]}
+          style={undefined}
+          testID="web-container.view"
+        />
+      </RCTScrollContentView>
+    </RCTScrollView>
+  </View>
+</RCTSafeAreaView>
 `;
 
 exports[`RubricDescription renders without description 1`] = `
-<View
+<RCTSafeAreaView
   style={
     Object {
-      "alignItems": "center",
       "flex": 1,
-      "flexDirection": "row",
-      "justifyContent": "center",
-      "paddingHorizontal": 32,
     }
   }
 >
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
+  <View
     style={
       Object {
-        "color": "#2D3B45",
-        "fontSize": 16,
-        "lineHeight": 19,
-        "textAlign": "center",
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "paddingHorizontal": 32,
       }
     }
   >
-    There currently is no long description for this item.
-  </Text>
-</View>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+          "lineHeight": 19,
+          "textAlign": "center",
+        }
+      }
+    >
+      There currently is no long description for this item.
+    </Text>
+  </View>
+</RCTSafeAreaView>
 `;

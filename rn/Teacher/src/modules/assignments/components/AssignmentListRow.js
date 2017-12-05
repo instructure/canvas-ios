@@ -26,7 +26,7 @@ import {
 
 import i18n from 'format-message'
 import { formattedDueDateWithStatus } from '../../../common/formatters'
-import Icon from '../../../common/components/PublishedIcon'
+import AccessIcon from '../../../common/components/AccessIcon'
 import AssignmentDates from '../../../common/AssignmentDates'
 import { Text } from '../../../common/text'
 import Row from '../../../common/components/rows/Row'
@@ -113,7 +113,7 @@ export default class AssignmentListRow extends Component<Props, any> {
     }
     return (
       <View style={styles.icon} testID={testID}>
-        <Icon published={assignment.published} tintColor={this.props.tintColor} style={styles.icon} image={image} />
+        <AccessIcon entry={assignment} tintColor={this.props.tintColor} style={styles.icon} image={image} />
       </View>
     )
   }

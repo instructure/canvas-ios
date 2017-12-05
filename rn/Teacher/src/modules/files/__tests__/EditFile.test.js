@@ -15,19 +15,30 @@
 //
 
 // @flow
+import React from 'react'
+import { shallow } from 'enzyme'
 
-import type { CourseListDataProps } from '../course-prop-types'
-import localeSort from '../../../utils/locale-sort'
-import App from '../../app'
+import EditFile from '../EditFile'
 
-export default function mapStateToProps (state: AppState): CourseListDataProps {
-  const allCourses = state.entities.courses
-  const { pending, error } = state.favoriteCourses
-  let courses = Object.keys(allCourses)
-    .map(id => allCourses[id])
-    .map(({ course, color }) => ({ ...course, color }))
-    .filter(App.current().filterCourse)
-    .sort((c1, cs2) => localeSort(c1.name, cs2.name))
-
-  return { pending, error, courses }
+const template = {
+  ...require('../../../__templates__/file'),
 }
+
+describe('EditFile', () => {
+  it('passes the correct props to EditItem', () => {
+    const tree = shallow(
+      <EditFile
+        file={template.file()}
+        fileID='12345'
+        navigator={{
+          show: () => {},
+          dismiss: () => {},
+          pop: () => {},
+        }}
+        onChange={() => {}}
+        onDelete={() => {}}
+      />
+    )
+    expect(tree).toMatchSnapshot()
+  })
+})

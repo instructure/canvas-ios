@@ -50,7 +50,7 @@ it('it calls props.onPress when it is selected', () => {
     <CourseCard {...defaultProps} onPress={onPress} />
   ).toJSON()
 
-  let button: any = explore(tree).selectByID(defaultProps.course.course_code)
+  let button: any = explore(tree).selectByID('course-' + defaultProps.course.id)
   button.props.onPress()
 
   expect(onPress).toHaveBeenCalledWith(defaultProps.course)

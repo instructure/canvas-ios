@@ -387,7 +387,8 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
         masqClient.actAsUserID = id;
         newClientSignal = [RACSignal return:masqClient];
     } else {
-        newClientSignal = [[self clientForMobileVerifiedDomain:domain] map:^CKIClient *(CKIClient *newClient) {
+        CKIAccountDomain *account = [[CKIAccountDomain alloc] initWithDomain:domain];
+        newClientSignal = [[self clientForMobileVerifiedDomain:account] map:^CKIClient *(CKIClient *newClient) {
             [newClient setValue:self.currentClient.accessToken forKey:@"accessToken"];
             newClient.actAsUserID = id;
             return newClient;

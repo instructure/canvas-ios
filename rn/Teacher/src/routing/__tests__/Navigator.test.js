@@ -56,6 +56,17 @@ describe('Navigator', () => {
     expect(NativeModules.Helm.popFrom).toHaveBeenCalledWith('pop')
   })
 
+  test('replace', () => {
+    const navigator = new Navigator('replace')
+    navigator.replace('/courses/2')
+    expect(NativeModules.Helm.pushFrom).toHaveBeenCalledWith(
+      'replace',
+      '/courses/:courseID',
+      { courseID: '2', screenInstanceID: expect.any(String) },
+      { canBecomeMaster: true, replace: true },
+    )
+  })
+
   test('present', () => {
     const navigator = new Navigator('present')
     navigator.show('/courses/1', { modal: true })

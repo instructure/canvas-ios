@@ -89,7 +89,7 @@ export default class CourseCard extends Component {
       <TouchableHighlight
         onLayout={this.onLayout}
         style={[styles.card, style]}
-        testID={course.course_code}
+        testID={'course-' + course.id}
         onPress={this.onPress}
         accessible={false}
         underlayColor='transparent'

@@ -24,7 +24,7 @@ import {
 import i18n from 'format-message'
 
 import Row from '../../../common/components/rows/Row'
-import PublishedIcon from '../../../common/components/PublishedIcon'
+import AccessIcon from '../../../common/components/AccessIcon'
 import { formattedDueDateWithStatus } from '../../../common/formatters'
 import { extractDateFromString } from '../../../utils/dateUtils'
 import Images from '../../../images/'
@@ -80,7 +80,7 @@ export default class QuizRow extends Component<Props, any> {
   _renderIcon = () => {
     return (
       <View style={style.icon}>
-        <PublishedIcon published={this.props.quiz.published} tintColor={this.props.tintColor} image={Images.course.quizzes} />
+        <AccessIcon entry={this.props.quiz} tintColor={this.props.tintColor} image={Images.course.quizzes} />
       </View>
     )
   }

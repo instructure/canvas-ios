@@ -1,456 +1,480 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-<RCTScrollView
-  dataSource={
-    ListViewDataSource {
-      "items": 2,
-    }
-  }
-  onRefresh={[Function]}
-  refreshControl={
-    <RefreshControlMock
-      onRefresh={[Function]}
-      refreshing={false}
-    />
-  }
-  refreshing={false}
-  renderRow={[Function]}
-  renderScrollComponent={[Function]}
+<RCTSafeAreaView
   style={
     Object {
-      "backgroundColor": "#fff",
+      "flex": 1,
     }
   }
 >
-  <RCTRefreshControl />
-  <View>
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={
-        Array [
-          "selected",
-          "button",
-        ]
+  <RCTScrollView
+    dataSource={
+      ListViewDataSource {
+        "items": 2,
       }
-      accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Array [
-          Object {
-            "backgroundColor": "transparent",
-          },
-          Object {
-            "borderBottomColor": "#e3e3e3",
-            "borderBottomWidth": 1,
-          },
-        ]
+    }
+    onRefresh={[Function]}
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        refreshing={false}
+      />
+    }
+    refreshing={false}
+    renderRow={[Function]}
+    renderScrollComponent={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#fff",
       }
-      testID="edit-favorites.course-favorite.1-favorited"
-      tvParallaxProperties={undefined}
-    >
+    }
+  >
+    <RCTRefreshControl />
+    <View>
       <View
-        style={
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "white",
-            "flexDirection": "row",
-            "paddingHorizontal": 16,
-            "paddingVertical": 16,
-          }
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={
+          Array [
+            "selected",
+            "button",
+          ]
         }
-      >
-        <Image
-          source={
+        accessible={true}
+        hasTVPreferredFocus={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
             Object {
-              "testUri": "../../../src/images/star-filled.png",
+              "backgroundColor": "transparent",
+            },
+            Object {
+              "borderBottomColor": "#e3e3e3",
+              "borderBottomWidth": 1,
+            },
+          ]
+        }
+        testID="edit-favorites.course-favorite.1-favorited"
+        tvParallaxProperties={undefined}
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "flexDirection": "row",
+              "paddingHorizontal": 16,
+              "paddingVertical": 16,
             }
           }
-          style={
-            Array [
-              Object {
-                "height": 20,
-                "marginRight": 10,
-                "width": 20,
-              },
-              Object {
-                "tintColor": "#374A59",
-              },
-            ]
-          }
-        />
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Object {
-                "fontWeight": "500",
-                "marginRight": 16,
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-medium",
-              },
-            ]
-          }
         >
-          Learn React Native
-        </Text>
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/images/star-filled.png",
+              }
+            }
+            style={
+              Array [
+                Object {
+                  "height": 20,
+                  "marginRight": 10,
+                  "width": 20,
+                },
+                Object {
+                  "tintColor": "#374A59",
+                },
+              ]
+            }
+          />
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "fontWeight": "500",
+                  "marginRight": 16,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-medium",
+                },
+              ]
+            }
+          >
+            Learn React Native
+          </Text>
+        </View>
       </View>
-    </View>
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={
-        Array [
-          "selected",
-          "button",
-        ]
-      }
-      accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Array [
-          Object {
-            "backgroundColor": "transparent",
-          },
-          Object {
-            "borderBottomColor": "#e3e3e3",
-            "borderBottomWidth": 1,
-          },
-        ]
-      }
-      testID="edit-favorites.course-favorite.1-favorited"
-      tvParallaxProperties={undefined}
-    >
       <View
-        style={
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "white",
-            "flexDirection": "row",
-            "paddingHorizontal": 16,
-            "paddingVertical": 16,
-          }
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={
+          Array [
+            "selected",
+            "button",
+          ]
         }
-      >
-        <Image
-          source={
+        accessible={true}
+        hasTVPreferredFocus={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
             Object {
-              "testUri": "../../../src/images/star-filled.png",
+              "backgroundColor": "transparent",
+            },
+            Object {
+              "borderBottomColor": "#e3e3e3",
+              "borderBottomWidth": 1,
+            },
+          ]
+        }
+        testID="edit-favorites.course-favorite.1-favorited"
+        tvParallaxProperties={undefined}
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "flexDirection": "row",
+              "paddingHorizontal": 16,
+              "paddingVertical": 16,
             }
           }
-          style={
-            Array [
-              Object {
-                "height": 20,
-                "marginRight": 10,
-                "width": 20,
-              },
-              Object {
-                "tintColor": "#374A59",
-              },
-            ]
-          }
-        />
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Object {
-                "fontWeight": "500",
-                "marginRight": 16,
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-medium",
-              },
-            ]
-          }
         >
-          Learn React Native
-        </Text>
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/images/star-filled.png",
+              }
+            }
+            style={
+              Array [
+                Object {
+                  "height": 20,
+                  "marginRight": 10,
+                  "width": 20,
+                },
+                Object {
+                  "tintColor": "#374A59",
+                },
+              ]
+            }
+          />
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "fontWeight": "500",
+                  "marginRight": 16,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-medium",
+                },
+              ]
+            }
+          >
+            Learn React Native
+          </Text>
+        </View>
       </View>
     </View>
-  </View>
-</RCTScrollView>
+  </RCTScrollView>
+</RCTSafeAreaView>
 `;
 
 exports[`updates when courses prop changes 1`] = `
-<RCTScrollView
-  dataSource={
-    ListViewDataSource {
-      "items": 1,
-    }
-  }
-  onRefresh={[Function]}
-  refreshControl={
-    <RefreshControlMock
-      onRefresh={[Function]}
-      refreshing={false}
-    />
-  }
-  refreshing={false}
-  renderRow={[Function]}
-  renderScrollComponent={[Function]}
+<RCTSafeAreaView
   style={
     Object {
-      "backgroundColor": "#fff",
+      "flex": 1,
     }
   }
 >
-  <RCTRefreshControl />
-  <View>
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={
-        Array [
-          "selected",
-          "button",
-        ]
+  <RCTScrollView
+    dataSource={
+      ListViewDataSource {
+        "items": 1,
       }
-      accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Array [
-          Object {
-            "backgroundColor": "transparent",
-          },
-          Object {
-            "borderBottomColor": "#e3e3e3",
-            "borderBottomWidth": 1,
-          },
-        ]
+    }
+    onRefresh={[Function]}
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        refreshing={false}
+      />
+    }
+    refreshing={false}
+    renderRow={[Function]}
+    renderScrollComponent={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#fff",
       }
-      testID="edit-favorites.course-favorite.1-favorited"
-      tvParallaxProperties={undefined}
-    >
+    }
+  >
+    <RCTRefreshControl />
+    <View>
       <View
-        style={
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "white",
-            "flexDirection": "row",
-            "paddingHorizontal": 16,
-            "paddingVertical": 16,
-          }
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={
+          Array [
+            "selected",
+            "button",
+          ]
         }
-      >
-        <Image
-          source={
+        accessible={true}
+        hasTVPreferredFocus={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
             Object {
-              "testUri": "../../../src/images/star-filled.png",
+              "backgroundColor": "transparent",
+            },
+            Object {
+              "borderBottomColor": "#e3e3e3",
+              "borderBottomWidth": 1,
+            },
+          ]
+        }
+        testID="edit-favorites.course-favorite.1-favorited"
+        tvParallaxProperties={undefined}
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "flexDirection": "row",
+              "paddingHorizontal": 16,
+              "paddingVertical": 16,
             }
           }
-          style={
-            Array [
-              Object {
-                "height": 20,
-                "marginRight": 10,
-                "width": 20,
-              },
-              Object {
-                "tintColor": "#374A59",
-              },
-            ]
-          }
-        />
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Object {
-                "fontWeight": "500",
-                "marginRight": 16,
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-medium",
-              },
-            ]
-          }
         >
-          Learn React Native
-        </Text>
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/images/star-filled.png",
+              }
+            }
+            style={
+              Array [
+                Object {
+                  "height": 20,
+                  "marginRight": 10,
+                  "width": 20,
+                },
+                Object {
+                  "tintColor": "#374A59",
+                },
+              ]
+            }
+          />
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "fontWeight": "500",
+                  "marginRight": 16,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-medium",
+                },
+              ]
+            }
+          >
+            Learn React Native
+          </Text>
+        </View>
       </View>
     </View>
-  </View>
-</RCTScrollView>
+  </RCTScrollView>
+</RCTSafeAreaView>
 `;
 
 exports[`updates when courses prop changes 2`] = `
-<RCTScrollView
-  dataSource={
-    ListViewDataSource {
-      "items": 1,
-    }
-  }
-  onRefresh={[Function]}
-  refreshControl={
-    <RefreshControlMock
-      onRefresh={[Function]}
-      refreshing={false}
-    />
-  }
-  refreshing={false}
-  renderRow={[Function]}
-  renderScrollComponent={[Function]}
+<RCTSafeAreaView
   style={
     Object {
-      "backgroundColor": "#fff",
+      "flex": 1,
     }
   }
 >
-  <RCTRefreshControl />
-  <View>
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={
-        Array [
-          "selected",
-          "button",
-        ]
+  <RCTScrollView
+    dataSource={
+      ListViewDataSource {
+        "items": 1,
       }
-      accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Array [
-          Object {
-            "backgroundColor": "transparent",
-          },
-          Object {
-            "borderBottomColor": "#e3e3e3",
-            "borderBottomWidth": 1,
-          },
-        ]
+    }
+    onRefresh={[Function]}
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        refreshing={false}
+      />
+    }
+    refreshing={false}
+    renderRow={[Function]}
+    renderScrollComponent={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#fff",
       }
-      testID="edit-favorites.course-favorite.1-favorited"
-      tvParallaxProperties={undefined}
-    >
+    }
+  >
+    <RCTRefreshControl />
+    <View>
       <View
-        style={
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "white",
-            "flexDirection": "row",
-            "paddingHorizontal": 16,
-            "paddingVertical": 16,
-          }
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={
+          Array [
+            "selected",
+            "button",
+          ]
         }
-      >
-        <Image
-          source={
+        accessible={true}
+        hasTVPreferredFocus={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
             Object {
-              "testUri": "../../../src/images/star-filled.png",
+              "backgroundColor": "transparent",
+            },
+            Object {
+              "borderBottomColor": "#e3e3e3",
+              "borderBottomWidth": 1,
+            },
+          ]
+        }
+        testID="edit-favorites.course-favorite.1-favorited"
+        tvParallaxProperties={undefined}
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "flexDirection": "row",
+              "paddingHorizontal": 16,
+              "paddingVertical": 16,
             }
           }
-          style={
-            Array [
-              Object {
-                "height": 20,
-                "marginRight": 10,
-                "width": 20,
-              },
-              Object {
-                "tintColor": "#374A59",
-              },
-            ]
-          }
-        />
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Object {
-                "fontWeight": "500",
-                "marginRight": 16,
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-medium",
-              },
-            ]
-          }
         >
-          Learn React Native
-        </Text>
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/images/star-filled.png",
+              }
+            }
+            style={
+              Array [
+                Object {
+                  "height": 20,
+                  "marginRight": 10,
+                  "width": 20,
+                },
+                Object {
+                  "tintColor": "#374A59",
+                },
+              ]
+            }
+          />
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "fontWeight": "500",
+                  "marginRight": 16,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-medium",
+                },
+              ]
+            }
+          >
+            Learn React Native
+          </Text>
+        </View>
       </View>
     </View>
-  </View>
-</RCTScrollView>
+  </RCTScrollView>
+</RCTSafeAreaView>
 `;

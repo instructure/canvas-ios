@@ -29,17 +29,36 @@ import Images from '../../images'
 import i18n from 'format-message'
 
 type Props = {
-  published: true,
+  entry: {
+    published?: boolean,
+    locked?: boolean,
+    hidden?: boolean,
+    lock_at?: ?string,
+    unlock_at?: ?string,
+  },
   tintColor: string,
   image: any,
 }
 
-export default class PublishedIcon extends React.Component<Props, any> {
+export default class AccessIcon extends React.Component<Props> {
+  static defaultProps = {
+    entry: {},
+  }
+
   render () {
-    const published = this.props.published
-    const icon = published ? Images.published : Images.unpublished
-    const iconStyle = published ? styles.publishedIcon : styles.unpublishedIcon
-    const accessibilityLabel = published ? i18n('Published') : i18n('Not Published')
+    const { published, locked, hidden, lock_at, unlock_at } = this.props.entry
+    let icon = Images.published
+    let iconStyle = styles.publishedIcon
+    let accessibilityLabel = i18n('Published')
+    if (published == null && (hidden || lock_at || unlock_at)) { // eslint-disable-line camelcase
+      icon = Images.restricted
+      iconStyle = styles.restrictedIcon
+      accessibilityLabel = i18n('Restricted')
+    } else if (published === false || (published == null && locked === true)) {
+      icon = Images.unpublished
+      iconStyle = styles.unpublishedIcon
+      accessibilityLabel = i18n('Not Published')
+    }
     return (
       <View style={styles.container} accessibilityLabel={accessibilityLabel}>
         <Image source={this.props.image} style={[styles.image, { tintColor: this.props.tintColor }]} />
@@ -81,5 +100,10 @@ const styles = StyleSheet.create({
     height: 12,
     width: 12,
     tintColor: '#8B969E',
+  },
+  restrictedIcon: {
+    height: 14,
+    width: 14,
+    tintColor: '#FF0000',
   },
 })

@@ -36,7 +36,7 @@
     "prop-types": "^15.6.0",
     "querystring": "^0.2.0",
     "react": "16.0.0",
-    "react-native": "0.50.3",
+    "react-native": "0.50.4",
     "react-native-audio": "https://github.com/derrh/react-native-audio.git",
     "react-native-blur": "^3.1.2",
     "react-native-button": "^2.1.0",
@@ -112,7 +112,6 @@
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
     ],
-    "verbose": true,
     "collectCoverage": false,
     "coveragePathIgnorePatterns": [
       "/node_modules/",

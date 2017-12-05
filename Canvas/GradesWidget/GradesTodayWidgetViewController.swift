@@ -149,11 +149,15 @@ protocol GradesWidgetHeightProtocol {
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) -> CGSize
 }
 
+struct GradesWidgetTableViewControllerConstants {
+    static let estimatedRowHeight: CGFloat = 55
+}
+
 extension GradesWidgetTableViewController: GradesWidgetHeightProtocol {
     
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) -> CGSize {
         if activeDisplayMode == .expanded {
-            return CGSize(width: 0.0, height: Double(44 * tableView.numberOfRows(inSection: 0)) + 16.0)
+            return CGSize(width: 0.0, height: CGFloat(GradesWidgetTableViewControllerConstants.estimatedRowHeight * CGFloat(tableView.numberOfRows(inSection: 0))) + 16.0)
         }
         else {
             return maxSize
@@ -207,6 +211,8 @@ struct CourseGradesWidgetCellViewModel: TableViewCellViewModel {
     static func tableViewDidLoad(_ tableView: UITableView) {
         let nib = UINib(nibName: String(describing: GradeWidgetCell.self), bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "cell")
+        tableView.estimatedRowHeight = GradesWidgetTableViewControllerConstants.estimatedRowHeight
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     func cellForTableView(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {

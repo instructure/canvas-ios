@@ -17,9 +17,8 @@
 // @flow
 
 import React from 'react'
+import { shallow } from 'enzyme'
 import { Compose, mapStateToProps } from '../Compose'
-import renderer from 'react-test-renderer'
-import explore from '../../../../test/helpers/explore'
 import api from '../../../canvas-api'
 import { apiResponse } from '../../../canvas-api/utils/testHelpers'
 
@@ -58,52 +57,31 @@ describe('Compose', () => {
   beforeEach(() => jest.resetAllMocks())
 
   it('renders', () => {
-    let tree = renderer.create(
-      <Compose {...defaultProps} />
-    ).toJSON()
-
+    let tree = shallow(<Compose {...defaultProps} />)
     expect(tree).toMatchSnapshot()
   })
 
   it('allows for a navbar title to be passed in as a prop', () => {
-    let tree = renderer.create(
-      <Compose {...defaultProps} navBarTitle='title' />
-    ).toJSON()
-
-    let screen = explore(tree).selectByType('Screen') || {}
-    expect(screen.props.title).toEqual('title')
+    let tree = shallow(<Compose {...defaultProps} navBarTitle='title' />)
+    expect(tree.find('Screen').prop('title')).toEqual('title')
   })
 
   it('doesnt show the course select when told not to', () => {
-    let tree = renderer.create(
-      <Compose {...defaultProps} showCourseSelect={false} />
-    ).toJSON()
-    let courseSelect = explore(tree).selectByID('compose.course-select')
-    expect(courseSelect).toBeNull()
+    let tree = shallow(<Compose {...defaultProps} showCourseSelect={false} />)
+    expect(tree.find('[testID="compose.course-select"]').exists()).toBe(false)
   })
 
   it('renders with passed in recipients', () => {
-    const u1 = template.addressBookResult({
-      id: '1',
-    })
-    const u2 = template.addressBookResult({
-      id: '2',
-    })
-
-    let tree = renderer.create(
-      <Compose {...defaultProps} recipients={[u1, u2]} />
-    ).toJSON()
-
+    const u1 = template.addressBookResult({ id: '1' })
+    const u2 = template.addressBookResult({ id: '2' })
+    let tree = shallow(<Compose {...defaultProps} recipients={[u1, u2]} />)
     expect(tree).toMatchSnapshot()
   })
 
   it('doesnt show the To placeholder when there are recipients', () => {
     const recipient = template.addressBookResult({ id: '1' })
-    let tree = renderer.create(
-      <Compose {...defaultProps} recipients={[recipient]} />
-    ).toJSON()
-    let recipientsPlaceholder = explore(tree).selectByID('compose.recipients-placeholder')
-    expect(recipientsPlaceholder).toBeNull()
+    let tree = shallow(<Compose {...defaultProps} recipients={[recipient]} />)
+    expect(tree.find('[testID="compose.recipients-placeholder"]').exists()).toBe(false)
   })
 
   it('renders after picking a course', () => {
@@ -114,23 +92,19 @@ describe('Compose', () => {
     })
 
     const navigator = template.navigator({ show, dismiss: jest.fn() })
-    let component = renderer.create(
-      <Compose {...defaultProps} navigator={navigator} />
-    )
+    let tree = shallow(<Compose {...defaultProps} navigator={navigator} />)
 
-    component.getInstance().selectCourse()
+    tree.find('[testID="compose.course-select"]').simulate('Press')
     onSelect(course)
     expect(navigator.pop).toHaveBeenCalled()
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(tree).toMatchSnapshot()
   })
 
   it('sets all the data and then send the message', () => {
     let course = template.course()
     const recipient = template.addressBookResult()
-    let component = renderer.create(
-      <Compose {...defaultProps} />
-    )
-    const instance = component.getInstance()
+    let component = shallow(<Compose {...defaultProps} />)
+    const instance = component.instance()
     instance._bodyChanged('body of the message')
     instance._subjectChanged('subject of the message')
     instance.setStateAndUpdate({ contextName: course.name, contextCode: `course_${course.id}` })
@@ -148,47 +122,38 @@ describe('Compose', () => {
     })
 
     const navigator = template.navigator({ show, dismiss: jest.fn() })
-    let component = renderer.create(
-      <Compose {...defaultProps} navigator={navigator} />
-    )
+    let component = shallow(<Compose {...defaultProps} navigator={navigator} />)
 
-    component.getInstance().selectCourse()
+    component.instance().selectCourse()
     onSelect(template.course())
-    component.getInstance()._openAddressBook()
+    component.instance()._openAddressBook()
     onSelect([recipient])
     expect(navigator.dismiss).toHaveBeenCalled()
-    expect(component.getInstance().state.recipients).toEqual([recipient])
+    expect(component.instance().state.recipients).toEqual([recipient])
     onCancel()
     expect(navigator.dismiss).toHaveBeenCalled()
   })
 
   it('dismisses the modal when cancel is pressed', () => {
-    let instance = renderer.create(
-      <Compose {...defaultProps} />
-    ).getInstance()
-
-    instance.cancelCompose()
+    let tree = shallow(<Compose {...defaultProps} />)
+    tree.find('Screen').prop('leftBarButtons')[0].action()
     expect(defaultProps.navigator.dismiss).toHaveBeenCalled()
   })
 
   it('toggles the send to all', () => {
-    let tree = renderer.create(
-      <Compose {...defaultProps} />
-    )
+    let tree = shallow(<Compose {...defaultProps} />)
+    tree.find('[identifier="compose-message.send-all-toggle"]').simulate('ValueChange', true)
+    expect(tree.state('sendToAll')).toBeTruthy()
+  })
 
-    let toggle = explore(tree.toJSON()).selectByID('compose-message.send-all-toggle') || {}
-    toggle.props.onValueChange(true)
-
-    expect(tree.getInstance().state.sendToAll).toBeTruthy()
+  it('hides send to all for replies', () => {
+    let tree = shallow(<Compose {...defaultProps} conversationID='2' />)
+    expect(tree.find('[identifier="compose-message.send-all-toggle"]').exists()).toBe(false)
   })
 
   it('deletes a recipient from state', () => {
-    let tree = renderer.create(
-      <Compose {...defaultProps} />
-    )
-    let instance = tree.getInstance()
-
-    instance.setState({
+    let tree = shallow(<Compose {...defaultProps} />)
+    tree.setState({
       recipients: [
         {
           id: '1',
@@ -196,16 +161,12 @@ describe('Compose', () => {
         },
       ],
     })
-
-    instance._deleteRecipient('1')
-
-    expect(instance.state.recipients.length).toBe(0)
+    tree.instance()._deleteRecipient('1')
+    expect(tree.state('recipients').length).toBe(0)
   })
 
   it('creates conversation on send', () => {
-    const u1 = template.addressBookResult({
-      id: '1',
-    })
+    const u1 = template.addressBookResult({ id: '1' })
     const props = {
       ...defaultProps,
       contextCode: 'course_1',
@@ -217,13 +178,9 @@ describe('Compose', () => {
     let response = apiResponse(template.conversation())
     api.createConversation.mockReturnValueOnce(response())
 
-    const screen = renderer.create(
-      <Compose {...props} />
-    )
-    const body: any = explore(screen.toJSON()).selectByID('compose-message.body-text-input')
-    body.props.onChangeText('new conversation')
-    const sendButton: any = explore(screen.toJSON()).selectRightBarButton('compose-message.send')
-    sendButton.action()
+    const tree = shallow(<Compose {...props} />)
+    tree.find('[testID="compose-message.body-text-input"]').simulate('ChangeText', 'new conversation')
+    tree.find('Screen').prop('rightBarButtons')[0].action()
     expect(api.createConversation).toHaveBeenCalledWith({
       recipients: ['1'],
       body: 'new conversation',
@@ -235,9 +192,7 @@ describe('Compose', () => {
   })
 
   it('adds message on send', () => {
-    const u1 = template.addressBookResult({
-      id: '1',
-    })
+    const u1 = template.addressBookResult({ id: '1' })
     const props = {
       ...defaultProps,
       recipients: [u1],
@@ -251,13 +206,9 @@ describe('Compose', () => {
     let response = apiResponse(template.conversation(props.includedMessages[0]))
     api.addMessage.mockReturnValueOnce(response())
 
-    const screen = renderer.create(
-      <Compose {...props} />
-    )
-    const body: any = explore(screen.toJSON()).selectByID('compose-message.body-text-input')
-    body.props.onChangeText('new conversation')
-    const sendButton: any = explore(screen.toJSON()).selectRightBarButton('compose-message.send')
-    sendButton.action()
+    const tree = shallow(<Compose {...props} />)
+    tree.find('[testID="compose-message.body-text-input"]').simulate('ChangeText', 'new conversation')
+    tree.find('Screen').prop('rightBarButtons')[0].action()
     expect(api.addMessage).toHaveBeenCalledWith('1', {
       recipients: ['1'],
       body: 'new conversation',
@@ -271,9 +222,7 @@ describe('Compose', () => {
   })
 
   it('adds message with attachments on send', () => {
-    const u1 = template.addressBookResult({
-      id: '1',
-    })
+    const u1 = template.addressBookResult({ id: '1' })
     const props = {
       ...defaultProps,
       recipients: [u1],
@@ -290,13 +239,9 @@ describe('Compose', () => {
     let response = apiResponse(template.conversation())
     api.createConversation.mockReturnValueOnce(response())
 
-    const screen = renderer.create(
-      <Compose {...props} />
-    )
-    const attachButton: any = explore(screen.toJSON()).selectRightBarButton('compose-message.attach')
-    attachButton.action()
-    const sendButton: any = explore(screen.toJSON()).selectRightBarButton('compose-message.send')
-    sendButton.action()
+    const tree = shallow(<Compose {...props} />)
+    tree.find('Screen').prop('rightBarButtons')[1].action()
+    tree.find('Screen').prop('rightBarButtons')[0].action()
     expect(api.createConversation).toHaveBeenCalledWith({
       recipients: ['1'],
       body: '',
@@ -313,10 +258,8 @@ describe('Compose', () => {
       refreshConversationDetails: jest.fn(),
       conversationID: '1',
     }
-    const screen = renderer.create(
-      <Compose {...props} />
-    )
-    screen.getInstance().componentWillUnmount()
+    const tree = shallow(<Compose {...props} />)
+    tree.unmount()
     expect(props.refreshConversationDetails).toHaveBeenCalledWith('1')
   })
 
@@ -325,10 +268,8 @@ describe('Compose', () => {
       ...defaultProps,
       refreshConversationDetails: jest.fn(),
     }
-    const screen = renderer.create(
-      <Compose {...props} />
-    )
-    screen.getInstance().componentWillUnmount()
+    const tree = shallow(<Compose {...props} />)
+    tree.unmount()
     expect(props.refreshConversationDetails).not.toHaveBeenCalled()
   })
 
@@ -340,21 +281,15 @@ describe('Compose', () => {
       canSelectCourse: false,
       canEditSubject: false,
     }
-    expect(
-      renderer.create(
-        <Compose {...props} />
-      ).toJSON()
-    ).toMatchSnapshot()
+    expect(shallow(<Compose {...props} />)).toMatchSnapshot()
   })
 
   it('renders the forwarded message body', () => {
     let includedMessages = [template.conversationMessage({ body: 'yo' })]
-    let tree = renderer.create(
-      <Compose {...defaultProps} includedMessages={includedMessages} />
-    ).toJSON()
-    let forwardedMessage = explore(tree).selectByID('compose.forwarded-message') || {}
-    expect(forwardedMessage).not.toBeNull()
-    expect(forwardedMessage.children[1].children[0]).toEqual(includedMessages[0].body)
+    let tree = shallow(<Compose {...defaultProps} includedMessages={includedMessages} />)
+    let forwardedMessage = tree.find('[testID="compose.forwarded-message"]')
+    expect(forwardedMessage.exists()).toBe(true)
+    expect(forwardedMessage.find('Text').last().children().text()).toEqual(includedMessages[0].body)
   })
 
   it('mapStateToProps', () => {

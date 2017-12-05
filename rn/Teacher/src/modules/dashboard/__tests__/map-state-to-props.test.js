@@ -16,10 +16,10 @@
 
 // @flow
 
-import { mapStateToProps } from '../FavoritedCourseList'
-import { normalizeCourse } from '../../courses-reducer'
-import * as courseTemplate from '../../../../__templates__/course'
-import { appState } from '../../../../redux/__templates__/app-state'
+import { mapStateToProps } from '../Dashboard'
+import { normalizeCourse } from '../../courses/courses-reducer'
+import * as courseTemplate from '../../../__templates__/course'
+import { appState } from '../../../redux/__templates__/app-state'
 import fromPairs from 'lodash/fromPairs'
 
 const colors: { [courseID: string]: string } = {
@@ -59,7 +59,7 @@ describe('mapStateToProps with favorites', () => {
     },
   })
 
-  const props = mapStateToProps(state)
+  const props = mapStateToProps(true)(state)
 
   it('has favorites', () => {
     expect(props.courses.length).toEqual(favorites.length)
@@ -93,7 +93,7 @@ describe('mapStateToProps with no favorites', () => {
     },
   })
 
-  const props = mapStateToProps(state)
+  const props = mapStateToProps(true)(state)
 
   it('has no favorites', () => {
     expect(props.courses.length).toEqual(0)
@@ -106,7 +106,7 @@ describe('mapStateToProps with no favorites', () => {
 
 describe('mapStateToProps with no courses', () => {
   const state = appState({ favoriteCourses: { courseRefs: [] } })
-  const props = mapStateToProps(state)
+  const props = mapStateToProps(true)(state)
 
   it('has no favorites', () => {
     expect(props.courses.length).toEqual(0)
@@ -130,7 +130,7 @@ describe('mapStateToProps with student and observer enrollments', () => {
     },
   })
 
-  const props = mapStateToProps(state)
+  const props = mapStateToProps(true)(state)
 
   it('has no favorites', () => {
     expect(props.courses.length).toEqual(0)
@@ -155,7 +155,7 @@ describe('mapStateToProps with various teacher enrollments', () => {
     },
   })
 
-  const props = mapStateToProps(state)
+  const props = mapStateToProps(true)(state)
 
   it('has favorites', () => {
     expect(props.courses.length).toEqual(courseTemplates.length)
@@ -179,7 +179,7 @@ describe('mapStateToProps with teacher and student enrollments', () => {
     },
   })
 
-  const props = mapStateToProps(state)
+  const props = mapStateToProps(true)(state)
 
   it('has 1 favorite', () => {
     expect(props.courses.length).toEqual(1)
@@ -187,5 +187,45 @@ describe('mapStateToProps with teacher and student enrollments', () => {
 
   it('has 1 course count', () => {
     expect(props.totalCourseCount).toEqual(1)
+  })
+})
+
+describe('all courses mapStateToProps', () => {
+  const a = courseTemplate.course({ id: 1, name: 'a' })
+  const b = courseTemplate.course({ id: 2, name: 'b' })
+  const c = courseTemplate.course({ id: 3, name: 'c' })
+  const courseTemplates = [
+    a, b, c,
+  ]
+
+  const colors: { [courseID: string]: string } = {
+    '1': '#aaa',
+    '2': '#bbb',
+    '3': '#ccc',
+    '4': '#ddd',
+  }
+
+  const courseStates: Array<CourseState> = courseTemplates
+    .map((course) => normalizeCourse(course, colors))
+  const pairs: Array<Array<*>> = courseStates
+    .map((courseState) => ([courseState.course.id, courseState]))
+  const courses: CoursesState = fromPairs(pairs)
+
+  const state = appState({
+    entities: {
+      courses,
+    },
+  })
+
+  const props = mapStateToProps(false)(state)
+
+  it('courses sorted alphabetically', () => {
+    const expected = [a, b, c].map(course => ({ ...course, color: colors[course.id] }))
+    expect(props.courses).toEqual(expected)
+  })
+
+  it('has colors', () => {
+    expect(props.courses.map(course => course.color))
+      .toEqual(['#aaa', '#bbb', '#ccc'])
   })
 })

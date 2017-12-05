@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditUsageRights should render 1`] = `
+<View>
+  <EditSectionHeader
+    title="Usage Rights"
+  />
+  <RowWithTextInput
+    border="both"
+    identifier="edit-item.usage_rights.legal_copyright"
+    inputWidth={200}
+    onChangeText={[Function]}
+    placeholder="Name"
+    title="Copyright Holder"
+    value=""
+  />
+  <RowWithDetail
+    border="bottom"
+    detail="Creative Commons File"
+    detailSelected={false}
+    onPress={[Function]}
+    testID="edit-item.usage_rights.use_justification"
+    title="Usage Right"
+  />
+  <View>
+    <RowWithDetail
+      border="bottom"
+      detail="CC Attribution"
+      detailSelected={false}
+      onPress={[Function]}
+      testID="edit-item.usage_rights.license"
+      title="Creative Commons License"
+    />
+  </View>
+</View>
+`;

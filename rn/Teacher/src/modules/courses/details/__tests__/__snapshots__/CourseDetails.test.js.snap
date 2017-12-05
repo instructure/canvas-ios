@@ -79,7 +79,7 @@ exports[`refresh function second test 1`] = `
     >
       <RCTRefreshControl />
       <View>
-        <View
+        <RCTSafeAreaView
           style={
             Object {
               "minHeight": -64,
@@ -165,12 +165,17 @@ exports[`refresh function second test 1`] = `
     </View>
     <View
       style={
-        Object {
-          "alignItems": "center",
-          "flex": 1,
-          "justifyContent": "center",
-          "marginTop": 44,
-        }
+        Array [
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+          },
+          Object {
+            "marginHorizontal": 0,
+            "marginTop": 44,
+          },
+        ]
       }
     >
       <Text
@@ -178,6 +183,7 @@ exports[`refresh function second test 1`] = `
         allowFontScaling={true}
         collapsable={undefined}
         ellipsizeMode="tail"
+        numberOfLines={3}
         style={
           Object {
             "backgroundColor": "transparent",
@@ -212,54 +218,6 @@ exports[`refresh function second test 1`] = `
       </Text>
     </View>
   </View>
-  <Text
-    accessible={false}
-    allowFontScaling={true}
-    collapsable={undefined}
-    ellipsizeMode="tail"
-    numberOfLines={1}
-    style={
-      Object {
-        "backgroundColor": "transparent",
-        "color": "#fff",
-        "fontSize": 17,
-        "fontWeight": "600",
-        "left": 0,
-        "opacity": 1,
-        "paddingHorizontal": 75,
-        "position": "absolute",
-        "right": 0,
-        "textAlign": "center",
-        "top": 33,
-      }
-    }
-  >
-    rn 101
-  </Text>
-  <Text
-    accessible={false}
-    allowFontScaling={true}
-    collapsable={undefined}
-    ellipsizeMode="tail"
-    numberOfLines={1}
-    style={
-      Object {
-        "backgroundColor": "transparent",
-        "color": "#fff",
-        "fontSize": 17,
-        "fontWeight": "600",
-        "left": 0,
-        "opacity": 0,
-        "paddingHorizontal": 75,
-        "position": "absolute",
-        "right": 0,
-        "textAlign": "center",
-        "top": 33,
-      }
-    }
-  >
-    Learn React Native
-  </Text>
 </View>
 `;
 
@@ -342,7 +300,7 @@ exports[`renders correctly 1`] = `
     >
       <RCTRefreshControl />
       <View>
-        <View
+        <RCTSafeAreaView
           style={
             Object {
               "minHeight": -64,
@@ -489,7 +447,7 @@ exports[`renders correctly 1`] = `
               </View>
             </View>
           </TouchableHighlight>
-        </View>
+        </RCTSafeAreaView>
       </View>
     </RCTScrollView>
   </View>
@@ -569,12 +527,17 @@ exports[`renders correctly 1`] = `
     </View>
     <View
       style={
-        Object {
-          "alignItems": "center",
-          "flex": 1,
-          "justifyContent": "center",
-          "marginTop": 44,
-        }
+        Array [
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+          },
+          Object {
+            "marginHorizontal": 0,
+            "marginTop": 44,
+          },
+        ]
       }
     >
       <Text
@@ -582,6 +545,7 @@ exports[`renders correctly 1`] = `
         allowFontScaling={true}
         collapsable={undefined}
         ellipsizeMode="tail"
+        numberOfLines={3}
         style={
           Object {
             "backgroundColor": "transparent",
@@ -616,54 +580,6 @@ exports[`renders correctly 1`] = `
       </Text>
     </View>
   </View>
-  <Text
-    accessible={false}
-    allowFontScaling={true}
-    collapsable={undefined}
-    ellipsizeMode="tail"
-    numberOfLines={1}
-    style={
-      Object {
-        "backgroundColor": "transparent",
-        "color": "#fff",
-        "fontSize": 17,
-        "fontWeight": "600",
-        "left": 0,
-        "opacity": 1,
-        "paddingHorizontal": 75,
-        "position": "absolute",
-        "right": 0,
-        "textAlign": "center",
-        "top": 33,
-      }
-    }
-  >
-    rn 101
-  </Text>
-  <Text
-    accessible={false}
-    allowFontScaling={true}
-    collapsable={undefined}
-    ellipsizeMode="tail"
-    numberOfLines={1}
-    style={
-      Object {
-        "backgroundColor": "transparent",
-        "color": "#fff",
-        "fontSize": 17,
-        "fontWeight": "600",
-        "left": 0,
-        "opacity": 0,
-        "paddingHorizontal": 75,
-        "position": "absolute",
-        "right": 0,
-        "textAlign": "center",
-        "top": 33,
-      }
-    }
-  >
-    Learn React Native
-  </Text>
 </View>
 `;
 
@@ -722,7 +638,7 @@ exports[`renders correctly without tabs 1`] = `
     >
       <RCTRefreshControl />
       <View>
-        <View
+        <RCTSafeAreaView
           style={
             Object {
               "minHeight": -64,
@@ -808,12 +724,17 @@ exports[`renders correctly without tabs 1`] = `
     </View>
     <View
       style={
-        Object {
-          "alignItems": "center",
-          "flex": 1,
-          "justifyContent": "center",
-          "marginTop": 44,
-        }
+        Array [
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+          },
+          Object {
+            "marginHorizontal": 0,
+            "marginTop": 44,
+          },
+        ]
       }
     >
       <Text
@@ -821,6 +742,7 @@ exports[`renders correctly without tabs 1`] = `
         allowFontScaling={true}
         collapsable={undefined}
         ellipsizeMode="tail"
+        numberOfLines={3}
         style={
           Object {
             "backgroundColor": "transparent",
@@ -855,54 +777,6 @@ exports[`renders correctly without tabs 1`] = `
       </Text>
     </View>
   </View>
-  <Text
-    accessible={false}
-    allowFontScaling={true}
-    collapsable={undefined}
-    ellipsizeMode="tail"
-    numberOfLines={1}
-    style={
-      Object {
-        "backgroundColor": "transparent",
-        "color": "#fff",
-        "fontSize": 17,
-        "fontWeight": "600",
-        "left": 0,
-        "opacity": 1,
-        "paddingHorizontal": 75,
-        "position": "absolute",
-        "right": 0,
-        "textAlign": "center",
-        "top": 33,
-      }
-    }
-  >
-    rn 101
-  </Text>
-  <Text
-    accessible={false}
-    allowFontScaling={true}
-    collapsable={undefined}
-    ellipsizeMode="tail"
-    numberOfLines={1}
-    style={
-      Object {
-        "backgroundColor": "transparent",
-        "color": "#fff",
-        "fontSize": 17,
-        "fontWeight": "600",
-        "left": 0,
-        "opacity": 0,
-        "paddingHorizontal": 75,
-        "position": "absolute",
-        "right": 0,
-        "textAlign": "center",
-        "top": 33,
-      }
-    }
-  >
-    Learn React Native
-  </Text>
 </View>
 `;
 
@@ -961,7 +835,7 @@ exports[`renders with empty image url 1`] = `
     >
       <RCTRefreshControl />
       <View>
-        <View
+        <RCTSafeAreaView
           style={
             Object {
               "minHeight": -64,
@@ -1108,7 +982,7 @@ exports[`renders with empty image url 1`] = `
               </View>
             </View>
           </TouchableHighlight>
-        </View>
+        </RCTSafeAreaView>
       </View>
     </RCTScrollView>
   </View>
@@ -1171,12 +1045,17 @@ exports[`renders with empty image url 1`] = `
     </View>
     <View
       style={
-        Object {
-          "alignItems": "center",
-          "flex": 1,
-          "justifyContent": "center",
-          "marginTop": 44,
-        }
+        Array [
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+          },
+          Object {
+            "marginHorizontal": 0,
+            "marginTop": 44,
+          },
+        ]
       }
     >
       <Text
@@ -1184,6 +1063,7 @@ exports[`renders with empty image url 1`] = `
         allowFontScaling={true}
         collapsable={undefined}
         ellipsizeMode="tail"
+        numberOfLines={3}
         style={
           Object {
             "backgroundColor": "transparent",
@@ -1218,54 +1098,6 @@ exports[`renders with empty image url 1`] = `
       </Text>
     </View>
   </View>
-  <Text
-    accessible={false}
-    allowFontScaling={true}
-    collapsable={undefined}
-    ellipsizeMode="tail"
-    numberOfLines={1}
-    style={
-      Object {
-        "backgroundColor": "transparent",
-        "color": "#fff",
-        "fontSize": 17,
-        "fontWeight": "600",
-        "left": 0,
-        "opacity": 1,
-        "paddingHorizontal": 75,
-        "position": "absolute",
-        "right": 0,
-        "textAlign": "center",
-        "top": 33,
-      }
-    }
-  >
-    rn 101
-  </Text>
-  <Text
-    accessible={false}
-    allowFontScaling={true}
-    collapsable={undefined}
-    ellipsizeMode="tail"
-    numberOfLines={1}
-    style={
-      Object {
-        "backgroundColor": "transparent",
-        "color": "#fff",
-        "fontSize": 17,
-        "fontWeight": "600",
-        "left": 0,
-        "opacity": 0,
-        "paddingHorizontal": 75,
-        "position": "absolute",
-        "right": 0,
-        "textAlign": "center",
-        "top": 33,
-      }
-    }
-  >
-    Learn React Native
-  </Text>
 </View>
 `;
 
@@ -1324,7 +1156,7 @@ exports[`renders with image url 1`] = `
     >
       <RCTRefreshControl />
       <View>
-        <View
+        <RCTSafeAreaView
           style={
             Object {
               "minHeight": -64,
@@ -1471,7 +1303,7 @@ exports[`renders with image url 1`] = `
               </View>
             </View>
           </TouchableHighlight>
-        </View>
+        </RCTSafeAreaView>
       </View>
     </RCTScrollView>
   </View>
@@ -1551,12 +1383,17 @@ exports[`renders with image url 1`] = `
     </View>
     <View
       style={
-        Object {
-          "alignItems": "center",
-          "flex": 1,
-          "justifyContent": "center",
-          "marginTop": 44,
-        }
+        Array [
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+          },
+          Object {
+            "marginHorizontal": 0,
+            "marginTop": 44,
+          },
+        ]
       }
     >
       <Text
@@ -1564,6 +1401,7 @@ exports[`renders with image url 1`] = `
         allowFontScaling={true}
         collapsable={undefined}
         ellipsizeMode="tail"
+        numberOfLines={3}
         style={
           Object {
             "backgroundColor": "transparent",
@@ -1598,54 +1436,6 @@ exports[`renders with image url 1`] = `
       </Text>
     </View>
   </View>
-  <Text
-    accessible={false}
-    allowFontScaling={true}
-    collapsable={undefined}
-    ellipsizeMode="tail"
-    numberOfLines={1}
-    style={
-      Object {
-        "backgroundColor": "transparent",
-        "color": "#fff",
-        "fontSize": 17,
-        "fontWeight": "600",
-        "left": 0,
-        "opacity": 1,
-        "paddingHorizontal": 75,
-        "position": "absolute",
-        "right": 0,
-        "textAlign": "center",
-        "top": 33,
-      }
-    }
-  >
-    rn 101
-  </Text>
-  <Text
-    accessible={false}
-    allowFontScaling={true}
-    collapsable={undefined}
-    ellipsizeMode="tail"
-    numberOfLines={1}
-    style={
-      Object {
-        "backgroundColor": "transparent",
-        "color": "#fff",
-        "fontSize": 17,
-        "fontWeight": "600",
-        "left": 0,
-        "opacity": 0,
-        "paddingHorizontal": 75,
-        "position": "absolute",
-        "right": 0,
-        "textAlign": "center",
-        "top": 33,
-      }
-    }
-  >
-    Learn React Native
-  </Text>
 </View>
 `;
 
@@ -1704,7 +1494,7 @@ exports[`renders without image url 1`] = `
     >
       <RCTRefreshControl />
       <View>
-        <View
+        <RCTSafeAreaView
           style={
             Object {
               "minHeight": -64,
@@ -1851,7 +1641,7 @@ exports[`renders without image url 1`] = `
               </View>
             </View>
           </TouchableHighlight>
-        </View>
+        </RCTSafeAreaView>
       </View>
     </RCTScrollView>
   </View>
@@ -1914,12 +1704,17 @@ exports[`renders without image url 1`] = `
     </View>
     <View
       style={
-        Object {
-          "alignItems": "center",
-          "flex": 1,
-          "justifyContent": "center",
-          "marginTop": 44,
-        }
+        Array [
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+          },
+          Object {
+            "marginHorizontal": 0,
+            "marginTop": 44,
+          },
+        ]
       }
     >
       <Text
@@ -1927,6 +1722,7 @@ exports[`renders without image url 1`] = `
         allowFontScaling={true}
         collapsable={undefined}
         ellipsizeMode="tail"
+        numberOfLines={3}
         style={
           Object {
             "backgroundColor": "transparent",
@@ -1961,53 +1757,5 @@ exports[`renders without image url 1`] = `
       </Text>
     </View>
   </View>
-  <Text
-    accessible={false}
-    allowFontScaling={true}
-    collapsable={undefined}
-    ellipsizeMode="tail"
-    numberOfLines={1}
-    style={
-      Object {
-        "backgroundColor": "transparent",
-        "color": "#fff",
-        "fontSize": 17,
-        "fontWeight": "600",
-        "left": 0,
-        "opacity": 1,
-        "paddingHorizontal": 75,
-        "position": "absolute",
-        "right": 0,
-        "textAlign": "center",
-        "top": 33,
-      }
-    }
-  >
-    rn 101
-  </Text>
-  <Text
-    accessible={false}
-    allowFontScaling={true}
-    collapsable={undefined}
-    ellipsizeMode="tail"
-    numberOfLines={1}
-    style={
-      Object {
-        "backgroundColor": "transparent",
-        "color": "#fff",
-        "fontSize": 17,
-        "fontWeight": "600",
-        "left": 0,
-        "opacity": 0,
-        "paddingHorizontal": 75,
-        "position": "absolute",
-        "right": 0,
-        "textAlign": "center",
-        "top": 33,
-      }
-    }
-  >
-    Learn React Native
-  </Text>
 </View>
 `;

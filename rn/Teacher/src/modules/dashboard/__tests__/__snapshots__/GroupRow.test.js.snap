@@ -1,0 +1,128 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`group row renders 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#ffffff01",
+        "shadowColor": "#000",
+        "shadowOffset": Object {
+          "height": 1,
+          "width": 0,
+        },
+        "shadowOpacity": 0.2,
+        "shadowRadius": 1,
+      },
+      Object {
+        "margin": 8,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "backgroundColor": "white",
+          "borderColor": "#e3e3e3",
+          "borderRadius": 4,
+          "borderWidth": 0.5,
+          "flex": 1,
+          "overflow": "hidden",
+        },
+        Object {
+          "flexDirection": "row",
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "width": 4,
+          },
+          Object {
+            "backgroundColor": "blue",
+          },
+        ]
+      }
+    />
+    <View
+      style={
+        Object {
+          "margin": 8,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "fontWeight": "600",
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
+            },
+          ]
+        }
+      >
+        Study Group 3
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#7F91A7",
+              "fontSize": 14,
+            },
+            Object {
+              "color": "blue",
+            },
+          ]
+        }
+      >
+        Bio 101
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#7F91A7",
+              "fontSize": 14,
+            },
+            Object {
+              "fontSize": 12,
+            },
+          ]
+        }
+      >
+        SPRING 2020
+      </Text>
+    </View>
+  </View>
+</View>
+`;

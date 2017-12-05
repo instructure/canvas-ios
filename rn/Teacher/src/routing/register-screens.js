@@ -16,7 +16,6 @@
 
 // @flow
 
-import FavoritedCourseList from '../modules/courses/favorites/FavoritedCourseList'
 import AllCourseList from '../modules/courses/all/AllCourseList'
 import EditFavorites from '../modules/courses/edit-favorites/EditFavorites'
 import CourseDetails from '../modules/courses/details/CourseDetails'
@@ -62,12 +61,15 @@ import PeopleList from '../modules/people/PeopleList'
 import Filter from '../modules/filter/Filter'
 import ToDoList from '../modules/to-do/list/ToDoList'
 import CourseFilesList from '../modules/files/CourseFilesList'
+import EditFile from '../modules/files/EditFile'
 import EditFolder from '../modules/files/EditFolder'
+import ViewFile from '../modules/files/ViewFile'
 import PagesList from '../modules/pages/list/PagesList'
 import PageDetails from '../modules/pages/details/PageDetails'
 import PageEdit from '../modules/pages/edit/PageEdit'
 import UI from '../common/UI'
 import PickerPage from '../common/components/PickerPage'
+import Dashboard from '../modules/dashboard/Dashboard'
 
 import { Store } from 'redux'
 import { registerScreen } from './'
@@ -77,7 +79,7 @@ export function wrap (name: any): Function {
 }
 
 export function registerScreens (store: Store): void {
-  registerScreen('/', wrap(FavoritedCourseList), store)
+  registerScreen('/', wrap(Dashboard), store)
   registerScreen('/courses', wrap(AllCourseList), store, { canBecomeMaster: true })
   registerScreen('/course_favorites', wrap(EditFavorites), store)
   registerScreen('/courses/:courseID', wrap(CourseDetails), store, { canBecomeMaster: true })
@@ -109,7 +111,8 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/address-book', wrap(AddressBook), store)
   registerScreen('/courses/:courseID/files', wrap(CourseFilesList), store)
   registerScreen('/courses/:courseID/files/folder/*subFolder', wrap(CourseFilesList), store)
-  registerScreen('/courses/:courseID/file/:fileID', wrap(CourseFilesList), store)
+  registerScreen('/courses/:courseID/file/:fileID', wrap(ViewFile), store)
+  registerScreen('/courses/:courseID/file/:fileID/edit', wrap(EditFile), store)
   registerScreen('/folders/:folderID/edit', wrap(EditFolder), store)
   registerScreen('/picker', wrap(PickerPage), store)
   registerScreen('/groups/:groupID/users', wrap(GroupList), store)

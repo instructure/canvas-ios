@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditFile passes the correct props to EditItem 1`] = `
+<EditItem
+  delete={[Function]}
+  getCourseEnabledFeatures={[Function]}
+  getCourseLicenses={[Function]}
+  item={
+    Object {
+      "display_name": "Book Report",
+      "id": "111",
+      "mime_class": "document",
+      "preview_url": "/",
+      "size": 488212,
+      "thumbnail_url": "http://fillmurray.com/322/200",
+      "url": "http://canvaslms.com/bookreport",
+    }
+  }
+  itemID="12345"
+  navigator={
+    Object {
+      "dismiss": [Function],
+      "pop": [Function],
+      "show": [Function],
+    }
+  }
+  onChange={[Function]}
+  onDelete={[Function]}
+  update={[Function]}
+  updateUsageRights={[Function]}
+/>
+`;

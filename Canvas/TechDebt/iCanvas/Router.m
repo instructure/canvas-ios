@@ -27,6 +27,7 @@
 #import <CanvasKit1/CKCanvasAPI.h>
 #import <CanvasKit1/CKContextInfo.h>
 #import "CKCanvasAPI+CurrentAPI.h"
+#import "CKIClient+CBIClient.h"
 
 
 @interface UIViewController (Push)
@@ -112,7 +113,7 @@
     return _sharedRouter;
 }
 
-#pragma marks - Defining Routes
+#pragma mark - Defining Routes
 
 - (void)addRoute:(NSString *)route handler:(RouteHandler)handler {
     self.routes[route] = handler;
@@ -140,7 +141,22 @@
     }];
 }
 
-#pragma marks - Dispatching
+#pragma mark - Tab Access
+
+- (BOOL)routingRestrictedFrom:(UIViewController *)controller toURL:(NSURL *)url {
+    
+    NSString *accessDenied = [TheKeymaster.currentClient.authSession accessForContentWith:url].accessDeniedMessage;
+    if (accessDenied) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:accessDenied preferredStyle:UIAlertControllerStyleAlert];
+        NSString *dismiss = NSLocalizedString(@"Dismiss", @"");
+        [alert addAction:[UIAlertAction actionWithTitle:dismiss style:UIAlertActionStyleDefault handler:nil]];
+        [controller presentViewController:alert animated:YES completion:nil];
+        return YES;
+    }
+    return NO;
+}
+
+#pragma mark - Dispatching
 
 - (UIViewController *)controllerForClass:(Class)cls params:(NSDictionary *)params {
     UIViewController *viewController = [cls new];
@@ -175,7 +191,7 @@
     }];
 }
 
-#pragma marks - Primary iPad Routing Methods
+#pragma mark - Primary iPad Routing Methods
 - (UIViewController *)controllerForHandlingBlockFromURL:(NSURL *)url {
     __block UIViewController *returnedController;
     
@@ -200,7 +216,7 @@
     else {
         matchURL = [NSURL URLWithString:[viewModel.model.path realURLEncodedString]];
     }
-
+    
     [self matchURL:matchURL matchHandler:^(NSDictionary *params, id classOrBlock) {
         if (class_isMetaClass(object_getClass(classOrBlock))) { // it's a class
             returnedController = [self controllerForClass:classOrBlock params:params];
@@ -215,6 +231,10 @@
 
 - (UIViewController *)routeFromController:(UIViewController *)sourceController toURL:(NSURL *)url {
 
+    if ([self routingRestrictedFrom:sourceController toURL:url]) {
+        return nil;
+    }
+        
     UIViewController *destinationViewController = [self controllerForHandlingBlockFromURL:url];
     
     if (!destinationViewController && self.fallbackHandler) {
@@ -245,7 +265,7 @@
     }];
 }
 
-# pragma marks - Parsing
+# pragma mark - Parsing
 
 - (NSDictionary *)parseURLQuery:(NSURL *)url
 {

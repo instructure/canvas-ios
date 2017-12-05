@@ -1,38 +1,20 @@
-//
-// Copyright (C) 2016-present Instructure, Inc.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-// http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-//
+// @flow
 
-/* @flow */
-
-import 'react-native'
 import React from 'react'
-import { FavoritedCourseList } from '../FavoritedCourseList.js'
-import explore from '../../../../../test/helpers/explore'
-import type { CourseProps } from '../../course-prop-types'
-
-// Note: test renderer must be required after react-native.
+import 'react-native'
 import renderer from 'react-test-renderer'
+import {
+  Dashboard,
+} from '../Dashboard'
+import explore from '../../../../test/helpers/explore'
 
 const template = {
-  ...require('../../../../__templates__/course'),
-  ...require('../../../../__templates__/helm'),
+  ...require('../../../__templates__/course'),
+  ...require('../../../__templates__/helm'),
 }
 
 jest.mock('TouchableOpacity', () => 'TouchableOpacity')
 jest.mock('TouchableHighlight', () => 'TouchableHighlight')
-jest.mock('../../../../routing')
 
 const colors = {
   '1': '#27B9CD',
@@ -40,7 +22,13 @@ const colors = {
   '3': '#8F3E99',
 }
 
-const courses: Array<CourseProps> = [
+function renderAndLayout (dashboard) {
+  const r = renderer.create(dashboard)
+  r.getInstance().setState({ width: 375, contentWidth: 359, cardWidth: 179 })
+  return r
+}
+
+const courses = [
   template.course({
     name: 'Biology 101',
     course_code: 'BIO 101',
@@ -73,38 +61,39 @@ let defaultProps = {
   refresh: jest.fn(),
   refreshing: false,
   totalCourseCount: courses.length,
+  isFullDashboard: true,
 }
 
 test('render', () => {
-  let tree = renderer.create(
-    <FavoritedCourseList {...defaultProps} />
+  let tree = renderAndLayout(
+    <Dashboard {...defaultProps} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
 test('render while pending', () => {
-  let tree = renderer.create(
-    <FavoritedCourseList {...defaultProps} pending={1} />
+  let tree = renderAndLayout(
+    <Dashboard {...defaultProps} pending={1} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
 test('render without favorite courses', () => {
-  let tree = renderer.create(
-    <FavoritedCourseList {...defaultProps} courses={[]} totalCourseCount={3} />
+  let tree = renderAndLayout(
+    <Dashboard {...defaultProps} courses={[]} totalCourseCount={3} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
 test('render without courses and *zero* total courses', () => {
-  let tree = renderer.create(
-    <FavoritedCourseList {...defaultProps} courses={[]} totalCourseCount={0} />
+  let tree = renderAndLayout(
+    <Dashboard {...defaultProps} courses={[]} totalCourseCount={0} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
 test('select course', () => {
-  const course: CourseProps = { ...template.course({ id: '1', is_favorite: true }), color: '#112233' }
+  const course = { ...template.course({ id: '1', is_favorite: true }), color: '#112233' }
   const props = {
     ...defaultProps,
     courses: [course],
@@ -112,11 +101,11 @@ test('select course', () => {
       show: jest.fn(),
     }),
   }
-  let tree = renderer.create(
-    <FavoritedCourseList {...props} />
+  let tree = renderAndLayout(
+    <Dashboard {...props} />
   ).toJSON()
 
-  const courseCard = explore(tree).selectByID(course.course_code) || {}
+  const courseCard = explore(tree).selectByID('course-' + course.id) || {}
   courseCard.props.onPress()
   expect(props.navigator.show).toHaveBeenCalledWith('/courses/1', { modal: true })
 })
@@ -130,8 +119,8 @@ test('opens course preferences', () => {
       show: jest.fn(),
     }),
   }
-  let tree = renderer.create(
-    <FavoritedCourseList {...props} />
+  let tree = renderAndLayout(
+    <Dashboard {...props} />
   ).toJSON()
 
   const kabob = explore(tree).selectByID(`course-card.kabob-${course.id}`) || {}
@@ -151,11 +140,11 @@ test('go to all courses', () => {
       show: jest.fn(),
     }),
   }
-  let tree = renderer.create(
-    <FavoritedCourseList {...props} />
+  let tree = renderAndLayout(
+    <Dashboard {...props} />
   ).toJSON()
 
-  const allButton = explore(tree).selectByID('favorited-course-list.see-all-btn') || {}
+  const allButton = explore(tree).selectByID('dashboard.courses.see-all-btn') || {}
   allButton.props.onPress()
   expect(props.navigator.show).toHaveBeenCalledWith('/courses')
 })
@@ -167,11 +156,11 @@ test('calls navigator.push when a course is selected', () => {
       show: jest.fn(),
     }),
   }
-  let tree = renderer.create(
-    <FavoritedCourseList {...props} />
+  let tree = renderAndLayout(
+    <Dashboard {...props} />
   ).toJSON()
 
-  const allButton = explore(tree).selectByID('favorited-course-list.see-all-btn') || {}
+  const allButton = explore(tree).selectByID('dashboard.courses.see-all-btn') || {}
   allButton.props.onPress()
   expect(props.navigator.show).toHaveBeenCalledWith('/courses')
 })
@@ -180,8 +169,8 @@ test('calls navigator.show when the edit button is pressed', () => {
   let navigator = template.navigator({
     show: jest.fn(),
   })
-  let tree = renderer.create(
-    <FavoritedCourseList {...defaultProps} navigator={navigator} />
+  let tree = renderAndLayout(
+    <Dashboard {...defaultProps} navigator={navigator} />
   )
 
   tree.getInstance().showFavoritesList()
@@ -189,4 +178,11 @@ test('calls navigator.show when the edit button is pressed', () => {
     '/course_favorites',
     { modal: true }
   )
+})
+
+test('Only renders courses when !isFullDashboard', () => {
+  let tree = renderAndLayout(
+    <Dashboard {...defaultProps} isFullDashboard={false} />
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
 })

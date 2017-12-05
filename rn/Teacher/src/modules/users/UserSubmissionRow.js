@@ -25,7 +25,7 @@ import {
   StyleSheet,
 } from 'react-native'
 
-import Icon from '../../common/components/PublishedIcon'
+import AccessIcon from '../../common/components/AccessIcon'
 import { Text } from '../../common/text'
 import Row from '../../common/components/rows/Row'
 import Images from '../../images'
@@ -134,7 +134,7 @@ export default class UserSubmissionRow extends Component<Props, any> {
     }
     return (
       <View style={styles.icon} testID={testID}>
-        <Icon published={assignment.published} tintColor={this.props.tintColor} style={styles.icon} image={image} />
+        <AccessIcon entry={assignment} tintColor={this.props.tintColor} style={styles.icon} image={image} />
       </View>
     )
   }

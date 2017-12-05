@@ -30,6 +30,9 @@ const images = {
     placeholder: require('./course/Placeholder.png'),
     attendance: require('./course/attendance-icon.png'),
   },
+  dashboard: {
+    announcement: require('./dashboard/announcement.png'),
+  },
   tabbar: {
     courses: require('./tabbar/courses.png'),
     inbox: require('./tabbar/inbox.png'),
@@ -109,6 +112,7 @@ const images = {
   profile: require('./profile.png'),
   published: require('./Published.png'),
   unpublished: require('./Unpublished.png'),
+  restricted: require('./Restricted.png'),
   upArrow: require('./mini-arrow-up.png'),
   document: require('./Document.png'),
   attachment: require('./attachment.png'),

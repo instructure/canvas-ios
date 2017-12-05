@@ -30,6 +30,7 @@ import colors from '../../../common/colors'
 
 type Props = {
   onAddCoursePressed: () => void,
+  style?: any,
 }
 
 export class NoCourses extends Component {
@@ -43,7 +44,7 @@ export class NoCourses extends Component {
     let buttonText = i18n('Add Courses')
 
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, this.props.style]}>
         <Text style={styles.welcome} testID='no-courses.welcome-lbl'>{welcome}</Text>
         <Text
           style={styles.paragraph} testID='no-courses.description-lbl'>{bodyText}</Text>
@@ -63,7 +64,6 @@ export class NoCourses extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     paddingHorizontal: 40,
     flexDirection: 'column',
     alignItems: 'center',
