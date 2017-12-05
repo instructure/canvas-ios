@@ -208,7 +208,9 @@ extension AppDelegate {
     func openCanvasURL(_ url: URL) -> Bool {
     
         if url.scheme == "canvas-courses" {
-            Router.shared().openCanvasURL(url)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                Router.shared().openCanvasURL(url)
+            }
             return true
         }
         

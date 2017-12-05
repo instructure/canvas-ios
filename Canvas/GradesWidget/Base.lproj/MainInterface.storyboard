@@ -35,6 +35,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LxW-7a-Lys">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <connections>
+                                    <action selector="actionOpenApp" destination="oxH-os-wqf" eventType="touchUpInside" id="FYQ-sO-H94"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ag0-51-uCl">
                                 <rect key="frame" x="16" y="333.5" width="343" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -46,7 +52,11 @@
                         <constraints>
                             <constraint firstItem="Ag0-51-uCl" firstAttribute="leading" secondItem="BEB-MW-fYM" secondAttribute="leading" constant="16" id="93i-fI-Yad"/>
                             <constraint firstItem="Ag0-51-uCl" firstAttribute="centerY" secondItem="CGT-ix-609" secondAttribute="centerY" id="OuN-KC-Gdv"/>
+                            <constraint firstItem="LxW-7a-Lys" firstAttribute="top" secondItem="CGT-ix-609" secondAttribute="top" id="YPr-QE-F4D"/>
+                            <constraint firstItem="BEB-MW-fYM" firstAttribute="bottom" secondItem="LxW-7a-Lys" secondAttribute="bottom" id="YXB-eQ-FV4"/>
                             <constraint firstItem="BEB-MW-fYM" firstAttribute="trailing" secondItem="Ag0-51-uCl" secondAttribute="trailing" constant="16" id="enR-MZ-gQY"/>
+                            <constraint firstItem="BEB-MW-fYM" firstAttribute="trailing" secondItem="LxW-7a-Lys" secondAttribute="trailing" id="fV0-fN-XYF"/>
+                            <constraint firstItem="LxW-7a-Lys" firstAttribute="leading" secondItem="BEB-MW-fYM" secondAttribute="leading" id="i9V-Ha-Xhn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="BEB-MW-fYM"/>
                     </view>

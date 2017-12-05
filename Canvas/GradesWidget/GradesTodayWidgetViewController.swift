@@ -175,7 +175,6 @@ class GradesWidgetTableViewController: TableViewController {
         preparTable()
         self.view.backgroundColor = .clear
         tableView.backgroundColor = .clear
-        tableView.allowsSelection = false
     }
     
     func refresh() {
@@ -202,6 +201,9 @@ class GradesWidgetTableViewController: TableViewController {
     
     open override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
+        guard let course = collection?[indexPath] else { return }
+        guard let host = CanvasKeymaster.singleUserSession()?.baseURL.host else { return }
+        extensionContext?.open(URL(string: "canvas-courses://\(host)/courses/\(course.id)/grades")!, completionHandler: nil)
     }
 }
 
@@ -213,6 +215,7 @@ struct CourseGradesWidgetCellViewModel: TableViewCellViewModel {
         tableView.register(nib, forCellReuseIdentifier: "cell")
         tableView.estimatedRowHeight = GradesWidgetTableViewControllerConstants.estimatedRowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.showsVerticalScrollIndicator = false
     }
     
     func cellForTableView(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
@@ -252,5 +255,9 @@ class ErrorViewController: UIViewController {
         errorMessageLabel?.numberOfLines = 0
         errorMessageLabel?.lineBreakMode = .byWordWrapping
         errorMessageLabel?.text = errorMessage
+    }
+
+    @IBAction func actionOpenApp() {
+        extensionContext?.open(URL(string: "canvas-courses://")!, completionHandler: nil)
     }
 }

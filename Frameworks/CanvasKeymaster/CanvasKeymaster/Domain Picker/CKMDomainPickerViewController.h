@@ -39,7 +39,7 @@
  * Select the domain
  * The domain selected is whatever text is in the textfield
  */
-- (void)sendDomain;
+- (void)sendDomain:(CKIAccountDomain *)domain;
 
 /**
  * Signal fires when a previously logged in user has been selected.
