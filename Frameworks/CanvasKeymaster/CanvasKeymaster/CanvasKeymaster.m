@@ -321,7 +321,8 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
         
         if (eligibleClients.count == 0) {
             //enter domain and send to user credentials page
-            [self.domainPicker sendDomain];
+            CKIAccountDomain *account = [[CKIAccountDomain alloc] initWithDomain:host];
+            [self.domainPicker sendDomain:account];
         }
     }];
 
