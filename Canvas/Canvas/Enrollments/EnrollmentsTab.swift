@@ -21,13 +21,14 @@ import CanvasCore
 public func EnrollmentsTab(session: Session) throws -> UIViewController {
     let route: (UIViewController, URL)->() = { vc, url in
         let vcs = vc.tabBarController?.viewControllers ?? []
-        guard let split = vcs.first as? SplitViewController else { return }
+        guard let split = vcs.first as? UISplitViewController else { return }
         guard let masterNav = split.masterNavigationController else { return }
+        let detailNav = split.detailNavigationController
 
         let handleEmpty = {
             let empty = EmptyViewController()
             let emptyNav = UINavigationController(rootViewController: empty)
-            split.viewControllers = [masterNav, emptyNav]
+            detailNav?.viewControllers = [emptyNav]
         }
         
         if url.lastPathComponent == "tabs" {
@@ -37,10 +38,7 @@ public func EnrollmentsTab(session: Session) throws -> UIViewController {
             if let routingURL = (tabsVC.collection.filter({ $0.isHome }).first ?? tabsVC.collection.first)?.routingURL(session) {
                 tabsVC.selectedTabURL = routingURL
                 if let homeTabVC = Router.shared().controller(forHandling: routingURL) {
-                    let detailNav = UINavigationController(rootViewController: homeTabVC)
-                    if (!split.isCollapsed) {
-                        split.viewControllers = [masterNav, detailNav]
-                    }
+                    detailNav?.viewControllers = [homeTabVC]
                 } else {
                     handleEmpty()
                 }
@@ -56,9 +54,7 @@ public func EnrollmentsTab(session: Session) throws -> UIViewController {
                 tabsVC.selectedTabURL = url
 
                 if let detailVC = Router.shared().controller(forHandling: url) {
-                    let detailNav = UINavigationController(rootViewController: detailVC)
-                    split.viewControllers = [masterNav, detailNav]
-                    split.shouldCollapseDetail = false
+                    detailNav?.viewControllers = [detailVC]
                 } else {
                     handleEmpty()
                 }
@@ -96,25 +92,22 @@ public func EnrollmentsTab(session: Session) throws -> UIViewController {
 import TechDebt
 
 class EnrollmentSplitController: SplitViewController {
-    let session: Session
-
     init(session: Session) {
-        self.session = session
         super.init()
-
         preferredDisplayMode = .allVisible
         definesPresentationContext = true
-        viewControllers = [UINavigationController(rootViewController: UIViewController()), UINavigationController(rootViewController: UIViewController())]
+        setupTab()
+    }
 
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupTab() {
         let coursesTitle = NSLocalizedString("Courses", comment: "Courses page title")
-
         tabBarItem.title = coursesTitle
         tabBarItem.image = .icon(.course)
         tabBarItem.selectedImage = .icon(.course, filled: true)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
 
@@ -128,8 +121,4 @@ extension EnrollmentSplitController: UINavigationControllerDelegate {
         return nil
     }
 }
-
-// Needed for the above bug mentioned in comments
-extension EnrollmentSplitController: UIGestureRecognizerDelegate { }
-
 
