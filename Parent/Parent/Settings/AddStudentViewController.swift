@@ -30,9 +30,12 @@ class WebLoginViewController: UIViewController {
     let loginFailureMessage: String
     var prompt: String? = nil
     
+    let promptLabel = UILabel()
+    let promptHeader = UIView()
+    let stack = UIStackView()
+    
     let webView = UIWebView()
     fileprivate let backButton = UIButton(type: .custom)
-    fileprivate let statusBarNotification = ToastManager()
     
     init(request: URLRequest?, loginFailureMessage: String) {
         self.request = request
@@ -46,6 +49,7 @@ class WebLoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         self.title = NSLocalizedString("Log In", comment: "")
         clearExistingCookies()
         setupWebView()
@@ -55,17 +59,14 @@ class WebLoginViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let prompt = prompt {
-            statusBarNotification.statusBarToastInfo(prompt)
-        }
+        promptLabel.text = prompt
+        promptHeader.isHidden = prompt == nil || "" == prompt
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        statusBarNotification.dismissNotification()
         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
@@ -84,11 +85,42 @@ class WebLoginViewController: UIViewController {
     }
     
     func setupWebView() {
-        webView.translatesAutoresizingMaskIntoConstraints = false
-        webView.backgroundColor = UIColor.black
-        self.view.addSubview(webView)
-        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[webview]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["webview": webView]))
-        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[webview]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["webview": webView]))
+        [webView, stack, promptLabel, promptHeader].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+        
+        promptLabel.textColor = .white
+        promptLabel.textAlignment = .center
+        promptLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
+        
+        promptHeader.addSubview(promptLabel)
+        promptHeader.backgroundColor = #colorLiteral(red: 0.005312265363, green: 0.5554948449, blue: 0.8883267045, alpha: 1)
+        promptHeader.addSubview(promptLabel)
+        
+        webView.backgroundColor = .white
+        webView.scrollView.backgroundColor = .white
+        webView.isOpaque = false
+        
+        stack.axis = .vertical
+        stack.distribution = .fill
+        stack.addArrangedSubview(promptHeader)
+        stack.addArrangedSubview(webView)
+
+        view.addSubview(stack)
+
+        NSLayoutConstraint.activate([
+            topLayoutGuide.bottomAnchor.constraint(equalTo: stack.topAnchor),
+            view.leftAnchor.constraint(equalTo: stack.leftAnchor),
+            view.rightAnchor.constraint(equalTo: stack.rightAnchor),
+            bottomLayoutGuide.topAnchor.constraint(equalTo: stack.bottomAnchor),
+            
+            promptLabel.centerXAnchor.constraint(equalTo: promptHeader.centerXAnchor),
+            promptLabel.centerYAnchor.constraint(equalTo: promptHeader.centerYAnchor),
+            promptLabel.leadingAnchor.constraint(greaterThanOrEqualTo: promptHeader.leadingAnchor),
+            promptLabel.trailingAnchor.constraint(lessThanOrEqualTo: promptHeader.trailingAnchor),
+            promptLabel.topAnchor.constraint(equalTo: promptHeader.topAnchor, constant: 4),
+            promptLabel.bottomAnchor.constraint(equalTo: promptHeader.bottomAnchor, constant: -4),
+        ])
     }
     
     func startLoginRequest() {
