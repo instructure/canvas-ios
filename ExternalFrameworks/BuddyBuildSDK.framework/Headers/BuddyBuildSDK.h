@@ -115,15 +115,6 @@ typedef void (^BBCallback)(void);
 
 + (NSString*)branchName;
 
-/*
- * Returns the user's email or more specifically, the email that was used to download and deploy the build.
- * Returns "Unknown User" in cases where buddybuild is unable to identify the user.
- * This is the same email seen in crash instances and feedbacks in the dashboard
- * NOTE: To be called after [BuddyBuildSDK setup]
- * this is different than the one returned in the user display name callback.
- */
-+ (NSString*)userEmail;
-
 /* Manually invoke the screenshot tutorial
  * If you don't want it to appear on app launch, disable it in the
  * dashboard by going to settings -> buddybuildSDK -> Feature Settings and turning off the screenshot tutorial
@@ -165,6 +156,11 @@ typedef void (^BBCallback)(void);
  * DEPRECATED IN SDK 1.0.16+, use setMetadataObject:forKey:
  */
 + (void)setCrashMetadataObject:(id)object forKey:(NSString*)key __deprecated_msg("Use setMetadataObject:forKey: instead");
+
+/*
+ * DEPRECATED IN SDK 1.0.17+
+ */
++ (NSString*)userEmail __deprecated_msg("No longer available");
 
 
 @end
