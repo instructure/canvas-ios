@@ -28,6 +28,8 @@
 		2CE40C9C1F87D37100ECEACB /* PSPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B11F843B58001A8F31 /* PSPDFView.swift */; };
 		2CE40C9D1F87D37300ECEACB /* PSPDFViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B31F843B59001A8F31 /* PSPDFViewManager.m */; };
 		2CFAFBD11FD21B3800F22C7F /* WindowTraits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFAFBD01FD21B3800F22C7F /* WindowTraits.swift */; };
+		3BD43DE91FD20597001A6B34 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD43DE81FD20597001A6B34 /* EmptyViewController.swift */; };
+		3BDE87761FD76BE600912CB3 /* UISplitViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */; };
 		4902ADBE1FB26E860004837D /* LTIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4902ADBD1FB26E860004837D /* LTIViewController.swift */; };
 		490BA0D71FCDDA2A004643EA /* Session+ContentAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490BA0D61FCDDA2A004643EA /* Session+ContentAccess.swift */; };
 		490F91F11FB0F94A00A7DA38 /* CanvasWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490F91F01FB0F94A00A7DA38 /* CanvasWebViewController.swift */; };
@@ -512,6 +514,8 @@
 		2CD6B56E1FD20A9800C7DE15 /* WindowTraitsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WindowTraitsManager.h; sourceTree = "<group>"; };
 		2CD6B56F1FD20A9800C7DE15 /* WindowTraitsManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WindowTraitsManager.m; sourceTree = "<group>"; };
 		2CFAFBD01FD21B3800F22C7F /* WindowTraits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowTraits.swift; sourceTree = "<group>"; };
+		3BD43DE81FD20597001A6B34 /* EmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
+		3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISplitViewControllerExtensions.swift; sourceTree = "<group>"; };
 		4902ADBD1FB26E860004837D /* LTIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTIViewController.swift; sourceTree = "<group>"; };
 		490BA0D61FCDDA2A004643EA /* Session+ContentAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+ContentAccess.swift"; sourceTree = "<group>"; };
 		490F91F01FB0F94A00A7DA38 /* CanvasWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasWebViewController.swift; sourceTree = "<group>"; };
@@ -2124,6 +2128,8 @@
 				497CA76B1F82D18B00501613 /* UITraitEnvironmentExtensions.swift */,
 				497CA76C1F82D18B00501613 /* UIViewControllerRotationExtensions.swift */,
 				497CA76D1F82D18B00501613 /* UIUserInterfaceSizeClassExtensions.swift */,
+				3BD43DE81FD20597001A6B34 /* EmptyViewController.swift */,
+				3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3085,6 +3091,7 @@
 				4961F63E1F8FB71B0093EC86 /* Tab+Collections.swift in Sources */,
 				4961F5431F8FAD9A0093EC86 /* WhizzyWigViewController.swift in Sources */,
 				49CE967D1F8FF41B00121A43 /* NextOrSubmitView.swift in Sources */,
+				3BD43DE91FD20597001A6B34 /* EmptyViewController.swift in Sources */,
 				493020791F902462006BD777 /* ContextID.swift in Sources */,
 				497CA7721F82D19600501613 /* HelmNavigationViewController.swift in Sources */,
 				4961F5921F8FB2230093EC86 /* PagedViewController.swift in Sources */,
@@ -3123,6 +3130,7 @@
 				4961F6851F8FB9620093EC86 /* FileKit.xcdatamodeld in Sources */,
 				4961F5A21F8FB2A10093EC86 /* UIColor+Toast.swift in Sources */,
 				49CE96941F8FF41B00121A43 /* Question.swift in Sources */,
+				3BDE87761FD76BE600912CB3 /* UISplitViewControllerExtensions.swift in Sources */,
 				2C34211C1F7409CD00D8E158 /* OSSAttributionViewController.swift in Sources */,
 				4961F67D1F8FB9620093EC86 /* File+Details.swift in Sources */,
 				49CE969A1F8FF41B00121A43 /* UIWebView+Quizzes.swift in Sources */,

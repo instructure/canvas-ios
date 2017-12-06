@@ -326,20 +326,20 @@ open class HelmManager: NSObject {
 extension HelmManager {
     func navigationControllerForSplitViewControllerPush(splitViewController: HelmSplitViewController?, sourceModule: ModuleName, destinationModule: ModuleName, props: [String: Any], options: [String: Any]) -> HelmNavigationController? {
 
-        if let detailViewController = splitViewController?.detailTopViewController, detailViewController.moduleName == sourceModule {
-            return splitViewController?.detailNavigationController
+        if let detailViewController = splitViewController?.detailTopHelmViewController, detailViewController.moduleName == sourceModule {
+            return splitViewController?.detailHelmNavigationController
         } else {
             let canBecomeMaster = (options["canBecomeMaster"] as? NSNumber)?.boolValue ?? false
 
             if canBecomeMaster || (splitViewController?.traitCollection.horizontalSizeClass ?? .compact) == .compact {
-                return splitViewController?.masterNavigationController
+                return splitViewController?.masterHelmNavigationController as? HelmNavigationController
             }
             
-            if (splitViewController?.detailNavigationController == nil) {
+            if (splitViewController?.detailHelmNavigationController == nil) {
                 splitViewController?.primeEmptyDetailNavigationController()
             }
             
-            return splitViewController?.detailNavigationController
+            return splitViewController?.detailHelmNavigationController
         }
     }
 }
