@@ -17,8 +17,11 @@
     
 
 import UIKit
+import CanvasCore
 
-class CalendarDaysOfWeekView : UIStackView {
+class CalendarDaysOfWeekView : UIView {
+    let stack = UIStackView()
+    let message = NSLocalizedString("Refreshing Calendar Events", comment: "Refreshing Calendar Events")
     
     fileprivate lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -42,15 +45,56 @@ class CalendarDaysOfWeekView : UIStackView {
     }
     
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        initialize()
+        fatalError("Not supported")
     }
     
     func initialize() {
-        backgroundColor = UIColor.calendarDaysOfWeekBackgroundColor
-        self.distribution = .fillEqually
-        self.axis = .horizontal
-        self.spacing = 2.0
+        let borderView = UIView()
+        borderView.translatesAutoresizingMaskIntoConstraints = false
+        borderView.backgroundColor = .white
+        borderView.layer.borderWidth = 1/UIScreen.main.scale
+        borderView.layer.borderColor = UIColor.lightGray.cgColor
+        addSubview(borderView)
+        
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.backgroundColor = .white
+        stack.distribution = .fillEqually
+        stack.axis = .horizontal
+        stack.spacing = 2.0
+        addSubview(stack)
+        
+        loadingView.translatesAutoresizingMaskIntoConstraints = false
+        loadingView.backgroundColor = Brand.current.secondaryTintColor
+        loadingHeight = loadingView.heightAnchor.constraint(equalToConstant: 0)
+        addSubview(loadingView)
+        
+        let loadingLabel = UILabel()
+        loadingLabel.translatesAutoresizingMaskIntoConstraints = false
+        loadingLabel.textColor = .white
+        loadingLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
+        loadingLabel.text = message
+        loadingLabel.sizeToFit()
+        loadingView.addSubview(loadingLabel)
+        
+        NSLayoutConstraint.activate([
+            stack.leadingAnchor.constraint(equalTo: leadingAnchor),
+            stack.topAnchor.constraint(equalTo: topAnchor),
+            stack.trailingAnchor.constraint(equalTo: trailingAnchor),
+            stack.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            borderView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: -1),
+            borderView.topAnchor.constraint(equalTo: topAnchor, constant: -1),
+            borderView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 1),
+            borderView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            loadingView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            loadingView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            loadingView.topAnchor.constraint(equalTo: topAnchor),
+            loadingHeight,
+            
+            loadingLabel.centerXAnchor.constraint(equalTo: loadingView.centerXAnchor),
+            loadingLabel.bottomAnchor.constraint(equalTo: loadingView.bottomAnchor, constant: -4),
+        ])
         initLabels()
     }
     
@@ -68,7 +112,23 @@ class CalendarDaysOfWeekView : UIStackView {
             } else {
                 weekdayLabel.textColor = UIColor.calendarDayOffTextColor
             }
-            addArrangedSubview(weekdayLabel)
+            stack.addArrangedSubview(weekdayLabel)
         }
+    }
+    
+    let loadingView = UIView()
+    var loadingHeight: NSLayoutConstraint!
+    
+    func show(loading: Bool) {
+        let height = loading ? bounds.size.height : 0.0
+        loadingHeight.constant = height
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+            self.layoutIfNeeded()
+        }, completion: { _ in
+            if (loading) {
+                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, self.message)
+            }
+        })
+        
     }
 }

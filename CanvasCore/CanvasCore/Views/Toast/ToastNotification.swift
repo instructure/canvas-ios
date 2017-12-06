@@ -24,7 +24,7 @@ public class ToastManager : NSObject {
     let defaultToastDuration = 1.65
     var notification: CWStatusBarNotification
     
-    public override init () {
+    public override init() {
         notification = CWStatusBarNotification()
     }
     
