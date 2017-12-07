@@ -46,7 +46,7 @@ class RootTabBarController: UITabBarController {
         let emptyNav = HelmNavigationController(rootViewController: EmptyViewController())
         
         let enrollmentsVC = HelmViewController(moduleName: "/", props: [:])
-        enrollmentsVC.view.accessibilityIdentifier = "favorited-course-list.view"
+        enrollmentsVC.view.accessibilityIdentifier = "favorited-course-list.view1"
         enrollmentsVC.tabBarItem = UITabBarItem(title: NSLocalizedString("Courses", comment: ""), image: UIImage(named: "courses"), selectedImage: nil)
         enrollmentsVC.tabBarItem.accessibilityIdentifier = "tab-bar.courses-btn"
 
@@ -55,7 +55,7 @@ class RootTabBarController: UITabBarController {
         masterNav.delegate = split
         emptyNav.navigationBar.isTranslucent = false
         split.viewControllers = [masterNav, emptyNav]
-        split.view.accessibilityIdentifier = "favorited-course-list.view"
+        split.view.accessibilityIdentifier = "favorited-course-list.view2"
         split.tabBarItem = UITabBarItem(title: NSLocalizedString("Courses", comment: ""), image: UIImage(named: "courses"), selectedImage: nil)
         split.tabBarItem.accessibilityIdentifier = "tab-bar.courses-btn"
         split.preferredDisplayMode = .allVisible

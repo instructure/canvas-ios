@@ -27,12 +27,11 @@ class AllCoursesListPage {
 
     // MARK: Elements
 
-    private let navBarTitleView = e.selectBy(matchers: [grey_accessibilityLabel("All Courses"),
-                                                        grey_accessibilityTrait(UIAccessibilityTraitHeader),
-                                                        grey_accessibilityTrait(UIAccessibilityTraitStaticText)])
+    private let navBarTitleView = e.selectBy(matchers: [grey_accessibilityID("All Courses"),
+                                                        grey_kindOfClass(UINavigationBar.self)])
 
     private let backButton = e.selectBy(matchers: [grey_accessibilityLabel("Back"),
-                                                   grey_accessibilityTrait(UIAccessibilityTraitButton)])
+                                                   grey_kindOfClass(Class.UIAccessibilityBackButtonElement)])
 
     // MARK: - Helpers
 

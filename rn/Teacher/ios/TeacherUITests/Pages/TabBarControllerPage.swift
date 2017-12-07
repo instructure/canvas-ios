@@ -25,7 +25,6 @@ class TabBarControllerPage {
 
     private let coursesTabButton = e.selectBy(id: "tab-bar.courses-btn")
     private let inboxTabButton = e.selectBy(id: "tab-bar.inbox-btn")
-    private let profileTabButton = e.selectBy(id: "tab-bar.profile-btn")
 
     // MARK: - Assertions
 
@@ -33,7 +32,6 @@ class TabBarControllerPage {
         grey_fromFile(file, line)
         coursesTabButton.assertExists()
         inboxTabButton.assertExists()
-        profileTabButton.assertExists()
     }
 
     // MARK: - UI Actions
@@ -46,10 +44,5 @@ class TabBarControllerPage {
     func openInboxPage(_ file: StaticString = #file, _ line: UInt = #line) {
         grey_fromFile(file, line)
         inboxTabButton.tap()
-    }
-
-    func openProfilePage(_ file: StaticString = #file, _ line: UInt = #line) {
-        grey_fromFile(file, line)
-        profileTabButton.tap()
     }
 }

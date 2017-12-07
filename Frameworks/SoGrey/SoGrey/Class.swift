@@ -22,4 +22,5 @@ public struct Class {
   public static let UIAlertControllerActionView:AnyClass = NSClassFromString("_UIAlertControllerActionView")!
   public static let UIAlertControllerView:AnyClass = NSClassFromString("_UIAlertControllerView")!
   public static let UIButtonLabel:AnyClass = NSClassFromString("UIButtonLabel")!
+  public static let UIAccessibilityBackButtonElement:AnyClass = NSClassFromString("UIAccessibilityBackButtonElement")!
 }

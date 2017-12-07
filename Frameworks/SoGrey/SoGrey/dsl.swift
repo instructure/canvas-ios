@@ -19,7 +19,7 @@ import EarlGrey
 
 // MARK: Element timeout and poll
 
-public let elementTimeout:TimeInterval = 30.0 // seconds
+public let elementTimeout:TimeInterval = 4.0 // seconds
 public let elementPoll:TimeInterval = 1.0 // seconds
 
 // MARK: Element selectors
