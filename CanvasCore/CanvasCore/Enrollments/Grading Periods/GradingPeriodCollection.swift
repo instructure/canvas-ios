@@ -56,7 +56,7 @@ import Result
  A collection of GradingPeriodItems where the first row in the first section is 'All'.
  */
 open class GradingPeriodCollection: CanvasCore.Collection {
-    open let selectedGradingPeriod: MutableProperty<GradingPeriodItem?> = MutableProperty(nil)
+    open let selectedGradingPeriod: Property<GradingPeriodItem>
 
     open let collectionUpdates: Signal<[CollectionUpdate<GradingPeriodItem>], NoError>
     let updatesObserver: Observer<[CollectionUpdate<GradingPeriodItem>], NoError>
@@ -68,19 +68,21 @@ open class GradingPeriodCollection: CanvasCore.Collection {
     public init(course: Course, gradingPeriods: FetchedCollection<GradingPeriod>) {
         self.gradingPeriods = gradingPeriods
         (collectionUpdates, updatesObserver) = Signal.pipe()
-        disposable = gradingPeriods.collectionUpdates.observe(on: UIScheduler()).observeValues { [weak self] updates in
-            guard let me = self else { return }
-            me.updatesObserver.send(value: updates.map(me.offsetUpdate))
-            
-            self?.selectInitialGradingPeriod(course)
+        let currentGradingPeriod = { () -> GradingPeriodItem in
+            return gradingPeriods.filter({ $0.id == course.currentGradingPeriodID }).first.map(GradingPeriodItem.some) ?? .all
+        }
+
+        let selectedGradingPeriod = gradingPeriods.collectionUpdates
+            .map { _ in currentGradingPeriod() }
+            .take(untilReplacement: _selectGradingPeriodProperty.signal.skipNil())
+        self.selectedGradingPeriod = Property(initial: currentGradingPeriod(), then: selectedGradingPeriod)
+
+        disposable = gradingPeriods.collectionUpdates
+            .observe(on: UIScheduler())
+            .observeValues { [weak self] updates in
+                guard let me = self else { return }
+                me.updatesObserver.send(value: updates.map(me.offsetUpdate))
         }.map(ScopedDisposable.init)
-        selectInitialGradingPeriod(course)
-    }
-    
-    fileprivate func selectInitialGradingPeriod(_ course: Course) {
-        if selectedGradingPeriod.value != nil { return }
-        
-        selectedGradingPeriod.value = gradingPeriods.filter({ $0.id == course.currentGradingPeriodID }).first.map(GradingPeriodItem.some) ?? .all
     }
 
     open func numberOfSections() -> Int {
@@ -125,6 +127,11 @@ open class GradingPeriodCollection: CanvasCore.Collection {
             return .deleted(indexPath.incrementSection(), .some(m), animated: animated)
         case .sectionInserted, .sectionDeleted: fatalError("there should _always_ be 2 sections")
         }
+    }
+
+    fileprivate let _selectGradingPeriodProperty: MutableProperty<GradingPeriodItem?> = MutableProperty(nil)
+    open func selectGradingPeriod(gradingPeriod: GradingPeriodItem) {
+        _selectGradingPeriodProperty.value = gradingPeriod
     }
 }
 
