@@ -1,0 +1,22 @@
+{
+  "name": "canvas-ios-translations",
+  "version": "1.0.0",
+  "description": "Sync translation resources",
+  "license": "UNLICENCED",
+  "private": true,
+  "scripts": {
+    "export": "./export.js",
+    "import": "./import.js"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.108.0",
+    "commander": "^2.11.0",
+    "format-message": "^5.2.0",
+    "format-message-parse": "^5.1.2",
+    "format-message-print": "^5.1.2",
+    "mkdirp": "^0.5.1"
+  },
+  "engines": {
+    "node": ">=8.4.0"
+  }
+}
