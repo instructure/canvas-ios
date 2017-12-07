@@ -38,7 +38,11 @@ function run(cmd, args, opts) {
   return new Promise((resolve, reject) => {
     const command = spawn(cmd, args, opts)
     command.on('error', reject)
-    command.on('exit', code => (code === 0 ? resolve() : reject(code)))
+    command.on('exit', code => {
+      if (code === 0) return resolve()
+      console.error(command.stderr.toString())
+      reject(`${cmd} failed with code ${code}.`)
+    })
   })
 }
 
@@ -65,6 +69,7 @@ async function exportTranslations() {
       toUpload.push({ from: file, to: `${project.name}.xliff` })
     } else {
       console.log(`Exporting ${project.name} at ${project.location}`)
+      await run('yarn', [], { cwd: `../${project.location}/../..` }) // install dependencies
       await run('yarn', ['extract-strings'], { cwd: `../${project.location}/../..` })
       toUpload.push({ from: `../${project.location}/en.json`, to: `${project.name}.json` })
     }
