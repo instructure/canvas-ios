@@ -96,6 +96,9 @@ const images = {
     trash: require('./media-comments/Trash.png'),
     send: require('./media-comments/Send.png'),
   },
+  files: {
+    folder: require('./files/folder.png'),
+  },
   canvasLogo: require('./canvas-logo.png'),
   feedback: require('./feedback.png'),
   kabob: require('./kabob.png'),

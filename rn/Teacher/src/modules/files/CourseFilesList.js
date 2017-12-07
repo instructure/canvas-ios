@@ -51,6 +51,7 @@ import { wait } from '../../utils/async-wait'
 type CourseFilesListProps = {
   data: [any], // The folders and files that are currently being shown
   folder: Folder, // The folder that is currently being displayed
+  courseColor: ?string, // Color of the course in this files list
 }
 
 type CourseFileListNavProps = {
@@ -250,23 +251,30 @@ export class CourseFilesList extends Component<Props, State> {
     let name
     let icon
     let subtitle
+    let tintColor
+    let statusOffset = {}
     if (item.type === 'file') {
       name = item.display_name
       icon = images.document
       subtitle = bytes(item.size)
+      statusOffset = {
+        top: 15,
+        left: 25,
+      }
     } else {
       name = item.name
-      icon = images.course.files
+      icon = images.files.folder
       subtitle = i18n(`{ 
         file_count, plural, 
           one {# file} 
           other {# files}
       }`, { file_count: item.files_count })
+      tintColor = this.props.courseColor
+      statusOffset.left = 26
     }
-
     const renderImage = () => {
       return <View style={styles.icon}>
-               <AccessIcon entry={item} image={icon} style={styles.icon} />
+               <AccessIcon entry={item} image={icon} tintColor={tintColor} statusOffset={statusOffset} />
              </View>
     }
 
@@ -353,8 +361,9 @@ export function mapStateToProps (state: AppState, props: CourseFileListNavProps)
   const key = `Course-${props.courseID}`
   const courseFolders = state.folders[key] || {}
   const courseFiles = state.files[key] || {}
+  const courseColor = (state.entities.courses[props.courseID] || {}).color
   if (!courseFolders['root'] || !courseFolders['root'][0]) {
-    return { data: [] }
+    return { data: [], courseColor }
   }
   const rootFolder = courseFolders['root'][0]
   if (props.subFolder) {
@@ -367,7 +376,7 @@ export function mapStateToProps (state: AppState, props: CourseFileListNavProps)
   }
 
   if (!parentFolder) {
-    return { data: [] }
+    return { data: [], courseColor }
   }
 
   const mapper = (type: string) => (item) => {
@@ -378,7 +387,7 @@ export function mapStateToProps (state: AppState, props: CourseFileListNavProps)
   const files = (courseFiles[parentFolder.full_name] || []).map(mapper('file'))
   const data = [...folders, ...files].sort((a, b) => localeSort(a.name || a.display_name, b.name || b.display_name))
 
-  return { data, folder: parentFolder }
+  return { data, folder: parentFolder, courseColor }
 }
 
 const styles = StyleSheet.create({

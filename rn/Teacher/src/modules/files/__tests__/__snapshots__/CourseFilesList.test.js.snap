@@ -190,7 +190,7 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/course/Files.png",
+                            "testUri": "../../../src/images/files/folder.png",
                           }
                         }
                         style={
@@ -206,17 +206,22 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                       />
                       <View
                         style={
-                          Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
+                          Array [
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "white",
+                              "borderRadius": 8,
+                              "height": 16,
+                              "justifyContent": "center",
+                              "left": 20,
+                              "position": "absolute",
+                              "top": 10,
+                              "width": 16,
+                            },
+                            Object {
+                              "left": 26,
+                            },
+                          ]
                         }
                       >
                         <Image
@@ -470,17 +475,23 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                       />
                       <View
                         style={
-                          Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
+                          Array [
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "white",
+                              "borderRadius": 8,
+                              "height": 16,
+                              "justifyContent": "center",
+                              "left": 20,
+                              "position": "absolute",
+                              "top": 10,
+                              "width": 16,
+                            },
+                            Object {
+                              "left": 25,
+                              "top": 15,
+                            },
+                          ]
                         }
                       >
                         <Image
@@ -734,17 +745,23 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                       />
                       <View
                         style={
-                          Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
+                          Array [
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "white",
+                              "borderRadius": 8,
+                              "height": 16,
+                              "justifyContent": "center",
+                              "left": 20,
+                              "position": "absolute",
+                              "top": 10,
+                              "width": 16,
+                            },
+                            Object {
+                              "left": 25,
+                              "top": 15,
+                            },
+                          ]
                         }
                       >
                         <Image
@@ -1095,7 +1112,7 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/course/Files.png",
+                            "testUri": "../../../src/images/files/folder.png",
                           }
                         }
                         style={
@@ -1111,17 +1128,22 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                       />
                       <View
                         style={
-                          Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
+                          Array [
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "white",
+                              "borderRadius": 8,
+                              "height": 16,
+                              "justifyContent": "center",
+                              "left": 20,
+                              "position": "absolute",
+                              "top": 10,
+                              "width": 16,
+                            },
+                            Object {
+                              "left": 26,
+                            },
+                          ]
                         }
                       >
                         <Image
@@ -1375,17 +1397,23 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                       />
                       <View
                         style={
-                          Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
+                          Array [
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "white",
+                              "borderRadius": 8,
+                              "height": 16,
+                              "justifyContent": "center",
+                              "left": 20,
+                              "position": "absolute",
+                              "top": 10,
+                              "width": 16,
+                            },
+                            Object {
+                              "left": 25,
+                              "top": 15,
+                            },
+                          ]
                         }
                       >
                         <Image
@@ -1639,17 +1667,23 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                       />
                       <View
                         style={
-                          Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
+                          Array [
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "white",
+                              "borderRadius": 8,
+                              "height": 16,
+                              "justifyContent": "center",
+                              "left": 20,
+                              "position": "absolute",
+                              "top": 10,
+                              "width": 16,
+                            },
+                            Object {
+                              "left": 25,
+                              "top": 15,
+                            },
+                          ]
                         }
                       >
                         <Image
@@ -2000,7 +2034,7 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/course/Files.png",
+                            "testUri": "../../../src/images/files/folder.png",
                           }
                         }
                         style={
@@ -2016,17 +2050,22 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                       />
                       <View
                         style={
-                          Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
+                          Array [
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "white",
+                              "borderRadius": 8,
+                              "height": 16,
+                              "justifyContent": "center",
+                              "left": 20,
+                              "position": "absolute",
+                              "top": 10,
+                              "width": 16,
+                            },
+                            Object {
+                              "left": 26,
+                            },
+                          ]
                         }
                       >
                         <Image
@@ -2280,17 +2319,23 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                       />
                       <View
                         style={
-                          Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
+                          Array [
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "white",
+                              "borderRadius": 8,
+                              "height": 16,
+                              "justifyContent": "center",
+                              "left": 20,
+                              "position": "absolute",
+                              "top": 10,
+                              "width": 16,
+                            },
+                            Object {
+                              "left": 25,
+                              "top": 15,
+                            },
+                          ]
                         }
                       >
                         <Image
@@ -2544,17 +2589,23 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                       />
                       <View
                         style={
-                          Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
+                          Array [
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "white",
+                              "borderRadius": 8,
+                              "height": 16,
+                              "justifyContent": "center",
+                              "left": 20,
+                              "position": "absolute",
+                              "top": 10,
+                              "width": 16,
+                            },
+                            Object {
+                              "left": 25,
+                              "top": 15,
+                            },
+                          ]
                         }
                       >
                         <Image
@@ -2905,7 +2956,7 @@ exports[`CourseFileList sending weird data into the progress update function sho
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/course/Files.png",
+                            "testUri": "../../../src/images/files/folder.png",
                           }
                         }
                         style={
@@ -2921,17 +2972,22 @@ exports[`CourseFileList sending weird data into the progress update function sho
                       />
                       <View
                         style={
-                          Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
+                          Array [
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "white",
+                              "borderRadius": 8,
+                              "height": 16,
+                              "justifyContent": "center",
+                              "left": 20,
+                              "position": "absolute",
+                              "top": 10,
+                              "width": 16,
+                            },
+                            Object {
+                              "left": 26,
+                            },
+                          ]
                         }
                       >
                         <Image
@@ -3185,17 +3241,23 @@ exports[`CourseFileList sending weird data into the progress update function sho
                       />
                       <View
                         style={
-                          Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
+                          Array [
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "white",
+                              "borderRadius": 8,
+                              "height": 16,
+                              "justifyContent": "center",
+                              "left": 20,
+                              "position": "absolute",
+                              "top": 10,
+                              "width": 16,
+                            },
+                            Object {
+                              "left": 25,
+                              "top": 15,
+                            },
+                          ]
                         }
                       >
                         <Image
@@ -3449,17 +3511,23 @@ exports[`CourseFileList sending weird data into the progress update function sho
                       />
                       <View
                         style={
-                          Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
+                          Array [
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "white",
+                              "borderRadius": 8,
+                              "height": 16,
+                              "justifyContent": "center",
+                              "left": 20,
+                              "position": "absolute",
+                              "top": 10,
+                              "width": 16,
+                            },
+                            Object {
+                              "left": 25,
+                              "top": 15,
+                            },
+                          ]
                         }
                       >
                         <Image
@@ -3810,7 +3878,7 @@ exports[`CourseFileList should render 1`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/course/Files.png",
+                            "testUri": "../../../src/images/files/folder.png",
                           }
                         }
                         style={
@@ -3826,17 +3894,22 @@ exports[`CourseFileList should render 1`] = `
                       />
                       <View
                         style={
-                          Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
+                          Array [
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "white",
+                              "borderRadius": 8,
+                              "height": 16,
+                              "justifyContent": "center",
+                              "left": 20,
+                              "position": "absolute",
+                              "top": 10,
+                              "width": 16,
+                            },
+                            Object {
+                              "left": 26,
+                            },
+                          ]
                         }
                       >
                         <Image
@@ -4090,17 +4163,23 @@ exports[`CourseFileList should render 1`] = `
                       />
                       <View
                         style={
-                          Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
+                          Array [
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "white",
+                              "borderRadius": 8,
+                              "height": 16,
+                              "justifyContent": "center",
+                              "left": 20,
+                              "position": "absolute",
+                              "top": 10,
+                              "width": 16,
+                            },
+                            Object {
+                              "left": 25,
+                              "top": 15,
+                            },
+                          ]
                         }
                       >
                         <Image
@@ -4354,17 +4433,23 @@ exports[`CourseFileList should render 1`] = `
                       />
                       <View
                         style={
-                          Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
+                          Array [
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "white",
+                              "borderRadius": 8,
+                              "height": 16,
+                              "justifyContent": "center",
+                              "left": 20,
+                              "position": "absolute",
+                              "top": 10,
+                              "width": 16,
+                            },
+                            Object {
+                              "left": 25,
+                              "top": 15,
+                            },
+                          ]
                         }
                       >
                         <Image
@@ -4715,7 +4800,7 @@ exports[`CourseFileList should render with folders 1`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/course/Files.png",
+                            "testUri": "../../../src/images/files/folder.png",
                           }
                         }
                         style={
@@ -4731,17 +4816,22 @@ exports[`CourseFileList should render with folders 1`] = `
                       />
                       <View
                         style={
-                          Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
+                          Array [
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "white",
+                              "borderRadius": 8,
+                              "height": 16,
+                              "justifyContent": "center",
+                              "left": 20,
+                              "position": "absolute",
+                              "top": 10,
+                              "width": 16,
+                            },
+                            Object {
+                              "left": 26,
+                            },
+                          ]
                         }
                       >
                         <Image
@@ -4995,17 +5085,23 @@ exports[`CourseFileList should render with folders 1`] = `
                       />
                       <View
                         style={
-                          Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
+                          Array [
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "white",
+                              "borderRadius": 8,
+                              "height": 16,
+                              "justifyContent": "center",
+                              "left": 20,
+                              "position": "absolute",
+                              "top": 10,
+                              "width": 16,
+                            },
+                            Object {
+                              "left": 25,
+                              "top": 15,
+                            },
+                          ]
                         }
                       >
                         <Image
@@ -5259,17 +5355,23 @@ exports[`CourseFileList should render with folders 1`] = `
                       />
                       <View
                         style={
-                          Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
+                          Array [
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "white",
+                              "borderRadius": 8,
+                              "height": 16,
+                              "justifyContent": "center",
+                              "left": 20,
+                              "position": "absolute",
+                              "top": 10,
+                              "width": 16,
+                            },
+                            Object {
+                              "left": 25,
+                              "top": 15,
+                            },
+                          ]
                         }
                       >
                         <Image

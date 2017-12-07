@@ -104,17 +104,20 @@ exports[`renders correctly 1`] = `
             />
             <View
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "left": 20,
-                  "position": "absolute",
-                  "top": 10,
-                  "width": 16,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  },
+                  undefined,
+                ]
               }
             >
               <Image
@@ -349,17 +352,20 @@ exports[`renders correctly assignment icon 1`] = `
             />
             <View
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "left": 20,
-                  "position": "absolute",
-                  "top": 10,
-                  "width": 16,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  },
+                  undefined,
+                ]
               }
             >
               <Image
@@ -594,17 +600,20 @@ exports[`renders correctly discussion icon 1`] = `
             />
             <View
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "left": 20,
-                  "position": "absolute",
-                  "top": 10,
-                  "width": 16,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  },
+                  undefined,
+                ]
               }
             >
               <Image
@@ -839,17 +848,20 @@ exports[`renders correctly not published icon 1`] = `
             />
             <View
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "left": 20,
-                  "position": "absolute",
-                  "top": 10,
-                  "width": 16,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  },
+                  undefined,
+                ]
               }
             >
               <Image
@@ -1084,17 +1096,20 @@ exports[`renders correctly published icon 1`] = `
             />
             <View
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "left": 20,
-                  "position": "absolute",
-                  "top": 10,
-                  "width": 16,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  },
+                  undefined,
+                ]
               }
             >
               <Image
@@ -1340,17 +1355,20 @@ exports[`renders correctly quiz icon 1`] = `
             />
             <View
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "left": 20,
-                  "position": "absolute",
-                  "top": 10,
-                  "width": 16,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  },
+                  undefined,
+                ]
               }
             >
               <Image
@@ -1585,17 +1603,20 @@ exports[`renders correctly with closed due dates 1`] = `
             />
             <View
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "left": 20,
-                  "position": "absolute",
-                  "top": 10,
-                  "width": 16,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  },
+                  undefined,
+                ]
               }
             >
               <Image
@@ -1830,17 +1851,20 @@ exports[`renders correctly with needs_grading_count 1`] = `
             />
             <View
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "left": 20,
-                  "position": "absolute",
-                  "top": 10,
-                  "width": 16,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  },
+                  undefined,
+                ]
               }
             >
               <Image
@@ -2112,17 +2136,20 @@ exports[`renders correctly with needs_grading_count and set to not_graded 1`] = 
             />
             <View
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "left": 20,
-                  "position": "absolute",
-                  "top": 10,
-                  "width": 16,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  },
+                  undefined,
+                ]
               }
             >
               <Image
@@ -2357,17 +2384,20 @@ exports[`renders correctly with open due dates 1`] = `
             />
             <View
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "left": 20,
-                  "position": "absolute",
-                  "top": 10,
-                  "width": 16,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  },
+                  undefined,
+                ]
               }
             >
               <Image
@@ -2602,17 +2632,20 @@ exports[`renders correctly with selected props 1`] = `
             />
             <View
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "left": 20,
-                  "position": "absolute",
-                  "top": 10,
-                  "width": 16,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  },
+                  undefined,
+                ]
               }
             >
               <Image

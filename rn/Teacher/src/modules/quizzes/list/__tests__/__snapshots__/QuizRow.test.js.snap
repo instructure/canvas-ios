@@ -85,17 +85,20 @@ exports[`QuizRow renders 1`] = `
             />
             <View
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "left": 20,
-                  "position": "absolute",
-                  "top": 10,
-                  "width": 16,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  },
+                  undefined,
+                ]
               }
             >
               <Image
@@ -437,17 +440,20 @@ exports[`QuizRow renders multiple question count 1`] = `
             />
             <View
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "left": 20,
-                  "position": "absolute",
-                  "top": 10,
-                  "width": 16,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  },
+                  undefined,
+                ]
               }
             >
               <Image
@@ -789,17 +795,20 @@ exports[`QuizRow renders published 1`] = `
             />
             <View
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "left": 20,
-                  "position": "absolute",
-                  "top": 10,
-                  "width": 16,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  },
+                  undefined,
+                ]
               }
             >
               <Image
@@ -1142,17 +1151,20 @@ exports[`QuizRow renders selected 1`] = `
             />
             <View
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "left": 20,
-                  "position": "absolute",
-                  "top": 10,
-                  "width": 16,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  },
+                  undefined,
+                ]
               }
             >
               <Image
@@ -1494,17 +1506,20 @@ exports[`QuizRow renders single question count 1`] = `
             />
             <View
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "left": 20,
-                  "position": "absolute",
-                  "top": 10,
-                  "width": 16,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  },
+                  undefined,
+                ]
               }
             >
               <Image
@@ -1846,17 +1861,20 @@ exports[`QuizRow renders unpublished 1`] = `
             />
             <View
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "left": 20,
-                  "position": "absolute",
-                  "top": 10,
-                  "width": 16,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  },
+                  undefined,
+                ]
               }
             >
               <Image
@@ -2187,17 +2205,20 @@ exports[`QuizRow renders without points possible 1`] = `
             />
             <View
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "left": 20,
-                  "position": "absolute",
-                  "top": 10,
-                  "width": 16,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  },
+                  undefined,
+                ]
               }
             >
               <Image

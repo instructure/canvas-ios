@@ -83,17 +83,20 @@ exports[`ToDoListItem renders 1`] = `
             />
             <View
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "left": 20,
-                  "position": "absolute",
-                  "top": 10,
-                  "width": 16,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  },
+                  undefined,
+                ]
               }
             >
               <Image
@@ -385,17 +388,20 @@ exports[`ToDoListItem renders discussion 1`] = `
             />
             <View
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "left": 20,
-                  "position": "absolute",
-                  "top": 10,
-                  "width": 16,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  },
+                  undefined,
+                ]
               }
             >
               <Image
@@ -687,17 +693,20 @@ exports[`ToDoListItem renders null due date 1`] = `
             />
             <View
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "left": 20,
-                  "position": "absolute",
-                  "top": 10,
-                  "width": 16,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  },
+                  undefined,
+                ]
               }
             >
               <Image
@@ -989,17 +998,20 @@ exports[`ToDoListItem renders published assignment 1`] = `
             />
             <View
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "left": 20,
-                  "position": "absolute",
-                  "top": 10,
-                  "width": 16,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  },
+                  undefined,
+                ]
               }
             >
               <Image
@@ -1303,17 +1315,20 @@ exports[`ToDoListItem renders quiz 1`] = `
             />
             <View
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "left": 20,
-                  "position": "absolute",
-                  "top": 10,
-                  "width": 16,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  },
+                  undefined,
+                ]
               }
             >
               <Image
@@ -1617,17 +1632,20 @@ exports[`ToDoListItem renders unpublished assignment 1`] = `
             />
             <View
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "left": 20,
-                  "position": "absolute",
-                  "top": 10,
-                  "width": 16,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  },
+                  undefined,
+                ]
               }
             >
               <Image

@@ -89,17 +89,20 @@ exports[`DiscussionsRow renders 1`] = `
             />
             <View
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "left": 20,
-                  "position": "absolute",
-                  "top": 10,
-                  "width": 16,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  },
+                  undefined,
+                ]
               }
             >
               <Image
@@ -522,17 +525,20 @@ exports[`DiscussionsRow renders published 1`] = `
             />
             <View
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "left": 20,
-                  "position": "absolute",
-                  "top": 10,
-                  "width": 16,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  },
+                  undefined,
+                ]
               }
             >
               <Image
@@ -955,17 +961,20 @@ exports[`DiscussionsRow renders unpublished 1`] = `
             />
             <View
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "left": 20,
-                  "position": "absolute",
-                  "top": 10,
-                  "width": 16,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  },
+                  undefined,
+                ]
               }
             >
               <Image
@@ -1377,17 +1386,20 @@ exports[`DiscussionsRow renders with no assignment 1`] = `
             />
             <View
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "left": 20,
-                  "position": "absolute",
-                  "top": 10,
-                  "width": 16,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  },
+                  undefined,
+                ]
               }
             >
               <Image
@@ -1777,17 +1789,20 @@ exports[`DiscussionsRow renders with no unread count 1`] = `
             />
             <View
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "left": 20,
-                  "position": "absolute",
-                  "top": 10,
-                  "width": 16,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  },
+                  undefined,
+                ]
               }
             >
               <Image
@@ -2198,17 +2213,20 @@ exports[`DiscussionsRow renders with points possible 1`] = `
             />
             <View
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "left": 20,
-                  "position": "absolute",
-                  "top": 10,
-                  "width": 16,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  },
+                  undefined,
+                ]
               }
             >
               <Image
@@ -2631,17 +2649,20 @@ exports[`DiscussionsRow renders without points possible 1`] = `
             />
             <View
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "left": 20,
-                  "position": "absolute",
-                  "top": 10,
-                  "width": 16,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderRadius": 8,
+                    "height": 16,
+                    "justifyContent": "center",
+                    "left": 20,
+                    "position": "absolute",
+                    "top": 10,
+                    "width": 16,
+                  },
+                  undefined,
+                ]
               }
             >
               <Image

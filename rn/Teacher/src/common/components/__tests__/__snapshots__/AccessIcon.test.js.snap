@@ -31,17 +31,20 @@ exports[`AccessIcon published takes precedence over other properties 1`] = `
   />
   <View
     style={
-      Object {
-        "alignItems": "center",
-        "backgroundColor": "white",
-        "borderRadius": 8,
-        "height": 16,
-        "justifyContent": "center",
-        "left": 20,
-        "position": "absolute",
-        "top": 10,
-        "width": 16,
-      }
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "borderRadius": 8,
+          "height": 16,
+          "justifyContent": "center",
+          "left": 20,
+          "position": "absolute",
+          "top": 10,
+          "width": 16,
+        },
+        undefined,
+      ]
     }
   >
     <Image
@@ -93,17 +96,20 @@ exports[`AccessIcon shows published when not locked or hidden 1`] = `
   />
   <View
     style={
-      Object {
-        "alignItems": "center",
-        "backgroundColor": "white",
-        "borderRadius": 8,
-        "height": 16,
-        "justifyContent": "center",
-        "left": 20,
-        "position": "absolute",
-        "top": 10,
-        "width": 16,
-      }
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "borderRadius": 8,
+          "height": 16,
+          "justifyContent": "center",
+          "left": 20,
+          "position": "absolute",
+          "top": 10,
+          "width": 16,
+        },
+        undefined,
+      ]
     }
   >
     <Image
@@ -155,17 +161,20 @@ exports[`AccessIcon shows resticted when hidden 1`] = `
   />
   <View
     style={
-      Object {
-        "alignItems": "center",
-        "backgroundColor": "white",
-        "borderRadius": 8,
-        "height": 16,
-        "justifyContent": "center",
-        "left": 20,
-        "position": "absolute",
-        "top": 10,
-        "width": 16,
-      }
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "borderRadius": 8,
+          "height": 16,
+          "justifyContent": "center",
+          "left": 20,
+          "position": "absolute",
+          "top": 10,
+          "width": 16,
+        },
+        undefined,
+      ]
     }
   >
     <Image
@@ -217,17 +226,20 @@ exports[`AccessIcon shows resticted when lock_at is specified 1`] = `
   />
   <View
     style={
-      Object {
-        "alignItems": "center",
-        "backgroundColor": "white",
-        "borderRadius": 8,
-        "height": 16,
-        "justifyContent": "center",
-        "left": 20,
-        "position": "absolute",
-        "top": 10,
-        "width": 16,
-      }
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "borderRadius": 8,
+          "height": 16,
+          "justifyContent": "center",
+          "left": 20,
+          "position": "absolute",
+          "top": 10,
+          "width": 16,
+        },
+        undefined,
+      ]
     }
   >
     <Image
@@ -279,17 +291,20 @@ exports[`AccessIcon shows resticted when unlock_at is specified 1`] = `
   />
   <View
     style={
-      Object {
-        "alignItems": "center",
-        "backgroundColor": "white",
-        "borderRadius": 8,
-        "height": 16,
-        "justifyContent": "center",
-        "left": 20,
-        "position": "absolute",
-        "top": 10,
-        "width": 16,
-      }
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "borderRadius": 8,
+          "height": 16,
+          "justifyContent": "center",
+          "left": 20,
+          "position": "absolute",
+          "top": 10,
+          "width": 16,
+        },
+        undefined,
+      ]
     }
   >
     <Image
@@ -341,17 +356,20 @@ exports[`AccessIcon shows unpublished when locked 1`] = `
   />
   <View
     style={
-      Object {
-        "alignItems": "center",
-        "backgroundColor": "white",
-        "borderRadius": 8,
-        "height": 16,
-        "justifyContent": "center",
-        "left": 20,
-        "position": "absolute",
-        "top": 10,
-        "width": 16,
-      }
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "borderRadius": 8,
+          "height": 16,
+          "justifyContent": "center",
+          "left": 20,
+          "position": "absolute",
+          "top": 10,
+          "width": 16,
+        },
+        undefined,
+      ]
     }
   >
     <Image
@@ -403,17 +421,20 @@ exports[`AccessIcon shows unpublished when published is false 1`] = `
   />
   <View
     style={
-      Object {
-        "alignItems": "center",
-        "backgroundColor": "white",
-        "borderRadius": 8,
-        "height": 16,
-        "justifyContent": "center",
-        "left": 20,
-        "position": "absolute",
-        "top": 10,
-        "width": 16,
-      }
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "borderRadius": 8,
+          "height": 16,
+          "justifyContent": "center",
+          "left": 20,
+          "position": "absolute",
+          "top": 10,
+          "width": 16,
+        },
+        undefined,
+      ]
     }
   >
     <Image

@@ -453,17 +453,20 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                       />
                       <View
                         style={
-                          Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
+                          Array [
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "white",
+                              "borderRadius": 8,
+                              "height": 16,
+                              "justifyContent": "center",
+                              "left": 20,
+                              "position": "absolute",
+                              "top": 10,
+                              "width": 16,
+                            },
+                            undefined,
+                          ]
                         }
                       >
                         <Image
@@ -1040,17 +1043,20 @@ exports[`applyFilter will apply a new filter 1`] = `
                       />
                       <View
                         style={
-                          Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
+                          Array [
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "white",
+                              "borderRadius": 8,
+                              "height": 16,
+                              "justifyContent": "center",
+                              "left": 20,
+                              "position": "absolute",
+                              "top": 10,
+                              "width": 16,
+                            },
+                            undefined,
+                          ]
                         }
                       >
                         <Image
@@ -1588,17 +1594,20 @@ exports[`filter button only shows when there are grading periods 1`] = `
                       />
                       <View
                         style={
-                          Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
+                          Array [
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "white",
+                              "borderRadius": 8,
+                              "height": 16,
+                              "justifyContent": "center",
+                              "left": 20,
+                              "position": "absolute",
+                              "top": 10,
+                              "width": 16,
+                            },
+                            undefined,
+                          ]
                         }
                       >
                         <Image
@@ -2175,17 +2184,20 @@ exports[`renders correctly 1`] = `
                       />
                       <View
                         style={
-                          Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
+                          Array [
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "white",
+                              "borderRadius": 8,
+                              "height": 16,
+                              "justifyContent": "center",
+                              "left": 20,
+                              "position": "absolute",
+                              "top": 10,
+                              "width": 16,
+                            },
+                            undefined,
+                          ]
                         }
                       >
                         <Image
@@ -2802,17 +2814,20 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                       />
                       <View
                         style={
-                          Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
+                          Array [
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "white",
+                              "borderRadius": 8,
+                              "height": 16,
+                              "justifyContent": "center",
+                              "left": 20,
+                              "position": "absolute",
+                              "top": 10,
+                              "width": 16,
+                            },
+                            undefined,
+                          ]
                         }
                       >
                         <Image

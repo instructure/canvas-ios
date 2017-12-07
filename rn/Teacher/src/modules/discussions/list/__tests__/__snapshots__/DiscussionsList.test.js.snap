@@ -612,17 +612,20 @@ exports[`DiscussionsList renders discussions 1`] = `
                       />
                       <View
                         style={
-                          Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
+                          Array [
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "white",
+                              "borderRadius": 8,
+                              "height": 16,
+                              "justifyContent": "center",
+                              "left": 20,
+                              "position": "absolute",
+                              "top": 10,
+                              "width": 16,
+                            },
+                            undefined,
+                          ]
                         }
                       >
                         <Image
@@ -1047,17 +1050,20 @@ exports[`DiscussionsList renders discussions 1`] = `
                       />
                       <View
                         style={
-                          Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
+                          Array [
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "white",
+                              "borderRadius": 8,
+                              "height": 16,
+                              "justifyContent": "center",
+                              "left": 20,
+                              "position": "absolute",
+                              "top": 10,
+                              "width": 16,
+                            },
+                            undefined,
+                          ]
                         }
                       >
                         <Image
@@ -1783,17 +1789,20 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                       />
                       <View
                         style={
-                          Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
+                          Array [
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "white",
+                              "borderRadius": 8,
+                              "height": 16,
+                              "justifyContent": "center",
+                              "left": 20,
+                              "position": "absolute",
+                              "top": 10,
+                              "width": 16,
+                            },
+                            undefined,
+                          ]
                         }
                       >
                         <Image
@@ -2185,17 +2194,20 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                       />
                       <View
                         style={
-                          Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
+                          Array [
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "white",
+                              "borderRadius": 8,
+                              "height": 16,
+                              "justifyContent": "center",
+                              "left": 20,
+                              "position": "absolute",
+                              "top": 10,
+                              "width": 16,
+                            },
+                            undefined,
+                          ]
                         }
                       >
                         <Image
@@ -2992,17 +3004,20 @@ exports[`DiscussionsList renders in correct order 1`] = `
                       />
                       <View
                         style={
-                          Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
+                          Array [
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "white",
+                              "borderRadius": 8,
+                              "height": 16,
+                              "justifyContent": "center",
+                              "left": 20,
+                              "position": "absolute",
+                              "top": 10,
+                              "width": 16,
+                            },
+                            undefined,
+                          ]
                         }
                       >
                         <Image
@@ -3427,17 +3442,20 @@ exports[`DiscussionsList renders in correct order 1`] = `
                       />
                       <View
                         style={
-                          Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
+                          Array [
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "white",
+                              "borderRadius": 8,
+                              "height": 16,
+                              "justifyContent": "center",
+                              "left": 20,
+                              "position": "absolute",
+                              "top": 10,
+                              "width": 16,
+                            },
+                            undefined,
+                          ]
                         }
                       >
                         <Image
@@ -4276,17 +4294,20 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                       />
                       <View
                         style={
-                          Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
+                          Array [
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "white",
+                              "borderRadius": 8,
+                              "height": 16,
+                              "justifyContent": "center",
+                              "left": 20,
+                              "position": "absolute",
+                              "top": 10,
+                              "width": 16,
+                            },
+                            undefined,
+                          ]
                         }
                       >
                         <Image
@@ -4767,17 +4788,20 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                       />
                       <View
                         style={
-                          Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
+                          Array [
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "white",
+                              "borderRadius": 8,
+                              "height": 16,
+                              "justifyContent": "center",
+                              "left": 20,
+                              "position": "absolute",
+                              "top": 10,
+                              "width": 16,
+                            },
+                            undefined,
+                          ]
                         }
                       >
                         <Image
