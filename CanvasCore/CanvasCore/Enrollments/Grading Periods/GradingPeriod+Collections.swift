@@ -22,14 +22,15 @@ import CoreData
 
 
 import ReactiveSwift
+import Result
 import Cartography
 
 extension GradingPeriodItem {
-    func colorfulViewModel(_ dataSource: EnrollmentsDataSource, courseID: String, selected: Bool) -> ColorfulViewModel {
+    func colorfulViewModel(_ dataSource: EnrollmentsDataSource, courseID: String, selected: ReactiveSwift.Property<Bool>) -> ColorfulViewModel {
         let model = ColorfulViewModel()
         model.title.value = title
         model.color <~ dataSource.color(for: .course(withID: courseID))
-        model.accessoryType.value = selected ? .checkmark : .none
+        model.accessoryType <~ selected.map { $0 ? .checkmark : .none }
         return model
     }
 }
@@ -86,13 +87,13 @@ extension GradingPeriod {
             super.init()
             
             title = NSLocalizedString("Grading Periods", tableName: "Localizable", bundle: .core, value: "", comment: "Title for grading periods picker")
-            collection.selectedGradingPeriod.producer
+            collection.selectedGradingPeriod.signal
                 .observe(on: UIScheduler())
-                .startWithValues { [weak collection] _ in collection?.updatesObserver.send(value: [.reload]) }
+                .observeValues { [weak collection] _ in collection?.updatesObserver.send(value: [.reload]) }
 
             let dataSource = session.enrollmentsDataSource
             prepare(collection, refresher: refresher) { item in
-                return item.colorfulViewModel(dataSource, courseID: courseID, selected: item == self.collection.selectedGradingPeriod.value)
+                return item.colorfulViewModel(dataSource, courseID: courseID, selected: Property(initial: false, then: self.collection.selectedGradingPeriod.producer.map { $0 == item }))
             }
         }
         
@@ -107,7 +108,7 @@ extension GradingPeriod {
 
         override open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             let item = collection[indexPath]
-            collection.selectedGradingPeriod.value = item
+            collection.selectGradingPeriod(gradingPeriod: item)
         }
 
         func cancel() {
@@ -126,7 +127,7 @@ extension GradingPeriod {
             guard includeGradingPeriods else {
                 return ReactiveSwift.Property(value: nil)
             }
-            return ReactiveSwift.Property(gradingPeriodsList.collection.selectedGradingPeriod)
+            return ReactiveSwift.Property(initial: nil, then: gradingPeriodsList.collection.selectedGradingPeriod.producer.map { Optional($0) })
         }
 
         open lazy var tableView: UITableView = {
@@ -163,7 +164,7 @@ extension GradingPeriod {
 
             self.viewController = viewController
 
-            self.gradingPeriod = ReactiveSwift.Property(initial: nil, then: gradingPeriodsCollection.selectedGradingPeriod.producer.map { $0?.title })
+            self.gradingPeriod = ReactiveSwift.Property(initial: nil, then: gradingPeriodsCollection.selectedGradingPeriod.producer.map { $0.title })
 
             super.init()
 
