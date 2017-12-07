@@ -37,6 +37,7 @@ import i18n from 'format-message'
 import color from '../../common/colors'
 import RowSeparator from '../../common/components/rows/RowSeparator'
 import CourseActions from '../courses/actions'
+import App from '../app'
 
 export type InboxProps = {
   conversations: Conversation[],
@@ -185,7 +186,10 @@ export function mapStateToProps ({ inbox, entities }: AppState): InboxProps {
   const scope = inbox.selectedScope
   const scopeData = inbox[scope]
   const conversations = scopeData.refs.map((id) => inbox.conversations[id] && inbox.conversations[id].data).filter(Boolean)
-  const courses = Object.keys(entities.courses).reduce((acc, id) => { acc.push(entities.courses[id].course); return acc }, [])
+  const courses = Object.keys(entities.courses).reduce((acc, id) => {
+    acc.push(entities.courses[id].course)
+    return acc
+  }, []).filter(App.current().filterCourse)
   return {
     conversations,
     scope,
