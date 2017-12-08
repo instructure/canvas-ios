@@ -28,11 +28,48 @@ protocol HelmScreen {
 }
 
 class TitleView: UIView {
+    var contentStackView: UIStackView!
+    var titleLabel: UILabel!
+    var subtitleLabel: UILabel!
+    
     public override func willMove(toSuperview: UIView?) {
         if #available(iOS 11.0, *) {
         } else if let parent = toSuperview {
             self.frame = parent.bounds
         }
+    }
+    
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
+    }
+    
+    private func setup() {
+        titleLabel = UILabel(frame: CGRect(x:0, y:0, width:0, height:21))
+        subtitleLabel = UILabel(frame: CGRect(x:0, y:0, width:0, height:15))
+        
+        contentStackView = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel])
+        contentStackView.axis = .vertical
+        contentStackView.alignment = .center
+        contentStackView.distribution = .fillProportionally
+        contentStackView.spacing = 0
+        
+        contentStackView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(contentStackView)
+        
+        contentStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        contentStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        let metrics = ["stackviewHeight": 33]
+        if #available(iOS 11.0, *) {
+            contentStackView.superview?.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: "V:|-(-1)-[stack(stackviewHeight)]-(0)-|", options: [], metrics: metrics, views: ["stack": contentStackView]) )
+        }
+        else {
+            contentStackView.superview?.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: "V:[stack(stackviewHeight)]-(1)-|", options: [], metrics: metrics, views: ["stack": contentStackView]) )
+        }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
@@ -42,9 +79,7 @@ public final class HelmViewController: UIViewController, HelmScreen {
     let screenInstanceID: String
     let props: Props
     var screenConfig: [String: Any] = [:]
-    
-    fileprivate var titleViewTitleLabel: UILabel?
-    fileprivate var titleViewSubtitleLabel: UILabel?
+    fileprivate var twoLineTitleView: TitleView?
     
     public var statusBarStyle: UIStatusBarStyle = .default {
         didSet {
@@ -173,22 +208,33 @@ public final class HelmViewController: UIViewController, HelmScreen {
         return super.supportedInterfaceOrientations
     }
     
+    override public func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        updateTitleViewForRotation()
+    }
+    
+    private func updateTitleViewForRotation() {
+        guard let titleView = twoLineTitleView else { return }
+        let height: CGFloat = UIDevice.current.orientation.isLandscape ? 32 : 44
+        var updatedFrame = titleView.frame
+        updatedFrame.size.height = height
+        titleView.frame = updatedFrame
+        titleView.layoutIfNeeded()
+    }
     
     // MARK: - Styles
-    
     public func handleStyles() {
         if let title = screenConfig[PropKeys.title] as? String {
-            if let subtitle = screenConfig[PropKeys.subtitle] as? String, subtitle.characters.count > 0 {
-                let titleStuff = self.titleView(with: title, and: subtitle, given: screenConfig)
-                let titleView = titleStuff.titleView
-                titleView.isAccessibilityElement = true
-                titleView.accessibilityLabel = "\(title), \(subtitle)"
-                titleView.accessibilityTraits = UIAccessibilityTraitHeader
-                self.navigationItem.titleView = titleView
-                self.navigationItem.title = nil
-                
-                self.titleViewTitleLabel = titleStuff.titleLabel
-                self.titleViewSubtitleLabel = titleStuff.subtitleLabel
+            if let subtitle = screenConfig[PropKeys.subtitle] as? String, subtitle.count > 0 {
+                if(twoLineTitleView == nil) {
+                    twoLineTitleView = self.titleView(with: title, and: subtitle, given: screenConfig)
+                    twoLineTitleView?.isAccessibilityElement = true
+                    twoLineTitleView?.accessibilityTraits = UIAccessibilityTraitHeader
+                    navigationItem.titleView = twoLineTitleView
+                    navigationItem.title = nil
+                }
+                twoLineTitleView?.titleLabel.text = title
+                twoLineTitleView?.subtitleLabel.text = subtitle
+                twoLineTitleView?.accessibilityLabel = "\(title), \(subtitle)"
             }
             self.title = title
         }
@@ -421,37 +467,15 @@ public final class HelmViewController: UIViewController, HelmScreen {
         }
     }
     
-    private func titleView(with title: String, and subtitle: String, given config: [String: Any]) -> (titleView: UIView, titleLabel: UILabel, subtitleLabel: UILabel) {
-        let titleLabel = UILabel(frame: CGRect(x:0, y:-2, width:0, height:0))
-        let subtitleLabel = UILabel(frame: CGRect(x:0, y:18, width:0, height:0))
-        styleTitleViewLabels(titleLabel: titleLabel, subtitleLabel: subtitleLabel)
-        
-        titleLabel.text = title
-        titleLabel.sizeToFit()
-        subtitleLabel.text = subtitle
-        subtitleLabel.sizeToFit()
-
+    private func titleView(with title: String, and subtitle: String, given config: [String: Any]) -> TitleView {
         let titleView = TitleView(frame: CGRect(x: 0, y: 0, width: 0, height: 30))
-        titleView.addSubview(titleLabel)
-        titleView.addSubview(subtitleLabel)
+        titleView.titleLabel.text = title
+        titleView.subtitleLabel.text = subtitle
         if let testID = screenConfig["testID"] as? String {
             titleView.accessibilityIdentifier = testID + ".nav-bar-title-view"
         }
-        
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        if #available(iOS 11.0, *) {
-        } else {
-            titleLabel.topAnchor.constraint(equalTo: titleView.topAnchor).isActive = true
-        }
-        titleLabel.leadingAnchor.constraint(equalTo: titleView.leadingAnchor).isActive = true
-        titleLabel.trailingAnchor.constraint(equalTo: titleView.trailingAnchor).isActive = true
-        
-        subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
-        subtitleLabel.leadingAnchor.constraint(equalTo: titleView.leadingAnchor).isActive = true
-        subtitleLabel.trailingAnchor.constraint(equalTo: titleView.trailingAnchor).isActive = true
-
-        return (titleView, titleLabel, subtitleLabel)
+        styleTitleViewLabels(titleLabel: titleView.titleLabel, subtitleLabel: titleView.subtitleLabel)
+        return titleView
     }
     
     private func styleTitleViewLabels(titleLabel: UILabel, subtitleLabel: UILabel) {
