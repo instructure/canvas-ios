@@ -62,13 +62,13 @@ export function getCourseGradingPeriods (courseID: string): Promise<ApiResponse<
 }
 
 export function getCourseSections (courseID: string): Promise<ApiResponse<Section[]>> {
-  const url = `courses/${courseID}/sections`
-  const options = {
+  const sections = paginate(`courses/${courseID}/sections`, {
     params: {
       include: ['total_students'],
+      per_page: 99,
     },
-  }
-  return httpClient().get(url, options)
+  })
+  return exhaust(sections)
 }
 
 export function getCourseUsers (courseID: string, enrollmentType?: string = '', userIDs?: string[]): Promise<ApiResponse<User[]>> {
