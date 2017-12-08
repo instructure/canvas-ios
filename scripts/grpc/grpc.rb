@@ -10,14 +10,33 @@ end
 
 protoc = join(__dir__, 'protoc-3.5.0-osx-x86_64/bin/protoc')
 
-soseedy_proto = 'soseedy.proto'
 soseedy_dir = join(__dir__, '../../../android-uno/dataseedingapi/src/main/proto')
+
+includes = [soseedy_dir]
+
+# newline for the terminal. must not have space after \\
+new_line = " \\\n"
+
+soseedy_protos = Dir.glob(File.join(soseedy_dir, '**/*.proto')).map do |path|
+  path = File.expand_path(path)
+  path = path.gsub(soseedy_dir + '/', '')
+  '"' + path + '"'
+end
+
+includes = includes.map {|path| "-I #{path}"}
 
 swift_dst = join(__dir__, '../../rn/Teacher/ios/TeacherUITests')
 
-command = %Q(protoc -I "#{soseedy_dir}" "#{soseedy_proto}" --swift_out="#{swift_dst}" --swiftgrpc_out="#{swift_dst}")
-puts command
+command_args = [
+    includes,
+    soseedy_protos,
+    %Q(--swift_out="#{swift_dst}"),
+    %Q(--swiftgrpc_out="#{swift_dst}"),
+].flatten.map {|e| "  #{e}"}.join(new_line)
 
+command = [protoc, command_args].join(new_line).strip
+
+puts command
 `#{command}`
 
 delete File.join(swift_dst, 'soseedy.server.pb.swift')
