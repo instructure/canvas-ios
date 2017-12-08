@@ -10,6 +10,7 @@
 		2C34211C1F7409CD00D8E158 /* OSSAttributionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C34211B1F74099400D8E158 /* OSSAttributionViewController.swift */; };
 		2C34211D1F7409CF00D8E158 /* components.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C34211A1F74099400D8E158 /* components.plist */; };
 		2C44846F1F72FD83000D1778 /* feature_toggles.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CAF1B3B1F72B294007225DF /* feature_toggles.plist */; };
+		2C6796C01FD9E36B00BE7BC0 /* DrawerTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6796BF1FD9E36B00BE7BC0 /* DrawerTransition.swift */; };
 		2C6D608A1F72F85F009C3707 /* SecretsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6D60891F72F85F009C3707 /* SecretsTests.swift */; };
 		2C7CBD2B1F79A42600E5EC02 /* CGRect+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7CBD2A1F79A42600E5EC02 /* CGRect+Core.swift */; };
 		2CAF17801F7AF61100EA2742 /* UIFont+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAF177F1F7AF61100EA2742 /* UIFont+Core.swift */; };
@@ -496,6 +497,7 @@
 /* Begin PBXFileReference section */
 		2C34211A1F74099400D8E158 /* components.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = components.plist; sourceTree = "<group>"; };
 		2C34211B1F74099400D8E158 /* OSSAttributionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSSAttributionViewController.swift; sourceTree = "<group>"; };
+		2C6796BF1FD9E36B00BE7BC0 /* DrawerTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerTransition.swift; sourceTree = "<group>"; };
 		2C6D60891F72F85F009C3707 /* SecretsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretsTests.swift; sourceTree = "<group>"; };
 		2C7CBD2A1F79A42600E5EC02 /* CGRect+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Core.swift"; sourceTree = "<group>"; };
 		2CAF177F1F7AF61100EA2742 /* UIFont+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Core.swift"; sourceTree = "<group>"; };
@@ -1093,6 +1095,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2C6796BE1FD9E0E700BE7BC0 /* Drawer */ = {
+			isa = PBXGroup;
+			children = (
+				2C6796BF1FD9E36B00BE7BC0 /* DrawerTransition.swift */,
+			);
+			path = Drawer;
+			sourceTree = "<group>";
+		};
 		2C6D60881F72F818009C3707 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -1124,6 +1134,7 @@
 		2CAF1B161F72AEDB007225DF /* CanvasCore */ = {
 			isa = PBXGroup;
 			children = (
+				2C6796BE1FD9E0E700BE7BC0 /* Drawer */,
 				9F544E0C1FBB766E00BB2D84 /* Localizable.strings */,
 				9F544E071FBB766E00BB2D84 /* InfoPlist.strings */,
 				49301FB51F901235006BD777 /* Activity Stream */,
@@ -2919,6 +2930,7 @@
 				49CE979F1F900D0000121A43 /* InfinitePagedImagesView.swift in Sources */,
 				49CE96EB1F8FFC4500121A43 /* SoEdventurous.xcdatamodeld in Sources */,
 				49CE96E31F8FFC4400121A43 /* MasteryPathAssignmentSet.swift in Sources */,
+				2C6796C01FD9E36B00BE7BC0 /* DrawerTransition.swift in Sources */,
 				49CE97371F8FFEA600121A43 /* ArcVideoPickerViewController.swift in Sources */,
 				4961F51A1F8FAC440093EC86 /* Icon.swift in Sources */,
 				49CE966C1F8FF41B00121A43 /* QuestionDrawerCell.swift in Sources */,

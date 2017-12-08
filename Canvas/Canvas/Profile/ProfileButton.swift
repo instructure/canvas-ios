@@ -22,12 +22,15 @@ import TechDebt
 import Kingfisher
 import CanvasCore
 
+let transitioningDelegate = DrawerTransitionDelegate()
+
 func addProfileButton(_ session: Session, viewController: UIViewController) {
-    let profileButton = ProfileBarButtonItem(avatarURL: session.user.avatarURL)
+    let icon = UIImage(named: "hamburger.png")
+    let profileButton = UIBarButtonItem(image: icon, style: .plain, target: nil, action: nil)
     let enrollments = viewController
     
-    profileButton.rac_command = RACCommand() { [weak profileButton, weak enrollments] _ in
-        guard let profileButton = profileButton, let enrollments = enrollments else { return .empty() }
+    profileButton.rac_command = RACCommand() { [weak enrollments] _ in
+        guard let enrollments = enrollments else { return .empty() }
         let profile = ProfileViewController()
         profile.settingsViewControllerFactory = {
             return SettingsViewController.controller(CKCanvasAPI.current())
@@ -42,8 +45,6 @@ func addProfileButton(_ session: Session, viewController: UIViewController) {
                     KingfisherManager.shared.cache.removeImage(forKey: key)
                 }
             }
-            
-            profileButton.setProfileImage(newProfileImage)
         }
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
         doneButton.rac_command = RACCommand() { [weak profile] _ in
@@ -52,7 +53,8 @@ func addProfileButton(_ session: Session, viewController: UIViewController) {
         }
         profile.navigationItem.leftBarButtonItem = doneButton
         let nav = UINavigationController(rootViewController: profile)
-        nav.modalPresentationStyle = .formSheet
+        nav.modalPresentationStyle = .custom
+        nav.transitioningDelegate = transitioningDelegate
         enrollments.present(nav, animated: true, completion: nil)
         return .empty()
     }

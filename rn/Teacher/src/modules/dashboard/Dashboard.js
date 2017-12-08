@@ -247,23 +247,7 @@ export class Dashboard extends React.Component<Props, State> {
   }
 
   showProfile = () => {
-    this.props.navigator.show('/profile', { modal: true })
-  }
-
-  avatar = () => {
-    let avatarURL
-    const session = getSession()
-    if (session) {
-      avatarURL = session.user.avatar_url
-    }
-
-    const avatarConfig = {
-      uri: avatarURL,
-      width: 32,
-      height: 32,
-      borderRadius: 16,
-    }
-    return avatarURL ? avatarConfig : Images.profile
+    this.props.navigator.show('/profile', { modal: true, modalPresentationStyle: 'drawer' })
   }
 
   screenProps = () => {
@@ -279,7 +263,7 @@ export class Dashboard extends React.Component<Props, State> {
         }],
         leftBarButtons: [
           {
-            image: this.avatar(),
+            image: Images.hamburger,
             testID: 'favorited-course-list.profile-btn',
             action: this.showProfile,
             accessibilityLabel: i18n('Profile'),

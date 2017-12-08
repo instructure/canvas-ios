@@ -22,6 +22,7 @@ public typealias ModuleName = String
 
 let HelmCanBecomeMaster = "canBecomeMaster"
 let HelmPrefersModalPresentation = "prefersModalPresentation"
+let DrawerTransition = DrawerTransitionDelegate()
 typealias HelmPreActionHandler = (HelmViewController) -> Void
 
 @objc(HelmManager)
@@ -201,6 +202,9 @@ open class HelmManager: NSObject {
                 case "formsheet": viewController.modalPresentationStyle = .formSheet
                 case "currentContext": viewController.modalPresentationStyle = .currentContext
                 case "overCurrentContext": viewController.modalPresentationStyle = .overCurrentContext
+                case "drawer":
+                    viewController.modalPresentationStyle = .custom
+                    viewController.transitioningDelegate = DrawerTransition
                 default: viewController.modalPresentationStyle = .fullScreen
                 }
             }
