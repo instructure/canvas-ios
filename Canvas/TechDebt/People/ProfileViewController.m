@@ -262,13 +262,13 @@ CGFloat square(CGFloat x){return x*x;}
             @strongify(self);
             [self settingsButtonPressed];
         };
-        content.helpAction = ^{
+        content.helpAction = ^(UITableViewCell *sender) {
             @strongify(self);
-            [self helpButtonPressed];
+            [self helpButtonPressed:sender];
         };
-        content.logoutAction = ^{
+        content.logoutAction = ^(UITableViewCell *sender) {
             @strongify(self);
-            [self logoutButtonPressed];
+            [self logoutButtonPressed:sender];
         };
     }
 }
@@ -550,10 +550,12 @@ CGFloat square(CGFloat x){return x*x;}
     [self.navigationController pushViewController:settings animated:YES];
 }
 
-- (void)helpButtonPressed {
+- (void)helpButtonPressed:(UITableViewCell *)sender {
     [Analytics logScreenView: @"View Help Options"];
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    alert.popoverPresentationController.sourceView = sender;
+    alert.popoverPresentationController.sourceRect = sender.bounds;
     
     UIAlertAction *reportProblem = [UIAlertAction actionWithTitle:NSLocalizedString(@"Report a problem", "option to report a problem") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [SupportTicketViewController presentFromViewController: self supportTicketType: SupportTicketTypeProblem];
@@ -565,16 +567,16 @@ CGFloat square(CGFloat x){return x*x;}
     }];
     [alert addAction:requestFeature];
     
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", "Cancel button title") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", "Cancel button title") style:UIAlertActionStyleCancel handler:nil];
     [alert addAction:cancel];
     
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-- (void)logoutButtonPressed {
+- (void)logoutButtonPressed:(UITableViewCell *)sender {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Are you ready to logout?", @"Action sheet title verifying that a user wants to logout.") message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    alert.popoverPresentationController.sourceView = sender;
+    alert.popoverPresentationController.sourceRect = sender.bounds;
     
     UIAlertAction *changeUser = [UIAlertAction actionWithTitle:NSLocalizedString(@"Change User", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [TheKeymaster switchUser];
@@ -588,9 +590,7 @@ CGFloat square(CGFloat x){return x*x;}
     }];
     [alert addAction:logout];
     
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"Stay Logged In", @"button title for cancelling a logout.") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"Stay Logged In", @"button title for cancelling a logout.") style:UIAlertActionStyleCancel handler:nil];
     [alert addAction:cancel];
     
     [self presentViewController:alert animated:YES completion:nil];
@@ -698,9 +698,9 @@ CGFloat square(CGFloat x){return x*x;}
     } else if (cell == self.settingsCell) {
         self.settingsAction();
     } else if (cell == self.helpCell) {
-        self.helpAction();
+        self.helpAction(cell);
     } else if (cell == self.logoutCell) {
-        self.logoutAction();
+        self.logoutAction(cell);
     }
 }
 

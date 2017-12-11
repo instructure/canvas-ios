@@ -43,7 +43,7 @@
 @property (nonatomic, copy) void (^filesAction)();
 @property (nonatomic, copy) void (^gaugeAction)();
 @property (nonatomic, copy) void (^settingsAction)();
-@property (nonatomic, copy) void (^helpAction)();
-@property (nonatomic, copy) void (^logoutAction)();
+@property (nonatomic, copy) void (^helpAction)(UITableViewCell *sender);
+@property (nonatomic, copy) void (^logoutAction)(UITableViewCell *sender);
 
 @end
