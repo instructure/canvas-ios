@@ -36,6 +36,12 @@ type Props = RowProps & {
 }
 
 export default class RowWithTextInput extends Component<Props, any> {
+  input: TextInput
+
+  handlePress = (event: Event) => {
+    this.props.onPress && this.props.onPress(event)
+    this.input.focus()
+  }
 
   render () {
     return this.props.title ? this._renderWithTitle() : this._renderWithoutTitle()
@@ -49,13 +55,20 @@ export default class RowWithTextInput extends Component<Props, any> {
     const accessory = (
       <View
         style={{
-          height: this.props.inputHeight || 50,
+          height: this.props.inputHeight || 30,
           width: this.props.inputWidth || 50,
         }}
         children={this._renderTextInput({ textAlign: 'right' })}
       />
     )
-    return <Row {...this.props} accessories={accessory} accessibilityLabel={`${this.props.title}, ${this.props.value}`} />
+    return (
+      <Row
+        {...this.props}
+        accessories={accessory}
+        accessibilityLabel={`${this.props.title}, ${this.props.value}`}
+        onPress={this.handlePress}
+      />
+    )
   }
 
   _renderTextInput (styles?: any) {
@@ -69,6 +82,7 @@ export default class RowWithTextInput extends Component<Props, any> {
         placeholder={this.props.placeholder}
         keyboardType={this.props.keyboardType}
         onFocus={this.props.onFocus}
+        ref={input => { this.input = input }}
       />
     )
   }

@@ -14,57 +14,50 @@
 // limitations under the License.
 //
 
-/* @flow */
-
+// @flow
+import { shallow } from 'enzyme'
 import React from 'react'
-import 'react-native'
-import renderer from 'react-test-renderer'
 
 import RowWithTextInput from '../RowWithTextInput'
-import explore from '../../../../../test/helpers/explore'
-
-jest
-  .mock('Button', () => 'Button')
-  .mock('TouchableHighlight', () => 'TouchableHighlight')
-  .mock('TouchableOpacity', () => 'TouchableOpacity')
 
 describe('RowWithTextInput', () => {
   it('renders', () => {
-    const tree = renderer.create(
-      <RowWithTextInput />
-    ).toJSON()
+    const tree = shallow(<RowWithTextInput />)
     expect(tree).toMatchSnapshot()
   })
 
   it('sends text changes', () => {
     const onChangeText = jest.fn()
-    const tree = renderer.create(
+    const tree = shallow(
       <RowWithTextInput
         onChangeText={onChangeText}
         identifier='test'
       />
-    ).toJSON()
-    const input: any = explore(tree).selectByID('test')
-    input.props.onChangeText('changed')
+    )
+    tree.find('TextInput').simulate('ChangeText', 'changed')
     expect(onChangeText).toHaveBeenCalledWith('changed', 'test')
   })
 
   it('sets default value', () => {
-    const tree = renderer.create(
+    const tree = shallow(
       <RowWithTextInput
-        identifier='test-default-value'
         defaultValue='test default value'
       />
-    ).toJSON()
-    const input: any = explore(tree).selectByID('test-default-value')
-    expect(input.props.defaultValue).toEqual('test default value')
+    )
+    expect(tree.find('TextInput').prop('defaultValue')).toBe('test default value')
   })
 
   it('renders with a title', () => {
-    expect(
-      renderer.create(
-        <RowWithTextInput title='Title' />
-      ).toJSON()
-    ).toMatchSnapshot()
+    const tree = shallow(<RowWithTextInput title='Title' />)
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('focuses the input when title is pressed', () => {
+    const tree = shallow(<RowWithTextInput title='Title' />)
+    const accessories = shallow(tree.find('Row').prop('accessories'))
+    const input = { focus: jest.fn() }
+    accessories.find('TextInput').getElement().ref(input)
+    tree.find('Row').simulate('Press')
+    expect(input.focus).toHaveBeenCalled()
   })
 })
