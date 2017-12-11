@@ -94,6 +94,10 @@
 		ADA15143C8D5C6E6E3DB3076 /* CourseListPageTest_testCourseListPage_displaysList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7F715417106A8B2328DE09 /* CourseListPageTest_testCourseListPage_displaysList.swift */; };
 		AEEDEEA8860ACD359CC4E956 /* AssignmentsListPageTest_testAssignmentsListPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1291F78B67D06C4FDFE58FFA /* AssignmentsListPageTest_testAssignmentsListPage_displaysPageObjects.swift */; };
 		B05F743AE35D1A455FF83813 /* AllCoursesListPageTest_testAllCoursesListPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22773B52A1AD2EBB85DC5819 /* AllCoursesListPageTest_testAllCoursesListPage_displaysPageObjects.swift */; };
+		B138F3CC1FDF05BA00930603 /* BoringSSL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F93595121F8705B600DBF1B5 /* BoringSSL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B138F3CD1FDF05BA00930603 /* Czlib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F93595111F8705B600DBF1B5 /* Czlib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B138F3CE1FDF05BA00930603 /* gRPC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F93595131F8705B700DBF1B5 /* gRPC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B187ACDB1FDF045700CA1B63 /* CgRPC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F93595101F8705B600DBF1B5 /* CgRPC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BE6A9F0A2C765D09BCA16023 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF7526D87BCDDCAB4075E5E /* Conversation.swift */; };
 		BE89F683114891EC19D4AD4E /* EditCoursesPageTest_testEditCoursesPage_favoriteCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9761AECD1CE112E8E4E9F30D /* EditCoursesPageTest_testEditCoursesPage_favoriteCourse.swift */; };
 		BF691547C3F6A0433A07B2AD /* AssignmentListPageTest_testAssignmentListPage_displaysNoAssignmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8420872227378302E813DF7 /* AssignmentListPageTest_testAssignmentListPage_displaysNoAssignmentsView.swift */; };
@@ -123,10 +127,6 @@
 		F79F609F1EFDA57200ED594E /* TeacherTest+FormattedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79F609E1EFDA57200ED594E /* TeacherTest+FormattedString.swift */; };
 		F7A4A8DA1EDE2A5400809880 /* AllCoursesListPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A4A8D91EDE2A5400809880 /* AllCoursesListPageTest.swift */; };
 		F7A4A8FA1EDE2B6100809880 /* AllCoursesListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A4A8F91EDE2B6100809880 /* AllCoursesListPage.swift */; };
-		F93595141F8705B700DBF1B5 /* CgRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F93595101F8705B600DBF1B5 /* CgRPC.framework */; };
-		F93595151F8705B700DBF1B5 /* Czlib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F93595111F8705B600DBF1B5 /* Czlib.framework */; };
-		F93595161F8705B700DBF1B5 /* BoringSSL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F93595121F8705B600DBF1B5 /* BoringSSL.framework */; };
-		F93595171F8705B700DBF1B5 /* gRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F93595131F8705B700DBF1B5 /* gRPC.framework */; };
 		F93595191F87065900DBF1B5 /* soseedy.client.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93595181F87065900DBF1B5 /* soseedy.client.pb.swift */; };
 		F935951B1F87066C00DBF1B5 /* soseedy.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F935951A1F87066C00DBF1B5 /* soseedy.pb.swift */; };
 		F93EE7801FDAE932000B2201 /* enrollments.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93EE7751FDAE931000B2201 /* enrollments.pb.swift */; };
@@ -186,6 +186,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				B138F3CC1FDF05BA00930603 /* BoringSSL.framework in Embed Frameworks */,
+				B138F3CD1FDF05BA00930603 /* Czlib.framework in Embed Frameworks */,
+				B138F3CE1FDF05BA00930603 /* gRPC.framework in Embed Frameworks */,
+				B187ACDB1FDF045700CA1B63 /* CgRPC.framework in Embed Frameworks */,
 				494BC60B1F954E2900C77257 /* SoGrey.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -456,10 +460,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F93595141F8705B700DBF1B5 /* CgRPC.framework in Frameworks */,
-				F93595151F8705B700DBF1B5 /* Czlib.framework in Frameworks */,
-				F93595161F8705B700DBF1B5 /* BoringSSL.framework in Frameworks */,
-				F93595171F8705B700DBF1B5 /* gRPC.framework in Frameworks */,
 				49295B4E1F86CD37001DAB1F /* CanvasCore.framework in Frameworks */,
 				F99A8E901F06C1150032449B /* SystemConfiguration.framework in Frameworks */,
 				F99A8E8F1F06C10F0032449B /* QuartzCore.framework in Frameworks */,
