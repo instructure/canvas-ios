@@ -498,12 +498,8 @@ exports[`error occurs when done pressed 1`] = `
           </Text>
         </View>
         <TouchableHighlight
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
+          accessibilityLabel="Points, undefined"
+          accessibilityTraits={Array []}
           onPress={[Function]}
           style={
             Array [
@@ -1422,12 +1418,8 @@ exports[`modal saving is shown on assignment update 1`] = `
           </Text>
         </View>
         <TouchableHighlight
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
+          accessibilityLabel="Points, undefined"
+          accessibilityTraits={Array []}
           onPress={[Function]}
           style={
             Array [
@@ -2346,12 +2338,8 @@ exports[`renders 1`] = `
           </Text>
         </View>
         <TouchableHighlight
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
+          accessibilityLabel="Points, undefined"
+          accessibilityTraits={Array []}
           onPress={[Function]}
           style={
             Array [
@@ -3270,12 +3258,8 @@ exports[`saving invalid dates displays banner 1`] = `
           </Text>
         </View>
         <TouchableHighlight
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
+          accessibilityLabel="Points, undefined"
+          accessibilityTraits={Array []}
           onPress={[Function]}
           style={
             Array [
@@ -4236,12 +4220,8 @@ exports[`saving invalid name displays banner 1`] = `
           </Text>
         </View>
         <TouchableHighlight
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
+          accessibilityLabel="Points, undefined"
+          accessibilityTraits={Array []}
           onPress={[Function]}
           style={
             Array [
@@ -5163,12 +5143,8 @@ exports[`saving invalid points possible displays banner 1`] = `
           </Text>
         </View>
         <TouchableHighlight
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
+          accessibilityLabel="Points, undefined"
+          accessibilityTraits={Array []}
           onPress={[Function]}
           style={
             Array [
@@ -6125,12 +6101,8 @@ exports[`saving negative points possible displays banner 1`] = `
           </Text>
         </View>
         <TouchableHighlight
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
+          accessibilityLabel="Points, undefined"
+          accessibilityTraits={Array []}
           onPress={[Function]}
           style={
             Array [

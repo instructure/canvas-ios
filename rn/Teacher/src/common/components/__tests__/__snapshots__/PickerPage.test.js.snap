@@ -41,6 +41,7 @@ exports[`a 1`] = `
   accessibilityTraits={
     Array [
       "button",
+      false,
     ]
   }
   activeOpacity={0.85}
@@ -111,6 +112,7 @@ exports[`b 1`] = `
   accessibilityTraits={
     Array [
       "button",
+      "selected",
     ]
   }
   activeOpacity={0.85}
@@ -216,6 +218,7 @@ exports[`c 1`] = `
   accessibilityTraits={
     Array [
       "button",
+      false,
     ]
   }
   activeOpacity={0.85}

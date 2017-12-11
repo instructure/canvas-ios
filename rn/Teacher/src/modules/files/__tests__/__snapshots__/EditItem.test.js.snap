@@ -81,32 +81,38 @@ exports[`EditItem file renders usage rights editing when feature is enabled 1`] 
           }
         }
       />
-      <EditUsageRights
-        licenses={
-          Array [
-            Object {
-              "id": "private",
-              "name": "Private (Copyrighted)",
-            },
-            Object {
-              "id": "cc_by",
-              "name": "CC Attribution",
-            },
-            Object {
-              "id": "cc_by_nc_sa",
-              "name": "CC Attribution Non-Commercial Share Alike",
-            },
-          ]
-        }
-        onChange={[Function]}
-        rights={
-          Object {
-            "legal_copyright": "",
-            "license": "cc_by",
-            "use_justification": "creative_commons",
+      <View>
+        <EditUsageRights
+          licenses={
+            Array [
+              Object {
+                "id": "private",
+                "name": "Private (Copyrighted)",
+              },
+              Object {
+                "id": "cc_by",
+                "name": "CC Attribution",
+              },
+              Object {
+                "id": "cc_by_nc_sa",
+                "name": "CC Attribution Non-Commercial Share Alike",
+              },
+            ]
           }
-        }
-      />
+          onChange={[Function]}
+          rights={
+            Object {
+              "legal_copyright": "",
+              "license": "cc_by",
+              "use_justification": "creative_commons",
+            }
+          }
+        />
+        <RequiredFieldSubscript
+          title=""
+          visible={false}
+        />
+      </View>
       <View
         style={
           Object {

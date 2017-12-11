@@ -61,6 +61,7 @@ export default class PickerPage extends Component<Props> {
                   source={Images.check}
                 />
               }
+              accessibilityTraits={['button', key === selectedValue && 'selected']}
             />
           }
         />

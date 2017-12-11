@@ -68,6 +68,7 @@ type State = {
     title: string,
     unlock_at: string,
     lock_at: string,
+    usage_rights: strings,
   },
 }
 
@@ -92,6 +93,7 @@ export default class EditItem extends Component<Props, State> {
       name: '',
       unlock_at: '',
       lock_at: '',
+      usage_rights: '',
     },
   }
 
@@ -114,17 +116,23 @@ export default class EditItem extends Component<Props, State> {
   handleDone = async () => {
     const name = this.state.updated.name.trim()
     const nameError = name ? '' : i18n('A title is required')
-    const { lock_at, unlock_at } = this.state.updated
+    const { lock_at, unlock_at, locked, usage_rights: rights } = this.state.updated
     const lockError = (lock_at && unlock_at && Date.parse(unlock_at) > Date.parse(lock_at)) // eslint-disable-line camelcase
       ? i18n('Available from must be before Available to') : ''
+    const rightsError = (
+      this.state.features.includes('usage_rights_required') &&
+      (!rights || !rights.use_justification) &&
+      !locked
+    ) ? i18n('This file must have usage rights set before it can be published.') : ''
     this.setState({
       validation: {
         name: nameError,
         lock_at: lockError,
         unlock_at: lockError,
+        usage_rights: rightsError,
       },
     })
-    if (nameError || lockError) {
+    if (nameError || lockError || rightsError) {
       return
     }
 
@@ -133,6 +141,9 @@ export default class EditItem extends Component<Props, State> {
     if (Object.keys(updated).some(p => updated[p] !== item[p])) {
       this.setState({ pending: true })
       try {
+        if (this.props.updateUsageRights && updated.usage_rights !== item.usage_rights) {
+          await this.props.updateUsageRights(updated.usage_rights)
+        }
         await this.props.update(item.id, updated)
         if (this.props.updateUsageRights && updated.usage_rights !== item.usage_rights) {
           await this.props.updateUsageRights(updated.usage_rights)
@@ -389,11 +400,14 @@ export default class EditItem extends Component<Props, State> {
 
             {/* Usage Rights */}
             {features.includes('usage_rights_required') &&
-              <EditUsageRights
-                licenses={licenses}
-                rights={updated.usage_rights || undefined}
-                onChange={value => this.setState({ updated: { ...this.state.updated, usage_rights: value } })}
-              />
+              <View>
+                <EditUsageRights
+                  licenses={licenses}
+                  rights={updated.usage_rights || undefined}
+                  onChange={value => this.setState({ updated: { ...this.state.updated, usage_rights: value } })}
+                />
+                <RequiredFieldSubscript title={validation.usage_rights} visible={!!validation.usage_rights} />
+              </View>
             }
 
             {/* Delete */}

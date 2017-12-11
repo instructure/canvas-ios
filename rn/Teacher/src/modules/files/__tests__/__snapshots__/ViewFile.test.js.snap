@@ -63,6 +63,7 @@ exports[`ViewFile renders loading while fetching the file 1`] = `
       }
     >
       <TouchableHighlight
+        accessibilityLabel="Share"
         accessibilityTraits="button"
         activeOpacity={0.85}
         onPress={[Function]}

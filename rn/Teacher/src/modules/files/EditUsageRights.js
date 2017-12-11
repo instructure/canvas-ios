@@ -27,7 +27,7 @@ import RowWithTextInput from '../../common/components/rows/RowWithTextInput'
 
 type Props = {
   licenses: License[],
-  rights: UsageRights,
+  rights?: UsageRights,
   onChange: (UsageRights) => any,
 }
 
@@ -37,13 +37,6 @@ type State = {
 }
 
 export default class EditUsageRights extends Component<Props, State> {
-  static defaultProps = {
-    rights: {
-      legal_copyright: '',
-      use_justification: 'used_by_permission',
-    },
-  }
-
   state = {
     showUsageRight: false,
     showLicense: false,
@@ -75,7 +68,7 @@ export default class EditUsageRights extends Component<Props, State> {
   })
 
   render () {
-    const { rights } = this.props
+    const { rights = {} } = this.props
     const { showUsageRight, showLicense } = this.state
     const useOptions = this.getUseOptions()
     const licenses = this.props.licenses.filter(({ id }) => id.startsWith('cc'))
@@ -85,7 +78,7 @@ export default class EditUsageRights extends Component<Props, State> {
         <RowWithTextInput
           border='both'
           title={i18n('Copyright Holder')}
-          value={rights.legal_copyright}
+          value={rights.legal_copyright || ''}
           placeholder={i18n('Name')}
           onChangeText={this.handleChangeCopyright}
           inputWidth={200}

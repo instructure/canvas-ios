@@ -204,11 +204,7 @@ exports[`DiscussionEdit renders 1`] = `
         </Text>
         <TouchableHighlight
           accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
+          accessibilityTraits={Array []}
           onPress={[Function]}
           style={
             Array [
@@ -1261,11 +1257,7 @@ exports[`DiscussionEdit renders new form 1`] = `
         </Text>
         <TouchableHighlight
           accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
+          accessibilityTraits={Array []}
           onPress={[Function]}
           style={
             Array [
@@ -2202,11 +2194,7 @@ exports[`DiscussionEdit updates from props 1`] = `
         </Text>
         <TouchableHighlight
           accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
+          accessibilityTraits={Array []}
           onPress={[Function]}
           style={
             Array [
@@ -3143,11 +3131,7 @@ exports[`DiscussionEdit updates with new props 1`] = `
         </Text>
         <TouchableHighlight
           accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
+          accessibilityTraits={Array []}
           onPress={[Function]}
           style={
             Array [

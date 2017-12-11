@@ -222,7 +222,7 @@ export class CourseFilesList extends Component<Props, State> {
         path,
         onProgress: this.updateUploadProgress,
       })
-      await this.props.updateFile({ id: file.id, locked: true })
+      await this.props.updateFile(file.id, { locked: true })
       await this.update()
     } catch (error) {
       alertError(error)

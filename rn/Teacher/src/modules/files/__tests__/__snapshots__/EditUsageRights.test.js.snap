@@ -34,3 +34,27 @@ exports[`EditUsageRights should render 1`] = `
   </View>
 </View>
 `;
+
+exports[`EditUsageRights shows blank when no rights are passed in 1`] = `
+<View>
+  <EditSectionHeader
+    title="Usage Rights"
+  />
+  <RowWithTextInput
+    border="both"
+    identifier="edit-item.usage_rights.legal_copyright"
+    inputWidth={200}
+    onChangeText={[Function]}
+    placeholder="Name"
+    title="Copyright Holder"
+    value=""
+  />
+  <RowWithDetail
+    border="bottom"
+    detailSelected={false}
+    onPress={[Function]}
+    testID="edit-item.usage_rights.use_justification"
+    title="Usage Right"
+  />
+</View>
+`;

@@ -85,11 +85,7 @@ exports[`PageEdit renders 1`] = `
         </Text>
         <TouchableHighlight
           accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
+          accessibilityTraits={Array []}
           onPress={[Function]}
           style={
             Array [

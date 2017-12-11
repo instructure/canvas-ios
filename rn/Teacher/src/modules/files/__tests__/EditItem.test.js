@@ -385,6 +385,18 @@ describe('EditItem file', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  it('validates usage_rights on done', async () => {
+    props.getCourseEnabledFeatures = jest.fn(() => Promise.resolve({ data: [ 'usage_rights_required' ] }))
+    props.item.usage_rights = undefined
+    props.item.locked = false
+    const tree = shallow(<EditItem {...props} />)
+    await Promise.resolve() // wait for features
+    tree.find('Screen').prop('rightBarButtons')[0].action()
+    await updatedState(tree)
+    expect(tree.find('RequiredFieldSubscript').at(1).prop('title'))
+      .toBe('This file must have usage rights set before it can be published.')
+  })
+
   it('calls updateUsageRights if changed', async () => {
     const dismissing = Promise.resolve()
     const getting = Promise.resolve({ data: [ 'usage_rights_required' ] })

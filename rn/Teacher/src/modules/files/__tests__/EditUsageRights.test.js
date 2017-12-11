@@ -90,4 +90,10 @@ describe('EditUsageRights', () => {
       <EditUsageRights {...props} />
     )).not.toThrow()
   })
+
+  it('shows blank when no rights are passed in', () => {
+    props.rights = undefined
+    const tree = shallow(<EditUsageRights {...props} />)
+    expect(tree).toMatchSnapshot()
+  })
 })

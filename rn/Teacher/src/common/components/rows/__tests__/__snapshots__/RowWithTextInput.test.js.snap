@@ -3,11 +3,7 @@
 exports[`RowWithTextInput renders 1`] = `
 <TouchableHighlight
   accessibilityLabel={undefined}
-  accessibilityTraits={
-    Array [
-      "button",
-    ]
-  }
+  accessibilityTraits={Array []}
   onPress={[Function]}
   style={
     Array [
@@ -71,12 +67,8 @@ exports[`RowWithTextInput renders 1`] = `
 
 exports[`RowWithTextInput renders with a title 1`] = `
 <TouchableHighlight
-  accessibilityLabel={undefined}
-  accessibilityTraits={
-    Array [
-      "button",
-    ]
-  }
+  accessibilityLabel="Title, undefined"
+  accessibilityTraits={Array []}
   onPress={[Function]}
   style={
     Array [

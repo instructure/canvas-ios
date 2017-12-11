@@ -35,8 +35,6 @@ type Props = RowProps & {
   onFocus?: Function,
 }
 
-const ACCESSIBILITY_TRAITS = ['button']
-
 export default class RowWithTextInput extends Component<Props, any> {
 
   render () {
@@ -44,7 +42,7 @@ export default class RowWithTextInput extends Component<Props, any> {
   }
 
   _renderWithoutTitle () {
-    return <Row {...this.props} children={this._renderTextInput()} accessibilityTraits={ACCESSIBILITY_TRAITS} />
+    return <Row {...this.props} children={this._renderTextInput()} accessibilityLabel={this.props.value} />
   }
 
   _renderWithTitle () {
@@ -57,7 +55,7 @@ export default class RowWithTextInput extends Component<Props, any> {
         children={this._renderTextInput({ textAlign: 'right' })}
       />
     )
-    return <Row {...this.props} accessories={accessory} accessibilityTraits={ACCESSIBILITY_TRAITS} />
+    return <Row {...this.props} accessories={accessory} accessibilityLabel={`${this.props.title}, ${this.props.value}`} />
   }
 
   _renderTextInput (styles?: any) {

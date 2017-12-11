@@ -234,6 +234,7 @@ export default class ViewFile extends Component<Props, State> {
               underlayColor='transparent'
               accessibilityTraits='button'
               testID='view-file.share-btn'
+              accessibilityLabel={i18n('Share')}
             >
               <Image source={Images.share} style={styles.toolbarIcon} />
             </TouchableHighlight>
