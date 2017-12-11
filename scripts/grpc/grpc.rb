@@ -8,7 +8,10 @@ def delete path
   File.delete(path) if File.exist?(path)
 end
 
-protoc = join(__dir__, 'protoc-3.5.0-osx-x86_64/bin/protoc')
+protoc_bin = join(__dir__, 'protoc-3.5.0-osx-x86_64/bin/')
+protoc = join(protoc_bin, 'protoc')
+swift_plugin = join(protoc_bin, 'protoc-gen-swift')
+swiftgrpc_plugin = join(protoc_bin, 'protoc-gen-swiftgrpc')
 
 soseedy_dir = join(__dir__, '../../../android-uno/dataseedingapi/src/main/proto')
 
@@ -28,6 +31,8 @@ includes = includes.map {|path| "-I #{path}"}
 swift_dst = join(__dir__, '../../rn/Teacher/ios/TeacherUITests')
 
 command_args = [
+    "--plugin=protoc-gen-swift=#{swift_plugin}",
+    "--plugin=protoc-gen-swiftgrpc=#{swiftgrpc_plugin}",
     includes,
     soseedy_protos,
     %Q(--swift_out="#{swift_dst}"),
