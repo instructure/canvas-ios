@@ -70,6 +70,26 @@ class TeacherTestUtils {
 
     return loginInfo
   }
+
+    static func getUserLoginInfo2(_ canvasUser:Soseedy_CanvasUser) -> [String: Any] {
+        let user: [String: Any] = [
+            "id":            canvasUser.id,
+            "name":          canvasUser.name,
+            "primary_email": canvasUser.loginID,
+            "short_name":    canvasUser.shortName,
+            "avatar_url":    canvasUser.avatarURL
+        ]
+
+        let baseURL = "https://\(canvasUser.domain)/"
+        let authToken = canvasUser.token
+        let loginInfo: [String: Any] = [
+            "authToken": authToken,
+            "baseURL": baseURL,
+            "user": user
+        ]
+
+        return loginInfo
+    }
 }
 
 class TeacherTest: XCTestCase {
@@ -99,6 +119,13 @@ class TeacherTest: XCTestCase {
     
     return teacher
   }
+
+    // logIn(self)
+    func logIn2(_ user: Soseedy_CanvasUser) {
+        let loginInfo = TeacherTestUtils.getUserLoginInfo2(user)
+        NativeLoginManager.shared().injectLoginInformation(loginInfo)
+        coursesListPage.assertPageObjects()
+    }
 
   /*
 

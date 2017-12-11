@@ -18,7 +18,18 @@ class AllCoursesListPageTest: TeacherTest {
 
     //TestRail ID = C3108901
     func testAllCoursesListPage_displaysPageObjects() {
-        logIn(self)
+        let client = Soseedy_SoSeedyService.init(address: "localhost:50051")
+        let user:Soseedy_CanvasUser = try! client.createcanvasuser(Soseedy_CreateCanvasUserRequest())
+        let course:Soseedy_Course = try! client.createcourse(Soseedy_CreateCourseRequest())
+
+        var enrollRequest = Soseedy_EnrollUserRequest()
+        enrollRequest.courseID = course.id
+        enrollRequest.userID = user.id
+        enrollRequest.enrollmentType = "TeacherEnrollment"
+        let _ = try! client.enrolluserincourse(enrollRequest)
+
+        logIn2(user)
+
         coursesListPage.openAllCoursesPage()
         allCoursesListPage.assertPageObjects()
     }

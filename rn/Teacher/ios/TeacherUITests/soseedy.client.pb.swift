@@ -1133,6 +1133,61 @@ internal class Soseedy_SoSeedyCreateSectionCall {
   }
 }
 
+/// CreateCoursePage (Unary)
+internal class Soseedy_SoSeedyCreateCoursePageCall {
+  private var call : Call
+
+  /// Create a call.
+  fileprivate init(_ channel: Channel) {
+    self.call = channel.makeCall("/soseedy.SoSeedy/CreateCoursePage")
+  }
+
+  /// Run the call. Blocks until the reply is received.
+  fileprivate func run(request: Soseedy_CreateCoursePageRequest,
+                       metadata: Metadata) throws -> Soseedy_Page {
+    let sem = DispatchSemaphore(value: 0)
+    var returnCallResult : CallResult!
+    var returnResponse : Soseedy_Page?
+    _ = try start(request:request, metadata:metadata) {response, callResult in
+      returnResponse = response
+      returnCallResult = callResult
+      sem.signal()
+    }
+    _ = sem.wait(timeout: DispatchTime.distantFuture)
+    if let returnResponse = returnResponse {
+      return returnResponse
+    } else {
+      throw Soseedy_SoSeedyClientError.error(c: returnCallResult)
+    }
+  }
+
+  /// Start the call. Nonblocking.
+  fileprivate func start(request: Soseedy_CreateCoursePageRequest,
+                         metadata: Metadata,
+                         completion: @escaping (Soseedy_Page?, CallResult)->())
+    throws -> Soseedy_SoSeedyCreateCoursePageCall {
+
+      let requestData = try request.serializedData()
+      try call.start(.unary,
+                     metadata:metadata,
+                     message:requestData)
+      {(callResult) in
+        if let responseData = callResult.resultData,
+          let response = try? Soseedy_Page(serializedData:responseData) {
+          completion(response, callResult)
+        } else {
+          completion(nil, callResult)
+        }
+      }
+      return self
+  }
+
+  /// Cancel the call.
+  internal func cancel() {
+    call.cancel()
+  }
+}
+
 /// Call methods of this class to make API calls.
 internal class Soseedy_SoSeedyService {
   private var channel: Channel
@@ -1463,6 +1518,21 @@ internal class Soseedy_SoSeedyService {
     throws
     -> Soseedy_SoSeedyCreateSectionCall {
       return try Soseedy_SoSeedyCreateSectionCall(channel).start(request:request,
+                                                 metadata:metadata,
+                                                 completion:completion)
+  }
+  /// Synchronous. Unary.
+  internal func createcoursepage(_ request: Soseedy_CreateCoursePageRequest)
+    throws
+    -> Soseedy_Page {
+      return try Soseedy_SoSeedyCreateCoursePageCall(channel).run(request:request, metadata:metadata)
+  }
+  /// Asynchronous. Unary.
+  internal func createcoursepage(_ request: Soseedy_CreateCoursePageRequest,
+                  completion: @escaping (Soseedy_Page?, CallResult)->())
+    throws
+    -> Soseedy_SoSeedyCreateCoursePageCall {
+      return try Soseedy_SoSeedyCreateCoursePageCall(channel).start(request:request,
                                                  metadata:metadata,
                                                  completion:completion)
   }
