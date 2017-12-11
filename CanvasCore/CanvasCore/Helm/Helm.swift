@@ -224,7 +224,11 @@ open class HelmManager: NSObject {
             guard let viewController = factory(props) else { return }
             
             var toPresent: UIViewController = viewController
-            if let embedInNavigationController: Bool = options["embedInNavigationController"] as? Bool, embedInNavigationController, stuff.customPresentation == nil {
+            let nav = toPresent as? UINavigationController
+            if let embedInNavigationController = options["embedInNavigationController"] as? Bool,
+                embedInNavigationController,
+                stuff.customPresentation == nil,
+                nav == nil {
                 toPresent = HelmNavigationController(rootViewController: viewController)
             }
             

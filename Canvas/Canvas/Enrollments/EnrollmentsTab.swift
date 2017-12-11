@@ -19,7 +19,7 @@
 import CanvasCore
 
 public func EnrollmentsTab(session: Session) throws -> UIViewController {
-    let route: (UIViewController, URL)->() = { vc, url in
+    let _: (UIViewController, URL)->() = { vc, url in
         let vcs = vc.tabBarController?.viewControllers ?? []
         guard let split = vcs.first as? UISplitViewController else { return }
         guard let masterNav = split.masterNavigationController else { return }
@@ -62,30 +62,14 @@ public func EnrollmentsTab(session: Session) throws -> UIViewController {
         }
     }
 
-    let coursesTitle = NSLocalizedString("Courses", comment: "Courses page title")
-    let coursesPage = ControllerPage(title: coursesTitle, controller: try CoursesCollectionViewController(session: session, route: route))
-
-    let groupsTitle = NSLocalizedString("Groups", comment: "Groups page title")
-    let groupsPage = ControllerPage(title: groupsTitle, controller: try GroupsCollectionViewController(session: session, route: route))
-
-    let enrollments = PagedViewController(pages: [
-        coursesPage,
-        groupsPage
-    ])
-
-    let enrollmentsNav = UINavigationController(rootViewController: enrollments)
-
-    addProfileButton(session, viewController: enrollments)
-
-    enrollmentsNav.tabBarItem.title = coursesTitle
-    enrollmentsNav.tabBarItem.image = .icon(.course)
-    enrollmentsNav.tabBarItem.selectedImage = .icon(.course, filled: true)
-    
-    let split = EnrollmentSplitController(session: session)
-    split.viewControllers = [enrollmentsNav, UINavigationController(rootViewController:EmptyViewController())]
-    
-    enrollmentsNav.delegate = split
-    return split
+    let dashboardVC = HelmViewController(moduleName: "/", props: [:])
+    let dashboardNav = HelmNavigationController(rootViewController: dashboardVC)
+    let dashboardSplit = HelmSplitViewController()
+    dashboardSplit.viewControllers = [dashboardNav, UINavigationController(rootViewController:EmptyViewController())]
+    dashboardSplit.tabBarItem.title = NSLocalizedString("Courses", comment: "Courses page title")
+    dashboardSplit.tabBarItem.image = .icon(.course)
+    dashboardSplit.tabBarItem.selectedImage = .icon(.course, filled: true)
+    return dashboardSplit
 }
 
 

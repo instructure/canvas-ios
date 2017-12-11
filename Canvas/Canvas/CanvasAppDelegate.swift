@@ -250,6 +250,18 @@ extension AppDelegate: RCTBridgeDelegate {
             self.addClearCacheGesture(root.view)
             self.window?.rootViewController = root
         }
+        
+        HelmManager.shared.registerNativeViewController(for: "/courses/:courseID", factory: { props in
+            guard let courseID = props["courseID"] as? String else { return nil }
+            
+            let url = URL(string: "api/v1/courses/\(courseID)/tabs")
+            return Router.shared().controller(forHandling: url)
+        })
+        
+        HelmManager.shared.registerNativeViewController(for: "/profile", factory: { props in
+            guard let session = self.session else { return nil }
+            return profileController(session)
+        })
     }
     
     func excludeHelmInBranding() {
