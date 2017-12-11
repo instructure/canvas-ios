@@ -35,26 +35,26 @@ class CourseBrowserPage {
 
     // MARK: Helpers
 
-    private func navBarTitleView(_ course: Course) -> GREYElementInteraction {
-        let titleViewElement = EarlGrey.select(
-            elementWithMatcher: grey_allOf([grey_accessibilityLabel(course.courseCode),
-                                            grey_accessibilityTrait(UIAccessibilityTraitHeader),
-                                            grey_accessibilityTrait(UIAccessibilityTraitStaticText)]))
-        return titleViewElement
-    }
+//    private func navBarTitleView(_ course: Course) -> GREYElementInteraction {
+//        let titleViewElement = EarlGrey.select(
+//            elementWithMatcher: grey_allOf([grey_accessibilityLabel(course.courseCode),
+//                                            grey_accessibilityTrait(UIAccessibilityTraitHeader),
+//                                            grey_accessibilityTrait(UIAccessibilityTraitStaticText)]))
+//        return titleViewElement
+//    }
 
     // MARK: - Assertions
 
-    func assertPageObjects(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
-        grey_fromFile(file, line)
-        tabBarController.assertTabBarItems()
-        navBarTitleView(course).assertExists()
-        backButton.assertExists()
-        editButton.assertExists()
-        titleLabel.assertExists()
-        subtitleLabel.assertExists()
-        assignmentsCell.assertExists()
-    }
+//    func assertPageObjects(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
+//        grey_fromFile(file, line)
+//        tabBarController.assertTabBarItems()
+//        navBarTitleView(course).assertExists()
+//        backButton.assertExists()
+//        editButton.assertExists()
+//        titleLabel.assertExists()
+//        subtitleLabel.assertExists()
+//        assignmentsCell.assertExists()
+//    }
 
     // MARK: UI Actions
 

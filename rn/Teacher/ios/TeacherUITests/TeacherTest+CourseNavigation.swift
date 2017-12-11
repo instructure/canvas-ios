@@ -15,23 +15,23 @@
 //
 
 extension TeacherTest {
-    @discardableResult func openCourseDetailsPage<T>(_ testClass:T, _ testMethod:String = #function) -> Course {
-        logIn(testClass, testMethod)
-        let course = Data.getNextCourse(testClass, testMethod)
-        coursesListPage.openCourseDetailsPage(course)
-        return course
-    }
+//    @discardableResult func openCourseDetailsPage<T>(_ testClass:T, _ testMethod:String = #function) -> Course {
+//        logIn(testClass, testMethod)
+//        let course = Data.getNextCourse(testClass, testMethod)
+//        coursesListPage.openCourseDetailsPage(course)
+//        return course
+//    }
     
-    @discardableResult func openAssignmentListPage<T>(_ testClass:T, _ testMethod:String = #function) -> Course {
-        let course = openCourseDetailsPage(testClass, testMethod)
-        courseBrowserPage.openAssignmentListPage()
-        return course
-    }
-    
-    @discardableResult func openAssignmentDetailsPage<T>(_ testClass:T, _ testMethod:String = #function) -> (Course, Assignment) {
-        let course = openAssignmentListPage(testClass, testMethod)
-        let assignment = Data.getNextAssignment(testClass, testMethod)
-        assignmentListPage.openAssignmentDetailsPage(assignment)
-        return (course, assignment)
-    }
+//    @discardableResult func openAssignmentListPage<T>(_ testClass:T, _ testMethod:String = #function) -> Course {
+//        let course = openCourseDetailsPage(testClass, testMethod)
+//        courseBrowserPage.openAssignmentListPage()
+//        return course
+//    }
+
+//    @discardableResult func openAssignmentDetailsPage<T>(_ testClass:T, _ testMethod:String = #function) -> (Course, Assignment) {
+//        let course = openAssignmentListPage(testClass, testMethod)
+//        let assignment = Data.getNextAssignment(testClass, testMethod)
+//        assignmentListPage.openAssignmentDetailsPage(assignment)
+//        return (course, assignment)
+//    }
 }

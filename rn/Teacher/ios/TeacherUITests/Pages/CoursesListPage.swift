@@ -39,13 +39,13 @@ class CoursesListPage {
 
     // MARK: - Helpers
 
-    private func courseId(_ course: Course) -> String {
-        return "course-card.kabob-\(course.id)"
-    }
+//    private func courseId(_ course: Course) -> String {
+//        return "course-card.kabob-\(course.id)"
+//    }
 
-    private func courseCard(_ course: Course) -> GREYElementInteraction {
-        return e.selectBy(id: course.courseCode)
-    }
+//    private func courseCard(_ course: Course) -> GREYElementInteraction {
+//        return e.selectBy(id: course.courseCode)
+//    }
 
     // MARK: - Assertions
 
@@ -71,20 +71,20 @@ class CoursesListPage {
         seeAllCoursesButton.assertExists()
     }
 
-    func assertCourseExists(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
-        grey_fromFile(file, line)
-        e.selectBy(id: courseId(course)).assertExists()
-    }
+//    func assertCourseExists(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
+//        grey_fromFile(file, line)
+//        e.selectBy(id: courseId(course)).assertExists()
+//    }
 
-    func assertCourseDoesNotExist(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
-        grey_fromFile(file, line)
-        e.selectBy(id: courseId(course)).assertHidden()
-    }
-
-    func assertCourseHidden(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
-        grey_fromFile(file, line)
-        e.selectBy(id: courseId(course)).assertHidden()
-    }
+//    func assertCourseDoesNotExist(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
+//        grey_fromFile(file, line)
+//        e.selectBy(id: courseId(course)).assertHidden()
+//    }
+//
+//    func assertCourseHidden(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
+//        grey_fromFile(file, line)
+//        e.selectBy(id: courseId(course)).assertHidden()
+//    }
 
     // MARK: - UI Actions
 
@@ -102,8 +102,8 @@ class CoursesListPage {
         seeAllCoursesButton.tap()
     }
 
-    func openCourseDetailsPage(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
-        grey_fromFile(file, line)
-        courseCard(course).tap()
-    }
+//    func openCourseDetailsPage(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
+//        grey_fromFile(file, line)
+//        courseCard(course).tap()
+//    }
 }

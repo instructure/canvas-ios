@@ -38,17 +38,17 @@ class EditCoursesListPage {
         return titleViewElement
     }
 
-    func selectFavoritedCourse(_ course: Course) -> GREYElementInteraction {
-        let courseIsFavoritedID = "edit-favorites.course-favorite.\(course.id)-favorited"
-        let courseIsFavoritedElement = e.selectBy(id: courseIsFavoritedID)
-        return courseIsFavoritedElement
-    }
-
-    func selectNotFavoritedCourse(_ course: Course) -> GREYElementInteraction {
-        let courseIsNotFavoritedID = "edit-favorites.course-favorite.\(course.id)-not-favorited"
-        let courseIsNotFavoritedElement = e.selectBy(id: courseIsNotFavoritedID)
-        return courseIsNotFavoritedElement
-    }
+//    func selectFavoritedCourse(_ course: Course) -> GREYElementInteraction {
+//        let courseIsFavoritedID = "edit-favorites.course-favorite.\(course.id)-favorited"
+//        let courseIsFavoritedElement = e.selectBy(id: courseIsFavoritedID)
+//        return courseIsFavoritedElement
+//    }
+//
+//    func selectNotFavoritedCourse(_ course: Course) -> GREYElementInteraction {
+//        let courseIsNotFavoritedID = "edit-favorites.course-favorite.\(course.id)-not-favorited"
+//        let courseIsNotFavoritedElement = e.selectBy(id: courseIsNotFavoritedID)
+//        return courseIsNotFavoritedElement
+//    }
 
     // MARK: - Assertions
 
@@ -58,32 +58,32 @@ class EditCoursesListPage {
         doneButton.assertExists()
     }
 
-    func assertCourseIsFavorited(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
-        grey_fromFile(file, line)
-        let courseIsFavoritedElement = selectFavoritedCourse(course)
-        courseIsFavoritedElement.assertExists()
-    }
-
-    func assertCourseIsNotfavorited(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
-        grey_fromFile(file, line)
-        let courseIsNotFavoritedElement = selectNotFavoritedCourse(course)
-        courseIsNotFavoritedElement.assertExists()
-    }
-
-    func assertHasCourses(_ courses: [Course], _ file: StaticString = #file, _ line: UInt = #line) {
-        grey_fromFile(file, line)
-        
-        for course in courses {
-            let courseIsFavoritedID = "edit-favorites.course-favorite.\(course.id)-favorited"
-            let courseIsNotFavoritedID = "edit-favorites.course-favorite.\(course.id)-not-favorited"
-            
-            let courseElement = EarlGrey.select(
-                elementWithMatcher: grey_anyOf([grey_accessibilityID(courseIsFavoritedID),
-                                                grey_accessibilityID(courseIsNotFavoritedID)]))
-            
-            courseElement.assertExists()
-        }
-    }
+//    func assertCourseIsFavorited(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
+//        grey_fromFile(file, line)
+//        let courseIsFavoritedElement = selectFavoritedCourse(course)
+//        courseIsFavoritedElement.assertExists()
+//    }
+//
+//    func assertCourseIsNotfavorited(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
+//        grey_fromFile(file, line)
+//        let courseIsNotFavoritedElement = selectNotFavoritedCourse(course)
+//        courseIsNotFavoritedElement.assertExists()
+//    }
+//
+//    func assertHasCourses(_ courses: [Course], _ file: StaticString = #file, _ line: UInt = #line) {
+//        grey_fromFile(file, line)
+//
+//        for course in courses {
+//            let courseIsFavoritedID = "edit-favorites.course-favorite.\(course.id)-favorited"
+//            let courseIsNotFavoritedID = "edit-favorites.course-favorite.\(course.id)-not-favorited"
+//
+//            let courseElement = EarlGrey.select(
+//                elementWithMatcher: grey_anyOf([grey_accessibilityID(courseIsFavoritedID),
+//                                                grey_accessibilityID(courseIsNotFavoritedID)]))
+//
+//            courseElement.assertExists()
+//        }
+//    }
 
     // MARK: - UI Actions
 
@@ -92,15 +92,15 @@ class EditCoursesListPage {
         doneButton.tapUntilHidden()
     }
 
-    func toggleFavoritedCourse(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
-        grey_fromFile(file, line)
-        let courseIsFavoritedElement = selectFavoritedCourse(course)
-        courseIsFavoritedElement.tap()
-    }
-
-    func toggleNotFavoritedCourse(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
-        grey_fromFile(file, line)
-        let courseIsNotFavoritedElement = selectNotFavoritedCourse(course)
-        courseIsNotFavoritedElement.tap()
-    }
+//    func toggleFavoritedCourse(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
+//        grey_fromFile(file, line)
+//        let courseIsFavoritedElement = selectFavoritedCourse(course)
+//        courseIsFavoritedElement.tap()
+//    }
+//
+//    func toggleNotFavoritedCourse(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
+//        grey_fromFile(file, line)
+//        let courseIsNotFavoritedElement = selectNotFavoritedCourse(course)
+//        courseIsNotFavoritedElement.tap()
+//    }
 }

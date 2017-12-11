@@ -36,22 +36,22 @@ class CanvasLoginPage {
 
     // MARK: - UI Actions
 
-    func logIn(teacher: CanvasUser, _ file: StaticString = #file, _ line: UInt = #line) {
-        grey_fromFile(file, line)
-
-        logInButton.assertExists() // wait for webview to load
-
-        if let emailElement = DriverAtoms.findElement(locator: Locator.CSS_SELECTOR, value: EMAIL_FIELD_CSS) {
-            DriverAtoms.webKeys(element: emailElement, value: teacher.loginId)
-        }
-
-        if let passwordElement = DriverAtoms.findElement(locator: Locator.CSS_SELECTOR, value: PASSWORD_FIELD_CSS) {
-            DriverAtoms.webKeys(element: passwordElement, value: teacher.password)
-        }
-
-        logInButton.tap()
-        authorizeButton.tap()
-    }
+//    func logIn(teacher: CanvasUser, _ file: StaticString = #file, _ line: UInt = #line) {
+//        grey_fromFile(file, line)
+//
+//        logInButton.assertExists() // wait for webview to load
+//
+//        if let emailElement = DriverAtoms.findElement(locator: Locator.CSS_SELECTOR, value: EMAIL_FIELD_CSS) {
+//            DriverAtoms.webKeys(element: emailElement, value: teacher.loginId)
+//        }
+//
+//        if let passwordElement = DriverAtoms.findElement(locator: Locator.CSS_SELECTOR, value: PASSWORD_FIELD_CSS) {
+//            DriverAtoms.webKeys(element: passwordElement, value: teacher.password)
+//        }
+//
+//        logInButton.tap()
+//        authorizeButton.tap()
+//    }
 
     // tmp login to validate webdriver code
     func logInTmp(loginId: String, password: String, _ file: StaticString = #file, _ line: UInt = #line) {

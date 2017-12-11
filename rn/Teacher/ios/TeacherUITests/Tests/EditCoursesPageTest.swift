@@ -17,18 +17,18 @@
 class EditCoursesPageTest: TeacherTest {
 
     func testEditCoursesPage_displaysPageObjects() {
-        logIn(self)
-        coursesListPage.openCourseFavoritesEditPage(false)
-        editCoursesListPage.assertPageObjects()
-        editCoursesListPage.dismissToFavoriteCoursesPage()
+//        logIn(self)
+//        coursesListPage.openCourseFavoritesEditPage(false)
+//        editCoursesListPage.assertPageObjects()
+//        editCoursesListPage.dismissToFavoriteCoursesPage()
     }
 
     func testEditCoursesPage_displaysCourseList() {
-        logIn(self)
-        let courses = Data.getAllCourses(self)
-        coursesListPage.openCourseFavoritesEditPage(false)
-        editCoursesListPage.assertHasCourses(courses)
-        editCoursesListPage.dismissToFavoriteCoursesPage()
+//        logIn(self)
+//        let courses = Data.getAllCourses(self)
+//        coursesListPage.openCourseFavoritesEditPage(false)
+//        editCoursesListPage.assertHasCourses(courses)
+//        editCoursesListPage.dismissToFavoriteCoursesPage()
     }
 
 //    func testEditCoursesPage_favoriteCourse() {

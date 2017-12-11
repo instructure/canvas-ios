@@ -25,52 +25,6 @@ class TeacherTestUtils {
   // Validating only the first token is sufficient.
   private static var tokenValidated:Bool = false
 
-  static func validateToken(_ canvasUser:CanvasUser) {
-    if (self.tokenValidated) { return }
-    self.tokenValidated = true
-
-    let baseURL = "https://\(canvasUser.domain)/"
-    let authToken = canvasUser.token
-
-    let url = NSURL(string: "\(baseURL)api/v1/users/self/profile")
-    let request = NSMutableURLRequest(url: url! as URL)
-    request.httpMethod = "GET"
-    request.setValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
-
-    // response is nil on invalid headers. yay.
-    // http://stackoverflow.com/a/19591949
-    var response: URLResponse?
-    // ignore deprecated warning, there's no real replacement.
-    try! NSURLConnection.sendSynchronousRequest(request as URLRequest, returning: &response)
-
-    let successful = ((response as? HTTPURLResponse)?.statusCode ?? -1) == 200
-
-    if (!successful) {
-      fatalError("Token validation failed.")
-    }
-  }
-
-  static func getUserLoginInfo(_ canvasUser:CanvasUser) -> [String: Any] {
-    validateToken(canvasUser)
-    let user: [String: Any] = [
-      "id":            canvasUser.id,
-      "name":          canvasUser.name,
-      "primary_email": canvasUser.loginId,
-      "short_name":    canvasUser.shortName,
-      "avatar_url":    canvasUser.avatarUrl
-    ]
-
-    let baseURL = "https://\(canvasUser.domain)/"
-    let authToken = canvasUser.token
-    let loginInfo: [String: Any] = [
-      "authToken": authToken,
-      "baseURL": baseURL,
-      "user": user
-    ]
-
-    return loginInfo
-  }
-
     static func getUserLoginInfo2(_ canvasUser:Soseedy_CanvasUser) -> [String: Any] {
         let user: [String: Any] = [
             "id":            canvasUser.id,
@@ -108,17 +62,17 @@ class TeacherTest: XCTestCase {
     super.tearDown()
   }
 
-  // logIn(self)
-  @discardableResult
-  func logIn<T>(_ testClass:T, _ testMethod:String = #function, _ file: StaticString = #file, _ line: UInt = #line) -> CanvasUser {
-    let teacher = Data.getNextTeacher(testClass, testMethod)
-
-    let loginInfo = TeacherTestUtils.getUserLoginInfo(teacher)
-    NativeLoginManager.shared().injectLoginInformation(loginInfo)
-    coursesListPage.assertPageObjects()
-    
-    return teacher
-  }
+//  // logIn(self)
+//  @discardableResult
+//  func logIn<T>(_ testClass:T, _ testMethod:String = #function, _ file: StaticString = #file, _ line: UInt = #line) -> CanvasUser {
+//    let teacher = Data.getNextTeacher(testClass, testMethod)
+//
+//    let loginInfo = TeacherTestUtils.getUserLoginInfo(teacher)
+//    NativeLoginManager.shared().injectLoginInformation(loginInfo)
+//    coursesListPage.assertPageObjects()
+//    
+//    return teacher
+//  }
 
     // logIn(self)
     func logIn2(_ user: Soseedy_CanvasUser) {
@@ -144,12 +98,12 @@ class TeacherTest: XCTestCase {
    }
   */
   // logIn(teacher)
-  @discardableResult
-  func logIn(_ teacher:CanvasUser, _ file: StaticString = #file, _ line: UInt = #line) -> CanvasUser {
-    let loginInfo = TeacherTestUtils.getUserLoginInfo(teacher)
-    NativeLoginManager.shared().injectLoginInformation(loginInfo)
-    coursesListPage.assertPageObjects()
-
-    return teacher
-  }
+//  @discardableResult
+//  func logIn(_ teacher:CanvasUser, _ file: StaticString = #file, _ line: UInt = #line) -> CanvasUser {
+//    let loginInfo = TeacherTestUtils.getUserLoginInfo(teacher)
+//    NativeLoginManager.shared().injectLoginInformation(loginInfo)
+//    coursesListPage.assertPageObjects()
+//
+//    return teacher
+//  }
 }

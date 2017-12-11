@@ -35,9 +35,9 @@ class AllCoursesListPage {
 
     // MARK: - Helpers
 
-    private func courseCard(_ course: Course) -> GREYElementInteraction {
-        return e.selectBy(id: course.courseCode)
-    }
+//    private func courseCard(_ course: Course) -> GREYElementInteraction {
+//        return e.selectBy(id: course.courseCode)
+//    }
 
     // MARK: - Assertions
 
@@ -48,13 +48,13 @@ class AllCoursesListPage {
         backButton.assertExists()
     }
 
-    func assertHasCourses(_ courses: [Course], _ file: StaticString = #file, _ line: UInt = #line) {
-        grey_fromFile(file, line)
-        
-        for course in courses {
-            courseCard(course).assertExists()
-        }
-    }
+//    func assertHasCourses(_ courses: [Course], _ file: StaticString = #file, _ line: UInt = #line) {
+//        grey_fromFile(file, line)
+//        
+//        for course in courses {
+//            courseCard(course).assertExists()
+//        }
+//    }
 
     // MARK: - UI Actions
 
