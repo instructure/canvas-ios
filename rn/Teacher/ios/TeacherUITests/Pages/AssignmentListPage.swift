@@ -43,10 +43,11 @@ class AssignmentListPage  {
     private func assignmentCell(_ assignment: Soseedy_Assignment) -> GREYElementInteraction {
         return e.selectBy(id: "assignment-list.assignment-list-row.cell-\(assignment.id)")
     }
-//
-//    private func assignmentCellSubtitleLabel(_ assignment: Assignment) -> GREYElementInteraction {
-//        return e.selectBy(id: "assignment-list.assignment-list-row.cell-\(assignment.id)-subtitle-lbl")
-//    }
+
+    private func assignmentCellSubtitleLabel(_ assignment: Soseedy_Assignment) -> GREYElementInteraction {
+        return e.selectBy(id: "assignment-list.assignment-list-row.cell-\(assignment.id)-subtitle-lbl")
+    }
+
     // MARK: - Assertions
 
 //    func assertPageObjects(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
@@ -59,15 +60,15 @@ class AssignmentListPage  {
 //        filterTitleLabel.assertExists()
 //    }
 
-//    func assertHasAssignment(_ assignment: Assignment, _ file: StaticString = #file, _ line: UInt = #line) {
-//        grey_fromFile(file, line)
-//        assignmentCell(assignment).assertExists()
-//    }
-//
-//    func assertHasGradingPeriods(_ assignment: Assignment, _ file: StaticString = #file, _ line: UInt = #line) {
-//        grey_fromFile(file, line)
-//        assignmentCellSubtitleLabel(assignment).assertExists()
-//    }
+    func assertHasAssignment(_ assignment: Soseedy_Assignment, _ file: StaticString = #file, _ line: UInt = #line) {
+        grey_fromFile(file, line)
+        assignmentCell(assignment).assertExists()
+    }
+
+    func assertHasDueDate(_ assignment: Soseedy_Assignment, _ file: StaticString = #file, _ line: UInt = #line) {
+        grey_fromFile(file, line)
+        assignmentCellSubtitleLabel(assignment).assertExists()
+    }
 
     // MARK: - UI Actions
 

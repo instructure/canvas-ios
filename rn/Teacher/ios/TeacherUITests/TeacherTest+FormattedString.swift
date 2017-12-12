@@ -27,8 +27,8 @@ extension TeacherTest {
         case availableTo = "Available to:"
     }
 
-    func submissionTypesFormattedString(_ submissionTypes: [String]) -> [String] {
-        return submissionTypes.map({
+    func submissionTypesFormattedString(_ submissionTypes: [SubmissionType]) -> [String] {
+        return submissionTypes.map { $0.rawValue }.map({
             (submissionType : String) -> String in
             return submissionType.replacingOccurrences(
                 of: "_",

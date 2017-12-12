@@ -15,6 +15,7 @@
 //
 
 class AssignmentDetailsPageTest: TeacherTest {
+    var assignment: Soseedy_Assignment!
 
 //    //TestRail ID = C3109579
 //    func testAssignmentDetailsPage_displaysPageObjects() {
@@ -24,20 +25,13 @@ class AssignmentDetailsPageTest: TeacherTest {
 
     //TestRail ID = C3109579
     func testAssignmentDetailsPage_displaysInstructions() {
-//        openAssignmentDetailsPage(self)
-//        assignmentDetailsPage.assertDisplaysInstructions()
+        getToAssignmentDetails(withDescription: true)
+        assignmentDetailsPage.assertDisplaysInstructions()
     }
 
     //TestRail ID = C3109579
     func testAssignmentDetailsPage_displaysCorrectDetails() {
-        let course = createCourse()
-        let user = createTeacher(in: course)
-        favorite(course, as: user)
-        let assignment = createAssignment(for: course, as: user)
-        logIn2(user)
-        coursesListPage.openCourseDetailsPage(course)
-        courseBrowserPage.openAssignmentListPage()
-        assignmentListPage.openAssignmentDetailsPage(assignment)
+        getToAssignmentDetails()
         assignmentDetailsPage.assertAssignmentDetails(
             assignment.name,
             publishStatusFormattedString(assignment.published))
@@ -45,8 +39,8 @@ class AssignmentDetailsPageTest: TeacherTest {
 
     //TestRail ID = C3134480
     func testAssignmentDetailsPage_displaysNoInstructionsMessage() {
-//        openAssignmentDetailsPage(self)
-//        assignmentDetailsPage.assertDisplaysNoInstructionsView()
+        getToAssignmentDetails(withDescription: false)
+        assignmentDetailsPage.assertDisplaysNoInstructionsView()
     }
 
 /*
@@ -76,37 +70,37 @@ class AssignmentDetailsPageTest: TeacherTest {
 
     //TestRail ID = C3165154
     func testAssignmentDetailsPage_displaysSubmissionTypeNone() {
-//        let (_, assignment) = openAssignmentDetailsPage(self)
-//        assignmentDetailsPage.assertSubmissionTypes(
-//            submissionTypesFormattedString(assignment.submissionTypes))
+        getToAssignmentDetails(submissionTypes: [.none])
+        assignmentDetailsPage.assertSubmissionTypes(
+            submissionTypesFormattedString([.none]))
     }
 
     //TestRail ID = C3165154
     func testAssignmentDetailsPage_displaysSubmissionTypeOnPaper() {
-//        let (_, assignment) = openAssignmentDetailsPage(self)
-//        assignmentDetailsPage.assertSubmissionTypes(
-//            submissionTypesFormattedString(assignment.submissionTypes))
+        getToAssignmentDetails(submissionTypes: [.onPaper])
+        assignmentDetailsPage.assertSubmissionTypes(
+            submissionTypesFormattedString([.onPaper]))
     }
 
     //TestRail ID = C3165154
     func testAssignmentDetailsPage_displaysSubmissionTypeOnlineTextEntry() {
-//        let (_, assignment) = openAssignmentDetailsPage(self)
-//        assignmentDetailsPage.assertSubmissionTypes(
-//            submissionTypesFormattedString(assignment.submissionTypes))
+        getToAssignmentDetails(submissionTypes: [.onlineTextEntry])
+        assignmentDetailsPage.assertSubmissionTypes(
+            submissionTypesFormattedString([.onlineTextEntry]))
     }
 
     //TestRail ID = C3165154
     func testAssignmentDetailsPage_displaysSubmissionTypeOnlineUrl() {
-//        let (_, assignment) = openAssignmentDetailsPage(self)
-//        assignmentDetailsPage.assertSubmissionTypes(
-//            submissionTypesFormattedString(assignment.submissionTypes))
+        getToAssignmentDetails(submissionTypes: [.onlineURL])
+        assignmentDetailsPage.assertSubmissionTypes(
+            submissionTypesFormattedString([.onlineURL]))
     }
 
     //TestRail ID = C3165154
     func testAssignmentDetailsPage_displaysSubmissionTypeOnlineUpload() {
-//        let (_, assignment) = openAssignmentDetailsPage(self)
-//        assignmentDetailsPage.assertSubmissionTypes(
-//            submissionTypesFormattedString(assignment.submissionTypes))
+        getToAssignmentDetails(submissionTypes: [.onlineUpload])
+        assignmentDetailsPage.assertSubmissionTypes(
+            submissionTypesFormattedString([.onlineUpload]))
     }
 
 //    //TestRail ID = C3109579
@@ -120,4 +114,23 @@ class AssignmentDetailsPageTest: TeacherTest {
 //        openAssignmentDetailsPage(self)
 //        assignmentDetailsPage.assertNotSubmittedSubmissionGraph(1)
 //    }
+
+    func getToAssignmentDetails(
+        withDescription: Bool = false,
+        submissionTypes: [SubmissionType] = []
+    ) {
+        let course = createCourse()
+        let user = createTeacher(in: course)
+        favorite(course, as: user)
+        assignment = createAssignment(
+            for: course,
+            as: user,
+            withDescription: withDescription,
+            submissionTypes: submissionTypes
+        )
+        logIn2(user)
+        coursesListPage.openCourseDetailsPage(course)
+        courseBrowserPage.openAssignmentListPage()
+        assignmentListPage.openAssignmentDetailsPage(assignment)
+    }
 }

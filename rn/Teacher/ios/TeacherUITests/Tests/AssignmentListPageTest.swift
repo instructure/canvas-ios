@@ -15,6 +15,7 @@
 //
 
 class AssignmentListPageTest: TeacherTest {
+    var assignment: Soseedy_Assignment!
 
 //    //TestRail ID = C3109578
 //    func testAssignmentListPage_displaysPageObjects() {
@@ -31,16 +32,24 @@ class AssignmentListPageTest: TeacherTest {
 
     //TestRail ID = C3109578
     func testAssignmentListPage_displaysAssignment() {
-//        openAssignmentListPage(self)
-//        let assignment = Data.getNextAssignment(self)
-//        assignmentListPage.assertHasAssignment(assignment)
+        getToAssignmentList()
+        assignmentListPage.assertHasAssignment(assignment)
     }
 
     //TestRail ID = C3134488
-    func testAssignmentListPage_displaysGradingPeriods() {
-//        openAssignmentListPage(self)
-//        let assignment = Data.getNextAssignment(self)
-//        assignmentListPage.assertHasGradingPeriods(assignment)
+    func testAssignmentListPage_displaysDueDate() {
+        getToAssignmentList()
+        assignmentListPage.assertHasDueDate(assignment)
 
+    }
+
+    func getToAssignmentList() {
+        let course = createCourse()
+        let user = createTeacher(in: course)
+        favorite(course, as: user)
+        assignment = createAssignment(for: course, as: user)
+        logIn2(user)
+        coursesListPage.openCourseDetailsPage(course)
+        courseBrowserPage.openAssignmentListPage()
     }
 }

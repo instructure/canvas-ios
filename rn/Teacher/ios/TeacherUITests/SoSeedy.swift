@@ -45,9 +45,19 @@ func createCourse() -> Soseedy_Course {
 
 // MARK: - Assignments
 
-func createAssignment(for course: Soseedy_Course = createCourse(), as teacher: Soseedy_CanvasUser) -> Soseedy_Assignment {
+enum SubmissionType: String {
+    case none = "none"
+    case onPaper = "on_paper"
+    case onlineTextEntry = "online_text_entry"
+    case onlineURL = "online_url"
+    case onlineUpload = "online_upload"
+}
+
+func createAssignment(for course: Soseedy_Course = createCourse(), as teacher: Soseedy_CanvasUser, withDescription: Bool = false, submissionTypes: [SubmissionType] = []) -> Soseedy_Assignment {
     var request = Soseedy_CreateAssignmentRequest()
     request.courseID = course.id
     request.teacherToken = teacher.token
+    request.withDescription = withDescription
+    request.submissionTypes = submissionTypes.map { $0.rawValue }
     return try! client.createassignment(request)
 }

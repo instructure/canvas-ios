@@ -17,7 +17,7 @@
 class CourseListPageTest: TeacherTest {
 
     func testCourseListEmptyPage_displaysEmptyState() {
-        logIn2(teacher())
+        logIn2(createTeacher())
         coursesListPage.assertEmptyStatePageObjects()
     }
 
