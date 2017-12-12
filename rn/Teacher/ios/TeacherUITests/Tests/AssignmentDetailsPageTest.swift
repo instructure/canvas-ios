@@ -30,10 +30,17 @@ class AssignmentDetailsPageTest: TeacherTest {
 
     //TestRail ID = C3109579
     func testAssignmentDetailsPage_displaysCorrectDetails() {
-//        let (_, assignment) = openAssignmentDetailsPage(self)
-//        assignmentDetailsPage.assertAssignmentDetails(
-//            assignment.name,
-//            publishStatusFormattedString(assignment.published))
+        let course = createCourse()
+        let user = createTeacher(in: course)
+        favorite(course, as: user)
+        let assignment = createAssignment(for: course, as: user)
+        logIn2(user)
+        coursesListPage.openCourseDetailsPage(course)
+        courseBrowserPage.openAssignmentListPage()
+        assignmentListPage.openAssignmentDetailsPage(assignment)
+        assignmentDetailsPage.assertAssignmentDetails(
+            assignment.name,
+            publishStatusFormattedString(assignment.published))
     }
 
     //TestRail ID = C3134480

@@ -24,6 +24,8 @@ struct Soseedy_CreateAnnouncementRequest: SwiftProtobuf.Message {
 
   var courseID: Int64 = 0
 
+  var token: String = String()
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -36,6 +38,7 @@ struct Soseedy_CreateAnnouncementRequest: SwiftProtobuf.Message {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularInt64Field(value: &self.courseID)
+      case 2: try decoder.decodeSingularStringField(value: &self.token)
       default: break
       }
     }
@@ -48,6 +51,9 @@ struct Soseedy_CreateAnnouncementRequest: SwiftProtobuf.Message {
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.courseID != 0 {
       try visitor.visitSingularInt64Field(value: self.courseID, fieldNumber: 1)
+    }
+    if !self.token.isEmpty {
+      try visitor.visitSingularStringField(value: self.token, fieldNumber: 2)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -58,6 +64,8 @@ struct Soseedy_CreateDiscussionRequest: SwiftProtobuf.Message {
 
   var courseID: Int64 = 0
 
+  var token: String = String()
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -70,6 +78,7 @@ struct Soseedy_CreateDiscussionRequest: SwiftProtobuf.Message {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularInt64Field(value: &self.courseID)
+      case 2: try decoder.decodeSingularStringField(value: &self.token)
       default: break
       }
     }
@@ -82,6 +91,9 @@ struct Soseedy_CreateDiscussionRequest: SwiftProtobuf.Message {
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.courseID != 0 {
       try visitor.visitSingularInt64Field(value: self.courseID, fieldNumber: 1)
+    }
+    if !self.token.isEmpty {
+      try visitor.visitSingularStringField(value: self.token, fieldNumber: 2)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -146,10 +158,12 @@ fileprivate let _protobuf_package = "soseedy"
 extension Soseedy_CreateAnnouncementRequest: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "courseId"),
+    2: .same(proto: "token"),
   ]
 
   func _protobuf_generated_isEqualTo(other: Soseedy_CreateAnnouncementRequest) -> Bool {
     if self.courseID != other.courseID {return false}
+    if self.token != other.token {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }
@@ -158,10 +172,12 @@ extension Soseedy_CreateAnnouncementRequest: SwiftProtobuf._MessageImplementatio
 extension Soseedy_CreateDiscussionRequest: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "courseId"),
+    2: .same(proto: "token"),
   ]
 
   func _protobuf_generated_isEqualTo(other: Soseedy_CreateDiscussionRequest) -> Bool {
     if self.courseID != other.courseID {return false}
+    if self.token != other.token {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }

@@ -39,10 +39,10 @@ class AssignmentListPage  {
 //                                            grey_accessibilityTrait(UIAccessibilityTraitButton)]))
 //        return backButtonElement
 //    }
-//
-//    private func assignmentCell(_ assignment: Assignment) -> GREYElementInteraction {
-//        return e.selectBy(id: "assignment-list.assignment-list-row.cell-\(assignment.id)")
-//    }
+
+    private func assignmentCell(_ assignment: Soseedy_Assignment) -> GREYElementInteraction {
+        return e.selectBy(id: "assignment-list.assignment-list-row.cell-\(assignment.id)")
+    }
 //
 //    private func assignmentCellSubtitleLabel(_ assignment: Assignment) -> GREYElementInteraction {
 //        return e.selectBy(id: "assignment-list.assignment-list-row.cell-\(assignment.id)-subtitle-lbl")
@@ -75,9 +75,9 @@ class AssignmentListPage  {
 //        grey_fromFile(file, line)
 //        backButton(course).tapUntilHidden()
 //    }
-//
-//    func openAssignmentDetailsPage(_ assignment: Assignment, _ file: StaticString = #file, _ line: UInt = #line) {
-//        grey_fromFile(file, line)
-//        assignmentCell(assignment).tapUntilHidden()
-//    }
+
+    func openAssignmentDetailsPage(_ assignment: Soseedy_Assignment, _ file: StaticString = #file, _ line: UInt = #line) {
+        grey_fromFile(file, line)
+        assignmentCell(assignment).tapUntilHidden()
+    }
 }

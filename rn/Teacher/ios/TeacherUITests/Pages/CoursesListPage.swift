@@ -43,9 +43,9 @@ class CoursesListPage {
 //        return "course-card.kabob-\(course.id)"
 //    }
 
-//    private func courseCard(_ course: Course) -> GREYElementInteraction {
-//        return e.selectBy(id: course.courseCode)
-//    }
+    private func courseCard(_ course: Soseedy_Course) -> GREYElementInteraction {
+        return e.selectBy(id: "course-\(course.id)")
+    }
 
     // MARK: - Assertions
 
@@ -102,8 +102,8 @@ class CoursesListPage {
         seeAllCoursesButton.tap()
     }
 
-//    func openCourseDetailsPage(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
-//        grey_fromFile(file, line)
-//        courseCard(course).tap()
-//    }
+    func openCourseDetailsPage(_ course: Soseedy_Course, _ file: StaticString = #file, _ line: UInt = #line) {
+        grey_fromFile(file, line)
+        courseCard(course).tap()
+    }
 }

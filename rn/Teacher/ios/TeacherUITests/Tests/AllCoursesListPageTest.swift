@@ -18,7 +18,7 @@ class AllCoursesListPageTest: TeacherTest {
 
     //TestRail ID = C3108901
     func testAllCoursesListPage_displaysPageObjects() {
-        logIn2(teacher())
+        logIn2(createTeacher())
 
         coursesListPage.openAllCoursesPage()
         allCoursesListPage.assertPageObjects()

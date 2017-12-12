@@ -34,6 +34,8 @@ struct Soseedy_CreateAssignmentRequest: SwiftProtobuf.Message {
 
   var submissionTypes: [String] = []
 
+  var teacherToken: String = String()
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -51,6 +53,7 @@ struct Soseedy_CreateAssignmentRequest: SwiftProtobuf.Message {
       case 4: try decoder.decodeSingularStringField(value: &self.unlockAt)
       case 5: try decoder.decodeSingularStringField(value: &self.dueAt)
       case 6: try decoder.decodeRepeatedStringField(value: &self.submissionTypes)
+      case 7: try decoder.decodeSingularStringField(value: &self.teacherToken)
       default: break
       }
     }
@@ -78,6 +81,9 @@ struct Soseedy_CreateAssignmentRequest: SwiftProtobuf.Message {
     }
     if !self.submissionTypes.isEmpty {
       try visitor.visitRepeatedStringField(value: self.submissionTypes, fieldNumber: 6)
+    }
+    if !self.teacherToken.isEmpty {
+      try visitor.visitSingularStringField(value: self.teacherToken, fieldNumber: 7)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -251,6 +257,7 @@ extension Soseedy_CreateAssignmentRequest: SwiftProtobuf._MessageImplementationB
     4: .same(proto: "unlockAt"),
     5: .same(proto: "dueAt"),
     6: .same(proto: "submissionTypes"),
+    7: .same(proto: "teacherToken"),
   ]
 
   func _protobuf_generated_isEqualTo(other: Soseedy_CreateAssignmentRequest) -> Bool {
@@ -260,6 +267,7 @@ extension Soseedy_CreateAssignmentRequest: SwiftProtobuf._MessageImplementationB
     if self.unlockAt != other.unlockAt {return false}
     if self.dueAt != other.dueAt {return false}
     if self.submissionTypes != other.submissionTypes {return false}
+    if self.teacherToken != other.teacherToken {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }

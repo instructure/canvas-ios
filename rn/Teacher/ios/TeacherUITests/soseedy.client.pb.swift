@@ -1188,6 +1188,171 @@ internal class Soseedy_SoSeedyCreateCoursePageCall {
   }
 }
 
+/// CreateCourseGroupCategory (Unary)
+internal class Soseedy_SoSeedyCreateCourseGroupCategoryCall {
+  private var call : Call
+
+  /// Create a call.
+  fileprivate init(_ channel: Channel) {
+    self.call = channel.makeCall("/soseedy.SoSeedy/CreateCourseGroupCategory")
+  }
+
+  /// Run the call. Blocks until the reply is received.
+  fileprivate func run(request: Soseedy_CreateCourseGroupCategoryRequest,
+                       metadata: Metadata) throws -> Soseedy_GroupCategory {
+    let sem = DispatchSemaphore(value: 0)
+    var returnCallResult : CallResult!
+    var returnResponse : Soseedy_GroupCategory?
+    _ = try start(request:request, metadata:metadata) {response, callResult in
+      returnResponse = response
+      returnCallResult = callResult
+      sem.signal()
+    }
+    _ = sem.wait(timeout: DispatchTime.distantFuture)
+    if let returnResponse = returnResponse {
+      return returnResponse
+    } else {
+      throw Soseedy_SoSeedyClientError.error(c: returnCallResult)
+    }
+  }
+
+  /// Start the call. Nonblocking.
+  fileprivate func start(request: Soseedy_CreateCourseGroupCategoryRequest,
+                         metadata: Metadata,
+                         completion: @escaping (Soseedy_GroupCategory?, CallResult)->())
+    throws -> Soseedy_SoSeedyCreateCourseGroupCategoryCall {
+
+      let requestData = try request.serializedData()
+      try call.start(.unary,
+                     metadata:metadata,
+                     message:requestData)
+      {(callResult) in
+        if let responseData = callResult.resultData,
+          let response = try? Soseedy_GroupCategory(serializedData:responseData) {
+          completion(response, callResult)
+        } else {
+          completion(nil, callResult)
+        }
+      }
+      return self
+  }
+
+  /// Cancel the call.
+  internal func cancel() {
+    call.cancel()
+  }
+}
+
+/// CreateGroup (Unary)
+internal class Soseedy_SoSeedyCreateGroupCall {
+  private var call : Call
+
+  /// Create a call.
+  fileprivate init(_ channel: Channel) {
+    self.call = channel.makeCall("/soseedy.SoSeedy/CreateGroup")
+  }
+
+  /// Run the call. Blocks until the reply is received.
+  fileprivate func run(request: Soseedy_CreateGroupRequest,
+                       metadata: Metadata) throws -> Soseedy_Group {
+    let sem = DispatchSemaphore(value: 0)
+    var returnCallResult : CallResult!
+    var returnResponse : Soseedy_Group?
+    _ = try start(request:request, metadata:metadata) {response, callResult in
+      returnResponse = response
+      returnCallResult = callResult
+      sem.signal()
+    }
+    _ = sem.wait(timeout: DispatchTime.distantFuture)
+    if let returnResponse = returnResponse {
+      return returnResponse
+    } else {
+      throw Soseedy_SoSeedyClientError.error(c: returnCallResult)
+    }
+  }
+
+  /// Start the call. Nonblocking.
+  fileprivate func start(request: Soseedy_CreateGroupRequest,
+                         metadata: Metadata,
+                         completion: @escaping (Soseedy_Group?, CallResult)->())
+    throws -> Soseedy_SoSeedyCreateGroupCall {
+
+      let requestData = try request.serializedData()
+      try call.start(.unary,
+                     metadata:metadata,
+                     message:requestData)
+      {(callResult) in
+        if let responseData = callResult.resultData,
+          let response = try? Soseedy_Group(serializedData:responseData) {
+          completion(response, callResult)
+        } else {
+          completion(nil, callResult)
+        }
+      }
+      return self
+  }
+
+  /// Cancel the call.
+  internal func cancel() {
+    call.cancel()
+  }
+}
+
+/// CreateGroupMembership (Unary)
+internal class Soseedy_SoSeedyCreateGroupMembershipCall {
+  private var call : Call
+
+  /// Create a call.
+  fileprivate init(_ channel: Channel) {
+    self.call = channel.makeCall("/soseedy.SoSeedy/CreateGroupMembership")
+  }
+
+  /// Run the call. Blocks until the reply is received.
+  fileprivate func run(request: Soseedy_CreateGroupMembershipRequest,
+                       metadata: Metadata) throws -> Soseedy_GroupMembership {
+    let sem = DispatchSemaphore(value: 0)
+    var returnCallResult : CallResult!
+    var returnResponse : Soseedy_GroupMembership?
+    _ = try start(request:request, metadata:metadata) {response, callResult in
+      returnResponse = response
+      returnCallResult = callResult
+      sem.signal()
+    }
+    _ = sem.wait(timeout: DispatchTime.distantFuture)
+    if let returnResponse = returnResponse {
+      return returnResponse
+    } else {
+      throw Soseedy_SoSeedyClientError.error(c: returnCallResult)
+    }
+  }
+
+  /// Start the call. Nonblocking.
+  fileprivate func start(request: Soseedy_CreateGroupMembershipRequest,
+                         metadata: Metadata,
+                         completion: @escaping (Soseedy_GroupMembership?, CallResult)->())
+    throws -> Soseedy_SoSeedyCreateGroupMembershipCall {
+
+      let requestData = try request.serializedData()
+      try call.start(.unary,
+                     metadata:metadata,
+                     message:requestData)
+      {(callResult) in
+        if let responseData = callResult.resultData,
+          let response = try? Soseedy_GroupMembership(serializedData:responseData) {
+          completion(response, callResult)
+        } else {
+          completion(nil, callResult)
+        }
+      }
+      return self
+  }
+
+  /// Cancel the call.
+  internal func cancel() {
+    call.cancel()
+  }
+}
+
 /// Call methods of this class to make API calls.
 internal class Soseedy_SoSeedyService {
   private var channel: Channel
@@ -1533,6 +1698,51 @@ internal class Soseedy_SoSeedyService {
     throws
     -> Soseedy_SoSeedyCreateCoursePageCall {
       return try Soseedy_SoSeedyCreateCoursePageCall(channel).start(request:request,
+                                                 metadata:metadata,
+                                                 completion:completion)
+  }
+  /// Synchronous. Unary.
+  internal func createcoursegroupcategory(_ request: Soseedy_CreateCourseGroupCategoryRequest)
+    throws
+    -> Soseedy_GroupCategory {
+      return try Soseedy_SoSeedyCreateCourseGroupCategoryCall(channel).run(request:request, metadata:metadata)
+  }
+  /// Asynchronous. Unary.
+  internal func createcoursegroupcategory(_ request: Soseedy_CreateCourseGroupCategoryRequest,
+                  completion: @escaping (Soseedy_GroupCategory?, CallResult)->())
+    throws
+    -> Soseedy_SoSeedyCreateCourseGroupCategoryCall {
+      return try Soseedy_SoSeedyCreateCourseGroupCategoryCall(channel).start(request:request,
+                                                 metadata:metadata,
+                                                 completion:completion)
+  }
+  /// Synchronous. Unary.
+  internal func creategroup(_ request: Soseedy_CreateGroupRequest)
+    throws
+    -> Soseedy_Group {
+      return try Soseedy_SoSeedyCreateGroupCall(channel).run(request:request, metadata:metadata)
+  }
+  /// Asynchronous. Unary.
+  internal func creategroup(_ request: Soseedy_CreateGroupRequest,
+                  completion: @escaping (Soseedy_Group?, CallResult)->())
+    throws
+    -> Soseedy_SoSeedyCreateGroupCall {
+      return try Soseedy_SoSeedyCreateGroupCall(channel).start(request:request,
+                                                 metadata:metadata,
+                                                 completion:completion)
+  }
+  /// Synchronous. Unary.
+  internal func creategroupmembership(_ request: Soseedy_CreateGroupMembershipRequest)
+    throws
+    -> Soseedy_GroupMembership {
+      return try Soseedy_SoSeedyCreateGroupMembershipCall(channel).run(request:request, metadata:metadata)
+  }
+  /// Asynchronous. Unary.
+  internal func creategroupmembership(_ request: Soseedy_CreateGroupMembershipRequest,
+                  completion: @escaping (Soseedy_GroupMembership?, CallResult)->())
+    throws
+    -> Soseedy_SoSeedyCreateGroupMembershipCall {
+      return try Soseedy_SoSeedyCreateGroupMembershipCall(channel).start(request:request,
                                                  metadata:metadata,
                                                  completion:completion)
   }

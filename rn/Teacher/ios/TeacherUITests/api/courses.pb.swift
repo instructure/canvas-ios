@@ -58,6 +58,8 @@ struct Soseedy_AddFavoriteCourseRequest: SwiftProtobuf.Message {
 
   var courseID: Int64 = 0
 
+  var token: String = String()
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -70,6 +72,7 @@ struct Soseedy_AddFavoriteCourseRequest: SwiftProtobuf.Message {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularInt64Field(value: &self.courseID)
+      case 2: try decoder.decodeSingularStringField(value: &self.token)
       default: break
       }
     }
@@ -83,6 +86,9 @@ struct Soseedy_AddFavoriteCourseRequest: SwiftProtobuf.Message {
     if self.courseID != 0 {
       try visitor.visitSingularInt64Field(value: self.courseID, fieldNumber: 1)
     }
+    if !self.token.isEmpty {
+      try visitor.visitSingularStringField(value: self.token, fieldNumber: 2)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 }
@@ -95,6 +101,8 @@ struct Soseedy_Course: SwiftProtobuf.Message {
   var name: String = String()
 
   var favorite: Bool = false
+
+  var courseCode: String = String()
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -110,6 +118,7 @@ struct Soseedy_Course: SwiftProtobuf.Message {
       case 1: try decoder.decodeSingularInt64Field(value: &self.id)
       case 2: try decoder.decodeSingularStringField(value: &self.name)
       case 4: try decoder.decodeSingularBoolField(value: &self.favorite)
+      case 5: try decoder.decodeSingularStringField(value: &self.courseCode)
       default: break
       }
     }
@@ -128,6 +137,9 @@ struct Soseedy_Course: SwiftProtobuf.Message {
     }
     if self.favorite != false {
       try visitor.visitSingularBoolField(value: self.favorite, fieldNumber: 4)
+    }
+    if !self.courseCode.isEmpty {
+      try visitor.visitSingularStringField(value: self.courseCode, fieldNumber: 5)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -186,10 +198,12 @@ extension Soseedy_CreateCourseRequest: SwiftProtobuf._MessageImplementationBase,
 extension Soseedy_AddFavoriteCourseRequest: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "courseId"),
+    2: .same(proto: "token"),
   ]
 
   func _protobuf_generated_isEqualTo(other: Soseedy_AddFavoriteCourseRequest) -> Bool {
     if self.courseID != other.courseID {return false}
+    if self.token != other.token {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }
@@ -200,12 +214,14 @@ extension Soseedy_Course: SwiftProtobuf._MessageImplementationBase, SwiftProtobu
     1: .same(proto: "id"),
     2: .same(proto: "name"),
     4: .same(proto: "favorite"),
+    5: .same(proto: "courseCode"),
   ]
 
   func _protobuf_generated_isEqualTo(other: Soseedy_Course) -> Bool {
     if self.id != other.id {return false}
     if self.name != other.name {return false}
     if self.favorite != other.favorite {return false}
+    if self.courseCode != other.courseCode {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }
