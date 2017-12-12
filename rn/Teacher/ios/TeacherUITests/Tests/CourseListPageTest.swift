@@ -17,8 +17,8 @@
 class CourseListPageTest: TeacherTest {
 
     func testCourseListEmptyPage_displaysEmptyState() {
-//        logIn(self)
-//        coursesListPage.assertEmptyStatePageObjects()
+        logIn2(teacher())
+        coursesListPage.assertEmptyStatePageObjects()
     }
 
 //    func testCourseListPage_displaysPageObjects() {
