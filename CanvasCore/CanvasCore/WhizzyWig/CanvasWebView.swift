@@ -172,7 +172,11 @@ extension CanvasWebView: WKNavigationDelegate {
             
             // let's see if it's an #fragment first
             scroll(to: url.fragment, elseDo: {
-                handler(url)
+                if url.scheme != "http" && url.scheme != "https" && UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url)
+                } else {
+                    handler(url)
+                }
             })
 
             return decisionHandler(.cancel)
