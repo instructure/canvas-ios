@@ -21,11 +21,6 @@ class CourseListPageTest: TeacherTest {
         coursesListPage.assertEmptyStatePageObjects()
     }
 
-//    func testCourseListPage_displaysPageObjects() {
-//        logIn(self)
-//        coursesListPage.assertHasFavoritesStatePageObjects()
-//    }
-
     func testCourseListPage_displaysList() {
 //        logIn(self)
 //        let course = Data.getNextCourse(self)

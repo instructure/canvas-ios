@@ -17,19 +17,6 @@
 class AssignmentListPageTest: TeacherTest {
     var assignment: Soseedy_Assignment!
 
-//    //TestRail ID = C3109578
-//    func testAssignmentListPage_displaysPageObjects() {
-//        let course = openAssignmentListPage(self)
-//        assignmentListPage.assertPageObjects(course)
-//    }
-
-/*
-    //TestRail ID = C3134487
-    func testAssignmentListPage_displaysNoAssignmentsView() {
-        // not implemented on iOS yet.
-    }
- */
-
     //TestRail ID = C3109578
     func testAssignmentListPage_displaysAssignment() {
         getToAssignmentList()

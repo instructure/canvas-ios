@@ -22,14 +22,4 @@ class DomainPickerTests: TeacherTest {
         domainPickerPage.assertDomainField(contains: domain)
     }
 
-    // todo: tmp test only. used to validate webdriver logic
-    func testBadLogin() {
-        let domain = "mobileqa.test.instructure.com"
-        domainPickerPage.openDomain(domain)
-
-//        let client = Soseedy_SoSeedyService.init(address: "localhost:50051")
-//        let user:Soseedy_Teacher = try! client.createteacher(Soseedy_CreateTeacherRequest())
-//
-//        canvasLoginPage.logInTmp(loginId: user.username, password: user.password)
-    }
 }

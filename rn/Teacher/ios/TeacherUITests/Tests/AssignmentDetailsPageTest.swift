@@ -17,12 +17,6 @@
 class AssignmentDetailsPageTest: TeacherTest {
     var assignment: Soseedy_Assignment!
 
-//    //TestRail ID = C3109579
-//    func testAssignmentDetailsPage_displaysPageObjects() {
-//        openAssignmentDetailsPage(self)
-//        assignmentDetailsPage.assertPageObjects()
-//    }
-
     //TestRail ID = C3109579
     func testAssignmentDetailsPage_displaysInstructions() {
         getToAssignmentDetails(withDescription: true)
@@ -42,31 +36,6 @@ class AssignmentDetailsPageTest: TeacherTest {
         getToAssignmentDetails(withDescription: false)
         assignmentDetailsPage.assertDisplaysNoInstructionsView()
     }
-
-/*
-    //TestRail ID = C3134481
-    func testAssignmentDetailsPage_displaysClosedAvailability() {
-        // not implemented on iOS yet.
-    }
- */
-
-//    //TestRail ID = C3134483
-//    func testAssignmentDetailsPage_displaysNoToDate() {
-//        openAssignmentDetailsPage(self)
-//        assignmentDetailsPage.assertAvailableFromLabel(
-//            emptyDateFormatttedString(for: dateTitleLabel.availableFrom), false)
-//        assignmentDetailsPage.assertAvailableToLabel(
-//            emptyDateFormatttedString(for: dateTitleLabel.availableTo), true)
-//    }
-
-//    //TestRail ID = C3134482
-//    func testAssignmentDetailsPage_displaysNoFromDate() {
-//        openAssignmentDetailsPage(self)
-//        assignmentDetailsPage.assertAvailableFromLabel(
-//            emptyDateFormatttedString(for: dateTitleLabel.availableFrom), true)
-//        assignmentDetailsPage.assertAvailableToLabel(
-//            emptyDateFormatttedString(for: dateTitleLabel.availableTo), false)
-//    }
 
     //TestRail ID = C3165154
     func testAssignmentDetailsPage_displaysSubmissionTypeNone() {
@@ -102,18 +71,6 @@ class AssignmentDetailsPageTest: TeacherTest {
         assignmentDetailsPage.assertSubmissionTypes(
             submissionTypesFormattedString([.onlineUpload]))
     }
-
-//    //TestRail ID = C3109579
-//    func testAssignmentDetailsPage_displaysSubmittedDonut() {
-//        openAssignmentDetailsPage(self)
-//        assignmentDetailsPage.assertUngradedSubmissionGraph(1)
-//    }
-
-//    //TestRail ID = C3109579
-//    func testAssignmentDetailsPage_displaysNotSubmittedDonut() {
-//        openAssignmentDetailsPage(self)
-//        assignmentDetailsPage.assertNotSubmittedSubmissionGraph(1)
-//    }
 
     func getToAssignmentDetails(
         withDescription: Bool = false,
