@@ -22,8 +22,10 @@ class CourseListPageTest: TeacherTest {
     }
 
     func testCourseListPage_displaysList() {
-//        logIn(self)
-//        let course = Data.getNextCourse(self)
-//        coursesListPage.assertCourseExists(course)
+        let course = createCourse()
+        let user = createTeacher(in: course)
+        favorite(course, as: user)
+        logIn2(user)
+        coursesListPage.assertCourseExists(course)
     }
 }

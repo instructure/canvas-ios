@@ -71,10 +71,10 @@ class CoursesListPage {
         seeAllCoursesButton.assertExists()
     }
 
-//    func assertCourseExists(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
-//        grey_fromFile(file, line)
-//        e.selectBy(id: courseId(course)).assertExists()
-//    }
+    func assertCourseExists(_ course: Soseedy_Course, _ file: StaticString = #file, _ line: UInt = #line) {
+        grey_fromFile(file, line)
+        e.selectBy(id: "course-\(course.id)").assertExists()
+    }
 
 //    func assertCourseDoesNotExist(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
 //        grey_fromFile(file, line)
