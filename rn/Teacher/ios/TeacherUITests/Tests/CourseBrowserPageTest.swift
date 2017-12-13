@@ -18,9 +18,11 @@
 class CourseBrowserPageTest: TeacherTest {
 
     func testCourseBrowserPage_displaysPageObjects() {
-//        logIn(self)
-//        let course = Data.getNextCourse(self)
-//        coursesListPage.openCourseDetailsPage(course)
-//        courseBrowserPage.assertPageObjects(course)
+        let course = createCourse()
+        let teacher = createTeacher(in: course)
+        favorite(course, as: teacher)
+        logIn2(teacher)
+        coursesListPage.openCourseDetailsPage(course)
+        courseBrowserPage.assertPageObjects(course)
     }
 }
