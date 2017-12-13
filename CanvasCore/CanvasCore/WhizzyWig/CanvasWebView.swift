@@ -74,6 +74,7 @@ public class CanvasWebView: WKWebView {
     
     public convenience init() {
         let config = WKWebViewConfiguration()
+        config.allowsInlineMediaPlayback = true
         config.processPool = sharedPool
         self.init(config: config)
     }
