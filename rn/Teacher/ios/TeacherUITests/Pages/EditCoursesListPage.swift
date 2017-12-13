@@ -54,7 +54,7 @@ class EditCoursesListPage {
 
     func assertPageObjects(_ file: StaticString = #file, _ line: UInt = #line) {
         grey_fromFile(file, line)
-        navBarTitleView().assertExists()
+        // navBarTitleView().assertExists()
         doneButton.assertExists()
     }
 
@@ -70,20 +70,20 @@ class EditCoursesListPage {
 //        courseIsNotFavoritedElement.assertExists()
 //    }
 //
-//    func assertHasCourses(_ courses: [Course], _ file: StaticString = #file, _ line: UInt = #line) {
-//        grey_fromFile(file, line)
-//
-//        for course in courses {
-//            let courseIsFavoritedID = "edit-favorites.course-favorite.\(course.id)-favorited"
-//            let courseIsNotFavoritedID = "edit-favorites.course-favorite.\(course.id)-not-favorited"
-//
-//            let courseElement = EarlGrey.select(
-//                elementWithMatcher: grey_anyOf([grey_accessibilityID(courseIsFavoritedID),
-//                                                grey_accessibilityID(courseIsNotFavoritedID)]))
-//
-//            courseElement.assertExists()
-//        }
-//    }
+    func assertHasCourses(_ courses: [Soseedy_Course], _ file: StaticString = #file, _ line: UInt = #line) {
+        grey_fromFile(file, line)
+
+        for course in courses {
+            let courseIsFavoritedID = "edit-favorites.course-favorite.\(course.id)-favorited"
+            let courseIsNotFavoritedID = "edit-favorites.course-favorite.\(course.id)-not-favorited"
+
+            let courseElement = EarlGrey.select(
+                elementWithMatcher: grey_anyOf([grey_accessibilityID(courseIsFavoritedID),
+                                                grey_accessibilityID(courseIsNotFavoritedID)]))
+
+            courseElement.assertExists()
+        }
+    }
 
     // MARK: - UI Actions
 

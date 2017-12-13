@@ -15,43 +15,31 @@
 //
 
 class EditCoursesPageTest: TeacherTest {
+    var courses: [Soseedy_Course]!
 
     func testEditCoursesPage_displaysPageObjects() {
-//        logIn(self)
-//        coursesListPage.openCourseFavoritesEditPage(false)
-//        editCoursesListPage.assertPageObjects()
-//        editCoursesListPage.dismissToFavoriteCoursesPage()
+        getToEditCoursesPage()
+        editCoursesListPage.assertPageObjects()
+        editCoursesListPage.dismissToFavoriteCoursesPage()
     }
 
     func testEditCoursesPage_displaysCourseList() {
-//        logIn(self)
-//        let courses = Data.getAllCourses(self)
-//        coursesListPage.openCourseFavoritesEditPage(false)
-//        editCoursesListPage.assertHasCourses(courses)
-//        editCoursesListPage.dismissToFavoriteCoursesPage()
+        getToEditCoursesPage(numCourses: 2, numFavorites: 1)
+        editCoursesListPage.assertHasCourses(courses)
+        editCoursesListPage.dismissToFavoriteCoursesPage()
     }
 
-//    func testEditCoursesPage_favoriteCourse() {
-//        logIn(self)
-//        let favoritedCourse = Data.getNextFavoriteCourse(self)
-//        let course = Data.getNextCourse(self)
-//        coursesListPage.assertCourseExists(favoritedCourse)
-//        coursesListPage.assertCourseDoesNotExist(course)
-//        coursesListPage.openCourseFavoritesEditPage(false)
-//        editCoursesListPage.toggleNotFavoritedCourse(course)
-//        editCoursesListPage.assertCourseIsFavorited(course)
-//        editCoursesListPage.dismissToFavoriteCoursesPage()
-//        coursesListPage.assertCourseExists(course)
-//    }
-//
-//    func testEditCoursesPage_unfavoriteCourse() {
-//        logIn(self)
-//        let favoritedCourse = Data.getNextFavoriteCourse(self)
-//        coursesListPage.assertCourseExists(favoritedCourse)
-//        coursesListPage.openCourseFavoritesEditPage(false)
-//        editCoursesListPage.toggleFavoritedCourse(favoritedCourse)
-//        editCoursesListPage.assertCourseIsNotfavorited(favoritedCourse)
-//        editCoursesListPage.dismissToFavoriteCoursesPage()
-//        coursesListPage.assertCourseDoesNotExist(favoritedCourse)
-//    }
+    func getToEditCoursesPage(numCourses: Int = 1, numFavorites: Int = 0) {
+        courses = []
+        for _ in 0..<numCourses {
+            courses.append(createCourse())
+        }
+        let teacher = createTeacher(inAll: courses)
+        for i in 0..<numFavorites {
+            favorite(courses[i], as: teacher)
+        }
+        logIn2(teacher)
+        coursesListPage.openCourseFavoritesEditPage(false)
+    }
+
 }

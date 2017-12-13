@@ -12,12 +12,20 @@ let client = Soseedy_SoSeedyService(address: "localhost:50051")
 
 // MARK: - Enrollments
 
-@discardableResult func enroll(_ user: Soseedy_CanvasUser, as type: String, in course: Soseedy_Course) -> Soseedy_Enrollment {
+enum EnrollmentType: String {
+    case teacher = "TeacherEnrollment"
+}
+
+@discardableResult func enroll(_ user: Soseedy_CanvasUser, as type: EnrollmentType, in course: Soseedy_Course) -> Soseedy_Enrollment {
     var enrollRequest = Soseedy_EnrollUserRequest()
     enrollRequest.courseID = course.id
     enrollRequest.userID = user.id
-    enrollRequest.enrollmentType = type
+    enrollRequest.enrollmentType = type.rawValue
     return try! client.enrolluserincourse(enrollRequest)
+}
+
+func enroll(_ user: Soseedy_CanvasUser, as type: EnrollmentType, inAll courses: [Soseedy_Course]) -> [Soseedy_Enrollment] {
+    return courses.map { enroll(user, as: type, in: $0) }
 }
 
 func createUser() -> Soseedy_CanvasUser {
@@ -26,13 +34,19 @@ func createUser() -> Soseedy_CanvasUser {
 
 func createTeacher(in course: Soseedy_Course = createCourse()) -> Soseedy_CanvasUser {
     let user = createUser()
-    enroll(user, as: "TeacherEnrollment", in: course)
+    enroll(user, as: .teacher, in: course)
+    return user
+}
+
+func createTeacher(inAll courses: [Soseedy_Course]) -> Soseedy_CanvasUser {
+    let user = createUser()
+    courses.forEach { enroll(user, as: .teacher, in: $0) }
     return user
 }
 
 // MARK: - Courses
 
-func createCourse() -> Soseedy_Course {
+@discardableResult func createCourse() -> Soseedy_Course {
     return try! client.createcourse(Soseedy_CreateCourseRequest())
 }
 

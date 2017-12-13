@@ -28,7 +28,7 @@ class CoursesListPage {
     // MARK: Elements
 
     private let feedbackButton = e.selectBy(id: "favorited-course-list.feedback-btn")
-    private let editButton = e.selectBy(id: "favorited-course-list.edit-btn")
+    private let editButton = e.selectBy(id: "dashboard.edit-btn")
     private let headerStarImage = e.selectBy(id: "favorited-course-list.header-star-img")
     private let headerCoursesLabel = e.selectBy(id: "favorited-course-list.header-courses-lbl")
     private let seeAllCoursesButton = e.selectBy(id: "dashboard.courses.see-all-btn")
