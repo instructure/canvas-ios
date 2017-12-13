@@ -30,12 +30,20 @@ import Avatar from '../../common/components/Avatar'
 import TypeAheadSearch from '../../common/TypeAheadSearch'
 import ListEmptyComponent from '../../common/components/ListEmptyComponent'
 import RowSeparator from '../../common/components/rows/RowSeparator'
+import CoursesActions from '../courses/actions'
 
-export type Props = NavigationProps & {
+export type AddressBookDataProps = {
+  permissions: { [string]: boolean },
+  courseID: string,
+}
+
+export type Props = {
   onSelect: (selected: AddressBookResult[]) => void,
   context: string,
   name: string,
 }
+
+export type AddressBookProps = NavigationProps & AddressBookDataProps & Props
 
 function isBranch (id: string): boolean {
   return id.startsWith('course') ||
@@ -43,7 +51,7 @@ function isBranch (id: string): boolean {
     id.startsWith('section')
 }
 
-export class AddressBook extends Component<Props, any> {
+export class AddressBook extends Component<AddressBookProps, any> {
 
   typeAhead: TypeAheadSearch
 
@@ -55,6 +63,12 @@ export class AddressBook extends Component<Props, any> {
       searchString: '',
       error: null,
       pending: false,
+    }
+  }
+
+  componentDidMount () {
+    if (!this.props.permissions) {
+      this.props.getCoursePermissions(this.props.courseID)
     }
   }
 
@@ -177,8 +191,15 @@ export class AddressBook extends Component<Props, any> {
   }
 
   data () {
-    let data = this.state.searchResults || []
-    if (!this.state.searchString && !this.props.context.endsWith('sections')) {
+    let permissions = this.props.permissions || {}
+    let data = permissions && this.state.searchResults || []
+    let shouldIncludeBranch = permissions.send_messages_all && permissions.send_messages
+
+    if (!permissions.send_messages) {
+      data = data.filter(result => !result.id.includes('group'))
+    }
+
+    if (shouldIncludeBranch && !this.state.searchString && !this.props.context.endsWith('sections')) {
       data = [this.branchResult(), ...data]
     }
     return data
@@ -211,9 +232,12 @@ const styles = StyleSheet.create({
   },
 })
 
-export function mapStateToProps (state: AppState): AddressBookDataProps {
-  return {}
+export function mapStateToProps (state: AppState, ownProps: Props): AddressBookDataProps {
+  let courseID = ownProps.context.split('_')[1]
+  let courseData = state.entities.courses[courseID]
+  let permissions = courseData && courseData.permissions
+  return { permissions, courseID }
 }
 
-const Connected = connect(mapStateToProps, {})(AddressBook)
+const Connected = connect(mapStateToProps, CoursesActions)(AddressBook)
 export default (Connected: Component<Props, any>)

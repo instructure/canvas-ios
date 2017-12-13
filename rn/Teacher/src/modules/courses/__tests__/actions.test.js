@@ -113,3 +113,23 @@ test('getCourseEnabledFeatures', async () => {
     },
   }])
 })
+
+test('getCoursePermissions', async () => {
+  let permissions = { send_messages: false }
+  let actions = CoursesActions({ getCoursePermissions: apiResponse(permissions) })
+  let result = await testAsyncAction(actions.getCoursePermissions('1'))
+
+  expect(result).toMatchObject([{
+    type: actions.getCoursePermissions.toString(),
+    payload: { courseID: '1' },
+    pending: true,
+  }, {
+    type: actions.getCoursePermissions.toString(),
+    payload: {
+      courseID: '1',
+      result: {
+        data: permissions,
+      },
+    },
+  }])
+})

@@ -41,6 +41,7 @@ const color = (state) => (state || '#FFFFFF00')
 const pending = (state) => (state || 0)
 const error = (state) => (state || null)
 const enabledFeatures = (state) => (state || [])
+const permissions = (state) => (state || {})
 
 const courseContents: Reducer<CourseState, Action> = combineReducers({
   course,
@@ -59,9 +60,10 @@ const courseContents: Reducer<CourseState, Action> = combineReducers({
   pages,
   enabledFeatures,
   gradingPeriods,
+  permissions,
 })
 
-const { refreshCourses, updateCourseColor, getCourseEnabledFeatures } = CourseListActions
+const { refreshCourses, updateCourseColor, getCourseEnabledFeatures, getCoursePermissions } = CourseListActions
 const { updateCourse } = CourseSettingsActions
 
 export const defaultState: { [courseID: string]: CourseState & CourseContentState } = {}
@@ -197,6 +199,17 @@ const coursesData: Reducer<CoursesState, any> = handleActions({
           ...state[courseID],
           pending: state[courseID].pending - 1,
           enabledFeatures: result.data,
+        },
+      }
+    },
+  }),
+  [getCoursePermissions.toString()]: handleAsync({
+    resolved: (state, { result, courseID }) => {
+      return {
+        ...state,
+        [courseID]: {
+          ...state[courseID],
+          permissions: result.data,
         },
       }
     },

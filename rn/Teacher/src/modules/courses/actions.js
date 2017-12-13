@@ -48,6 +48,12 @@ export let CoursesActions = (api: CanvasApi): * => ({
       courseID,
     }
   }),
+  getCoursePermissions: createAction('courses.getPermissions', (courseID: string) => {
+    return {
+      promise: api.getCoursePermissions(courseID),
+      courseID,
+    }
+  }),
 })
 
 export default (CoursesActions(canvas): *)

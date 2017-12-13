@@ -320,3 +320,27 @@ describe('getCourseEnabledFeature', () => {
     })
   })
 })
+
+describe('getCoursePermissions', () => {
+  it('should set the permissions on the course', () => {
+    let action = {
+      type: CoursesActions().getCoursePermissions.toString(),
+      payload: {
+        courseID: '1',
+        result: {
+          data: { send_messages: false },
+        },
+      },
+    }
+
+    let state = {
+      '1': {},
+    }
+    let newState = coursesReducer(state, action)
+    expect(newState).toMatchObject({
+      '1': {
+        permissions: { send_messages: false },
+      },
+    })
+  })
+})

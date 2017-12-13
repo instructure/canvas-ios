@@ -50,11 +50,26 @@ describe('AddressBook', () => {
       context: 'course_1',
       name: 'Address Book Course',
       navigator: template.navigator(),
+      courseID: '1',
+      permissions: {
+        send_messages: true,
+        send_messages_all: true,
+      },
+      getCoursePermissions: jest.fn(),
     }
   })
 
   it('renders', () => {
     testRender(props)
+  })
+
+  it('calls getCoursePermissions when rendered and no permissions are available', () => {
+    let newProps = {
+      ...props,
+      permissions: undefined,
+    }
+    testRender(newProps)
+    expect(newProps.getCoursePermissions).toHaveBeenCalledWith('1')
   })
 
   it('renders "All in" row', () => {
@@ -177,6 +192,33 @@ describe('AddressBook', () => {
     })
   })
 
+  it('doesnt include "All ..." buttons when the send_message is false', () => {
+    props.permissions = {
+      send_message: false,
+    }
+    testRender(props)
+  })
+
+  it('doesnt include "All ..." buttons when the send_message_all is false', () => {
+    props.permissions = {
+      send_message_all: false,
+    }
+    testRender(props)
+  })
+
+  it('doesnt include groups when the send_message is false', () => {
+    props.permissions = {
+      send_message: false,
+    }
+    let groupResult = template.addressBookResult({ id: 'group_1' })
+
+    const screen = render(props)
+    const typeahead: any = explore(screen.toJSON()).selectByType('TypeAheadSearch')
+    typeahead.props.onRequestFinished([u1, u2, groupResult], null)
+    const rows: any[] = explore(screen.toJSON()).query(({ type }) => type === 'Row')
+    expect(rows).toHaveLength(2)
+  })
+
   function render (props: Props, options: Object = {}) {
     return renderer.create(
       <AddressBook {...props} />, options
@@ -189,7 +231,27 @@ describe('AddressBook', () => {
 })
 
 describe('map state to props', () => {
-  it('returns an empty object for now', () => {
-    expect(mapStateToProps(template.appState())).toEqual({})
+  it('returns the courseID', () => {
+    let ownProps = {
+      context: 'course_1',
+    }
+    expect(mapStateToProps(template.appState(), ownProps).courseID).toEqual('1')
+  })
+
+  it('returns the course permissions', () => {
+    let ownProps = {
+      context: 'course_1',
+    }
+    expect(mapStateToProps(template.appState({
+      entities: {
+        courses: {
+          '1': {
+            permissions: { send_message: false },
+          },
+        },
+      },
+    }), ownProps).permissions).toEqual({
+      send_message: false,
+    })
   })
 })

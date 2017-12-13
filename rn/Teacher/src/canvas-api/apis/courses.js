@@ -111,3 +111,7 @@ export function getCourseLicenses (courseID: string): Promise<ApiResponse<Licens
   const licenses = paginate(`courses/${courseID}/content_licenses`, { params: { per_page: 99 } })
   return exhaust(licenses)
 }
+
+export function getCoursePermissions (courseID: string): Promise<ApiResponse<{ [string]: boolean }>> {
+  return httpClient().get(`courses/${courseID}/permissions`)
+}
