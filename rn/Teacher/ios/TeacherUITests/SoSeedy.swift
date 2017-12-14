@@ -8,7 +8,20 @@
 
 import Foundation
 
-let client = Soseedy_SoSeedyService(address: "localhost:50051")
+let address = "localhost:50051"
+let assignmentsClient = Soseedy_SeedyAssignmentsService(address: address)
+let conversationsClient = Soseedy_SeedyConversationsService(address: address)
+let coursesClient = Soseedy_SeedyCoursesService(address: address)
+let discussionsClient = Soseedy_SeedyDiscussionsService(address: address)
+let enrollmentsClient = Soseedy_SeedyEnrollmentsService(address: address)
+let filesClient = Soseedy_SeedyFilesService(address: address)
+let generalClient = Soseedy_SeedyGeneralService(address: address)
+let gradingPeriodsClient = Soseedy_SeedyGradingPeriodsService(address: address)
+let groupsClient = Soseedy_SeedyGroupsService(address: address)
+let pagesClient = Soseedy_SeedyPagesService(address: address)
+let quizzesClient = Soseedy_SeedyQuizzesService(address: address)
+let sectionsClient = Soseedy_SeedySectionsService(address: address)
+let usersClient = Soseedy_SeedyUsersService(address: address)
 
 // MARK: - Enrollments
 
@@ -21,7 +34,7 @@ enum EnrollmentType: String {
     enrollRequest.courseID = course.id
     enrollRequest.userID = user.id
     enrollRequest.enrollmentType = type.rawValue
-    return try! client.enrolluserincourse(enrollRequest)
+    return try! enrollmentsClient.enrolluserincourse(enrollRequest)
 }
 
 func enroll(_ user: Soseedy_CanvasUser, as type: EnrollmentType, inAll courses: [Soseedy_Course]) -> [Soseedy_Enrollment] {
@@ -29,7 +42,7 @@ func enroll(_ user: Soseedy_CanvasUser, as type: EnrollmentType, inAll courses: 
 }
 
 func createUser() -> Soseedy_CanvasUser {
-    return try! client.createcanvasuser(Soseedy_CreateCanvasUserRequest())
+    return try! usersClient.createcanvasuser(Soseedy_CreateCanvasUserRequest())
 }
 
 func createTeacher(in course: Soseedy_Course = createCourse()) -> Soseedy_CanvasUser {
@@ -47,14 +60,14 @@ func createTeacher(inAll courses: [Soseedy_Course]) -> Soseedy_CanvasUser {
 // MARK: - Courses
 
 @discardableResult func createCourse() -> Soseedy_Course {
-    return try! client.createcourse(Soseedy_CreateCourseRequest())
+    return try! coursesClient.createcourse(Soseedy_CreateCourseRequest())
 }
 
 @discardableResult func favorite(_ course: Soseedy_Course, as user: Soseedy_CanvasUser) -> Soseedy_Favorite {
     var request = Soseedy_AddFavoriteCourseRequest()
     request.courseID = course.id
     request.token = user.token
-    return try! client.addfavoritecourse(request)
+    return try! coursesClient.addfavoritecourse(request)
 }
 
 // MARK: - Assignments
@@ -73,5 +86,5 @@ func createAssignment(for course: Soseedy_Course = createCourse(), as teacher: S
     request.teacherToken = teacher.token
     request.withDescription = withDescription
     request.submissionTypes = submissionTypes.map { $0.rawValue }
-    return try! client.createassignment(request)
+    return try! assignmentsClient.createassignment(request)
 }

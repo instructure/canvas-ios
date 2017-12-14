@@ -1,3 +1,6 @@
+#!/usr/bin/env ruby
+require 'fileutils'
+
 def join *args
   path = File.expand_path(File.join(*args))
   abort "Doesn't exist: #{path}" unless File.exist?(path)
@@ -28,7 +31,9 @@ end
 
 includes = includes.map {|path| "-I #{path}"}
 
-swift_dst = join(__dir__, '../../rn/Teacher/ios/TeacherUITests')
+swift_dst = File.join(__dir__, '../../rn/Teacher/ios/TeacherUITests/soseedy')
+FileUtils.rm_rf swift_dst
+FileUtils.mkdir_p swift_dst
 
 command_args = [
     "--plugin=protoc-gen-swift=#{swift_plugin}",
@@ -44,8 +49,14 @@ command = [protoc, command_args].join(new_line).strip
 puts command
 `#{command}`
 
-delete File.join(swift_dst, 'soseedy.server.pb.swift')
-delete File.join(swift_dst, 'swiftgrpc.log')
+Dir.glob(File.join(swift_dst, '*.server.pb.swift')) do |file|
+  delete file
+end
+
+delete join(swift_dst, 'swiftgrpc.log')
+
+# package_name.client.swift
+# Packagename_[serviceName]Service
 
 # protoc <your proto files> \
 # --swift_out=. \

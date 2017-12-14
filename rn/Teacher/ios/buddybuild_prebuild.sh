@@ -69,6 +69,13 @@ if [[ "$BUDDYBUILD_APP_ID" = $TEACHER_UI_JOB_ID ]]; then
   exit 0
 fi
 
+TEACHER_RN_EARLGREY_RUN_JOB_ID=5a31998ddb6814000138d68f
+if [[ "$BUDDYBUILD_APP_ID" = $TEACHER_RN_EARLGREY_RUN_JOB_ID ]]; then
+  echo "Teacher-rn-EarlGrey-run detected. Starting SoSeedy gRPC"
+  java -jar ./scripts/grpc/soseedygrpc-all.jar &
+  exit 0
+fi
+
 pushd ../
 timestamp "Yarn lint"
 retry_command yarn run lint

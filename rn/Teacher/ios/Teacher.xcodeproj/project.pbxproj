@@ -52,7 +52,6 @@
 		B138F3CC1FDF05BA00930603 /* BoringSSL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F93595121F8705B600DBF1B5 /* BoringSSL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B138F3CD1FDF05BA00930603 /* Czlib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F93595111F8705B600DBF1B5 /* Czlib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B138F3CE1FDF05BA00930603 /* gRPC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F93595131F8705B700DBF1B5 /* gRPC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B15324351FE0408C009F4B89 /* groups.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15324341FE0408B009F4B89 /* groups.pb.swift */; };
 		B187ACDB1FDF045700CA1B63 /* CgRPC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F93595101F8705B600DBF1B5 /* CgRPC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B19D76121FDF3F3400CB065A /* SoSeedy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19D76111FDF3F3400CB065A /* SoSeedy.swift */; };
 		DF02A1E31EFC26BE00B17B8D /* InboxPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF02A1E21EFC26BE00B17B8D /* InboxPageTest.swift */; };
@@ -66,19 +65,6 @@
 		F79F609F1EFDA57200ED594E /* TeacherTest+FormattedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79F609E1EFDA57200ED594E /* TeacherTest+FormattedString.swift */; };
 		F7A4A8DA1EDE2A5400809880 /* AllCoursesListPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A4A8D91EDE2A5400809880 /* AllCoursesListPageTest.swift */; };
 		F7A4A8FA1EDE2B6100809880 /* AllCoursesListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A4A8F91EDE2B6100809880 /* AllCoursesListPage.swift */; };
-		F93595191F87065900DBF1B5 /* soseedy.client.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93595181F87065900DBF1B5 /* soseedy.client.pb.swift */; };
-		F935951B1F87066C00DBF1B5 /* soseedy.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F935951A1F87066C00DBF1B5 /* soseedy.pb.swift */; };
-		F93EE7801FDAE932000B2201 /* enrollments.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93EE7751FDAE931000B2201 /* enrollments.pb.swift */; };
-		F93EE7811FDAE932000B2201 /* enrollment_terms.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93EE7761FDAE931000B2201 /* enrollment_terms.pb.swift */; };
-		F93EE7821FDAE932000B2201 /* courses.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93EE7771FDAE931000B2201 /* courses.pb.swift */; };
-		F93EE7831FDAE932000B2201 /* assignments.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93EE7781FDAE931000B2201 /* assignments.pb.swift */; };
-		F93EE7841FDAE932000B2201 /* grading_periods.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93EE7791FDAE931000B2201 /* grading_periods.pb.swift */; };
-		F93EE7851FDAE932000B2201 /* health_check.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93EE77A1FDAE931000B2201 /* health_check.pb.swift */; };
-		F93EE7861FDAE932000B2201 /* quizzes.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93EE77B1FDAE932000B2201 /* quizzes.pb.swift */; };
-		F93EE7871FDAE932000B2201 /* sections.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93EE77C1FDAE932000B2201 /* sections.pb.swift */; };
-		F93EE7881FDAE932000B2201 /* user.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93EE77D1FDAE932000B2201 /* user.pb.swift */; };
-		F93EE7891FDAE932000B2201 /* discussion_topics.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93EE77E1FDAE932000B2201 /* discussion_topics.pb.swift */; };
-		F93EE78A1FDAE932000B2201 /* conversations.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93EE77F1FDAE932000B2201 /* conversations.pb.swift */; };
 		F99A8E671F06C0DA0032449B /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EDE01E735CA50096592C /* AssetsLibrary.framework */; };
 		F99A8E8A1F06C0EC0032449B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EDFC1E735CAC0096592C /* CoreTelephony.framework */; };
 		F99A8E8B1F06C0F40032449B /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EDFE1E735CB10096592C /* CoreText.framework */; };
@@ -87,7 +73,32 @@
 		F99A8E8E1F06C1080032449B /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE041E735CC00096592C /* CoreVideo.framework */; };
 		F99A8E8F1F06C10F0032449B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE061E735CC60096592C /* QuartzCore.framework */; };
 		F99A8E901F06C1150032449B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE081E735CCB0096592C /* SystemConfiguration.framework */; };
-		F9D1501E1FDEF2B200769AC2 /* pages.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D1501D1FDEF2B100769AC2 /* pages.pb.swift */; };
+		F9D0F49E1FE3169C00A92E08 /* soseedy4.client.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F4841FE3169800A92E08 /* soseedy4.client.pb.swift */; };
+		F9D0F49F1FE3169C00A92E08 /* soseedy1.client.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F4851FE3169900A92E08 /* soseedy1.client.pb.swift */; };
+		F9D0F4A01FE3169C00A92E08 /* pages.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F4861FE3169900A92E08 /* pages.pb.swift */; };
+		F9D0F4A11FE3169C00A92E08 /* files.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F4871FE3169900A92E08 /* files.pb.swift */; };
+		F9D0F4A21FE3169C00A92E08 /* user.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F4881FE3169900A92E08 /* user.pb.swift */; };
+		F9D0F4A31FE3169C00A92E08 /* enrollments.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F4891FE3169900A92E08 /* enrollments.pb.swift */; };
+		F9D0F4A41FE3169C00A92E08 /* soseedy2.client.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F48A1FE3169900A92E08 /* soseedy2.client.pb.swift */; };
+		F9D0F4A51FE3169C00A92E08 /* groups.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F48B1FE3169900A92E08 /* groups.pb.swift */; };
+		F9D0F4A61FE3169C00A92E08 /* soseedy11.client.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F48C1FE3169A00A92E08 /* soseedy11.client.pb.swift */; };
+		F9D0F4A71FE3169C00A92E08 /* discussions.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F48D1FE3169A00A92E08 /* discussions.pb.swift */; };
+		F9D0F4A81FE3169C00A92E08 /* soseedy0.client.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F48E1FE3169A00A92E08 /* soseedy0.client.pb.swift */; };
+		F9D0F4A91FE3169C00A92E08 /* soseedy7.client.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F48F1FE3169A00A92E08 /* soseedy7.client.pb.swift */; };
+		F9D0F4AA1FE3169C00A92E08 /* sections.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F4901FE3169A00A92E08 /* sections.pb.swift */; };
+		F9D0F4AB1FE3169C00A92E08 /* soseedy10.client.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F4911FE3169A00A92E08 /* soseedy10.client.pb.swift */; };
+		F9D0F4AC1FE3169C00A92E08 /* quizzes.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F4921FE3169A00A92E08 /* quizzes.pb.swift */; };
+		F9D0F4AD1FE3169C00A92E08 /* general.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F4931FE3169B00A92E08 /* general.pb.swift */; };
+		F9D0F4AE1FE3169C00A92E08 /* soseedy3.client.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F4941FE3169B00A92E08 /* soseedy3.client.pb.swift */; };
+		F9D0F4AF1FE3169C00A92E08 /* soseedy5.client.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F4951FE3169B00A92E08 /* soseedy5.client.pb.swift */; };
+		F9D0F4B01FE3169C00A92E08 /* soseedy8.client.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F4961FE3169B00A92E08 /* soseedy8.client.pb.swift */; };
+		F9D0F4B11FE3169C00A92E08 /* conversations.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F4971FE3169B00A92E08 /* conversations.pb.swift */; };
+		F9D0F4B21FE3169C00A92E08 /* soseedy12.client.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F4981FE3169B00A92E08 /* soseedy12.client.pb.swift */; };
+		F9D0F4B31FE3169C00A92E08 /* courses.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F4991FE3169C00A92E08 /* courses.pb.swift */; };
+		F9D0F4B41FE3169C00A92E08 /* soseedy6.client.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F49A1FE3169C00A92E08 /* soseedy6.client.pb.swift */; };
+		F9D0F4B51FE3169C00A92E08 /* grading_periods.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F49B1FE3169C00A92E08 /* grading_periods.pb.swift */; };
+		F9D0F4B61FE3169C00A92E08 /* soseedy9.client.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F49C1FE3169C00A92E08 /* soseedy9.client.pb.swift */; };
+		F9D0F4B71FE3169C00A92E08 /* assignments.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F49D1FE3169C00A92E08 /* assignments.pb.swift */; };
 		F9D224691EB7C51000BB0990 /* EditCoursesPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D224681EB7C51000BB0990 /* EditCoursesPageTest.swift */; };
 		F9FDB9351C9FB4F9CF7E0F94 /* Pods_defaults_Teacher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */; };
 /* End PBXBuildFile section */
@@ -249,7 +260,6 @@
 		61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Teacher/AppDelegate.swift; sourceTree = "<group>"; };
 		7448D73B0E788B7806B47BFC /* Pods-defaults-Teacher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.debug.xcconfig"; sourceTree = "<group>"; };
 		9210A7D2CE7CB864C8337310 /* Pods-defaults-Teacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.release.xcconfig"; sourceTree = "<group>"; };
-		B15324341FE0408B009F4B89 /* groups.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = groups.pb.swift; path = api/groups.pb.swift; sourceTree = "<group>"; };
 		B170B0651F58756E00B92700 /* SoLazy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B19D76111FDF3F3400CB065A /* SoSeedy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoSeedy.swift; sourceTree = "<group>"; };
 		D063D27A1B3640208ABF74D4 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -269,21 +279,33 @@
 		F93595111F8705B600DBF1B5 /* Czlib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Czlib.framework; path = ../../../ExternalFrameworks/Czlib.framework; sourceTree = "<group>"; };
 		F93595121F8705B600DBF1B5 /* BoringSSL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BoringSSL.framework; path = ../../../ExternalFrameworks/BoringSSL.framework; sourceTree = "<group>"; };
 		F93595131F8705B700DBF1B5 /* gRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = gRPC.framework; path = ../../../ExternalFrameworks/gRPC.framework; sourceTree = "<group>"; };
-		F93595181F87065900DBF1B5 /* soseedy.client.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = soseedy.client.pb.swift; sourceTree = "<group>"; };
-		F935951A1F87066C00DBF1B5 /* soseedy.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = soseedy.pb.swift; sourceTree = "<group>"; };
-		F93EE7751FDAE931000B2201 /* enrollments.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = enrollments.pb.swift; path = api/enrollments.pb.swift; sourceTree = "<group>"; };
-		F93EE7761FDAE931000B2201 /* enrollment_terms.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = enrollment_terms.pb.swift; path = api/enrollment_terms.pb.swift; sourceTree = "<group>"; };
-		F93EE7771FDAE931000B2201 /* courses.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = courses.pb.swift; path = api/courses.pb.swift; sourceTree = "<group>"; };
-		F93EE7781FDAE931000B2201 /* assignments.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = assignments.pb.swift; path = api/assignments.pb.swift; sourceTree = "<group>"; };
-		F93EE7791FDAE931000B2201 /* grading_periods.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = grading_periods.pb.swift; path = api/grading_periods.pb.swift; sourceTree = "<group>"; };
-		F93EE77A1FDAE931000B2201 /* health_check.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = health_check.pb.swift; path = api/health_check.pb.swift; sourceTree = "<group>"; };
-		F93EE77B1FDAE932000B2201 /* quizzes.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = quizzes.pb.swift; path = api/quizzes.pb.swift; sourceTree = "<group>"; };
-		F93EE77C1FDAE932000B2201 /* sections.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = sections.pb.swift; path = api/sections.pb.swift; sourceTree = "<group>"; };
-		F93EE77D1FDAE932000B2201 /* user.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = user.pb.swift; path = api/user.pb.swift; sourceTree = "<group>"; };
-		F93EE77E1FDAE932000B2201 /* discussion_topics.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = discussion_topics.pb.swift; path = api/discussion_topics.pb.swift; sourceTree = "<group>"; };
-		F93EE77F1FDAE932000B2201 /* conversations.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = conversations.pb.swift; path = api/conversations.pb.swift; sourceTree = "<group>"; };
 		F99A8E911F06C1450032449B /* bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bridge.h; sourceTree = "<group>"; };
-		F9D1501D1FDEF2B100769AC2 /* pages.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = pages.pb.swift; path = api/pages.pb.swift; sourceTree = "<group>"; };
+		F9D0F4841FE3169800A92E08 /* soseedy4.client.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = soseedy4.client.pb.swift; sourceTree = "<group>"; };
+		F9D0F4851FE3169900A92E08 /* soseedy1.client.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = soseedy1.client.pb.swift; sourceTree = "<group>"; };
+		F9D0F4861FE3169900A92E08 /* pages.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pages.pb.swift; sourceTree = "<group>"; };
+		F9D0F4871FE3169900A92E08 /* files.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = files.pb.swift; sourceTree = "<group>"; };
+		F9D0F4881FE3169900A92E08 /* user.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = user.pb.swift; sourceTree = "<group>"; };
+		F9D0F4891FE3169900A92E08 /* enrollments.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = enrollments.pb.swift; sourceTree = "<group>"; };
+		F9D0F48A1FE3169900A92E08 /* soseedy2.client.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = soseedy2.client.pb.swift; sourceTree = "<group>"; };
+		F9D0F48B1FE3169900A92E08 /* groups.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = groups.pb.swift; sourceTree = "<group>"; };
+		F9D0F48C1FE3169A00A92E08 /* soseedy11.client.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = soseedy11.client.pb.swift; sourceTree = "<group>"; };
+		F9D0F48D1FE3169A00A92E08 /* discussions.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = discussions.pb.swift; sourceTree = "<group>"; };
+		F9D0F48E1FE3169A00A92E08 /* soseedy0.client.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = soseedy0.client.pb.swift; sourceTree = "<group>"; };
+		F9D0F48F1FE3169A00A92E08 /* soseedy7.client.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = soseedy7.client.pb.swift; sourceTree = "<group>"; };
+		F9D0F4901FE3169A00A92E08 /* sections.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sections.pb.swift; sourceTree = "<group>"; };
+		F9D0F4911FE3169A00A92E08 /* soseedy10.client.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = soseedy10.client.pb.swift; sourceTree = "<group>"; };
+		F9D0F4921FE3169A00A92E08 /* quizzes.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = quizzes.pb.swift; sourceTree = "<group>"; };
+		F9D0F4931FE3169B00A92E08 /* general.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = general.pb.swift; sourceTree = "<group>"; };
+		F9D0F4941FE3169B00A92E08 /* soseedy3.client.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = soseedy3.client.pb.swift; sourceTree = "<group>"; };
+		F9D0F4951FE3169B00A92E08 /* soseedy5.client.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = soseedy5.client.pb.swift; sourceTree = "<group>"; };
+		F9D0F4961FE3169B00A92E08 /* soseedy8.client.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = soseedy8.client.pb.swift; sourceTree = "<group>"; };
+		F9D0F4971FE3169B00A92E08 /* conversations.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = conversations.pb.swift; sourceTree = "<group>"; };
+		F9D0F4981FE3169B00A92E08 /* soseedy12.client.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = soseedy12.client.pb.swift; sourceTree = "<group>"; };
+		F9D0F4991FE3169C00A92E08 /* courses.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = courses.pb.swift; sourceTree = "<group>"; };
+		F9D0F49A1FE3169C00A92E08 /* soseedy6.client.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = soseedy6.client.pb.swift; sourceTree = "<group>"; };
+		F9D0F49B1FE3169C00A92E08 /* grading_periods.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = grading_periods.pb.swift; sourceTree = "<group>"; };
+		F9D0F49C1FE3169C00A92E08 /* soseedy9.client.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = soseedy9.client.pb.swift; sourceTree = "<group>"; };
+		F9D0F49D1FE3169C00A92E08 /* assignments.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = assignments.pb.swift; sourceTree = "<group>"; };
 		F9D224681EB7C51000BB0990 /* EditCoursesPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCoursesPageTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -406,14 +428,12 @@
 		61B536591E7749F5000FEABB /* TeacherUITests */ = {
 			isa = PBXGroup;
 			children = (
+				F9D0F3FF1FE3054F00A92E08 /* soseedy */,
 				2CEC445D1E8AABBD00AF7344 /* Helpers */,
 				61B536DC1E78491B000FEABB /* Tests */,
 				61B536C11E783EB2000FEABB /* Pages */,
 				61B5365C1E7749F5000FEABB /* Info.plist */,
 				F99A8E911F06C1450032449B /* bridge.h */,
-				F93EE7741FDAE916000B2201 /* api */,
-				F93595181F87065900DBF1B5 /* soseedy.client.pb.swift */,
-				F935951A1F87066C00DBF1B5 /* soseedy.pb.swift */,
 			);
 			path = TeacherUITests;
 			sourceTree = "<group>";
@@ -488,24 +508,37 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		F93EE7741FDAE916000B2201 /* api */ = {
+		F9D0F3FF1FE3054F00A92E08 /* soseedy */ = {
 			isa = PBXGroup;
 			children = (
-				F93EE7781FDAE931000B2201 /* assignments.pb.swift */,
-				B15324341FE0408B009F4B89 /* groups.pb.swift */,
-				F9D1501D1FDEF2B100769AC2 /* pages.pb.swift */,
-				F93EE77F1FDAE932000B2201 /* conversations.pb.swift */,
-				F93EE7771FDAE931000B2201 /* courses.pb.swift */,
-				F93EE77E1FDAE932000B2201 /* discussion_topics.pb.swift */,
-				F93EE7761FDAE931000B2201 /* enrollment_terms.pb.swift */,
-				F93EE7751FDAE931000B2201 /* enrollments.pb.swift */,
-				F93EE7791FDAE931000B2201 /* grading_periods.pb.swift */,
-				F93EE77A1FDAE931000B2201 /* health_check.pb.swift */,
-				F93EE77B1FDAE932000B2201 /* quizzes.pb.swift */,
-				F93EE77C1FDAE932000B2201 /* sections.pb.swift */,
-				F93EE77D1FDAE932000B2201 /* user.pb.swift */,
+				F9D0F49D1FE3169C00A92E08 /* assignments.pb.swift */,
+				F9D0F4971FE3169B00A92E08 /* conversations.pb.swift */,
+				F9D0F4991FE3169C00A92E08 /* courses.pb.swift */,
+				F9D0F48D1FE3169A00A92E08 /* discussions.pb.swift */,
+				F9D0F4891FE3169900A92E08 /* enrollments.pb.swift */,
+				F9D0F4871FE3169900A92E08 /* files.pb.swift */,
+				F9D0F4931FE3169B00A92E08 /* general.pb.swift */,
+				F9D0F49B1FE3169C00A92E08 /* grading_periods.pb.swift */,
+				F9D0F48B1FE3169900A92E08 /* groups.pb.swift */,
+				F9D0F4861FE3169900A92E08 /* pages.pb.swift */,
+				F9D0F4921FE3169A00A92E08 /* quizzes.pb.swift */,
+				F9D0F4901FE3169A00A92E08 /* sections.pb.swift */,
+				F9D0F48E1FE3169A00A92E08 /* soseedy0.client.pb.swift */,
+				F9D0F4851FE3169900A92E08 /* soseedy1.client.pb.swift */,
+				F9D0F48A1FE3169900A92E08 /* soseedy2.client.pb.swift */,
+				F9D0F4941FE3169B00A92E08 /* soseedy3.client.pb.swift */,
+				F9D0F4841FE3169800A92E08 /* soseedy4.client.pb.swift */,
+				F9D0F4951FE3169B00A92E08 /* soseedy5.client.pb.swift */,
+				F9D0F49A1FE3169C00A92E08 /* soseedy6.client.pb.swift */,
+				F9D0F48F1FE3169A00A92E08 /* soseedy7.client.pb.swift */,
+				F9D0F4961FE3169B00A92E08 /* soseedy8.client.pb.swift */,
+				F9D0F49C1FE3169C00A92E08 /* soseedy9.client.pb.swift */,
+				F9D0F4911FE3169A00A92E08 /* soseedy10.client.pb.swift */,
+				F9D0F48C1FE3169A00A92E08 /* soseedy11.client.pb.swift */,
+				F9D0F4981FE3169B00A92E08 /* soseedy12.client.pb.swift */,
+				F9D0F4881FE3169900A92E08 /* user.pb.swift */,
 			);
-			name = api;
+			path = soseedy;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -965,46 +998,57 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F93EE7831FDAE932000B2201 /* assignments.pb.swift in Sources */,
+				F9D0F4B21FE3169C00A92E08 /* soseedy12.client.pb.swift in Sources */,
 				61B537311E786A58000FEABB /* DomainPickerPage.swift in Sources */,
+				F9D0F4B41FE3169C00A92E08 /* soseedy6.client.pb.swift in Sources */,
+				F9D0F4B31FE3169C00A92E08 /* courses.pb.swift in Sources */,
+				F9D0F4AE1FE3169C00A92E08 /* soseedy3.client.pb.swift in Sources */,
+				F9D0F4A31FE3169C00A92E08 /* enrollments.pb.swift in Sources */,
 				61B537301E786A54000FEABB /* Pages.swift in Sources */,
-				F93EE7881FDAE932000B2201 /* user.pb.swift in Sources */,
 				49B274C21E8437D700828E42 /* CanvasLoginPage.swift in Sources */,
-				F93EE7841FDAE932000B2201 /* grading_periods.pb.swift in Sources */,
+				F9D0F4A21FE3169C00A92E08 /* user.pb.swift in Sources */,
 				2C62DC7B1E8BF532006638F3 /* CourseListPageTest.swift in Sources */,
+				F9D0F49E1FE3169C00A92E08 /* soseedy4.client.pb.swift in Sources */,
 				2F087B331EC508BB0042C03E /* CourseSettingsPageTest.swift in Sources */,
+				F9D0F4A91FE3169C00A92E08 /* soseedy7.client.pb.swift in Sources */,
+				F9D0F4AD1FE3169C00A92E08 /* general.pb.swift in Sources */,
+				F9D0F4A11FE3169C00A92E08 /* files.pb.swift in Sources */,
+				F9D0F4AB1FE3169C00A92E08 /* soseedy10.client.pb.swift in Sources */,
 				61B5372F1E786A51000FEABB /* DomainPickerTests.swift in Sources */,
+				F9D0F49F1FE3169C00A92E08 /* soseedy1.client.pb.swift in Sources */,
 				F79F609F1EFDA57200ED594E /* TeacherTest+FormattedString.swift in Sources */,
+				F9D0F4AC1FE3169C00A92E08 /* quizzes.pb.swift in Sources */,
 				2F087B541EC509190042C03E /* CourseSettingsPage.swift in Sources */,
+				F9D0F4B61FE3169C00A92E08 /* soseedy9.client.pb.swift in Sources */,
+				F9D0F4AA1FE3169C00A92E08 /* sections.pb.swift in Sources */,
+				F9D0F4A71FE3169C00A92E08 /* discussions.pb.swift in Sources */,
 				F756F7761EEF07FA007C1417 /* AssignmentListPage.swift in Sources */,
+				F9D0F4A41FE3169C00A92E08 /* soseedy2.client.pb.swift in Sources */,
+				F9D0F4A61FE3169C00A92E08 /* soseedy11.client.pb.swift in Sources */,
+				F9D0F4B71FE3169C00A92E08 /* assignments.pb.swift in Sources */,
 				2F0879311EC3C1DB0042C03E /* CourseBrowserPage.swift in Sources */,
+				F9D0F4B01FE3169C00A92E08 /* soseedy8.client.pb.swift in Sources */,
 				DF02A22F1EFC43A400B17B8D /* TabBarControllerPage.swift in Sources */,
 				061073911EA11FD800BEB914 /* CoursesListPage.swift in Sources */,
+				F9D0F4B51FE3169C00A92E08 /* grading_periods.pb.swift in Sources */,
 				F7A4A8DA1EDE2A5400809880 /* AllCoursesListPageTest.swift in Sources */,
 				0610738F1EA11F5300BEB914 /* TeacherTest.swift in Sources */,
 				F756F7781EEF0830007C1417 /* AssignmentDetailsPageTest.swift in Sources */,
-				B15324351FE0408C009F4B89 /* groups.pb.swift in Sources */,
 				B19D76121FDF3F3400CB065A /* SoSeedy.swift in Sources */,
-				F9D1501E1FDEF2B200769AC2 /* pages.pb.swift in Sources */,
-				F93EE78A1FDAE932000B2201 /* conversations.pb.swift in Sources */,
 				061073931EA11FED00BEB914 /* EditCoursesListPage.swift in Sources */,
+				F9D0F4B11FE3169C00A92E08 /* conversations.pb.swift in Sources */,
 				F9D224691EB7C51000BB0990 /* EditCoursesPageTest.swift in Sources */,
 				DF02A2091EFC31C000B17B8D /* InboxPage.swift in Sources */,
+				F9D0F4A01FE3169C00A92E08 /* pages.pb.swift in Sources */,
 				2F0879101EC3C04F0042C03E /* CourseBrowserPageTest.swift in Sources */,
 				F756F74D1EEF0562007C1417 /* TeacherTest+CourseNavigation.swift in Sources */,
 				F756F77A1EEF0836007C1417 /* AssignmentListPageTest.swift in Sources */,
-				F93EE7861FDAE932000B2201 /* quizzes.pb.swift in Sources */,
+				F9D0F4AF1FE3169C00A92E08 /* soseedy5.client.pb.swift in Sources */,
 				F7A4A8FA1EDE2B6100809880 /* AllCoursesListPage.swift in Sources */,
-				F93EE7801FDAE932000B2201 /* enrollments.pb.swift in Sources */,
-				F93EE7821FDAE932000B2201 /* courses.pb.swift in Sources */,
-				F93EE7851FDAE932000B2201 /* health_check.pb.swift in Sources */,
+				F9D0F4A81FE3169C00A92E08 /* soseedy0.client.pb.swift in Sources */,
 				DF02A1E31EFC26BE00B17B8D /* InboxPageTest.swift in Sources */,
-				F93595191F87065900DBF1B5 /* soseedy.client.pb.swift in Sources */,
+				F9D0F4A51FE3169C00A92E08 /* groups.pb.swift in Sources */,
 				F756F7741EEF07F5007C1417 /* AssignmentDetailsPage.swift in Sources */,
-				F93EE7811FDAE932000B2201 /* enrollment_terms.pb.swift in Sources */,
-				F93EE7871FDAE932000B2201 /* sections.pb.swift in Sources */,
-				F935951B1F87066C00DBF1B5 /* soseedy.pb.swift in Sources */,
-				F93EE7891FDAE932000B2201 /* discussion_topics.pb.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
