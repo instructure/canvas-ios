@@ -18,7 +18,7 @@
 import { NativeModules, ActionSheetIOS, Linking, AlertIOS } from 'react-native'
 import React from 'react'
 import Profile from '../Profile.js'
-import explore from '../../../../test/helpers/explore'
+import app from '../../app'
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer'
@@ -48,6 +48,7 @@ describe('Profile Tests', () => {
       ...NativeModules.RNMail,
       canSendMail: true,
     }
+    app.setCurrentApp('teacher')
   })
   it('renders correctly', () => {
     const tree = renderer.create(
@@ -55,18 +56,55 @@ describe('Profile Tests', () => {
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
-
-    const view = explore(tree).selectByID('module.profile') || {}
-    expect(view.props.accessible).toBeTruthy()
   })
 
-  it('logout called', () => {
+  it('renders correctly for students', () => {
+    app.setCurrentApp('student')
+    const tree = renderer.create(
+      <Profile navigator={navigator} />
+    ).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('logout methods called', () => {
     const instance = renderer.create(
       <Profile navigator={navigator} />
     ).getInstance()
 
     instance.logout()
     expect(NativeModules.NativeLogin.logout).toHaveBeenCalled()
+    instance.switchUser()
+    expect(NativeModules.NativeLogin.switchUser).toHaveBeenCalled()
+  })
+
+  it('navigate to student settings', async () => {
+    var navigator = template.navigator({
+      dismiss: jest.fn(() => {
+        return Promise.resolve()
+      }),
+    })
+
+    app.setCurrentApp('student')
+    const instance = renderer.create(
+      <Profile navigator={navigator} />
+    ).getInstance()
+    await instance.settings()
+    expect(navigator.show).toHaveBeenCalledWith('/profile/settings', { modal: true })
+  })
+
+  it('navigate to user files', async () => {
+    var navigator = template.navigator({
+      dismiss: jest.fn(() => {
+        return Promise.resolve()
+      }),
+    })
+
+    const instance = renderer.create(
+      <Profile navigator={navigator} />
+    ).getInstance()
+    await instance.userFiles()
+    expect(navigator.show).toHaveBeenCalledWith('/users/self/files', { modal: true })
   })
 
   it('shows the action sheet', () => {
@@ -156,14 +194,18 @@ describe('Profile Tests', () => {
     expect(NativeModules.RNMail.mail).not.toHaveBeenCalled()
   })
 
-  it('secret tap!', () => {
-    const navigator = template.navigator()
+  it('secret tap!', async () => {
+    var navigator = template.navigator({
+      dismiss: jest.fn(() => {
+        return Promise.resolve()
+      }),
+    })
     const instance = renderer.create(
       <Profile navigator={navigator}/>
     ).getInstance()
     var times = 12
     for (var i = 0; i < times; i++) {
-      instance.secretTap()
+      await instance.secretTap()
     }
     expect(navigator.show).toHaveBeenCalled()
   })

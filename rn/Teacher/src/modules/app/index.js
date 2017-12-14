@@ -21,10 +21,12 @@ import { type Course } from '../../canvas-api'
 
 export type AppId = 'student' | 'teacher'
 export type App = {
+  appId: AppID,
   filterCourse: (course: Course) => boolean,
 }
 
 const teacher = {
+  appId: 'teacher',
   filterCourse: (course: Course): boolean => {
     if (course.access_restricted_by_date) return false
     const enrollments = course.enrollments
@@ -41,6 +43,7 @@ const teacher = {
 }
 
 const student = {
+  appId: 'student',
   filterCourse: (course: Course): boolean => !course.access_restricted_by_date,
 }
 

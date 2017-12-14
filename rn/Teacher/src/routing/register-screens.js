@@ -15,7 +15,6 @@
 //
 
 // @flow
-
 import AllCourseList from '../modules/courses/all/AllCourseList'
 import EditFavorites from '../modules/courses/edit-favorites/EditFavorites'
 import CourseDetails from '../modules/courses/details/CourseDetails'
@@ -143,5 +142,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/wiki/:url', wrap(PageDetails), store)
   registerScreen('/courses/:courseID/pages/:url', wrap(PageDetails), store)
   registerScreen('/courses/:courseID/pages/:url/edit', wrap(PageEdit), store)
+  registerScreen('/users/self/files')
+  registerScreen('/profile/settings')
   registerScreen('/ui', wrap(UI), store)
 }

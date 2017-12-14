@@ -266,7 +266,7 @@ export class Dashboard extends React.Component<Props, State> {
             image: Images.hamburger,
             testID: 'favorited-course-list.profile-btn',
             action: this.showProfile,
-            accessibilityLabel: i18n('Profile'),
+            accessibilityLabel: i18n('Profile Menu'),
           },
         ],
       }

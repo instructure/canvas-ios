@@ -42,6 +42,7 @@ NativeModules.NativeAccessibility = {
 
 NativeModules.NativeLogin = {
   logout: jest.fn(),
+  switchUser: jest.fn(),
 }
 
 NativeModules.WindowTraitsManager = {
@@ -167,3 +168,10 @@ global.XMLHttpRequest = require('xhr2').XMLHttpRequest
 import './../../src/common/global-style'
 
 jest.mock('../../src/common/components/AuthenticatedWebView.js', () => 'AuthenticatedWebView')
+jest.mock('react-native-device-info', () => {
+  return {
+    getVersion: () => {
+      return '1.0'
+    },
+  }
+})

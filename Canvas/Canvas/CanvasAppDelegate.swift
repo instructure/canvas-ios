@@ -257,10 +257,20 @@ extension AppDelegate: RCTBridgeDelegate {
             let url = URL(string: "api/v1/courses/\(courseID)/tabs")
             return Router.shared().controller(forHandling: url)
         })
+
+        HelmManager.shared.registerNativeViewController(for: "/users/self/files", factory: { props in
+            guard let folderController = FolderViewController(interfaceStyle: FolderInterfaceStyleLight) else { return nil }
+            guard let canvasAPI = CKCanvasAPI.current() else { return nil }
+            folderController.canvasAPI = canvasAPI
+            folderController.title = NSLocalizedString("Files", comment: "")
+            let context = CKContextInfo(from: canvasAPI.user)
+            folderController.loadRootFolder(forContext: context)
+            return UINavigationController(rootViewController: folderController)
+        })
         
-        HelmManager.shared.registerNativeViewController(for: "/profile", factory: { props in
-            guard let session = self.session else { return nil }
-            return profileController(session)
+        HelmManager.shared.registerNativeViewController(for: "/profile/settings", factory: { props in
+            let settings = SettingsViewController.controller(CKCanvasAPI.current())
+            return UINavigationController(rootViewController: settings)
         })
     }
     

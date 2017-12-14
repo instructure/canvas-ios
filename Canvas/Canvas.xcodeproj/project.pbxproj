@@ -221,7 +221,7 @@
 		492706921CF4B88600C631C6 /* CoursesTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 492706831CF4B88600C631C6 /* CoursesTab.storyboard */; };
 		492706931CF4B88600C631C6 /* FileViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706841CF4B88600C631C6 /* FileViewController.h */; };
 		492706941CF4B88600C631C6 /* FileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706851CF4B88600C631C6 /* FileViewController.m */; };
-		492706951CF4B88600C631C6 /* FolderViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706861CF4B88600C631C6 /* FolderViewController.h */; };
+		492706951CF4B88600C631C6 /* FolderViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706861CF4B88600C631C6 /* FolderViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		492706961CF4B88600C631C6 /* FolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706871CF4B88600C631C6 /* FolderViewController.m */; };
 		492706971CF4B88600C631C6 /* NoPreviewAvailableController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706881CF4B88600C631C6 /* NoPreviewAvailableController.h */; };
 		492706981CF4B88600C631C6 /* NoPreviewAvailableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706891CF4B88600C631C6 /* NoPreviewAvailableController.m */; };
@@ -258,9 +258,9 @@
 		492706E51CF4BAB500C631C6 /* VideoRecorderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706E31CF4BAB500C631C6 /* VideoRecorderController.m */; };
 		4927077C1CF4BB2100C631C6 /* CBIModuleProgressNotifications.h in Headers */ = {isa = PBXBuildFile; fileRef = 492707691CF4BB2100C631C6 /* CBIModuleProgressNotifications.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4927077D1CF4BB2100C631C6 /* CBIModuleProgressNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927076A1CF4BB2100C631C6 /* CBIModuleProgressNotifications.m */; };
-		492707C31CF4BBBA00C631C6 /* PagedItemsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492707BE1CF4BBBA00C631C6 /* PagedItemsViewController.h */; };
+		492707C31CF4BBBA00C631C6 /* PagedItemsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492707BE1CF4BBBA00C631C6 /* PagedItemsViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		492707C41CF4BBBA00C631C6 /* PagedItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492707BF1CF4BBBA00C631C6 /* PagedItemsViewController.m */; };
-		492707C51CF4BBBA00C631C6 /* PagedTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492707C01CF4BBBA00C631C6 /* PagedTableViewController.h */; };
+		492707C51CF4BBBA00C631C6 /* PagedTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492707C01CF4BBBA00C631C6 /* PagedTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		492707C61CF4BBBA00C631C6 /* PagedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492707C11CF4BBBA00C631C6 /* PagedTableViewController.m */; };
 		492707C71CF4BBBA00C631C6 /* PagedTableViewControllerInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 492707C21CF4BBBA00C631C6 /* PagedTableViewControllerInternal.h */; };
 		492707F61CF4BC1000C631C6 /* RubricViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492707D71CF4BC1000C631C6 /* RubricViewController.h */; };

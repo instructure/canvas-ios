@@ -43,9 +43,14 @@ open class HelmSplitViewController: UISplitViewController {
 
     override open var preferredStatusBarStyle: UIStatusBarStyle {
         if let firstNav = viewControllers.first as? UINavigationController {
-            return firstNav.navigationBar.barStyle == .black ? .lightContent : .default
+            if let presented = firstNav.presentedViewController, presented.isBeingPresented == true {
+                return presented.preferredStatusBarStyle
+            } else {
+                return firstNav.navigationBar.barStyle == .black ? .lightContent : .default
+            }
         } else {
-            return viewControllers.first!.preferredStatusBarStyle
+            guard let first = viewControllers.first else { return .default }
+            return first.preferredStatusBarStyle
         }
     }
     

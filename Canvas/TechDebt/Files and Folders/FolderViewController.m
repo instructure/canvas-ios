@@ -119,6 +119,8 @@
     
     UIImage *image = [UIImage techDebtImageNamed:@"icon_cog_fill"];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(showOptions:)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
+    self.modalPresentationStyle = UIModalPresentationFormSheet;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -662,7 +664,9 @@ static NSIndexSet *indexSetFromIndexPathRows(NSArray *paths) {
     }
 }
 
-
+- (void)done:(id)sender {
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (void)showOptions:(id)sender {
     DDLogVerbose(@"optionsSelected");

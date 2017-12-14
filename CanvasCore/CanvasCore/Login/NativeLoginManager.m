@@ -79,6 +79,12 @@ RCT_EXPORT_METHOD(logout)
     [TheKeymaster logout];
 }
 
+RCT_EXPORT_METHOD(switchUser)
+{
+    [[NativeLoginManager shared] setShouldCleanupOnNextLogoutEvent:YES];
+    [TheKeymaster switchUser];
+}
+
 RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(loginInformation)
 {
     NSDictionary *injected = [[NativeLoginManager shared] injectedLoginInfo];

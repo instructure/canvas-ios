@@ -11,13 +11,12 @@ import Foundation
 let DrawerWidth: CGFloat = 300.0
 let AnimationDuration = 0.275
 let DimmerTag = 12345
-let DimmerAlpha: CGFloat = 0.8
 
 public class DrawerOpenTransitioning: NSObject, UIViewControllerAnimatedTransitioning {
     
-    func installDimmer(view: UIView) -> UIView {
+    func installDimmer(view: UIView) -> UIView? {
         let dimmer = UIView()
-        dimmer.backgroundColor = .black
+        dimmer.backgroundColor = UIColor(red:0.18, green:0.23, blue:0.27, alpha:0.9)
         dimmer.alpha = 0.0
         dimmer.translatesAutoresizingMaskIntoConstraints = false
         dimmer.tag = DimmerTag
@@ -52,7 +51,7 @@ public class DrawerOpenTransitioning: NSObject, UIViewControllerAnimatedTransiti
             frame.origin.x = 0
             toVC.view.frame = frame
             fromVC.view.center.x += DrawerWidth
-            dimmer.alpha = DimmerAlpha
+            dimmer?.alpha = 1.0
         }) { _ in
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         }
@@ -99,6 +98,13 @@ class DrawerCloseTransitioning : NSObject, UIViewControllerAnimatedTransitioning
 }
 
 public class DrawerPresentationController: UIPresentationController {
+    
+    var installedGestures = false
+    
+    public override init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?) {
+        super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
+    }
+    
     public override var frameOfPresentedViewInContainerView: CGRect {
         guard let container = containerView else { return .zero }
         var frame = container.frame
@@ -109,9 +115,22 @@ public class DrawerPresentationController: UIPresentationController {
     public override func containerViewWillLayoutSubviews() {
         super.containerViewWillLayoutSubviews()
         guard let container = containerView else { return }
+        if installedGestures == false {
+            installedGestures = true
+            let tap = UITapGestureRecognizer(target: self, action: #selector(tapped))
+            container.addGestureRecognizer(tap)
+        }
         var frame = container.frame
         frame.size.width = DrawerWidth
         presentedViewController.view.frame = frame
+    }
+    
+    func tapped(gesture: UITapGestureRecognizer) {
+        guard let container = containerView else { return }
+        let location = gesture.location(in: container)
+        if !presentedViewController.view.frame.contains(location) {
+            self.presentingViewController.dismiss(animated: true, completion: nil)
+        }
     }
 }
 

@@ -26,10 +26,11 @@ import ReactNative, {
 import colors from './colors'
 import flattenStyle from 'flattenStyle'
 
-const REGULAR_FONT = '.SFUIDisplay'
-export const MEDIUM_FONT: string = '.SFUIDisplay-medium'
-const SEMI_BOLD_FONT = '.SFUIDisplay-semibold'
-export const BOLD_FONT: string = '.SFUIDisplay-bold'
+export const REGULAR_FONT = '.SFUIDisplay'
+export const MEDIUM_FONT = '.SFUIDisplay-medium'
+export const SEMI_BOLD_FONT = '.SFUIDisplay-semibold'
+export const BOLD_FONT = '.SFUIDisplay-bold'
+export const HEAVY_FONT = '.SFUIDisplay-heavy'
 
 export function Text ({ style, ...props }: Object): ReactNative.Element<ReactNative.Text> {
   let font = fontFamilyFromStyle(style)
@@ -56,6 +57,10 @@ export function SubTitle ({ style, ...props }: Object): ReactNative.Element<Reac
 
 export function Paragraph ({ style, ...props }: Object): ReactNative.Element<ReactNative.Text> {
   return <ReactNative.Text style={[styles.font, styles.p, style]} {...props} />
+}
+
+export function Heavy ({ style, ...props }: Object): ReactNative.Element<ReactNative.Text> {
+  return <ReactNative.Text style={[styles.heavy, style]} {...props} />
 }
 
 export function TextInput ({ style, ...props }: Object): ReactNative.Element<ReactNative.Text> {
@@ -153,6 +158,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 23,
     color: colors.lightText,
+  },
+  heavy: {
+    fontSize: 24,
+    color: colors.darkText,
+    fontFamily: HEAVY_FONT,
   },
   text: {
     fontSize: 16,

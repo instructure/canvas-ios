@@ -28,6 +28,7 @@ FOUNDATION_EXPORT const unsigned char TechDebtVersionString[];
 
 #import <TechDebt/Router.h>
 #import <TechDebt/ProfileViewController.h>
+#import <TechDebt/FolderViewController.h>
 #import <TechDebt/CKCanvasAPI+CurrentAPI.h>
 #import <TechDebt/Analytics.h>
 #import <TechDebt/iCanvasConstants.h>

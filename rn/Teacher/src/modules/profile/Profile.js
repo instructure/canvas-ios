@@ -22,23 +22,24 @@ import {
   NativeModules,
   StyleSheet,
   Image,
-  Dimensions,
+  ScrollView,
   ActionSheetIOS,
   Linking,
   AlertIOS,
   TouchableWithoutFeedback,
+  TouchableOpacity,
 } from 'react-native'
 import i18n from 'format-message'
-import { Text, Heading1, Paragraph } from '../../common/text'
+import { Text, Paragraph, Heavy } from '../../common/text'
 import Avatar from '../../common/components/Avatar'
 import Screen from '../../routing/Screen'
 import Images from '../../images'
-import branding from '../../common/branding'
 import color from '../../common/colors'
 import device from 'react-native-device-info'
+import Row from '../../common/components/rows/Row'
+import RowSeparator from '../../common/components/rows/RowSeparator'
 
-const { width: deviceWidth } = Dimensions.get('window')
-
+import App from '../app'
 import { getSession } from '../../canvas-api'
 
 export default class Profile extends Component {
@@ -63,19 +64,35 @@ export default class Profile extends Component {
     NativeModules.NativeLogin.logout()
   }
 
-  secretTap = () => {
+  switchUser = () => {
+    NativeModules.NativeLogin.switchUser()
+  }
+
+  secretTap = async () => {
     this.secretTapCount++
     if (this.secretTapCount > 10) {
       this.secretTapCount = 0
+      await this.props.navigator.dismiss()
       this.props.navigator.show('/staging', { modal: true })
     }
   }
 
-  settings = () => {
-    ActionSheetIOS.showActionSheetWithOptions({
-      options: this.settingsActions.map(a => a.title),
-      cancelButtonIndex: this.settingsActions.length - 1,
-    }, this.handleActions)
+  settings = async () => {
+    let app = App.current()
+    if (app.appId === 'student') {
+      await this.props.navigator.dismiss()
+      this.props.navigator.show('/profile/settings', { modal: true })
+    } else {
+      ActionSheetIOS.showActionSheetWithOptions({
+        options: this.settingsActions.map(a => a.title),
+        cancelButtonIndex: this.settingsActions.length - 1,
+      }, this.handleActions)
+    }
+  }
+
+  userFiles = async () => {
+    await this.props.navigator.dismiss()
+    this.props.navigator.show('/users/self/files', { modal: true })
   }
 
   handleActions = (index: number) => {
@@ -102,58 +119,77 @@ export default class Profile extends Component {
     }
   }
 
+  renderList = () => {
+    let app = App.current()
+    let isStudent = app.appId === 'student'
+    let titleStyles = { fontSize: 20, fontWeight: '300' }
+
+    return (<View>
+              { isStudent &&
+                <View>
+                  <Row
+                    title={i18n('Files')}
+                    titleStyles={titleStyles}
+                    onPress={this.userFiles} />
+                  <RowSeparator style={styles.separator} />
+                </View>
+              }
+              <View>
+                <Row
+                  title={i18n('Change User')}
+                  titleStyles={titleStyles}
+                  onPress={this.switchUser} />
+                <RowSeparator style={styles.separator} />
+              </View>
+              <View>
+                <Row
+                  title={i18n('Log Out')}
+                  titleStyles={titleStyles}
+                  onPress={this.logout} />
+                <RowSeparator style={styles.separator} />
+              </View>
+            </View>)
+  }
+
   render () {
     const session = getSession()
-
     if (!session) return null
     const user = session.user
     return (
       <Screen
-        navBarHidden={false}
-        navBarImage={branding.headerImage}
-        navBarButtonColor={color.navBarTextColor}
-        navBarColor={color.navBarColor}
-        navBarStyle='dark'
-        leftBarButtons={[
-          {
-            title: i18n('Done'),
-            testID: 'profile.navigation-dismiss-btn',
-            action: this.props.navigator.dismiss,
-            accessibilityLabel: i18n('Done'),
-          },
-          {
-            image: Images.course.settings,
-            testID: 'profile.navigation-settings-btn',
-            action: this.settings,
-            accessibilityLabel: i18n('Profile actions'),
-          },
-        ]}
-        rightBarButtons={[
-          {
-            title: i18n('Log Out'),
-            testID: 'profile.navigation-logout-btn',
-            action: this.logout,
-          },
-        ]}
+        navBarHidden={true}
+        navBarButtonColor={color.darkText}
+        statusBarStyle='dark'
       >
-        <View testID="module.profile" accessible={true} style={styles.container}>
-          <View style={styles.headerImageContainer} >
-            <Image source={Images.pencilBG} style={styles.headerImage} />
-          </View>
-          <View style={styles.profileImageContainer}>
+        <View style={styles.container} testID="module.profile">
+          <View style={styles.header}>
             <Avatar
               avatarURL={user.avatar_url}
               userName={user.name}
-              border={true}
-              height={160} />
+              height={56}
+              width={56}
+              testID='profile.avatar' />
+            <TouchableOpacity
+              onPress={this.settings}
+              testID='profile.navigation-settings-btn'
+              accessibilityLabel={i18n('Settings')}
+              accessibilityTraits='button'
+              style={styles.settingsButtonContainer}
+              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
+              <Image source={Images.course.settings} style={styles.settingsImage}/>
+            </TouchableOpacity>
           </View>
-          <View style={styles.profileInfoContainer}>
-            <Heading1>{user.name}</Heading1>
-            <Paragraph>{user.primary_email}</Paragraph>
+          <View style={styles.infoHeader}>
+            <Heavy style={styles.name}>{user.name}</Heavy>
+            { user.primary_email && <Paragraph style={styles.email}>{user.primary_email}</Paragraph> }
           </View>
+          <ScrollView>
+            { this.renderList() }
+          </ScrollView>
           <View style={styles.versionContainer}>
             <TouchableWithoutFeedback onPress={this.secretTap} testID='profile-btn-secret-tap'>
-              <Text style={styles.versionText}>{i18n('Version {version}', { version: device.getReadableVersion() })}</Text>
+              { /* I removed localization for this because i highly doubt a translator will know what v. is */ }
+              <Text style={styles.versionText}>{`v. ${device.getVersion()}`}</Text>
             </TouchableWithoutFeedback>
           </View>
         </View>
@@ -166,31 +202,38 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  topContainer: {
-    backgroundColor: '#394B58',
-    height: 64,
-  },
-  profileInfoContainer: {
-    top: -80,
-    alignItems: 'center',
-  },
-  headerImageContainer: {
-    backgroundColor: 'lightgrey',
-  },
-  headerImage: {
-    height: 170,
-    width: deviceWidth,
-  },
-  profileImageContainer: {
-    top: -80,
-    marginBottom: 20,
-    flex: 0,
+  header: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: global.style.defaultPadding,
+  },
+  infoHeader: {
+    paddingLeft: global.style.defaultPadding,
+  },
+  settingsButtonContainer: {
+    height: 24,
+    width: 24,
+    alignItems: 'center',
     justifyContent: 'center',
   },
+  settingsImage: {
+    height: 24,
+    width: 24,
+    tintColor: color.darkText,
+  },
+  name: {
+    fontSize: 24,
+  },
+  email: {
+    fontSize: 16,
+  },
+  separator: {
+    marginLeft: 16,
+  },
   versionContainer: {
-    bottom: -125,
-    alignItems: 'center',
+    bottom: 0,
+    alignItems: 'flex-start',
+    padding: global.style.defaultPadding,
   },
   versionText: {
     color: '#73818C',

@@ -38,6 +38,13 @@ class SettingsViewController: UIViewController {
         tableView.estimatedRowHeight = 44.0
         
         dataSource = data()
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
+        self.modalPresentationStyle = .formSheet
+    }
+    
+    func done() {
+        presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,11 +66,8 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let settingsRow = dataSource[indexPath.row] as SettingsRow
         let cell = settingsRow.cellForSettingsRow(tableView, indexPath: indexPath)
-        print(cell)
-        print(cell.contentView)
         return cell
     }
     

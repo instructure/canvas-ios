@@ -193,6 +193,13 @@ public final class HelmViewController: UIViewController, HelmScreen {
         return statusBarStyle
     }
     
+    public override func accessibilityPerformEscape() -> Bool {
+        if let presenting = self.presentingViewController {
+            presenting.dismiss(animated: true, completion: nil)
+            return true
+        }
+        return false
+    }
     
     // MARK: - Orientation
     
