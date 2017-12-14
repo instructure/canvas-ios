@@ -28,8 +28,11 @@ export default function httpClient (version: ?string = 'api/v1'): any {
     }
   }
 
+  // Make sure there is a trailing /
+  const baseURL = session.baseURL.replace(/\/?$/, '/')
+
   return axios.create({
-    baseURL: `${session.baseURL}${version || ''}`,
+    baseURL: `${baseURL}${version || ''}`,
     headers: {
       common: {
         Authorization: `Bearer ${session.authToken}`,

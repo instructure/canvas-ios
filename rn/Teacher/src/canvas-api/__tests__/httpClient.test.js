@@ -28,7 +28,7 @@ describe('httpClient', () => {
     setSession(null)
     let client = httpClient()
     expect(client.defaults).toMatchObject({
-      baseURL: 'api/v1',
+      baseURL: '/api/v1',
       headers: {
         common: {
           Authorization: 'Bearer ',
@@ -43,6 +43,21 @@ describe('httpClient', () => {
     let client = httpClient()
     expect(client.defaults).toMatchObject({
       baseURL: 'http://mobiledev.instructure.com/api/v1',
+      headers: {
+        common: {
+          Accept: 'application/json+canvas-string-ids',
+          Authorization: `Bearer ${session.authToken}`,
+        },
+      },
+    })
+  })
+
+  it('handles baseURL without trailing slash', () => {
+    const session = templates.session({ baseURL: 'https://canvas.sfu.ca' })
+    setSession(session)
+    let client = httpClient()
+    expect(client.defaults).toMatchObject({
+      baseURL: 'https://canvas.sfu.ca/api/v1',
       headers: {
         common: {
           Accept: 'application/json+canvas-string-ids',
