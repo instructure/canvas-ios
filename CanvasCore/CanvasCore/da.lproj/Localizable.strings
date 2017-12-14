@@ -237,6 +237,9 @@
 /* No comment provided by engineer. */
 "Error parsing the Roll Call response. Unexpected null value: (k)" = "Der opstod en fejl ved parsing af navneopkald-responsen. Uventet null-værdi: (k)";
 
+/* LTI Launch failed */
+"Error retrieving tool launch URL" = "Der opstod en fejl under hentning af værktøjsstarterens URL";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "Fejl: Ingen data returneret fra navneopkald-api.";
 
@@ -587,6 +590,9 @@
 /* Teal course color button */
 "Teal" = "Grønblå";
 
+/* No comment provided by engineer. */
+"That page has been disabled for this course" = "Den pågældende side er blevet deaktiveret for dette fag";
+
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "Siderne er væk!? Hvorfor er siderne altid væk?";
 
@@ -796,4 +802,7 @@
 
 /* File upload in progress */
 "uploading..." = "overførsel ...";
+
+/* web content failed to load */
+"⚠️ Error Loading Content" = "⚠️ Fejl ved indlæsning af indhold";
 

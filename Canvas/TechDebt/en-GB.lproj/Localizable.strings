@@ -49,12 +49,6 @@
 /* Button to submit files to an assignment */
 "%@ (%d)" = "%1$@ (%2$d)";
 
-/* B- (83 out of 100 points */
-"%@ (%g out of %@)" = "%1$@ (%2$g out of %3$@)";
-
-/* Event happens on a date at a time */
-"%@ at %@" = "%1$@ at %2$@";
-
 /* Message for unsupported tab coming soon */
 "%@ is coming soon!" = "%@ is coming soon!";
 
@@ -78,12 +72,6 @@
 
 /* (No Comment) */
 "%@ need grading" = "%@ need marking";
-
-/* 88 out of 100 points */
-"%@ out of %@" = "%1$@ out of %2$@";
-
-/* 83% (83 out of 100 points */
-"%@%% (%g out of %@)" = "%1$@%% (%2$g out of %3$@)";
 
 /* (No Comment) */
 "%@..." = "%@...";
@@ -262,7 +250,7 @@
 /* (No Comment) */
 "Ask me later" = "Ask me later";
 
-/* Label for an assignment */
+/* (No Comment) */
 "Assignment" = "Assignment";
 
 /* (No Comment) */
@@ -280,7 +268,7 @@
 /* (No Comment) */
 "Attachments" = "Attachments";
 
-/* Label for a discussion */
+/* (No Comment) */
 "Attendance" = "Attendance";
 
 /* Audio file type */
@@ -371,7 +359,7 @@
 /* title for media comment upload failure */
 "Comment Error" = "Comment error";
 
-/* View comments */
+/* (No Comment) */
 "Comments" = "Comments";
 
 /* No comment provided by engineer. */
@@ -453,10 +441,10 @@
 /* Placeholder text for discussion details field */
 "Details" = "Details";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Discard" = "Discard";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Discard this entry?" = "Discard this entry?";
 
 /* Title of the new discussion view */
@@ -556,7 +544,7 @@
 /* Error deleting folder alert view title */
 "Error deleting folder" = "Error deleting folder";
 
-/* Label for a calendar event */
+/* (No Comment) */
 "Event" = "Event";
 
 /* No comment provided by engineer. */
@@ -607,13 +595,13 @@
 /* title for discussion assignment submission button */
 "Go To Discussion" = "Go to discussion";
 
-/* Action on an alert */
+/* (No Comment) */
 "Go to App Store" = "Go to app store";
 
-/* text for the \"go to quiz\" button */
+/* (No Comment) */
 "Go to Quiz" = "Go to quiz";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Go to discussion" = "Go to discussion";
 
 /* No comment provided by engineer. */
@@ -622,7 +610,7 @@
 /* (No Comment) */
 "Grade %@" = "Mark %@";
 
-/* Launch the SpeedGrader app */
+/* (No Comment) */
 "Grade in SpeedGrader" = "Mark in SpeedGrader";
 
 /* (No Comment) */
@@ -631,7 +619,7 @@
 /* (No Comment) */
 "Grade: %@" = "Mark: %@";
 
-/* Label for a discussion */
+/* (No Comment) */
 "Graded Discussion" = "Marked discussion";
 
 /* Lets user know discussion is graded */
@@ -697,7 +685,7 @@
 /* (No Comment) */
 "Jumps to current day on calendar" = "Jumps to current day on calendar";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Keep" = "Keep";
 
 /* Title for an LTI launch submitted as an assignment */
@@ -709,7 +697,7 @@
 /* Title for an alert popup */
 "Large file" = "Large file";
 
-/* Button in an alert */
+/* (No Comment) */
 "Later" = "Later";
 
 /* title for submission button */
@@ -784,7 +772,7 @@
 /* Button title for selecting to view more info about the limitations of mobile quizzes */
 "More Info" = "More info";
 
-/* Title of a link to show additional due dates customized for sections or groups. */
+/* (No Comment) */
 "Multiple Due Dates" = "Multiple due dates";
 
 /* (No Comment) */
@@ -808,7 +796,7 @@
 /* the users name */
 "Name" = "Name";
 
-/* Title notifying user that SpeedGrader is available for iPad */
+/* (No Comment) */
 "Need SpeedGrader for iPad" = "Need SpeedGrader for iPad";
 
 /* Network error title */
@@ -1028,7 +1016,7 @@
 /* option to request a feature */
 "Request a feature" = "Request a feature";
 
-/* View grading rubric */
+/* (No Comment) */
 "Rubric" = "Rubric";
 
 /* No comment provided by engineer. */
@@ -1112,23 +1100,22 @@
 /* (No Comment) */
 "Sub Header" = "Sub header";
 
-/* View previously submitted assignment */
+/* No comment provided by engineer. */
 "Submission" = "Submission";
 
 /* Title for file submission error */
 "Submission Error" = "Submission error";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Submission complete" = "Submission complete";
 
-/* Submit an assignment
-   Submit Arc video as assignment button */
+/* Submit Arc video as assignment button */
 "Submit" = "Submit";
 
 /* Submitted grouping */
 "Submitted" = "Submitted";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Submitting..." = "Submitting...";
 
 /* Subscribe to calendar feed allows the user to export their calendar events to a 3rd party calendar */
@@ -1293,8 +1280,14 @@
 /* Error title */
 "Unable to load" = "Unable to load";
 
+/* Error message without retry */
+"Unable to post." = "Unable to post.";
+
 /* (No Comment) */
 "Unable to post. Please try again later" = "Unable to post. Please try again later";
+
+/* Error message */
+"Unable to post. Please try again later." = "Unable to post. Please try again later.";
 
 /* message saying that avatar couldn't be loaded to server */
 "Unable to upload to server" = "Unable to upload to server";
@@ -1395,7 +1388,7 @@
 /* Masquerade success message */
 "You are now masquerading as %@. To Stop Masquerading go to your Profile." = "You are now masquerading as %@. To stop masquerading, go to your profile.";
 
-/* Message in an alert */
+/* (No Comment) */
 "You do not have SpeedGrader for iPad. You can download it for free from the App Store." = "You do not have SpeedGrader for iPad. You can download it for free from the app store.";
 
 /* (No Comment) */
@@ -1431,16 +1424,13 @@
 /* (No Comment) */
 "due on %1$@ at %2$@" = "due on %1$@ at %2$@";
 
-/* Assignment is due on a date at a time */
-"due on %@ at %@" = "due on %1$@ at %2$@";
-
 /* (No Comment) */
 "moments ago" = "moments ago";
 
 /* Accessibility label modifier for point out of point possible */
 "out of" = "out of";
 
-/* The assignment is out of 100 points */
+/* (No Comment) */
 "out of %@" = "out of %@";
 
 /* (No Comment) */

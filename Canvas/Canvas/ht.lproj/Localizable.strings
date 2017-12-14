@@ -276,6 +276,9 @@
    Calendar page title */
 "Calendar" = "Kalandriye";
 
+/* No comment provided by engineer. */
+"Calendar Event" = "Kalandriye Aktivite";
+
 /* (No Comment) */
 "Can't load tool" = "Enposib pou chaje enstriman";
 
@@ -607,7 +610,7 @@
 /* (No Comment) */
 "Group conversation" = "konvèsasyon an gwoup";
 
-/* Groups page title */
+/* (No Comment) */
 "Groups" = "Gwoup";
 
 /* (No Comment) */

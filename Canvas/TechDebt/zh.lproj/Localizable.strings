@@ -49,12 +49,6 @@
 /* Button to submit files to an assignment */
 "%@ (%d)" = "%1$@ (%2$d)";
 
-/* B- (83 out of 100 points */
-"%@ (%g out of %@)" = "%1$@ (%3$@ 中的 %2$g)";
-
-/* Event happens on a date at a time */
-"%@ at %@" = "%1$@ 在 %2$@";
-
 /* Message for unsupported tab coming soon */
 "%@ is coming soon!" = "%@ 即将来临！";
 
@@ -78,12 +72,6 @@
 
 /* (No Comment) */
 "%@ need grading" = "%@ 需要评改";
-
-/* 88 out of 100 points */
-"%@ out of %@" = "%1$@ 在 %2$@之外";
-
-/* 83% (83 out of 100 points */
-"%@%% (%g out of %@)" = "%1$@%% (%2$g 在 %3$@之外)";
 
 /* (No Comment) */
 "%@..." = "%@...";
@@ -262,7 +250,7 @@
 /* (No Comment) */
 "Ask me later" = "稍候再问";
 
-/* Label for an assignment */
+/* (No Comment) */
 "Assignment" = "作业";
 
 /* (No Comment) */
@@ -280,7 +268,7 @@
 /* (No Comment) */
 "Attachments" = "附件";
 
-/* Label for a discussion */
+/* (No Comment) */
 "Attendance" = "考勤";
 
 /* Audio file type */
@@ -371,7 +359,7 @@
 /* title for media comment upload failure */
 "Comment Error" = "评论错误";
 
-/* View comments */
+/* (No Comment) */
 "Comments" = "评论";
 
 /* No comment provided by engineer. */
@@ -453,10 +441,10 @@
 /* Placeholder text for discussion details field */
 "Details" = "细节";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Discard" = "丢弃、放弃";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Discard this entry?" = "丢弃此条目吗？";
 
 /* Title of the new discussion view */
@@ -556,7 +544,7 @@
 /* Error deleting folder alert view title */
 "Error deleting folder" = "错误删除文件夹";
 
-/* Label for a calendar event */
+/* (No Comment) */
 "Event" = "事件、活动";
 
 /* No comment provided by engineer. */
@@ -607,13 +595,13 @@
 /* title for discussion assignment submission button */
 "Go To Discussion" = "前往讨论";
 
-/* Action on an alert */
+/* (No Comment) */
 "Go to App Store" = "前往应用程序商店";
 
-/* text for the \"go to quiz\" button */
+/* (No Comment) */
 "Go to Quiz" = "前往测验";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Go to discussion" = "前往讨论";
 
 /* No comment provided by engineer. */
@@ -622,7 +610,7 @@
 /* (No Comment) */
 "Grade %@" = "评分: %@";
 
-/* Launch the SpeedGrader app */
+/* (No Comment) */
 "Grade in SpeedGrader" = "在 SpeedGrader 评分";
 
 /* (No Comment) */
@@ -631,7 +619,7 @@
 /* (No Comment) */
 "Grade: %@" = "评分: %@";
 
-/* Label for a discussion */
+/* (No Comment) */
 "Graded Discussion" = "评分讨论";
 
 /* Lets user know discussion is graded */
@@ -697,7 +685,7 @@
 /* (No Comment) */
 "Jumps to current day on calendar" = "在日历跳跃到今天";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Keep" = "保持";
 
 /* Title for an LTI launch submitted as an assignment */
@@ -709,7 +697,7 @@
 /* Title for an alert popup */
 "Large file" = "大文件";
 
-/* Button in an alert */
+/* (No Comment) */
 "Later" = "稍后";
 
 /* title for submission button */
@@ -784,7 +772,7 @@
 /* Button title for selecting to view more info about the limitations of mobile quizzes */
 "More Info" = "更多信息";
 
-/* Title of a link to show additional due dates customized for sections or groups. */
+/* (No Comment) */
 "Multiple Due Dates" = "多个截止日期";
 
 /* (No Comment) */
@@ -808,7 +796,7 @@
 /* the users name */
 "Name" = "名称、名字";
 
-/* Title notifying user that SpeedGrader is available for iPad */
+/* (No Comment) */
 "Need SpeedGrader for iPad" = "需要 iPad 版的 SpeedGrader";
 
 /* Network error title */
@@ -1028,7 +1016,7 @@
 /* option to request a feature */
 "Request a feature" = "请求一个功能";
 
-/* View grading rubric */
+/* (No Comment) */
 "Rubric" = "评分细则";
 
 /* No comment provided by engineer. */
@@ -1112,23 +1100,22 @@
 /* (No Comment) */
 "Sub Header" = "子标题";
 
-/* View previously submitted assignment */
+/* No comment provided by engineer. */
 "Submission" = "提交";
 
 /* Title for file submission error */
 "Submission Error" = "提交错误";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Submission complete" = "提交完成";
 
-/* Submit an assignment
-   Submit Arc video as assignment button */
+/* Submit Arc video as assignment button */
 "Submit" = "提交";
 
 /* Submitted grouping */
 "Submitted" = "提交";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Submitting..." = "正在提交...";
 
 /* Subscribe to calendar feed allows the user to export their calendar events to a 3rd party calendar */
@@ -1293,8 +1280,14 @@
 /* Error title */
 "Unable to load" = "无法加载";
 
+/* Error message without retry */
+"Unable to post." = "无法发布。";
+
 /* (No Comment) */
 "Unable to post. Please try again later" = "无法发布。请稍候再试";
+
+/* Error message */
+"Unable to post. Please try again later." = "无法发布。请稍后再试。";
 
 /* message saying that avatar couldn't be loaded to server */
 "Unable to upload to server" = "无法上传到服务器";
@@ -1395,7 +1388,7 @@
 /* Masquerade success message */
 "You are now masquerading as %@. To Stop Masquerading go to your Profile." = "您目前冒充为 %@。 停止冒充，前往您的档案。";
 
-/* Message in an alert */
+/* (No Comment) */
 "You do not have SpeedGrader for iPad. You can download it for free from the App Store." = "您没有iPad的SpeedGrader。您可以从应用程序商店中免费下载。";
 
 /* (No Comment) */
@@ -1431,16 +1424,13 @@
 /* (No Comment) */
 "due on %1$@ at %2$@" = "在 %1$@ 的 %2$@ 截止";
 
-/* Assignment is due on a date at a time */
-"due on %@ at %@" = "在 %1$@ 的 %2$@ 截止";
-
 /* (No Comment) */
 "moments ago" = "刚才";
 
 /* Accessibility label modifier for point out of point possible */
 "out of" = "在......之外";
 
-/* The assignment is out of 100 points */
+/* (No Comment) */
 "out of %@" = "%@之中";
 
 /* (No Comment) */

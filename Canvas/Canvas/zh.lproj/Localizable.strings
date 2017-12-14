@@ -276,6 +276,9 @@
    Calendar page title */
 "Calendar" = "日历";
 
+/* No comment provided by engineer. */
+"Calendar Event" = "日历事件";
+
 /* (No Comment) */
 "Can't load tool" = "不能加载工具";
 
@@ -607,7 +610,7 @@
 /* (No Comment) */
 "Group conversation" = "小组会话";
 
-/* Groups page title */
+/* (No Comment) */
 "Groups" = "组群";
 
 /* (No Comment) */

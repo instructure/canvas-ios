@@ -190,6 +190,9 @@
 /* Invalid User Agent */
 "Invalid User Agent." = "ユーザーエージェントが無効。";
 
+/* Invalid Domain title */
+"Invalid domain." = "無効なドメイン。";
+
 /* Alert Message for invalid domain */
 "Invalid student domain.\nPlease double-check the domain and try again." = "無効な受講生ドメインです。\nドメインを再確認してやり直してください。";
 
@@ -282,6 +285,9 @@
 
 /* Title for alert when resetting password is successful */
 "Password Reset Successful" = "パスワードのリセットが完了しました";
+
+/* Invalid Domain message */
+"Please double-check the domain and try again." = "ドメインを確認して、再試行してください。";
 
 /* Title for alert shown when something goes wrong resetting the password */
 "Problem Resetting Password" = "パスワードリセットに関する問題";

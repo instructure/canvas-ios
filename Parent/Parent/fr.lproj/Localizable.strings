@@ -190,6 +190,9 @@
 /* Invalid User Agent */
 "Invalid User Agent." = "Agent utilisateur non valide.";
 
+/* Invalid Domain title */
+"Invalid domain." = "Domaine non valide.";
+
 /* Alert Message for invalid domain */
 "Invalid student domain.\nPlease double-check the domain and try again." = "Domaine de l'étudiant invalide.\nVeuillez vérifier le nom du domaine et réessayez.";
 
@@ -282,6 +285,9 @@
 
 /* Title for alert when resetting password is successful */
 "Password Reset Successful" = "Réinitialisation du mot de passe réussie ";
+
+/* Invalid Domain message */
+"Please double-check the domain and try again." = "Veuillez vérifier que le domaine est correct, puis réessayez.";
 
 /* Title for alert shown when something goes wrong resetting the password */
 "Problem Resetting Password" = "Problème de réinitialisation du mot de passe";

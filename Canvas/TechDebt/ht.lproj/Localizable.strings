@@ -49,12 +49,6 @@
 /* Button to submit files to an assignment */
 "%@ (%d)" = "%1$@ (%2$d)";
 
-/* B- (83 out of 100 points */
-"%@ (%g out of %@)" = "%1$@ (%2$g de %3$@)";
-
-/* Event happens on a date at a time */
-"%@ at %@" = "%1$@ a %2$@";
-
 /* Message for unsupported tab coming soon */
 "%@ is coming soon!" = "%@ ap vini byento!";
 
@@ -78,12 +72,6 @@
 
 /* (No Comment) */
 "%@ need grading" = "%@ bezwen klasman";
-
-/* 88 out of 100 points */
-"%@ out of %@" = "%1$@ de %2$@";
-
-/* 83% (83 out of 100 points */
-"%@%% (%g out of %@)" = "%1$@%% (%2$g de %3$@)";
 
 /* (No Comment) */
 "%@..." = "%@...";
@@ -262,7 +250,7 @@
 /* (No Comment) */
 "Ask me later" = "Mande mwen pita";
 
-/* Label for an assignment */
+/* (No Comment) */
 "Assignment" = "Sesyon";
 
 /* (No Comment) */
@@ -280,7 +268,7 @@
 /* (No Comment) */
 "Attachments" = "Atachman";
 
-/* Label for a discussion */
+/* (No Comment) */
 "Attendance" = "Prezans";
 
 /* Audio file type */
@@ -371,7 +359,7 @@
 /* title for media comment upload failure */
 "Comment Error" = "Erè Kòmantè";
 
-/* View comments */
+/* (No Comment) */
 "Comments" = "Komantè";
 
 /* No comment provided by engineer. */
@@ -453,10 +441,10 @@
 /* Placeholder text for discussion details field */
 "Details" = "Detay";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Discard" = "Abandone";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Discard this entry?" = "Abandone antre sa a?";
 
 /* Title of the new discussion view */
@@ -556,7 +544,7 @@
 /* Error deleting folder alert view title */
 "Error deleting folder" = "Erè nan eliminasyon dosye";
 
-/* Label for a calendar event */
+/* (No Comment) */
 "Event" = "Evènman";
 
 /* No comment provided by engineer. */
@@ -607,13 +595,13 @@
 /* title for discussion assignment submission button */
 "Go To Discussion" = "Ale nan Diskisyon";
 
-/* Action on an alert */
+/* (No Comment) */
 "Go to App Store" = "Ale nan App Store";
 
-/* text for the \"go to quiz\" button */
+/* (No Comment) */
 "Go to Quiz" = "Ale nan Quiz";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Go to discussion" = "Ale nan diskisyon";
 
 /* No comment provided by engineer. */
@@ -622,7 +610,7 @@
 /* (No Comment) */
 "Grade %@" = "Klas %@";
 
-/* Launch the SpeedGrader app */
+/* (No Comment) */
 "Grade in SpeedGrader" = "Klas nan SpeedGrader";
 
 /* (No Comment) */
@@ -631,7 +619,7 @@
 /* (No Comment) */
 "Grade: %@" = "Klas: %@";
 
-/* Label for a discussion */
+/* (No Comment) */
 "Graded Discussion" = "Diskisyon Klase";
 
 /* Lets user know discussion is graded */
@@ -697,7 +685,7 @@
 /* (No Comment) */
 "Jumps to current day on calendar" = "Ale an jounen jodi a nan kalandriye a";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Keep" = "Kenbe";
 
 /* Title for an LTI launch submitted as an assignment */
@@ -709,7 +697,7 @@
 /* Title for an alert popup */
 "Large file" = "Gwo fichye";
 
-/* Button in an alert */
+/* (No Comment) */
 "Later" = "Pita";
 
 /* title for submission button */
@@ -784,7 +772,7 @@
 /* Button title for selecting to view more info about the limitations of mobile quizzes */
 "More Info" = "Plis Enfòmasyon";
 
-/* Title of a link to show additional due dates customized for sections or groups. */
+/* (No Comment) */
 "Multiple Due Dates" = "Plizyè Delè";
 
 /* (No Comment) */
@@ -808,7 +796,7 @@
 /* the users name */
 "Name" = "Non";
 
-/* Title notifying user that SpeedGrader is available for iPad */
+/* (No Comment) */
 "Need SpeedGrader for iPad" = "SpeedGrader pou iPad Nesesè";
 
 /* Network error title */
@@ -1028,7 +1016,7 @@
 /* option to request a feature */
 "Request a feature" = "Mande yon opsyon";
 
-/* View grading rubric */
+/* (No Comment) */
 "Rubric" = "Ribrik";
 
 /* No comment provided by engineer. */
@@ -1112,23 +1100,22 @@
 /* (No Comment) */
 "Sub Header" = "Sou Antèt";
 
-/* View previously submitted assignment */
+/* No comment provided by engineer. */
 "Submission" = "Soumisyon";
 
 /* Title for file submission error */
 "Submission Error" = "Erè Soumisyon";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Submission complete" = "Soumisyon fini";
 
-/* Submit an assignment
-   Submit Arc video as assignment button */
+/* Submit Arc video as assignment button */
 "Submit" = "Soumèt";
 
 /* Submitted grouping */
 "Submitted" = "Soumèt";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Submitting..." = "Soumisyon...";
 
 /* Subscribe to calendar feed allows the user to export their calendar events to a 3rd party calendar */
@@ -1293,8 +1280,14 @@
 /* Error title */
 "Unable to load" = "Pa kapab chaje";
 
+/* Error message without retry */
+"Unable to post." = "Paka poste.";
+
 /* (No Comment) */
 "Unable to post. Please try again later" = "Pa kapab poste. Tanpri eseye ankò pita";
+
+/* Error message */
+"Unable to post. Please try again later." = "Paka poste. Tanpri eseye ankò.";
 
 /* message saying that avatar couldn't be loaded to server */
 "Unable to upload to server" = "Enposib pou transfere sou sèvè a";
@@ -1395,7 +1388,7 @@
 /* Masquerade success message */
 "You are now masquerading as %@. To Stop Masquerading go to your Profile." = "Kounye a ou parèt tankou %@. Pou Kanpe Degizmnan an ale nan Pwofil ou.";
 
-/* Message in an alert */
+/* (No Comment) */
 "You do not have SpeedGrader for iPad. You can download it for free from the App Store." = "Ou pa genyen SpeedGrader pou iPad. Ou ka telechaje li gratis nan App Store la.";
 
 /* (No Comment) */
@@ -1431,16 +1424,13 @@
 /* (No Comment) */
 "due on %1$@ at %2$@" = "delè %1$@ a %2$@";
 
-/* Assignment is due on a date at a time */
-"due on %@ at %@" = "delè %1$@ a %2$@";
-
 /* (No Comment) */
 "moments ago" = "yon ti moman de sa";
 
 /* Accessibility label modifier for point out of point possible */
 "out of" = "sou";
 
-/* The assignment is out of 100 points */
+/* (No Comment) */
 "out of %@" = "sou %@";
 
 /* (No Comment) */

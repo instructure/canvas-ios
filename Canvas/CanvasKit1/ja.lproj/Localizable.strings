@@ -100,6 +100,9 @@
 /* A button that records */
 "Record" = "録音";
 
+/* No comment provided by engineer. */
+"Score" = "スコア";
+
 /* Hint about the play button */
 "Starts playing your recording" = "録音を再生する";
 

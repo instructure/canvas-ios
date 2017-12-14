@@ -237,6 +237,9 @@
 /* No comment provided by engineer. */
 "Error parsing the Roll Call response. Unexpected null value: (k)" = "Ошибка при анализе ответа проверки присутствия. Неожиданное нулевое значение: (k)";
 
+/* LTI Launch failed */
+"Error retrieving tool launch URL" = "Ошибка при запросе URL запуска инструмента";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "Ошибка: Не получены данные от api проверки присутствия.";
 
@@ -587,6 +590,9 @@
 /* Teal course color button */
 "Teal" = "Бирюзовый";
 
+/* No comment provided by engineer. */
+"That page has been disabled for this course" = "Эта страница отключена для этого курса";
+
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "Страницы исчезли!? Почему страницы постоянно исчезают?";
 
@@ -796,4 +802,7 @@
 
 /* File upload in progress */
 "uploading..." = "выполняется отправка...";
+
+/* web content failed to load */
+"⚠️ Error Loading Content" = "⚠️ Ошибка при загрузке содержания";
 

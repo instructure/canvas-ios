@@ -79,7 +79,7 @@ async function exportTranslations() {
     const Bucket = 'instructure-translations'
     const s3 = new S3({ region: 'us-east-1' })
     await Promise.all(toUpload.map(({ from, to }) =>
-      s3.putObject({ Bucket, Key: `canvas-ios/en/${to}`, Body: createReadStream(from) })
+      s3.putObject({ Bucket, Key: `sources/canvas-ios/en/${to}`, Body: createReadStream(from) })
         .promise()
     ))
   }

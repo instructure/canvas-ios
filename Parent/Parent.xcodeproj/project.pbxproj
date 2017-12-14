@@ -884,6 +884,7 @@
 		6E6BDD2513908E187E77D0C6 /* Pods-defaults-common_tests-ParentTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_tests-ParentTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_tests-ParentTests/Pods-defaults-common_tests-ParentTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7BC1640811F36F0B4298AD40 /* Quiz.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		7C795587926FED2BF58F7200 /* CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoFirstName.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoFirstName.swift; path = CreateAccountPageTests/CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoFirstName.swift; sourceTree = "<group>"; };
+		7D3B612C1FE1CDCE00A58D84 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		80F09E386EFB5838B74F4000 /* CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoEmail.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoEmail.swift; path = CreateAccountPageTests/CreateAccountPageTests_testCreateAccountPage_createAccountButtonDisabled_whenNoEmail.swift; sourceTree = "<group>"; };
 		81DA29CF372AAB2318A6C107 /* SettingsPageTests_testSettingsPage_displaysHelpMenu.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SettingsPageTests_testSettingsPage_displaysHelpMenu.swift; path = SettingsPageTests/SettingsPageTests_testSettingsPage_displaysHelpMenu.swift; sourceTree = "<group>"; };
 		8663BB5CF599CCFC5B7D30D6 /* Assignment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Assignment.swift; sourceTree = "<group>"; };
@@ -2801,6 +2802,7 @@
 				9F62CA451FBB76170077DA3F /* da */,
 				9F7F7EB01FBB762700DF7CFA /* ht */,
 				9F9C18C61FBB7636004E0297 /* es */,
+				7D3B612C1FE1CDCE00A58D84 /* fr */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

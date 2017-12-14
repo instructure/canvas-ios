@@ -237,6 +237,9 @@
 /* No comment provided by engineer. */
 "Error parsing the Roll Call response. Unexpected null value: (k)" = "解析點名回應時出錯。意外的空值：(k)";
 
+/* LTI Launch failed */
+"Error retrieving tool launch URL" = "檢索工具啟動 URL 時發生錯誤";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "錯誤：沒有從點名 API 返回的數據。";
 
@@ -587,6 +590,9 @@
 /* Teal course color button */
 "Teal" = "深青色";
 
+/* No comment provided by engineer. */
+"That page has been disabled for this course" = "已針對此課程停用該頁面";
+
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "內容頁消失了！？為甚麼內容頁經常消失？";
 
@@ -796,4 +802,7 @@
 
 /* File upload in progress */
 "uploading..." = "上傳中......";
+
+/* web content failed to load */
+"⚠️ Error Loading Content" = "⚠️ 載入內容時發生錯誤";
 

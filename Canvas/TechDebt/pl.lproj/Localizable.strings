@@ -49,12 +49,6 @@
 /* Button to submit files to an assignment */
 "%@ (%d)" = "%1$@ (%2$d)";
 
-/* B- (83 out of 100 points */
-"%@ (%g out of %@)" = "%1$@ (%2$g z %3$@)";
-
-/* Event happens on a date at a time */
-"%@ at %@" = "%1$@ o %2$@";
-
 /* Message for unsupported tab coming soon */
 "%@ is coming soon!" = "%@ już niebawem!";
 
@@ -78,12 +72,6 @@
 
 /* (No Comment) */
 "%@ need grading" = "%@ wymagają oceny";
-
-/* 88 out of 100 points */
-"%@ out of %@" = "%1$@ z %2$@";
-
-/* 83% (83 out of 100 points */
-"%@%% (%g out of %@)" = "%1$@%% (%2$g z %3$@)";
 
 /* (No Comment) */
 "%@..." = "%@...";
@@ -262,7 +250,7 @@
 /* (No Comment) */
 "Ask me later" = "Zapytaj mnie później";
 
-/* Label for an assignment */
+/* (No Comment) */
 "Assignment" = "Zadanie";
 
 /* (No Comment) */
@@ -280,7 +268,7 @@
 /* (No Comment) */
 "Attachments" = "Załączniki";
 
-/* Label for a discussion */
+/* (No Comment) */
 "Attendance" = "Frekwencja";
 
 /* Audio file type */
@@ -371,7 +359,7 @@
 /* title for media comment upload failure */
 "Comment Error" = "Błąd komentarza";
 
-/* View comments */
+/* (No Comment) */
 "Comments" = "Komentarze";
 
 /* No comment provided by engineer. */
@@ -453,10 +441,10 @@
 /* Placeholder text for discussion details field */
 "Details" = "Szczegóły";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Discard" = "Odrzuć";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Discard this entry?" = "Odrzucić ten wpis?";
 
 /* Title of the new discussion view */
@@ -556,7 +544,7 @@
 /* Error deleting folder alert view title */
 "Error deleting folder" = "Wystąpił błąd podczas usuwania folderu";
 
-/* Label for a calendar event */
+/* (No Comment) */
 "Event" = "Wydarzenie";
 
 /* No comment provided by engineer. */
@@ -607,13 +595,13 @@
 /* title for discussion assignment submission button */
 "Go To Discussion" = "Przejdź do dyskusji";
 
-/* Action on an alert */
+/* (No Comment) */
 "Go to App Store" = "Przejdź do sklepu z aplikacjami";
 
-/* text for the \"go to quiz\" button */
+/* (No Comment) */
 "Go to Quiz" = "Przejdź do testu";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Go to discussion" = "Przejdź do dyskusji";
 
 /* No comment provided by engineer. */
@@ -622,7 +610,7 @@
 /* (No Comment) */
 "Grade %@" = "Ocena %@";
 
-/* Launch the SpeedGrader app */
+/* (No Comment) */
 "Grade in SpeedGrader" = "Oceniaj w programie SpeedGrader";
 
 /* (No Comment) */
@@ -631,7 +619,7 @@
 /* (No Comment) */
 "Grade: %@" = "Ocena: %@";
 
-/* Label for a discussion */
+/* (No Comment) */
 "Graded Discussion" = "Oceniona dyskusja";
 
 /* Lets user know discussion is graded */
@@ -697,7 +685,7 @@
 /* (No Comment) */
 "Jumps to current day on calendar" = "Przeskakuje do obecnego dnia w kalendarzu";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Keep" = "Zatrzymaj";
 
 /* Title for an LTI launch submitted as an assignment */
@@ -709,7 +697,7 @@
 /* Title for an alert popup */
 "Large file" = "Duży plik";
 
-/* Button in an alert */
+/* (No Comment) */
 "Later" = "Później";
 
 /* title for submission button */
@@ -784,7 +772,7 @@
 /* Button title for selecting to view more info about the limitations of mobile quizzes */
 "More Info" = "Więcej informacji";
 
-/* Title of a link to show additional due dates customized for sections or groups. */
+/* (No Comment) */
 "Multiple Due Dates" = "Liczne terminy";
 
 /* (No Comment) */
@@ -808,7 +796,7 @@
 /* the users name */
 "Name" = "Nazwa";
 
-/* Title notifying user that SpeedGrader is available for iPad */
+/* (No Comment) */
 "Need SpeedGrader for iPad" = "Wymagany program SpeedGrader dla iPad'a";
 
 /* Network error title */
@@ -1028,7 +1016,7 @@
 /* option to request a feature */
 "Request a feature" = "Zażądaj funkcji";
 
-/* View grading rubric */
+/* (No Comment) */
 "Rubric" = "Rubryka";
 
 /* No comment provided by engineer. */
@@ -1112,23 +1100,22 @@
 /* (No Comment) */
 "Sub Header" = "Niższy nagłówek";
 
-/* View previously submitted assignment */
+/* No comment provided by engineer. */
 "Submission" = "Złożenie";
 
 /* Title for file submission error */
 "Submission Error" = "Błąd złożenia";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Submission complete" = "Złożenie ukończone";
 
-/* Submit an assignment
-   Submit Arc video as assignment button */
+/* Submit Arc video as assignment button */
 "Submit" = "Złóż";
 
 /* Submitted grouping */
 "Submitted" = "Złożono";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Submitting..." = "Składanie...";
 
 /* Subscribe to calendar feed allows the user to export their calendar events to a 3rd party calendar */
@@ -1293,8 +1280,14 @@
 /* Error title */
 "Unable to load" = "Nie można załadować";
 
+/* Error message without retry */
+"Unable to post." = "Nie można opublikować.";
+
 /* (No Comment) */
 "Unable to post. Please try again later" = "Nie można opublikować. Spróbuj ponownie później.";
+
+/* Error message */
+"Unable to post. Please try again later." = "Nie można opublikować. Spróbuj ponownie później.";
 
 /* message saying that avatar couldn't be loaded to server */
 "Unable to upload to server" = "Nie można przesłać do serwera";
@@ -1395,7 +1388,7 @@
 /* Masquerade success message */
 "You are now masquerading as %@. To Stop Masquerading go to your Profile." = "Obecnie podszywasz się pod %@. Aby zatrzymać proces podszywania, przejdź do swojego Profilu.";
 
-/* Message in an alert */
+/* (No Comment) */
 "You do not have SpeedGrader for iPad. You can download it for free from the App Store." = "Nie posiadasz programu SpeedGrader dla iPad'a. Możesz go pobrać za darmo ze sklepu z aplikacjami.";
 
 /* (No Comment) */
@@ -1431,16 +1424,13 @@
 /* (No Comment) */
 "due on %1$@ at %2$@" = "termin %1$@ o %2$@";
 
-/* Assignment is due on a date at a time */
-"due on %@ at %@" = "termin %1$@ o %2$@";
-
 /* (No Comment) */
 "moments ago" = "moment temu";
 
 /* Accessibility label modifier for point out of point possible */
 "out of" = "z";
 
-/* The assignment is out of 100 points */
+/* (No Comment) */
 "out of %@" = "z %@";
 
 /* (No Comment) */

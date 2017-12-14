@@ -1,1355 +1,1499 @@
 {
   "_376f89ea": {
-	"message": "--"
+    "message": "--"
   },
   "_4927a5f1": {
-	"message": "?"
+    "message": "?"
   },
   "a_description_is_required_54b5f1f6": {
-	"message": "E hiahia ana he whakāturanga"
+    "message": "E hiahia ana he whakāturanga"
   },
   "a_message_is_required_129e1814": {
-	"message": "Me tuku he karere"
+    "message": "Me tuku he karere"
   },
   "a_title_is_required_71222850": {
-	"message": "Kei te hiahiatia he taitara"
+    "message": "Kei te hiahiatia he taitara"
+  },
+  "access_9a94f04e": {
+    "message": "Uru"
   },
   "access_code_74f4864f": {
-	"message": "Waehere Uru"
+    "message": "Waehere Uru"
   },
   "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
-	"message": "Tāpiri torutoru ō akoranga tino makau ki te hanga ko tēnei wāhi tou kainga"
+    "message": "Tāpiri torutoru ō akoranga tino makau ki te hanga ko tēnei wāhi tou kainga"
   },
   "add_an_attachment_by_tapping_the_plus_at_the_top_r_f9350b62": {
-	"message": "Tāpirihia he tāpiri mā te pātō i te atu ki te taha matau."
+    "message": "Tāpirihia he tāpiri mā te pātō i te atu ki te taha matau."
   },
   "add_assignee_24ee0b71": {
-	"message": "Tāpiri rīwhi"
+    "message": "Tāpiri rīwhi"
   },
   "add_attachment_dcdb8bf8": {
-	"message": "Tāpiri āpitihanga"
+    "message": "Tāpiri āpitihanga"
   },
   "add_comment_3205529f": {
-	"message": "Tāpiri Tākupu"
+    "message": "Tāpiri Tākupu"
   },
   "add_courses_fd45abf": {
-	"message": "Tāpiri ngā akoranga"
+    "message": "Tāpiri ngā akoranga"
+  },
+  "add_description_5321f1d": {
+    "message": "Tāpiri whakaahua"
   },
   "add_description_required_e222e483": {
-	"message": "Tapiri he whakaahuatanga (e hiahiatia ana)"
+    "message": "Tapiri he whakaahuatanga (e hiahiatia ana)"
   },
   "add_due_date_65b08f6c": {
-	"message": "Tāpiri rā e tika ana"
+    "message": "Tāpiri rā e tika ana"
+  },
+  "add_file_e6326e09": {
+    "message": "Tāpiri Kōnae"
+  },
+  "add_item_75b67d07": {
+    "message": "Tāpiri tūemi"
   },
   "add_media_cfa37b54": {
-	"message": "Tāpiri pāpāho"
+    "message": "Tāpiri pāpāho"
   },
   "add_recipient_7de2dc74": {
-	"message": "Tāpiri kaiwhiwhi"
+    "message": "Tāpiri kaiwhiwhi"
   },
   "add_title_4f788d37": {
-	"message": "Tāpiri taitara"
+    "message": "Tāpiri taitara"
   },
   "after_date_e5d9b0e1": {
-	"message": "I muri { date }"
+    "message": "I muri { date }"
   },
   "after_last_attempt_c9168da2": {
-	"message": "I muri i Whakamātau Mutunga"
+    "message": "I muri i Whakamātau Mutunga"
   },
   "all_4321c3a1": {
-	"message": "Katoa"
+    "message": "Katoa"
   },
   "all_courses_a7dbb853": {
-	"message": "Ngā akorangai katoa"
+    "message": "Ngā akorangai katoa"
   },
   "all_grading_periods_77974940": {
-	"message": "Takiwā Māka Katoa"
+    "message": "Takiwā Māka Katoa"
   },
   "all_in_e5ddaee0": {
-	"message": "Katoa i roto"
+    "message": "Katoa i roto"
   },
   "all_people_16d90b41": {
-	"message": "Ngā tāngata katoa"
+    "message": "Ngā tāngata katoa"
   },
   "all_submissions_3eedfb97": {
-	"message": "Ngā tukunga katoa"
+    "message": "Ngā tukunga katoa"
   },
   "all_submissions_b8717440": {
-	"message": "Ngā tukunga katoa"
+    "message": "Ngā tukunga katoa"
   },
   "allow_multiple_attempts_e67a0a37": {
-	"message": "Tukua whakamātau maha"
+    "message": "Tukua whakamātau maha"
   },
   "allow_threaded_replies_43b2311e": {
-	"message": "Tukua ngā whakautu whiria"
+    "message": "Tukua ngā whakautu whiria"
   },
   "allowed_attempts_4e229caa": {
-	"message": "Ngā nganatanga E whakaaetia"
+    "message": "Ngā nganatanga E whakaaetia"
   },
   "always_3a59e701": {
-	"message": "tonu"
+    "message": "tonu"
   },
   "an_error_occured_while_fetching_this_conversation_453ca633": {
-	"message": "He hapa i mahi i te wā e tiki ana i tēnei kōrero"
+    "message": "He hapa i mahi i te wā e tiki ana i tēnei kōrero"
   },
   "an_error_occurred_a4e1cda4": {
-	"message": "He hapa i puta"
+    "message": "He hapa i puta"
   },
   "announcement_details_81b0bda2": {
-	"message": "Taipitopito Pānuitanga"
+    "message": "Taipitopito Pānuitanga"
   },
   "announcements_a4b8ed4a": {
-	"message": "Fanongonongó"
+    "message": "Fanongonongó"
   },
   "anonymous_grading_3083dc0": {
-	"message": "Ingoamuna māka"
+    "message": "Ingoamuna māka"
   },
   "anonymous_grading_ccb5045c": {
-	"message": "Ingoamuna māka"
+    "message": "Ingoamuna māka"
+  },
+  "anyone_5b8fdf9f": {
+    "message": "Tētahi"
   },
   "archived_de543437": {
-	"message": "Pūrangatia"
+    "message": "Pūrangatia"
+  },
+  "are_you_sure_you_want_to_delete_name_908230d3": {
+    "message": "Kei te tino hiahia koe ki te ki te muku { name }?"
   },
   "are_you_sure_you_want_to_delete_this_announcement_293d51a8": {
-	"message": "E tino  hiahia ana koe ki te muku  i tēnei pānuitanga?"
+    "message": "E tino  hiahia ana koe ki te muku  i tēnei pānuitanga?"
   },
   "are_you_sure_you_want_to_delete_this_discussion_334554e0": {
-	"message": "E tino hiahia ana koe ki te muku i tēnei kōrero?"
+    "message": "E tino hiahia ana koe ki te muku i tēnei kōrero?"
+  },
+  "are_you_sure_you_want_to_delete_this_page_2185844": {
+    "message": "Kei te tino hiahia koe ki te muku i tēnei whārangi?"
   },
   "are_you_sure_you_want_to_delete_this_reply_6a35cccc": {
-	"message": "E tino hiahia ana koe ki te muku i tēnei whakautu?"
+    "message": "E tino hiahia ana koe ki te muku i tēnei whakautu?"
   },
   "assign_to_95404a83": {
-	"message": "Tautapa kī"
+    "message": "Tautapa kī"
   },
   "assignees_314d5e55": {
-	"message": "Ngā Kairīwhi"
+    "message": "Ngā Kairīwhi"
   },
   "assignees_required_1b9218fb": {
-	"message": "He hoatu e hiahiatia ana"
+    "message": "He hoatu e hiahiatia ana"
   },
   "assignment_details_bc488179": {
-	"message": "Taipitopito Taumahi"
+    "message": "Taipitopito Taumahi"
   },
   "assignment_group_1a781505": {
-	"message": "Rōpū Taumahi"
+    "message": "Rōpū Taumahi"
   },
   "assignments_1e02582c": {
-	"message": "Taumahi"
+    "message": "Taumahi"
   },
   "assignments_list_fe3e54be": {
-	"message": "Ngā Rārangi taumahi"
+    "message": "Ngā Rārangi taumahi"
   },
   "attachment_deffe5a9": {
-	"message": "Āpitihanga"
+    "message": "Āpitihanga"
   },
   "attachments_694cf227": {
-	"message": "Āpitihanga"
+    "message": "Āpitihanga"
   },
   "attempt_number_75028cfa": {
-	"message": "whakamātau { number }"
+    "message": "whakamātau { number }"
   },
   "audio_comment_baf426c7": {
-	"message": "Ororongo Kōrero"
+    "message": "Ororongo Kōrero"
   },
   "audio_dd489fcc": {
-	"message": "Ororongo"
+    "message": "Ororongo"
   },
   "audio_playback_failed_912bcb82": {
-	"message": "Kua rahua te ororongo kōrero"
+    "message": "Kua rahua te ororongo kōrero"
   },
   "availability_8942cde6": {
-	"message": "wātea"
+    "message": "wātea"
   },
   "availability_closed_429d1ba5": {
-	"message": "Wateatanga: katia"
+    "message": "Wateatanga: katia"
   },
   "availability_e415e857": {
-	"message": "Wāteatanga"
+    "message": "Wāteatanga"
   },
   "available_from_3821bccc": {
-	"message": "Wātea mai:"
+    "message": "Wātea mai:"
   },
   "available_from_587ce92f": {
-	"message": "E wātea Mai ana"
+    "message": "E wātea Mai ana"
   },
   "available_from_date_bb9d5115": {
-	"message": "E wātea mai ana: { date }"
+    "message": "E wātea mai ana: { date }"
+  },
+  "available_from_f84e4611": {
+    "message": "wātea i"
+  },
+  "available_from_must_be_before_available_to_b73ad479": {
+    "message": "Me wātea mai i mua i te Waea kī"
   },
   "available_from_must_be_before_available_until_38d313cc": {
-	"message": "”Wātea mai“ i mua i te ”Wātea kī”"
+    "message": "”Wātea mai“ i mua i te ”Wātea kī”"
+  },
+  "available_to_b7350e02": {
+    "message": "wātea ki"
   },
   "available_until_20c0cc5c": {
-	"message": "Wātea kī"
+    "message": "Wātea kī"
   },
   "available_until_date_37684818": {
-	"message": "Wātea kī { date }"
+    "message": "Wātea kī { date }"
   },
   "available_until_f3b9c4ed": {
-	"message": "Wātea Kia"
+    "message": "Wātea Kia"
   },
   "average_49c63f9b": {
-	"message": "toharite"
+    "message": "toharite"
   },
   "back_2900f52a": {
-	"message": "Hoki"
+    "message": "Hoki"
   },
   "back_to_replies_94f3c127": {
-	"message": "Hoki ki ngā whakautu"
+    "message": "Hoki ki ngā whakautu"
   },
   "bold_34b9d97e": {
-	"message": "maia"
+    "message": "maia"
+  },
+  "can_edit_5a1e8dbf": {
+    "message": "Ka taea te whakatika"
   },
   "can_not_forward_message_2a4d4953": {
-	"message": "Kaore e taea te tuku karere"
+    "message": "Kaore e taea te tuku karere"
   },
   "cancel_caeb1e68": {
-	"message": "Whakakore"
+    "message": "Whakakore"
   },
   "canvas_parent_app_f9236a3a": {
-	"message": "Canvas Matua Taupanga"
+    "message": "Canvas Matua Taupanga"
   },
   "canvas_student_app_329567f": {
-	"message": "Canvas Ākonga Taupanga"
+    "message": "Canvas Ākonga Taupanga"
   },
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
-	"message": "Huri ki te { discussionTitle } Whkarōpū rerekē"
+    "message": "Huri ki te { discussionTitle } Whkarōpū rerekē"
   },
   "choose_1319ef6b": {
-	"message": "Kōwhiri"
+    "message": "Kōwhiri"
   },
   "choose_color_11148181": {
-	"message": "Kōwhiri { color }"
+    "message": "Kōwhiri { color }"
   },
   "choose_from_library_1b9caf95": {
-	"message": "Kōwhiri Mai i te Whare Pukapuka"
+    "message": "Kōwhiri Mai i te Whare Pukapuka"
   },
   "clear_filter_5b3a182d": {
-	"message": "Tātari mārama"
+    "message": "Tātari mārama"
   },
   "clear_filter_5c961d1b": {
-	"message": "Whakawātea tātari"
+    "message": "Whakawātea tātari"
   },
   "clear_filter_inbox_9465e74c": {
-	"message": "Whakawātea pouaka tātari"
+    "message": "Whakawātea pouaka tātari"
   },
   "clear_recording_5a97b475": {
-	"message": "Mukua te tuhi"
+    "message": "Mukua te tuhi"
   },
   "close_for_comments_ce0e5d00": {
-	"message": "Kati mō te kōrero"
+    "message": "Kati mō te kōrero"
   },
   "closed_983a96fe": {
-	"message": "katia"
+    "message": "katia"
   },
   "closed_for_comments_e395b42f": {
-	"message": "Katia hoki Tākupu"
+    "message": "Katia hoki Tākupu"
   },
   "color_a363e1b0": {
-	"message": "Tae"
+    "message": "Tae"
   },
   "comment_7ef1428e": {
-	"message": "Tākupu"
+    "message": "Tākupu"
   },
   "comment_failed_acf11b54": {
-	"message": "Kōrero rāhua"
+    "message": "Kōrero rāhua"
   },
   "comments_e07bcbe3": {
-	"message": "Tākupu"
+    "message": "Tākupu"
   },
   "complete_fd828dea": {
-	"message": "Whakaotia"
+    "message": "Whakaotia"
   },
   "complete_incomplete_15b3a89c": {
-	"message": "Oti / Tarepa"
+    "message": "Oti / Tarepa"
   },
   "compose_message_45002196": {
-	"message": "Tito karere"
+    "message": "Tito karere"
   },
   "conversation_options_8be926f3": {
-	"message": "Ngā kōwhiringa kōrero"
+    "message": "Ngā kōwhiringa kōrero"
+  },
+  "copyright_holder_386cc8b8": {
+    "message": "Manatārua Kaitiaki"
   },
   "could_not_get_list_of_assignments_76aa2c7e": {
-	"message": "Kaore i taea te tiki rārangi mo ngā taumahi."
+    "message": "Kaore i taea te tiki rārangi mo ngā taumahi."
   },
   "could_not_start_recording_8f31c2e4": {
-	"message": "Kaore i taea te tuhi"
+    "message": "Kaore i taea te tuhi"
   },
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
-	"message": "{ count, plural,     =0 {0 ngā akong}    one {# akonga}  other {# ngā akonga}}"
+    "message": "{ count, plural,     =0 {0 ngā akong}    one {# akonga}  other {# ngā akonga}}"
   },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
-	"message": "{ count, plural,    one {Me Māka} other {Me Māka}}"
+    "message": "{ count, plural,    one {Me Māka} other {Me Māka}}"
   },
   "count_plural_one_needs_grading_other_need_grading_7eba188e": {
-	"message": "{ count, plural,    one {# E hiahatia ana te māhiti} other {# Hiahiatia ana te māhiti}}"
+    "message": "{ count, plural,    one {# E hiahatia ana te māhiti} other {# Hiahiatia ana te māhiti}}"
   },
   "count_plural_one_pt_other_pts_c5a3bced": {
-	"message": "{ count, plural,    one {# pt} other {# pts}}"
+    "message": "{ count, plural,    one {# pt} other {# pts}}"
   },
   "count_plural_one_question_other_questions_309aafa": {
-	"message": "{ count, plural,    one {# Pātai} other {# Ngā Pātai}}"
+    "message": "{ count, plural,    one {# Pātai} other {# Ngā Pātai}}"
   },
   "count_plural_one_reply_other_replies_dbf1832a": {
-	"message": "{ count, plural,    one {# Whakautu} other {# Ngā whakautu}}"
+    "message": "{ count, plural,    one {# Whakautu} other {# Ngā whakautu}}"
   },
   "count_plural_one_there_is_assignee_without_a_grade_15facb89": {
-	"message": "{ count, plural,    one {He # kaitohutohu kaore he kōeke.} other {He # ngā kaitohutohu kaore he kōeke.}}"
+    "message": "{ count, plural,    one {He # kaitohutohu kaore he kōeke.} other {He # ngā kaitohutohu kaore he kōeke.}}"
   },
   "count_students_4ae780ca": {
-	"message": "{ count } Ngā akonga"
+    "message": "{ count } Ngā akonga"
   },
   "course_activity_stream_40091c17": {
-	"message": "Akoranga mahi wahanga"
+    "message": "Akoranga mahi wahanga"
   },
   "course_modules_795cb95e": {
-	"message": "Ngā Kōwae akoranga"
+    "message": "Ngā Kōwae akoranga"
   },
   "course_sections_380358a5": {
-	"message": "Wāhanga akoranga"
+    "message": "Wāhanga akoranga"
   },
   "course_settings_f6d0bbf8": {
-	"message": "Ngā Tautuhinga akoranga"
+    "message": "Ngā Tautuhinga akoranga"
   },
   "courses_43204aae": {
-	"message": "Kōhi"
+    "message": "Kōhi"
+  },
+  "create_folder_6055d558": {
+    "message": "Waihanga Kōpaki"
+  },
+  "creative_commons_file_f0ace8ca": {
+    "message": "Ngā Kōnae Whaiaro Hanga"
+  },
+  "creative_commons_license_ba94fd4d": {
+    "message": "Ko te Raihana Whaiaro Whaimana"
   },
   "customize_course_eefa9c21": {
-	"message": "Whakarite akoranga"
+    "message": "Whakarite akoranga"
   },
   "customize_grade_c9d046d": {
-	"message": "Whakarite kōeke"
+    "message": "Whakarite kōeke"
   },
   "customize_grade_value_964695a3": {
-	"message": "Whakarite kōeke { value }"
+    "message": "Whakarite kōeke { value }"
   },
   "date_date_medium_at_date_time_short_2b9ce48b": {
-	"message": "{ date, date, medium } ī { date, time, short }"
+    "message": "{ date, date, medium } ī { date, time, short }"
   },
   "date_date_mmm_d_at_date_time_short_61eeb79b": {
-	"message": "{ date, date, 'MMM d' } ī { date, time, short }"
+    "message": "{ date, date, 'MMM d' } ī { date, time, short }"
   },
   "date_date_mmm_d_date_time_short_e82719d6": {
-	"message": "{ date, date, 'MMM d' } { date, time, short }"
+    "message": "{ date, date, 'MMM d' } { date, time, short }"
   },
   "delay_posting_f45eed7d": {
-	"message": "Whakaroa tarenga"
+    "message": "Whakaroa tarenga"
   },
   "delete_a6efa79d": {
-	"message": "Mukua"
+    "message": "Mukua"
+  },
+  "delete_file_3ca64c1b": {
+    "message": "Muku kōnae"
+  },
+  "delete_folder_1700498c": {
+    "message": "Muku Kōpaki"
+  },
+  "delete_folder_7d84f587": {
+    "message": "Muku Kōpaki?"
   },
   "delete_recipient_recipient_22a1e3dd": {
-	"message": "Muku kaiwhiwhi { recipient }"
+    "message": "Muku kaiwhiwhi { recipient }"
   },
   "deleted_this_reply_8b5b0ddc": {
-	"message": "Kua mukua tēnei whakautu"
+    "message": "Kua mukua tēnei whakautu"
+  },
+  "deleting_this_folder_will_also_delete_all_of_the_f_8017926e": {
+    "message": "Te mahi muku i tēnei kōpaki ka muku hoki i ngā kōnae katoa i roto i te kōpaki."
   },
   "description_436c48d7": {
-	"message": "Whakaahuatanga"
+    "message": "Whakaahuatanga"
   },
   "designer_c458392": {
-	"message": "Kaitātai"
+    "message": "Kaitātai"
   },
   "details_98a31b68": {
-	"message": "Taipitopito"
+    "message": "Taipitopito"
   },
   "discussion_details_5728ea3d": {
-	"message": "Taipitoito kōrero"
+    "message": "Taipitoito kōrero"
   },
   "discussion_submission_781d5d33": {
-	"message": "Tāpaetanga kōrerorero"
+    "message": "Tāpaetanga kōrerorero"
   },
   "discussion_topic_dc85ad4c": {
-	"message": "Kaupapa Kōrero"
+    "message": "Kaupapa Kōrero"
   },
   "discussions_a5f96392": {
-	"message": "Kōrero"
+    "message": "Kōrero"
   },
   "display_grade_as_7b5376a6": {
-	"message": "Whakaatu kōeke ī"
+    "message": "Whakaatu kōeke ī"
   },
   "display_grade_as_c165e9a6": {
-	"message": "Whakaatu kōeke hē"
+    "message": "Whakaatu kōeke hē"
   },
   "done_54e3d4b6": {
-	"message": "Mahia"
+    "message": "Mahia"
   },
   "due_5d7267be": {
-	"message": "Nā:"
+    "message": "Nā:"
   },
   "due_a73610f6": {
-	"message": "e tika ana"
+    "message": "e tika ana"
   },
   "due_date_822625d8": {
-	"message": "Rā Nā"
+    "message": "Rā Nā"
   },
   "due_date_date_mmm_d_yyyy_at_date_time_short_76c5900f": {
-	"message": "Nā { date, date, 'MMM d, YYYY' } ī { date, time, short }"
+    "message": "Nā { date, date, 'MMM d, YYYY' } ī { date, time, short }"
   },
   "due_date_must_be_between_available_from_and_availa_bc4d7904": {
-	"message": "“Rā tika”  i waenganui  ngā rā Wātea mai” me “Wātea kī”"
+    "message": "“Rā tika”  i waenganui  ngā rā Wātea mai” me “Wātea kī”"
   },
   "due_dates_double_tap_for_details_36c5a7a4": {
-	"message": "Ngā ra e tika ana, Pātōtō rua wā mō ngā taipitopito"
+    "message": "Ngā ra e tika ana, Pātōtō rua wā mō ngā taipitopito"
   },
   "due_datestring_be4410c7": {
-	"message": "e tika ana { dateString }"
+    "message": "e tika ana { dateString }"
   },
   "edit_assignment_ebf22a72": {
-	"message": "Whakatika Taumahi"
+    "message": "Whakatika Taumahi"
   },
   "edit_attachment_count_ae907c46": {
-	"message": "Whakatika tāpiritanga({ count })"
+    "message": "Whakatika tāpiritanga({ count })"
   },
   "edit_attachments_count_5e9276ea": {
-	"message": "Whakatika ngā tāpiritanga ({ count })"
+    "message": "Whakatika ngā tāpiritanga ({ count })"
   },
   "edit_c5fbea07": {
-	"message": "Whakatika"
+    "message": "Whakatika"
   },
   "edit_comment_22b23c2f": {
-	"message": "Whakatika kōrero"
+    "message": "Whakatika kōrero"
   },
   "edit_course_settings_9736fd1f": {
-	"message": "Whakatika akoranga tautuhinga"
+    "message": "Whakatika akoranga tautuhinga"
   },
   "edit_courses_1f63340f": {
-	"message": "Whakatika i ngā akoranga"
+    "message": "Whakatika i ngā akoranga"
   },
   "edit_description_1206e0a8": {
-	"message": "Whakatika Whakaahuatang"
+    "message": "Whakatika Whakaahuatang"
+  },
+  "edit_file_c560115a": {
+    "message": "Whakatika Kōnae"
+  },
+  "edit_folder_f12b1b3c": {
+    "message": "Whakatika kōpaki"
   },
   "edit_quiz_details_72cd055": {
-	"message": "Whakatika Quiz taipitopito"
+    "message": "Whakatika Quiz taipitopito"
   },
   "email_contact_e095f380": {
-	"message": "Īmēra Whakapā"
+    "message": "Īmēra Whakapā"
   },
   "enjoy_your_day_a4cb2c1": {
-	"message": "Kia koa tō rā!"
+    "message": "Kia koa tō rā!"
   },
   "enter_code_c7ab5104": {
-	"message": "Tomo waehere"
+    "message": "Tomo waehere"
   },
   "error_98e81528": {
-	"message": "Hapa"
+    "message": "Hapa"
   },
   "error_saving_grade_ef8d2ddc": {
-	"message": "Hapa i te wā e tiakikōeke ana"
+    "message": "Hapa i te wā e tiakikōeke ana"
   },
   "everyone_854554dd": {
-	"message": " Ngā tāngata katoa"
+    "message": " Ngā tāngata katoa"
   },
   "everyone_else_cc5f6888": {
-	"message": "Ngā tangata katoa atu"
+    "message": "Ngā tangata katoa atu"
   },
   "excuse_student_1b60e311": {
-	"message": "Whakawātea ākoranga"
+    "message": "Whakawātea ākoranga"
   },
   "excused_cf8792eb": {
-	"message": "Tukua"
+    "message": "Tukua"
   },
   "external_tool_c5a6410a": {
-	"message": "Taputapu Waho"
+    "message": "Taputapu Waho"
   },
   "external_tool_submission_c7b1dfa4": {
-	"message": "Tāpaetanga Taputapu o waho"
+    "message": "Tāpaetanga Taputapu o waho"
   },
   "fail_c2e91f54": {
-	"message": "Rahua"
+    "message": "Rahua"
   },
   "failed_comment_options_aa19a936": {
-	"message": "Kōwhiringa kōrero rahua"
+    "message": "Kōwhiringa kōrero rahua"
   },
   "failed_to_download_audio_23abb7b1": {
-	"message": "Rahua ki te tikiake i te ororongo"
+    "message": "Rahua ki te tikiake i te ororongo"
   },
   "failed_to_load_audio_46309612": {
-	"message": "Rahua ki te tukuake i te ororongo"
+    "message": "Rahua ki te tukuake i te ororongo"
   },
   "failed_to_upload_attachment_acb5c28f": {
-	"message": "Rahua ki te tukuake i te tāpiri"
+    "message": "Rahua ki te tukuake i te tāpiri"
   },
   "failed_to_upload_media_comment_c43f581a": {
-	"message": "Rahua ki te tukuake i te kōrero pāpāho"
+    "message": "Rahua ki te tukuake i te kōrero pāpāho"
+  },
+  "fair_use_exception_d8683c6f": {
+    "message": "Tika Whakamahi Toronga"
   },
   "favorite_courses_fbd356f0": {
-	"message": "Ngā akoranga makau"
+    "message": "Ngā akoranga makau"
   },
   "file_count_plural_one_file_other_files_8ae41de8": {
-	"message": "{ file_count, plural,    one {# kōnae} other {# ngā kōnae}}"
+    "message": "{ file_count, plural,    one {# kōnae} other {# ngā kōnae}}"
   },
   "files_c300e900": {
-	"message": "Kōnae"
+    "message": "Kōnae"
   },
   "files_numberoffiles_number_410d9eba": {
-	"message": "Ngā kōnae ({ numberOfFiles, number })"
+    "message": "Ngā kōnae ({ numberOfFiles, number })"
   },
   "filter_by_2f4368a8": {
-	"message": "Whiriwhiringia mā"
+    "message": "Whiriwhiringia mā"
   },
   "filter_by_ffcbd05b": {
-	"message": "Tātari ī"
+    "message": "Tātari ī"
   },
   "filter_e3398407": {
-	"message": "Tātari"
+    "message": "Tātari"
   },
   "filter_inbox_dae0ff8f": {
-	"message": "Tātari pouaka roto"
+    "message": "Tātari pouaka roto"
   },
   "filter_numselected_f4793ab8": {
-	"message": "Tātari ({ numSelected })"
+    "message": "Tātari ({ numSelected })"
   },
   "filter_people_b34b567b": {
-	"message": "Tātari Tāngata"
+    "message": "Tātari Tāngata"
   },
   "filter_submissions_81bc50de": {
-	"message": "Tātari ngā tukunga"
+    "message": "Tātari ngā tukunga"
   },
   "for_974cbb84": {
-	"message": "mō"
+    "message": "mō"
   },
   "for_e3490d05": {
-	"message": "Mō:"
+    "message": "Mō:"
   },
   "forward_d143f64": {
-	"message": "Whakamua"
+    "message": "Whakamua"
   },
   "forwarded_message_3acb578c": {
-	"message": "Karere kua tukuna whakamua"
+    "message": "Karere kua tukuna whakamua"
   },
   "full_screen_712e95f1": {
-	"message": "Mata kī"
+    "message": "Mata kī"
   },
   "fw_subject_ebe04db7": {
-	"message": "Fw: { subject }"
+    "message": "Fw: { subject }"
   },
   "gpa_71809a99": {
-	"message": "GPA"
+    "message": "GPA"
   },
   "gpa_scale_a6d1cdea": {
-	"message": "GPA Tauine"
+    "message": "GPA Tauine"
   },
   "grade_9c6f076d": {
-	"message": "Kōeke"
+    "message": "Kōeke"
   },
   "graded_25cd3fcd": {
-	"message": "mākahia"
+    "message": "mākahia"
   },
   "graded_quiz_7fabdf1f": {
-	"message": "Kōeketia Quiz"
+    "message": "Kōeketia Quiz"
   },
   "graded_survey_c0f0c395": {
-	"message": "Kōeketia Rangahau"
+    "message": "Kōeketia Rangahau"
   },
   "grades_a61eba0a": {
-	"message": "Kōeke"
+    "message": "Kōeke"
   },
   "grades_muted_76c70047": {
-	"message": "Ngā kōeke ngū"
+    "message": "Ngā kōeke ngū"
   },
   "grades_muted_anonymous_grading_9291ea4b": {
-	"message": "Ngā kōeke ngū, Ingoamuna māka"
+    "message": "Ngā kōeke ngū, Ingoamuna māka"
   },
   "group_a8f5ed9c": {
-	"message": "Rōpū"
+    "message": "Rōpū"
   },
   "groups_6c90e26a": {
-	"message": "Rōpū"
+    "message": "Rōpū"
   },
   "half_screen_9cdd83ad": {
-	"message": "Hawhe mata"
+    "message": "Hawhe mata"
   },
   "haven_t_been_graded_1fbfda56": {
-	"message": "Kāore ano i kōeketia"
+    "message": "Kāore ano i kōeketia"
   },
   "haven_t_submitted_yet_3a127a27": {
-	"message": "Kāore anō i tukunga"
+    "message": "Kāore anō i tukunga"
+  },
+  "hidden_files_inside_will_be_available_with_links_e9e3d233": {
+    "message": "Kua hunahia. Ka wātea ngā kōnae i roto me ngā hononga."
   },
   "hide_correct_answers_at_b1a59408": {
-	"message": "Huna whakautu tika I"
+    "message": "Huna whakautu tika I"
   },
   "hide_date_cannot_be_before_show_date_cfaa35f0": {
-	"message": "“Hunga rā” kaore e taea ī mua “Kite Rā”"
+    "message": "“Hunga rā” kaore e taea ī mua “Kite Rā”"
   },
   "highest_28ad71e6": {
-	"message": "teitei"
+    "message": "teitei"
+  },
+  "i_have_permission_to_use_file_d19a1a29": {
+    "message": "E whakaaetia ana ahau ki te mahi i te kōnae"
+  },
+  "i_hold_the_copyright_71ee91b1": {
+    "message": "Ka mau ahau i te manatārua"
   },
   "incomplete_da3c2ea2": {
-	"message": "Pahara"
+    "message": "Pahara"
   },
   "insert_image_42d30344": {
-	"message": "Whakauru Āhua"
+    "message": "Whakauru Āhua"
   },
   "insert_link_6dc23cae": {
-	"message": "Whakauru hono"
+    "message": "Whakauru hono"
   },
   "invalid_field_54480fae": {
-	"message": "Whīra muhu"
+    "message": "Whīra muhu"
   },
   "italic_ac45200a": {
-	"message": "Italic"
+    "message": "Italic"
   },
   "last_activity_on_lastactivity_date_mmmm_d_at_lasta_1a7e8430": {
-	"message": "Mahi whakamutunga i runga  { lastActivity, date, 'MMMM d' } ī { lastActivity, time, short }"
+    "message": "Mahi whakamutunga i runga  { lastActivity, date, 'MMMM d' } ī { lastActivity, time, short }"
   },
   "last_post_lastreplydatestr_55fbe7ce": {
-	"message": "Pou whakamutunga { lastReplyDateStr }"
+    "message": "Pou whakamutunga { lastReplyDateStr }"
   },
   "late_2be42b88": {
-	"message": "Te mutunga"
+    "message": "Te mutunga"
   },
   "latest_f604a75": {
-	"message": "hou"
+    "message": "hou"
   },
   "launch_external_tool_672c0409": {
-	"message": "Neke Taputapu Waho"
+    "message": "Neke Taputapu Waho"
   },
   "length_in_minutes_eca69868": {
-	"message": "Roa i roto i ngā meneti"
+    "message": "Roa i roto i ngā meneti"
   },
   "let_students_see_the_correct_answer_a4da886e": {
-	"message": "Tukuna ngā ākoranga ki te kite i ngā whakautu tika"
+    "message": "Tukuna ngā ākoranga ki te kite i ngā whakautu tika"
   },
   "let_students_see_their_quiz_responses_fbc07d14": {
-	"message": "Tukuna ngā ākoranga ki te kite ri a ratou Quiz whakautu "
+    "message": "Tukuna ngā ākoranga ki te kite ri a ratou Quiz whakautu "
   },
   "letter_grade_29ff1938": {
-	"message": "Kōeke Reta"
+    "message": "Kōeke Reta"
   },
   "letter_grade_e83e363c": {
-	"message": "Koeke reta"
+    "message": "Koeke reta"
   },
   "lock_questions_after_answering_e0f61d7c": {
-	"message": "Maukati Pātai i muri i te whakautu"
+    "message": "Maukati Pātai i muri i te whakautu"
   },
   "log_out_379ba28a": {
-	"message": "Takiuru atu"
+    "message": "Takiuru atu"
   },
   "long_description_7d89285c": {
-	"message": "Whakaahuatanga roa"
+    "message": "Whakaahuatanga roa"
   },
   "mail_is_unavailable_on_your_device_fb52a13c": {
-	"message": "Kaore i te wātea a mērā i runga i tō pūrere."
+    "message": "Kaore i te wātea a mērā i runga i tō pūrere."
   },
   "mark_all_as_read_8f3bdf57": {
-	"message": "Mākahia Kua Pānuihia te Katoa"
+    "message": "Mākahia Kua Pānuihia te Katoa"
   },
   "me_bf110f4d": {
-	"message": "ahau"
+    "message": "ahau"
   },
   "media_recording_77cddc52": {
-	"message": "Hopu pāpāho"
+    "message": "Hopu pāpāho"
   },
   "media_submission_464829f0": {
-	"message": "Tukunga Pāpāho"
+    "message": "Tukunga Pāpāho"
   },
   "message_5c38209d": {
-	"message": "Karere"
+    "message": "Karere"
   },
   "message_details_342e931f": {
-	"message": "Ngā taipitopito karere"
+    "message": "Ngā taipitopito karere"
   },
   "message_options_59805b8e": {
-	"message": "Ngā karere kōwhiringa"
+    "message": "Ngā karere kōwhiringa"
   },
   "message_students_who_778ce759": {
-	"message": "Karere ki ngā ākonga e"
+    "message": "Karere ki ngā ākonga e"
   },
   "minutes_4aee5a41": {
-	"message": "Ngā Meneti"
+    "message": "Ngā Meneti"
   },
   "minutes_plural_one_minute_other_minutes_e2adacfe": {
-	"message": "{ minutes, plural,    one {# meneti} other {# ngā meneti}}"
+    "message": "{ minutes, plural,    one {# meneti} other {# ngā meneti}}"
   },
   "missing_1a256b3b": {
-	"message": "Ngaro"
+    "message": "Ngaro"
   },
   "moderated_grading_unsupported_e3a2bba3": {
-	"message": "Māka whakaōrite tautokona"
+    "message": "Māka whakaōrite tautokona"
   },
   "multiple_due_dates_283dd861": {
-	"message": "Rā Nā Maha"
+    "message": "Rā Nā Maha"
   },
   "mute_grades_b85bece1": {
-	"message": "Ngā kōeke whakangū"
+    "message": "Ngā kōeke whakangū"
   },
   "name_1aed4a1b": {
-	"message": "Ingoa"
+    "message": "Ingoa"
   },
   "name_count_plural_one_other_other_others_f47e51c3": {
-	"message": "{ name } + { count, plural,    one {# ētahi}  other {# ētahi atu}}"
+    "message": "{ name } + { count, plural,    one {# ētahi}  other {# ētahi atu}}"
   },
   "names_count_more_643849d3": {
-	"message": "{ names } + { count } ētahi atu"
+    "message": "{ names } + { count } ētahi atu"
   },
   "needs_grading_9143d47c": {
-	"message": "Me māka"
+    "message": "Me māka"
   },
   "new_13daf639": {
-	"message": "hou"
+    "message": "hou"
   },
   "new_discussion_dae4fae3": {
-	"message": "Kōrerorero Hou"
+    "message": "Kōrerorero Hou"
   },
   "new_message_f9bbd1c0": {
-	"message": "Karere Hōu"
+    "message": "Karere Hōu"
+  },
+  "new_page_84b28714": {
+    "message": "Whārangi Hōu"
   },
   "nickname_1e6da3ad": {
-	"message": "Ingoakārangaranga"
+    "message": "Ingoakārangaranga"
   },
   "no_attachments_e875f6d5": {
-	"message": "Kaore ngā tāpiritanga"
+    "message": "Kaore ngā tāpiritanga"
   },
   "no_available_from_date_set_6f659d06": {
-	"message": "Kāore e wātea mai te rā kua whakatautia"
+    "message": "Kāore e wātea mai te rā kua whakatautia"
   },
   "no_available_from_date_set_db356ac3": {
-	"message": "Kāore e wātea mai te rā kua whakatautia"
+    "message": "Kāore e wātea mai te rā kua whakatautia"
   },
   "no_available_until_date_set_ad4b4bbb": {
-	"message": "Kaore i te wātea ki a tau ranō he rā"
+    "message": "Kaore i te wātea ki a tau ranō he rā"
   },
   "no_available_until_date_set_df9e7434": {
-	"message": "Kaore i te wātea ki a tau ranō he rā"
+    "message": "Kaore i te wātea ki a tau ranō he rā"
   },
   "no_due_date_44271c53": {
-	"message": "Kāore he Rā whakaoti"
+    "message": "Kāore he Rā whakaoti"
   },
   "no_due_date_set_bb3a2bf7": {
-	"message": "Kāore he rā tika kua whakatautia"
+    "message": "Kāore he rā tika kua whakatautia"
   },
   "no_e16d9132": {
-	"message": "Kahore"
+    "message": "Kahore"
   },
   "no_internet_connection_9df26cf8": {
-	"message": "Kāore he hononga ipurangi"
+    "message": "Kāore he hononga ipurangi"
   },
   "no_messages_a2e67ad4": {
-	"message": "Kāore he Karere"
+    "message": "Kāore he Karere"
   },
   "no_results_f36777ee": {
-	"message": "Kāore he hua"
+    "message": "Kāore he hua"
   },
   "no_starred_messages_e1b28bca": {
-	"message": "Kaore he karere kua whetūngia"
+    "message": "Kaore he karere kua whetūngia"
   },
   "no_subject_2e2a413c": {
-	"message": "(kaore he kaupapa)"
+    "message": "(kaore he kaupapa)"
   },
   "no_subject_58b7941c": {
-	"message": "Kāore he Kaupapa"
+    "message": "Kāore he Kaupapa"
   },
   "no_time_limit_2147d9bf": {
-	"message": "Kāore he rohe wā"
+    "message": "Kāore he rohe wā"
+  },
+  "no_title_4921a961": {
+    "message": "kaore he taitara"
   },
   "none_3b5e34d2": {
-	"message": "Kahore"
+    "message": "Kahore"
   },
   "none_9b6c9bec": {
-	"message": "kore"
+    "message": "kore"
   },
   "not_a_teacher_b0d0fc55": {
-	"message": "Kaore i te kaiako?"
+    "message": "Kaore i te kaiako?"
   },
   "not_graded_e027c866": {
-	"message": "Kāore i kōeketia"
+    "message": "Kāore i kōeketia"
   },
   "not_published_73f7079": {
-	"message": "Kāore i whakaputaina"
+    "message": "Kāore i whakaputaina"
   },
   "not_submitted_7d05fdb4": {
-	"message": "E Kore E Tukua"
+    "message": "E Kore E Tukua"
   },
   "nothing_more_to_do_b017e8bb": {
-	"message": "Kaore he mahi atu."
+    "message": "Kaore he mahi atu."
   },
   "number_plural_one_minute_other_minutes_648ec0e1": {
-	"message": "{ number, plural,    one {# Meneti} other {# Ngā meneti}}"
+    "message": "{ number, plural,    one {# Meneti} other {# Ngā meneti}}"
   },
   "observer_248a192e": {
-	"message": "Kaimātakitaki"
+    "message": "Kaimātakitaki"
   },
   "off_5385ef3f": {
-	"message": "Whakaaweto"
+    "message": "Whakaaweto"
   },
   "ok_c47544a2": {
-	"message": "OK"
+    "message": "OK"
   },
   "on_8f7190e5": {
-	"message": "i runga i"
+    "message": "i runga i"
   },
   "on_paper_46d0ba36": {
-	"message": "I runga I te Pepa"
+    "message": "I runga I te Pepa"
   },
   "one_of_our_other_apps_might_be_a_better_fit_tap_on_a3138a": {
-	"message": "Ko tētahi atu o a mātou taupānga pea he pai  ake te uru. Pātō kotahi ki te haere ki te Taupānga Toa"
+    "message": "Ko tētahi atu o a mātou taupānga pea he pai  ake te uru. Pātō kotahi ki te haere ki te Taupānga Toa"
   },
   "one_question_at_a_time_3161ceeb": {
-	"message": "Kotahi Pātai i te Wā"
+    "message": "Kotahi Pātai i te Wā"
   },
   "online_quiz_5beb2ae5": {
-	"message": "Quiz Ipurangi"
+    "message": "Quiz Ipurangi"
   },
   "online_text_entry_1d893ce": {
-	"message": "Ipurangi Kuputuhi Whakauru"
+    "message": "Ipurangi Kuputuhi Whakauru"
   },
   "online_upload_59969592": {
-	"message": "Ipurangi Tukuatu"
+    "message": "Ipurangi Tukuatu"
   },
   "online_url_37830a72": {
-	"message": "URL Ipurangi"
+    "message": "URL Ipurangi"
+  },
+  "only_available_to_students_with_link_not_available_c12278d2": {
+    "message": "E wātea ana anake ki ngā ākonga me ngā  hononga. Kaore e watea i roto i ngā ākonga kōnae."
   },
   "only_once_after_each_attempt_cc842738": {
-	"message": "Kotahi Anake i muri ia tarai"
+    "message": "Kotahi Anake i muri ia tarai"
+  },
+  "only_teachers_1628d9b9": {
+    "message": "Ngā kaiako anake"
   },
   "open_coursename_user_preferences_430b877e": {
-	"message": "Huaki { courseName } ngā manakohanga o ngā kaiwhakamahi"
+    "message": "Huaki { courseName } ngā manakohanga o ngā kaiwhakamahi"
   },
   "open_drawer_f3c8b11": {
-	"message": "tuwhera kaiutuutu"
+    "message": "tuwhera kaiutuutu"
   },
   "open_for_comments_1810648": {
-	"message": "Kei te huaki mo ngā kōrero"
+    "message": "Kei te huaki mo ngā kōrero"
   },
   "options_3ab0ea65": {
-	"message": "Ngā kōwhiringa"
+    "message": "Ngā kōwhiringa"
   },
   "ordered_list_5fb1ce41": {
-	"message": "Rārangi whakahau"
-  },
-  "out_of_count_fc1cd44d": {
-	"message": "i roto i te { count }"
+    "message": "Rārangi whakahau"
   },
   "out_of_points_c40a0475": {
-	"message": "i roto i te { points }"
+    "message": "i roto i te { points }"
   },
   "out_of_score_c17b26bb": {
-	"message": "i roto i te { score }"
+    "message": "i roto i te { score }"
+  },
+  "page_details_847e35e6": {
+    "message": "Taipitopito Whārangi"
   },
   "pages_e5414c2c": {
-	"message": "Ngā whārangi"
+    "message": "Ngā whārangi"
   },
   "pages_front_page_9ce5188": {
-	"message": "Ngā Whārangi Whārangi o mua"
+    "message": "Ngā Whārangi Whārangi o mua"
   },
   "pass_8abee039": {
-	"message": "Pāhi"
+    "message": "Pāhi"
   },
   "people_b4ebb13c": {
-	"message": "Iwi"
+    "message": "Iwi"
   },
   "percent_d7ddd35b": {
-	"message": "Ōrau (%)"
+    "message": "Ōrau (%)"
   },
   "percentage_34ab7c2c": {
-	"message": " ōrau"
+    "message": " ōrau"
   },
   "permission_needed_7e971495": {
-	"message": "E hiahiatia ana he whakaaetanga"
+    "message": "E hiahiatia ana he whakaaetanga"
   },
   "pin_cdbc9f8f": {
-	"message": "Pine"
+    "message": "Pine"
   },
   "pinned_discussions_a55c0cea": {
-	"message": "Matapaki Pinea"
+    "message": "Matapaki Pinea"
   },
   "points_bb475533": {
-	"message": "Piro"
+    "message": "Piro"
   },
   "points_number_out_of_totalpoints_number_291efb47": {
-	"message": "{ points, number } i roto i te { totalPoints, number }"
+    "message": "{ points, number } i roto i te { totalPoints, number }"
   },
   "points_possible_must_be_a_number_4a592dc6": {
-	"message": "Ngā koinga ka taea me kia he nama"
+    "message": "Ngā koinga ka taea me kia he nama"
   },
   "pointspossible_number_pts_2d9f157d": {
-	"message": "{ pointsPossible, number } pts"
+    "message": "{ pointsPossible, number } pts"
   },
   "post_at_a9e0fecb": {
-	"message": "Tuku kī"
+    "message": "Tuku kī"
   },
   "practice_quiz_19a8505d": {
-	"message": "Mahi Quiz"
+    "message": "Mahi Quiz"
   },
   "preview_quiz_1ffbf684": {
-	"message": "Arokite Quiz"
+    "message": "Arokite Quiz"
   },
   "preview_unavailable_aacd459a": {
-	"message": "Kaore i te wāteate arokite"
+    "message": "Kaore i te wāteate arokite"
   },
   "previewing_this_file_type_is_not_supported_7df9231": {
-	"message": "Kaore i te tautokona te arokite i tēnei momo kōnae"
+    "message": "Kaore i te tautokona te arokite i tēnei momo kōnae"
   },
   "profile_6bd2baed": {
-	"message": "Kōtaha"
+    "message": "Kōtaha"
   },
   "profile_actions_cfcbb476": {
-	"message": "Ngā mahi Kōtaha"
+    "message": "Ngā mahi Kōtaha"
   },
   "pts_699bd9aa": {
-	"message": "pts"
+    "message": "pts"
+  },
+  "public_domain_file_eb5a0de": {
+    "message": "Tūmatanui  Rohe Kōnae"
   },
   "publish_5211dca3": {
-	"message": "Whakaputa"
+    "message": "Whakaputa"
   },
   "published_4bb5209e": {
-	"message": "I whakaputaina"
+    "message": "I whakaputaina"
   },
   "quiz_details_6c4473d3": {
-	"message": "Quiz Taipitopito"
+    "message": "Quiz Taipitopito"
   },
   "quiz_preview_a7e75769": {
-	"message": "Quiz Arokite"
+    "message": "Quiz Arokite"
   },
   "quiz_score_to_keep_d1f7c4b1": {
-	"message": "quiz Piro hei mau tonu"
+    "message": "quiz Piro hei mau tonu"
   },
   "quiz_submission_dca0c013": {
-	"message": "Quiz tāpaetanga"
+    "message": "Quiz tāpaetanga"
   },
   "quiz_type_be1633db": {
-	"message": "Momo Quiz"
+    "message": "Momo Quiz"
   },
   "quizzes_7e598f57": {
-	"message": "Ngā pātaitai"
+    "message": "Ngā pātaitai"
   },
   "recipient_recipient_394cf528": {
-	"message": "Kaiawhiwhi { recipient }"
+    "message": "Kaiawhiwhi { recipient }"
   },
   "record_audio_14666880": {
-	"message": "Record Ororongo"
+    "message": "Record Ororongo"
   },
   "record_video_70dc8439": {
-	"message": "Record Ataata"
+    "message": "Record Ataata"
   },
   "recording_failed_2e1861b": {
-	"message": "I rahua te tuhi"
+    "message": "I rahua te tuhi"
   },
   "redo_363c58b7": {
-	"message": "Mahi anō"
+    "message": "Mahi anō"
   },
   "remove_attachment_81f30aa3": {
-	"message": "Tangohia te āpitihanga"
+    "message": "Tangohia te āpitihanga"
   },
   "remove_date_edf2f565": {
-	"message": "Tango rā"
+    "message": "Tango rā"
   },
   "remove_due_date_c1cc8f7": {
-	"message": "Tango Rā tika"
+    "message": "Tango Rā tika"
   },
   "remove_f47dc62a": {
-	"message": "Tangohia te"
+    "message": "Tangohia te"
   },
   "remove_this_attachment_90a6665c": {
-	"message": "Tangohia tēnei tāpiri?"
+    "message": "Tangohia tēnei tāpiri?"
   },
   "replies_4a8577c8": {
-	"message": "Ngā whakautu"
+    "message": "Ngā whakautu"
   },
   "reply_389d6fb9": {
-	"message": "Whakautu"
+    "message": "Whakautu"
   },
   "report_a_problem_4d48624a": {
-	"message": "Pūrongo i te Raruraru"
+    "message": "Pūrongo i te Raruraru"
   },
   "require_an_access_code_46a02601": {
-	"message": "Rapu i te waehere uru"
+    "message": "Rapu i te waehere uru"
   },
   "reset_95a81614": {
-	"message": "Tautuhi anō"
+    "message": "Tautuhi anō"
+  },
+  "restricted_606cbc55": {
+    "message": "Rāhuitia"
+  },
+  "restricted_access_d3e99a39": {
+    "message": "uru rāhui"
   },
   "retry_ebd5f8ba": {
-	"message": "Ngana anō"
+    "message": "Ngana anō"
   },
   "retry_upload_d854b33b": {
-	"message": "Ngana anō te tukuake"
+    "message": "Ngana anō te tukuake"
   },
   "rubric_fc39da76": {
-	"message": "Rubric"
+    "message": "Rubric"
   },
   "saving_2521e616": {
-	"message": "E tiaki ana"
+    "message": "E tiaki ana"
   },
   "saving_d55dd90e": {
-	"message": "Kei te whakaoratia"
+    "message": "Kei te whakaoratia"
+  },
+  "schedule_student_availability_332154a": {
+    "message": "Wātea ngā ākonga Apiti"
   },
   "score_number_pointspossible_number_fd8705b8": {
-	"message": "{ score, number }/{ pointsPossible, number }"
+    "message": "{ score, number }/{ pointsPossible, number }"
   },
   "score_to_keep_48ace09b": {
-	"message": "piro hei mau tonu"
+    "message": "piro hei mau tonu"
   },
   "scored_less_than_93cde0d2": {
-	"message": "Piro iti iho i te"
+    "message": "Piro iti iho i te"
   },
   "scored_less_than_promptvalue_7e5f2b5d": {
-	"message": "Kaute iti iho i te { promptValue }"
+    "message": "Kaute iti iho i te { promptValue }"
   },
   "scored_more_than_2185a818": {
-	"message": "Piro nui atu i te"
+    "message": "Piro nui atu i te"
   },
   "scored_more_than_promptvalue_9097b1f7": {
-	"message": "Kaute nui atu i { promptValue }"
+    "message": "Kaute nui atu i { promptValue }"
   },
   "search_280d00bd": {
-	"message": "Rapu"
+    "message": "Rapu"
   },
   "seconds_plural_one_second_other_seconds_d33cf6e3": {
-	"message": "{ seconds, plural,    one {# hēkona} other {# ngā hēkona}}"
+    "message": "{ seconds, plural,    one {# hēkona} other {# ngā hēkona}}"
   },
   "section_sectionname_a455be11": {
-	"message": "Wāhanga: { sectionName }"
+    "message": "Wāhanga: { sectionName }"
   },
   "see_all_ffa422ef": {
-	"message": "Titiro ki te katoa"
+    "message": "Titiro ki te katoa"
   },
   "select_a_course_40bc3229": {
-	"message": "Tīpako he akoranga"
+    "message": "Tīpako he akoranga"
   },
   "select_a_course_4710371f": {
-	"message": "Tīpako he akoranga"
+    "message": "Tīpako he akoranga"
   },
   "send_e3bd0ed0": {
-	"message": "Tukua"
+    "message": "Tukua"
   },
   "send_individual_message_to_each_recipient_4fdfc1e5": {
-	"message": "Tukua te karere takitahi ki ia kaiwhiwhi"
+    "message": "Tukua te karere takitahi ki ia kaiwhiwhi"
   },
   "send_recording_82e5a550": {
-	"message": "Tuku tuhi"
+    "message": "Tuku tuhi"
   },
   "sending_bf324366": {
-	"message": "Tuku ana ..."
+    "message": "Tuku ana ..."
   },
   "sent_fe0a1eb4": {
-	"message": "Tonoa"
+    "message": "Tonoa"
+  },
+  "set_as_front_page_c851ec5e": {
+    "message": "Whakatau hei Whārangi o mua"
   },
   "set_home_to_82ab5119": {
-	"message": "Whakatau “Kainga” kī"
+    "message": "Whakatau “Kainga” kī"
   },
   "settings_5aa0fd0c": {
-	"message": "Tautuhinga"
+    "message": "Tautuhinga"
   },
   "show_correct_answers_a4b957e4": {
-	"message": "Whakaaturia ngā whakautu tika"
+    "message": "Whakaaturia ngā whakautu tika"
   },
   "show_correct_answers_at_a5475aa3": {
-	"message": "Whakaaturia ngā whakautu tika I"
+    "message": "Whakaaturia ngā whakautu tika I"
   },
   "show_one_question_at_a_time_52f5b1a0": {
-	"message": "Whakātu kotahi pātai ia wā"
+    "message": "Whakātu kotahi pātai ia wā"
   },
   "show_to_hide_2c0b6d39": {
-	"message": "{ show } ki { hide }"
+    "message": "{ show } ki { hide }"
   },
   "shuffle_answers_edb602b7": {
-	"message": "Riwhi Whakautu"
+    "message": "Riwhi Whakautu"
   },
   "similarity_score_f4b5c343": {
-	"message": "Kaute ōrite"
+    "message": "Kaute ōrite"
   },
   "star_messages_by_tapping_the_star_in_the_message_1c3e8a80": {
-	"message": "Whetungia ngā karere mā te patopato i te whetu  roto i te karere"
+    "message": "Whetungia ngā karere mā te patopato i te whetu  roto i te karere"
   },
   "starred_5a9efa8a": {
-	"message": "Wheturangitia"
+    "message": "Wheturangitia"
   },
   "start_recording_189496b9": {
-	"message": "Tīmata tuhi"
+    "message": "Tīmata tuhi"
   },
   "stop_playing_audio_96aed3bc": {
-	"message": "Mutu te purei ororongo"
+    "message": "Mutu te purei ororongo"
   },
   "stop_recording_6efe2129": {
-	"message": "Mutu tuhi"
+    "message": "Mutu tuhi"
   },
   "student_5da6bfd1": {
-	"message": "Ākonga"
+    "message": "Ākonga"
   },
   "students_1b8cd07b": {
-	"message": "Ngā Akonga"
+    "message": "Ngā Akonga"
   },
   "subject_114b2e98": {
-	"message": "Kaupapa"
+    "message": "Kaupapa"
   },
   "submission_settings_f57b0cf8": {
-	"message": "Ngā tautuhinga tukunga"
+    "message": "Ngā tautuhinga tukunga"
   },
   "submission_types_af57bf0": {
-	"message": "Nga momo tāpaetanga"
+    "message": "Nga momo tāpaetanga"
   },
   "submissions_11e96106": {
-	"message": "Nga tāpaetanga"
+    "message": "Nga tāpaetanga"
   },
   "submitted_318fad53": {
-	"message": "Tukuna"
+    "message": "Tukuna"
   },
   "submitted_late_3741af29": {
-	"message": "I ukuna tūreiti"
+    "message": "I ukuna tūreiti"
   },
   "subscribe_4b301fb7": {
-	"message": "Ohauru"
+    "message": "Ohauru"
   },
   "survey_31a240e6": {
-	"message": "Rangahau"
+    "message": "Rangahau"
   },
   "swipe_left_or_right_to_view_other_student_submissi_da37c1c1": {
-	"message": "Uki matui ara matau rānei ki te kite i ngā tukunga ā ētahi atu ākonga"
+    "message": "Uki matui ara matau rānei ki te kite i ngā tukunga ā ētahi atu ākonga"
   },
   "syllabus_f191f65b": {
-	"message": "Marautanga"
+    "message": "Marautanga"
   },
   "ta_8d966626": {
-	"message": "TA"
+    "message": "TA"
   },
   "tap_and_hold_a_rubric_number_to_see_its_descriptio_8762082a": {
-	"message": "Pātō me te mau i te nama rubric ki te kite i te whakaahuatanga"
+    "message": "Pātō me te mau i te nama rubric ki te kite i te whakaahuatanga"
   },
   "tap_the_to_create_a_new_conversation_80f77725": {
-	"message": "Pātō i te \"+\" ki te hanga he korero hou"
+    "message": "Pātō i te \"+\" ki te hanga he korero hou"
+  },
+  "tap_to_view_announcement_6724a5d": {
+    "message": "Pātō ki te kite pānuitanga"
   },
   "tap_to_view_submissions_list_5bfe32f3": {
-	"message": "Pato ki te tiro i te whārangi tāpaetanga"
+    "message": "Pato ki te tiro i te whārangi tāpaetanga"
   },
   "teacher_5a73b637": {
-	"message": "Kaiako"
+    "message": "Kaiako"
+  },
+  "teachers_and_students_ba2db3e4": {
+    "message": "Ngā Kaiako me ngā ākonga"
   },
   "terms_of_use_6542769b": {
-	"message": "Ngā Ture Whakamahi"
+    "message": "Ngā Ture Whakamahi"
   },
   "text_color_acf75eb6": {
-	"message": "Kuputuhi tae"
+    "message": "Kuputuhi tae"
   },
   "text_submission_935eeb5": {
-	"message": "Tāpaetanga Kuputuhi"
+    "message": "Tāpaetanga Kuputuhi"
   },
   "that_message_can_not_be_forwarded_76cb2b1a": {
-	"message": "Kaore e taea te tuku taua karere ."
+    "message": "Kaore e taea te tuku taua karere ."
   },
   "the_value_of_possible_points_must_be_zero_or_great_374e175a": {
-	"message": "Te uara o ngā koinga ka taea me kore ara nui atu rānei"
+    "message": "Te uara o ngā koinga ka taea me kore ara nui atu rānei"
   },
   "the_was_a_problem_saving_the_grade_please_try_agai_2aefe6a8": {
-	"message": "I raruraru i te wā e tiaki ana i te kōeke. Tēnā tarai anō."
+    "message": "I raruraru i te wā e tiaki ana i te kōeke. Tēnā tarai anō."
+  },
+  "there_are_no_announcements_to_display_a91880": {
+    "message": "Kaore ngā panuitnaga hei whakaatu."
+  },
+  "there_are_no_assignments_to_display_83b52cf3": {
+    "message": "Kaore ngā whakataunga hei whakaatu."
+  },
+  "there_are_no_discussions_to_display_37bc437f": {
+    "message": "Kaore nga kōreroreo hei whakaatu."
+  },
+  "there_are_no_pages_to_display_ce6ca4d3": {
+    "message": "Kaore ngā whārangi hei whakaatu."
+  },
+  "there_are_no_quizzes_to_display_733b28f2": {
+    "message": "Kaore ngā patapatai hei whakaatu."
   },
   "there_currently_is_no_long_description_for_this_it_ea943d61": {
-	"message": "Kaoore tēnei wā he whakamārama roa mō tēnei tūemi."
+    "message": "Kaoore tēnei wā he whakamārama roa mō tēnei tūemi."
   },
   "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
-	"message": "H ehap i te wā e uta ana i te rārangi o ngā whakaurunga"
+    "message": "H ehap i te wā e uta ana i te rārangi o ngā whakaurunga"
   },
   "there_was_a_problem_loading_discussions_ce5318af": {
-	"message": "He raruraru i te wā e uta ana i ngā kōrerorero"
+    "message": "He raruraru i te wā e uta ana i ngā kōrerorero"
   },
   "there_was_a_problem_loading_the_announcements_4871afc4": {
-	"message": "He raruraru i te wā e uta ana i ngā pānui"
+    "message": "He raruraru i te wā e uta ana i ngā pānui"
   },
   "there_was_a_problem_loading_the_assignment_submiss_4ace7374": {
-	"message": "He raruraru i te wā e uta ana i ngā tukunga taumahi."
+    "message": "He raruraru i te wā e uta ana i ngā tukunga taumahi."
+  },
+  "there_was_a_problem_loading_the_grading_periods_3fb714a0": {
+    "message": "He hapa i te wā e uta ana i ngā wā kōeketanga."
   },
   "there_was_a_problem_loading_the_groups_6945e624": {
-	"message": "He raruraru i te wā e uta ana i ngā rōpū"
+    "message": "He raruraru i te wā e uta ana i ngā rōpū"
   },
   "there_was_a_problem_loading_the_quiz_submissions_b4f5503b": {
-	"message": "He raruraru i te wā e uta ana i ngā tukunga Quiz"
+    "message": "He raruraru i te wā e uta ana i ngā tukunga Quiz"
   },
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
-	"message": "He raruraru i te wā e uta ana  ngā Quizzea"
+    "message": "He raruraru i te wā e uta ana  ngā Quizzea"
   },
   "there_was_an_error_loading_the_attachment_840a55ee": {
-	"message": "He hapa i te wā e uta ana i tāpiritanga."
+    "message": "He hapa i te wā e uta ana i tāpiritanga."
+  },
+  "there_was_an_error_loading_the_file_a046378e": {
+    "message": "He hap ai te wā e uta ana i te kōnae."
   },
   "there_was_an_error_loading_the_quiz_preview_3f3c8104": {
-	"message": "He hapa i te wā e uta ana i te quiz arokite"
+    "message": "He hapa i te wā e uta ana i te quiz arokite"
   },
   "there_was_an_error_loading_this_attachment_408acc12": {
-	"message": "He hapa i te wā e uta ana i tēnei tāpiritanga."
+    "message": "He hapa i te wā e uta ana i tēnei tāpiritanga."
   },
   "there_was_an_problem_loading_your_messages_b80423ac": {
-	"message": "He raruraru i te wā e uta ana i tō karere"
+    "message": "He raruraru i te wā e uta ana i tō karere"
   },
   "there_was_an_unexpected_error_please_try_again_5e08774e": {
-	"message": "He hapa ohorere i puta Tēnā tarai anō."
+    "message": "He hapa ohorere i puta Tēnā tarai anō."
   },
   "this_action_can_not_be_undone_eb8a297b": {
-	"message": "Kaoere tēnei mahi e taea te wete"
+    "message": "Kaoere tēnei mahi e taea te wete"
   },
   "this_action_requires_an_internet_connection_81f6688a": {
-	"message": "Tēnei mahi ka mahi he hononga ipurangi"
+    "message": "Tēnei mahi ka mahi he hononga ipurangi"
   },
   "this_assignment_does_not_allow_submissions_30af1caa": {
-	"message": "Kāore tēnei taumahi e whakaae ngā tukunga"
+    "message": "Kāore tēnei taumahi e whakaae ngā tukunga"
   },
   "this_assignment_only_allows_on_paper_submissions_f478408a": {
-	"message": "Tēnei tukunga e whakaae ana pepa tukunga anake."
+    "message": "Tēnei tukunga e whakaae ana pepa tukunga anake."
   },
   "this_folder_is_empty_14af41c": {
-	"message": "Kei te kore tēnei kōpaki."
+    "message": "Kei te kore tēnei kōpaki."
   },
   "this_group_does_not_have_a_submission_for_this_ass_ca275999": {
-	"message": "Kaore he tukunga mo tēnei rōpū mo tēnei taumahi"
+    "message": "Kaore he tukunga mo tēnei rōpū mo tēnei taumahi"
   },
   "this_is_your_personal_color_setting_only_you_will__e47dba70": {
-	"message": "Ko tēnei tō tae tautuhinga. Ko koe anake ka kite i tēnei tae mo te akoranga"
+    "message": "Ko tēnei tō tae tautuhinga. Ko koe anake ka kite i tēnei tae mo te akoranga"
   },
   "this_student_does_not_have_a_submission_for_this_a_c8c2eafe": {
-	"message": "Kāore he tukunga mo tēnei taumahi mo tēnei ākoranga "
+    "message": "Kāore he tukunga mo tēnei taumahi mo tēnei ākoranga "
   },
   "this_submission_is_a_url_to_an_external_page_we_ve_9993d2fd": {
-	"message": "Ko tēnei tukunga he URL  ki tētahi whārangi o waho Kua whakaurua e mātou he hopuāhua o te āhua o  te whārangi, i te wā o te tukunga"
+    "message": "Ko tēnei tukunga he URL  ki tētahi whārangi o waho Kua whakaurua e mātou he hopuāhua o te āhua o  te whārangi, i te wā o te tukunga"
   },
   "this_will_anonymize_each_student_and_shuffle_the_s_127956c7": {
-	"message": "Ka ingoahunatia tēnei ia ākonga me te pikarikari te rārangi tukunga."
+    "message": "Ka ingoahunatia tēnei ia ākonga me te pikarikari te rārangi tukunga."
   },
   "this_will_remove_the_due_date_and_all_of_the_assoc_56d1ea8": {
-	"message": "Ko tēnei ka tango i te rā tika me ngā rīwhi hoapā katoa."
+    "message": "Ko tēnei ka tango i te rā tika me ngā rīwhi hoapā katoa."
   },
   "time_elapsed_minutes_seconds_f5d82cb": {
-	"message": "Kua taka te wā: { minutes }, { seconds }."
+    "message": "Kua taka te wā: { minutes }, { seconds }."
   },
   "time_limit_a6f1a51e": {
-	"message": "Wā Tepe"
+    "message": "Wā Tepe"
   },
   "title_announcement_c0cdaa10": {
-	"message": "{ title } Pānui"
+    "message": "{ title } Pānui"
   },
   "title_discussion_4cff9841": {
-	"message": "{ title } Kōrerorero"
+    "message": "{ title } Kōrerorero"
   },
   "title_ee03d132": {
-	"message": "taitara"
+    "message": "taitara"
+  },
+  "title_page_1284a2b9": {
+    "message": "{ title } Whārangi"
   },
   "to_51406be9": {
-	"message": "Ki a"
+    "message": "Ki a"
   },
   "to_count_others_853f5dc8": {
-	"message": "Kī { count } ētahi atu"
+    "message": "Kī { count } ētahi atu"
   },
   "to_me_780716c7": {
-	"message": "Kī ahau"
+    "message": "Kī ahau"
   },
   "to_name_bb3e415e": {
-	"message": "kī { name }"
+    "message": "kī { name }"
   },
   "try_logging_in_again_7a66111a": {
-	"message": "Tarai ki te takiuru anō"
+    "message": "Tarai ki te takiuru anō"
   },
   "un_starred_8fef021f": {
-	"message": "Kaore i wheturangitia"
+    "message": "Kaore i wheturangitia"
   },
   "unavailable_46d2c344": {
-	"message": "Kaore i te wātea"
+    "message": "Kaore i te wātea"
   },
   "undo_a7be8fef": {
-	"message": "Wete"
+    "message": "Wete"
   },
   "unexpected_error_93991f40": {
-	"message": "He hapa ohorere"
-  },
-  "ungraded_ed0c6f98": {
-	"message": "Tē Mākahia"
+    "message": "He hapa ohorere"
   },
   "ungraded_survey_ad7de790": {
-	"message": "Rangahau kāore anō i kōeketia"
+    "message": "Rangahau kāore anō i kōeketia"
   },
   "unknown_author_40d64455": {
-	"message": "Kaituhi kaore e Mōhiotia"
+    "message": "Kaituhi kaore e Mōhiotia"
   },
   "unlimited_ff19e96d": {
-	"message": "Mutunga"
+    "message": "Mutunga"
   },
   "unordered_list_3c1650b3": {
-	"message": "Rārangi kaore e whakahautia"
+    "message": "Rārangi kaore e whakahautia"
   },
   "unpin_a318452a": {
-	"message": "Wetea"
+    "message": "Wetea"
+  },
+  "unpublish_9f2d730b": {
+    "message": "Kaore e pānuitia"
   },
   "unpublished_8b6107d6": {
-	"message": "Kāore anō kia whakarewahia"
+    "message": "Kāore anō kia whakarewahia"
   },
   "unread_e9c1b19c": {
-	"message": "Pānuihia"
+    "message": "Pānuihia"
   },
   "until_date_f3b9f367": {
-	"message": "tae noa ki { date }"
+    "message": "tae noa ki { date }"
   },
   "upload_8b403d05": {
-	"message": "Tukuatu"
+    "message": "Tukuatu"
   },
   "upload_cancelled_by_user_ca7723be": {
-	"message": "Kua whakakorehia te tukuake e te kaiwhakamahi"
+    "message": "Kua whakakorehia te tukuake e te kaiwhakamahi"
   },
   "upload_complete_46473c7b": {
-	"message": "Kua oti te tukuake"
+    "message": "Kua oti te tukuake"
   },
   "upload_error_38012123": {
-	"message": "Tukuake hapa"
+    "message": "Tukuake hapa"
   },
   "upload_file_fd2361b8": {
-	"message": "Tukuake kōnae"
+    "message": "Tukuake kōnae"
   },
   "upload_in_progress_57b96797": {
-	"message": "Kei te mahi te tukuake"
+    "message": "Kei te mahi te tukuake"
+  },
+  "uploading_19e8a4e7": {
+    "message": "Tukuake"
+  },
+  "uploading_amountuploaded_amounttotal_cd97306a": {
+    "message": "E tukuake ana { amountUploaded }/{ amountTotal }"
   },
   "uploading_loaded_of_total_d5c3d555": {
-	"message": "Tukuake ana { loaded } ō { total }"
+    "message": "Tukuake ana { loaded } ō { total }"
   },
   "url_preview_image_a263a21e": {
-	"message": "URL Arokite Āhua"
+    "message": "URL Arokite Āhua"
   },
   "url_submission_f76327e3": {
-	"message": "URL Tukunga"
+    "message": "URL Tukunga"
+  },
+  "usage_right_2b398e0b": {
+    "message": "Ngā Raihana Tika"
+  },
+  "usage_rights_f0960ad6": {
+    "message": "Raihana Tika"
   },
   "use_camera_47a0387b": {
-	"message": "Whakamahi te Kāmera"
+    "message": "Whakamahi te Kāmera"
   },
   "users_must_post_before_seeing_replies_d1761968": {
-	"message": "Me whakairi ngā Kaiwhakamahi i mua i te kitenga whakautu"
+    "message": "Me whakairi ngā Kaiwhakamahi i mua i te kitenga whakautu"
   },
   "version_version_a051e218": {
-	"message": "putanga { version }"
+    "message": "putanga { version }"
   },
   "video_b9f27375": {
-	"message": "Ataata"
+    "message": "Ataata"
   },
   "video_recording_90d21249": {
-	"message": "Tuhi Ataata"
+    "message": "Tuhi Ataata"
   },
   "view_all_submissions_915a8b78": {
-	"message": "Tiro ki ngā tāpaetanga katoa"
+    "message": "Tiro ki ngā tāpaetanga katoa"
   },
-  "view_long_description_bafad8a4": {
-	"message": "Tiro taipitopito roa"
+  "view_long_description_2b592c0e": {
+    "message": "Tirohia te whakāturanga roa"
   },
   "view_more_replies_9fef9983": {
-	"message": "Tiro ki nga whakautu anō"
+    "message": "Tiro ki nga whakautu anō"
   },
   "view_responses_d2874266": {
-	"message": "Tirohia ngā whakautu"
+    "message": "Tirohia ngā whakautu"
   },
   "visit_the_canvas_guides_7328b93f": {
-	"message": "Toro ki ngā  Canvas Kaiarahi"
+    "message": "Toro ki ngā  Canvas Kaiarahi"
   },
   "welcome_73d18b4d": {
-	"message": "Nau Mai!"
+    "message": "Nau Mai!"
   },
   "yes_dde87d5": {
-	"message": "Ae"
+    "message": "Ae"
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
-	"message": "Me whakahohe e koe te Camera me nga whakaaetanga Microphone i roto i ngā Tautuhinga hei whakamahi i te kāmera."
+    "message": "Me whakahohe e koe te Camera me nga whakaaetanga Microphone i roto i ngā Tautuhinga hei whakamahi i te kāmera."
   },
   "you_must_enable_microphone_permissions_in_settings_b0cf8b44": {
-	"message": "Me whakahohe e koe ngā whakaaetanga Microphone i roto i ngā Tautuhinga  hei tuhi ororongo."
+    "message": "Me whakahohe e koe ngā whakaaetanga Microphone i roto i ngā Tautuhinga  hei tuhi ororongo."
   },
   "you_must_enable_photos_permissions_in_settings_26faf052": {
-	"message": "Me whakahohe e koe ngā whakaaetanga Photos i roto i ngā Tautuhinga."
+    "message": "Me whakahohe e koe ngā whakaaetanga Photos i roto i ngā Tautuhinga."
   },
   "you_must_enter_an_access_code_8c2c7ae0": {
-	"message": "Me whakauru te waehere uru"
+    "message": "Me whakauru te waehere uru"
   },
   "your_submission_comment_failed_to_send_5c8d2809": {
-	"message": "I rāhua tō kōrero tāpaetanga ki te tuku."
+    "message": "I rāhua tō kōrero tāpaetanga ki te tuku."
   }
 }

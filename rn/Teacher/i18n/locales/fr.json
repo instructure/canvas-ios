@@ -1,1355 +1,1499 @@
 {
   "_376f89ea": {
-	"message": "--"
+    "message": "--"
   },
   "_4927a5f1": {
-	"message": "?"
+    "message": "?"
   },
   "a_description_is_required_54b5f1f6": {
-	"message": "Vous devez entrer une description"
+    "message": "Vous devez entrer une description"
   },
   "a_message_is_required_129e1814": {
-	"message": "Message obligatoire"
+    "message": "Message obligatoire"
   },
   "a_title_is_required_71222850": {
-	"message": "Titre obligatoire"
+    "message": "Titre obligatoire"
+  },
+  "access_9a94f04e": {
+    "message": "Accès"
   },
   "access_code_74f4864f": {
-	"message": "Code d’accès"
+    "message": "Code d’accès"
   },
   "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
-	"message": "Ajouter quelques-uns de vos cours préférés pour personnaliser cet endroit à votre goût"
+    "message": "Ajouter quelques-uns de vos cours préférés pour personnaliser cet endroit à votre goût"
   },
   "add_an_attachment_by_tapping_the_plus_at_the_top_r_f9350b62": {
-	"message": "AjAjouAjoutez une pièce jointe en appuyant sur le symbole plus situé en haut à droite."
+    "message": "AjAjouAjoutez une pièce jointe en appuyant sur le symbole plus situé en haut à droite."
   },
   "add_assignee_24ee0b71": {
-	"message": "Ajouter un cessionnaire"
+    "message": "Ajouter un cessionnaire"
   },
   "add_attachment_dcdb8bf8": {
-	"message": "Ajouter une pièce jointe"
+    "message": "Ajouter une pièce jointe"
   },
   "add_comment_3205529f": {
-	"message": "Ajouter un commentaire"
+    "message": "Ajouter un commentaire"
   },
   "add_courses_fd45abf": {
-	"message": "Ajouter cours"
+    "message": "Ajouter cours"
+  },
+  "add_description_5321f1d": {
+    "message": "Ajouter une description"
   },
   "add_description_required_e222e483": {
-	"message": "Ajouter une description (obligatoire)"
+    "message": "Ajouter une description (obligatoire)"
   },
   "add_due_date_65b08f6c": {
-	"message": "Ajouter une date d'échéance"
+    "message": "Ajouter une date d'échéance"
+  },
+  "add_file_e6326e09": {
+    "message": "Ajouter un fichier"
+  },
+  "add_item_75b67d07": {
+    "message": "Ajouter un élément"
   },
   "add_media_cfa37b54": {
-	"message": "Ajouter support média"
+    "message": "Ajouter support média"
   },
   "add_recipient_7de2dc74": {
-	"message": "Ajouter un destinataire"
+    "message": "Ajouter un destinataire"
   },
   "add_title_4f788d37": {
-	"message": "Ajouter un titre"
+    "message": "Ajouter un titre"
   },
   "after_date_e5d9b0e1": {
-	"message": "Après { date }"
+    "message": "Après { date }"
   },
   "after_last_attempt_c9168da2": {
-	"message": "Après la dernière tentative"
+    "message": "Après la dernière tentative"
   },
   "all_4321c3a1": {
-	"message": "Tous"
+    "message": "Tous"
   },
   "all_courses_a7dbb853": {
-	"message": "Tous les cours"
+    "message": "Tous les cours"
   },
   "all_grading_periods_77974940": {
-	"message": "Toutes les périodes de notation"
+    "message": "Toutes les périodes de notation"
   },
   "all_in_e5ddaee0": {
-	"message": "Tout ce qui se trouve dans..."
+    "message": "Tout ce qui se trouve dans..."
   },
   "all_people_16d90b41": {
-	"message": "Toutes les personnes"
+    "message": "Toutes les personnes"
   },
   "all_submissions_3eedfb97": {
-	"message": "Tous les envois"
+    "message": "Tous les envois"
   },
   "all_submissions_b8717440": {
-	"message": "Tous les envois"
+    "message": "Tous les envois"
   },
   "allow_multiple_attempts_e67a0a37": {
-	"message": "Autoriser plusieurs tentatives"
+    "message": "Autoriser plusieurs tentatives"
   },
   "allow_threaded_replies_43b2311e": {
-	"message": "Autoriser les réponses thématiques"
+    "message": "Autoriser les réponses thématiques"
   },
   "allowed_attempts_4e229caa": {
-	"message": "Tentatives autorisées "
+    "message": "Tentatives autorisées "
   },
   "always_3a59e701": {
-	"message": "Toujours"
+    "message": "Toujours"
   },
   "an_error_occured_while_fetching_this_conversation_453ca633": {
-	"message": "Une erreur est survenue pendant la récupération de cette conversation."
+    "message": "Une erreur est survenue pendant la récupération de cette conversation."
   },
   "an_error_occurred_a4e1cda4": {
-	"message": "Une erreur est survenue"
+    "message": "Une erreur est survenue"
   },
   "announcement_details_81b0bda2": {
-	"message": "Détails de l’annonce"
+    "message": "Détails de l’annonce"
   },
   "announcements_a4b8ed4a": {
-	"message": "Annonces"
+    "message": "Annonces"
   },
   "anonymous_grading_3083dc0": {
-	"message": "Notation anonyme"
+    "message": "Notation anonyme"
   },
   "anonymous_grading_ccb5045c": {
-	"message": "Notation anonyme"
+    "message": "Notation anonyme"
+  },
+  "anyone_5b8fdf9f": {
+    "message": "Tous"
   },
   "archived_de543437": {
-	"message": "Archivé"
+    "message": "Archivé"
+  },
+  "are_you_sure_you_want_to_delete_name_908230d3": {
+    "message": "Êtes-vous sûr de vouloir supprimer { name } ?"
   },
   "are_you_sure_you_want_to_delete_this_announcement_293d51a8": {
-	"message": "Voulez-vous vraiment supprimer cette annonce ?"
+    "message": "Voulez-vous vraiment supprimer cette annonce ?"
   },
   "are_you_sure_you_want_to_delete_this_discussion_334554e0": {
-	"message": "Voulez-vous vraiment supprimer cette discussion ?"
+    "message": "Voulez-vous vraiment supprimer cette discussion ?"
+  },
+  "are_you_sure_you_want_to_delete_this_page_2185844": {
+    "message": "Êtes-vous sûr de vouloir supprimer cette page ?"
   },
   "are_you_sure_you_want_to_delete_this_reply_6a35cccc": {
-	"message": "Voulez-vous vraiment supprimer cette réponse ?"
+    "message": "Voulez-vous vraiment supprimer cette réponse ?"
   },
   "assign_to_95404a83": {
-	"message": "Attribuer à"
+    "message": "Attribuer à"
   },
   "assignees_314d5e55": {
-	"message": "Cessionnaires"
+    "message": "Cessionnaires"
   },
   "assignees_required_1b9218fb": {
-	"message": "Attribution requise"
+    "message": "Attribution requise"
   },
   "assignment_details_bc488179": {
-	"message": "Informations sur le devoir"
+    "message": "Informations sur le devoir"
   },
   "assignment_group_1a781505": {
-	"message": "Groupe de tâches"
+    "message": "Groupe de tâches"
   },
   "assignments_1e02582c": {
-	"message": "Travaux assignés"
+    "message": "Travaux assignés"
   },
   "assignments_list_fe3e54be": {
-	"message": "Liste des tâches"
+    "message": "Liste des tâches"
   },
   "attachment_deffe5a9": {
-	"message": "Pièce jointe"
+    "message": "Pièce jointe"
   },
   "attachments_694cf227": {
-	"message": "Pièces jointes"
+    "message": "Pièces jointes"
   },
   "attempt_number_75028cfa": {
-	"message": "Tentative { number }"
+    "message": "Tentative { number }"
   },
   "audio_comment_baf426c7": {
-	"message": "Commentaire audio"
+    "message": "Commentaire audio"
   },
   "audio_dd489fcc": {
-	"message": "Audio"
+    "message": "Audio"
   },
   "audio_playback_failed_912bcb82": {
-	"message": "Échec de la lecture audio"
+    "message": "Échec de la lecture audio"
   },
   "availability_8942cde6": {
-	"message": "Disponibilité"
+    "message": "Disponibilité"
   },
   "availability_closed_429d1ba5": {
-	"message": "Disponibilité : Fermé"
+    "message": "Disponibilité : Fermé"
   },
   "availability_e415e857": {
-	"message": "Disponibilité :"
+    "message": "Disponibilité :"
   },
   "available_from_3821bccc": {
-	"message": "Disponible à partir du :"
+    "message": "Disponible à partir du :"
   },
   "available_from_587ce92f": {
-	"message": "Disponible depuis"
+    "message": "Disponible depuis"
   },
   "available_from_date_bb9d5115": {
-	"message": "Disponible sur : { date }"
+    "message": "Disponible sur : { date }"
+  },
+  "available_from_f84e4611": {
+    "message": "Disponible(s) depuis"
+  },
+  "available_from_must_be_before_available_to_b73ad479": {
+    "message": "La date « Disponible à partir du » doit être antérieure à la date « Disponible jusqu’au »"
   },
   "available_from_must_be_before_available_until_38d313cc": {
-	"message": "« Disponible à partir du » doit être antérieur à « Disponible jusqu'au »"
+    "message": "« Disponible à partir du » doit être antérieur à « Disponible jusqu'au »"
+  },
+  "available_to_b7350e02": {
+    "message": "Disponible pour"
   },
   "available_until_20c0cc5c": {
-	"message": "Disponible jusqu’au :"
+    "message": "Disponible jusqu’au :"
   },
   "available_until_date_37684818": {
-	"message": "Disponible jusqu’au : { date }"
+    "message": "Disponible jusqu’au : { date }"
   },
   "available_until_f3b9c4ed": {
-	"message": "Disponible jusqu'à/au"
+    "message": "Disponible jusqu'à/au"
   },
   "average_49c63f9b": {
-	"message": "Moyenne"
+    "message": "Moyenne"
   },
   "back_2900f52a": {
-	"message": "Retour"
+    "message": "Retour"
   },
   "back_to_replies_94f3c127": {
-	"message": "Retour aux réponses"
+    "message": "Retour aux réponses"
   },
   "bold_34b9d97e": {
-	"message": "Chauve"
+    "message": "Chauve"
+  },
+  "can_edit_5a1e8dbf": {
+    "message": "Peut éditer"
   },
   "can_not_forward_message_2a4d4953": {
-	"message": "Impossible de transmettre le message"
+    "message": "Impossible de transmettre le message"
   },
   "cancel_caeb1e68": {
-	"message": "Annuler"
+    "message": "Annuler"
   },
   "canvas_parent_app_f9236a3a": {
-	"message": "Application Canvas parent"
+    "message": "Application Canvas parent"
   },
   "canvas_student_app_329567f": {
-	"message": "Application Canvas élève"
+    "message": "Application Canvas élève"
   },
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
-	"message": "Déplacer { discussionTitle } vers un groupement différent"
+    "message": "Déplacer { discussionTitle } vers un groupement différent"
   },
   "choose_1319ef6b": {
-	"message": "Choisir"
+    "message": "Choisir"
   },
   "choose_color_11148181": {
-	"message": "Choisir { color }"
+    "message": "Choisir { color }"
   },
   "choose_from_library_1b9caf95": {
-	"message": "Choisir depuis la bibliothèque"
+    "message": "Choisir depuis la bibliothèque"
   },
   "clear_filter_5b3a182d": {
-	"message": "Effacer le filtre"
+    "message": "Effacer le filtre"
   },
   "clear_filter_5c961d1b": {
-	"message": "Effacer les filtres"
+    "message": "Effacer les filtres"
   },
   "clear_filter_inbox_9465e74c": {
-	"message": "Effacer le filtre de la boîte de réception"
+    "message": "Effacer le filtre de la boîte de réception"
   },
   "clear_recording_5a97b475": {
-	"message": "Effacer l’enregistrement"
+    "message": "Effacer l’enregistrement"
   },
   "close_for_comments_ce0e5d00": {
-	"message": "Fermer les commentaires"
+    "message": "Fermer les commentaires"
   },
   "closed_983a96fe": {
-	"message": "Fermé"
+    "message": "Fermé"
   },
   "closed_for_comments_e395b42f": {
-	"message": "N'accepte plus de commentaires"
+    "message": "N'accepte plus de commentaires"
   },
   "color_a363e1b0": {
-	"message": "Couleur"
+    "message": "Couleur"
   },
   "comment_7ef1428e": {
-	"message": "Commenter"
+    "message": "Commenter"
   },
   "comment_failed_acf11b54": {
-	"message": "Échec du commentaire"
+    "message": "Échec du commentaire"
   },
   "comments_e07bcbe3": {
-	"message": "Commentaires"
+    "message": "Commentaires"
   },
   "complete_fd828dea": {
-	"message": "Terminer"
+    "message": "Terminer"
   },
   "complete_incomplete_15b3a89c": {
-	"message": "Complet / Incomplet"
+    "message": "Complet / Incomplet"
   },
   "compose_message_45002196": {
-	"message": "Composer un message"
+    "message": "Composer un message"
   },
   "conversation_options_8be926f3": {
-	"message": "Options de conversation"
+    "message": "Options de conversation"
+  },
+  "copyright_holder_386cc8b8": {
+    "message": "Titulaire des droits d’auteur"
   },
   "could_not_get_list_of_assignments_76aa2c7e": {
-	"message": "Impossible d’obtenir la liste des devoirs"
+    "message": "Impossible d’obtenir la liste des devoirs"
   },
   "could_not_start_recording_8f31c2e4": {
-	"message": "Impossible de commencer l’enregistrement"
+    "message": "Impossible de commencer l’enregistrement"
   },
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
-	"message": "{ count, plural,     =0 {0 étudiants}    one {# étudiant}  other {# étudiants}}"
+    "message": "{ count, plural,     =0 {0 étudiants}    one {# étudiant}  other {# étudiants}}"
   },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
-	"message": "{ count, plural,    one {Doit être noté} other {À noter}}"
+    "message": "{ count, plural,    one {Doit être noté} other {À noter}}"
   },
   "count_plural_one_needs_grading_other_need_grading_7eba188e": {
-	"message": "{ count, plural,    one {# doit être noté} other {# doivent être notés}}"
+    "message": "{ count, plural,    one {# doit être noté} other {# doivent être notés}}"
   },
   "count_plural_one_pt_other_pts_c5a3bced": {
-	"message": "{ count, plural,    one {# pt} other {# pts}}"
+    "message": "{ count, plural,    one {# pt} other {# pts}}"
   },
   "count_plural_one_question_other_questions_309aafa": {
-	"message": "{ count, plural,    one {# Question} other {# Questions}}"
+    "message": "{ count, plural,    one {# Question} other {# Questions}}"
   },
   "count_plural_one_reply_other_replies_dbf1832a": {
-	"message": "{ count, plural,    one {# Réponse} other {# Réponses}}"
+    "message": "{ count, plural,    one {# Réponse} other {# Réponses}}"
   },
   "count_plural_one_there_is_assignee_without_a_grade_15facb89": {
-	"message": "{ count, plural,    one {Il y a # personne assignée sans note.} other {Il y a # personnes assignées sans notes.}}"
+    "message": "{ count, plural,    one {Il y a # personne assignée sans note.} other {Il y a # personnes assignées sans notes.}}"
   },
   "count_students_4ae780ca": {
-	"message": "{ count } étudiants"
+    "message": "{ count } étudiants"
   },
   "course_activity_stream_40091c17": {
-	"message": "Flux d’activités du cours"
+    "message": "Flux d’activités du cours"
   },
   "course_modules_795cb95e": {
-	"message": "Modules du cours"
+    "message": "Modules du cours"
   },
   "course_sections_380358a5": {
-	"message": "Sections du cours"
+    "message": "Sections du cours"
   },
   "course_settings_f6d0bbf8": {
-	"message": "Paramètres du cours"
+    "message": "Paramètres du cours"
   },
   "courses_43204aae": {
-	"message": "Cours"
+    "message": "Cours"
+  },
+  "create_folder_6055d558": {
+    "message": "Créer un dossier"
+  },
+  "creative_commons_file_f0ace8ca": {
+    "message": "Fichier sous licence Creative Commons"
+  },
+  "creative_commons_license_ba94fd4d": {
+    "message": "Licence Creative Commons"
   },
   "customize_course_eefa9c21": {
-	"message": "Personnaliser cours"
+    "message": "Personnaliser cours"
   },
   "customize_grade_c9d046d": {
-	"message": "Personnaliser la note"
+    "message": "Personnaliser la note"
   },
   "customize_grade_value_964695a3": {
-	"message": "Personnaliser la note { value }"
+    "message": "Personnaliser la note { value }"
   },
   "date_date_medium_at_date_time_short_2b9ce48b": {
-	"message": "{ date, date, medium } à { date, time, short }"
+    "message": "{ date, date, medium } à { date, time, short }"
   },
   "date_date_mmm_d_at_date_time_short_61eeb79b": {
-	"message": "{ date, date, 'MMM d' } à { date, time, short }"
+    "message": "{ date, date, 'MMM d' } à { date, time, short }"
   },
   "date_date_mmm_d_date_time_short_e82719d6": {
-	"message": "{ date, date, 'MMM d' } { date, time, short }"
+    "message": "{ date, date, 'MMM d' } { date, time, short }"
   },
   "delay_posting_f45eed7d": {
-	"message": "Retarder publication"
+    "message": "Retarder publication"
   },
   "delete_a6efa79d": {
-	"message": "Supprimer"
+    "message": "Supprimer"
+  },
+  "delete_file_3ca64c1b": {
+    "message": "Supprimer le fichier"
+  },
+  "delete_folder_1700498c": {
+    "message": "Supprimer le dossier"
+  },
+  "delete_folder_7d84f587": {
+    "message": "Supprimer le dossier ?"
   },
   "delete_recipient_recipient_22a1e3dd": {
-	"message": "Supprimer destinataire { recipient }"
+    "message": "Supprimer destinataire { recipient }"
   },
   "deleted_this_reply_8b5b0ddc": {
-	"message": "Réponse supprimée."
+    "message": "Réponse supprimée."
+  },
+  "deleting_this_folder_will_also_delete_all_of_the_f_8017926e": {
+    "message": "La suppression de ce dossier supprimera également tout son contenu."
   },
   "description_436c48d7": {
-	"message": "Description"
+    "message": "Description"
   },
   "designer_c458392": {
-	"message": "Concepteur"
+    "message": "Concepteur"
   },
   "details_98a31b68": {
-	"message": "Détails"
+    "message": "Détails"
   },
   "discussion_details_5728ea3d": {
-	"message": "Détails de la discussion"
+    "message": "Détails de la discussion"
   },
   "discussion_submission_781d5d33": {
-	"message": "Soumission de la discussion"
+    "message": "Soumission de la discussion"
   },
   "discussion_topic_dc85ad4c": {
-	"message": "Sujet de discussion"
+    "message": "Sujet de discussion"
   },
   "discussions_a5f96392": {
-	"message": "Discussions"
+    "message": "Discussions"
   },
   "display_grade_as_7b5376a6": {
-	"message": "Afficher la note en tant que"
+    "message": "Afficher la note en tant que"
   },
   "display_grade_as_c165e9a6": {
-	"message": "Afficher la note sous forme de..."
+    "message": "Afficher la note sous forme de..."
   },
   "done_54e3d4b6": {
-	"message": "Terminé"
+    "message": "Terminé"
   },
   "due_5d7267be": {
-	"message": "Dû : "
+    "message": "Dû : "
   },
   "due_a73610f6": {
-	"message": "Dû"
+    "message": "Dû"
   },
   "due_date_822625d8": {
-	"message": "Date d'échéance"
+    "message": "Date d'échéance"
   },
   "due_date_date_mmm_d_yyyy_at_date_time_short_76c5900f": {
-	"message": "À rendre le { date, date, 'MMM d, YYYY' } à { date, time, short }"
+    "message": "À rendre le { date, date, 'MMM d, YYYY' } à { date, time, short }"
   },
   "due_date_must_be_between_available_from_and_availa_bc4d7904": {
-	"message": "La « date limite de rendu » doit se trouver entre les dates « Disponible à partir du » et « Disponible jusqu’au »."
+    "message": "La « date limite de rendu » doit se trouver entre les dates « Disponible à partir du » et « Disponible jusqu’au »."
   },
   "due_dates_double_tap_for_details_36c5a7a4": {
-	"message": "Dates d'échéance, appuyez deux fois pour plus de détails."
+    "message": "Dates d'échéance, appuyez deux fois pour plus de détails."
   },
   "due_datestring_be4410c7": {
-	"message": "Dû { dateString }"
+    "message": "Dû { dateString }"
   },
   "edit_assignment_ebf22a72": {
-	"message": "Modifier devoir"
+    "message": "Modifier devoir"
   },
   "edit_attachment_count_ae907c46": {
-	"message": "Modifier la pièce jointe ({ count })"
+    "message": "Modifier la pièce jointe ({ count })"
   },
   "edit_attachments_count_5e9276ea": {
-	"message": "Modifier les pièces jointes ({ count })"
+    "message": "Modifier les pièces jointes ({ count })"
   },
   "edit_c5fbea07": {
-	"message": "Modifier"
+    "message": "Modifier"
   },
   "edit_comment_22b23c2f": {
-	"message": "Modifier un commentaire"
+    "message": "Modifier un commentaire"
   },
   "edit_course_settings_9736fd1f": {
-	"message": "Modifier paramètres du cours"
+    "message": "Modifier paramètres du cours"
   },
   "edit_courses_1f63340f": {
-	"message": "Modifier cours"
+    "message": "Modifier cours"
   },
   "edit_description_1206e0a8": {
-	"message": "Modifier la description"
+    "message": "Modifier la description"
+  },
+  "edit_file_c560115a": {
+    "message": "Modifier le fichier"
+  },
+  "edit_folder_f12b1b3c": {
+    "message": "Modifier le dossier"
   },
   "edit_quiz_details_72cd055": {
-	"message": "Modifier les détails du questionnaire"
+    "message": "Modifier les détails du questionnaire"
   },
   "email_contact_e095f380": {
-	"message": "Contact par email"
+    "message": "Contact par email"
   },
   "enjoy_your_day_a4cb2c1": {
-	"message": "Bonne journée !"
+    "message": "Bonne journée !"
   },
   "enter_code_c7ab5104": {
-	"message": "Entrer le code"
+    "message": "Entrer le code"
   },
   "error_98e81528": {
-	"message": "Erreur"
+    "message": "Erreur"
   },
   "error_saving_grade_ef8d2ddc": {
-	"message": "Erreur lors de l’enregistrement de la note"
+    "message": "Erreur lors de l’enregistrement de la note"
   },
   "everyone_854554dd": {
-	"message": "Tout le monde"
+    "message": "Tout le monde"
   },
   "everyone_else_cc5f6888": {
-	"message": "Tous les autres"
+    "message": "Tous les autres"
   },
   "excuse_student_1b60e311": {
-	"message": "Excuser l’étudiant"
+    "message": "Excuser l’étudiant"
   },
   "excused_cf8792eb": {
-	"message": "Exempté"
+    "message": "Exempté"
   },
   "external_tool_c5a6410a": {
-	"message": "Outil externe"
+    "message": "Outil externe"
   },
   "external_tool_submission_c7b1dfa4": {
-	"message": "Soumission d’outil externe"
+    "message": "Soumission d’outil externe"
   },
   "fail_c2e91f54": {
-	"message": "Échec"
+    "message": "Échec"
   },
   "failed_comment_options_aa19a936": {
-	"message": "Échec des options de commentaire"
+    "message": "Échec des options de commentaire"
   },
   "failed_to_download_audio_23abb7b1": {
-	"message": "Échec du téléchargement de l’audio"
+    "message": "Échec du téléchargement de l’audio"
   },
   "failed_to_load_audio_46309612": {
-	"message": "Échec du chargement de l’audio"
+    "message": "Échec du chargement de l’audio"
   },
   "failed_to_upload_attachment_acb5c28f": {
-	"message": "Échec de l’envoi de la pièce jointe"
+    "message": "Échec de l’envoi de la pièce jointe"
   },
   "failed_to_upload_media_comment_c43f581a": {
-	"message": "Échec de l’envoi du commentaire multimédia"
+    "message": "Échec de l’envoi du commentaire multimédia"
+  },
+  "fair_use_exception_d8683c6f": {
+    "message": "Exception d’usage raisonnable"
   },
   "favorite_courses_fbd356f0": {
-	"message": "Cours favoris"
+    "message": "Cours favoris"
   },
   "file_count_plural_one_file_other_files_8ae41de8": {
-	"message": "{ file_count, plural,    one {# fichier} other {# fichiers}}"
+    "message": "{ file_count, plural,    one {# fichier} other {# fichiers}}"
   },
   "files_c300e900": {
-	"message": "Fichiers"
+    "message": "Fichiers"
   },
   "files_numberoffiles_number_410d9eba": {
-	"message": "Fichiers ({ numberOfFiles, number })"
+    "message": "Fichiers ({ numberOfFiles, number })"
   },
   "filter_by_2f4368a8": {
-	"message": "Filtrer par"
+    "message": "Filtrer par"
   },
   "filter_by_ffcbd05b": {
-	"message": "Filtrer par :"
+    "message": "Filtrer par :"
   },
   "filter_e3398407": {
-	"message": "Filtrer"
+    "message": "Filtrer"
   },
   "filter_inbox_dae0ff8f": {
-	"message": "Filtrer la boîte de réception"
+    "message": "Filtrer la boîte de réception"
   },
   "filter_numselected_f4793ab8": {
-	"message": "Filtre ({ numSelected })"
+    "message": "Filtre ({ numSelected })"
   },
   "filter_people_b34b567b": {
-	"message": "Filtrer les personnes"
+    "message": "Filtrer les personnes"
   },
   "filter_submissions_81bc50de": {
-	"message": "Filtrer les envois"
+    "message": "Filtrer les envois"
   },
   "for_974cbb84": {
-	"message": "Pour"
+    "message": "Pour"
   },
   "for_e3490d05": {
-	"message": "Pour :"
+    "message": "Pour :"
   },
   "forward_d143f64": {
-	"message": "Transférer"
+    "message": "Transférer"
   },
   "forwarded_message_3acb578c": {
-	"message": "Message transféré :"
+    "message": "Message transféré :"
   },
   "full_screen_712e95f1": {
-	"message": "Plein écran"
+    "message": "Plein écran"
   },
   "fw_subject_ebe04db7": {
-	"message": "Tr : { subject }"
+    "message": "Tr : { subject }"
   },
   "gpa_71809a99": {
-	"message": "Moyenne cumulative"
+    "message": "Moyenne cumulative"
   },
   "gpa_scale_a6d1cdea": {
-	"message": "Échelle du GPA"
+    "message": "Échelle du GPA"
   },
   "grade_9c6f076d": {
-	"message": "Note"
+    "message": "Note"
   },
   "graded_25cd3fcd": {
-	"message": "Noté"
+    "message": "Noté"
   },
   "graded_quiz_7fabdf1f": {
-	"message": "Questionnaire noté"
+    "message": "Questionnaire noté"
   },
   "graded_survey_c0f0c395": {
-	"message": "Enquête notée"
+    "message": "Enquête notée"
   },
   "grades_a61eba0a": {
-	"message": "Notes"
+    "message": "Notes"
   },
   "grades_muted_76c70047": {
-	"message": "Notes silencieuses"
+    "message": "Notes silencieuses"
   },
   "grades_muted_anonymous_grading_9291ea4b": {
-	"message": "Notes silencieuses, notation anonyme"
+    "message": "Notes silencieuses, notation anonyme"
   },
   "group_a8f5ed9c": {
-	"message": "Groupe"
+    "message": "Groupe"
   },
   "groups_6c90e26a": {
-	"message": "Groupes"
+    "message": "Groupes"
   },
   "half_screen_9cdd83ad": {
-	"message": "Demi-écran"
+    "message": "Demi-écran"
   },
   "haven_t_been_graded_1fbfda56": {
-	"message": "N’ont pas été notés"
+    "message": "N’ont pas été notés"
   },
   "haven_t_submitted_yet_3a127a27": {
-	"message": "N’ont pas encore été envoyés"
+    "message": "N’ont pas encore été envoyés"
+  },
+  "hidden_files_inside_will_be_available_with_links_e9e3d233": {
+    "message": "Masqué. Les fichiers à l’intérieur seront disponibles via un lien."
   },
   "hide_correct_answers_at_b1a59408": {
-	"message": "Masquer les réponses correctes à"
+    "message": "Masquer les réponses correctes à"
   },
   "hide_date_cannot_be_before_show_date_cfaa35f0": {
-	"message": "La « Date de masquage » ne peut être antérieure à la « Date d'affichage »"
+    "message": "La « Date de masquage » ne peut être antérieure à la « Date d'affichage »"
   },
   "highest_28ad71e6": {
-	"message": "La plus élevée"
+    "message": "La plus élevée"
+  },
+  "i_have_permission_to_use_file_d19a1a29": {
+    "message": "Je dispose de l’autorisation d’utiliser ce fichier"
+  },
+  "i_hold_the_copyright_71ee91b1": {
+    "message": "Je détiens les droits d’auteur"
   },
   "incomplete_da3c2ea2": {
-	"message": "Incomplet"
+    "message": "Incomplet"
   },
   "insert_image_42d30344": {
-	"message": "Insérer image "
+    "message": "Insérer image "
   },
   "insert_link_6dc23cae": {
-	"message": "Insérer un lien"
+    "message": "Insérer un lien"
   },
   "invalid_field_54480fae": {
-	"message": "Champ invalide"
+    "message": "Champ invalide"
   },
   "italic_ac45200a": {
-	"message": "Italique"
+    "message": "Italique"
   },
   "last_activity_on_lastactivity_date_mmmm_d_at_lasta_1a7e8430": {
-	"message": "Dernière activité le { lastActivity, date, 'MMMM d' } à { lastActivity, time, short }"
+    "message": "Dernière activité le { lastActivity, date, 'MMMM d' } à { lastActivity, time, short }"
   },
   "last_post_lastreplydatestr_55fbe7ce": {
-	"message": "Dernière publication { lastReplyDateStr }"
+    "message": "Dernière publication { lastReplyDateStr }"
   },
   "late_2be42b88": {
-	"message": "En retard"
+    "message": "En retard"
   },
   "latest_f604a75": {
-	"message": "Le plus récent"
+    "message": "Le plus récent"
   },
   "launch_external_tool_672c0409": {
-	"message": "Lancer l'outil externe"
+    "message": "Lancer l'outil externe"
   },
   "length_in_minutes_eca69868": {
-	"message": "Longueur en minutes"
+    "message": "Longueur en minutes"
   },
   "let_students_see_the_correct_answer_a4da886e": {
-	"message": "Laisser les étudiants voir les réponses correctes"
+    "message": "Laisser les étudiants voir les réponses correctes"
   },
   "let_students_see_their_quiz_responses_fbc07d14": {
-	"message": "Laisser les étudiants voir leurs réponses au questionnaire"
+    "message": "Laisser les étudiants voir leurs réponses au questionnaire"
   },
   "letter_grade_29ff1938": {
-	"message": "Lettre de notation"
+    "message": "Lettre de notation"
   },
   "letter_grade_e83e363c": {
-	"message": "Notation par lettre"
+    "message": "Notation par lettre"
   },
   "lock_questions_after_answering_e0f61d7c": {
-	"message": "Verrouiller les questions après les réponses"
+    "message": "Verrouiller les questions après les réponses"
   },
   "log_out_379ba28a": {
-	"message": "Se déconnecter"
+    "message": "Se déconnecter"
   },
   "long_description_7d89285c": {
-	"message": "Description longue"
+    "message": "Description longue"
   },
   "mail_is_unavailable_on_your_device_fb52a13c": {
-	"message": "Le courrier électronique est indisponible sur votre appareil."
+    "message": "Le courrier électronique est indisponible sur votre appareil."
   },
   "mark_all_as_read_8f3bdf57": {
-	"message": "Marquer tout comme lu"
+    "message": "Marquer tout comme lu"
   },
   "me_bf110f4d": {
-	"message": "moi"
+    "message": "moi"
   },
   "media_recording_77cddc52": {
-	"message": "Enregistrement média"
+    "message": "Enregistrement média"
   },
   "media_submission_464829f0": {
-	"message": "Soumission du média"
+    "message": "Soumission du média"
   },
   "message_5c38209d": {
-	"message": "Message"
+    "message": "Message"
   },
   "message_details_342e931f": {
-	"message": "Détails du message"
+    "message": "Détails du message"
   },
   "message_options_59805b8e": {
-	"message": "Options de message"
+    "message": "Options de message"
   },
   "message_students_who_778ce759": {
-	"message": "Envoyer un message aux étudiants qui..."
+    "message": "Envoyer un message aux étudiants qui..."
   },
   "minutes_4aee5a41": {
-	"message": "Minutes"
+    "message": "Minutes"
   },
   "minutes_plural_one_minute_other_minutes_e2adacfe": {
-	"message": "{ minutes, plural,    one {# minute} other {# minutes}}"
+    "message": "{ minutes, plural,    one {# minute} other {# minutes}}"
   },
   "missing_1a256b3b": {
-	"message": "Manquant"
+    "message": "Manquant"
   },
   "moderated_grading_unsupported_e3a2bba3": {
-	"message": "La modération de notation n’est pas supportée"
+    "message": "La modération de notation n’est pas supportée"
   },
   "multiple_due_dates_283dd861": {
-	"message": "Échéances multiples"
+    "message": "Échéances multiples"
   },
   "mute_grades_b85bece1": {
-	"message": "Rendre les notes silencieuses"
+    "message": "Rendre les notes silencieuses"
   },
   "name_1aed4a1b": {
-	"message": "Nom"
+    "message": "Nom"
   },
   "name_count_plural_one_other_other_others_f47e51c3": {
-	"message": "{ name } + { count, plural,    one {# autre}  other {# autres}}"
+    "message": "{ name } + { count, plural,    one {# autre}  other {# autres}}"
   },
   "names_count_more_643849d3": {
-	"message": "{ names } et encore { count }"
+    "message": "{ names } et encore { count }"
   },
   "needs_grading_9143d47c": {
-	"message": "Doit être noté"
+    "message": "Doit être noté"
   },
   "new_13daf639": {
-	"message": "Nouveau"
+    "message": "Nouveau"
   },
   "new_discussion_dae4fae3": {
-	"message": "Nouvelle discussion"
+    "message": "Nouvelle discussion"
   },
   "new_message_f9bbd1c0": {
-	"message": "Nouveau message"
+    "message": "Nouveau message"
+  },
+  "new_page_84b28714": {
+    "message": "Nouvelle page"
   },
   "nickname_1e6da3ad": {
-	"message": "Pseudonyme :"
+    "message": "Pseudonyme :"
   },
   "no_attachments_e875f6d5": {
-	"message": "Aucune pièce jointe"
+    "message": "Aucune pièce jointe"
   },
   "no_available_from_date_set_6f659d06": {
-	"message": "Non disponible à partir de la date définie."
+    "message": "Non disponible à partir de la date définie."
   },
   "no_available_from_date_set_db356ac3": {
-	"message": "Non disponible à partir de la date définie."
+    "message": "Non disponible à partir de la date définie."
   },
   "no_available_until_date_set_ad4b4bbb": {
-	"message": "Pas disponible avant qu'une date n’ait été fixée"
+    "message": "Pas disponible avant qu'une date n’ait été fixée"
   },
   "no_available_until_date_set_df9e7434": {
-	"message": "Pas disponible avant qu'une date n’ait été fixée"
+    "message": "Pas disponible avant qu'une date n’ait été fixée"
   },
   "no_due_date_44271c53": {
-	"message": "Pas d'échéance"
+    "message": "Pas d'échéance"
   },
   "no_due_date_set_bb3a2bf7": {
-	"message": "Aucune date d'échéance définie"
+    "message": "Aucune date d'échéance définie"
   },
   "no_e16d9132": {
-	"message": "Non"
+    "message": "Non"
   },
   "no_internet_connection_9df26cf8": {
-	"message": "Pas de connexion Internet"
+    "message": "Pas de connexion Internet"
   },
   "no_messages_a2e67ad4": {
-	"message": "Aucun message"
+    "message": "Aucun message"
   },
   "no_results_f36777ee": {
-	"message": "Aucun résultat"
+    "message": "Aucun résultat"
   },
   "no_starred_messages_e1b28bca": {
-	"message": "Aucun message partagé"
+    "message": "Aucun message partagé"
   },
   "no_subject_2e2a413c": {
-	"message": "(pas de sujet)"
+    "message": "(pas de sujet)"
   },
   "no_subject_58b7941c": {
-	"message": "Aucun sujet"
+    "message": "Aucun sujet"
   },
   "no_time_limit_2147d9bf": {
-	"message": "Aucune limite de temps"
+    "message": "Aucune limite de temps"
+  },
+  "no_title_4921a961": {
+    "message": "Sans titre"
   },
   "none_3b5e34d2": {
-	"message": "Aucun"
+    "message": "Aucun"
   },
   "none_9b6c9bec": {
-	"message": "aucun"
+    "message": "aucun"
   },
   "not_a_teacher_b0d0fc55": {
-	"message": "Pas enseignant ?"
+    "message": "Pas enseignant ?"
   },
   "not_graded_e027c866": {
-	"message": "Non noté"
+    "message": "Non noté"
   },
   "not_published_73f7079": {
-	"message": "Non publié(e)"
+    "message": "Non publié(e)"
   },
   "not_submitted_7d05fdb4": {
-	"message": "Non soumis"
+    "message": "Non soumis"
   },
   "nothing_more_to_do_b017e8bb": {
-	"message": "Plus rien à faire."
+    "message": "Plus rien à faire."
   },
   "number_plural_one_minute_other_minutes_648ec0e1": {
-	"message": "{ number, plural,    one {# Minute} other {# Minutes}}"
+    "message": "{ number, plural,    one {# Minute} other {# Minutes}}"
   },
   "observer_248a192e": {
-	"message": "Observateur"
+    "message": "Observateur"
   },
   "off_5385ef3f": {
-	"message": "Désactiver"
+    "message": "Désactiver"
   },
   "ok_c47544a2": {
-	"message": "D'accord"
+    "message": "D'accord"
   },
   "on_8f7190e5": {
-	"message": "Activer"
+    "message": "Activer"
   },
   "on_paper_46d0ba36": {
-	"message": "Sur papier"
+    "message": "Sur papier"
   },
   "one_of_our_other_apps_might_be_a_better_fit_tap_on_a3138a": {
-	"message": "Une autre de nos applications conviendrait sans doute davantage. Appuyez sur l''une d''entre elles pour visiter l''App store."
+    "message": "Une autre de nos applications conviendrait sans doute davantage. Appuyez sur l''une d''entre elles pour visiter l''App store."
   },
   "one_question_at_a_time_3161ceeb": {
-	"message": "Une question à la fois"
+    "message": "Une question à la fois"
   },
   "online_quiz_5beb2ae5": {
-	"message": "Questionnaire en ligne"
+    "message": "Questionnaire en ligne"
   },
   "online_text_entry_1d893ce": {
-	"message": "Entrée texte en ligne"
+    "message": "Entrée texte en ligne"
   },
   "online_upload_59969592": {
-	"message": "Téléchargement en ligne"
+    "message": "Téléchargement en ligne"
   },
   "online_url_37830a72": {
-	"message": "URL en ligne"
+    "message": "URL en ligne"
+  },
+  "only_available_to_students_with_link_not_available_c12278d2": {
+    "message": "Disponible aux élèves uniquement par un lien. Indisponible dans les fichiers des élèves."
   },
   "only_once_after_each_attempt_cc842738": {
-	"message": "Une seule fois après chaque tentative"
+    "message": "Une seule fois après chaque tentative"
+  },
+  "only_teachers_1628d9b9": {
+    "message": "Uniquement les enseignants"
   },
   "open_coursename_user_preferences_430b877e": {
-	"message": "Ouvrir { courseName } préférences de l'utilisateur"
+    "message": "Ouvrir { courseName } préférences de l'utilisateur"
   },
   "open_drawer_f3c8b11": {
-	"message": "Ouvrir le tiroir virtuel"
+    "message": "Ouvrir le tiroir virtuel"
   },
   "open_for_comments_1810648": {
-	"message": "Ouvert aux commentaires"
+    "message": "Ouvert aux commentaires"
   },
   "options_3ab0ea65": {
-	"message": "Options"
+    "message": "Options"
   },
   "ordered_list_5fb1ce41": {
-	"message": "Liste dans le bon ordre"
-  },
-  "out_of_count_fc1cd44d": {
-	"message": "Sur { count }"
+    "message": "Liste dans le bon ordre"
   },
   "out_of_points_c40a0475": {
-	"message": "Sur { points }"
+    "message": "Sur { points }"
   },
   "out_of_score_c17b26bb": {
-	"message": "Sur { score }"
+    "message": "Sur { score }"
+  },
+  "page_details_847e35e6": {
+    "message": "Détails de la page"
   },
   "pages_e5414c2c": {
-	"message": "Pages"
+    "message": "Pages"
   },
   "pages_front_page_9ce5188": {
-	"message": "Première page"
+    "message": "Première page"
   },
   "pass_8abee039": {
-	"message": "Passe"
+    "message": "Passe"
   },
   "people_b4ebb13c": {
-	"message": "Personnes"
+    "message": "Personnes"
   },
   "percent_d7ddd35b": {
-	"message": "Pour cent (%)"
+    "message": "Pour cent (%)"
   },
   "percentage_34ab7c2c": {
-	"message": "Pourcentage"
+    "message": "Pourcentage"
   },
   "permission_needed_7e971495": {
-	"message": "Autorisation requise"
+    "message": "Autorisation requise"
   },
   "pin_cdbc9f8f": {
-	"message": "Épingler"
+    "message": "Épingler"
   },
   "pinned_discussions_a55c0cea": {
-	"message": "Discussions épinglées"
+    "message": "Discussions épinglées"
   },
   "points_bb475533": {
-	"message": "Points"
+    "message": "Points"
   },
   "points_number_out_of_totalpoints_number_291efb47": {
-	"message": "{ points, number } sur { totalPoints, number }"
+    "message": "{ points, number } sur { totalPoints, number }"
   },
   "points_possible_must_be_a_number_4a592dc6": {
-	"message": "Les points possibles doivent être spécifiés par un nombre"
+    "message": "Les points possibles doivent être spécifiés par un nombre"
   },
   "pointspossible_number_pts_2d9f157d": {
-	"message": "{ pointsPossible, number } pts"
+    "message": "{ pointsPossible, number } pts"
   },
   "post_at_a9e0fecb": {
-	"message": "Poster à..."
+    "message": "Poster à..."
   },
   "practice_quiz_19a8505d": {
-	"message": "Questionnaire d’entraînement"
+    "message": "Questionnaire d’entraînement"
   },
   "preview_quiz_1ffbf684": {
-	"message": "Aperçu du questionnaire"
+    "message": "Aperçu du questionnaire"
   },
   "preview_unavailable_aacd459a": {
-	"message": "Aperçu indisponible"
+    "message": "Aperçu indisponible"
   },
   "previewing_this_file_type_is_not_supported_7df9231": {
-	"message": "La prévisualisation de ce type de fichier n''est pas prise en charge"
+    "message": "La prévisualisation de ce type de fichier n''est pas prise en charge"
   },
   "profile_6bd2baed": {
-	"message": "Profil"
+    "message": "Profil"
   },
   "profile_actions_cfcbb476": {
-	"message": "Actions de profil"
+    "message": "Actions de profil"
   },
   "pts_699bd9aa": {
-	"message": "pts"
+    "message": "pts"
+  },
+  "public_domain_file_eb5a0de": {
+    "message": "Fichier dans le domaine public"
   },
   "publish_5211dca3": {
-	"message": "Publier"
+    "message": "Publier"
   },
   "published_4bb5209e": {
-	"message": "Publié(e)"
+    "message": "Publié(e)"
   },
   "quiz_details_6c4473d3": {
-	"message": "Détails sur le questionnaire"
+    "message": "Détails sur le questionnaire"
   },
   "quiz_preview_a7e75769": {
-	"message": "Aperçu du questionnaire"
+    "message": "Aperçu du questionnaire"
   },
   "quiz_score_to_keep_d1f7c4b1": {
-	"message": "Notation du questionnaire à conserver"
+    "message": "Notation du questionnaire à conserver"
   },
   "quiz_submission_dca0c013": {
-	"message": "Soumission du questionnaire"
+    "message": "Soumission du questionnaire"
   },
   "quiz_type_be1633db": {
-	"message": "Type de questionnaire"
+    "message": "Type de questionnaire"
   },
   "quizzes_7e598f57": {
-	"message": "Questionnaires"
+    "message": "Questionnaires"
   },
   "recipient_recipient_394cf528": {
-	"message": "Destinataire : { recipient }"
+    "message": "Destinataire : { recipient }"
   },
   "record_audio_14666880": {
-	"message": "Enregistrer de l'audio"
+    "message": "Enregistrer de l'audio"
   },
   "record_video_70dc8439": {
-	"message": "Enregistrer de la vidéo"
+    "message": "Enregistrer de la vidéo"
   },
   "recording_failed_2e1861b": {
-	"message": "Échec de l’enregistrement"
+    "message": "Échec de l’enregistrement"
   },
   "redo_363c58b7": {
-	"message": "Refaire"
+    "message": "Refaire"
   },
   "remove_attachment_81f30aa3": {
-	"message": "Supprimer les pièces jointes"
+    "message": "Supprimer les pièces jointes"
   },
   "remove_date_edf2f565": {
-	"message": "Supprimer la date"
+    "message": "Supprimer la date"
   },
   "remove_due_date_c1cc8f7": {
-	"message": "Supprimer date limite de rendu"
+    "message": "Supprimer date limite de rendu"
   },
   "remove_f47dc62a": {
-	"message": "Supprimer"
+    "message": "Supprimer"
   },
   "remove_this_attachment_90a6665c": {
-	"message": "Supprimer cette pièce jointe ?"
+    "message": "Supprimer cette pièce jointe ?"
   },
   "replies_4a8577c8": {
-	"message": "Réponses"
+    "message": "Réponses"
   },
   "reply_389d6fb9": {
-	"message": "Répondre"
+    "message": "Répondre"
   },
   "report_a_problem_4d48624a": {
-	"message": "Signaler un problème"
+    "message": "Signaler un problème"
   },
   "require_an_access_code_46a02601": {
-	"message": "Nécessite un code d’accès"
+    "message": "Nécessite un code d’accès"
   },
   "reset_95a81614": {
-	"message": "Réinitialiser"
+    "message": "Réinitialiser"
+  },
+  "restricted_606cbc55": {
+    "message": "Restreint"
+  },
+  "restricted_access_d3e99a39": {
+    "message": "Accès restreint"
   },
   "retry_ebd5f8ba": {
-	"message": "Réessayer"
+    "message": "Réessayer"
   },
   "retry_upload_d854b33b": {
-	"message": "Retenter l’envoi"
+    "message": "Retenter l’envoi"
   },
   "rubric_fc39da76": {
-	"message": "Rubrique"
+    "message": "Rubrique"
   },
   "saving_2521e616": {
-	"message": "Sauvegarde"
+    "message": "Sauvegarde"
   },
   "saving_d55dd90e": {
-	"message": "Sauvegarde en cours..."
+    "message": "Sauvegarde en cours..."
+  },
+  "schedule_student_availability_332154a": {
+    "message": "Calendrier de disponibilités de l’étudiant"
   },
   "score_number_pointspossible_number_fd8705b8": {
-	"message": "{ score, number }/{ pointsPossible, number }"
+    "message": "{ score, number }/{ pointsPossible, number }"
   },
   "score_to_keep_48ace09b": {
-	"message": "Note à conserver"
+    "message": "Note à conserver"
   },
   "scored_less_than_93cde0d2": {
-	"message": "Note inférieure à..."
+    "message": "Note inférieure à..."
   },
   "scored_less_than_promptvalue_7e5f2b5d": {
-	"message": "A obtenu une note inférieure à { promptValue }"
+    "message": "A obtenu une note inférieure à { promptValue }"
   },
   "scored_more_than_2185a818": {
-	"message": "Note supérieure à..."
+    "message": "Note supérieure à..."
   },
   "scored_more_than_promptvalue_9097b1f7": {
-	"message": "A obtenu une note supérieure à { promptValue }"
+    "message": "A obtenu une note supérieure à { promptValue }"
   },
   "search_280d00bd": {
-	"message": "Rechercher"
+    "message": "Rechercher"
   },
   "seconds_plural_one_second_other_seconds_d33cf6e3": {
-	"message": "{ seconds, plural,    one {# seconde} other {# secondes}}"
+    "message": "{ seconds, plural,    one {# seconde} other {# secondes}}"
   },
   "section_sectionname_a455be11": {
-	"message": "Section : { sectionName }"
+    "message": "Section : { sectionName }"
   },
   "see_all_ffa422ef": {
-	"message": "Tout voir"
+    "message": "Tout voir"
   },
   "select_a_course_40bc3229": {
-	"message": "Sélectionnez un cours"
+    "message": "Sélectionnez un cours"
   },
   "select_a_course_4710371f": {
-	"message": "Sélectionnez un cours"
+    "message": "Sélectionnez un cours"
   },
   "send_e3bd0ed0": {
-	"message": "Envoyer"
+    "message": "Envoyer"
   },
   "send_individual_message_to_each_recipient_4fdfc1e5": {
-	"message": "Envoyer un message individuel à chaque destinataire"
+    "message": "Envoyer un message individuel à chaque destinataire"
   },
   "send_recording_82e5a550": {
-	"message": "Envoyer l’enregistrement"
+    "message": "Envoyer l’enregistrement"
   },
   "sending_bf324366": {
-	"message": "Envoi en cours..."
+    "message": "Envoi en cours..."
   },
   "sent_fe0a1eb4": {
-	"message": "Envoyé"
+    "message": "Envoyé"
+  },
+  "set_as_front_page_c851ec5e": {
+    "message": "Utiliser comme première page"
   },
   "set_home_to_82ab5119": {
-	"message": "Définir « Accueil » à..."
+    "message": "Définir « Accueil » à..."
   },
   "settings_5aa0fd0c": {
-	"message": "Paramètres"
+    "message": "Paramètres"
   },
   "show_correct_answers_a4b957e4": {
-	"message": "Afficher les réponses correctes"
+    "message": "Afficher les réponses correctes"
   },
   "show_correct_answers_at_a5475aa3": {
-	"message": "Montrer les réponses correctes à"
+    "message": "Montrer les réponses correctes à"
   },
   "show_one_question_at_a_time_52f5b1a0": {
-	"message": "Montrer une question à la fois"
+    "message": "Montrer une question à la fois"
   },
   "show_to_hide_2c0b6d39": {
-	"message": "{ show } à { hide }"
+    "message": "{ show } à { hide }"
   },
   "shuffle_answers_edb602b7": {
-	"message": "Permuter les réponses"
+    "message": "Permuter les réponses"
   },
   "similarity_score_f4b5c343": {
-	"message": "Score de similarité"
+    "message": "Score de similarité"
   },
   "star_messages_by_tapping_the_star_in_the_message_1c3e8a80": {
-	"message": "Marquez des messages d''une étoile en appuyant sur l''icône étoile située dans le message."
+    "message": "Marquez des messages d''une étoile en appuyant sur l''icône étoile située dans le message."
   },
   "starred_5a9efa8a": {
-	"message": "Avec un astérisque"
+    "message": "Avec un astérisque"
   },
   "start_recording_189496b9": {
-	"message": "Démarrer l’enregistrement"
+    "message": "Démarrer l’enregistrement"
   },
   "stop_playing_audio_96aed3bc": {
-	"message": "Arrêter la lecture audio"
+    "message": "Arrêter la lecture audio"
   },
   "stop_recording_6efe2129": {
-	"message": "Arrêter l'enregistrement"
+    "message": "Arrêter l'enregistrement"
   },
   "student_5da6bfd1": {
-	"message": "Étudiant"
+    "message": "Étudiant"
   },
   "students_1b8cd07b": {
-	"message": "Étudiants"
+    "message": "Étudiants"
   },
   "subject_114b2e98": {
-	"message": "Sujet"
+    "message": "Sujet"
   },
   "submission_settings_f57b0cf8": {
-	"message": "Paramètres de soumission"
+    "message": "Paramètres de soumission"
   },
   "submission_types_af57bf0": {
-	"message": "Types de soumission"
+    "message": "Types de soumission"
   },
   "submissions_11e96106": {
-	"message": "Soumissions"
+    "message": "Soumissions"
   },
   "submitted_318fad53": {
-	"message": "Soumis"
+    "message": "Soumis"
   },
   "submitted_late_3741af29": {
-	"message": "Soumis tardivement"
+    "message": "Soumis tardivement"
   },
   "subscribe_4b301fb7": {
-	"message": "S’inscrire"
+    "message": "S’inscrire"
   },
   "survey_31a240e6": {
-	"message": "Enquête"
+    "message": "Enquête"
   },
   "swipe_left_or_right_to_view_other_student_submissi_da37c1c1": {
-	"message": "Faites glisser vers la gauche ou la droite pour voir d''autres soumissions d''élèves"
+    "message": "Faites glisser vers la gauche ou la droite pour voir d''autres soumissions d''élèves"
   },
   "syllabus_f191f65b": {
-	"message": "Programme"
+    "message": "Programme"
   },
   "ta_8d966626": {
-	"message": "Professeur-assistant"
+    "message": "Professeur-assistant"
   },
   "tap_and_hold_a_rubric_number_to_see_its_descriptio_8762082a": {
-	"message": "Appuyez et laissez votre doigt sur un numéro de rubrique pour voir sa description"
+    "message": "Appuyez et laissez votre doigt sur un numéro de rubrique pour voir sa description"
   },
   "tap_the_to_create_a_new_conversation_80f77725": {
-	"message": "Appuyez sur « + » pour créer une nouvelle conversation"
+    "message": "Appuyez sur « + » pour créer une nouvelle conversation"
+  },
+  "tap_to_view_announcement_6724a5d": {
+    "message": "Appuyez pour voir l’annonce"
   },
   "tap_to_view_submissions_list_5bfe32f3": {
-	"message": "Appuyez pour voir la liste des soumissions."
+    "message": "Appuyez pour voir la liste des soumissions."
   },
   "teacher_5a73b637": {
-	"message": "Professeur"
+    "message": "Professeur"
+  },
+  "teachers_and_students_ba2db3e4": {
+    "message": "Enseignants et étudiants"
   },
   "terms_of_use_6542769b": {
-	"message": "Conditions d'utilisation"
+    "message": "Conditions d'utilisation"
   },
   "text_color_acf75eb6": {
-	"message": "Couleur de texte"
+    "message": "Couleur de texte"
   },
   "text_submission_935eeb5": {
-	"message": "Soumission de texte"
+    "message": "Soumission de texte"
   },
   "that_message_can_not_be_forwarded_76cb2b1a": {
-	"message": "Ce message ne peut être transmis."
+    "message": "Ce message ne peut être transmis."
   },
   "the_value_of_possible_points_must_be_zero_or_great_374e175a": {
-	"message": "La valeur du nombre de points possibles doit être supérieure ou égale à zéro."
+    "message": "La valeur du nombre de points possibles doit être supérieure ou égale à zéro."
   },
   "the_was_a_problem_saving_the_grade_please_try_agai_2aefe6a8": {
-	"message": "Un problème est survenu lors de la sauvegarde de la note. Veuillez réessayer."
+    "message": "Un problème est survenu lors de la sauvegarde de la note. Veuillez réessayer."
+  },
+  "there_are_no_announcements_to_display_a91880": {
+    "message": "Aucune annonce à afficher."
+  },
+  "there_are_no_assignments_to_display_83b52cf3": {
+    "message": "Aucun devoir à afficher."
+  },
+  "there_are_no_discussions_to_display_37bc437f": {
+    "message": "Aucune discussion à afficher."
+  },
+  "there_are_no_pages_to_display_ce6ca4d3": {
+    "message": "Aucune page à afficher."
+  },
+  "there_are_no_quizzes_to_display_733b28f2": {
+    "message": "Aucune questionnaire à afficher."
   },
   "there_currently_is_no_long_description_for_this_it_ea943d61": {
-	"message": "Il n’y a aucune description longue pour cet élément actuellement."
+    "message": "Il n’y a aucune description longue pour cet élément actuellement."
   },
   "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
-	"message": "Une erreur est survenue pendant le chargement de la liste des participants"
+    "message": "Une erreur est survenue pendant le chargement de la liste des participants"
   },
   "there_was_a_problem_loading_discussions_ce5318af": {
-	"message": "Une erreur est survenue lors du téléchargement des discussions."
+    "message": "Une erreur est survenue lors du téléchargement des discussions."
   },
   "there_was_a_problem_loading_the_announcements_4871afc4": {
-	"message": "Un problème est apparu pendant le chargement des annonces."
+    "message": "Un problème est apparu pendant le chargement des annonces."
   },
   "there_was_a_problem_loading_the_assignment_submiss_4ace7374": {
-	"message": "Une erreur est survenue lors de l’envoi des tâches"
+    "message": "Une erreur est survenue lors de l’envoi des tâches"
+  },
+  "there_was_a_problem_loading_the_grading_periods_3fb714a0": {
+    "message": "Un problème est survenu lors du chargement des périodes de notation."
   },
   "there_was_a_problem_loading_the_groups_6945e624": {
-	"message": "Un problème est apparu pendant le chargement des groupes.."
+    "message": "Un problème est apparu pendant le chargement des groupes.."
   },
   "there_was_a_problem_loading_the_quiz_submissions_b4f5503b": {
-	"message": "Une erreur est survenue lors du téléchargement de l’envoi des tâches"
+    "message": "Une erreur est survenue lors du téléchargement de l’envoi des tâches"
   },
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
-	"message": "Une erreur est survenue lors du téléchargement des questionnaires."
+    "message": "Une erreur est survenue lors du téléchargement des questionnaires."
   },
   "there_was_an_error_loading_the_attachment_840a55ee": {
-	"message": "Une erreur est survenue pendant le chargement de la pièce jointe."
+    "message": "Une erreur est survenue pendant le chargement de la pièce jointe."
+  },
+  "there_was_an_error_loading_the_file_a046378e": {
+    "message": "Une erreur est survenue lors du chargement du fichier."
   },
   "there_was_an_error_loading_the_quiz_preview_3f3c8104": {
-	"message": "Une erreur est survenue lors du chargement de l'aperçu du quiz."
+    "message": "Une erreur est survenue lors du chargement de l'aperçu du quiz."
   },
   "there_was_an_error_loading_this_attachment_408acc12": {
-	"message": "Une erreur est survenue pendant le chargement de cette pièce jointe."
+    "message": "Une erreur est survenue pendant le chargement de cette pièce jointe."
   },
   "there_was_an_problem_loading_your_messages_b80423ac": {
-	"message": "Un problème est survenu pendant le chargement de vos messages."
+    "message": "Un problème est survenu pendant le chargement de vos messages."
   },
   "there_was_an_unexpected_error_please_try_again_5e08774e": {
-	"message": "Erreur inattendue. Veuillez réessayer."
+    "message": "Erreur inattendue. Veuillez réessayer."
   },
   "this_action_can_not_be_undone_eb8a297b": {
-	"message": "Cette action ne peut être annulée."
+    "message": "Cette action ne peut être annulée."
   },
   "this_action_requires_an_internet_connection_81f6688a": {
-	"message": "Cette action nécessite une connexion Internet."
+    "message": "Cette action nécessite une connexion Internet."
   },
   "this_assignment_does_not_allow_submissions_30af1caa": {
-	"message": "Cette tâche ne permet pas les envois."
+    "message": "Cette tâche ne permet pas les envois."
   },
   "this_assignment_only_allows_on_paper_submissions_f478408a": {
-	"message": "Cette tâche ne permet que les envois sur papier."
+    "message": "Cette tâche ne permet que les envois sur papier."
   },
   "this_folder_is_empty_14af41c": {
-	"message": "Ce répertoire est vide."
+    "message": "Ce répertoire est vide."
   },
   "this_group_does_not_have_a_submission_for_this_ass_ca275999": {
-	"message": "Ce groupe n’a rien soumis pour ce travail"
+    "message": "Ce groupe n’a rien soumis pour ce travail"
   },
   "this_is_your_personal_color_setting_only_you_will__e47dba70": {
-	"message": "Voici votre paramètre de couleur personnel. Vous seul verrez cette couleur pour ce cours."
+    "message": "Voici votre paramètre de couleur personnel. Vous seul verrez cette couleur pour ce cours."
   },
   "this_student_does_not_have_a_submission_for_this_a_c8c2eafe": {
-	"message": "Cet étudiant n'a pas un envoi pour cette tâche"
+    "message": "Cet étudiant n'a pas un envoi pour cette tâche"
   },
   "this_submission_is_a_url_to_an_external_page_we_ve_9993d2fd": {
-	"message": "Cette soumission est une URL vers une page externe. Nous avons inclus une capture d''écran de la page au moment où elle a été envoyée."
+    "message": "Cette soumission est une URL vers une page externe. Nous avons inclus une capture d''écran de la page au moment où elle a été envoyée."
   },
   "this_will_anonymize_each_student_and_shuffle_the_s_127956c7": {
-	"message": "Ceci anonymisera chaque élève et mélangera la liste des soumissions."
+    "message": "Ceci anonymisera chaque élève et mélangera la liste des soumissions."
   },
   "this_will_remove_the_due_date_and_all_of_the_assoc_56d1ea8": {
-	"message": "Cela supprimera la date limite de rendu ainsi que toutes les personnes assignées associées."
+    "message": "Cela supprimera la date limite de rendu ainsi que toutes les personnes assignées associées."
   },
   "time_elapsed_minutes_seconds_f5d82cb": {
-	"message": "Temps écoulé : { minutes }, { seconds }."
+    "message": "Temps écoulé : { minutes }, { seconds }."
   },
   "time_limit_a6f1a51e": {
-	"message": "Limite de temps"
+    "message": "Limite de temps"
   },
   "title_announcement_c0cdaa10": {
-	"message": "{ title } Annonce"
+    "message": "{ title } Annonce"
   },
   "title_discussion_4cff9841": {
-	"message": "{ title } Discussion"
+    "message": "{ title } Discussion"
   },
   "title_ee03d132": {
-	"message": "Titre"
+    "message": "Titre"
+  },
+  "title_page_1284a2b9": {
+    "message": "{ title } Page"
   },
   "to_51406be9": {
-	"message": "À"
+    "message": "À"
   },
   "to_count_others_853f5dc8": {
-	"message": "à { count } autres"
+    "message": "à { count } autres"
   },
   "to_me_780716c7": {
-	"message": "à moi"
+    "message": "à moi"
   },
   "to_name_bb3e415e": {
-	"message": "à { name }"
+    "message": "à { name }"
   },
   "try_logging_in_again_7a66111a": {
-	"message": "Veuillez réessayer de vous identifier"
+    "message": "Veuillez réessayer de vous identifier"
   },
   "un_starred_8fef021f": {
-	"message": "Étoile retirée"
+    "message": "Étoile retirée"
   },
   "unavailable_46d2c344": {
-	"message": "Indisponible"
+    "message": "Indisponible"
   },
   "undo_a7be8fef": {
-	"message": "Annuler"
+    "message": "Annuler"
   },
   "unexpected_error_93991f40": {
-	"message": "Erreur inattendue"
-  },
-  "ungraded_ed0c6f98": {
-	"message": "Non noté"
+    "message": "Erreur inattendue"
   },
   "ungraded_survey_ad7de790": {
-	"message": "Enquête non notée"
+    "message": "Enquête non notée"
   },
   "unknown_author_40d64455": {
-	"message": "Auteur inconnu"
+    "message": "Auteur inconnu"
   },
   "unlimited_ff19e96d": {
-	"message": "Illimité"
+    "message": "Illimité"
   },
   "unordered_list_3c1650b3": {
-	"message": "Liste dans le désordre"
+    "message": "Liste dans le désordre"
   },
   "unpin_a318452a": {
-	"message": "Détacher"
+    "message": "Détacher"
+  },
+  "unpublish_9f2d730b": {
+    "message": "Ne pas publier"
   },
   "unpublished_8b6107d6": {
-	"message": "Non publié"
+    "message": "Non publié"
   },
   "unread_e9c1b19c": {
-	"message": "Non lu"
+    "message": "Non lu"
   },
   "until_date_f3b9f367": {
-	"message": "Jusqu’au { date }"
+    "message": "Jusqu’au { date }"
   },
   "upload_8b403d05": {
-	"message": "Télécharger"
+    "message": "Télécharger"
   },
   "upload_cancelled_by_user_ca7723be": {
-	"message": "Envoi annulé par l’utilisateur"
+    "message": "Envoi annulé par l’utilisateur"
   },
   "upload_complete_46473c7b": {
-	"message": "Envoi terminé"
+    "message": "Envoi terminé"
   },
   "upload_error_38012123": {
-	"message": "Erreur liée à l’envoi"
+    "message": "Erreur liée à l’envoi"
   },
   "upload_file_fd2361b8": {
-	"message": "Envoyer fichier"
+    "message": "Envoyer fichier"
   },
   "upload_in_progress_57b96797": {
-	"message": "Envoi en cours"
+    "message": "Envoi en cours"
+  },
+  "uploading_19e8a4e7": {
+    "message": "Envoi"
+  },
+  "uploading_amountuploaded_amounttotal_cd97306a": {
+    "message": "Envoi { amountUploaded }/{ amountTotal }"
   },
   "uploading_loaded_of_total_d5c3d555": {
-	"message": "Envoi de { loaded } sur { total }"
+    "message": "Envoi de { loaded } sur { total }"
   },
   "url_preview_image_a263a21e": {
-	"message": "Image de prévisualisation de l''URL"
+    "message": "Image de prévisualisation de l''URL"
   },
   "url_submission_f76327e3": {
-	"message": "Envoi d'une URL"
+    "message": "Envoi d'une URL"
+  },
+  "usage_right_2b398e0b": {
+    "message": "Droit d’utilisation"
+  },
+  "usage_rights_f0960ad6": {
+    "message": "Droits d’utilisation"
   },
   "use_camera_47a0387b": {
-	"message": "Utiliser l’appareil photo"
+    "message": "Utiliser l’appareil photo"
   },
   "users_must_post_before_seeing_replies_d1761968": {
-	"message": "Les utilisateurs doivent publier quelque chose pour voir les réponses."
+    "message": "Les utilisateurs doivent publier quelque chose pour voir les réponses."
   },
   "version_version_a051e218": {
-	"message": "Version { version }"
+    "message": "Version { version }"
   },
   "video_b9f27375": {
-	"message": "Vidéo"
+    "message": "Vidéo"
   },
   "video_recording_90d21249": {
-	"message": "Enregistrement vidéo"
+    "message": "Enregistrement vidéo"
   },
   "view_all_submissions_915a8b78": {
-	"message": "Voir toutes les soumissions"
+    "message": "Voir toutes les soumissions"
   },
-  "view_long_description_bafad8a4": {
-	"message": "Afficher la description longue"
+  "view_long_description_2b592c0e": {
+    "message": "Afficher la description longue"
   },
   "view_more_replies_9fef9983": {
-	"message": "Voir plus de réponses"
+    "message": "Voir plus de réponses"
   },
   "view_responses_d2874266": {
-	"message": "Voir les réponses"
+    "message": "Voir les réponses"
   },
   "visit_the_canvas_guides_7328b93f": {
-	"message": "Visiter les guides de Canvas"
+    "message": "Visiter les guides de Canvas"
   },
   "welcome_73d18b4d": {
-	"message": "Bienvenue !"
+    "message": "Bienvenue !"
   },
   "yes_dde87d5": {
-	"message": "Oui"
+    "message": "Oui"
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
-	"message": "Vous devez activer les autorisations « appareil photo et microphone » dans les Paramètres pour utiliser l’appareil photo."
+    "message": "Vous devez activer les autorisations « appareil photo et microphone » dans les Paramètres pour utiliser l’appareil photo."
   },
   "you_must_enable_microphone_permissions_in_settings_b0cf8b44": {
-	"message": "Vous devez activer les autorisations « microphone » dans les Paramètres pour enregistrer de l’audio."
+    "message": "Vous devez activer les autorisations « microphone » dans les Paramètres pour enregistrer de l’audio."
   },
   "you_must_enable_photos_permissions_in_settings_26faf052": {
-	"message": "Vous devez activer les autorisations « photos » dans les Paramètres."
+    "message": "Vous devez activer les autorisations « photos » dans les Paramètres."
   },
   "you_must_enter_an_access_code_8c2c7ae0": {
-	"message": "Vous devez entrer un code d’accès"
+    "message": "Vous devez entrer un code d’accès"
   },
   "your_submission_comment_failed_to_send_5c8d2809": {
-	"message": "Échec de l''envoi de votre commentaire de soumission."
+    "message": "Échec de l''envoi de votre commentaire de soumission."
   }
 }

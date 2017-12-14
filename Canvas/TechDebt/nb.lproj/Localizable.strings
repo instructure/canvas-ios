@@ -49,12 +49,6 @@
 /* Button to submit files to an assignment */
 "%@ (%d)" = "%1$@ (%2$d)";
 
-/* B- (83 out of 100 points */
-"%@ (%g out of %@)" = "%1$@ (%2$g ut av %3$@)";
-
-/* Event happens on a date at a time */
-"%@ at %@" = "%1$@ på %2$@";
-
 /* Message for unsupported tab coming soon */
 "%@ is coming soon!" = "%@ kommer snart! ";
 
@@ -78,12 +72,6 @@
 
 /* (No Comment) */
 "%@ need grading" = "%@ trenger vurdering";
-
-/* 88 out of 100 points */
-"%@ out of %@" = "%1$@ ut av %2$@";
-
-/* 83% (83 out of 100 points */
-"%@%% (%g out of %@)" = "%1$@%% (%2$g ut av %3$@)";
 
 /* (No Comment) */
 "%@..." = "%@...";
@@ -262,7 +250,7 @@
 /* (No Comment) */
 "Ask me later" = "Spør meg senere";
 
-/* Label for an assignment */
+/* (No Comment) */
 "Assignment" = "Oppgave";
 
 /* (No Comment) */
@@ -280,7 +268,7 @@
 /* (No Comment) */
 "Attachments" = "Vedlegg";
 
-/* Label for a discussion */
+/* (No Comment) */
 "Attendance" = "Oppmøte";
 
 /* Audio file type */
@@ -371,7 +359,7 @@
 /* title for media comment upload failure */
 "Comment Error" = "Kommentere feil";
 
-/* View comments */
+/* (No Comment) */
 "Comments" = "Kommentarer";
 
 /* No comment provided by engineer. */
@@ -453,10 +441,10 @@
 /* Placeholder text for discussion details field */
 "Details" = "Detaljer";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Discard" = "Forkast";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Discard this entry?" = "Forkaste denne oppføringen?";
 
 /* Title of the new discussion view */
@@ -556,7 +544,7 @@
 /* Error deleting folder alert view title */
 "Error deleting folder" = "Feil ved sletting av mappe";
 
-/* Label for a calendar event */
+/* (No Comment) */
 "Event" = "Arrangement";
 
 /* No comment provided by engineer. */
@@ -607,13 +595,13 @@
 /* title for discussion assignment submission button */
 "Go To Discussion" = "Gå til diskusjon";
 
-/* Action on an alert */
+/* (No Comment) */
 "Go to App Store" = "Gå til App-Store";
 
-/* text for the \"go to quiz\" button */
+/* (No Comment) */
 "Go to Quiz" = "Gå til test";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Go to discussion" = "Gå til diskusjon";
 
 /* No comment provided by engineer. */
@@ -622,7 +610,7 @@
 /* (No Comment) */
 "Grade %@" = "Karakter %@";
 
-/* Launch the SpeedGrader app */
+/* (No Comment) */
 "Grade in SpeedGrader" = "Vurdere i SpeedGrader";
 
 /* (No Comment) */
@@ -631,7 +619,7 @@
 /* (No Comment) */
 "Grade: %@" = "Karakter: %@";
 
-/* Label for a discussion */
+/* (No Comment) */
 "Graded Discussion" = "Vurdert diskusjon";
 
 /* Lets user know discussion is graded */
@@ -697,7 +685,7 @@
 /* (No Comment) */
 "Jumps to current day on calendar" = "Går til dagen i dag på kalenderen";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Keep" = "Behold";
 
 /* Title for an LTI launch submitted as an assignment */
@@ -709,7 +697,7 @@
 /* Title for an alert popup */
 "Large file" = "Stor fil";
 
-/* Button in an alert */
+/* (No Comment) */
 "Later" = "Senere";
 
 /* title for submission button */
@@ -784,7 +772,7 @@
 /* Button title for selecting to view more info about the limitations of mobile quizzes */
 "More Info" = "Mer info";
 
-/* Title of a link to show additional due dates customized for sections or groups. */
+/* (No Comment) */
 "Multiple Due Dates" = "Flere leveringsfrister";
 
 /* (No Comment) */
@@ -808,7 +796,7 @@
 /* the users name */
 "Name" = "Navn";
 
-/* Title notifying user that SpeedGrader is available for iPad */
+/* (No Comment) */
 "Need SpeedGrader for iPad" = "Trenger SpeedGrader til iPad";
 
 /* Network error title */
@@ -1028,7 +1016,7 @@
 /* option to request a feature */
 "Request a feature" = "Be om en funksjon";
 
-/* View grading rubric */
+/* (No Comment) */
 "Rubric" = "Rubrikk";
 
 /* No comment provided by engineer. */
@@ -1112,23 +1100,22 @@
 /* (No Comment) */
 "Sub Header" = "Underoverskrift";
 
-/* View previously submitted assignment */
+/* No comment provided by engineer. */
 "Submission" = "Innsending";
 
 /* Title for file submission error */
 "Submission Error" = "Innsendingsfeil";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Submission complete" = "Innsending fullført";
 
-/* Submit an assignment
-   Submit Arc video as assignment button */
+/* Submit Arc video as assignment button */
 "Submit" = "Send inn";
 
 /* Submitted grouping */
 "Submitted" = "Sendt inn";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Submitting..." = "Sender inn ...";
 
 /* Subscribe to calendar feed allows the user to export their calendar events to a 3rd party calendar */
@@ -1293,8 +1280,14 @@
 /* Error title */
 "Unable to load" = "Kunne ikke laste";
 
+/* Error message without retry */
+"Unable to post." = "Kunne ikke poste.";
+
 /* (No Comment) */
 "Unable to post. Please try again later" = "Kunne ikke poste. Forsøk igjen senere";
+
+/* Error message */
+"Unable to post. Please try again later." = "Kunne ikke poste. Forsøk igjen senere.";
 
 /* message saying that avatar couldn't be loaded to server */
 "Unable to upload to server" = "Kunne ikke laste opp til server";
@@ -1395,7 +1388,7 @@
 /* Masquerade success message */
 "You are now masquerading as %@. To Stop Masquerading go to your Profile." = "Du er nå forkledd som %@. Gå til profilen din for å avslutte forkledningen.";
 
-/* Message in an alert */
+/* (No Comment) */
 "You do not have SpeedGrader for iPad. You can download it for free from the App Store." = "Du har ikke SpeedGrader til iPad. Du kan laste den ned gratis i App-Store.";
 
 /* (No Comment) */
@@ -1431,16 +1424,13 @@
 /* (No Comment) */
 "due on %1$@ at %2$@" = "frist den %1$@ kl. %2$@";
 
-/* Assignment is due on a date at a time */
-"due on %@ at %@" = "frist den %1$@ kl. %2$@";
-
 /* (No Comment) */
 "moments ago" = "øyeblikk siden";
 
 /* Accessibility label modifier for point out of point possible */
 "out of" = "ut av";
 
-/* The assignment is out of 100 points */
+/* (No Comment) */
 "out of %@" = "ut av %@";
 
 /* (No Comment) */

@@ -100,6 +100,9 @@
 /* A button that records */
 "Record" = "Anrejistre";
 
+/* No comment provided by engineer. */
+"Score" = "Nòt";
+
 /* Hint about the play button */
 "Starts playing your recording" = "Komanse jwe anrejistreman ou an";
 

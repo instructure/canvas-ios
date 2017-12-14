@@ -100,6 +100,9 @@
 /* A button that records */
 "Record" = "Opotag";
 
+/* No comment provided by engineer. */
+"Score" = "Resultat";
+
 /* Hint about the play button */
 "Starts playing your recording" = "Start afspilning af din optagelse";
 

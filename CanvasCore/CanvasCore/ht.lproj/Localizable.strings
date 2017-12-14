@@ -237,6 +237,9 @@
 /* No comment provided by engineer. */
 "Error parsing the Roll Call response. Unexpected null value: (k)" = "Erè pandan analiz repons Apèl Nominal la. Valè nil sanzatann: (k)";
 
+/* LTI Launch failed */
+"Error retrieving tool launch URL" = "Erè pandan rekiperasyon URL lansman enstriman";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "Erè: Okenn done ranvwaye pa API apèl la.";
 
@@ -587,6 +590,9 @@
 /* Teal course color button */
 "Teal" = "Ble vèt";
 
+/* No comment provided by engineer. */
+"That page has been disabled for this course" = "Paj sa a dezaktive pou kou sa a";
+
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "Paj yo ale!? Poukisa paj yo toujou ap fèmen?";
 
@@ -796,4 +802,7 @@
 
 /* File upload in progress */
 "uploading..." = "transfè...";
+
+/* web content failed to load */
+"⚠️ Error Loading Content" = "⚠️ Erè Chajman Kontni";
 

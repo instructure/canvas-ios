@@ -237,6 +237,9 @@
 /* No comment provided by engineer. */
 "Error parsing the Roll Call response. Unexpected null value: (k)" = "ロールコール応答を解析中にエラーが発生しました。予期しないヌル値：(k)";
 
+/* LTI Launch failed */
+"Error retrieving tool launch URL" = "ツール起動 URL 取得中にエラーが発生しました";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "エラー:ロールコールAPIから返されたデータはありません。";
 
@@ -587,6 +590,9 @@
 /* Teal course color button */
 "Teal" = "ティール";
 
+/* No comment provided by engineer. */
+"That page has been disabled for this course" = "そのページは、このコースに対して無効になっています";
+
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "ページがなくなった!?どうしていつもページが消えるのでしょうか？";
 
@@ -796,4 +802,7 @@
 
 /* File upload in progress */
 "uploading..." = "アップロード中...";
+
+/* web content failed to load */
+"⚠️ Error Loading Content" = "⚠️ コンテンツ読み込み中エラー";
 

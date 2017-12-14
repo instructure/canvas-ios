@@ -190,6 +190,9 @@
 /* Invalid User Agent */
 "Invalid User Agent." = "Ugyldig brugeragent.";
 
+/* Invalid Domain title */
+"Invalid domain." = "Ugyldigt domæne.";
+
 /* Alert Message for invalid domain */
 "Invalid student domain.\nPlease double-check the domain and try again." = "Ugyldig studentdomæne.\nDobbelt tjek venligst domænet og prøv igen.";
 
@@ -282,6 +285,9 @@
 
 /* Title for alert when resetting password is successful */
 "Password Reset Successful" = "Adgangskode nulstillet succesfuldt";
+
+/* Invalid Domain message */
+"Please double-check the domain and try again." = "Kontroller domænet, og prøv igen.";
 
 /* Title for alert shown when something goes wrong resetting the password */
 "Problem Resetting Password" = "Problem med nulstilling af adgangskode";

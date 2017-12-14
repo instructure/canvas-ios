@@ -100,6 +100,9 @@
 /* A button that records */
 "Record" = "錄製";
 
+/* No comment provided by engineer. */
+"Score" = "分數";
+
 /* Hint about the play button */
 "Starts playing your recording" = "開始播放您錄製的內容";
 

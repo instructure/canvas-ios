@@ -190,6 +190,9 @@
 /* Invalid User Agent */
 "Invalid User Agent." = "Koremana Kaimahi Māngai";
 
+/* Invalid Domain title */
+"Invalid domain." = "Rohe muhu.";
+
 /* Alert Message for invalid domain */
 "Invalid student domain.\nPlease double-check the domain and try again." = "rohe ākonga muhu.\nKoa-tirohia rua te rohe, me te ngana anō.";
 
@@ -282,6 +285,9 @@
 
 /* Title for alert when resetting password is successful */
 "Password Reset Successful" = "Tautuhi Kupuhipa Momoho";
+
+/* Invalid Domain message */
+"Please double-check the domain and try again." = "Tēnā koa āta titiro anō ki te rohe me te ngana anō i muri mai.";
 
 /* Title for alert shown when something goes wrong resetting the password */
 "Problem Resetting Password" = "Raruraru Kupuhipa Tautuhianō";

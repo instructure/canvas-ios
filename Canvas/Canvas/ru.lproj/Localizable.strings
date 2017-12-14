@@ -276,6 +276,9 @@
    Calendar page title */
 "Calendar" = "Календарь";
 
+/* No comment provided by engineer. */
+"Calendar Event" = "Событие календаря";
+
 /* (No Comment) */
 "Can't load tool" = "Не удается загрузить инструмент";
 
@@ -607,7 +610,7 @@
 /* (No Comment) */
 "Group conversation" = "Разговор группы";
 
-/* Groups page title */
+/* (No Comment) */
 "Groups" = "Группы";
 
 /* (No Comment) */

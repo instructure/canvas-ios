@@ -237,6 +237,9 @@
 /* No comment provided by engineer. */
 "Error parsing the Roll Call response. Unexpected null value: (k)" = "Fout bij het parseren van de Roll Call-reactie. Onverwachte null-waarde: (k)";
 
+/* LTI Launch failed */
+"Error retrieving tool launch URL" = "Fout bij ophalen van tool voor starten van URL";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "Fout: Geen gegevens geretourneerd door de Roll Call-API.";
 
@@ -587,6 +590,9 @@
 /* Teal course color button */
 "Teal" = "Groenblauw";
 
+/* No comment provided by engineer. */
+"That page has been disabled for this course" = "Die pagina is uitgeschakeld voor deze cursus";
+
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "De pagina's zijn verdwenen!? Waarom zijn die pagina's er nooit?";
 
@@ -796,4 +802,7 @@
 
 /* File upload in progress */
 "uploading..." = "bezig met uploaden...";
+
+/* web content failed to load */
+"⚠️ Error Loading Content" = "⚠️ Fout bij laden van inhoud";
 

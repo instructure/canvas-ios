@@ -100,6 +100,9 @@
 /* A button that records */
 "Record" = "تسجيل";
 
+/* No comment provided by engineer. */
+"Score" = "الدرجة";
+
 /* Hint about the play button */
 "Starts playing your recording" = "بدء تشغيل تسجيلك";
 

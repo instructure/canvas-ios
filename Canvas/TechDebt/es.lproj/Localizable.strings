@@ -49,12 +49,6 @@
 /* Button to submit files to an assignment */
 "%@ (%d)" = "%1$@ (%2$d)";
 
-/* B- (83 out of 100 points */
-"%@ (%g out of %@)" = "%1$@ (%2$g de %3$@)";
-
-/* Event happens on a date at a time */
-"%@ at %@" = "%1$@ a %2$@";
-
 /* Message for unsupported tab coming soon */
 "%@ is coming soon!" = "¡%@ proximamente!";
 
@@ -78,12 +72,6 @@
 
 /* (No Comment) */
 "%@ need grading" = "%@ necesitan ser calificados";
-
-/* 88 out of 100 points */
-"%@ out of %@" = "%1$@ de los %2$@";
-
-/* 83% (83 out of 100 points */
-"%@%% (%g out of %@)" = "%1$@%% (%2$g de los %3$@)";
 
 /* (No Comment) */
 "%@..." = "%@...";
@@ -262,7 +250,7 @@
 /* (No Comment) */
 "Ask me later" = "Pregúnteme más tarde";
 
-/* Label for an assignment */
+/* (No Comment) */
 "Assignment" = "Tarea";
 
 /* (No Comment) */
@@ -280,7 +268,7 @@
 /* (No Comment) */
 "Attachments" = "Archivos adjuntos";
 
-/* Label for a discussion */
+/* (No Comment) */
 "Attendance" = "Asistencia";
 
 /* Audio file type */
@@ -371,7 +359,7 @@
 /* title for media comment upload failure */
 "Comment Error" = "Error de comentario";
 
-/* View comments */
+/* (No Comment) */
 "Comments" = "Comentarios";
 
 /* No comment provided by engineer. */
@@ -453,10 +441,10 @@
 /* Placeholder text for discussion details field */
 "Details" = "Detalles";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Discard" = "Deshechar";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Discard this entry?" = "¿Deshechar esta entrada?";
 
 /* Title of the new discussion view */
@@ -556,7 +544,7 @@
 /* Error deleting folder alert view title */
 "Error deleting folder" = "Error al borrar la carpeta";
 
-/* Label for a calendar event */
+/* (No Comment) */
 "Event" = "Evento";
 
 /* No comment provided by engineer. */
@@ -607,13 +595,13 @@
 /* title for discussion assignment submission button */
 "Go To Discussion" = "Ir a la discusión";
 
-/* Action on an alert */
+/* (No Comment) */
 "Go to App Store" = "Ir a la Tienda de aplicaciones";
 
-/* text for the \"go to quiz\" button */
+/* (No Comment) */
 "Go to Quiz" = "Ir a Evaluaciones";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Go to discussion" = "Ir a la discusión";
 
 /* No comment provided by engineer. */
@@ -622,7 +610,7 @@
 /* (No Comment) */
 "Grade %@" = "Calificar %@";
 
-/* Launch the SpeedGrader app */
+/* (No Comment) */
 "Grade in SpeedGrader" = "Calificar en SpeedGrader";
 
 /* (No Comment) */
@@ -631,7 +619,7 @@
 /* (No Comment) */
 "Grade: %@" = "Calificar: %@";
 
-/* Label for a discussion */
+/* (No Comment) */
 "Graded Discussion" = "Discusión calificada";
 
 /* Lets user know discussion is graded */
@@ -697,7 +685,7 @@
 /* (No Comment) */
 "Jumps to current day on calendar" = "Salta al día de hoy en el calendario";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Keep" = "Mantener";
 
 /* Title for an LTI launch submitted as an assignment */
@@ -709,7 +697,7 @@
 /* Title for an alert popup */
 "Large file" = "Archivo grande";
 
-/* Button in an alert */
+/* (No Comment) */
 "Later" = "Más tarde";
 
 /* title for submission button */
@@ -784,7 +772,7 @@
 /* Button title for selecting to view more info about the limitations of mobile quizzes */
 "More Info" = "Más información";
 
-/* Title of a link to show additional due dates customized for sections or groups. */
+/* (No Comment) */
 "Multiple Due Dates" = "Múltiples fechas límites de entrega";
 
 /* (No Comment) */
@@ -808,7 +796,7 @@
 /* the users name */
 "Name" = "Nombre";
 
-/* Title notifying user that SpeedGrader is available for iPad */
+/* (No Comment) */
 "Need SpeedGrader for iPad" = "Necesita SpeedGrader para iPad";
 
 /* Network error title */
@@ -1028,7 +1016,7 @@
 /* option to request a feature */
 "Request a feature" = "Solicitar una función";
 
-/* View grading rubric */
+/* (No Comment) */
 "Rubric" = "Rúbrica";
 
 /* No comment provided by engineer. */
@@ -1112,23 +1100,22 @@
 /* (No Comment) */
 "Sub Header" = "Subcabecera";
 
-/* View previously submitted assignment */
+/* No comment provided by engineer. */
 "Submission" = "Presentación";
 
 /* Title for file submission error */
 "Submission Error" = "Error de envío";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Submission complete" = "Envío completo";
 
-/* Submit an assignment
-   Submit Arc video as assignment button */
+/* Submit Arc video as assignment button */
 "Submit" = "Enviar";
 
 /* Submitted grouping */
 "Submitted" = "Enviado";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Submitting..." = "Enviando...";
 
 /* Subscribe to calendar feed allows the user to export their calendar events to a 3rd party calendar */
@@ -1293,8 +1280,14 @@
 /* Error title */
 "Unable to load" = "No se puede cargar";
 
+/* Error message without retry */
+"Unable to post." = "No se puede publicar.";
+
 /* (No Comment) */
 "Unable to post. Please try again later" = "No se puede publicar. Por favor, inténtelo de nuevo más tarde";
+
+/* Error message */
+"Unable to post. Please try again later." = "No se puede publicar. Por favor, inténtelo de nuevo más tarde.";
 
 /* message saying that avatar couldn't be loaded to server */
 "Unable to upload to server" = "No se puede subir al servidor";
@@ -1395,7 +1388,7 @@
 /* Masquerade success message */
 "You are now masquerading as %@. To Stop Masquerading go to your Profile." = "Ahora se está haciendo pasar por %@. Para dejar de hacerlo vaya a su perfil.";
 
-/* Message in an alert */
+/* (No Comment) */
 "You do not have SpeedGrader for iPad. You can download it for free from the App Store." = "Usted no tiene Speedgrader para el iPad. Puede descargarlo de forma gratuita desde la Tienda de aplicaciones.";
 
 /* (No Comment) */
@@ -1431,16 +1424,13 @@
 /* (No Comment) */
 "due on %1$@ at %2$@" = "fecha de entrega el %1$@ a las %2$@";
 
-/* Assignment is due on a date at a time */
-"due on %@ at %@" = "fecha de entrega el %1$@ a las %2$@";
-
 /* (No Comment) */
 "moments ago" = "momentos atrás";
 
 /* Accessibility label modifier for point out of point possible */
 "out of" = "de";
 
-/* The assignment is out of 100 points */
+/* (No Comment) */
 "out of %@" = "de los %@";
 
 /* (No Comment) */

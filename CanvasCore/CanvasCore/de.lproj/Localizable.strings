@@ -237,6 +237,9 @@
 /* No comment provided by engineer. */
 "Error parsing the Roll Call response. Unexpected null value: (k)" = "Fehler beim Analysieren der Roll Call-Antwort. Unerwarteter NULL-Wert: (k)";
 
+/* LTI Launch failed */
+"Error retrieving tool launch URL" = "Fehler beim Abrufen des URL zum Starten des Tools";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "Fehler: Keine Daten von der Rollcall-API zurückgegeben.";
 
@@ -587,6 +590,9 @@
 /* Teal course color button */
 "Teal" = "Blaugrün";
 
+/* No comment provided by engineer. */
+"That page has been disabled for this course" = "Diese Seite wurde für diesen Kurs deaktiviert.";
+
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "Die Seiten sind weg!? Warum werden die Seiten immer weg?";
 
@@ -796,4 +802,7 @@
 
 /* File upload in progress */
 "uploading..." = "Wird hochgeladen ...";
+
+/* web content failed to load */
+"⚠️ Error Loading Content" = "⚠️ Fehler beim Laden von Content";
 

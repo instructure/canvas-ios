@@ -237,6 +237,9 @@
 /* No comment provided by engineer. */
 "Error parsing the Roll Call response. Unexpected null value: (k)" = "Hapa e poroporo ana te whakautu a te Roll Call Uarakore kaore e tūmanakohia (k)";
 
+/* LTI Launch failed */
+"Error retrieving tool launch URL" = "He hapa i te wā e tiki ana i te taputapu whakarewatanga URL";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "Hapa: Kaore he raraunga i whakahokia mai i rollcall";
 
@@ -587,6 +590,9 @@
 /* Teal course color button */
 "Teal" = "Teal";
 
+/* No comment provided by engineer. */
+"That page has been disabled for this course" = "Kua monokia taua whārangi mō tēnei akoranga";
+
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "Kua kore ngā Pagesi!? He aha e kore ana i ngā wā katoa te pages?";
 
@@ -796,4 +802,7 @@
 
 /* File upload in progress */
 "uploading..." = "E tukuake ana...";
+
+/* web content failed to load */
+"⚠️ Error Loading Content" = "⚠️ He hapa i te wā e uta ana Ihirangi";
 

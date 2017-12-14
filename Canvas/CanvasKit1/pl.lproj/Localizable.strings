@@ -100,6 +100,9 @@
 /* A button that records */
 "Record" = "Nagraj";
 
+/* No comment provided by engineer. */
+"Score" = "Wynik";
+
 /* Hint about the play button */
 "Starts playing your recording" = "Rozpoczyna odtwarzanie nagrania";
 

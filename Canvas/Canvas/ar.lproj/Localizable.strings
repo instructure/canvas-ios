@@ -276,6 +276,9 @@
    Calendar page title */
 "Calendar" = "التقويم";
 
+/* No comment provided by engineer. */
+"Calendar Event" = "حدث التقويم";
+
 /* (No Comment) */
 "Can't load tool" = "لا يمكن تحميل الأداة";
 
@@ -607,7 +610,7 @@
 /* (No Comment) */
 "Group conversation" = "محادثة مجموعة";
 
-/* Groups page title */
+/* (No Comment) */
 "Groups" = "المجموعات";
 
 /* (No Comment) */

@@ -276,6 +276,9 @@
    Calendar page title */
 "Calendar" = "Kalender";
 
+/* No comment provided by engineer. */
+"Calendar Event" = "Kalenderbegivenhed";
+
 /* (No Comment) */
 "Can't load tool" = "Kan ikke indlæse værktøj";
 
@@ -607,7 +610,7 @@
 /* (No Comment) */
 "Group conversation" = "Gruppe konversation";
 
-/* Groups page title */
+/* (No Comment) */
 "Groups" = "Grupper";
 
 /* (No Comment) */

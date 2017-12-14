@@ -237,6 +237,9 @@
 /* No comment provided by engineer. */
 "Error parsing the Roll Call response. Unexpected null value: (k)" = "خطأ أثناء تحليل استجابة Roll Call. قيمة فارغة غير متوقعة: (k)";
 
+/* LTI Launch failed */
+"Error retrieving tool launch URL" = "خطأ أثناء استرداد عنوان URL لتشغيل الأداة";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "خطأ: لا توجد بيانات عائدة من rollcall api.";
 
@@ -587,6 +590,9 @@
 /* Teal course color button */
 "Teal" = "أزرق مخضر";
 
+/* No comment provided by engineer. */
+"That page has been disabled for this course" = "تم تعطيل هذه الصفحة لهذا المساق";
+
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "هل اختفت الصفحات!؟ لماذا تختفي الصفحات دائمًا؟";
 
@@ -796,4 +802,7 @@
 
 /* File upload in progress */
 "uploading..." = "جارٍ التحميل...";
+
+/* web content failed to load */
+"⚠️ Error Loading Content" = "⚠️ خطأ في تحميل المحتوى";
 

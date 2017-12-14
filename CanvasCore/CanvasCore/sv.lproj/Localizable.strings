@@ -237,6 +237,9 @@
 /* No comment provided by engineer. */
 "Error parsing the Roll Call response. Unexpected null value: (k)" = "Ett fel uppstod vid Roll call respons. Oväntat nollvärde: (k)";
 
+/* LTI Launch failed */
+"Error retrieving tool launch URL" = "Det gick inte att hämta verktyg-start-URL";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "Fel: Ingen data returnerades från rollcall api.";
 
@@ -587,6 +590,9 @@
 /* Teal course color button */
 "Teal" = "Teal";
 
+/* No comment provided by engineer. */
+"That page has been disabled for this course" = "Sidan har avaktiverats för den här kursen";
+
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "Sidorna är borta!? Varför är sidorna alltid borta?";
 
@@ -796,4 +802,7 @@
 
 /* File upload in progress */
 "uploading..." = "laddar upp...";
+
+/* web content failed to load */
+"⚠️ Error Loading Content" = "⚠️ Misslyckades att ladda innehåll";
 

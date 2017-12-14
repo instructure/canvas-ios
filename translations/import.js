@@ -58,19 +58,31 @@ async function importTranslations() {
   if (!program.skipPull) {
     const Bucket = 'instructure-translations'
     const s3 = new S3({ region: 'us-east-1' })
-    const listObjects = await s3.listObjectsV2({ Bucket, Prefix: `canvas-ios/` }).promise()
+    const listObjects = await s3.listObjectsV2({ Bucket, Prefix: `translations/canvas-ios/` }).promise()
     const keys = listObjects.Contents.map(({ Key }) => Key)
       .filter(key => !key.includes('/en/'))
       .filter(key => !program.project || key.includes(`/${program.project}.`))
 
     for (const key of keys) {
-      const [ , locale, basename ] = key.split('/')
+      const [ , , locale, basename ] = key.split('/')
+      if (!locale || !basename) continue // skip folders
       const [ projectName, ext ] = basename.split('.')
       const filename = `imports/${projectName}/${locale}.${ext}`
       console.log(`Pulling s3://instructure-translations/${key} to ${filename}`)
+
       const { Body } = await s3.getObject({ Bucket, Key: key }).promise()
+      let content = Body.toString().replace(/^\uFEFF/, '') // Strip BOM
+      if (key.endsWith('.json')) {
+        content = content.replace(/"message": "(.*)"$/gm, (_, message) => (
+          `"message": "${
+            message.replace(/\\"/g, '"').replace(/"/g, '\\"')
+          }"`
+        ))
+        content = JSON.stringify(JSON.parse(content), null, '  ')
+      }
+
       mkdirp.sync(path.dirname(filename))
-      writeFileSync(filename, Body.toString().replace(/^\uFEFF/, ''), 'utf8') // Strip BOM
+      writeFileSync(filename, content, 'utf8')
     }
   }
 
