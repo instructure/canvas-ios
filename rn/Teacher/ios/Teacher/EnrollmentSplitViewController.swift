@@ -38,6 +38,13 @@ extension EnrollmentSplitViewController: UINavigationControllerDelegate {
             }, completion: nil)
         }
     }
+    
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if let masterNav = masterNavigationController, let coursesViewController = masterNav.viewControllers.first, toVC == coursesViewController, operation == .pop {
+            detailTopViewController?.navigationItem.leftBarButtonItem = nil
+        }
+        return nil
+    }
 }
 
 // Needed for the above bug mentioned in comments

@@ -74,7 +74,7 @@ extension HelmSplitViewController: UISplitViewControllerDelegate {
             }
             return .allVisible;
         } else {
-            if let nav = svc.viewControllers.last as? UINavigationController {
+            if let nav = svc.viewControllers.last as? UINavigationController, let top = nav.topViewController, !top.isKind(of: EmptyViewController.self) {
                 nav.topViewController?.navigationItem.leftBarButtonItem = prettyDisplayModeButtonItem
                 nav.topViewController?.navigationItem.leftItemsSupplementBackButton = true
             }

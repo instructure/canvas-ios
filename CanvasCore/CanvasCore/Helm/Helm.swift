@@ -144,7 +144,7 @@ open class HelmManager: NSObject {
         }
         
         if let splitViewController = topViewController as? HelmSplitViewController {
-            let canBecomeMaster = (options["canBecomeMaster"] as? NSNumber)?.boolValue ?? false
+            let canBecomeMaster = options["canBecomeMaster"] as? Bool ?? false
             if canBecomeMaster {
                 masterModules.insert(destinationModule)
             }
@@ -337,7 +337,7 @@ extension HelmManager {
         if let detailViewController = splitViewController?.detailTopHelmViewController, detailViewController.moduleName == sourceModule {
             return splitViewController?.detailHelmNavigationController
         } else {
-            let canBecomeMaster = (options["canBecomeMaster"] as? NSNumber)?.boolValue ?? false
+            let canBecomeMaster = options["canBecomeMaster"] as? Bool ?? false
 
             if canBecomeMaster || (splitViewController?.traitCollection.horizontalSizeClass ?? .compact) == .compact {
                 return splitViewController?.masterHelmNavigationController as? HelmNavigationController

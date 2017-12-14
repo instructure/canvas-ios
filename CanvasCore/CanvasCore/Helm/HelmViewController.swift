@@ -73,6 +73,55 @@ class TitleView: UIView {
     }
 }
 
+public class HelmNavigationItem: UINavigationItem {
+    var reactRightBarButtonItems: [UIBarButtonItem] = []
+    var nativeLeftBarButtonItems: [UIBarButtonItem] = []
+    var reactLeftBarButtonItems: [UIBarButtonItem] = [] {
+        didSet {
+            super.leftBarButtonItems = combinedLeftItems
+        }
+    }
+    
+    public override init(title: String) {
+        super.init(title: title)
+    }
+    
+    required public init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private var combinedLeftItems: [UIBarButtonItem]? {
+        get {
+            return reactLeftBarButtonItems + nativeLeftBarButtonItems
+        }
+    }
+    
+    public override var leftBarButtonItem: UIBarButtonItem? {
+        get {
+            return super.leftBarButtonItems?.first
+        }
+        set {
+            if let item = newValue {
+                nativeLeftBarButtonItems = [item]
+            }
+            else {
+                nativeLeftBarButtonItems = []
+            }
+            super.leftBarButtonItem = combinedLeftItems?.first
+        }
+    }
+    
+    public override var leftBarButtonItems: [UIBarButtonItem]? {
+        get {
+            return super.leftBarButtonItems
+        }
+        set {
+            nativeLeftBarButtonItems = newValue ?? []
+            super.leftBarButtonItems = combinedLeftItems
+        }
+    }
+}
+
 public final class HelmViewController: UIViewController, HelmScreen {
     
     let moduleName: String
@@ -80,6 +129,17 @@ public final class HelmViewController: UIViewController, HelmScreen {
     let props: Props
     var screenConfig: [String: Any] = [:]
     fileprivate var twoLineTitleView: TitleView?
+    public override var title: String?  {
+        didSet {
+            navigationItem.title = title
+        }
+    }
+    fileprivate var _navigationItem: HelmNavigationItem = HelmNavigationItem(title: "")
+    override public var navigationItem: UINavigationItem {
+        get {
+            return _navigationItem
+        }
+    }
     
     public var statusBarStyle: UIStatusBarStyle = .default {
         didSet {
@@ -440,8 +500,9 @@ public final class HelmViewController: UIViewController, HelmScreen {
             return items
         }
         
-        let leftBarButtons = screenConfig[PropKeys.leftBarButtons] as? [[String: Any]] ?? []
-        navigationItem.leftBarButtonItems = barButtonItems(fromConfig: leftBarButtons)
+        let leftBarButtonsConfig = screenConfig[PropKeys.leftBarButtons] as? [[String: Any]] ?? []
+        let leftBarButtonItems = barButtonItems(fromConfig: leftBarButtonsConfig)
+        (navigationItem as? HelmNavigationItem)?.reactLeftBarButtonItems = leftBarButtonItems
         
         let rightBarButtons = screenConfig[PropKeys.rightBarButtons] as? [[String: Any]] ?? []
         navigationItem.rightBarButtonItems = barButtonItems(fromConfig: rightBarButtons)
