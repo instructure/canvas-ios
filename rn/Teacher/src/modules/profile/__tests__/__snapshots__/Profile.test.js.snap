@@ -115,6 +115,7 @@ exports[`Profile Tests renders correctly 1`] = `
     <View
       style={
         Object {
+          "paddingBottom": 16,
           "paddingLeft": 16,
         }
       }
@@ -556,6 +557,7 @@ exports[`Profile Tests renders correctly for students 1`] = `
     <View
       style={
         Object {
+          "paddingBottom": 16,
           "paddingLeft": 16,
         }
       }

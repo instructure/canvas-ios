@@ -209,6 +209,7 @@ const styles = StyleSheet.create({
   },
   infoHeader: {
     paddingLeft: global.style.defaultPadding,
+    paddingBottom: global.style.defaultPadding,
   },
   settingsButtonContainer: {
     height: 24,
