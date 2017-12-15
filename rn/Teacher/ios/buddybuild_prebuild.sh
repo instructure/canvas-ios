@@ -1,5 +1,14 @@
 #!/usr/bin/env bash -e
 
+TEACHER_RN_EARLGREY_RUN_JOB_ID=5a31998ddb6814000138d68f
+if [[ "$BUDDYBUILD_APP_ID" = $TEACHER_RN_EARLGREY_RUN_JOB_ID ]]; then
+  echo "Teacher-rn-EarlGrey-run detected. Installing Java 8 for gRPC"
+  brew tap caskroom/versions
+  brew cask install java8
+  sudo ln -sf $(/usr/libexec/java_home)/bin/java /usr/bin/java
+  exit 0
+fi
+
 if [ "$BUDDYBUILD_SCHEME" != "Teacher - BB - Jest" ]; then
   echo "Only running prebuild on 'Teacher - BB - Jest' scheme"
   exit 0
@@ -66,13 +75,6 @@ timestamp "Check for Teacher UI job"
 TEACHER_UI_JOB_ID=58c981b73749ca0100c1abb3
 if [[ "$BUDDYBUILD_APP_ID" = $TEACHER_UI_JOB_ID ]]; then
   echo "Teacher UI job detected. Ending prebuild."
-  exit 0
-fi
-
-TEACHER_RN_EARLGREY_RUN_JOB_ID=5a31998ddb6814000138d68f
-if [[ "$BUDDYBUILD_APP_ID" = $TEACHER_RN_EARLGREY_RUN_JOB_ID ]]; then
-  echo "Teacher-rn-EarlGrey-run detected. Starting SoSeedy gRPC"
-  java -jar ./scripts/grpc/soseedygrpc-all.jar &
   exit 0
 fi
 

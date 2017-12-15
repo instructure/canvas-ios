@@ -572,6 +572,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 61B537271E78696A000FEABB /* Build configuration list for PBXNativeTarget "TeacherUITests" */;
 			buildPhases = (
+				F9D0F4B81FE3778E00A92E08 /* Start gRPC Server */,
 				1A72CE124A64DFA829D69A08 /* [CP] Check Pods Manifest.lock */,
 				61B5371C1E786969000FEABB /* Sources */,
 				61B5371D1E786969000FEABB /* Frameworks */,
@@ -978,6 +979,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/../../../Pods/Target Support Files/Pods-defaults-common_ui_tests-TeacherUITests/Pods-defaults-common_ui_tests-TeacherUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		F9D0F4B81FE3778E00A92E08 /* Start gRPC Server */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Start gRPC Server";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if nc -w 5 -z localhost 50051 ; then\n  echo \"gRPC already running on port 50051\"\n  exit 0\nfi\n\nopen \"$SRCROOT/../../../scripts/grpc/launchGrpc.command\" || echo \"Failed to start gRPC server\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
