@@ -574,6 +574,7 @@
 			buildPhases = (
 				F9D0F4B81FE3778E00A92E08 /* Start gRPC Server */,
 				1A72CE124A64DFA829D69A08 /* [CP] Check Pods Manifest.lock */,
+				F9D0F4B81FE3778E00A92E08 /* Start gRPC Server */,
 				61B5371C1E786969000FEABB /* Sources */,
 				61B5371D1E786969000FEABB /* Frameworks */,
 				61B5371E1E786969000FEABB /* Resources */,
