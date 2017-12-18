@@ -85,7 +85,7 @@
     "eslint-plugin-standard": "^2.0.1",
     "eslint-watch": "^3.0.0",
     "flow-bin": "^0.59.0",
-    "flow-result-checker": "0.3.0",
+    "flow-result-checker": "^1.0.0",
     "format-message-cli": "^5.1.1",
     "format-message-generate-id": "^5.1.0",
     "jest": "^20.0.4",

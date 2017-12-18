@@ -2254,9 +2254,9 @@ flow-bin@^0.59.0:
   version "0.59.0"
   resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.59.0.tgz#8c151ee7f09f1deed9bf0b9d1f2e8ab9d470f1bb"
 
-flow-result-checker@0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/flow-result-checker/-/flow-result-checker-0.3.0.tgz#593065f4d4338ac24cfd02993d68ffee59a2010d"
+flow-result-checker@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/flow-result-checker/-/flow-result-checker-1.0.0.tgz#fa04699085275cea2f64b8a862551412b43cf7c2"
   dependencies:
     chalk "^1.1.3"
     commander "^2.9.0"

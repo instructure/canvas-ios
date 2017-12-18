@@ -1,6 +1,6 @@
 // @flow
 
-import React from 'react'
+import React, { type Element, type ComponentType } from 'react'
 import {
   View,
   SectionList,
@@ -46,11 +46,28 @@ type State = {
   contentWidth?: number,
   showingModal: boolean,
 }
-type SectionHeader = {
+type Section = {
   sectionID: string,
   title?: string,
   seeAll?: () => void,
+} & {
+  data: $ReadOnlyArray<*>,
+  key?: string,
+  renderItem?: ?(info: {
+    item: *,
+    index: number,
+    section: *,
+    separators: {
+      highlight: () => void,
+      unhighlight: () => void,
+      updateProps: (select: 'leading' | 'trailing', newProps: Object) => void,
+    },
+  }) => ?Element<any>,
+  ItemSeparatorComponent?: ?ComponentType<any>,
+  keyExtractor?: (item: *) => string,
 }
+// This is copy pasted out of `react-native/Libraries/Lists/SectionList.js` because the type
+// is not exported in our RN version. It won't be exported until RN 0.52
 
 const padding = 8
 const MIN_CARD_SIZE = 150
@@ -86,7 +103,7 @@ export class Dashboard extends React.Component<Props, State> {
     this.calculateLayout(nativeEvent.layout.width)
   }
 
-  renderHeader = ({ section }: { section: SectionHeader }) => {
+  renderHeader = ({ section }: { section: Section }) => {
     if (!section.title || !this.state.contentWidth) {
       return undefined
     }
@@ -164,6 +181,7 @@ export class Dashboard extends React.Component<Props, State> {
   loadSections = () => {
     if (!this.props.isFullDashboard) {
       return [{
+        sectionID: 'dashboard.courses',
         data: this.props.courses,
         renderItem: this.renderCourseCard,
       }]
@@ -208,7 +226,7 @@ export class Dashboard extends React.Component<Props, State> {
 
   renderDashboard = () => {
     // don't show any sections until layout has happened at least once
-    const sections: Array<{ data: Array<any> }> = this.state.width
+    const sections = this.state.width
       ? this.loadSections()
       : []
 
@@ -222,6 +240,9 @@ export class Dashboard extends React.Component<Props, State> {
         contentContainerStyle={styles.gridish}
         onLayout={this.onLayout}
         sections={sections}
+        renderItem={() => {}}
+        // this prop is only necessary because renderItem is not listed as an optional prop
+        // https://github.com/facebook/react-native/pull/17262
       />
     )
   }

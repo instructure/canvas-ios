@@ -89,6 +89,7 @@ exports[`Only renders courses when !isFullDashboard 1`] = `
             },
           ],
           "renderItem": [Function],
+          "sectionID": "dashboard.courses",
         },
       ]
     }
@@ -191,6 +192,7 @@ exports[`Only renders courses when !isFullDashboard 1`] = `
             },
           ],
           "renderItem": [Function],
+          "sectionID": "dashboard.courses",
         },
       ]
     }

@@ -259,7 +259,12 @@ export class PageEdit extends Component<Props, any> {
 
   _scrollToInput = (event: any) => {
     const input = findNodeHandle(event.target)
-    this.scrollView && this.scrollView.scrollToFocusedInput(input)
+    this.scrollView &&
+    input &&
+    // the types on keyboard-aware-scroll-view were incorrect
+    // https://github.com/APSL/react-native-keyboard-aware-scroll-view/pull/207
+    // $FlowFixMe
+    this.scrollView.scrollToFocusedInput(input)
   }
 }
 
