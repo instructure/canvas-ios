@@ -44,3 +44,8 @@ export function getUsersForGroupID (groupID: string): Promise<ApiResponse<Array<
   }
   return httpClient().get(url, options)
 }
+
+export function getUsersGroups (userID: string): Promise<ApiResponse<Array<Group>>> {
+  const groups = paginate(`users/${userID}/groups`)
+  return exhaust(groups)
+}

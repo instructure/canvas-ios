@@ -21,7 +21,7 @@ import { type Course } from '../../canvas-api'
 
 export type AppId = 'student' | 'teacher'
 export type App = {
-  appId: AppID,
+  appId: AppId,
   filterCourse: (course: Course) => boolean,
 }
 

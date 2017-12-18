@@ -10,6 +10,7 @@ import explore from '../../../../test/helpers/explore'
 
 const template = {
   ...require('../../../__templates__/course'),
+  ...require('../../../__templates__/group'),
   ...require('../../../__templates__/helm'),
 }
 
@@ -52,6 +53,19 @@ const courses = [
   }),
 ].map(course => ({ ...course, color: colors[course.id] }))
 
+const groups = [{
+  id: '1',
+  name: 'Group 1',
+  contextName: 'Biology 101',
+  term: 'Bio-101',
+  color: '#27B9CD',
+}, {
+  id: '2',
+  name: 'Group 2',
+  contextName: 'American Literature Psysicks foobar hello world 401',
+  color: '#8F3E99',
+}]
+
 let defaultProps = {
   navigator: template.navigator(),
   courses,
@@ -62,6 +76,7 @@ let defaultProps = {
   refreshing: false,
   totalCourseCount: courses.length,
   isFullDashboard: true,
+  groups,
 }
 
 test('render', () => {
@@ -185,4 +200,16 @@ test('Only renders courses when !isFullDashboard', () => {
     <Dashboard {...defaultProps} isFullDashboard={false} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
+})
+
+test('calls navigator.show when a group is pressed', () => {
+  let navigator = template.navigator({
+    show: jest.fn(),
+  })
+
+  let tree = renderAndLayout(
+    <Dashboard {...defaultProps} navigator={navigator} />
+  )
+  tree.getInstance().showGroup('1')
+  expect(navigator.show).toHaveBeenCalledWith('/groups/1')
 })

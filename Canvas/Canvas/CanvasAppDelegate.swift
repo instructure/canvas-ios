@@ -272,6 +272,13 @@ extension AppDelegate: RCTBridgeDelegate {
             let settings = SettingsViewController.controller(CKCanvasAPI.current())
             return UINavigationController(rootViewController: settings)
         })
+        
+        HelmManager.shared.registerNativeViewController(for: "/groups/:groupID", factory: { props in
+            guard let groupID = props["groupID"] as? String else { return nil }
+            
+            let url = URL(string: "api/v1/groups/\(groupID)/tabs")
+            return Router.shared().controller(forHandling: url)
+        })
     }
     
     func excludeHelmInBranding() {

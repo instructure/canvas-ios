@@ -79,6 +79,7 @@ export function wrap (name: any): Function {
 
 export function registerScreens (store: Store): void {
   registerScreen('/', wrap(Dashboard), store)
+  registerScreen('/groups/:groupID', wrap(CourseDetails), store, { canBecomeMaster: true })
   registerScreen('/courses', wrap(AllCourseList), store, { canBecomeMaster: true })
   registerScreen('/course_favorites', wrap(EditFavorites), store)
   registerScreen('/courses/:courseID', wrap(CourseDetails), store, { canBecomeMaster: true })

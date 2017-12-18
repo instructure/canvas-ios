@@ -17,9 +17,11 @@
 // @flow
 
 import Actions from '../actions'
+import CoursesActions from '../../courses/actions'
 import { groups } from '../group-entities-reducer'
 
 const { refreshGroupsForCourse, refreshGroup, listUsersForGroup } = Actions
+const { refreshCourses } = CoursesActions
 
 const template = {
   ...require('../../../__templates__/group'),
@@ -170,4 +172,39 @@ test('captures list of users rejected', () => {
   }
 
   expect(groups(initialState, action)).toEqual(expected)
+})
+
+test('captures group colors', () => {
+  const group = template.group({ id: '1' })
+  const initialState = {
+    '1': {
+      pending: 0,
+      error: null,
+      group,
+    },
+  }
+
+  const action = {
+    type: refreshCourses.toString(),
+    payload: {
+      result: [{}, {
+        data: {
+          custom_colors: {
+            group_1: '#fff',
+            group_2: '#eee',
+            course_3: '#000',
+          },
+        },
+      }],
+    },
+  }
+
+  expect(groups(initialState, action)).toMatchObject({
+    '1': {
+      color: '#fff',
+    },
+    '2': {
+      color: '#eee',
+    },
+  })
 })

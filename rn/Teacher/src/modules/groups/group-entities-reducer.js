@@ -19,14 +19,16 @@
 import { Reducer } from 'redux'
 import Actions from './actions'
 import AssigneeSearchActions from '../assignee-picker/actions'
+import CoursesActions from '../courses/actions'
 import { handleActions } from 'redux-actions'
 import handleAsync from '../../utils/handleAsync'
+import groupCustomColors from '../../utils/group-custom-colors'
 import { parseErrorMessage } from '../../redux/middleware/error-handler'
 
-const { refreshGroupsForCourse, refreshGroup, listUsersForGroup } = Actions
+const { refreshGroupsForCourse, refreshGroup, listUsersForGroup, refreshUsersGroups } = Actions
 const { refreshGroupsForCategory } = AssigneeSearchActions
 
-const groupsEntitiyReducer = handleAsync({
+const groupsEntityReducer = handleAsync({
   resolved: (state, { result }) => {
     const incoming = result.data
       .reduce((incoming, group) => ({
@@ -35,7 +37,7 @@ const groupsEntitiyReducer = handleAsync({
           // groups from ../api/v1/group_categories/:group_category_id
           // only have name and ID. don't overwrite data from user's
           // enrolled groups by simply replacing state[group.id] = group
-          group: { ...state[group.id], ...group },
+          group: { ...(state[group.id] && state[group.id].group), ...group },
         },
       }), {})
     return { ...state, ...incoming }
@@ -43,8 +45,9 @@ const groupsEntitiyReducer = handleAsync({
 })
 
 export const groups: Reducer<GroupsState, any> = handleActions({
-  [refreshGroupsForCourse.toString()]: groupsEntitiyReducer,
-  [refreshGroupsForCategory.toString()]: groupsEntitiyReducer,
+  [refreshGroupsForCourse.toString()]: groupsEntityReducer,
+  [refreshGroupsForCategory.toString()]: groupsEntityReducer,
+  [refreshUsersGroups.toString()]: groupsEntityReducer,
   [refreshGroup.toString()]: handleAsync({
     resolved: (state, { result }) => {
       const group = result.data
@@ -90,6 +93,20 @@ export const groups: Reducer<GroupsState, any> = handleActions({
         },
       }
       return { ...state, ...incoming }
+    },
+  }),
+  [CoursesActions.refreshCourses.toString()]: handleAsync({
+    resolved: (state, { result: [, colorsResponse] }) => {
+      const colors = groupCustomColors(colorsResponse.data).custom_colors.group
+
+      let newState = Object.keys(colors).reduce((newState, id) => {
+        newState[id] = {
+          ...newState[id],
+          color: colors[id],
+        }
+        return newState
+      }, { ...state })
+      return newState
     },
   }),
 }, {})

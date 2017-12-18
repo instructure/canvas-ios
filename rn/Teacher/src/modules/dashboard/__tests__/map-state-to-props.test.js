@@ -19,6 +19,7 @@
 import { mapStateToProps } from '../Dashboard'
 import { normalizeCourse } from '../../courses/courses-reducer'
 import * as courseTemplate from '../../../__templates__/course'
+import * as groupTemplate from '../../../__templates__/group'
 import { appState } from '../../../redux/__templates__/app-state'
 import fromPairs from 'lodash/fromPairs'
 
@@ -56,6 +57,7 @@ describe('mapStateToProps with favorites', () => {
     favoriteCourses: { courseRefs: favorites },
     entities: {
       courses,
+      groups: {},
     },
   })
 
@@ -90,6 +92,7 @@ describe('mapStateToProps with no favorites', () => {
     favoriteCourses: { courseRefs: [] },
     entities: {
       courses,
+      groups: {},
     },
   })
 
@@ -127,6 +130,7 @@ describe('mapStateToProps with student and observer enrollments', () => {
     favoriteCourses: { courseRefs: ['1', '2'] },
     entities: {
       courses,
+      groups: {},
     },
   })
 
@@ -152,6 +156,7 @@ describe('mapStateToProps with various teacher enrollments', () => {
     favoriteCourses: { courseRefs: ['1', '2', '3'] },
     entities: {
       courses,
+      groups: {},
     },
   })
 
@@ -176,6 +181,7 @@ describe('mapStateToProps with teacher and student enrollments', () => {
     favoriteCourses: { courseRefs: ['1', '2'] },
     entities: {
       courses,
+      groups: {},
     },
   })
 
@@ -214,6 +220,7 @@ describe('all courses mapStateToProps', () => {
   const state = appState({
     entities: {
       courses,
+      groups: {},
     },
   })
 
@@ -227,5 +234,55 @@ describe('all courses mapStateToProps', () => {
   it('has colors', () => {
     expect(props.courses.map(course => course.color))
       .toEqual(['#aaa', '#bbb', '#ccc'])
+  })
+})
+
+describe('groups', () => {
+  const a = courseTemplate.course({ id: 1, name: 'a' })
+  const b = courseTemplate.course({ id: 2, name: 'b' })
+  const courseTemplates = [a, b]
+  const favorites = ['1', '2']
+
+  const groupA = groupTemplate.group({ id: '1', name: 'a', course_id: '1' })
+  const groupB = groupTemplate.group({ id: '2', name: 'b', account_id: '1' })
+  const groupC = groupTemplate.group({ id: '3', name: 'c', account_id: '1' })
+
+  const courses = courseStates(courseTemplates)
+  const state = appState({
+    favoriteCourses: { courseRefs: favorites },
+    entities: {
+      courses,
+      groups: {
+        '1': {
+          group: groupA,
+          color: '#fff',
+        },
+        '2': {
+          group: groupB,
+          color: '#eee',
+        },
+        '3': { group: groupC },
+      },
+    },
+  })
+
+  it('gets all groups', () => {
+    expect(mapStateToProps(true)(state).groups).toMatchObject([{
+      id: '1',
+      name: 'a',
+      contextName: 'a',
+      term: 'Default Term',
+      color: '#fff',
+    }, {
+      id: '2',
+      name: 'b',
+      contextName: 'Account Group',
+      color: '#eee',
+    }, {
+      id: '3',
+      name: 'c',
+      contextName: 'Account Group',
+      color: '#7F91A7',
+    }])
   })
 })

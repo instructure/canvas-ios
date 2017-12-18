@@ -48,6 +48,7 @@ export type CourseContentState = {
 
 export type GroupState = AsyncState & {
   group: Group,
+  color: ?string,
 }
 
 export type GradingPeriodsState = {

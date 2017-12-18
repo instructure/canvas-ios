@@ -13,6 +13,7 @@ import localeSort from '../../utils/locale-sort'
 import i18n from 'format-message'
 import App from '../app'
 import CoursesActions from '../courses/actions'
+import GroupsActions from '../groups/actions'
 import {
   Heading1,
 } from '../../common/text'
@@ -37,6 +38,7 @@ type Props = {
   refresh: () => void,
   isFullDashboard: boolean,
   courses: Array<ColorfulCourse>,
+  groups: Array<GroupRowProps>,
 }
 type State = {
   width?: number,
@@ -154,6 +156,7 @@ export class Dashboard extends React.Component<Props, State> {
       <GroupRow
         style={{ width: this.state.contentWidth, padding }}
         { ...item }
+        onPress={this.showGroup}
       />
     )
   }
@@ -193,20 +196,13 @@ export class Dashboard extends React.Component<Props, State> {
           data: [{/* welcome (no courses) placeholder object */}],
           renderItem: this.renderNoFavorites,
         },
-      // Groups
-      // {
-      //   sectionID: 'dashboard.groups',
-      //   title: i18n('Groups'),
-      //   data: [
-      //     {
-      //       color: '#DDDD44',
-      //       name: 'Swift Study Group',
-      //       courseName: 'Swift 101',
-      //       term: 'Winter 2018',
-      //     },
-      //   ],
-      //   renderItem: this.renderGroup,
-      // },
+        // Groups
+      {
+        sectionID: 'dashboard.groups',
+        title: i18n('Groups'),
+        data: this.props.groups,
+        renderItem: this.renderGroup,
+      },
     ]
   }
 
@@ -248,6 +244,10 @@ export class Dashboard extends React.Component<Props, State> {
 
   showProfile = () => {
     this.props.navigator.show('/profile', { modal: true, modalPresentationStyle: 'drawer' })
+  }
+
+  showGroup = (groupID: string) => {
+    this.props.navigator.show(`/groups/${groupID}`)
   }
 
   screenProps = () => {
@@ -329,14 +329,33 @@ export function mapStateToProps (isFullDashboard: boolean) {
       .filter(App.current().filterCourse)
       .sort((c1, cs2) => localeSort(c1.name, cs2.name))
 
-    return { pending, error, courses, totalCourseCount, isFullDashboard }
+    const groups = Object.keys(state.entities.groups).map((id) => {
+      let group = state.entities.groups[id].group
+      let groupColor = state.entities.groups[id].color
+      let courseData = group.course_id && state.entities.courses[group.course_id]
+      return {
+        id: group.id,
+        name: group.name,
+        contextName: courseData ? courseData.course.name : i18n('Account Group'),
+        term: courseData && courseData.course.term.name,
+        color: groupColor || (courseData ? courseData.color : color.lightText),
+      }
+    })
+
+    return { pending, error, courses, totalCourseCount, isFullDashboard, groups }
   }
 }
 
 const Refreshed = refresh(
-  props => props.refreshCourses(),
-  props => props.courses.length === 0,
+  props => {
+    props.refreshCourses()
+
+    if (App.current().appId === 'student') {
+      props.refreshUsersGroups()
+    }
+  },
+  props => props.courses.length === 0 || App.current().appId === 'student' && props.groups.length === 0,
   props => Boolean(props.pending)
 )(Dashboard)
-const Connected = connect(mapStateToProps(true), CoursesActions)(Refreshed)
+const Connected = connect(mapStateToProps(true), { ...CoursesActions, ...GroupsActions })(Refreshed)
 export default (Connected: *)
