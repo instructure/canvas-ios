@@ -17,6 +17,9 @@
 // @flow
 
 import mockStore from '../../../../test/helpers/mockStore'
+import { NativeModules } from 'react-native'
+
+const { NativeNotificationCenter } = NativeModules
 
 test('it does nothing with a "normal" payload', async () => {
   let store = mockStore()
@@ -83,4 +86,22 @@ test('it dispatches on rejection', async () => {
       error: true,
     },
   ])
+})
+
+test('it post notification on resolution', async () => {
+  let spy = jest.fn()
+  NativeNotificationCenter.postAsyncActionNotification = spy
+  let _resolve = () => {}
+  let promise = new Promise((resolve) => { _resolve = resolve })
+
+  let store = mockStore()
+  store.dispatch({ type: 'test', payload: { promise, id: 1, syncToNative: true } })
+
+  _resolve('yay')
+  await promise // kick the event loop
+
+  expect(spy).toHaveBeenCalledWith({
+    type: 'test',
+    result: 'yay',
+  })
 })

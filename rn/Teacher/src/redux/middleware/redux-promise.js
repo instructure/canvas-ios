@@ -19,6 +19,7 @@
 import { isFSA } from 'flux-standard-action'
 import type { Middleware, MiddlewareAPI, Dispatch } from 'redux'
 import { AsyncActionTracker } from '../actions/async-tracker'
+import { NativeModules } from 'react-native'
 
 let { pending, resolved, rejected } = AsyncActionTracker
 
@@ -57,6 +58,10 @@ let promiseMiddleware = <S, A: Action>({ dispatch }: MiddlewareAPI<S, A>): Middl
       promise.then(
         result => {
           let payload = { ...action.payload, result }
+          action.payload.syncToNative && NativeModules.NativeNotificationCenter.postAsyncActionNotification({
+            type: action.type,
+            result,
+          })
           delete payload.promise
           if (tracksAsyncActions) dispatch(resolved(action.type))
           return dispatch({ ...action, payload })

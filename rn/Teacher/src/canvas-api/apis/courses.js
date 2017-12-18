@@ -22,7 +22,7 @@ import httpClient from '../httpClient'
 export function getCourses (): Promise<ApiResponse<Course[]>> {
   const courses = paginate('courses', {
     params: {
-      include: ['term', 'favorites', 'course_image', 'sections'],
+      include: ['term', 'favorites', 'course_image', 'sections', 'total_scores', 'current_grading_period_scores'],
     },
   })
   return exhaust(courses)

@@ -74,6 +74,10 @@ NativeModules.RNSound = {
   isWindows: jest.fn(),
 }
 
+NativeModules.NativeNotificationCenter = {
+  postAsyncActionNotification: jest.fn(),
+}
+
 jest.mock('NativeEventEmitter')
 
 jest.mock('NetInfo', () => ({

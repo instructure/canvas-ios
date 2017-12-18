@@ -482,6 +482,9 @@
 		5C7007265DCAB575C9739092 /* Pods_defaults_CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C6B70EE92D795277E0861B4 /* Pods_defaults_CanvasCore.framework */; };
 		9F544E051FBB766E00BB2D84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F544E071FBB766E00BB2D84 /* InfoPlist.strings */; };
 		9F544E0A1FBB766E00BB2D84 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F544E0C1FBB766E00BB2D84 /* Localizable.strings */; };
+		B1411D5A1FE825ED00CD4967 /* AsyncActionNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1411D591FE825ED00CD4967 /* AsyncActionNotification.swift */; };
+		B1CA05061FE448F300B7D5AA /* NativeNotificationCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = B1CA05041FE448F300B7D5AA /* NativeNotificationCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B1CA05071FE448F300B7D5AA /* NativeNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = B1CA05051FE448F300B7D5AA /* NativeNotificationCenter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1051,6 +1054,9 @@
 		9FFBF1B11FBB7687005AC85C /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9FFBF1B21FBB7687005AC85C /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/TimedQuizViewController.strings; sourceTree = "<group>"; };
 		A42B8DF2C9F8BDD47BDCBF67 /* Pods-defaults-CanvasCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasCore.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasCore/Pods-defaults-CanvasCore.release.xcconfig"; sourceTree = "<group>"; };
+		B1411D591FE825ED00CD4967 /* AsyncActionNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncActionNotification.swift; sourceTree = "<group>"; };
+		B1CA05041FE448F300B7D5AA /* NativeNotificationCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NativeNotificationCenter.h; path = "CanvasCore/React Native Modules/NativeNotificationCenter/NativeNotificationCenter.h"; sourceTree = SOURCE_ROOT; };
+		B1CA05051FE448F300B7D5AA /* NativeNotificationCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NativeNotificationCenter.m; path = "CanvasCore/React Native Modules/NativeNotificationCenter/NativeNotificationCenter.m"; sourceTree = SOURCE_ROOT; };
 		B6F5EAC7A3F6A1CB04CF9E40 /* Pods-defaults-CanvasCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasCore.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasCore/Pods-defaults-CanvasCore.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1580,6 +1586,7 @@
 		494AE08C1F8439A8001A8F31 /* React Native Modules */ = {
 			isa = PBXGroup;
 			children = (
+				B1411D581FE8244A00CD4967 /* NativeNotificationCenter */,
 				494AE0A51F843A8A001A8F31 /* A11yGroupManager.m */,
 				494AE0901F843A01001A8F31 /* DrawerHandleViewManager.h */,
 				494AE08F1F843A01001A8F31 /* DrawerHandleViewManager.m */,
@@ -2673,6 +2680,16 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		B1411D581FE8244A00CD4967 /* NativeNotificationCenter */ = {
+			isa = PBXGroup;
+			children = (
+				B1CA05041FE448F300B7D5AA /* NativeNotificationCenter.h */,
+				B1CA05051FE448F300B7D5AA /* NativeNotificationCenter.m */,
+				B1411D591FE825ED00CD4967 /* AsyncActionNotification.swift */,
+			);
+			path = NativeNotificationCenter;
+			sourceTree = "<group>";
+		};
 		BC05497B6B1077BCF72B5B87 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -2689,6 +2706,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1CA05061FE448F300B7D5AA /* NativeNotificationCenter.h in Headers */,
 				2CD20D761FA125EC00F339F7 /* DropViewManager.h in Headers */,
 				2CD6B5701FD20A9800C7DE15 /* WindowTraitsManager.h in Headers */,
 				494AE09B1F843A09001A8F31 /* HapticFeedback.h in Headers */,
@@ -3202,6 +3220,7 @@
 				4961F5A71F8FB2A90093EC86 /* UIImage+URLSource.swift in Sources */,
 				493020721F902462006BD777 /* Session+RejectNilParameters.swift in Sources */,
 				4930200F1F901CF5006BD777 /* UITextView+Placeholder.m in Sources */,
+				B1CA05071FE448F300B7D5AA /* NativeNotificationCenter.m in Sources */,
 				493020101F901CF5006BD777 /* CanvadocsCommentAnnotation.swift in Sources */,
 				49301FE81F901854006BD777 /* NotificationKitController.swift in Sources */,
 				4961F55D1F8FAF310093EC86 /* VolumeLevelMeterView.swift in Sources */,
@@ -3233,6 +3252,7 @@
 				49CE966E1F8FF41B00121A43 /* SubmissionViewController.swift in Sources */,
 				49CE968D1F8FF41B00121A43 /* SubmissionAuditLoggingService.swift in Sources */,
 				2CAF1B3D1F72B295007225DF /* Secrets.swift in Sources */,
+				B1411D5A1FE825ED00CD4967 /* AsyncActionNotification.swift in Sources */,
 				494AE09A1F843A09001A8F31 /* DrawerHandleViewManager.m in Sources */,
 				497CA7791F82D19A00501613 /* UITraitEnvironmentExtensions.swift in Sources */,
 				49CE973C1F8FFEA600121A43 /* SubmissionEvent.swift in Sources */,

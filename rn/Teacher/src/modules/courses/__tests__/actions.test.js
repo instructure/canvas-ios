@@ -40,7 +40,7 @@ test('refresh courses workflow', async () => {
     },
     {
       type: actions.refreshCourses.toString(),
-      payload: { result: [{ data: courses }, { data: colors }] },
+      payload: { result: [{ data: courses }, { data: colors }], syncToNative: true },
     },
   ])
 })

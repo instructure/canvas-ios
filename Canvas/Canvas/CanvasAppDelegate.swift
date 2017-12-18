@@ -29,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let loginConfig = LoginConfiguration(mobileVerifyName: "iCanvas", logo: #imageLiteral(resourceName: "login_logo"))
     var session: Session?
     var window: UIWindow?
+    var syncDisposable: Disposable?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         if unitTesting {
             return true
@@ -302,6 +303,7 @@ extension AppDelegate: NativeLoginManagerDelegate {
         LegacyModuleProgressShim.observeProgress(session)
         ModuleItem.beginObservingProgress(session)
         CKCanvasAPI.updateCurrentAPI()
+        startSyncingAsyncActions(session)
         
         let b = Brand.current
         guard let brand = CKIBrand() else {
