@@ -54,14 +54,23 @@ export function annotations (): void {
   })
 
   if (unFlowedFiles.length > 0) {
-    warn(`These new JS files do not have Flow enabled: ${linkableFiles(unFlowedFiles)}`)
+    warn(`Please add @flow to these files: ${linkableFiles(unFlowedFiles)}`)
   }
 }
 
 // Warns if there is not reference to a jira ticket starting with MBL- in the PR title or body
 export function jira (): void {
-  if (!danger.github.pr.title.match(/mbl-/i) && !danger.github.pr.body.match(/mbl-/i)) {
-    warn('Neither the title nor body of the pull request reference a JIRA ticket.')
+  const title = danger.github.pr.title || ''
+  const body = danger.github.pr.body || ''
+  if (!title.match(/mbl-/i) && !body.match(/mbl-/i)) {
+    warn('Please add a JIRA ticket number to the pull request.')
+  }
+}
+
+export function testPlan (): void {
+  const body = danger.github.pr.body || ''
+  if (!body.match(/testplan/i) && !body.match(/test plan/i)) {
+    warn('Please add a test plan.')
   }
 }
 
@@ -84,7 +93,7 @@ export function untestedFiles (): void {
 
   const untestedFiles = _.difference(sourcePaths, logicalTestPaths)
   if (untestedFiles.length > 0) {
-    warn('The following files were added without tests: ' + linkableFiles(untestedFiles))
+    warn('Please add tests for these files: ' + linkableFiles(untestedFiles))
   }
 }
 
@@ -124,6 +133,7 @@ export function packages (): void {
 if (!danger.__TEST__) {
   annotations()
   jira()
+  testPlan()
   untestedFiles()
   coverageReport()
 }

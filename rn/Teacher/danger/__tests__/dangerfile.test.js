@@ -70,7 +70,7 @@ describe('annotations', () => {
 
   it('warns if files are not annotated', () => {
     annotations()
-    const warning = 'These new JS files do not have Flow enabled: <a href=\'https://github.com/instructure/ios/blob/master/path/to/file3.js\'>/path/to/file3.js</a>'
+    const warning = 'Please add @flow to these files: <a href=\'https://github.com/instructure/ios/blob/master/path/to/file3.js\'>/path/to/file3.js</a>'
     expect(warn).toHaveBeenCalledWith(warning)
   })
 })
@@ -108,7 +108,7 @@ describe('untestedFiles', () => {
 
   it('warns if file created without corresponding test file', () => {
     untestedFiles()
-    const warning = 'The following files were added without tests: <a href=\'https://github.com/instructure/ios/blob/master/src/path/to/file1.js\'>/src/path/to/file1.js</a>'
+    const warning = 'Please add tests for these files: <a href=\'https://github.com/instructure/ios/blob/master/src/path/to/file1.js\'>/src/path/to/file1.js</a>'
     expect(warn).toHaveBeenCalledWith(warning)
   })
 })
