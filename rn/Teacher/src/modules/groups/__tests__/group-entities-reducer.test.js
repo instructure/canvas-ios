@@ -208,3 +208,31 @@ test('captures group colors', () => {
     },
   })
 })
+
+test('colors when there are no groups', () => {
+  const group = template.group({ id: '1' })
+  const initialState = {
+    '1': {
+      pending: 0,
+      error: null,
+      group,
+    },
+  }
+
+  const action = {
+    type: refreshCourses.toString(),
+    payload: {
+      result: [{}, {
+        data: {
+          custom_colors: {
+            account_1: '#fff',
+            course_2: '#eee',
+            course_3: '#000',
+          },
+        },
+      }],
+    },
+  }
+
+  expect(groups(initialState, action)).toEqual(initialState)
+})

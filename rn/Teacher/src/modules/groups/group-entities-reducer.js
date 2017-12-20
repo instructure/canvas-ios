@@ -98,6 +98,7 @@ export const groups: Reducer<GroupsState, any> = handleActions({
   [CoursesActions.refreshCourses.toString()]: handleAsync({
     resolved: (state, { result: [, colorsResponse] }) => {
       const colors = groupCustomColors(colorsResponse.data).custom_colors.group
+      if (!colors) return state
 
       let newState = Object.keys(colors).reduce((newState, id) => {
         newState[id] = {
