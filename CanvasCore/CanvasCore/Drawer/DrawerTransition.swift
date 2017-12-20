@@ -42,8 +42,8 @@ public class DrawerOpenTransitioning: NSObject, UIViewControllerAnimatedTransiti
         let containerView = transitionContext.containerView
         containerView.insertSubview(toVC.view, belowSubview: fromVC.view)
         var frame = toVC.view.frame
-        frame.origin.x = -frame.width
         frame.size.width = DrawerWidth
+        frame.origin.x = -DrawerWidth
         toVC.view.frame = frame
         
         UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
