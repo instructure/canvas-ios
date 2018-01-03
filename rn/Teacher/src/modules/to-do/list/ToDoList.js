@@ -75,7 +75,6 @@ export class ToDoList extends Component<Props, any> {
         navBarColor={color.navBarColor}
         navBarButtonColor={color.navBarTextColor}
         navBarStyle='dark'
-        statusBarStyle='light'
         drawUnderNavBar={true}
         navBarImage={branding.headerImage}
       >

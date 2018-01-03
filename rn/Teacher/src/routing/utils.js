@@ -73,9 +73,20 @@ function isRegularDisplayMode (traits: TraitCollection): boolean {
 }
 
 function checkDefaults (props: Object): Object {
+  let { navBarColor: bg, statusBarStyle } = props
+  if (bg && !statusBarStyle) {
+    const yiq = (
+      ((bg >> 16) & 0xFF) * 0.299 +
+      ((bg >> 8) & 0xFF) * 0.587 +
+      (bg & 0xFF) * 0.114
+    )
+    const isDarkBg = yiq < 128
+    statusBarStyle = isDarkBg ? 'light' : 'default'
+  }
   return {
     ...props,
     backButtonTitle: props.backButtonTitle || i18n('Back'),
+    statusBarStyle,
   }
 }
 
