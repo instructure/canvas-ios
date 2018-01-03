@@ -7,6 +7,7 @@ import {
   Dashboard,
 } from '../Dashboard'
 import explore from '../../../../test/helpers/explore'
+import App from '../../app/index'
 
 const template = {
   ...require('../../../__templates__/course'),
@@ -212,4 +213,26 @@ test('calls navigator.show when a group is pressed', () => {
   )
   tree.getInstance().showGroup('1')
   expect(navigator.show).toHaveBeenCalledWith('/groups/1')
+})
+
+test('only calls navigator.show to navigate to /notATeacher when in teacher app', () => {
+  let currentApp = App.current().appId
+
+  App.setCurrentApp('student')
+  let props = {
+    ...defaultProps,
+    totalCourseCount: 0,
+  }
+  let navigator = template.navigator({
+    show: jest.fn(),
+  })
+
+  let tree = renderAndLayout(
+    <Dashboard {...props} navigator={navigator} />
+  )
+
+  tree.getInstance().componentWillReceiveProps(props)
+  expect(navigator.show).not.toHaveBeenCalled()
+
+  App.setCurrentApp(currentApp)
 })

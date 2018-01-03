@@ -84,6 +84,7 @@ export class Dashboard extends React.Component<Props, State> {
         !newProps.error &&
         !newProps.totalCourseCount &&
         !this.state.showingModal &&
+        App.current().appId === 'teacher' &&
         getSession()) {
       this.props.navigator.show('/notATeacher', { modal: true })
       this.setState({
