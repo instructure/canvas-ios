@@ -80,6 +80,9 @@ let defaultProps = {
   groups,
 }
 
+beforeAll(() => App.setCurrentApp('student'))
+afterAll(() => App.setCurrentApp('teacher'))
+
 test('render', () => {
   let tree = renderAndLayout(
     <Dashboard {...defaultProps} />
@@ -201,6 +204,15 @@ test('Only renders courses when !isFullDashboard', () => {
     <Dashboard {...defaultProps} isFullDashboard={false} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
+})
+
+test('Doesnt render groups when in the teacher app', () => {
+  App.setCurrentApp('teacher')
+  let tree = renderAndLayout(
+    <Dashboard {...defaultProps} />
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+  App.setCurrentApp('student')
 })
 
 test('calls navigator.show when a group is pressed', () => {

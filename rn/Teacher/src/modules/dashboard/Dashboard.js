@@ -194,35 +194,43 @@ export class Dashboard extends React.Component<Props, State> {
       seeAll: this.showAllCourses,
     }
 
-    return [
-      // Announcements
-      // {
-      //   sectionID: 'dashboard.announcements',
-      //   data: [
-      //     { color: '#0066AA', title: 'pizza!', description: 'Theres pizza down here on 3, guys' },
-      //   ],
-      //   renderItem: this.renderGlobalAnnouncement,
-      // },
-      // Courses
-      this.props.courses.length > 0
-        ? {
-          ...coursesHeader,
-          data: this.props.courses,
-          renderItem: this.renderCourseCard,
-        }
-        : {
-          ...coursesHeader,
-          data: [{/* welcome (no courses) placeholder object */}],
-          renderItem: this.renderNoFavorites,
-        },
-        // Groups
-      {
+    let sections = []
+
+    // Announcements
+    // {
+    //   sectionID: 'dashboard.announcements',
+    //   data: [
+    //     { color: '#0066AA', title: 'pizza!', description: 'Theres pizza down here on 3, guys' },
+    //   ],
+    //   renderItem: this.renderGlobalAnnouncement,
+    // },
+
+    // Courses
+    if (this.props.courses.length > 0) {
+      sections.push({
+        ...coursesHeader,
+        data: this.props.courses,
+        renderItem: this.renderCourseCard,
+      })
+    } else {
+      sections.push({
+        ...coursesHeader,
+        data: [{/* welcome (no courses) placeholder object */}],
+        renderItem: this.renderNoFavorites,
+      })
+    }
+
+    // Groups
+    if (App.current().appId === 'student') {
+      sections.push({
         sectionID: 'dashboard.groups',
         title: i18n('Groups'),
         data: this.props.groups,
         renderItem: this.renderGroup,
-      },
-    ]
+      })
+    }
+
+    return sections
   }
 
   renderDashboard = () => {
