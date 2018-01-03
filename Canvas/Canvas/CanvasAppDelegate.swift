@@ -303,7 +303,7 @@ extension AppDelegate: NativeLoginManagerDelegate {
         LegacyModuleProgressShim.observeProgress(session)
         ModuleItem.beginObservingProgress(session)
         CKCanvasAPI.updateCurrentAPI()
-        startSyncingAsyncActions(session)
+        syncDisposable = startSyncingAsyncActions(session)
         
         let b = Brand.current
         guard let brand = CKIBrand() else {
