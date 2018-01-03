@@ -30,14 +30,14 @@
             destinationViewController.navigationItem.leftItemsSupplementBackButton = YES;
         }
 
-        // If the presenting view controller is a master list, swap out the detail entirely so as to clear the nav stack
-        if (self.splitViewController.viewControllers.firstObject == self || ([self.splitViewController.viewControllers.firstObject isKindOfClass:[UINavigationController class]] && ((UINavigationController *)self.splitViewController.viewControllers.firstObject).topViewController == self)) {
+        if ([self.splitViewController.viewControllers.firstObject isKindOfClass:[UINavigationController class]] && self.splitViewController.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassCompact) {
+            [((UINavigationController *)self.splitViewController.viewControllers.firstObject) pushViewController:destinationViewController animated:YES];
+        } else if (self.splitViewController.viewControllers.firstObject == self || ([self.splitViewController.viewControllers.firstObject isKindOfClass:[UINavigationController class]] && ((UINavigationController *)self.splitViewController.viewControllers.firstObject).topViewController == self)) {
+            // If the presenting view controller is a master list, swap out the detail entirely so as to clear the nav stack
             UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:destinationViewController];
             [self.splitViewController showDetailViewController:nav sender:nil];
         } else if ([self.splitViewController.viewControllers.lastObject isKindOfClass:[UINavigationController class]] && self.splitViewController.viewControllers.count == 2) {
             [((UINavigationController *)self.splitViewController.viewControllers.lastObject) pushViewController:destinationViewController animated:YES];
-        } else if ([self.splitViewController.viewControllers.firstObject isKindOfClass:[UINavigationController class]] && self.splitViewController.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassCompact) {
-            [((UINavigationController *)self.splitViewController.viewControllers.firstObject) pushViewController:destinationViewController animated:YES];
         } else {
             UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:destinationViewController];
             [self.splitViewController showDetailViewController:nav sender:nil];
