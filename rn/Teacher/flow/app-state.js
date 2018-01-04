@@ -58,6 +58,13 @@ export type GradingPeriodsState = {
   },
 }
 
+export type AccountNotificationState = {
+  pending: number,
+  list: AccountNotification[],
+  closing: string[],
+  error: string,
+}
+
 export type AssignmentGroupContentState = {
   assignmentRefs: EntityRefs,
 }
@@ -162,6 +169,7 @@ export type DiscussionsState = { [string]: DiscussionState & PendingDiscussionRe
 export type PagesState = { [string]: PageState }
 
 export type Entities = {
+  accountNotifications: AccountNotificationState,
   courses: CoursesState,
   groups: GroupsState,
   assignmentGroups: AssignmentGroupsState,

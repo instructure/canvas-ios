@@ -16,22 +16,18 @@
 
 // @flow
 
-export type AccountNotificationIcon = 'information' | 'error' | 'warning' | 'question' | 'calendar'
+import httpClient from '../httpClient'
+import { paginate, exhaust } from '../utils/pagination'
 
-export type AccountNotification = {
-  id: string,
-  subject: string,
-  message: string,
-  start_at: string,
-  end_at: string,
-  icon: AccountNotificationIcon,
-  role_ids: string[],
+export function getAccountNotifications (): Promise<ApiResponse<AccountNotification[]>> {
+  const groups = paginate(`accounts/self/users/self/account_notifications`, {
+    params: {
+      per_page: 99,
+    },
+  })
+  return exhaust(groups)
 }
 
-export type Account = {
-  id: string,
-  name: string,
-  uuid: string,
-  parent_account_id: string,
-  root_account_id: string,
+export function deleteAccountNotification (id: string): Promise<ApiResponse<null>> {
+  return httpClient().delete(`accounts/self/users/self/account_notifications/${id}`)
 }

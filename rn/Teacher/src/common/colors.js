@@ -18,7 +18,7 @@
  * @flow
  */
 
-const colors: { [name: string]: string } = {
+const colors = {
   link: '#008EE2',
   tabBarBg: '#fff',
   tabBarTab: '#73818C',
@@ -34,6 +34,9 @@ const colors: { [name: string]: string } = {
   secondaryButton: '#73818C',
   checkmarkGreen: '#00AC18',
   seperatorColor: '#C7CDD1',
+  errorAnnouncementBg: '#EE0612',
+  inviteAnnouncementBg: '#00AC18',
+  warningAnnouncementBg: '#FC5E13',
 //  branding properties
   navBarColor: '#374A59',
   navBarButtonColor: '#374A59',

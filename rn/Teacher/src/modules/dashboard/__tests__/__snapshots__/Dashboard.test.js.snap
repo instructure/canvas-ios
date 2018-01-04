@@ -20,110 +20,11 @@ exports[`Doesnt render groups when in the teacher app 1`] = `
     data={
       Array [
         Object {
-          "data": Array [
-            Object {
-              "color": "#27B9CD",
-              "course_code": "BIO 101",
-              "default_view": "wiki",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "1",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": true,
-              "name": "Biology 101",
-              "short_name": "BIO 101",
-              "term": Object {
-                "name": "Default Term",
-              },
-            },
-            Object {
-              "color": "#8F3E97",
-              "course_code": "LIT 401",
-              "default_view": "wiki",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "2",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": false,
-              "name": "American Literature Psysicks foobar hello world 401",
-              "short_name": "LIT 401",
-              "term": Object {
-                "name": "Default Term",
-              },
-            },
-            Object {
-              "color": "#8F3E99",
-              "course_code": "FOO 102",
-              "default_view": "wiki",
-              "enrollments": Array [
-                Object {
-                  "enrollment_state": "active",
-                  "role": "TeacherEnrollment",
-                  "role_id": "1",
-                  "type": "teacher",
-                  "user_id": "1",
-                },
-              ],
-              "id": "3",
-              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-              "is_favorite": true,
-              "name": "Foobar 102",
-              "short_name": "FOO 102",
-              "term": Object {
-                "name": "Default Term",
-              },
-            },
-          ],
+          "data": Array [],
+          "keyExtractor": [Function],
           "renderItem": [Function],
-          "sectionID": "dashboard.courses",
-          "seeAll": [Function],
-          "title": "Courses",
+          "sectionID": "dashboard.announcements",
         },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onRefresh={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
-    refreshControl={
-      <RefreshControlMock
-        onRefresh={[Function]}
-        progressViewOffset={undefined}
-        refreshing={false}
-      />
-    }
-    refreshing={false}
-    renderItem={[Function]}
-    renderSectionHeader={[Function]}
-    scrollEventThrottle={50}
-    sections={
-      Array [
         Object {
           "data": Array [
             Object {
@@ -193,6 +94,119 @@ exports[`Doesnt render groups when in the teacher app 1`] = `
               },
             },
           ],
+          "keyExtractor": [Function],
+          "renderItem": [Function],
+          "sectionID": "dashboard.courses",
+          "seeAll": [Function],
+          "title": "Courses",
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onRefresh={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    onViewableItemsChanged={undefined}
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        progressViewOffset={undefined}
+        refreshing={false}
+      />
+    }
+    refreshing={false}
+    renderItem={[Function]}
+    renderSectionHeader={[Function]}
+    scrollEventThrottle={50}
+    sections={
+      Array [
+        Object {
+          "data": Array [],
+          "keyExtractor": [Function],
+          "renderItem": [Function],
+          "sectionID": "dashboard.announcements",
+        },
+        Object {
+          "data": Array [
+            Object {
+              "color": "#27B9CD",
+              "course_code": "BIO 101",
+              "default_view": "wiki",
+              "enrollments": Array [
+                Object {
+                  "enrollment_state": "active",
+                  "role": "TeacherEnrollment",
+                  "role_id": "1",
+                  "type": "teacher",
+                  "user_id": "1",
+                },
+              ],
+              "id": "1",
+              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+              "is_favorite": true,
+              "name": "Biology 101",
+              "short_name": "BIO 101",
+              "term": Object {
+                "name": "Default Term",
+              },
+            },
+            Object {
+              "color": "#8F3E97",
+              "course_code": "LIT 401",
+              "default_view": "wiki",
+              "enrollments": Array [
+                Object {
+                  "enrollment_state": "active",
+                  "role": "TeacherEnrollment",
+                  "role_id": "1",
+                  "type": "teacher",
+                  "user_id": "1",
+                },
+              ],
+              "id": "2",
+              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+              "is_favorite": false,
+              "name": "American Literature Psysicks foobar hello world 401",
+              "short_name": "LIT 401",
+              "term": Object {
+                "name": "Default Term",
+              },
+            },
+            Object {
+              "color": "#8F3E99",
+              "course_code": "FOO 102",
+              "default_view": "wiki",
+              "enrollments": Array [
+                Object {
+                  "enrollment_state": "active",
+                  "role": "TeacherEnrollment",
+                  "role_id": "1",
+                  "type": "teacher",
+                  "user_id": "1",
+                },
+              ],
+              "id": "3",
+              "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+              "is_favorite": true,
+              "name": "Foobar 102",
+              "short_name": "FOO 102",
+              "term": Object {
+                "name": "Default Term",
+              },
+            },
+          ],
+          "keyExtractor": [Function],
           "renderItem": [Function],
           "sectionID": "dashboard.courses",
           "seeAll": [Function],
@@ -207,6 +221,14 @@ exports[`Doesnt render groups when in the teacher app 1`] = `
   >
     <RCTRefreshControl />
     <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      />
+      <View
+        onLayout={[Function]}
+        style={null}
+      />
       <View
         onLayout={[Function]}
         style={null}
@@ -1648,6 +1670,12 @@ exports[`render 1`] = `
     data={
       Array [
         Object {
+          "data": Array [],
+          "keyExtractor": [Function],
+          "renderItem": [Function],
+          "sectionID": "dashboard.announcements",
+        },
+        Object {
           "data": Array [
             Object {
               "color": "#27B9CD",
@@ -1716,6 +1744,7 @@ exports[`render 1`] = `
               },
             },
           ],
+          "keyExtractor": [Function],
           "renderItem": [Function],
           "sectionID": "dashboard.courses",
           "seeAll": [Function],
@@ -1737,6 +1766,7 @@ exports[`render 1`] = `
               "name": "Group 2",
             },
           ],
+          "keyExtractor": [Function],
           "renderItem": [Function],
           "sectionID": "dashboard.groups",
           "title": "Groups",
@@ -1773,6 +1803,12 @@ exports[`render 1`] = `
     sections={
       Array [
         Object {
+          "data": Array [],
+          "keyExtractor": [Function],
+          "renderItem": [Function],
+          "sectionID": "dashboard.announcements",
+        },
+        Object {
           "data": Array [
             Object {
               "color": "#27B9CD",
@@ -1841,6 +1877,7 @@ exports[`render 1`] = `
               },
             },
           ],
+          "keyExtractor": [Function],
           "renderItem": [Function],
           "sectionID": "dashboard.courses",
           "seeAll": [Function],
@@ -1862,6 +1899,7 @@ exports[`render 1`] = `
               "name": "Group 2",
             },
           ],
+          "keyExtractor": [Function],
           "renderItem": [Function],
           "sectionID": "dashboard.groups",
           "title": "Groups",
@@ -1875,6 +1913,14 @@ exports[`render 1`] = `
   >
     <RCTRefreshControl />
     <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      />
+      <View
+        onLayout={[Function]}
+        style={null}
+      />
       <View
         onLayout={[Function]}
         style={null}
@@ -2836,10 +2882,6 @@ exports[`render 1`] = `
           </View>
         </TouchableHighlight>
       </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      />
       <View
         style={
           Object {
@@ -2872,6 +2914,12 @@ exports[`render while pending 1`] = `
     data={
       Array [
         Object {
+          "data": Array [],
+          "keyExtractor": [Function],
+          "renderItem": [Function],
+          "sectionID": "dashboard.announcements",
+        },
+        Object {
           "data": Array [
             Object {
               "color": "#27B9CD",
@@ -2940,6 +2988,7 @@ exports[`render while pending 1`] = `
               },
             },
           ],
+          "keyExtractor": [Function],
           "renderItem": [Function],
           "sectionID": "dashboard.courses",
           "seeAll": [Function],
@@ -2961,6 +3010,7 @@ exports[`render while pending 1`] = `
               "name": "Group 2",
             },
           ],
+          "keyExtractor": [Function],
           "renderItem": [Function],
           "sectionID": "dashboard.groups",
           "title": "Groups",
@@ -2997,6 +3047,12 @@ exports[`render while pending 1`] = `
     sections={
       Array [
         Object {
+          "data": Array [],
+          "keyExtractor": [Function],
+          "renderItem": [Function],
+          "sectionID": "dashboard.announcements",
+        },
+        Object {
           "data": Array [
             Object {
               "color": "#27B9CD",
@@ -3065,6 +3121,7 @@ exports[`render while pending 1`] = `
               },
             },
           ],
+          "keyExtractor": [Function],
           "renderItem": [Function],
           "sectionID": "dashboard.courses",
           "seeAll": [Function],
@@ -3086,6 +3143,7 @@ exports[`render while pending 1`] = `
               "name": "Group 2",
             },
           ],
+          "keyExtractor": [Function],
           "renderItem": [Function],
           "sectionID": "dashboard.groups",
           "title": "Groups",
@@ -3099,6 +3157,14 @@ exports[`render while pending 1`] = `
   >
     <RCTRefreshControl />
     <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      />
+      <View
+        onLayout={[Function]}
+        style={null}
+      />
       <View
         onLayout={[Function]}
         style={null}
@@ -4061,10 +4127,6 @@ exports[`render while pending 1`] = `
         </TouchableHighlight>
       </View>
       <View
-        onLayout={[Function]}
-        style={null}
-      />
-      <View
         style={
           Object {
             "height": 0,
@@ -4096,8 +4158,16 @@ exports[`render without courses and *zero* total courses 1`] = `
     data={
       Array [
         Object {
+          "data": Array [],
+          "keyExtractor": [Function],
+          "renderItem": [Function],
+          "sectionID": "dashboard.announcements",
+        },
+        Object {
           "data": Array [
-            Object {},
+            Object {
+              "key": "welcome",
+            },
           ],
           "renderItem": [Function],
           "sectionID": "dashboard.courses",
@@ -4120,6 +4190,7 @@ exports[`render without courses and *zero* total courses 1`] = `
               "name": "Group 2",
             },
           ],
+          "keyExtractor": [Function],
           "renderItem": [Function],
           "sectionID": "dashboard.groups",
           "title": "Groups",
@@ -4156,8 +4227,16 @@ exports[`render without courses and *zero* total courses 1`] = `
     sections={
       Array [
         Object {
+          "data": Array [],
+          "keyExtractor": [Function],
+          "renderItem": [Function],
+          "sectionID": "dashboard.announcements",
+        },
+        Object {
           "data": Array [
-            Object {},
+            Object {
+              "key": "welcome",
+            },
           ],
           "renderItem": [Function],
           "sectionID": "dashboard.courses",
@@ -4180,6 +4259,7 @@ exports[`render without courses and *zero* total courses 1`] = `
               "name": "Group 2",
             },
           ],
+          "keyExtractor": [Function],
           "renderItem": [Function],
           "sectionID": "dashboard.groups",
           "title": "Groups",
@@ -4193,6 +4273,14 @@ exports[`render without courses and *zero* total courses 1`] = `
   >
     <RCTRefreshControl />
     <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      />
+      <View
+        onLayout={[Function]}
+        style={null}
+      />
       <View
         onLayout={[Function]}
         style={null}
@@ -4790,8 +4878,16 @@ exports[`render without favorite courses 1`] = `
     data={
       Array [
         Object {
+          "data": Array [],
+          "keyExtractor": [Function],
+          "renderItem": [Function],
+          "sectionID": "dashboard.announcements",
+        },
+        Object {
           "data": Array [
-            Object {},
+            Object {
+              "key": "welcome",
+            },
           ],
           "renderItem": [Function],
           "sectionID": "dashboard.courses",
@@ -4814,6 +4910,7 @@ exports[`render without favorite courses 1`] = `
               "name": "Group 2",
             },
           ],
+          "keyExtractor": [Function],
           "renderItem": [Function],
           "sectionID": "dashboard.groups",
           "title": "Groups",
@@ -4850,8 +4947,16 @@ exports[`render without favorite courses 1`] = `
     sections={
       Array [
         Object {
+          "data": Array [],
+          "keyExtractor": [Function],
+          "renderItem": [Function],
+          "sectionID": "dashboard.announcements",
+        },
+        Object {
           "data": Array [
-            Object {},
+            Object {
+              "key": "welcome",
+            },
           ],
           "renderItem": [Function],
           "sectionID": "dashboard.courses",
@@ -4874,6 +4979,7 @@ exports[`render without favorite courses 1`] = `
               "name": "Group 2",
             },
           ],
+          "keyExtractor": [Function],
           "renderItem": [Function],
           "sectionID": "dashboard.groups",
           "title": "Groups",
@@ -4887,6 +4993,14 @@ exports[`render without favorite courses 1`] = `
   >
     <RCTRefreshControl />
     <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      />
+      <View
+        onLayout={[Function]}
+        style={null}
+      />
       <View
         onLayout={[Function]}
         style={null}

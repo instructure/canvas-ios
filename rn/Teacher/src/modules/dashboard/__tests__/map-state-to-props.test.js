@@ -56,6 +56,7 @@ describe('mapStateToProps with favorites', () => {
   const state = appState({
     favoriteCourses: { courseRefs: favorites },
     entities: {
+      accountNotifications: { list: [] },
       courses,
       groups: {},
     },
@@ -91,6 +92,7 @@ describe('mapStateToProps with no favorites', () => {
   const state = appState({
     favoriteCourses: { courseRefs: [] },
     entities: {
+      accountNotifications: { list: [] },
       courses,
       groups: {},
     },
@@ -108,7 +110,14 @@ describe('mapStateToProps with no favorites', () => {
 })
 
 describe('mapStateToProps with no courses', () => {
-  const state = appState({ favoriteCourses: { courseRefs: [] } })
+  const state = appState({
+    favoriteCourses: { courseRefs: [] },
+    entities: {
+      accountNotifications: { list: [] },
+      courses: {},
+      groups: {},
+    },
+  })
   const props = mapStateToProps(true)(state)
 
   it('has no favorites', () => {
@@ -129,6 +138,7 @@ describe('mapStateToProps with student and observer enrollments', () => {
   const state = appState({
     favoriteCourses: { courseRefs: ['1', '2'] },
     entities: {
+      accountNotifications: { list: [] },
       courses,
       groups: {},
     },
@@ -155,6 +165,7 @@ describe('mapStateToProps with various teacher enrollments', () => {
   const state = appState({
     favoriteCourses: { courseRefs: ['1', '2', '3'] },
     entities: {
+      accountNotifications: { list: [] },
       courses,
       groups: {},
     },
@@ -180,6 +191,7 @@ describe('mapStateToProps with teacher and student enrollments', () => {
   const state = appState({
     favoriteCourses: { courseRefs: ['1', '2'] },
     entities: {
+      accountNotifications: { list: [] },
       courses,
       groups: {},
     },
@@ -219,6 +231,7 @@ describe('all courses mapStateToProps', () => {
 
   const state = appState({
     entities: {
+      accountNotifications: { list: [] },
       courses,
       groups: {},
     },
@@ -251,6 +264,7 @@ describe('groups', () => {
   const state = appState({
     favoriteCourses: { courseRefs: favorites },
     entities: {
+      accountNotifications: { list: [] },
       courses,
       groups: {
         '1': {

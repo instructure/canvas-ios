@@ -16,6 +16,7 @@
 
 // @flow
 
+import * as accountApi from './account'
 import * as coursesApi from './courses'
 import * as usersApi from './users'
 import * as enrollmentsApi from './enrollments'
@@ -33,7 +34,8 @@ import * as fileUploads from './file-uploads'
 import * as files from './files'
 import * as accounts from './accounts'
 
-export default ({
+export default {
+  ...accountApi,
   ...coursesApi,
   ...usersApi,
   ...enrollmentsApi,
@@ -50,4 +52,4 @@ export default ({
   ...fileUploads,
   ...files,
   ...accounts,
-}: *)
+}

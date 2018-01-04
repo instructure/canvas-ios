@@ -1198,6 +1198,201 @@ exports[`renders UI correctly 1`] = `
                     "width": 80,
                   },
                   Object {
+                    "backgroundColor": "#EE0612",
+                  },
+                ]
+              }
+            />
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontSize": 10,
+                  },
+                ]
+              }
+            >
+              errorAnnouncementBg
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#7F91A7",
+                    "fontSize": 14,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              #EE0612
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "paddingBottom": 12,
+              }
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderColor": "#C7CDD1",
+                    "borderWidth": 0.5,
+                    "height": 80,
+                    "marginRight": 20,
+                    "width": 80,
+                  },
+                  Object {
+                    "backgroundColor": "#00AC18",
+                  },
+                ]
+              }
+            />
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontSize": 10,
+                  },
+                ]
+              }
+            >
+              inviteAnnouncementBg
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#7F91A7",
+                    "fontSize": 14,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              #00AC18
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "paddingBottom": 12,
+              }
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderColor": "#C7CDD1",
+                    "borderWidth": 0.5,
+                    "height": 80,
+                    "marginRight": 20,
+                    "width": 80,
+                  },
+                  Object {
+                    "backgroundColor": "#FC5E13",
+                  },
+                ]
+              }
+            />
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontSize": 10,
+                  },
+                ]
+              }
+            >
+              warningAnnouncementBg
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#7F91A7",
+                    "fontSize": 14,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              #FC5E13
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "paddingBottom": 12,
+              }
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderColor": "#C7CDD1",
+                    "borderWidth": 0.5,
+                    "height": 80,
+                    "marginRight": 20,
+                    "width": 80,
+                  },
+                  Object {
                     "backgroundColor": "#374A59",
                   },
                 ]

@@ -32,6 +32,9 @@ const images = {
   },
   dashboard: {
     announcement: require('./dashboard/announcement.png'),
+    calendar: require('./dashboard/calendar.png'),
+    help: require('./dashboard/help.png'),
+    warning: require('./Warning.png'),
   },
   tabbar: {
     courses: require('./tabbar/courses.png'),
@@ -106,6 +109,7 @@ const images = {
   canvasLogo: require('./canvas-logo.png'),
   feedback: require('./feedback.png'),
   kabob: require('./kabob.png'),
+  chevronUp: require('./chevron-up.png'),
   backIcon: require('./Back-icon.png'),
   check: require('./check-white.png'),
   starFilled: require('./star-filled.png'),

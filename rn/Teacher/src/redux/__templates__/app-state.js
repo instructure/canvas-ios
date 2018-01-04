@@ -25,6 +25,7 @@ const emptyAppState: AppState = {
     courseRefs: [],
   },
   entities: {
+    accountNotifications: {},
     courses: {},
     groups: {},
     assignmentGroups: {},

@@ -16,22 +16,14 @@
 
 // @flow
 
-export type AccountNotificationIcon = 'information' | 'error' | 'warning' | 'question' | 'calendar'
+import template, { type Template } from '../utils/template'
 
-export type AccountNotification = {
-  id: string,
-  subject: string,
-  message: string,
-  start_at: string,
-  end_at: string,
-  icon: AccountNotificationIcon,
-  role_ids: string[],
-}
-
-export type Account = {
-  id: string,
-  name: string,
-  uuid: string,
-  parent_account_id: string,
-  root_account_id: string,
-}
+export const accountNotification: Template<AccountNotification> = template({
+  id: 1,
+  subject: 'Permission Slips!',
+  message: 'Don’t forget your permission slips this Wednesday.',
+  start_at: '2016-12-31T12:00:00.000Z',
+  end_at: '2019-12-31T12:00:00.000Z',
+  icon: 'information',
+  role_ids: [],
+})

@@ -20,7 +20,7 @@ import {
 import {
   LinkButton,
 } from '../../common/buttons'
-import GlobalAnnouncementRow, { type GlobalAnnouncementProps } from './GlobalAnnouncementRow'
+import GlobalAnnouncementRow from './GlobalAnnouncementRow'
 import GroupRow, { type GroupRowProps } from './GroupRow'
 import CourseCard from '../courses/components/CourseCard'
 import NoCourses from '../courses/components/NoCourses'
@@ -29,6 +29,7 @@ import Images from '../../images'
 import branding from '../../common/branding'
 import Navigator from '../../routing/Navigator'
 import { getSession } from '../../canvas-api'
+import AccountNotificationActions from './account-notification-actions'
 
 type ColorfulCourse = { color: string } & Course
 type Props = {
@@ -37,8 +38,10 @@ type Props = {
   refreshing: boolean,
   refresh: () => void,
   isFullDashboard: boolean,
-  courses: Array<ColorfulCourse>,
-  groups: Array<GroupRowProps>,
+  announcements: AccountNotification[],
+  courses: ColorfulCourse[],
+  closeNotification: (string) => any,
+  groups: GroupRowProps[],
 }
 type State = {
   width?: number,
@@ -73,9 +76,8 @@ const padding = 8
 const MIN_CARD_SIZE = 150
 
 export class Dashboard extends React.Component<Props, State> {
-  constructor (props: Props) {
-    super(props)
-    this.state = { showingModal: false }
+  state: State = {
+    showingModal: false,
   }
 
   componentWillReceiveProps (newProps: Props) {
@@ -131,12 +133,13 @@ export class Dashboard extends React.Component<Props, State> {
     )
   }
 
-  renderGlobalAnnouncement = ({ item }: { item: GlobalAnnouncementProps }) => {
+  renderGlobalAnnouncement = ({ item }: { item: AccountNotification }) => {
     return (
-      // TODO: add a unique key containing the announcement id
       <GlobalAnnouncementRow
+        key={item.id}
         style={{ width: this.state.contentWidth, padding }}
-        {...item}
+        notification={item}
+        onDismiss={this.props.closeNotification}
       />
     )
   }
@@ -146,7 +149,7 @@ export class Dashboard extends React.Component<Props, State> {
 
     return (
       <CourseCard
-        key={`course-${item.id}`}
+        key={item.id}
         style={{ width: cardSize, height: cardSize, padding }}
         color={item.color}
         course={item}
@@ -197,13 +200,12 @@ export class Dashboard extends React.Component<Props, State> {
     let sections = []
 
     // Announcements
-    // {
-    //   sectionID: 'dashboard.announcements',
-    //   data: [
-    //     { color: '#0066AA', title: 'pizza!', description: 'Theres pizza down here on 3, guys' },
-    //   ],
-    //   renderItem: this.renderGlobalAnnouncement,
-    // },
+    sections.push({
+      sectionID: 'dashboard.announcements',
+      data: this.props.announcements,
+      renderItem: this.renderGlobalAnnouncement,
+      keyExtractor: ({ id }: AccountNotification) => id,
+    })
 
     // Courses
     if (this.props.courses.length > 0) {
@@ -211,11 +213,12 @@ export class Dashboard extends React.Component<Props, State> {
         ...coursesHeader,
         data: this.props.courses,
         renderItem: this.renderCourseCard,
+        keyExtractor: ({ id }: ColorfulCourse) => id,
       })
     } else {
       sections.push({
         ...coursesHeader,
-        data: [{/* welcome (no courses) placeholder object */}],
+        data: [{ key: 'welcome' }],
         renderItem: this.renderNoFavorites,
       })
     }
@@ -227,6 +230,7 @@ export class Dashboard extends React.Component<Props, State> {
         title: i18n('Groups'),
         data: this.props.groups,
         renderItem: this.renderGroup,
+        keyExtractor: ({ id }: GroupRowProps) => id,
       })
     }
 
@@ -334,7 +338,7 @@ const styles = StyleSheet.create({
 
 export function mapStateToProps (isFullDashboard: boolean) {
   return (state: AppState) => {
-    const allCourses = state.entities.courses
+    const { courses: allCourses, accountNotifications } = state.entities
 
     const allCourseStates = Object.keys(allCourses)
       .map(key => allCourses[key])
@@ -344,8 +348,7 @@ export function mapStateToProps (isFullDashboard: boolean) {
       .filter(App.current().filterCourse)
       .length
 
-    const { pending, error, courseRefs } = state.favoriteCourses
-
+    const { courseRefs } = state.favoriteCourses
     let courseStates = []
     if (isFullDashboard) {
       // we only want favorite courses here
@@ -358,6 +361,9 @@ export function mapStateToProps (isFullDashboard: boolean) {
       .map(({ course, color }) => ({ ...course, color }))
       .filter(App.current().filterCourse)
       .sort((c1, cs2) => localeSort(c1.name, cs2.name))
+
+    const announcements = accountNotifications.list
+      .filter(({ id }) => !accountNotifications.closing.includes(id))
 
     const groups = Object.keys(state.entities.groups)
       .filter(id => state.entities.groups[id] && state.entities.groups[id].group)
@@ -374,12 +380,16 @@ export function mapStateToProps (isFullDashboard: boolean) {
         }
       })
 
-    return { pending, error, courses, totalCourseCount, isFullDashboard, groups }
+    const pending = state.favoriteCourses.pending + accountNotifications.pending
+    const error = state.favoriteCourses.error || accountNotifications.error
+
+    return { pending, error, announcements, courses, totalCourseCount, isFullDashboard, groups }
   }
 }
 
 const Refreshed = refresh(
   props => {
+    props.refreshNotifications()
     props.refreshCourses()
 
     if (App.current().appId === 'student') {
@@ -389,5 +399,9 @@ const Refreshed = refresh(
   props => props.courses.length === 0 || App.current().appId === 'student' && props.groups.length === 0,
   props => Boolean(props.pending)
 )(Dashboard)
-const Connected = connect(mapStateToProps(true), { ...CoursesActions, ...GroupsActions })(Refreshed)
-export default (Connected: *)
+const Connected = connect(mapStateToProps(true), {
+  ...AccountNotificationActions,
+  ...CoursesActions,
+  ...GroupsActions,
+})(Refreshed)
+export default Connected

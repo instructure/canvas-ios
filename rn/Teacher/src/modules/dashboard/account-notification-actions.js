@@ -16,22 +16,17 @@
 
 // @flow
 
-export type AccountNotificationIcon = 'information' | 'error' | 'warning' | 'question' | 'calendar'
+import { createAction } from 'redux-actions'
+import canvas from '../../canvas-api'
 
-export type AccountNotification = {
-  id: string,
-  subject: string,
-  message: string,
-  start_at: string,
-  end_at: string,
-  icon: AccountNotificationIcon,
-  role_ids: string[],
-}
+export let AccountNotificationActions = (api: CanvasApi) => ({
+  refreshNotifications: createAction('account.notification.refresh', () => ({
+    promise: api.getAccountNotifications(),
+  })),
+  closeNotification: createAction('account.notification.close', (id: string) => ({
+    id,
+    promise: api.deleteAccountNotification(id),
+  })),
+})
 
-export type Account = {
-  id: string,
-  name: string,
-  uuid: string,
-  parent_account_id: string,
-  root_account_id: string,
-}
+export default AccountNotificationActions(canvas)

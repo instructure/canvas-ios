@@ -70,6 +70,7 @@ const groups = [{
 let defaultProps = {
   navigator: template.navigator(),
   courses,
+  announcements: [],
   customColors: colors,
   refreshCourses: () => {},
   pending: 0,
@@ -77,6 +78,7 @@ let defaultProps = {
   refreshing: false,
   totalCourseCount: courses.length,
   isFullDashboard: true,
+  closeNotification () {},
   groups,
 }
 
