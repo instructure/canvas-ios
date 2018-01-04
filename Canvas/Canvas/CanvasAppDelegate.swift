@@ -35,30 +35,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         BuddyBuildSDK.setup()
-        
-        makeAWindow()
-        postLaunchSetup()
         TheKeymaster?.fetchesBranding = true
         TheKeymaster?.delegate = loginConfig
+        
+        let placeholder = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateViewController(withIdentifier: "LaunchScreen")
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = placeholder
+        window?.makeKeyAndVisible()
+        
+        if let icon = placeholder.view.viewWithTag(12345) {
+            icon.layer.add(StartupIconAnimation(), forKey: nil)
+        }
+        
+        DispatchQueue.main.async {
+            self.postLaunchSetup()
+        }
         
         return true
     }
     
     func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
-        if url.scheme == "file" {
-            do {
-                try ReceivedFilesViewController.add(toReceivedFiles: url)
-                return true
-            } catch let e as NSError {
-                handleError(e)
-            }
-        } else if url.scheme == "canvas-courses" {
-            return openCanvasURL(url)
-        } else if handleDropboxOpenURL(url) {
-            return true
-        }
-        
-        return false
+        return openCanvasURL(url)
     }
 
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
@@ -103,11 +100,6 @@ extension AppDelegate {
 
 // MARK: Post launch setup
 extension AppDelegate {
-    func makeAWindow() {
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateViewController(withIdentifier: "LaunchScreen")
-        window?.makeKeyAndVisible()
-    }
     
     func postLaunchSetup() {
         PSPDFKit.license()
@@ -206,29 +198,23 @@ extension AppDelegate {
 // MARK: Launching URLS
 extension AppDelegate {
     func openCanvasURL(_ url: URL) -> Bool {
-    
-        if url.scheme == "canvas-courses" {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+        StartupManager.shared.enqueueTask({
+            
+            if handleDropboxOpenURL(url) {
+                return
+            }
+            
+            if url.scheme == "file" {
+                do {
+                    try ReceivedFilesViewController.add(toReceivedFiles: url)
+                } catch let e as NSError {
+                    self.handleError(e)
+                }
+            } else {
                 Router.shared().openCanvasURL(url)
             }
-            return true
-        }
+        })
         
-        if url.scheme == "file" {
-            do {
-                try ReceivedFilesViewController.add(toReceivedFiles: url)
-                return true
-            } catch let e as NSError {
-                handleError(e)
-                return false
-            }
-        }
-        
-        if handleDropboxOpenURL(url) {
-            return true
-        }
-        
-        Router.shared().openCanvasURL(url)
         return true
     }
 }
@@ -239,7 +225,6 @@ extension AppDelegate: RCTBridgeDelegate {
     func prepareReactNative() {
         NativeLoginManager.shared().delegate = self
         NativeLoginManager.shared().app = .student
-        HelmManager.shared.showsLoadingState = false
         HelmManager.shared.bridge = RCTBridge(delegate: self, launchOptions: nil)
         HelmManager.shared.onReactLoginComplete = {
             guard let session = self.session else {

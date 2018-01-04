@@ -29,8 +29,8 @@ open class HelmManager: NSObject {
 
     public static let shared = HelmManager()
     public var bridge: RCTBridge!
-    public var showsLoadingState = true
     public var onReactLoginComplete: () -> Void = {}
+    public var onReactReload: () -> Void = {}
     
     @objc
     public func loginComplete() {
@@ -56,7 +56,7 @@ open class HelmManager: NSObject {
     }
 
     open func reactWillReload() {
-        showLoadingState()
+        onReactReload()
     }
 
     //  MARK: - Screen Configuration
@@ -290,24 +290,7 @@ open class HelmManager: NSObject {
         callback([result])
     }
     
-    open func initLoadingStateIfRequired() {
-        
-        if let _ = UIApplication.shared.keyWindow?.rootViewController as? CKMDomainPickerViewController {
-            return
-        }
-        
-        showLoadingState()
-    }
-    
-    open func showLoadingState() {
-        guard showsLoadingState == true else { return }
-        if UIApplication.shared.keyWindow?.rootViewController is LoadingStateViewController { return }
-        cleanup()
-        let controller = LoadingStateViewController()
-        UIApplication.shared.keyWindow?.rootViewController = controller
-    }
-    
-    func cleanup() {
+    public func cleanup() {
         
         // Cleanup is mainly used in rn reload situations or in ui testing
         // There is a bug where the view controllers are sometimes leaked, and I cannot for the life of me figure out why

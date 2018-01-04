@@ -63,10 +63,6 @@ RCT_EXPORT_METHOD(traitCollection:(NSString*)moduleName callback:(RCTResponseSen
     [[HelmManager shared] traitCollection:moduleName callback:callback];
 }
 
-RCT_EXPORT_METHOD(initLoadingStateIfRequired) {
-    [[HelmManager shared] initLoadingStateIfRequired];
-}
-
 RCT_EXPORT_METHOD(loginComplete) {
     [[HelmManager shared] loginComplete];
 }

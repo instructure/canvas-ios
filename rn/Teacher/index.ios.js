@@ -51,8 +51,6 @@ registerScreens(store)
 const NativeLogin = NativeModules.NativeLogin
 const Helm = NativeModules.Helm
 
-Helm.initLoadingStateIfRequired()
-
 const loginHandler = async ({
   appId,
   authToken,

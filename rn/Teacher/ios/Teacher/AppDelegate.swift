@@ -38,14 +38,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         BuddyBuildSDK.setup()
-        prepareReactNative()
-        preparePSPDFKit()
-        createMainWindow()
-        initiateLoginProcess()
-        setupForPushNotifications()
         Fabric.with([Crashlytics.self, Answers.self])
+        setupForPushNotifications()
+        preparePSPDFKit()
+        showLoadingState()
+        
+        DispatchQueue.main.async {
+            self.prepareReactNative()
+            self.initiateLoginProcess()
+        }
+        
         return true
-    }   
+    }
     
     func prepareReactNative() {
         HelmManager.shared.bridge = RCTBridge(delegate: self, launchOptions: nil)
@@ -53,19 +57,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         HelmManager.shared.onReactLoginComplete = {
             self.window?.rootViewController = RootTabBarController()
         }
-    }
-    
-    func preparePSPDFKit() {
-        if let key = Secrets.fetch(.teacherPSPDFKit) {
-            PSPDFKit.setLicenseKey(key)
-            PSPDFScrollView.swizzleAllTehThings()
+        HelmManager.shared.onReactReload = {
+            self.showLoadingState()
         }
     }
     
-    func createMainWindow() {
+    func showLoadingState() {
+        let placeholder = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateViewController(withIdentifier: "LaunchScreen")
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = UIViewController()
+        window?.rootViewController = placeholder
         window?.makeKeyAndVisible()
+        
+        if let icon = placeholder.view.viewWithTag(12345) {
+            icon.layer.add(StartupIconAnimation(), forKey: nil)
+        }
+    }
+    
+    func preparePSPDFKit() {
+        guard let key = Secrets.fetch(.teacherPSPDFKit) else { return }
+        PSPDFKit.setLicenseKey(key)
+        PSPDFScrollView.swizzleAllTehThings()
     }
     
     func initiateLoginProcess() {
