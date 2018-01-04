@@ -31,6 +31,7 @@ import * as externalTools from './external-tools'
 import * as mediaComments from './media-comments'
 import * as fileUploads from './file-uploads'
 import * as files from './files'
+import * as accounts from './accounts'
 
 export default ({
   ...coursesApi,
@@ -48,4 +49,5 @@ export default ({
   ...mediaComments,
   ...fileUploads,
   ...files,
+  ...accounts,
 }: *)

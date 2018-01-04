@@ -99,6 +99,10 @@ const images = {
   files: {
     folder: require('./files/folder.png'),
   },
+  masquerade: {
+    redPanda: require('./masquerade/red-panda.png'),
+    whitePanda: require('./masquerade/white-panda.png'),
+  },
   canvasLogo: require('./canvas-logo.png'),
   feedback: require('./feedback.png'),
   kabob: require('./kabob.png'),

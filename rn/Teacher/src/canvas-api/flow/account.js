@@ -16,16 +16,10 @@
 
 // @flow
 
-export type SessionUser = {
-  primary_email: string,
+export type Account = {
   id: string,
-  avatar_url: string,
   name: string,
-}
-
-export type Session = {
-  authToken: string,
-  baseURL: string,
-  user: SessionUser,
-  actAsUserID: ?string,
+  uuid: string,
+  parent_account_id: string,
+  root_account_id: string,
 }

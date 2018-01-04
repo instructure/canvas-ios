@@ -28,7 +28,7 @@ import {
 } from 'react-native'
 import store from './src/redux/store'
 import setupI18n from './i18n/setup'
-import { setSession } from './src/canvas-api'
+import { setSession, getSession, compareSessions } from './src/canvas-api'
 import { registerScreens } from './src/routing/register-screens'
 import { setupBrandingFromNativeBrandingInfo } from './src/common/branding'
 import logout from './src/redux/logout-action'
@@ -57,6 +57,7 @@ const loginHandler = async ({
   baseURL,
   branding,
   user,
+  actAsUserID,
   skipHydrate,
 }: {
   appId: AppId,
@@ -64,6 +65,7 @@ const loginHandler = async ({
   baseURL: string,
   branding: Object,
   user: SessionUser,
+  actAsUserID: ?string,
   skipHydrate: boolean,
 }) => {
   App.setCurrentApp(appId)
@@ -82,8 +84,14 @@ const loginHandler = async ({
     setSession(null)
     store.dispatch(logout)
   } else {
+    const session = { authToken, baseURL, user, actAsUserID }
+    const previous = getSession()
+    if (previous && !compareSessions(session, previous)) {
+      store.dispatch(logout)
+    }
+
     PushNotifications.requestPermissions()
-    setSession({ authToken, baseURL, user })
+    setSession(session)
     if (!skipHydrate) {
       await hydrateStoreFromPersistedState(store)
     } else {

@@ -14,18 +14,18 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-// @flow
+/* @flow */
 
-export type SessionUser = {
-  primary_email: string,
-  id: string,
-  avatar_url: string,
-  name: string,
-}
+import { createAction } from 'redux-actions'
+import canvas from '../../canvas-api'
 
-export type Session = {
-  authToken: string,
-  baseURL: string,
-  user: SessionUser,
-  actAsUserID: ?string,
-}
+export let UserInfoActions = (api: CanvasApi): * => ({
+  refreshCanMasquerade: createAction('userInfo.canMasquerade', () => {
+    return {
+      promise: api.roles('self'),
+      handlesError: true,
+    }
+  }),
+})
+
+export default (UserInfoActions(canvas): *)

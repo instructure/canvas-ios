@@ -86,10 +86,6 @@ export type AsyncActionState = {
   lastError?: ?string,
 }
 
-export type PendingNewDiscussionState = {
-  new?: AsyncState & { id?: ?string },
-}
-
 export type SubmissionSummaryState = {
   data: SubmissionSummary,
   pending: number,
@@ -208,4 +204,14 @@ export type AppState = {
   inbox: InboxState,
   toDo: ToDoState,
   asyncActions: { [string]: AsyncActionState },
+  userInfo: UserInfo,
+}
+
+export type UserInfo = {
+  canMasquerade: boolean,
+}
+
+// I moved this to the bottom because something with it is making vscode syntax highlighting stop working in this file
+export type PendingNewDiscussionState = {
+  new?: AsyncState & { id?: ?string },
 }

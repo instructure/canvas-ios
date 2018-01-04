@@ -17,7 +17,7 @@
 /* @flow */
 import { NativeModules, ActionSheetIOS, Linking, AlertIOS } from 'react-native'
 import React from 'react'
-import Profile from '../Profile.js'
+import { Profile } from '../Profile.js'
 import app from '../../app'
 
 // Note: test renderer must be required after react-native.
@@ -37,7 +37,7 @@ jest.mock('AlertIOS', () => ({
   alert: jest.fn(),
 }))
 
-const { navigator } = template
+let defaultProps = {}
 
 describe('Profile Tests', () => {
   beforeEach(() => {
@@ -49,10 +49,20 @@ describe('Profile Tests', () => {
       canSendMail: true,
     }
     app.setCurrentApp('teacher')
+    var navigator = template.navigator({
+      dismiss: jest.fn(() => {
+        return Promise.resolve()
+      }),
+    })
+    defaultProps = {
+      navigator: navigator,
+      refreshCanMasquerade: jest.fn(),
+      canMasquerade: true,
+    }
   })
   it('renders correctly', () => {
     const tree = renderer.create(
-      <Profile navigator={navigator} />
+      <Profile { ...defaultProps } canMasquerade={true} />
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -61,7 +71,15 @@ describe('Profile Tests', () => {
   it('renders correctly for students', () => {
     app.setCurrentApp('student')
     const tree = renderer.create(
-      <Profile navigator={navigator} />
+      <Profile { ...defaultProps } />
+    ).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('renders correctly without masquerade', () => {
+    const tree = renderer.create(
+      <Profile { ...defaultProps } canMasquerade={false} />
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -69,7 +87,7 @@ describe('Profile Tests', () => {
 
   it('logout methods called', () => {
     const instance = renderer.create(
-      <Profile navigator={navigator} />
+      <Profile { ...defaultProps } />
     ).getInstance()
 
     instance.logout()
@@ -79,37 +97,25 @@ describe('Profile Tests', () => {
   })
 
   it('navigate to student settings', async () => {
-    var navigator = template.navigator({
-      dismiss: jest.fn(() => {
-        return Promise.resolve()
-      }),
-    })
-
     app.setCurrentApp('student')
     const instance = renderer.create(
-      <Profile navigator={navigator} />
+      <Profile { ...defaultProps } />
     ).getInstance()
     await instance.settings()
-    expect(navigator.show).toHaveBeenCalledWith('/profile/settings', { modal: true })
+    expect(defaultProps.navigator.show).toHaveBeenCalledWith('/profile/settings', { modal: true })
   })
 
   it('navigate to user files', async () => {
-    var navigator = template.navigator({
-      dismiss: jest.fn(() => {
-        return Promise.resolve()
-      }),
-    })
-
     const instance = renderer.create(
-      <Profile navigator={navigator} />
+      <Profile { ...defaultProps } />
     ).getInstance()
     await instance.userFiles()
-    expect(navigator.show).toHaveBeenCalledWith('/users/self/files', { modal: true })
+    expect(defaultProps.navigator.show).toHaveBeenCalledWith('/users/self/files', { modal: true })
   })
 
   it('shows the action sheet', () => {
     const instance = renderer.create(
-      <Profile navigator={navigator} />
+      <Profile { ...defaultProps } />
     ).getInstance()
 
     instance.settings()
@@ -118,7 +124,7 @@ describe('Profile Tests', () => {
 
   it('redirects to Canvas Guides', () => {
     const instance = renderer.create(
-      <Profile navigator={navigator} />
+      <Profile { ...defaultProps } />
     ).getInstance()
 
     instance.handleActions(0)
@@ -127,7 +133,7 @@ describe('Profile Tests', () => {
 
   it('redirects to Terms of Use', () => {
     const instance = renderer.create(
-      <Profile navigator={navigator} />
+      <Profile { ...defaultProps } />
     ).getInstance()
 
     instance.handleActions(2)
@@ -145,7 +151,7 @@ describe('Profile Tests', () => {
     }
 
     const instance = renderer.create(
-      <Profile navigator={navigator} />
+      <Profile { ...defaultProps } />
     ).getInstance()
 
     instance.handleActions(1)
@@ -163,7 +169,7 @@ describe('Profile Tests', () => {
     }
 
     const instance = renderer.create(
-      <Profile navigator={navigator} />
+      <Profile { ...defaultProps } />
     ).getInstance()
 
     instance.handleActions(1)
@@ -177,7 +183,7 @@ describe('Profile Tests', () => {
     }
 
     const instance = renderer.create(
-      <Profile navigator={navigator} />
+      <Profile { ...defaultProps } />
     ).getInstance()
 
     instance.handleActions(1)
@@ -186,7 +192,7 @@ describe('Profile Tests', () => {
 
   it('cancel the action sheet', () => {
     const instance = renderer.create(
-      <Profile navigator={navigator} />
+      <Profile { ...defaultProps } />
     ).getInstance()
 
     instance.handleActions(3)
@@ -195,25 +201,20 @@ describe('Profile Tests', () => {
   })
 
   it('secret tap!', async () => {
-    var navigator = template.navigator({
-      dismiss: jest.fn(() => {
-        return Promise.resolve()
-      }),
-    })
     const instance = renderer.create(
-      <Profile navigator={navigator}/>
+      <Profile { ...defaultProps } />
     ).getInstance()
     var times = 12
     for (var i = 0; i < times; i++) {
       await instance.secretTap()
     }
-    expect(navigator.show).toHaveBeenCalled()
+    expect(defaultProps.navigator.show).toHaveBeenCalled()
   })
 
   it('render with no session', () => {
     setSession(null)
     const tree = renderer.create(
-      <Profile navigator={navigator}/>
+      <Profile { ...defaultProps }/>
     ).toJSON()
 
     expect(tree).toMatchSnapshot()

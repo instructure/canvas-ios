@@ -39,6 +39,7 @@ import { asyncActions } from './actions/async-tracker'
 import toDo from '../modules/to-do/reducer'
 import { filesData as files, foldersData as folders } from '../modules/files/reducer'
 import { entities as pages, frontPage } from '../modules/pages/reducer'
+import { userInfo } from '../modules/userInfo/reducer'
 
 const entities = combineReducers({
   courses,
@@ -65,6 +66,7 @@ const actualRootReducer: Reducer<AppState, Action> = combineReducers({
   entities: composeReducers(entities, frontPage),
   asyncActions,
   toDo,
+  userInfo,
 })
 
 export default function rootReducer (state: ?AppState, action: Action): AppState {

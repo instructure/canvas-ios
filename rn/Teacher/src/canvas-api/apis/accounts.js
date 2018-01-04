@@ -14,18 +14,17 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-// @flow
+/* @flow */
 
-export type SessionUser = {
-  primary_email: string,
-  id: string,
-  avatar_url: string,
-  name: string,
+import httpClient from '../httpClient'
+import { paginate, exhaust } from '../utils/pagination'
+
+// Only admins can hit this api successfully. Otherwise, will send back a 401
+export function account (): Promise<AxiosResponse<Account>> {
+  return httpClient().get('accounts/self')
 }
 
-export type Session = {
-  authToken: string,
-  baseURL: string,
-  user: SessionUser,
-  actAsUserID: ?string,
+export function roles (accountID: string): Promise<ApiResponse<Role[]>> {
+  const roles = paginate(`/accounts/${accountID}/roles`)
+  return exhaust(roles)
 }

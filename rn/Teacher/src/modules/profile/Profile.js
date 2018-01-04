@@ -38,11 +38,16 @@ import color from '../../common/colors'
 import device from 'react-native-device-info'
 import Row from '../../common/components/rows/Row'
 import RowSeparator from '../../common/components/rows/RowSeparator'
-
 import App from '../app'
-import { getSession } from '../../canvas-api'
+import canvas, { getSession } from '../../canvas-api'
+import { connect } from 'react-redux'
+import Actions from '../userInfo/actions'
 
-export default class Profile extends Component {
+export class Profile extends Component {
+
+  static defaultProps = {
+    account: canvas.account,
+  }
 
   constructor (props: any) {
     super(props)
@@ -60,12 +65,26 @@ export default class Profile extends Component {
     this.settingsActions = settingsActions
   }
 
+  componentDidMount () {
+    this.props.refreshCanMasquerade()
+  }
+
   logout = () => {
     NativeModules.NativeLogin.logout()
   }
 
   switchUser = () => {
     NativeModules.NativeLogin.switchUser()
+  }
+
+  toggleMasquerade = async () => {
+    let session = getSession()
+    await this.props.navigator.dismiss()
+    if (session && session.actAsUserID) {
+      NativeModules.NativeLogin.stopMasquerade()
+    } else {
+      this.props.navigator.show('/masquerade', { modal: true })
+    }
   }
 
   secretTap = async () => {
@@ -123,31 +142,26 @@ export default class Profile extends Component {
     let app = App.current()
     let isStudent = app.appId === 'student'
     let titleStyles = { fontSize: 20, fontWeight: '300' }
+    let session = getSession()
+    if (!session) { return <View /> }
 
+    const buildRow = (title: string, onPress: Function) => {
+      return (<View>
+                <Row
+                  title={title}
+                  titleStyles={titleStyles}
+                  onPress={onPress} />
+                <RowSeparator style={styles.separator} />
+              </View>)
+    }
+
+    const masquerading = !!session.actAsUserID
+    const masqueradeTitle = masquerading ? i18n('Stop Act as User') : i18n('Act as User')
     return (<View>
-              { isStudent &&
-                <View>
-                  <Row
-                    title={i18n('Files')}
-                    titleStyles={titleStyles}
-                    onPress={this.userFiles} />
-                  <RowSeparator style={styles.separator} />
-                </View>
-              }
-              <View>
-                <Row
-                  title={i18n('Change User')}
-                  titleStyles={titleStyles}
-                  onPress={this.switchUser} />
-                <RowSeparator style={styles.separator} />
-              </View>
-              <View>
-                <Row
-                  title={i18n('Log Out')}
-                  titleStyles={titleStyles}
-                  onPress={this.logout} />
-                <RowSeparator style={styles.separator} />
-              </View>
+              { isStudent && buildRow(i18n('Files'), this.userFiles) }
+              { (this.props.canMasquerade || masquerading) && buildRow(masqueradeTitle, this.toggleMasquerade) }
+              { buildRow(i18n('Change User'), this.switchUser) }
+              { buildRow(i18n('Log Out'), this.logout) }
             </View>)
   }
 
@@ -241,3 +255,11 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
 })
+
+export function mapStateToProps (state: AppState): UserInfo {
+  const { canMasquerade } = state.userInfo
+  return { canMasquerade }
+}
+
+let Connected = connect(mapStateToProps, { ...Actions })(Profile)
+export default (Connected: Component<any, CourseDetailsProps, any>)

@@ -85,6 +85,27 @@ RCT_EXPORT_METHOD(switchUser)
     [TheKeymaster switchUser];
 }
 
+RCT_EXPORT_METHOD(masquerade:(NSString *)userID domain:(NSString *)domain resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+{
+    [[NativeLoginManager shared] setShouldCleanupOnNextLogoutEvent:YES];
+    [[TheKeymaster masqueradeAsUserWithID:userID domain:domain] subscribeNext:^(CKIUser *user) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            resolve(user.JSONDictionary);
+        });
+    } error:^(NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSString *code = [@(error.code) stringValue];
+            reject(code, error.localizedDescription, nil);
+        });
+    }];
+}
+
+RCT_EXPORT_METHOD(stopMasquerade)
+{
+    [[NativeLoginManager shared] setShouldCleanupOnNextLogoutEvent:YES];
+    [TheKeymaster stopMasquerading];
+}
+
 RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(loginInformation)
 {
     NSDictionary *injected = [[NativeLoginManager shared] injectedLoginInfo];
@@ -196,6 +217,7 @@ RCT_EXPORT_METHOD(stopObserving)
                            @"user": client.currentUser.JSONDictionary,
                            @"baseURL": client.baseURL.absoluteString,
                            @"branding": client.branding ? [client.branding JSONDictionary] : @{},
+                           @"actAsUserID": client.actAsUserID ?: [NSNull null],
                            };
     
     [[NativeLogin sharedInstance] sendEventWithName:@"Login" body:body];

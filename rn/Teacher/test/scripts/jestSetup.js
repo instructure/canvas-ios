@@ -99,6 +99,20 @@ jest.mock('Animated', () => {
         },
       }
     },
+    loop: (value, config) => {
+      return {
+        start: (callback) => {
+          callback && callback()
+        },
+      }
+    },
+    sequence: (value, config) => {
+      return {
+        start: (callback) => {
+          callback && callback()
+        },
+      }
+    },
   }
 })
 

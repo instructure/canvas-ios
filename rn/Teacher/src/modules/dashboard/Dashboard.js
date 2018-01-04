@@ -360,7 +360,7 @@ export function mapStateToProps (isFullDashboard: boolean) {
       .sort((c1, cs2) => localeSort(c1.name, cs2.name))
 
     const groups = Object.keys(state.entities.groups)
-      .filter(id => state.entities.groups[id].group)
+      .filter(id => state.entities.groups[id] && state.entities.groups[id].group)
       .map((id) => {
         let group = state.entities.groups[id].group
         let groupColor = state.entities.groups[id].color

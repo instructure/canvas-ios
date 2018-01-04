@@ -30,6 +30,10 @@ export default function httpClient (version: ?string = 'api/v1'): any {
 
   // Make sure there is a trailing /
   const baseURL = session.baseURL.replace(/\/?$/, '/')
+  const params = {}
+  if (session.actAsUserID) {
+    params['as_user_id'] = session.actAsUserID
+  }
 
   return axios.create({
     baseURL: `${baseURL}${version || ''}`,
@@ -39,5 +43,6 @@ export default function httpClient (version: ?string = 'api/v1'): any {
         Accept: 'application/json+canvas-string-ids',
       },
     },
+    params,
   })
 }
