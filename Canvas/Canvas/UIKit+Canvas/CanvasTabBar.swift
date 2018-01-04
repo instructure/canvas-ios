@@ -31,6 +31,9 @@ class CanvasTabBarController: UITabBarController {
         super.viewDidAppear(animated)
         
         NotificationKitController.registerForPushNotificationsIfAppropriate(self)
+        DispatchQueue.main.async {
+            StartupManager.shared.markStartupFinished()
+        }
     }
 }
 

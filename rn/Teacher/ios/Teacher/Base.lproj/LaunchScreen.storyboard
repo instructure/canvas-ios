@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" tag="12345" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="spinner-icon" translatesAutoresizingMaskIntoConstraints="NO" id="pwt-X3-yOC">
+                            <imageView userInteractionEnabled="NO" tag="12345" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="spinnerLogo" translatesAutoresizingMaskIntoConstraints="NO" id="pwt-X3-yOC">
                                 <rect key="frame" x="147.5" y="293.5" width="80" height="80"/>
                             </imageView>
                         </subviews>
@@ -38,6 +38,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="spinner-icon" width="80" height="80"/>
+        <image name="spinnerLogo" width="80" height="80"/>
     </resources>
 </document>

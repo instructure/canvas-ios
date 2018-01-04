@@ -33,6 +33,13 @@ class RootTabBarController: UITabBarController {
         configureTabs()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        DispatchQueue.main.async {
+            StartupManager.shared.markStartupFinished()
+        }
+    }
+    
     func configureTabs() {
         var controllers = [coursesTab(),  toDoTab(), inboxTab()]
         #if DEBUG
