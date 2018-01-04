@@ -285,4 +285,36 @@ describe('groups', () => {
       color: '#7F91A7',
     }])
   })
+
+  it('skips over groups that have a color but no group yet', () => {
+    let newState = {
+      ...state,
+      entities: {
+        ...state.entities,
+        groups: {
+          ...state.entities.groups,
+          '4': {
+            color: '#fff',
+          },
+        },
+      },
+    }
+    expect(mapStateToProps(true)(newState).groups).toMatchObject([{
+      id: '1',
+      name: 'a',
+      contextName: 'a',
+      term: 'Default Term',
+      color: '#fff',
+    }, {
+      id: '2',
+      name: 'b',
+      contextName: 'Account Group',
+      color: '#eee',
+    }, {
+      id: '3',
+      name: 'c',
+      contextName: 'Account Group',
+      color: '#7F91A7',
+    }])
+  })
 })

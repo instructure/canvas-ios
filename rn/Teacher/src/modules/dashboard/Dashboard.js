@@ -359,18 +359,20 @@ export function mapStateToProps (isFullDashboard: boolean) {
       .filter(App.current().filterCourse)
       .sort((c1, cs2) => localeSort(c1.name, cs2.name))
 
-    const groups = Object.keys(state.entities.groups).map((id) => {
-      let group = state.entities.groups[id].group
-      let groupColor = state.entities.groups[id].color
-      let courseData = group.course_id && state.entities.courses[group.course_id]
-      return {
-        id: group.id,
-        name: group.name,
-        contextName: courseData ? courseData.course.name : i18n('Account Group'),
-        term: courseData && courseData.course.term.name,
-        color: groupColor || (courseData ? courseData.color : color.lightText),
-      }
-    })
+    const groups = Object.keys(state.entities.groups)
+      .filter(id => state.entities.groups[id].group)
+      .map((id) => {
+        let group = state.entities.groups[id].group
+        let groupColor = state.entities.groups[id].color
+        let courseData = group.course_id && state.entities.courses[group.course_id]
+        return {
+          id: group.id,
+          name: group.name,
+          contextName: courseData ? courseData.course.name : i18n('Account Group'),
+          term: courseData && courseData.course.term.name,
+          color: groupColor || (courseData ? courseData.color : color.lightText),
+        }
+      })
 
     return { pending, error, courses, totalCourseCount, isFullDashboard, groups }
   }

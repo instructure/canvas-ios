@@ -111,18 +111,18 @@ struct CanvadocsAnnotation: Codable {
             let sizeStr = fontInfoStr?.matches(for: "^[^\\d]*(\\d+)").first ?? "12"
             let family = fontInfoStr?.matches(for: "\\b(\\w+)$").first ?? "Helvetica"
             let size = Int(sizeStr) ?? 12
-            let text = try container.decode(String.self, forKey: .contents)
+            let text = try container.decodeIfPresent(String.self, forKey: .contents)
             let color = try container.decodeIfPresent(String.self, forKey: .color) ?? "#000000"
             let rect = try CanvadocsAnnotation.decodeRect(with: decoder, in: container)
-            self.type = .freeText(fontInfo: (family: family, size: size), text: text, rect: rect, color: color)
+            self.type = .freeText(fontInfo: (family: family, size: size), text: text ?? "", rect: rect, color: color)
         case "text":
-            let text = try container.decode(String.self, forKey: .contents)
+            let text = try container.decodeIfPresent(String.self, forKey: .contents)
             let rect = try CanvadocsAnnotation.decodeRect(with: decoder, in: container)
-            self.type = .comment(text: text, rect: rect)
+            self.type = .comment(text: text ?? "", rect: rect)
         case "commentReply":
             let parent = try container.decode(String.self, forKey: .parent)
-            let text = try container.decode(String.self, forKey: .contents)
-            self.type = .commentReply(parent: parent, text: text)
+            let text = try container.decodeIfPresent(String.self, forKey: .contents)
+            self.type = .commentReply(parent: parent, text: text ?? "")
         case "ink":
             let gestures = try CanvadocsAnnotation.decodeInklist(with: decoder, in: container)
             let rect = try CanvadocsAnnotation.decodeRect(with: decoder, in: container)
