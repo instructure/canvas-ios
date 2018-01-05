@@ -185,7 +185,7 @@ class GradesWidgetTableViewController: TableViewController {
         if let client = CanvasKeymaster.the().currentClient {
             let session = client.authSession
             do {
-                collection = try Course.allCoursesCollection(session)
+                collection = try Course.favoritesCollection(session)
                 if let collection = collection {
                     dataSource = CollectionTableViewDataSource(collection: collection) { course -> CourseGradesWidgetCellViewModel in
                         return CourseGradesWidgetCellViewModel(course: course)
