@@ -13,6 +13,7 @@ import Marshal
 private enum ActionType: String {
     case refreshCourses = "courses.refresh"
     case updateCourseColor = "courses.updateColor"
+    case toggleFavorite = "courses.toggleFavorite"
 }
 
 private struct Action {
@@ -34,6 +35,7 @@ private struct Action {
 private enum AsyncAction {
     case refreshCourses([JSONObject], JSONObject)
     case updateCourseColor(String, String)
+    case toggleFavorite(String, Bool)
 
     init?(action: Action) {
         switch action.type {
@@ -51,6 +53,12 @@ private enum AsyncAction {
                 self = .updateCourseColor(courseID, color)
                 return
             }
+        case .toggleFavorite:
+            if let courseID: String = try? action.payload <| "courseID",
+                let isFavorite: Bool = try? action.payload <| "markAsFavorite" {
+                self = .toggleFavorite(courseID, isFavorite)
+                return
+            }
         }
         return nil
     }
@@ -58,8 +66,9 @@ private enum AsyncAction {
     func syncProducer(_ session: Session) -> SignalProducer<Void, NSError> {
         switch self {
         case .refreshCourses(let courses, let customColors):
+            let remote = SignalProducer<[JSONObject], NSError>(value: courses)
             let courses = attemptProducer { try session.enrollmentManagedObjectContext() }
-                .flatMap(.latest) { Course.upsert(inContext: $0.syncContext, jsonArray: Course.filter(rawCourses: courses)).observe(on: ManagedObjectContextScheduler(context: $0.syncContext)) }
+                .flatMap(.latest) { Course.syncSignalProducer(inContext: $0, fetchRemote: remote) }
                 .map { _ in () }
 
             let colors = attemptProducer { try session.enrollmentManagedObjectContext() }
@@ -72,6 +81,14 @@ private enum AsyncAction {
             guard let color = UIColor.colorFromHexString(hex) else { return .empty }
             return attemptProducer { try session.enrollmentManagedObjectContext() }
                 .flatMap(.latest) { Enrollment.writeFavoriteColors([contextID: color], inContext: $0) }
+        case .toggleFavorite(let courseID, let isFavorite):
+            return attemptProducer {
+                let context = try session.enrollmentManagedObjectContext()
+                let contextID = ContextID(id: courseID, context: .course)
+                let enrollment = try Course.findOne(contextID, inContext: context)
+                enrollment?.isFavorite = isFavorite
+                try context.save()
+            }
         }
     }
 }

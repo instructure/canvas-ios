@@ -25,6 +25,7 @@ export let FavoritesActions = (api: CanvasApi): * => ({
       promise: markAsFavorite ? api.favoriteCourse(courseID) : api.unfavoriteCourse(courseID),
       courseID,
       markAsFavorite,
+      syncToNative: true,
     }
   }),
 })

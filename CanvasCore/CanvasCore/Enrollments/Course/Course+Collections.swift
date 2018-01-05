@@ -50,13 +50,13 @@ extension Course {
         )
     }
 
-    public static func refresher(_ session: Session) throws -> Refresher {
+    public static func refresher(_ session: Session, ttl: TimeInterval = 2.hours) throws -> Refresher {
         let remote = try Course.getAllCourses(session)
         let context = try session.enrollmentManagedObjectContext()
         let sync = Course.syncSignalProducer(inContext: context, fetchRemote: remote).map({_ in })
         let colors = Enrollment.syncFavoriteColors(session, inContext: context)
         let key = cacheKey(context)
         
-        return SignalProducerRefresher(refreshSignalProducer: sync.concat(colors), scope: session.refreshScope, cacheKey: key)
+        return SignalProducerRefresher(refreshSignalProducer: sync.concat(colors), scope: session.refreshScope, cacheKey: key, ttl: ttl)
     }
 }

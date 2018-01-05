@@ -131,6 +131,7 @@ class GradesTodayWidgetViewController: UIViewController, NCWidgetProviding, Grad
     }
     
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
+        tableViewController?.refresh()
         completionHandler(NCUpdateResult.newData)
     }
 }
@@ -168,11 +169,11 @@ extension GradesWidgetTableViewController: GradesWidgetHeightProtocol {
 class GradesWidgetTableViewController: TableViewController {
     
     public var errorDelegate: GradesWidgetErrorProtocol?
-    private var collection: FetchedCollection<Course>?
+    var collection: FetchedCollection<Course>?
 
     override func viewDidLoad() {
+        prepareTable()
         super.viewDidLoad()
-        preparTable()
         self.view.backgroundColor = .clear
         tableView.backgroundColor = .clear
     }
@@ -181,16 +182,16 @@ class GradesWidgetTableViewController: TableViewController {
         refresher?.refresh(false)
     }
     
-    private func preparTable() {
+    private func prepareTable() {
         if let client = CanvasKeymaster.the().currentClient {
             let session = client.authSession
             do {
-                collection = try Course.allCoursesCollection(session)
+                collection = try Course.favoritesCollection(session)
                 if let collection = collection {
                     dataSource = CollectionTableViewDataSource(collection: collection) { course -> CourseGradesWidgetCellViewModel in
                         return CourseGradesWidgetCellViewModel(course: course)
                     }
-                    refresher = try Course.refresher(session)
+                    refresher = try Course.refresher(session, ttl: 30.minutes)
                 }
             }
             catch {
