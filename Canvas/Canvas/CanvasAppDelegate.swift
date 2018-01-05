@@ -22,6 +22,7 @@ import Fabric
 import Crashlytics
 import CanvasCore
 import ReactiveSwift
+import BugsnagReactNative
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -36,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         BuddyBuildSDK.setup()
+        BugsnagReactNative.start()
         TheKeymaster?.fetchesBranding = true
         TheKeymaster?.delegate = loginConfig
         

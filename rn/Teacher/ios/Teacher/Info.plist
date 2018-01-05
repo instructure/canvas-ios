@@ -88,5 +88,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<key>BugsnagAPIKey</key>
+	<string>2f55f80393ae9510379f412d8dbefb25</string>
 </dict>
 </plist>

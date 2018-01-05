@@ -23,6 +23,7 @@ import Fabric
 import Crashlytics
 import CanvasCore
 import React
+import BugsnagReactNative
 
 public let EarlGreyExists = NSClassFromString("EarlGreyImpl") != nil;
 
@@ -38,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         BuddyBuildSDK.setup()
+        BugsnagReactNative.start()
         Fabric.with([Crashlytics.self, Answers.self])
         setupForPushNotifications()
         preparePSPDFKit()

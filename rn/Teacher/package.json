@@ -23,6 +23,8 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
+    "bugsnag-react-native": "^2.7.5",
+    "bugsnag-sourcemaps": "^1.0.1",
     "bytes": "https://github.com/n8armstrong/bytes.js",
     "create-react-class": "15.6.2",
     "filesize": "^3.5.10",

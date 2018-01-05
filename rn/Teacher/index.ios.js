@@ -38,6 +38,11 @@ import hydrate from './src/redux/hydrate-action'
 import { beginUpdatingUnreadCount, stopUpdatingUnreadCount } from './src/modules/inbox/update-unread-count'
 import App, { type AppId } from './src/modules/app'
 
+import { Client, Configuration } from 'bugsnag-react-native'
+const configuration = new Configuration()
+configuration.notifyReleaseStages = ['testflight', 'production']
+global.crashReporter = new Client(configuration)
+
 global.v12 = false
 
 const PushNotifications = NativeModules.PushNotifications
