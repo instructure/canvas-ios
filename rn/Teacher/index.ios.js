@@ -37,10 +37,12 @@ import { hydrateStoreFromPersistedState } from './src/redux/middleware/persist'
 import hydrate from './src/redux/hydrate-action'
 import { beginUpdatingUnreadCount, stopUpdatingUnreadCount } from './src/modules/inbox/update-unread-count'
 import App, { type AppId } from './src/modules/app'
+import device from 'react-native-device-info'
 
 import { Client, Configuration } from 'bugsnag-react-native'
 const configuration = new Configuration()
 configuration.notifyReleaseStages = ['testflight', 'production']
+configuration.appVersion = `${device.getVersion()}-${device.getBuildNumber()}`
 global.crashReporter = new Client(configuration)
 
 global.v12 = false
