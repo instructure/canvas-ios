@@ -34,6 +34,7 @@ export let CoursesActions = (api: CanvasApi): * => ({
       courseID,
       color,
       promise: api.updateCourseColor(courseID, color),
+      syncToNative: true,
     }
   }),
   refreshGradingPeriods: createAction('courses.refreshGradingPeriods', (courseID: string) => {

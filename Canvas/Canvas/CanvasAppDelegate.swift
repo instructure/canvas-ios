@@ -234,6 +234,8 @@ extension AppDelegate: RCTBridgeDelegate {
                 return
             }
 
+            self.syncDisposable = startSyncingAsyncActions(session)
+
             let root = rootViewController(session)
             self.addClearCacheGesture(root.view)
             self.window?.rootViewController = root
@@ -290,7 +292,6 @@ extension AppDelegate: NativeLoginManagerDelegate {
         LegacyModuleProgressShim.observeProgress(session)
         ModuleItem.beginObservingProgress(session)
         CKCanvasAPI.updateCurrentAPI()
-        syncDisposable = startSyncingAsyncActions(session)
         
         let b = Brand.current
         guard let brand = CKIBrand() else {

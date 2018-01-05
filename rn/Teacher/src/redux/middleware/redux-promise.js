@@ -58,11 +58,11 @@ let promiseMiddleware = <S, A: Action>({ dispatch }: MiddlewareAPI<S, A>): Middl
       promise.then(
         result => {
           let payload = { ...action.payload, result }
+          delete payload.promise
           action.payload.syncToNative && NativeModules.NativeNotificationCenter.postAsyncActionNotification({
             type: action.type,
-            result,
+            payload,
           })
-          delete payload.promise
           if (tracksAsyncActions) dispatch(resolved(action.type))
           return dispatch({ ...action, payload })
         },

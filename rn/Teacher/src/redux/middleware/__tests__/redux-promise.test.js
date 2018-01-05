@@ -102,6 +102,10 @@ test('it post notification on resolution', async () => {
 
   expect(spy).toHaveBeenCalledWith({
     type: 'test',
-    result: 'yay',
+    payload: {
+      id: 1,
+      syncToNative: true,
+      result: 'yay',
+    },
   })
 })

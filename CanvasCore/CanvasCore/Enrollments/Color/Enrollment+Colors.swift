@@ -22,9 +22,10 @@ import Marshal
 
 import CoreData
 
+typealias CustomColors = [ContextID: UIColor]
 
 extension Enrollment {
-    static func parseColors(_ json: JSONObject) -> SignalProducer<[ContextID: UIColor], NSError> {
+    static func parseColors(_ json: JSONObject) -> SignalProducer<CustomColors, NSError> {
         return attemptProducer {
             let customColors: JSONObject = try json <| "custom_colors"
             var contexts: [ContextID: UIColor] = [:]
@@ -40,28 +41,32 @@ extension Enrollment {
         }
     }
     
-    static func getCustomColors(_ session: Session) -> SignalProducer<[ContextID: UIColor], NSError> {
+    static func getCustomColors(_ session: Session) -> SignalProducer<JSONObject, NSError> {
         let path = "/api/v1/users/self/colors"
         
         return attemptProducer { try session.GET(path) }
             .flatMap(.merge, transform: session.JSONSignalProducer)
-            .flatMap(.merge, transform: parseColors)
     }
     
     static func syncFavoriteColors(_ session: Session, inContext context: NSManagedObjectContext) -> SignalProducer<(), NSError> {
+        return getCustomColors(session).flatMap(.merge) { writeFavoriteColors($0, inContext: context) }
+    }
+
+    static func writeFavoriteColors(_ colors: JSONObject, inContext context: NSManagedObjectContext) -> SignalProducer<(), NSError> {
+        return parseColors(colors).flatMap(.merge) { writeFavoriteColors($0, inContext: context) }
+    }
+
+    static func writeFavoriteColors(_ colors: CustomColors, inContext context: NSManagedObjectContext) -> SignalProducer<(), NSError> {
         let sync = context.syncContext
-        return getCustomColors(session)
-            .observe(on: ManagedObjectContextScheduler(context: sync))
-            .flatMap(.merge) { colors in
-                return attemptProducer {
-                    for (contextID, color) in colors {
-                        let enrollment = try Enrollment.findOne(contextID, inContext: sync)
-                        enrollment?.color.value = color
-                    }
-                    
-                    try sync.save()
-                }
+        return attemptProducer {
+            for (contextID, color) in colors {
+                let enrollment = try Enrollment.findOne(contextID, inContext: sync)
+                enrollment?.color.value = color
             }
+
+            try sync.save()
+        }
+        .observe(on: ManagedObjectContextScheduler(context: sync))
     }
 }
 
