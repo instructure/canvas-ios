@@ -81,8 +81,9 @@
                                                                                                     style:UIBarButtonItemStyleDone
                                                                                                    target:self
                                                                                                    action:@selector(createDiscussion)];
-
-
+    self.titleField.placeholder = NSLocalizedString(@"Title" ,@"Discussion title placeholder");
+    self.threadedSwitchLabel.text = NSLocalizedString(@"Threaded" ,@"Threaded switch label to to make discussion threaded");
+    
     CGRect frame = CGRectMake(0,0,descriptionContainer.frame.size.width,descriptionContainer.frame.size.height);
     descriptionInputView = [[CKRichTextInputView alloc] initWithFrame:frame];
     descriptionInputView.autoresizingMask = (UIViewAutoresizingFlexibleWidth |

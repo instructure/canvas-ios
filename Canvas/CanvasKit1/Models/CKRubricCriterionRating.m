@@ -122,13 +122,16 @@
     if (myIndex == NSNotFound) {
         return myPoints;
     }
+    
+    NSString *nextPoints;
     if (nextIndex >= ratings.count) {
-        NSString *nextPoints = [self.decimalFormatter stringFromNumber:@(0)];
-        return [NSString stringWithFormat:@"%@ to > %@ pts", myPoints, nextPoints];
+        nextPoints = [self.decimalFormatter stringFromNumber:@(0)];
     }
-    CKRubricCriterionRating *nextRating = [ratings objectAtIndex:nextIndex];
-    NSString *nextPoints = [self.decimalFormatter stringFromNumber:@(nextRating.points)];
-    return [NSString stringWithFormat:@"%@ to > %@ pts", myPoints, nextPoints];
+    else {
+        CKRubricCriterionRating *nextRating = [ratings objectAtIndex:nextIndex];
+        nextPoints = [self.decimalFormatter stringFromNumber:@(nextRating.points)];
+    }
+    return [NSString stringWithFormat:NSLocalizedString(@"%@ to > %@ pts",@"{point range max} to > {point range min} pts"), myPoints, nextPoints];
 }
 
 

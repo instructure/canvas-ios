@@ -60,7 +60,7 @@
 
 + (CKIAccountDomain *)cantFindSchool {
     CKIAccountDomain *canvasNetSchool = [CKIAccountDomain new];
-    canvasNetSchool.name = @"Can't find your school?";
+    canvasNetSchool.name = NSLocalizedStringFromTableInBundle(@"Can't find your school?", nil, [NSBundle bundleForClass:[self class]], @"Help label when user can't find their school.");
     return canvasNetSchool;
 }
 

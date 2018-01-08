@@ -217,7 +217,12 @@ open class AudioRecorderView: UIView {
     
     open override func awakeFromNib() {
         super.awakeFromNib()
+        localizeButtons()
         state.transitionToState(self, animated: false)
+    }
+    
+    func localizeButtons() {
+        cancelButton.setTitle(NSLocalizedString("Cancel", tableName: "Localizable", bundle: .core, value: "", comment: "Cancel Audio recording."), for: .normal)
     }
     
     // MARK: callbacks

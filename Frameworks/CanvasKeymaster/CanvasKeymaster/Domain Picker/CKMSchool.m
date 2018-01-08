@@ -57,7 +57,7 @@
 
 + (CKMSchool *)cantFindSchool {
     CKMSchool *canvasNetSchool = [CKMSchool new];
-    canvasNetSchool.name = NSLocalizedString(@"Can't find your school?", @"Help label when user can't find their school.");
+    canvasNetSchool.name = NSLocalizedStringFromTableInBundle(@"Can't find your school?", nil, [NSBundle bundleForClass:[self class]], @"Help label when user can't find their school.");
     return canvasNetSchool;
 }
 

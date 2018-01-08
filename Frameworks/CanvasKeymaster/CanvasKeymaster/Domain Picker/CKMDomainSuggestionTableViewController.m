@@ -108,17 +108,18 @@
     CLLocation *currentLocation = [[CKMLocationManager sharedInstance] currentLocation];
     
     if ([school.name isEqualToString:@"Canvas Network"]) {
-        cell.detailTextLabel.text = NSLocalizedString(@"Right Behind You", nil);
+        cell.detailTextLabel.text = NSLocalizedStringFromTableInBundle(@"Right Behind You", nil, [NSBundle bundleForClass:[self class]], nil);
 
     }
     // No domain means the user clicked on the help cell
     else if (!school.domain) {
-        cell.detailTextLabel.text = NSLocalizedString(@"Enter your school's domain or tap for help.", @"Subtitle help text describing how to find a school.");
+        cell.detailTextLabel.text = NSLocalizedStringFromTableInBundle(@"Enter your school's domain or tap for help.", nil, [NSBundle bundleForClass:[self class]], @"Subtitle help text describing how to find a school.");
+        
 
     }
     // if we have a current location, let's show it off
     else if (currentLocation && school.distance) {
-        NSString *template = NSLocalizedString(@"%@ miles away", @"The distance in miles that a user is from a school.");
+        NSString *template = NSLocalizedStringFromTableInBundle(@"%@ miles away", nil, [NSBundle bundleForClass:[self class]], @"The distance in miles that a user is from a school.");
         cell.detailTextLabel.text = [NSString stringWithFormat:template, [self.numberFormatter stringFromNumber:school.distance]];
 
     } else {

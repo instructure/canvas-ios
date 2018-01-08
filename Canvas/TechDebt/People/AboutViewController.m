@@ -52,6 +52,7 @@ typedef NS_ENUM(NSInteger, LegalRows) {
 @property (strong, nonatomic) IBOutlet UILabel *EULALabel;
 @property (strong, nonatomic) IBOutlet UILabel *privacyPolicyLabel;
 @property (strong, nonatomic) IBOutlet UILabel *termsOfUseLabel;
+@property (strong, nonatomic) IBOutlet UILabel *openSourceLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *nameField;
 @property (weak, nonatomic) IBOutlet UILabel *emailField;
@@ -100,6 +101,7 @@ typedef NS_ENUM(NSInteger, LegalRows) {
     [self.EULALabel setText:NSLocalizedString(@"EULA", @"Link to the End User License Agreement document")];
     [self.privacyPolicyLabel setText:NSLocalizedString(@"Privacy Policy", @"Link to the privacy policy")];
     [self.termsOfUseLabel setText:NSLocalizedString(@"Terms of Use", @"Link to the Terms of Use")];
+    [self.openSourceLabel setText:NSLocalizedString(@"Open Source Components", @"Link to Open Source Components")];
     [self.subscribeCalendarLabel setText:NSLocalizedString(@"Subscribe to calendar feed", @"Subscribe to calendar feed allows the user to export their calendar events to a 3rd party calendar")];
 }
 

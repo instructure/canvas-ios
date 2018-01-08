@@ -107,6 +107,7 @@ UIColor *CKPostButtonDisabledColor() {
     self.webView.accessibilityLabel = NSLocalizedString(@"Add comment", nil);
     [self.sendButton setIsAccessibilityElement:YES];
     self.sendButton.accessibilityLabel = NSLocalizedString(@"Post comment", nil);
+    [self.sendButton setTitle:NSLocalizedString(@"Post", nil) forState:UIControlStateNormal];
     [self.addAttachmentButton setIsAccessibilityElement:YES];
     self.addAttachmentButton.accessibilityLabel = NSLocalizedString(@"Add attachment", nil);
     [self.webView setKeyboardDisplayRequiresUserAction:NO];

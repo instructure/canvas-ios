@@ -48,6 +48,7 @@ function run(cmd, args, opts) {
 
 async function exportTranslations() {
   const toUpload = []
+  const localizeInfoPlistOfTheseProjects = ['canvas', 'parent', 'teacher_native']
   for (const project of projects) {
     if (program.project && project.name !== program.project) continue
 
@@ -63,8 +64,10 @@ async function exportTranslations() {
       ], { cwd: '..' })
 
       const file = `../${outputPath}en.xliff`
-      const xml = readFileSync(file, 'utf8')
-        .replace(/<file[^>]*Info\.plist[\s\S]*?<\/file>\s*/g, '')
+	  let xml = readFileSync(file, 'utf8')
+	  if(!localizeInfoPlistOfTheseProjects.includes(project.name)) {
+        xml = xml.replace(/<file[^>]*Info\.plist[\s\S]*?<\/file>\s*/g, '')
+	  }
       writeFileSync(file, xml, 'utf8')
       toUpload.push({ from: file, to: `${project.name}.xliff` })
     } else {

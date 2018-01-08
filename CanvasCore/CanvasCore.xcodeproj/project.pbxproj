@@ -30,6 +30,7 @@
 		2CE40C9C1F87D37100ECEACB /* PSPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B11F843B58001A8F31 /* PSPDFView.swift */; };
 		2CE40C9D1F87D37300ECEACB /* PSPDFViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B31F843B59001A8F31 /* PSPDFViewManager.m */; };
 		2CFAFBD11FD21B3800F22C7F /* WindowTraits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFAFBD01FD21B3800F22C7F /* WindowTraits.swift */; };
+		3BA8BE9B1FE2ED85003EC4FD /* SubmissionConfirmationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BA8BE9D1FE2ED85003EC4FD /* SubmissionConfirmationViewController.xib */; };
 		3BD43DE91FD20597001A6B34 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD43DE81FD20597001A6B34 /* EmptyViewController.swift */; };
 		3BDE87761FD76BE600912CB3 /* UISplitViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */; };
 		4902ADBE1FB26E860004837D /* LTIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4902ADBD1FB26E860004837D /* LTIViewController.swift */; };
@@ -325,7 +326,6 @@
 		49CE96661F8FF41B00121A43 /* QuizService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96171F8FF41A00121A43 /* QuizService.swift */; };
 		49CE96671F8FF41B00121A43 /* QuizDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49CE96181F8FF41A00121A43 /* QuizDetailCell.xib */; };
 		49CE96681F8FF41B00121A43 /* QuestionDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE961B1F8FF41A00121A43 /* QuestionDescriptionCell.swift */; };
-		49CE96691F8FF41B00121A43 /* SubmissionConfirmationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49CE961C1F8FF41A00121A43 /* SubmissionConfirmationViewController.xib */; };
 		49CE966A1F8FF41B00121A43 /* QuizPresentingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE961D1F8FF41A00121A43 /* QuizPresentingViewController.swift */; };
 		49CE966B1F8FF41B00121A43 /* QuestionDrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE961F1F8FF41A00121A43 /* QuestionDrawerViewController.swift */; };
 		49CE966C1F8FF41B00121A43 /* QuestionDrawerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96201F8FF41A00121A43 /* QuestionDrawerCell.swift */; };
@@ -521,6 +521,27 @@
 		2CD6B56E1FD20A9800C7DE15 /* WindowTraitsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WindowTraitsManager.h; sourceTree = "<group>"; };
 		2CD6B56F1FD20A9800C7DE15 /* WindowTraitsManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WindowTraitsManager.m; sourceTree = "<group>"; };
 		2CFAFBD01FD21B3800F22C7F /* WindowTraits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowTraits.swift; sourceTree = "<group>"; };
+		3BA8BE9C1FE2ED85003EC4FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SubmissionConfirmationViewController.xib; sourceTree = "<group>"; };
+		3BA8BE9F1FE2ED98003EC4FD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
+		3BA8BEA11FE2EDA9003EC4FD /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
+		3BA8BEA21FE2EDAB003EC4FD /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
+		3BA8BEA31FE2EDAE003EC4FD /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
+		3BA8BEA41FE2EDB3003EC4FD /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/SubmissionConfirmationViewController.strings"; sourceTree = "<group>"; };
+		3BA8BEA71FE2EDBE003EC4FD /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
+		3BA8BEA91FE2EDC2003EC4FD /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/SubmissionConfirmationViewController.strings"; sourceTree = "<group>"; };
+		3BA8BEAB1FE2EDC8003EC4FD /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
+		3BA8BEAD1FE2EDCC003EC4FD /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
+		3BA8BEAF1FE2EDD0003EC4FD /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/SubmissionConfirmationViewController.strings"; sourceTree = "<group>"; };
+		3BA8BEB11FE2EDD5003EC4FD /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
+		3BA8BEB31FE2EDE4003EC4FD /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/SubmissionConfirmationViewController.strings"; sourceTree = "<group>"; };
+		3BA8BEB51FE2EDE9003EC4FD /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
+		3BA8BEB71FE2EDEC003EC4FD /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/SubmissionConfirmationViewController.strings"; sourceTree = "<group>"; };
+		3BA8BEB91FE2EDF2003EC4FD /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
+		3BA8BEBB1FE2EDF5003EC4FD /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
+		3BA8BEBD1FE2EDFA003EC4FD /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
+		3BA8BEBF1FE2EDFE003EC4FD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
+		3BA8BEC11FE2EE03003EC4FD /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
+		3BA8BEC31FE2EE09003EC4FD /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
 		3BD43DE81FD20597001A6B34 /* EmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
 		3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISplitViewControllerExtensions.swift; sourceTree = "<group>"; };
 		4902ADBD1FB26E860004837D /* LTIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTIViewController.swift; sourceTree = "<group>"; };
@@ -848,7 +869,6 @@
 		49CE96181F8FF41A00121A43 /* QuizDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuizDetailCell.xib; sourceTree = "<group>"; };
 		49CE96191F8FF41A00121A43 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/TimedQuizViewController.strings; sourceTree = "<group>"; };
 		49CE961B1F8FF41A00121A43 /* QuestionDescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionDescriptionCell.swift; sourceTree = "<group>"; };
-		49CE961C1F8FF41A00121A43 /* SubmissionConfirmationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SubmissionConfirmationViewController.xib; sourceTree = "<group>"; };
 		49CE961D1F8FF41A00121A43 /* QuizPresentingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizPresentingViewController.swift; sourceTree = "<group>"; };
 		49CE961F1F8FF41A00121A43 /* QuestionDrawerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionDrawerViewController.swift; sourceTree = "<group>"; };
 		49CE96201F8FF41A00121A43 /* QuestionDrawerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionDrawerCell.swift; sourceTree = "<group>"; };
@@ -2238,7 +2258,7 @@
 			isa = PBXGroup;
 			children = (
 				49CE961B1F8FF41A00121A43 /* QuestionDescriptionCell.swift */,
-				49CE961C1F8FF41A00121A43 /* SubmissionConfirmationViewController.xib */,
+				3BA8BE9D1FE2ED85003EC4FD /* SubmissionConfirmationViewController.xib */,
 				49CE961D1F8FF41A00121A43 /* QuizPresentingViewController.swift */,
 				49CE961E1F8FF41A00121A43 /* Question Drawer */,
 				49CE96221F8FF41A00121A43 /* SubmissionViewController.swift */,
@@ -2841,7 +2861,7 @@
 			files = (
 				49383CF31F8498DA009C8F8E /* CanvasCore.xcassets in Resources */,
 				9F544E051FBB766E00BB2D84 /* InfoPlist.strings in Resources */,
-				49CE96691F8FF41B00121A43 /* SubmissionConfirmationViewController.xib in Resources */,
+				3BA8BE9B1FE2ED85003EC4FD /* SubmissionConfirmationViewController.xib in Resources */,
 				49CE96641F8FF41B00121A43 /* AnswersFinalViewController.xib in Resources */,
 				2CAF1B361F72B173007225DF /* secrets.plist in Resources */,
 				2C34211D1F7409CF00D8E158 /* components.plist in Resources */,
@@ -3375,6 +3395,34 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		3BA8BE9D1FE2ED85003EC4FD /* SubmissionConfirmationViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3BA8BE9C1FE2ED85003EC4FD /* Base */,
+				3BA8BE9F1FE2ED98003EC4FD /* de */,
+				3BA8BEA11FE2EDA9003EC4FD /* ar */,
+				3BA8BEA21FE2EDAB003EC4FD /* ja */,
+				3BA8BEA31FE2EDAE003EC4FD /* mi */,
+				3BA8BEA41FE2EDB3003EC4FD /* zh-HK */,
+				3BA8BEA71FE2EDBE003EC4FD /* nb */,
+				3BA8BEA91FE2EDC2003EC4FD /* en-GB */,
+				3BA8BEAB1FE2EDC8003EC4FD /* es */,
+				3BA8BEAD1FE2EDCC003EC4FD /* da */,
+				3BA8BEAF1FE2EDD0003EC4FD /* fr-CA */,
+				3BA8BEB11FE2EDD5003EC4FD /* sv */,
+				3BA8BEB31FE2EDE4003EC4FD /* en-AU */,
+				3BA8BEB51FE2EDE9003EC4FD /* pl */,
+				3BA8BEB71FE2EDEC003EC4FD /* pt-BR */,
+				3BA8BEB91FE2EDF2003EC4FD /* ru */,
+				3BA8BEBB1FE2EDF5003EC4FD /* fr */,
+				3BA8BEBD1FE2EDFA003EC4FD /* nl */,
+				3BA8BEBF1FE2EDFE003EC4FD /* pt */,
+				3BA8BEC11FE2EE03003EC4FD /* ht */,
+				3BA8BEC31FE2EE09003EC4FD /* zh */,
+			);
+			name = SubmissionConfirmationViewController.xib;
+			sourceTree = "<group>";
+		};
 		49CE95F41F8FF41900121A43 /* TimedQuizViewController.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
