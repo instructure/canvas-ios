@@ -23,6 +23,12 @@
   "account_group_cb00ca73": {
     "message": "Account Group"
   },
+  "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
+    "message": "\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users'' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user."
+  },
+  "act_as_user_d7ef0e48": {
+    "message": "Act as User"
+  },
   "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
     "message": "Add a few of your favorite courses to make this place your home."
   },
@@ -428,11 +434,20 @@
   "discussions_a5f96392": {
     "message": "Discussions"
   },
+  "dismiss_dacdb625": {
+    "message": "Dismiss"
+  },
+  "dismiss_name_8646b9fd": {
+    "message": "Dismiss { name }"
+  },
   "display_grade_as_7b5376a6": {
     "message": "Display Grade As"
   },
   "display_grade_as_c165e9a6": {
     "message": "Display Grade as..."
+  },
+  "domain_3b54c511": {
+    "message": "Domain"
   },
   "done_54e3d4b6": {
     "message": "Done"
@@ -640,6 +655,9 @@
   },
   "hidden_files_inside_will_be_available_with_links_e9e3d233": {
     "message": "Hidden. Files inside will be available with links."
+  },
+  "hide_content_for_name_aee1723a": {
+    "message": "Hide content for { name }"
   },
   "hide_correct_answers_at_b1a59408": {
     "message": "Hide Correct Answers At"
@@ -1169,6 +1187,9 @@
   "start_recording_189496b9": {
     "message": "Start recording"
   },
+  "stop_act_as_user_4f2a4f22": {
+    "message": "Stop Act as User"
+  },
   "stop_playing_audio_96aed3bc": {
     "message": "Stop playing audio"
   },
@@ -1271,6 +1292,9 @@
   "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
     "message": "There was a error loading the list of enrollments"
   },
+  "there_was_a_problem_dismissing_the_announcement_9c5fb4c": {
+    "message": "There was a problem dismissing the announcement."
+  },
   "there_was_a_problem_loading_discussions_ce5318af": {
     "message": "There was a problem loading discussions."
   },
@@ -1303,6 +1327,9 @@
   },
   "there_was_an_error_loading_this_attachment_408acc12": {
     "message": "There was an error loading this attachment."
+  },
+  "there_was_an_error_with_act_as_user_please_try_aga_d9f9f8f1": {
+    "message": "There was an error with Act as User. Please try again later."
   },
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "There was an problem loading your messages."
@@ -1459,6 +1486,9 @@
   },
   "use_camera_47a0387b": {
     "message": "Use Camera"
+  },
+  "user_id_bcace870": {
+    "message": "User ID"
   },
   "users_must_post_before_seeing_replies_d1761968": {
     "message": "Users must post before seeing replies"
