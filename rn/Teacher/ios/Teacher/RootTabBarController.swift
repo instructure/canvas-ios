@@ -98,4 +98,16 @@ extension RootTabBarController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, animationControllerForTransitionFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return NoAnimatedTransitioning()
     }
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if (tabBarController.selectedViewController == viewController) {
+            if let navigationController = viewController as? UINavigationController {
+                navigationController.popToRootViewController(animated: true)
+            } else if let splitViewController = viewController as? UISplitViewController,
+                       let navigationController = splitViewController.viewControllers.first as? UINavigationController {
+                navigationController.popToRootViewController(animated: true)
+            }
+        }
+        return true
+    }
 }
