@@ -35,9 +35,15 @@ class GradesTodayWidgetViewController: UIViewController, NCWidgetProviding, Grad
     var currentViewController: UIViewController?
     var refresher: Refresher?
     var heightDelegate: GradesWidgetHeightProtocol?
-    var loginObserver: AnyObject?
-    var logoutObserver: AnyObject?
-    
+    var loginDisposable: RACDisposable?
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+        print("MEMORY WARNING NC")
+
+    }
+
     //  MARK: - view
     
     override func viewDidLoad() {
@@ -50,8 +56,8 @@ class GradesTodayWidgetViewController: UIViewController, NCWidgetProviding, Grad
             let multipleUserError = NSLocalizedString("More than one user is logged into Canvas Student. To view your grades, launch the app.", comment: "")
             showError(errorMessage: multipleUserError)
         }
-        else if let session  = CanvasKeymaster.singleUserSession() {
-            showGrades(session: session)
+        else if let _ = CanvasKeymaster.singleUserSession() {
+            showGrades()
             tableViewController?.refresh()
         }
         else {
@@ -60,17 +66,15 @@ class GradesTodayWidgetViewController: UIViewController, NCWidgetProviding, Grad
     }
     
     func setupKeyMasterEvents() {
-        guard loginObserver == nil else { return }
-        loginObserver = CanvasKeymaster.the().signalForLogin.subscribeNext { [weak self] (client) in
-            if let session = client?.authSession {
-                if(self?.tableViewController == nil) {
-                    self?.showGrades(session: session)
-                }
+        loginDisposable?.dispose()
+        loginDisposable = CanvasKeymaster.the().signalForLogin.subscribeNext { [weak self] (client) in
+            if client?.authSession != nil && self?.tableViewController == nil {
+                self?.showGrades()
             }
         }
     }
     
-    fileprivate func showGrades(session: Session) {
+    fileprivate func showGrades() {
         guard tableViewController == nil else { return }
         self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded
         if let viewController = viewControllerFromStoryboard(viewControllerIdentifier: String(describing: GradesWidgetTableViewController.self)) {
@@ -78,7 +82,7 @@ class GradesTodayWidgetViewController: UIViewController, NCWidgetProviding, Grad
             guard let tableViewController = tableViewController else { return }
             tableViewController.errorDelegate = self
             heightDelegate = tableViewController
-            embedViewController(viewController: tableViewController)
+            embedViewController(viewController: viewController)
         }
     }
     
@@ -141,11 +145,11 @@ class GradeWidgetCell: UITableViewCell {
     @IBOutlet weak var dotView: UIView!
 }
 
-protocol GradesWidgetErrorProtocol {
+protocol GradesWidgetErrorProtocol: class {
     func showError(errorMessage: String)
 }
 
-protocol GradesWidgetHeightProtocol {
+protocol GradesWidgetHeightProtocol: class {
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) -> CGSize
 }
 
@@ -167,12 +171,12 @@ extension GradesWidgetTableViewController: GradesWidgetHeightProtocol {
 
 class GradesWidgetTableViewController: TableViewController {
     
-    public var errorDelegate: GradesWidgetErrorProtocol?
+    public weak var errorDelegate: GradesWidgetErrorProtocol?
     private var collection: FetchedCollection<Course>?
 
     override func viewDidLoad() {
-        super.viewDidLoad()
         preparTable()
+        super.viewDidLoad()
         self.view.backgroundColor = .clear
         tableView.backgroundColor = .clear
     }
