@@ -260,7 +260,7 @@ exports[`GlobalAnnouncementRow renders information announcements 1`] = `
         <Image
           source={
             Object {
-              "testUri": "../../../src/images/dashboard/announcement.png",
+              "testUri": "../../../src/images/dashboard/info.png",
             }
           }
           style={
@@ -478,7 +478,7 @@ exports[`GlobalAnnouncementRow renders unexpected icon as information 1`] = `
         <Image
           source={
             Object {
-              "testUri": "../../../src/images/dashboard/announcement.png",
+              "testUri": "../../../src/images/dashboard/info.png",
             }
           }
           style={

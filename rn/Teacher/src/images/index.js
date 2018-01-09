@@ -31,9 +31,9 @@ const images = {
     attendance: require('./course/attendance-icon.png'),
   },
   dashboard: {
-    announcement: require('./dashboard/announcement.png'),
     calendar: require('./dashboard/calendar.png'),
     help: require('./dashboard/help.png'),
+    info: require('./dashboard/info.png'),
     warning: require('./Warning.png'),
   },
   tabbar: {

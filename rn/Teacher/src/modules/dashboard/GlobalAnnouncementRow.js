@@ -82,7 +82,7 @@ export default class GlobalAnnouncementRow extends React.Component<Props, State>
         return images.dashboard.calendar
       case 'information':
       default:
-        return images.dashboard.announcement
+        return images.dashboard.info
     }
   }
 
