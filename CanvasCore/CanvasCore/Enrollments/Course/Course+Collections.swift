@@ -43,6 +43,18 @@ extension Course {
         )
     }
 
+    public static func gradesTodayWidgetCollection(_ session: Session) throws -> FetchedCollection<Course> {
+        let predicate = NSPredicate(format: "%K == YES", "isFavorite")
+        let context = try session.enrollmentManagedObjectContext()
+        let fetchRequest: NSFetchRequest<Course> = context.fetch(predicate, sortDescriptors: nil)
+        fetchRequest.returnsObjectsAsFaults = true
+        fetchRequest.fetchLimit = 10
+        fetchRequest.sortDescriptors = ["name".ascending, "id".ascending]
+        let frc = NSFetchedResultsController<Course>(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+
+        return try FetchedCollection(frc: frc)
+    }
+
     public static func collectionByStudent(_ session: Session, studentID: String) throws -> FetchedCollection<Course> {
         let context = try session.enrollmentManagedObjectContext(studentID)
         return try FetchedCollection(frc:
