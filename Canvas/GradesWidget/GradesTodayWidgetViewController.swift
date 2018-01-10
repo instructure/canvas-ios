@@ -35,8 +35,6 @@ enum GradesWidgetError: Error {
     }
 }
 
-// return course.visibleGrade?.count ?? 0 > 0 ? course.visibleGrade : (course.visibleScore?.count ?? 0 > 0 ? course.visibleScore : "-")
-
 class GradesTodayWidgetViewController: UIViewController {
 
     var courses: [Course] = [] {
