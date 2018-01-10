@@ -106,7 +106,7 @@ open class CollectionTableViewDataSource<C: Collection, VM: TableViewCellViewMod
         disposable = collection.collectionUpdates.observe(on: UIScheduler()).observeValues { [weak self] updates in
             self?.processUpdates(updates)
             self?.collectionDidChange()
-        }
+        }.map(ScopedDisposable.init)
     }
 
     open func viewDidLoad(_ controller: UITableViewController) {
