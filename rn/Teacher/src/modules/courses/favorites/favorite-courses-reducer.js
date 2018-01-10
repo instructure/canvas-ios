@@ -56,7 +56,9 @@ function toggleFavoriteCourse (
 
 export const favoriteCourses: Reducer<FavoriteCoursesState, any> = handleActions({
   [refreshCourses.toString()]: handleAsync({
-    pending: (state) => ({ ...state, pending: state.pending + 1 }),
+    pending: (state) => {
+      return { ...state, pending: state.pending + 1 }
+    },
     resolved: (state, { result: [coursesResponse] }) => {
       const favorites: EntityRefs = coursesResponse.data
         .filter(App.current().filterCourse)

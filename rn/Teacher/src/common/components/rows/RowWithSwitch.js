@@ -25,7 +25,7 @@ import i18n from 'format-message'
 
 import colors from '../../colors'
 
-type RowWithSwitchProps = RowProps & {
+export type RowWithSwitchProps = RowProps & {
   value: boolean,
   onValueChange: Function,
 }

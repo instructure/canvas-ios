@@ -37,6 +37,7 @@ import Images from '../../images'
 import color from '../../common/colors'
 import device from 'react-native-device-info'
 import Row from '../../common/components/rows/Row'
+import RowWithSwitch, { RowWithSwitchProps } from '../../common/components/rows/RowWithSwitch'
 import RowSeparator from '../../common/components/rows/RowSeparator'
 import App from '../app'
 import canvas, { getSession } from '../../canvas-api'
@@ -114,6 +115,10 @@ export class Profile extends Component {
     this.props.navigator.show('/users/self/files', { modal: true })
   }
 
+  toggleShowGrades = () => {
+    this.props.updateShowGradesOnDashboard(!this.props.showsGradesOnCourseCards)
+  }
+
   handleActions = (index: number) => {
     const action = this.settingsActions[index]
     switch (action.id) {
@@ -145,12 +150,10 @@ export class Profile extends Component {
     let session = getSession()
     if (!session) { return <View /> }
 
-    const buildRow = (title: string, onPress: Function) => {
+    const buildRow = (title: string, onPress?: Function, switchProps?: RowWithSwitchProps) => {
       return (<View>
-                <Row
-                  title={title}
-                  titleStyles={titleStyles}
-                  onPress={onPress} />
+                { onPress && <Row title={title} titleStyles={titleStyles} onPress={onPress} />}
+                { switchProps && <RowWithSwitch title={title} titleStyles={titleStyles} {...switchProps} />}
                 <RowSeparator style={styles.separator} />
               </View>)
     }
@@ -160,6 +163,7 @@ export class Profile extends Component {
     return (<View>
               { isStudent && buildRow(i18n('Files'), this.userFiles) }
               { (this.props.canMasquerade || masquerading) && buildRow(masqueradeTitle, this.toggleMasquerade) }
+              { isStudent && buildRow('Show Grades', null, { onValueChange: this.toggleShowGrades, value: this.props.showsGradesOnCourseCards }) }
               { buildRow(i18n('Change User'), this.switchUser) }
               { buildRow(i18n('Log Out'), this.logout) }
             </View>)
@@ -257,8 +261,7 @@ const styles = StyleSheet.create({
 })
 
 export function mapStateToProps (state: AppState): UserInfo {
-  const { canMasquerade } = state.userInfo
-  return { canMasquerade }
+  return state.userInfo
 }
 
 let Connected = connect(mapStateToProps, { ...Actions })(Profile)

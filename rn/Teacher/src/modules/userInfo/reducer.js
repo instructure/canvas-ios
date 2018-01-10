@@ -22,9 +22,10 @@ import Actions from './actions'
 import handleAsync from '../../utils/handleAsync'
 import { getSession } from '../../canvas-api/session'
 
-const { refreshCanMasquerade } = Actions
+const { refreshCanMasquerade, updateShowGradesOnDashboard } = Actions
 const defaultState: UserInfo = {
   canMasquerade: false,
+  showsGradesOnCourseCards: false,
 }
 
 function isSiteAdmin () {
@@ -52,4 +53,7 @@ export const userInfo: Reducer<UserInfo, any> = handleActions({
       }
     },
   }),
+  [updateShowGradesOnDashboard.toString()]: (state, { payload }) => {
+    return { ...state, ...payload }
+  },
 }, defaultState)

@@ -53,6 +53,7 @@ const emptyAppState: AppState = {
   asyncActions: {},
   files: {},
   folders: {},
+  userInfo: {},
 }
 
 export const appState: Template<AppState> = template(emptyAppState)

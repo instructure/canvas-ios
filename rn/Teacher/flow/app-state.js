@@ -217,6 +217,7 @@ export type AppState = {
 
 export type UserInfo = {
   canMasquerade: boolean,
+  showsGradesOnCourseCards: boolean,
 }
 
 // I moved this to the bottom because something with it is making vscode syntax highlighting stop working in this file

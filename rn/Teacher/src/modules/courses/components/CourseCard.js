@@ -24,11 +24,13 @@ import ReactNative, {
   TouchableHighlight,
 } from 'react-native'
 import i18n from 'format-message'
-import { Text } from '../../../common/text'
+import { Text, Heading1 } from '../../../common/text'
 import Images from '../../../images'
 
 type Props = {
   course: Course,
+  grade: ?CourseGradeInfo,
+  showGrade: boolean,
   color: string,
   style: any,
   onPress: Function,
@@ -80,10 +82,18 @@ export default class CourseCard extends Component {
   }
 
   render () {
-    let { course } = this.props
-    let style = {
+    const { course, grade, showGrade } = this.props
+    const style = {
       ...this.props.style,
       height: this.state.height,
+    }
+    let gradeDisplay = null
+    if (showGrade) {
+      if (grade && grade.currentDisplay) {
+        gradeDisplay = grade.currentDisplay
+      } else {
+        gradeDisplay = i18n('N/A')
+      }
     }
     return (
       <TouchableHighlight
@@ -104,6 +114,15 @@ export default class CourseCard extends Component {
                 accessibilityTraits='button'
                 accessibilityLabel={course.name}
               />
+              { showGrade &&
+                <View style={styles.gradePill}>
+                  <Heading1
+                    numberOfLines={2}
+                    style={[styles.gradeText, { color: this.props.color }]}>
+                    { gradeDisplay }
+                  </Heading1>
+                </View>
+              }
               <TouchableHighlight
                 style={styles.kabobButton}
                 onPress={this.onCoursePreferencesPressed}
@@ -186,6 +205,20 @@ const styles = StyleSheet.create({
     color: '#8B969D',
     marginTop: 2,
     fontWeight: '600',
+  },
+  gradePill: {
+    flex: 1,
+    maxWidth: 120,
+    backgroundColor: 'white',
+    position: 'absolute',
+    top: 8,
+    left: 8,
+    paddingLeft: 6,
+    paddingRight: 6,
+    borderRadius: 8,
+  },
+  gradeText: {
+    fontSize: 14,
   },
 })
 

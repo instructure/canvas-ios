@@ -26,6 +26,9 @@ export let UserInfoActions = (api: CanvasApi): * => ({
       handlesError: true,
     }
   }),
+  updateShowGradesOnDashboard: createAction('userInfo.updateShowGradesOnDashboard', (showsGradesOnCourseCards: boolean) => {
+    return { showsGradesOnCourseCards }
+  }),
 })
 
 export default (UserInfoActions(canvas): *)

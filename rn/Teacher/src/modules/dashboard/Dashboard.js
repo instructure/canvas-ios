@@ -30,6 +30,7 @@ import branding from '../../common/branding'
 import Navigator from '../../routing/Navigator'
 import { getSession } from '../../canvas-api'
 import AccountNotificationActions from './account-notification-actions'
+import { extractGradeInfo } from '../../utils/course-grades'
 
 type ColorfulCourse = { color: string } & Course
 type Props = {
@@ -42,6 +43,7 @@ type Props = {
   courses: ColorfulCourse[],
   closeNotification: (string) => any,
   groups: GroupRowProps[],
+  showGrades?: boolean,
 }
 type State = {
   width?: number,
@@ -146,13 +148,14 @@ export class Dashboard extends React.Component<Props, State> {
 
   renderCourseCard = ({ item }: { item: ColorfulCourse }) => {
     const cardSize = this.state.cardSize
-
     return (
       <CourseCard
         key={item.id}
         style={{ width: cardSize, height: cardSize, padding }}
         color={item.color}
         course={item}
+        grade={extractGradeInfo(item)}
+        showGrade={this.props.showGrades}
         onPress={this.selectCourse}
         onCoursePreferencesPressed={this.showUserCoursePreferences}
       />
@@ -382,8 +385,8 @@ export function mapStateToProps (isFullDashboard: boolean) {
 
     const pending = state.favoriteCourses.pending + accountNotifications.pending
     const error = state.favoriteCourses.error || accountNotifications.error
-
-    return { pending, error, announcements, courses, totalCourseCount, isFullDashboard, groups }
+    const showGrades = state.userInfo.showsGradesOnCourseCards
+    return { pending, error, announcements, courses, totalCourseCount, isFullDashboard, groups, showGrades }
   }
 }
 

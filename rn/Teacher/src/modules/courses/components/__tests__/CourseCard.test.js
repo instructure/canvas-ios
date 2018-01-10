@@ -94,3 +94,22 @@ it('renders with empty image url', () => {
     ).toJSON()
   ).toMatchSnapshot()
 })
+
+it('renders with a grade', () => {
+  let course = courseTemplate.course()
+  let grade = { currentDisplay: 'A-' }
+  expect(
+    renderer.create(
+      <CourseCard {...defaultProps} course={course} grade={grade} showGrade={true} />
+    ).toJSON()
+  ).toMatchSnapshot()
+})
+
+it('renders with a grade even if the grade does not exist', () => {
+  let course = courseTemplate.course()
+  expect(
+    renderer.create(
+      <CourseCard {...defaultProps} course={course} showGrade={true} />
+    ).toJSON()
+  ).toMatchSnapshot()
+})
