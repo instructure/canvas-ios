@@ -52,6 +52,7 @@ class GradesTodayWidgetViewController: UIViewController {
         tableView.backgroundColor = UIColor.clear
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.showsVerticalScrollIndicator = false
         tableView.estimatedRowHeight = COURSE_ROW_HEIGHT
         tableView.rowHeight = UITableViewAutomaticDimension
