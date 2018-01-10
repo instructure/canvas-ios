@@ -18,7 +18,7 @@ struct Enrollment: Codable {
     let computedCurrentGrade: String?
     let computedCurrentScore: Double?
 
-    let multipleGradingPeriodsEnabled: Bool
+    let multipleGradingPeriodsEnabled: Bool?
     let currentPeriodComputedCurrentGrade: String?
     let currentPeriodComputedCurrentScore: Double?
 
@@ -75,7 +75,7 @@ struct Course: Codable {
             return scoreString
         }
 
-        if enrollment.multipleGradingPeriodsEnabled {
+        if let mgpEnabled = enrollment.multipleGradingPeriodsEnabled, mgpEnabled {
             return createDisplay(enrollment.currentPeriodComputedCurrentScore, enrollment.currentPeriodComputedCurrentGrade)
         }
 

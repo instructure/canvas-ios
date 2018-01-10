@@ -24,6 +24,7 @@ fileprivate extension CanvasKeymaster {
 enum GradesWidgetError: Error {
     case multipleClientsLoggedIn
     case notLoggedIn
+    case noFavoritedCourses
 
     var localizedDescription: String {
         switch self {
@@ -31,6 +32,8 @@ enum GradesWidgetError: Error {
             return NSLocalizedString("More than one user is logged into Canvas Student. To view your grades, launch the app.", comment: "")
         case .notLoggedIn:
             return NSLocalizedString("Log in with Canvas", comment: "")
+        case .noFavoritedCourses:
+            return NSLocalizedString("You have not set any favorite courses.", comment: "")
         }
     }
 }
@@ -124,8 +127,7 @@ class GradesTodayWidgetViewController: UIViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .completed(let courses):
-                    print("GOT COURSES! \(courses.count)")
-                    self?.courses = courses
+                    self?.courses = Array(courses.prefix(MAX_NUM_COURSES))
                     self?.tableView.reloadData()
                 case .failed(let error):
                     self?.showError(error)
@@ -167,12 +169,19 @@ extension GradesTodayWidgetViewController: NCWidgetProviding {
 
 extension GradesTodayWidgetViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return error == nil ? min(self.courses.count, MAX_NUM_COURSES) : 1
+        if error != nil || courses.count < 1 {
+            return 1
+        }
+        return courses.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let error = error {
             return errorCell(error)
+        }
+
+        if courses.count < 1 {
+            return errorCell(GradesWidgetError.noFavoritedCourses)
         }
 
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? GradeWidgetCell else  {
@@ -209,14 +218,13 @@ extension GradesTodayWidgetViewController: UITableViewDataSource {
         cell.textLabel!.textAlignment = .center
         cell.textLabel!.lineBreakMode = .byWordWrapping
         cell.textLabel!.numberOfLines = 0
-        cell.detailTextLabel!.text = NSLocalizedString("Tap to open", comment: "")
-        cell.detailTextLabel!.textColor = .white
         return cell
     }
 }
 
 extension GradesTodayWidgetViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         guard error == nil else {
             extensionContext?.open(URL(string: "canvas-courses://")!, completionHandler: nil)
             return
