@@ -42,7 +42,12 @@ class GradesTodayWidgetViewController: UIViewController {
 
     var courses: [Course] = [] {
         didSet {
-            preferredContentSize = CGSize(width: 0, height: CGFloat(courses.count) * tableView.estimatedRowHeight)
+            if courses.count > 0 {
+                preferredContentSize = CGSize(width: 0, height: CGFloat(courses.count) * tableView.estimatedRowHeight)
+            } else {
+                self.showError(GradesWidgetError.noFavoritedCourses)
+                preferredContentSize = CGSize(width: 0, height: tableView.estimatedRowHeight)
+            }
         }
     }
     var colors: CustomColors?
@@ -77,7 +82,7 @@ class GradesTodayWidgetViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        error = GradesWidgetError.multipleClientsLoggedIn
+        showError(nil)
         view.backgroundColor = UIColor.clear
         extensionContext?.widgetLargestAvailableDisplayMode = .expanded
 
@@ -127,6 +132,7 @@ class GradesTodayWidgetViewController: UIViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .completed(let courses):
+                    self?.showError(nil)
                     self?.courses = Array(courses.prefix(MAX_NUM_COURSES))
                     self?.tableView.reloadData()
                 case .failed(let error):
@@ -169,7 +175,7 @@ extension GradesTodayWidgetViewController: NCWidgetProviding {
 
 extension GradesTodayWidgetViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if error != nil || courses.count < 1 {
+        if error != nil {
             return 1
         }
         return courses.count
@@ -178,10 +184,6 @@ extension GradesTodayWidgetViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let error = error {
             return errorCell(error)
-        }
-
-        if courses.count < 1 {
-            return errorCell(GradesWidgetError.noFavoritedCourses)
         }
 
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? GradeWidgetCell else  {
