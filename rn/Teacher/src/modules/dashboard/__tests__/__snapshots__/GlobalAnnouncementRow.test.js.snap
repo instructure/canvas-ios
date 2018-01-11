@@ -30,7 +30,6 @@ exports[`GlobalAnnouncementRow renders calendar announcements 1`] = `
           Array [
             Object {
               "alignItems": "center",
-              "justifyContent": "center",
               "width": 40,
             },
             Object {
@@ -47,6 +46,7 @@ exports[`GlobalAnnouncementRow renders calendar announcements 1`] = `
           }
           style={
             Object {
+              "marginTop": 14,
               "tintColor": "white",
             }
           }
@@ -56,7 +56,8 @@ exports[`GlobalAnnouncementRow renders calendar announcements 1`] = `
         style={
           Object {
             "flex": 1,
-            "margin": 8,
+            "marginHorizontal": 12,
+            "marginVertical": 8,
           }
         }
       >
@@ -139,7 +140,6 @@ exports[`GlobalAnnouncementRow renders error announcements 1`] = `
           Array [
             Object {
               "alignItems": "center",
-              "justifyContent": "center",
               "width": 40,
             },
             Object {
@@ -156,6 +156,7 @@ exports[`GlobalAnnouncementRow renders error announcements 1`] = `
           }
           style={
             Object {
+              "marginTop": 14,
               "tintColor": "white",
             }
           }
@@ -165,7 +166,8 @@ exports[`GlobalAnnouncementRow renders error announcements 1`] = `
         style={
           Object {
             "flex": 1,
-            "margin": 8,
+            "marginHorizontal": 12,
+            "marginVertical": 8,
           }
         }
       >
@@ -248,7 +250,6 @@ exports[`GlobalAnnouncementRow renders information announcements 1`] = `
           Array [
             Object {
               "alignItems": "center",
-              "justifyContent": "center",
               "width": 40,
             },
             Object {
@@ -265,6 +266,7 @@ exports[`GlobalAnnouncementRow renders information announcements 1`] = `
           }
           style={
             Object {
+              "marginTop": 14,
               "tintColor": "white",
             }
           }
@@ -274,7 +276,8 @@ exports[`GlobalAnnouncementRow renders information announcements 1`] = `
         style={
           Object {
             "flex": 1,
-            "margin": 8,
+            "marginHorizontal": 12,
+            "marginVertical": 8,
           }
         }
       >
@@ -357,7 +360,6 @@ exports[`GlobalAnnouncementRow renders question announcements 1`] = `
           Array [
             Object {
               "alignItems": "center",
-              "justifyContent": "center",
               "width": 40,
             },
             Object {
@@ -374,6 +376,7 @@ exports[`GlobalAnnouncementRow renders question announcements 1`] = `
           }
           style={
             Object {
+              "marginTop": 14,
               "tintColor": "white",
             }
           }
@@ -383,7 +386,8 @@ exports[`GlobalAnnouncementRow renders question announcements 1`] = `
         style={
           Object {
             "flex": 1,
-            "margin": 8,
+            "marginHorizontal": 12,
+            "marginVertical": 8,
           }
         }
       >
@@ -466,7 +470,6 @@ exports[`GlobalAnnouncementRow renders unexpected icon as information 1`] = `
           Array [
             Object {
               "alignItems": "center",
-              "justifyContent": "center",
               "width": 40,
             },
             Object {
@@ -483,6 +486,7 @@ exports[`GlobalAnnouncementRow renders unexpected icon as information 1`] = `
           }
           style={
             Object {
+              "marginTop": 14,
               "tintColor": "white",
             }
           }
@@ -492,7 +496,8 @@ exports[`GlobalAnnouncementRow renders unexpected icon as information 1`] = `
         style={
           Object {
             "flex": 1,
-            "margin": 8,
+            "marginHorizontal": 12,
+            "marginVertical": 8,
           }
         }
       >
@@ -575,7 +580,6 @@ exports[`GlobalAnnouncementRow renders warning announcements 1`] = `
           Array [
             Object {
               "alignItems": "center",
-              "justifyContent": "center",
               "width": 40,
             },
             Object {
@@ -592,6 +596,7 @@ exports[`GlobalAnnouncementRow renders warning announcements 1`] = `
           }
           style={
             Object {
+              "marginTop": 14,
               "tintColor": "white",
             }
           }
@@ -601,7 +606,8 @@ exports[`GlobalAnnouncementRow renders warning announcements 1`] = `
         style={
           Object {
             "flex": 1,
-            "margin": 8,
+            "marginHorizontal": 12,
+            "marginVertical": 8,
           }
         }
       >

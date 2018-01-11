@@ -119,9 +119,9 @@ export default class GlobalAnnouncementRow extends React.Component<Props, State>
               <Image source={this.getIconSource(icon)} style={styles.icon} />
             </View>
             <View style={styles.announcementDetails}>
-              <Text
-                ref={(node) => { this.content = node }}
-                style={styles.title}>{subject}</Text>
+              <View ref={(node) => { this.content = node }}>
+                <Text style={styles.openTitle}>{subject}</Text>
+              </View>
               <WebContainer
                 scrollEnabled={false}
                 style={styles.message}
@@ -162,6 +162,7 @@ export default class GlobalAnnouncementRow extends React.Component<Props, State>
 
 const styles = StyleSheet.create({
   icon: {
+    marginTop: 14,
     tintColor: 'white',
   },
   rowContent: {
@@ -170,15 +171,20 @@ const styles = StyleSheet.create({
   iconContainer: {
     width: 40,
     alignItems: 'center',
-    justifyContent: 'center',
   },
   announcementDetails: {
-    margin: 8,
+    marginHorizontal: 12,
+    marginVertical: 8,
     flex: 1,
   },
   title: {
     fontWeight: '600',
     marginRight: 32,
+  },
+  openTitle: {
+    fontWeight: '600',
+    marginRight: 32,
+    marginTop: 8,
   },
   message: {
     marginVertical: 8,
@@ -191,7 +197,7 @@ const styles = StyleSheet.create({
   },
   dismiss: {
     alignSelf: 'flex-end',
-    paddingHorizontal: 8,
+    paddingHorizontal: 4,
     paddingVertical: 2,
   },
   dismissText: {
