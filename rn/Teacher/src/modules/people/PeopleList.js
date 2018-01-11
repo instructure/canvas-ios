@@ -177,6 +177,7 @@ export class PeopleList extends Component<Props, any> {
     search: query,
     per_page: 15,
     type: 'user',
+    skip_visibility_checks: 1,
   })
 
   _onSelectItem = (item: AddressBookResult) => {

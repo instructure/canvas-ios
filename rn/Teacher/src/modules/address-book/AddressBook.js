@@ -103,6 +103,7 @@ export class AddressBook extends Component<AddressBookProps, any> {
     search: query,
     synthetic_contexts: 1,
     per_page: 10,
+    skip_visibility_checks: 1,
   })
 
   _onSelectItem = (item: AddressBookResult) => {

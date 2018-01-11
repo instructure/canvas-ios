@@ -144,6 +144,7 @@ describe('People List', () => {
       search: 'Malthael',
       per_page: 15,
       type: 'user',
+      skip_visibility_checks: 1,
     })
   })
 

@@ -189,6 +189,7 @@ describe('AddressBook', () => {
       search: 'Malthael',
       synthetic_contexts: 1,
       per_page: 10,
+      skip_visibility_checks: 1,
     })
   })
 
