@@ -20,8 +20,6 @@
 #import "SupportTicketManager.h"
 #import "CanvasKeymaster.h"
 
-@import CWStatusBarNotification;
-
 static float DefaultToastDuration = 1.65f;
 
 @interface SupportTicketViewController () <UITextViewDelegate, UITextFieldDelegate, UIActionSheetDelegate>
@@ -190,6 +188,15 @@ static float DefaultToastDuration = 1.65f;
     
 }
 
+- (void)alertWithTitle:(NSString *)title message:(NSString *)message {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:NSLocalizedString(@"Dismiss", @"") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    }];
+    [alert addAction:action];
+    [self presentViewController:alert animated:true completion:nil];
+}
+
 - (IBAction)sendButtonTouched:(id)sender
 {
     
@@ -203,19 +210,21 @@ static float DefaultToastDuration = 1.65f;
     
     NSURL *baseURL = TheKeymaster.currentClient.baseURL ? TheKeymaster.currentClient.baseURL : [NSURL URLWithString:@"https://canvas.instructure.com"];
     SupportTicketManager *manager = [[SupportTicketManager alloc] initWithBaseURL:baseURL];
-    __block CWStatusBarNotification *notification = [CWStatusBarNotification new];
-    notification.notificationLabelTextColor = [UIColor whiteColor];
-    notification.notificationLabelBackgroundColor = [UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:253.0/255.0 alpha:1.0];
     
+    NSBundle *keymaster = [NSBundle bundleForClass:[self class]];
     [manager sendTicket:self.ticket withSuccess:^{
-        [notification displayNotificationWithMessage:@"Thanks, your request was received!"
-                                              forDuration:DefaultToastDuration];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSString *title = NSLocalizedStringFromTableInBundle(@"Success!", @"Localizable", keymaster, @"");
+            NSString *message = NSLocalizedStringFromTableInBundle(@"Thanks, your request was received!", @"Localizable", keymaster, @"");
+            [self alertWithTitle:title message:message];
+        });
     } failure:^(NSError *error) {
-        [notification displayNotificationWithMessage:@"Request Failed!  Check network and try again!"
-                                         forDuration:DefaultToastDuration];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSString *title = NSLocalizedStringFromTableInBundle(@"Request Failed!", @"Localizable", keymaster, @"");
+            NSString *message = NSLocalizedStringFromTableInBundle(@"Check network and try again!", @"Localizable", keymaster, @"");
+            [self alertWithTitle:title message:message];
+        });
     }];
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)promptUserToEnterMissingFields
@@ -230,8 +239,10 @@ static float DefaultToastDuration = 1.65f;
         requiredActionString = NSLocalizedString(@"describe your problem", nil);
     }
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"All Fields are required. Please %@.", requiredActionString] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
+    NSString *message = [NSString stringWithFormat:@"All Fields are required. Please %@.", requiredActionString];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"") style:UIAlertActionStyleDefault handler:nil]];
+    [self.presentingViewController presentViewController:alert animated:true completion:nil];
 }
 
 - (void)makePretty

@@ -174,8 +174,13 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
                 [subscriber sendError:error];
             }
             else {
+                // No idea how long this has been happening, but if any requests are made before the mobile verify request, the json is returned with while(1); in front of it
+                // Need to strip that out before we parse the json
+                NSString *stringResponse = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                NSString *fixed = [stringResponse stringByReplacingOccurrencesOfString:@"while(1);" withString:@""];
+                NSData   *fixedData = [fixed dataUsingEncoding:NSUTF8StringEncoding] ?: data;
                 NSError *jsonError;
-                NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
+                NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:fixedData options:NSJSONReadingAllowFragments error:&jsonError];
                 if (jsonError) {
                     [subscriber sendError:jsonError];
                     return;
@@ -227,7 +232,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
     self.domainPicker = [CKMDomainPickerViewController new];
     [self.domainPicker prepopulateWithDomain:host];
     
-    RACSignal *signalForClientForUsersDomain =  [[self.domainPicker selectedADomainSignal] flattenMap:^__kindof RACStream * _Nullable(NSString *domain) {
+    RACSignal *signalForClientForUsersDomain =  [[self.domainPicker selectedADomainSignal] flattenMap:^__kindof RACStream * _Nullable(CKIAccountDomain *domain) {
         return [[self clientForMobileVerifiedDomain:domain] deliverOn:[RACScheduler mainThreadScheduler]];
     }];
     

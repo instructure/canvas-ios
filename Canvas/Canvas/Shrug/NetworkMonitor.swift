@@ -41,27 +41,4 @@ class NetworkMonitor: NSObject {
         inflightNetworkOps -= 1
         UIApplication.shared.isNetworkActivityIndicatorVisible = inflightNetworkOps > 0
     }
-    
-    
-    // MARK: Reachability
-    fileprivate let toast = ToastManager()
-    
-    func monitorReachability() {
-        Reachability.forInternetConnection().stopNotifier()
-        let reach = Reachability(hostName: "canvas.instructure.com")
-        
-        reach?.reachableBlock = { _ in
-            DispatchQueue.main.async {
-                self.toast.dismissNotification()
-            }
-        }
-        reach?.unreachableBlock = { _ in
-            DispatchQueue.main.async {
-                let message = NSLocalizedString("Uh-oh! No Internet Connection", comment: "Notification over status bar that displays when not connected to the internet.")
-                self.toast.statusBarToastFailure(message)
-            }
-        }
-        
-        reach?.startNotifier()
-    }
 }

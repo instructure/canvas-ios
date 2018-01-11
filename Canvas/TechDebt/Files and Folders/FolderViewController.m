@@ -749,14 +749,11 @@ static NSIndexSet *indexSetFromIndexPathRows(NSArray *paths) {
 
 - (void)tappedUploadFile {
     DDLogVerbose(@"tappedUploadFile");
-    ReceivedFilesViewController *filesController = [ReceivedFilesViewController new];
+    ReceivedFilesViewController *filesController = [ReceivedFilesViewController presentReceivedFilesViewControllerFrom:self];
     filesController.submitButtonTitle = NSLocalizedString(@"Upload", @"Button title for uploading a file");
     filesController.onSubmitBlock = ^(NSArray *urls) {
         [self uploadFiles:urls];
     };
-    filesController.modalPresentationStyle = UIModalPresentationFormSheet;
-    
-    [self presentViewController:filesController animated:YES completion:NULL];
 }
 
 - (void)uploadFiles:(NSArray *)urls {

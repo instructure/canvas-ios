@@ -44,7 +44,7 @@ open class SupportTicketViewController : FormViewController {
 
     fileprivate var cancelButton: UIBarButtonItem!
     fileprivate var doneButton: UIBarButtonItem!
-    fileprivate let notification = ToastManager()
+    fileprivate var notification: ToastManager?
     fileprivate var sendTask: URLSessionDataTask?
 
     open static func new(_ session: Session, type: SupportTicketType) -> SupportTicketViewController{
@@ -64,6 +64,10 @@ open class SupportTicketViewController : FormViewController {
     // ---------------------------------------------
     open override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let nav = navigationController?.navigationBar {
+            notification = ToastManager(navigationBar: nav)
+        }
 
         cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(SupportTicketViewController.cancelTapped(_:)))
         doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(SupportTicketViewController.doneTapped(_:)))
@@ -116,7 +120,7 @@ open class SupportTicketViewController : FormViewController {
             let impact = ImpactLevel.impactFromDescription(impactValue),
             let subject = subjectRow.value?.trimmingCharacters(in: .whitespacesAndNewlines),
             let comment = commentRow.value?.trimmingCharacters(in: .whitespacesAndNewlines) else {
-                notification.statusBarToastSuccess(NSLocalizedString("Invalid Input.  Check fields and try again.", tableName: "Localizable", bundle: .parent, value: "", comment: "Support Ticket Invalid Input Message"))
+                notification?.toastSuccess(NSLocalizedString("Invalid Input.  Check fields and try again.", tableName: "Localizable", bundle: .parent, value: "", comment: "Support Ticket Invalid Input Message"))
                 return
         }
 
@@ -144,12 +148,12 @@ open class SupportTicketViewController : FormViewController {
 
         setLoading(true)
         sendTask = URLSession.shared.dataTask(with: request) { [weak self] data,response,error in
-            let notification = ToastManager()
+            let notification = self?.notification
             guard error == nil else {
                 if let _ = error {
                     DispatchQueue.main.async {
                         self?.setLoading(false)
-                        notification.statusBarToastSuccess(NSLocalizedString("Request Failed!  Check network and try again!", tableName: "Localizable", bundle: .parent, value: "", comment: "Support Ticket Creation Failed"))
+                        notification?.toastSuccess(NSLocalizedString("Request Failed!  Check network and try again!", tableName: "Localizable", bundle: .parent, value: "", comment: "Support Ticket Creation Failed"))
                     }
                 }
                 return
@@ -158,7 +162,7 @@ open class SupportTicketViewController : FormViewController {
             DispatchQueue.main.async {
                 self?.setLoading(false)
                 let _ = self?.navigationController?.popViewController(animated: true)
-                notification.statusBarToastSuccess(NSLocalizedString("Thanks, your request was received!", tableName: "Localizable", bundle: .parent, value: "", comment: "Support Ticket Created Successfully"))
+                notification?.toastSuccess(NSLocalizedString("Thanks, your request was received!", tableName: "Localizable", bundle: .parent, value: "", comment: "Support Ticket Created Successfully"))
             }
         }
 

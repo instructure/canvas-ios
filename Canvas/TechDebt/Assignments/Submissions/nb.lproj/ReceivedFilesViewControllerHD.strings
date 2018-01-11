@@ -1,9 +1,0 @@
-/* Class = "UINavigationItem"; title = "Select file(s)"; ObjectID = "11"; */
-"11.title" = "Velg fil(er)";
-
-/* Class = "UIBarButtonItem"; title = "Submit"; ObjectID = "13"; */
-"13.title" = "Send inn";
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "16"; */
-"16.text" = "Etikett";
-

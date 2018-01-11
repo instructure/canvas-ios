@@ -33,6 +33,7 @@
 @property (nonatomic, strong) UIBarButtonItem *addItem;
 @property (nonatomic, strong) ToastManager *toastManager;
 @property (nonatomic) BOOL canAddFilesOrFolders;
+@property (nonatomic, weak) UIViewController *viewController;
 @end
 
 
@@ -42,7 +43,6 @@
 {
     self = [super init];
     if (self) {
-        self.toastManager = [ToastManager new];
         NSSortDescriptor *caseInsensitiveCompare = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
         self.collectionController = [MLVCCollectionController collectionControllerGroupingByBlock:nil groupTitleBlock:nil sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"index" ascending:YES], caseInsensitiveCompare]];
         self.viewControllerTitle = NSLocalizedString(@"Files", @"Title for the files screen");
@@ -68,6 +68,11 @@
         }];
     }
     return self;
+}
+
+- (void)viewControllerViewDidLoad:(UIViewController *)viewController {
+    self.viewController = viewController;
+    self.toastManager = [[ToastManager alloc] initWithNavigationBar:viewController.navigationController.navigationBar];
 }
 
 - (void)viewController:(UIViewController *)viewController viewWillAppear:(BOOL)animated
@@ -100,7 +105,7 @@
         createAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
         [createAlertView show];
     } else if (buttonIndex == 1) {
-        ReceivedFilesViewController *filesController = [ReceivedFilesViewController new];
+        ReceivedFilesViewController *filesController = [ReceivedFilesViewController presentReceivedFilesViewControllerFrom:self.viewController];
         @weakify(filesController);
         filesController.submitButtonTitle = NSLocalizedString(@"Upload", @"Button title for uploading a file");
         filesController.onSubmitBlock = ^(NSArray *urls) {
@@ -112,7 +117,7 @@
                 
                 NSMutableArray *signalsArray = [NSMutableArray array];
                 
-                [self.toastManager statusBarToastInfo:[NSString stringWithFormat:@"Uploading File%@...", urls.count > 1 ? @"s" : @""] completion:nil];
+                [self.toastManager beginToastInfo:[NSString stringWithFormat:@"Uploading File%@...", urls.count > 1 ? @"s" : @""]];
                 [urls enumerateObjectsUsingBlock:^(NSURL *fileURL, NSUInteger idx, BOOL *stop) {
                     NSString *extension = [[fileURL absoluteString] pathExtension];
                     NSData *fileData = [NSData dataWithContentsOfURL:fileURL options:NSDataReadingMappedIfSafe error:NULL];
@@ -131,17 +136,13 @@
                     [self.collectionController insertObjects:@[fileViewModel]];
                 } error:^(NSError *error) {
                     @strongify(self);
-                    [self.toastManager dismissNotification];
+                    [self.toastManager endToast];
                 } completed:^{
                     @strongify(self);
-                    [self.toastManager dismissNotification];
+                    [self.toastManager endToast];
                 }];
             }];
         };
-        filesController.modalPresentationStyle = UIModalPresentationFormSheet;
-        
-        UIWindow *window = [UIApplication sharedApplication].windows[0];
-        [window.rootViewController presentViewController:filesController animated:YES completion:nil];
     }
     
 }

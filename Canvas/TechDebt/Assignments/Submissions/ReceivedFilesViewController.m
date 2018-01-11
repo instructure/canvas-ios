@@ -114,10 +114,16 @@ static NSURL *receivedFilesFolder() {
     return destination;
 }
 
-- (id)init {
-    self = [self initWithNibName:@"ReceivedFilesViewController" bundle:[NSBundle bundleForClass:[self class]]];
-    self.modalPresentationStyle = UIModalPresentationFormSheet;
-    return self;
++ (instancetype)presentReceivedFilesViewControllerFrom:(UIViewController *)presenter {
+    if (presenter == nil) {
+        return nil;
+    }
+    UINavigationController *nav = (UINavigationController *)[[UIStoryboard storyboardWithName:@"ReceivedFilesViewController" bundle:[NSBundle bundleForClass:[ReceivedFilesViewController class]]] instantiateInitialViewController];
+    nav.view.backgroundColor = UIColor.whiteColor;
+    
+    [presenter presentViewController:nav animated:YES completion:nil];
+    
+    return nav.viewControllers[0];
 }
 
 - (void)viewDidLoad
@@ -131,12 +137,18 @@ static NSURL *receivedFilesFolder() {
     self.numberOfImportOptions = 1;
     
     libraryView = [[DocumentLibraryView alloc] initWithFrame:libraryContainer.bounds];
-    libraryView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    libraryView.translatesAutoresizingMaskIntoConstraints = NO;
     libraryView.delegate = self;
     [self populateLibraryViewItems];
     libraryView.noItemsHelpString = NSLocalizedString(@"You have no files available for upload. To add files from other apps, find a file in another app, then find the \"Open In\" button to open it in Canvas. You can also tap and hold on attachments in the Mail app to open them in Canvas.", @"An explanation of how to transfer files to the Canvas app.");
     [libraryContainer addSubview:libraryView];
-    
+    [NSLayoutConstraint activateConstraints:@[
+        [libraryView.topAnchor constraintEqualToAnchor:libraryContainer.topAnchor],
+        [libraryView.bottomAnchor constraintEqualToAnchor:libraryContainer.bottomAnchor],
+        [libraryView.leftAnchor constraintEqualToAnchor:libraryContainer.leftAnchor],
+        [libraryView.rightAnchor constraintEqualToAnchor:libraryContainer.rightAnchor],
+    ]];
+
     self.navigationItem.title = NSLocalizedString(@"Select file(s)", @"Title for a file picker window");
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismiss:)];
     toggleSelectionButton.accessibilityTraits = UIAccessibilityTraitButton;

@@ -35,7 +35,7 @@ open class CalendarDayListViewController: UITableViewController {
     open var routeToURL: RouteToURL!
     open var colorForContextID: ColorForContextID!
     fileprivate var session: Session!
-    fileprivate let toastManager = ToastManager()
+    fileprivate var toastManager: ToastManager?
 
     // Private
     var eventsCollection: FetchedCollection<CalendarEvent>!
@@ -110,6 +110,10 @@ open class CalendarDayListViewController: UITableViewController {
 
     open override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let nav = navigationController?.navigationBar {
+            toastManager = ToastManager(navigationBar: nav)
+        }
 
         favCoursesCollection = try! Course.favoritesCollection(session)
         favCoursesDisposable = favCoursesCollection.collectionUpdates

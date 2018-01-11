@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="RfP-iM-Wap">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="RfP-iM-Wap">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -181,7 +181,6 @@
                             <constraint firstItem="k8J-bS-THt" firstAttribute="top" secondItem="Hwq-Ta-nc8" secondAttribute="bottom" constant="-20" id="IAf-sV-xZc"/>
                             <constraint firstItem="wp1-PN-6an" firstAttribute="top" secondItem="ggc-Op-DMI" secondAttribute="top" id="IC6-uk-hYj"/>
                             <constraint firstItem="k8J-bS-THt" firstAttribute="leading" secondItem="utC-55-lT3" secondAttribute="leading" constant="50" id="Jlp-0d-qnU"/>
-                            <constraint firstItem="bUh-ji-2XM" firstAttribute="top" secondItem="cdc-P3-RTh" secondAttribute="bottom" id="M32-rT-dwZ"/>
                             <constraint firstItem="wp1-PN-6an" firstAttribute="width" secondItem="Yya-kZ-MC1" secondAttribute="width" id="SVv-U0-hKM"/>
                             <constraint firstItem="ax4-W0-zFC" firstAttribute="centerX" secondItem="utC-55-lT3" secondAttribute="centerX" id="W7X-CE-4ME"/>
                             <constraint firstItem="Yya-kZ-MC1" firstAttribute="height" secondItem="wp1-PN-6an" secondAttribute="height" id="ZMq-78-HhS"/>
@@ -191,6 +190,7 @@
                                 <variation key="heightClass=compact" constant="8"/>
                             </constraint>
                             <constraint firstAttribute="trailing" secondItem="5Jd-6d-Mng" secondAttribute="trailing" constant="10" id="fz9-od-d5q"/>
+                            <constraint firstAttribute="bottom" secondItem="cdc-P3-RTh" secondAttribute="bottom" id="gCH-90-a1q"/>
                             <constraint firstAttribute="trailing" secondItem="Yya-kZ-MC1" secondAttribute="trailing" id="h97-dq-o1l"/>
                             <constraint firstItem="Yya-kZ-MC1" firstAttribute="top" secondItem="wp1-PN-6an" secondAttribute="top" id="rMn-6j-7p3"/>
                             <constraint firstAttribute="trailing" secondItem="cdc-P3-RTh" secondAttribute="trailing" id="t1h-wD-hba"/>

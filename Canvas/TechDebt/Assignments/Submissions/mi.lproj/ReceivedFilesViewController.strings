@@ -1,9 +1,0 @@
-/* Class = "UINavigationItem"; title = "Select file(s)"; ObjectID = "27"; */
-"27.title" = "Tīpako kōnae(s)";
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "31"; */
-"31.text" = "tapanga";
-
-/* Class = "UIBarButtonItem"; title = "Submit"; ObjectID = "40"; */
-"40.title" = "Tuku";
-

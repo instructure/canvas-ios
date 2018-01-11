@@ -35,6 +35,7 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
     // UI Views
     fileprivate var calendar: Calendar = Calendar.current
     internal var calendarView: CalendarView!
+    fileprivate var toastManager: ToastManager?
 
     // Data Variables
     fileprivate var session: Session!
@@ -48,13 +49,13 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
             oldValue?.refreshControl.endRefreshing()
             oldValue?.refreshControl.removeFromSuperview()
             refresher?.refreshingBegan.observeValues { [weak self] in
-                self?.calendarView?.daysOfWeekView.show(loading: true)
+                self?.toastManager?.beginToastInfo(NSLocalizedString("Refreshing Calendar Events", comment: "Refreshing Calendar Events"))
             }
             refresher?.refreshingCompleted.observeValues { [weak self] err in
                 guard let me = self else { return }
                 ErrorReporter.reportError(err, from: self)
                 me.calendarView?.reloadVisibleCells()
-                me.calendarView?.daysOfWeekView.show(loading: false)
+                me.toastManager?.endToast()
                 me.didFinishRefreshing()
             }
         }
@@ -133,6 +134,10 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
 
         allCoursesCollection = try! Course.allCoursesCollection(session)
         
+        if let nav = navigationController?.navigationBar {
+            self.toastManager = ToastManager(navigationBar: nav)
+        }
+
         updateCalendarEvents()
     }
 
@@ -151,7 +156,7 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
     open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        calendarView.daysOfWeekView.show(loading: false)
+        self.toastManager?.endToast()
     }
 
     open override func viewDidAppear(_ animated: Bool) {

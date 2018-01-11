@@ -344,7 +344,7 @@ int ddLogLevel =
 - (void)sendTextFieldDomain
 {
     CKIAccountDomain *domain = [[CKIAccountDomain alloc] initWithDomain:self.domainTextField.text];
-    [self sendDomain: domain];
+    [self sendDomain:domain];
 }
 
 - (void)sendDomain:(CKIAccountDomain *)domain

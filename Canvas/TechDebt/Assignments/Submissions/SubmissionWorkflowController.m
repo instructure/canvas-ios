@@ -462,20 +462,17 @@ static void deleteFiles(NSArray *fileURLs) {
 
 - (void)showSubmissionLibrary {
     
-    ReceivedFilesViewController *controller = [[ReceivedFilesViewController alloc] init];
-    __weak typeof(self) weakSelf = self;
-    
-    [self.viewController presentViewController:controller animated:YES completion:nil];
-    
+    ReceivedFilesViewController *controller = [ReceivedFilesViewController presentReceivedFilesViewControllerFrom:self.viewController];
     UIApplication *application = [UIApplication sharedApplication];
     __block UIBackgroundTaskIdentifier backgroundTask = UIBackgroundTaskInvalid;
     backgroundTask = [application beginBackgroundTaskWithExpirationHandler:^{
         [application endBackgroundTask:backgroundTask];
     }];
     
+    __weak typeof(self) weakSelf = self;
     controller.onSubmitBlock = ^(NSArray *urls) {
         
-        CKAssignment *assignment = self.legacyAssignment;
+        CKAssignment *assignment = weakSelf.legacyAssignment;
         
         for (NSURL *url in urls) {
             if (![assignment allowsExtension:[url pathExtension]]) {
@@ -490,7 +487,7 @@ static void deleteFiles(NSArray *fileURLs) {
             }
         }
         
-        CKCanvasAPI *canvasAPI = self.canvasAPI;
+        CKCanvasAPI *canvasAPI = weakSelf.canvasAPI;
         [weakSelf reportProgress:0.0];
         [canvasAPI postFileURLs:urls asSubmissionForAssignment:assignment
                   progressBlock:^(float progress) {

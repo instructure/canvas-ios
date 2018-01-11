@@ -19,7 +19,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ReceivedFilesViewController : UIViewController
-- (id)init;
++ (instancetype)presentReceivedFilesViewControllerFrom:(UIViewController *)presenter;
 
 + (BOOL)addToReceivedFiles:(NSURL *)url error:(NSError **)error;
 

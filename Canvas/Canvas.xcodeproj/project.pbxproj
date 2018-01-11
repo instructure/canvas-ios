@@ -617,6 +617,7 @@
 		49AA2D331CF4DC540055862D /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2D211CF4DC540055862D /* ProfileViewController.m */; };
 		49AA2D341CF4DC540055862D /* RoundedButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2D221CF4DC540055862D /* RoundedButton.h */; };
 		49AA2D351CF4DC540055862D /* RoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2D231CF4DC540055862D /* RoundedButton.m */; };
+		49ADE0051FD84D3F0008E43C /* ReceivedFilesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49ADE0041FD84D3F0008E43C /* ReceivedFilesViewController.storyboard */; };
 		49BC9BC71CF768FF00DCB3DD /* PSPDFKit+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BC9BC61CF768FF00DCB3DD /* PSPDFKit+Canvas.swift */; };
 		49CE97661F900B4700121A43 /* UICollectionView+MyLittleViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 49CE97521F900B4100121A43 /* UICollectionView+MyLittleViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49CE97671F900B4700121A43 /* MLVCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CE97531F900B4100121A43 /* MLVCTableViewController.m */; };
@@ -708,8 +709,6 @@
 		B15738001D94C38C00ADBB85 /* ModuleItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15737FF1D94C38C00ADBB85 /* ModuleItemDetailViewController.swift */; };
 		B177E6FD1E2EC8BA00D7477D /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B177E6FF1E2EC8BA00D7477D /* Settings.storyboard */; };
 		B177E7091E2ECAB900D7477D /* CBIGradeDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B177E70B1E2ECAB900D7477D /* CBIGradeDetailView.xib */; };
-		B177E70C1E2ECAC700D7477D /* ReceivedFilesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B177E70E1E2ECAC700D7477D /* ReceivedFilesViewController.xib */; };
-		B177E70F1E2ECAD900D7477D /* ReceivedFilesViewControllerHD.xib in Resources */ = {isa = PBXBuildFile; fileRef = B177E7111E2ECAD900D7477D /* ReceivedFilesViewControllerHD.xib */; };
 		B177E7801E2F067400D7477D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5A790A61D8C743400ACA9FE /* Localizable.strings */; };
 		B1CB84F01D076025004D2265 /* CKRichTextInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1CB84EC1D076025004D2265 /* CKRichTextInputView.xib */; };
 		B1CB84F11D076025004D2265 /* ExpandingComment.css in Resources */ = {isa = PBXBuildFile; fileRef = B1CB84ED1D076025004D2265 /* ExpandingComment.css */; };
@@ -1407,6 +1406,7 @@
 		49AA2D211CF4DC540055862D /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		49AA2D221CF4DC540055862D /* RoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedButton.h; sourceTree = "<group>"; };
 		49AA2D231CF4DC540055862D /* RoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedButton.m; sourceTree = "<group>"; };
+		49ADE0041FD84D3F0008E43C /* ReceivedFilesViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReceivedFilesViewController.storyboard; sourceTree = "<group>"; };
 		49BC9BC61CF768FF00DCB3DD /* PSPDFKit+Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PSPDFKit+Canvas.swift"; sourceTree = "<group>"; };
 		49CE97521F900B4100121A43 /* UICollectionView+MyLittleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+MyLittleViewController.h"; sourceTree = "<group>"; };
 		49CE97531F900B4100121A43 /* MLVCTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLVCTableViewController.m; sourceTree = "<group>"; };
@@ -1654,84 +1654,42 @@
 		B177E7071E2EC9FF00D7477D /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/Settings.strings; sourceTree = "<group>"; };
 		B177E7081E2ECA1400D7477D /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Settings.strings"; sourceTree = "<group>"; };
 		B177E70A1E2ECAB900D7477D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CBIGradeDetailView.xib; sourceTree = "<group>"; };
-		B177E70D1E2ECAC700D7477D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ReceivedFilesViewController.xib; sourceTree = "<group>"; };
-		B177E7101E2ECAD900D7477D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ReceivedFilesViewControllerHD.xib; sourceTree = "<group>"; };
 		B177E7121E2ECB0000D7477D /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/CBIGradeDetailView.strings; sourceTree = "<group>"; };
-		B177E7131E2ECB0000D7477D /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/ReceivedFilesViewController.strings; sourceTree = "<group>"; };
-		B177E7141E2ECB0200D7477D /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/ReceivedFilesViewControllerHD.strings; sourceTree = "<group>"; };
 		B177E7151E2ECB2100D7477D /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/CBIGradeDetailView.strings; sourceTree = "<group>"; };
-		B177E7161E2ECB2200D7477D /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/ReceivedFilesViewController.strings; sourceTree = "<group>"; };
-		B177E7171E2ECB2300D7477D /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/ReceivedFilesViewControllerHD.strings; sourceTree = "<group>"; };
 		B177E7181E2ECB3800D7477D /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/CBIGradeDetailView.strings"; sourceTree = "<group>"; };
-		B177E7191E2ECB3900D7477D /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/ReceivedFilesViewController.strings"; sourceTree = "<group>"; };
-		B177E71A1E2ECB3A00D7477D /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/ReceivedFilesViewControllerHD.strings"; sourceTree = "<group>"; };
 		B177E71B1E2ECB4B00D7477D /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/CBIGradeDetailView.strings; sourceTree = "<group>"; };
-		B177E71C1E2ECB4C00D7477D /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/ReceivedFilesViewController.strings; sourceTree = "<group>"; };
-		B177E71D1E2ECB4D00D7477D /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/ReceivedFilesViewControllerHD.strings; sourceTree = "<group>"; };
 		B177E71E1E2ECB4E00D7477D /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Settings.strings; sourceTree = "<group>"; };
 		B177E71F1E2ECB6400D7477D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CBIGradeDetailView.strings; sourceTree = "<group>"; };
-		B177E7201E2ECB6500D7477D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ReceivedFilesViewController.strings; sourceTree = "<group>"; };
-		B177E7211E2ECB6600D7477D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ReceivedFilesViewControllerHD.strings; sourceTree = "<group>"; };
 		B177E7221E2ECB6700D7477D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Settings.strings; sourceTree = "<group>"; };
 		B177E7231E2ECB7900D7477D /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/CBIGradeDetailView.strings; sourceTree = "<group>"; };
-		B177E7241E2ECB7A00D7477D /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/ReceivedFilesViewController.strings; sourceTree = "<group>"; };
-		B177E7251E2ECB7B00D7477D /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/ReceivedFilesViewControllerHD.strings; sourceTree = "<group>"; };
 		B177E7261E2ECB7C00D7477D /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Settings.strings; sourceTree = "<group>"; };
 		B177E7271E2ECBE300D7477D /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/CBIGradeDetailView.strings"; sourceTree = "<group>"; };
-		B177E7281E2ECBE400D7477D /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/ReceivedFilesViewController.strings"; sourceTree = "<group>"; };
-		B177E7291E2ECBE500D7477D /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/ReceivedFilesViewControllerHD.strings"; sourceTree = "<group>"; };
 		B177E72A1E2ECBE600D7477D /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/Settings.strings"; sourceTree = "<group>"; };
 		B177E72B1E2ECBF600D7477D /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/CBIGradeDetailView.strings"; sourceTree = "<group>"; };
-		B177E72C1E2ECBF700D7477D /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/ReceivedFilesViewController.strings"; sourceTree = "<group>"; };
-		B177E72D1E2ECBF700D7477D /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/ReceivedFilesViewControllerHD.strings"; sourceTree = "<group>"; };
 		B177E72E1E2ECBF800D7477D /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Settings.strings"; sourceTree = "<group>"; };
 		B177E72F1E2ECC0A00D7477D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/CBIGradeDetailView.strings; sourceTree = "<group>"; };
-		B177E7301E2ECC0B00D7477D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ReceivedFilesViewController.strings; sourceTree = "<group>"; };
-		B177E7311E2ECC0C00D7477D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ReceivedFilesViewControllerHD.strings; sourceTree = "<group>"; };
 		B177E7321E2ECC0D00D7477D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Settings.strings; sourceTree = "<group>"; };
 		B177E7331E2ECC1E00D7477D /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/CBIGradeDetailView.strings"; sourceTree = "<group>"; };
-		B177E7341E2ECC1F00D7477D /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/ReceivedFilesViewController.strings"; sourceTree = "<group>"; };
-		B177E7351E2ECC2000D7477D /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/ReceivedFilesViewControllerHD.strings"; sourceTree = "<group>"; };
 		B177E7361E2ECC2100D7477D /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Settings.strings"; sourceTree = "<group>"; };
 		B177E7371E2ECC3200D7477D /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/CBIGradeDetailView.strings; sourceTree = "<group>"; };
-		B177E7381E2ECC3300D7477D /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/ReceivedFilesViewController.strings; sourceTree = "<group>"; };
-		B177E7391E2ECC3400D7477D /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/ReceivedFilesViewControllerHD.strings; sourceTree = "<group>"; };
 		B177E73A1E2ECC3500D7477D /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/Settings.strings; sourceTree = "<group>"; };
 		B177E73B1E2ECC4900D7477D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/CBIGradeDetailView.strings; sourceTree = "<group>"; };
-		B177E73C1E2ECC4A00D7477D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ReceivedFilesViewController.strings; sourceTree = "<group>"; };
-		B177E73D1E2ECC4B00D7477D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ReceivedFilesViewControllerHD.strings; sourceTree = "<group>"; };
 		B177E73E1E2ECC4C00D7477D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Settings.strings; sourceTree = "<group>"; };
 		B177E73F1E2ECC5C00D7477D /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/CBIGradeDetailView.strings; sourceTree = "<group>"; };
-		B177E7401E2ECC5C00D7477D /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/ReceivedFilesViewController.strings; sourceTree = "<group>"; };
-		B177E7411E2ECC5D00D7477D /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/ReceivedFilesViewControllerHD.strings; sourceTree = "<group>"; };
 		B177E7421E2ECC5E00D7477D /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/Settings.strings; sourceTree = "<group>"; };
 		B177E74D1E2ECC7900D7477D /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/CBIGradeDetailView.strings; sourceTree = "<group>"; };
-		B177E74E1E2ECC7A00D7477D /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/ReceivedFilesViewController.strings; sourceTree = "<group>"; };
-		B177E74F1E2ECC7C00D7477D /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/ReceivedFilesViewControllerHD.strings; sourceTree = "<group>"; };
 		B177E7501E2ECC8000D7477D /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Settings.strings; sourceTree = "<group>"; };
 		B177E7511E2ECC9800D7477D /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/CBIGradeDetailView.strings; sourceTree = "<group>"; };
-		B177E7521E2ECC9900D7477D /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/ReceivedFilesViewController.strings; sourceTree = "<group>"; };
-		B177E7531E2ECC9C00D7477D /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/ReceivedFilesViewControllerHD.strings; sourceTree = "<group>"; };
 		B177E7541E2ECC9C00D7477D /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Settings.strings; sourceTree = "<group>"; };
 		B177E7551E2ECCDA00D7477D /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/CBIGradeDetailView.strings; sourceTree = "<group>"; };
-		B177E7561E2ECCDA00D7477D /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/ReceivedFilesViewController.strings; sourceTree = "<group>"; };
-		B177E7571E2ECCDC00D7477D /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/ReceivedFilesViewControllerHD.strings; sourceTree = "<group>"; };
 		B177E7581E2ECCDC00D7477D /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Settings.strings; sourceTree = "<group>"; };
 		B177E7591E2ECCED00D7477D /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/CBIGradeDetailView.strings"; sourceTree = "<group>"; };
-		B177E75A1E2ECCEE00D7477D /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/ReceivedFilesViewController.strings"; sourceTree = "<group>"; };
-		B177E75B1E2ECCEF00D7477D /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/ReceivedFilesViewControllerHD.strings"; sourceTree = "<group>"; };
 		B177E75C1E2ECCF000D7477D /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Settings.strings"; sourceTree = "<group>"; };
 		B177E75D1E2ECD0100D7477D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/CBIGradeDetailView.strings; sourceTree = "<group>"; };
-		B177E75E1E2ECD0200D7477D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/ReceivedFilesViewController.strings; sourceTree = "<group>"; };
-		B177E75F1E2ECD0300D7477D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/ReceivedFilesViewControllerHD.strings; sourceTree = "<group>"; };
 		B177E7601E2ECD0400D7477D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Settings.strings; sourceTree = "<group>"; };
 		B177E7611E2ECD1800D7477D /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/CBIGradeDetailView.strings; sourceTree = "<group>"; };
-		B177E7621E2ECD1900D7477D /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/ReceivedFilesViewController.strings; sourceTree = "<group>"; };
-		B177E7631E2ECD1A00D7477D /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/ReceivedFilesViewControllerHD.strings; sourceTree = "<group>"; };
 		B177E7641E2ECD1B00D7477D /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Settings.strings; sourceTree = "<group>"; };
 		B177E7651E2ECD2E00D7477D /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/CBIGradeDetailView.strings; sourceTree = "<group>"; };
-		B177E7661E2ECD3000D7477D /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/ReceivedFilesViewController.strings; sourceTree = "<group>"; };
-		B177E7671E2ECD3100D7477D /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/ReceivedFilesViewControllerHD.strings; sourceTree = "<group>"; };
 		B177E7681E2ECD3200D7477D /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Settings.strings; sourceTree = "<group>"; };
 		B1CB84EC1D076025004D2265 /* CKRichTextInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CKRichTextInputView.xib; sourceTree = "<group>"; };
 		B1CB84ED1D076025004D2265 /* ExpandingComment.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = ExpandingComment.css; sourceTree = "<group>"; };
@@ -2090,8 +2048,7 @@
 				492705021CF4B70600C631C6 /* DocumentLibraryView.m */,
 				492705031CF4B70600C631C6 /* ReceivedFilesViewController.h */,
 				492705041CF4B70600C631C6 /* ReceivedFilesViewController.m */,
-				B177E70E1E2ECAC700D7477D /* ReceivedFilesViewController.xib */,
-				B177E7111E2ECAD900D7477D /* ReceivedFilesViewControllerHD.xib */,
+				49ADE0041FD84D3F0008E43C /* ReceivedFilesViewController.storyboard */,
 				492705071CF4B70600C631C6 /* SubmissionAttachmentsController.h */,
 				492705081CF4B70600C631C6 /* SubmissionAttachmentsController.m */,
 				492705091CF4B70600C631C6 /* SubmissionWorkflowController.h */,
@@ -3793,7 +3750,6 @@
 				4950686F1D414DC00030A9D5 /* empty-checkbox-white.png in Resources */,
 				49F9FA471CF7B6F600654758 /* TechDebt.xcassets in Resources */,
 				492705F31CF4B76A00C631C6 /* CBIColorfulRightDetailCell.xib in Resources */,
-				B177E70F1E2ECAD900D7477D /* ReceivedFilesViewControllerHD.xib in Resources */,
 				492705121CF4B70600C631C6 /* CBIAssignmentDetail.storyboard in Resources */,
 				492705311CF4B70600C631C6 /* CBISubmissionCommentCell-MyVideo.xib in Resources */,
 				4950686E1D414DC00030A9D5 /* dropbox-logos_dropbox-vertical-blue.png in Resources */,
@@ -3808,7 +3764,6 @@
 				4950686A1D414DC00030A9D5 /* activity-indicator.gif in Resources */,
 				492708381CF4BC3200C631C6 /* filled@2x.png in Resources */,
 				B1CB84F31D076026004D2265 /* ExpandingComment.js in Resources */,
-				B177E70C1E2ECAC700D7477D /* ReceivedFilesViewController.xib in Resources */,
 				495068761D414DC00030A9D5 /* icon_video_large@2x.png in Resources */,
 				49AA2D2A1CF4DC540055862D /* CBIPeopleDetail.storyboard in Resources */,
 				49AA2D311CF4DC540055862D /* Profile.storyboard in Resources */,
@@ -3839,6 +3794,7 @@
 				492705341CF4B70600C631C6 /* CBISubmissionCommentCell-TheirVideo.xib in Resources */,
 				4927052F1CF4B70600C631C6 /* CBISubmissionCommentCell-Mine.xib in Resources */,
 				492708371CF4BC3200C631C6 /* filled.png in Resources */,
+				49ADE0051FD84D3F0008E43C /* ReceivedFilesViewController.storyboard in Resources */,
 				4927069F1CF4B8AA00C631C6 /* ImagesLoaded.js in Resources */,
 				495068721D414DC00030A9D5 /* glossy-spinner@2x.gif in Resources */,
 				492706491CF4B7A800C631C6 /* CreateDiscussion.storyboard in Resources */,
@@ -4081,7 +4037,6 @@
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/BVLinearGradient/BVLinearGradient.framework",
 				"${BUILT_PRODUCTS_DIR}/BugsnagReactNative/BugsnagReactNative.framework",
-				"${BUILT_PRODUCTS_DIR}/CWStatusBarNotification/CWStatusBarNotification.framework",
 				"${BUILT_PRODUCTS_DIR}/Cartography/Cartography.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
 				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
@@ -4127,7 +4082,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BVLinearGradient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BugsnagReactNative.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CWStatusBarNotification.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cartography.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
@@ -4809,62 +4763,6 @@
 				B177E7651E2ECD2E00D7477D /* sv */,
 			);
 			name = CBIGradeDetailView.xib;
-			sourceTree = "<group>";
-		};
-		B177E70E1E2ECAC700D7477D /* ReceivedFilesViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B177E70D1E2ECAC700D7477D /* Base */,
-				B177E7131E2ECB0000D7477D /* ar */,
-				B177E7161E2ECB2200D7477D /* zh */,
-				B177E7191E2ECB3900D7477D /* zh-HK */,
-				B177E71C1E2ECB4C00D7477D /* da */,
-				B177E7201E2ECB6500D7477D /* de */,
-				B177E7241E2ECB7A00D7477D /* nl */,
-				B177E7281E2ECBE400D7477D /* en-AU */,
-				B177E72C1E2ECBF700D7477D /* en-GB */,
-				B177E7301E2ECC0B00D7477D /* fr */,
-				B177E7341E2ECC1F00D7477D /* fr-CA */,
-				B177E7381E2ECC3300D7477D /* ht */,
-				B177E73C1E2ECC4A00D7477D /* ja */,
-				B177E7401E2ECC5C00D7477D /* mi */,
-				B177E74E1E2ECC7A00D7477D /* nb */,
-				B177E7521E2ECC9900D7477D /* pl */,
-				B177E7561E2ECCDA00D7477D /* pt */,
-				B177E75A1E2ECCEE00D7477D /* pt-BR */,
-				B177E75E1E2ECD0200D7477D /* ru */,
-				B177E7621E2ECD1900D7477D /* es */,
-				B177E7661E2ECD3000D7477D /* sv */,
-			);
-			name = ReceivedFilesViewController.xib;
-			sourceTree = "<group>";
-		};
-		B177E7111E2ECAD900D7477D /* ReceivedFilesViewControllerHD.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B177E7101E2ECAD900D7477D /* Base */,
-				B177E7141E2ECB0200D7477D /* ar */,
-				B177E7171E2ECB2300D7477D /* zh */,
-				B177E71A1E2ECB3A00D7477D /* zh-HK */,
-				B177E71D1E2ECB4D00D7477D /* da */,
-				B177E7211E2ECB6600D7477D /* de */,
-				B177E7251E2ECB7B00D7477D /* nl */,
-				B177E7291E2ECBE500D7477D /* en-AU */,
-				B177E72D1E2ECBF700D7477D /* en-GB */,
-				B177E7311E2ECC0C00D7477D /* fr */,
-				B177E7351E2ECC2000D7477D /* fr-CA */,
-				B177E7391E2ECC3400D7477D /* ht */,
-				B177E73D1E2ECC4B00D7477D /* ja */,
-				B177E7411E2ECC5D00D7477D /* mi */,
-				B177E74F1E2ECC7C00D7477D /* nb */,
-				B177E7531E2ECC9C00D7477D /* pl */,
-				B177E7571E2ECCDC00D7477D /* pt */,
-				B177E75B1E2ECCEF00D7477D /* pt-BR */,
-				B177E75F1E2ECD0300D7477D /* ru */,
-				B177E7631E2ECD1A00D7477D /* es */,
-				B177E7671E2ECD3100D7477D /* sv */,
-			);
-			name = ReceivedFilesViewControllerHD.xib;
 			sourceTree = "<group>";
 		};
 		B5A790A61D8C743400ACA9FE /* Localizable.strings */ = {

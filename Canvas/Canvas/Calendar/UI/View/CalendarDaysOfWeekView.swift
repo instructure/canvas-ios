@@ -21,7 +21,6 @@ import CanvasCore
 
 class CalendarDaysOfWeekView : UIView {
     let stack = UIStackView()
-    let message = NSLocalizedString("Refreshing Calendar Events", comment: "Refreshing Calendar Events")
     
     fileprivate lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -63,19 +62,6 @@ class CalendarDaysOfWeekView : UIView {
         stack.spacing = 2.0
         addSubview(stack)
         
-        loadingView.translatesAutoresizingMaskIntoConstraints = false
-        loadingView.backgroundColor = Brand.current.secondaryTintColor
-        loadingHeight = loadingView.heightAnchor.constraint(equalToConstant: 0)
-        addSubview(loadingView)
-        
-        let loadingLabel = UILabel()
-        loadingLabel.translatesAutoresizingMaskIntoConstraints = false
-        loadingLabel.textColor = .white
-        loadingLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
-        loadingLabel.text = message
-        loadingLabel.sizeToFit()
-        loadingView.addSubview(loadingLabel)
-        
         NSLayoutConstraint.activate([
             stack.leadingAnchor.constraint(equalTo: leadingAnchor),
             stack.topAnchor.constraint(equalTo: topAnchor),
@@ -86,14 +72,6 @@ class CalendarDaysOfWeekView : UIView {
             borderView.topAnchor.constraint(equalTo: topAnchor, constant: -1),
             borderView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 1),
             borderView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            
-            loadingView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            loadingView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            loadingView.topAnchor.constraint(equalTo: topAnchor),
-            loadingHeight,
-            
-            loadingLabel.centerXAnchor.constraint(equalTo: loadingView.centerXAnchor),
-            loadingLabel.bottomAnchor.constraint(equalTo: loadingView.bottomAnchor, constant: -4),
         ])
         initLabels()
     }
@@ -116,19 +94,4 @@ class CalendarDaysOfWeekView : UIView {
         }
     }
     
-    let loadingView = UIView()
-    var loadingHeight: NSLayoutConstraint!
-    
-    func show(loading: Bool) {
-        let height = loading ? bounds.size.height : 0.0
-        loadingHeight.constant = height
-        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
-            self.layoutIfNeeded()
-        }, completion: { _ in
-            if (loading) {
-                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, self.message)
-            }
-        })
-        
-    }
 }

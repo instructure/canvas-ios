@@ -44,7 +44,6 @@
 {
     self = [super init];
     if (self) {
-        self.toastManager = [ToastManager new];
         RAC(self, name) = RACObserve(self, model.name);
         RAC(self, lockedItemName) = RACObserve(self, model.name);
         self.icon = [[UIImage techDebtImageNamed:@"icon_page"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
@@ -75,6 +74,10 @@
 
 #pragma mark - tableview delegate
 
+- (void)viewControllerViewDidLoad:(UIViewController *)viewController {
+    self.toastManager = [[ToastManager alloc] initWithNavigationBar:viewController.navigationController.navigationBar];
+}
+
 - (BOOL)tableViewController:(MLVCTableViewController *)controller canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return self.canEdit;
@@ -94,13 +97,13 @@
     RACSignal *deleteSignal = [[CKIClient currentClient] deleteFile:self.model];
     
     [deleteSignal subscribeCompleted:^{
-        [self.toastManager statusBarToastSuccess:[NSString stringWithFormat:NSLocalizedString(@"Deleted file: \"%@\"", @"delete file confirmation alert"), self.name]];
+        [self.toastManager toastSuccess:[NSString stringWithFormat:NSLocalizedString(@"Deleted file: \"%@\"", @"delete file confirmation alert"), self.name]];
     }];
     
     @weakify(self);
     [deleteSignal subscribeError:^(NSError *error) {
         @strongify(self);
-        [self.toastManager dismissNotification];
+        [self.toastManager endToast];
         [tableViewController.viewModel.collectionController insertObjects:@[self]];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Error deleting file \"%@\"", @"Error deleting file alert view title"), self.name] message:error.localizedDescription delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
         [alert show];

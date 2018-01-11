@@ -55,7 +55,6 @@ abstract_target 'defaults' do
   pod 'Result', '~> 3.2'
   pod 'Cartography', '~> 1.1'
   pod 'ReactiveSwift'
-  pod 'CWStatusBarNotification', git: 'https://github.com/derrh/CWStatusBarNotification.git', branch: 'framework'
   pod 'Kingfisher', '~> 3.2'
   pod 'JSTokenField', '~> 1.1'
   pod 'CocoaLumberjack', '~> 3.0'
@@ -137,7 +136,6 @@ end
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     usesNonAppExAPI = %w[
-      CWStatusBarNotification
       SVProgressHUD
       BugsnagReactNative
       RCTSFSafariViewController
