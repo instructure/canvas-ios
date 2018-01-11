@@ -43,7 +43,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         Fabric.with([Crashlytics.self, Answers.self])
         setupForPushNotifications()
         preparePSPDFKit()
+        window = UIWindow(frame: UIScreen.main.bounds)
         showLoadingState()
+        window?.makeKeyAndVisible()
         
         DispatchQueue.main.async {
             self.prepareReactNative()
@@ -65,10 +67,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func showLoadingState() {
+        if let root = window?.rootViewController, let tag = root.tag, tag == "LaunchScreenPlaceholder" { return }
         let placeholder = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateViewController(withIdentifier: "LaunchScreen")
-        window = UIWindow(frame: UIScreen.main.bounds)
+        placeholder.tag = "LaunchScreenPlaceholder"
         window?.rootViewController = placeholder
-        window?.makeKeyAndVisible()
         
         if let icon = placeholder.view.viewWithTag(12345) {
             icon.layer.add(StartupIconAnimation(), forKey: nil)

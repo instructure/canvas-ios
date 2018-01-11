@@ -218,7 +218,7 @@ export class Dashboard extends React.Component<Props, State> {
         renderItem: this.renderCourseCard,
         keyExtractor: ({ id }: ColorfulCourse) => id,
       })
-    } else {
+    } else if (!this.props.pending) {
       sections.push({
         ...coursesHeader,
         data: [{ key: 'welcome' }],
@@ -227,7 +227,9 @@ export class Dashboard extends React.Component<Props, State> {
     }
 
     // Groups
-    if (App.current().appId === 'student') {
+    if (App.current().appId === 'student' &&
+        this.props.groups &&
+        this.props.groups.length > 0) {
       sections.push({
         sectionID: 'dashboard.groups',
         title: i18n('Groups'),

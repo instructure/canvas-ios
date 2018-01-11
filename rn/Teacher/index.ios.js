@@ -45,8 +45,6 @@ configuration.notifyReleaseStages = ['testflight', 'production']
 configuration.appVersion = `${device.getVersion()}-${device.getBuildNumber()}`
 global.crashReporter = new Client(configuration)
 
-global.v12 = false
-
 const PushNotifications = NativeModules.PushNotifications
 
 // Useful for demos when you don't want that annoying yellow box showing up all over the place

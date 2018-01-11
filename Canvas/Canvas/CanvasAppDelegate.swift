@@ -41,20 +41,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         TheKeymaster?.fetchesBranding = true
         TheKeymaster?.delegate = loginConfig
         
-        let placeholder = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateViewController(withIdentifier: "LaunchScreen")
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = placeholder
+        showLoadingState()
         window?.makeKeyAndVisible()
-        
-        if let icon = placeholder.view.viewWithTag(12345) {
-            icon.layer.add(StartupIconAnimation(), forKey: nil)
-        }
         
         DispatchQueue.main.async {
             self.postLaunchSetup()
         }
         
         return true
+    }
+    
+    func showLoadingState() {
+        if let root = window?.rootViewController, let tag = root.tag, tag == "LaunchScreenPlaceholder" { return }
+        let placeholder = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateViewController(withIdentifier: "LaunchScreen")
+        placeholder.tag = "LaunchScreenPlaceholder"
+        window?.rootViewController = placeholder
+        
+        if let icon = placeholder.view.viewWithTag(12345) {
+            icon.layer.add(StartupIconAnimation(), forKey: nil)
+        }
     }
     
     func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
@@ -239,6 +245,10 @@ extension AppDelegate: RCTBridgeDelegate {
             let root = rootViewController(session)
             self.addClearCacheGesture(root.view)
             self.window?.rootViewController = root
+        }
+        
+        HelmManager.shared.onReactReload = {
+            self.showLoadingState()
         }
         
         HelmManager.shared.registerNativeViewController(for: "/courses/:courseID", factory: { props in
