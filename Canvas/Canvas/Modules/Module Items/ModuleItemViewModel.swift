@@ -333,7 +333,7 @@ class ModuleItemViewModel: NSObject {
 
 // MARK: - WebBrowserViewControllerDelegate
 extension ModuleItemViewModel: WebBrowserViewControllerDelegate {
-    func webBrowser(_ webBrowser: WebBrowserViewController!, didFinishLoading webView: UIWebView!) {
+    func webBrowser(_ webBrowser: WebBrowserViewController!, didFinishLoading webView: WKWebView!) {
         if moduleItemMatches(webBrowser.url) {
             markAsViewedAction.apply(()).start()
         }

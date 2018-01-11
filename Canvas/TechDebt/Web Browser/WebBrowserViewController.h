@@ -16,17 +16,18 @@
     
     
 
-#import <UIKit/UIKit.h>
+@import UIKit;
+@import WebKit;
 
 @protocol WebBrowserRequest <NSObject>
-- (void)loadRequestInWebView:(UIWebView *)webView;
+- (void)loadRequestInWebView:(WKWebView *)webView;
 @property (nonatomic, readonly) BOOL canOpenInSafari;
 @end
 
 @class WebBrowserViewController;
 
 @protocol WebBrowserViewControllerDelegate <NSObject>
-- (void)webBrowser:(WebBrowserViewController *)webBrowser didFinishLoadingWebView:(UIWebView *)webView;
+- (void)webBrowser:(WebBrowserViewController *)webBrowser didFinishLoadingWebView:(WKWebView *)webView;
 @end
 
 @interface NSURLRequest (WebBrowser) <WebBrowserRequest>

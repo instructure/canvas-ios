@@ -114,10 +114,6 @@ public class CanvasWebView: WKWebView {
         let js = "(function (width) {let metaViewport = document.querySelector('meta[name=viewport]');if (metaViewport) {metaViewport.content='width = ' + width + ', user-scalable = yes';} else {let meta = document.createElement('meta');meta.setAttribute( 'name', 'viewport' );meta.setAttribute( 'content', 'width = '+ width + ', user-scalable = yes' );document.getElementsByTagName('head')[0].appendChild(meta);}})(\(width))"
         evaluateJavaScript(js, completionHandler: nil)
     }
-    
-    fileprivate func replaceHREFsWithAPISafeURLs() {
-        self.evaluateJavaScript("var links = document.getElementsByTagName('a'); for (var i = 0; i < links.length; i++){ if(links[i].getAttribute('data-api-endpoint')){ links[i].setAttribute('href',links[i].getAttribute('data-api-endpoint'));}}", completionHandler: nil)
-    }
 
     fileprivate func handle(error: Error) {
         (error as NSError).userInfo.forEach { key, value in print("\(key) => \(value)") }

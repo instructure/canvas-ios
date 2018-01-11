@@ -30,6 +30,7 @@
 		2CE40C9C1F87D37100ECEACB /* PSPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B11F843B58001A8F31 /* PSPDFView.swift */; };
 		2CE40C9D1F87D37300ECEACB /* PSPDFViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B31F843B59001A8F31 /* PSPDFViewManager.m */; };
 		2CFAFBD11FD21B3800F22C7F /* WindowTraits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFAFBD01FD21B3800F22C7F /* WindowTraits.swift */; };
+		3BA0F9B620069CEB00E64448 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA0F9B520069CEB00E64448 /* UIView+AutoLayout.swift */; };
 		3BA8BE9B1FE2ED85003EC4FD /* SubmissionConfirmationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BA8BE9D1FE2ED85003EC4FD /* SubmissionConfirmationViewController.xib */; };
 		3BD43DE91FD20597001A6B34 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD43DE81FD20597001A6B34 /* EmptyViewController.swift */; };
 		3BDE87761FD76BE600912CB3 /* UISplitViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */; };
@@ -521,6 +522,7 @@
 		2CD6B56E1FD20A9800C7DE15 /* WindowTraitsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WindowTraitsManager.h; sourceTree = "<group>"; };
 		2CD6B56F1FD20A9800C7DE15 /* WindowTraitsManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WindowTraitsManager.m; sourceTree = "<group>"; };
 		2CFAFBD01FD21B3800F22C7F /* WindowTraits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowTraits.swift; sourceTree = "<group>"; };
+		3BA0F9B520069CEB00E64448 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		3BA8BE9C1FE2ED85003EC4FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SubmissionConfirmationViewController.xib; sourceTree = "<group>"; };
 		3BA8BE9F1FE2ED98003EC4FD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
 		3BA8BEA11FE2EDA9003EC4FD /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
@@ -1232,6 +1234,7 @@
 				2C7CBD2A1F79A42600E5EC02 /* CGRect+Core.swift */,
 				2CAF177F1F7AF61100EA2742 /* UIFont+Core.swift */,
 				49A667D21F96B1B900A5166E /* UIApplication+Reactive.swift */,
+				3BA0F9B520069CEB00E64448 /* UIView+AutoLayout.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3271,6 +3274,7 @@
 				4961F6351F8FB70D0093EC86 /* GradingPeriod+Collections.swift in Sources */,
 				4961F6821F8FB9620093EC86 /* FileUploadBatch.swift in Sources */,
 				4961F5421F8FAD9A0093EC86 /* WhizzyWigView.swift in Sources */,
+				3BA0F9B620069CEB00E64448 /* UIView+AutoLayout.swift in Sources */,
 				49301FD11F9014C6006BD777 /* CalendarEvent+Collections.swift in Sources */,
 				2C7CBD2B1F79A42600E5EC02 /* CGRect+Core.swift in Sources */,
 				493020761F902462006BD777 /* NSDate+Marshal.swift in Sources */,

@@ -24,10 +24,19 @@
 //
 //
 
-import Foundation
+import UIKit
+import WebKit
+
+let webPostProcessingLinkJavascript = "var links = document.getElementsByTagName('a'); for (var i = 0; i < links.length; i++){ if(links[i].getAttribute('data-api-endpoint')){ links[i].setAttribute('href',links[i].getAttribute('data-api-endpoint'));}}"
+
+extension WKWebView {
+    public func replaceHREFsWithAPISafeURLs() {
+        self.evaluateJavaScript(webPostProcessingLinkJavascript, completionHandler: nil)
+    }
+}
 
 extension UIWebView {
     public func replaceHREFsWithAPISafeURLs() {
-        self.stringByEvaluatingJavaScript(from: "var links = document.getElementsByTagName('a'); for (var i = 0; i < links.length; i++){ if(links[i].getAttribute('data-api-endpoint')){ links[i].setAttribute('href',links[i].getAttribute('data-api-endpoint'));}}")
+        self.stringByEvaluatingJavaScript(from: webPostProcessingLinkJavascript)
     }
 }
