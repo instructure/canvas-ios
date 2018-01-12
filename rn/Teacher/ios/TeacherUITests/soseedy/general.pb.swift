@@ -44,6 +44,76 @@ struct Soseedy_HealthCheckRequest: SwiftProtobuf.Message {
   }
 }
 
+struct Soseedy_SeedDataRequest: SwiftProtobuf.Message {
+  static let protoMessageName: String = _protobuf_package + ".SeedDataRequest"
+
+  var teachers: Int32 = 0
+
+  var students: Int32 = 0
+
+  var courses: Int32 = 0
+
+  var favoriteCourses: Int32 = 0
+
+  var announcements: Int32 = 0
+
+  var discussions: Int32 = 0
+
+  var gradingPeriods: Bool = false
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.teachers)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.students)
+      case 3: try decoder.decodeSingularInt32Field(value: &self.courses)
+      case 4: try decoder.decodeSingularInt32Field(value: &self.favoriteCourses)
+      case 5: try decoder.decodeSingularInt32Field(value: &self.announcements)
+      case 6: try decoder.decodeSingularInt32Field(value: &self.discussions)
+      case 7: try decoder.decodeSingularBoolField(value: &self.gradingPeriods)
+      default: break
+      }
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.teachers != 0 {
+      try visitor.visitSingularInt32Field(value: self.teachers, fieldNumber: 1)
+    }
+    if self.students != 0 {
+      try visitor.visitSingularInt32Field(value: self.students, fieldNumber: 2)
+    }
+    if self.courses != 0 {
+      try visitor.visitSingularInt32Field(value: self.courses, fieldNumber: 3)
+    }
+    if self.favoriteCourses != 0 {
+      try visitor.visitSingularInt32Field(value: self.favoriteCourses, fieldNumber: 4)
+    }
+    if self.announcements != 0 {
+      try visitor.visitSingularInt32Field(value: self.announcements, fieldNumber: 5)
+    }
+    if self.discussions != 0 {
+      try visitor.visitSingularInt32Field(value: self.discussions, fieldNumber: 6)
+    }
+    if self.gradingPeriods != false {
+      try visitor.visitSingularBoolField(value: self.gradingPeriods, fieldNumber: 7)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+}
+
 struct Soseedy_HealthCheck: SwiftProtobuf.Message {
   static let protoMessageName: String = _protobuf_package + ".HealthCheck"
 
@@ -78,6 +148,70 @@ struct Soseedy_HealthCheck: SwiftProtobuf.Message {
   }
 }
 
+struct Soseedy_SeededData: SwiftProtobuf.Message {
+  static let protoMessageName: String = _protobuf_package + ".SeededData"
+
+  var teachers: [Soseedy_CanvasUser] = []
+
+  var enrollments: [Soseedy_Enrollment] = []
+
+  var students: [Soseedy_CanvasUser] = []
+
+  var courses: [Soseedy_Course] = []
+
+  var favorites: [Soseedy_Favorite] = []
+
+  var discussions: [Soseedy_Discussion] = []
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeRepeatedMessageField(value: &self.teachers)
+      case 2: try decoder.decodeRepeatedMessageField(value: &self.enrollments)
+      case 3: try decoder.decodeRepeatedMessageField(value: &self.students)
+      case 4: try decoder.decodeRepeatedMessageField(value: &self.courses)
+      case 5: try decoder.decodeRepeatedMessageField(value: &self.favorites)
+      case 6: try decoder.decodeRepeatedMessageField(value: &self.discussions)
+      default: break
+      }
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.teachers.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.teachers, fieldNumber: 1)
+    }
+    if !self.enrollments.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.enrollments, fieldNumber: 2)
+    }
+    if !self.students.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.students, fieldNumber: 3)
+    }
+    if !self.courses.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.courses, fieldNumber: 4)
+    }
+    if !self.favorites.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.favorites, fieldNumber: 5)
+    }
+    if !self.discussions.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.discussions, fieldNumber: 6)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+}
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "soseedy"
@@ -91,6 +225,30 @@ extension Soseedy_HealthCheckRequest: SwiftProtobuf._MessageImplementationBase, 
   }
 }
 
+extension Soseedy_SeedDataRequest: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "teachers"),
+    2: .same(proto: "students"),
+    3: .same(proto: "courses"),
+    4: .same(proto: "favoriteCourses"),
+    5: .same(proto: "announcements"),
+    6: .same(proto: "discussions"),
+    7: .same(proto: "gradingPeriods"),
+  ]
+
+  func _protobuf_generated_isEqualTo(other: Soseedy_SeedDataRequest) -> Bool {
+    if self.teachers != other.teachers {return false}
+    if self.students != other.students {return false}
+    if self.courses != other.courses {return false}
+    if self.favoriteCourses != other.favoriteCourses {return false}
+    if self.announcements != other.announcements {return false}
+    if self.discussions != other.discussions {return false}
+    if self.gradingPeriods != other.gradingPeriods {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
 extension Soseedy_HealthCheck: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "healthy"),
@@ -98,6 +256,28 @@ extension Soseedy_HealthCheck: SwiftProtobuf._MessageImplementationBase, SwiftPr
 
   func _protobuf_generated_isEqualTo(other: Soseedy_HealthCheck) -> Bool {
     if self.healthy != other.healthy {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Soseedy_SeededData: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "teachers"),
+    2: .same(proto: "enrollments"),
+    3: .same(proto: "students"),
+    4: .same(proto: "courses"),
+    5: .same(proto: "favorites"),
+    6: .same(proto: "discussions"),
+  ]
+
+  func _protobuf_generated_isEqualTo(other: Soseedy_SeededData) -> Bool {
+    if self.teachers != other.teachers {return false}
+    if self.enrollments != other.enrollments {return false}
+    if self.students != other.students {return false}
+    if self.courses != other.courses {return false}
+    if self.favorites != other.favorites {return false}
+    if self.discussions != other.discussions {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }

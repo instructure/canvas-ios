@@ -11,7 +11,7 @@ def delete path
   File.delete(path) if File.exist?(path)
 end
 
-protoc_bin = join(__dir__, 'protoc-3.5.0-osx-x86_64/bin/')
+protoc_bin = join(__dir__, 'protoc-3.5.1-osx-x86_64/bin/')
 protoc = join(protoc_bin, 'protoc')
 swift_plugin = join(protoc_bin, 'protoc-gen-swift')
 swiftgrpc_plugin = join(protoc_bin, 'protoc-gen-swiftgrpc')
@@ -52,8 +52,6 @@ puts command
 Dir.glob(File.join(swift_dst, '*.server.pb.swift')) do |file|
   delete file
 end
-
-delete join(swift_dst, 'swiftgrpc.log')
 
 # package_name.client.swift
 # Packagename_[serviceName]Service

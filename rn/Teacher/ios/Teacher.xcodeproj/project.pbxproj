@@ -65,6 +65,34 @@
 		F79F609F1EFDA57200ED594E /* TeacherTest+FormattedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79F609E1EFDA57200ED594E /* TeacherTest+FormattedString.swift */; };
 		F7A4A8DA1EDE2A5400809880 /* AllCoursesListPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A4A8D91EDE2A5400809880 /* AllCoursesListPageTest.swift */; };
 		F7A4A8FA1EDE2B6100809880 /* AllCoursesListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A4A8F91EDE2B6100809880 /* AllCoursesListPage.swift */; };
+		F91D75B3200928DD005A73DB /* conversations.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91D7597200928DA005A73DB /* conversations.grpc.swift */; };
+		F91D75B4200928DD005A73DB /* user.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91D7598200928DA005A73DB /* user.grpc.swift */; };
+		F91D75B5200928DD005A73DB /* feature_flags.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91D7599200928DA005A73DB /* feature_flags.pb.swift */; };
+		F91D75B6200928DD005A73DB /* files.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91D759A200928DA005A73DB /* files.grpc.swift */; };
+		F91D75B7200928DD005A73DB /* pages.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91D759B200928DA005A73DB /* pages.pb.swift */; };
+		F91D75B8200928DD005A73DB /* files.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91D759C200928DA005A73DB /* files.pb.swift */; };
+		F91D75B9200928DD005A73DB /* groups.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91D759D200928DA005A73DB /* groups.grpc.swift */; };
+		F91D75BA200928DD005A73DB /* user.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91D759E200928DA005A73DB /* user.pb.swift */; };
+		F91D75BB200928DD005A73DB /* enrollments.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91D759F200928DB005A73DB /* enrollments.pb.swift */; };
+		F91D75BC200928DD005A73DB /* groups.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91D75A0200928DB005A73DB /* groups.pb.swift */; };
+		F91D75BD200928DD005A73DB /* discussions.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91D75A1200928DB005A73DB /* discussions.pb.swift */; };
+		F91D75BE200928DD005A73DB /* quizzes.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91D75A2200928DB005A73DB /* quizzes.grpc.swift */; };
+		F91D75BF200928DD005A73DB /* sections.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91D75A3200928DB005A73DB /* sections.pb.swift */; };
+		F91D75C0200928DD005A73DB /* assignments.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91D75A4200928DB005A73DB /* assignments.grpc.swift */; };
+		F91D75C1200928DD005A73DB /* courses.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91D75A5200928DB005A73DB /* courses.grpc.swift */; };
+		F91D75C2200928DD005A73DB /* feature_flags.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91D75A6200928DB005A73DB /* feature_flags.grpc.swift */; };
+		F91D75C3200928DD005A73DB /* pages.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91D75A7200928DC005A73DB /* pages.grpc.swift */; };
+		F91D75C4200928DD005A73DB /* quizzes.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91D75A8200928DC005A73DB /* quizzes.pb.swift */; };
+		F91D75C5200928DD005A73DB /* general.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91D75A9200928DC005A73DB /* general.grpc.swift */; };
+		F91D75C6200928DD005A73DB /* general.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91D75AA200928DC005A73DB /* general.pb.swift */; };
+		F91D75C7200928DD005A73DB /* grading_periods.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91D75AB200928DC005A73DB /* grading_periods.grpc.swift */; };
+		F91D75C8200928DD005A73DB /* conversations.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91D75AC200928DC005A73DB /* conversations.pb.swift */; };
+		F91D75C9200928DD005A73DB /* courses.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91D75AD200928DC005A73DB /* courses.pb.swift */; };
+		F91D75CA200928DD005A73DB /* grading_periods.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91D75AE200928DC005A73DB /* grading_periods.pb.swift */; };
+		F91D75CB200928DD005A73DB /* sections.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91D75AF200928DD005A73DB /* sections.grpc.swift */; };
+		F91D75CC200928DD005A73DB /* discussions.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91D75B0200928DD005A73DB /* discussions.grpc.swift */; };
+		F91D75CD200928DD005A73DB /* assignments.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91D75B1200928DD005A73DB /* assignments.pb.swift */; };
+		F91D75CE200928DD005A73DB /* enrollments.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91D75B2200928DD005A73DB /* enrollments.grpc.swift */; };
 		F99A8E671F06C0DA0032449B /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EDE01E735CA50096592C /* AssetsLibrary.framework */; };
 		F99A8E8A1F06C0EC0032449B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EDFC1E735CAC0096592C /* CoreTelephony.framework */; };
 		F99A8E8B1F06C0F40032449B /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EDFE1E735CB10096592C /* CoreText.framework */; };
@@ -73,32 +101,6 @@
 		F99A8E8E1F06C1080032449B /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE041E735CC00096592C /* CoreVideo.framework */; };
 		F99A8E8F1F06C10F0032449B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE061E735CC60096592C /* QuartzCore.framework */; };
 		F99A8E901F06C1150032449B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE081E735CCB0096592C /* SystemConfiguration.framework */; };
-		F9D0F49E1FE3169C00A92E08 /* soseedy4.client.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F4841FE3169800A92E08 /* soseedy4.client.pb.swift */; };
-		F9D0F49F1FE3169C00A92E08 /* soseedy1.client.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F4851FE3169900A92E08 /* soseedy1.client.pb.swift */; };
-		F9D0F4A01FE3169C00A92E08 /* pages.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F4861FE3169900A92E08 /* pages.pb.swift */; };
-		F9D0F4A11FE3169C00A92E08 /* files.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F4871FE3169900A92E08 /* files.pb.swift */; };
-		F9D0F4A21FE3169C00A92E08 /* user.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F4881FE3169900A92E08 /* user.pb.swift */; };
-		F9D0F4A31FE3169C00A92E08 /* enrollments.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F4891FE3169900A92E08 /* enrollments.pb.swift */; };
-		F9D0F4A41FE3169C00A92E08 /* soseedy2.client.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F48A1FE3169900A92E08 /* soseedy2.client.pb.swift */; };
-		F9D0F4A51FE3169C00A92E08 /* groups.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F48B1FE3169900A92E08 /* groups.pb.swift */; };
-		F9D0F4A61FE3169C00A92E08 /* soseedy11.client.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F48C1FE3169A00A92E08 /* soseedy11.client.pb.swift */; };
-		F9D0F4A71FE3169C00A92E08 /* discussions.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F48D1FE3169A00A92E08 /* discussions.pb.swift */; };
-		F9D0F4A81FE3169C00A92E08 /* soseedy0.client.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F48E1FE3169A00A92E08 /* soseedy0.client.pb.swift */; };
-		F9D0F4A91FE3169C00A92E08 /* soseedy7.client.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F48F1FE3169A00A92E08 /* soseedy7.client.pb.swift */; };
-		F9D0F4AA1FE3169C00A92E08 /* sections.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F4901FE3169A00A92E08 /* sections.pb.swift */; };
-		F9D0F4AB1FE3169C00A92E08 /* soseedy10.client.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F4911FE3169A00A92E08 /* soseedy10.client.pb.swift */; };
-		F9D0F4AC1FE3169C00A92E08 /* quizzes.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F4921FE3169A00A92E08 /* quizzes.pb.swift */; };
-		F9D0F4AD1FE3169C00A92E08 /* general.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F4931FE3169B00A92E08 /* general.pb.swift */; };
-		F9D0F4AE1FE3169C00A92E08 /* soseedy3.client.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F4941FE3169B00A92E08 /* soseedy3.client.pb.swift */; };
-		F9D0F4AF1FE3169C00A92E08 /* soseedy5.client.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F4951FE3169B00A92E08 /* soseedy5.client.pb.swift */; };
-		F9D0F4B01FE3169C00A92E08 /* soseedy8.client.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F4961FE3169B00A92E08 /* soseedy8.client.pb.swift */; };
-		F9D0F4B11FE3169C00A92E08 /* conversations.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F4971FE3169B00A92E08 /* conversations.pb.swift */; };
-		F9D0F4B21FE3169C00A92E08 /* soseedy12.client.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F4981FE3169B00A92E08 /* soseedy12.client.pb.swift */; };
-		F9D0F4B31FE3169C00A92E08 /* courses.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F4991FE3169C00A92E08 /* courses.pb.swift */; };
-		F9D0F4B41FE3169C00A92E08 /* soseedy6.client.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F49A1FE3169C00A92E08 /* soseedy6.client.pb.swift */; };
-		F9D0F4B51FE3169C00A92E08 /* grading_periods.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F49B1FE3169C00A92E08 /* grading_periods.pb.swift */; };
-		F9D0F4B61FE3169C00A92E08 /* soseedy9.client.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F49C1FE3169C00A92E08 /* soseedy9.client.pb.swift */; };
-		F9D0F4B71FE3169C00A92E08 /* assignments.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D0F49D1FE3169C00A92E08 /* assignments.pb.swift */; };
 		F9D224691EB7C51000BB0990 /* EditCoursesPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D224681EB7C51000BB0990 /* EditCoursesPageTest.swift */; };
 		F9FDB9351C9FB4F9CF7E0F94 /* Pods_defaults_Teacher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */; };
 /* End PBXBuildFile section */
@@ -255,37 +257,39 @@
 		F79F609E1EFDA57200ED594E /* TeacherTest+FormattedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TeacherTest+FormattedString.swift"; sourceTree = "<group>"; };
 		F7A4A8D91EDE2A5400809880 /* AllCoursesListPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllCoursesListPageTest.swift; sourceTree = "<group>"; };
 		F7A4A8F91EDE2B6100809880 /* AllCoursesListPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllCoursesListPage.swift; sourceTree = "<group>"; };
+		F91D7597200928DA005A73DB /* conversations.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = conversations.grpc.swift; sourceTree = "<group>"; };
+		F91D7598200928DA005A73DB /* user.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = user.grpc.swift; sourceTree = "<group>"; };
+		F91D7599200928DA005A73DB /* feature_flags.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = feature_flags.pb.swift; sourceTree = "<group>"; };
+		F91D759A200928DA005A73DB /* files.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = files.grpc.swift; sourceTree = "<group>"; };
+		F91D759B200928DA005A73DB /* pages.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pages.pb.swift; sourceTree = "<group>"; };
+		F91D759C200928DA005A73DB /* files.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = files.pb.swift; sourceTree = "<group>"; };
+		F91D759D200928DA005A73DB /* groups.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = groups.grpc.swift; sourceTree = "<group>"; };
+		F91D759E200928DA005A73DB /* user.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = user.pb.swift; sourceTree = "<group>"; };
+		F91D759F200928DB005A73DB /* enrollments.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = enrollments.pb.swift; sourceTree = "<group>"; };
+		F91D75A0200928DB005A73DB /* groups.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = groups.pb.swift; sourceTree = "<group>"; };
+		F91D75A1200928DB005A73DB /* discussions.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = discussions.pb.swift; sourceTree = "<group>"; };
+		F91D75A2200928DB005A73DB /* quizzes.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = quizzes.grpc.swift; sourceTree = "<group>"; };
+		F91D75A3200928DB005A73DB /* sections.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sections.pb.swift; sourceTree = "<group>"; };
+		F91D75A4200928DB005A73DB /* assignments.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = assignments.grpc.swift; sourceTree = "<group>"; };
+		F91D75A5200928DB005A73DB /* courses.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = courses.grpc.swift; sourceTree = "<group>"; };
+		F91D75A6200928DB005A73DB /* feature_flags.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = feature_flags.grpc.swift; sourceTree = "<group>"; };
+		F91D75A7200928DC005A73DB /* pages.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pages.grpc.swift; sourceTree = "<group>"; };
+		F91D75A8200928DC005A73DB /* quizzes.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = quizzes.pb.swift; sourceTree = "<group>"; };
+		F91D75A9200928DC005A73DB /* general.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = general.grpc.swift; sourceTree = "<group>"; };
+		F91D75AA200928DC005A73DB /* general.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = general.pb.swift; sourceTree = "<group>"; };
+		F91D75AB200928DC005A73DB /* grading_periods.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = grading_periods.grpc.swift; sourceTree = "<group>"; };
+		F91D75AC200928DC005A73DB /* conversations.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = conversations.pb.swift; sourceTree = "<group>"; };
+		F91D75AD200928DC005A73DB /* courses.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = courses.pb.swift; sourceTree = "<group>"; };
+		F91D75AE200928DC005A73DB /* grading_periods.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = grading_periods.pb.swift; sourceTree = "<group>"; };
+		F91D75AF200928DD005A73DB /* sections.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sections.grpc.swift; sourceTree = "<group>"; };
+		F91D75B0200928DD005A73DB /* discussions.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = discussions.grpc.swift; sourceTree = "<group>"; };
+		F91D75B1200928DD005A73DB /* assignments.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = assignments.pb.swift; sourceTree = "<group>"; };
+		F91D75B2200928DD005A73DB /* enrollments.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = enrollments.grpc.swift; sourceTree = "<group>"; };
 		F93595101F8705B600DBF1B5 /* CgRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CgRPC.framework; path = ../../../ExternalFrameworks/CgRPC.framework; sourceTree = "<group>"; };
 		F93595111F8705B600DBF1B5 /* Czlib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Czlib.framework; path = ../../../ExternalFrameworks/Czlib.framework; sourceTree = "<group>"; };
 		F93595121F8705B600DBF1B5 /* BoringSSL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BoringSSL.framework; path = ../../../ExternalFrameworks/BoringSSL.framework; sourceTree = "<group>"; };
 		F93595131F8705B700DBF1B5 /* gRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = gRPC.framework; path = ../../../ExternalFrameworks/gRPC.framework; sourceTree = "<group>"; };
 		F99A8E911F06C1450032449B /* bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bridge.h; sourceTree = "<group>"; };
-		F9D0F4841FE3169800A92E08 /* soseedy4.client.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = soseedy4.client.pb.swift; sourceTree = "<group>"; };
-		F9D0F4851FE3169900A92E08 /* soseedy1.client.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = soseedy1.client.pb.swift; sourceTree = "<group>"; };
-		F9D0F4861FE3169900A92E08 /* pages.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pages.pb.swift; sourceTree = "<group>"; };
-		F9D0F4871FE3169900A92E08 /* files.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = files.pb.swift; sourceTree = "<group>"; };
-		F9D0F4881FE3169900A92E08 /* user.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = user.pb.swift; sourceTree = "<group>"; };
-		F9D0F4891FE3169900A92E08 /* enrollments.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = enrollments.pb.swift; sourceTree = "<group>"; };
-		F9D0F48A1FE3169900A92E08 /* soseedy2.client.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = soseedy2.client.pb.swift; sourceTree = "<group>"; };
-		F9D0F48B1FE3169900A92E08 /* groups.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = groups.pb.swift; sourceTree = "<group>"; };
-		F9D0F48C1FE3169A00A92E08 /* soseedy11.client.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = soseedy11.client.pb.swift; sourceTree = "<group>"; };
-		F9D0F48D1FE3169A00A92E08 /* discussions.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = discussions.pb.swift; sourceTree = "<group>"; };
-		F9D0F48E1FE3169A00A92E08 /* soseedy0.client.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = soseedy0.client.pb.swift; sourceTree = "<group>"; };
-		F9D0F48F1FE3169A00A92E08 /* soseedy7.client.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = soseedy7.client.pb.swift; sourceTree = "<group>"; };
-		F9D0F4901FE3169A00A92E08 /* sections.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sections.pb.swift; sourceTree = "<group>"; };
-		F9D0F4911FE3169A00A92E08 /* soseedy10.client.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = soseedy10.client.pb.swift; sourceTree = "<group>"; };
-		F9D0F4921FE3169A00A92E08 /* quizzes.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = quizzes.pb.swift; sourceTree = "<group>"; };
-		F9D0F4931FE3169B00A92E08 /* general.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = general.pb.swift; sourceTree = "<group>"; };
-		F9D0F4941FE3169B00A92E08 /* soseedy3.client.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = soseedy3.client.pb.swift; sourceTree = "<group>"; };
-		F9D0F4951FE3169B00A92E08 /* soseedy5.client.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = soseedy5.client.pb.swift; sourceTree = "<group>"; };
-		F9D0F4961FE3169B00A92E08 /* soseedy8.client.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = soseedy8.client.pb.swift; sourceTree = "<group>"; };
-		F9D0F4971FE3169B00A92E08 /* conversations.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = conversations.pb.swift; sourceTree = "<group>"; };
-		F9D0F4981FE3169B00A92E08 /* soseedy12.client.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = soseedy12.client.pb.swift; sourceTree = "<group>"; };
-		F9D0F4991FE3169C00A92E08 /* courses.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = courses.pb.swift; sourceTree = "<group>"; };
-		F9D0F49A1FE3169C00A92E08 /* soseedy6.client.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = soseedy6.client.pb.swift; sourceTree = "<group>"; };
-		F9D0F49B1FE3169C00A92E08 /* grading_periods.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = grading_periods.pb.swift; sourceTree = "<group>"; };
-		F9D0F49C1FE3169C00A92E08 /* soseedy9.client.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = soseedy9.client.pb.swift; sourceTree = "<group>"; };
-		F9D0F49D1FE3169C00A92E08 /* assignments.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = assignments.pb.swift; sourceTree = "<group>"; };
 		F9D224681EB7C51000BB0990 /* EditCoursesPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCoursesPageTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -491,32 +495,34 @@
 		F9D0F3FF1FE3054F00A92E08 /* soseedy */ = {
 			isa = PBXGroup;
 			children = (
-				F9D0F49D1FE3169C00A92E08 /* assignments.pb.swift */,
-				F9D0F4971FE3169B00A92E08 /* conversations.pb.swift */,
-				F9D0F4991FE3169C00A92E08 /* courses.pb.swift */,
-				F9D0F48D1FE3169A00A92E08 /* discussions.pb.swift */,
-				F9D0F4891FE3169900A92E08 /* enrollments.pb.swift */,
-				F9D0F4871FE3169900A92E08 /* files.pb.swift */,
-				F9D0F4931FE3169B00A92E08 /* general.pb.swift */,
-				F9D0F49B1FE3169C00A92E08 /* grading_periods.pb.swift */,
-				F9D0F48B1FE3169900A92E08 /* groups.pb.swift */,
-				F9D0F4861FE3169900A92E08 /* pages.pb.swift */,
-				F9D0F4921FE3169A00A92E08 /* quizzes.pb.swift */,
-				F9D0F4901FE3169A00A92E08 /* sections.pb.swift */,
-				F9D0F48E1FE3169A00A92E08 /* soseedy0.client.pb.swift */,
-				F9D0F4851FE3169900A92E08 /* soseedy1.client.pb.swift */,
-				F9D0F48A1FE3169900A92E08 /* soseedy2.client.pb.swift */,
-				F9D0F4941FE3169B00A92E08 /* soseedy3.client.pb.swift */,
-				F9D0F4841FE3169800A92E08 /* soseedy4.client.pb.swift */,
-				F9D0F4951FE3169B00A92E08 /* soseedy5.client.pb.swift */,
-				F9D0F49A1FE3169C00A92E08 /* soseedy6.client.pb.swift */,
-				F9D0F48F1FE3169A00A92E08 /* soseedy7.client.pb.swift */,
-				F9D0F4961FE3169B00A92E08 /* soseedy8.client.pb.swift */,
-				F9D0F49C1FE3169C00A92E08 /* soseedy9.client.pb.swift */,
-				F9D0F4911FE3169A00A92E08 /* soseedy10.client.pb.swift */,
-				F9D0F48C1FE3169A00A92E08 /* soseedy11.client.pb.swift */,
-				F9D0F4981FE3169B00A92E08 /* soseedy12.client.pb.swift */,
-				F9D0F4881FE3169900A92E08 /* user.pb.swift */,
+				F91D75A4200928DB005A73DB /* assignments.grpc.swift */,
+				F91D75B1200928DD005A73DB /* assignments.pb.swift */,
+				F91D7597200928DA005A73DB /* conversations.grpc.swift */,
+				F91D75AC200928DC005A73DB /* conversations.pb.swift */,
+				F91D75A5200928DB005A73DB /* courses.grpc.swift */,
+				F91D75AD200928DC005A73DB /* courses.pb.swift */,
+				F91D75B0200928DD005A73DB /* discussions.grpc.swift */,
+				F91D75A1200928DB005A73DB /* discussions.pb.swift */,
+				F91D75B2200928DD005A73DB /* enrollments.grpc.swift */,
+				F91D759F200928DB005A73DB /* enrollments.pb.swift */,
+				F91D75A6200928DB005A73DB /* feature_flags.grpc.swift */,
+				F91D7599200928DA005A73DB /* feature_flags.pb.swift */,
+				F91D759A200928DA005A73DB /* files.grpc.swift */,
+				F91D759C200928DA005A73DB /* files.pb.swift */,
+				F91D75A9200928DC005A73DB /* general.grpc.swift */,
+				F91D75AA200928DC005A73DB /* general.pb.swift */,
+				F91D75AB200928DC005A73DB /* grading_periods.grpc.swift */,
+				F91D75AE200928DC005A73DB /* grading_periods.pb.swift */,
+				F91D759D200928DA005A73DB /* groups.grpc.swift */,
+				F91D75A0200928DB005A73DB /* groups.pb.swift */,
+				F91D75A7200928DC005A73DB /* pages.grpc.swift */,
+				F91D759B200928DA005A73DB /* pages.pb.swift */,
+				F91D75A2200928DB005A73DB /* quizzes.grpc.swift */,
+				F91D75A8200928DC005A73DB /* quizzes.pb.swift */,
+				F91D75AF200928DD005A73DB /* sections.grpc.swift */,
+				F91D75A3200928DB005A73DB /* sections.pb.swift */,
+				F91D7598200928DA005A73DB /* user.grpc.swift */,
+				F91D759E200928DA005A73DB /* user.pb.swift */,
 			);
 			path = soseedy;
 			sourceTree = "<group>";
@@ -993,56 +999,58 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9D0F4B21FE3169C00A92E08 /* soseedy12.client.pb.swift in Sources */,
 				61B537311E786A58000FEABB /* DomainPickerPage.swift in Sources */,
-				F9D0F4B41FE3169C00A92E08 /* soseedy6.client.pb.swift in Sources */,
-				F9D0F4B31FE3169C00A92E08 /* courses.pb.swift in Sources */,
-				F9D0F4AE1FE3169C00A92E08 /* soseedy3.client.pb.swift in Sources */,
-				F9D0F4A31FE3169C00A92E08 /* enrollments.pb.swift in Sources */,
+				F91D75C5200928DD005A73DB /* general.grpc.swift in Sources */,
+				F91D75CB200928DD005A73DB /* sections.grpc.swift in Sources */,
 				61B537301E786A54000FEABB /* Pages.swift in Sources */,
 				49B274C21E8437D700828E42 /* CanvasLoginPage.swift in Sources */,
-				F9D0F4A21FE3169C00A92E08 /* user.pb.swift in Sources */,
+				F91D75C6200928DD005A73DB /* general.pb.swift in Sources */,
+				F91D75B7200928DD005A73DB /* pages.pb.swift in Sources */,
+				F91D75BB200928DD005A73DB /* enrollments.pb.swift in Sources */,
 				2C62DC7B1E8BF532006638F3 /* CourseListPageTest.swift in Sources */,
-				F9D0F49E1FE3169C00A92E08 /* soseedy4.client.pb.swift in Sources */,
+				F91D75C7200928DD005A73DB /* grading_periods.grpc.swift in Sources */,
+				F91D75BD200928DD005A73DB /* discussions.pb.swift in Sources */,
 				2F087B331EC508BB0042C03E /* CourseSettingsPageTest.swift in Sources */,
-				F9D0F4A91FE3169C00A92E08 /* soseedy7.client.pb.swift in Sources */,
-				F9D0F4AD1FE3169C00A92E08 /* general.pb.swift in Sources */,
-				F9D0F4A11FE3169C00A92E08 /* files.pb.swift in Sources */,
-				F9D0F4AB1FE3169C00A92E08 /* soseedy10.client.pb.swift in Sources */,
+				F91D75B9200928DD005A73DB /* groups.grpc.swift in Sources */,
+				F91D75B5200928DD005A73DB /* feature_flags.pb.swift in Sources */,
+				F91D75CC200928DD005A73DB /* discussions.grpc.swift in Sources */,
+				F91D75CD200928DD005A73DB /* assignments.pb.swift in Sources */,
 				61B5372F1E786A51000FEABB /* DomainPickerTests.swift in Sources */,
-				F9D0F49F1FE3169C00A92E08 /* soseedy1.client.pb.swift in Sources */,
+				F91D75C2200928DD005A73DB /* feature_flags.grpc.swift in Sources */,
 				F79F609F1EFDA57200ED594E /* TeacherTest+FormattedString.swift in Sources */,
-				F9D0F4AC1FE3169C00A92E08 /* quizzes.pb.swift in Sources */,
 				2F087B541EC509190042C03E /* CourseSettingsPage.swift in Sources */,
-				F9D0F4B61FE3169C00A92E08 /* soseedy9.client.pb.swift in Sources */,
-				F9D0F4AA1FE3169C00A92E08 /* sections.pb.swift in Sources */,
-				F9D0F4A71FE3169C00A92E08 /* discussions.pb.swift in Sources */,
 				F756F7761EEF07FA007C1417 /* AssignmentListPage.swift in Sources */,
-				F9D0F4A41FE3169C00A92E08 /* soseedy2.client.pb.swift in Sources */,
-				F9D0F4A61FE3169C00A92E08 /* soseedy11.client.pb.swift in Sources */,
-				F9D0F4B71FE3169C00A92E08 /* assignments.pb.swift in Sources */,
+				F91D75BF200928DD005A73DB /* sections.pb.swift in Sources */,
+				F91D75C4200928DD005A73DB /* quizzes.pb.swift in Sources */,
 				2F0879311EC3C1DB0042C03E /* CourseBrowserPage.swift in Sources */,
-				F9D0F4B01FE3169C00A92E08 /* soseedy8.client.pb.swift in Sources */,
 				DF02A22F1EFC43A400B17B8D /* TabBarControllerPage.swift in Sources */,
 				061073911EA11FD800BEB914 /* CoursesListPage.swift in Sources */,
-				F9D0F4B51FE3169C00A92E08 /* grading_periods.pb.swift in Sources */,
 				F7A4A8DA1EDE2A5400809880 /* AllCoursesListPageTest.swift in Sources */,
 				0610738F1EA11F5300BEB914 /* TeacherTest.swift in Sources */,
 				F756F7781EEF0830007C1417 /* AssignmentDetailsPageTest.swift in Sources */,
+				F91D75B8200928DD005A73DB /* files.pb.swift in Sources */,
 				B19D76121FDF3F3400CB065A /* SoSeedy.swift in Sources */,
 				061073931EA11FED00BEB914 /* EditCoursesListPage.swift in Sources */,
-				F9D0F4B11FE3169C00A92E08 /* conversations.pb.swift in Sources */,
+				F91D75C3200928DD005A73DB /* pages.grpc.swift in Sources */,
+				F91D75CA200928DD005A73DB /* grading_periods.pb.swift in Sources */,
+				F91D75BE200928DD005A73DB /* quizzes.grpc.swift in Sources */,
+				F91D75C9200928DD005A73DB /* courses.pb.swift in Sources */,
+				F91D75BA200928DD005A73DB /* user.pb.swift in Sources */,
 				F9D224691EB7C51000BB0990 /* EditCoursesPageTest.swift in Sources */,
+				F91D75B4200928DD005A73DB /* user.grpc.swift in Sources */,
 				DF02A2091EFC31C000B17B8D /* InboxPage.swift in Sources */,
-				F9D0F4A01FE3169C00A92E08 /* pages.pb.swift in Sources */,
+				F91D75B3200928DD005A73DB /* conversations.grpc.swift in Sources */,
 				2F0879101EC3C04F0042C03E /* CourseBrowserPageTest.swift in Sources */,
+				F91D75C8200928DD005A73DB /* conversations.pb.swift in Sources */,
 				F756F74D1EEF0562007C1417 /* TeacherTest+CourseNavigation.swift in Sources */,
+				F91D75B6200928DD005A73DB /* files.grpc.swift in Sources */,
 				F756F77A1EEF0836007C1417 /* AssignmentListPageTest.swift in Sources */,
-				F9D0F4AF1FE3169C00A92E08 /* soseedy5.client.pb.swift in Sources */,
 				F7A4A8FA1EDE2B6100809880 /* AllCoursesListPage.swift in Sources */,
-				F9D0F4A81FE3169C00A92E08 /* soseedy0.client.pb.swift in Sources */,
+				F91D75C1200928DD005A73DB /* courses.grpc.swift in Sources */,
 				DF02A1E31EFC26BE00B17B8D /* InboxPageTest.swift in Sources */,
-				F9D0F4A51FE3169C00A92E08 /* groups.pb.swift in Sources */,
+				F91D75CE200928DD005A73DB /* enrollments.grpc.swift in Sources */,
+				F91D75C0200928DD005A73DB /* assignments.grpc.swift in Sources */,
+				F91D75BC200928DD005A73DB /* groups.pb.swift in Sources */,
 				F756F7741EEF07F5007C1417 /* AssignmentDetailsPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

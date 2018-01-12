@@ -9,19 +9,20 @@
 import Foundation
 
 let address = "localhost:50051"
-let assignmentsClient = Soseedy_SeedyAssignmentsService(address: address)
-let conversationsClient = Soseedy_SeedyConversationsService(address: address)
-let coursesClient = Soseedy_SeedyCoursesService(address: address)
-let discussionsClient = Soseedy_SeedyDiscussionsService(address: address)
-let enrollmentsClient = Soseedy_SeedyEnrollmentsService(address: address)
-let filesClient = Soseedy_SeedyFilesService(address: address)
-let generalClient = Soseedy_SeedyGeneralService(address: address)
-let gradingPeriodsClient = Soseedy_SeedyGradingPeriodsService(address: address)
-let groupsClient = Soseedy_SeedyGroupsService(address: address)
-let pagesClient = Soseedy_SeedyPagesService(address: address)
-let quizzesClient = Soseedy_SeedyQuizzesService(address: address)
-let sectionsClient = Soseedy_SeedySectionsService(address: address)
-let usersClient = Soseedy_SeedyUsersService(address: address)
+let secure = false
+let assignmentsClient = Soseedy_SeedyAssignmentsService(address: address, secure: secure)
+let conversationsClient = Soseedy_SeedyConversationsService(address: address, secure: secure)
+let coursesClient = Soseedy_SeedyCoursesService(address: address, secure: secure)
+let discussionsClient = Soseedy_SeedyDiscussionsService(address: address, secure: secure)
+let enrollmentsClient = Soseedy_SeedyEnrollmentsService(address: address, secure: secure)
+let filesClient = Soseedy_SeedyFilesService(address: address, secure: secure)
+let generalClient = Soseedy_SeedyGeneralService(address: address, secure: secure)
+let gradingPeriodsClient = Soseedy_SeedyGradingPeriodsService(address: address, secure: secure)
+let groupsClient = Soseedy_SeedyGroupsService(address: address, secure: secure)
+let pagesClient = Soseedy_SeedyPagesService(address: address, secure: secure)
+let quizzesClient = Soseedy_SeedyQuizzesService(address: address, secure: secure)
+let sectionsClient = Soseedy_SeedySectionsService(address: address, secure: secure)
+let usersClient = Soseedy_SeedyUsersService(address: address, secure: secure)
 
 // MARK: - Enrollments
 
@@ -80,11 +81,11 @@ enum SubmissionType: String {
     case onlineUpload = "online_upload"
 }
 
-func createAssignment(for course: Soseedy_Course = createCourse(), as teacher: Soseedy_CanvasUser, withDescription: Bool = false, submissionTypes: [SubmissionType] = []) -> Soseedy_Assignment {
+func createAssignment(for course: Soseedy_Course = createCourse(), as teacher: Soseedy_CanvasUser, withDescription: Bool = false, submissionTypes: [Soseedy_SubmissionType] = []) -> Soseedy_Assignment {
     var request = Soseedy_CreateAssignmentRequest()
     request.courseID = course.id
     request.teacherToken = teacher.token
     request.withDescription = withDescription
-    request.submissionTypes = submissionTypes.map { $0.rawValue }
+    request.submissionTypes = submissionTypes
     return try! assignmentsClient.createassignment(request)
 }

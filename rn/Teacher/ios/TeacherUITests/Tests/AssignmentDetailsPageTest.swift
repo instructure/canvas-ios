@@ -39,7 +39,7 @@ class AssignmentDetailsPageTest: TeacherTest {
 
     //TestRail ID = C3165154
     func testAssignmentDetailsPage_displaysSubmissionTypeNone() {
-        getToAssignmentDetails(submissionTypes: [.none])
+        getToAssignmentDetails(submissionTypes: [.noType])
         assignmentDetailsPage.assertSubmissionTypes(
             submissionTypesFormattedString([.none]))
     }
@@ -74,7 +74,7 @@ class AssignmentDetailsPageTest: TeacherTest {
 
     func getToAssignmentDetails(
         withDescription: Bool = false,
-        submissionTypes: [SubmissionType] = []
+        submissionTypes: [Soseedy_SubmissionType] = []
     ) {
         let course = createCourse()
         let user = createTeacher(in: course)
