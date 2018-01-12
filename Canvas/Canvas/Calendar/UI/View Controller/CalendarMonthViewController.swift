@@ -227,7 +227,15 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
     }
 
     open func calendarViewNumberOfEventsForDate(_ calendarView: CalendarView, date: Date) -> Int {
-        return calendarEventsForDate(date).count
+        let min = date.dateAtMidnight
+        let max = min.addingTimeInterval(24 * 60 * 60)
+        var count = 0
+        for event in eventsCollection {
+            if let start = event.startAt, let end = event.endAt, start < max && min < end {
+                count += 1
+            }
+        }
+        return count
     }
 
     // ---------------------------------------------
@@ -282,37 +290,6 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
         }
 
         return contextCodes
-    }
-
-    internal func calendarEventsForDate(_ date: Date) -> [CalendarEvent] {
-        let section = self.sectionForDate(date)
-        if let section = section {
-            return self.objectsInSection(section)
-        }
-        return [CalendarEvent]()
-    }
-
-    // We need to speed this up
-    internal func sectionForDate(_ date: Date) -> Int? {
-        let sections = 0..<eventsCollection.numberOfSections()
-        for section in sections {
-            if let dateString = eventsCollection.titleForSection(section), dateString == CalendarEvent.sectionTitleDateFormatter.string(from: date) {
-                return section
-            }
-        }
-
-        return nil
-    }
-
-    // This needs a kick in the pants too
-    internal func objectsInSection(_ section: Int) -> [CalendarEvent] {
-        var events = [CalendarEvent]()
-
-        for i in 0..<eventsCollection.numberOfItemsInSection(section) {
-            events.append(eventsCollection[IndexPath(row: i, section: section)])
-        }
-        
-        return events
     }
     
 }
