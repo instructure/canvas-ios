@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        BuddyBuildSDK.setup()
+        //BuddyBuildSDK.setup()
         BugsnagReactNative.start()
         Fabric.with([Crashlytics.self, Answers.self])
         setupForPushNotifications()
