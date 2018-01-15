@@ -556,7 +556,7 @@
 /* (No Comment) */
 "File upload failed." = "ファイルのアップロードに失敗しました。";
 
-/* (No Comment) */
+/* No comment provided by engineer. */
 "Files" = "ファイル";
 
 /* (No Comment) */
@@ -1311,7 +1311,7 @@
 /* Label read aloud to describe module item type */
 "Type: %@" = "タイプ:%@";
 
-/* Notification over status bar that displays when not connected to the internet. */
+/* (No Comment) */
 "Uh-oh! No Internet Connection" = "おっと！インターネットが接続されていません";
 
 /* (No Comment) */

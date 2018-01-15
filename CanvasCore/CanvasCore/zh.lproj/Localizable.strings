@@ -86,7 +86,8 @@
 /* Alert title when unable to parse JSON for notification preferences */
 "Can't Display Notification Preferences" = "无法显示通知首选项";
 
-/* Cancel button title
+/* Cancel Audio recording.
+   Cancel button title
    Cancel submission option
    Cancel upload */
 "Cancel" = "取消";
@@ -290,9 +291,6 @@
 
 /* Hides the question list */
 "Hide Question List" = "隐藏问题列表";
-
-/* No comment provided by engineer. */
-"Inbox" = "收件箱";
 
 /* Indigo course color button */
 "Indigo" = "靛蓝色";

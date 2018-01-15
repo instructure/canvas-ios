@@ -1133,6 +1133,9 @@
   "settings_5aa0fd0c": {
     "message": "Settings"
   },
+  "share_2a333403": {
+    "message": "Share"
+  },
   "show_correct_answers_a4b957e4": {
     "message": "Show correct answers"
   },
@@ -1312,6 +1315,9 @@
   },
   "this_assignment_only_allows_on_paper_submissions_f478408a": {
     "message": "This assignment only allows on-paper submissions."
+  },
+  "this_file_must_have_usage_rights_set_before_it_can_e4bf8bae": {
+    "message": "This file must have usage rights set before it can be published."
   },
   "this_folder_is_empty_14af41c": {
     "message": "This folder is empty."

@@ -86,7 +86,8 @@
 /* Alert title when unable to parse JSON for notification preferences */
 "Can't Display Notification Preferences" = "通知の設定を表示できません";
 
-/* Cancel button title
+/* Cancel Audio recording.
+   Cancel button title
    Cancel submission option
    Cancel upload */
 "Cancel" = "キャンセル";
@@ -290,9 +291,6 @@
 
 /* Hides the question list */
 "Hide Question List" = "質問リストを隠す";
-
-/* No comment provided by engineer. */
-"Inbox" = "受信トレイ";
 
 /* Indigo course color button */
 "Indigo" = "インディゴ";

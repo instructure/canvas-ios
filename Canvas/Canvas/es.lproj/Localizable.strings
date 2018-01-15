@@ -556,7 +556,7 @@
 /* (No Comment) */
 "File upload failed." = "Falló la carga del archivo.";
 
-/* (No Comment) */
+/* No comment provided by engineer. */
 "Files" = "Archivos";
 
 /* (No Comment) */
@@ -1311,7 +1311,7 @@
 /* Label read aloud to describe module item type */
 "Type: %@" = "Tipo: %@";
 
-/* Notification over status bar that displays when not connected to the internet. */
+/* (No Comment) */
 "Uh-oh! No Internet Connection" = "¡Ay no! No hay conexión de internet";
 
 /* (No Comment) */

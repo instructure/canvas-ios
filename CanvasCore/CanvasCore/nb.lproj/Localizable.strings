@@ -86,7 +86,8 @@
 /* Alert title when unable to parse JSON for notification preferences */
 "Can't Display Notification Preferences" = "Kan ikke vise varslingspreferanser";
 
-/* Cancel button title
+/* Cancel Audio recording.
+   Cancel button title
    Cancel submission option
    Cancel upload */
 "Cancel" = "Avbryt";
@@ -290,9 +291,6 @@
 
 /* Hides the question list */
 "Hide Question List" = "Skjul spørsmålsliste";
-
-/* No comment provided by engineer. */
-"Inbox" = "Innboks";
 
 /* Indigo course color button */
 "Indigo" = "Indigo";

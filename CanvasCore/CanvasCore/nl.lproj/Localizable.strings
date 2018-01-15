@@ -86,7 +86,8 @@
 /* Alert title when unable to parse JSON for notification preferences */
 "Can't Display Notification Preferences" = "Kan voorkeuren berichtgeving niet weergeven";
 
-/* Cancel button title
+/* Cancel Audio recording.
+   Cancel button title
    Cancel submission option
    Cancel upload */
 "Cancel" = "Annuleren";
@@ -290,9 +291,6 @@
 
 /* Hides the question list */
 "Hide Question List" = "Vragenlijst verbergen";
-
-/* No comment provided by engineer. */
-"Inbox" = "Inbox";
 
 /* Indigo course color button */
 "Indigo" = "Indigo";

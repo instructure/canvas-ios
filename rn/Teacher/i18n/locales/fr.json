@@ -1133,6 +1133,9 @@
   "settings_5aa0fd0c": {
     "message": "Paramètres"
   },
+  "share_2a333403": {
+    "message": "Partager"
+  },
   "show_correct_answers_a4b957e4": {
     "message": "Afficher les réponses correctes"
   },
@@ -1312,6 +1315,9 @@
   },
   "this_assignment_only_allows_on_paper_submissions_f478408a": {
     "message": "Cette tâche ne permet que les envois sur papier."
+  },
+  "this_file_must_have_usage_rights_set_before_it_can_e4bf8bae": {
+    "message": "Il est nécessaire de paramétrer les droits d’utilisation de ce fichier avant qu’il puisse être publié."
   },
   "this_folder_is_empty_14af41c": {
     "message": "Ce répertoire est vide."

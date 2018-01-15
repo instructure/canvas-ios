@@ -556,7 +556,7 @@
 /* (No Comment) */
 "File upload failed." = "文件上传失败。";
 
-/* (No Comment) */
+/* No comment provided by engineer. */
 "Files" = "文件";
 
 /* (No Comment) */
@@ -1311,7 +1311,7 @@
 /* Label read aloud to describe module item type */
 "Type: %@" = "类型：%@";
 
-/* Notification over status bar that displays when not connected to the internet. */
+/* (No Comment) */
 "Uh-oh! No Internet Connection" = "糟糕！没有网络连接";
 
 /* (No Comment) */

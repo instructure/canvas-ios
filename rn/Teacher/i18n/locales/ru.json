@@ -1133,6 +1133,9 @@
   "settings_5aa0fd0c": {
     "message": "Настройки"
   },
+  "share_2a333403": {
+    "message": "Поделиться"
+  },
   "show_correct_answers_a4b957e4": {
     "message": "Показать правильные ответы"
   },
@@ -1312,6 +1315,9 @@
   },
   "this_assignment_only_allows_on_paper_submissions_f478408a": {
     "message": "Это задание может быть отправлено только в печатном виде."
+  },
+  "this_file_must_have_usage_rights_set_before_it_can_e4bf8bae": {
+    "message": "Для этого файла должны быть заданы права на использование перед тем, как его публиковать."
   },
   "this_folder_is_empty_14af41c": {
     "message": "Эта папка пуста."

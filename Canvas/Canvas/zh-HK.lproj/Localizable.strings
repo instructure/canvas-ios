@@ -556,7 +556,7 @@
 /* (No Comment) */
 "File upload failed." = "資料夾上載失敗。";
 
-/* (No Comment) */
+/* No comment provided by engineer. */
 "Files" = "資料夾";
 
 /* (No Comment) */
@@ -1311,7 +1311,7 @@
 /* Label read aloud to describe module item type */
 "Type: %@" = "類型：%@";
 
-/* Notification over status bar that displays when not connected to the internet. */
+/* (No Comment) */
 "Uh-oh! No Internet Connection" = "抱歉！沒有網際網路連結";
 
 /* (No Comment) */

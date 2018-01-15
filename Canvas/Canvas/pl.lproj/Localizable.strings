@@ -556,7 +556,7 @@
 /* (No Comment) */
 "File upload failed." = "Pobieranie pliku nie powiodło się.";
 
-/* (No Comment) */
+/* No comment provided by engineer. */
 "Files" = "Pliki";
 
 /* (No Comment) */
@@ -1311,7 +1311,7 @@
 /* Label read aloud to describe module item type */
 "Type: %@" = "Typ: %@";
 
-/* Notification over status bar that displays when not connected to the internet. */
+/* (No Comment) */
 "Uh-oh! No Internet Connection" = "Błąd! Brak połączenia z Internetem";
 
 /* (No Comment) */

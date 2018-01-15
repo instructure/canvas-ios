@@ -556,7 +556,7 @@
 /* (No Comment) */
 "File upload failed." = "Transfè fichye echwe";
 
-/* (No Comment) */
+/* No comment provided by engineer. */
 "Files" = "Fichye";
 
 /* (No Comment) */
@@ -1311,7 +1311,7 @@
 /* Label read aloud to describe module item type */
 "Type: %@" = "Tip: %@";
 
-/* Notification over status bar that displays when not connected to the internet. */
+/* (No Comment) */
 "Uh-oh! No Internet Connection" = "Uh-oh! Pa Gen Koneksyon Entènèt";
 
 /* (No Comment) */

@@ -86,7 +86,8 @@
 /* Alert title when unable to parse JSON for notification preferences */
 "Can't Display Notification Preferences" = "Kan ikke vise notifikationsindstillinger";
 
-/* Cancel button title
+/* Cancel Audio recording.
+   Cancel button title
    Cancel submission option
    Cancel upload */
 "Cancel" = "Annuller";
@@ -290,9 +291,6 @@
 
 /* Hides the question list */
 "Hide Question List" = "Skul spørgsmålsliste";
-
-/* No comment provided by engineer. */
-"Inbox" = "Indbakke";
 
 /* Indigo course color button */
 "Indigo" = "Indigo";

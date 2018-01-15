@@ -556,7 +556,7 @@
 /* (No Comment) */
 "File upload failed." = "Filopplasting feilet.";
 
-/* (No Comment) */
+/* No comment provided by engineer. */
 "Files" = "Filer";
 
 /* (No Comment) */
@@ -1311,7 +1311,7 @@
 /* Label read aloud to describe module item type */
 "Type: %@" = "Type: %@";
 
-/* Notification over status bar that displays when not connected to the internet. */
+/* (No Comment) */
 "Uh-oh! No Internet Connection" = "Ups! Ingen internettilkobling";
 
 /* (No Comment) */
