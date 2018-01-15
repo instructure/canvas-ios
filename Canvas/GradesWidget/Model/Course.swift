@@ -8,12 +8,15 @@
 
 import Foundation
 
-struct Enrollment: Codable {
-    enum EnrollmentType: String, Codable {
-        case student
-    }
+enum EnrollmentType: String, Codable {
+    case student
+}
 
-    let type: EnrollmentType?
+struct Enrollment: Codable {
+    let type: String
+    var enrollmentType: EnrollmentType? {
+        return EnrollmentType(rawValue: type)
+    }
 
     let computedCurrentGrade: String?
     let computedCurrentScore: Double?
@@ -56,7 +59,7 @@ struct Course: Codable {
     }()
 
     var displayGrade: String {
-        guard let enrollment = enrollments.filter({ $0.type == .student }).first else {
+        guard let enrollment = enrollments.filter({ $0.enrollmentType == .student }).first else {
             return ""
         }
 
