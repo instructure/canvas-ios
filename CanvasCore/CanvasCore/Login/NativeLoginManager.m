@@ -226,16 +226,14 @@ RCT_EXPORT_METHOD(stopObserving)
 #pragma MARK - CanvasKeymasterDelegate
 
 - (void)injectLoginInformation:(NSDictionary *)info {
-    
-    NSMutableDictionary *mutableInfo = [info mutableCopy];
-    mutableInfo[@"skipHydrate"] = @YES;
-    self.injectedLoginInfo = mutableInfo;
-    
     if (!info) {
-        UIViewController *controller = self.domainPicker ?: [UIViewController new];
-        [self.delegate didLogout:controller];
+        self.injectedLoginInfo = nil;
+        [[[HelmManager shared] bridge] reload];
     }
     else {
+        NSMutableDictionary *mutableInfo = [info mutableCopy];
+        mutableInfo[@"skipHydrate"] = @YES;
+        self.injectedLoginInfo = mutableInfo;
         
         NSString *accessToken = info[@"authToken"];
         NSAssert(accessToken, @"You must provide an access token when injecting login information");
