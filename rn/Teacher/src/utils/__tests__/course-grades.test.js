@@ -19,60 +19,83 @@
 import 'react-native'
 import { extractGradeInfo } from '../course-grades'
 
-test('extracts when multiple_grading_periods_enabled is enabled', () => {
-  const course = {
-    enrollments: [{
-      type: 'student',
-      multiple_grading_periods_enabled: true,
-      current_period_computed_current_grade: 'A-',
-      current_period_computed_current_score: '92.3',
-    }],
-  }
+describe('course grade utils', () => {
+  describe('extractGradeInfo', () => {
+    it('extracts when multiple_grading_periods_enabled is enabled', () => {
+      const course = {
+        enrollments: [{
+          type: 'student',
+          current_grading_period_id: '1',
+          multiple_grading_periods_enabled: true,
+          current_period_computed_current_grade: 'A-',
+          current_period_computed_current_score: '92.3',
+        }],
+      }
 
-  const result = extractGradeInfo(course)
-  expect(result).toMatchObject({
-    currentGrade: 'A-',
-    currentDisplay: '92.3% - A-',
+      const result = extractGradeInfo(course)
+      expect(result).toMatchObject({
+        currentGrade: 'A-',
+        currentDisplay: '92.3% - A-',
+      })
+    })
+
+    it('does not use period grades when no current period', () => {
+      const course = {
+        enrollments: [{
+          type: 'student',
+          current_grading_period_id: null,
+          multiple_grading_periods_enabled: true,
+          computed_current_grade: 'A-',
+          computed_current_score: '92.3',
+        }],
+      }
+
+      const result = extractGradeInfo(course)
+      expect(result).toMatchObject({
+        currentGrade: 'A-',
+        currentDisplay: '92.3% - A-',
+      })
+    })
+
+    it('extracts when multiple_grading_periods_enabled is not enabled', () => {
+      const course = {
+        enrollments: [{
+          type: 'student',
+          multiple_grading_periods_enabled: false,
+          computed_current_grade: 'A-',
+          computed_current_score: '92.3',
+        }],
+      }
+
+      const result = extractGradeInfo(course)
+      expect(result).toMatchObject({
+        currentGrade: 'A-',
+        currentDisplay: '92.3% - A-',
+      })
+    })
+
+    it('handles edge case when there is a grade but not a score (which should not actually be possible)', () => {
+      const course = {
+        enrollments: [{
+          type: 'student',
+          multiple_grading_periods_enabled: false,
+          computed_current_grade: 'A-',
+        }],
+      }
+
+      const result = extractGradeInfo(course)
+      expect(result).toMatchObject({
+        currentGrade: 'A-',
+        currentDisplay: 'A-',
+      })
+    })
+
+    it('handles no enrollments', () => {
+      let result = extractGradeInfo({})
+      expect(result).toBeNull()
+
+      result = extractGradeInfo({ enrollments: [] })
+      expect(result).toBeNull()
+    })
   })
-})
-
-test('extracts when multiple_grading_periods_enabled is not enabled', () => {
-  const course = {
-    enrollments: [{
-      type: 'student',
-      multiple_grading_periods_enabled: false,
-      computed_current_grade: 'A-',
-      computed_current_score: '92.3',
-    }],
-  }
-
-  const result = extractGradeInfo(course)
-  expect(result).toMatchObject({
-    currentGrade: 'A-',
-    currentDisplay: '92.3% - A-',
-  })
-})
-
-test('edge case when there is a grade but not a score (which should not actually be possible)', () => {
-  const course = {
-    enrollments: [{
-      type: 'student',
-      multiple_grading_periods_enabled: false,
-      computed_current_grade: 'A-',
-    }],
-  }
-
-  const result = extractGradeInfo(course)
-  expect(result).toMatchObject({
-    currentGrade: 'A-',
-    currentDisplay: 'A-',
-  })
-})
-
-test('handles no enrollments', () => {
-  let result = extractGradeInfo({})
-  expect(result).toBeNull()
-
-  result = extractGradeInfo({ enrollments: [] })
-  expect(result).toBeNull()
 })

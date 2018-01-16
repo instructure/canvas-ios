@@ -40,7 +40,7 @@ export function extractGradeInfo (course: Course): ?CourseGradeInfo {
     return [i18n.number(score / 100, 'percent'), grade].filter(a => a).join(' - ')
   }
 
-  if (enrollment.multiple_grading_periods_enabled) {
+  if (enrollment.multiple_grading_periods_enabled && enrollment.current_grading_period_id) {
     return {
       currentGrade: enrollment.current_period_computed_current_grade,
       currentScore: enrollment.current_period_computed_current_score,

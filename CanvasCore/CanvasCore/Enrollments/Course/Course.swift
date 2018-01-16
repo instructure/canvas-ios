@@ -187,11 +187,13 @@ extension Course: SynchronizedModel {
                 grade.gradingPeriodID = currentGradingPeriodID
 
                 if multipleGradingPeriodsEnabled {
+                    totalForAllGradingPeriodsEnabled = try eJSON <| "totals_for_all_grading_periods_option"
+                }
+                if multipleGradingPeriodsEnabled && currentGradingPeriodID != nil {
                     grade.currentGrade = try eJSON <| "current_period_computed_current_grade"
                     grade.currentScore = try eJSON <| "current_period_computed_current_score"
                     grade.finalGrade = try eJSON <| "current_period_computed_final_grade"
                     grade.finalScore = try eJSON <| "current_period_computed_final_score"
-                    totalForAllGradingPeriodsEnabled = try eJSON <| "totals_for_all_grading_periods_option"
                 } else {
                     grade.currentGrade = try eJSON <| "computed_current_grade"
                     grade.currentScore = try eJSON <| "computed_current_score"
