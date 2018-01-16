@@ -25,7 +25,7 @@
 		2C50EE0D1E735D980096592C /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE0C1E735D980096592C /* BuddyBuildSDK.framework */; };
 		2C62DC7B1E8BF532006638F3 /* CourseListPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C62DC7A1E8BF532006638F3 /* CourseListPageTest.swift */; };
 		2C7B27A81E6F5A1100E097B9 /* AppIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */; };
-		2C96863A1FFE7E31005127A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C9686381FFE7E31005127A3 /* LaunchScreen.storyboard */; };
+		2C96863D1FFE9FC4005127A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C96863B1FFE9FC3005127A3 /* LaunchScreen.storyboard */; };
 		2CA347401F2147290000BB79 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CA3473E1F2147290000BB79 /* Localizable.strings */; };
 		2F0879101EC3C04F0042C03E /* CourseBrowserPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F08790F1EC3C04F0042C03E /* CourseBrowserPageTest.swift */; };
 		2F0879311EC3C1DB0042C03E /* CourseBrowserPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0879301EC3C1DB0042C03E /* CourseBrowserPage.swift */; };
@@ -213,7 +213,7 @@
 		2C50EE0C1E735D980096592C /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BuddyBuildSDK.framework; path = ../../../ExternalFrameworks/BuddyBuildSDK.framework; sourceTree = "<group>"; };
 		2C62DC7A1E8BF532006638F3 /* CourseListPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListPageTest.swift; sourceTree = "<group>"; };
 		2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
-		2C9686391FFE7E31005127A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Teacher/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2C96863C1FFE9FC3005127A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Teacher/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2CA3473F1F2147290000BB79 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Teacher/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2CA3476A1F21472D0000BB79 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Teacher/de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2CA3476B1F2147300000BB79 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = Teacher/ar.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -368,8 +368,8 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */,
 				2C3DE5091F21494D00AE1D59 /* Info.plist */,
-				2C9686381FFE7E31005127A3 /* LaunchScreen.storyboard */,
 				61BD85FA1EB29270005A09A5 /* bridging-header.h */,
+				2C96863B1FFE9FC3005127A3 /* LaunchScreen.storyboard */,
 				2CA3473E1F2147290000BB79 /* Localizable.strings */,
 			);
 			name = Teacher;
@@ -662,7 +662,7 @@
 				2C3DE50E1F21498A00AE1D59 /* InfoPlist.strings in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				2C3DE50A1F21494D00AE1D59 /* Info.plist in Resources */,
-				2C96863A1FFE7E31005127A3 /* LaunchScreen.storyboard in Resources */,
+				2C96863D1FFE9FC4005127A3 /* LaunchScreen.storyboard in Resources */,
 				2C7B27A81E6F5A1100E097B9 /* AppIcon.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1114,30 +1114,18 @@
 			path = Teacher;
 			sourceTree = "<group>";
 		};
-		2C9686381FFE7E31005127A3 /* LaunchScreen.storyboard */ = {
+		2C96863B1FFE9FC3005127A3 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				2C9686391FFE7E31005127A3 /* Base */,
-				5B07A688200C8F9F00F4934D /* ar */,
-				5B1086F5200C8FA50006CE73 /* da */,
-				5B1904E1200C8FAB0088A72A /* de */,
-				5B228724200C8FB20029AF1E /* en-AU */,
-				5B2BBF7A200C8FB8005733AE /* en-GB */,
-				5B34A293200C8FBE00EBA53E /* es */,
-				5B3D8426200C8FC500DC4909 /* fr */,
-				5B46D80A200C8FCB00A413F5 /* fr-CA */,
-				5B4FBEFA200C8FD2009DA74B /* ht */,
-				5B5885E7200C8FD8005B67A7 /* ja */,
-				5B619CE9200C8FDF0062D5E0 /* mi */,
-				5B6A0CD7200C8FE6006AE7B5 /* nb */,
-				5B73B2F0200C8FEC006EF02D /* nl */,
-				5B7CDAE1200C8FF400518793 /* pl */,
-				5B856F48200C8FFB004D9298 /* pt */,
-				5B8F8366200C9002003DA5DE /* pt-BR */,
-				5B98C518200C9009005B196D /* ru */,
-				5BA160CC200C901000A14534 /* sv */,
-				5BAA26B1200C9017004B0CBF /* zh */,
-				5BB370E7200C901E006E8BD2 /* zh-HK */,
+				2C96863C1FFE9FC3005127A3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		2C96863B1FFE9FC3005127A3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2C96863C1FFE9FC3005127A3 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

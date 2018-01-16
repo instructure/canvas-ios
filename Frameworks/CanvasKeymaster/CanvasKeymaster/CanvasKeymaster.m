@@ -300,7 +300,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
 - (RACSignal *)signalForLoginWithDomain:(NSString *)host
 {
     // logged into the correct domain
-    if ([self.currentClient.baseURL.host isEqualToString:host]) {
+    if ((!host && self.currentClient) || [self.currentClient.baseURL.host isEqualToString:host]) {
         //same domain, return current client as signal
         return [[RACSignal return:self.currentClient] deliverOn:[RACScheduler mainThreadScheduler]];
     }

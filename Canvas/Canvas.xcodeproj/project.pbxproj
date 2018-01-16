@@ -23,10 +23,7 @@
 		2C67B0D21E01F07C00DDD191 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C67B0D11E01F07C00DDD191 /* SystemConfiguration.framework */; };
 		2C67B0D41E01F08A00DDD191 /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C67B0D31E01F08A00DDD191 /* BuddyBuildSDK.framework */; };
 		3B0107A41FBBA7C600062DB2 /* GradeWidgetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B0107A31FBBA7C600062DB2 /* GradeWidgetCell.xib */; };
-		3B1642C21FBA0426006C55D2 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B1642C41FBA0426006C55D2 /* CanvasCore.framework */; };
 		3B1642C31FBA0426006C55D2 /* CanvasKeymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B1642C51FBA0426006C55D2 /* CanvasKeymaster.framework */; };
-		3B1642C61FBA0426006C55D2 /* CanvasKit1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AA29171CF4D1880055862D /* CanvasKit1.framework */; };
-		3B1642C71FBA0426006C55D2 /* TechDebt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492704AB1CF4B6D700C631C6 /* TechDebt.framework */; };
 		3B6DCCA71FB502CE005EE8D2 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6DCCA61FB502CE005EE8D2 /* NotificationCenter.framework */; };
 		3B6DCCAA1FB502CE005EE8D2 /* GradesTodayWidgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6DCCA91FB502CE005EE8D2 /* GradesTodayWidgetViewController.swift */; };
 		3B6DCCAD1FB502CE005EE8D2 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B6DCCAB1FB502CE005EE8D2 /* MainInterface.storyboard */; };
@@ -710,10 +707,16 @@
 		B177E6FD1E2EC8BA00D7477D /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B177E6FF1E2EC8BA00D7477D /* Settings.storyboard */; };
 		B177E7091E2ECAB900D7477D /* CBIGradeDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B177E70B1E2ECAB900D7477D /* CBIGradeDetailView.xib */; };
 		B177E7801E2F067400D7477D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5A790A61D8C743400ACA9FE /* Localizable.strings */; };
+		B19CE9D1200691460001EB54 /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19CE9D0200691460001EB54 /* CustomColors.swift */; };
 		B1CB84F01D076025004D2265 /* CKRichTextInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1CB84EC1D076025004D2265 /* CKRichTextInputView.xib */; };
 		B1CB84F11D076025004D2265 /* ExpandingComment.css in Resources */ = {isa = PBXBuildFile; fileRef = B1CB84ED1D076025004D2265 /* ExpandingComment.css */; };
 		B1CB84F21D076025004D2265 /* ExpandingComment.html in Resources */ = {isa = PBXBuildFile; fileRef = B1CB84EE1D076025004D2265 /* ExpandingComment.html */; };
 		B1CB84F31D076026004D2265 /* ExpandingComment.js in Resources */ = {isa = PBXBuildFile; fileRef = B1CB84EF1D076025004D2265 /* ExpandingComment.js */; };
+		B1FAE07220056CDA00CDA09C /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FAE07120056CDA00CDA09C /* Course.swift */; };
+		B1FAE07420056CE600CDA09C /* Courses.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FAE07320056CE600CDA09C /* Courses.swift */; };
+		B1FAE07620056CEE00CDA09C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FAE07520056CEE00CDA09C /* Colors.swift */; };
+		B1FAE07820056DCC00CDA09C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FAE07720056DCC00CDA09C /* Result.swift */; };
+		B1FAE07B2005771A00CDA09C /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FAE07A2005771A00CDA09C /* UIColor+Hex.swift */; };
 		B5A790BB1D8C743400ACA9FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5A790A61D8C743400ACA9FE /* Localizable.strings */; };
 		B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E212D51D88856B009D8C07 /* Localizable.strings */; };
 		B5F122C91D8C4D6C0045063A /* Canvas.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 49642BCA1CF4C66200238B3F /* Canvas.entitlements */; };
@@ -1691,11 +1694,17 @@
 		B177E7641E2ECD1B00D7477D /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Settings.strings; sourceTree = "<group>"; };
 		B177E7651E2ECD2E00D7477D /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/CBIGradeDetailView.strings; sourceTree = "<group>"; };
 		B177E7681E2ECD3200D7477D /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Settings.strings; sourceTree = "<group>"; };
+		B19CE9D0200691460001EB54 /* CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
 		B1CB84EC1D076025004D2265 /* CKRichTextInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CKRichTextInputView.xib; sourceTree = "<group>"; };
 		B1CB84ED1D076025004D2265 /* ExpandingComment.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = ExpandingComment.css; sourceTree = "<group>"; };
 		B1CB84EE1D076025004D2265 /* ExpandingComment.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ExpandingComment.html; sourceTree = "<group>"; };
 		B1CB84EF1D076025004D2265 /* ExpandingComment.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ExpandingComment.js; sourceTree = "<group>"; };
 		B1E3D6E01D8305D900B4AC11 /* ModulesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ModulesTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		B1FAE07120056CDA00CDA09C /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
+		B1FAE07320056CE600CDA09C /* Courses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Courses.swift; sourceTree = "<group>"; };
+		B1FAE07520056CEE00CDA09C /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		B1FAE07720056DCC00CDA09C /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		B1FAE07A2005771A00CDA09C /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		B1FF7EDE1D8758720069C9BE /* ModuleViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleViewModel.swift; sourceTree = "<group>"; };
 		B5A790A71D8C743400ACA9FE /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B5A790A81D8C743400ACA9FE /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1751,9 +1760,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B1642C61FBA0426006C55D2 /* CanvasKit1.framework in Frameworks */,
-				3B1642C71FBA0426006C55D2 /* TechDebt.framework in Frameworks */,
-				3B1642C21FBA0426006C55D2 /* CanvasCore.framework in Frameworks */,
 				3B1642C31FBA0426006C55D2 /* CanvasKeymaster.framework in Frameworks */,
 				3B6DCCA71FB502CE005EE8D2 /* NotificationCenter.framework in Frameworks */,
 				88FF902AD17BF2A296A794EA /* Pods_defaults_GradesWidget.framework in Frameworks */,
@@ -1812,6 +1818,9 @@
 			children = (
 				7DC912ED1FE1CC9200A76B14 /* InfoPlist.strings */,
 				7DC912E81FE1CC9200A76B14 /* Localizable.strings */,
+				B1FAE0792005770900CDA09C /* Helpers */,
+				B1FAE06F20056C2500CDA09C /* Model */,
+				B1FAE06E20056C1F00CDA09C /* Network */,
 				3B90C1FF1FBE282F00A32303 /* GradesWidget.entitlements */,
 				3B6DCCA91FB502CE005EE8D2 /* GradesTodayWidgetViewController.swift */,
 				3B6DCCAB1FB502CE005EE8D2 /* MainInterface.storyboard */,
@@ -3254,6 +3263,33 @@
 			path = "Module Items";
 			sourceTree = "<group>";
 		};
+		B1FAE06E20056C1F00CDA09C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				B1FAE07320056CE600CDA09C /* Courses.swift */,
+				B1FAE07520056CEE00CDA09C /* Colors.swift */,
+				B1FAE07720056DCC00CDA09C /* Result.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		B1FAE06F20056C2500CDA09C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B1FAE07120056CDA00CDA09C /* Course.swift */,
+				B19CE9D0200691460001EB54 /* CustomColors.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B1FAE0792005770900CDA09C /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B1FAE07A2005771A00CDA09C /* UIColor+Hex.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -4164,7 +4200,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1FAE07220056CDA00CDA09C /* Course.swift in Sources */,
+				B1FAE07820056DCC00CDA09C /* Result.swift in Sources */,
+				B19CE9D1200691460001EB54 /* CustomColors.swift in Sources */,
+				B1FAE07620056CEE00CDA09C /* Colors.swift in Sources */,
+				B1FAE07B2005771A00CDA09C /* UIColor+Hex.swift in Sources */,
 				3B6DCCAA1FB502CE005EE8D2 /* GradesTodayWidgetViewController.swift in Sources */,
+				B1FAE07420056CE600CDA09C /* Courses.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
