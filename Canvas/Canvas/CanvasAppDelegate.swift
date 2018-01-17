@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         TheKeymaster?.fetchesBranding = true
         TheKeymaster?.delegate = loginConfig
         
-        window = UIWindow(frame: UIScreen.main.bounds)
+        window = MasqueradableWindow(frame: UIScreen.main.bounds)
         showLoadingState()
         window?.makeKeyAndVisible()
         

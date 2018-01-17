@@ -164,8 +164,8 @@ export class Profile extends Component {
               { isStudent && buildRow(i18n('Files'), this.userFiles) }
               { (this.props.canMasquerade || masquerading) && buildRow(masqueradeTitle, this.toggleMasquerade) }
               { isStudent && buildRow('Show Grades', null, { onValueChange: this.toggleShowGrades, value: this.props.showsGradesOnCourseCards }) }
-              { buildRow(i18n('Change User'), this.switchUser) }
-              { buildRow(i18n('Log Out'), this.logout) }
+              { !masquerading && buildRow(i18n('Change User'), this.switchUser) }
+              { !masquerading && buildRow(i18n('Log Out'), this.logout) }
             </View>)
   }
 

@@ -92,6 +92,7 @@ const loginHandler = async ({
     const session = { authToken, baseURL, user, actAsUserID }
     const previous = getSession()
     if (previous && !compareSessions(session, previous)) {
+      setSession(null)
       store.dispatch(logout)
     }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C3283B42009651B00810C1B /* MasqueradableWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3283B32009651B00810C1B /* MasqueradableWindow.swift */; };
 		2C34211C1F7409CD00D8E158 /* OSSAttributionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C34211B1F74099400D8E158 /* OSSAttributionViewController.swift */; };
 		2C34211D1F7409CF00D8E158 /* components.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C34211A1F74099400D8E158 /* components.plist */; };
 		2C44846F1F72FD83000D1778 /* feature_toggles.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CAF1B3B1F72B294007225DF /* feature_toggles.plist */; };
@@ -25,6 +26,7 @@
 		2CD20D771FA125EC00F339F7 /* DropViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD20D751FA125EC00F339F7 /* DropViewManager.m */; };
 		2CD6B5701FD20A9800C7DE15 /* WindowTraitsManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CD6B56E1FD20A9800C7DE15 /* WindowTraitsManager.h */; };
 		2CD6B5711FD20A9800C7DE15 /* WindowTraitsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD6B56F1FD20A9800C7DE15 /* WindowTraitsManager.m */; };
+		2CD7769C200977EC00589D4F /* UIApplicationDelegate+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD7769B200977EC00589D4F /* UIApplicationDelegate+Core.swift */; };
 		2CE40C9A1F87D36900ECEACB /* CanvadocViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B21F843B59001A8F31 /* CanvadocViewManager.m */; };
 		2CE40C9B1F87D36E00ECEACB /* CanvadocView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B01F843B58001A8F31 /* CanvadocView.swift */; };
 		2CE40C9C1F87D37100ECEACB /* PSPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B11F843B58001A8F31 /* PSPDFView.swift */; };
@@ -501,6 +503,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C3283B32009651B00810C1B /* MasqueradableWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasqueradableWindow.swift; sourceTree = "<group>"; };
 		2C34211A1F74099400D8E158 /* components.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = components.plist; sourceTree = "<group>"; };
 		2C34211B1F74099400D8E158 /* OSSAttributionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSSAttributionViewController.swift; sourceTree = "<group>"; };
 		2C6796BF1FD9E36B00BE7BC0 /* DrawerTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerTransition.swift; sourceTree = "<group>"; };
@@ -522,6 +525,7 @@
 		2CD20D751FA125EC00F339F7 /* DropViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DropViewManager.m; sourceTree = "<group>"; };
 		2CD6B56E1FD20A9800C7DE15 /* WindowTraitsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WindowTraitsManager.h; sourceTree = "<group>"; };
 		2CD6B56F1FD20A9800C7DE15 /* WindowTraitsManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WindowTraitsManager.m; sourceTree = "<group>"; };
+		2CD7769B200977EC00589D4F /* UIApplicationDelegate+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplicationDelegate+Core.swift"; sourceTree = "<group>"; };
 		2CF6DEB52006A039007A5591 /* UIViewController+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Core.swift"; sourceTree = "<group>"; };
 		2CFAFBD01FD21B3800F22C7F /* WindowTraits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowTraits.swift; sourceTree = "<group>"; };
 		3BA0F9B520069CEB00E64448 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
@@ -1108,6 +1112,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C3283B22009650A00810C1B /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				2C3283B32009651B00810C1B /* MasqueradableWindow.swift */,
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		2C3421191F74093000D8E158 /* OSSAttribution */ = {
 			isa = PBXGroup;
 			children = (
@@ -1166,6 +1178,7 @@
 		2CAF1B161F72AEDB007225DF /* CanvasCore */ = {
 			isa = PBXGroup;
 			children = (
+				2C3283B22009650A00810C1B /* New Group */,
 				2CB68A331FED6DF300468313 /* Startup Manager */,
 				2C6796BE1FD9E0E700BE7BC0 /* Drawer */,
 				9F544E0C1FBB766E00BB2D84 /* Localizable.strings */,
@@ -1238,6 +1251,7 @@
 				49A667D21F96B1B900A5166E /* UIApplication+Reactive.swift */,
 				2CF6DEB52006A039007A5591 /* UIViewController+Core.swift */,
 				3BA0F9B520069CEB00E64448 /* UIView+AutoLayout.swift */,
+				2CD7769B200977EC00589D4F /* UIApplicationDelegate+Core.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3169,6 +3183,7 @@
 				49CE968F1F8FF41B00121A43 /* JSONDecodable.swift in Sources */,
 				49CE96901F8FF41B00121A43 /* CanvasRequest.swift in Sources */,
 				2CE40C9A1F87D36900ECEACB /* CanvadocViewManager.m in Sources */,
+				2CD7769C200977EC00589D4F /* UIApplicationDelegate+Core.swift in Sources */,
 				49CE966B1F8FF41B00121A43 /* QuestionDrawerViewController.swift in Sources */,
 				4930201B1F901CF5006BD777 /* CanvadocsPDFDocumentPresenter.swift in Sources */,
 				49CE969B1F8FF41B00121A43 /* MultipleDropdownColors.swift in Sources */,
@@ -3187,6 +3202,7 @@
 				49CE97471F8FFEA600121A43 /* LocalNotificationHandler.swift in Sources */,
 				49DD239C1F8F9EBE004727F7 /* DiscussionTopicAPI.swift in Sources */,
 				4961F6861F8FB9620093EC86 /* FileUpload.swift in Sources */,
+				2C3283B42009651B00810C1B /* MasqueradableWindow.swift in Sources */,
 				4961F5D31F8FB3E80093EC86 /* CollectionViewController.swift in Sources */,
 				4961F5E11F8FB3F20093EC86 /* LockableModel.swift in Sources */,
 				49CE96E01F8FFC4400121A43 /* ModuleItem+Network.swift in Sources */,

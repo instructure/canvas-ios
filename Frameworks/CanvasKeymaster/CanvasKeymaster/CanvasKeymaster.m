@@ -397,6 +397,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
         newClientSignal = [[self clientForMobileVerifiedDomain:account] map:^CKIClient *(CKIClient *newClient) {
             [newClient setValue:self.currentClient.accessToken forKey:@"accessToken"];
             newClient.actAsUserID = id;
+            newClient.originalBaseURL = self.currentClient.baseURL;
             return newClient;
         }];
     }
@@ -428,6 +429,9 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
     
     CKIClient *plainOlClient = [self.currentClient copy];
     plainOlClient.actAsUserID = nil;
+    if (self.currentClient.originalBaseURL) {
+        [plainOlClient setValue:self.currentClient.originalBaseURL forKey:@"baseURL"];
+    }
     [[plainOlClient fetchCurrentUser] subscribeNext:^(id x) {
         [plainOlClient setValue:x forKeyPath:@"currentUser"];
         self.currentClient = plainOlClient;

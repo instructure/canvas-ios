@@ -64,6 +64,11 @@ extern NSString *const CKIClientAccessTokenExpiredNotification;
 @property (nonatomic) NSString *actAsUserID;
 
 /**
+ When acting as a user, the original base url to revert to once masquerading has finished
+ */
+@property (nonatomic) NSURL *originalBaseURL;
+
+/**
  By default, instances of CKIClient will send notifications logout users if api calls return unauthorized errors
  This behavior is good if there is only one CKIClient
  However, there are instances when many CKIClients exist. (Such as the login screen)

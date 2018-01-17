@@ -43,7 +43,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         Fabric.with([Crashlytics.self, Answers.self])
         setupForPushNotifications()
         preparePSPDFKit()
-        window = UIWindow(frame: UIScreen.main.bounds)
+        window = MasqueradableWindow(frame: UIScreen.main.bounds)
+        window?.backgroundColor = .red
         showLoadingState()
         window?.makeKeyAndVisible()
         

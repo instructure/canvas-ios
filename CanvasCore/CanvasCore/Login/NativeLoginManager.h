@@ -45,6 +45,8 @@ NS_ASSUME_NONNULL_BEGIN
 // Send nil in order to reset
 - (void)injectLoginInformation:(nullable NSDictionary<NSString *, id> *)info;
 
+- (void)stopMasquerding;
+
 @end
 
 @protocol NativeLoginManagerDelegate <NSObject>
