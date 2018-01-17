@@ -1,75 +1,82 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`render 1`] = `
+exports[`WebContainer adds mathjax if needed 1`] = `
 <View
   onLayout={[Function]}
-  style={undefined}
-  testID="web-container.view"
-/>
-`;
-
-exports[`render html 1`] = `
-<View
-  onLayout={[Function]}
-  style={undefined}
   testID="web-container.view"
 >
   <WebView
-    contentInset={undefined}
     onMessage={[Function]}
     onShouldStartLoadWithRequest={[Function]}
     scrollEnabled={true}
     source={
       Object {
         "baseUrl": "http://mobiledev.instructure.com/",
-        "html": "
+        "html": "<!doctype html>
       <html>
-          <head>
-              <meta name=\\"viewport\\" content=\\"width=300,
-                  initial-scale = 1.0, user-scalable = no\\" />
-              <style>
-                  body {
-                      font: -apple-system-body;
-                      margin: 0;
-                      padding: 0;
-                      color: black;
-                      background-color: white;
-                  }
-                  img {
-                      width: auto;
-                      height: auto;
-                      max-width: 100%;
-                  }
-                  video {
-                      width: auto;
-                      height: auto;
-                      max-width: 100%;
-                  }
-                  #whizzy_content {
-                      padding: 0;
-                      margin: 0;
-                  }
-                  iframe {
-                    border: none;
-                    width: 100% !important;
-                  }
-              </style>
-          </head>
-      <body>
-          <div id='whizzy_content'>
-          <div>hello world</div>
-          </div>
-          <script type=\\"text/javascript\\">
-          window.onload = function () {
-              let interval = setInterval(function () {
-                  if (window.originalPostMessage) {
-                      let height = document.getElementById('whizzy_content').clientHeight;
-                      postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height }));
-                      clearInterval(interval)
-                  }
-              }, 100)
+      <head>
+        <meta name=\\"viewport\\" content=\\"width=300,
+          initial-scale = 1.0, user-scalable = no\\" />
+        <style>
+          body {
+            font: -apple-system-body;
+            margin: 0;
+            padding: 0;
+            color: black;
+            background-color: white;
           }
-          </script>
+          img {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+          }
+          video {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+          }
+          #whizzy_content {
+            padding: 0;
+            margin: 0;
+          }
+          iframe {
+            border: none;
+            width: 100% !important;
+          }
+        </style>
+      </head>
+      <body>
+        <div id=\\"whizzy_content\\">
+          <math><mrow><msup><mi>&nbsp; a </mi><mn>2</mn></msup> <mo> + </mo> <msup><mi> b </mi><mn>2</mn></msup> <mo> = </mo> <msup><mi> c </mi><mn>2</mn></msup> </mrow> </math>
+        </div>
+        <script>
+          window.onload = function () {
+            let interval = setInterval(function () {
+              if (window.originalPostMessage) {
+                let height = document.body.scrollHeight
+                postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height }))
+                clearInterval(interval)
+              }
+            }, 100)
+          }
+      
+          // handle math
+          ;(() => {
+            let foundMath = !!document.querySelector('math')
+            document.querySelectorAll('img.equation_image').forEach(img => {
+              if (!img.dataset.mathml && !img.dataset.equationContent) return
+              foundMath = true
+              const div = document.createElement('div')
+              div.innerHTML = img.dataset.mathml || '$$' + img.dataset.equationContent + '$$'
+              img.parentNode.replaceChild(div.firstChild, img)
+            })
+            if (foundMath) {
+              const script = document.createElement('script')
+              script.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
+              document.body.appendChild(script)
+            }
+          })()
+        </script>
       </body>
       </html>
       ",
@@ -85,76 +92,189 @@ exports[`render html 1`] = `
 </View>
 `;
 
-exports[`render with width zero 1`] = `
+exports[`WebContainer renders 1`] = `
 <View
   onLayout={[Function]}
-  style={undefined}
   testID="web-container.view"
 />
 `;
 
-exports[`updates height from js 1`] = `
+exports[`WebContainer renders html 1`] = `
 <View
   onLayout={[Function]}
-  style={undefined}
   testID="web-container.view"
 >
   <WebView
-    contentInset={undefined}
     onMessage={[Function]}
     onShouldStartLoadWithRequest={[Function]}
     scrollEnabled={true}
     source={
       Object {
         "baseUrl": "http://mobiledev.instructure.com/",
-        "html": "
+        "html": "<!doctype html>
       <html>
-          <head>
-              <meta name=\\"viewport\\" content=\\"width=300,
-                  initial-scale = 1.0, user-scalable = no\\" />
-              <style>
-                  body {
-                      font: -apple-system-body;
-                      margin: 0;
-                      padding: 0;
-                      color: black;
-                      background-color: white;
-                  }
-                  img {
-                      width: auto;
-                      height: auto;
-                      max-width: 100%;
-                  }
-                  video {
-                      width: auto;
-                      height: auto;
-                      max-width: 100%;
-                  }
-                  #whizzy_content {
-                      padding: 0;
-                      margin: 0;
-                  }
-                  iframe {
-                    border: none;
-                    width: 100% !important;
-                  }
-              </style>
-          </head>
-      <body>
-          <div id='whizzy_content'>
-          <div>hello world</div>
-          </div>
-          <script type=\\"text/javascript\\">
-          window.onload = function () {
-              let interval = setInterval(function () {
-                  if (window.originalPostMessage) {
-                      let height = document.getElementById('whizzy_content').clientHeight;
-                      postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height }));
-                      clearInterval(interval)
-                  }
-              }, 100)
+      <head>
+        <meta name=\\"viewport\\" content=\\"width=300,
+          initial-scale = 1.0, user-scalable = no\\" />
+        <style>
+          body {
+            font: -apple-system-body;
+            margin: 0;
+            padding: 0;
+            color: black;
+            background-color: white;
           }
-          </script>
+          img {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+          }
+          video {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+          }
+          #whizzy_content {
+            padding: 0;
+            margin: 0;
+          }
+          iframe {
+            border: none;
+            width: 100% !important;
+          }
+        </style>
+      </head>
+      <body>
+        <div id=\\"whizzy_content\\">
+          <div>hello world</div>
+        </div>
+        <script>
+          window.onload = function () {
+            let interval = setInterval(function () {
+              if (window.originalPostMessage) {
+                let height = document.body.scrollHeight
+                postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height }))
+                clearInterval(interval)
+              }
+            }, 100)
+          }
+      
+          // handle math
+          ;(() => {
+            let foundMath = !!document.querySelector('math')
+            document.querySelectorAll('img.equation_image').forEach(img => {
+              if (!img.dataset.mathml && !img.dataset.equationContent) return
+              foundMath = true
+              const div = document.createElement('div')
+              div.innerHTML = img.dataset.mathml || '$$' + img.dataset.equationContent + '$$'
+              img.parentNode.replaceChild(div.firstChild, img)
+            })
+            if (foundMath) {
+              const script = document.createElement('script')
+              script.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
+              document.body.appendChild(script)
+            }
+          })()
+        </script>
+      </body>
+      </html>
+      ",
+      }
+    }
+    style={
+      Object {
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "height": 1,
+      }
+    }
+  />
+</View>
+`;
+
+exports[`WebContainer renders with width zero 1`] = `
+<View
+  onLayout={[Function]}
+  testID="web-container.view"
+/>
+`;
+
+exports[`WebContainer updates height from js 1`] = `
+<View
+  onLayout={[Function]}
+  testID="web-container.view"
+>
+  <WebView
+    onMessage={[Function]}
+    onShouldStartLoadWithRequest={[Function]}
+    scrollEnabled={true}
+    source={
+      Object {
+        "baseUrl": "http://mobiledev.instructure.com/",
+        "html": "<!doctype html>
+      <html>
+      <head>
+        <meta name=\\"viewport\\" content=\\"width=300,
+          initial-scale = 1.0, user-scalable = no\\" />
+        <style>
+          body {
+            font: -apple-system-body;
+            margin: 0;
+            padding: 0;
+            color: black;
+            background-color: white;
+          }
+          img {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+          }
+          video {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+          }
+          #whizzy_content {
+            padding: 0;
+            margin: 0;
+          }
+          iframe {
+            border: none;
+            width: 100% !important;
+          }
+        </style>
+      </head>
+      <body>
+        <div id=\\"whizzy_content\\">
+          <div>hello world</div>
+        </div>
+        <script>
+          window.onload = function () {
+            let interval = setInterval(function () {
+              if (window.originalPostMessage) {
+                let height = document.body.scrollHeight
+                postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height }))
+                clearInterval(interval)
+              }
+            }, 100)
+          }
+      
+          // handle math
+          ;(() => {
+            let foundMath = !!document.querySelector('math')
+            document.querySelectorAll('img.equation_image').forEach(img => {
+              if (!img.dataset.mathml && !img.dataset.equationContent) return
+              foundMath = true
+              const div = document.createElement('div')
+              div.innerHTML = img.dataset.mathml || '$$' + img.dataset.equationContent + '$$'
+              img.parentNode.replaceChild(div.firstChild, img)
+            })
+            if (foundMath) {
+              const script = document.createElement('script')
+              script.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
+              document.body.appendChild(script)
+            }
+          })()
+        </script>
       </body>
       </html>
       ",
@@ -170,68 +290,83 @@ exports[`updates height from js 1`] = `
 </View>
 `;
 
-exports[`updates height from js with scroll disabled 1`] = `
+exports[`WebContainer updates height from js with scroll disabled 1`] = `
 <View
   onLayout={[Function]}
-  style={undefined}
   testID="web-container.view"
 >
   <WebView
-    contentInset={undefined}
     onMessage={[Function]}
     onShouldStartLoadWithRequest={[Function]}
     scrollEnabled={false}
     source={
       Object {
         "baseUrl": "http://mobiledev.instructure.com/",
-        "html": "
+        "html": "<!doctype html>
       <html>
-          <head>
-              <meta name=\\"viewport\\" content=\\"width=300,
-                  initial-scale = 1.0, user-scalable = no\\" />
-              <style>
-                  body {
-                      font: -apple-system-body;
-                      margin: 0;
-                      padding: 0;
-                      color: black;
-                      background-color: white;
-                  }
-                  img {
-                      width: auto;
-                      height: auto;
-                      max-width: 100%;
-                  }
-                  video {
-                      width: auto;
-                      height: auto;
-                      max-width: 100%;
-                  }
-                  #whizzy_content {
-                      padding: 0;
-                      margin: 0;
-                  }
-                  iframe {
-                    border: none;
-                    width: 100% !important;
-                  }
-              </style>
-          </head>
-      <body>
-          <div id='whizzy_content'>
-          <div>hello world</div>
-          </div>
-          <script type=\\"text/javascript\\">
-          window.onload = function () {
-              let interval = setInterval(function () {
-                  if (window.originalPostMessage) {
-                      let height = document.getElementById('whizzy_content').clientHeight;
-                      postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height }));
-                      clearInterval(interval)
-                  }
-              }, 100)
+      <head>
+        <meta name=\\"viewport\\" content=\\"width=300,
+          initial-scale = 1.0, user-scalable = no\\" />
+        <style>
+          body {
+            font: -apple-system-body;
+            margin: 0;
+            padding: 0;
+            color: black;
+            background-color: white;
           }
-          </script>
+          img {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+          }
+          video {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+          }
+          #whizzy_content {
+            padding: 0;
+            margin: 0;
+          }
+          iframe {
+            border: none;
+            width: 100% !important;
+          }
+        </style>
+      </head>
+      <body>
+        <div id=\\"whizzy_content\\">
+          <div>hello world</div>
+        </div>
+        <script>
+          window.onload = function () {
+            let interval = setInterval(function () {
+              if (window.originalPostMessage) {
+                let height = document.body.scrollHeight
+                postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height }))
+                clearInterval(interval)
+              }
+            }, 100)
+          }
+      
+          // handle math
+          ;(() => {
+            let foundMath = !!document.querySelector('math')
+            document.querySelectorAll('img.equation_image').forEach(img => {
+              if (!img.dataset.mathml && !img.dataset.equationContent) return
+              foundMath = true
+              const div = document.createElement('div')
+              div.innerHTML = img.dataset.mathml || '$$' + img.dataset.equationContent + '$$'
+              img.parentNode.replaceChild(div.firstChild, img)
+            })
+            if (foundMath) {
+              const script = document.createElement('script')
+              script.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
+              document.body.appendChild(script)
+            }
+          })()
+        </script>
       </body>
       </html>
       ",

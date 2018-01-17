@@ -14,15 +14,10 @@
 // limitations under the License.
 //
 
-/**
- * @flow
- */
-
-import 'react-native'
+// @flow
+import { shallow } from 'enzyme'
 import React from 'react'
 import WebContainer from '../WebContainer'
-import renderer from 'react-test-renderer'
-import explore from '../../../../test/helpers/explore'
 import RCTSFSafariViewController from 'react-native-sfsafariviewcontroller'
 import api, { setSession } from '../../../canvas-api'
 
@@ -42,150 +37,130 @@ const template = {
   ...require('../../../__templates__/helm'),
 }
 
-beforeAll(() => {
-  setSession(template.session())
-})
-
-test('render', () => {
-  let tree = renderer.create(
-    <WebContainer />
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
-})
-
-test('render html', () => {
-  let html = '<div>hello world</div>'
-  let tree = renderer.create(
-    <WebContainer html={html} />
-  )
-  var width = { nativeEvent: { layout: { width: 300 } } }
-  tree.getInstance().onLayout(width)
-  expect(tree.toJSON()).toMatchSnapshot()
-})
-
-test('render with width zero', () => {
-  let html = '<div>hello world</div>'
-  let tree = renderer.create(
-    <WebContainer html={html} />
-  )
-  var width = { nativeEvent: { layout: { width: 0 } } }
-  tree.getInstance().onLayout(width)
-  expect(tree.toJSON()).toMatchSnapshot()
-})
-
-test('updates height from js', () => {
-  let html = '<div>hello world</div>'
-  let component = renderer.create(
-    <WebContainer html={html} />
-  )
-  var width = { nativeEvent: { layout: { width: 300 } } }
-  component.getInstance().onLayout(width)
-
-  const webView: any = explore(component.toJSON()).query(({ type }) => type === 'WebView')[0]
-  const data = JSON.stringify({ type: 'UPDATE_HEIGHT', data: 10 })
-  const message = {
-    nativeEvent: { data },
-  }
-
-  webView.props.onMessage(message)
-  expect(component.toJSON()).toMatchSnapshot()
-})
-
-test('updates height from js with scroll disabled', () => {
-  let html = '<div>hello world</div>'
-  let component = renderer.create(
-    <WebContainer html={html} scrollEnabled={false}/>
-  )
-  var width = { nativeEvent: { layout: { width: 300 } } }
-  component.getInstance().onLayout(width)
-
-  const webView: any = explore(component.toJSON()).query(({ type }) => type === 'WebView')[0]
-  const data = JSON.stringify({ type: 'UPDATE_HEIGHT', data: 10 })
-  const message = {
-    nativeEvent: { data },
-  }
-
-  webView.props.onMessage(message)
-  expect(component.toJSON()).toMatchSnapshot()
-})
-
-// External links
-test('external links', () => {
-  let html = '<div>hello world</div>'
-  let tree = renderer.create(
-    <WebContainer html={html} />
-  )
-  var width = { nativeEvent: { layout: { width: 300 } } }
-  tree.getInstance().onLayout(width)
-  const webView: any = explore(tree.toJSON()).query(({ type }) => type === 'WebView')[0]
-  webView.props.onShouldStartLoadWithRequest()
-  expect(RCTSFSafariViewController.open).not.toHaveBeenCalled()
-  webView.props.onShouldStartLoadWithRequest({
-    url: 'http://www.google.com',
-    navigationType: 'click',
+describe('WebContainer', () => {
+  beforeAll(() => {
+    setSession(template.session())
   })
-  expect(RCTSFSafariViewController.open).toHaveBeenCalledWith('http://www.google.com')
-})
 
-test('external link that does not exist', () => {
-  jest.resetAllMocks()
-  let html = '<div>hello world</div>'
-  let tree = renderer.create(
-    <WebContainer html={html} />
-  )
-  var width = { nativeEvent: { layout: { width: 300 } } }
-  tree.getInstance().onLayout(width)
-  const webView: any = explore(tree.toJSON()).query(({ type }) => type === 'WebView')[0]
-  webView.props.onShouldStartLoadWithRequest()
-  expect(RCTSFSafariViewController.open).not.toHaveBeenCalled()
-  webView.props.onShouldStartLoadWithRequest()
-  expect(RCTSFSafariViewController.open).not.toHaveBeenCalled()
-})
-
-test('external link, then reload of the content', () => {
-  jest.resetAllMocks()
-  let html = '<div>hello world</div>'
-  let tree = renderer.create(
-    <WebContainer html={html} />
-  )
-  var width = { nativeEvent: { layout: { width: 300 } } }
-  tree.getInstance().onLayout(width)
-  const webView: any = explore(tree.toJSON()).query(({ type }) => type === 'WebView')[0]
-  webView.props.onShouldStartLoadWithRequest()
-  expect(RCTSFSafariViewController.open).not.toHaveBeenCalled()
-  webView.props.onShouldStartLoadWithRequest({
-    url: 'http://www.google.com',
-    navigationType: 'click',
+  it('renders', () => {
+    let tree = shallow(<WebContainer />)
+    expect(tree).toMatchSnapshot()
   })
-  expect(RCTSFSafariViewController.open).toHaveBeenCalledWith('http://www.google.com')
-  jest.resetAllMocks()
-  webView.props.onShouldStartLoadWithRequest({
-    url: 'about:blank',
-    navigationType: 'other',
-  })
-  expect(RCTSFSafariViewController.open).not.toHaveBeenCalled()
-})
 
-test('internal link loads authenticated url', async () => {
-  jest.resetAllMocks()
-  let html = '<div>hello world</div>'
-  const navigator = template.navigator({
-    show: jest.fn(),
+  it('renders html', () => {
+    let html = '<div>hello world</div>'
+    let tree = shallow(<WebContainer html={html} />)
+    tree.simulate('Layout', { nativeEvent: { layout: { width: 300 } } })
+    expect(tree).toMatchSnapshot()
   })
-  let tree = renderer.create(
-    <WebContainer html={html} navigator={navigator} />
-  )
-  var width = { nativeEvent: { layout: { width: 300 } } }
-  tree.getInstance().onLayout(width)
-  const webView: any = explore(tree.toJSON()).query(({ type }) => type === 'WebView')[0]
-  webView.props.onShouldStartLoadWithRequest()
-  expect(RCTSFSafariViewController.open).not.toHaveBeenCalled()
 
-  api.getAuthenticatedSessionURL.mockReturnValueOnce(Promise.resolve({ data: { session_url: 'http://mobiledev.instructure.com/courses/1/modules/1/items-authenticated' } }))
-
-  await webView.props.onShouldStartLoadWithRequest({
-    url: 'http://mobiledev.instructure.com/courses/1/modules/1/items',
-    navigationType: 'click',
+  it('adds mathjax if needed', () => {
+    let html = '<math><mrow><msup><mi>&nbsp; a </mi><mn>2</mn></msup> <mo> + </mo> <msup><mi> b </mi><mn>2</mn></msup> <mo> = </mo> <msup><mi> c </mi><mn>2</mn></msup> </mrow> </math>'
+    let tree = shallow(<WebContainer html={html} />)
+    tree.simulate('Layout', { nativeEvent: { layout: { width: 300 } } })
+    expect(tree).toMatchSnapshot()
   })
-  expect(RCTSFSafariViewController.open).toHaveBeenCalledWith('http://mobiledev.instructure.com/courses/1/modules/1/items-authenticated')
+
+  it('renders with width zero', () => {
+    let html = '<div>hello world</div>'
+    let tree = shallow(<WebContainer html={html} />)
+    tree.simulate('Layout', { nativeEvent: { layout: { width: 0 } } })
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('updates height from js', () => {
+    let html = '<div>hello world</div>'
+    let tree = shallow(<WebContainer html={html} />)
+    tree.simulate('Layout', { nativeEvent: { layout: { width: 300 } } })
+
+    const data = JSON.stringify({ type: 'UPDATE_HEIGHT', data: 10 })
+    const message = {
+      nativeEvent: { data },
+    }
+
+    tree.find('WebView').simulate('Message', message)
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('updates height from js with scroll disabled', () => {
+    let html = '<div>hello world</div>'
+    let tree = shallow(<WebContainer html={html} scrollEnabled={false} />)
+    tree.simulate('Layout', { nativeEvent: { layout: { width: 300 } } })
+
+    const data = JSON.stringify({ type: 'UPDATE_HEIGHT', data: 10 })
+    const message = {
+      nativeEvent: { data },
+    }
+
+    tree.find('WebView').simulate('Message', message)
+    expect(tree).toMatchSnapshot()
+  })
+
+  // External links
+  it('handles external links', () => {
+    let html = '<div>hello world</div>'
+    let tree = shallow(<WebContainer html={html} />)
+    tree.simulate('Layout', { nativeEvent: { layout: { width: 300 } } })
+    tree.find('WebView').simulate('ShouldStartLoadWithRequest')
+    expect(RCTSFSafariViewController.open).not.toHaveBeenCalled()
+    tree.find('WebView').simulate('ShouldStartLoadWithRequest', {
+      url: 'http://www.google.com',
+      navigationType: 'click',
+    })
+    expect(RCTSFSafariViewController.open).toHaveBeenCalledWith('http://www.google.com')
+  })
+
+  it('handles external link that does not exist', () => {
+    jest.resetAllMocks()
+    let html = '<div>hello world</div>'
+    let tree = shallow(<WebContainer html={html} />)
+    tree.simulate('Layout', { nativeEvent: { layout: { width: 300 } } })
+    tree.find('WebView').simulate('ShouldStartLoadWithRequest')
+    expect(RCTSFSafariViewController.open).not.toHaveBeenCalled()
+    tree.find('WebView').simulate('ShouldStartLoadWithRequest')
+    expect(RCTSFSafariViewController.open).not.toHaveBeenCalled()
+  })
+
+  it('handles external link, then reload of the content', () => {
+    jest.resetAllMocks()
+    let html = '<div>hello world</div>'
+    let tree = shallow(<WebContainer html={html} />)
+    tree.simulate('Layout', { nativeEvent: { layout: { width: 300 } } })
+    tree.find('WebView').simulate('ShouldStartLoadWithRequest')
+    expect(RCTSFSafariViewController.open).not.toHaveBeenCalled()
+    tree.find('WebView').simulate('ShouldStartLoadWithRequest', {
+      url: 'http://www.google.com',
+      navigationType: 'click',
+    })
+    expect(RCTSFSafariViewController.open).toHaveBeenCalledWith('http://www.google.com')
+    jest.resetAllMocks()
+    tree.find('WebView').simulate('ShouldStartLoadWithRequest', {
+      url: 'about:blank',
+      navigationType: 'other',
+    })
+    expect(RCTSFSafariViewController.open).not.toHaveBeenCalled()
+  })
+
+  it('handles internal link loads authenticated url', async () => {
+    jest.resetAllMocks()
+    let html = '<div>hello world</div>'
+    const navigator = template.navigator({
+      show: jest.fn(),
+    })
+    let tree = shallow(
+      <WebContainer html={html} navigator={navigator} />
+    )
+    tree.simulate('Layout', { nativeEvent: { layout: { width: 300 } } })
+    tree.find('WebView').simulate('ShouldStartLoadWithRequest')
+    expect(RCTSFSafariViewController.open).not.toHaveBeenCalled()
+
+    api.getAuthenticatedSessionURL.mockReturnValueOnce(Promise.resolve({ data: { session_url: 'http://mobiledev.instructure.com/courses/1/modules/1/items-authenticated' } }))
+
+    tree.find('WebView').simulate('ShouldStartLoadWithRequest', {
+      url: 'http://mobiledev.instructure.com/courses/1/modules/1/items',
+      navigationType: 'click',
+    })
+    await Promise.resolve()
+    expect(RCTSFSafariViewController.open).toHaveBeenCalledWith('http://mobiledev.instructure.com/courses/1/modules/1/items-authenticated')
+  })
 })

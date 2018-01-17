@@ -24,54 +24,71 @@ import RCTSFSafariViewController from 'react-native-sfsafariviewcontroller'
 import { isWebUri } from 'valid-url'
 import canvas, { getSession } from '../../canvas-api'
 
-const TEMPLATE = `
+const TEMPLATE = `<!doctype html>
 <html>
-    <head>
-        <meta name="viewport" content="width={{content-width}},
-            initial-scale = 1.0, user-scalable = no" />
-        <style>
-            body {
-                font: -apple-system-body;
-                margin: 0;
-                padding: 0;
-                color: black;
-                background-color: white;
-            }
-            img {
-                width: auto;
-                height: auto;
-                max-width: 100%;
-            }
-            video {
-                width: auto;
-                height: auto;
-                max-width: 100%;
-            }
-            #whizzy_content {
-                padding: 0;
-                margin: 0;
-            }
-            iframe {
-              border: none;
-              width: 100% !important;
-            }
-        </style>
-    </head>
-<body>
-    <div id='whizzy_content'>
-    {{content}}
-    </div>
-    <script type="text/javascript">
-    window.onload = function () {
-        let interval = setInterval(function () {
-            if (window.originalPostMessage) {
-                let height = document.getElementById('whizzy_content').clientHeight;
-                postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height }));
-                clearInterval(interval)
-            }
-        }, 100)
+<head>
+  <meta name="viewport" content="width={{content-width}},
+    initial-scale = 1.0, user-scalable = no" />
+  <style>
+    body {
+      font: -apple-system-body;
+      margin: 0;
+      padding: 0;
+      color: black;
+      background-color: white;
     }
-    </script>
+    img {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+    }
+    video {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+    }
+    #whizzy_content {
+      padding: 0;
+      margin: 0;
+    }
+    iframe {
+      border: none;
+      width: 100% !important;
+    }
+  </style>
+</head>
+<body>
+  <div id="whizzy_content">
+    {{content}}
+  </div>
+  <script>
+    window.onload = function () {
+      let interval = setInterval(function () {
+        if (window.originalPostMessage) {
+          let height = document.body.scrollHeight
+          postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height }))
+          clearInterval(interval)
+        }
+      }, 100)
+    }
+
+    // handle math
+    ;(() => {
+      let foundMath = !!document.querySelector('math')
+      document.querySelectorAll('img.equation_image').forEach(img => {
+        if (!img.dataset.mathml && !img.dataset.equationContent) return
+        foundMath = true
+        const div = document.createElement('div')
+        div.innerHTML = img.dataset.mathml || '$$' + img.dataset.equationContent + '$$'
+        img.parentNode.replaceChild(div.firstChild, img)
+      })
+      if (foundMath) {
+        const script = document.createElement('script')
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
+        document.body.appendChild(script)
+      }
+    })()
+  </script>
 </body>
 </html>
 `
