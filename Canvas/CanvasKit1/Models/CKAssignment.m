@@ -197,9 +197,9 @@
     return (NSUInteger)self.ident;
 }
 
-- (NSString *)gradeStringForSubmission:(CKSubmission *)submission
+- (NSString *)gradeStringForSubmission:(CKSubmission *)submission usingEnteredGrade:(BOOL)useEnteredGrade
 {
-    NSString *submissionGrade = submission.grade ?: @"—";
+    NSString *submissionGrade = useEnteredGrade ? submission.enteredGrade : submission.grade ?: @"—";
     
     switch (self.scoringType) {
         case CKAssignmentScoringTypePassFail: {
@@ -218,17 +218,31 @@
             break;
         }
         case CKAssignmentScoringTypeLetter:
-            [self setAccessibilityLabel:[NSString stringWithFormat:@"%@", submission.grade]];
-            return submission.grade;
+            [self setAccessibilityLabel:[NSString stringWithFormat:@"%@", submissionGrade]];
+            return submissionGrade;
             break;
         case CKAssignmentScoringTypePercentage:
             [self setAccessibilityLabel:[NSString stringWithFormat:@"%@%%", submissionGrade]];
             return [NSString stringWithFormat:@"%@%%", submissionGrade];
             break;
-        case CKAssignmentScoringTypePoints:
+        case CKAssignmentScoringTypePoints: {
             [self setAccessibilityLabel:[NSString stringWithFormat:@"%@ %@ %g", submissionGrade, NSLocalizedString(@"out of", @"Accessibility label for out or grading style"), self.pointsPossible]];
-            return [NSString stringWithFormat:@"%@/%g", submissionGrade, self.pointsPossible];
+
+            NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+            [formatter setMaximumFractionDigits:2];
+            NSNumber *gradeNumber = [formatter numberFromString:submissionGrade];
+
+
+            if (gradeNumber) {
+                return [NSString stringWithFormat:@"%@/%g", [formatter stringFromNumber:gradeNumber], self.pointsPossible];
+            } else {
+                // Grade is not a number
+                // Most likely because it is a letter and we are using a GPA scale.
+                return submissionGrade;
+            }
+
             break;
+        }
         default: {
             return submissionGrade;
             break;

@@ -158,14 +158,32 @@
         self.score = [scoreNum floatValue];
     }
     
-    self.grade = [info objectForKeyCheckingNull:@"grade"];
+    self.grade = [self extractGradeStringFromObject:info forKey:@"grade"];
+    self.enteredGrade = [self extractGradeStringFromObject:info forKey:@"entered_grade"];
+
+    NSNumber *enteredScore = info[@"entered_score"];
+    if (enteredScore && (id)enteredScore != [NSNull null]) {
+        self.enteredScore = @([enteredScore floatValue]);
+    }
+    NSNumber *pointsDeducted = info[@"points_deducted"];
+    if (pointsDeducted && (id)pointsDeducted != [NSNull null]) {
+        self.pointsDeducted = @([pointsDeducted floatValue]);
+    }
+}
+
+- (NSString *)extractGradeStringFromObject:(NSDictionary *)object forKey:(NSString *)key
+{
+    NSString *grade = [object objectForKeyCheckingNull:key];
+
     // Make sure grade is a string
-    if (self.grade && ![self.grade isKindOfClass:[NSString class]]) {
-        self.grade = [NSString stringWithFormat:@"%@", self.grade];
+    if (grade && ![grade isKindOfClass:[NSString class]]) {
+        grade = [NSString stringWithFormat:@"%@", grade];
     }
-    if ([self.grade hasSuffix:@"%"]) {
-        self.grade = [self.grade stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"%"]];
+    if ([grade hasSuffix:@"%"]) {
+        grade = [grade stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"%"]];
     }
+
+    return grade;
 }
 
 
@@ -341,6 +359,10 @@
 
 - (NSUInteger)hash {
     return (NSUInteger)self.ident;
+}
+
+- (BOOL)hasLatePolicyApplied {
+    return self.pointsDeducted != nil;
 }
 
 @end

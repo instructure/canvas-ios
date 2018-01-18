@@ -41,6 +41,9 @@
 @property (nonatomic, readonly) BOOL isGraded;
 @property (nonatomic, readonly) BOOL needsGrading;
 @property (nonatomic, strong) NSNumber *turnitinScore;
+@property (nonatomic, assign) NSNumber *enteredScore;
+@property (nonatomic, strong) NSString *enteredGrade;
+@property (nonatomic, strong) NSNumber *pointsDeducted;
 
 - (id)initPlaceholderForStudent:(CKStudent *)student andAssignment:(CKAssignment *)assignment;
 - (id)initWithInfo:(NSDictionary *)info andAssignment:(CKAssignment *)anAssignment;
@@ -48,6 +51,7 @@
 - (void)updateCommentsWithInfo:(NSDictionary *)info;
 - (void)updateCommentsWithSubmission:(CKSubmission *)otherSubmission;
 - (void)updateGradeWithInfo:(NSDictionary *)info;
+- (BOOL)hasLatePolicyApplied;
 
 - (CKSubmissionAttempt *)lastAttempt;
 

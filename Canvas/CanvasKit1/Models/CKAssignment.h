@@ -82,7 +82,7 @@ typedef enum {
 
 - (NSComparisonResult)comparePosition:(CKAssignment *)other;
 
-- (NSString *)gradeStringForSubmission:(CKSubmission *)submission;
+- (NSString *)gradeStringForSubmission:(CKSubmission *)submission usingEnteredGrade:(BOOL)useEnteredGrade;
 @end
 
 @interface CKAssignment (SpeedGrader)
