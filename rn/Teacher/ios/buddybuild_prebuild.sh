@@ -1,28 +1,5 @@
 #!/usr/bin/env bash -e
 
-TEACHER_RN_EARLGREY_RUN_JOB_ID=5a31998ddb6814000138d68f
-if [[ "$BUDDYBUILD_APP_ID" = $TEACHER_RN_EARLGREY_RUN_JOB_ID ]]; then
-  echo "Teacher-rn-EarlGrey-run detected. Installing Java 8 for gRPC"
-  brew tap caskroom/versions
-  brew cask install java8
-  sudo ln -sf $(/usr/libexec/java_home)/bin/java /usr/bin/java
-  exit 0
-fi
-
-if [ "$BUDDYBUILD_SCHEME" != "Teacher - BB - Jest" ]; then
-  echo "Only running prebuild on 'Teacher - BB - Jest' scheme"
-  exit 0
-fi
-
-timestamp() {
-  stamp=$( date +%T )
-  echo "$stamp: $@"
-}
-
-timestamp "Setting timezone"
-sudo systemsetup -settimezone America/Denver
-sudo systemsetup -gettimezone
-
 retry_command() {
   # retry up to 3 times
   for try_count in {1..2}; do
@@ -44,6 +21,29 @@ retry_command() {
     fi
   done
 }
+
+TEACHER_RN_EARLGREY_RUN_JOB_ID=5a31998ddb6814000138d68f
+if [[ "$BUDDYBUILD_APP_ID" = $TEACHER_RN_EARLGREY_RUN_JOB_ID ]]; then
+  echo "Teacher-rn-EarlGrey-run detected. Installing Java 8 for gRPC"
+  retry_command brew tap caskroom/versions
+  retry_command brew cask install java8
+  sudo ln -sf $(/usr/libexec/java_home)/bin/java /usr/bin/java
+  exit 0
+fi
+
+if [ "$BUDDYBUILD_SCHEME" != "Teacher - BB - Jest" ]; then
+  echo "Only running prebuild on 'Teacher - BB - Jest' scheme"
+  exit 0
+fi
+
+timestamp() {
+  stamp=$( date +%T )
+  echo "$stamp: $@"
+}
+
+timestamp "Setting timezone"
+sudo systemsetup -settimezone America/Denver
+sudo systemsetup -gettimezone
 
 # buddybuild app settings are *not respected* in custom scripts.
 # we have to manually install / retry / etc. all build commands
