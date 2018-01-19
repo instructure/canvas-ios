@@ -54,7 +54,9 @@ extension Session {
             value: "",
             comment: "")
         
-        if url.path.contains("/modules") {
+        let enrollment = enrollmentsDataSource[context]
+        
+        if url.path.contains("/modules") && url.absoluteString.range(of: enrollment!.defaultViewPath) == nil {
             guard let tab = (try? Tab.modulesTab(for: context, in: self)).flatMap({ $0 }), !tab.hidden else {
                 return ContentAccess(.denied(pageAccessDenied))
             }
