@@ -331,4 +331,26 @@ describe('groups', () => {
       color: '#7F91A7',
     }])
   })
+
+  it('skips groups that are concluded', () => {
+    let newState = {
+      ...state,
+      entities: {
+        ...state.entities,
+        groups: {
+          ...state.entities.groups,
+          '4': {
+            concluded: true,
+          },
+        },
+      },
+    }
+    expect(mapStateToProps(true)(newState).groups).toMatchObject([{
+      id: '1',
+    }, {
+      id: '2',
+    }, {
+      id: '3',
+    }])
+  })
 })

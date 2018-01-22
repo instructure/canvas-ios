@@ -371,7 +371,9 @@ export function mapStateToProps (isFullDashboard: boolean) {
       .filter(({ id }) => !accountNotifications.closing.includes(id))
 
     const groups = Object.keys(state.entities.groups)
-      .filter(id => state.entities.groups[id] && state.entities.groups[id].group)
+      .filter(id => state.entities.groups[id] &&
+        state.entities.groups[id].group &&
+        !state.entities.groups[id].group.concluded)
       .map((id) => {
         let group = state.entities.groups[id].group
         let groupColor = state.entities.groups[id].color
