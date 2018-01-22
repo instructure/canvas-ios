@@ -73,6 +73,11 @@ static NativeLogin *_sharedInstance;
 
 RCT_EXPORT_MODULE();
 
+- (NSDictionary *)constantsToExport
+{
+    return @{ @"isTesting": @(NSClassFromString(@"EarlGreyImpl") != nil) };
+}
+
 RCT_EXPORT_METHOD(logout)
 {
     [[NativeLoginManager shared] setShouldCleanupOnNextLogoutEvent:YES];
