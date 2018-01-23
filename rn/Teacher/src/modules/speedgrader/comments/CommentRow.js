@@ -54,7 +54,9 @@ export default class CommentRow extends Component<any, CommentRowProps, any> {
   }
 
   onAvatarPress = () => {
-    this.props.onAvatarPress(this.props.userID)
+    if (this.props.onAvatarPress) {
+      this.props.onAvatarPress(this.props.userID)
+    }
   }
 
   renderHeader = () => {

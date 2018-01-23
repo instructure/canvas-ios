@@ -280,7 +280,7 @@ export function mapStateToProps (state: AppState, ownProps: RoutingProps): Speed
 
   const assignmentContent = entities.assignments[assignmentID]
   const assignmentData = assignmentContent && assignmentContent.data
-  const quiz = assignmentData && assignmentData.quiz_id && entities.quizzes[assignmentData.quiz_id].data
+  const quiz = assignmentData && assignmentData.quiz_id && entities.quizzes[assignmentData.quiz_id] && entities.quizzes[assignmentData.quiz_id].data
   const courseContent = state.entities.courses[courseID]
 
   let anonymous = (

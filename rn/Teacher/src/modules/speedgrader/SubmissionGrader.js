@@ -178,7 +178,10 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
       if (!submission.attachments) return defaultLabel
       var numberOfFiles = submission.attachments.length
     } else {
-      if (!submission.submission_history[selectedIndex].attachments) return defaultLabel
+      if (!submission.submission_history[selectedIndex] ||
+          !submission.submission_history[selectedIndex].attachments) {
+        return defaultLabel
+      }
       numberOfFiles = submission.submission_history[selectedIndex].attachments.length
     }
     return i18n('Files ({ numberOfFiles, number })', { numberOfFiles })

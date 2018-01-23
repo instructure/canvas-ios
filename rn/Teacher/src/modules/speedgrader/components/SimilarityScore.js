@@ -190,7 +190,7 @@ export function mapStateToProps (state: AppState, ownProps: OwnProps): StateProp
     const { submission, selectedIndex, selectedAttachmentIndex } = submissionData
     const selectedSubmission = selectedIndex != null ? submission.submission_history[selectedIndex] : submission
 
-    if (selectedSubmission.turnitin_data) {
+    if (selectedSubmission && selectedSubmission.turnitin_data) {
       // online text entry
       if (selectedSubmission.submission_type === 'online_text_entry') {
         const data = selectedSubmission.turnitin_data[`submission_${selectedSubmission.id}`]

@@ -344,7 +344,7 @@ export function mapStateToProps (state: AppState, ownProps: ContextCardOwnProps)
 
   let submissions = Object.keys(state.entities.submissions)
     .map(submissionID => state.entities.submissions[submissionID].submission)
-    .filter(submission => submission.user_id === ownProps.userID)
+    .filter(submission => submission && (submission.user_id === ownProps.userID))
     .filter(submission => {
       let assignmentID = submission.assignment_id
       return state.entities.assignments[assignmentID].data.course_id === ownProps.courseID
@@ -407,6 +407,7 @@ export function calculateTotalPoints (state: AppState, ownProps: ContextCardOwnP
     .map(assignmentID => state.entities.assignments[assignmentID].data)
     .filter(assignment => assignment.course_id === ownProps.courseID)
     .filter(assignment => {
+      if (!assignment.overrides) return false
       return assignment.overrides.length === 0 || assignment.overrides.find(override => override.student_ids && override.student_ids.includes(ownProps.userID))
     })
     .map(assignment => assignment.points_possible)
