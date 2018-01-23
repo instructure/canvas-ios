@@ -109,8 +109,7 @@ const loginHandler = async ({
   }
 }
 
-// Bug in rn .45 when trying to use sync methods in debug mode
-if (global.nativeCallSyncHook) {
+if (NativeLogin.isTesting) {
   const loginInfo = NativeLogin.loginInformation()
   if (loginInfo) {
     loginHandler(loginInfo)

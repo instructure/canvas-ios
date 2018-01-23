@@ -1138,6 +1138,14 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		2C96863B1FFE9FC3005127A3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2C96863C1FFE9FC3005127A3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 		2CA3473E1F2147290000BB79 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
