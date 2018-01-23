@@ -191,12 +191,11 @@ open class CalendarSplitMonthViewController: UIViewController {
     fileprivate func initNavigationButtons() {
         var navigationButtons = [UIBarButtonItem]()
         // Navigation Buttons
-        if let refreshImage = UIImage(named: "icon_sync", in: CalendarMonthViewController.bundle, compatibleWith: nil)?.withRenderingMode(UIImageRenderingMode.alwaysTemplate) {
-            let refreshButton = UIBarButtonItem(image: refreshImage, style: UIBarButtonItemStyle.plain, target: self, action: #selector(CalendarSplitMonthViewController.refreshButtonPressed(_:)))
-            refreshButton.accessibilityLabel = NSLocalizedString("Refresh Button", comment: "")
-            refreshButton.accessibilityHint = NSLocalizedString("Refreshes the calendar content", comment: "")
-            navigationButtons.append(refreshButton)
-        }
+        let refreshImage = UIImage.icon(.refresh).withRenderingMode(.alwaysTemplate)
+        let refreshButton = UIBarButtonItem(image: refreshImage, style: UIBarButtonItemStyle.plain, target: self, action: #selector(CalendarSplitMonthViewController.refreshButtonPressed(_:)))
+        refreshButton.accessibilityLabel = NSLocalizedString("Refresh Button", comment: "")
+        refreshButton.accessibilityHint = NSLocalizedString("Refreshes the calendar content", comment: "")
+        navigationButtons.append(refreshButton)
         
         if let todayView = IconTodayView.instantiateFromNib(Date(), tintColor: self.navigationController?.navigationBar.tintColor, target: self, action: #selector(CalendarSplitMonthViewController.todayButtonPressed(_:))) {
             todayView.translatesAutoresizingMaskIntoConstraints = true

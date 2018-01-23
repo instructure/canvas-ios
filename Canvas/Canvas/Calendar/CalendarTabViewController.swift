@@ -40,7 +40,6 @@ public func CalendarTabViewController(session: Session, route: @escaping (UIView
     
     calendarVC.tabBarItem.title = calendarTitle
     calendarVC.tabBarItem.image = .icon(.calendar)
-    calendarVC.tabBarItem.selectedImage = .icon(.calendar, filled: true)
 
     return calendarVC
 }

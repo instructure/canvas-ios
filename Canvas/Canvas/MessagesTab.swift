@@ -20,7 +20,6 @@ import CanvasCore
 
 func MessagesTab() -> UIViewController {
     let vc = inboxTab()
-    vc.tabBarItem.image = .icon(.inbox)
-    vc.tabBarItem.selectedImage = .icon(.inbox, filled: true)
+    vc.tabBarItem.image = .icon(.email)
     return vc
 }

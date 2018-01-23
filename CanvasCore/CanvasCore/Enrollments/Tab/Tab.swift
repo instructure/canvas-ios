@@ -54,7 +54,7 @@ public final class Tab: NSManagedObject {
         case "modules":         return .icon(.module)
         case "outcomes":        return .icon(.outcome)
         case "pages":           return .icon(.page)
-        case "people":          return .icon(.user)
+        case "people":          return .icon(.people)
         case "quizzes":         return .icon(.quiz)
         case "settings":        return .icon(.settings)
         case "syllabus":        return .icon(.syllabus)
@@ -76,7 +76,7 @@ public final class Tab: NSManagedObject {
         case "assignments":     shortcut = .assignment
         default: ❨╯°□°❩╯⌢"Not a valid shortcut"
         }
-        return .icon(shortcut, filled: true)
+        return .icon(shortcut)
     }
 
     public var isPages: Bool {

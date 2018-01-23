@@ -22,7 +22,7 @@ import Foundation
 extension UIImage {
     public static func icon(_ icon: Icon, filled: Bool = false, size: Icon.Size = .standard) -> UIImage {
         let name = icon.imageName(filled, size: size)
-        guard let icon = UIImage(named: name, in: .core, compatibleWith: nil) else {
+        guard let icon = UIImage(named: name, in: .core, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate) else {
             fatalError("An image does not exist for the Icon/Filled/Size combination specified: \(name). Please add the varient to SoIconic.framework")
         }
         

@@ -36,6 +36,7 @@ public enum Icon: String {
     case assignment
     case audio
     case calendar
+    case calendarEmpty = "calendar_empty"
     case camera
     case cancel
     case code
@@ -54,6 +55,7 @@ public enum Icon: String {
     case outcome
     case page
     case pdf
+    case people
     case prerequisite
     case quiz
     case refresh
@@ -61,7 +63,6 @@ public enum Icon: String {
     case syllabus
     case user
 
-    case inbox
     case todo
     case notification
 

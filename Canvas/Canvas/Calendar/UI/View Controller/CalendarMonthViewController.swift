@@ -244,11 +244,10 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
     fileprivate func initNavigationButtons() {
         var navigationButtons = [UIBarButtonItem]()
         // Navigation Buttons
-        if let refreshImage = UIImage(named: "icon_sync", in: CalendarMonthViewController.bundle, compatibleWith: nil)?.withRenderingMode(UIImageRenderingMode.alwaysTemplate) {
-            let refreshButton = UIBarButtonItem(image: refreshImage, style: UIBarButtonItemStyle.plain, target: self, action: #selector(CalendarMonthViewController.refreshButtonPressed(_:)))
-            refreshButton.accessibilityLabel = NSLocalizedString("Refresh", comment: "Button to refresh the calendar events")
-            navigationButtons.append(refreshButton)
-        }
+        let refreshImage = UIImage.icon(.refresh).withRenderingMode(.alwaysTemplate)
+        let refreshButton = UIBarButtonItem(image: refreshImage, style: UIBarButtonItemStyle.plain, target: self, action: #selector(CalendarMonthViewController.refreshButtonPressed(_:)))
+        refreshButton.accessibilityLabel = NSLocalizedString("Refresh", comment: "Button to refresh the calendar events")
+        navigationButtons.append(refreshButton)
 
         if let todayView = IconTodayView.instantiateFromNib(Date(), tintColor: self.navigationController?.navigationBar.tintColor, target: self, action: #selector(CalendarMonthViewController.todayButtonPressed(_:))) {
             let todayButton = UIBarButtonItem(customView: todayView)

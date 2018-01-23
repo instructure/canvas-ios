@@ -24,7 +24,7 @@ extension Activity {
         switch type {
         case .discussion:       return .icon(.discussion)
         case .announcement:     return .icon(.announcement)
-        case .conversation:     return .icon(.inbox)
+        case .conversation:     return .icon(.email)
         case .message:          return .icon(.assignment)
         case .submission:       return .icon(.assignment)
         case .conference:       return .icon(.conference)

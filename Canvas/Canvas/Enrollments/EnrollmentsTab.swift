@@ -74,6 +74,5 @@ public func EnrollmentsTab(session: Session) throws -> UIViewController {
     dashboardSplit.viewControllers = [dashboardNav, emptyNav]
     dashboardSplit.tabBarItem.title = NSLocalizedString("Courses", comment: "Courses page title")
     dashboardSplit.tabBarItem.image = .icon(.course)
-    dashboardSplit.tabBarItem.selectedImage = .icon(.course, filled: true)
     return dashboardSplit
 }

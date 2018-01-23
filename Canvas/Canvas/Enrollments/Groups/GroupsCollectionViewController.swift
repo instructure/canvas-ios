@@ -62,7 +62,7 @@ class GroupsCollectionViewController: FetchedCollectionViewController<Group>, UI
     }
     
     fileprivate lazy var editButton: UIBarButtonItem = {
-        let image = UIImage(named: "icon_cog_small", in: Bundle(for: GroupsCollectionViewController.self), compatibleWith: nil)
+        let image = UIImage.icon(.settings)
         let edit = UIBarButtonItem(image: image, landscapeImagePhone: nil, style: .plain, target: self, action: #selector(editFavorites(_:)))
         edit.accessibilityLabel = NSLocalizedString("Edit Group List", comment: "Edit group list title")
         edit.accessibilityIdentifier = "editGroupListButton"

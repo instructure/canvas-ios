@@ -30,7 +30,7 @@ class IconTodayView : UIView {
             dateFormatter.dateFormat = "d"
             todayView.lblDayOfMonth.text = dateFormatter.string(from: date)
             
-            let calendarImage = UIImage(named: "icon_today", in: IconTodayView.bundle, compatibleWith: nil)?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+            let calendarImage = UIImage.icon(.calendarEmpty)
             todayView.imgIconBackground.image = calendarImage
             todayView.imgIconBackground.tintColor = tintColor
             

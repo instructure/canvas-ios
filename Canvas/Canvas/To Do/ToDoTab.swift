@@ -38,6 +38,5 @@ public func ToDoTabViewController(session: Session, route: @escaping (UIViewCont
     list.navigationItem.title = title
     split.tabBarItem.title = title
     split.tabBarItem.image = .icon(.todo)
-    split.tabBarItem.selectedImage = .icon(.todo)
     return split
 }

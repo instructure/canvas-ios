@@ -40,7 +40,6 @@ func NotificationsTab(session: Session) throws -> UIViewController {
     activityStream.navigationItem.title = title
     split.tabBarItem.title = title
     split.tabBarItem.image = .icon(.notification)
-    split.tabBarItem.selectedImage = .icon(.notification, filled: true)
     return split
 }
 

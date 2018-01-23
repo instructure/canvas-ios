@@ -126,7 +126,7 @@ open class CoursesCollectionViewController: FetchedCollectionViewController<Cour
     }
     
     fileprivate lazy var editButton: UIBarButtonItem = {
-        let image = UIImage(named: "icon_cog_small", in: Bundle(for: GroupsCollectionViewController.self), compatibleWith: nil)
+        let image = UIImage.icon(.settings)
         let edit = UIBarButtonItem(image: image, landscapeImagePhone: nil, style: .plain, target: self, action: #selector(editFavorites(_:)))
         edit.accessibilityLabel = NSLocalizedString("Edit Course List", comment: "Edit course list title")
         edit.accessibilityIdentifier = "editCourseListButton"
@@ -137,15 +137,15 @@ open class CoursesCollectionViewController: FetchedCollectionViewController<Cour
     var button: UIBarButtonItem?
     
     func toggleGradesButton() -> UIBarButtonItem {
-        let image: UIImage
+        let image: UIImage?
         let label: String
         
         if showingGrades.value {
             label = NSLocalizedString("Hide Grades", comment: "Accessibility label for toggling grades to hidden")
-            image = UIImage(named: "icon_grades_fill_small", in: Bundle(for: CoursesCollectionViewController.self), compatibleWith: nil)!
+            image = UIImage(named: "icon_grades_fill_small", in: Bundle(for: CoursesCollectionViewController.self), compatibleWith: nil)
         } else {
             label = NSLocalizedString("Show Grades", comment: "Accessibility label for toggling grades to visible")
-            image = UIImage(named: "icon_grades_small", in: Bundle(for: CoursesCollectionViewController.self), compatibleWith: nil)!
+            image = UIImage(named: "icon_grades_small", in: Bundle(for: CoursesCollectionViewController.self), compatibleWith: nil)
         }
         
         let button = self.button ?? UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(toggleGrades(_:)))
