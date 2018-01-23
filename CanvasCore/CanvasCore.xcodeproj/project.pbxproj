@@ -36,6 +36,7 @@
 		2CFAFBD11FD21B3800F22C7F /* WindowTraits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFAFBD01FD21B3800F22C7F /* WindowTraits.swift */; };
 		3BA0F9B620069CEB00E64448 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA0F9B520069CEB00E64448 /* UIView+AutoLayout.swift */; };
 		3BA8BE9B1FE2ED85003EC4FD /* SubmissionConfirmationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BA8BE9D1FE2ED85003EC4FD /* SubmissionConfirmationViewController.xib */; };
+		3BC7CEC620113F5B001DFF8C /* CKIClient+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC7CEC520113F5B001DFF8C /* CKIClient+Extensions.swift */; };
 		3BD43DE91FD20597001A6B34 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD43DE81FD20597001A6B34 /* EmptyViewController.swift */; };
 		3BDE87761FD76BE600912CB3 /* UISplitViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */; };
 		4902ADBE1FB26E860004837D /* LTIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4902ADBD1FB26E860004837D /* LTIViewController.swift */; };
@@ -552,6 +553,7 @@
 		3BA8BEBF1FE2EDFE003EC4FD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
 		3BA8BEC11FE2EE03003EC4FD /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
 		3BA8BEC31FE2EE09003EC4FD /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
+		3BC7CEC520113F5B001DFF8C /* CKIClient+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CKIClient+Extensions.swift"; sourceTree = "<group>"; };
 		3BD43DE81FD20597001A6B34 /* EmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
 		3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISplitViewControllerExtensions.swift; sourceTree = "<group>"; };
 		4902ADBD1FB26E860004837D /* LTIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTIViewController.swift; sourceTree = "<group>"; };
@@ -1253,6 +1255,7 @@
 				49A667D21F96B1B900A5166E /* UIApplication+Reactive.swift */,
 				2CF6DEB52006A039007A5591 /* UIViewController+Core.swift */,
 				3BA0F9B520069CEB00E64448 /* UIView+AutoLayout.swift */,
+				3BC7CEC520113F5B001DFF8C /* CKIClient+Extensions.swift */,
 				2CD7769B200977EC00589D4F /* UIApplicationDelegate+Core.swift */,
 			);
 			path = Extensions;
@@ -3015,6 +3018,7 @@
 				49DD239D1F8F9EBE004727F7 /* Session+DiscussionKit.swift in Sources */,
 				494BC6051F953D0D00C77257 /* SubmitAssignmentActivity.swift in Sources */,
 				4930206E1F902462006BD777 /* Path.swift in Sources */,
+				3BC7CEC620113F5B001DFF8C /* CKIClient+Extensions.swift in Sources */,
 				49CE96E21F8FFC4400121A43 /* MasteryPathsItem+Details.swift in Sources */,
 				494AE0891F8436C1001A8F31 /* LoginConfiguration.swift in Sources */,
 				4930200E1F901CF5006BD777 /* CommentReplyView.swift in Sources */,

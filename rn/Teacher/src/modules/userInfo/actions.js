@@ -20,6 +20,11 @@ import { createAction } from 'redux-actions'
 import canvas from '../../canvas-api'
 
 export let UserInfoActions = (api: CanvasApi): * => ({
+  refreshAccountExternalTools: createAction('userInfo.refreshAccountExternalTools', () => {
+    return {
+      promise: api.refreshAccountExternalTools(),
+    }
+  }),
   refreshCanMasquerade: createAction('userInfo.canMasquerade', () => {
     return {
       promise: api.roles('self'),

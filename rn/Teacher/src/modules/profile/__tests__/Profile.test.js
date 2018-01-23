@@ -27,6 +27,7 @@ import { setSession } from '../../../canvas-api'
 const template = {
   ...require('../../../__templates__/session'),
   ...require('../../../__templates__/helm.js'),
+  ...require('../../../__templates__/launch-definitions.js'),
 }
 
 jest.mock('ActionSheetIOS', () => ({
@@ -57,10 +58,23 @@ describe('Profile Tests', () => {
     defaultProps = {
       navigator: navigator,
       refreshCanMasquerade: jest.fn(),
+      refreshAccountExternalTools: jest.fn(),
       canMasquerade: true,
+      externalTools: [],
     }
   })
   it('renders correctly', () => {
+    const tree = renderer.create(
+      <Profile { ...defaultProps } canMasquerade={true} />
+    ).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('renders correctly with lti apps', () => {
+    app.setCurrentApp('student')
+    let externalTools = [template.launchDefinitionGlobalNavigationItem()]
+    defaultProps = { ...defaultProps, externalTools }
     const tree = renderer.create(
       <Profile { ...defaultProps } canMasquerade={true} />
     ).toJSON()

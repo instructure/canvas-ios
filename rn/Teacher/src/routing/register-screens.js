@@ -149,4 +149,5 @@ export function registerScreens (store: Store): void {
   registerScreen('/profile/settings')
   registerScreen('/courses/:courseID/tabs/:tabID')
   registerScreen('/ui', wrap(UI), store)
+  registerScreen('/launch_external_tool')
 }

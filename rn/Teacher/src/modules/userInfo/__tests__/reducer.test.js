@@ -3,14 +3,29 @@
 import { userInfo } from '../reducer'
 import Actions from '../actions'
 
-const { refreshCanMasquerade } = Actions
+const { refreshCanMasquerade, refreshAccountExternalTools } = Actions
 
 const template = {
   ...require('../../../__templates__/role'),
   ...require('../../../__templates__/error'),
+  ...require('../../../__templates__/launch-definitions'),
 }
 
 describe('userInfo', () => {
+  describe('refresh lti apps', () => {
+    it('resolves', () => {
+      const apps = [template.launchDefinition()]
+      const resolved = {
+        type: refreshAccountExternalTools.toString(),
+        payload: { result: { data: apps } },
+      }
+
+      expect(userInfo({ }, resolved)).toMatchObject({
+        externalTools: [template.launchDefinitionGlobalNavigationItem()],
+      })
+    })
+  })
+
   describe('refreshCanMasquerade', () => {
     it('can because permissions', () => {
       const roles = [

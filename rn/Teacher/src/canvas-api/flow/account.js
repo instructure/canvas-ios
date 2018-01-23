@@ -35,3 +35,16 @@ export type Account = {
   parent_account_id: string,
   root_account_id: string,
 }
+
+export type ExternalToolLaunchDefinition = {
+  definition_type: string,
+  definition_id: string,
+  name: string,
+  description: string,
+  placements: { [string]: any },
+}
+
+export type ExternalToolLaunchDefinitionGlobalNavigationItem = {
+  title: string,
+  url: string,
+}

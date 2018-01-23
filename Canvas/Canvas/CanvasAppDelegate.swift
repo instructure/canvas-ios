@@ -305,6 +305,16 @@ extension AppDelegate: RCTBridgeDelegate {
             let url = URL(string: "api/v1/groups/\(groupID)/tabs")
             return Router.shared().controller(forHandling: url)
         })
+        
+        HelmManager.shared.registerNativeViewController(for: "/launch_external_tool", factory: { props in
+            guard let toolUrl = props["url"] as? String else { return nil }
+            guard let baseUrl = TheKeymaster?.currentClient.baseURL?.absoluteString else { return nil }
+            let sessionlessUrl = "\(baseUrl)/api/v1/accounts/self/external_tools/sessionless_launch?url=\(toolUrl)"
+            guard let url = URL(string: sessionlessUrl) else { fatalError("Invalid URL") }
+            let toolName = props["toolName"] as? String ?? ""
+            let ltiController = LTIViewController(toolName: toolName, courseID: nil, launchURL: url, in: currentSession, showDoneButton: true)
+            return UINavigationController(rootViewController: ltiController)
+        })
     }
     
     func excludeHelmInBranding() {

@@ -47,3 +47,7 @@ export function getExternalTool (courseID: string, id: string, options: GetExter
 export function getSessionlessLaunchURL (courseID: string, options: GetExternalToolOptions): Promise<string> {
   return getExternalTool(courseID, 'sessionless_launch', options).then(response => response.data.url)
 }
+
+export function refreshAccountExternalTools (): Promise<ApiResponse<ExternalToolLaunchDefinition[]>> {
+  return httpClient().get(`accounts/self/lti_apps/launch_definitions?placements[]=global_navigation`)
+}

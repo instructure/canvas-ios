@@ -68,10 +68,16 @@ export class Profile extends Component {
 
   componentDidMount () {
     this.props.refreshCanMasquerade()
+    this.props.refreshAccountExternalTools()
   }
 
   logout = () => {
     NativeModules.NativeLogin.logout()
+  }
+
+  async launchExternalTool (tool: ExternalToolLaunchDefinitionGlobalNavigationItem) {
+    await this.props.navigator.dismiss()
+    this.props.navigator.show('/launch_external_tool', { modal: true }, { url: tool.url, toolName: tool.title })
   }
 
   switchUser = () => {
@@ -149,6 +155,7 @@ export class Profile extends Component {
     let titleStyles = { fontSize: 20, fontWeight: '300' }
     let session = getSession()
     if (!session) { return <View /> }
+    let externalTools = (this.props.externalTools || [])
 
     const buildRow = (title: string, onPress?: Function, switchProps?: RowWithSwitchProps) => {
       return (<View>
@@ -162,6 +169,7 @@ export class Profile extends Component {
     const masqueradeTitle = masquerading ? i18n('Stop Act as User') : i18n('Act as User')
     return (<View>
               { isStudent && buildRow(i18n('Files'), this.userFiles) }
+              { externalTools.length > 0 && externalTools.map((externalTool) => buildRow(externalTool.title, () => { this.launchExternalTool(externalTool) })) }
               { (this.props.canMasquerade || masquerading) && buildRow(masqueradeTitle, this.toggleMasquerade) }
               { isStudent && buildRow('Show Grades', null, { onValueChange: this.toggleShowGrades, value: this.props.showsGradesOnCourseCards }) }
               { !masquerading && buildRow(i18n('Change User'), this.switchUser) }
