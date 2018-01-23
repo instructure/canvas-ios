@@ -1,6 +1,9 @@
 /* No comment provided by engineer. */
 "An error occurred" = "Gen yon erè ki fèt";
 
+/* Help label when user can't find their school. */
+"Can't find your school?" = "Ou paka jwenn lekòl ou a?";
+
 /* No comment provided by engineer. */
 "Cancel" = "Anile";
 

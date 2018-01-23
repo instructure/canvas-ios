@@ -1,1 +1,15 @@
-/* No Localized Strings */
+/* (No Comment) */
+"CFBundleDisplayName" = "Canvas Parent";
+
+/* (No Comment) */
+"CFBundleName" = "Canvas Parent";
+
+/* (No Comment) */
+"NSCameraUsageDescription" = "Fügen Sie Fotos und Videos zu Nachrichten und Diskussionsposts hinzu oder geben Sie sie als Aufgaben ab.";
+
+/* (No Comment) */
+"NSMicrophoneUsageDescription" = "Fügen Sie Audioaufnahmen zu Nachrichten und Diskussionsposts hinzu oder geben Sie sie als Aufgaben ab.";
+
+/* (No Comment) */
+"NSPhotoLibraryUsageDescription" = "Fügen Sie Fotos und Videos zu Nachrichten und Diskussionsposts hinzu oder geben Sie sie als Aufgaben ab.";
+

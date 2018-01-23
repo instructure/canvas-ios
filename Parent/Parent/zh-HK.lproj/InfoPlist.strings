@@ -1,1 +1,15 @@
-/* No Localized Strings */
+/* (No Comment) */
+"CFBundleDisplayName" = "Canvas Parent";
+
+/* (No Comment) */
+"CFBundleName" = "Canvas Parent";
+
+/* (No Comment) */
+"NSCameraUsageDescription" = "將照片和影片附加到訊息和討論區中，或將他們變成作業提交項目。";
+
+/* (No Comment) */
+"NSMicrophoneUsageDescription" = "將錄音附加到訊息和討論區中，或將他們變成作業提交項目。";
+
+/* (No Comment) */
+"NSPhotoLibraryUsageDescription" = "將照片和影片附加到訊息和討論區中，或將他們變成作業提交項目。";
+

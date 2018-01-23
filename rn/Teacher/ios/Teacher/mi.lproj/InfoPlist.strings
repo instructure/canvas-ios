@@ -1,1 +1,15 @@
-/* No Localized Strings */
+/* (No Comment) */
+"CFBundleDisplayName" = "Kaiako";
+
+/* (No Comment) */
+"CFBundleName" = "$(PRODUCT_NAME)";
+
+/* (No Comment) */
+"NSCameraUsageDescription" = "Tāpiritia ngā whakāhua me ngā ataata ki ngā tukunga kōrero.";
+
+/* (No Comment) */
+"NSMicrophoneUsageDescription" = "Tāpiritia ngā ōrorongo oro me ngā ataata ki ngā tukunga kōrero.";
+
+/* (No Comment) */
+"NSPhotoLibraryUsageDescription" = "Tukuake te ihirangi ki ngā akoranga.";
+

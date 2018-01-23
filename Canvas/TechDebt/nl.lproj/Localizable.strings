@@ -896,6 +896,9 @@
 /* Title for an error alert */
 "Oops!" = "Oeps!";
 
+/* Link to Open Source Components */
+"Open Source Components" = "Open Source-onderdelen";
+
 /* Open a document in the application Safari */
 "Open in Safari" = "Openen in Safari";
 
@@ -1247,6 +1250,9 @@
 /* (No Comment) */
 "This would be a great time to do some extra credit." = "Dit is een goede tijd voor wat extra punten.";
 
+/* Threaded switch label to to make discussion threaded */
+"Threaded" = "Hiërarchisch";
+
 /* (No Comment) */
 "To Do" = "Te doen";
 
@@ -1284,7 +1290,7 @@
 "Unable to post." = "Kan niet worden gepost.";
 
 /* (No Comment) */
-"Unable to post. Please try again later" = "Kan niet worden gepost. Probeer het later opnieuw.";
+"Unable to post. Please try again later" = "Kan niet plaatsen. Probeer het later nogmaals.";
 
 /* Error message */
 "Unable to post. Please try again later." = "Kan niet worden gepost. Probeer het later opnieuw.";

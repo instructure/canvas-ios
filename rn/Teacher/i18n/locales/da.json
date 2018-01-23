@@ -20,6 +20,15 @@
   "access_code_74f4864f": {
     "message": "Adgangskode"
   },
+  "account_group_cb00ca73": {
+    "message": "Kontogruppe"
+  },
+  "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
+    "message": "\"Funger som\" betyder i bund og grund, at du logger ind som denne bruger uden adgangskode. Du kan foretage dig alt, som om du var denne bruger, og for andre brugere er det lige som om, det var denne bruger, der gjorde det. Dog registrerer audit-logs, at det faktisk var dig, der udførte handlingerne på vegne af denne bruger."
+  },
+  "act_as_user_d7ef0e48": {
+    "message": "Funger som bruger"
+  },
   "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
     "message": "Tilføj nogle af dine foretrukne fag for at gøre siden mere personlig."
   },
@@ -248,6 +257,9 @@
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
     "message": "Skift { discussionTitle } til anden gruppering"
   },
+  "change_user_1b7c4f23": {
+    "message": "Skift bruger"
+  },
   "choose_1319ef6b": {
     "message": "Vælg"
   },
@@ -422,11 +434,20 @@
   "discussions_a5f96392": {
     "message": "Diskussioner"
   },
+  "dismiss_dacdb625": {
+    "message": "Afvis"
+  },
+  "dismiss_name_8646b9fd": {
+    "message": "Afvis { name }"
+  },
   "display_grade_as_7b5376a6": {
     "message": "Vis karakter som"
   },
   "display_grade_as_c165e9a6": {
     "message": "Vis karakter som ..."
+  },
+  "domain_3b54c511": {
+    "message": "Domæne"
   },
   "done_54e3d4b6": {
     "message": "Udført"
@@ -634,6 +655,9 @@
   },
   "hidden_files_inside_will_be_available_with_links_e9e3d233": {
     "message": "Skjult. Filerne inde i vil være tilgængelige med links."
+  },
+  "hide_content_for_name_aee1723a": {
+    "message": "Skjul indhold for { name }"
   },
   "hide_correct_answers_at_b1a59408": {
     "message": "Skjul korrekte svar ved"
@@ -971,8 +995,8 @@
   "profile_6bd2baed": {
     "message": "Profil"
   },
-  "profile_actions_cfcbb476": {
-    "message": "Profilhandlinger"
+  "profile_menu_a688027e": {
+    "message": "Profilmenu"
   },
   "pts_699bd9aa": {
     "message": "point"
@@ -1163,6 +1187,9 @@
   "start_recording_189496b9": {
     "message": "Start optagelsen"
   },
+  "stop_act_as_user_4f2a4f22": {
+    "message": "Hold op med at fungere som bruger"
+  },
   "stop_playing_audio_96aed3bc": {
     "message": "Stop med at afspille lyd"
   },
@@ -1265,6 +1292,9 @@
   "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
     "message": "Der opstod en fejl under indlæsning af listen over tilmeldinger."
   },
+  "there_was_a_problem_dismissing_the_announcement_9c5fb4c": {
+    "message": "Der opstod et problem ved afvisning af beskeden."
+  },
   "there_was_a_problem_loading_discussions_ce5318af": {
     "message": "Der opstod et problem ved indlæsning af diskussioner."
   },
@@ -1297,6 +1327,9 @@
   },
   "there_was_an_error_loading_this_attachment_408acc12": {
     "message": "Der opstod en fejl under indlæsning af denne vedhæftede fil."
+  },
+  "there_was_an_error_with_act_as_user_please_try_aga_d9f9f8f1": {
+    "message": "Der opstod en fejl ved at fungere som bruger. Prøv igen senere."
   },
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "Der opstod et problem ved indlæsning af dine meddelelser."
@@ -1454,11 +1487,11 @@
   "use_camera_47a0387b": {
     "message": "Brug kamera"
   },
+  "user_id_bcace870": {
+    "message": "Bruger-id"
+  },
   "users_must_post_before_seeing_replies_d1761968": {
     "message": "Brugere skal lægge indlæg ud, inden de ser svar"
-  },
-  "version_version_a051e218": {
-    "message": "Version { version }"
   },
   "video_b9f27375": {
     "message": "Video"

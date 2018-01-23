@@ -1,1 +1,15 @@
-/* No Localized Strings */
+/* (No Comment) */
+"CFBundleDisplayName" = "Canvas Parent";
+
+/* (No Comment) */
+"CFBundleName" = "Canvas Parent";
+
+/* (No Comment) */
+"NSCameraUsageDescription" = "Anexe fotos e vídeos a mensagens e postagens de discussão ou apresente-as como envio de tarefas.";
+
+/* (No Comment) */
+"NSMicrophoneUsageDescription" = "Anexe gravações de áudio a mensagens e postagens de discussão ou altere-as como envio de tarefas.";
+
+/* (No Comment) */
+"NSPhotoLibraryUsageDescription" = "Anexe fotos e vídeos a mensagens e postagens de discussão ou apresente-as como envio de tarefas.";
+

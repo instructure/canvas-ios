@@ -1,9 +1,18 @@
 /* (No Comment) */
-"CFBundleDisplayName" = "Canvas";
+"CFBundleDisplayName" = "學生";
 
 /* (No Comment) */
 "CFBundleName" = "${PRODUCT_NAME}";
 
 /* (No Comment) */
-"CFBundleShortVersionString" = "3.17.1";
+"NSCameraUsageDescription" = "將照片和影片附加到訊息和討論區中，或將他們變成作業提交項目。";
+
+/* (No Comment) */
+"NSLocationWhenInUseUsageDescription" = "幫助我們找到您附近的學校。";
+
+/* (No Comment) */
+"NSMicrophoneUsageDescription" = "將錄音附加到訊息和討論區中，或將他們變成作業提交項目。";
+
+/* (No Comment) */
+"NSPhotoLibraryUsageDescription" = "將照片和影片附加到訊息和討論區中，或將他們變成作業提交項目。";
 

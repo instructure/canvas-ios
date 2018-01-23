@@ -1,1 +1,15 @@
-/* No Localized Strings */
+/* (No Comment) */
+"CFBundleDisplayName" = "المعلم";
+
+/* (No Comment) */
+"CFBundleName" = "$(PRODUCT_NAME)";
+
+/* (No Comment) */
+"NSCameraUsageDescription" = "إرفاق صور ومقاطع فيديو لتعليقات الإرسال.";
+
+/* (No Comment) */
+"NSMicrophoneUsageDescription" = "إرفاق تسجيلات صوتية لتعليقات الإرسال.";
+
+/* (No Comment) */
+"NSPhotoLibraryUsageDescription" = "تحميل محتوى للمساقات.";
+

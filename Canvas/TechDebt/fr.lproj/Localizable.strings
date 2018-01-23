@@ -566,7 +566,7 @@
 "File extension not allowed: %@" = "Extension de fichier non autorisée : %@";
 
 /* (No Comment) */
-"File extension(s) permitted for this assignment:" = "Extension(s) de fichier autorisées pour ce travail assigné :";
+"File extension(s) permitted for this assignment:" = "Extension(s) autorisées pour ce travail assigné :";
 
 /* No comment provided by engineer. */
 "File received" = "Fichier reçu";
@@ -896,6 +896,9 @@
 /* Title for an error alert */
 "Oops!" = "Oups !";
 
+/* Link to Open Source Components */
+"Open Source Components" = "Composants Open source";
+
 /* Open a document in the application Safari */
 "Open in Safari" = "Ouvrir avec Safari";
 
@@ -1095,7 +1098,7 @@
 "Stops recording a media comment" = "Arrête l'enregistrement d'un commentaire de média";
 
 /* No comment provided by engineer. */
-"Student" = "Étudiant";
+"Student" = "Élève";
 
 /* (No Comment) */
 "Sub Header" = "Sous-en-tête";
@@ -1246,6 +1249,9 @@
 
 /* (No Comment) */
 "This would be a great time to do some extra credit." = "C'est un moment opportun pour effectuer des travaux optionnels.";
+
+/* Threaded switch label to to make discussion threaded */
+"Threaded" = "Fileté";
 
 /* (No Comment) */
 "To Do" = "À faire";

@@ -19,6 +19,9 @@
 /* 88 out of 100 points */
 "%@ out of %@" = "%1$@ i roto i te %2$@";
 
+/* {point range max} to > {point range min} pts */
+"%@ to > %@ pts" = "%1$@ kī > %2$@ ngā koinga";
+
 /* 83% (83 out of 100 points */
 "%@%% (%g out of %@)" = "%1$@%% (%2$g i roto i te %3$@)";
 

@@ -20,6 +20,15 @@
   "access_code_74f4864f": {
     "message": "Código de acceso"
   },
+  "account_group_cb00ca73": {
+    "message": "Grupo de cuenta"
+  },
+  "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
+    "message": "\"Actuar como\" es esencialmente iniciar sesión como este usuario sin una contraseña. Podrá realizar cualquier acción como si fuese este usuario y desde el punto de vista de otros usuarios, como si este usuario las realizara. Sin embargo, los registros de auditoría indican que usted es quien realizó las acciones en representación de este usuario."
+  },
+  "act_as_user_d7ef0e48": {
+    "message": "Actuar en nombre de Usuario"
+  },
   "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
     "message": "Agregar algunos de los cursos favoritos para sentirse como en casa."
   },
@@ -248,6 +257,9 @@
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
     "message": "Cambiar { discussionTitle } a un grupo diferente"
   },
+  "change_user_1b7c4f23": {
+    "message": "Cambiar usuario"
+  },
   "choose_1319ef6b": {
     "message": "Escoger"
   },
@@ -422,11 +434,20 @@
   "discussions_a5f96392": {
     "message": "Discusiones"
   },
+  "dismiss_dacdb625": {
+    "message": "Descartar"
+  },
+  "dismiss_name_8646b9fd": {
+    "message": "Descartar { name }"
+  },
   "display_grade_as_7b5376a6": {
     "message": "Mostrar calificación como"
   },
   "display_grade_as_c165e9a6": {
     "message": "Mostrar calificación como..."
+  },
+  "domain_3b54c511": {
+    "message": "Dominio"
   },
   "done_54e3d4b6": {
     "message": "Hecho"
@@ -634,6 +655,9 @@
   },
   "hidden_files_inside_will_be_available_with_links_e9e3d233": {
     "message": "Oculto. Los archivos del interior estarán disponibles con enlaces."
+  },
+  "hide_content_for_name_aee1723a": {
+    "message": "Ocultar contenido para { name }"
   },
   "hide_correct_answers_at_b1a59408": {
     "message": "Ocultar las respuestas correctas en"
@@ -971,8 +995,8 @@
   "profile_6bd2baed": {
     "message": "Perfil"
   },
-  "profile_actions_cfcbb476": {
-    "message": "Acciones del perfil"
+  "profile_menu_a688027e": {
+    "message": "Menú de perfil"
   },
   "pts_699bd9aa": {
     "message": "pts"
@@ -1163,6 +1187,9 @@
   "start_recording_189496b9": {
     "message": "Comenzar grabación"
   },
+  "stop_act_as_user_4f2a4f22": {
+    "message": "Dejar de actuar en nombre de Usuario"
+  },
   "stop_playing_audio_96aed3bc": {
     "message": "Detener la reproducción del audio"
   },
@@ -1265,6 +1292,9 @@
   "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
     "message": "Se produjo un error al cargar la lista de inscritos"
   },
+  "there_was_a_problem_dismissing_the_announcement_9c5fb4c": {
+    "message": "Ocurrió un problema al descartar el anuncio."
+  },
   "there_was_a_problem_loading_discussions_ce5318af": {
     "message": "Hubo un problema al cargar debates."
   },
@@ -1297,6 +1327,9 @@
   },
   "there_was_an_error_loading_this_attachment_408acc12": {
     "message": "Se produjo un error al cargar este archivo adjunto."
+  },
+  "there_was_an_error_with_act_as_user_please_try_aga_d9f9f8f1": {
+    "message": "Ocurrió un error al actuar como usuario. Por favor, inténtelo de nuevo más tarde."
   },
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "Hubo un problema al cargar sus mensajes."
@@ -1454,11 +1487,11 @@
   "use_camera_47a0387b": {
     "message": "Usar cámara"
   },
+  "user_id_bcace870": {
+    "message": "ID de usuario"
+  },
   "users_must_post_before_seeing_replies_d1761968": {
     "message": "Los usuarios deben publicar antes de ver las respuestas"
-  },
-  "version_version_a051e218": {
-    "message": "Versión { version }"
   },
   "video_b9f27375": {
     "message": "Video"

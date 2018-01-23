@@ -1,6 +1,9 @@
 /* No comment provided by engineer. */
 "An error occurred" = "Ein Fehler ist aufgetreten";
 
+/* Help label when user can't find their school. */
+"Can't find your school?" = "Findest du deine Schule nicht?";
+
 /* No comment provided by engineer. */
 "Cancel" = "Abbrechen";
 

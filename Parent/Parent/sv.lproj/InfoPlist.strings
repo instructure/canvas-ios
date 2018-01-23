@@ -1,1 +1,15 @@
-/* No Localized Strings */
+/* (No Comment) */
+"CFBundleDisplayName" = "Canvas Parent";
+
+/* (No Comment) */
+"CFBundleName" = "Canvas Parent";
+
+/* (No Comment) */
+"NSCameraUsageDescription" = "Bifoga foton och videoklipp till meddelanden och diskussionsinlägg, eller skicka in dem som inlämningsuppgifter.";
+
+/* (No Comment) */
+"NSMicrophoneUsageDescription" = "Anslut ljudinspelningar till meddelanden och diskussionsinställningar, eller skicka in dem som inlämningsuppgifter.";
+
+/* (No Comment) */
+"NSPhotoLibraryUsageDescription" = "Bifoga foton och videoklipp till meddelanden och diskussionsinlägg, eller skicka in dem som inlämningsuppgifter.";
+

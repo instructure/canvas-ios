@@ -1,6 +1,9 @@
 /* No comment provided by engineer. */
 "An error occurred" = "Произошла ошибка";
 
+/* Help label when user can't find their school. */
+"Can't find your school?" = "Не можете найти ваше учебное заведение?";
+
 /* No comment provided by engineer. */
 "Cancel" = "Отменить";
 

@@ -19,6 +19,9 @@
 /* 88 out of 100 points */
 "%@ out of %@" = "%1$@ sur %2$@ au total";
 
+/* {point range max} to > {point range min} pts */
+"%@ to > %@ pts" = "%1$@ à > %2$@ points";
+
 /* 83% (83 out of 100 points */
 "%@%% (%g out of %@)" = "%1$@ (%2$g sur %3$@ au total)";
 

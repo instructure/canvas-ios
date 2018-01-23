@@ -1,1 +1,15 @@
-/* No Localized Strings */
+/* (No Comment) */
+"CFBundleDisplayName" = "教师";
+
+/* (No Comment) */
+"CFBundleName" = "$(PRODUCT_NAME)";
+
+/* (No Comment) */
+"NSCameraUsageDescription" = "把照片和视讯附加至提交评论。";
+
+/* (No Comment) */
+"NSMicrophoneUsageDescription" = "把录制的音频附加至提交评论。";
+
+/* (No Comment) */
+"NSPhotoLibraryUsageDescription" = "把内容上传至课程。";
+

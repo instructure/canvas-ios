@@ -1,5 +1,5 @@
 /* Class = "UIButton"; normalTitle = "Add Student"; ObjectID = "AlE-cd-Dx6"; */
-"AlE-cd-Dx6.normalTitle" = "Studenten hinzufügen";
+"AlE-cd-Dx6.normalTitle" = "Student hinzufügen";
 
 /* Class = "UILabel"; text = "There are no students associated with your account."; ObjectID = "eMA-cv-sB2"; */
 "eMA-cv-sB2.text" = "Es gibt keine Studenten, die mit diesem Konto in Verbindung stehen.";

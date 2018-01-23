@@ -1,1 +1,15 @@
-/* No Localized Strings */
+/* (No Comment) */
+"CFBundleDisplayName" = "Canvas Parent";
+
+/* (No Comment) */
+"CFBundleName" = "Canvas Parent";
+
+/* (No Comment) */
+"NSCameraUsageDescription" = "إرفاق صور ومقاطع فيديو بالرسائل ومنشورات النقاش أو تسليمها في صورة إرسالات تعيينات.";
+
+/* (No Comment) */
+"NSMicrophoneUsageDescription" = "إرفاق تسجيلات صوتية بالرسائل ومنشورات النقاش أو تسليمها في صورة إرسالات تعيينات.";
+
+/* (No Comment) */
+"NSPhotoLibraryUsageDescription" = "إرفاق صور ومقاطع فيديو بالرسائل ومنشورات النقاش أو تسليمها في صورة إرسالات تعيينات.";
+

@@ -19,6 +19,9 @@
 /* 88 out of 100 points */
 "%@ out of %@" = "%1$@ z %2$@";
 
+/* {point range max} to > {point range min} pts */
+"%@ to > %@ pts" = "%1$@ do > %2$@ pkt";
+
 /* 83% (83 out of 100 points */
 "%@%% (%g out of %@)" = "%1$@%% (%2$g z %3$@)";
 
@@ -119,7 +122,7 @@
 "Stops recording a media comment" = "Zatrzymuje nagrywanie komentarza medialnego";
 
 /* Short name for student enrollment */
-"Student" = "Uczeń";
+"Student" = "Uczestnik";
 
 /* Hint about media input selection */
 "Switches media input between audio and video. Currently set to %@" = "Przełącza wejście mediów między audio a wideo. Obecnie ustawione na &@";

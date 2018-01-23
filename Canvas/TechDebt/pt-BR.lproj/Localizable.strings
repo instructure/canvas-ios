@@ -896,6 +896,9 @@
 /* Title for an error alert */
 "Oops!" = "Oops!";
 
+/* Link to Open Source Components */
+"Open Source Components" = "Componentes de Código Aberto";
+
 /* Open a document in the application Safari */
 "Open in Safari" = "Abrir em Safari";
 
@@ -1095,7 +1098,7 @@
 "Stops recording a media comment" = "Para de gravar um comentário de mídia";
 
 /* No comment provided by engineer. */
-"Student" = "Estudante";
+"Student" = "Aluno";
 
 /* (No Comment) */
 "Sub Header" = "Sub Cabeçalho";
@@ -1247,6 +1250,9 @@
 /* (No Comment) */
 "This would be a great time to do some extra credit." = "Este seria um ótimo momento para fazer algum crédito extra.";
 
+/* Threaded switch label to to make discussion threaded */
+"Threaded" = "Encadeado";
+
 /* (No Comment) */
 "To Do" = "Para Fazer";
 
@@ -1284,7 +1290,7 @@
 "Unable to post." = "Incapaz de postar.";
 
 /* (No Comment) */
-"Unable to post. Please try again later" = "Não é possível postar. Por favor, tente novamente mais tarde";
+"Unable to post. Please try again later" = "Não é possível enviar. Por favor tente novamente mais tarde";
 
 /* Error message */
 "Unable to post. Please try again later." = "Incapaz de postar. Por favor, tente novamente mais tarde.";

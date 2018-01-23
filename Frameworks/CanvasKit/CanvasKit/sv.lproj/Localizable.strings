@@ -1,6 +1,9 @@
 /* No comment provided by engineer. */
 "An error occurred" = "Ett fel uppstod";
 
+/* Help label when user can't find their school. */
+"Can't find your school?" = "Kan du inte hitta din skola?";
+
 /* No comment provided by engineer. */
 "Cancel" = "Avbryt";
 

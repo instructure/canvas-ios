@@ -5,7 +5,7 @@
 "eMA-cv-sB2.text" = "Não existem estudantes associados com a sua conta.";
 
 /* Class = "UIButton"; normalTitle = "Logout"; ObjectID = "eQ2-Tc-Vhp"; */
-"eQ2-Tc-Vhp.normalTitle" = "Saída";
+"eQ2-Tc-Vhp.normalTitle" = "Sair";
 
 /* Class = "UILabel"; text = "Add a student to get started!"; ObjectID = "tne-nz-p5t"; */
 "tne-nz-p5t.text" = "Adicionar um estudante para começar!";

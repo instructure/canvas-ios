@@ -1,9 +1,18 @@
 /* (No Comment) */
-"CFBundleDisplayName" = "Canvas";
+"CFBundleDisplayName" = "Elèv";
 
 /* (No Comment) */
 "CFBundleName" = "${PRODUCT_NAME}";
 
 /* (No Comment) */
-"CFBundleShortVersionString" = "3.17.1";
+"NSCameraUsageDescription" = "Mete foto ak videyo nan piblikasyon mesaj ak diskisyon yo oswa aktive yo kòm soumisyon sesyon.";
+
+/* (No Comment) */
+"NSLocationWhenInUseUsageDescription" = "Ede nou jwenn lekòl ki tou pre w.";
+
+/* (No Comment) */
+"NSMicrophoneUsageDescription" = "Mete anrejistreman odyo nan piblikasyon mesaj ak diskisyon yo oswa aktive yo kòm soumisyon sesyon.";
+
+/* (No Comment) */
+"NSPhotoLibraryUsageDescription" = "Mete foto ak videyo nan piblikasyon mesaj ak diskisyon yo oswa aktive yo kòm soumisyon sesyon.";
 

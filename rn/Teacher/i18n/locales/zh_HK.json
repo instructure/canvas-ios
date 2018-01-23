@@ -20,6 +20,15 @@
   "access_code_74f4864f": {
     "message": "訪問碼"
   },
+  "account_group_cb00ca73": {
+    "message": "帳戶群組"
+  },
+  "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
+    "message": "”作為”本質上是以此使用者身份登錄，沒有密碼。您將能夠進行任何操作，就好像您就是此使用者一樣，並且，其他使用者也會認為是此使用者執行了操作。然而，審計日誌會記錄事實，即您是代表此使用者執行操作的人。"
+  },
+  "act_as_user_d7ef0e48": {
+    "message": "作為使用者"
+  },
   "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
     "message": "添加一些自己喜愛的課程以使此處有如家的感覺。"
   },
@@ -248,6 +257,9 @@
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
     "message": "更改 { discussionTitle } 至其他群組"
   },
+  "change_user_1b7c4f23": {
+    "message": "變更使用者"
+  },
   "choose_1319ef6b": {
     "message": "選擇"
   },
@@ -422,11 +434,20 @@
   "discussions_a5f96392": {
     "message": "討論"
   },
+  "dismiss_dacdb625": {
+    "message": "解除"
+  },
+  "dismiss_name_8646b9fd": {
+    "message": "解除 { name }"
+  },
   "display_grade_as_7b5376a6": {
     "message": "將評分顯示為"
   },
   "display_grade_as_c165e9a6": {
     "message": "將評分顯示為…"
+  },
+  "domain_3b54c511": {
+    "message": "網域"
   },
   "done_54e3d4b6": {
     "message": "完成"
@@ -634,6 +655,9 @@
   },
   "hidden_files_inside_will_be_available_with_links_e9e3d233": {
     "message": "已隱藏。透過連結可獲取裡面的檔案。"
+  },
+  "hide_content_for_name_aee1723a": {
+    "message": "隱藏 { name } 的內容"
   },
   "hide_correct_answers_at_b1a59408": {
     "message": "隱藏正確答案於"
@@ -971,8 +995,8 @@
   "profile_6bd2baed": {
     "message": "個人檔案"
   },
-  "profile_actions_cfcbb476": {
-    "message": "個人檔案動作"
+  "profile_menu_a688027e": {
+    "message": "個人檔案選單"
   },
   "pts_699bd9aa": {
     "message": "分數"
@@ -1163,6 +1187,9 @@
   "start_recording_189496b9": {
     "message": "開始錄製"
   },
+  "stop_act_as_user_4f2a4f22": {
+    "message": "停止作為使用者"
+  },
   "stop_playing_audio_96aed3bc": {
     "message": "停止播放音頻"
   },
@@ -1265,6 +1292,9 @@
   "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
     "message": "載入註冊清單時出現錯誤"
   },
+  "there_was_a_problem_dismissing_the_announcement_9c5fb4c": {
+    "message": "解除通告時發生問題。"
+  },
   "there_was_a_problem_loading_discussions_ce5318af": {
     "message": "載入討論串時發生問題。"
   },
@@ -1297,6 +1327,9 @@
   },
   "there_was_an_error_loading_this_attachment_408acc12": {
     "message": "載入此附件時出現錯誤。"
+  },
+  "there_was_an_error_with_act_as_user_please_try_aga_d9f9f8f1": {
+    "message": "作為使用者時出現錯誤。請稍後重試。"
   },
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "載入訊息時發生問題。"
@@ -1454,11 +1487,11 @@
   "use_camera_47a0387b": {
     "message": "使用攝像頭"
   },
+  "user_id_bcace870": {
+    "message": "使用者 ID"
+  },
   "users_must_post_before_seeing_replies_d1761968": {
     "message": "使用者必須發佈，然後才能看到回復"
-  },
-  "version_version_a051e218": {
-    "message": "版本{ version }"
   },
   "video_b9f27375": {
     "message": "視頻"

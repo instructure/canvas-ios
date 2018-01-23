@@ -1,6 +1,9 @@
 /* No comment provided by engineer. */
 "An error occurred" = "エラーが発生しました";
 
+/* Help label when user can't find their school. */
+"Can't find your school?" = "学校が見つかりませんか？";
+
 /* No comment provided by engineer. */
 "Cancel" = "キャンセル";
 

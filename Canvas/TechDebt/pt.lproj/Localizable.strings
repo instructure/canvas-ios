@@ -896,6 +896,9 @@
 /* Title for an error alert */
 "Oops!" = "Oops!";
 
+/* Link to Open Source Components */
+"Open Source Components" = "Abrir Componentes Fonte";
+
 /* Open a document in the application Safari */
 "Open in Safari" = "Abri no Safari";
 
@@ -1247,6 +1250,9 @@
 /* (No Comment) */
 "This would be a great time to do some extra credit." = "Esta seria uma boa altura para alguns créditos extra.";
 
+/* Threaded switch label to to make discussion threaded */
+"Threaded" = "Inserido";
+
 /* (No Comment) */
 "To Do" = "A Fazer";
 
@@ -1284,7 +1290,7 @@
 "Unable to post." = "Não foi possível publicar.";
 
 /* (No Comment) */
-"Unable to post. Please try again later" = "Impossível publicar. É favor tentar novamente mais tarde.";
+"Unable to post. Please try again later" = "Impossível publicar. Por favor tente novamente mais tarde.";
 
 /* Error message */
 "Unable to post. Please try again later." = "Impossível publicar. É favor, tentar novamente mais tarde.";

@@ -19,6 +19,9 @@
 /* 88 out of 100 points */
 "%@ out of %@" = "%2$@ 中 %1$@ ";
 
+/* {point range max} to > {point range min} pts */
+"%@ to > %@ pts" = "%1$@%2$@ 点を超えるものまで";
+
 /* 83% (83 out of 100 points */
 "%@%% (%g out of %@)" = "%1$@%% (%3$@ 中 %2$g)";
 
@@ -119,7 +122,7 @@
 "Stops recording a media comment" = "メディアコメントの録音を停止する";
 
 /* Short name for student enrollment */
-"Student" = "受講生";
+"Student" = "受講者";
 
 /* Hint about media input selection */
 "Switches media input between audio and video. Currently set to %@" = "メディアインプットをオーディオと動画のどちらかに切り替える。現在は%@に設定されています";

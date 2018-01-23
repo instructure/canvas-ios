@@ -1,9 +1,18 @@
 /* (No Comment) */
-"CFBundleDisplayName" = "Canvas";
+"CFBundleDisplayName" = "Alumno";
 
 /* (No Comment) */
 "CFBundleName" = "${PRODUCT_NAME}";
 
 /* (No Comment) */
-"CFBundleShortVersionString" = "3.17.1";
+"NSCameraUsageDescription" = "Adjunte fotografías y videos a los mensajes y publicaciones de discusión o entréguelos como presentaciones de tarea.";
+
+/* (No Comment) */
+"NSLocationWhenInUseUsageDescription" = "Ayúdenos a encontrar escuelas cercanas.";
+
+/* (No Comment) */
+"NSMicrophoneUsageDescription" = "Adjunte grabaciones de audio a los mensajes y publicaciones de discusión o entréguelas en presentaciones de tarea.";
+
+/* (No Comment) */
+"NSPhotoLibraryUsageDescription" = "Adjunte fotografías y videos a los mensajes y publicaciones de discusión o entréguelos como presentaciones de tarea.";
 

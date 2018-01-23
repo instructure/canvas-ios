@@ -1,1 +1,15 @@
-/* No Localized Strings */
+/* (No Comment) */
+"CFBundleDisplayName" = "Canvas Parent";
+
+/* (No Comment) */
+"CFBundleName" = "Canvas Parent";
+
+/* (No Comment) */
+"NSCameraUsageDescription" = "Mete foto ak videyo nan piblikasyon mesaj ak diskisyon yo oswa aktive yo kòm soumisyon sesyon.";
+
+/* (No Comment) */
+"NSMicrophoneUsageDescription" = "Mete anrejistreman odyo nan piblikasyon mesaj ak diskisyon yo oswa aktive yo kòm soumisyon sesyon.";
+
+/* (No Comment) */
+"NSPhotoLibraryUsageDescription" = "Mete foto ak videyo nan piblikasyon mesaj ak diskisyon yo oswa aktive yo kòm soumisyon sesyon.";
+

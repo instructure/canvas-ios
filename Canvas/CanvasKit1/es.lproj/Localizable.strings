@@ -19,6 +19,9 @@
 /* 88 out of 100 points */
 "%@ out of %@" = "%1$@ de los %2$@";
 
+/* {point range max} to > {point range min} pts */
+"%@ to > %@ pts" = "%1$@ a > %2$@ puntos";
+
 /* 83% (83 out of 100 points */
 "%@%% (%g out of %@)" = "%1$@%% (%2$g de los %3$@)";
 
@@ -50,7 +53,7 @@
 "File extension not allowed: %@" = "Extensión del archivo no permitida: %@";
 
 /* Comes before a list of file extensions allowed for an assinment submission */
-"File extension(s) permitted for this assignment: " = "Extensión(es) del archivo permitida(s) para esta tarea\"";
+"File extension(s) permitted for this assignment: " = "Extensión(es) del archivo permitida(s) para esta tarea: ";
 
 /* File upload failed. */
 "File upload failed." = "Falló la carga del archivo.";
@@ -119,7 +122,7 @@
 "Stops recording a media comment" = "Para de grabar su comentario multimedia";
 
 /* Short name for student enrollment */
-"Student" = "Estudiante";
+"Student" = "Alumno";
 
 /* Hint about media input selection */
 "Switches media input between audio and video. Currently set to %@" = "Cambia la entrada multimedia entre audio y vídeo. Actuamente está establecido como a% @";

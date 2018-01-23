@@ -565,7 +565,7 @@
 "Submitting" = "提交";
 
 /* Label for indication of submitting quiz */
-"Submitting Quiz" = "正在提交考試";
+"Submitting Quiz" = "正在提交測驗";
 
 /* TA role */
 "TA" = "助教";

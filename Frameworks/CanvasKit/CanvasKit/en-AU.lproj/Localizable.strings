@@ -1,6 +1,9 @@
 /* No comment provided by engineer. */
 "An error occurred" = "An error occurred";
 
+/* Help label when user can't find their school. */
+"Can't find your school?" = "Can't find your school?";
+
 /* No comment provided by engineer. */
 "Cancel" = "Cancel";
 

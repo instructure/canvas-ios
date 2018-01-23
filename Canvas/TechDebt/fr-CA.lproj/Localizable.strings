@@ -896,6 +896,9 @@
 /* Title for an error alert */
 "Oops!" = "Oups!";
 
+/* Link to Open Source Components */
+"Open Source Components" = "Composants Open source";
+
 /* Open a document in the application Safari */
 "Open in Safari" = "Ouvrir avec Safari";
 
@@ -1014,7 +1017,7 @@
 "Report a problem" = "Signaler un problème";
 
 /* option to request a feature */
-"Request a feature" = "Demander l'ajout d'une fonctionnalité";
+"Request a feature" = "Demander l'ajout d'une fonctionnalité ";
 
 /* (No Comment) */
 "Rubric" = "Rubrique";
@@ -1032,7 +1035,7 @@
 "Select file(s)" = "Sélectionner un ou plusieurs fichier(s)";
 
 /* No comment provided by engineer. */
-"Select or deselect" = "Sélectionner ou désélectionner";
+"Select or deselect" = "Sélectionner ou désélectionner ";
 
 /* No comment provided by engineer. */
 "Selected" = "Sélectionné";
@@ -1224,7 +1227,7 @@
 "This assignment doesn't appear to be a valid external tool or is misconfigured." = "Cette tâche ne semble pas être un outil externe valide ou est mal configuré.";
 
 /* message displayed in the details section if there is no comment. */
-"This assignment has no details." = "Cette tâche ne possède aucun détail.";
+"This assignment has no details." = "Cette tâche assigné ne possède aucun détail.";
 
 /* Error message for refresh failing with an unauthorized code */
 "This can happen if your course hasn't started yet or you don't have permission to access this page." = "Cela peut se produire si votre cours n'a pas encore commencé ou que vous n'avez pas l’autorisation d'accéder à cette page.";
@@ -1247,11 +1250,14 @@
 /* (No Comment) */
 "This would be a great time to do some extra credit." = "C'est un moment opportun pour effectuer des tâches optionnels.";
 
+/* Threaded switch label to to make discussion threaded */
+"Threaded" = "Fileté";
+
 /* (No Comment) */
 "To Do" = "À faire";
 
 /* (No Comment) */
-"To:" = "À :";
+"To:" = "À : ";
 
 /* No comment provided by engineer. */
 "Today" = "Aujourd'hui";
@@ -1284,7 +1290,7 @@
 "Unable to post." = "Impossible de publier.";
 
 /* (No Comment) */
-"Unable to post. Please try again later" = "Publication impossible. Veuillez réessayer plus tard.";
+"Unable to post. Please try again later" = "Publication impossible. Veuillez réessayer plus tard";
 
 /* Error message */
 "Unable to post. Please try again later." = "Impossible de publier. Veuillez essayer de nouveau plus tard.";
@@ -1413,7 +1419,7 @@
 "You need a title and a description to post" = "Vous avez besoin d'un titre et d'une description pour pouvoir publier";
 
 /* (No Comment) */
-"You should go rate Canvas on the App Store!" = "Vous devriez aller noter Canvas sur l'App Store!";
+"You should go rate Canvas on the App Store!" = "Vous devriez aller noter Canvas sur l'App Store! ";
 
 /* Error content */
 "Your files could not be found" = "Vos fichiers n'ont pu être trouvés";

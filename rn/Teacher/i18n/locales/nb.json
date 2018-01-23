@@ -20,6 +20,15 @@
   "access_code_74f4864f": {
     "message": "Tilgangskode"
   },
+  "account_group_cb00ca73": {
+    "message": "Gruppe konto"
+  },
+  "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
+    "message": "\"Oppfør deg som\" er i realiteten å logge inn som denne brukeren uten passord. Du kan ta tiltak som om du er denne brukeren, og fra andres synspunkt ser det ut som denne brukeren har utført dem. Overvåkingloggen vil likevel notere at det var du som utførte handlingene på vegne av denne brukeren."
+  },
+  "act_as_user_d7ef0e48": {
+    "message": "Opptre som bruker"
+  },
   "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
     "message": "Legg til noen få av favorittkursene dine så dette blir hjemmet ditt"
   },
@@ -248,6 +257,9 @@
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
     "message": "Endre { discussionTitle } til annen gruppering"
   },
+  "change_user_1b7c4f23": {
+    "message": "Endre bruker"
+  },
   "choose_1319ef6b": {
     "message": "Velg"
   },
@@ -422,11 +434,20 @@
   "discussions_a5f96392": {
     "message": "Diskusjoner"
   },
+  "dismiss_dacdb625": {
+    "message": "Avvise"
+  },
+  "dismiss_name_8646b9fd": {
+    "message": "Avvise { name }"
+  },
   "display_grade_as_7b5376a6": {
     "message": "Vis karakter som"
   },
   "display_grade_as_c165e9a6": {
     "message": "Vis karakter som..."
+  },
+  "domain_3b54c511": {
+    "message": "Domene"
   },
   "done_54e3d4b6": {
     "message": "Utført"
@@ -634,6 +655,9 @@
   },
   "hidden_files_inside_will_be_available_with_links_e9e3d233": {
     "message": "Skjult. Filene inni vil være tilgjengelige med lenker."
+  },
+  "hide_content_for_name_aee1723a": {
+    "message": "Skjul innhold for { name }"
   },
   "hide_correct_answers_at_b1a59408": {
     "message": "Skjul riktige svar på"
@@ -971,8 +995,8 @@
   "profile_6bd2baed": {
     "message": "Profil"
   },
-  "profile_actions_cfcbb476": {
-    "message": "Profil handlinger"
+  "profile_menu_a688027e": {
+    "message": "Profil meny"
   },
   "pts_699bd9aa": {
     "message": "poeng"
@@ -1163,6 +1187,9 @@
   "start_recording_189496b9": {
     "message": "Start opptak"
   },
+  "stop_act_as_user_4f2a4f22": {
+    "message": "Avslutt å opptre som bruker"
+  },
   "stop_playing_audio_96aed3bc": {
     "message": "Stopp avspilling av lyd"
   },
@@ -1265,6 +1292,9 @@
   "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
     "message": "Det oppstod en feil under innlastingen av listen over påmeldinger"
   },
+  "there_was_a_problem_dismissing_the_announcement_9c5fb4c": {
+    "message": "Det var et problem å ende kunngjøringen."
+  },
   "there_was_a_problem_loading_discussions_ce5318af": {
     "message": "Det oppstod et problem med lasting av diskusjoner."
   },
@@ -1297,6 +1327,9 @@
   },
   "there_was_an_error_loading_this_attachment_408acc12": {
     "message": "Det oppstod et avvik under henting av dette vedlegget."
+  },
+  "there_was_an_error_with_act_as_user_please_try_aga_d9f9f8f1": {
+    "message": "Det var feil med opptre som bruker. Forsøk igjen senere."
   },
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "Det oppstod et problem under innlastingen av meldinger."
@@ -1454,11 +1487,11 @@
   "use_camera_47a0387b": {
     "message": "Bruk kamera"
   },
+  "user_id_bcace870": {
+    "message": "Bruker-ID"
+  },
   "users_must_post_before_seeing_replies_d1761968": {
     "message": "Brukere må publisere før de kan se svar"
-  },
-  "version_version_a051e218": {
-    "message": "Versjon { version }"
   },
   "video_b9f27375": {
     "message": "Video"

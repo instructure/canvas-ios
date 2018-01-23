@@ -896,6 +896,9 @@
 /* Title for an error alert */
 "Oops!" = "しまった！";
 
+/* Link to Open Source Components */
+"Open Source Components" = "オープンソースコンポーネント";
+
 /* Open a document in the application Safari */
 "Open in Safari" = "Safariで開く";
 
@@ -1095,7 +1098,7 @@
 "Stops recording a media comment" = "メディアコメントの録音を停止する";
 
 /* No comment provided by engineer. */
-"Student" = "受講生";
+"Student" = "受講者";
 
 /* (No Comment) */
 "Sub Header" = "サブヘッダー";
@@ -1246,6 +1249,9 @@
 
 /* (No Comment) */
 "This would be a great time to do some extra credit." = "追加の単位のために時間を費やすのなら今が最適です。";
+
+/* Threaded switch label to to make discussion threaded */
+"Threaded" = "スレッドあり";
 
 /* (No Comment) */
 "To Do" = "するべきこと";

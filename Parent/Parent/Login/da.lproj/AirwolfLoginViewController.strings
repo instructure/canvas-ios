@@ -17,7 +17,7 @@
 "cBu-44-Ntj.normalTitle" = "Opret konto";
 
 /* Class = "UIButton"; accessibilityLabel = "Login"; ObjectID = "dbH-uS-X2F"; */
-"dbH-uS-X2F.accessibilityLabel" = "Login";
+"dbH-uS-X2F.accessibilityLabel" = "Log ind";
 
 /* Class = "UIButton"; normalTitle = "Next"; ObjectID = "dbH-uS-X2F"; */
 "dbH-uS-X2F.normalTitle" = "Næste";

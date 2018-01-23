@@ -896,6 +896,9 @@
 /* Title for an error alert */
 "Oops!" = "糟糕！";
 
+/* Link to Open Source Components */
+"Open Source Components" = "打开源组件";
+
 /* Open a document in the application Safari */
 "Open in Safari" = "在Safari中打开";
 
@@ -1246,6 +1249,9 @@
 
 /* (No Comment) */
 "This would be a great time to do some extra credit." = "此为获取额外学分的好时机。";
+
+/* Threaded switch label to to make discussion threaded */
+"Threaded" = "线索";
 
 /* (No Comment) */
 "To Do" = "待办事项";

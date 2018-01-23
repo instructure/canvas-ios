@@ -1,6 +1,9 @@
 /* No comment provided by engineer. */
 "An error occurred" = "Er is een fout opgetreden";
 
+/* Help label when user can't find their school. */
+"Can't find your school?" = "Kun je je school niet vinden?";
+
 /* No comment provided by engineer. */
 "Cancel" = "Annuleren";
 

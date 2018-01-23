@@ -565,7 +565,7 @@
 "Submitting" = "جارٍ الإرسال";
 
 /* Label for indication of submitting quiz */
-"Submitting Quiz" = "جارٍ إرسال الاختبار";
+"Submitting Quiz" = "جارٍ إرسال الاختبار الموجز";
 
 /* TA role */
 "TA" = "مساعد المعلم";

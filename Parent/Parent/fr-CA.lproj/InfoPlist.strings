@@ -1,1 +1,15 @@
-/* No Localized Strings */
+/* (No Comment) */
+"CFBundleDisplayName" = "Canvas Parent";
+
+/* (No Comment) */
+"CFBundleName" = "Canvas Parent";
+
+/* (No Comment) */
+"NSCameraUsageDescription" = "Joindre des photos et des vidéos aux messages et aux publications de discussion ou les joindre dans les envois de tâche.";
+
+/* (No Comment) */
+"NSMicrophoneUsageDescription" = "Joindre des enregistrements audio aux messages et aux publications de discussion ou les joindre dans les envois de tâche.";
+
+/* (No Comment) */
+"NSPhotoLibraryUsageDescription" = "Joindre des photos et des vidéos aux messages et aux publications de discussion ou les joindre dans les envois de tâche.";
+

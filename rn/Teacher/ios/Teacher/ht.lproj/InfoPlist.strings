@@ -1,1 +1,15 @@
-/* No Localized Strings */
+/* (No Comment) */
+"CFBundleDisplayName" = "Pwofesè";
+
+/* (No Comment) */
+"CFBundleName" = "$(PRODUCT_NAME)";
+
+/* (No Comment) */
+"NSCameraUsageDescription" = "Ajoute foto ak videyo nan kòmantè soumisyon yo.";
+
+/* (No Comment) */
+"NSMicrophoneUsageDescription" = "Ajoute anrejistreman odyo nan kòmantè soumisyon yo.";
+
+/* (No Comment) */
+"NSPhotoLibraryUsageDescription" = "Transfere kontni nan kou yo.";
+

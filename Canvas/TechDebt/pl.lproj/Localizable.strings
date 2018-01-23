@@ -896,6 +896,9 @@
 /* Title for an error alert */
 "Oops!" = "Ups!";
 
+/* Link to Open Source Components */
+"Open Source Components" = "Komponenty open source";
+
 /* Open a document in the application Safari */
 "Open in Safari" = "Otwórz w programie Safari";
 
@@ -1095,7 +1098,7 @@
 "Stops recording a media comment" = "Zatrzymuje nagrywanie komentarza medialnego";
 
 /* No comment provided by engineer. */
-"Student" = "Uczeń";
+"Student" = "Uczestnik";
 
 /* (No Comment) */
 "Sub Header" = "Niższy nagłówek";
@@ -1246,6 +1249,9 @@
 
 /* (No Comment) */
 "This would be a great time to do some extra credit." = "To jest dobry moment na zarobienie dodatkowego kredytu.";
+
+/* Threaded switch label to to make discussion threaded */
+"Threaded" = "W wątku";
 
 /* (No Comment) */
 "To Do" = "Do zrobienia";

@@ -896,6 +896,9 @@
 /* Title for an error alert */
 "Oops!" = "抱歉！";
 
+/* Link to Open Source Components */
+"Open Source Components" = "打開來源組件";
+
 /* Open a document in the application Safari */
 "Open in Safari" = "在 Safari 中打開";
 
@@ -1247,6 +1250,9 @@
 /* (No Comment) */
 "This would be a great time to do some extra credit." = "現在很適合再修幾個學分。";
 
+/* Threaded switch label to to make discussion threaded */
+"Threaded" = "執行緒";
+
 /* (No Comment) */
 "To Do" = "待辦";
 
@@ -1335,7 +1341,7 @@
 "Upload to folder \"%@\" failed" = "上載至資料夾 \"%@\" 失敗";
 
 /* (No Comment) */
-"Upload to folder &quot;%@&quot; failed" = "上載至文件夾 &quot;&quot; 失敗";
+"Upload to folder &quot;%@&quot; failed" = "上載至文件夾 &quot;%@&quot; 失敗";
 
 /* button for using the recorded audio */
 "Use" = "使用";
