@@ -1,0 +1,482 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CourseDetailsHomeTab can be selected 1`] = `
+<View
+  style={
+    Object {
+      "paddingBottom": 8,
+      "paddingLeft": 16,
+      "paddingRight": 16,
+      "paddingTop": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "borderRadius": 4,
+        "shadowColor": "#000",
+        "shadowOffset": Object {
+          "height": 1,
+          "width": 0,
+        },
+        "shadowOpacity": 0.3,
+        "shadowRadius": 3,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "white",
+          "borderColor": "#e3e3e3",
+          "borderRadius": 4,
+          "borderWidth": 0.5,
+          "flex": 1,
+          "overflow": "hidden",
+        }
+      }
+    >
+      <Row
+        disclosureIndicator={true}
+        onPress={[Function]}
+        selected={true}
+        subtitle="Assignments"
+        subtitleStyles={
+          Object {
+            "fontWeight": "600",
+          }
+        }
+        testID="courses-details.assignments-cell"
+        title="Home"
+        titleStyles={
+          Object {
+            "fontSize": 24,
+            "fontWeight": "400",
+          }
+        }
+      />
+    </View>
+  </View>
+</View>
+`;
+
+exports[`CourseDetailsHomeTab renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "paddingBottom": 8,
+      "paddingLeft": 16,
+      "paddingRight": 16,
+      "paddingTop": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "borderRadius": 4,
+        "shadowColor": "#000",
+        "shadowOffset": Object {
+          "height": 1,
+          "width": 0,
+        },
+        "shadowOpacity": 0.3,
+        "shadowRadius": 3,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "white",
+          "borderColor": "#e3e3e3",
+          "borderRadius": 4,
+          "borderWidth": 0.5,
+          "flex": 1,
+          "overflow": "hidden",
+        }
+      }
+    >
+      <Row
+        disclosureIndicator={true}
+        onPress={[Function]}
+        subtitle="Assignments"
+        subtitleStyles={
+          Object {
+            "fontWeight": "600",
+          }
+        }
+        testID="courses-details.assignments-cell"
+        title="Home"
+        titleStyles={
+          Object {
+            "fontSize": 24,
+            "fontWeight": "400",
+          }
+        }
+      />
+    </View>
+  </View>
+</View>
+`;
+
+exports[`CourseDetailsHomeTab renders correctly for each type 1`] = `
+<View
+  style={
+    Object {
+      "paddingBottom": 8,
+      "paddingLeft": 16,
+      "paddingRight": 16,
+      "paddingTop": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "borderRadius": 4,
+        "shadowColor": "#000",
+        "shadowOffset": Object {
+          "height": 1,
+          "width": 0,
+        },
+        "shadowOpacity": 0.3,
+        "shadowRadius": 3,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "white",
+          "borderColor": "#e3e3e3",
+          "borderRadius": 4,
+          "borderWidth": 0.5,
+          "flex": 1,
+          "overflow": "hidden",
+        }
+      }
+    >
+      <Row
+        disclosureIndicator={true}
+        onPress={[Function]}
+        subtitle="Assignments"
+        subtitleStyles={
+          Object {
+            "fontWeight": "600",
+          }
+        }
+        testID="courses-details.assignments-cell"
+        title="Home"
+        titleStyles={
+          Object {
+            "fontSize": 24,
+            "fontWeight": "400",
+          }
+        }
+      />
+    </View>
+  </View>
+</View>
+`;
+
+exports[`CourseDetailsHomeTab renders correctly for each type 2`] = `
+<View
+  style={
+    Object {
+      "paddingBottom": 8,
+      "paddingLeft": 16,
+      "paddingRight": 16,
+      "paddingTop": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "borderRadius": 4,
+        "shadowColor": "#000",
+        "shadowOffset": Object {
+          "height": 1,
+          "width": 0,
+        },
+        "shadowOpacity": 0.3,
+        "shadowRadius": 3,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "white",
+          "borderColor": "#e3e3e3",
+          "borderRadius": 4,
+          "borderWidth": 0.5,
+          "flex": 1,
+          "overflow": "hidden",
+        }
+      }
+    >
+      <Row
+        disclosureIndicator={true}
+        onPress={[Function]}
+        subtitle="Recent Activity"
+        subtitleStyles={
+          Object {
+            "fontWeight": "600",
+          }
+        }
+        testID="courses-details.assignments-cell"
+        title="Home"
+        titleStyles={
+          Object {
+            "fontSize": 24,
+            "fontWeight": "400",
+          }
+        }
+      />
+    </View>
+  </View>
+</View>
+`;
+
+exports[`CourseDetailsHomeTab renders correctly for each type 3`] = `
+<View
+  style={
+    Object {
+      "paddingBottom": 8,
+      "paddingLeft": 16,
+      "paddingRight": 16,
+      "paddingTop": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "borderRadius": 4,
+        "shadowColor": "#000",
+        "shadowOffset": Object {
+          "height": 1,
+          "width": 0,
+        },
+        "shadowOpacity": 0.3,
+        "shadowRadius": 3,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "white",
+          "borderColor": "#e3e3e3",
+          "borderRadius": 4,
+          "borderWidth": 0.5,
+          "flex": 1,
+          "overflow": "hidden",
+        }
+      }
+    >
+      <Row
+        disclosureIndicator={true}
+        onPress={[Function]}
+        subtitle="Front Page"
+        subtitleStyles={
+          Object {
+            "fontWeight": "600",
+          }
+        }
+        testID="courses-details.assignments-cell"
+        title="Home"
+        titleStyles={
+          Object {
+            "fontSize": 24,
+            "fontWeight": "400",
+          }
+        }
+      />
+    </View>
+  </View>
+</View>
+`;
+
+exports[`CourseDetailsHomeTab renders correctly for each type 4`] = `
+<View
+  style={
+    Object {
+      "paddingBottom": 8,
+      "paddingLeft": 16,
+      "paddingRight": 16,
+      "paddingTop": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "borderRadius": 4,
+        "shadowColor": "#000",
+        "shadowOffset": Object {
+          "height": 1,
+          "width": 0,
+        },
+        "shadowOpacity": 0.3,
+        "shadowRadius": 3,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "white",
+          "borderColor": "#e3e3e3",
+          "borderRadius": 4,
+          "borderWidth": 0.5,
+          "flex": 1,
+          "overflow": "hidden",
+        }
+      }
+    >
+      <Row
+        disclosureIndicator={true}
+        onPress={[Function]}
+        subtitle="Course Modules"
+        subtitleStyles={
+          Object {
+            "fontWeight": "600",
+          }
+        }
+        testID="courses-details.assignments-cell"
+        title="Home"
+        titleStyles={
+          Object {
+            "fontSize": 24,
+            "fontWeight": "400",
+          }
+        }
+      />
+    </View>
+  </View>
+</View>
+`;
+
+exports[`CourseDetailsHomeTab renders correctly for each type 5`] = `
+<View
+  style={
+    Object {
+      "paddingBottom": 8,
+      "paddingLeft": 16,
+      "paddingRight": 16,
+      "paddingTop": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "borderRadius": 4,
+        "shadowColor": "#000",
+        "shadowOffset": Object {
+          "height": 1,
+          "width": 0,
+        },
+        "shadowOpacity": 0.3,
+        "shadowRadius": 3,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "white",
+          "borderColor": "#e3e3e3",
+          "borderRadius": 4,
+          "borderWidth": 0.5,
+          "flex": 1,
+          "overflow": "hidden",
+        }
+      }
+    >
+      <Row
+        disclosureIndicator={true}
+        onPress={[Function]}
+        subtitle="Syllabus"
+        subtitleStyles={
+          Object {
+            "fontWeight": "600",
+          }
+        }
+        testID="courses-details.assignments-cell"
+        title="Home"
+        titleStyles={
+          Object {
+            "fontSize": 24,
+            "fontWeight": "400",
+          }
+        }
+      />
+    </View>
+  </View>
+</View>
+`;
+
+exports[`CourseDetailsHomeTab renders correctly for each type 6`] = `
+<View
+  style={
+    Object {
+      "paddingBottom": 8,
+      "paddingLeft": 16,
+      "paddingRight": 16,
+      "paddingTop": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "borderRadius": 4,
+        "shadowColor": "#000",
+        "shadowOffset": Object {
+          "height": 1,
+          "width": 0,
+        },
+        "shadowOpacity": 0.3,
+        "shadowRadius": 3,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "white",
+          "borderColor": "#e3e3e3",
+          "borderRadius": 4,
+          "borderWidth": 0.5,
+          "flex": 1,
+          "overflow": "hidden",
+        }
+      }
+    >
+      <Row
+        disclosureIndicator={true}
+        onPress={[Function]}
+        subtitle={null}
+        subtitleStyles={
+          Object {
+            "fontWeight": "600",
+          }
+        }
+        testID="courses-details.assignments-cell"
+        title="Home"
+        titleStyles={
+          Object {
+            "fontSize": 24,
+            "fontWeight": "400",
+          }
+        }
+      />
+    </View>
+  </View>
+</View>
+`;

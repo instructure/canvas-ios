@@ -15,21 +15,12 @@
 //
 
 import UIKit
-import CanvasCore
 
-class EnrollmentSplitViewController: HelmSplitViewController {
-    
-    override init() {
-        super.init()
-    }
-    
-    required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+public class EnrollmentSplitViewController: HelmSplitViewController {
 }
 
 extension EnrollmentSplitViewController: UINavigationControllerDelegate {
-    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+    public func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         if let masterNav = masterNavigationController, let coursesViewController = masterNav.viewControllers.first, viewController == coursesViewController {
             UIView.animate(withDuration: 0.2, delay: 0.27, options: .curveEaseInOut, animations: {
                 self.detailNavigationController?.navigationBar.barTintColor = Brand.current.navBgColor
@@ -39,7 +30,7 @@ extension EnrollmentSplitViewController: UINavigationControllerDelegate {
         }
     }
     
-    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    public func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if let masterNav = masterNavigationController, let coursesViewController = masterNav.viewControllers.first, toVC == coursesViewController, operation == .pop {
             detailTopViewController?.navigationItem.leftBarButtonItem = nil
         }

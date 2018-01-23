@@ -442,7 +442,6 @@ exports[`AnnouncementEdit renders 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -550,7 +549,6 @@ exports[`AnnouncementEdit renders 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -1023,7 +1021,6 @@ exports[`AnnouncementEdit updates with new props 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -1131,7 +1128,6 @@ exports[`AnnouncementEdit updates with new props 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",

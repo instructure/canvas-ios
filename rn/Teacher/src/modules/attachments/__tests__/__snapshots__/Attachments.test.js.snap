@@ -191,7 +191,6 @@ exports[`Attachments renders attachments 1`] = `
                         Object {
                           "fontWeight": "600",
                         },
-                        undefined,
                       ],
                       Object {
                         "fontFamily": ".SFUIDisplay-semibold",
@@ -351,7 +350,6 @@ exports[`Attachments renders attachments 1`] = `
                         Object {
                           "fontWeight": "600",
                         },
-                        undefined,
                       ],
                       Object {
                         "fontFamily": ".SFUIDisplay-semibold",

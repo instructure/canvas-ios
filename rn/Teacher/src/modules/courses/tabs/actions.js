@@ -23,6 +23,7 @@ export let TabsActions = (api: CanvasApi): * => ({
   refreshTabs: createAction('courses.tabs.refresh', (courseID: string) => ({
     promise: api.getCourseTabs(courseID),
     courseID,
+    syncToNative: true,
   })),
 })
 

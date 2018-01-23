@@ -88,7 +88,7 @@ open class HelmManager: NSObject {
 
     //  MARK: - Navigation
     
-    public func pushFrom(_ sourceModule: ModuleName, destinationModule: ModuleName, withProps props: [String: Any], options: [String: Any]) {
+    public func pushFrom(_ sourceModule: ModuleName, destinationModule: ModuleName, withProps props: [String: Any], options: [String: Any], callback: (() -> Void)? = nil) {
         guard let topViewController = topMostViewController() else { return }
         
         let viewController: UIViewController
@@ -105,14 +105,17 @@ open class HelmManager: NSObject {
                     var stack = nav.viewControllers
                     stack[max(stack.count - 1, 0)] = viewController
                     nav.viewControllers = stack
+                    nav.navigationBar.isTranslucent = false
                 }
             } else {
                 pushOntoNav = { nav in
                     nav.pushViewController(viewController, animated: true)
+                    nav.navigationBar.isTranslucent = false
                 }
             }
             replaceInNav = { nav in
                 nav.viewControllers = [viewController]
+                nav.navigationBar.isTranslucent = false
             }
         } else {
             let helmViewController = HelmViewController(moduleName: destinationModule, props: props)
@@ -157,20 +160,26 @@ open class HelmManager: NSObject {
                     viewController.navigationItem.leftBarButtonItem = splitViewController.prettyDisplayModeButtonItem
                     viewController.navigationItem.leftItemsSupplementBackButton = true
                     replaceInNav(nav)
+                    callback?()
                 } else {
                     pushOntoNav(nav)
+                    callback?()
                 }
             }
         } else if let navigationController = topViewController.navigationController {
             pushOntoNav(navigationController)
+            callback?()
         } else {
             assertionFailure("\(#function) invalid controller: \(topViewController)")
             return
         }
     }
 
-    open func popFrom(_ sourceModule: ModuleName) {
-        guard let topViewController = topMostViewController() else { return }
+    open func popFrom(_ sourceModule: ModuleName, callback: (() -> Void)? = nil) {
+        guard let topViewController = topMostViewController() else {
+            callback?()
+            return
+        }
         
         var nav: UINavigationController? = nil
         if let splitViewController = topViewController as? HelmSplitViewController {
@@ -188,10 +197,12 @@ open class HelmManager: NSObject {
             return
         }
         nav?.popViewController(animated: true)
+        callback?()
     }
     
-    public func present(_ module: ModuleName, withProps props: [String: Any], options: [String: Any]) {
+    public func present(_ module: ModuleName, withProps props: [String: Any], options: [String: Any], callback: (() -> Void)? = nil) {
         guard let current = topMostViewController() else {
+            callback?()
             return
         }
         
@@ -221,7 +232,10 @@ open class HelmManager: NSObject {
         
         if let stuff = nativeViewControllerFactories[module] {
             let factory = stuff.factory
-            guard let viewController = factory(props) else { return }
+            guard let viewController = factory(props) else {
+                callback?()
+                return
+            }
             
             var toPresent: UIViewController = viewController
             let nav = toPresent as? UINavigationController
@@ -236,8 +250,9 @@ open class HelmManager: NSObject {
             
             if let customPresentation = stuff.customPresentation {
                 customPresentation(current, viewController)
+                callback?()
             } else {
-                current.present(viewController, animated: options["animated"] as? Bool ?? true, completion: nil)
+                current.present(viewController, animated: options["animated"] as? Bool ?? true, completion: callback)
             }
         } else {
             var toPresent: UIViewController
@@ -254,27 +269,28 @@ open class HelmManager: NSObject {
             
             helmVC.loadViewIfNeeded()
             helmVC.onReadyToPresent = { [weak current, toPresent] in
-                current?.present(toPresent, animated: options["animated"] as? Bool ?? true, completion: nil)
+                current?.present(toPresent, animated: options["animated"] as? Bool ?? true, completion: callback)
             }
         }
     }
 
-    open func dismiss(_ options: [String: Any], callback: RCTResponseSenderBlock? = nil) {
+    open func dismiss(_ options: [String: Any], callback: (() -> Void)? = nil) {
         // TODO: maybe not always dismiss the top - UIKit allows dismissing things not the top, dismisses all above
         guard let vc = topMostViewController() else { return }
         let animated = options["animated"] as? Bool ?? true
-        vc.dismiss(animated: animated) {
-            callback?([])
-        }
+        vc.dismiss(animated: animated, completion: callback)
     }
     
-    open func dismissAllModals(_ options: [String: Any]) {
+    open func dismissAllModals(_ options: [String: Any], callback: (() -> Void)? = nil) {
         // TODO: maybe not always dismiss the top - UIKit allows dismissing things not the top, dismisses all above
-        guard let vc = topMostViewController() else { return }
+        guard let vc = topMostViewController() else {
+            callback?()
+            return
+        }
         let animated = options["animated"] as? Bool ?? true
-        vc.dismiss(animated: animated, completion: {
-            self.dismiss(options)
-        })
+        vc.dismiss(animated: animated) {
+            self.dismiss(options, callback: callback)
+        }
     }
     
     public func traitCollection(_ moduleName: String, callback: @escaping RCTResponseSenderBlock) {

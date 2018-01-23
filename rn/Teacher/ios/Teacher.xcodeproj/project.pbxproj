@@ -36,7 +36,6 @@
 		4943ECB61E5CEFBD001DC5B5 /* CanvasKeymaster.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4943ECB71E5CEFBD001DC5B5 /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAC1E5CEFAC001DC5B5 /* CanvasKit.framework */; };
 		4943ECB81E5CEFBD001DC5B5 /* CanvasKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAC1E5CEFAC001DC5B5 /* CanvasKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		494AE0B81F843CB5001A8F31 /* EnrollmentSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B41F843CB3001A8F31 /* EnrollmentSplitViewController.swift */; };
 		494AE0B91F843CB5001A8F31 /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B51F843CB4001A8F31 /* RootTabBarController.swift */; };
 		494AE0BA1F843CB5001A8F31 /* AppDelegate+Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B61F843CB4001A8F31 /* AppDelegate+Routes.swift */; };
 		494AE0BB1F843CB5001A8F31 /* TeacherAttendanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B71F843CB4001A8F31 /* TeacherAttendanceViewController.swift */; };
@@ -226,7 +225,6 @@
 		4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKeymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943ECAC1E5CEFAC001DC5B5 /* CanvasKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943ECC91E5D0133001DC5B5 /* Teacher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Teacher.entitlements; path = Teacher/Teacher.entitlements; sourceTree = "<group>"; };
-		494AE0B41F843CB3001A8F31 /* EnrollmentSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EnrollmentSplitViewController.swift; path = Teacher/EnrollmentSplitViewController.swift; sourceTree = "<group>"; };
 		494AE0B51F843CB4001A8F31 /* RootTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RootTabBarController.swift; path = Teacher/RootTabBarController.swift; sourceTree = "<group>"; };
 		494AE0B61F843CB4001A8F31 /* AppDelegate+Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AppDelegate+Routes.swift"; path = "Teacher/AppDelegate+Routes.swift"; sourceTree = "<group>"; };
 		494AE0B71F843CB4001A8F31 /* TeacherAttendanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TeacherAttendanceViewController.swift; path = Teacher/TeacherAttendanceViewController.swift; sourceTree = "<group>"; };
@@ -360,7 +358,6 @@
 			children = (
 				61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */,
 				494AE0B61F843CB4001A8F31 /* AppDelegate+Routes.swift */,
-				494AE0B41F843CB3001A8F31 /* EnrollmentSplitViewController.swift */,
 				494AE0B51F843CB4001A8F31 /* RootTabBarController.swift */,
 				494AE0B71F843CB4001A8F31 /* TeacherAttendanceViewController.swift */,
 				2C3DE5101F21498A00AE1D59 /* InfoPlist.strings */,
@@ -1011,7 +1008,6 @@
 				494AE0BA1F843CB5001A8F31 /* AppDelegate+Routes.swift in Sources */,
 				61BD85FC1EB2933C005A09A5 /* AppDelegate.swift in Sources */,
 				494AE0B91F843CB5001A8F31 /* RootTabBarController.swift in Sources */,
-				494AE0B81F843CB5001A8F31 /* EnrollmentSplitViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

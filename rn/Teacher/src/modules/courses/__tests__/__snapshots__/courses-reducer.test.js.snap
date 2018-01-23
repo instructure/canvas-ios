@@ -81,7 +81,7 @@ Array [
       "attendanceTool": Object {
         "pending": 0,
       },
-      "color": "#ffc100",
+      "color": "#aaa",
       "course": Object {
         "course_code": "rn 101",
         "default_view": "wiki",

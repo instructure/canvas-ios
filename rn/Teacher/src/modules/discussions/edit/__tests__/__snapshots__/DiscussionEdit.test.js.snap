@@ -427,7 +427,6 @@ exports[`DiscussionEdit renders 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -534,7 +533,6 @@ exports[`DiscussionEdit renders 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -642,7 +640,6 @@ exports[`DiscussionEdit renders 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -750,7 +747,6 @@ exports[`DiscussionEdit renders 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -1472,7 +1468,6 @@ exports[`DiscussionEdit renders new form 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -1579,7 +1574,6 @@ exports[`DiscussionEdit renders new form 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -1687,7 +1681,6 @@ exports[`DiscussionEdit renders new form 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -2409,7 +2402,6 @@ exports[`DiscussionEdit updates from props 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -2516,7 +2508,6 @@ exports[`DiscussionEdit updates from props 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -2624,7 +2615,6 @@ exports[`DiscussionEdit updates from props 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -3354,7 +3344,6 @@ exports[`DiscussionEdit updates with new props 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -3461,7 +3450,6 @@ exports[`DiscussionEdit updates with new props 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -3569,7 +3557,6 @@ exports[`DiscussionEdit updates with new props 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -3677,7 +3664,6 @@ exports[`DiscussionEdit updates with new props 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",

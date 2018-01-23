@@ -251,13 +251,39 @@ extension AppDelegate: RCTBridgeDelegate {
             self.showLoadingState()
         }
         
-        HelmManager.shared.registerNativeViewController(for: "/courses/:courseID", factory: { props in
+        HelmManager.shared.registerNativeViewController(for: "/courses/:courseID/tabs/:tabID", factory: { props in
+            guard let tabID = props["tabID"] as? String else { return nil }
             guard let courseID = props["courseID"] as? String else { return nil }
+
+            let session = CanvasKeymaster.the().currentClient.authSession
+            let contextID = ContextID.course(withID: courseID)
             
+            guard let tabs = try? Tab.collection(session, contextID: contextID) else { return nil }
+            guard let tab = tabs.filter({ $0.id == tabID }).first else { return nil }
+            guard let url = tab.routingURL(session) else { return nil }
+            guard let controller = Router.shared().controller(forHandling: url) else {
+                DispatchQueue.main.async {
+                    Router.shared().fallbackHandler(url, self.window?.rootViewController)
+                }
+                return nil
+            }
+            
+            // Work around all these controllers not setting the nav color
+            DispatchQueue.main.async {
+                controller.navigationController?.navigationBar.barTintColor = (session.enrollmentsDataSource[ContextID(id: courseID, context: .course)] as? Course)?.color.value ?? .black
+                controller.navigationController?.navigationBar.tintColor = .white
+                controller.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+            }
+            
+            return controller
+        })
+        
+        HelmManager.shared.registerNativeViewController(for: "/courses/:courseID/tabs", factory: { props in
+            guard let courseID = props["courseID"] as? String else { return nil }
             let url = URL(string: "api/v1/courses/\(courseID)/tabs")
             return Router.shared().controller(forHandling: url)
         })
-
+        
         HelmManager.shared.registerNativeViewController(for: "/users/self/files", factory: { props in
             guard let folderController = FolderViewController(interfaceStyle: FolderInterfaceStyleLight) else { return nil }
             guard let canvasAPI = CKCanvasAPI.current() else { return nil }
@@ -303,25 +329,31 @@ extension AppDelegate: NativeLoginManagerDelegate {
         ModuleItem.beginObservingProgress(session)
         CKCanvasAPI.updateCurrentAPI()
         
-        let b = Brand.current
-        guard let brand = CKIBrand() else {
-            fatalError("Why can't I init a brand?")
+        if let brandingInfo = client.branding?.jsonDictionary() as? [String: Any] {
+            Brand.setCurrent(Brand(webPayload: brandingInfo))
+            UITabBar.appearance().tintColor = Brand.current.primaryBrandColor
+            UITabBar.appearance().barTintColor = .white
+        } else {
+            let b = Brand.current
+            guard let brand = CKIBrand() else {
+                fatalError("Why can't I init a brand?")
+            }
+            brand.navigationBackground = "#313640" // ask me why this value is hard-coded and I'll tell you a sad sad tale
+            brand.navigationButtonColor = b.navButtonColor.hex
+            brand.navigationTextColor = b.navTextColor.hex
+            brand.primaryColor = b.tintColor.hex
+            brand.primaryButtonTextColor = b.secondaryTintColor.hex
+            brand.linkColor = b.tintColor.hex
+            brand.primaryButtonBackgroundColor = b.tintColor.hex
+            brand.primaryButtonTextColor = "#FFFFFF"
+            brand.secondaryButtonBackgroundColor = b.secondaryTintColor.hex
+            brand.secondaryButtonTextColor = "#FFFFFF"
+            brand.fontColorDark = "#000000"
+            brand.fontColorLight = "#666666"
+            brand.headerImageURL = ""
+            
+            client.branding = brand
         }
-        brand.navigationBackground = "#313640" // ask me why this value is hard-coded and I'll tell you a sad sad tale
-        brand.navigationButtonColor = b.navButtonColor.hex
-        brand.navigationTextColor = b.navTextColor.hex
-        brand.primaryColor = b.tintColor.hex
-        brand.primaryButtonTextColor = b.secondaryTintColor.hex
-        brand.linkColor = b.tintColor.hex
-        brand.primaryButtonBackgroundColor = b.tintColor.hex
-        brand.primaryButtonTextColor = "#FFFFFF"
-        brand.secondaryButtonBackgroundColor = b.secondaryTintColor.hex
-        brand.secondaryButtonTextColor = "#FFFFFF"
-        brand.fontColorDark = "#000000"
-        brand.fontColorLight = "#666666"
-        brand.headerImageURL = ""
-        
-        client.branding = brand
     }
     
     func didLogout(_ controller: UIViewController) {

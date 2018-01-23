@@ -149,7 +149,6 @@ exports[`DiscussionsRow renders 1`] = `
                   Object {
                     "fontWeight": "600",
                   },
-                  undefined,
                 ],
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
@@ -585,7 +584,6 @@ exports[`DiscussionsRow renders published 1`] = `
                   Object {
                     "fontWeight": "600",
                   },
-                  undefined,
                 ],
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
@@ -1021,7 +1019,6 @@ exports[`DiscussionsRow renders unpublished 1`] = `
                   Object {
                     "fontWeight": "600",
                   },
-                  undefined,
                 ],
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
@@ -1446,7 +1443,6 @@ exports[`DiscussionsRow renders with no assignment 1`] = `
                   Object {
                     "fontWeight": "600",
                   },
-                  undefined,
                 ],
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
@@ -1849,7 +1845,6 @@ exports[`DiscussionsRow renders with no unread count 1`] = `
                   Object {
                     "fontWeight": "600",
                   },
-                  undefined,
                 ],
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
@@ -2273,7 +2268,6 @@ exports[`DiscussionsRow renders with points possible 1`] = `
                   Object {
                     "fontWeight": "600",
                   },
-                  undefined,
                 ],
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
@@ -2709,7 +2703,6 @@ exports[`DiscussionsRow renders without points possible 1`] = `
                   Object {
                     "fontWeight": "600",
                   },
-                  undefined,
                 ],
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",

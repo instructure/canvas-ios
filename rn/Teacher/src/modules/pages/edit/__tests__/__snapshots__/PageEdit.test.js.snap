@@ -300,7 +300,6 @@ exports[`PageEdit renders 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -408,7 +407,6 @@ exports[`PageEdit renders 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",

@@ -1,303 +1,86 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`default icon 1`] = `
-<View
-  accessibilityComponentType={undefined}
-  accessibilityLabel={undefined}
-  accessibilityTraits={
-    Array [
-      "button",
-    ]
-  }
-  accessible={true}
-  hasTVPreferredFocus={undefined}
-  hitSlop={undefined}
-  isTVSelectable={true}
-  nativeID={undefined}
-  onLayout={undefined}
-  onResponderGrant={[Function]}
-  onResponderMove={[Function]}
-  onResponderRelease={[Function]}
-  onResponderTerminate={[Function]}
-  onResponderTerminationRequest={[Function]}
-  onStartShouldSetResponder={[Function]}
-  style={
-    Array [
-      Object {
-        "backgroundColor": "transparent",
-      },
-      Array [
-        undefined,
-        Object {
-          "borderBottomColor": "#C7CDD1",
-          "borderBottomWidth": 0.5,
-        },
-      ],
-    ]
-  }
-  testID="courses-details.test default icon-cell"
-  tvParallaxProperties={undefined}
->
-  <View
-    style={
-      Array [
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "white",
-          "flex": 1,
-          "flexDirection": "row",
-          "minHeight": 54,
-          "paddingBottom": 12,
-          "paddingLeft": 16,
-          "paddingRight": 16,
-          "paddingTop": 12,
-        },
-        Object {
-          "backgroundColor": "white",
-        },
-      ]
+exports[`CourseDetailsTab can be selected 1`] = `
+<Row
+  border="bottom"
+  disclosureIndicator={true}
+  image={
+    Object {
+      "testUri": "../../../src/images/course/Assignment.png",
     }
-  >
-    <View
-      style={
-        Object {
-          "flex": 1,
-          "flexDirection": "column",
-          "justifyContent": "center",
-        }
-      }
-    >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={0}
-        style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
-            Array [
-              Object {
-                "fontWeight": "600",
-              },
-              Object {
-                "fontWeight": "500",
-                "marginLeft": -4,
-              },
-            ],
-            Object {
-              "fontFamily": ".SFUIDisplay-medium",
-            },
-          ]
-        }
-      >
-        Home
-      </Text>
-    </View>
-    <View
-      style={
-        Object {
-          "flex": 0,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "flexDirection": "row",
-            "justifyContent": "flex-end",
-          }
-        }
-      >
-        <View
-          style={
-            Object {
-              "alignSelf": "center",
-              "backgroundColor": "transparent",
-              "borderColor": "#c7c7cc",
-              "borderRightWidth": 2,
-              "borderTopWidth": 2,
-              "height": 10,
-              "marginLeft": 7,
-              "transform": Array [
-                Object {
-                  "rotate": "45deg",
-                },
-              ],
-              "width": 10,
-            }
-          }
-        />
-      </View>
-    </View>
-  </View>
-</View>
+  }
+  imageSize={
+    Object {
+      "height": 24,
+      "width": 24,
+    }
+  }
+  imageTint="white"
+  onPress={[Function]}
+  selected={true}
+  testID="courses-details.assignments-cell"
+  title="Home"
+  titleStyles={
+    Object {
+      "fontWeight": "500",
+      "marginLeft": -4,
+    }
+  }
+/>
 `;
 
-exports[`renders correctly 1`] = `
-<View
-  accessibilityComponentType={undefined}
-  accessibilityLabel={undefined}
-  accessibilityTraits={
-    Array [
-      "button",
-    ]
-  }
-  accessible={true}
-  hasTVPreferredFocus={undefined}
-  hitSlop={undefined}
-  isTVSelectable={true}
-  nativeID={undefined}
-  onLayout={undefined}
-  onResponderGrant={[Function]}
-  onResponderMove={[Function]}
-  onResponderRelease={[Function]}
-  onResponderTerminate={[Function]}
-  onResponderTerminationRequest={[Function]}
-  onStartShouldSetResponder={[Function]}
-  style={
-    Array [
-      Object {
-        "backgroundColor": "transparent",
-      },
-      Array [
-        undefined,
-        Object {
-          "borderBottomColor": "#C7CDD1",
-          "borderBottomWidth": 0.5,
-        },
-      ],
-    ]
-  }
-  testID="courses-details.assignments-cell"
-  tvParallaxProperties={undefined}
->
-  <View
-    style={
-      Array [
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "white",
-          "flex": 1,
-          "flexDirection": "row",
-          "minHeight": 54,
-          "paddingBottom": 12,
-          "paddingLeft": 16,
-          "paddingRight": 16,
-          "paddingTop": 12,
-        },
-        Object {
-          "backgroundColor": "white",
-        },
-      ]
+exports[`CourseDetailsTab renders correctly 1`] = `
+<Row
+  border="bottom"
+  disclosureIndicator={true}
+  image={
+    Object {
+      "testUri": "../../../src/images/course/Assignment.png",
     }
-  >
-    <Image
-      source={
-        Object {
-          "testUri": "../../../src/images/course/Assignment.png",
-        }
-      }
-      style={
-        Array [
-          Object {
-            "marginRight": 16,
-            "resizeMode": "contain",
-          },
-          Object {
-            "height": 24,
-            "tintColor": "white",
-            "width": 24,
-          },
-        ]
-      }
-    />
-    <View
-      style={
-        Object {
-          "flex": 1,
-          "flexDirection": "column",
-          "justifyContent": "center",
-        }
-      }
-    >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={0}
-        style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
-            Array [
-              Object {
-                "fontWeight": "600",
-              },
-              Object {
-                "fontWeight": "500",
-                "marginLeft": -4,
-              },
-            ],
-            Object {
-              "fontFamily": ".SFUIDisplay-medium",
-            },
-          ]
-        }
-      >
-        Home
-      </Text>
-    </View>
-    <View
-      style={
-        Object {
-          "flex": 0,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "flexDirection": "row",
-            "justifyContent": "flex-end",
-          }
-        }
-      >
-        <View
-          style={
-            Object {
-              "alignSelf": "center",
-              "backgroundColor": "transparent",
-              "borderColor": "#c7c7cc",
-              "borderRightWidth": 2,
-              "borderTopWidth": 2,
-              "height": 10,
-              "marginLeft": 7,
-              "transform": Array [
-                Object {
-                  "rotate": "45deg",
-                },
-              ],
-              "width": 10,
-            }
-          }
-        />
-      </View>
-    </View>
-  </View>
-</View>
+  }
+  imageSize={
+    Object {
+      "height": 24,
+      "width": 24,
+    }
+  }
+  imageTint="white"
+  onPress={[Function]}
+  testID="courses-details.assignments-cell"
+  title="Home"
+  titleStyles={
+    Object {
+      "fontWeight": "500",
+      "marginLeft": -4,
+    }
+  }
+/>
+`;
+
+exports[`CourseDetailsTab shows a default icon 1`] = `
+<Row
+  border="bottom"
+  disclosureIndicator={true}
+  image={
+    Object {
+      "testUri": "../../../src/images/course/Placeholder.png",
+    }
+  }
+  imageSize={
+    Object {
+      "height": 24,
+      "width": 24,
+    }
+  }
+  imageTint="white"
+  onPress={[Function]}
+  testID="courses-details.test default icon-cell"
+  title="Home"
+  titleStyles={
+    Object {
+      "fontWeight": "500",
+      "marginLeft": -4,
+    }
+  }
+/>
 `;

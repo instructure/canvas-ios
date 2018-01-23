@@ -30,18 +30,17 @@ describe('Navigator', () => {
     jest.resetAllMocks()
 
     NativeModules.Helm = {
-      pushFrom: jest.fn(),
-      popFrom: jest.fn(),
-      present: jest.fn(),
-      dismiss: jest.fn(),
-      dismissAllModals: jest.fn(),
+      pushFrom: jest.fn(() => Promise.resolve()),
+      popFrom: jest.fn(() => Promise.resolve()),
+      present: jest.fn(() => Promise.resolve()),
+      dismiss: jest.fn(() => Promise.resolve()),
+      dismissAllModals: jest.fn(() => Promise.resolve()),
       traitCollection: jest.fn(),
     }
   })
 
-  test('push', () => {
-    const navigator = new Navigator('push')
-    navigator.show('/courses/1')
+  it('forwards show as a push', () => {
+    new Navigator('push').show('/courses/1')
     expect(NativeModules.Helm.pushFrom).toHaveBeenCalledWith(
       'push',
       '/courses/:courseID',
@@ -50,15 +49,13 @@ describe('Navigator', () => {
     )
   })
 
-  test('pop', () => {
-    const navigator = new Navigator('pop')
-    navigator.pop()
+  it('forwards pop to native helm', () => {
+    new Navigator('pop').pop()
     expect(NativeModules.Helm.popFrom).toHaveBeenCalledWith('pop')
   })
 
-  test('replace', () => {
-    const navigator = new Navigator('replace')
-    navigator.replace('/courses/2')
+  it('forwards replace as a push', () => {
+    new Navigator('replace').replace('/courses/2')
     expect(NativeModules.Helm.pushFrom).toHaveBeenCalledWith(
       'replace',
       '/courses/:courseID',
@@ -67,9 +64,8 @@ describe('Navigator', () => {
     )
   })
 
-  test('present', () => {
-    const navigator = new Navigator('present')
-    navigator.show('/courses/1', { modal: true })
+  it('forwards present to native helm', () => {
+    new Navigator('present').show('/courses/1', { modal: true })
     expect(NativeModules.Helm.present).toHaveBeenCalledWith(
       '/courses/:courseID',
       { courseID: '1', screenInstanceID: expect.any(String) },
@@ -77,22 +73,19 @@ describe('Navigator', () => {
     )
   })
 
-  test('dismiss', () => {
-    const navigator = new Navigator('dismiss')
-    navigator.dismiss()
+  it('forwards dismiss to native helm', () => {
+    new Navigator('dismiss').dismiss()
     expect(NativeModules.Helm.dismiss).toHaveBeenCalledWith({})
   })
 
-  test('dismiss all', () => {
-    const navigator = new Navigator('dismiss all')
-    navigator.dismissAllModals()
+  it('forwards dismiss all to native helm', () => {
+    new Navigator('dismiss all').dismissAllModals()
     expect(NativeModules.Helm.dismissAllModals).toHaveBeenCalledWith({})
   })
 
-  test('traitCollection', () => {
-    const navigator = new Navigator('traitCollection')
+  it('traitCollection', () => {
     const handler = () => {}
-    navigator.traitCollection(handler)
+    new Navigator('traitCollection').traitCollection(handler)
     expect(NativeModules.Helm.traitCollection).toHaveBeenCalledWith('traitCollection', handler)
   })
 })

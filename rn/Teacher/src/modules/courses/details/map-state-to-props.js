@@ -18,6 +18,7 @@
 
 import CourseActions from '../actions'
 import Navigator from '../../../routing/Navigator'
+import { isStudent } from '../../app'
 
 type RoutingParams = {
   +courseID: string,
@@ -58,12 +59,11 @@ export default function mapStateToProps (state: AppState, { courseID }: RoutingP
   const tabs = courseState.tabs.tabs
     .filter((tab) => {
       if (tab.id === attendanceTabID && tab.hidden) return false
+      if (isStudent()) return true
       return availableCourseTabs.includes(tab.id)
     })
     .sort((t1, t2) => (t1.position - t2.position))
-  const error = state.favoriteCourses.error ||
-    courseState.tabs.error
-
+  const error = state.favoriteCourses.error || courseState.tabs.error
   return {
     course,
     color,

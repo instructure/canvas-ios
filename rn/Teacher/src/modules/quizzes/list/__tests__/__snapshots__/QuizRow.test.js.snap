@@ -145,7 +145,6 @@ exports[`QuizRow renders 1`] = `
                   Object {
                     "fontWeight": "600",
                   },
-                  undefined,
                 ],
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
@@ -500,7 +499,6 @@ exports[`QuizRow renders multiple question count 1`] = `
                   Object {
                     "fontWeight": "600",
                   },
-                  undefined,
                 ],
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
@@ -855,7 +853,6 @@ exports[`QuizRow renders published 1`] = `
                   Object {
                     "fontWeight": "600",
                   },
-                  undefined,
                 ],
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
@@ -1211,7 +1208,6 @@ exports[`QuizRow renders selected 1`] = `
                   Object {
                     "fontWeight": "600",
                   },
-                  undefined,
                 ],
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
@@ -1566,7 +1562,6 @@ exports[`QuizRow renders single question count 1`] = `
                   Object {
                     "fontWeight": "600",
                   },
-                  undefined,
                 ],
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
@@ -1921,7 +1916,6 @@ exports[`QuizRow renders unpublished 1`] = `
                   Object {
                     "fontWeight": "600",
                   },
-                  undefined,
                 ],
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
@@ -2265,7 +2259,6 @@ exports[`QuizRow renders without points possible 1`] = `
                   Object {
                     "fontWeight": "600",
                   },
-                  undefined,
                 ],
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",

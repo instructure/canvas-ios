@@ -268,7 +268,6 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                             Object {
                               "fontWeight": "600",
                             },
-                            undefined,
                           ],
                           Object {
                             "fontFamily": ".SFUIDisplay-semibold",
@@ -291,11 +290,13 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 14,
-                            "marginTop": 2,
-                          },
+                          Array [
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
+                          ],
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -538,7 +539,6 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                             Object {
                               "fontWeight": "600",
                             },
-                            undefined,
                           ],
                           Object {
                             "fontFamily": ".SFUIDisplay-semibold",
@@ -561,11 +561,13 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 14,
-                            "marginTop": 2,
-                          },
+                          Array [
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
+                          ],
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -808,7 +810,6 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                             Object {
                               "fontWeight": "600",
                             },
-                            undefined,
                           ],
                           Object {
                             "fontFamily": ".SFUIDisplay-semibold",
@@ -831,11 +832,13 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 14,
-                            "marginTop": 2,
-                          },
+                          Array [
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
+                          ],
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -1190,7 +1193,6 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                             Object {
                               "fontWeight": "600",
                             },
-                            undefined,
                           ],
                           Object {
                             "fontFamily": ".SFUIDisplay-semibold",
@@ -1213,11 +1215,13 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 14,
-                            "marginTop": 2,
-                          },
+                          Array [
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
+                          ],
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -1460,7 +1464,6 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                             Object {
                               "fontWeight": "600",
                             },
-                            undefined,
                           ],
                           Object {
                             "fontFamily": ".SFUIDisplay-semibold",
@@ -1483,11 +1486,13 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 14,
-                            "marginTop": 2,
-                          },
+                          Array [
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
+                          ],
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -1730,7 +1735,6 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                             Object {
                               "fontWeight": "600",
                             },
-                            undefined,
                           ],
                           Object {
                             "fontFamily": ".SFUIDisplay-semibold",
@@ -1753,11 +1757,13 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 14,
-                            "marginTop": 2,
-                          },
+                          Array [
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
+                          ],
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -2112,7 +2118,6 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                             Object {
                               "fontWeight": "600",
                             },
-                            undefined,
                           ],
                           Object {
                             "fontFamily": ".SFUIDisplay-semibold",
@@ -2135,11 +2140,13 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 14,
-                            "marginTop": 2,
-                          },
+                          Array [
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
+                          ],
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -2382,7 +2389,6 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                             Object {
                               "fontWeight": "600",
                             },
-                            undefined,
                           ],
                           Object {
                             "fontFamily": ".SFUIDisplay-semibold",
@@ -2405,11 +2411,13 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 14,
-                            "marginTop": 2,
-                          },
+                          Array [
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
+                          ],
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -2652,7 +2660,6 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                             Object {
                               "fontWeight": "600",
                             },
-                            undefined,
                           ],
                           Object {
                             "fontFamily": ".SFUIDisplay-semibold",
@@ -2675,11 +2682,13 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 14,
-                            "marginTop": 2,
-                          },
+                          Array [
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
+                          ],
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -3034,7 +3043,6 @@ exports[`CourseFileList sending weird data into the progress update function sho
                             Object {
                               "fontWeight": "600",
                             },
-                            undefined,
                           ],
                           Object {
                             "fontFamily": ".SFUIDisplay-semibold",
@@ -3057,11 +3065,13 @@ exports[`CourseFileList sending weird data into the progress update function sho
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 14,
-                            "marginTop": 2,
-                          },
+                          Array [
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
+                          ],
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -3304,7 +3314,6 @@ exports[`CourseFileList sending weird data into the progress update function sho
                             Object {
                               "fontWeight": "600",
                             },
-                            undefined,
                           ],
                           Object {
                             "fontFamily": ".SFUIDisplay-semibold",
@@ -3327,11 +3336,13 @@ exports[`CourseFileList sending weird data into the progress update function sho
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 14,
-                            "marginTop": 2,
-                          },
+                          Array [
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
+                          ],
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -3574,7 +3585,6 @@ exports[`CourseFileList sending weird data into the progress update function sho
                             Object {
                               "fontWeight": "600",
                             },
-                            undefined,
                           ],
                           Object {
                             "fontFamily": ".SFUIDisplay-semibold",
@@ -3597,11 +3607,13 @@ exports[`CourseFileList sending weird data into the progress update function sho
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 14,
-                            "marginTop": 2,
-                          },
+                          Array [
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
+                          ],
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -3956,7 +3968,6 @@ exports[`CourseFileList should render 1`] = `
                             Object {
                               "fontWeight": "600",
                             },
-                            undefined,
                           ],
                           Object {
                             "fontFamily": ".SFUIDisplay-semibold",
@@ -3979,11 +3990,13 @@ exports[`CourseFileList should render 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 14,
-                            "marginTop": 2,
-                          },
+                          Array [
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
+                          ],
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -4226,7 +4239,6 @@ exports[`CourseFileList should render 1`] = `
                             Object {
                               "fontWeight": "600",
                             },
-                            undefined,
                           ],
                           Object {
                             "fontFamily": ".SFUIDisplay-semibold",
@@ -4249,11 +4261,13 @@ exports[`CourseFileList should render 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 14,
-                            "marginTop": 2,
-                          },
+                          Array [
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
+                          ],
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -4496,7 +4510,6 @@ exports[`CourseFileList should render 1`] = `
                             Object {
                               "fontWeight": "600",
                             },
-                            undefined,
                           ],
                           Object {
                             "fontFamily": ".SFUIDisplay-semibold",
@@ -4519,11 +4532,13 @@ exports[`CourseFileList should render 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 14,
-                            "marginTop": 2,
-                          },
+                          Array [
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
+                          ],
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -4878,7 +4893,6 @@ exports[`CourseFileList should render with folders 1`] = `
                             Object {
                               "fontWeight": "600",
                             },
-                            undefined,
                           ],
                           Object {
                             "fontFamily": ".SFUIDisplay-semibold",
@@ -4901,11 +4915,13 @@ exports[`CourseFileList should render with folders 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 14,
-                            "marginTop": 2,
-                          },
+                          Array [
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
+                          ],
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -5148,7 +5164,6 @@ exports[`CourseFileList should render with folders 1`] = `
                             Object {
                               "fontWeight": "600",
                             },
-                            undefined,
                           ],
                           Object {
                             "fontFamily": ".SFUIDisplay-semibold",
@@ -5171,11 +5186,13 @@ exports[`CourseFileList should render with folders 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 14,
-                            "marginTop": 2,
-                          },
+                          Array [
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
+                          ],
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -5418,7 +5435,6 @@ exports[`CourseFileList should render with folders 1`] = `
                             Object {
                               "fontWeight": "600",
                             },
-                            undefined,
                           ],
                           Object {
                             "fontFamily": ".SFUIDisplay-semibold",
@@ -5441,11 +5457,13 @@ exports[`CourseFileList should render with folders 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 14,
-                            "marginTop": 2,
-                          },
+                          Array [
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
+                          ],
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },

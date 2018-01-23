@@ -672,7 +672,6 @@ exports[`DiscussionsList renders discussions 1`] = `
                             Object {
                               "fontWeight": "600",
                             },
-                            undefined,
                           ],
                           Object {
                             "fontFamily": ".SFUIDisplay-semibold",
@@ -1110,7 +1109,6 @@ exports[`DiscussionsList renders discussions 1`] = `
                             Object {
                               "fontWeight": "600",
                             },
-                            undefined,
                           ],
                           Object {
                             "fontFamily": ".SFUIDisplay-semibold",
@@ -1849,7 +1847,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                             Object {
                               "fontWeight": "600",
                             },
-                            undefined,
                           ],
                           Object {
                             "fontFamily": ".SFUIDisplay-semibold",
@@ -2254,7 +2251,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                             Object {
                               "fontWeight": "600",
                             },
-                            undefined,
                           ],
                           Object {
                             "fontFamily": ".SFUIDisplay-semibold",
@@ -3064,7 +3060,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
                             Object {
                               "fontWeight": "600",
                             },
-                            undefined,
                           ],
                           Object {
                             "fontFamily": ".SFUIDisplay-semibold",
@@ -3502,7 +3497,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
                             Object {
                               "fontWeight": "600",
                             },
-                            undefined,
                           ],
                           Object {
                             "fontFamily": ".SFUIDisplay-semibold",
@@ -4354,7 +4348,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                             Object {
                               "fontWeight": "600",
                             },
-                            undefined,
                           ],
                           Object {
                             "fontFamily": ".SFUIDisplay-semibold",
@@ -4848,7 +4841,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                             Object {
                               "fontWeight": "600",
                             },
-                            undefined,
                           ],
                           Object {
                             "fontFamily": ".SFUIDisplay-semibold",

@@ -563,7 +563,6 @@ exports[`error occurs when done pressed 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -690,7 +689,6 @@ exports[`error occurs when done pressed 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -822,7 +820,6 @@ exports[`error occurs when done pressed 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -1487,7 +1484,6 @@ exports[`modal saving is shown on assignment update 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -1614,7 +1610,6 @@ exports[`modal saving is shown on assignment update 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -1746,7 +1741,6 @@ exports[`modal saving is shown on assignment update 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -2411,7 +2405,6 @@ exports[`renders 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -2538,7 +2531,6 @@ exports[`renders 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -2670,7 +2662,6 @@ exports[`renders 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -3335,7 +3326,6 @@ exports[`saving invalid dates displays banner 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -3462,7 +3452,6 @@ exports[`saving invalid dates displays banner 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -3594,7 +3583,6 @@ exports[`saving invalid dates displays banner 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -4301,7 +4289,6 @@ exports[`saving invalid name displays banner 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -4428,7 +4415,6 @@ exports[`saving invalid name displays banner 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -4560,7 +4546,6 @@ exports[`saving invalid name displays banner 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -5228,7 +5213,6 @@ exports[`saving invalid points possible displays banner 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -5355,7 +5339,6 @@ exports[`saving invalid points possible displays banner 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -5487,7 +5470,6 @@ exports[`saving invalid points possible displays banner 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -6190,7 +6172,6 @@ exports[`saving negative points possible displays banner 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -6317,7 +6298,6 @@ exports[`saving negative points possible displays banner 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
@@ -6449,7 +6429,6 @@ exports[`saving negative points possible displays banner 1`] = `
                       Object {
                         "fontWeight": "600",
                       },
-                      undefined,
                     ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",

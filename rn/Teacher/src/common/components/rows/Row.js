@@ -47,6 +47,7 @@ export type RowProps = {
   titleProps?: { ellipsizeMode?: string, numberOfLines?: number },
   selected: boolean,
   titleStyles?: Text.propTypes,
+  subtitleStyles?: Text.propTypes,
 }
 
 export default class Row extends Component<any, RowProps, any> {
@@ -94,6 +95,9 @@ export default class Row extends Component<any, RowProps, any> {
       backgroundColor = color.grey1
     }
 
+    const titleStyles = [style.title, this.props.titleStyles].filter(Boolean)
+    const subtitleStyles = [style.subtitle, this.props.subtitleStyles].filter(Boolean)
+
     return (<TouchableHighlight style={[topBorder, bottomBorder]} { ...traits } onPress={this.onPress} testID={this.props.testID} {...underlayProps} >
               <View style={[style.container, { backgroundColor }]}>
                 { this.props.renderImage && this.props.renderImage() }
@@ -101,14 +105,14 @@ export default class Row extends Component<any, RowProps, any> {
                 <View style={style.titlesContainer}>
                   { Boolean(title) &&
                     <Text
-                      style={[style.title, this.props.titleStyles]}
+                      style={titleStyles}
                       ellipsizeMode={(this.props.titleProps && this.props.titleProps.ellipsizeMode) || 'tail'}
                       numberOfLines={(this.props.titleProps && this.props.titleProps.numberOfLines) || 0}
                     >
                       {title}
                     </Text>
                   }
-                  { Boolean(this.props.subtitle) && <Text style={style.subtitle} testID={`${testID}-subtitle-lbl`}>{this.props.subtitle}</Text> }
+                  { Boolean(this.props.subtitle) && <Text style={subtitleStyles} testID={`${testID}-subtitle-lbl`}>{this.props.subtitle}</Text> }
                   { this.props.children }
                 </View>
                 { Boolean(this.props.accessories || this.props.disclosureIndicator) &&

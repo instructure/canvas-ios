@@ -37,26 +37,34 @@ RCT_EXPORT_METHOD(setDefaultScreenConfig:(NSDictionary *)config forModule:(NSStr
     [[HelmManager shared] setDefaultScreenConfig:config forModule:module];
 }
 
-RCT_EXPORT_METHOD(pushFrom:(NSString *)sourceModule destinationModule:(NSString*)module withProps:(NSDictionary *)props options:(NSDictionary *)options) {
-    [[HelmManager shared] pushFrom:sourceModule destinationModule:module withProps:props options:options];
-}
-
-RCT_EXPORT_METHOD(popFrom:(NSString *)sourceModule) {
-    [[HelmManager shared] popFrom:sourceModule];
-}
-
-RCT_EXPORT_METHOD(present:(NSString *)module withProps:(NSDictionary *)props options:(NSDictionary *)options) {
-    [[HelmManager shared] present:module withProps:props options:options];
-}
-
-RCT_REMAP_METHOD(dismiss, dismissWithOptions:(NSDictionary *)options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
-    [[HelmManager shared] dismiss:options callback:^(NSArray *response) {
+RCT_REMAP_METHOD(pushFrom, pushModule:(NSString *)sourceModule destinationModule:(NSString*)module withProps:(NSDictionary *)props options:(NSDictionary *)options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+    [[HelmManager shared] pushFrom:sourceModule destinationModule:module withProps:props options:options callback:^() {
         resolve(nil);
     }];
 }
 
-RCT_EXPORT_METHOD(dismissAllModals:(NSDictionary *)options) {
-    [[HelmManager shared] dismissAllModals:options];
+RCT_REMAP_METHOD(popFrom, popModule:(NSString *)sourceModule resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+    [[HelmManager shared] popFrom:sourceModule callback:^() {
+        resolve(nil);
+    }];
+}
+
+RCT_REMAP_METHOD(present, presentModule:(NSString *)module withProps:(NSDictionary *)props options:(NSDictionary *)options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+    [[HelmManager shared] present:module withProps:props options:options callback:^() {
+        resolve(nil);
+    }];
+}
+
+RCT_REMAP_METHOD(dismiss, dismissWithOptions:(NSDictionary *)options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+    [[HelmManager shared] dismiss:options callback:^() {
+        resolve(nil);
+    }];
+}
+
+RCT_REMAP_METHOD(dismissAllModals, dismissAllModalsWithOptions:(NSDictionary *)options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+    [[HelmManager shared] dismissAllModals:options callback:^() {
+        resolve(nil);
+    }];
 }
 
 RCT_EXPORT_METHOD(traitCollection:(NSString*)moduleName callback:(RCTResponseSenderBlock)callback) {

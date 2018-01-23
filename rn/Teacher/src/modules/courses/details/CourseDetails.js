@@ -36,38 +36,33 @@ import Images from '../../../images'
 import CourseDetailsActions from '../tabs/actions'
 import CourseActions from '../actions'
 import CourseDetailsTab from './components/CourseDetailsTab'
+import CourseDetailsHomeTab from './components/CourseDetailsHomeTab'
 import LTIActions from '../../external-tools/actions'
 import mapStateToProps, { type CourseDetailsProps } from './map-state-to-props'
 import refresh from '../../../utils/refresh'
 import Screen from '../../../routing/Screen'
-import Navigator from '../../../routing/Navigator'
 import i18n from 'format-message'
 import ActivityIndicatorView from '../../../common/components/ActivityIndicatorView'
 import OnLayout from 'react-native-on-layout'
 import currentWindowTraits from '../../../utils/windowTraits'
+import { isTeacher, isStudent } from '../../app'
 
-export class CourseDetails extends Component<any, CourseDetailsProps, any> {
-  props: CourseDetailsProps
-  placeholderDidShow: boolean = false
-  animatedValue: Animated.Value
-
-  constructor (props: CourseDetailsProps) {
-    super(props)
-    this.state = { windowTraits: currentWindowTraits() }
-    this.animatedValue = new Animated.Value(-235)
-    this.animate = Animated.event(
-      [{ nativeEvent: { contentOffset: { y: this.animatedValue } } }],
-    )
+export class CourseDetails extends Component<CourseDetailsProps, any> {
+  state = {
+    windowTraits: currentWindowTraits(),
+    selectedTabId: null,
   }
+
+  homeDidShow: boolean = false
+  animatedValue: Animated.Value = new Animated.Value(-235)
+  animate = Animated.event(
+    [{ nativeEvent: { contentOffset: { y: this.animatedValue } } }],
+  )
 
   componentWillMount () {
     this.props.navigator.traitCollection((traits) => {
       this.setState({ windowTraits: traits.window })
     })
-  }
-
-  componentDidMount () {
-    this.showPlaceholder()
   }
 
   selectTab = (tab: Tab) => {
@@ -79,7 +74,15 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
         courseColor: processColor(this.props.color),
       })
     } else {
-      this.props.navigator.show(tab.html_url)
+      if (isTeacher()) {
+        this.props.navigator.show(tab.html_url)
+      } else {
+        const url = `/courses/${this.props.courseID}/tabs/${tab.id}`
+        this.props.navigator.show(url)
+      }
+    }
+    if (this.state.windowTraits.horizontal !== 'compact') {
+      this.setState({ selectedTabId: tab.id })
     }
   }
 
@@ -91,24 +94,28 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
     this.props.navigator.show(`/courses/${this.props.course.id}/settings`, { modal: true, modalPresentationStyle: 'formsheet' })
   }
 
-  showPlaceholder () {
-    let navigator: Navigator = this.props.navigator
-    navigator.traitCollection((traits) => {
-      if (traits.window.horizontal !== 'compact' && !this.placeholderDidShow && this.props.course) {
-        this.placeholderDidShow = true
+  showHome () {
+    if (this.homeDidShow || !this.props.course || !this.props.tabs.length) return
+    this.homeDidShow = true
+    if (this.state.windowTraits.horizontal !== 'compact') {
+      let home = this.props.tabs.find(({ id }) => id === 'home')
+      if (home) {
+        Promise.resolve().then(() => this.selectTab(home))
+      } else {
         this.props.navigator.show(`/courses/${this.props.course.id}/placeholder`, {}, { courseColor: this.props.color, course: this.props.course })
-        this.setState({ windowTraits: traits.window })
       }
-    })
+    }
   }
 
   onTraitCollectionChange () {
     this.props.navigator.traitCollection((traits) => {
-      this.setState({ windowTraits: traits.window })
-      if (!this.placeholderDidShow && this.state.windowTraits.horizontal !== 'compact') {
-        this.props.navigator.show(`/courses/${this.props.course.id}/placeholder`, {}, { courseColor: this.props.color, course: this.props.course })
-        this.placeholderDidShow = true
+      if (
+        this.state.windowTraits.horizontal === 'compact' &&
+        traits.horizontal !== 'compact'
+      ) {
+        this.homeDidShow = false
       }
+      this.setState({ windowTraits: traits.window })
     })
   }
 
@@ -122,10 +129,26 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
   }
 
   renderTab = (tab: Tab) => {
-    return <CourseDetailsTab key={tab.id} tab={tab} courseColor={this.props.color} onPress={this.selectTab} attendanceTabID={this.props.attendanceTabID} />
+    const props = {
+      key: tab.id,
+      tab,
+      courseColor: this.props.color,
+      onPress: this.selectTab,
+      attendanceTabID: this.props.attendanceTabID,
+      testID: `courses-details.tab.${tab.id}`,
+      selected: this.state.selectedTabId === tab.id,
+      course: this.props.course,
+    }
+    if (isStudent && tab.id === 'home') {
+      console.log(this.props)
+      return <CourseDetailsHomeTab {...props} />
+    }
+
+    return <CourseDetailsTab {...props} />
   }
 
   render () {
+    this.showHome()
     const course = this.props.course
     const courseColor = this.props.color
 
@@ -169,24 +192,27 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
         contentOffset: { y: -headerHeight },
       }
     }
+    let rightBarButtons = []
+    if (isTeacher()) {
+      rightBarButtons.push({
+        image: Images.course.settings,
+        testID: 'course-details.navigation-edit-course-btn',
+        action: this.editCourse.bind(this),
+        accessibilityLabel: i18n('Edit course settings'),
+      })
+    }
+
     return (
       <Screen
         title={courseCode}
-        navBarTitleColor={'#fff'}
+        navBarTitleColor='#fff'
         statusBarStyle='light'
         navBarColor={courseColor}
         navBarStyle='dark'
         onTraitCollectionChange={this.onTraitCollectionChange.bind(this)}
         {...screenProps}
         disableGlobalSafeArea
-        rightBarButtons={[
-          {
-            image: Images.course.settings,
-            testID: 'course-details.navigation-edit-course-btn',
-            action: this.editCourse.bind(this),
-            accessibilityLabel: i18n('Edit course settings'),
-          },
-        ]}
+        rightBarButtons={rightBarButtons}
       >
         <View
           style={styles.container}
@@ -377,7 +403,9 @@ CourseDetails.propTypes = {
 
 export let Refreshed: any = refresh(
   props => {
-    props.refreshLTITools(props.courseID)
+    if (isTeacher()) {
+      props.refreshLTITools(props.courseID)
+    }
     props.refreshCourses()
     props.refreshTabs(props.courseID)
   },

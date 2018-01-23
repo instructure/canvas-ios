@@ -104,7 +104,6 @@ exports[`SubmissionSettings renders properly 1`] = `
                     Object {
                       "fontWeight": "600",
                     },
-                    undefined,
                   ],
                   Object {
                     "fontFamily": ".SFUIDisplay-semibold",
@@ -250,7 +249,6 @@ exports[`SubmissionSettings renders properly 1`] = `
                     Object {
                       "fontWeight": "600",
                     },
-                    undefined,
                   ],
                   Object {
                     "fontFamily": ".SFUIDisplay-semibold",
@@ -446,7 +444,6 @@ exports[`SubmissionSettings renders the anonymous grading toggle as disabled whe
                     Object {
                       "fontWeight": "600",
                     },
-                    undefined,
                   ],
                   Object {
                     "fontFamily": ".SFUIDisplay-semibold",
@@ -593,7 +590,6 @@ exports[`SubmissionSettings renders the anonymous grading toggle as disabled whe
                     Object {
                       "fontWeight": "600",
                     },
-                    undefined,
                   ],
                   Object {
                     "fontFamily": ".SFUIDisplay-semibold",

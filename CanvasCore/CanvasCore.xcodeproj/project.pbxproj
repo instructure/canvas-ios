@@ -11,6 +11,7 @@
 		2C34211C1F7409CD00D8E158 /* OSSAttributionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C34211B1F74099400D8E158 /* OSSAttributionViewController.swift */; };
 		2C34211D1F7409CF00D8E158 /* components.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C34211A1F74099400D8E158 /* components.plist */; };
 		2C44846F1F72FD83000D1778 /* feature_toggles.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CAF1B3B1F72B294007225DF /* feature_toggles.plist */; };
+		2C5649E820111E0400C0D1BB /* EnrollmentSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD7769D201111F700589D4F /* EnrollmentSplitViewController.swift */; };
 		2C6796C01FD9E36B00BE7BC0 /* DrawerTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6796BF1FD9E36B00BE7BC0 /* DrawerTransition.swift */; };
 		2C6D608A1F72F85F009C3707 /* SecretsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6D60891F72F85F009C3707 /* SecretsTests.swift */; };
 		2C7CBD2B1F79A42600E5EC02 /* CGRect+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7CBD2A1F79A42600E5EC02 /* CGRect+Core.swift */; };
@@ -526,6 +527,7 @@
 		2CD6B56E1FD20A9800C7DE15 /* WindowTraitsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WindowTraitsManager.h; sourceTree = "<group>"; };
 		2CD6B56F1FD20A9800C7DE15 /* WindowTraitsManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WindowTraitsManager.m; sourceTree = "<group>"; };
 		2CD7769B200977EC00589D4F /* UIApplicationDelegate+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplicationDelegate+Core.swift"; sourceTree = "<group>"; };
+		2CD7769D201111F700589D4F /* EnrollmentSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollmentSplitViewController.swift; sourceTree = "<group>"; };
 		2CF6DEB52006A039007A5591 /* UIViewController+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Core.swift"; sourceTree = "<group>"; };
 		2CFAFBD01FD21B3800F22C7F /* WindowTraits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowTraits.swift; sourceTree = "<group>"; };
 		3BA0F9B520069CEB00E64448 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
@@ -1930,6 +1932,7 @@
 		4961F5EF1F8FB6160093EC86 /* Enrollments */ = {
 			isa = PBXGroup;
 			children = (
+				2CD7769D201111F700589D4F /* EnrollmentSplitViewController.swift */,
 				4961F6171F8FB6C50093EC86 /* Color */,
 				4961F6001F8FB6C40093EC86 /* Course */,
 				4961F6051F8FB6C40093EC86 /* Enrollment */,
@@ -3363,6 +3366,7 @@
 				4961F5541F8FAF280093EC86 /* AudioRecorderView.swift in Sources */,
 				49CE96981F8FF41B00121A43 /* SubmissionAnswer.swift in Sources */,
 				49CE97991F900D0000121A43 /* User+Details.swift in Sources */,
+				2C5649E820111E0400C0D1BB /* EnrollmentSplitViewController.swift in Sources */,
 				4961F5911F8FB2230093EC86 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
 				49CE96681F8FF41B00121A43 /* QuestionDescriptionCell.swift in Sources */,
 				49CE96701F8FF41B00121A43 /* NonNativeQuizTakingViewController.swift in Sources */,

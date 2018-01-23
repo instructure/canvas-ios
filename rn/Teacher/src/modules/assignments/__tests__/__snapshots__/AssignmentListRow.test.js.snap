@@ -164,7 +164,6 @@ exports[`renders correctly 1`] = `
                   Object {
                     "fontWeight": "600",
                   },
-                  undefined,
                 ],
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
@@ -187,11 +186,13 @@ exports[`renders correctly 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Object {
-                  "color": "#8B969E",
-                  "fontSize": 14,
-                  "marginTop": 2,
-                },
+                Array [
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 14,
+                    "marginTop": 2,
+                  },
+                ],
                 Object {
                   "fontFamily": ".SFUIDisplay",
                 },
@@ -412,7 +413,6 @@ exports[`renders correctly assignment icon 1`] = `
                   Object {
                     "fontWeight": "600",
                   },
-                  undefined,
                 ],
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
@@ -435,11 +435,13 @@ exports[`renders correctly assignment icon 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Object {
-                  "color": "#8B969E",
-                  "fontSize": 14,
-                  "marginTop": 2,
-                },
+                Array [
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 14,
+                    "marginTop": 2,
+                  },
+                ],
                 Object {
                   "fontFamily": ".SFUIDisplay",
                 },
@@ -660,7 +662,6 @@ exports[`renders correctly discussion icon 1`] = `
                   Object {
                     "fontWeight": "600",
                   },
-                  undefined,
                 ],
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
@@ -683,11 +684,13 @@ exports[`renders correctly discussion icon 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Object {
-                  "color": "#8B969E",
-                  "fontSize": 14,
-                  "marginTop": 2,
-                },
+                Array [
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 14,
+                    "marginTop": 2,
+                  },
+                ],
                 Object {
                   "fontFamily": ".SFUIDisplay",
                 },
@@ -908,7 +911,6 @@ exports[`renders correctly not published icon 1`] = `
                   Object {
                     "fontWeight": "600",
                   },
-                  undefined,
                 ],
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
@@ -931,11 +933,13 @@ exports[`renders correctly not published icon 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Object {
-                  "color": "#8B969E",
-                  "fontSize": 14,
-                  "marginTop": 2,
-                },
+                Array [
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 14,
+                    "marginTop": 2,
+                  },
+                ],
                 Object {
                   "fontFamily": ".SFUIDisplay",
                 },
@@ -1156,7 +1160,6 @@ exports[`renders correctly published icon 1`] = `
                   Object {
                     "fontWeight": "600",
                   },
-                  undefined,
                 ],
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
@@ -1179,11 +1182,13 @@ exports[`renders correctly published icon 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Object {
-                  "color": "#8B969E",
-                  "fontSize": 14,
-                  "marginTop": 2,
-                },
+                Array [
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 14,
+                    "marginTop": 2,
+                  },
+                ],
                 Object {
                   "fontFamily": ".SFUIDisplay",
                 },
@@ -1415,7 +1420,6 @@ exports[`renders correctly quiz icon 1`] = `
                   Object {
                     "fontWeight": "600",
                   },
-                  undefined,
                 ],
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
@@ -1438,11 +1442,13 @@ exports[`renders correctly quiz icon 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Object {
-                  "color": "#8B969E",
-                  "fontSize": 14,
-                  "marginTop": 2,
-                },
+                Array [
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 14,
+                    "marginTop": 2,
+                  },
+                ],
                 Object {
                   "fontFamily": ".SFUIDisplay",
                 },
@@ -1663,7 +1669,6 @@ exports[`renders correctly with closed due dates 1`] = `
                   Object {
                     "fontWeight": "600",
                   },
-                  undefined,
                 ],
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
@@ -1686,11 +1691,13 @@ exports[`renders correctly with closed due dates 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Object {
-                  "color": "#8B969E",
-                  "fontSize": 14,
-                  "marginTop": 2,
-                },
+                Array [
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 14,
+                    "marginTop": 2,
+                  },
+                ],
                 Object {
                   "fontFamily": ".SFUIDisplay",
                 },
@@ -1911,7 +1918,6 @@ exports[`renders correctly with needs_grading_count 1`] = `
                   Object {
                     "fontWeight": "600",
                   },
-                  undefined,
                 ],
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
@@ -1934,11 +1940,13 @@ exports[`renders correctly with needs_grading_count 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Object {
-                  "color": "#8B969E",
-                  "fontSize": 14,
-                  "marginTop": 2,
-                },
+                Array [
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 14,
+                    "marginTop": 2,
+                  },
+                ],
                 Object {
                   "fontFamily": ".SFUIDisplay",
                 },
@@ -2196,7 +2204,6 @@ exports[`renders correctly with needs_grading_count and set to not_graded 1`] = 
                   Object {
                     "fontWeight": "600",
                   },
-                  undefined,
                 ],
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
@@ -2219,11 +2226,13 @@ exports[`renders correctly with needs_grading_count and set to not_graded 1`] = 
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Object {
-                  "color": "#8B969E",
-                  "fontSize": 14,
-                  "marginTop": 2,
-                },
+                Array [
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 14,
+                    "marginTop": 2,
+                  },
+                ],
                 Object {
                   "fontFamily": ".SFUIDisplay",
                 },
@@ -2444,7 +2453,6 @@ exports[`renders correctly with open due dates 1`] = `
                   Object {
                     "fontWeight": "600",
                   },
-                  undefined,
                 ],
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
@@ -2467,11 +2475,13 @@ exports[`renders correctly with open due dates 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Object {
-                  "color": "#8B969E",
-                  "fontSize": 14,
-                  "marginTop": 2,
-                },
+                Array [
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 14,
+                    "marginTop": 2,
+                  },
+                ],
                 Object {
                   "fontFamily": ".SFUIDisplay",
                 },
@@ -2692,7 +2702,6 @@ exports[`renders correctly with selected props 1`] = `
                   Object {
                     "fontWeight": "600",
                   },
-                  undefined,
                 ],
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
@@ -2715,11 +2724,13 @@ exports[`renders correctly with selected props 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Object {
-                  "color": "#8B969E",
-                  "fontSize": 14,
-                  "marginTop": 2,
-                },
+                Array [
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 14,
+                    "marginTop": 2,
+                  },
+                ],
                 Object {
                   "fontFamily": ".SFUIDisplay",
                 },

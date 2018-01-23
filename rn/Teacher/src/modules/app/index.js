@@ -63,4 +63,11 @@ const app = {
   current: (): App => current,
 }
 
+export function isTeacher (): boolean {
+  return app.current().appId === 'teacher'
+}
+export function isStudent (): boolean {
+  return app.current().appId === 'student'
+}
+
 export default (app: *)

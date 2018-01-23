@@ -17,6 +17,7 @@
     
 
 import CanvasCore
+import TechDebt
 
 public func EnrollmentsTab(session: Session) throws -> UIViewController {
     let _: (UIViewController, URL)->() = { vc, url in
@@ -64,45 +65,15 @@ public func EnrollmentsTab(session: Session) throws -> UIViewController {
 
     let dashboardVC = HelmViewController(moduleName: "/", props: [:])
     let dashboardNav = HelmNavigationController(rootViewController: dashboardVC)
-    let dashboardSplit = HelmSplitViewController()
-    dashboardSplit.viewControllers = [dashboardNav, UINavigationController(rootViewController:EmptyViewController())]
+    let dashboardSplit = EnrollmentSplitViewController()
+    let emptyNav = UINavigationController(rootViewController:EmptyViewController())
+    emptyNav.navigationBar.barTintColor = Brand.current.navBgColor
+    emptyNav.navigationBar.tintColor = Brand.current.navButtonColor
+    emptyNav.navigationBar.isTranslucent = false
+    dashboardNav.delegate = dashboardSplit
+    dashboardSplit.viewControllers = [dashboardNav, emptyNav]
     dashboardSplit.tabBarItem.title = NSLocalizedString("Courses", comment: "Courses page title")
     dashboardSplit.tabBarItem.image = .icon(.course)
     dashboardSplit.tabBarItem.selectedImage = .icon(.course, filled: true)
     return dashboardSplit
 }
-
-
-import TechDebt
-
-class EnrollmentSplitController: SplitViewController {
-    init(session: Session) {
-        super.init()
-        preferredDisplayMode = .allVisible
-        definesPresentationContext = true
-        setupTab()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func setupTab() {
-        let coursesTitle = NSLocalizedString("Courses", comment: "Courses page title")
-        tabBarItem.title = coursesTitle
-        tabBarItem.image = .icon(.course)
-        tabBarItem.selectedImage = .icon(.course, filled: true)
-    }
-}
-
-extension EnrollmentSplitController: UINavigationControllerDelegate {
-    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        if let masterNav = masterNavigationController, let coursesViewController = masterTopViewController, toVC == coursesViewController,
-            let detailNav = detailNavigationController, detailNav != masterNav, operation == .pop {
-            let emptyVC = EmptyViewController()
-            detailNav.viewControllers = [emptyVC]
-        }
-        return nil
-    }
-}
-

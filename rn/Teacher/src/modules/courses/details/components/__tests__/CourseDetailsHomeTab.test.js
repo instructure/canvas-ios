@@ -18,35 +18,37 @@
 
 import { shallow } from 'enzyme'
 import React from 'react'
-import CourseDetailsTab from '../CourseDetailsTab'
+import CourseDetailsHomeTab from '../CourseDetailsHomeTab'
 
 const template = {
   ...require('../../../../../__templates__/tab'),
+  ...require('../../../../../__templates__/course'),
 }
 
 const defaultProps = {
   tab: template.tab(),
+  course: template.course({ 'default_view': 'assignments' }),
   courseColor: 'white',
   onPress: () => {},
 }
 
-describe('CourseDetailsTab', () => {
+describe('CourseDetailsHomeTab', () => {
   it('renders correctly', () => {
-    const tree = shallow(<CourseDetailsTab {...defaultProps} />)
+    const tree = shallow(<CourseDetailsHomeTab {...defaultProps} />)
     expect(tree).toMatchSnapshot()
   })
 
-  it('shows a default icon', () => {
-    const props = {
-      ...defaultProps,
-      tab: template.tab({ id: 'test default icon' }),
-    }
-    const tree = shallow(<CourseDetailsTab {...props} />)
-    expect(tree).toMatchSnapshot()
+  it('renders correctly for each type', () => {
+    const types = ['assignments', 'feed', 'wiki', 'modules', 'syllabus', 'whatisthis']
+    types.forEach((type) => {
+      const course = template.course({ 'default_view': type })
+      const tree = shallow(<CourseDetailsHomeTab {...defaultProps} course={course} />)
+      expect(tree).toMatchSnapshot()
+    })
   })
 
   it('can be selected', () => {
-    const tree = shallow(<CourseDetailsTab {...defaultProps} selected />)
+    const tree = shallow(<CourseDetailsHomeTab {...defaultProps} selected />)
     expect(tree).toMatchSnapshot()
   })
 })

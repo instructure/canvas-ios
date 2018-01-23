@@ -47,7 +47,7 @@ extension CanvasTabBarController: UITabBarControllerDelegate {
 
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         if self.selectedViewController == viewController, selectedIndex == 0, previousSelectedIndex == selectedIndex {
-            if let svc = viewController as? EnrollmentSplitController, let masterNav = svc.viewControllers.first as? UINavigationController {
+            if let svc = viewController as? EnrollmentSplitViewController, let masterNav = svc.viewControllers.first as? UINavigationController {
                 masterNav.popToRootViewController(animated: true)
             }
         }

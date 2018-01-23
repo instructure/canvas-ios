@@ -12,6 +12,7 @@ import Marshal
 
 private enum ActionType: String {
     case refreshCourses = "courses.refresh"
+    case refreshCourseTabs = "courses.tabs.refresh"
     case updateCourseColor = "courses.updateColor"
     case toggleFavorite = "courses.toggleFavorite"
 }
@@ -36,7 +37,8 @@ private enum AsyncAction {
     case refreshCourses([JSONObject], JSONObject)
     case updateCourseColor(String, String)
     case toggleFavorite(String, Bool)
-
+    case refreshCourseTabs(String, [JSONObject])
+    
     init?(action: Action) {
         switch action.type {
         case .refreshCourses:
@@ -57,6 +59,13 @@ private enum AsyncAction {
             if let courseID: String = try? action.payload <| "courseID",
                 let isFavorite: Bool = try? action.payload <| "markAsFavorite" {
                 self = .toggleFavorite(courseID, isFavorite)
+                return
+            }
+        case .refreshCourseTabs:
+            if let courseID: String = try? action.payload <| "courseID",
+                let result = action.result as? JSONObject,
+                let tabs: [JSONObject] = try? result <| "data" {
+                self = .refreshCourseTabs(courseID, tabs)
                 return
             }
         }
@@ -89,6 +98,14 @@ private enum AsyncAction {
                 enrollment?.isFavorite = isFavorite
                 try context.save()
             }
+        case .refreshCourseTabs(let courseID, let tabs):
+            let contextID = ContextID(id: courseID, context: .course)
+            let predicate = NSPredicate(format: "%K == %@", "rawContextID", contextID.canvasContextID)
+            let remote = SignalProducer<[JSONObject], NSError>(value: tabs)
+            let tabs   = attemptProducer { try session.enrollmentManagedObjectContext() }
+                .flatMap(.latest) { Tab.syncSignalProducer(predicate, inContext: $0, fetchRemote: remote) }
+                .map { _ in () }
+            return tabs
         }
     }
 }
