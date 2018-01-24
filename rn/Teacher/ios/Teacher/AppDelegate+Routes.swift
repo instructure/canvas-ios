@@ -16,6 +16,7 @@
 
 import Foundation
 import CanvasCore
+import CanvasKeymaster
 
 extension AppDelegate {
     func registerNativeRoutes() {
@@ -35,7 +36,7 @@ extension AppDelegate {
                 date: Date()
             )
         })
-        
+
         HelmManager.shared.registerNativeViewController(for: "/launch_external_tool", factory: { props in
             guard let toolUrl = props["url"] as? String
             ,let baseUrl = CanvasKeymaster.the().currentClient.baseURL?.absoluteString
@@ -47,5 +48,7 @@ extension AppDelegate {
             let ltiController = LTIViewController(toolName: toolName, courseID: nil, launchURL: url, in: currentSession, showDoneButton: true)
             return UINavigationController(rootViewController: ltiController)
         })
+        
+        HelmManager.shared.registerSharedNativeViewControllers()
     }
 }

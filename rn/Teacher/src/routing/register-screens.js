@@ -147,6 +147,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/pages/:url/edit', wrap(PageEdit), store)
   registerScreen('/users/self/files')
   registerScreen('/profile/settings')
+  registerScreen('/support/:type')
   registerScreen('/courses/:courseID/tabs/:tabID')
   registerScreen('/ui', wrap(UI), store)
   registerScreen('/launch_external_tool')

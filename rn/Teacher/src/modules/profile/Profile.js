@@ -25,7 +25,6 @@ import {
   ScrollView,
   ActionSheetIOS,
   Linking,
-  AlertIOS,
   TouchableWithoutFeedback,
   TouchableOpacity,
 } from 'react-native'
@@ -57,9 +56,6 @@ export class Profile extends Component {
     const settingsActions = [
       { title: i18n('Visit the Canvas Guides'), id: 'canvas-guides' },
     ]
-    if (NativeModules.RNMail.canSendMail) {
-      settingsActions.push({ title: i18n('Report a Problem'), id: 'mail' })
-    }
 
     settingsActions.push({ title: i18n('Terms of Use'), id: 'terms' })
     settingsActions.push({ title: i18n('Cancel'), id: 'cancel' })
@@ -131,22 +127,31 @@ export class Profile extends Component {
       case 'canvas-guides':
         Linking.openURL('https://community.canvaslms.com/community/answers/guides/mobile-guide/content?filterID=contentstatus%5Bpublished%5D~category%5Btable-of-contents%5D')
         break
-      case 'mail':
-        NativeModules.RNMail.mail({
-          subject: 'Canvas Teacher - Report a problem',
-          recipients: ['support@instructure.com'],
-        }, (error, event) => {
-          if (error) {
-            AlertIOS.alert(i18n('Unavailable'), i18n('Mail is unavailable on your device.'))
-          }
-        })
-        break
       case 'terms':
         Linking.openURL('https://www.canvaslms.com/policies/terms-of-use')
         break
       default:
         break
     }
+  }
+
+  showHelpMenu = () => {
+    ActionSheetIOS.showActionSheetWithOptions({
+      title: i18n('Help'),
+      options: [i18n('Report a Problem'), i18n('Request a feature'), i18n('Cancel')],
+      cancelButtonIndex: 2,
+    }, async (pressedIndex: number) => {
+      if (pressedIndex === 2) return
+      // the profile itself is presented modally
+      // must dismiss before showing another modal
+      await this.props.navigator.dismiss()
+
+      if (pressedIndex === 0) {
+        this.props.navigator.show('/support/problem', { modal: true })
+      } else {
+        this.props.navigator.show('/support/feature', { modal: true })
+      }
+    })
   }
 
   renderList = () => {
@@ -172,6 +177,7 @@ export class Profile extends Component {
               { externalTools.length > 0 && externalTools.map((externalTool) => buildRow(externalTool.title, () => { this.launchExternalTool(externalTool) })) }
               { (this.props.canMasquerade || masquerading) && buildRow(masqueradeTitle, this.toggleMasquerade) }
               { isStudent && buildRow('Show Grades', null, { onValueChange: this.toggleShowGrades, value: this.props.showsGradesOnCourseCards }) }
+              { buildRow(i18n('Help'), this.showHelpMenu) }
               { !masquerading && buildRow(i18n('Change User'), this.switchUser) }
               { !masquerading && buildRow(i18n('Log Out'), this.logout) }
             </View>)

@@ -15,7 +15,7 @@
 //
 
 /* @flow */
-import { NativeModules, ActionSheetIOS, Linking, AlertIOS } from 'react-native'
+import { NativeModules, ActionSheetIOS, Linking } from 'react-native'
 import React from 'react'
 import { Profile } from '../Profile.js'
 import app from '../../app'
@@ -32,10 +32,6 @@ const template = {
 
 jest.mock('ActionSheetIOS', () => ({
   showActionSheetWithOptions: jest.fn(),
-}))
-
-jest.mock('AlertIOS', () => ({
-  alert: jest.fn(),
 }))
 
 let defaultProps = {}
@@ -150,68 +146,56 @@ describe('Profile Tests', () => {
       <Profile { ...defaultProps } />
     ).getInstance()
 
-    instance.handleActions(2)
-    expect(Linking.openURL).toHaveBeenCalled()
-  })
-
-  it('opens mail app to report a problem', () => {
-    const mail = jest.fn((data, cb) => {
-      cb()
-    })
-    NativeModules.RNMail = {
-      ...NativeModules.RNMail,
-      mail,
-      canSendMail: true,
-    }
-
-    const instance = renderer.create(
-      <Profile { ...defaultProps } />
-    ).getInstance()
-
-    instance.handleActions(1)
-    expect(NativeModules.RNMail.mail).toHaveBeenCalled()
-  })
-
-  it('fails to send mail', () => {
-    const mail = jest.fn((data, cb) => {
-      cb('failed')
-    })
-    NativeModules.RNMail = {
-      ...NativeModules.RNMail,
-      mail,
-      canSendMail: true,
-    }
-
-    const instance = renderer.create(
-      <Profile { ...defaultProps } />
-    ).getInstance()
-
-    instance.handleActions(1)
-    expect(AlertIOS.alert).toHaveBeenCalled()
-  })
-
-  it('mail app is not configured, so hitting the button at index 1 should open a link', () => {
-    NativeModules.RNMail = {
-      ...NativeModules.RNMail,
-      canSendMail: false,
-    }
-
-    const instance = renderer.create(
-      <Profile { ...defaultProps } />
-    ).getInstance()
-
     instance.handleActions(1)
     expect(Linking.openURL).toHaveBeenCalled()
   })
 
-  it('cancel the action sheet', () => {
+  it('opens an action sheet when Help is tapped', () => {
     const instance = renderer.create(
-      <Profile { ...defaultProps } />
+      <Profile {...defaultProps} />
     ).getInstance()
 
-    instance.handleActions(3)
-    expect(Linking.openURL).not.toHaveBeenCalled()
-    expect(NativeModules.RNMail.mail).not.toHaveBeenCalled()
+    instance.showHelpMenu()
+    expect(ActionSheetIOS.showActionSheetWithOptions).toHaveBeenCalled()
+  })
+
+  it('shows /support/problem when Report a problem is tapped', async () => {
+    const instance = renderer.create(
+      <Profile {...defaultProps} />
+    ).getInstance()
+
+    instance.showHelpMenu()
+    await ActionSheetIOS.showActionSheetWithOptions.mock.calls[0][1](0)
+
+    expect(defaultProps.navigator.show).toHaveBeenCalledWith(
+      '/support/problem',
+      { modal: true }
+    )
+  })
+
+  it('shows /support/feature when Request a feature is tapped', async () => {
+    const instance = renderer.create(
+      <Profile {...defaultProps} />
+    ).getInstance()
+
+    instance.showHelpMenu()
+    await ActionSheetIOS.showActionSheetWithOptions.mock.calls[0][1](1)
+
+    expect(defaultProps.navigator.show).toHaveBeenCalledWith(
+      '/support/feature',
+      { modal: true }
+    )
+  })
+
+  it('doesnt navigate when Cancel is pressed', async () => {
+    const instance = renderer.create(
+      <Profile {...defaultProps} />
+    ).getInstance()
+
+    instance.showHelpMenu()
+    await ActionSheetIOS.showActionSheetWithOptions.mock.calls[0][1](2)
+
+    expect(defaultProps.navigator.show).not.toHaveBeenCalled()
   })
 
   it('secret tap!', async () => {
