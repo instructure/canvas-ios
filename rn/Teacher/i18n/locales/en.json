@@ -605,6 +605,9 @@
   "forwarded_message_3acb578c": {
     "message": "Forwarded Message:"
   },
+  "front_page_50cae87e": {
+    "message": "Front Page"
+  },
   "full_screen_712e95f1": {
     "message": "Full screen"
   },
@@ -1030,6 +1033,9 @@
   },
   "quizzes_7e598f57": {
     "message": "Quizzes"
+  },
+  "recent_activity_51239235": {
+    "message": "Recent Activity"
   },
   "recipient_recipient_394cf528": {
     "message": "Recipient: { recipient }"
