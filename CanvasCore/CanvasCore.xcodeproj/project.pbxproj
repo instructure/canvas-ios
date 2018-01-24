@@ -311,7 +311,6 @@
 		497CA7791F82D19A00501613 /* UITraitEnvironmentExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA76B1F82D18B00501613 /* UITraitEnvironmentExtensions.swift */; };
 		497CA77A1F82D19A00501613 /* UIViewControllerRotationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA76C1F82D18B00501613 /* UIViewControllerRotationExtensions.swift */; };
 		497CA77B1F82D19A00501613 /* UIUserInterfaceSizeClassExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA76D1F82D18B00501613 /* UIUserInterfaceSizeClassExtensions.swift */; };
-		4988D47D1F82DCC10006D18C /* LoadingStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4988D47C1F82DCBF0006D18C /* LoadingStateViewController.swift */; };
 		498C9A601FB3663C009FBE33 /* URL+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498C9A5F1FB3663C009FBE33 /* URL+Core.swift */; };
 		49A667D31F96B1B900A5166E /* UIApplication+Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A667D21F96B1B900A5166E /* UIApplication+Reactive.swift */; };
 		49CE96571F8FF41B00121A43 /* Quizzes.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49CE95F01F8FF41900121A43 /* Quizzes.xcassets */; };
@@ -841,7 +840,6 @@
 		497CA76B1F82D18B00501613 /* UITraitEnvironmentExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITraitEnvironmentExtensions.swift; sourceTree = "<group>"; };
 		497CA76C1F82D18B00501613 /* UIViewControllerRotationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerRotationExtensions.swift; sourceTree = "<group>"; };
 		497CA76D1F82D18B00501613 /* UIUserInterfaceSizeClassExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUserInterfaceSizeClassExtensions.swift; sourceTree = "<group>"; };
-		4988D47C1F82DCBF0006D18C /* LoadingStateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingStateViewController.swift; sourceTree = "<group>"; };
 		498C9A5F1FB3663C009FBE33 /* URL+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Core.swift"; sourceTree = "<group>"; };
 		49A667D21F96B1B900A5166E /* UIApplication+Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Reactive.swift"; sourceTree = "<group>"; };
 		49CE95F01F8FF41900121A43 /* Quizzes.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Quizzes.xcassets; sourceTree = "<group>"; };
@@ -2215,7 +2213,6 @@
 				494AE0861F8436C0001A8F31 /* LoginConfiguration.swift */,
 				494AE0871F8436C0001A8F31 /* NativeLoginManager.h */,
 				494AE0881F8436C1001A8F31 /* NativeLoginManager.m */,
-				4988D47C1F82DCBF0006D18C /* LoadingStateViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -3068,7 +3065,6 @@
 				4961F63C1F8FB7180093EC86 /* GradingPeriodAPI.swift in Sources */,
 				49CE97341F8FFEA600121A43 /* SubmissionType.swift in Sources */,
 				4961F6721F8FB9620093EC86 /* FileUploadsViewModel.swift in Sources */,
-				4988D47D1F82DCC10006D18C /* LoadingStateViewController.swift in Sources */,
 				4961F6261F8FB7010093EC86 /* Enrollment+Colors.swift in Sources */,
 				4938ACF71F8FD2340069F43D /* Todo.swift in Sources */,
 				49CE96871F8FF41B00121A43 /* QuizSubmissionTimerController.swift in Sources */,

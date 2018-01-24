@@ -59,6 +59,11 @@ FOUNDATION_EXPORT const unsigned char CanvasKeymasterVersionString[];
 @property (nonatomic, readonly) RACSignal<UIViewController *> *signalForLogout;
 
 /**
+    Signal for "can't login because we have more than one logged in user"
+ */
+@property (nonatomic, readonly) RACSignal<UIViewController *> *signalForCannotLoginAutomatically;
+
+/**
  If set to YES, branding information is fetches as part of the login process.
  Defaults to NO
  */

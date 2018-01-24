@@ -45,7 +45,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
 @end
 
 @implementation CanvasKeymaster {
-    RACSubject *_subjectForClientLogout, *_subjectForClientLogin;
+    RACSubject *_subjectForClientLogout, *_subjectForClientLogin, *_subjectForClientCannotLogInAutomatically;
     CKIClient *_currentClient;
     dispatch_once_t _once;
 }
@@ -56,6 +56,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
     if (self) {
         _subjectForClientLogin = [RACSubject new];
         _subjectForClientLogout = [RACSubject new];
+        _subjectForClientCannotLogInAutomatically = [RACSubject new];
         self.fetchesBranding = NO;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(accessTokenExpired:) name:CKIClientAccessTokenExpiredNotification object:nil];
     }
@@ -269,6 +270,10 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
     return [_subjectForClientLogout deliverOn:[RACScheduler mainThreadScheduler]];
 }
 
+- (RACSignal *)signalForCannotLoginAutomatically {
+    return [_subjectForClientCannotLogInAutomatically deliverOn:[RACScheduler mainThreadScheduler]];
+}
+
 - (RACSignal *)signalForLogin
 {
     RACSignal *signalForInitialClient = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
@@ -278,6 +283,8 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
             [subscriber sendNext:self.currentClient];
         } else if (self.currentClient == nil) {
             [self login];
+        } else {
+            [_subjectForClientCannotLogInAutomatically sendNext:self.domainPicker];
         }
         [subscriber sendCompleted];
         

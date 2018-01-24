@@ -30,6 +30,7 @@ CanvasApp _Nonnull CanvasAppTeacher = @"teacher";
 @property (nonatomic) NSDictionary *injectedLoginInfo;
 @property (nonatomic) RACDisposable *loginObserver;
 @property (nonatomic) RACDisposable *logoutObserver;
+@property (nonatomic) RACDisposable *multipleLoginObserver;
 @property (nonatomic) RACDisposable *clientObserver;
 @property (nonatomic) UIViewController *domainPicker;
 @property (nonatomic) CKIClient *currentClient;
@@ -174,12 +175,9 @@ RCT_EXPORT_METHOD(stopObserving)
     return manager;
 }
 
-- (instancetype)init {
-    
+- (id)init {
     self = [super init];
-    if (self) {
-        [self setup];
-    }
+    self.shouldCleanupOnNextLogoutEvent = NO;
     return self;
 }
 
@@ -189,9 +187,10 @@ RCT_EXPORT_METHOD(stopObserving)
     [self.logoutObserver dispose];
     [self.loginObserver dispose];
     [self.clientObserver dispose];
+    [self.multipleLoginObserver dispose];
     
     __weak NativeLoginManager *weakSelf = self;
-    self.logoutObserver = [TheKeymaster.signalForLogout subscribeNext:^(UIViewController * _Nullable x) {
+    void (^logoutHandler)(UIViewController *) = ^void(UIViewController * _Nullable x) {
         __strong NativeLoginManager *self = weakSelf;
         self.domainPicker = x;
         if (self.injectedLoginInfo) { return; }
@@ -203,7 +202,10 @@ RCT_EXPORT_METHOD(stopObserving)
         
         [self.delegate didLogout:x];
         [self sendLoginEvent:nil];
-    }];
+    };
+    
+    self.logoutObserver = [TheKeymaster.signalForLogout subscribeNext:logoutHandler];
+    self.multipleLoginObserver = [TheKeymaster.signalForCannotLoginAutomatically subscribeNext:logoutHandler];
     
     self.loginObserver = [TheKeymaster.signalForLogin subscribeNext:^(CKIClient * _Nullable client) {
         __strong NativeLoginManager *self = weakSelf;
