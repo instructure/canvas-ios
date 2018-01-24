@@ -83,7 +83,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
         NSHTTPURLResponse *failingResponse = error.userInfo[AFNetworkingOperationFailingURLResponseErrorKey];
         if (failingResponse.statusCode == 401) {
             __strong CKIClient *client = weakClient;
-            [FXKeychain.sharedCanvasKeychain removeClient:client];
+            [[FXKeychain sharedKeychain] removeClient:client];
             [self reloadClients];
         }
     }];
@@ -133,13 +133,13 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
 - (void)deleteClient:(UIButton *)deleteBtn
 {
     CKIClient *clientToDelete = self.clients[deleteBtn.tag];
-    [[FXKeychain sharedCanvasKeychain] removeClient:clientToDelete];
+    [[FXKeychain sharedKeychain] removeClient:clientToDelete];
     [self reloadClients];
 }
 
 - (void)reloadClients {
     
-    self.clients = [[[FXKeychain sharedCanvasKeychain] clients] sortedArrayUsingComparator:^NSComparisonResult(CKIClient *obj1, CKIClient *obj2) {
+    self.clients = [[[FXKeychain sharedKeychain] clients] sortedArrayUsingComparator:^NSComparisonResult(CKIClient *obj1, CKIClient *obj2) {
         return [obj1.currentUser.name compare:obj2.currentUser.name];
     }];
     for (CKIClient *client in self.clients) {

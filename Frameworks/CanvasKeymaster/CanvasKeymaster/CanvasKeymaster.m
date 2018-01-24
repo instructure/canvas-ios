@@ -77,7 +77,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
 
 - (CKIClient *)clientFromKeychain
 {
-    FXKeychain *keychain = [FXKeychain sharedCanvasKeychain];
+    FXKeychain *keychain = [FXKeychain sharedKeychain];
     NSArray *clients = [keychain clients];
     // if we only have 1 client, lets log them in automatically
     if (clients.count == 1) {
@@ -129,7 +129,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
 
 - (NSInteger)numberOfClients
 {
-    return [[FXKeychain sharedCanvasKeychain] clients].count;
+    return [[FXKeychain sharedKeychain] clients].count;
 }
 
 - (void)removeExtraClientsIfNecessary {
@@ -139,10 +139,10 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
     BOOL hasDeletedExtraClients = [[NSUserDefaults standardUserDefaults] boolForKey:DELETE_EXTRA_CLIENTS_USER_PREFS_KEY];
     if (!hasDeletedExtraClients) {
         NSMutableDictionary *deletedClients = [@{} mutableCopy];
-        [[[FXKeychain sharedCanvasKeychain] clients] enumerateObjectsUsingBlock:^(CKIClient *client, NSUInteger idx, BOOL *stop) {
+        [[[FXKeychain sharedKeychain] clients] enumerateObjectsUsingBlock:^(CKIClient *client, NSUInteger idx, BOOL *stop) {
             if ([deletedClients objectForKey:client.accessToken]) {
-                [[FXKeychain sharedCanvasKeychain] removeClient:client];        // removes all clients with same access token
-                [[FXKeychain sharedCanvasKeychain] addClient:client];           // adds a single client back
+                [[FXKeychain sharedKeychain] removeClient:client];        // removes all clients with same access token
+                [[FXKeychain sharedKeychain] addClient:client];           // adds a single client back
             }
             else if (client.accessToken != nil) {
                 [deletedClients setObject:client forKey:client.accessToken];
@@ -255,7 +255,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
     
     [signalForClientForUsersDomain subscribeNext:^(CKIClient *currentClient) {
         [self setCurrentClient:currentClient];
-        [[FXKeychain sharedCanvasKeychain] addClient:currentClient];
+        [[FXKeychain sharedKeychain] addClient:currentClient];
         [_subjectForClientLogin sendNext:currentClient];
     } error:^(NSError *error) {
         [self login];
@@ -306,7 +306,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
     }
     
     // check the keychain
-    FXKeychain *keychain = [FXKeychain sharedCanvasKeychain];
+    FXKeychain *keychain = [FXKeychain sharedKeychain];
     NSArray *clients = [keychain clients];
     NSArray *eligibleClients = [clients.rac_sequence filter:^BOOL(CKIClient *aClient) {
         return [aClient.baseURL.host isEqualToString:host];
@@ -358,7 +358,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
     }
     
     // remove from keychain here because removeClient is tied to access token
-    FXKeychain *keychain = [FXKeychain sharedCanvasKeychain];
+    FXKeychain *keychain = [FXKeychain sharedKeychain];
     [keychain removeClient:self.currentClient];
     
     [[self.currentClient logout] subscribeError:^(NSError *error) {
@@ -425,7 +425,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
         return;
     }
     
-    [[FXKeychain sharedCanvasKeychain] removeClient:self.currentClient];
+    [[FXKeychain sharedKeychain] removeClient:self.currentClient];
     
     CKIClient *plainOlClient = [self.currentClient copy];
     plainOlClient.actAsUserID = nil;
@@ -435,16 +435,16 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
     [[plainOlClient fetchCurrentUser] subscribeNext:^(id x) {
         [plainOlClient setValue:x forKeyPath:@"currentUser"];
         self.currentClient = plainOlClient;
-        [[FXKeychain sharedCanvasKeychain] addClient:plainOlClient];
+        [[FXKeychain sharedKeychain] addClient:plainOlClient];
         [_subjectForClientLogin sendNext:plainOlClient];
     }];
 }
 
 - (void)resetKeymasterForTesting {
     [[NSHTTPCookieStorage sharedHTTPCookieStorage] removeCookiesSinceDate:[NSDate dateWithTimeIntervalSinceReferenceDate:0]];
-    BOOL shouldLogout = [[FXKeychain sharedCanvasKeychain].clients count] > 0;
-    for (CKIClient *client in [[FXKeychain sharedCanvasKeychain].clients copy]) {
-        [[FXKeychain sharedCanvasKeychain] removeClient:client];
+    BOOL shouldLogout = [[FXKeychain sharedKeychain].clients count] > 0;
+    for (CKIClient *client in [[FXKeychain sharedKeychain].clients copy]) {
+        [[FXKeychain sharedKeychain] removeClient:client];
     }
     if (shouldLogout) {
         [self logout];

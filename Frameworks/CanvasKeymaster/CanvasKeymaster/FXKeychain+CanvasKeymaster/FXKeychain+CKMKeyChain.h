@@ -20,7 +20,7 @@
 @class CKIClient;
 
 @interface FXKeychain (CKMKeychain)
-+ (instancetype)sharedCanvasKeychain;
++ (instancetype)sharedKeychain;
 
 - (NSArray *)clients;
 - (void)addClient:(CKIClient *)client;
