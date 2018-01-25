@@ -23,6 +23,8 @@ import CoreData
 
 
 public final class Group: Enrollment {
+    @NSManaged internal (set) public var courseID: String?
+    
     public override var contextID: ContextID {
         return ContextID(id: id, context: .group)
     }
@@ -38,7 +40,8 @@ extension Group: SynchronizedModel {
     }
     
     public func updateValues(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
-        id      = try json.stringID("id")
-        name    = try json <| "name"
+        id       = try json.stringID("id")
+        name     = try json <| "name"
+        courseID = try json.stringID("course_id")
     }
 }

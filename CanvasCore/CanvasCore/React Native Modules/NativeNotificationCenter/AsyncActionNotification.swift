@@ -15,6 +15,7 @@ private enum ActionType: String {
     case refreshCourseTabs = "courses.tabs.refresh"
     case updateCourseColor = "courses.updateColor"
     case toggleFavorite = "courses.toggleFavorite"
+    case refreshGroupsForUser = "groups-for-user.refresh"
 }
 
 private struct Action {
@@ -38,6 +39,7 @@ private enum AsyncAction {
     case updateCourseColor(String, String)
     case toggleFavorite(String, Bool)
     case refreshCourseTabs(String, [JSONObject])
+    case refreshGroupsForUser([JSONObject])
     
     init?(action: Action) {
         switch action.type {
@@ -66,6 +68,12 @@ private enum AsyncAction {
                 let result = action.result as? JSONObject,
                 let tabs: [JSONObject] = try? result <| "data" {
                 self = .refreshCourseTabs(courseID, tabs)
+                return
+            }
+        case .refreshGroupsForUser:
+            if let result = action.result as? JSONObject,
+                let groups: [JSONObject] = try? result <| "data" {
+                self = .refreshGroupsForUser(groups)
                 return
             }
         }
@@ -106,6 +114,11 @@ private enum AsyncAction {
                 .flatMap(.latest) { Tab.syncSignalProducer(predicate, inContext: $0, fetchRemote: remote) }
                 .map { _ in () }
             return tabs
+        case .refreshGroupsForUser(let groups):
+            let remote = SignalProducer<[JSONObject], NSError>(value: groups)
+            return attemptProducer { try session.enrollmentManagedObjectContext() }
+                .flatMap(.latest) { Group.syncSignalProducer(inContext: $0, fetchRemote: remote) }
+                .map { _ in () }
         }
     }
 }

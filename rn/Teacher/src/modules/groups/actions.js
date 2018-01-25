@@ -33,6 +33,7 @@ export const GroupActions = (api: CanvasApi): * => ({
   })),
   refreshUsersGroups: createAction('groups-for-user.refresh', (userID?: string = 'self') => ({
     promise: api.getUsersGroups(userID),
+    syncToNative: true,
   })),
 })
 
