@@ -57,6 +57,8 @@ class CalendarEventDetailViewController: UIViewController {
     private let titleLabel = UILabel()
     private let courseRow = EventRow(icon: .course)
     private let dateRow = EventRow(icon: .calendar)
+    private var details = CanvasWebView()
+    private var detailsHeightConstraint: NSLayoutConstraint?
     
     private let observer: ManagedObjectObserver<CalendarEvent>
     private let refresher: Refresher
@@ -80,7 +82,7 @@ class CalendarEventDetailViewController: UIViewController {
         self.enrollments = session.enrollmentsDataSource
         
         super.init(nibName: nil, bundle: nil)
-        
+
         observer.signal
             .observe(on: UIScheduler())
             .observeValues { [weak self] _, event in
@@ -89,6 +91,7 @@ class CalendarEventDetailViewController: UIViewController {
                 }
                 me.update(for: event)
         }
+        
         update(for: observer.object)
         navigationItem.title = NSLocalizedString("Calendar Event", comment: "")
     }
@@ -112,10 +115,36 @@ class CalendarEventDetailViewController: UIViewController {
         default:
             dateRow.label.text = "--"
         }
+        
+        if let description = event?.htmlDescription {
+            details.loadHTMLString(description, baseURL: nil)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("not supported")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        details.translatesAutoresizingMaskIntoConstraints = false
+        
+        scrollView.addSubview(details)
+        scrollView.bottomAnchor.constraint(equalTo: details.bottomAnchor).isActive = true
+
+        details.topAnchor.constraint(equalTo: stack.bottomAnchor).isActive = true
+        details.leadingAnchor.constraint(equalTo: stack.leadingAnchor).isActive = true
+        details.trailingAnchor.constraint(equalTo: stack.trailingAnchor).isActive = true
+        detailsHeightConstraint = NSLayoutConstraint.constraints(withVisualFormat: "V:[view(0)]", options: [], metrics: nil, views: ["view": self.details]).first
+        if let detailsHeightConstraint = detailsHeightConstraint {
+            details.addConstraint(detailsHeightConstraint)
+        }
+        
+        details.finishedLoading = { [weak self] in
+            self?.details.htmlContentHeight() { height in
+                self?.detailsHeightConstraint?.constant = height
+            }
+        }
     }
     
     override func loadView() {
@@ -129,6 +158,7 @@ class CalendarEventDetailViewController: UIViewController {
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
         stack.alignment = .fill
+        stack.distribution = .fillEqually
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.font = .systemFont(ofSize: 32)
@@ -143,7 +173,6 @@ class CalendarEventDetailViewController: UIViewController {
             scrollView.readableContentGuide.leadingAnchor.constraint(equalTo: stack.leadingAnchor),
             scrollView.readableContentGuide.trailingAnchor.constraint(equalTo: stack.trailingAnchor),
             scrollView.topAnchor.constraint(equalTo: stack.topAnchor, constant: -spacing),
-            scrollView.bottomAnchor.constraint(greaterThanOrEqualTo: stack.bottomAnchor, constant: spacing),
         ])
     }
 }

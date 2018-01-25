@@ -114,6 +114,13 @@ public class CanvasWebView: WKWebView {
         let js = "(function (width) {let metaViewport = document.querySelector('meta[name=viewport]');if (metaViewport) {metaViewport.content='width = ' + width + ', user-scalable = yes';} else {let meta = document.createElement('meta');meta.setAttribute( 'name', 'viewport' );meta.setAttribute( 'content', 'width = '+ width + ', user-scalable = yes' );document.getElementsByTagName('head')[0].appendChild(meta);}})(\(width))"
         evaluateJavaScript(js, completionHandler: nil)
     }
+    
+    public func htmlContentHeight(completionHandler: @escaping (CGFloat) -> Void) {
+        evaluateJavaScript("document.body.scrollHeight") { result, error in
+            guard let height = result as? NSNumber else { completionHandler(0.0); return }
+            completionHandler(CGFloat(height))
+        }
+    }
 
     fileprivate func handle(error: Error) {
         (error as NSError).userInfo.forEach { key, value in print("\(key) => \(value)") }

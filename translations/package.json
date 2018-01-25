@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "export": "./export.js",
-    "import": "./import.js"
+    "import": "./import.js",
+    "prepush": "echo 'No prepush'"
   },
   "dependencies": {
     "aws-sdk": "^2.108.0",

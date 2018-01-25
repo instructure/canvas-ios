@@ -264,7 +264,7 @@ extension CalendarEvent: SynchronizedModel {
             self.allDayDate = allDayDate
             let date = CalendarEvent.dayDateFormatter.date(from: allDayDate)
             startAt = date
-            endAt = date
+            endAt = date?.addingTimeInterval(60 * 60 * 24) // All day dates were not showing because the endAt date was the same as startAt which made the core data predicate not find it
         } else if let startAt = startAt {
             allDayDate = CalendarEvent.dayDateFormatter.string(from: startAt)
         } else {

@@ -26,7 +26,7 @@ extension CalendarEvent {
             return ""
         }
 
-        if startAt.compare(endAt) == .orderedSame {
+        if startAt.compare(endAt) == .orderedSame || allDay {
             return CalendarEvent.dueDateFormatter.string(from: startAt)
         } else {
             return CalendarEvent.dateRangeFormatter.string(from: startAt, to: endAt)
