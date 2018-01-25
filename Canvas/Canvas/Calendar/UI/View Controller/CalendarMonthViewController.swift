@@ -176,12 +176,6 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
         })
     }
 
-    open override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-
-        calendarView = nil
-    }
-
     // ---------------------------------------------
     // MARK: - IBActions
     // ---------------------------------------------
