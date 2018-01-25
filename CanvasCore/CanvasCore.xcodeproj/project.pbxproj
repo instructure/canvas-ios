@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C195F52201948DB003B0D7D /* HelmScreenConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C195F51201948DB003B0D7D /* HelmScreenConfig.swift */; };
 		2C3283B42009651B00810C1B /* MasqueradableWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3283B32009651B00810C1B /* MasqueradableWindow.swift */; };
 		2C34211C1F7409CD00D8E158 /* OSSAttributionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C34211B1F74099400D8E158 /* OSSAttributionViewController.swift */; };
 		2C34211D1F7409CF00D8E158 /* components.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C34211A1F74099400D8E158 /* components.plist */; };
@@ -504,6 +505,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C195F51201948DB003B0D7D /* HelmScreenConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelmScreenConfig.swift; sourceTree = "<group>"; };
 		2C3283B32009651B00810C1B /* MasqueradableWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasqueradableWindow.swift; sourceTree = "<group>"; };
 		2C34211A1F74099400D8E158 /* components.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = components.plist; sourceTree = "<group>"; };
 		2C34211B1F74099400D8E158 /* OSSAttributionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSSAttributionViewController.swift; sourceTree = "<group>"; };
@@ -2190,6 +2192,7 @@
 				2CD6B56E1FD20A9800C7DE15 /* WindowTraitsManager.h */,
 				2CD6B56F1FD20A9800C7DE15 /* WindowTraitsManager.m */,
 				2CFAFBD01FD21B3800F22C7F /* WindowTraits.swift */,
+				2C195F51201948DB003B0D7D /* HelmScreenConfig.swift */,
 			);
 			path = Helm;
 			sourceTree = "<group>";
@@ -3195,6 +3198,7 @@
 				4961F6331F8FB70D0093EC86 /* GradingPeriod.swift in Sources */,
 				4961F6811F8FB9620093EC86 /* Upload+Details.swift in Sources */,
 				4961F62C1F8FB7070093EC86 /* Enrollment+Network.swift in Sources */,
+				2C195F52201948DB003B0D7D /* HelmScreenConfig.swift in Sources */,
 				49CE97A81F900D0000121A43 /* BackdropCell.swift in Sources */,
 				49CE97A21F900D0000121A43 /* Session+User.swift in Sources */,
 				49CE97971F900D0000121A43 /* User+Network.swift in Sources */,

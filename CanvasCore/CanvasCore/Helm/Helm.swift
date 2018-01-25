@@ -87,7 +87,7 @@ open class HelmManager: NSObject {
     
     open func setScreenConfig(_ config: [String: Any], forScreenWithID screenInstanceID: String, hasRendered: Bool) {
         if let vc = viewControllers.object(forKey: screenInstanceID as NSString) {
-            vc.screenConfig = config
+            vc.screenConfig = HelmScreenConfig(config: config)
             vc.screenConfigRendered = hasRendered
             
             // Only handle the styles if the view is visible, so it doesn't happen a bunch of times

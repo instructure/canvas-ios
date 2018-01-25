@@ -22,7 +22,7 @@ import Kingfisher
 public typealias Props = [String: Any]
 
 protocol HelmScreen {
-    var screenConfig: [String: Any] { get set }
+    var screenConfig: HelmScreenConfig { get set }
     var screenInstanceID: String { get }
     var screenConfigRendered: Bool { get set }
 }
@@ -127,7 +127,11 @@ public final class HelmViewController: UIViewController, HelmScreen {
     let moduleName: String
     let screenInstanceID: String
     let props: Props
-    var screenConfig: [String: Any] = [:]
+    var screenConfig: HelmScreenConfig = HelmScreenConfig(config: [:]) {
+        didSet {
+            self.screenConfig.moduleName = self.moduleName
+        }
+    }
     fileprivate var twoLineTitleView: TitleView?
     public override var title: String?  {
         didSet {
@@ -342,7 +346,7 @@ public final class HelmViewController: UIViewController, HelmScreen {
             automaticallyAdjustsScrollViewInsets = autoAdjustInsets
         }
         
-        if screenConfig[PropKeys.navBarTransparent] as? Bool ?? false {
+        if screenConfig.navBarTransparent {
             navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
             navigationController?.navigationBar.shadowImage = UIImage()
             navigationController?.navigationBar.isTranslucent = true
@@ -371,12 +375,8 @@ public final class HelmViewController: UIViewController, HelmScreen {
             navigationController?.setNavigationBarHidden(navBarHidden, animated: true)
         }
         
-        if let navBarColor = screenConfig[PropKeys.navBarColor] ?? HelmManager.shared.defaultScreenConfiguration[moduleName]?[PropKeys.navBarColor] {
-            if let navBarColorNone = navBarColor as? String, navBarColorNone == "none" {
-                navigationController?.navigationBar.barTintColor = nil
-            } else {
-                navigationController?.navigationBar.barTintColor = RCTConvert.uiColor(navBarColor)
-            }
+        if let tint = screenConfig.navBarColor {
+            navigationController?.navigationBar.barTintColor = tint
         }
         
         if let navBarButtonColor = screenConfig[PropKeys.navBarButtonColor] ?? HelmManager.shared.defaultScreenConfiguration[moduleName]?[PropKeys.navBarButtonColor] {
@@ -535,7 +535,7 @@ public final class HelmViewController: UIViewController, HelmScreen {
         }
     }
     
-    private func titleView(with title: String, and subtitle: String, given config: [String: Any]) -> TitleView {
+    private func titleView(with title: String, and subtitle: String, given config: HelmScreenConfig) -> TitleView {
         let titleView = TitleView(frame: CGRect(x: 0, y: 0, width: 0, height: 30))
         titleView.titleLabel.text = title
         titleView.subtitleLabel.text = subtitle
@@ -626,6 +626,24 @@ public final class HelmViewController: UIViewController, HelmScreen {
         if let onTraitCollectionChange = screenConfig["onTraitCollectionChange"] as? NSString {
             HelmManager.shared.bridge.enqueueJSCall("RCTDeviceEventEmitter.emit", args: [onTraitCollectionChange])
         }
+    }
+    
+    override public func willMove(toParentViewController parent: UIViewController?) {
+        // setting these values in viewWillAppear and/or viewWillDisappear don't animate
+        // This is the only place where they animate reliably
+        if parent == nil {
+            var translucent = false
+            let viewControllers = navigationController?.viewControllers ?? []
+            let count = viewControllers.count
+            if count > 1, let nextViewController = viewControllers[count - 2] as? HelmViewController {
+                if let tint = nextViewController.screenConfig.navBarColor {
+                    navigationController?.navigationBar.barTintColor = tint
+                }
+                translucent = nextViewController.screenConfig.navBarTransparent
+            }
+            self.navigationController?.navigationBar.isTranslucent = translucent
+        }
+        super.willMove(toParentViewController: parent)
     }
 }
 
