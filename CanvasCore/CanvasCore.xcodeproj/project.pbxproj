@@ -141,7 +141,7 @@
 		494AE09C1F843A09001A8F31 /* HapticFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0911F843A02001A8F31 /* HapticFeedback.m */; };
 		494AE09D1F843A09001A8F31 /* NativeAccessibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 494AE0971F843A04001A8F31 /* NativeAccessibility.h */; };
 		494AE09E1F843A09001A8F31 /* NativeAccessibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0921F843A02001A8F31 /* NativeAccessibility.m */; };
-		494AE09F1F843A09001A8F31 /* PushNotifications.h in Headers */ = {isa = PBXBuildFile; fileRef = 494AE0931F843A02001A8F31 /* PushNotifications.h */; };
+		494AE09F1F843A09001A8F31 /* PushNotifications.h in Headers */ = {isa = PBXBuildFile; fileRef = 494AE0931F843A02001A8F31 /* PushNotifications.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		494AE0A01F843A09001A8F31 /* PushNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0941F843A03001A8F31 /* PushNotifications.m */; };
 		494AE0A11F843A09001A8F31 /* ScrollViewDisablerManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 494AE0951F843A03001A8F31 /* ScrollViewDisablerManager.h */; };
 		494AE0A21F843A09001A8F31 /* ScrollViewDisablerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE08D1F843A01001A8F31 /* ScrollViewDisablerManager.m */; };

@@ -53,6 +53,7 @@
 		B138F3CE1FDF05BA00930603 /* gRPC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F93595131F8705B700DBF1B5 /* gRPC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B187ACDB1FDF045700CA1B63 /* CgRPC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F93595101F8705B600DBF1B5 /* CgRPC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B19D76121FDF3F3400CB065A /* SoSeedy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19D76111FDF3F3400CB065A /* SoSeedy.swift */; };
+		B1B62182200FFDDC006AA782 /* AppDelegate+Push.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B62181200FFDDC006AA782 /* AppDelegate+Push.swift */; };
 		DF02A1E31EFC26BE00B17B8D /* InboxPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF02A1E21EFC26BE00B17B8D /* InboxPageTest.swift */; };
 		DF02A2091EFC31C000B17B8D /* InboxPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF02A2081EFC31C000B17B8D /* InboxPage.swift */; };
 		DF02A22F1EFC43A400B17B8D /* TabBarControllerPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF02A22E1EFC43A400B17B8D /* TabBarControllerPage.swift */; };
@@ -262,6 +263,7 @@
 		9210A7D2CE7CB864C8337310 /* Pods-defaults-Teacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.release.xcconfig"; sourceTree = "<group>"; };
 		B170B0651F58756E00B92700 /* SoLazy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B19D76111FDF3F3400CB065A /* SoSeedy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoSeedy.swift; sourceTree = "<group>"; };
+		B1B62181200FFDDC006AA782 /* AppDelegate+Push.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AppDelegate+Push.swift"; path = "Teacher/AppDelegate+Push.swift"; sourceTree = "<group>"; };
 		D063D27A1B3640208ABF74D4 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		DF02A1E21EFC26BE00B17B8D /* InboxPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxPageTest.swift; sourceTree = "<group>"; };
 		DF02A2081EFC31C000B17B8D /* InboxPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxPage.swift; sourceTree = "<group>"; };
@@ -368,6 +370,7 @@
 				61BD85FA1EB29270005A09A5 /* bridging-header.h */,
 				2C96863B1FFE9FC3005127A3 /* LaunchScreen.storyboard */,
 				2CA3473E1F2147290000BB79 /* Localizable.strings */,
+				B1B62181200FFDDC006AA782 /* AppDelegate+Push.swift */,
 			);
 			name = Teacher;
 			sourceTree = "<group>";
@@ -1004,6 +1007,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1B62182200FFDDC006AA782 /* AppDelegate+Push.swift in Sources */,
 				494AE0BB1F843CB5001A8F31 /* TeacherAttendanceViewController.swift in Sources */,
 				494AE0BA1F843CB5001A8F31 /* AppDelegate+Routes.swift in Sources */,
 				61BD85FC1EB2933C005A09A5 /* AppDelegate.swift in Sources */,

@@ -57,7 +57,7 @@ export default function refresh (
       }
 
       componentWillMount () {
-        if (shouldRefresh(this.props)) {
+        if (this.props.forceRefresh || shouldRefresh(this.props)) {
           this.setLastUpdate(Date.now())
           refreshFunction(this.props)
         } else if (!this.getLastUpdate() || Date.now() > this.getLastUpdate() + ttl) {

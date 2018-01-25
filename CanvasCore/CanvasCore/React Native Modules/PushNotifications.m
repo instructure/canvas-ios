@@ -17,9 +17,19 @@
 #import "PushNotifications.h"
 #import <React/RCTConvert.h>
 
+NSString * const PushNotificationsStorageKey = @"PushNotificationsStorageKey";
+
 @import UserNotifications;
 
 @implementation PushNotifications
+
++ (void)recordNotification:(UNNotification *)notification
+{
+    NSDictionary *payload = notification.request.content.userInfo;
+    NSArray *existing = [[NSUserDefaults standardUserDefaults] arrayForKey:PushNotificationsStorageKey];
+    NSArray *all = existing ? [existing arrayByAddingObject:payload] : @[payload];
+    [[NSUserDefaults standardUserDefaults] setObject:all forKey:PushNotificationsStorageKey];
+}
 
 RCT_EXPORT_MODULE()
 
@@ -56,6 +66,11 @@ RCT_EXPORT_METHOD(scheduleLocalNotification:(NSDictionary *)notification)
             NSLog(@"Something went wrong: %@",error);
         }
     }];
+}
+
+RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(pushNotifications)
+{
+    return [[NSUserDefaults standardUserDefaults] arrayForKey:PushNotificationsStorageKey] ?: @[];
 }
 
 @end

@@ -56,6 +56,7 @@ type State = {
   currentStudentID: ?string,
   drawerInset: number,
   hasScrolledToInitialSubmission: boolean,
+  hasSetInitialDrawerPosition: boolean,
   submissions: Array<SubmissionDataProps>,
 }
 
@@ -70,6 +71,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
   static drawerState = new DrawerState()
   static defaultProps = {
     onDismiss: () => {},
+    drawerPosition: 0,
   }
 
   constructor (props: SpeedGraderProps) {
@@ -83,19 +85,16 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
         height,
       },
       currentStudentID: props.userID,
+      currentPageIndex: props.studentIndex,
       drawerInset: SpeedGrader.drawerState.drawerHeight(position, height),
       hasScrolledToInitialSubmission: false,
+      hasSetInitialDrawerPosition: false,
       submissions: [],
     }
     SpeedGrader.drawerState.registerDrawer(this)
-    this.currentPageIndex = props.studentIndex
   }
 
-  snapTo = (position: DrawerPosition) => {
-    this.setState({ drawerInset: SpeedGrader.drawerState.drawerHeight(position, this.state.size.height) })
-  }
-
-  componentWillMount () {
+  componentDidMount () {
     this.setSubmissions(this.props)
   }
 
@@ -103,12 +102,22 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
     this.setSubmissions(nextProps)
   }
 
+  // DrawerObserver
+  snapTo = (position: DrawerPosition) => {
+    this.setState({ drawerInset: SpeedGrader.drawerState.drawerHeight(position, this.state.size.height) })
+  }
+
   setSubmissions (props: SpeedGraderProps) {
-    if (this.state.submissions.length) return
     const submissions = props.filter
       ? props.filter(props.submissions)
       : props.submissions
-    this.setState({ submissions })
+    const currentPageIndex = submissions.findIndex(s => {
+      return s.userID === props.userID
+    })
+    this.setState({
+      submissions,
+      currentPageIndex: this.state.currentPageIndex || currentPageIndex >= 0 ? currentPageIndex : null,
+    })
   }
 
   componentWillUnmount () {
@@ -126,14 +135,22 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
     }
 
     this.setState((prevState, props) => {
-      if (this._flatList == null || prevState.hasScrolledToInitialSubmission) {
-        return prevState
-      }
-      this._flatList.scrollToOffset({ animated: false, offset: this.state.size.width * this.props.studentIndex })
-      return { ...prevState, hasScrolledToInitialSubmission: true }
-    })
+      let nextState = prevState
 
-    this._flatList.scrollToOffset({ animated: false, offset: width * this.currentPageIndex })
+      if (this._flatList && !prevState.hasSetInitialDrawerPosition) {
+        if (this.props.selectedTabIndex != null && this.props.selectedTabIndex >= 0) {
+          SpeedGrader.drawerState.snapTo(1, false)
+        }
+        nextState = { ...nextState, hasSetInitialDrawerPosition: true }
+      }
+
+      if (this._flatList && !prevState.hasScrolledToInitialSubmission) {
+        this._flatList.scrollToOffset({ animated: false, offset: this.state.size.width * this.state.currentPageIndex })
+        nextState = { ...nextState, hasScrolledToInitialSubmission: true }
+      }
+
+      return nextState
+    })
   }
 
   _captureFlatList = (list: FlatList) => {
@@ -172,6 +189,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
         navigator={this.props.navigator}
         drawerInset={this.state.drawerInset}
         gradeSubmissionWithRubric={this.props.gradeSubmissionWithRubric}
+        selectedTabIndex={this.props.selectedTabIndex}
       />
     </A11yGroup>
   }
@@ -183,7 +201,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
 
   scrollEnded = (event: Object) => {
     const index = event.nativeEvent.contentOffset.x / this.state.size.width
-    this.currentPageIndex = index
+    this.setState({ currentPageIndex: index })
     const submission = this.state.submissions[index]
     if (submission) {
       const currentStudentID = submission.userID
@@ -220,7 +238,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
         getItemLayout={this.getItemLayout}
         showsHorizontalScrollIndicator={false}
         onMomentumScrollEnd={this.scrollEnded}
-        contentOffset={{ x: this.state.size.width * this.props.studentIndex }}
+        contentOffset={{ x: this.state.size.width * this.state.currentPageIndex }}
         style={{ marginLeft: -PAGE_GUTTER_HALF_WIDTH, marginRight: -PAGE_GUTTER_HALF_WIDTH }}
       />
     )

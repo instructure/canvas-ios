@@ -79,7 +79,7 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
     this.state = {
       width: width,
       height: height,
-      selectedTabIndex: -1,
+      selectedTabIndex: props.selectedTabIndex || -1,
       unsavedChanges: null,
     }
 
@@ -121,6 +121,10 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
     if (position === 0) {
       this.setState({
         selectedTabIndex: -1,
+      })
+    } else if (this.state.selectedTabIndex < 0) {
+      this.setState({
+        selectedTabIndex: 0,
       })
     }
   }

@@ -53,7 +53,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
     <RCTScrollView
       contentOffset={
         Object {
-          "x": NaN,
+          "x": 0,
         }
       }
       data={
@@ -242,7 +242,7 @@ exports[`SpeedGrader renders with a filter 1`] = `
     <RCTScrollView
       contentOffset={
         Object {
-          "x": NaN,
+          "x": 0,
         }
       }
       data={

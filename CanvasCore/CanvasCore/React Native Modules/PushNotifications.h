@@ -16,8 +16,11 @@
 
 #import <Foundation/Foundation.h>
 #import <React/RCTBridgeModule.h>
+@import UserNotifications;
 
 
 @interface PushNotifications : NSObject<RCTBridgeModule>
+
++ (void)recordNotification:(UNNotification *)notification;
 
 @end

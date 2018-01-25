@@ -30,8 +30,16 @@ public let EarlGreyExists = NSClassFromString("EarlGreyImpl") != nil;
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
-    let loginConfig = LoginConfiguration(mobileVerifyName: "iCanvas", logo: #imageLiteral(resourceName: "logo"))
+    let loginConfig = LoginConfiguration(mobileVerifyName: "iosTeacher", logo: #imageLiteral(resourceName: "logo"))
     var window: UIWindow?
+
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        UNUserNotificationCenter.current().getNotificationSettings { [weak self] settings in
+            if settings.authorizationStatus == .authorized {
+                self?.didRegisterForRemoteNotifications(deviceToken)
+            }
+        }
+    }
 
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
         BuddyBuildSDK.uiTestsDidReceiveRemoteNotification(userInfo)
@@ -94,12 +102,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func setupForPushNotifications() {
         let center = UNUserNotificationCenter.current()
         center.delegate = self
+        UIApplication.shared.registerForRemoteNotifications()
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.alert,.sound])
+        completionHandler([.alert, .sound])
     }
-    
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        PushNotifications.record(response.notification)
+        StartupManager.shared.enqueueTask {
+            RCTPushNotificationManager.didReceiveRemoteNotification(response.notification.request.content.userInfo) { _ in
+                completionHandler()
+            }
+        }
+    }
+
     func applicationDidBecomeActive(_ application: UIApplication) {
         if (!EarlGreyExists) {
             AppStoreReview.requestReview()

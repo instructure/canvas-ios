@@ -17,6 +17,7 @@
 // @flow
 
 export type RefreshState = { refreshing: boolean }
-export type RefreshProps
-  = { refresh: () => void }
-  & RefreshState
+export type RefreshProps = RefreshState & {
+  refresh: () => void,
+  forceRefresh?: boolean,
+}

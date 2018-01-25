@@ -16,6 +16,7 @@
 
 import UIKit
 import CanvasCore
+import UserNotifications
 
 class RootTabBarController: UITabBarController {
     
@@ -38,6 +39,10 @@ class RootTabBarController: UITabBarController {
         DispatchQueue.main.async {
             StartupManager.shared.markStartupFinished()
         }
+
+        #if !arch(i386) && !arch(x86_64)
+            registerForRemoteNotifications()
+        #endif
     }
     
     func configureTabs() {
@@ -46,6 +51,16 @@ class RootTabBarController: UITabBarController {
         controllers.append(stagingTab())
         #endif
         viewControllers = controllers
+    }
+
+    func registerForRemoteNotifications() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .sound, .alert]) { granted, _ in
+            if granted {
+                DispatchQueue.main.async {
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+            }
+        }
     }
     
     func coursesTab() -> UIViewController {

@@ -25,6 +25,7 @@ import {
   NativeModules,
   NativeEventEmitter,
   AppState,
+  PushNotificationIOS,
 } from 'react-native'
 import store from './src/redux/store'
 import setupI18n from './i18n/setup'
@@ -38,6 +39,8 @@ import hydrate from './src/redux/hydrate-action'
 import { beginUpdatingUnreadCount, stopUpdatingUnreadCount } from './src/modules/inbox/update-unread-count'
 import App, { type AppId } from './src/modules/app'
 import device from 'react-native-device-info'
+import { route } from './src/routing'
+import i18n from 'format-message'
 
 import { Client, Configuration } from 'bugsnag-react-native'
 const configuration = new Configuration()
@@ -45,16 +48,16 @@ configuration.notifyReleaseStages = ['testflight', 'production']
 configuration.appVersion = `${device.getVersion()}-${device.getBuildNumber()}`
 global.crashReporter = new Client(configuration)
 
-const PushNotifications = NativeModules.PushNotifications
-
 // Useful for demos when you don't want that annoying yellow box showing up all over the place
 // such as, when demoing
 console.disableYellowBox = true
 setupI18n(NativeModules.SettingsManager.settings.AppleLocale)
 registerScreens(store)
 
-const NativeLogin = NativeModules.NativeLogin
-const Helm = NativeModules.Helm
+const {
+  NativeLogin,
+  Helm,
+} = NativeModules
 
 const loginHandler = async ({
   appId,
@@ -96,7 +99,24 @@ const loginHandler = async ({
       store.dispatch(logout)
     }
 
-    PushNotifications.requestPermissions()
+    PushNotificationIOS.addEventListener('notification', (notification) => {
+      if (notification.getData() && notification.getData().html_url) {
+        const isSubmissionComment = notification
+          .getAlert()
+          .toLowerCase()
+          .startsWith(i18n('submission comment'))
+        const url = notification.getData().html_url
+        try {
+          const r = route(url, {
+            selectedTabIndex: isSubmissionComment ? 1 : -1,
+            forceRefresh: true,
+          })
+          NativeModules.Helm.present(r.screen, r.passProps, { modal: true })
+        } catch (e) {}
+      }
+      notification.finish(PushNotificationIOS.FetchResult.NewData)
+    })
+
     setSession(session)
     if (!skipHydrate) {
       await hydrateStoreFromPersistedState(store)

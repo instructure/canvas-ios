@@ -70,6 +70,7 @@ import PageEdit from '../modules/pages/edit/PageEdit'
 import UI from '../common/UI'
 import PickerPage from '../common/components/PickerPage'
 import Dashboard from '../modules/dashboard/Dashboard'
+import PushNotifications from '../modules/staging/PushNotifications'
 
 import { Store } from 'redux'
 import { registerScreen } from './'
@@ -151,4 +152,5 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/tabs/:tabID')
   registerScreen('/ui', wrap(UI), store)
   registerScreen('/launch_external_tool')
+  registerScreen('/push-notifications', wrap(PushNotifications), store)
 }

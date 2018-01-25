@@ -50,6 +50,15 @@ describe('refresh', () => {
     expect(refreshFunction).toHaveBeenCalled()
   })
 
+  it('calls the refresh function if forceRefresh is true', () => {
+    let refreshFunction = jest.fn()
+    let Refreshed = refresh(refreshFunction, () => false, () => false)(Text)
+    renderer.create(
+      <Refreshed forceRefresh={true}>This is text</Refreshed>
+    )
+    expect(refreshFunction).toHaveBeenCalled()
+  })
+
   it('doesnt call the refresh function if should refresh return false', () => {
     let refreshFunction = jest.fn()
     let Refreshed = refresh(refreshFunction, () => false, () => false)(Text)

@@ -79,6 +79,10 @@ export default class Staging extends Component<any, StagingProps, any> {
     this.props.navigator.dismiss()
   }
 
+  viewPushNotifications = () => {
+    this.props.navigator.show('/push-notifications')
+  }
+
   render () {
     const path = this.state && this.state.path || ''
     return (
@@ -132,6 +136,11 @@ export default class Staging extends Component<any, StagingProps, any> {
               Force Crash
             </Button>
           </View>
+          <View style={styles.purge}>
+            <Button onPress={ this.viewPushNotifications }>
+              View Push Notifications
+            </Button>
+          </View>
         </View>
       </Screen>
     )
@@ -142,7 +151,7 @@ let styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     padding: 30,
-    marginTop: 64,
+    marginTop: 16,
     flexDirection: 'column',
     backgroundColor: 'white',
   },
