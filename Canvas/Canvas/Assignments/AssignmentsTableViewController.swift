@@ -236,7 +236,8 @@ class GradesTableViewController: AssignmentsTableViewController {
         try super.init(session: session, courseID: courseID, route: route)
 
         guard let course = session.enrollmentsDataSource[ContextID(id: courseID, context: .course)] as? Course else {
-            ❨╯°□°❩╯⌢"We should have a course."
+            let userInfo = [NSLocalizedDescriptionKey: NSLocalizedString("Error loading course.", comment: "")]
+            throw NSError(domain: "com.instructure.ios", code: -1, userInfo: userInfo)
         }
 
         let gradingPeriod = header.selectedGradingPeriod.signal
