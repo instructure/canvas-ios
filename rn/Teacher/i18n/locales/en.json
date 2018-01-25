@@ -656,6 +656,9 @@
   "haven_t_submitted_yet_3a127a27": {
     "message": "Haven''t submitted yet"
   },
+  "help_4c4968b1": {
+    "message": "Help"
+  },
   "hidden_files_inside_will_be_available_with_links_e9e3d233": {
     "message": "Hidden. Files inside will be available with links."
   },
@@ -730,9 +733,6 @@
   },
   "long_description_7d89285c": {
     "message": "Long Description"
-  },
-  "mail_is_unavailable_on_your_device_fb52a13c": {
-    "message": "Mail is unavailable on your device."
   },
   "mark_all_as_read_8f3bdf57": {
     "message": "Mark All as Read"
@@ -1076,6 +1076,9 @@
   "report_a_problem_4d48624a": {
     "message": "Report a Problem"
   },
+  "request_a_feature_f33319e5": {
+    "message": "Request a feature"
+  },
   "require_an_access_code_46a02601": {
     "message": "Require an Access Code"
   },
@@ -1417,9 +1420,6 @@
   },
   "un_starred_8fef021f": {
     "message": "Un-starred"
-  },
-  "unavailable_46d2c344": {
-    "message": "Unavailable"
   },
   "undo_a7be8fef": {
     "message": "Undo"
