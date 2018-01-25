@@ -20,7 +20,10 @@ import i18n from 'format-message'
 import generateId from 'format-message-generate-id/underscored_crc32'
 import translations from './locales/index'
 
-export function sanitizeLocale (locale: string): string {
+// Some crashing happening because a locale is not returned, so I've made this an optional
+// and if we can't get a locale, default to english
+export function sanitizeLocale (locale: ?string): string {
+  if (!locale) return 'en'
   if (locale.indexOf('@') !== -1) {
     const index = locale.indexOf('@')
     locale = locale.substr(0, index)
@@ -28,7 +31,7 @@ export function sanitizeLocale (locale: string): string {
   return locale.replace('_', '-')
 }
 
-export default function (locale: string): void {
+export default function (locale: ?string): void {
   const sanitizedLocale = sanitizeLocale(locale)
   i18n.setup({
     locale: sanitizedLocale,

@@ -35,3 +35,8 @@ test('sanitize apple locale should work with all the weird apple stuff', () => {
   const sanitized = sanitizeLocale('en_US@calendar=gregorian')
   expect(sanitized).toEqual('en-US')
 })
+
+test('missing locale', () => {
+  const sanitized = sanitizeLocale(null)
+  expect(sanitized).toEqual('en')
+})
