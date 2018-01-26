@@ -18,15 +18,12 @@
 
 import api from '../apis/index'
 import { getSession, setSession } from '../session'
-
-let client = {
-  get: jest.fn(() => Promise.resolve()),
-  post: jest.fn(() => Promise.resolve()),
-}
+import { default as httpClient, isAbort } from './httpClient'
 
 const moduleExports = {
   default: api,
-  httpClient: () => client,
+  httpClient,
+  isAbort,
   getSession,
   setSession,
 }

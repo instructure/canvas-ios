@@ -17,7 +17,6 @@
 /* @flow */
 
 import httpClient from '../httpClient'
-import axios, { CancelToken } from 'axios'
 
 type UploadTarget = {
   upload_url: string,
@@ -29,7 +28,7 @@ export type UploadOptions = {
   parentFolderID?: string,
   parentFolderPath?: string,
   onProgress?: (Progress) => void,
-  cancelUpload: (() => void) => void,
+  cancelUpload?: (() => void) => void,
 }
 
 export type Progress = {
@@ -69,10 +68,17 @@ async function postFile (uri: string, target: UploadTarget, options: UploadOptio
     type: 'multipart/form-data',
   })
 
-  const cancelToken = new CancelToken(c => options.cancelUpload && options.cancelUpload(c))
-  const response = await axios.post(upload_url, formdata, {
-    onUploadProgress: ({ loaded, total }) => { options.onProgress && options.onProgress({ loaded, total }) },
-    cancelToken,
+  const uploading = httpClient().post(upload_url, formdata, {
+    headers: { // remove default auth & accept
+      'Authorization': null,
+      'Accept': 'application/json',
+    },
   })
+  uploading.request.upload.addEventListener('progress', ({ loaded, total }) => {
+    options.onProgress && options.onProgress({ loaded, total })
+  })
+  options.cancelUpload && options.cancelUpload(() => uploading.request.abort())
+  const response = await uploading
+
   return response.data
 }

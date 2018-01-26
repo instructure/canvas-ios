@@ -20,7 +20,7 @@ import httpClient from '../httpClient'
 import { paginate, exhaust } from '../utils/pagination'
 
 // Only admins can hit this api successfully. Otherwise, will send back a 401
-export function account (): Promise<AxiosResponse<Account>> {
+export function account (): Promise<ApiResponse<Account>> {
   return httpClient().get('accounts/self')
 }
 

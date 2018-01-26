@@ -22,7 +22,6 @@
     "prepush": "yarn test --coverage && yarn lint:fix && yarn flow"
   },
   "dependencies": {
-    "axios": "^0.16.2",
     "bugsnag-react-native": "^2.7.5",
     "bugsnag-sourcemaps": "^1.0.1",
     "bytes": "https://github.com/n8armstrong/bytes.js",
@@ -67,8 +66,7 @@
     "striptags": "^3.0.1",
     "url-parse": "^1.1.9",
     "uuid": "^3.1.0",
-    "valid-url": "1.0.9",
-    "xmldom": "^0.1.27"
+    "valid-url": "1.0.9"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
@@ -121,14 +119,14 @@
       "flow/*.js",
       "/src/modules/staging",
       "dangerfile.js",
-      "/src/canvas-api"
+      "/src/canvas-api/apis"
     ],
     "coverageDirectory": "./coverage",
     "coverageReporters": [
       "json",
       "json-summary",
       "lcov",
-      "text",
+      "text-summary",
       "html"
     ],
     "coverageThreshold": {

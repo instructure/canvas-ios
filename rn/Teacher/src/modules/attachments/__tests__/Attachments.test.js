@@ -16,22 +16,33 @@
 
 /* @flow */
 
+import { shallow } from 'enzyme'
 import React from 'react'
 import {
   ActionSheetIOS,
   AlertIOS,
+  FlatList,
 } from 'react-native'
-import renderer from 'react-test-renderer'
 import { Attachments } from '../Attachments'
-import explore from '../../../../test/helpers/explore'
-import { Cancel } from 'axios'
 
-jest
-  .mock('Button', () => 'Button')
-  .mock('TouchableHighlight', () => 'TouchableHighlight')
-  .mock('TouchableOpacity', () => 'TouchableOpacity')
-  .mock('../../../routing/Screen')
-  .mock('../AttachmentPicker', () => 'AttachmentPicker')
+jest.mock('FlatList', () => {
+  return ({
+    ListEmptyComponent,
+    data,
+    renderItem,
+  }) => (
+    <view>
+      {data.length > 0
+        ? data.map((item, index) => (
+          <view key={index}>
+            {renderItem({ item, index })}
+          </view>
+        ))
+        : <ListEmptyComponent />
+      }
+    </view>
+  )
+})
 
 const template = {
   ...require('../../../__templates__/attachment'),
@@ -54,7 +65,7 @@ describe('Attachments', () => {
 
   it('renders empty state', () => {
     props.attachments = []
-    expect(render(props).toJSON()).toMatchSnapshot()
+    expect(shallow(<Attachments {...props} />)).toMatchSnapshot()
   })
 
   it('renders attachments', () => {
@@ -62,55 +73,61 @@ describe('Attachments', () => {
       template.attachment({ id: '1' }),
       template.attachment({ id: '2' }),
     ]
-    expect(render(props).toJSON()).toMatchSnapshot()
+    expect(shallow(<Attachments {...props} />)).toMatchSnapshot()
   })
 
   it('shows + button if more attachments allowed', () => {
     props.maxAllowed = 1
     props.attachments = []
-    expect(explore(render(props).toJSON()).selectRightBarButton('attachments.add-btn')).toBeDefined()
+    const tree = shallow(<Attachments {...props} />)
+    const button = tree.find('Screen').prop('rightBarButtons')
+      .find(({ testID }) => testID === 'attachments.add-btn')
+    expect(button).toBeDefined()
   })
 
   it('hides + button if no more attachments allowed', () => {
     props.maxAllowed = 1
     props.attachments = [template.attachment()]
-    expect(explore(render(props).toJSON()).selectRightBarButton('attachments.add-btn')).not.toBeDefined()
+    const tree = shallow(<Attachments {...props} />)
+    const button = tree.find('Screen').prop('rightBarButtons')
+      .find(({ testID }) => testID === 'attachments.add-btn')
+    expect(button).not.toBeDefined()
   })
 
-  it('adds attachments from picker', () => {
-    const createNodeMock = ({ type }) => {
-      if (type === 'AttachmentPicker') {
-        return {
-          show: jest.fn((options, callback) => callback(template.attachment())),
-        }
-      }
-    }
+  it('adds attachments from picker', async () => {
     props.attachments = []
-    const view = render(props, { createNodeMock })
-    expect(explore(view.toJSON()).selectByID('attachments.attachment-row.0')).toBeNull()
-    const add: any = explore(view.toJSON()).selectRightBarButton('attachments.add-btn')
-    add.action()
-    expect(explore(view.toJSON()).selectByID('attachments.attachment-row.0')).not.toBeNull()
+    const tree = shallow(<Attachments {...props} />)
+    tree.instance().captureAttachmentPicker({
+      show: jest.fn((options, callback) => callback(template.attachment())),
+    })
+    expect(tree.find(FlatList).prop('data')).toHaveLength(0)
+    const button = tree.find('Screen').prop('rightBarButtons')
+      .find(({ testID }) => testID === 'attachments.add-btn')
+    button.action()
+    await new Promise(resolve => tree.setState({}, resolve))
+    expect(tree.find(FlatList).prop('data')).toHaveLength(1)
   })
 
-  it('removes attachments', () => {
-    // $FlowFixMe
+  it('removes attachments', async () => {
     AlertIOS.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
     props.attachments = [template.attachment()]
-    const view = render(props)
-    expect(explore(view.toJSON()).selectByID('attachments.attachment-row.0')).not.toBeNull()
-    const remove: any = explore(view.toJSON()).selectByID('attachments.attachment-row.0.remove.btn')
-    remove.props.onPress()
-    expect(explore(view.toJSON()).selectByID('attachments.attachment-row.0')).toBeNull()
+    const tree = shallow(<Attachments {...props} />)
+    expect(tree.find(FlatList).prop('data')).toHaveLength(1)
+    tree.find(FlatList).dive()
+      .find('[testID="attachments.attachment-row.0"]')
+      .simulate('RemovePressed')
+    await new Promise(resolve => tree.setState({}, resolve))
+    expect(tree.find(FlatList).prop('data')).toHaveLength(0)
   })
 
   it('shows attachment', () => {
     props.navigator.show = jest.fn()
     const attachment = template.attachment()
     props.attachments = [attachment]
-    const view = render(props)
-    const row: any = explore(view.toJSON()).selectByID('attachments.attachment-row.0')
-    row.props.onPress()
+    const tree = shallow(<Attachments {...props} />)
+    tree.find(FlatList).dive()
+      .find('[testID="attachments.attachment-row.0"]')
+      .simulate('Press')
     expect(props.navigator.show).toHaveBeenCalledWith(
       '/attachment',
       { modal: true },
@@ -120,52 +137,41 @@ describe('Attachments', () => {
 
   it('dismisses on done', () => {
     props.navigator.dismiss = jest.fn()
-    const done: any = explore(render(props).toJSON()).selectLeftBarButton('attachments.dismiss-btn')
-    done.action()
+    const tree = shallow(<Attachments {...props} />)
+    const button = tree.find('Screen').prop('leftBarButtons')
+      .find(({ testID }) => testID === 'attachments.dismiss-btn')
+    button.action()
     expect(props.navigator.dismiss).toHaveBeenCalled()
   })
 
   it('passes attachments back on dismiss', () => {
     props.onComplete = jest.fn()
     props.attachments = [template.attachment()]
-    const done: any = explore(render(props).toJSON()).selectLeftBarButton('attachments.dismiss-btn')
-    done.action()
+    const tree = shallow(<Attachments {...props} />)
+    const button = tree.find('Screen').prop('leftBarButtons')
+      .find(({ testID }) => testID === 'attachments.dismiss-btn')
+    button.action()
     expect(props.onComplete).toHaveBeenCalledWith(props.attachments)
   })
 
   it('does not pass attachments with errors back on dismiss', async () => {
     const spy = jest.fn()
     props.onComplete = spy
-    const createNodeMock = ({ type }) => {
-      if (type === 'AttachmentPicker') {
-        return {
-          show: jest.fn((options, callback) => callback(template.attachment())),
-        }
-      }
-    }
-    props.uploadAttachment = jest.fn((attachment, options) => {
-      return Promise.reject('Whoa, file big')
-    })
-    props.storageOptions = {
-      uploadPath: '/my files/conversation attachments',
-    }
     props.attachments = []
-    const view = render(props, { createNodeMock })
-    const add: any = explore(view.toJSON()).selectRightBarButton('attachments.add-btn')
-    await add.action()
-    const done: any = explore(view.toJSON()).selectLeftBarButton('attachments.dismiss-btn')
-    done.action()
+    const tree = shallow(<Attachments {...props} />)
+    await new Promise(resolve => tree.setState({
+      attachments: {
+        died: { error: new Error() },
+      },
+    }, resolve))
+    tree.find('Screen').prop('leftBarButtons')
+      .find(({ testID }) => testID === 'attachments.dismiss-btn')
+      .action()
+    await new Promise(resolve => tree.setState({}, resolve))
     expect(spy).toHaveBeenCalledWith([])
   })
 
-  it('renders uploading state', () => {
-    const createNodeMock = ({ type }) => {
-      if (type === 'AttachmentPicker') {
-        return {
-          show: jest.fn((options, callback) => callback(template.attachment())),
-        }
-      }
-    }
+  it('renders uploading state', async () => {
     let resolvePromise = jest.fn()
     props.uploadAttachment = jest.fn((attachment, options) => {
       options.onProgress({ loaded: 400, total: 1024 })
@@ -175,51 +181,45 @@ describe('Attachments', () => {
       uploadPath: '/my files/conversation attachments',
     }
     props.attachments = []
-    const view = render(props, { createNodeMock })
-    const add: any = explore(view.toJSON()).selectRightBarButton('attachments.add-btn')
-    add.action()
-    const icon: any = explore(view.toJSON()).selectByID('attachments.attachment-row.0.icon.progress')
-    const subtitle: any = explore(view.toJSON()).selectByID('attachments.attachment-row.0-subtitle-lbl')
-    expect(icon).not.toBeNull()
-    expect(subtitle.children[0]).toEqual('Uploading 400 B of 1 KB')
+    const tree = shallow(<Attachments {...props} />)
+    tree.instance().captureAttachmentPicker({
+      show: jest.fn((options, callback) => callback(template.attachment())),
+    })
+    tree.find('Screen').prop('rightBarButtons')
+      .find(({ testID }) => testID === 'attachments.add-btn')
+      .action()
+    await new Promise(resolve => tree.setState({}, resolve))
+    const row = tree.find(FlatList).dive().find('[testID="attachments.attachment-row.0"]')
+    expect(row.prop('progress')).toEqual({ loaded: 400, total: 1024 })
     resolvePromise(template.file())
   })
 
   it('renders error state', async () => {
-    const createNodeMock = ({ type }) => {
-      if (type === 'AttachmentPicker') {
-        return {
-          show: jest.fn((options, callback) => callback(template.attachment())),
-        }
-      }
-    }
-    props.uploadAttachment = jest.fn((attachment, options) => {
-      return Promise.reject('Whoa, file big')
-    })
+    const rejection = Promise.reject(new Error('Whoa, file big'))
+    props.uploadAttachment = jest.fn(() => rejection)
     props.storageOptions = {
       uploadPath: '/my files/conversation attachments',
     }
     props.attachments = []
-    const view = render(props, { createNodeMock })
-    const add: any = explore(view.toJSON()).selectRightBarButton('attachments.add-btn')
-    await add.action()
-    const icon: any = explore(view.toJSON()).selectByID('attachments.attachment-row.0.icon.error')
-    expect(icon).not.toBeNull()
+    const tree = shallow(<Attachments {...props} />)
+    tree.instance().captureAttachmentPicker({
+      show: jest.fn((options, callback) => callback(template.attachment())),
+    })
+    tree.find('Screen').prop('rightBarButtons')
+      .find(({ testID }) => testID === 'attachments.add-btn')
+      .action()
+    await rejection.catch(() => {})
+    await new Promise(resolve => tree.setState({}, resolve))
+    const row = tree.find(FlatList).dive().find('[testID="attachments.attachment-row.0"]')
+    expect(row.prop('error')).not.toBeNull()
   })
 
-  it('cancels uploads on cancel', () => {
+  it('cancels uploads on cancel', async () => {
     props.navigator = template.navigator({ dismiss: jest.fn() })
-    const createNodeMock = ({ type }) => {
-      if (type === 'AttachmentPicker') {
-        return {
-          show: jest.fn((options, callback) => callback(template.attachment())),
-        }
-      }
-    }
     props.uploadAttachment = jest.fn((attachment, options) => {
       return new Promise((resolve, reject) => {
         options.cancelUpload(() => {
-          reject(new Cancel())
+          reject(new TypeError('Network request aborted'))
         })
       })
     })
@@ -227,17 +227,20 @@ describe('Attachments', () => {
       uploadPath: '/my files/conversation attachments',
     }
     props.attachments = []
-    const view = render(props, { createNodeMock })
-    const add: any = explore(view.toJSON()).selectRightBarButton('attachments.add-btn')
-    add.action()
-    const cancel: any = explore(view.toJSON()).selectLeftBarButton('attachments.dismiss-btn')
-    cancel.action()
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        const icon: any = explore(view.toJSON()).selectByID('attachments.attachment-row.0.icon.error')
-        icon && resolve()
-      }, 10)
+    const tree = shallow(<Attachments {...props} />)
+    tree.instance().captureAttachmentPicker({
+      show: jest.fn((options, callback) => callback(template.attachment())),
     })
+    tree.find('Screen').prop('rightBarButtons')
+      .find(({ testID }) => testID === 'attachments.add-btn')
+      .action()
+    await new Promise(resolve => tree.setState({}, resolve))
+    tree.find('Screen').prop('leftBarButtons')
+      .find(({ testID }) => testID === 'attachments.dismiss-btn')
+      .action()
+    await new Promise(resolve => tree.setState({}, resolve))
+    const row = tree.find(FlatList).dive().find('[testID="attachments.attachment-row.0"]')
+    expect(row.prop('error')).toBeNull()
   })
 
   it('retries attachment', async () => {
@@ -245,15 +248,8 @@ describe('Attachments', () => {
     let actions = jest.fn()
     // $FlowFixMe
     ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => { actions = callback })
-    const createNodeMock = ({ type }) => {
-      if (type === 'AttachmentPicker') {
-        return {
-          show: jest.fn((options, callback) => callback(template.attachment())),
-        }
-      }
-    }
     props.uploadAttachment = jest.fn((attachment, options) => {
-      if (!retry) return Promise.reject('Whoa, file big')
+      if (!retry) return Promise.reject(new Error('Whoa, file big'))
       options.onProgress({ loaded: 1024, total: 1024 })
       return Promise.resolve(template.file())
     })
@@ -261,18 +257,22 @@ describe('Attachments', () => {
       uploadPath: '/my files/conversation attachments',
     }
     props.attachments = []
-    const view = render(props, { createNodeMock })
-    const add: any = explore(view.toJSON()).selectRightBarButton('attachments.add-btn')
-    await add.action()
+    const tree = shallow(<Attachments {...props} />)
+    tree.instance().captureAttachmentPicker({
+      show: jest.fn((options, callback) => callback(template.attachment())),
+    })
+    tree.find('Screen').prop('rightBarButtons')
+      .find(({ testID }) => testID === 'attachments.add-btn')
+      .action()
+    await new Promise(resolve => tree.setState({}, resolve))
     retry = true
-    const errorIcon: any = explore(view.toJSON()).selectByID('attachments.attachment-row.0.icon.error')
-    errorIcon.props.onPress()
+    tree.find(FlatList).dive()
+      .find('[testID="attachments.attachment-row.0"]')
+      .simulate('Retry')
     await actions(0)
-    const successIcon: any = explore(view.toJSON()).selectByID('attachments.attachment-row.0.icon.complete')
-    expect(successIcon).not.toBeNull()
+    await new Promise(resolve => tree.setState({}, resolve))
+    const row = tree.find(FlatList).dive()
+      .find('[testID="attachments.attachment-row.0"]')
+    expect(row.prop('completed')).toBe(true)
   })
-
-  function render (props, options = {}) {
-    return renderer.create(<Attachments {...props} />, options)
-  }
 })

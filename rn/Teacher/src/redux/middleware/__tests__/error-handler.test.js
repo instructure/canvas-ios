@@ -187,7 +187,7 @@ describe('error-handler-middleware', () => {
 })
 
 describe('parse error message', () => {
-  it('should parse axios response errors', () => {
+  it('should parse api response errors', () => {
     const response = {
       status: 500,
       data: { errors: [{ message: 'Internal server error' }] },
@@ -198,7 +198,7 @@ describe('parse error message', () => {
     expect(result).toEqual(expected)
   })
 
-  it('should parse axios response errors with error object vs array', () => {
+  it('should parse api response errors with error object vs array', () => {
     const response = {
       status: 500,
       data: {
@@ -217,7 +217,7 @@ describe('parse error message', () => {
     expect(result).toEqual(expected)
   })
 
-  it('should parse axios response errors with error empty object vs array', () => {
+  it('should parse api response errors with error empty object vs array', () => {
     const response = {
       status: 500,
       data: {

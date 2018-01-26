@@ -14,12 +14,25 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-/* @flow */
+// @flow
 
 import canvas from '../apis/'
 
-export type ApiResponse<T> = AxiosResponse<T> & {
-  next: ?(() => Promise<ApiResponse<T>>),
+export type ApiConfig = {
+  baseURL?: string,
+  headers?: { [string]: string },
+  params?: { [string]: any },
+  timeout?: number,
+  responseType?: 'text' | 'json' | 'blob' | 'arraybuffer', // 'document' is not supported by react-native
+}
+
+export type ApiResponse<T> = {
+  data: T,
+  status: number,
+  headers: {
+    link: ?string,
+  },
+  next?: () => Promise<ApiResponse<T>>,
 }
 
 export type ApiError = {

@@ -40,8 +40,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import AutoGrowingTextInput from '../../common/components/AutoGrowingTextInput'
 import ModalActivityIndicator from '../../common/components/ModalActivityIndicator'
 import AddressBookToken from './components/AddressBookToken'
-import { createConversation, addMessage } from '../../canvas-api'
-import axios from 'axios'
+import { createConversation, addMessage, isAbort } from '../../canvas-api'
 import { Text } from '../../common/text'
 import throttle from 'lodash/throttle'
 
@@ -149,7 +148,7 @@ export class Compose extends PureComponent {
       this.setState({
         pending: false,
       })
-      if (!axios.isCancel(thrown)) {
+      if (!isAbort(thrown)) {
         setTimeout(() => {
           Alert.alert(i18n('An error occurred'), thrown.message)
         }, 1000)

@@ -45,7 +45,6 @@ describe('TypeAheadSearch', () => {
     shallow(<TypeAheadSearch {...props} />)
     expect(httpClient().get).toHaveBeenCalledWith('/defaultQuery', {
       params: { search: 'Malfurion' },
-      cancelToken: expect.anything(),
     })
   })
 

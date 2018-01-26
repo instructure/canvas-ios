@@ -84,23 +84,23 @@ export function getCourseUsers (courseID: string, enrollmentType?: string = '', 
   return httpClient().get(url, options)
 }
 
-export function favoriteCourse (courseID: string): Promise<AxiosResponse<Favorite>> {
+export function favoriteCourse (courseID: string): Promise<ApiResponse<Favorite>> {
   return httpClient().post(`users/self/favorites/courses/${courseID}`)
 }
 
-export function unfavoriteCourse (courseID: string): Promise<AxiosResponse<Favorite>> {
+export function unfavoriteCourse (courseID: string): Promise<ApiResponse<Favorite>> {
   return httpClient().delete(`users/self/favorites/courses/${courseID}`)
 }
 
-export function updateCourseColor (courseID: string, hexcode: string): Promise<AxiosResponse<UpdateCustomColorResponse>> {
+export function updateCourseColor (courseID: string, hexcode: string): Promise<ApiResponse<UpdateCustomColorResponse>> {
   return httpClient().put(`users/self/colors/course_${courseID}`, { hexcode })
 }
 
-export function createCourse (course: CreateCourse): Promise<AxiosResponse<Course>> {
+export function createCourse (course: CreateCourse): Promise<ApiResponse<Course>> {
   return httpClient().post(`accounts/self/courses`, course)
 }
 
-export function getCourseEnabledFeatures (courseID: string): Promise<AxiosResponse<[string]>> {
+export function getCourseEnabledFeatures (courseID: string): Promise<ApiResponse<[string]>> {
   let features = paginate(`/courses/${courseID}/features/enabled`, {
     per_page: 99,
   })

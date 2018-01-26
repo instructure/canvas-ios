@@ -30,8 +30,7 @@ import AttachmentRow from './AttachmentRow'
 import AttachmentPicker from './AttachmentPicker'
 import EmptyAttachments from './EmptyAttachments'
 import uuid from 'uuid/v1'
-import { uploadAttachment, type Progress } from '../../canvas-api'
-import axios from 'axios'
+import { uploadAttachment, isAbort, type Progress } from '../../canvas-api'
 import RowSeparator from '../../common/components/rows/RowSeparator'
 
 type StorageOptions = {
@@ -271,7 +270,9 @@ export class Attachments extends Component<Props, any> {
         },
       })
     } catch (e) {
-      const error = axios.isCancel(e) ? i18n('Upload cancelled by user') : e.message || i18n('Failed to upload attachment')
+      const error = isAbort(e)
+        ? i18n('Upload cancelled by user')
+        : (e.message || i18n('Failed to upload attachment'))
       this.setState({
         attachments: {
           ...this.state.attachments,

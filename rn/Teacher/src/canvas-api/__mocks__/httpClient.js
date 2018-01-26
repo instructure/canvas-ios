@@ -16,9 +16,19 @@
 
 // @flow
 
+const fetching = () => {
+  const promise = Promise.resolve()
+  promise.request = { abort: jest.fn() }
+  return promise
+}
+
 let client = {
-  get: jest.fn(() => Promise.resolve()),
-  post: jest.fn(() => Promise.resolve()),
+  get: jest.fn(fetching),
+  post: jest.fn(fetching),
 }
 
 export default () => client
+
+export function isAbort (error: Error) {
+  return error.message.includes('abort')
+}

@@ -17,8 +17,6 @@
 /* @flow */
 
 import httpClient from '../httpClient'
-import axios from 'axios'
-import { DOMParser } from 'xmldom'
 
 export async function uploadMedia (uri: string, type: string): Promise<string> {
   const domain = await getMediaServerDomain()
@@ -42,9 +40,14 @@ async function getMediaSession (): Promise<string> {
 
 async function getUploadToken (domain: string, session: string): Promise<string> {
   const url = uploadURL(domain, 'uploadtoken', 'add')
-  const response = await axios.post(url, { ks: session })
-  const doc = new DOMParser().parseFromString(response.data, 'text/xml')
-  return doc.getElementsByTagName('id')[0].textContent
+  const response = await httpClient().post(url, { ks: session }, {
+    responseType: 'text',
+    headers: { // remove default auth & accept
+      'Authorization': null,
+      'Accept': 'application/xml',
+    },
+  })
+  return response.data.match(/<id>([^<]+)<\/id>/)[1]
 }
 
 async function postUpload (uri: string, domain: string, session: string, token: string, type: string): Promise<string> {
@@ -56,18 +59,29 @@ async function postUpload (uri: string, domain: string, session: string, token: 
     name: type === 'video' ? 'videocomment.mp4' : 'audiocomment.wav',
     type: 'multipart/form-data',
   })
-  const response = await axios.post(url, formdata)
+  const response = await httpClient().post(url, formdata, {
+    responseType: 'text',
+    headers: { // remove default auth & accept
+      'Authorization': null,
+      'Accept': null,
+    },
+  })
   return response.data
 }
 
 async function getMediaID (domain: string, session: string, token: string, type: string): Promise<string> {
   const url = `${uploadURL(domain, 'media', 'addFromUploadedFile')}&uploadTokenId=${token}&ks=${session}`
-  const response = await axios.post(url, {
+  const response = await httpClient().post(url, {
     'mediaEntry:name': 'Media Comment',
     'mediaEntry:mediaType': type === 'video' ? '1' : '5',
+  }, {
+    responseType: 'text',
+    headers: { // remove default auth & accept
+      'Authorization': null,
+      'Accept': 'application/xml',
+    },
   })
-  const doc = new DOMParser().parseFromString(response.data, 'text/xml')
-  return doc.getElementsByTagName('id')[0].textContent
+  return response.data.match(/<id>([^<]+)<\/id>/)[1]
 }
 
 // UTILS

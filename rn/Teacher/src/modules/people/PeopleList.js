@@ -32,8 +32,7 @@ import { default as TypeAheadSearch, type TypeAheadSearchResults } from '../../c
 import ListEmptyComponent from '../../common/components/ListEmptyComponent'
 import { Heading1 } from '../../common/text'
 import { LinkButton } from '../../common/buttons'
-import { httpClient } from '../../canvas-api'
-import axios from 'axios'
+import { httpClient, isAbort } from '../../canvas-api'
 import RowSeparator from '../../common/components/rows/RowSeparator'
 
 export type Props = NavigationProps & {
@@ -73,7 +72,7 @@ export async function fetch (url: string, params: { [string]: any } = {}, callba
     let response = await httpClient().get(url, options)
     callback(response.data, null)
   } catch (thrown) {
-    if (!axios.isCancel(thrown)) {
+    if (!isAbort(thrown)) {
       callback(null, thrown.message)
     }
   }

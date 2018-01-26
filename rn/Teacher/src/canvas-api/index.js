@@ -17,10 +17,7 @@
 // @flow
 import 'babel-polyfill'
 
-import api from './apis/index'
-import client from './httpClient'
-
-export default api
+export { default } from './apis/index'
 export * from './apis/assignmentGroups'
 export * from './apis/assignments'
 export * from './apis/conversations'
@@ -40,4 +37,5 @@ export * from './apis/pages'
 export * from './apis/accounts'
 
 export * from './session'
-export const httpClient: * = client
+
+export { default as httpClient, isAbort } from './httpClient'
