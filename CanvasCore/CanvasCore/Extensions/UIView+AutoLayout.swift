@@ -21,4 +21,14 @@ extension UIView {
     public func pinToAllSidesOfSuperview() {
         pinToAllSides(ofView: superview)
     }
+    
+    public func centerInSuperview(xMultiplier: CGFloat = 1, yMultiplier: CGFloat = 1) {
+        var yConstant:CGFloat = 0
+        var xConstant:CGFloat = 0
+        if(xMultiplier != 1) { xConstant = 1 }
+        if(yMultiplier != 1) { yConstant = 1 }
+        let y = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: superview, attribute: NSLayoutAttribute.centerY, multiplier: yMultiplier, constant: yConstant)
+        let x = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: superview, attribute: NSLayoutAttribute.centerX, multiplier: xMultiplier, constant: xConstant)
+        superview?.addConstraints([x,y])
+    }
 }
