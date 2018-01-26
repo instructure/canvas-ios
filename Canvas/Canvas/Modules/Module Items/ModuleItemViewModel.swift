@@ -121,9 +121,10 @@ class ModuleItemViewModel: NSObject {
         vm.icon <~ self.moduleItem.producer.map { $0?.icon }
         vm.accessibilityIdentifier.value = "module_item"
         vm.titleLineBreakMode = .byWordWrapping
-
+        
+        let type = self.moduleItem.value!.contentType
         vm.accessoryView <~ SignalProducer.combineLatest(self.completed.producer, self.locked.producer).map { (completed, locked) -> UIView? in
-            guard !locked else {
+            if locked && type != .assignment {
                 let imageView = UIImageView(image: .icon(.lock))
                 imageView.tintColor = .prettyGray()
                 return imageView
@@ -159,9 +160,9 @@ class ModuleItemViewModel: NSObject {
                 }
                 return fontStyle
             }
-        vm.titleTextColor <~ self.locked.producer.map { $0 ? .lightGray : .black }
+        vm.titleTextColor <~ self.locked.producer.map { $0 && type != .assignment ? .lightGray : .black }
         vm.indentationLevel <~ self.moduleItem.producer.map { $0?.indent ?? 0 }.map { Int($0) }
-        vm.selectionEnabled <~ self.locked.producer.map { !$0 }
+        vm.selectionEnabled <~ self.locked.producer.map { !$0 || type == .assignment }
         vm.setSelected <~ self.selected
 
         let contentType = self.moduleItem.producer.map { $0?.contentType.accessibilityLabel }

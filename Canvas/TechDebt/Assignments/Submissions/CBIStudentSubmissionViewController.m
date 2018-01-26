@@ -97,6 +97,10 @@ typedef enum CBISubmissionState : NSUInteger {
         }
     }];
     
+    [RACObserve(self, assignment) subscribeNext:^(id  _Nullable x) {
+        [self updateActions];
+    }];
+    
     RAC(self, legacyAssignment) = [RACObserve(self, viewModel.model) flattenMap:^(CKIAssignment *assignment) {
         if (assignment.name.length == 0 && assignment.id != nil) {
             return [[[TheKeymaster.currentClient refreshModel:assignment parameters:nil] map:^id(CKIAssignment *assignment) {
@@ -526,7 +530,7 @@ typedef enum CBISubmissionState : NSUInteger {
     NSArray *submissionTypes = self.viewModel.model.submissionTypes;
     if (_submissionState == CBISubmissionStateAwaitingSubmission && submissionTypes.count > 0 && ![submissionTypes.firstObject isEqualToString:@"none"]) {
         [actions addObject:self.turnInButton];
-        self.turnInButton.enabled = [self isEnrollmentActiveForCourse];
+        self.turnInButton.enabled = [self isEnrollmentActiveForCourse] && !self.assignment.lockedForUser;
     }
 
     [actions addObject:self.turnInToAddCommentSpacing];

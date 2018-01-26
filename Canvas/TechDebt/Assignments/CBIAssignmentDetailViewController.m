@@ -80,20 +80,41 @@ static NSUInteger const CBIAssignmentDetailNumMinutesInDay = 60 * 24;
     RAC(self, preparingTabsActivityIndicator.hidden) = haveSubmissionViewController;
     RAC(self, segmentedControl.layer.opacity) = haveSubmissionViewController;
     @weakify(self);
-    [[[self.viewModel fetchSubmissionsViewModel] map:^id(id<CBISubmissionsViewModel> submissionViewModel) {
-        return [submissionViewModel createViewController];
-    }] subscribeNext:^(MLVCTableViewController *submissionController) {
-        @strongify(self);
-        self.submissionController = submissionController;
-    } error:^(NSError *error) {
-        @strongify(self);
-        
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedStringFromTableInBundle(@"Network Error", nil, [NSBundle bundleForClass:[self class]], @"Network error title") message:NSLocalizedStringFromTableInBundle(@"Please check your network connection and try again.", nil, [NSBundle bundleForClass:[self class]], @"Network error message") preferredStyle:UIAlertControllerStyleAlert];
-        [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedStringFromTableInBundle(@"Dismiss", nil, [NSBundle bundleForClass:[self class]], @"Dismiss button title") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            // nothing to do.
-        }]];
-        [self presentViewController:alert animated:true completion:nil];
-    }];
+    
+    [self displayContentLockIfNecessary];
+    if (self.viewModel.model.name == nil){
+        self.contentView.hidden = YES;
+        [[[CKIClient currentClient] refreshModel:self.viewModel.model parameters:nil] subscribeError:^(NSError *error) {
+            if (error.code == NSURLErrorBadServerResponse) {
+                [self display404ErrorMessage];
+            }
+        } completed:^{
+            @strongify(self);
+            self.contentView.hidden = NO;
+            [self initializeTabs];
+            [self setupSegmentedControl];
+            [self setTab:DETAIL_TAB_INDEX];
+            [self displayContentLockIfNecessary];
+            [self setupRightBarButtonItems];
+            
+            [[[self.viewModel fetchSubmissionsViewModel] map:^id(id<CBISubmissionsViewModel> submissionViewModel) {
+                return [submissionViewModel createViewController];
+            }] subscribeNext:^(MLVCTableViewController *submissionController) {
+                @strongify(self);
+                self.submissionController = submissionController;
+            } error:^(NSError *error) {
+                @strongify(self);
+                
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedStringFromTableInBundle(@"Network Error", nil, [NSBundle bundleForClass:[self class]], @"Network error title") message:NSLocalizedStringFromTableInBundle(@"Please check your network connection and try again.", nil, [NSBundle bundleForClass:[self class]], @"Network error message") preferredStyle:UIAlertControllerStyleAlert];
+                [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedStringFromTableInBundle(@"Dismiss", nil, [NSBundle bundleForClass:[self class]], @"Dismiss button title") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    // nothing to do.
+                }]];
+                [self presentViewController:alert animated:true completion:nil];
+            }];
+        }];
+    } else {
+        [self styleFont];
+    }
     
     [self initializeTabs];
     [self setupSegmentedControl];
@@ -130,31 +151,6 @@ static NSUInteger const CBIAssignmentDetailNumMinutesInDay = 60 * 24;
         [self presentViewController:storeProductViewController animated:YES completion:nil];
     }
     
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    @weakify(self);
-    
-    [self displayContentLockIfNecessary];
-    if (self.viewModel.model.name == nil){
-        self.contentView.hidden = YES;
-        [[[CKIClient currentClient] refreshModel:self.viewModel.model parameters:nil] subscribeError:^(NSError *error) {
-            if (error.code == NSURLErrorBadServerResponse) {
-                [self display404ErrorMessage];
-            }
-        } completed:^{
-            @strongify(self);
-            self.contentView.hidden = NO;
-            [self initializeTabs];
-            [self setupSegmentedControl];
-            [self setTab:DETAIL_TAB_INDEX];
-            [self displayContentLockIfNecessary];
-            [self setupRightBarButtonItems];
-        }];
-    } else {
-        [self styleFont];   
-    }
 }
 
 - (void)setupRightBarButtonItems {
