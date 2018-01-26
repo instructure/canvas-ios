@@ -10,10 +10,11 @@
 #import <CanvasCore/CanvasCore-Swift.h>
 @import React;
 
-@interface UnreadMessages (React) <RCTBridgeModule>
+@interface TabBarBadgeCounts (React) <RCTBridgeModule>
 @end
 
-@implementation UnreadMessages (React)
-RCT_EXPORT_MODULE(UnreadMessages);
-RCT_EXTERN_METHOD(updateUnreadCount:);
+@implementation TabBarBadgeCounts (React)
+RCT_EXPORT_MODULE(TabBarBadgeCounts);
+RCT_EXTERN_METHOD(updateUnreadMessageCount:);
+RCT_EXTERN_METHOD(updateTodoListCount:);
 @end

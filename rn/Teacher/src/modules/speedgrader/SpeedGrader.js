@@ -42,6 +42,7 @@ import type {
   AsyncSubmissionsDataProps,
   SubmissionDataProps,
 } from '../submissions/list/submission-prop-types'
+import { updateBadgeCounts } from '../tabbar/badge-counts'
 import Screen from '../../routing/Screen'
 import Navigator from '../../routing/Navigator'
 import DrawerState, { type DrawerPosition } from './utils/drawer-state'
@@ -126,6 +127,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
     this.props.refreshSubmissions(this.props.courseID, this.props.assignmentID, false)
     this.props.refreshSubmissionSummary(this.props.courseID, this.props.assignmentID)
     this.props.refreshAssignment(this.props.courseID, this.props.assignmentID)
+    updateBadgeCounts()
   }
 
   onLayout = (event: any) => {

@@ -28,7 +28,7 @@ public func inboxTab() -> UIViewController {
     inboxSplit.extendedLayoutIncludesOpaqueBars = true
     
     inboxSplit.tabBarItem.reactive.badgeValue
-        <~ UnreadMessages.count
+        <~ TabBarBadgeCounts.unreadMessageCount
             .map { count in count > 0 ? "\(count)" : nil }
     
     return inboxSplit

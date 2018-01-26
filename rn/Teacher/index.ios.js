@@ -36,7 +36,7 @@ import logout from './src/redux/logout-action'
 import loginVerify from './src/common/login-verify'
 import { hydrateStoreFromPersistedState } from './src/redux/middleware/persist'
 import hydrate from './src/redux/hydrate-action'
-import { beginUpdatingUnreadCount, stopUpdatingUnreadCount } from './src/modules/inbox/update-unread-count'
+import { beginUpdatingBadgeCounts, stopUpdatingBadgeCounts, updateBadgeCounts } from './src/modules/tabbar/badge-counts'
 import App, { type AppId } from './src/modules/app'
 import device from 'react-native-device-info'
 import { route } from './src/routing'
@@ -77,7 +77,7 @@ const loginHandler = async ({
   skipHydrate: boolean,
 }) => {
   App.setCurrentApp(appId)
-  stopUpdatingUnreadCount()
+  stopUpdatingBadgeCounts()
 
   if (user) {
     // flow already thinks the id is a string but it's not so coerce ;)
@@ -125,7 +125,7 @@ const loginHandler = async ({
     }
     Helm.loginComplete()
     loginVerify()
-    beginUpdatingUnreadCount()
+    beginUpdatingBadgeCounts()
   }
 }
 
@@ -142,5 +142,6 @@ emitter.addListener('Login', loginHandler)
 AppState.addEventListener('change', (nextAppState) => {
   if (nextAppState === 'active') {
     loginVerify()
+    updateBadgeCounts()
   }
 })

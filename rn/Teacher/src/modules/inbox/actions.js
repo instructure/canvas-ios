@@ -18,7 +18,7 @@
 
 import { createAction } from 'redux-actions'
 import canvas from '../../canvas-api'
-import { updateUnreadCount } from './update-unread-count'
+import { updateBadgeCounts } from '../tabbar/badge-counts'
 
 export function createInboxAction (api: any, scope: InboxScope, next?: Function): any {
   return {
@@ -82,7 +82,7 @@ export let InboxActions = (api: CanvasApi): * => ({
       .markConversationAsRead(conversationID)
     if (promise.then) { // for testing
       promise = promise.then(result => {
-        updateUnreadCount()
+        updateBadgeCounts()
         return result
       })
     }

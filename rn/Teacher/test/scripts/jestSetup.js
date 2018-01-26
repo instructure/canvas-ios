@@ -78,6 +78,11 @@ NativeModules.NativeNotificationCenter = {
   postAsyncActionNotification: jest.fn(),
 }
 
+NativeModules.TabBarItemCounts = {
+  updateUnreadMessageCount: jest.fn(),
+  updateTodoListCount: jest.fn(),
+}
+
 jest.mock('NativeEventEmitter')
 
 jest.mock('NetInfo', () => ({

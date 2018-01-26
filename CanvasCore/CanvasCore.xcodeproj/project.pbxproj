@@ -296,8 +296,8 @@
 		49698D7E1F8FA2D000E38B78 /* AttendanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49698D741F8FA2CF00E38B78 /* AttendanceViewController.swift */; };
 		49698D7F1F8FA2D000E38B78 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49698D751F8FA2CF00E38B78 /* DatePickerViewController.swift */; };
 		49698D801F8FA2D000E38B78 /* StatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49698D761F8FA2D000E38B78 /* StatusCell.swift */; };
-		496C7D641F8BEF690010DC03 /* UnreadMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C7D631F8BEF690010DC03 /* UnreadMessages.swift */; };
-		496C7D661F8C00250010DC03 /* UnreadMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = 496C7D651F8C00250010DC03 /* UnreadMessages.m */; };
+		496C7D641F8BEF690010DC03 /* TabBarBadgeCounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C7D631F8BEF690010DC03 /* TabBarBadgeCounts.swift */; };
+		496C7D661F8C00250010DC03 /* TabBarBadgeCounts.m in Sources */ = {isa = PBXBuildFile; fileRef = 496C7D651F8C00250010DC03 /* TabBarBadgeCounts.m */; };
 		497815311FCE14B800D57BBB /* Tab+Modules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497815301FCE14B800D57BBB /* Tab+Modules.swift */; };
 		497C0F8A1FACD0D200084032 /* CanvasWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C0F891FACD0D200084032 /* CanvasWebView.swift */; };
 		497CA76E1F82D19600501613 /* Helm.m in Sources */ = {isa = PBXBuildFile; fileRef = 497CA75F1F82D18900501613 /* Helm.m */; };
@@ -826,8 +826,8 @@
 		49698D741F8FA2CF00E38B78 /* AttendanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendanceViewController.swift; sourceTree = "<group>"; };
 		49698D751F8FA2CF00E38B78 /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		49698D761F8FA2D000E38B78 /* StatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusCell.swift; sourceTree = "<group>"; };
-		496C7D631F8BEF690010DC03 /* UnreadMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnreadMessages.swift; sourceTree = "<group>"; };
-		496C7D651F8C00250010DC03 /* UnreadMessages.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnreadMessages.m; sourceTree = "<group>"; };
+		496C7D631F8BEF690010DC03 /* TabBarBadgeCounts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarBadgeCounts.swift; sourceTree = "<group>"; };
+		496C7D651F8C00250010DC03 /* TabBarBadgeCounts.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarBadgeCounts.m; sourceTree = "<group>"; };
 		497815301FCE14B800D57BBB /* Tab+Modules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tab+Modules.swift"; sourceTree = "<group>"; };
 		497C0F891FACD0D200084032 /* CanvasWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasWebView.swift; sourceTree = "<group>"; };
 		497CA75F1F82D18900501613 /* Helm.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Helm.m; sourceTree = "<group>"; };
@@ -1116,12 +1116,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2C3283B22009650A00810C1B /* New Group */ = {
+		2C3283B22009650A00810C1B /* Masquerade */ = {
 			isa = PBXGroup;
 			children = (
 				2C3283B32009651B00810C1B /* MasqueradableWindow.swift */,
 			);
-			path = "New Group";
+			path = Masquerade;
 			sourceTree = "<group>";
 		};
 		2C3421191F74093000D8E158 /* OSSAttribution */ = {
@@ -1131,6 +1131,16 @@
 				2C34211B1F74099400D8E158 /* OSSAttributionViewController.swift */,
 			);
 			path = OSSAttribution;
+			sourceTree = "<group>";
+		};
+		2C5DD5A4201A78DB00BFE63C /* React Native Modules */ = {
+			isa = PBXGroup;
+			children = (
+				496C7D631F8BEF690010DC03 /* TabBarBadgeCounts.swift */,
+				496C7D651F8C00250010DC03 /* TabBarBadgeCounts.m */,
+			);
+			name = "React Native Modules";
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		2C60495C1F72B9CE00252BC5 /* Frameworks */ = {
@@ -1182,11 +1192,6 @@
 		2CAF1B161F72AEDB007225DF /* CanvasCore */ = {
 			isa = PBXGroup;
 			children = (
-				2C3283B22009650A00810C1B /* New Group */,
-				2CB68A331FED6DF300468313 /* Startup Manager */,
-				2C6796BE1FD9E0E700BE7BC0 /* Drawer */,
-				9F544E0C1FBB766E00BB2D84 /* Localizable.strings */,
-				9F544E071FBB766E00BB2D84 /* InfoPlist.strings */,
 				49301FB51F901235006BD777 /* Activity Stream */,
 				49301FF41F901CA0006BD777 /* Annotations */,
 				49CE96ED1F8FFE4A00121A43 /* Assignments */,
@@ -1195,6 +1200,7 @@
 				2CAF1B171F72AEDB007225DF /* CanvasCore.h */,
 				49383CF21F8498DA009C8F8E /* CanvasCore.xcassets */,
 				49CE969C1F8FF46D00121A43 /* Course Progression */,
+				2C6796BE1FD9E0E700BE7BC0 /* Drawer */,
 				4917182B1F8EE68D008B4599 /* Discussions */,
 				4961F5EF1F8FB6160093EC86 /* Enrollments */,
 				2CAF1B381F72B18F007225DF /* Extensions */,
@@ -1202,17 +1208,22 @@
 				497CA7351F82B3C200501613 /* Helm */,
 				4961F5141F8FABDC0093EC86 /* Icons */,
 				49383CF41F849921009C8F8E /* Inbox */,
+				9F544E071FBB766E00BB2D84 /* InfoPlist.strings */,
 				2CAF1B181F72AEDB007225DF /* Info.plist */,
 				4988D47B1F82DC450006D18C /* Login */,
+				9F544E0C1FBB766E00BB2D84 /* Localizable.strings */,
 				493BEFA81FB14560006E8EFC /* LTI */,
+				2C3283B22009650A00810C1B /* Masquerade */,
 				4961F5441F8FAEE70093EC86 /* Media */,
 				49CE96C11F8FFC0B00121A43 /* Modules */,
 				2C3421191F74093000D8E158 /* OSSAttribution */,
 				49CE96A61F8FF8FE00121A43 /* Pages */,
 				494AE0AF1F843B1F001A8F31 /* PDF */,
 				49CE97791F900CBD00121A43 /* People */,
+				2C5DD5A4201A78DB00BFE63C /* React Native Modules */,
 				4961F5AA1F8FB37F0093EC86 /* Persistence */,
 				49301FD61F901826006BD777 /* Push Notifications */,
+				2CB68A331FED6DF300468313 /* Startup Manager */,
 				49CE95EF1F8FF3C800121A43 /* Quizzes */,
 				494AE08C1F8439A8001A8F31 /* React Native Modules */,
 				2CAF1B311F72AFCF007225DF /* Secrets */,
@@ -1587,8 +1598,6 @@
 			isa = PBXGroup;
 			children = (
 				49383CF51F849933009C8F8E /* inboxTab.swift */,
-				496C7D631F8BEF690010DC03 /* UnreadMessages.swift */,
-				496C7D651F8C00250010DC03 /* UnreadMessages.m */,
 			);
 			path = Inbox;
 			sourceTree = "<group>";
@@ -2986,7 +2995,7 @@
 				49CE972F1F8FFEA600121A43 /* Assignment+Progress.swift in Sources */,
 				4938ACF21F8FD2340069F43D /* TodoKit.xcdatamodeld in Sources */,
 				4961F5A91F8FB2A90093EC86 /* HairlineView.swift in Sources */,
-				496C7D661F8C00250010DC03 /* UnreadMessages.m in Sources */,
+				496C7D661F8C00250010DC03 /* TabBarBadgeCounts.m in Sources */,
 				49CE97A41F900D0000121A43 /* BackdropServerHandling.swift in Sources */,
 				4930204E1F902364006BD777 /* Values.swift in Sources */,
 				49CE96A21F8FF4A700121A43 /* Dispatcher.swift in Sources */,
@@ -3096,7 +3105,7 @@
 				490F91F11FB0F94A00A7DA38 /* CanvasWebViewController.swift in Sources */,
 				49CE96611F8FF41B00121A43 /* TimedQuizViewController.swift in Sources */,
 				497CA77B1F82D19A00501613 /* UIUserInterfaceSizeClassExtensions.swift in Sources */,
-				496C7D641F8BEF690010DC03 /* UnreadMessages.swift in Sources */,
+				496C7D641F8BEF690010DC03 /* TabBarBadgeCounts.swift in Sources */,
 				4961F5EA1F8FB4030093EC86 /* SynchronizedModel.swift in Sources */,
 				4961F5ED1F8FB4070093EC86 /* ColorfulTableViewCell.swift in Sources */,
 				49698D7B1F8FA2D000E38B78 /* DatePickerCollectionView.swift in Sources */,

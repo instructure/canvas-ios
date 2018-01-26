@@ -124,7 +124,7 @@ extension AppDelegate {
         Router.shared().addCanvasRoutes(handleError)
         setupDefaultErrorHandling()
         UIApplication.shared.reactive.applicationIconBadgeNumber
-            <~ UnreadMessages.count
+            <~ TabBarBadgeCounts.applicationIconBadgeNumber
     }
 }
 

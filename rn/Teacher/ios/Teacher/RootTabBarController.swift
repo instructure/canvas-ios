@@ -16,6 +16,7 @@
 
 import UIKit
 import CanvasCore
+import ReactiveSwift
 import UserNotifications
 
 class RootTabBarController: UITabBarController {
@@ -89,6 +90,7 @@ class RootTabBarController: UITabBarController {
         toDoVC.view.accessibilityIdentifier = "to-do-list.view"
         toDoVC.tabBarItem = UITabBarItem(title: NSLocalizedString("To Do", comment: ""), image: UIImage(named: "todo"), selectedImage: nil)
         toDoVC.tabBarItem.accessibilityIdentifier = "tab-bar.to-do-btn"
+        toDoVC.tabBarItem.reactive.badgeValue <~ TabBarBadgeCounts.todoListCount .map { count in count > 0 ? "\(count)" : nil }
         return HelmNavigationController(rootViewController: toDoVC)
     }
     func profileTab() -> UIViewController {

@@ -55,6 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         window?.backgroundColor = .red
         showLoadingState()
         window?.makeKeyAndVisible()
+        UIApplication.shared.reactive.applicationIconBadgeNumber <~ TabBarBadgeCounts.applicationIconBadgeNumber
         
         DispatchQueue.main.async {
             self.prepareReactNative()

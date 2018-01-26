@@ -17,30 +17,32 @@
 // @flow
 import { NativeModules } from 'react-native'
 import canvas from '../../canvas-api'
+import { isTeacher } from '../app'
 
 export let interval: ?any
 
-const UnreadMessages = NativeModules.UnreadMessages
+const TabBarBadgeCounts = NativeModules.TabBarBadgeCounts
 
-export async function updateUnreadCount (): * {
+export async function updateBadgeCounts () {
   try {
-    let { data } = await canvas.getUnreadConversationsCount()
-    let { unread_count: count } = data
-    UnreadMessages.updateUnreadCount(count)
-    return count
+    let { data: unread } = await canvas.getUnreadConversationsCount()
+    TabBarBadgeCounts.updateUnreadMessageCount(unread.unread_count || 0)
+    if (isTeacher()) {
+      let { data: todo } = await canvas.getToDoCount()
+      TabBarBadgeCounts.updateTodoListCount(todo.needs_grading_count)
+    }
   } catch (error) {
-    console.log('There was a prolem getting the `unread_count`', error)
+    console.log('There was a problem getting the updated badge counts', error)
   }
 }
 
-export async function beginUpdatingUnreadCount (): * {
-  stopUpdatingUnreadCount()
-  interval = setInterval(updateUnreadCount, 2 * 60 * 1000) // every 2 minutes
-  let count = await updateUnreadCount()
-  return count
+export async function beginUpdatingBadgeCounts () {
+  stopUpdatingBadgeCounts()
+  interval = setInterval(updateBadgeCounts, 2 * 60 * 1000) // every 2 minutes
+  await updateBadgeCounts()
 }
 
-export function stopUpdatingUnreadCount (): void {
+export function stopUpdatingBadgeCounts (): void {
   if (!interval) {
     return
   }

@@ -50,3 +50,7 @@ export function createUser (createUserData: CreateUser): Promise<ApiResponse<Use
 export function getToDo (): Promise<ApiResponse<ToDoItem[]>> {
   return httpClient().get('users/self/todo')
 }
+
+export function getToDoCount (): Promise<AxiosResponse<any>> {
+  return httpClient().get('users/self/todo_item_count')
+}
