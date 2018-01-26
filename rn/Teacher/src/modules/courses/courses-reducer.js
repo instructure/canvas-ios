@@ -63,7 +63,7 @@ const courseContents: Reducer<CourseState, Action> = combineReducers({
   permissions,
 })
 
-const { refreshCourses, updateCourseColor, getCourseEnabledFeatures, getCoursePermissions } = CourseListActions
+const { refreshCourses, updateCourseColor, getCourseEnabledFeatures, getCoursePermissions, updateCourseNickname } = CourseListActions
 const { updateCourse } = CourseSettingsActions
 
 export const defaultState: { [courseID: string]: CourseState & CourseContentState } = {}
@@ -151,10 +151,12 @@ const coursesData: Reducer<CoursesState, any> = handleActions({
       }
     },
     resolved: (state, { result, course }) => {
+      let originalName = result.data.original_name || result.data.name
       return {
         ...state,
         [course.id]: {
           ...state[course.id],
+          course: { ...course, name: result.data.name, original_name: originalName },
           pending: state[course.id].pending - 1,
           error: null,
         },
@@ -168,6 +170,43 @@ const coursesData: Reducer<CoursesState, any> = handleActions({
           course: oldCourse,
           error: parseErrorMessage(error),
           pending: state[oldCourse.id].pending - 1,
+        },
+      }
+    },
+  }),
+  [updateCourseNickname.toString()]: handleAsync({
+    pending: (state, { course }) => {
+      return {
+        ...state,
+        [course.id]: {
+          ...state[course.id],
+          pending: state[course.id].pending + 1,
+          error: null,
+        },
+      }
+    },
+    resolved: (state, { result, course, nickname }) => {
+      let courseState = state[course.id] || {}
+      course = { ...courseState.course || {} }
+      course.name = nickname
+      course.original_name = result.data.name
+      return {
+        ...state,
+        [course.id]: {
+          ...courseState,
+          course,
+          pending: state[course.id].pending - 1,
+          error: null,
+        },
+      }
+    },
+    rejected: (state, { course, error }) => {
+      return {
+        ...state,
+        [course.id]: {
+          ...state[course.id],
+          pending: state[course.id].pending - 1,
+          error: parseErrorMessage(error),
         },
       }
     },

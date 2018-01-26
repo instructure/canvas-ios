@@ -55,7 +55,7 @@ type Props = {
   course: Course,
   color: string,
   updateCourseColor: (string, string) => void,
-  updateCourse: (Course, Course) => Course,
+  updateCourseNickname: (Course, Course) => Course,
   pending: number,
   error: ?string,
 } & RefreshProps
@@ -112,7 +112,7 @@ export class UserCoursePreferences extends Component {
   dismiss = () => {
     if (this.props.course.name !== this.state.name) {
       this.setState({ pending: true })
-      this.props.updateCourse(this.course(), this.props.course)
+      this.props.updateCourseNickname(this.props.course, this.state.name)
     } else {
       this.props.navigator.dismiss()
     }

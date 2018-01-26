@@ -51,6 +51,10 @@ export function updateCourse (course: Course): Promise<ApiResponse<Course>> {
   return httpClient().put(`/courses/${course.id}`, { course: safeParams })
 }
 
+export function updateCourseNickname (course: Course, nickname: string): Promise<ApiResponse<Course>> {
+  return httpClient().put(`/users/self/course_nicknames/${course.id}`, { nickname })
+}
+
 export function getCourseAssignments (courseID: string): Promise<ApiResponse<Assignment[]>> {
   const url = `courses/${courseID}/assignments`
   return httpClient().get(url)

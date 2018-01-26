@@ -66,7 +66,7 @@ export class CourseSettings extends Component<Props, any> {
     super(props)
 
     this.state = {
-      name: this.props.course.name,
+      name: this.props.course.original_name ? this.props.course.original_name : this.props.course.name,
       home: this.props.course.default_view,
       pending: false,
     }

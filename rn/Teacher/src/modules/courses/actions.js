@@ -56,6 +56,11 @@ export let CoursesActions = (api: CanvasApi): * => ({
       courseID,
     }
   }),
+  updateCourseNickname: createAction('courses.update-nickname', (course: Course, nickname: string) => ({
+    course,
+    nickname,
+    promise: api.updateCourseNickname(course, nickname),
+  })),
 })
 
 export default (CoursesActions(canvas): *)

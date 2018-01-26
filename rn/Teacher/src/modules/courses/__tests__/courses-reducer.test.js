@@ -194,7 +194,7 @@ describe('update course', () => {
 
   it('should update the course state', async () => {
     let api = {
-      updateCourse: apiResponse(),
+      updateCourse: apiResponse({ ...newCourse }),
     }
     let action = CourseSettingsActions(api).updateCourse(newCourse, course)
 
@@ -215,6 +215,70 @@ describe('update course', () => {
           pending: 0,
           course: {
             name: 'New Name',
+            default_view: 'feed',
+          },
+          error: null,
+        },
+      },
+    ])
+  })
+
+  it('should update the course state with original name', async () => {
+    let api = {
+      updateCourse: apiResponse({ name: newCourse.name }),
+    }
+    let action = CourseSettingsActions(api).updateCourse(newCourse, course)
+
+    let state = await testAsyncReducer(coursesReducer, action, defaultState)
+
+    expect(state).toMatchObject([
+      {
+        '1': {
+          pending: 1,
+          course: {
+            name: 'New Name',
+            default_view: 'feed',
+          },
+        },
+      },
+      {
+        '1': {
+          pending: 0,
+          course: {
+            name: 'New Name',
+            original_name: 'New Name',
+            default_view: 'feed',
+          },
+          error: null,
+        },
+      },
+    ])
+  })
+
+  it('should update the course state with differing name and original name', async () => {
+    let api = {
+      updateCourse: apiResponse({ original_name: newCourse.name, name: 'nickname' }),
+    }
+    let action = CourseSettingsActions(api).updateCourse(newCourse, course)
+
+    let state = await testAsyncReducer(coursesReducer, action, defaultState)
+
+    expect(state).toMatchObject([
+      {
+        '1': {
+          pending: 1,
+          course: {
+            name: 'New Name',
+            default_view: 'feed',
+          },
+        },
+      },
+      {
+        '1': {
+          pending: 0,
+          course: {
+            name: 'nickname',
+            original_name: 'New Name',
             default_view: 'feed',
           },
           error: null,
@@ -249,6 +313,57 @@ describe('update course', () => {
             default_view: 'wiki',
           },
           error: 'error',
+        },
+      },
+    ])
+  })
+})
+
+describe('update course nickname', () => {
+  let course
+  let nickname = 'nickname'
+  let defaultState
+
+  beforeEach(() => {
+    course = courseTemplate.course({
+      id: '1',
+      name: 'Old Name',
+      default_view: 'wiki',
+    })
+
+    defaultState = {
+      '1': {
+        error: 'try again',
+        course,
+        pending: 0,
+      },
+    }
+  })
+
+  it('should update the course nickname', async () => {
+    let api = {
+      updateCourseNickname: apiResponse({ nickname, name: course.name }),
+    }
+    let action = CoursesActions(api).updateCourseNickname(course, nickname)
+    let state = await testAsyncReducer(coursesReducer, action, defaultState)
+
+    expect(state).toMatchObject([
+      {
+        '1': {
+          pending: 1,
+          course: {
+            name: course.name,
+          },
+        },
+      },
+      {
+        '1': {
+          pending: 0,
+          course: {
+            name: nickname,
+            original_name: course.name,
+          },
+          error: null,
         },
       },
     ])

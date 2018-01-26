@@ -42,7 +42,7 @@ let defaultProps: any = {
   color: '#333',
   updateCourseColor: jest.fn(),
   refreshCourses: jest.fn(),
-  updateCourse: jest.fn(() => { console.log('default') }),
+  updateCourseNickname: jest.fn(),
   refresh: jest.fn(),
   refreshing: false,
   pending: 0,
@@ -152,10 +152,10 @@ describe('UserCoursePreferences', () => {
     let component = renderer.create(
       <UserCoursePreferences {...defaultProps} />
     )
-    let updateCourse = jest.fn(() => {
+    let updateCourseNickname = jest.fn(() => {
       setProps(component, { pending: 0 })
     })
-    component.update(<UserCoursePreferences {...defaultProps} updateCourse={updateCourse} />)
+    component.update(<UserCoursePreferences {...defaultProps} updateCourseNickname={updateCourseNickname} />)
     let nameField: any = explore(component.toJSON()).selectByID('nameInput')
     nameField.props.onChangeText('New Course Name')
     const doneButton: any = explore(component.toJSON()).selectRightBarButton('done_button')
@@ -172,11 +172,7 @@ describe('UserCoursePreferences', () => {
     nameField.props.onChangeText(newName)
     const doneButton: any = explore(component.toJSON()).selectRightBarButton('done_button')
     doneButton.action()
-    let updated = {
-      ...defaultProps.course,
-      name: newName,
-    }
-    expect(defaultProps.updateCourse).toHaveBeenCalledWith(updated, defaultProps.course)
+    expect(defaultProps.updateCourseNickname).toHaveBeenCalledWith(defaultProps.course, newName)
   })
 
   test('refresh function first test', () => {
