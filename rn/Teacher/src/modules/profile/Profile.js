@@ -138,7 +138,7 @@ export class Profile extends Component {
   showHelpMenu = () => {
     ActionSheetIOS.showActionSheetWithOptions({
       title: i18n('Help'),
-      options: [i18n('Report a Problem'), i18n('Request a feature'), i18n('Cancel')],
+      options: [i18n('Report a Problem'), i18n('Request a Feature'), i18n('Cancel')],
       cancelButtonIndex: 2,
     }, async (pressedIndex: number) => {
       if (pressedIndex === 2) return

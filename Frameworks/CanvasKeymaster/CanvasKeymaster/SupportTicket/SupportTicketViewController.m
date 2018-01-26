@@ -77,12 +77,12 @@ static float DefaultToastDuration = 1.65f;
     
     if (self.ticketType == SupportTicketTypeFeatureRequest) {
         self.ticket.ticketType = SupportTicketTypeFeatureRequest;
-        self.title = NSLocalizedStringFromTableInBundle(@"Request a feature", @"Localizable", [NSBundle bundleForClass:[self class]], nil);
+        self.title = NSLocalizedStringFromTableInBundle(@"Request a Feature", @"Localizable", [NSBundle bundleForClass:[self class]], nil);
         self.subjectTextField.placeholder = NSLocalizedStringFromTableInBundle(@"Build all the things", @"Localizable", [NSBundle bundleForClass:[self class]], nil);
         self.descriptionPlaceholder.text = NSLocalizedStringFromTableInBundle(@"Describe the feature here", @"Localizable", [NSBundle bundleForClass:[self class]], nil);
     } else {
         self.ticket.ticketType = SupportTicketTypeProblem;
-        self.title = NSLocalizedStringFromTableInBundle(@"Report a problem", @"Localizable", [NSBundle bundleForClass:[self class]], nil);
+        self.title = NSLocalizedStringFromTableInBundle(@"Report a Problem", @"Localizable", [NSBundle bundleForClass:[self class]], nil);
     }
     
 }

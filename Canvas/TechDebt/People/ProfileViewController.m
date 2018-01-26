@@ -557,12 +557,12 @@ CGFloat square(CGFloat x){return x*x;}
     alert.popoverPresentationController.sourceView = sender;
     alert.popoverPresentationController.sourceRect = sender.bounds;
     
-    UIAlertAction *reportProblem = [UIAlertAction actionWithTitle:NSLocalizedString(@"Report a problem", "option to report a problem") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *reportProblem = [UIAlertAction actionWithTitle:NSLocalizedString(@"Report a Problem", "option to report a problem") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [SupportTicketViewController presentFromViewController: self supportTicketType: SupportTicketTypeProblem];
     }];
     [alert addAction:reportProblem];
     
-    UIAlertAction *requestFeature = [UIAlertAction actionWithTitle:NSLocalizedString(@"Request a feature", "option to request a feature") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *requestFeature = [UIAlertAction actionWithTitle:NSLocalizedString(@"Request a Feature", "option to request a feature") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [SupportTicketViewController presentFromViewController: self supportTicketType: SupportTicketTypeFeatureRequest];
     }];
     [alert addAction:requestFeature];
