@@ -68,6 +68,8 @@ export default class CourseCard extends Component {
   }
 
   onLayout = (event: any) => {
+    // *if* we are supplied with height and width, no need to calculate our height
+    if (this.props.height && this.props.width) { return }
     this.setState({
       height: event.nativeEvent.layout.width,
     })

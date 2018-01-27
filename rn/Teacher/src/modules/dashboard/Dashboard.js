@@ -158,6 +158,7 @@ export class Dashboard extends React.Component<Props, State> {
         showGrade={this.props.showGrades}
         onPress={this.selectCourse}
         onCoursePreferencesPressed={this.showUserCoursePreferences}
+        initialHeight={cardSize}
       />
     )
   }
