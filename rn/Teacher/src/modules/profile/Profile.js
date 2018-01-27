@@ -212,7 +212,7 @@ export class Profile extends Component {
             </TouchableOpacity>
           </View>
           <View style={styles.infoHeader}>
-            <Heavy style={styles.name}>{user.name}</Heavy>
+            <Heavy style={styles.name}>{user.short_name || user.name}</Heavy>
             { user.primary_email && <Paragraph style={styles.email}>{user.primary_email}</Paragraph> }
           </View>
           <ScrollView>
