@@ -51,8 +51,6 @@
 		B1FC3B191C98B60E00A8001F /* CKMDomainSuggestionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E9589E1909979C00A1BFB7 /* CKMDomainSuggestionTableViewController.m */; };
 		B1FC3B1A1C98B60E00A8001F /* CKMLocationSchoolSuggester.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EDE06401999FE7D009244F9 /* CKMLocationSchoolSuggester.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1FC3B1B1C98B60E00A8001F /* CKMLocationSchoolSuggester.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDE06411999FE7D009244F9 /* CKMLocationSchoolSuggester.m */; };
-		B1FC3B1C1C98B60E00A8001F /* CKMSchool.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EDE0643199A0091009244F9 /* CKMSchool.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B1FC3B1D1C98B60E00A8001F /* CKMSchool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDE0644199A0091009244F9 /* CKMSchool.m */; };
 		B1FC3B1E1C98B60E00A8001F /* CKMLocationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EDE0648199A4BCC009244F9 /* CKMLocationManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1FC3B1F1C98B60E00A8001F /* CKMLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDE0649199A4BCC009244F9 /* CKMLocationManager.m */; };
 		B1FC3B201C98B60E00A8001F /* CKMDomainHelpViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E93CC38199C1B1E004FC97F /* CKMDomainHelpViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -160,8 +158,6 @@
 		5ED1DCD319103DCB00368AE7 /* CKMMultiUserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKMMultiUserTableViewController.m; sourceTree = "<group>"; };
 		5EDE06401999FE7D009244F9 /* CKMLocationSchoolSuggester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKMLocationSchoolSuggester.h; sourceTree = "<group>"; };
 		5EDE06411999FE7D009244F9 /* CKMLocationSchoolSuggester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKMLocationSchoolSuggester.m; sourceTree = "<group>"; };
-		5EDE0643199A0091009244F9 /* CKMSchool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKMSchool.h; sourceTree = "<group>"; };
-		5EDE0644199A0091009244F9 /* CKMSchool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKMSchool.m; sourceTree = "<group>"; };
 		5EDE0646199A00D7009244F9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		5EDE0648199A4BCC009244F9 /* CKMLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKMLocationManager.h; sourceTree = "<group>"; };
 		5EDE0649199A4BCC009244F9 /* CKMLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKMLocationManager.m; sourceTree = "<group>"; };
@@ -468,8 +464,6 @@
 				49E9589E1909979C00A1BFB7 /* CKMDomainSuggestionTableViewController.m */,
 				5EDE06401999FE7D009244F9 /* CKMLocationSchoolSuggester.h */,
 				5EDE06411999FE7D009244F9 /* CKMLocationSchoolSuggester.m */,
-				5EDE0643199A0091009244F9 /* CKMSchool.h */,
-				5EDE0644199A0091009244F9 /* CKMSchool.m */,
 				5EDE0648199A4BCC009244F9 /* CKMLocationManager.h */,
 				5EDE0649199A4BCC009244F9 /* CKMLocationManager.m */,
 				5E93CC38199C1B1E004FC97F /* CKMDomainHelpViewController.h */,
@@ -589,7 +583,6 @@
 				B1FC3B1E1C98B60E00A8001F /* CKMLocationManager.h in Headers */,
 				B1FC3B301C98B66800A8001F /* SupportTicketViewController.h in Headers */,
 				B1FC3B181C98B60E00A8001F /* CKMDomainSuggestionTableViewController.h in Headers */,
-				B1FC3B1C1C98B60E00A8001F /* CKMSchool.h in Headers */,
 				B1FC3B2A1C98B66800A8001F /* ImpactTableViewController.h in Headers */,
 				B1FC3B261C98B66000A8001F /* CLLocation+CKMDistance.h in Headers */,
 				B1FC3B2E1C98B66800A8001F /* SupportTicketManager.h in Headers */,
@@ -787,7 +780,6 @@
 				B1FC3B171C98B60E00A8001F /* CKMDomainSuggestionTableViewCell.m in Sources */,
 				B1FC3B2D1C98B66800A8001F /* SupportTicket.m in Sources */,
 				B1FC3B2F1C98B66800A8001F /* SupportTicketManager.m in Sources */,
-				B1FC3B1D1C98B60E00A8001F /* CKMSchool.m in Sources */,
 				B1FC3B311C98B66800A8001F /* SupportTicketViewController.m in Sources */,
 				B1FC3B1F1C98B60E00A8001F /* CKMLocationManager.m in Sources */,
 				B1FC3B001C98B5AE00A8001F /* CanvasKeymaster.m in Sources */,

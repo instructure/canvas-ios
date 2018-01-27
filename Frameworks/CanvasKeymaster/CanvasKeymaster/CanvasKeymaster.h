@@ -124,7 +124,6 @@ FOUNDATION_EXPORT const unsigned char CanvasKeymasterVersionString[];
 #import <CanvasKeymaster/CKMLocationManager.h>
 #import <CanvasKeymaster/SupportTicketViewController.h>
 #import <CanvasKeymaster/CKMDomainSuggestionTableViewController.h>
-#import <CanvasKeymaster/CKMSchool.h>
 #import <CanvasKeymaster/ImpactTableViewController.h>
 #import <CanvasKeymaster/CLLocation+CKMDistance.h>
 #import <CanvasKeymaster/SupportTicketManager.h>

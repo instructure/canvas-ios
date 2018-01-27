@@ -418,6 +418,7 @@
 /* Begin PBXFileReference section */
 		04B7BBDCB828F414AA45D2B6 /* Pods-defaults-CanvasKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasKit.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-CanvasKit/Pods-defaults-CanvasKit.debug.xcconfig"; sourceTree = "<group>"; };
 		25D4C8ECA1605DDE28318957 /* Pods-CanvasKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasKit.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-CanvasKit/Pods-CanvasKit.debug.xcconfig"; sourceTree = "<group>"; };
+		2CD80599201BCF1A001D22CC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3A2D00B0E16C49DC751FD964 /* Pods_CanvasKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B2940141E7209AA00F2E49C /* CKIBrand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKIBrand.h; sourceTree = "<group>"; };
 		3B2940151E7209AA00F2E49C /* CKIBrand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKIBrand.m; sourceTree = "<group>"; };
@@ -2181,6 +2182,7 @@
 				9FA171FE1FBB773700FD6E77 /* da */,
 				9FA979A51FBB773A005B21D2 /* ht */,
 				9FB1E2C11FBB773D009807C0 /* es */,
+				2CD80599201BCF1A001D22CC /* en */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
