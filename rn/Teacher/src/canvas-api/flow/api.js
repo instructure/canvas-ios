@@ -42,4 +42,8 @@ export type ApiError = {
   },
 }
 
+export type ApiPromise<T> = {
+  request: XMLHttpRequest,
+} & Promise<ApiResponse<T>>
+
 export type CanvasApi = typeof canvas

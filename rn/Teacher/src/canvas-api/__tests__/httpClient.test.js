@@ -217,25 +217,15 @@ describe('httpClient', () => {
     })
   })
 
-  it('prefers the response object', async () => {
+  it('returns the response object as data', async () => {
     const fetching = httpClient().get('')
     request.response = {}
-    request.responseText = '{}'
+    request.responseText = '{"a":"a"}'
     expect(request.addEventListener).toHaveBeenCalledWith('load', expect.any(Object))
     const handler = request.addEventListener.mock.calls[0][1]
     handler.handleEvent({ type: 'load' })
     const response = await fetching
     expect(response.data).toBe(request.response)
-  })
-
-  it('falls back to responseText', async () => {
-    const fetching = httpClient().get('')
-    request.responseText = '{}'
-    expect(request.addEventListener).toHaveBeenCalledWith('load', expect.any(Object))
-    const handler = request.addEventListener.mock.calls[0][1]
-    handler.handleEvent({ type: 'load' })
-    const response = await fetching
-    expect(response.data).toBe(request.responseText)
   })
 
   it('considers status >= 400 an error', async () => {

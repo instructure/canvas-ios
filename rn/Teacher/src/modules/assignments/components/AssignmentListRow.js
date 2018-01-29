@@ -18,7 +18,7 @@
 * @flow
 */
 
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import {
   View,
   StyleSheet,
@@ -39,7 +39,7 @@ type Props = {
   selected: boolean,
 }
 
-export default class AssignmentListRow extends Component<Props, any> {
+export default class AssignmentListRow extends PureComponent<Props> {
   onPress = () => {
     const assignment = this.props.assignment
     this.props.onPress(assignment)

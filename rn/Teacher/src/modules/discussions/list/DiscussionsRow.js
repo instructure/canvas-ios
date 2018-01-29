@@ -16,7 +16,7 @@
 
 /* @flow */
 
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import {
   StyleSheet,
   View,
@@ -40,7 +40,7 @@ export type Props = {
   onToggleDiscussionGrouping: Function,
 }
 
-export default class DiscussionsRow extends Component<Props, any> {
+export default class DiscussionsRow extends PureComponent<Props> {
   render () {
     const discussion = this.props.discussion
     const points = this._points(discussion)

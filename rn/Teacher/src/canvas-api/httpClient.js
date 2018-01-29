@@ -99,7 +99,7 @@ function xhr (method: Method, url: string, data: ?Object, config: ApiConfig = {}
         switch (event.type) {
           case 'load':
             response = {
-              data: request.response || request.responseText,
+              data: request.response,
               config,
               headers: parseHeaders(request.getAllResponseHeaders()),
               status: request.status,
