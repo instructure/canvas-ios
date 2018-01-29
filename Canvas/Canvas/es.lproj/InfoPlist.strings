@@ -1,7 +1,4 @@
 /* (No Comment) */
-"CFBundleName" = "${PRODUCT_NAME}";
-
-/* (No Comment) */
 "NSCameraUsageDescription" = "Adjunte fotografías y videos a los mensajes y publicaciones de discusión o entréguelos como presentaciones de tarea.";
 
 /* (No Comment) */

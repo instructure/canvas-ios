@@ -1,7 +1,4 @@
 /* (No Comment) */
-"CFBundleName" = "${PRODUCT_NAME}";
-
-/* (No Comment) */
 "NSCameraUsageDescription" = "Legg ved bilder og film til meldinger og diskusjonsinnlegg eller lever dem inn som oppgaveinnlevering.";
 
 /* (No Comment) */

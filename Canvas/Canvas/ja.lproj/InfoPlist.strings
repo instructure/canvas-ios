@@ -1,7 +1,4 @@
 /* (No Comment) */
-"CFBundleName" = "${PRODUCT_NAME}";
-
-/* (No Comment) */
 "NSCameraUsageDescription" = "写真やビデオをメッセージやディスカッションの投稿に添付するか、課題の提出に入れます。";
 
 /* (No Comment) */

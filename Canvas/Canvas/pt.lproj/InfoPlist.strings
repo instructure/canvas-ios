@@ -1,7 +1,4 @@
 /* (No Comment) */
-"CFBundleName" = "${PRODUCT_NAME}";
-
-/* (No Comment) */
 "NSCameraUsageDescription" = "Anexe fotos e vídeos a mensagens e postagens de discussão ou apresente-as como envio de tarefas.";
 
 /* (No Comment) */

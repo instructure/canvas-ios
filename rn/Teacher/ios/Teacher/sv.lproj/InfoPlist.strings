@@ -1,10 +1,4 @@
 /* (No Comment) */
-"CFBundleDisplayName" = "Lärare";
-
-/* (No Comment) */
-"CFBundleName" = "$(PRODUCT_NAME)";
-
-/* (No Comment) */
 "NSCameraUsageDescription" = "Bifoga foton och videoklipp till inlämningskommentarer.";
 
 /* (No Comment) */

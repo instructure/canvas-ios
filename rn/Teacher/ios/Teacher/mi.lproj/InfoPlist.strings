@@ -1,10 +1,4 @@
 /* (No Comment) */
-"CFBundleDisplayName" = "Kaiako";
-
-/* (No Comment) */
-"CFBundleName" = "$(PRODUCT_NAME)";
-
-/* (No Comment) */
 "NSCameraUsageDescription" = "Tāpiritia ngā whakāhua me ngā ataata ki ngā tukunga kōrero.";
 
 /* (No Comment) */
