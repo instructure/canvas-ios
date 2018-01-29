@@ -31,3 +31,7 @@ export function getAccountNotifications (): Promise<ApiResponse<AccountNotificat
 export function deleteAccountNotification (id: string): Promise<ApiResponse<null>> {
   return httpClient().delete(`accounts/self/users/self/account_notifications/${id}`)
 }
+
+export function getTermsOfService (): Promise<ApiResponse<TermsOfService>> {
+  return httpClient().get(`accounts/self/terms_of_service`)
+}

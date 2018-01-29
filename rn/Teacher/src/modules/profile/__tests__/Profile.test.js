@@ -132,22 +132,26 @@ describe('Profile Tests', () => {
     expect(ActionSheetIOS.showActionSheetWithOptions).toHaveBeenCalled()
   })
 
-  it('redirects to Canvas Guides', () => {
+  it('redirects to Canvas Guides', async () => {
     const instance = renderer.create(
       <Profile { ...defaultProps } />
     ).getInstance()
 
-    instance.handleActions(0)
+    await instance.handleActions(0)
     expect(Linking.openURL).toHaveBeenCalled()
   })
 
-  it('redirects to Terms of Use', () => {
+  it('redirects to Terms of Use', async () => {
     const instance = renderer.create(
       <Profile { ...defaultProps } />
     ).getInstance()
 
-    instance.handleActions(1)
-    expect(Linking.openURL).toHaveBeenCalled()
+    await instance.handleActions(1)
+    expect(defaultProps.navigator.dismiss).toHaveBeenCalled()
+    expect(defaultProps.navigator.show).toHaveBeenCalledWith(
+      '/terms-of-use',
+      { modal: true }
+    )
   })
 
   it('opens an action sheet when Help is tapped', () => {

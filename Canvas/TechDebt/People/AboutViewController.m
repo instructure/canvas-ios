@@ -26,7 +26,6 @@
 #import "WebBrowserViewController.h"
 #import "Analytics.h"
 @import CanvasCore;
-@import CanvasCore;
 #import "CBILog.h"
 
 typedef NS_ENUM(NSInteger, AboutSections) {
@@ -266,14 +265,18 @@ typedef NS_ENUM(NSInteger, LegalRows) {
         
         NSString *urlAddress = @"";
         
+        if (indexPath.row == TermsRow) {
+            return [[HelmManager shared] present:@"/terms-of-use" withProps:@{} options:@{
+                                                                                          @"modal": @YES,
+                                                                                          @"embedInNavigationController": @YES
+                                                                                          } callback:nil];
+        }
+        
         if (indexPath.row == EULARow) {
             urlAddress = @"http://www.canvaslms.com/policies/end-user-license-agreement";
         }
         if (indexPath.row == PrivacyRow) {
             urlAddress = @"http://www.canvaslms.com/policies/privacy-policy";
-        }
-        if (indexPath.row == TermsRow) {
-            urlAddress = @"http://www.canvaslms.com/policies/terms-of-use";
         }
         
         NSURL *url = [NSURL URLWithString:urlAddress];

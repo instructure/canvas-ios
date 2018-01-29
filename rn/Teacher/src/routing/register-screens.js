@@ -70,6 +70,7 @@ import PageEdit from '../modules/pages/edit/PageEdit'
 import UI from '../common/UI'
 import PickerPage from '../common/components/PickerPage'
 import Dashboard from '../modules/dashboard/Dashboard'
+import TermsOfUse from '../modules/tos/TermsOfUse'
 import PushNotifications from '../modules/staging/PushNotifications'
 
 import { Store } from 'redux'
@@ -146,6 +147,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/wiki/:url', wrap(PageDetails), store)
   registerScreen('/courses/:courseID/pages/:url', wrap(PageDetails), store)
   registerScreen('/courses/:courseID/pages/:url/edit', wrap(PageEdit), store)
+  registerScreen('/terms-of-use', wrap(TermsOfUse), store)
   registerScreen('/users/self/files')
   registerScreen('/profile/settings')
   registerScreen('/support/:type')

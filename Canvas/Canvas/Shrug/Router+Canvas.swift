@@ -21,7 +21,6 @@ import TechDebt
 import CanvasCore
 import Marshal
 import CanvasKeymaster
-import CanvasCore
 
 var currentSession: Session {
     return CanvasKeymaster.the().currentClient.authSession

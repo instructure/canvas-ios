@@ -121,14 +121,15 @@ export class Profile extends Component {
     this.props.updateShowGradesOnDashboard(!this.props.showsGradesOnCourseCards)
   }
 
-  handleActions = (index: number) => {
+  handleActions = async (index: number) => {
     const action = this.settingsActions[index]
     switch (action.id) {
       case 'canvas-guides':
         Linking.openURL('https://community.canvaslms.com/community/answers/guides/mobile-guide/content?filterID=contentstatus%5Bpublished%5D~category%5Btable-of-contents%5D')
         break
       case 'terms':
-        Linking.openURL('https://www.canvaslms.com/policies/terms-of-use')
+        await this.props.navigator.dismiss()
+        this.props.navigator.show('/terms-of-use', { modal: true })
         break
       default:
         break
