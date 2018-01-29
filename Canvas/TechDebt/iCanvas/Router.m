@@ -141,21 +141,6 @@
     }];
 }
 
-#pragma mark - Tab Access
-
-- (BOOL)routingRestrictedFrom:(UIViewController *)controller toURL:(NSURL *)url {
-    
-    NSString *accessDenied = [TheKeymaster.currentClient.authSession accessForContentWith:url].accessDeniedMessage;
-    if (accessDenied) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:accessDenied preferredStyle:UIAlertControllerStyleAlert];
-        NSString *dismiss = NSLocalizedString(@"Dismiss", @"");
-        [alert addAction:[UIAlertAction actionWithTitle:dismiss style:UIAlertActionStyleDefault handler:nil]];
-        [controller presentViewController:alert animated:YES completion:nil];
-        return YES;
-    }
-    return NO;
-}
-
 #pragma mark - Dispatching
 
 - (UIViewController *)controllerForClass:(Class)cls params:(NSDictionary *)params {
@@ -230,16 +215,18 @@
 }
 
 - (UIViewController *)routeFromController:(UIViewController *)sourceController toURL:(NSURL *)url {
-
-    if ([self routingRestrictedFrom:sourceController toURL:url]) {
-        return nil;
-    }
-        
     UIViewController *destinationViewController = [self controllerForHandlingBlockFromURL:url];
     
     if (!destinationViewController && self.fallbackHandler) {
         self.fallbackHandler(url, sourceController);
         return nil;
+    }
+
+    if ([destinationViewController isKindOfClass:[UIAlertController class]]) {
+        if (((UIAlertController *)destinationViewController).preferredStyle == UIAlertControllerStyleAlert) {
+            [sourceController presentViewController:destinationViewController animated:YES completion:nil];
+            return nil;
+        }
     }
 
     [sourceController cbi_transitionToViewController:destinationViewController animated:YES];
