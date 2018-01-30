@@ -57,7 +57,7 @@ export type RefreshProps = {
   markAsRead: Function,
 }
 
-export type ConversationDetailsProps = ConversationOwnProps & RefreshProps & NavigationProps
+export type ConversationDetailsProps = ConversationOwnProps & RefreshProps & NavigationProps & PushNotificationProps
 
 export class ConversationDetails extends Component <any, ConversationDetailsProps, any> {
   constructor (props: ConversationDetailsProps) {
@@ -150,6 +150,13 @@ export class ConversationDetails extends Component <any, ConversationDetailsProp
         navBarStyle='dark'
         drawUnderNavBar={true}
         title={i18n('Message Details')}
+        leftBarButtons={this.props.pushNotification && [
+          {
+            title: i18n('Done'),
+            testID: 'inbox.detail.dismiss.button',
+            action: this.props.navigator.dismiss,
+          },
+        ]}
         rightBarButtons={[
           {
             image: Images.kabob,
