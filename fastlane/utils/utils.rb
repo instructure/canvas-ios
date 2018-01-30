@@ -13,5 +13,4 @@
 # limitations under the License.
 
 require_relative 'helpers'
-require_relative 'soseedy'
 require_relative 'globals'

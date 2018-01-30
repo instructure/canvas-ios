@@ -7,23 +7,5 @@ if [[ "$BUDDYBUILD_BRANCH" = "develop" ]]; then
     pip install --upgrade --user awscli
 fi
 
-if [[ "$BUDDYBUILD_APP_ID" = $TEACHER_UI_JOB_ID ]]; then
-  # list rubies (ruby-2.2.5, ruby-2.3.1, ruby-2.4.1)
-  chruby
-
-  # select ruby
-  chruby ruby-2.4.1
-
-  # update rubygems
-  echo "gem: --no-document" >> ~/.gemrc
-  gem update --system --no-document
-
-  # install fastlane
-  gem install fastlane --no-document
-
-  fastlane seed_teacher
-fi
-
 cd rn/Teacher
 yarn install
-

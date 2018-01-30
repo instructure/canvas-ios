@@ -237,24 +237,6 @@ brew install fbsimctl --HEAD)
     end
   end
 
-  desc 'Seed data into Canvas LMS for testing.'
-  lane :seed_teacher do |options|
-    SoSeedy.seed(app: :teacher)
-  end
-
-  # fastlane test_earlgrey_teacher run:10
-  desc 'Test teacher app with Earl Grey,'
-  lane :test_earlgrey_teacher do |options|
-    Xcode8.build_for_testing(scheme: 'Teacher', workspace: TEACHER_RN_WORKSPACE)
-
-    run = options.fetch(:run, '1').to_i
-    puts "Runnings Teacher Earl Grey Tests #{run} times."
-    1.upto(run) do |count|
-      SoSeedy.seed(options.merge(app: :teacher))
-      Xcode8.test_without_building(scheme: 'TeacherUITests', workspace: TEACHER_RN_WORKSPACE)
-    end
-  end
-
   desc 'Test teacher app with Earl Grey,'
   lane :bluepill_teacher do |options|
     Bluepill.new(app_scheme:  'Teacher',
