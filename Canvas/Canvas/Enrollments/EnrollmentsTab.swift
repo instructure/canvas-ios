@@ -72,7 +72,7 @@ public func EnrollmentsTab(session: Session) throws -> UIViewController {
     emptyNav.navigationBar.isTranslucent = false
     dashboardNav.delegate = dashboardSplit
     dashboardSplit.viewControllers = [dashboardNav, emptyNav]
-    dashboardSplit.tabBarItem.title = NSLocalizedString("Courses", comment: "Courses page title")
+    dashboardSplit.tabBarItem.title = NSLocalizedString("Dashboard", comment: "dashboard page title")
     dashboardSplit.tabBarItem.image = .icon(.course)
     return dashboardSplit
 }
