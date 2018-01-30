@@ -443,6 +443,27 @@ describe('DiscussionDetails', () => {
     expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/2/edit', { modal: true, modalPresentationStyle: 'formsheet' })
   })
 
+  it('only shows done button if presented by push notification', () => {
+    props.pushNotification = null
+    expect(
+      explore(render(props).toJSON()).selectLeftBarButton('discussions.details.dismiss.button')
+    ).toBeNull()
+
+    props.pushNotification = { alert: 'Hey', data: null }
+    expect(
+      explore(render(props).toJSON()).selectLeftBarButton('discussions.details.dismiss.button')
+    ).not.toBeNull()
+  })
+
+  it('dismisses when tap done', () => {
+    props.pushNotification = { alert: 'Hey', data: null }
+    const spy = jest.fn()
+    props.navigator.dismiss = spy
+    const doneButton: any = explore(render(props).toJSON()).selectLeftBarButton('discussions.details.dismiss.button')
+    doneButton.action()
+    expect(spy).toHaveBeenCalled()
+  })
+
   it('routes to discussion edit on entry reply', () => {
     props.isAnnouncement = false
     props.navigator.show = jest.fn()
@@ -638,6 +659,7 @@ describe('mapStateToProps', () => {
       courseName: 'Course',
       courseColor: '#fff',
       assignment,
+      isAnnouncement: false,
     })
   })
 
@@ -675,6 +697,44 @@ describe('mapStateToProps', () => {
       error: null,
       courseID: '1',
       discussionID: '1',
+    })
+  })
+
+  it('handles announcementID route prop', () => {
+    const discussion = template.discussion({ id: '1', assignment_id: '1' })
+    const course = template.course({ id: '1' })
+    const state: AppState = template.appState({
+      entities: {
+        ...template.appState().entities,
+        discussions: {
+          '1': {
+            data: discussion,
+            pending: 1,
+            error: null,
+          },
+        },
+        courses: {
+          '1': {
+            course: course,
+          },
+        },
+        assignments: {
+          '2': {
+            data: null,
+          },
+        },
+      },
+    })
+
+    expect(
+      mapStateToProps(state, { courseID: '1', announcementID: '1' })
+    ).toMatchObject({
+      discussion,
+      pending: 1,
+      error: null,
+      courseID: '1',
+      discussionID: '1',
+      isAnnouncement: true,
     })
   })
 })

@@ -85,7 +85,14 @@ const Actions = {
   markEntryAsRead,
 }
 
-export type Props = State & OwnProps & RefreshProps & typeof Actions & NavigationProps & AsyncState & {
+export type Props
+  = State
+  & OwnProps
+  & RefreshProps
+  & typeof Actions
+  & NavigationProps
+  & AsyncState
+  & PushNotificationProps & {
   isAnnouncement?: boolean,
 }
 
@@ -330,6 +337,13 @@ export class DiscussionDetails extends Component<Props, any> {
         title={this.props.isAnnouncement ? i18n('Announcement Details') : i18n('Discussion Details')}
         navBarColor={this.props.courseColor}
         navBarStyle='dark'
+        leftBarButtons={this.props.pushNotification && [
+          {
+            title: i18n('Done'),
+            testID: 'discussions.details.dismiss.button',
+            action: this.props.navigator.dismiss,
+          },
+        ]}
         rightBarButtons={[
           {
             image: Images.kabob,
@@ -622,7 +636,10 @@ const style = StyleSheet.create({
   },
 })
 
-export function mapStateToProps ({ entities }: AppState, { courseID, discussionID }: OwnProps): State {
+export function mapStateToProps ({ entities }: AppState, ownProps: OwnProps): State {
+  const courseID = ownProps.courseID
+  const discussionID = ownProps.announcementID || ownProps.discussionID
+  const isAnnouncement = ownProps.isAnnouncement || ownProps.announcementID != null
   let discussion: ?Discussion
   let pending = 0
   let error = null
@@ -656,6 +673,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID, discussionI
     courseName,
     courseColor,
     assignment,
+    isAnnouncement,
   }
 }
 

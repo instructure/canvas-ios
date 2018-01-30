@@ -135,6 +135,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/placeholder', wrap(CourseDetailsSplitViewPlaceholder), store)
   registerScreen('/courses/:courseID/announcements', wrap(AnnouncementsList), store, { canBecomeMaster: true })
   registerScreen('/courses/:courseID/announcements/new', wrap(AnnouncementEdit), store)
+  registerScreen('/courses/:courseID/announcements/:announcementID', wrap(DiscussionDetails), store)
   registerScreen('/courses/:courseID/announcements/:announcementID/edit', wrap(AnnouncementEdit), store)
   registerScreen('/notATeacher', wrap(NoATeacher), store)
   registerScreen('/courses/:courseID/users/:userID', wrap(ContextCard), store)

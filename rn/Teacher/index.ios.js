@@ -39,8 +39,7 @@ import hydrate from './src/redux/hydrate-action'
 import { beginUpdatingBadgeCounts, stopUpdatingBadgeCounts, updateBadgeCounts } from './src/modules/tabbar/badge-counts'
 import App, { type AppId } from './src/modules/app'
 import device from 'react-native-device-info'
-import { route } from './src/routing'
-import i18n from 'format-message'
+import Navigator from './src/routing/Navigator'
 
 import { Client, Configuration } from 'bugsnag-react-native'
 const configuration = new Configuration()
@@ -100,20 +99,8 @@ const loginHandler = async ({
     }
 
     PushNotificationIOS.addEventListener('notification', (notification) => {
-      if (notification.getData() && notification.getData().html_url) {
-        const isSubmissionComment = notification
-          .getAlert()
-          .toLowerCase()
-          .startsWith(i18n('submission comment'))
-        const url = notification.getData().html_url
-        try {
-          const r = route(url, {
-            selectedTabIndex: isSubmissionComment ? 1 : -1,
-            forceRefresh: true,
-          })
-          NativeModules.Helm.present(r.screen, r.passProps, { modal: true })
-        } catch (e) {}
-      }
+      const navigator = new Navigator('')
+      navigator.showNotification(notification)
       notification.finish(PushNotificationIOS.FetchResult.NewData)
     })
 

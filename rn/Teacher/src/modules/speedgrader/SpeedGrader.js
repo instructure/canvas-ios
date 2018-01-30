@@ -140,7 +140,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
       let nextState = prevState
 
       if (this._flatList && !prevState.hasSetInitialDrawerPosition) {
-        if (this.props.selectedTabIndex != null && this.props.selectedTabIndex >= 0) {
+        if (this.getInitialTabIndex() >= 0) {
           SpeedGrader.drawerState.snapTo(1, false)
         }
         nextState = { ...nextState, hasSetInitialDrawerPosition: true }
@@ -191,7 +191,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
         navigator={this.props.navigator}
         drawerInset={this.state.drawerInset}
         gradeSubmissionWithRubric={this.props.gradeSubmissionWithRubric}
-        selectedTabIndex={this.props.selectedTabIndex}
+        selectedTabIndex={this.getInitialTabIndex()}
       />
     </A11yGroup>
   }
@@ -218,6 +218,13 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
     offset: this.state.size.width * index,
     index,
   })
+
+  getInitialTabIndex = () => {
+    if (this.props.pushNotification && this.props.pushNotification.alert.toLowerCase().startsWith(i18n('submission comment'))) {
+      return 1
+    }
+    return -1
+  }
 
   renderBody = () => {
     if (this.props.refreshing || !this.state.submissions.length) {
@@ -416,4 +423,5 @@ type SpeedGraderProps
   & SpeedGraderActionProps
   & SpeedGraderDataProps
   & RefreshProps
+  & PushNotificationProps
   & { navigator: Navigator, onDismiss: Function }

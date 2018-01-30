@@ -66,8 +66,9 @@ class ComponentExplorer {
 
   _selectBarButton (side: string, id: string): ?any {
     const prop = side === 'right' ? 'rightBarButtons' : 'leftBarButtons'
-    return this.query(({ type }) => type === 'Screen')[0].props[prop]
-      .find(({ testID }) => testID === id)
+    const buttons = this.query(({ type }) => type === 'Screen')[0].props[prop]
+    if (!buttons) return null
+    return buttons.find(({ testID }) => testID === id)
   }
 }
 

@@ -77,4 +77,18 @@ export default class Navigator {
   traitCollection (handler: (traits: TraitCollection) => void): any {
     return NativeModules.Helm.traitCollection(this.moduleName, handler)
   }
+
+  showNotification (notification: PushNotificationIOS) {
+    if (notification.getData() && notification.getData().html_url) {
+      const url = notification.getData().html_url
+      try {
+        this.show(url, { modal: true, modalPresentationStyle: 'fullscreen' }, {
+          pushNotification: {
+            alert: notification.getAlert(),
+            data: notification.getData(),
+          },
+        })
+      } catch (e) {}
+    }
+  }
 }
