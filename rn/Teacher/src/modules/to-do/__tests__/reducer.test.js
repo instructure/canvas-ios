@@ -23,14 +23,45 @@ const { refreshedToDo } = ListActions
 
 const template = {
   ...require('../../../__templates__/toDo'),
+  ...require('../../../__templates__/assignments'),
+  ...require('../../../__templates__/quiz'),
 }
 
-test('refreshedToDo', () => {
-  const grading = template.toDoItem({ type: 'grading' })
-  const submitting = template.toDoItem({ type: 'submitting' })
-  const items = [grading, submitting]
-  const action = refreshedToDo(items)
-  expect(reducer({}, action)).toEqual({
-    items,
+describe('refreshedToDo', () => {
+  it('stores grading items', () => {
+    const assignment = template.toDoItem({
+      type: 'grading',
+      assignment: template.assignment({
+        course_id: '1',
+        id: '2',
+      }),
+    })
+    const quiz = template.toDoItem({
+      type: 'grading',
+      assignment: null,
+      quiz: template.quiz({
+        course_id: '1',
+        id: '2',
+      }),
+    })
+    const submitting = template.toDoItem({ type: 'submitting' })
+    const items = [assignment, quiz, submitting]
+    const action = refreshedToDo(items)
+    expect(reducer({}, action)).toEqual({
+      needsGrading: {
+        '1-assignment-2': assignment,
+        '1-quiz-2': quiz,
+      },
+    })
+  })
+
+  it('removes all if items empty', () => {
+    const initialState = {
+      needsGrading: [template.toDoItem({ type: 'grading' })],
+    }
+    const action = refreshedToDo([])
+    expect(reducer(initialState, action)).toEqual({
+      needsGrading: [],
+    })
   })
 })

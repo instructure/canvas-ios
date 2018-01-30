@@ -23,15 +23,29 @@ import { default as ListActions } from './list/actions'
 const { refreshedToDo } = ListActions
 
 const defaultState = {
-  items: [],
-  grading: [],
+  needsGrading: {},
 }
 
 export const toDo: Reducer<ToDoState, any> = handleActions({
-  [refreshedToDo.toString()]: (state, { payload: { items } }) => ({
-    ...state,
-    items,
-  }),
+  [refreshedToDo.toString()]: (state, { payload: { items } }) => {
+    if (!items.length) {
+      return {
+        ...state,
+        needsGrading: [],
+      }
+    }
+    const needsGrading = items
+      .filter(item => item.type === 'grading' && item.course_id && (item.assignment || item.quiz))
+      .reduce((memo, item) => {
+        const type = item.assignment ? 'assignment' : 'quiz'
+        const id = item.assignment && item.assignment.id || item.quiz && item.quiz.id
+        return {
+          ...memo,
+          [`${item.course_id}-${type}-${id}`]: item,
+        }
+      }, state.needsGrading)
+    return { ...state, needsGrading }
+  },
 }, defaultState)
 
 export default (toDo: *)

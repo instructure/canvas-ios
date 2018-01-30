@@ -17,6 +17,7 @@
 /* @flow */
 
 import httpClient from '../httpClient'
+import { paginate } from '../utils/pagination'
 
 export function getCustomColors (): Promise<ApiResponse<CustomColors>> {
   return httpClient().get('users/self/colors')
@@ -48,7 +49,8 @@ export function createUser (createUserData: CreateUser): Promise<ApiResponse<Use
 }
 
 export function getToDo (): Promise<ApiResponse<ToDoItem[]>> {
-  return httpClient().get('users/self/todo')
+  const url = 'users/self/todo'
+  return paginate(url)
 }
 
 export function getToDoCount (): Promise<AxiosResponse<any>> {

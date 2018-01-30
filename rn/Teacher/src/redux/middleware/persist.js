@@ -20,7 +20,7 @@ import { getSession } from '../../canvas-api'
 import type { MiddlewareAPI } from 'redux'
 import hydrate from '../hydrate-action'
 
-const STORE_VERSION = '7'
+const STORE_VERSION = '8'
 
 function storeName (session: Session): string {
   return `redux.state.${session.user.id}.${STORE_VERSION}`

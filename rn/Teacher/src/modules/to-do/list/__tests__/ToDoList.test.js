@@ -74,6 +74,20 @@ describe('ToDoList', () => {
     expect(spy).toHaveBeenCalledWith(data)
   })
 
+  it('gets next page on end reached', async () => {
+    const data = [template.toDoItem()]
+    const spy = jest.fn(() => Promise.resolve({ data }))
+    props.getToDo = jest.fn(() => Promise.resolve({
+      data,
+      next: spy,
+    }))
+    const view = render(props)
+    await view.getInstance().componentWillMount()
+    const list: any = explore(view.toJSON()).selectByType('RCTScrollView')
+    await list.props.onEndReached()
+    expect(spy).toHaveBeenCalled()
+  })
+
   it('alerts refresh error', async () => {
     const spy = jest.fn()
     // $FlowFixMe
@@ -138,7 +152,7 @@ describe('mapStateToProps', () => {
   it('uses counts directly from toDo entities if there are no submissions', () => {
     const items = [template.toDoItem({ assignment: template.assignment() })]
     const state = template.appState({
-      toDo: { items },
+      toDo: { needsGrading: items },
       entities: {
         assignments: {},
       },
@@ -161,7 +175,7 @@ describe('mapStateToProps', () => {
       needs_grading_count: 2,
     })
     const state = template.appState({
-      toDo: { items: [staleItem] },
+      toDo: { needsGrading: [staleItem] },
       entities: {
         assignments: {
           '1': {
@@ -202,7 +216,7 @@ describe('mapStateToProps', () => {
       needs_grading_count: 2,
     })
     const state = template.appState({
-      toDo: { items: [staleItem] },
+      toDo: { needsGrading: [staleItem] },
       entities: {
         quizzes: {
           '1': {
@@ -226,6 +240,62 @@ describe('mapStateToProps', () => {
     })
     expect(mapStateToProps(state)).toEqual({
       items: [{ ...staleItem, needs_grading_count: 1 }],
+    })
+  })
+
+  it('sorts items correctly', () => {
+    const a1 = template.toDoItem({
+      assignment: template.assignment({
+        due_at: '2016-01-17T19:15:25Z',
+        id: '1',
+        name: 'A',
+      }),
+    })
+    const a2 = template.toDoItem({
+      assignment: template.assignment({
+        due_at: '2016-01-17T19:15:25Z',
+        id: '5',
+        name: 'B',
+      }),
+    })
+    const a3 = template.toDoItem({
+      assignment: null,
+      quiz: template.assignment({
+        due_at: '2017-01-17T19:15:25Z',
+        id: '2',
+        title: 'AA',
+      }),
+    })
+    const a4 = template.toDoItem({
+      assignment: null,
+      quiz: template.assignment({
+        due_at: '2018-01-17T19:15:25Z',
+        id: '22',
+        title: 'AA',
+      }),
+    })
+    const a5 = template.toDoItem({
+      assignment: null,
+      quiz: template.quiz({
+        due_at: null,
+        id: '3',
+        title: 'BB',
+      }),
+    })
+    const a6 = template.toDoItem({
+      assignment: template.assignment({
+        due_at: null,
+        id: '4',
+        name: 'CC',
+      }),
+    })
+    const items = [a1, a2, a3, a4, a5, a6]
+    const state = {
+      toDo: { needsGrading: items },
+      entities: {},
+    }
+    expect(mapStateToProps(state)).toMatchObject({
+      items,
     })
   })
 })

@@ -88,6 +88,8 @@ export class ToDoList extends Component<Props, any> {
             testID='to-do-list.list'
             ItemSeparatorComponent={RowSeparator}
             ListEmptyComponent={this.renderEmpty()}
+            onEndReached={this.onEndReached}
+            onEndReachedThreshold={0.01}
           />
         </View>
       </Screen>
@@ -107,12 +109,29 @@ export class ToDoList extends Component<Props, any> {
   refresh = async () => {
     this.setState({ refreshing: true })
     try {
-      const { data } = await this.props.getToDo()
+      const { data, next } = await this.props.getToDo()
+      this.nextPage = next
+      this.props.refreshedToDo([])
       this.props.refreshedToDo(data)
     } catch (error) {
       Alert.alert(ERROR_TITLE, parseErrorMessage(error))
     }
     this.setState({ refreshing: false })
+  }
+
+  getNextPage = async () => {
+    if (!this.nextPage) return
+    try {
+      const { data, next } = await this.nextPage()
+      this.nextPage = next
+      this.props.refreshedToDo(data)
+    } catch (error) {
+      Alert.alert(ERROR_TITLE, parseErrorMessage(error))
+    }
+  }
+
+  onEndReached = () => {
+    this.getNextPage()
   }
 
   onPressItem = (item: ToDoItem) => () => {
@@ -173,9 +192,7 @@ const styles = StyleSheet.create({
 })
 
 export function mapStateToProps ({ entities, toDo }: AppState): StateProps {
-  const items = toDo
-    .items
-    .filter(i => i.type === 'grading')
+  const items = Object.values(toDo.needsGrading)
     .map(item => {
       // We can't trust the item's `needs_grading_count` because the server
       // appears to cache this value for at least a few minutes so we
@@ -221,6 +238,27 @@ export function mapStateToProps ({ entities, toDo }: AppState): StateProps {
       }
     })
     .filter(item => item.needs_grading_count && item.needs_grading_count > 0)
+    .sort((a, b) => {
+      /*
+       * oldest due dates at the front
+       * null due dates at the end
+       * then sort by id
+       */
+      const id1 = a.assignment && a.assignment.id || a.quiz && a.quiz.id
+      const id2 = b.assignment && b.assignment.id || b.quiz && b.quiz.id
+      const dueAt1 = a.assignment && a.assignment.due_at || a.quiz && a.quiz.due_at
+      const dueAt2 = b.assignment && b.assignment.due_at || b.quiz && b.quiz.due_at
+
+      if (dueAt1 == null && dueAt2 == null) {
+        return Number(id1) < Number(id2) ? -1 : 1
+      }
+      if (dueAt1 == null) return 1
+      if (dueAt2 == null) return -1
+      if (new Date(dueAt1).getTime() === new Date(dueAt2).getTime()) {
+        return Number(id1) < Number(id2) ? -1 : 1
+      }
+      return new Date(dueAt1) < new Date(dueAt2) ? -1 : 1
+    })
 
   return {
     items,
