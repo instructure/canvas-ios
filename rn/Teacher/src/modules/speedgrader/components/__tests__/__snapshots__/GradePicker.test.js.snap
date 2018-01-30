@@ -11,48 +11,20 @@ exports[`GradePicker disables the button and has correct text for not graded ass
   <View
     style={
       Object {
-        "alignItems": "center",
         "borderBottomColor": "lightgray",
         "borderBottomWidth": 0.5,
-        "flexDirection": "row",
-        "justifyContent": "space-between",
-        "paddingVertical": 12,
       }
     }
   >
-    <Text
-      accessibilityTraits="header"
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontFamily": ".SFUIDisplay-semibold",
-            "fontSize": 20,
-          },
-          undefined,
-        ]
-      }
-    >
-      Grade
-    </Text>
-    <TouchableOpacity
-      accessibilityLabel="Customize Grade"
-      accessibilityTraits="button"
-      activeOpacity={1}
-      onPress={null}
+    <View
       style={
         Object {
-          "minHeight": 20,
-          "paddingHorizontal": 20,
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingVertical": 12,
         }
       }
-      testID="grade-picker.button"
     >
       <Text
         accessibilityTraits="header"
@@ -69,13 +41,126 @@ exports[`GradePicker disables the button and has correct text for not graded ass
               "fontFamily": ".SFUIDisplay-semibold",
               "fontSize": 20,
             },
-            undefined,
+            Object {},
           ]
         }
       >
-        Not Graded
+        Grade
       </Text>
-    </TouchableOpacity>
+      <TouchableOpacity
+        accessibilityLabel="Customize Grade"
+        accessibilityTraits="button"
+        activeOpacity={1}
+        onPress={null}
+        style={
+          Object {
+            "minHeight": 20,
+          }
+        }
+        testID="grade-picker.button"
+      >
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 20,
+              },
+              undefined,
+            ]
+          }
+        >
+          Not Graded
+        </Text>
+      </TouchableOpacity>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`GradePicker doesnt render late policy if no grade 1`] = `
+<View
+  style={
+    Object {
+      "paddingHorizontal": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "lightgray",
+        "borderBottomWidth": 0.5,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingTop": 12,
+        }
+      }
+    >
+      <Text
+        accessibilityTraits="header"
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-semibold",
+              "fontSize": 20,
+            },
+            Object {
+              "color": "#7F91A7",
+            },
+          ]
+        }
+      >
+        Grade
+      </Text>
+      <TouchableOpacity
+        accessibilityLabel="Customize Grade"
+        accessibilityTraits="button"
+        activeOpacity={0.2}
+        onPress={[Function]}
+        style={
+          Object {
+            "minHeight": 20,
+          }
+        }
+        testID="grade-picker.button"
+      >
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/images/Add.png",
+            }
+          }
+          style={
+            Object {
+              "tintColor": "#368BD8",
+            }
+          }
+        />
+      </TouchableOpacity>
+    </View>
   </View>
 </View>
 `;
@@ -91,48 +176,20 @@ exports[`GradePicker renders points based grades 1`] = `
   <View
     style={
       Object {
-        "alignItems": "center",
         "borderBottomColor": "lightgray",
         "borderBottomWidth": 0.5,
-        "flexDirection": "row",
-        "justifyContent": "space-between",
-        "paddingVertical": 12,
       }
     }
   >
-    <Text
-      accessibilityTraits="header"
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontFamily": ".SFUIDisplay-semibold",
-            "fontSize": 20,
-          },
-          undefined,
-        ]
-      }
-    >
-      Grade
-    </Text>
-    <TouchableOpacity
-      accessibilityLabel="Customize Grade"
-      accessibilityTraits="button"
-      activeOpacity={0.2}
-      onPress={[Function]}
+    <View
       style={
         Object {
-          "minHeight": 20,
-          "paddingHorizontal": 20,
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingVertical": 12,
         }
       }
-      testID="grade-picker.button"
     >
       <Text
         accessibilityTraits="header"
@@ -149,14 +206,48 @@ exports[`GradePicker renders points based grades 1`] = `
               "fontFamily": ".SFUIDisplay-semibold",
               "fontSize": 20,
             },
-            undefined,
+            Object {},
           ]
         }
       >
-        
-        5/10
+        Grade
       </Text>
-    </TouchableOpacity>
+      <TouchableOpacity
+        accessibilityLabel="Customize Grade"
+        accessibilityTraits="button"
+        activeOpacity={0.2}
+        onPress={[Function]}
+        style={
+          Object {
+            "minHeight": 20,
+          }
+        }
+        testID="grade-picker.button"
+      >
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 20,
+              },
+              undefined,
+            ]
+          }
+        >
+          
+          5/10
+        </Text>
+      </TouchableOpacity>
+    </View>
   </View>
 </View>
 `;
@@ -172,56 +263,62 @@ exports[`GradePicker renders the activity indicator when pending 1`] = `
   <View
     style={
       Object {
-        "alignItems": "center",
         "borderBottomColor": "lightgray",
         "borderBottomWidth": 0.5,
-        "flexDirection": "row",
-        "justifyContent": "space-between",
-        "paddingVertical": 12,
       }
     }
   >
-    <Text
-      accessibilityTraits="header"
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontFamily": ".SFUIDisplay-semibold",
-            "fontSize": 20,
-          },
-          undefined,
-        ]
-      }
-    >
-      Grade
-    </Text>
-    <TouchableOpacity
-      accessibilityLabel="Customize Grade"
-      accessibilityTraits="button"
-      activeOpacity={1}
-      onPress={null}
+    <View
       style={
         Object {
-          "minHeight": 20,
-          "paddingHorizontal": 20,
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingVertical": 12,
         }
       }
-      testID="grade-picker.button"
     >
-      <ActivityIndicator
-        animating={true}
-        color="#999999"
-        hidesWhenStopped={true}
-        size="small"
-      />
-    </TouchableOpacity>
+      <Text
+        accessibilityTraits="header"
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-semibold",
+              "fontSize": 20,
+            },
+            Object {},
+          ]
+        }
+      >
+        Grade
+      </Text>
+      <TouchableOpacity
+        accessibilityLabel="Customize Grade"
+        accessibilityTraits="button"
+        activeOpacity={1}
+        onPress={null}
+        style={
+          Object {
+            "minHeight": 20,
+          }
+        }
+        testID="grade-picker.button"
+      >
+        <ActivityIndicator
+          animating={true}
+          color="#999999"
+          hidesWhenStopped={true}
+          size="small"
+        />
+      </TouchableOpacity>
+    </View>
   </View>
 </View>
 `;
@@ -237,62 +334,68 @@ exports[`GradePicker renders the picker for pass fail assignments 1`] = `
   <View
     style={
       Object {
-        "alignItems": "center",
         "borderBottomColor": "lightgray",
         "borderBottomWidth": 0.5,
-        "flexDirection": "row",
-        "justifyContent": "space-between",
-        "paddingVertical": 12,
       }
     }
   >
-    <Text
-      accessibilityTraits="header"
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontFamily": ".SFUIDisplay-semibold",
-            "fontSize": 20,
-          },
-          undefined,
-        ]
-      }
-    >
-      Grade
-    </Text>
-    <TouchableOpacity
-      accessibilityLabel="Customize Grade"
-      accessibilityTraits="button"
-      activeOpacity={0.2}
-      onPress={[Function]}
+    <View
       style={
         Object {
-          "minHeight": 20,
-          "paddingHorizontal": 20,
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingVertical": 12,
         }
       }
-      testID="grade-picker.button"
     >
-      <Image
-        source={
-          Object {
-            "testUri": "../../../src/images/Add.png",
-          }
+      <Text
+        accessibilityTraits="header"
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-semibold",
+              "fontSize": 20,
+            },
+            Object {},
+          ]
         }
+      >
+        Grade
+      </Text>
+      <TouchableOpacity
+        accessibilityLabel="Customize Grade"
+        accessibilityTraits="button"
+        activeOpacity={0.2}
+        onPress={[Function]}
         style={
           Object {
-            "tintColor": "#368BD8",
+            "minHeight": 20,
           }
         }
-      />
-    </TouchableOpacity>
+        testID="grade-picker.button"
+      >
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/images/Add.png",
+            }
+          }
+          style={
+            Object {
+              "tintColor": "#368BD8",
+            }
+          }
+        />
+      </TouchableOpacity>
+    </View>
   </View>
   <View
     collapsable={undefined}
@@ -339,48 +442,20 @@ exports[`GradePicker renders the rubric score when useRubricForGrading 1`] = `
   <View
     style={
       Object {
-        "alignItems": "center",
         "borderBottomColor": "lightgray",
         "borderBottomWidth": 0.5,
-        "flexDirection": "row",
-        "justifyContent": "space-between",
-        "paddingVertical": 12,
       }
     }
   >
-    <Text
-      accessibilityTraits="header"
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontFamily": ".SFUIDisplay-semibold",
-            "fontSize": 20,
-          },
-          undefined,
-        ]
-      }
-    >
-      Grade
-    </Text>
-    <TouchableOpacity
-      accessibilityLabel="Customize Grade"
-      accessibilityTraits="button"
-      activeOpacity={0.2}
-      onPress={[Function]}
+    <View
       style={
         Object {
-          "minHeight": 20,
-          "paddingHorizontal": 20,
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingVertical": 12,
         }
       }
-      testID="grade-picker.button"
     >
       <Text
         accessibilityTraits="header"
@@ -397,14 +472,48 @@ exports[`GradePicker renders the rubric score when useRubricForGrading 1`] = `
               "fontFamily": ".SFUIDisplay-semibold",
               "fontSize": 20,
             },
-            undefined,
+            Object {},
           ]
         }
       >
-        
-        22/10
+        Grade
       </Text>
-    </TouchableOpacity>
+      <TouchableOpacity
+        accessibilityLabel="Customize Grade"
+        accessibilityTraits="button"
+        activeOpacity={0.2}
+        onPress={[Function]}
+        style={
+          Object {
+            "minHeight": 20,
+          }
+        }
+        testID="grade-picker.button"
+      >
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 20,
+              },
+              undefined,
+            ]
+          }
+        >
+          
+          22/10
+        </Text>
+      </TouchableOpacity>
+    </View>
   </View>
 </View>
 `;
@@ -420,48 +529,240 @@ exports[`GradePicker renders with excused 1`] = `
   <View
     style={
       Object {
-        "alignItems": "center",
         "borderBottomColor": "lightgray",
         "borderBottomWidth": 0.5,
-        "flexDirection": "row",
-        "justifyContent": "space-between",
-        "paddingVertical": 12,
       }
     }
   >
-    <Text
-      accessibilityTraits="header"
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontFamily": ".SFUIDisplay-semibold",
-            "fontSize": 20,
-          },
-          undefined,
-        ]
-      }
-    >
-      Grade
-    </Text>
-    <TouchableOpacity
-      accessibilityLabel="Customize Grade"
-      accessibilityTraits="button"
-      activeOpacity={0.2}
-      onPress={[Function]}
+    <View
       style={
         Object {
-          "minHeight": 20,
-          "paddingHorizontal": 20,
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingVertical": 12,
         }
       }
-      testID="grade-picker.button"
+    >
+      <Text
+        accessibilityTraits="header"
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-semibold",
+              "fontSize": 20,
+            },
+            Object {},
+          ]
+        }
+      >
+        Grade
+      </Text>
+      <TouchableOpacity
+        accessibilityLabel="Customize Grade"
+        accessibilityTraits="button"
+        activeOpacity={0.2}
+        onPress={[Function]}
+        style={
+          Object {
+            "minHeight": 20,
+          }
+        }
+        testID="grade-picker.button"
+      >
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 20,
+              },
+              undefined,
+            ]
+          }
+        >
+          Excused
+        </Text>
+      </TouchableOpacity>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`GradePicker renders with late policy 1`] = `
+<View
+  style={
+    Object {
+      "paddingHorizontal": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "lightgray",
+        "borderBottomWidth": 0.5,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingTop": 12,
+        }
+      }
+    >
+      <Text
+        accessibilityTraits="header"
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-semibold",
+              "fontSize": 20,
+            },
+            Object {
+              "color": "#7F91A7",
+            },
+          ]
+        }
+      >
+        Grade
+      </Text>
+      <TouchableOpacity
+        accessibilityLabel="Customize Grade"
+        accessibilityTraits="button"
+        activeOpacity={0.2}
+        onPress={[Function]}
+        style={
+          Object {
+            "minHeight": 20,
+          }
+        }
+        testID="grade-picker.button"
+      >
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 20,
+              },
+              Object {
+                "color": "#7F91A7",
+              },
+            ]
+          }
+        >
+          
+          9/10
+        </Text>
+      </TouchableOpacity>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginBottom": 8,
+          "marginTop": 2,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#FC5E13",
+              "fontSize": 14,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        Late
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#FC5E13",
+              "fontSize": 14,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        -
+        1pts
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 12,
+        }
+      }
     >
       <Text
         accessibilityTraits="header"
@@ -482,138 +783,8 @@ exports[`GradePicker renders with excused 1`] = `
           ]
         }
       >
-        Excused
+        Final Grade
       </Text>
-    </TouchableOpacity>
-  </View>
-</View>
-`;
-
-exports[`GradePicker renders with no grade 1`] = `
-<View
-  style={
-    Object {
-      "paddingHorizontal": 16,
-    }
-  }
->
-  <View
-    style={
-      Object {
-        "alignItems": "center",
-        "borderBottomColor": "lightgray",
-        "borderBottomWidth": 0.5,
-        "flexDirection": "row",
-        "justifyContent": "space-between",
-        "paddingVertical": 12,
-      }
-    }
-  >
-    <Text
-      accessibilityTraits="header"
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontFamily": ".SFUIDisplay-semibold",
-            "fontSize": 20,
-          },
-          undefined,
-        ]
-      }
-    >
-      Grade
-    </Text>
-    <TouchableOpacity
-      accessibilityLabel="Customize Grade"
-      accessibilityTraits="button"
-      activeOpacity={0.2}
-      onPress={[Function]}
-      style={
-        Object {
-          "minHeight": 20,
-          "paddingHorizontal": 20,
-        }
-      }
-      testID="grade-picker.button"
-    >
-      <Image
-        source={
-          Object {
-            "testUri": "../../../src/images/Add.png",
-          }
-        }
-        style={
-          Object {
-            "tintColor": "#368BD8",
-          }
-        }
-      />
-    </TouchableOpacity>
-  </View>
-</View>
-`;
-
-exports[`GradePicker updates the visible rubric score when useRubricForGrading and rubrucScore changes 1`] = `
-<View
-  style={
-    Object {
-      "paddingHorizontal": 16,
-    }
-  }
->
-  <View
-    style={
-      Object {
-        "alignItems": "center",
-        "borderBottomColor": "lightgray",
-        "borderBottomWidth": 0.5,
-        "flexDirection": "row",
-        "justifyContent": "space-between",
-        "paddingVertical": 12,
-      }
-    }
-  >
-    <Text
-      accessibilityTraits="header"
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontFamily": ".SFUIDisplay-semibold",
-            "fontSize": 20,
-          },
-          undefined,
-        ]
-      }
-    >
-      Grade
-    </Text>
-    <TouchableOpacity
-      accessibilityLabel="Customize Grade"
-      accessibilityTraits="button"
-      activeOpacity={0.2}
-      onPress={[Function]}
-      style={
-        Object {
-          "minHeight": 20,
-          "paddingHorizontal": 20,
-        }
-      }
-      testID="grade-picker.button"
-    >
       <Text
         accessibilityTraits="header"
         accessible={true}
@@ -634,9 +805,173 @@ exports[`GradePicker updates the visible rubric score when useRubricForGrading a
         }
       >
         
-        22/10
+        8/10
       </Text>
-    </TouchableOpacity>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`GradePicker renders with no grade 1`] = `
+<View
+  style={
+    Object {
+      "paddingHorizontal": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "lightgray",
+        "borderBottomWidth": 0.5,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingVertical": 12,
+        }
+      }
+    >
+      <Text
+        accessibilityTraits="header"
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-semibold",
+              "fontSize": 20,
+            },
+            Object {},
+          ]
+        }
+      >
+        Grade
+      </Text>
+      <TouchableOpacity
+        accessibilityLabel="Customize Grade"
+        accessibilityTraits="button"
+        activeOpacity={0.2}
+        onPress={[Function]}
+        style={
+          Object {
+            "minHeight": 20,
+          }
+        }
+        testID="grade-picker.button"
+      >
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/images/Add.png",
+            }
+          }
+          style={
+            Object {
+              "tintColor": "#368BD8",
+            }
+          }
+        />
+      </TouchableOpacity>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`GradePicker updates the visible rubric score when useRubricForGrading and rubrucScore changes 1`] = `
+<View
+  style={
+    Object {
+      "paddingHorizontal": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "lightgray",
+        "borderBottomWidth": 0.5,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingVertical": 12,
+        }
+      }
+    >
+      <Text
+        accessibilityTraits="header"
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-semibold",
+              "fontSize": 20,
+            },
+            Object {},
+          ]
+        }
+      >
+        Grade
+      </Text>
+      <TouchableOpacity
+        accessibilityLabel="Customize Grade"
+        accessibilityTraits="button"
+        activeOpacity={0.2}
+        onPress={[Function]}
+        style={
+          Object {
+            "minHeight": 20,
+          }
+        }
+        testID="grade-picker.button"
+      >
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 20,
+              },
+              undefined,
+            ]
+          }
+        >
+          
+          22/10
+        </Text>
+      </TouchableOpacity>
+    </View>
   </View>
 </View>
 `;

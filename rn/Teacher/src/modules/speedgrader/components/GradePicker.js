@@ -114,12 +114,14 @@ export class GradePicker extends Component {
         break
     }
 
+    let grade = this.applyLatePolicy() ? this.props.enteredGrade : this.props.grade
+
     AlertIOS.prompt(
       i18n('Customize Grade'),
       message,
       buttons,
       'plain-text',
-      this.props.excused ? i18n('Excused') : this.props.grade
+      this.props.excused ? i18n('Excused') : grade
     )
   }
 
@@ -134,15 +136,33 @@ export class GradePicker extends Component {
     })
   }
 
-  renderGrade = () => {
+  renderLatePolicy () {
+    if (!this.applyLatePolicy() || !this.props.grade) return null
+    const { pointsDeducted } = this.props
+    return [
+      <View style={styles.gradeCellMiddle}>
+        <Text style={styles.orangeText}>{i18n('Late')}</Text>
+        <Text style={styles.orangeText}>-{i18n(`{ points, number }pts`, { points: pointsDeducted })}</Text>
+      </View>,
+      <View style={styles.gradeCellBottom}>
+        <Heading1>{i18n('Final Grade')}</Heading1>
+        { this.renderGrade() }
+      </View>,
+    ]
+  }
+
+  renderGrade = (latePolicy = false) => {
     if (this.state.originalRubricScore !== this.props.rubricScore) {
       this.setState({ useCustomGrade: false, originalRubricScore: this.props.rubricScore })
     }
 
-    let score = this.props.useRubricForGrading && !this.state.useCustomGrade ? this.props.rubricScore : this.props.score
+    let gradeToUse = latePolicy ? this.props.enteredGrade : this.props.grade
+    let scoreToUse = latePolicy ? this.props.enteredScore : this.props.score
+
+    let score = this.props.useRubricForGrading && !this.state.useCustomGrade ? this.props.rubricScore : scoreToUse
     let points = i18n(`{ score, number }/{ pointsPossible, number }`, { score, pointsPossible: this.props.pointsPossible })
-    let grade = this.props.gradingType === 'points' ? '' : `${formatGradeText(this.props.grade, this.props.gradingType)} `
-    return <Heading1 style={this.getButtonStyles()}>{grade}{points}</Heading1>
+    let grade = this.props.gradingType === 'points' ? '' : `${formatGradeText(gradeToUse, this.props.gradingType)} `
+    return <Heading1 style={this.getButtonStyles(latePolicy)}>{grade}{points}</Heading1>
   }
 
   renderField = () => {
@@ -153,7 +173,7 @@ export class GradePicker extends Component {
     } else if (this.props.excused) {
       return <Heading1 style={this.getButtonStyles()}>{i18n('Excused')}</Heading1>
     } else if (this.props.grade) {
-      return this.renderGrade()
+      return this.renderGrade(this.applyLatePolicy())
     } else {
       return <Image source={Images.add} style={styles.ungradedButton}/>
     }
@@ -168,10 +188,17 @@ export class GradePicker extends Component {
     }
   }
 
-  getButtonStyles = () => {
+  getButtonStyles = (latePolicy = false) => {
     if (this.props.gradingType === PASS_FAIL && this.state.pickerOpen) {
       return { color: branding.primaryBrandColor }
+    } else if (this.applyLatePolicy() && latePolicy) {
+      return { color: colors.lightText }
     }
+  }
+
+  applyLatePolicy = () => {
+    const { late, pointsDeducted } = this.props
+    return !!(late && pointsDeducted > 0)
   }
 
   renderModeratedGradingUnsuported () {
@@ -191,10 +218,17 @@ export class GradePicker extends Component {
   renderGradeCell () {
     let disabled = (this.props.pending || this.props.gradingType === 'not_graded')
     let gradeButtonAction = !disabled ? (this.props.gradingType === PASS_FAIL ? this.togglePicker : this.openPrompt) : null
+    let headingStyles = {}
+    let cellStyles = styles.gradeCell
+    if (this.applyLatePolicy()) {
+      headingStyles = { color: colors.lightText }
+      cellStyles = styles.gradeCellTop
+    }
     return (
-      <View style={styles.gradeCell}>
-        <Heading1>{i18n('Grade')}</Heading1>
-        <TouchableOpacity
+      <View style={styles.gradeCellContainer}>
+        <View style={cellStyles}>
+          <Heading1 style={headingStyles}>{i18n('Grade')}</Heading1>
+          <TouchableOpacity
             testID='grade-picker.button'
             style={styles.gradeButton}
             onPress={gradeButtonAction}
@@ -204,6 +238,8 @@ export class GradePicker extends Component {
           >
             {this.renderField()}
           </TouchableOpacity>
+        </View>
+        {this.renderLatePolicy()}
       </View>
     )
   }
@@ -255,20 +291,44 @@ const styles = StyleSheet.create({
   gradePicker: {
     paddingHorizontal: 16,
   },
+  gradeCellContainer: {
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: 'lightgray',
+  },
   gradeCell: {
     paddingVertical: 12,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: 'lightgray',
+  },
+  gradeCellTop: {
+    paddingTop: 12,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  gradeCellBottom: {
+    paddingBottom: 12,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  gradeCellMiddle: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 2,
+    marginBottom: 8,
   },
   gradeButton: {
     minHeight: 20,
-    paddingHorizontal: 20,
   },
   ungradedButton: {
     tintColor: colors.primaryButton,
+  },
+  orangeText: {
+    fontSize: 14,
+    color: '#FC5E13',
   },
 })
 
@@ -293,6 +353,10 @@ export function mapStateToProps (state: AppState, ownProps: GradePickerOwnProps)
     pending: Boolean(state.entities.submissions[ownProps.submissionID].pending),
     gradingType: assignment.grading_type,
     pointsPossible: assignment.points_possible,
+    late: submission.late,
+    pointsDeducted: submission.points_deducted,
+    enteredGrade: submission.entered_grade,
+    enteredScore: submission.entered_score,
   }
 }
 
@@ -316,6 +380,10 @@ type GradePickerDataProps = {
   pending: boolean,
   gradingType: GradingType,
   pointsPossible: number,
+  late?: boolean,
+  pointsDeducted?: number,
+  enteredGrade?: string,
+  enteredScore?: number,
 }
 
 type GradePickerActionProps = {

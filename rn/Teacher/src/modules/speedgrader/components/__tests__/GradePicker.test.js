@@ -270,6 +270,62 @@ describe('GradePicker', () => {
 
     expect(AlertIOS.alert).toHaveBeenCalled()
   })
+
+  it('renders with late policy', () => {
+    let props = {
+      ...defaultProps,
+      late: true,
+      pointsDeducted: 1,
+      enteredGrade: '9',
+      enteredScore: 9,
+      grade: '8',
+      score: 8,
+    }
+
+    let view = renderer.create(
+      <GradePicker {...props} />
+    )
+
+    expect(view).toMatchSnapshot()
+  })
+
+  it('doesnt render late policy if no grade', () => {
+    let props = {
+      ...defaultProps,
+      late: true,
+      pointsDeducted: 1,
+      enteredGrade: '9',
+      enteredScore: 9,
+      grade: null,
+      score: null,
+    }
+
+    let view = renderer.create(
+      <GradePicker {...props} />
+    )
+
+    expect(view).toMatchSnapshot()
+  })
+
+  it('shows the enteredGrade as default value for the prompt with late policy', () => {
+    let props = {
+      ...defaultProps,
+      late: true,
+      pointsDeducted: 10,
+      enteredGrade: '90%',
+      enteredScore: 90,
+      grade: '80%',
+    }
+
+    let tree = renderer.create(
+      <GradePicker {...props} />
+    ).toJSON()
+
+    let button = explore(tree).selectByID('grade-picker.button') || {}
+    button.props.onPress()
+
+    expect(AlertIOS.prompt.mock.calls[0][4]).toEqual('90%')
+  })
 })
 
 describe('mapStateToProps', () => {
