@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -41,7 +41,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable Push Notifications" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMb-wZ-ARX">
-                                                    <rect key="frame" x="15" y="0.0" width="296" height="43.5"/>
+                                                    <rect key="frame" x="15" y="12" width="296" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -57,12 +57,11 @@
                                                 </switch>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="PMb-wZ-ARX" secondAttribute="bottom" id="09n-Qo-uRX"/>
                                                 <constraint firstItem="PMb-wZ-ARX" firstAttribute="trailing" secondItem="Fjs-z9-ofR" secondAttribute="leading" id="0jW-DL-Hhw"/>
                                                 <constraint firstAttribute="trailing" secondItem="Fjs-z9-ofR" secondAttribute="trailing" constant="15" id="1rb-nw-Cf8"/>
                                                 <constraint firstItem="PMb-wZ-ARX" firstAttribute="leading" secondItem="KoB-BD-ryR" secondAttribute="leading" constant="15" id="3ox-F2-Rhf"/>
                                                 <constraint firstItem="Fjs-z9-ofR" firstAttribute="centerY" secondItem="KoB-BD-ryR" secondAttribute="centerY" id="F4c-Lj-F5c"/>
-                                                <constraint firstItem="PMb-wZ-ARX" firstAttribute="top" secondItem="KoB-BD-ryR" secondAttribute="top" id="kn7-if-Igc"/>
+                                                <constraint firstItem="PMb-wZ-ARX" firstAttribute="centerY" secondItem="KoB-BD-ryR" secondAttribute="centerY" id="kn7-if-Igc"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
