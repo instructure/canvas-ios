@@ -63,7 +63,7 @@ function xhr (method: Method, url: string, data: ?Object, config: ApiConfig = {}
     const query = serializeParams(params)
 
     let fullUrl = /^\w+:/.test(url) ? url
-        : `${baseURL.replace(/\/?$/, '')}/api/v1/${url.replace(/^\//, '')}`
+        : `${baseURL.replace(/\/?$/, '')}${config.excludeVersion ? '/' : '/api/v1/'}${url.replace(/^\//, '')}`
     if (query) fullUrl += (fullUrl.includes('?') ? '&' : '?') + query
 
     request.open(method, fullUrl, true)

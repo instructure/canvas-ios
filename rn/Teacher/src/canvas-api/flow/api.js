@@ -24,6 +24,7 @@ export type ApiConfig = {
   params?: { [string]: any },
   timeout?: number,
   responseType?: 'text' | 'json' | 'blob' | 'arraybuffer', // 'document' is not supported by react-native
+  excludeVersion?: boolean,
 }
 
 export type ApiResponse<T> = {

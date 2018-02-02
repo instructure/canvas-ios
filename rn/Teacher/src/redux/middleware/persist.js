@@ -35,6 +35,14 @@ async function removeOldStates (session: Session) {
 
 async function persistState (store) {
   let state = store.getState()
+  // we don't need async actions in the cache
+  // it also causes errors because we keep track of errors
+  // which contain circular references that cannot be stringified
+  state = {
+    ...state,
+    asyncActions: {},
+  }
+
   let session = getSession()
   if (!session) return
 

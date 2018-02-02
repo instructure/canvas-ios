@@ -22,6 +22,16 @@ import {
 
 import { registerScreens } from '../register-screens'
 import Navigator from '../Navigator'
+import canvas from '../../canvas-api'
+import SFSafariViewController from 'react-native-sfsafariviewcontroller'
+
+jest.mock('../../canvas-api', () => ({
+  getAuthenticatedSessionURL: jest.fn(),
+}))
+
+jest.mock('react-native-sfsafariviewcontroller', () => ({
+  open: jest.fn(),
+}))
 
 registerScreens({})
 
@@ -130,5 +140,54 @@ describe('Navigator', () => {
     expect(() => {
       new Navigator('dont throw').showNotification(notification)
     }).not.toThrow()
+  })
+
+  it('shows as a modal if deepLink is turned on for the route', () => {
+    new Navigator('deepLink').show('/courses/1/announcements/3', {
+      modal: true,
+      embedInNavigationController: true,
+      deepLink: true,
+    })
+
+    expect(NativeModules.Helm.present).toHaveBeenCalledWith(
+      '/courses/:courseID/announcements/:announcementID',
+      { courseID: '1', announcementID: '3', screenInstanceID: expect.any(String) },
+      { canBecomeMaster: false, embedInNavigationController: true, modal: true, modalPresentationStyle: 'formsheet' }
+    )
+  })
+
+  it('opens a webview if we try to deepLink to something that is unsupported', async () => {
+    let promise = Promise.resolve({ data: { session_url: 'https://google.com' } })
+    canvas.getAuthenticatedSessionURL.mockReturnValueOnce(promise)
+    new Navigator('deepLink').show('/courses/1/assignments/3', {
+      modal: true,
+      embedInNavigationController: true,
+      deepLink: true,
+    })
+
+    await promise
+
+    expect(SFSafariViewController.open).toHaveBeenCalledWith('https://google.com')
+  })
+
+  it('opens a webview with the url if we do not have a route for it', async () => {
+    let promise = Promise.resolve({ data: { session_url: 'https://google.com' } })
+    canvas.getAuthenticatedSessionURL.mockReturnValueOnce(promise)
+    new Navigator('push').show('https://google.com')
+
+    await promise
+    expect(SFSafariViewController.open).toHaveBeenCalledWith('https://google.com')
+  })
+
+  it('opens the original url if getting the authenticated session url errors', async () => {
+    let promise = Promise.reject()
+    canvas.getAuthenticatedSessionURL.mockReturnValueOnce(promise)
+    new Navigator('showWebView').showWebView('https://google.com')
+
+    try {
+      await promise
+    } catch (err) {
+      expect(SFSafariViewController.open).toHaveBeenCalledWith('https://google.com')
+    }
   })
 })

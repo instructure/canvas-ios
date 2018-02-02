@@ -17,6 +17,8 @@
 // @flow
 import { NativeModules } from 'react-native'
 import { route } from './index'
+import SFSafariViewController from 'react-native-sfsafariviewcontroller'
+import { getAuthenticatedSessionURL } from '../canvas-api'
 
 type ShowOptions = {
   modal: boolean,
@@ -34,18 +36,34 @@ export default class Navigator {
     this.moduleName = moduleName
   }
 
-  show (url: string, options: Object = { modal: false, modalPresentationStyle: 'formsheet' }, additionalProps: Object = {}) {
-    const r = route(url, additionalProps)
+  show (url: string, options: Object = { modal: false, modalPresentationStyle: 'formsheet', deepLink: false }, additionalProps: Object = {}) {
+    try {
+      const r = route(url, additionalProps)
+      if (options.deepLink && !r.config.deepLink) {
+        return this.showWebView(url)
+      }
 
-    let canBecomeMaster = false
-    if (r.config && r.config.canBecomeMaster) {
-      canBecomeMaster = r.config.canBecomeMaster
+      let canBecomeMaster = false
+      if (r.config && r.config.canBecomeMaster) {
+        canBecomeMaster = r.config.canBecomeMaster
+      }
+      if (options.modal) {
+        const embedInNavigationController = options.embedInNavigationController == null || options.embedInNavigationController
+        return this.present(r, { modal: options.modal, modalPresentationStyle: options.modalPresentationStyle || 'formsheet', embedInNavigationController, canBecomeMaster: canBecomeMaster, modalTransitionStyle: options.modalTransitionStyle })
+      } else {
+        return this.push(r)
+      }
+    } catch (err) {
+      return this.showWebView(url)
     }
-    if (options.modal) {
-      const embedInNavigationController = options.embedInNavigationController == null || options.embedInNavigationController
-      return this.present(r, { modal: options.modal, modalPresentationStyle: options.modalPresentationStyle || 'formsheet', embedInNavigationController, canBecomeMaster: canBecomeMaster, modalTransitionStyle: options.modalTransitionStyle })
-    } else {
-      return this.push(r)
+  }
+
+  async showWebView (url: string) {
+    try {
+      let { data: { session_url: authenticatedURL } } = await getAuthenticatedSessionURL(url)
+      SFSafariViewController.open(authenticatedURL)
+    } catch (err) {
+      SFSafariViewController.open(url)
     }
   }
 
@@ -81,14 +99,17 @@ export default class Navigator {
   showNotification (notification: PushNotificationIOS) {
     if (notification.getData() && notification.getData().html_url) {
       const url = notification.getData().html_url
-      try {
-        this.show(url, { modal: true, modalPresentationStyle: 'fullscreen' }, {
-          pushNotification: {
-            alert: notification.getAlert(),
-            data: notification.getData(),
-          },
-        })
-      } catch (e) {}
+      this.show(url, {
+        modal: true,
+        modalPresentationStyle: 'fullscreen',
+        embedInNavigationController: true,
+        deepLink: true,
+      }, {
+        pushNotification: {
+          alert: notification.getAlert(),
+          data: notification.getData(),
+        },
+      })
     }
   }
 }

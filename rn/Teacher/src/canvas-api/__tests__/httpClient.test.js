@@ -122,6 +122,15 @@ describe('httpClient', () => {
     )
   })
 
+  it('does not attach the version if excludeVersion is passed in', () => {
+    httpClient().get('/courses/1', { excludeVersion: true })
+    expect(request.open).toHaveBeenCalledWith(
+      'GET',
+      '/courses/1',
+      true
+    )
+  })
+
   it('passes along headers', () => {
     httpClient().delete('', {
       headers: {
