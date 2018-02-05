@@ -18,7 +18,7 @@
  * @flow
  */
 
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import ReactNative, {
   View,
   StyleSheet,
@@ -38,7 +38,7 @@ export function Button ({ style, containerStyle, ...props }: Object): ReactNativ
   return (<BaseButton style={[styles.textColor, brandingStyles, style]} containerStyle={[styles.container, brandingContainerStyles, containerStyle]} {...props} />)
 }
 
-export class LinkButton extends Component {
+export class LinkButton extends PureComponent {
   render () {
     const brandingStyles = { color: colors.primaryButtonColor }
     const textAttributes = this.props.textAttributes || {}

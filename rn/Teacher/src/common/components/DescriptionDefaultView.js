@@ -16,7 +16,7 @@
 
 // @flow
 
-import React from 'react'
+import React, { PureComponent } from 'react'
 import {
     View,
     Text,
@@ -28,7 +28,7 @@ type Props = {
   testID: string,
 }
 
-export default class DescriptionDefaultView extends React.Component<Props, any> {
+export default class DescriptionDefaultView extends PureComponent<Props, any> {
 
   render () {
     return (

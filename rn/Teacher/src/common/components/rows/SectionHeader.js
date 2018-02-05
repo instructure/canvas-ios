@@ -18,7 +18,7 @@
 * @flow
 */
 
-import React from 'react'
+import React, { PureComponent } from 'react'
 import {
   View,
   StyleSheet,
@@ -32,7 +32,7 @@ type Props = {
   top?: boolean, // Draw a line at the top of the section header. Usually used if the section header is the topmost of the list
 }
 
-export default class SectionHeader extends React.PureComponent<Props, any> {
+export default class SectionHeader extends PureComponent<Props, any> {
 
   render () {
     const key = this.props.sectionKey ? this.props.sectionKey : this.props.title

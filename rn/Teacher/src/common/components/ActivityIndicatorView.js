@@ -16,10 +16,10 @@
 
 // @flow
 
-import React from 'react'
+import React, { PureComponent } from 'react'
 import { View, StyleSheet, ActivityIndicator } from 'react-native'
 
-export default class ActivityIndicatorView extends React.Component<any, any, any> {
+export default class ActivityIndicatorView extends PureComponent<any, any, any> {
   render () {
     return <View style={styles.container}>
               <ActivityIndicator style={styles.indicator} />

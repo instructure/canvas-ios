@@ -18,7 +18,7 @@
  * @flow
  */
 
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { Heading1 } from '../text'
 import color from '../colors'
 import {
@@ -26,7 +26,7 @@ import {
   StyleSheet,
 } from 'react-native'
 
-export default class EditSectionHeader extends Component {
+export default class EditSectionHeader extends PureComponent {
   render () {
     return (
       <View style={[style.container, this.props.style]}>

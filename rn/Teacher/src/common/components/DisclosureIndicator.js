@@ -16,10 +16,10 @@
 
 // @flow
 
-import React from 'react'
+import React, { PureComponent } from 'react'
 import { View, StyleSheet } from 'react-native'
 
-export default class DisclosureIndicator extends React.Component {
+export default class DisclosureIndicator extends PureComponent {
   render () {
     return <View style={styles.disclosureIndicator} />
   }

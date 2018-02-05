@@ -16,7 +16,7 @@
 
 // @flow
 
-import React from 'react'
+import React, { PureComponent } from 'react'
 import { View, StyleSheet, Image } from 'react-native'
 import { Title } from '../text'
 
@@ -25,7 +25,7 @@ export type ListEmptyComponentProps = {
   image?: any,
 }
 
-export default class ListEmptyComponent extends React.PureComponent<any, ListEmptyComponentProps, any> {
+export default class ListEmptyComponent extends PureComponent<any, ListEmptyComponentProps, any> {
   render () {
     return <View style={styles.container}>
               <Title>{this.props.title}</Title>

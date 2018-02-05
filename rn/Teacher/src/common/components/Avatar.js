@@ -16,7 +16,7 @@
 
 // @flow
 
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import {
   View,
   Image,
@@ -35,7 +35,7 @@ type Props = {
   onPress?: Function,
 }
 
-export default class Avatar extends Component<Props, any> {
+export default class Avatar extends PureComponent<Props, any> {
 
   // Checks for the crappy default profile picture from canvas
   // If it's one of those things, returns null

@@ -16,7 +16,7 @@
 
 // @flow
 
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import {
   View,
   StyleSheet,
@@ -42,7 +42,7 @@ type DateRowProps = {
   selected?: boolean,
 }
 
-export default class RowWithDateInput extends Component<any, DateRowProps, any> {
+export default class RowWithDateInput extends PureComponent<any, DateRowProps, any> {
 
   render () {
     let detailTextStyle = this.props.selected ? { color: branding.primaryBrandColor } : styles.detailText
