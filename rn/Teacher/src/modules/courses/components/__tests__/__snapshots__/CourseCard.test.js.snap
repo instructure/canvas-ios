@@ -1,273 +1,349 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders 1`] = `
-<TouchableHighlight
-  accessible={false}
-  onLayout={[Function]}
-  onPress={[Function]}
-  style={
-    Array [
-      Object {
-        "backgroundColor": "#ffffff01",
-        "height": 160,
-        "shadowColor": "#000",
-        "shadowOffset": Object {
-          "height": 1,
-          "width": 0,
-        },
-        "shadowOpacity": 0.2,
-        "shadowRadius": 1,
-      },
-      Object {
-        "height": 100,
-      },
-    ]
-  }
-  testID="course-1"
-  underlayColor="transparent"
->
-  <View
+<A11yGroup>
+  <TouchableHighlight
+    accessible={false}
+    onLayout={[Function]}
+    onPress={[Function]}
     style={
-      Object {
-        "backgroundColor": "white",
-        "borderColor": "#e3e3e3",
-        "borderRadius": 4,
-        "borderWidth": 0.5,
-        "flex": 1,
-        "overflow": "hidden",
-      }
+      Array [
+        Object {
+          "backgroundColor": "#ffffff01",
+          "height": 160,
+          "shadowColor": "#000",
+          "shadowOffset": Object {
+            "height": 1,
+            "width": 0,
+          },
+          "shadowOpacity": 0.2,
+          "shadowRadius": 1,
+        },
+        Object {
+          "height": 100,
+        },
+      ]
     }
+    testID="course-1"
+    underlayColor="transparent"
   >
     <View
       style={
         Object {
+          "backgroundColor": "white",
+          "borderColor": "#e3e3e3",
+          "borderRadius": 4,
+          "borderWidth": 0.5,
           "flex": 1,
+          "overflow": "hidden",
         }
       }
     >
-      <Image
-        source={
-          Object {
-            "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-          }
-        }
+      <View
         style={
           Object {
             "flex": 1,
           }
         }
-      />
-      <View
-        accessibilityLabel="Learn React Native"
-        accessibilityTraits="button"
-        accessible={true}
-        style={
-          Object {
-            "backgroundColor": "#333",
-            "bottom": 0,
-            "left": 0,
-            "opacity": 0.8,
-            "position": "absolute",
-            "right": 0,
-            "top": 0,
-          }
-        }
-      />
-      <TouchableHighlight
-        accessibilityLabel="Open Learn React Native user preferences"
-        accessibilityTraits="button"
-        accessible={true}
-        onPress={[Function]}
-        style={
-          Object {
-            "height": 43,
-            "position": "absolute",
-            "right": 0,
-            "top": 0,
-            "width": 43,
-          }
-        }
-        testID="course-card.kabob-1"
-        underlayColor="#ffffff00"
       >
         <Image
           source={
             Object {
-              "testUri": "../../../src/images/kabob.png",
+              "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
             }
           }
           style={
             Object {
-              "height": 18,
-              "position": "absolute",
-              "right": 8,
-              "top": 10,
-              "width": 18,
+              "flex": 1,
             }
           }
         />
-      </TouchableHighlight>
-    </View>
-    <View
-      accessible={false}
-      style={
-        Object {
-          "flex": 1,
-          "paddingHorizontal": 10,
-        }
-      }
-    >
-      <Text
+        <View
+          accessibilityLabel="Learn React Native "
+          accessibilityTraits="button"
+          accessible={true}
+          style={
+            Object {
+              "backgroundColor": "#333",
+              "bottom": 0,
+              "left": 0,
+              "opacity": 0.8,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        />
+        <TouchableHighlight
+          accessibilityLabel="Open Learn React Native user preferences"
+          accessibilityTraits="button"
+          accessible={true}
+          onPress={[Function]}
+          style={
+            Object {
+              "height": 43,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+              "width": 43,
+            }
+          }
+          testID="course-card.kabob-1"
+          underlayColor="#ffffff00"
+        >
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/images/kabob.png",
+              }
+            }
+            style={
+              Object {
+                "height": 18,
+                "position": "absolute",
+                "right": 8,
+                "top": 10,
+                "width": 18,
+              }
+            }
+          />
+        </TouchableHighlight>
+      </View>
+      <View
         accessible={false}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={2}
         style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
-            Object {
-              "color": "#333",
-              "fontWeight": "600",
-              "marginTop": 8,
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay-semibold",
-            },
-          ]
+          Object {
+            "flex": 1,
+            "paddingHorizontal": 10,
+          }
         }
       >
-        Learn React Native
-      </Text>
-      <Text
-        accessible={false}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={1}
-        style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
-            Object {
-              "color": "#8B969D",
-              "fontSize": 12,
-              "fontWeight": "600",
-              "marginTop": 2,
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay-semibold",
-            },
-          ]
-        }
-      >
-        rn 101
-      </Text>
+        <Text
+          accessible={false}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={2}
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#333",
+                "fontWeight": "600",
+                "marginTop": 8,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          Learn React Native
+        </Text>
+        <Text
+          accessible={false}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={1}
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#8B969D",
+                "fontSize": 12,
+                "fontWeight": "600",
+                "marginTop": 2,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          rn 101
+        </Text>
+      </View>
     </View>
-  </View>
-</TouchableHighlight>
+  </TouchableHighlight>
+</A11yGroup>
 `;
 
 exports[`renders with a grade 1`] = `
-<TouchableHighlight
-  accessible={false}
-  onLayout={[Function]}
-  onPress={[Function]}
-  style={
-    Array [
-      Object {
-        "backgroundColor": "#ffffff01",
-        "height": 160,
-        "shadowColor": "#000",
-        "shadowOffset": Object {
-          "height": 1,
-          "width": 0,
-        },
-        "shadowOpacity": 0.2,
-        "shadowRadius": 1,
-      },
-      Object {
-        "height": 100,
-      },
-    ]
-  }
-  testID="course-1"
-  underlayColor="transparent"
->
-  <View
+<A11yGroup>
+  <TouchableHighlight
+    accessible={false}
+    onLayout={[Function]}
+    onPress={[Function]}
     style={
-      Object {
-        "backgroundColor": "white",
-        "borderColor": "#e3e3e3",
-        "borderRadius": 4,
-        "borderWidth": 0.5,
-        "flex": 1,
-        "overflow": "hidden",
-      }
+      Array [
+        Object {
+          "backgroundColor": "#ffffff01",
+          "height": 160,
+          "shadowColor": "#000",
+          "shadowOffset": Object {
+            "height": 1,
+            "width": 0,
+          },
+          "shadowOpacity": 0.2,
+          "shadowRadius": 1,
+        },
+        Object {
+          "height": 100,
+        },
+      ]
     }
+    testID="course-1"
+    underlayColor="transparent"
   >
     <View
       style={
         Object {
+          "backgroundColor": "white",
+          "borderColor": "#e3e3e3",
+          "borderRadius": 4,
+          "borderWidth": 0.5,
           "flex": 1,
+          "overflow": "hidden",
         }
       }
     >
-      <Image
-        source={
-          Object {
-            "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-          }
-        }
+      <View
         style={
           Object {
             "flex": 1,
           }
         }
-      />
-      <View
-        accessibilityLabel="Learn React Native"
-        accessibilityTraits="button"
-        accessible={true}
-        style={
-          Object {
-            "backgroundColor": "#333",
-            "bottom": 0,
-            "left": 0,
-            "opacity": 0.8,
-            "position": "absolute",
-            "right": 0,
-            "top": 0,
+      >
+        <Image
+          source={
+            Object {
+              "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+            }
           }
-        }
-      />
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        />
+        <View
+          accessibilityLabel="Learn React Native A-"
+          accessibilityTraits="button"
+          accessible={true}
+          style={
+            Object {
+              "backgroundColor": "#333",
+              "bottom": 0,
+              "left": 0,
+              "opacity": 0.8,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "backgroundColor": "white",
+              "borderRadius": 8,
+              "flex": 1,
+              "left": 8,
+              "maxWidth": 120,
+              "paddingLeft": 6,
+              "paddingRight": 6,
+              "position": "absolute",
+              "top": 8,
+            }
+          }
+        >
+          <Text
+            accessibilityTraits="header"
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            numberOfLines={2}
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 20,
+                },
+                Array [
+                  Object {
+                    "fontSize": 14,
+                  },
+                  Object {
+                    "color": "#333",
+                  },
+                ],
+              ]
+            }
+          >
+            A-
+          </Text>
+        </View>
+        <TouchableHighlight
+          accessibilityLabel="Open Learn React Native user preferences"
+          accessibilityTraits="button"
+          accessible={true}
+          onPress={[Function]}
+          style={
+            Object {
+              "height": 43,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+              "width": 43,
+            }
+          }
+          testID="course-card.kabob-1"
+          underlayColor="#ffffff00"
+        >
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/images/kabob.png",
+              }
+            }
+            style={
+              Object {
+                "height": 18,
+                "position": "absolute",
+                "right": 8,
+                "top": 10,
+                "width": 18,
+              }
+            }
+          />
+        </TouchableHighlight>
+      </View>
       <View
+        accessible={false}
         style={
           Object {
-            "backgroundColor": "white",
-            "borderRadius": 8,
             "flex": 1,
-            "left": 8,
-            "maxWidth": 120,
-            "paddingLeft": 6,
-            "paddingRight": 6,
-            "position": "absolute",
-            "top": 8,
+            "paddingHorizontal": 10,
           }
         }
       >
         <Text
-          accessibilityTraits="header"
-          accessible={true}
+          accessible={false}
           allowFontScaling={true}
           ellipsizeMode="tail"
           numberOfLines={2}
@@ -278,218 +354,220 @@ exports[`renders with a grade 1`] = `
               },
               Object {
                 "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
+                "fontSize": 16,
               },
-              Array [
-                Object {
-                  "fontSize": 14,
-                },
-                Object {
-                  "color": "#333",
-                },
-              ],
+              Object {
+                "color": "#333",
+                "fontWeight": "600",
+                "marginTop": 8,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
             ]
           }
         >
-          A-
+          Learn React Native
+        </Text>
+        <Text
+          accessible={false}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={1}
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#8B969D",
+                "fontSize": 12,
+                "fontWeight": "600",
+                "marginTop": 2,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          rn 101
         </Text>
       </View>
-      <TouchableHighlight
-        accessibilityLabel="Open Learn React Native user preferences"
-        accessibilityTraits="button"
-        accessible={true}
-        onPress={[Function]}
-        style={
-          Object {
-            "height": 43,
-            "position": "absolute",
-            "right": 0,
-            "top": 0,
-            "width": 43,
-          }
-        }
-        testID="course-card.kabob-1"
-        underlayColor="#ffffff00"
-      >
-        <Image
-          source={
-            Object {
-              "testUri": "../../../src/images/kabob.png",
-            }
-          }
-          style={
-            Object {
-              "height": 18,
-              "position": "absolute",
-              "right": 8,
-              "top": 10,
-              "width": 18,
-            }
-          }
-        />
-      </TouchableHighlight>
     </View>
-    <View
-      accessible={false}
-      style={
-        Object {
-          "flex": 1,
-          "paddingHorizontal": 10,
-        }
-      }
-    >
-      <Text
-        accessible={false}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={2}
-        style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
-            Object {
-              "color": "#333",
-              "fontWeight": "600",
-              "marginTop": 8,
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay-semibold",
-            },
-          ]
-        }
-      >
-        Learn React Native
-      </Text>
-      <Text
-        accessible={false}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={1}
-        style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
-            Object {
-              "color": "#8B969D",
-              "fontSize": 12,
-              "fontWeight": "600",
-              "marginTop": 2,
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay-semibold",
-            },
-          ]
-        }
-      >
-        rn 101
-      </Text>
-    </View>
-  </View>
-</TouchableHighlight>
+  </TouchableHighlight>
+</A11yGroup>
 `;
 
 exports[`renders with a grade even if the grade does not exist 1`] = `
-<TouchableHighlight
-  accessible={false}
-  onLayout={[Function]}
-  onPress={[Function]}
-  style={
-    Array [
-      Object {
-        "backgroundColor": "#ffffff01",
-        "height": 160,
-        "shadowColor": "#000",
-        "shadowOffset": Object {
-          "height": 1,
-          "width": 0,
-        },
-        "shadowOpacity": 0.2,
-        "shadowRadius": 1,
-      },
-      Object {
-        "height": 100,
-      },
-    ]
-  }
-  testID="course-1"
-  underlayColor="transparent"
->
-  <View
+<A11yGroup>
+  <TouchableHighlight
+    accessible={false}
+    onLayout={[Function]}
+    onPress={[Function]}
     style={
-      Object {
-        "backgroundColor": "white",
-        "borderColor": "#e3e3e3",
-        "borderRadius": 4,
-        "borderWidth": 0.5,
-        "flex": 1,
-        "overflow": "hidden",
-      }
+      Array [
+        Object {
+          "backgroundColor": "#ffffff01",
+          "height": 160,
+          "shadowColor": "#000",
+          "shadowOffset": Object {
+            "height": 1,
+            "width": 0,
+          },
+          "shadowOpacity": 0.2,
+          "shadowRadius": 1,
+        },
+        Object {
+          "height": 100,
+        },
+      ]
     }
+    testID="course-1"
+    underlayColor="transparent"
   >
     <View
       style={
         Object {
+          "backgroundColor": "white",
+          "borderColor": "#e3e3e3",
+          "borderRadius": 4,
+          "borderWidth": 0.5,
           "flex": 1,
+          "overflow": "hidden",
         }
       }
     >
-      <Image
-        source={
-          Object {
-            "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-          }
-        }
+      <View
         style={
           Object {
             "flex": 1,
           }
         }
-      />
-      <View
-        accessibilityLabel="Learn React Native"
-        accessibilityTraits="button"
-        accessible={true}
-        style={
-          Object {
-            "backgroundColor": "#333",
-            "bottom": 0,
-            "left": 0,
-            "opacity": 0.8,
-            "position": "absolute",
-            "right": 0,
-            "top": 0,
+      >
+        <Image
+          source={
+            Object {
+              "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+            }
           }
-        }
-      />
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        />
+        <View
+          accessibilityLabel="Learn React Native N/A"
+          accessibilityTraits="button"
+          accessible={true}
+          style={
+            Object {
+              "backgroundColor": "#333",
+              "bottom": 0,
+              "left": 0,
+              "opacity": 0.8,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "backgroundColor": "white",
+              "borderRadius": 8,
+              "flex": 1,
+              "left": 8,
+              "maxWidth": 120,
+              "paddingLeft": 6,
+              "paddingRight": 6,
+              "position": "absolute",
+              "top": 8,
+            }
+          }
+        >
+          <Text
+            accessibilityTraits="header"
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            numberOfLines={2}
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 20,
+                },
+                Array [
+                  Object {
+                    "fontSize": 14,
+                  },
+                  Object {
+                    "color": "#333",
+                  },
+                ],
+              ]
+            }
+          >
+            N/A
+          </Text>
+        </View>
+        <TouchableHighlight
+          accessibilityLabel="Open Learn React Native user preferences"
+          accessibilityTraits="button"
+          accessible={true}
+          onPress={[Function]}
+          style={
+            Object {
+              "height": 43,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+              "width": 43,
+            }
+          }
+          testID="course-card.kabob-1"
+          underlayColor="#ffffff00"
+        >
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/images/kabob.png",
+              }
+            }
+            style={
+              Object {
+                "height": 18,
+                "position": "absolute",
+                "right": 8,
+                "top": 10,
+                "width": 18,
+              }
+            }
+          />
+        </TouchableHighlight>
+      </View>
       <View
+        accessible={false}
         style={
           Object {
-            "backgroundColor": "white",
-            "borderRadius": 8,
             "flex": 1,
-            "left": 8,
-            "maxWidth": 120,
-            "paddingLeft": 6,
-            "paddingRight": 6,
-            "position": "absolute",
-            "top": 8,
+            "paddingHorizontal": 10,
           }
         }
       >
         <Text
-          accessibilityTraits="header"
-          accessible={true}
+          accessible={false}
           allowFontScaling={true}
           ellipsizeMode="tail"
           numberOfLines={2}
@@ -500,630 +578,564 @@ exports[`renders with a grade even if the grade does not exist 1`] = `
               },
               Object {
                 "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
+                "fontSize": 16,
               },
-              Array [
-                Object {
-                  "fontSize": 14,
-                },
-                Object {
-                  "color": "#333",
-                },
-              ],
+              Object {
+                "color": "#333",
+                "fontWeight": "600",
+                "marginTop": 8,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
             ]
           }
         >
-          N/A
+          Learn React Native
+        </Text>
+        <Text
+          accessible={false}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={1}
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#8B969D",
+                "fontSize": 12,
+                "fontWeight": "600",
+                "marginTop": 2,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          rn 101
         </Text>
       </View>
-      <TouchableHighlight
-        accessibilityLabel="Open Learn React Native user preferences"
-        accessibilityTraits="button"
-        accessible={true}
-        onPress={[Function]}
-        style={
-          Object {
-            "height": 43,
-            "position": "absolute",
-            "right": 0,
-            "top": 0,
-            "width": 43,
-          }
-        }
-        testID="course-card.kabob-1"
-        underlayColor="#ffffff00"
-      >
-        <Image
-          source={
-            Object {
-              "testUri": "../../../src/images/kabob.png",
-            }
-          }
-          style={
-            Object {
-              "height": 18,
-              "position": "absolute",
-              "right": 8,
-              "top": 10,
-              "width": 18,
-            }
-          }
-        />
-      </TouchableHighlight>
     </View>
-    <View
-      accessible={false}
-      style={
-        Object {
-          "flex": 1,
-          "paddingHorizontal": 10,
-        }
-      }
-    >
-      <Text
-        accessible={false}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={2}
-        style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
-            Object {
-              "color": "#333",
-              "fontWeight": "600",
-              "marginTop": 8,
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay-semibold",
-            },
-          ]
-        }
-      >
-        Learn React Native
-      </Text>
-      <Text
-        accessible={false}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={1}
-        style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
-            Object {
-              "color": "#8B969D",
-              "fontSize": 12,
-              "fontWeight": "600",
-              "marginTop": 2,
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay-semibold",
-            },
-          ]
-        }
-      >
-        rn 101
-      </Text>
-    </View>
-  </View>
-</TouchableHighlight>
+  </TouchableHighlight>
+</A11yGroup>
 `;
 
 exports[`renders with empty image url 1`] = `
-<TouchableHighlight
-  accessible={false}
-  onLayout={[Function]}
-  onPress={[Function]}
-  style={
-    Array [
-      Object {
-        "backgroundColor": "#ffffff01",
-        "height": 160,
-        "shadowColor": "#000",
-        "shadowOffset": Object {
-          "height": 1,
-          "width": 0,
-        },
-        "shadowOpacity": 0.2,
-        "shadowRadius": 1,
-      },
-      Object {
-        "height": 100,
-      },
-    ]
-  }
-  testID="course-1"
-  underlayColor="transparent"
->
-  <View
+<A11yGroup>
+  <TouchableHighlight
+    accessible={false}
+    onLayout={[Function]}
+    onPress={[Function]}
     style={
-      Object {
-        "backgroundColor": "white",
-        "borderColor": "#e3e3e3",
-        "borderRadius": 4,
-        "borderWidth": 0.5,
-        "flex": 1,
-        "overflow": "hidden",
-      }
+      Array [
+        Object {
+          "backgroundColor": "#ffffff01",
+          "height": 160,
+          "shadowColor": "#000",
+          "shadowOffset": Object {
+            "height": 1,
+            "width": 0,
+          },
+          "shadowOpacity": 0.2,
+          "shadowRadius": 1,
+        },
+        Object {
+          "height": 100,
+        },
+      ]
     }
+    testID="course-1"
+    underlayColor="transparent"
   >
     <View
       style={
         Object {
+          "backgroundColor": "white",
+          "borderColor": "#e3e3e3",
+          "borderRadius": 4,
+          "borderWidth": 0.5,
           "flex": 1,
+          "overflow": "hidden",
         }
       }
     >
       <View
-        accessibilityLabel="Learn React Native"
-        accessibilityTraits="button"
-        accessible={true}
-        style={
-          Object {
-            "backgroundColor": "#333",
-            "bottom": 0,
-            "left": 0,
-            "opacity": 1,
-            "position": "absolute",
-            "right": 0,
-            "top": 0,
-          }
-        }
-      />
-      <TouchableHighlight
-        accessibilityLabel="Open Learn React Native user preferences"
-        accessibilityTraits="button"
-        accessible={true}
-        onPress={[Function]}
-        style={
-          Object {
-            "height": 43,
-            "position": "absolute",
-            "right": 0,
-            "top": 0,
-            "width": 43,
-          }
-        }
-        testID="course-card.kabob-1"
-        underlayColor="#ffffff00"
-      >
-        <Image
-          source={
-            Object {
-              "testUri": "../../../src/images/kabob.png",
-            }
-          }
-          style={
-            Object {
-              "height": 18,
-              "position": "absolute",
-              "right": 8,
-              "top": 10,
-              "width": 18,
-            }
-          }
-        />
-      </TouchableHighlight>
-    </View>
-    <View
-      accessible={false}
-      style={
-        Object {
-          "flex": 1,
-          "paddingHorizontal": 10,
-        }
-      }
-    >
-      <Text
-        accessible={false}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={2}
-        style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
-            Object {
-              "color": "#333",
-              "fontWeight": "600",
-              "marginTop": 8,
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay-semibold",
-            },
-          ]
-        }
-      >
-        Learn React Native
-      </Text>
-      <Text
-        accessible={false}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={1}
-        style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
-            Object {
-              "color": "#8B969D",
-              "fontSize": 12,
-              "fontWeight": "600",
-              "marginTop": 2,
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay-semibold",
-            },
-          ]
-        }
-      >
-        rn 101
-      </Text>
-    </View>
-  </View>
-</TouchableHighlight>
-`;
-
-exports[`renders with image url 1`] = `
-<TouchableHighlight
-  accessible={false}
-  onLayout={[Function]}
-  onPress={[Function]}
-  style={
-    Array [
-      Object {
-        "backgroundColor": "#ffffff01",
-        "height": 160,
-        "shadowColor": "#000",
-        "shadowOffset": Object {
-          "height": 1,
-          "width": 0,
-        },
-        "shadowOpacity": 0.2,
-        "shadowRadius": 1,
-      },
-      Object {
-        "height": 100,
-      },
-    ]
-  }
-  testID="course-1"
-  underlayColor="transparent"
->
-  <View
-    style={
-      Object {
-        "backgroundColor": "white",
-        "borderColor": "#e3e3e3",
-        "borderRadius": 4,
-        "borderWidth": 0.5,
-        "flex": 1,
-        "overflow": "hidden",
-      }
-    }
-  >
-    <View
-      style={
-        Object {
-          "flex": 1,
-        }
-      }
-    >
-      <Image
-        source={
-          Object {
-            "uri": "http://www.fillmurray.com/100/100",
-          }
-        }
         style={
           Object {
             "flex": 1,
           }
         }
-      />
-      <View
-        accessibilityLabel="Learn React Native"
-        accessibilityTraits="button"
-        accessible={true}
-        style={
-          Object {
-            "backgroundColor": "#333",
-            "bottom": 0,
-            "left": 0,
-            "opacity": 0.8,
-            "position": "absolute",
-            "right": 0,
-            "top": 0,
-          }
-        }
-      />
-      <TouchableHighlight
-        accessibilityLabel="Open Learn React Native user preferences"
-        accessibilityTraits="button"
-        accessible={true}
-        onPress={[Function]}
-        style={
-          Object {
-            "height": 43,
-            "position": "absolute",
-            "right": 0,
-            "top": 0,
-            "width": 43,
-          }
-        }
-        testID="course-card.kabob-1"
-        underlayColor="#ffffff00"
       >
-        <Image
-          source={
-            Object {
-              "testUri": "../../../src/images/kabob.png",
-            }
-          }
+        <View
+          accessibilityLabel="Learn React Native "
+          accessibilityTraits="button"
+          accessible={true}
           style={
             Object {
-              "height": 18,
+              "backgroundColor": "#333",
+              "bottom": 0,
+              "left": 0,
+              "opacity": 1,
               "position": "absolute",
-              "right": 8,
-              "top": 10,
-              "width": 18,
+              "right": 0,
+              "top": 0,
             }
           }
         />
-      </TouchableHighlight>
-    </View>
-    <View
-      accessible={false}
-      style={
-        Object {
-          "flex": 1,
-          "paddingHorizontal": 10,
-        }
-      }
-    >
-      <Text
+        <TouchableHighlight
+          accessibilityLabel="Open Learn React Native user preferences"
+          accessibilityTraits="button"
+          accessible={true}
+          onPress={[Function]}
+          style={
+            Object {
+              "height": 43,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+              "width": 43,
+            }
+          }
+          testID="course-card.kabob-1"
+          underlayColor="#ffffff00"
+        >
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/images/kabob.png",
+              }
+            }
+            style={
+              Object {
+                "height": 18,
+                "position": "absolute",
+                "right": 8,
+                "top": 10,
+                "width": 18,
+              }
+            }
+          />
+        </TouchableHighlight>
+      </View>
+      <View
         accessible={false}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={2}
         style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
-            Object {
-              "color": "#333",
-              "fontWeight": "600",
-              "marginTop": 8,
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay-semibold",
-            },
-          ]
+          Object {
+            "flex": 1,
+            "paddingHorizontal": 10,
+          }
         }
       >
-        Learn React Native
-      </Text>
-      <Text
-        accessible={false}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={1}
-        style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
-            Object {
-              "color": "#8B969D",
-              "fontSize": 12,
-              "fontWeight": "600",
-              "marginTop": 2,
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay-semibold",
-            },
-          ]
-        }
-      >
-        rn 101
-      </Text>
+        <Text
+          accessible={false}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={2}
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#333",
+                "fontWeight": "600",
+                "marginTop": 8,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          Learn React Native
+        </Text>
+        <Text
+          accessible={false}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={1}
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#8B969D",
+                "fontSize": 12,
+                "fontWeight": "600",
+                "marginTop": 2,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          rn 101
+        </Text>
+      </View>
     </View>
-  </View>
-</TouchableHighlight>
+  </TouchableHighlight>
+</A11yGroup>
 `;
 
-exports[`renders without image url 1`] = `
-<TouchableHighlight
-  accessible={false}
-  onLayout={[Function]}
-  onPress={[Function]}
-  style={
-    Array [
-      Object {
-        "backgroundColor": "#ffffff01",
-        "height": 160,
-        "shadowColor": "#000",
-        "shadowOffset": Object {
-          "height": 1,
-          "width": 0,
-        },
-        "shadowOpacity": 0.2,
-        "shadowRadius": 1,
-      },
-      Object {
-        "height": 100,
-      },
-    ]
-  }
-  testID="course-1"
-  underlayColor="transparent"
->
-  <View
+exports[`renders with image url 1`] = `
+<A11yGroup>
+  <TouchableHighlight
+    accessible={false}
+    onLayout={[Function]}
+    onPress={[Function]}
     style={
-      Object {
-        "backgroundColor": "white",
-        "borderColor": "#e3e3e3",
-        "borderRadius": 4,
-        "borderWidth": 0.5,
-        "flex": 1,
-        "overflow": "hidden",
-      }
+      Array [
+        Object {
+          "backgroundColor": "#ffffff01",
+          "height": 160,
+          "shadowColor": "#000",
+          "shadowOffset": Object {
+            "height": 1,
+            "width": 0,
+          },
+          "shadowOpacity": 0.2,
+          "shadowRadius": 1,
+        },
+        Object {
+          "height": 100,
+        },
+      ]
     }
+    testID="course-1"
+    underlayColor="transparent"
   >
     <View
       style={
         Object {
+          "backgroundColor": "white",
+          "borderColor": "#e3e3e3",
+          "borderRadius": 4,
+          "borderWidth": 0.5,
           "flex": 1,
+          "overflow": "hidden",
         }
       }
     >
       <View
-        accessibilityLabel="Learn React Native"
-        accessibilityTraits="button"
-        accessible={true}
         style={
           Object {
-            "backgroundColor": "#333",
-            "bottom": 0,
-            "left": 0,
-            "opacity": 1,
-            "position": "absolute",
-            "right": 0,
-            "top": 0,
+            "flex": 1,
           }
         }
-      />
-      <TouchableHighlight
-        accessibilityLabel="Open Learn React Native user preferences"
-        accessibilityTraits="button"
-        accessible={true}
-        onPress={[Function]}
-        style={
-          Object {
-            "height": 43,
-            "position": "absolute",
-            "right": 0,
-            "top": 0,
-            "width": 43,
-          }
-        }
-        testID="course-card.kabob-1"
-        underlayColor="#ffffff00"
       >
         <Image
           source={
             Object {
-              "testUri": "../../../src/images/kabob.png",
+              "uri": "http://www.fillmurray.com/100/100",
             }
           }
           style={
             Object {
-              "height": 18,
-              "position": "absolute",
-              "right": 8,
-              "top": 10,
-              "width": 18,
+              "flex": 1,
             }
           }
         />
-      </TouchableHighlight>
+        <View
+          accessibilityLabel="Learn React Native "
+          accessibilityTraits="button"
+          accessible={true}
+          style={
+            Object {
+              "backgroundColor": "#333",
+              "bottom": 0,
+              "left": 0,
+              "opacity": 0.8,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        />
+        <TouchableHighlight
+          accessibilityLabel="Open Learn React Native user preferences"
+          accessibilityTraits="button"
+          accessible={true}
+          onPress={[Function]}
+          style={
+            Object {
+              "height": 43,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+              "width": 43,
+            }
+          }
+          testID="course-card.kabob-1"
+          underlayColor="#ffffff00"
+        >
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/images/kabob.png",
+              }
+            }
+            style={
+              Object {
+                "height": 18,
+                "position": "absolute",
+                "right": 8,
+                "top": 10,
+                "width": 18,
+              }
+            }
+          />
+        </TouchableHighlight>
+      </View>
+      <View
+        accessible={false}
+        style={
+          Object {
+            "flex": 1,
+            "paddingHorizontal": 10,
+          }
+        }
+      >
+        <Text
+          accessible={false}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={2}
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#333",
+                "fontWeight": "600",
+                "marginTop": 8,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          Learn React Native
+        </Text>
+        <Text
+          accessible={false}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={1}
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#8B969D",
+                "fontSize": 12,
+                "fontWeight": "600",
+                "marginTop": 2,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          rn 101
+        </Text>
+      </View>
     </View>
+  </TouchableHighlight>
+</A11yGroup>
+`;
+
+exports[`renders without image url 1`] = `
+<A11yGroup>
+  <TouchableHighlight
+    accessible={false}
+    onLayout={[Function]}
+    onPress={[Function]}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#ffffff01",
+          "height": 160,
+          "shadowColor": "#000",
+          "shadowOffset": Object {
+            "height": 1,
+            "width": 0,
+          },
+          "shadowOpacity": 0.2,
+          "shadowRadius": 1,
+        },
+        Object {
+          "height": 100,
+        },
+      ]
+    }
+    testID="course-1"
+    underlayColor="transparent"
+  >
     <View
-      accessible={false}
       style={
         Object {
+          "backgroundColor": "white",
+          "borderColor": "#e3e3e3",
+          "borderRadius": 4,
+          "borderWidth": 0.5,
           "flex": 1,
-          "paddingHorizontal": 10,
+          "overflow": "hidden",
         }
       }
     >
-      <Text
-        accessible={false}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={2}
+      <View
         style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
-            Object {
-              "color": "#333",
-              "fontWeight": "600",
-              "marginTop": 8,
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay-semibold",
-            },
-          ]
+          Object {
+            "flex": 1,
+          }
         }
       >
-        Learn React Native
-      </Text>
-      <Text
+        <View
+          accessibilityLabel="Learn React Native "
+          accessibilityTraits="button"
+          accessible={true}
+          style={
+            Object {
+              "backgroundColor": "#333",
+              "bottom": 0,
+              "left": 0,
+              "opacity": 1,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        />
+        <TouchableHighlight
+          accessibilityLabel="Open Learn React Native user preferences"
+          accessibilityTraits="button"
+          accessible={true}
+          onPress={[Function]}
+          style={
+            Object {
+              "height": 43,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+              "width": 43,
+            }
+          }
+          testID="course-card.kabob-1"
+          underlayColor="#ffffff00"
+        >
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/images/kabob.png",
+              }
+            }
+            style={
+              Object {
+                "height": 18,
+                "position": "absolute",
+                "right": 8,
+                "top": 10,
+                "width": 18,
+              }
+            }
+          />
+        </TouchableHighlight>
+      </View>
+      <View
         accessible={false}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={1}
         style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
-            Object {
-              "color": "#8B969D",
-              "fontSize": 12,
-              "fontWeight": "600",
-              "marginTop": 2,
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay-semibold",
-            },
-          ]
+          Object {
+            "flex": 1,
+            "paddingHorizontal": 10,
+          }
         }
       >
-        rn 101
-      </Text>
+        <Text
+          accessible={false}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={2}
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#333",
+                "fontWeight": "600",
+                "marginTop": 8,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          Learn React Native
+        </Text>
+        <Text
+          accessible={false}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={1}
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#8B969D",
+                "fontSize": 12,
+                "fontWeight": "600",
+                "marginTop": 2,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          rn 101
+        </Text>
+      </View>
     </View>
-  </View>
-</TouchableHighlight>
+  </TouchableHighlight>
+</A11yGroup>
 `;

@@ -26,6 +26,7 @@ import ReactNative, {
 import i18n from 'format-message'
 import { Text, Heading1 } from '../../../common/text'
 import Images from '../../../images'
+import A11yGroup from '../../../common/components/A11yGroup'
 
 type Props = {
   course: Course,
@@ -98,51 +99,55 @@ export default class CourseCard extends Component {
       }
     }
     return (
-      <TouchableHighlight
-        onLayout={this.onLayout}
-        style={[styles.card, style]}
-        testID={'course-' + course.id}
-        onPress={this.onPress}
-        accessible={false}
-        underlayColor='transparent'
-      >
-        <View style={styles.cardContainer}>
-            <View style={styles.imageWrapper}>
-              {Boolean(course.image_download_url) &&
-                <Image source={{ uri: course.image_download_url }} style={styles.image} />
-              }
-              <View style={this.createImageStyles()}
-                accessible={true}
-                accessibilityTraits='button'
-                accessibilityLabel={course.name}
-              />
-              { showGrade &&
-                <View style={styles.gradePill}>
-                  <Heading1
-                    numberOfLines={2}
-                    style={[styles.gradeText, { color: this.props.color }]}>
-                    { gradeDisplay }
-                  </Heading1>
-                </View>
-              }
-              <TouchableHighlight
-                style={styles.kabobButton}
-                onPress={this.onCoursePreferencesPressed}
-                accessibilityTraits='button'
-                accessible={true}
-                accessibilityLabel={i18n('Open {courseName} user preferences', { courseName: course.name })}
-                underlayColor='#ffffff00'
-                testID={`course-card.kabob-${course.id}`}
-              >
-                <Image style={styles.kabob} source={Images.kabob} />
-              </TouchableHighlight>
+      <A11yGroup>
+        <TouchableHighlight
+          onLayout={this.onLayout}
+          style={[styles.card, style]}
+          testID={'course-' + course.id}
+          onPress={this.onPress}
+          accessible={false}
+          underlayColor='transparent'
+        >
+          <View style={styles.cardContainer}>
+              <View style={styles.imageWrapper}>
+                {Boolean(course.image_download_url) &&
+                  <Image source={{ uri: course.image_download_url }} style={styles.image} />
+                }
+                <View style={this.createImageStyles()}
+                  accessible={true}
+                  accessibilityTraits='button'
+                  accessibilityLabel={`${course.name} ${gradeDisplay || ''}`}
+                />
+                { showGrade &&
+                  <View style={styles.gradePill}>
+                    <Heading1
+                      numberOfLines={2}
+                      style={[styles.gradeText, { color: this.props.color }]}>
+                      { gradeDisplay }
+                    </Heading1>
+                  </View>
+                }
+                <TouchableHighlight
+                  style={styles.kabobButton}
+                  onPress={this.onCoursePreferencesPressed}
+                  accessibilityTraits='button'
+                  accessible={true}
+                  accessibilityLabel={i18n('Open {courseName} user preferences', { courseName: course.name })}
+                  underlayColor='#ffffff00'
+                  testID={`course-card.kabob-${course.id}`}
+                >
+                  <Image style={styles.kabob} source={Images.kabob} />
+                </TouchableHighlight>
+              </View>
+              <View style={styles.titleWrapper} accessible={false}>
+                <Text numberOfLines={2} style={this.createTitleStyles()} accessible={false}>
+                  {course.name}
+                </Text>
+                <Text numberOfLines={1} style={styles.code} accessible={false}>{course.course_code}</Text>
+              </View>
             </View>
-            <View style={styles.titleWrapper} accessible={false}>
-              <Text numberOfLines={2} style={this.createTitleStyles()} accessible={false}>{course.name}</Text>
-              <Text numberOfLines={1} style={styles.code} accessible={false}>{course.course_code}</Text>
-            </View>
-          </View>
-        </TouchableHighlight>
+          </TouchableHighlight>
+        </A11yGroup>
     )
   }
 }

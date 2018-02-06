@@ -329,544 +329,550 @@ exports[`Doesnt render groups when in the teacher app 1`] = `
         onLayout={[Function]}
         style={null}
       >
-        <TouchableHighlight
-          accessible={false}
-          onLayout={[Function]}
-          onPress={[Function]}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#ffffff01",
-                "height": 160,
-                "shadowColor": "#000",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 0,
-                },
-                "shadowOpacity": 0.2,
-                "shadowRadius": 1,
-              },
-              Object {
-                "height": 0,
-                "padding": 8,
-                "width": undefined,
-              },
-            ]
-          }
-          testID="course-1"
-          underlayColor="transparent"
-        >
-          <View
+        <A11yGroup>
+          <TouchableHighlight
+            accessible={false}
+            onLayout={[Function]}
+            onPress={[Function]}
             style={
-              Object {
-                "backgroundColor": "white",
-                "borderColor": "#e3e3e3",
-                "borderRadius": 4,
-                "borderWidth": 0.5,
-                "flex": 1,
-                "overflow": "hidden",
-              }
+              Array [
+                Object {
+                  "backgroundColor": "#ffffff01",
+                  "height": 160,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 1,
+                },
+                Object {
+                  "height": 0,
+                  "padding": 8,
+                  "width": undefined,
+                },
+              ]
             }
+            testID="course-1"
+            underlayColor="transparent"
           >
             <View
               style={
                 Object {
+                  "backgroundColor": "white",
+                  "borderColor": "#e3e3e3",
+                  "borderRadius": 4,
+                  "borderWidth": 0.5,
                   "flex": 1,
+                  "overflow": "hidden",
                 }
               }
             >
-              <Image
-                source={
-                  Object {
-                    "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-                  }
-                }
+              <View
                 style={
                   Object {
                     "flex": 1,
                   }
                 }
-              />
-              <View
-                accessibilityLabel="Biology 101"
-                accessibilityTraits="button"
-                accessible={true}
-                style={
-                  Object {
-                    "backgroundColor": "#27B9CD",
-                    "bottom": 0,
-                    "left": 0,
-                    "opacity": 0.8,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  }
-                }
-              />
-              <TouchableHighlight
-                accessibilityLabel="Open Biology 101 user preferences"
-                accessibilityTraits="button"
-                accessible={true}
-                onPress={[Function]}
-                style={
-                  Object {
-                    "height": 43,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                    "width": 43,
-                  }
-                }
-                testID="course-card.kabob-1"
-                underlayColor="#ffffff00"
               >
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/images/kabob.png",
+                      "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
                     }
                   }
                   style={
                     Object {
-                      "height": 18,
-                      "position": "absolute",
-                      "right": 8,
-                      "top": 10,
-                      "width": 18,
+                      "flex": 1,
                     }
                   }
                 />
-              </TouchableHighlight>
-            </View>
-            <View
-              accessible={false}
-              style={
-                Object {
-                  "flex": 1,
-                  "paddingHorizontal": 10,
-                }
-              }
-            >
-              <Text
+                <View
+                  accessibilityLabel="Biology 101 "
+                  accessibilityTraits="button"
+                  accessible={true}
+                  style={
+                    Object {
+                      "backgroundColor": "#27B9CD",
+                      "bottom": 0,
+                      "left": 0,
+                      "opacity": 0.8,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                />
+                <TouchableHighlight
+                  accessibilityLabel="Open Biology 101 user preferences"
+                  accessibilityTraits="button"
+                  accessible={true}
+                  onPress={[Function]}
+                  style={
+                    Object {
+                      "height": 43,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                      "width": 43,
+                    }
+                  }
+                  testID="course-card.kabob-1"
+                  underlayColor="#ffffff00"
+                >
+                  <Image
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/kabob.png",
+                      }
+                    }
+                    style={
+                      Object {
+                        "height": 18,
+                        "position": "absolute",
+                        "right": 8,
+                        "top": 10,
+                        "width": 18,
+                      }
+                    }
+                  />
+                </TouchableHighlight>
+              </View>
+              <View
                 accessible={false}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={2}
                 style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#27B9CD",
-                      "fontWeight": "600",
-                      "marginTop": 8,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
+                  Object {
+                    "flex": 1,
+                    "paddingHorizontal": 10,
+                  }
                 }
               >
-                Biology 101
-              </Text>
-              <Text
-                accessible={false}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={1}
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#8B969D",
-                      "fontSize": 12,
-                      "fontWeight": "600",
-                      "marginTop": 2,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                BIO 101
-              </Text>
+                <Text
+                  accessible={false}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={2}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#27B9CD",
+                        "fontWeight": "600",
+                        "marginTop": 8,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Biology 101
+                </Text>
+                <Text
+                  accessible={false}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={1}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#8B969D",
+                        "fontSize": 12,
+                        "fontWeight": "600",
+                        "marginTop": 2,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  BIO 101
+                </Text>
+              </View>
             </View>
-          </View>
-        </TouchableHighlight>
+          </TouchableHighlight>
+        </A11yGroup>
       </View>
       <View
         onLayout={[Function]}
         style={null}
       >
-        <TouchableHighlight
-          accessible={false}
-          onLayout={[Function]}
-          onPress={[Function]}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#ffffff01",
-                "height": 160,
-                "shadowColor": "#000",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 0,
-                },
-                "shadowOpacity": 0.2,
-                "shadowRadius": 1,
-              },
-              Object {
-                "height": 0,
-                "padding": 8,
-                "width": undefined,
-              },
-            ]
-          }
-          testID="course-2"
-          underlayColor="transparent"
-        >
-          <View
+        <A11yGroup>
+          <TouchableHighlight
+            accessible={false}
+            onLayout={[Function]}
+            onPress={[Function]}
             style={
-              Object {
-                "backgroundColor": "white",
-                "borderColor": "#e3e3e3",
-                "borderRadius": 4,
-                "borderWidth": 0.5,
-                "flex": 1,
-                "overflow": "hidden",
-              }
+              Array [
+                Object {
+                  "backgroundColor": "#ffffff01",
+                  "height": 160,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 1,
+                },
+                Object {
+                  "height": 0,
+                  "padding": 8,
+                  "width": undefined,
+                },
+              ]
             }
+            testID="course-2"
+            underlayColor="transparent"
           >
             <View
               style={
                 Object {
+                  "backgroundColor": "white",
+                  "borderColor": "#e3e3e3",
+                  "borderRadius": 4,
+                  "borderWidth": 0.5,
                   "flex": 1,
+                  "overflow": "hidden",
                 }
               }
             >
-              <Image
-                source={
-                  Object {
-                    "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-                  }
-                }
+              <View
                 style={
                   Object {
                     "flex": 1,
                   }
                 }
-              />
-              <View
-                accessibilityLabel="American Literature Psysicks foobar hello world 401"
-                accessibilityTraits="button"
-                accessible={true}
-                style={
-                  Object {
-                    "backgroundColor": "#8F3E97",
-                    "bottom": 0,
-                    "left": 0,
-                    "opacity": 0.8,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  }
-                }
-              />
-              <TouchableHighlight
-                accessibilityLabel="Open American Literature Psysicks foobar hello world 401 user preferences"
-                accessibilityTraits="button"
-                accessible={true}
-                onPress={[Function]}
-                style={
-                  Object {
-                    "height": 43,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                    "width": 43,
-                  }
-                }
-                testID="course-card.kabob-2"
-                underlayColor="#ffffff00"
               >
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/images/kabob.png",
+                      "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
                     }
                   }
                   style={
                     Object {
-                      "height": 18,
-                      "position": "absolute",
-                      "right": 8,
-                      "top": 10,
-                      "width": 18,
+                      "flex": 1,
                     }
                   }
                 />
-              </TouchableHighlight>
-            </View>
-            <View
-              accessible={false}
-              style={
-                Object {
-                  "flex": 1,
-                  "paddingHorizontal": 10,
-                }
-              }
-            >
-              <Text
+                <View
+                  accessibilityLabel="American Literature Psysicks foobar hello world 401 "
+                  accessibilityTraits="button"
+                  accessible={true}
+                  style={
+                    Object {
+                      "backgroundColor": "#8F3E97",
+                      "bottom": 0,
+                      "left": 0,
+                      "opacity": 0.8,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                />
+                <TouchableHighlight
+                  accessibilityLabel="Open American Literature Psysicks foobar hello world 401 user preferences"
+                  accessibilityTraits="button"
+                  accessible={true}
+                  onPress={[Function]}
+                  style={
+                    Object {
+                      "height": 43,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                      "width": 43,
+                    }
+                  }
+                  testID="course-card.kabob-2"
+                  underlayColor="#ffffff00"
+                >
+                  <Image
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/kabob.png",
+                      }
+                    }
+                    style={
+                      Object {
+                        "height": 18,
+                        "position": "absolute",
+                        "right": 8,
+                        "top": 10,
+                        "width": 18,
+                      }
+                    }
+                  />
+                </TouchableHighlight>
+              </View>
+              <View
                 accessible={false}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={2}
                 style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#8F3E97",
-                      "fontWeight": "600",
-                      "marginTop": 8,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
+                  Object {
+                    "flex": 1,
+                    "paddingHorizontal": 10,
+                  }
                 }
               >
-                American Literature Psysicks foobar hello world 401
-              </Text>
-              <Text
-                accessible={false}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={1}
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#8B969D",
-                      "fontSize": 12,
-                      "fontWeight": "600",
-                      "marginTop": 2,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                LIT 401
-              </Text>
+                <Text
+                  accessible={false}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={2}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#8F3E97",
+                        "fontWeight": "600",
+                        "marginTop": 8,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  American Literature Psysicks foobar hello world 401
+                </Text>
+                <Text
+                  accessible={false}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={1}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#8B969D",
+                        "fontSize": 12,
+                        "fontWeight": "600",
+                        "marginTop": 2,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  LIT 401
+                </Text>
+              </View>
             </View>
-          </View>
-        </TouchableHighlight>
+          </TouchableHighlight>
+        </A11yGroup>
       </View>
       <View
         onLayout={[Function]}
         style={null}
       >
-        <TouchableHighlight
-          accessible={false}
-          onLayout={[Function]}
-          onPress={[Function]}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#ffffff01",
-                "height": 160,
-                "shadowColor": "#000",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 0,
-                },
-                "shadowOpacity": 0.2,
-                "shadowRadius": 1,
-              },
-              Object {
-                "height": 0,
-                "padding": 8,
-                "width": undefined,
-              },
-            ]
-          }
-          testID="course-3"
-          underlayColor="transparent"
-        >
-          <View
+        <A11yGroup>
+          <TouchableHighlight
+            accessible={false}
+            onLayout={[Function]}
+            onPress={[Function]}
             style={
-              Object {
-                "backgroundColor": "white",
-                "borderColor": "#e3e3e3",
-                "borderRadius": 4,
-                "borderWidth": 0.5,
-                "flex": 1,
-                "overflow": "hidden",
-              }
+              Array [
+                Object {
+                  "backgroundColor": "#ffffff01",
+                  "height": 160,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 1,
+                },
+                Object {
+                  "height": 0,
+                  "padding": 8,
+                  "width": undefined,
+                },
+              ]
             }
+            testID="course-3"
+            underlayColor="transparent"
           >
             <View
               style={
                 Object {
+                  "backgroundColor": "white",
+                  "borderColor": "#e3e3e3",
+                  "borderRadius": 4,
+                  "borderWidth": 0.5,
                   "flex": 1,
+                  "overflow": "hidden",
                 }
               }
             >
-              <Image
-                source={
-                  Object {
-                    "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-                  }
-                }
+              <View
                 style={
                   Object {
                     "flex": 1,
                   }
                 }
-              />
-              <View
-                accessibilityLabel="Foobar 102"
-                accessibilityTraits="button"
-                accessible={true}
-                style={
-                  Object {
-                    "backgroundColor": "#8F3E99",
-                    "bottom": 0,
-                    "left": 0,
-                    "opacity": 0.8,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  }
-                }
-              />
-              <TouchableHighlight
-                accessibilityLabel="Open Foobar 102 user preferences"
-                accessibilityTraits="button"
-                accessible={true}
-                onPress={[Function]}
-                style={
-                  Object {
-                    "height": 43,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                    "width": 43,
-                  }
-                }
-                testID="course-card.kabob-3"
-                underlayColor="#ffffff00"
               >
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/images/kabob.png",
+                      "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
                     }
                   }
                   style={
                     Object {
-                      "height": 18,
-                      "position": "absolute",
-                      "right": 8,
-                      "top": 10,
-                      "width": 18,
+                      "flex": 1,
                     }
                   }
                 />
-              </TouchableHighlight>
-            </View>
-            <View
-              accessible={false}
-              style={
-                Object {
-                  "flex": 1,
-                  "paddingHorizontal": 10,
-                }
-              }
-            >
-              <Text
+                <View
+                  accessibilityLabel="Foobar 102 "
+                  accessibilityTraits="button"
+                  accessible={true}
+                  style={
+                    Object {
+                      "backgroundColor": "#8F3E99",
+                      "bottom": 0,
+                      "left": 0,
+                      "opacity": 0.8,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                />
+                <TouchableHighlight
+                  accessibilityLabel="Open Foobar 102 user preferences"
+                  accessibilityTraits="button"
+                  accessible={true}
+                  onPress={[Function]}
+                  style={
+                    Object {
+                      "height": 43,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                      "width": 43,
+                    }
+                  }
+                  testID="course-card.kabob-3"
+                  underlayColor="#ffffff00"
+                >
+                  <Image
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/kabob.png",
+                      }
+                    }
+                    style={
+                      Object {
+                        "height": 18,
+                        "position": "absolute",
+                        "right": 8,
+                        "top": 10,
+                        "width": 18,
+                      }
+                    }
+                  />
+                </TouchableHighlight>
+              </View>
+              <View
                 accessible={false}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={2}
                 style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#8F3E99",
-                      "fontWeight": "600",
-                      "marginTop": 8,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
+                  Object {
+                    "flex": 1,
+                    "paddingHorizontal": 10,
+                  }
                 }
               >
-                Foobar 102
-              </Text>
-              <Text
-                accessible={false}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={1}
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#8B969D",
-                      "fontSize": 12,
-                      "fontWeight": "600",
-                      "marginTop": 2,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                FOO 102
-              </Text>
+                <Text
+                  accessible={false}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={2}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#8F3E99",
+                        "fontWeight": "600",
+                        "marginTop": 8,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Foobar 102
+                </Text>
+                <Text
+                  accessible={false}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={1}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#8B969D",
+                        "fontSize": 12,
+                        "fontWeight": "600",
+                        "marginTop": 2,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  FOO 102
+                </Text>
+              </View>
             </View>
-          </View>
-        </TouchableHighlight>
+          </TouchableHighlight>
+        </A11yGroup>
       </View>
       <View
         onLayout={[Function]}
@@ -1095,544 +1101,550 @@ exports[`Only renders courses when !isFullDashboard 1`] = `
         onLayout={[Function]}
         style={null}
       >
-        <TouchableHighlight
-          accessible={false}
-          onLayout={[Function]}
-          onPress={[Function]}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#ffffff01",
-                "height": 160,
-                "shadowColor": "#000",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 0,
-                },
-                "shadowOpacity": 0.2,
-                "shadowRadius": 1,
-              },
-              Object {
-                "height": 0,
-                "padding": 8,
-                "width": undefined,
-              },
-            ]
-          }
-          testID="course-1"
-          underlayColor="transparent"
-        >
-          <View
+        <A11yGroup>
+          <TouchableHighlight
+            accessible={false}
+            onLayout={[Function]}
+            onPress={[Function]}
             style={
-              Object {
-                "backgroundColor": "white",
-                "borderColor": "#e3e3e3",
-                "borderRadius": 4,
-                "borderWidth": 0.5,
-                "flex": 1,
-                "overflow": "hidden",
-              }
+              Array [
+                Object {
+                  "backgroundColor": "#ffffff01",
+                  "height": 160,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 1,
+                },
+                Object {
+                  "height": 0,
+                  "padding": 8,
+                  "width": undefined,
+                },
+              ]
             }
+            testID="course-1"
+            underlayColor="transparent"
           >
             <View
               style={
                 Object {
+                  "backgroundColor": "white",
+                  "borderColor": "#e3e3e3",
+                  "borderRadius": 4,
+                  "borderWidth": 0.5,
                   "flex": 1,
+                  "overflow": "hidden",
                 }
               }
             >
-              <Image
-                source={
-                  Object {
-                    "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-                  }
-                }
+              <View
                 style={
                   Object {
                     "flex": 1,
                   }
                 }
-              />
-              <View
-                accessibilityLabel="Biology 101"
-                accessibilityTraits="button"
-                accessible={true}
-                style={
-                  Object {
-                    "backgroundColor": "#27B9CD",
-                    "bottom": 0,
-                    "left": 0,
-                    "opacity": 0.8,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  }
-                }
-              />
-              <TouchableHighlight
-                accessibilityLabel="Open Biology 101 user preferences"
-                accessibilityTraits="button"
-                accessible={true}
-                onPress={[Function]}
-                style={
-                  Object {
-                    "height": 43,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                    "width": 43,
-                  }
-                }
-                testID="course-card.kabob-1"
-                underlayColor="#ffffff00"
               >
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/images/kabob.png",
+                      "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
                     }
                   }
                   style={
                     Object {
-                      "height": 18,
-                      "position": "absolute",
-                      "right": 8,
-                      "top": 10,
-                      "width": 18,
+                      "flex": 1,
                     }
                   }
                 />
-              </TouchableHighlight>
-            </View>
-            <View
-              accessible={false}
-              style={
-                Object {
-                  "flex": 1,
-                  "paddingHorizontal": 10,
-                }
-              }
-            >
-              <Text
+                <View
+                  accessibilityLabel="Biology 101 "
+                  accessibilityTraits="button"
+                  accessible={true}
+                  style={
+                    Object {
+                      "backgroundColor": "#27B9CD",
+                      "bottom": 0,
+                      "left": 0,
+                      "opacity": 0.8,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                />
+                <TouchableHighlight
+                  accessibilityLabel="Open Biology 101 user preferences"
+                  accessibilityTraits="button"
+                  accessible={true}
+                  onPress={[Function]}
+                  style={
+                    Object {
+                      "height": 43,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                      "width": 43,
+                    }
+                  }
+                  testID="course-card.kabob-1"
+                  underlayColor="#ffffff00"
+                >
+                  <Image
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/kabob.png",
+                      }
+                    }
+                    style={
+                      Object {
+                        "height": 18,
+                        "position": "absolute",
+                        "right": 8,
+                        "top": 10,
+                        "width": 18,
+                      }
+                    }
+                  />
+                </TouchableHighlight>
+              </View>
+              <View
                 accessible={false}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={2}
                 style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#27B9CD",
-                      "fontWeight": "600",
-                      "marginTop": 8,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
+                  Object {
+                    "flex": 1,
+                    "paddingHorizontal": 10,
+                  }
                 }
               >
-                Biology 101
-              </Text>
-              <Text
-                accessible={false}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={1}
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#8B969D",
-                      "fontSize": 12,
-                      "fontWeight": "600",
-                      "marginTop": 2,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                BIO 101
-              </Text>
+                <Text
+                  accessible={false}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={2}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#27B9CD",
+                        "fontWeight": "600",
+                        "marginTop": 8,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Biology 101
+                </Text>
+                <Text
+                  accessible={false}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={1}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#8B969D",
+                        "fontSize": 12,
+                        "fontWeight": "600",
+                        "marginTop": 2,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  BIO 101
+                </Text>
+              </View>
             </View>
-          </View>
-        </TouchableHighlight>
+          </TouchableHighlight>
+        </A11yGroup>
       </View>
       <View
         onLayout={[Function]}
         style={null}
       >
-        <TouchableHighlight
-          accessible={false}
-          onLayout={[Function]}
-          onPress={[Function]}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#ffffff01",
-                "height": 160,
-                "shadowColor": "#000",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 0,
-                },
-                "shadowOpacity": 0.2,
-                "shadowRadius": 1,
-              },
-              Object {
-                "height": 0,
-                "padding": 8,
-                "width": undefined,
-              },
-            ]
-          }
-          testID="course-2"
-          underlayColor="transparent"
-        >
-          <View
+        <A11yGroup>
+          <TouchableHighlight
+            accessible={false}
+            onLayout={[Function]}
+            onPress={[Function]}
             style={
-              Object {
-                "backgroundColor": "white",
-                "borderColor": "#e3e3e3",
-                "borderRadius": 4,
-                "borderWidth": 0.5,
-                "flex": 1,
-                "overflow": "hidden",
-              }
+              Array [
+                Object {
+                  "backgroundColor": "#ffffff01",
+                  "height": 160,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 1,
+                },
+                Object {
+                  "height": 0,
+                  "padding": 8,
+                  "width": undefined,
+                },
+              ]
             }
+            testID="course-2"
+            underlayColor="transparent"
           >
             <View
               style={
                 Object {
+                  "backgroundColor": "white",
+                  "borderColor": "#e3e3e3",
+                  "borderRadius": 4,
+                  "borderWidth": 0.5,
                   "flex": 1,
+                  "overflow": "hidden",
                 }
               }
             >
-              <Image
-                source={
-                  Object {
-                    "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-                  }
-                }
+              <View
                 style={
                   Object {
                     "flex": 1,
                   }
                 }
-              />
-              <View
-                accessibilityLabel="American Literature Psysicks foobar hello world 401"
-                accessibilityTraits="button"
-                accessible={true}
-                style={
-                  Object {
-                    "backgroundColor": "#8F3E97",
-                    "bottom": 0,
-                    "left": 0,
-                    "opacity": 0.8,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  }
-                }
-              />
-              <TouchableHighlight
-                accessibilityLabel="Open American Literature Psysicks foobar hello world 401 user preferences"
-                accessibilityTraits="button"
-                accessible={true}
-                onPress={[Function]}
-                style={
-                  Object {
-                    "height": 43,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                    "width": 43,
-                  }
-                }
-                testID="course-card.kabob-2"
-                underlayColor="#ffffff00"
               >
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/images/kabob.png",
+                      "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
                     }
                   }
                   style={
                     Object {
-                      "height": 18,
-                      "position": "absolute",
-                      "right": 8,
-                      "top": 10,
-                      "width": 18,
+                      "flex": 1,
                     }
                   }
                 />
-              </TouchableHighlight>
-            </View>
-            <View
-              accessible={false}
-              style={
-                Object {
-                  "flex": 1,
-                  "paddingHorizontal": 10,
-                }
-              }
-            >
-              <Text
+                <View
+                  accessibilityLabel="American Literature Psysicks foobar hello world 401 "
+                  accessibilityTraits="button"
+                  accessible={true}
+                  style={
+                    Object {
+                      "backgroundColor": "#8F3E97",
+                      "bottom": 0,
+                      "left": 0,
+                      "opacity": 0.8,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                />
+                <TouchableHighlight
+                  accessibilityLabel="Open American Literature Psysicks foobar hello world 401 user preferences"
+                  accessibilityTraits="button"
+                  accessible={true}
+                  onPress={[Function]}
+                  style={
+                    Object {
+                      "height": 43,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                      "width": 43,
+                    }
+                  }
+                  testID="course-card.kabob-2"
+                  underlayColor="#ffffff00"
+                >
+                  <Image
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/kabob.png",
+                      }
+                    }
+                    style={
+                      Object {
+                        "height": 18,
+                        "position": "absolute",
+                        "right": 8,
+                        "top": 10,
+                        "width": 18,
+                      }
+                    }
+                  />
+                </TouchableHighlight>
+              </View>
+              <View
                 accessible={false}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={2}
                 style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#8F3E97",
-                      "fontWeight": "600",
-                      "marginTop": 8,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
+                  Object {
+                    "flex": 1,
+                    "paddingHorizontal": 10,
+                  }
                 }
               >
-                American Literature Psysicks foobar hello world 401
-              </Text>
-              <Text
-                accessible={false}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={1}
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#8B969D",
-                      "fontSize": 12,
-                      "fontWeight": "600",
-                      "marginTop": 2,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                LIT 401
-              </Text>
+                <Text
+                  accessible={false}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={2}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#8F3E97",
+                        "fontWeight": "600",
+                        "marginTop": 8,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  American Literature Psysicks foobar hello world 401
+                </Text>
+                <Text
+                  accessible={false}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={1}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#8B969D",
+                        "fontSize": 12,
+                        "fontWeight": "600",
+                        "marginTop": 2,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  LIT 401
+                </Text>
+              </View>
             </View>
-          </View>
-        </TouchableHighlight>
+          </TouchableHighlight>
+        </A11yGroup>
       </View>
       <View
         onLayout={[Function]}
         style={null}
       >
-        <TouchableHighlight
-          accessible={false}
-          onLayout={[Function]}
-          onPress={[Function]}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#ffffff01",
-                "height": 160,
-                "shadowColor": "#000",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 0,
-                },
-                "shadowOpacity": 0.2,
-                "shadowRadius": 1,
-              },
-              Object {
-                "height": 0,
-                "padding": 8,
-                "width": undefined,
-              },
-            ]
-          }
-          testID="course-3"
-          underlayColor="transparent"
-        >
-          <View
+        <A11yGroup>
+          <TouchableHighlight
+            accessible={false}
+            onLayout={[Function]}
+            onPress={[Function]}
             style={
-              Object {
-                "backgroundColor": "white",
-                "borderColor": "#e3e3e3",
-                "borderRadius": 4,
-                "borderWidth": 0.5,
-                "flex": 1,
-                "overflow": "hidden",
-              }
+              Array [
+                Object {
+                  "backgroundColor": "#ffffff01",
+                  "height": 160,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 1,
+                },
+                Object {
+                  "height": 0,
+                  "padding": 8,
+                  "width": undefined,
+                },
+              ]
             }
+            testID="course-3"
+            underlayColor="transparent"
           >
             <View
               style={
                 Object {
+                  "backgroundColor": "white",
+                  "borderColor": "#e3e3e3",
+                  "borderRadius": 4,
+                  "borderWidth": 0.5,
                   "flex": 1,
+                  "overflow": "hidden",
                 }
               }
             >
-              <Image
-                source={
-                  Object {
-                    "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-                  }
-                }
+              <View
                 style={
                   Object {
                     "flex": 1,
                   }
                 }
-              />
-              <View
-                accessibilityLabel="Foobar 102"
-                accessibilityTraits="button"
-                accessible={true}
-                style={
-                  Object {
-                    "backgroundColor": "#8F3E99",
-                    "bottom": 0,
-                    "left": 0,
-                    "opacity": 0.8,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  }
-                }
-              />
-              <TouchableHighlight
-                accessibilityLabel="Open Foobar 102 user preferences"
-                accessibilityTraits="button"
-                accessible={true}
-                onPress={[Function]}
-                style={
-                  Object {
-                    "height": 43,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                    "width": 43,
-                  }
-                }
-                testID="course-card.kabob-3"
-                underlayColor="#ffffff00"
               >
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/images/kabob.png",
+                      "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
                     }
                   }
                   style={
                     Object {
-                      "height": 18,
-                      "position": "absolute",
-                      "right": 8,
-                      "top": 10,
-                      "width": 18,
+                      "flex": 1,
                     }
                   }
                 />
-              </TouchableHighlight>
-            </View>
-            <View
-              accessible={false}
-              style={
-                Object {
-                  "flex": 1,
-                  "paddingHorizontal": 10,
-                }
-              }
-            >
-              <Text
+                <View
+                  accessibilityLabel="Foobar 102 "
+                  accessibilityTraits="button"
+                  accessible={true}
+                  style={
+                    Object {
+                      "backgroundColor": "#8F3E99",
+                      "bottom": 0,
+                      "left": 0,
+                      "opacity": 0.8,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                />
+                <TouchableHighlight
+                  accessibilityLabel="Open Foobar 102 user preferences"
+                  accessibilityTraits="button"
+                  accessible={true}
+                  onPress={[Function]}
+                  style={
+                    Object {
+                      "height": 43,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                      "width": 43,
+                    }
+                  }
+                  testID="course-card.kabob-3"
+                  underlayColor="#ffffff00"
+                >
+                  <Image
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/kabob.png",
+                      }
+                    }
+                    style={
+                      Object {
+                        "height": 18,
+                        "position": "absolute",
+                        "right": 8,
+                        "top": 10,
+                        "width": 18,
+                      }
+                    }
+                  />
+                </TouchableHighlight>
+              </View>
+              <View
                 accessible={false}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={2}
                 style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#8F3E99",
-                      "fontWeight": "600",
-                      "marginTop": 8,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
+                  Object {
+                    "flex": 1,
+                    "paddingHorizontal": 10,
+                  }
                 }
               >
-                Foobar 102
-              </Text>
-              <Text
-                accessible={false}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={1}
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#8B969D",
-                      "fontSize": 12,
-                      "fontWeight": "600",
-                      "marginTop": 2,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                FOO 102
-              </Text>
+                <Text
+                  accessible={false}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={2}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#8F3E99",
+                        "fontWeight": "600",
+                        "marginTop": 8,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Foobar 102
+                </Text>
+                <Text
+                  accessible={false}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={1}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#8B969D",
+                        "fontSize": 12,
+                        "fontWeight": "600",
+                        "marginTop": 2,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  FOO 102
+                </Text>
+              </View>
             </View>
-          </View>
-        </TouchableHighlight>
+          </TouchableHighlight>
+        </A11yGroup>
       </View>
       <View
         onLayout={[Function]}
@@ -2021,544 +2033,550 @@ exports[`render 1`] = `
         onLayout={[Function]}
         style={null}
       >
-        <TouchableHighlight
-          accessible={false}
-          onLayout={[Function]}
-          onPress={[Function]}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#ffffff01",
-                "height": 160,
-                "shadowColor": "#000",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 0,
-                },
-                "shadowOpacity": 0.2,
-                "shadowRadius": 1,
-              },
-              Object {
-                "height": 0,
-                "padding": 8,
-                "width": undefined,
-              },
-            ]
-          }
-          testID="course-1"
-          underlayColor="transparent"
-        >
-          <View
+        <A11yGroup>
+          <TouchableHighlight
+            accessible={false}
+            onLayout={[Function]}
+            onPress={[Function]}
             style={
-              Object {
-                "backgroundColor": "white",
-                "borderColor": "#e3e3e3",
-                "borderRadius": 4,
-                "borderWidth": 0.5,
-                "flex": 1,
-                "overflow": "hidden",
-              }
+              Array [
+                Object {
+                  "backgroundColor": "#ffffff01",
+                  "height": 160,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 1,
+                },
+                Object {
+                  "height": 0,
+                  "padding": 8,
+                  "width": undefined,
+                },
+              ]
             }
+            testID="course-1"
+            underlayColor="transparent"
           >
             <View
               style={
                 Object {
+                  "backgroundColor": "white",
+                  "borderColor": "#e3e3e3",
+                  "borderRadius": 4,
+                  "borderWidth": 0.5,
                   "flex": 1,
+                  "overflow": "hidden",
                 }
               }
             >
-              <Image
-                source={
-                  Object {
-                    "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-                  }
-                }
+              <View
                 style={
                   Object {
                     "flex": 1,
                   }
                 }
-              />
-              <View
-                accessibilityLabel="Biology 101"
-                accessibilityTraits="button"
-                accessible={true}
-                style={
-                  Object {
-                    "backgroundColor": "#27B9CD",
-                    "bottom": 0,
-                    "left": 0,
-                    "opacity": 0.8,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  }
-                }
-              />
-              <TouchableHighlight
-                accessibilityLabel="Open Biology 101 user preferences"
-                accessibilityTraits="button"
-                accessible={true}
-                onPress={[Function]}
-                style={
-                  Object {
-                    "height": 43,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                    "width": 43,
-                  }
-                }
-                testID="course-card.kabob-1"
-                underlayColor="#ffffff00"
               >
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/images/kabob.png",
+                      "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
                     }
                   }
                   style={
                     Object {
-                      "height": 18,
-                      "position": "absolute",
-                      "right": 8,
-                      "top": 10,
-                      "width": 18,
+                      "flex": 1,
                     }
                   }
                 />
-              </TouchableHighlight>
-            </View>
-            <View
-              accessible={false}
-              style={
-                Object {
-                  "flex": 1,
-                  "paddingHorizontal": 10,
-                }
-              }
-            >
-              <Text
+                <View
+                  accessibilityLabel="Biology 101 "
+                  accessibilityTraits="button"
+                  accessible={true}
+                  style={
+                    Object {
+                      "backgroundColor": "#27B9CD",
+                      "bottom": 0,
+                      "left": 0,
+                      "opacity": 0.8,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                />
+                <TouchableHighlight
+                  accessibilityLabel="Open Biology 101 user preferences"
+                  accessibilityTraits="button"
+                  accessible={true}
+                  onPress={[Function]}
+                  style={
+                    Object {
+                      "height": 43,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                      "width": 43,
+                    }
+                  }
+                  testID="course-card.kabob-1"
+                  underlayColor="#ffffff00"
+                >
+                  <Image
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/kabob.png",
+                      }
+                    }
+                    style={
+                      Object {
+                        "height": 18,
+                        "position": "absolute",
+                        "right": 8,
+                        "top": 10,
+                        "width": 18,
+                      }
+                    }
+                  />
+                </TouchableHighlight>
+              </View>
+              <View
                 accessible={false}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={2}
                 style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#27B9CD",
-                      "fontWeight": "600",
-                      "marginTop": 8,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
+                  Object {
+                    "flex": 1,
+                    "paddingHorizontal": 10,
+                  }
                 }
               >
-                Biology 101
-              </Text>
-              <Text
-                accessible={false}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={1}
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#8B969D",
-                      "fontSize": 12,
-                      "fontWeight": "600",
-                      "marginTop": 2,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                BIO 101
-              </Text>
+                <Text
+                  accessible={false}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={2}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#27B9CD",
+                        "fontWeight": "600",
+                        "marginTop": 8,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Biology 101
+                </Text>
+                <Text
+                  accessible={false}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={1}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#8B969D",
+                        "fontSize": 12,
+                        "fontWeight": "600",
+                        "marginTop": 2,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  BIO 101
+                </Text>
+              </View>
             </View>
-          </View>
-        </TouchableHighlight>
+          </TouchableHighlight>
+        </A11yGroup>
       </View>
       <View
         onLayout={[Function]}
         style={null}
       >
-        <TouchableHighlight
-          accessible={false}
-          onLayout={[Function]}
-          onPress={[Function]}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#ffffff01",
-                "height": 160,
-                "shadowColor": "#000",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 0,
-                },
-                "shadowOpacity": 0.2,
-                "shadowRadius": 1,
-              },
-              Object {
-                "height": 0,
-                "padding": 8,
-                "width": undefined,
-              },
-            ]
-          }
-          testID="course-2"
-          underlayColor="transparent"
-        >
-          <View
+        <A11yGroup>
+          <TouchableHighlight
+            accessible={false}
+            onLayout={[Function]}
+            onPress={[Function]}
             style={
-              Object {
-                "backgroundColor": "white",
-                "borderColor": "#e3e3e3",
-                "borderRadius": 4,
-                "borderWidth": 0.5,
-                "flex": 1,
-                "overflow": "hidden",
-              }
+              Array [
+                Object {
+                  "backgroundColor": "#ffffff01",
+                  "height": 160,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 1,
+                },
+                Object {
+                  "height": 0,
+                  "padding": 8,
+                  "width": undefined,
+                },
+              ]
             }
+            testID="course-2"
+            underlayColor="transparent"
           >
             <View
               style={
                 Object {
+                  "backgroundColor": "white",
+                  "borderColor": "#e3e3e3",
+                  "borderRadius": 4,
+                  "borderWidth": 0.5,
                   "flex": 1,
+                  "overflow": "hidden",
                 }
               }
             >
-              <Image
-                source={
-                  Object {
-                    "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-                  }
-                }
+              <View
                 style={
                   Object {
                     "flex": 1,
                   }
                 }
-              />
-              <View
-                accessibilityLabel="American Literature Psysicks foobar hello world 401"
-                accessibilityTraits="button"
-                accessible={true}
-                style={
-                  Object {
-                    "backgroundColor": "#8F3E97",
-                    "bottom": 0,
-                    "left": 0,
-                    "opacity": 0.8,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  }
-                }
-              />
-              <TouchableHighlight
-                accessibilityLabel="Open American Literature Psysicks foobar hello world 401 user preferences"
-                accessibilityTraits="button"
-                accessible={true}
-                onPress={[Function]}
-                style={
-                  Object {
-                    "height": 43,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                    "width": 43,
-                  }
-                }
-                testID="course-card.kabob-2"
-                underlayColor="#ffffff00"
               >
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/images/kabob.png",
+                      "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
                     }
                   }
                   style={
                     Object {
-                      "height": 18,
-                      "position": "absolute",
-                      "right": 8,
-                      "top": 10,
-                      "width": 18,
+                      "flex": 1,
                     }
                   }
                 />
-              </TouchableHighlight>
-            </View>
-            <View
-              accessible={false}
-              style={
-                Object {
-                  "flex": 1,
-                  "paddingHorizontal": 10,
-                }
-              }
-            >
-              <Text
+                <View
+                  accessibilityLabel="American Literature Psysicks foobar hello world 401 "
+                  accessibilityTraits="button"
+                  accessible={true}
+                  style={
+                    Object {
+                      "backgroundColor": "#8F3E97",
+                      "bottom": 0,
+                      "left": 0,
+                      "opacity": 0.8,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                />
+                <TouchableHighlight
+                  accessibilityLabel="Open American Literature Psysicks foobar hello world 401 user preferences"
+                  accessibilityTraits="button"
+                  accessible={true}
+                  onPress={[Function]}
+                  style={
+                    Object {
+                      "height": 43,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                      "width": 43,
+                    }
+                  }
+                  testID="course-card.kabob-2"
+                  underlayColor="#ffffff00"
+                >
+                  <Image
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/kabob.png",
+                      }
+                    }
+                    style={
+                      Object {
+                        "height": 18,
+                        "position": "absolute",
+                        "right": 8,
+                        "top": 10,
+                        "width": 18,
+                      }
+                    }
+                  />
+                </TouchableHighlight>
+              </View>
+              <View
                 accessible={false}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={2}
                 style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#8F3E97",
-                      "fontWeight": "600",
-                      "marginTop": 8,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
+                  Object {
+                    "flex": 1,
+                    "paddingHorizontal": 10,
+                  }
                 }
               >
-                American Literature Psysicks foobar hello world 401
-              </Text>
-              <Text
-                accessible={false}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={1}
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#8B969D",
-                      "fontSize": 12,
-                      "fontWeight": "600",
-                      "marginTop": 2,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                LIT 401
-              </Text>
+                <Text
+                  accessible={false}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={2}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#8F3E97",
+                        "fontWeight": "600",
+                        "marginTop": 8,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  American Literature Psysicks foobar hello world 401
+                </Text>
+                <Text
+                  accessible={false}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={1}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#8B969D",
+                        "fontSize": 12,
+                        "fontWeight": "600",
+                        "marginTop": 2,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  LIT 401
+                </Text>
+              </View>
             </View>
-          </View>
-        </TouchableHighlight>
+          </TouchableHighlight>
+        </A11yGroup>
       </View>
       <View
         onLayout={[Function]}
         style={null}
       >
-        <TouchableHighlight
-          accessible={false}
-          onLayout={[Function]}
-          onPress={[Function]}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#ffffff01",
-                "height": 160,
-                "shadowColor": "#000",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 0,
-                },
-                "shadowOpacity": 0.2,
-                "shadowRadius": 1,
-              },
-              Object {
-                "height": 0,
-                "padding": 8,
-                "width": undefined,
-              },
-            ]
-          }
-          testID="course-3"
-          underlayColor="transparent"
-        >
-          <View
+        <A11yGroup>
+          <TouchableHighlight
+            accessible={false}
+            onLayout={[Function]}
+            onPress={[Function]}
             style={
-              Object {
-                "backgroundColor": "white",
-                "borderColor": "#e3e3e3",
-                "borderRadius": 4,
-                "borderWidth": 0.5,
-                "flex": 1,
-                "overflow": "hidden",
-              }
+              Array [
+                Object {
+                  "backgroundColor": "#ffffff01",
+                  "height": 160,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 1,
+                },
+                Object {
+                  "height": 0,
+                  "padding": 8,
+                  "width": undefined,
+                },
+              ]
             }
+            testID="course-3"
+            underlayColor="transparent"
           >
             <View
               style={
                 Object {
+                  "backgroundColor": "white",
+                  "borderColor": "#e3e3e3",
+                  "borderRadius": 4,
+                  "borderWidth": 0.5,
                   "flex": 1,
+                  "overflow": "hidden",
                 }
               }
             >
-              <Image
-                source={
-                  Object {
-                    "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-                  }
-                }
+              <View
                 style={
                   Object {
                     "flex": 1,
                   }
                 }
-              />
-              <View
-                accessibilityLabel="Foobar 102"
-                accessibilityTraits="button"
-                accessible={true}
-                style={
-                  Object {
-                    "backgroundColor": "#8F3E99",
-                    "bottom": 0,
-                    "left": 0,
-                    "opacity": 0.8,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  }
-                }
-              />
-              <TouchableHighlight
-                accessibilityLabel="Open Foobar 102 user preferences"
-                accessibilityTraits="button"
-                accessible={true}
-                onPress={[Function]}
-                style={
-                  Object {
-                    "height": 43,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                    "width": 43,
-                  }
-                }
-                testID="course-card.kabob-3"
-                underlayColor="#ffffff00"
               >
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/images/kabob.png",
+                      "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
                     }
                   }
                   style={
                     Object {
-                      "height": 18,
-                      "position": "absolute",
-                      "right": 8,
-                      "top": 10,
-                      "width": 18,
+                      "flex": 1,
                     }
                   }
                 />
-              </TouchableHighlight>
-            </View>
-            <View
-              accessible={false}
-              style={
-                Object {
-                  "flex": 1,
-                  "paddingHorizontal": 10,
-                }
-              }
-            >
-              <Text
+                <View
+                  accessibilityLabel="Foobar 102 "
+                  accessibilityTraits="button"
+                  accessible={true}
+                  style={
+                    Object {
+                      "backgroundColor": "#8F3E99",
+                      "bottom": 0,
+                      "left": 0,
+                      "opacity": 0.8,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                />
+                <TouchableHighlight
+                  accessibilityLabel="Open Foobar 102 user preferences"
+                  accessibilityTraits="button"
+                  accessible={true}
+                  onPress={[Function]}
+                  style={
+                    Object {
+                      "height": 43,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                      "width": 43,
+                    }
+                  }
+                  testID="course-card.kabob-3"
+                  underlayColor="#ffffff00"
+                >
+                  <Image
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/kabob.png",
+                      }
+                    }
+                    style={
+                      Object {
+                        "height": 18,
+                        "position": "absolute",
+                        "right": 8,
+                        "top": 10,
+                        "width": 18,
+                      }
+                    }
+                  />
+                </TouchableHighlight>
+              </View>
+              <View
                 accessible={false}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={2}
                 style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#8F3E99",
-                      "fontWeight": "600",
-                      "marginTop": 8,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
+                  Object {
+                    "flex": 1,
+                    "paddingHorizontal": 10,
+                  }
                 }
               >
-                Foobar 102
-              </Text>
-              <Text
-                accessible={false}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={1}
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#8B969D",
-                      "fontSize": 12,
-                      "fontWeight": "600",
-                      "marginTop": 2,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                FOO 102
-              </Text>
+                <Text
+                  accessible={false}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={2}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#8F3E99",
+                        "fontWeight": "600",
+                        "marginTop": 8,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Foobar 102
+                </Text>
+                <Text
+                  accessible={false}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={1}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#8B969D",
+                        "fontSize": 12,
+                        "fontWeight": "600",
+                        "marginTop": 2,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  FOO 102
+                </Text>
+              </View>
             </View>
-          </View>
-        </TouchableHighlight>
+          </TouchableHighlight>
+        </A11yGroup>
       </View>
       <View
         onLayout={[Function]}
@@ -3265,544 +3283,550 @@ exports[`render while pending 1`] = `
         onLayout={[Function]}
         style={null}
       >
-        <TouchableHighlight
-          accessible={false}
-          onLayout={[Function]}
-          onPress={[Function]}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#ffffff01",
-                "height": 160,
-                "shadowColor": "#000",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 0,
-                },
-                "shadowOpacity": 0.2,
-                "shadowRadius": 1,
-              },
-              Object {
-                "height": 0,
-                "padding": 8,
-                "width": undefined,
-              },
-            ]
-          }
-          testID="course-1"
-          underlayColor="transparent"
-        >
-          <View
+        <A11yGroup>
+          <TouchableHighlight
+            accessible={false}
+            onLayout={[Function]}
+            onPress={[Function]}
             style={
-              Object {
-                "backgroundColor": "white",
-                "borderColor": "#e3e3e3",
-                "borderRadius": 4,
-                "borderWidth": 0.5,
-                "flex": 1,
-                "overflow": "hidden",
-              }
+              Array [
+                Object {
+                  "backgroundColor": "#ffffff01",
+                  "height": 160,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 1,
+                },
+                Object {
+                  "height": 0,
+                  "padding": 8,
+                  "width": undefined,
+                },
+              ]
             }
+            testID="course-1"
+            underlayColor="transparent"
           >
             <View
               style={
                 Object {
+                  "backgroundColor": "white",
+                  "borderColor": "#e3e3e3",
+                  "borderRadius": 4,
+                  "borderWidth": 0.5,
                   "flex": 1,
+                  "overflow": "hidden",
                 }
               }
             >
-              <Image
-                source={
-                  Object {
-                    "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-                  }
-                }
+              <View
                 style={
                   Object {
                     "flex": 1,
                   }
                 }
-              />
-              <View
-                accessibilityLabel="Biology 101"
-                accessibilityTraits="button"
-                accessible={true}
-                style={
-                  Object {
-                    "backgroundColor": "#27B9CD",
-                    "bottom": 0,
-                    "left": 0,
-                    "opacity": 0.8,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  }
-                }
-              />
-              <TouchableHighlight
-                accessibilityLabel="Open Biology 101 user preferences"
-                accessibilityTraits="button"
-                accessible={true}
-                onPress={[Function]}
-                style={
-                  Object {
-                    "height": 43,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                    "width": 43,
-                  }
-                }
-                testID="course-card.kabob-1"
-                underlayColor="#ffffff00"
               >
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/images/kabob.png",
+                      "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
                     }
                   }
                   style={
                     Object {
-                      "height": 18,
-                      "position": "absolute",
-                      "right": 8,
-                      "top": 10,
-                      "width": 18,
+                      "flex": 1,
                     }
                   }
                 />
-              </TouchableHighlight>
-            </View>
-            <View
-              accessible={false}
-              style={
-                Object {
-                  "flex": 1,
-                  "paddingHorizontal": 10,
-                }
-              }
-            >
-              <Text
+                <View
+                  accessibilityLabel="Biology 101 "
+                  accessibilityTraits="button"
+                  accessible={true}
+                  style={
+                    Object {
+                      "backgroundColor": "#27B9CD",
+                      "bottom": 0,
+                      "left": 0,
+                      "opacity": 0.8,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                />
+                <TouchableHighlight
+                  accessibilityLabel="Open Biology 101 user preferences"
+                  accessibilityTraits="button"
+                  accessible={true}
+                  onPress={[Function]}
+                  style={
+                    Object {
+                      "height": 43,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                      "width": 43,
+                    }
+                  }
+                  testID="course-card.kabob-1"
+                  underlayColor="#ffffff00"
+                >
+                  <Image
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/kabob.png",
+                      }
+                    }
+                    style={
+                      Object {
+                        "height": 18,
+                        "position": "absolute",
+                        "right": 8,
+                        "top": 10,
+                        "width": 18,
+                      }
+                    }
+                  />
+                </TouchableHighlight>
+              </View>
+              <View
                 accessible={false}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={2}
                 style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#27B9CD",
-                      "fontWeight": "600",
-                      "marginTop": 8,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
+                  Object {
+                    "flex": 1,
+                    "paddingHorizontal": 10,
+                  }
                 }
               >
-                Biology 101
-              </Text>
-              <Text
-                accessible={false}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={1}
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#8B969D",
-                      "fontSize": 12,
-                      "fontWeight": "600",
-                      "marginTop": 2,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                BIO 101
-              </Text>
+                <Text
+                  accessible={false}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={2}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#27B9CD",
+                        "fontWeight": "600",
+                        "marginTop": 8,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Biology 101
+                </Text>
+                <Text
+                  accessible={false}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={1}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#8B969D",
+                        "fontSize": 12,
+                        "fontWeight": "600",
+                        "marginTop": 2,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  BIO 101
+                </Text>
+              </View>
             </View>
-          </View>
-        </TouchableHighlight>
+          </TouchableHighlight>
+        </A11yGroup>
       </View>
       <View
         onLayout={[Function]}
         style={null}
       >
-        <TouchableHighlight
-          accessible={false}
-          onLayout={[Function]}
-          onPress={[Function]}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#ffffff01",
-                "height": 160,
-                "shadowColor": "#000",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 0,
-                },
-                "shadowOpacity": 0.2,
-                "shadowRadius": 1,
-              },
-              Object {
-                "height": 0,
-                "padding": 8,
-                "width": undefined,
-              },
-            ]
-          }
-          testID="course-2"
-          underlayColor="transparent"
-        >
-          <View
+        <A11yGroup>
+          <TouchableHighlight
+            accessible={false}
+            onLayout={[Function]}
+            onPress={[Function]}
             style={
-              Object {
-                "backgroundColor": "white",
-                "borderColor": "#e3e3e3",
-                "borderRadius": 4,
-                "borderWidth": 0.5,
-                "flex": 1,
-                "overflow": "hidden",
-              }
+              Array [
+                Object {
+                  "backgroundColor": "#ffffff01",
+                  "height": 160,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 1,
+                },
+                Object {
+                  "height": 0,
+                  "padding": 8,
+                  "width": undefined,
+                },
+              ]
             }
+            testID="course-2"
+            underlayColor="transparent"
           >
             <View
               style={
                 Object {
+                  "backgroundColor": "white",
+                  "borderColor": "#e3e3e3",
+                  "borderRadius": 4,
+                  "borderWidth": 0.5,
                   "flex": 1,
+                  "overflow": "hidden",
                 }
               }
             >
-              <Image
-                source={
-                  Object {
-                    "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-                  }
-                }
+              <View
                 style={
                   Object {
                     "flex": 1,
                   }
                 }
-              />
-              <View
-                accessibilityLabel="American Literature Psysicks foobar hello world 401"
-                accessibilityTraits="button"
-                accessible={true}
-                style={
-                  Object {
-                    "backgroundColor": "#8F3E97",
-                    "bottom": 0,
-                    "left": 0,
-                    "opacity": 0.8,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  }
-                }
-              />
-              <TouchableHighlight
-                accessibilityLabel="Open American Literature Psysicks foobar hello world 401 user preferences"
-                accessibilityTraits="button"
-                accessible={true}
-                onPress={[Function]}
-                style={
-                  Object {
-                    "height": 43,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                    "width": 43,
-                  }
-                }
-                testID="course-card.kabob-2"
-                underlayColor="#ffffff00"
               >
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/images/kabob.png",
+                      "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
                     }
                   }
                   style={
                     Object {
-                      "height": 18,
-                      "position": "absolute",
-                      "right": 8,
-                      "top": 10,
-                      "width": 18,
+                      "flex": 1,
                     }
                   }
                 />
-              </TouchableHighlight>
-            </View>
-            <View
-              accessible={false}
-              style={
-                Object {
-                  "flex": 1,
-                  "paddingHorizontal": 10,
-                }
-              }
-            >
-              <Text
+                <View
+                  accessibilityLabel="American Literature Psysicks foobar hello world 401 "
+                  accessibilityTraits="button"
+                  accessible={true}
+                  style={
+                    Object {
+                      "backgroundColor": "#8F3E97",
+                      "bottom": 0,
+                      "left": 0,
+                      "opacity": 0.8,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                />
+                <TouchableHighlight
+                  accessibilityLabel="Open American Literature Psysicks foobar hello world 401 user preferences"
+                  accessibilityTraits="button"
+                  accessible={true}
+                  onPress={[Function]}
+                  style={
+                    Object {
+                      "height": 43,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                      "width": 43,
+                    }
+                  }
+                  testID="course-card.kabob-2"
+                  underlayColor="#ffffff00"
+                >
+                  <Image
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/kabob.png",
+                      }
+                    }
+                    style={
+                      Object {
+                        "height": 18,
+                        "position": "absolute",
+                        "right": 8,
+                        "top": 10,
+                        "width": 18,
+                      }
+                    }
+                  />
+                </TouchableHighlight>
+              </View>
+              <View
                 accessible={false}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={2}
                 style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#8F3E97",
-                      "fontWeight": "600",
-                      "marginTop": 8,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
+                  Object {
+                    "flex": 1,
+                    "paddingHorizontal": 10,
+                  }
                 }
               >
-                American Literature Psysicks foobar hello world 401
-              </Text>
-              <Text
-                accessible={false}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={1}
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#8B969D",
-                      "fontSize": 12,
-                      "fontWeight": "600",
-                      "marginTop": 2,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                LIT 401
-              </Text>
+                <Text
+                  accessible={false}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={2}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#8F3E97",
+                        "fontWeight": "600",
+                        "marginTop": 8,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  American Literature Psysicks foobar hello world 401
+                </Text>
+                <Text
+                  accessible={false}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={1}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#8B969D",
+                        "fontSize": 12,
+                        "fontWeight": "600",
+                        "marginTop": 2,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  LIT 401
+                </Text>
+              </View>
             </View>
-          </View>
-        </TouchableHighlight>
+          </TouchableHighlight>
+        </A11yGroup>
       </View>
       <View
         onLayout={[Function]}
         style={null}
       >
-        <TouchableHighlight
-          accessible={false}
-          onLayout={[Function]}
-          onPress={[Function]}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#ffffff01",
-                "height": 160,
-                "shadowColor": "#000",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 0,
-                },
-                "shadowOpacity": 0.2,
-                "shadowRadius": 1,
-              },
-              Object {
-                "height": 0,
-                "padding": 8,
-                "width": undefined,
-              },
-            ]
-          }
-          testID="course-3"
-          underlayColor="transparent"
-        >
-          <View
+        <A11yGroup>
+          <TouchableHighlight
+            accessible={false}
+            onLayout={[Function]}
+            onPress={[Function]}
             style={
-              Object {
-                "backgroundColor": "white",
-                "borderColor": "#e3e3e3",
-                "borderRadius": 4,
-                "borderWidth": 0.5,
-                "flex": 1,
-                "overflow": "hidden",
-              }
+              Array [
+                Object {
+                  "backgroundColor": "#ffffff01",
+                  "height": 160,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 1,
+                },
+                Object {
+                  "height": 0,
+                  "padding": 8,
+                  "width": undefined,
+                },
+              ]
             }
+            testID="course-3"
+            underlayColor="transparent"
           >
             <View
               style={
                 Object {
+                  "backgroundColor": "white",
+                  "borderColor": "#e3e3e3",
+                  "borderRadius": 4,
+                  "borderWidth": 0.5,
                   "flex": 1,
+                  "overflow": "hidden",
                 }
               }
             >
-              <Image
-                source={
-                  Object {
-                    "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-                  }
-                }
+              <View
                 style={
                   Object {
                     "flex": 1,
                   }
                 }
-              />
-              <View
-                accessibilityLabel="Foobar 102"
-                accessibilityTraits="button"
-                accessible={true}
-                style={
-                  Object {
-                    "backgroundColor": "#8F3E99",
-                    "bottom": 0,
-                    "left": 0,
-                    "opacity": 0.8,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  }
-                }
-              />
-              <TouchableHighlight
-                accessibilityLabel="Open Foobar 102 user preferences"
-                accessibilityTraits="button"
-                accessible={true}
-                onPress={[Function]}
-                style={
-                  Object {
-                    "height": 43,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                    "width": 43,
-                  }
-                }
-                testID="course-card.kabob-3"
-                underlayColor="#ffffff00"
               >
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/images/kabob.png",
+                      "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
                     }
                   }
                   style={
                     Object {
-                      "height": 18,
-                      "position": "absolute",
-                      "right": 8,
-                      "top": 10,
-                      "width": 18,
+                      "flex": 1,
                     }
                   }
                 />
-              </TouchableHighlight>
-            </View>
-            <View
-              accessible={false}
-              style={
-                Object {
-                  "flex": 1,
-                  "paddingHorizontal": 10,
-                }
-              }
-            >
-              <Text
+                <View
+                  accessibilityLabel="Foobar 102 "
+                  accessibilityTraits="button"
+                  accessible={true}
+                  style={
+                    Object {
+                      "backgroundColor": "#8F3E99",
+                      "bottom": 0,
+                      "left": 0,
+                      "opacity": 0.8,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                />
+                <TouchableHighlight
+                  accessibilityLabel="Open Foobar 102 user preferences"
+                  accessibilityTraits="button"
+                  accessible={true}
+                  onPress={[Function]}
+                  style={
+                    Object {
+                      "height": 43,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                      "width": 43,
+                    }
+                  }
+                  testID="course-card.kabob-3"
+                  underlayColor="#ffffff00"
+                >
+                  <Image
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/kabob.png",
+                      }
+                    }
+                    style={
+                      Object {
+                        "height": 18,
+                        "position": "absolute",
+                        "right": 8,
+                        "top": 10,
+                        "width": 18,
+                      }
+                    }
+                  />
+                </TouchableHighlight>
+              </View>
+              <View
                 accessible={false}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={2}
                 style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#8F3E99",
-                      "fontWeight": "600",
-                      "marginTop": 8,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
+                  Object {
+                    "flex": 1,
+                    "paddingHorizontal": 10,
+                  }
                 }
               >
-                Foobar 102
-              </Text>
-              <Text
-                accessible={false}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={1}
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#8B969D",
-                      "fontSize": 12,
-                      "fontWeight": "600",
-                      "marginTop": 2,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                FOO 102
-              </Text>
+                <Text
+                  accessible={false}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={2}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#8F3E99",
+                        "fontWeight": "600",
+                        "marginTop": 8,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Foobar 102
+                </Text>
+                <Text
+                  accessible={false}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={1}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#8B969D",
+                        "fontSize": 12,
+                        "fontWeight": "600",
+                        "marginTop": 2,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  FOO 102
+                </Text>
+              </View>
             </View>
-          </View>
-        </TouchableHighlight>
+          </TouchableHighlight>
+        </A11yGroup>
       </View>
       <View
         onLayout={[Function]}
