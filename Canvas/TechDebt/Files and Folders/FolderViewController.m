@@ -120,7 +120,10 @@
     UIImage *image = [UIImage techDebtImageNamed:@"icon_cog_fill"];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(showOptions:)];
     self.navigationItem.rightBarButtonItem.accessibilityLabel = NSLocalizedString(@"Edit items", @"Button title for deleting items in a folder");
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
+    // show done button only when we are at the root folder
+    if (self.folder == nil) {
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
+    }
     self.modalPresentationStyle = UIModalPresentationFormSheet;
 }
 
