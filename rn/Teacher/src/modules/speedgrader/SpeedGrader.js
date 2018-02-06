@@ -64,7 +64,7 @@ type State = {
 const PAGE_GUTTER_HALF_WIDTH = 10.0
 const REFRESH_TTL = 1000 * 60 * 15 // 15 minutes
 
-export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
+export class SpeedGrader extends Component<SpeedGraderProps, State> {
   props: SpeedGraderProps
   state: State
   _flatList: ?FlatList
@@ -319,7 +319,10 @@ export function mapStateToProps (state: AppState, ownProps: RoutingProps): Speed
   let groupAssignment = null
   if (assignmentContent && assignmentContent.data) {
     const a = assignmentContent.data
-    if (a.group_category_id) {
+    const groupExists = a.group_category_id && courseContent.groups.refs
+      .filter(ref => entities.groups[ref].group.group_category_id === a.group_category_id)
+      .length > 0
+    if (groupExists) {
       groupAssignment = {
         groupCategoryID: a.group_category_id,
         gradeIndividually: a.grade_group_students_individually,
