@@ -11,6 +11,8 @@ import App from '../../app/index'
 
 const template = {
   ...require('../../../__templates__/course'),
+  ...require('../../../__templates__/enrollments'),
+  ...require('../../../__templates__/section'),
   ...require('../../../__templates__/group'),
   ...require('../../../__templates__/helm'),
 }
@@ -30,29 +32,40 @@ function renderAndLayout (dashboard) {
   return r
 }
 
+const course1 = template.course({
+  name: 'Biology 101',
+  course_code: 'BIO 101',
+  short_name: 'BIO 101',
+  id: '1',
+  is_favorite: true,
+})
+const course2 = template.course({
+  name: 'American Literature Psysicks foobar hello world 401',
+  course_code: 'LIT 401',
+  short_name: 'LIT 401',
+  id: '2',
+  is_favorite: false,
+})
+const course3 = template.course({
+  name: 'Foobar 102',
+  course_code: 'FOO 102',
+  id: '3',
+  short_name: 'FOO 102',
+  is_favorite: true,
+})
 const courses = [
-  template.course({
-    name: 'Biology 101',
-    course_code: 'BIO 101',
-    short_name: 'BIO 101',
-    id: '1',
-    is_favorite: true,
-  }),
-  template.course({
-    name: 'American Literature Psysicks foobar hello world 401',
-    course_code: 'LIT 401',
-    short_name: 'LIT 401',
-    id: '2',
-    is_favorite: false,
-  }),
-  template.course({
-    name: 'Foobar 102',
-    course_code: 'FOO 102',
-    id: '3',
-    short_name: 'FOO 102',
-    is_favorite: true,
-  }),
+  course1,
+  course2,
+  course3,
 ].map(course => ({ ...course, color: colors[course.id] }))
+
+const allCourses = {
+  '1': course1,
+  '2': course2,
+  '3': course3,
+  '4': template.course({ id: '4' }),
+  '5': template.course({ id: '5' }),
+}
 
 const groups = [{
   id: '1',
@@ -67,9 +80,32 @@ const groups = [{
   color: '#8F3E99',
 }]
 
+const enrollments = [
+  template.enrollment({
+    id: '1',
+    course_id: '4',
+    enrollment_state: 'invited',
+    course_section_id: '1',
+  }),
+  template.enrollment({
+    id: '2',
+    course_id: '5',
+    enrollment_state: 'invited',
+    course_section_id: '2',
+  }),
+]
+
+const sections = {
+  '1': template.section({ id: '1', course_id: '4' }),
+  '2': template.section({ id: '2', course_id: '5' }),
+}
+
 let defaultProps = {
   navigator: template.navigator(),
   courses,
+  enrollments: [],
+  sections: {},
+  allCourses: {},
   announcements: [],
   customColors: colors,
   refreshCourses: () => {},
@@ -248,5 +284,67 @@ test('only calls navigator.show to navigate to /notATeacher when in teacher app'
   tree.getInstance().componentWillReceiveProps(props)
   expect(navigator.show).not.toHaveBeenCalled()
 
+  App.setCurrentApp(currentApp)
+})
+
+test('renders course invites', () => {
+  let currentApp = App.current().appId
+
+  App.setCurrentApp('student')
+  let props = {
+    ...defaultProps,
+    enrollments,
+    allCourses,
+    sections,
+  }
+
+  let tree = renderAndLayout(
+    <Dashboard {...props} />
+  )
+  expect(tree).toMatchSnapshot()
+  App.setCurrentApp(currentApp)
+})
+
+test('handles accept invite', () => {
+  let currentApp = App.current().appId
+
+  App.setCurrentApp('student')
+  let props = {
+    ...defaultProps,
+    enrollments,
+    allCourses,
+    sections,
+    acceptEnrollment: jest.fn(),
+  }
+
+  let tree = renderAndLayout(
+    <Dashboard {...props} />
+  ).toJSON()
+
+  const courseInvite = explore(tree).selectByID('course-invite.1.accept-button') || {}
+  courseInvite.props.onPress()
+  expect(props.acceptEnrollment).toHaveBeenCalledWith('4', '1')
+  App.setCurrentApp(currentApp)
+})
+
+test('handles accept invite', () => {
+  let currentApp = App.current().appId
+
+  App.setCurrentApp('student')
+  let props = {
+    ...defaultProps,
+    enrollments,
+    allCourses,
+    sections,
+    rejectEnrollment: jest.fn(),
+  }
+
+  let tree = renderAndLayout(
+    <Dashboard {...props} />
+  ).toJSON()
+
+  const courseInvite = explore(tree).selectByID('course-invite.1.reject-button') || {}
+  courseInvite.props.onPress()
+  expect(props.rejectEnrollment).toHaveBeenCalledWith('4', '1')
   App.setCurrentApp(currentApp)
 })

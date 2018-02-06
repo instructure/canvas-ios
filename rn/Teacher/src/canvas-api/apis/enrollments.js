@@ -29,6 +29,24 @@ export function getCourseEnrollments (courseID: string): Promise<ApiResponse<Arr
   return exhaust(enrollments)
 }
 
+export function getUserEnrollments (userID: string): Promise<ApiResponse<Array<Enrollment>>> {
+  const enrollments = paginate(`users/${userID}/enrollments`, {
+    params: {
+      include: ['avatar_url'],
+    },
+  })
+
+  return exhaust(enrollments)
+}
+
 export function enrollUser (courseID: string, enrollment: CreateEnrollment): Promise<ApiResponse<Enrollment>> {
   return httpClient().post(`courses/${courseID}/enrollments`, { enrollment })
+}
+
+export function acceptEnrollment (courseID: string, enrollmentID: string): Promise<ApiResponse<Object>> {
+  return httpClient().post(`courses/${courseID}/enrollments/${enrollmentID}/accept`)
+}
+
+export function rejectEnrollment (courseID: string, enrollmentID: string): Promise<ApiResponse<Object>> {
+  return httpClient().post(`courses/${courseID}/enrollments/${enrollmentID}/reject`)
 }

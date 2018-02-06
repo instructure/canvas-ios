@@ -13,6 +13,7 @@ import localeSort from '../../utils/locale-sort'
 import i18n from 'format-message'
 import App from '../app'
 import CoursesActions from '../courses/actions'
+import EnrollmentsActions from '../enrollments/actions'
 import GroupsActions from '../groups/actions'
 import {
   Heading1,
@@ -21,6 +22,7 @@ import {
   LinkButton,
 } from '../../common/buttons'
 import GlobalAnnouncementRow from './GlobalAnnouncementRow'
+import CourseInvite from './CourseInvite'
 import GroupRow, { type GroupRowProps } from './GroupRow'
 import CourseCard from '../courses/components/CourseCard'
 import NoCourses from '../courses/components/NoCourses'
@@ -40,9 +42,15 @@ type Props = {
   refresh: () => void,
   isFullDashboard: boolean,
   announcements: AccountNotification[],
+  allCourses: { [string]: Course},
+  sections: SectionsState,
+  enrollments: Invite[],
   courses: ColorfulCourse[],
   closeNotification: (string) => any,
   groups: GroupRowProps[],
+  acceptEnrollment?: (string, string) => any,
+  rejectEnrollment?: (string, string) => any,
+  hideInvite?: (string) => any,
   showGrades?: boolean,
 }
 type State = {
@@ -50,8 +58,9 @@ type State = {
   cardSize?: number,
   contentWidth?: number,
   showingModal: boolean,
+  fetchingEnrollments: boolean,
 }
-type Section = {
+type SectionListSection = {
   sectionID: string,
   title?: string,
   seeAll?: () => void,
@@ -80,6 +89,7 @@ const MIN_CARD_SIZE = 150
 export class Dashboard extends React.Component<Props, State> {
   state: State = {
     showingModal: false,
+    fetchingEnrollments: false,
   }
 
   componentWillReceiveProps (newProps: Props) {
@@ -108,7 +118,15 @@ export class Dashboard extends React.Component<Props, State> {
     this.calculateLayout(nativeEvent.layout.width)
   }
 
-  renderHeader = ({ section }: { section: Section }) => {
+  handleInvite = (courseId: string, enrollmentId: string, action: string) => {
+    if (action === 'accept' && this.props.acceptEnrollment) {
+      this.props.acceptEnrollment(courseId, enrollmentId)
+    } else if (action === 'reject' && this.props.rejectEnrollment) {
+      this.props.rejectEnrollment(courseId, enrollmentId)
+    }
+  }
+
+  renderHeader = ({ section }: { section: SectionListSection }) => {
     if (!section.title || !this.state.contentWidth) {
       return undefined
     }
@@ -142,6 +160,26 @@ export class Dashboard extends React.Component<Props, State> {
         style={{ width: this.state.contentWidth, padding }}
         notification={item}
         onDismiss={this.props.closeNotification}
+      />
+    )
+  }
+
+  renderCourseInvite = ({ item }: { item: Invite }) => {
+    let courseName = ''
+    let sectionName = ''
+    const course = this.props.allCourses[item.course_id]
+    const section = this.props.sections[item.course_section_id]
+    if (course) courseName = course.name
+    if (section) sectionName = section.name
+    return (
+      <CourseInvite
+        key={`invite-${item.id}`}
+        style={{ width: this.state.contentWidth, padding }}
+        courseName={courseName}
+        sectionName={sectionName}
+        invite={item}
+        handleInvite={this.handleInvite}
+        hideInvite={this.props.hideInvite}
       />
     )
   }
@@ -210,6 +248,19 @@ export class Dashboard extends React.Component<Props, State> {
       renderItem: this.renderGlobalAnnouncement,
       keyExtractor: ({ id }: AccountNotification) => id,
     })
+
+    // Course Invites
+    if (this.props.enrollments.length > 0) {
+      let courseInvites = this.props.enrollments.filter(en => {
+        return en.displayState === 'acted' || en.enrollment_state === 'invited'
+      })
+      sections.push({
+        sectionID: 'dashboard.courseInvites',
+        data: courseInvites,
+        renderItem: this.renderCourseInvite,
+        keyExtractor: ({ id }: Invite) => `enrollment-${id}`,
+      })
+    }
 
     // Courses
     if (this.props.courses.length > 0) {
@@ -344,10 +395,13 @@ const styles = StyleSheet.create({
 
 export function mapStateToProps (isFullDashboard: boolean) {
   return (state: AppState) => {
-    const { courses: allCourses, accountNotifications } = state.entities
+    const { courses: allCourses, accountNotifications, enrollments: allEnrollments } = state.entities
 
     const allCourseStates = Object.keys(allCourses)
       .map(key => allCourses[key])
+
+    const enrollments = Object.keys(allEnrollments)
+      .map(key => allEnrollments[key])
 
     const totalCourseCount = allCourseStates
       .map(({ course }) => course)
@@ -361,7 +415,8 @@ export function mapStateToProps (isFullDashboard: boolean) {
       courseStates = courseRefs.map(ref => allCourses[ref])
     } else {
       // all courses view
-      courseStates = allCourseStates
+      const blacklist = ['invited', 'rejected'] // except invited and rejected
+      courseStates = allCourseStates.filter(c => !blacklist.includes(c.course.enrollments[0].enrollment_state))
     }
     const courses: Array<ColorfulCourse> = courseStates
       .map(({ course, color }) => ({ ...course, color }))
@@ -388,10 +443,19 @@ export function mapStateToProps (isFullDashboard: boolean) {
         }
       })
 
+    let allCoursesStringKeys = {}
+    const sections = allCourseStates.reduce((obj, { course }) => {
+      course.sections.forEach(sec => { obj[sec.id.toString()] = sec })
+      // this doesn't relate to sections,
+      // but take advantage that we're looping through them all
+      allCoursesStringKeys[course.id] = course
+      return obj
+    }, {})
+
     const pending = state.favoriteCourses.pending + accountNotifications.pending
     const error = state.favoriteCourses.error || accountNotifications.error
     const showGrades = state.userInfo.showsGradesOnCourseCards
-    return { pending, error, announcements, courses, totalCourseCount, isFullDashboard, groups, showGrades }
+    return { pending, error, announcements, courses, totalCourseCount, isFullDashboard, groups, showGrades, allCourses: allCoursesStringKeys, sections, enrollments }
   }
 }
 
@@ -402,14 +466,18 @@ const Refreshed = refresh(
 
     if (App.current().appId === 'student') {
       props.refreshUsersGroups()
+      props.refreshUserEnrollments()
     }
   },
-  props => props.courses.length === 0 || App.current().appId === 'student' && props.groups.length === 0,
+  props => props => props.courses.length === 0 ||
+    (App.current().appId === 'student' && props.groups.length === 0) ||
+    (App.current().appId === 'student' && Object.keys(props.enrollments).length === 0),
   props => Boolean(props.pending)
 )(Dashboard)
 const Connected = connect(mapStateToProps(true), {
   ...AccountNotificationActions,
   ...CoursesActions,
+  ...EnrollmentsActions,
   ...GroupsActions,
 })(Refreshed)
 export default Connected

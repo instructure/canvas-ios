@@ -39,6 +39,11 @@ export type Enrollment = {
   computed_current_grade: string,
 }
 
+export type Invite = {
+  displayState?: string,
+  hidden?: boolean,
+} & Enrollment
+
 export type CreateEnrollment = {
   user_id: string,
   type: 'StudentEnrollment' | 'TeacherEnrollment' | 'TAEnrollment' | 'ObserverEnrollment' | 'DesignerEnrollment',

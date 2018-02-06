@@ -24,16 +24,52 @@ import fromPairs from 'lodash/fromPairs'
 import { type UserProfileState } from '../users/reducer'
 
 export const defaultEntities: EnrollmentsState = {}
-const { refreshEnrollments } = Actions
+const { refreshEnrollments, acceptEnrollment, rejectEnrollment, hideInvite } = Actions
 
 export const enrollments: Reducer<EnrollmentsState, any> = handleActions({
   [refreshEnrollments.toString()]: handleAsync({
     resolved: (state, { result }) => {
       const incoming = fromPairs(result.data
         .map(enrollment => [enrollment.id, enrollment]))
-      return { ...state, ...incoming }
+      return { ...incoming }
     },
   }),
+  [acceptEnrollment.toString()]: handleAsync({
+    resolved: (state, { enrollmentID, result }) => {
+      if (result.data.success) {
+        return {
+          ...state,
+          [enrollmentID]: {
+            ...state[enrollmentID],
+            enrollment_state: 'active',
+            displayState: 'acted',
+          },
+        }
+      } else { return state }
+    },
+  }),
+  [rejectEnrollment.toString()]: handleAsync({
+    resolved: (state, { enrollmentID, result }) => {
+      if (result.data.success) {
+        return {
+          ...state,
+          [enrollmentID]: {
+            ...state[enrollmentID],
+            enrollment_state: 'rejected',
+            displayState: 'acted',
+          },
+        }
+      } else { return state }
+    },
+  }),
+  [hideInvite.toString()]: (state, { payload }) => {
+    let entity = { ...state[payload.enrollmentID] }
+    entity.hidden = true
+    return {
+      ...state,
+      ...{ [payload.enrollmentID]: entity },
+    }
+  },
 }, {})
 
 export const enrollmentUsers: Reducer<UserProfileState, any> = handleActions({

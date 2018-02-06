@@ -53,3 +53,87 @@ test('should refresh enrollments', async () => {
     },
   ])
 })
+
+test('should refresh user enrollments', async () => {
+  const enrollments = [
+    template.enrollment({ id: '45' }),
+    template.enrollment({ id: '67' }),
+  ]
+
+  let actions = EnrollmentsActions({
+    getUserEnrollments: apiResponse(enrollments),
+  })
+
+  let result = await testAsyncAction(actions.refreshUserEnrollments())
+
+  expect(result).toMatchObject([
+    {
+      type: actions.refreshUserEnrollments.toString(),
+      pending: true,
+      payload: {
+        userID: 'self',
+      },
+    },
+    {
+      type: actions.refreshUserEnrollments.toString(),
+      payload: {
+        result: { data: enrollments },
+        userID: 'self',
+      },
+    },
+  ])
+})
+
+test('should accept enrollment', async () => {
+  let actions = EnrollmentsActions({
+    acceptEnrollment: apiResponse({ success: true }),
+  })
+
+  let result = await testAsyncAction(actions.acceptEnrollment('1', '2', 'accept'))
+
+  expect(result).toMatchObject([
+    {
+      type: actions.acceptEnrollment.toString(),
+      pending: true,
+      payload: {
+        courseID: '1',
+        enrollmentID: '2',
+      },
+    },
+    {
+      type: actions.acceptEnrollment.toString(),
+      payload: {
+        result: { data: { success: true } },
+        courseID: '1',
+        enrollmentID: '2',
+      },
+    },
+  ])
+})
+
+test('should reject enrollment', async () => {
+  let actions = EnrollmentsActions({
+    rejectEnrollment: apiResponse({ success: true }),
+  })
+
+  let result = await testAsyncAction(actions.rejectEnrollment('1', '2', 'reject'))
+
+  expect(result).toMatchObject([
+    {
+      type: actions.rejectEnrollment.toString(),
+      pending: true,
+      payload: {
+        courseID: '1',
+        enrollmentID: '2',
+      },
+    },
+    {
+      type: actions.rejectEnrollment.toString(),
+      payload: {
+        result: { data: { success: true } },
+        courseID: '1',
+        enrollmentID: '2',
+      },
+    },
+  ])
+})

@@ -41,6 +41,7 @@ const images = {
     help: require('./dashboard/help.png'),
     info: require('./dashboard/info.png'),
     warning: require('./Warning.png'),
+    invite: require('./dashboard/invite.png'),
   },
   tabbar: {
     courses: require('./tabbar/courses.png'),

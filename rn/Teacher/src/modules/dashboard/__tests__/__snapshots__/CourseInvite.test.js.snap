@@ -1,0 +1,970 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CourseInvite can hide 1`] = `
+<Component
+  contentStyle={
+    Array [
+      Object {
+        "borderColor": "#00AC18",
+        "borderWidth": 1,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "justifyContent": "flex-start",
+            "width": 40,
+          },
+          Object {
+            "backgroundColor": "#00AC18",
+          },
+        ]
+      }
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../src/images/dashboard/invite.png",
+          }
+        }
+        style={
+          Object {
+            "marginTop": 14,
+            "tintColor": "white",
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "margin": 8,
+        }
+      }
+      testID="course-invite.acted"
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 18,
+            "fontWeight": "600",
+            "marginBottom": 4,
+            "marginRight": 32,
+            "marginTop": 4,
+          }
+        }
+      >
+        Invite declined!
+      </Text>
+    </View>
+  </View>
+  <TouchableHighlight
+    accessibilityLabel="Dismiss invitation to Coolest Course"
+    accessibilityTraits="button"
+    activeOpacity={0.85}
+    onPress={[Function]}
+    style={
+      Object {
+        "padding": 12,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+    testID="course-invite.1.dismiss-button"
+    underlayColor="transparent"
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../src/images/x-icon.png",
+        }
+      }
+      style={
+        Object {
+          "tintColor": "#8B969E",
+          "width": 16,
+        }
+      }
+    />
+  </TouchableHighlight>
+</Component>
+`;
+
+exports[`CourseInvite renders action taken -- accept 1`] = `
+<Component
+  contentStyle={
+    Array [
+      Object {
+        "borderColor": "#00AC18",
+        "borderWidth": 1,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "justifyContent": "flex-start",
+            "width": 40,
+          },
+          Object {
+            "backgroundColor": "#00AC18",
+          },
+        ]
+      }
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../src/images/dashboard/invite.png",
+          }
+        }
+        style={
+          Object {
+            "marginTop": 14,
+            "tintColor": "white",
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "margin": 8,
+        }
+      }
+      testID="course-invite.acted"
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 18,
+            "fontWeight": "600",
+            "marginBottom": 4,
+            "marginRight": 32,
+            "marginTop": 4,
+          }
+        }
+      >
+        Invite accepted!
+      </Text>
+    </View>
+  </View>
+  <TouchableHighlight
+    accessibilityLabel="Dismiss invitation to Coolest Course"
+    accessibilityTraits="button"
+    activeOpacity={0.85}
+    onPress={[Function]}
+    style={
+      Object {
+        "padding": 12,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+    testID="course-invite.1.dismiss-button"
+    underlayColor="transparent"
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../src/images/x-icon.png",
+        }
+      }
+      style={
+        Object {
+          "tintColor": "#8B969E",
+          "width": 16,
+        }
+      }
+    />
+  </TouchableHighlight>
+</Component>
+`;
+
+exports[`CourseInvite renders action taken -- reject 1`] = `
+<Component
+  contentStyle={
+    Array [
+      Object {
+        "borderColor": "#00AC18",
+        "borderWidth": 1,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "justifyContent": "flex-start",
+            "width": 40,
+          },
+          Object {
+            "backgroundColor": "#00AC18",
+          },
+        ]
+      }
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../src/images/dashboard/invite.png",
+          }
+        }
+        style={
+          Object {
+            "marginTop": 14,
+            "tintColor": "white",
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "margin": 8,
+        }
+      }
+      testID="course-invite.acted"
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 18,
+            "fontWeight": "600",
+            "marginBottom": 4,
+            "marginRight": 32,
+            "marginTop": 4,
+          }
+        }
+      >
+        Invite declined!
+      </Text>
+    </View>
+  </View>
+  <TouchableHighlight
+    accessibilityLabel="Dismiss invitation to Coolest Course"
+    accessibilityTraits="button"
+    activeOpacity={0.85}
+    onPress={[Function]}
+    style={
+      Object {
+        "padding": 12,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+    testID="course-invite.1.dismiss-button"
+    underlayColor="transparent"
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../src/images/x-icon.png",
+        }
+      }
+      style={
+        Object {
+          "tintColor": "#8B969E",
+          "width": 16,
+        }
+      }
+    />
+  </TouchableHighlight>
+</Component>
+`;
+
+exports[`CourseInvite renders displayState acted -- accept 1`] = `
+<Component
+  contentStyle={
+    Array [
+      Object {
+        "borderColor": "#00AC18",
+        "borderWidth": 1,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "justifyContent": "flex-start",
+            "width": 40,
+          },
+          Object {
+            "backgroundColor": "#00AC18",
+          },
+        ]
+      }
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../src/images/dashboard/invite.png",
+          }
+        }
+        style={
+          Object {
+            "marginTop": 14,
+            "tintColor": "white",
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "margin": 8,
+        }
+      }
+      testID="course-invite.acted"
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 18,
+            "fontWeight": "600",
+            "marginBottom": 4,
+            "marginRight": 32,
+            "marginTop": 4,
+          }
+        }
+      >
+        Invite accepted!
+      </Text>
+    </View>
+  </View>
+  <TouchableHighlight
+    accessibilityLabel="Dismiss invitation to Coolest Course"
+    accessibilityTraits="button"
+    activeOpacity={0.85}
+    onPress={[Function]}
+    style={
+      Object {
+        "padding": 12,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+    testID="course-invite.1.dismiss-button"
+    underlayColor="transparent"
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../src/images/x-icon.png",
+        }
+      }
+      style={
+        Object {
+          "tintColor": "#8B969E",
+          "width": 16,
+        }
+      }
+    />
+  </TouchableHighlight>
+</Component>
+`;
+
+exports[`CourseInvite renders displayState acted -- reject 1`] = `
+<Component
+  contentStyle={
+    Array [
+      Object {
+        "borderColor": "#00AC18",
+        "borderWidth": 1,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "justifyContent": "flex-start",
+            "width": 40,
+          },
+          Object {
+            "backgroundColor": "#00AC18",
+          },
+        ]
+      }
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../src/images/dashboard/invite.png",
+          }
+        }
+        style={
+          Object {
+            "marginTop": 14,
+            "tintColor": "white",
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "margin": 8,
+        }
+      }
+      testID="course-invite.acted"
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 18,
+            "fontWeight": "600",
+            "marginBottom": 4,
+            "marginRight": 32,
+            "marginTop": 4,
+          }
+        }
+      >
+        Invite declined!
+      </Text>
+    </View>
+  </View>
+  <TouchableHighlight
+    accessibilityLabel="Dismiss invitation to Coolest Course"
+    accessibilityTraits="button"
+    activeOpacity={0.85}
+    onPress={[Function]}
+    style={
+      Object {
+        "padding": 12,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+    testID="course-invite.1.dismiss-button"
+    underlayColor="transparent"
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../src/images/x-icon.png",
+        }
+      }
+      style={
+        Object {
+          "tintColor": "#8B969E",
+          "width": 16,
+        }
+      }
+    />
+  </TouchableHighlight>
+</Component>
+`;
+
+exports[`CourseInvite renders hidden 1`] = `
+<Component
+  contentStyle={
+    Array [
+      Object {
+        "borderColor": "#00AC18",
+        "borderWidth": 1,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "justifyContent": "flex-start",
+            "width": 40,
+          },
+          Object {
+            "backgroundColor": "#00AC18",
+          },
+        ]
+      }
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../src/images/dashboard/invite.png",
+          }
+        }
+        style={
+          Object {
+            "marginTop": 14,
+            "tintColor": "white",
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "margin": 8,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 18,
+            "fontWeight": "600",
+            "marginBottom": 4,
+            "marginRight": 32,
+            "marginTop": 4,
+          }
+        }
+      >
+        You have been invited
+      </Text>
+      <Text
+        numberOfLines={1}
+        style={
+          Object {
+            "marginBottom": 6,
+          }
+        }
+      >
+        Coolest Course
+        , 
+        Worst Section eva
+      </Text>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "row",
+            "flexWrap": "wrap",
+            "justifyContent": "flex-start",
+          }
+        }
+      >
+        <Button
+          accessibilityTraits="button"
+          containerStyle={
+            Array [
+              Object {
+                "borderRadius": 4,
+                "height": 40,
+                "marginBottom": 4,
+                "width": 136,
+              },
+              Object {
+                "backgroundColor": "white",
+                "borderWidth": 0.5,
+                "marginRight": 8,
+              },
+              Object {
+                "borderColor": undefined,
+              },
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Object {
+              "color": "#7F91A7",
+              "fontWeight": "600",
+            }
+          }
+          testID="course-invite.1.reject-button"
+        >
+          Decline
+        </Button>
+        <Button
+          accessibilityTraits="button"
+          containerStyle={
+            Array [
+              Object {
+                "borderRadius": 4,
+                "height": 40,
+                "marginBottom": 4,
+                "width": 136,
+              },
+              Object {
+                "backgroundColor": "#00AC18",
+              },
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Object {
+              "color": "#fff",
+              "fontWeight": "600",
+            }
+          }
+          testID="course-invite.1.accept-button"
+        >
+          Accept
+        </Button>
+      </View>
+    </View>
+  </View>
+</Component>
+`;
+
+exports[`CourseInvite renders invite 1`] = `
+<Component
+  contentStyle={
+    Array [
+      Object {
+        "borderColor": "#00AC18",
+        "borderWidth": 1,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "justifyContent": "flex-start",
+            "width": 40,
+          },
+          Object {
+            "backgroundColor": "#00AC18",
+          },
+        ]
+      }
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../src/images/dashboard/invite.png",
+          }
+        }
+        style={
+          Object {
+            "marginTop": 14,
+            "tintColor": "white",
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "margin": 8,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 18,
+            "fontWeight": "600",
+            "marginBottom": 4,
+            "marginRight": 32,
+            "marginTop": 4,
+          }
+        }
+      >
+        You have been invited
+      </Text>
+      <Text
+        numberOfLines={1}
+        style={
+          Object {
+            "marginBottom": 6,
+          }
+        }
+      >
+        Coolest Course
+        , 
+        Worst Section eva
+      </Text>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "row",
+            "flexWrap": "wrap",
+            "justifyContent": "flex-start",
+          }
+        }
+      >
+        <Button
+          accessibilityTraits="button"
+          containerStyle={
+            Array [
+              Object {
+                "borderRadius": 4,
+                "height": 40,
+                "marginBottom": 4,
+                "width": 136,
+              },
+              Object {
+                "backgroundColor": "white",
+                "borderWidth": 0.5,
+                "marginRight": 8,
+              },
+              Object {
+                "borderColor": undefined,
+              },
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Object {
+              "color": "#7F91A7",
+              "fontWeight": "600",
+            }
+          }
+          testID="course-invite.1.reject-button"
+        >
+          Decline
+        </Button>
+        <Button
+          accessibilityTraits="button"
+          containerStyle={
+            Array [
+              Object {
+                "borderRadius": 4,
+                "height": 40,
+                "marginBottom": 4,
+                "width": 136,
+              },
+              Object {
+                "backgroundColor": "#00AC18",
+              },
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Object {
+              "color": "#fff",
+              "fontWeight": "600",
+            }
+          }
+          testID="course-invite.1.accept-button"
+        >
+          Accept
+        </Button>
+      </View>
+    </View>
+  </View>
+</Component>
+`;
+
+exports[`CourseInvite renders invite with course section 1`] = `
+<Component
+  contentStyle={
+    Array [
+      Object {
+        "borderColor": "#00AC18",
+        "borderWidth": 1,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "justifyContent": "flex-start",
+            "width": 40,
+          },
+          Object {
+            "backgroundColor": "#00AC18",
+          },
+        ]
+      }
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../src/images/dashboard/invite.png",
+          }
+        }
+        style={
+          Object {
+            "marginTop": 14,
+            "tintColor": "white",
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "margin": 8,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 18,
+            "fontWeight": "600",
+            "marginBottom": 4,
+            "marginRight": 32,
+            "marginTop": 4,
+          }
+        }
+      >
+        You have been invited
+      </Text>
+      <Text
+        numberOfLines={1}
+        style={
+          Object {
+            "marginBottom": 6,
+          }
+        }
+      >
+        Coolest Course
+      </Text>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "row",
+            "flexWrap": "wrap",
+            "justifyContent": "flex-start",
+          }
+        }
+      >
+        <Button
+          accessibilityTraits="button"
+          containerStyle={
+            Array [
+              Object {
+                "borderRadius": 4,
+                "height": 40,
+                "marginBottom": 4,
+                "width": 136,
+              },
+              Object {
+                "backgroundColor": "white",
+                "borderWidth": 0.5,
+                "marginRight": 8,
+              },
+              Object {
+                "borderColor": undefined,
+              },
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Object {
+              "color": "#7F91A7",
+              "fontWeight": "600",
+            }
+          }
+          testID="course-invite.1.reject-button"
+        >
+          Decline
+        </Button>
+        <Button
+          accessibilityTraits="button"
+          containerStyle={
+            Array [
+              Object {
+                "borderRadius": 4,
+                "height": 40,
+                "marginBottom": 4,
+                "width": 136,
+              },
+              Object {
+                "backgroundColor": "#00AC18",
+              },
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Object {
+              "color": "#fff",
+              "fontWeight": "600",
+            }
+          }
+          testID="course-invite.1.accept-button"
+        >
+          Accept
+        </Button>
+      </View>
+    </View>
+  </View>
+</Component>
+`;

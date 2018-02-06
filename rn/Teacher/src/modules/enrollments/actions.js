@@ -24,6 +24,23 @@ export const EnrollmentsActions = (api: CanvasApi): * => ({
     promise: api.getCourseEnrollments(courseID),
     courseID,
   })),
+  refreshUserEnrollments: createAction('enrollments.update', (userID?: string = 'self') => ({
+    promise: api.getUserEnrollments(userID),
+    userID,
+  })),
+  acceptEnrollment: createAction('enrollments.accept', (courseID: string, enrollmentID: string) => ({
+    promise: api.acceptEnrollment(courseID, enrollmentID),
+    courseID,
+    enrollmentID,
+  })),
+  rejectEnrollment: createAction('enrollments.reject', (courseID: string, enrollmentID: string) => ({
+    promise: api.rejectEnrollment(courseID, enrollmentID),
+    courseID,
+    enrollmentID,
+  })),
+  hideInvite: createAction('enrollments.hide', (enrollmentID: string) => ({
+    enrollmentID,
+  })),
 })
 
 export default (EnrollmentsActions(canvas): *)
