@@ -45,6 +45,10 @@ type Props = {
   onColorPickerShown: (shown: boolean) => void,
 }
 
+type State = {
+  colorPickerVisible: boolean,
+}
+
 type Item = {
   image: string,
   action: string,
@@ -82,19 +86,14 @@ const ColorPickerAnimation = {
 
 const { NativeAccessibility } = NativeModules
 
-export default class RichTextToolbar extends Component<Props, any> {
-  constructor (props: Props) {
-    super(props)
-
-    this.state = {
-      colorPickerVisible: false,
-    }
+export default class RichTextToolbar extends Component<Props, State> {
+  state: State = {
+    colorPickerVisible: false,
   }
 
   render () {
-    const height = this.state.colorPickerVisible ? 100 : 50
     return (
-      <View style={[styles.container, { height }]}>
+      <View style={styles.container}>
         { this.state.colorPickerVisible && this.props.setTextColor &&
           <ColorPicker pickedColor={this._pickColor} />
         }

@@ -205,9 +205,9 @@ zss_editor.setPlaceholder = function(placeholder) {
     //set placeHolder
     editor.attr("placeholder",placeholder);
 
-    //set focus			 
+    //set focus
     editor.focusout(function(){
-        var element = $(this);        
+        var element = $(this);
         if (!element.text().trim().length) {
             element.empty();
         }
@@ -812,6 +812,7 @@ body {
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     height: 100%;
+    padding: 0.8em 1em;
 }
 
 img.zs_active {

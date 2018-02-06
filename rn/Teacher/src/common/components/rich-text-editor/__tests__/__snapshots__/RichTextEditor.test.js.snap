@@ -17,30 +17,18 @@ exports[`RichTextEditor hides toolbar when editor blurs 1`] = `
     }
   }
 >
-  <View
-    style={
-      Object {
-        "flex": 1,
-        "paddingBottom": 12.8,
-        "paddingLeft": 16,
-        "paddingRight": 16,
-        "paddingTop": 12.8,
-      }
-    }
-  >
-    <ZSSRichTextEditor
-      _setMock={[Function]}
-      editorItemsChanged={[Function]}
-      html=""
-      navigator={undefined}
-      onBlur={[Function]}
-      onFocus={[Function]}
-      onHeightChange={undefined}
-      onInputChange={[Function]}
-      onLoad={[Function]}
-      scrollEnabled={true}
-    />
-  </View>
+  <ZSSRichTextEditor
+    _setMock={[Function]}
+    editorItemsChanged={[Function]}
+    html=""
+    navigator={undefined}
+    onBlur={[Function]}
+    onFocus={[Function]}
+    onHeightChange={undefined}
+    onInputChange={[Function]}
+    onLoad={[Function]}
+    scrollEnabled={true}
+  />
   <KeyboardSpacer
     onToggle={[Function]}
     topSpacing={0}
@@ -58,30 +46,18 @@ exports[`RichTextEditor renders 1`] = `
     }
   }
 >
-  <View
-    style={
-      Object {
-        "flex": 1,
-        "paddingBottom": 12.8,
-        "paddingLeft": 16,
-        "paddingRight": 16,
-        "paddingTop": 12.8,
-      }
-    }
-  >
-    <ZSSRichTextEditor
-      _setMock={[Function]}
-      editorItemsChanged={[Function]}
-      html=""
-      navigator={undefined}
-      onBlur={[Function]}
-      onFocus={[Function]}
-      onHeightChange={undefined}
-      onInputChange={[Function]}
-      onLoad={[Function]}
-      scrollEnabled={true}
-    />
-  </View>
+  <ZSSRichTextEditor
+    _setMock={[Function]}
+    editorItemsChanged={[Function]}
+    html=""
+    navigator={undefined}
+    onBlur={[Function]}
+    onFocus={[Function]}
+    onHeightChange={undefined}
+    onInputChange={[Function]}
+    onLoad={[Function]}
+    scrollEnabled={true}
+  />
   <KeyboardSpacer
     onToggle={[Function]}
     topSpacing={0}
@@ -99,30 +75,18 @@ exports[`RichTextEditor renders toolbar when editor focused 1`] = `
     }
   }
 >
-  <View
-    style={
-      Object {
-        "flex": 1,
-        "paddingBottom": 12.8,
-        "paddingLeft": 16,
-        "paddingRight": 16,
-        "paddingTop": 12.8,
-      }
-    }
-  >
-    <ZSSRichTextEditor
-      _setMock={[Function]}
-      editorItemsChanged={[Function]}
-      html=""
-      navigator={undefined}
-      onBlur={[Function]}
-      onFocus={[Function]}
-      onHeightChange={undefined}
-      onInputChange={[Function]}
-      onLoad={[Function]}
-      scrollEnabled={true}
-    />
-  </View>
+  <ZSSRichTextEditor
+    _setMock={[Function]}
+    editorItemsChanged={[Function]}
+    html=""
+    navigator={undefined}
+    onBlur={[Function]}
+    onFocus={[Function]}
+    onHeightChange={undefined}
+    onInputChange={[Function]}
+    onLoad={[Function]}
+    scrollEnabled={true}
+  />
   <RichTextToolbar
     active={Array []}
     insertLink={[Function]}
@@ -152,30 +116,18 @@ exports[`RichTextEditor should update active editor items in toolbar 1`] = `
     }
   }
 >
-  <View
-    style={
-      Object {
-        "flex": 1,
-        "paddingBottom": 12.8,
-        "paddingLeft": 16,
-        "paddingRight": 16,
-        "paddingTop": 12.8,
-      }
-    }
-  >
-    <ZSSRichTextEditor
-      _setMock={[Function]}
-      editorItemsChanged={[Function]}
-      html=""
-      navigator={undefined}
-      onBlur={[Function]}
-      onFocus={[Function]}
-      onHeightChange={undefined}
-      onInputChange={[Function]}
-      onLoad={[Function]}
-      scrollEnabled={true}
-    />
-  </View>
+  <ZSSRichTextEditor
+    _setMock={[Function]}
+    editorItemsChanged={[Function]}
+    html=""
+    navigator={undefined}
+    onBlur={[Function]}
+    onFocus={[Function]}
+    onHeightChange={undefined}
+    onInputChange={[Function]}
+    onLoad={[Function]}
+    scrollEnabled={true}
+  />
   <RichTextToolbar
     active={
       Array [
@@ -209,30 +161,18 @@ exports[`RichTextEditor should update active editor items in toolbar 2`] = `
     }
   }
 >
-  <View
-    style={
-      Object {
-        "flex": 1,
-        "paddingBottom": 12.8,
-        "paddingLeft": 16,
-        "paddingRight": 16,
-        "paddingTop": 12.8,
-      }
-    }
-  >
-    <ZSSRichTextEditor
-      _setMock={[Function]}
-      editorItemsChanged={[Function]}
-      html=""
-      navigator={undefined}
-      onBlur={[Function]}
-      onFocus={[Function]}
-      onHeightChange={undefined}
-      onInputChange={[Function]}
-      onLoad={[Function]}
-      scrollEnabled={true}
-    />
-  </View>
+  <ZSSRichTextEditor
+    _setMock={[Function]}
+    editorItemsChanged={[Function]}
+    html=""
+    navigator={undefined}
+    onBlur={[Function]}
+    onFocus={[Function]}
+    onHeightChange={undefined}
+    onInputChange={[Function]}
+    onLoad={[Function]}
+    scrollEnabled={true}
+  />
   <RichTextToolbar
     active={
       Array [

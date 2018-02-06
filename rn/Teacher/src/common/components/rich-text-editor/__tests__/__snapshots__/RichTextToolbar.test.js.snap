@@ -3,16 +3,11 @@
 exports[`RichTextToolbar renders 1`] = `
 <View
   style={
-    Array [
-      Object {
-        "backgroundColor": "white",
-        "flexDirection": "column",
-        "justifyContent": "flex-end",
-      },
-      Object {
-        "height": 50,
-      },
-    ]
+    Object {
+      "backgroundColor": "white",
+      "flexDirection": "column",
+      "justifyContent": "flex-end",
+    }
   }
 >
   <View
@@ -36,16 +31,11 @@ exports[`RichTextToolbar renders 1`] = `
 exports[`RichTextToolbar renders active items 1`] = `
 <View
   style={
-    Array [
-      Object {
-        "backgroundColor": "white",
-        "flexDirection": "column",
-        "justifyContent": "flex-end",
-      },
-      Object {
-        "height": 100,
-      },
-    ]
+    Object {
+      "backgroundColor": "white",
+      "flexDirection": "column",
+      "justifyContent": "flex-end",
+    }
   }
 >
   <ColorPicker

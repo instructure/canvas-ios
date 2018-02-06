@@ -40,7 +40,7 @@ export type Props = {
   navigator: Navigator,
 }
 
-export default class RichTextEditor extends Component<Props, any> {
+export default class RichTextEditor extends Component<Props> {
   editor: ZSSRichTextEditor
   container: View
 
@@ -69,20 +69,18 @@ export default class RichTextEditor extends Component<Props, any> {
         ref={this._captureContainer}
         onLayout={this.onLayout}
       >
-        <View style={styles.editor}>
-          <ZSSRichTextEditor
-            ref={(editor) => { this.editor = editor }}
-            html={this.props.defaultValue}
-            onLoad={this._onLoad}
-            onFocus={this._onFocus}
-            onBlur={this._onBlur}
-            editorItemsChanged={this._onEditorItemsChanged}
-            onInputChange={this.props.onChangeValue}
-            onHeightChange={this.props.onChangeHeight}
-            scrollEnabled={this.props.scrollEnabled === undefined || this.props.scrollEnabled}
-            navigator={this.props.navigator}
-          />
-        </View>
+        <ZSSRichTextEditor
+          ref={(editor) => { this.editor = editor }}
+          html={this.props.defaultValue}
+          onLoad={this._onLoad}
+          onFocus={this._onFocus}
+          onBlur={this._onBlur}
+          editorItemsChanged={this._onEditorItemsChanged}
+          onInputChange={this.props.onChangeValue}
+          onHeightChange={this.props.onChangeHeight}
+          scrollEnabled={this.props.scrollEnabled === undefined || this.props.scrollEnabled}
+          navigator={this.props.navigator}
+        />
         { this.toolbarShown() &&
           <RichTextToolbar
             setBold={this._setBold}
@@ -190,12 +188,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-  },
-  editor: {
-    flex: 1,
-    paddingTop: global.style.defaultPadding / 1.25,
-    paddingBottom: global.style.defaultPadding / 1.25,
-    paddingLeft: global.style.defaultPadding,
-    paddingRight: global.style.defaultPadding,
   },
 })

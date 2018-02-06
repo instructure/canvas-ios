@@ -20,7 +20,6 @@ import React, { Component } from 'react'
 import {
   WebView,
   StyleSheet,
-  View,
 } from 'react-native'
 
 import isEqual from 'lodash/isEqual'
@@ -39,18 +38,20 @@ type Props = {
   navigator: Navigator,
 }
 
-export default class ZSSRichTextEditor extends Component<Props, any> {
+type State = {
+  linkModalVisible: boolean,
+  lastHeightUpdate: number,
+  setHTML: boolean,
+}
+
+export default class ZSSRichTextEditor extends Component<Props, State> {
   webView: WebView
   showingLinkModal: boolean
 
-  constructor (props: Props) {
-    super(props)
-
-    this.state = {
-      linkModalVisible: false,
-      lastHeightUpdate: 0,
-      setHTML: false,
-    }
+  state: State = {
+    linkModalVisible: false,
+    lastHeightUpdate: 0,
+    setHTML: false,
   }
 
   componentWillReceiveProps (newProps: Props) {
@@ -61,17 +62,15 @@ export default class ZSSRichTextEditor extends Component<Props, any> {
 
   render () {
     return (
-      <View style={styles.container}>
-        <WebView
-          source={source}
-          ref={webView => { this.webView = webView }}
-          onMessage={this._onMessage}
-          onLoad={this._onLoad}
-          scalesPageToFit={true}
-          scrollEnabled={this.props.scrollEnabled === undefined || this.props.scrollEnabled}
-          style={{ backgroundColor: 'transparent' }}
-        />
-      </View>
+      <WebView
+        source={source}
+        ref={webView => { this.webView = webView }}
+        onMessage={this._onMessage}
+        onLoad={this._onLoad}
+        scalesPageToFit={true}
+        scrollEnabled={this.props.scrollEnabled === undefined || this.props.scrollEnabled}
+        style={styles.editor}
+      />
     )
   }
 
@@ -322,7 +321,8 @@ export default class ZSSRichTextEditor extends Component<Props, any> {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  editor: {
+    backgroundColor: 'transparent',
     flex: 1,
     flexDirection: 'column',
   },

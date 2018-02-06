@@ -43,27 +43,20 @@ Array [
 exports[`ZSSRichTextEditor notifies when editor focused 1`] = `Array []`;
 
 exports[`ZSSRichTextEditor renders 1`] = `
-<View
+<WebView
+  onLoad={[Function]}
+  onMessage={[Function]}
+  scalesPageToFit={true}
+  scrollEnabled={true}
+  source={Object {}}
   style={
     Object {
+      "backgroundColor": "transparent",
       "flex": 1,
       "flexDirection": "column",
     }
   }
->
-  <WebView
-    onLoad={[Function]}
-    onMessage={[Function]}
-    scalesPageToFit={true}
-    scrollEnabled={true}
-    source={Object {}}
-    style={
-      Object {
-        "backgroundColor": "transparent",
-      }
-    }
-  />
-</View>
+/>
 `;
 
 exports[`ZSSRichTextEditor responds when zss editor loads 1`] = `Array []`;
