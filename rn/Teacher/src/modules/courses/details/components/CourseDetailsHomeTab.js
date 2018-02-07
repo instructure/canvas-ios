@@ -55,26 +55,28 @@ export default class CourseDetailsHomeTab extends React.Component<Props, any> {
     }
   }
 
+  // Notice that CourseDetailsTab.js has a safe area around it, but this doesn't
+  // There is a rendering issue that causes the containing scroll view to freak out.
+  // We decided that because this tab is only shown in the student app and the student app doesn't support landscape, we don't
+  // Need to have the safe area here, and that consequently fixed the layout issue.
   render () {
     const tab = this.props.tab
-    return (
-      <View style={style.container}>
-        <View style={style.shadow}>
-          <View style={style.innerContainer}>
-            <Row
-              title={tab.label}
-              titleStyles={style.title}
-              subtitle={this.subtitle()}
-              subtitleStyles={style.subtitle}
-              onPress={this.onPress}
-              disclosureIndicator
-              selected={this.props.selected}
-              testID={`courses-details.${tab.id}-cell`}
-            />
-          </View>
-        </View>
-      </View>
-    )
+    return (<View style={style.container}>
+              <View style={style.shadow}>
+                <View style={style.innerContainer}>
+                  <Row
+                    title={tab.label}
+                    titleStyles={style.title}
+                    subtitle={this.subtitle()}
+                    subtitleStyles={style.subtitle}
+                    onPress={this.onPress}
+                    disclosureIndicator
+                    selected={this.props.selected}
+                    testID={`courses-details.${tab.id}-cell`}
+                  />
+                </View>
+              </View>
+            </View>)
   }
 }
 

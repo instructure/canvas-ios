@@ -1,86 +1,92 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CourseDetailsTab can be selected 1`] = `
-<Row
-  border="bottom"
-  disclosureIndicator={true}
-  image={
-    Object {
-      "testUri": "../../../src/images/course/Assignment.png",
+<SafeAreaView>
+  <Row
+    border="bottom"
+    disclosureIndicator={true}
+    image={
+      Object {
+        "testUri": "../../../src/images/course/Assignment.png",
+      }
     }
-  }
-  imageSize={
-    Object {
-      "height": 24,
-      "width": 24,
+    imageSize={
+      Object {
+        "height": 24,
+        "width": 24,
+      }
     }
-  }
-  imageTint="white"
-  onPress={[Function]}
-  selected={true}
-  testID="courses-details.assignments-cell"
-  title="Home"
-  titleStyles={
-    Object {
-      "fontWeight": "500",
-      "marginLeft": -4,
+    imageTint="white"
+    onPress={[Function]}
+    selected={true}
+    testID="courses-details.assignments-cell"
+    title="Home"
+    titleStyles={
+      Object {
+        "fontWeight": "500",
+        "marginLeft": -4,
+      }
     }
-  }
-/>
+  />
+</SafeAreaView>
 `;
 
 exports[`CourseDetailsTab renders correctly 1`] = `
-<Row
-  border="bottom"
-  disclosureIndicator={true}
-  image={
-    Object {
-      "testUri": "../../../src/images/course/Assignment.png",
+<SafeAreaView>
+  <Row
+    border="bottom"
+    disclosureIndicator={true}
+    image={
+      Object {
+        "testUri": "../../../src/images/course/Assignment.png",
+      }
     }
-  }
-  imageSize={
-    Object {
-      "height": 24,
-      "width": 24,
+    imageSize={
+      Object {
+        "height": 24,
+        "width": 24,
+      }
     }
-  }
-  imageTint="white"
-  onPress={[Function]}
-  testID="courses-details.assignments-cell"
-  title="Home"
-  titleStyles={
-    Object {
-      "fontWeight": "500",
-      "marginLeft": -4,
+    imageTint="white"
+    onPress={[Function]}
+    testID="courses-details.assignments-cell"
+    title="Home"
+    titleStyles={
+      Object {
+        "fontWeight": "500",
+        "marginLeft": -4,
+      }
     }
-  }
-/>
+  />
+</SafeAreaView>
 `;
 
 exports[`CourseDetailsTab shows a default icon 1`] = `
-<Row
-  border="bottom"
-  disclosureIndicator={true}
-  image={
-    Object {
-      "testUri": "../../../src/images/course/Placeholder.png",
+<SafeAreaView>
+  <Row
+    border="bottom"
+    disclosureIndicator={true}
+    image={
+      Object {
+        "testUri": "../../../src/images/course/Placeholder.png",
+      }
     }
-  }
-  imageSize={
-    Object {
-      "height": 24,
-      "width": 24,
+    imageSize={
+      Object {
+        "height": 24,
+        "width": 24,
+      }
     }
-  }
-  imageTint="white"
-  onPress={[Function]}
-  testID="courses-details.test default icon-cell"
-  title="Home"
-  titleStyles={
-    Object {
-      "fontWeight": "500",
-      "marginLeft": -4,
+    imageTint="white"
+    onPress={[Function]}
+    testID="courses-details.test default icon-cell"
+    title="Home"
+    titleStyles={
+      Object {
+        "fontWeight": "500",
+        "marginLeft": -4,
+      }
     }
-  }
-/>
+  />
+</SafeAreaView>
 `;

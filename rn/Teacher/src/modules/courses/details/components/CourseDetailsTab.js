@@ -20,6 +20,7 @@
 */
 
 import React from 'react'
+import { SafeAreaView } from 'react-native'
 
 import Images from '../../../../images'
 import Row from '../../../../common/components/rows/Row'
@@ -58,19 +59,19 @@ export default class CourseDetailsTab extends React.Component<Props> {
 
   render () {
     const tab = this.props.tab
-    return (
-      <Row
-        title={tab.label}
-        image={this.image()}
-        imageTint={this.props.courseColor}
-        imageSize={{ height: 24, width: 24 }}
-        onPress={this.onPress}
-        disclosureIndicator
-        border='bottom'
-        selected={this.props.selected}
-        testID={`courses-details.${tab.id}-cell`}
-        titleStyles={{ marginLeft: -4, fontWeight: '500' }}
-      />
-    )
+    return (<SafeAreaView>
+              <Row
+                title={tab.label}
+                image={this.image()}
+                imageTint={this.props.courseColor}
+                imageSize={{ height: 24, width: 24 }}
+                onPress={this.onPress}
+                disclosureIndicator
+                border='bottom'
+                selected={this.props.selected}
+                testID={`courses-details.${tab.id}-cell`}
+                titleStyles={{ marginLeft: -4, fontWeight: '500' }}
+              />
+            </SafeAreaView>)
   }
 }

@@ -28,7 +28,6 @@ import {
   Animated,
   RefreshControl,
   processColor,
-  SafeAreaView,
   DeviceInfo,
 } from 'react-native'
 
@@ -143,8 +142,7 @@ export class CourseDetails extends Component<CourseDetailsProps, any> {
       selected: this.state.selectedTabId === tab.id,
       course: this.props.course,
     }
-    if (isStudent && tab.id === 'home') {
-      console.log(this.props)
+    if (isStudent() && tab.id === 'home') {
       return <CourseDetailsHomeTab {...props} />
     }
 
@@ -240,9 +238,9 @@ export class CourseDetails extends Component<CourseDetailsProps, any> {
                 style={{ flex: 1 }}
                 {...inOffsets}
               >
-                <SafeAreaView style={{ minHeight: height - navbarHeight }}>
+                <View style={{ minHeight: height - navbarHeight }}>
                   {this.props.tabs.map(this.renderTab)}
-                </SafeAreaView>
+                </View>
               </Animated.ScrollView>
             )}
           </OnLayout>
