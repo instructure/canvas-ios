@@ -14,16 +14,17 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-/* @flow */
+// @flow
+
 import { paginate } from '../utils/pagination'
 import httpClient from '../httpClient'
 
-export function getUnreadConversationsCount (): Promise<ApiResponse<{ unread_count: number }>> {
+export function getUnreadConversationsCount (): ApiPromise<{ unread_count: number }> {
   const url = 'conversations/unread_count'
   return httpClient().get(url)
 }
 
-export function getConversations (scope: InboxScope): Promise<ApiResponse<Conversation>> {
+export function getConversations (scope: InboxScope): ApiPromise<Conversation> {
   const url = 'conversations'
   const params: { [string]: any } = {
     per_page: 50,
@@ -37,7 +38,7 @@ export function getConversations (scope: InboxScope): Promise<ApiResponse<Conver
   return paginate(url, { params })
 }
 
-export function getConversationDetails (conversationID: string): Promise<ApiResponse<Conversation>> {
+export function getConversationDetails (conversationID: string): ApiPromise<Conversation> {
   const url = `conversations/${conversationID}`
   const params = {
     include: ['participant_avatars'],
@@ -45,7 +46,7 @@ export function getConversationDetails (conversationID: string): Promise<ApiResp
   return httpClient().get(url, { params })
 }
 
-export function starConversation (conversationID: string): Promise<ApiResponse<Conversation>> {
+export function starConversation (conversationID: string): ApiPromise<Conversation> {
   const url = `conversations/${conversationID}`
   const conversation = {
     id: conversationID,
@@ -54,7 +55,7 @@ export function starConversation (conversationID: string): Promise<ApiResponse<C
   return httpClient().put(url, { conversation })
 }
 
-export function unstarConversation (conversationID: string): Promise<ApiResponse<Conversation>> {
+export function unstarConversation (conversationID: string): ApiPromise<Conversation> {
   const url = `conversations/${conversationID}`
   const conversation = {
     id: conversationID,
@@ -63,26 +64,26 @@ export function unstarConversation (conversationID: string): Promise<ApiResponse
   return httpClient().put(url, { conversation })
 }
 
-export function deleteConversation (conversationID: string): Promise<ApiResponse<Conversation>> {
+export function deleteConversation (conversationID: string): ApiPromise<Conversation> {
   return httpClient().delete(`conversations/${conversationID}`)
 }
 
-export function deleteConversationMessage (conversationID: string, messageID: string): Promise<ApiResponse<>> {
+export function deleteConversationMessage (conversationID: string, messageID: string): ApiPromise<null> {
   return httpClient().post(`conversations/${conversationID}/remove_messages`, {
     remove: [messageID],
   })
 }
 
-export function createConversation (conversation: CreateConversationParameters): Promise<ApiResponse<Conversation>> {
+export function createConversation (conversation: CreateConversationParameters): ApiPromise<Conversation> {
   const url = 'conversations'
   return httpClient().post(url, conversation)
 }
 
-export function addMessage (conversationID: string, message: CreateConversationParameters): Promise<ApiResponse<Conversation>> {
+export function addMessage (conversationID: string, message: CreateConversationParameters): ApiPromise<Conversation> {
   return httpClient().post(`conversations/${conversationID}/add_message`, message)
 }
 
-export function markConversationAsRead (conversationID: string): Promise<ApiResponse<Conversation>> {
+export function markConversationAsRead (conversationID: string): ApiPromise<Conversation> {
   const url = `conversations/${conversationID}`
   const conversation = {
     id: conversationID,

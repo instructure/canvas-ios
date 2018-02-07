@@ -31,7 +31,7 @@ function error<T> (status: number, message: string): Promise<ApiError<T>> {
   })
 }
 
-function response<T> (mock: ApiResponse<T>): Promise<ApiResponse<T>> {
+function response<T> (mock: ApiResponse<T>): ApiPromise<T> {
   return new Promise((resolve, reject) => {
     process.nextTick(() => {
       resolve(mock)
@@ -39,7 +39,7 @@ function response<T> (mock: ApiResponse<T>): Promise<ApiResponse<T>> {
   })
 }
 
-type Next<T> = () => Promise<ApiResponse<T>>
+type Next<T> = () => ApiPromise<T>
 type MockResponseOptions<T> = {
   status?: ?number,
   headers?: ?{ link?: ?string },

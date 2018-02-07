@@ -20,6 +20,7 @@
 import { getSession } from './session'
 
 type Method = 'GET' | 'POST' | 'PUT' | 'DELETE'
+type Body = null | void | string | Object | FormData | Blob | ArrayBuffer
 
 export function serializeParams (params: { [string]: any }) {
   const clean = encodeURIComponent
@@ -49,9 +50,9 @@ export function isAbort (error: Error) {
   return error.message === 'Network request aborted'
 }
 
-function xhr (method: Method, url: string, data: ?Object, config: ApiConfig = {}) {
+function xhr (method: Method, url: string, data: Body, config: ApiConfig = {}) {
   const request = new XMLHttpRequest()
-  const promise = new Promise((resolve, reject) => {
+  const promise: ApiPromise<*> = new Promise((resolve, reject) => {
     const {
       actAsUserID,
       authToken = '',
@@ -143,10 +144,10 @@ function xhr (method: Method, url: string, data: ?Object, config: ApiConfig = {}
 }
 
 const client = {
-  get: (url, config) => xhr('GET', url, null, config),
-  delete: (url, config) => xhr('DELETE', url, null, config),
-  post: (url, data, config) => xhr('POST', url, data, config),
-  put: (url, data, config) => xhr('PUT', url, data, config),
+  get: (url: string, config?: ApiConfig) => xhr('GET', url, null, config),
+  delete: (url: string, config?: ApiConfig) => xhr('DELETE', url, null, config),
+  post: (url: string, data?: Body, config?: ApiConfig) => xhr('POST', url, data, config),
+  put: (url: string, data?: Body, config?: ApiConfig) => xhr('PUT', url, data, config),
 }
 
 export default function httpClient () { return client }

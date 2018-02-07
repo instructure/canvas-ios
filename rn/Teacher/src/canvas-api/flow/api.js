@@ -20,7 +20,7 @@ import canvas from '../apis/'
 
 export type ApiConfig = {
   baseURL?: string,
-  headers?: { [string]: string },
+  headers?: { [string]: ?string },
   params?: { [string]: any },
   timeout?: number,
   responseType?: 'text' | 'json' | 'blob' | 'arraybuffer', // 'document' is not supported by react-native
@@ -33,7 +33,7 @@ export type ApiResponse<T> = {
   headers: {
     link: ?string,
   },
-  next?: () => Promise<ApiResponse<T>>,
+  next?: ?() => ApiPromise<T>,
 }
 
 export type ApiError = {
@@ -44,7 +44,7 @@ export type ApiError = {
 }
 
 export type ApiPromise<T> = {
-  request: XMLHttpRequest,
+  request?: XMLHttpRequest,
 } & Promise<ApiResponse<T>>
 
 export type CanvasApi = typeof canvas

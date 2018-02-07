@@ -19,7 +19,7 @@
 import httpClient from '../httpClient'
 import { paginate, exhaust } from '../utils/pagination'
 
-export function getAccountNotifications (): Promise<ApiResponse<AccountNotification[]>> {
+export function getAccountNotifications (): ApiPromise<AccountNotification[]> {
   const groups = paginate(`accounts/self/users/self/account_notifications`, {
     params: {
       per_page: 99,
@@ -28,10 +28,10 @@ export function getAccountNotifications (): Promise<ApiResponse<AccountNotificat
   return exhaust(groups)
 }
 
-export function deleteAccountNotification (id: string): Promise<ApiResponse<null>> {
+export function deleteAccountNotification (id: string): ApiPromise<null> {
   return httpClient().delete(`accounts/self/users/self/account_notifications/${id}`)
 }
 
-export function getTermsOfService (): Promise<ApiResponse<TermsOfService>> {
+export function getTermsOfService (): ApiPromise<TermsOfService> {
   return httpClient().get(`accounts/self/terms_of_service`)
 }

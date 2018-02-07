@@ -29,7 +29,7 @@ export type Rubric = {
   vendor_guid?: string,
   description: string,
   long_description: string,
-  ratings: Array<RubricRating>,
+  ratings: RubricRating[],
 }
 
 export type RubricSettings = {
@@ -79,7 +79,7 @@ export type Assignment = {
   html_url: string,
   position: number,
   grading_type: GradingType,
-  rubric: ?Array<Rubric>,
+  rubric: ?Rubric[],
   rubric_settings: ?RubricSettings,
   rubric_assessment: {
     [string]: RubricAssessment,

@@ -26,5 +26,5 @@ export type GradingPeriod = {
 }
 
 export type GradingPeriodResponse = {
-  grading_periods: Array<GradingPeriod>,
+  grading_periods: GradingPeriod[],
 }

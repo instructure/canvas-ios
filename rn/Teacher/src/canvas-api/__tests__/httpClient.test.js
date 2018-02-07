@@ -38,6 +38,7 @@ describe('httpClient', () => {
       addEventListener: jest.fn(),
       removeEventListener: jest.fn(),
       responseText: '{}',
+      response: undefined,
       status: 200,
       getAllResponseHeaders: jest.fn(),
     }

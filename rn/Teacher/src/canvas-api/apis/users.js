@@ -14,20 +14,20 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-/* @flow */
+// @flow
 
 import httpClient from '../httpClient'
 import { paginate } from '../utils/pagination'
 
-export function getCustomColors (): Promise<ApiResponse<CustomColors>> {
+export function getCustomColors (): ApiPromise<CustomColors> {
   return httpClient().get('users/self/colors')
 }
 
-export function getUserProfile (userID: string): Promise<ApiResponse<User>> {
+export function getUserProfile (userID: string): ApiPromise<User> {
   return httpClient().get(`/users/${userID}/profile`)
 }
 
-export function createUser (createUserData: CreateUser): Promise<ApiResponse<User>> {
+export function createUser (createUserData: CreateUser): ApiPromise<User> {
   let data = {
     user: {
       short_name: createUserData.user.name,
@@ -48,11 +48,11 @@ export function createUser (createUserData: CreateUser): Promise<ApiResponse<Use
   return httpClient().post(`/accounts/self/users`, data)
 }
 
-export function getToDo (): Promise<ApiResponse<ToDoItem[]>> {
+export function getToDo (): ApiPromise<ToDoItem[]> {
   const url = 'users/self/todo'
   return paginate(url)
 }
 
-export function getToDoCount (): Promise<AxiosResponse<any>> {
+export function getToDoCount (): ApiPromise<Object> {
   return httpClient().get('users/self/todo_item_count')
 }

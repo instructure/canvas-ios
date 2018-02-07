@@ -131,7 +131,6 @@ describe('exhaust', () => {
     const result = await exhaust(page1())
     expect(result).toEqual({
       data: [1, 2, 3],
-      next: null,
     })
   })
 
@@ -143,7 +142,6 @@ describe('exhaust', () => {
     const result = await exhaust(page1(), ['key'])
     expect(result).toEqual({
       data: { key: [1, 2, 3] },
-      next: null,
     })
   })
 
@@ -155,7 +153,6 @@ describe('exhaust', () => {
     const result = await exhaust(page1(), ['key'])
     expect(result).toEqual({
       data: { key: [2, 3] },
-      next: null,
     })
   })
 
@@ -182,7 +179,6 @@ describe('exhaust', () => {
     const result = await exhaust(page1())
     expect(result).toEqual({
       data: [1],
-      next: null,
     })
   })
 })

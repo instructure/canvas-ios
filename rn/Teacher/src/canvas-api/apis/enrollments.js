@@ -19,7 +19,7 @@
 import { paginate, exhaust } from '../utils/pagination'
 import httpClient from '../httpClient'
 
-export function getCourseEnrollments (courseID: string): Promise<ApiResponse<Array<Enrollment>>> {
+export function getCourseEnrollments (courseID: string): ApiPromise<Enrollment[]> {
   const enrollments = paginate(`courses/${courseID}/enrollments`, {
     params: {
       include: ['avatar_url'],
@@ -29,7 +29,7 @@ export function getCourseEnrollments (courseID: string): Promise<ApiResponse<Arr
   return exhaust(enrollments)
 }
 
-export function getUserEnrollments (userID: string): Promise<ApiResponse<Array<Enrollment>>> {
+export function getUserEnrollments (userID: string): ApiPromise<Enrollment[]> {
   const enrollments = paginate(`users/${userID}/enrollments`, {
     params: {
       include: ['avatar_url'],
@@ -39,14 +39,14 @@ export function getUserEnrollments (userID: string): Promise<ApiResponse<Array<E
   return exhaust(enrollments)
 }
 
-export function enrollUser (courseID: string, enrollment: CreateEnrollment): Promise<ApiResponse<Enrollment>> {
+export function enrollUser (courseID: string, enrollment: CreateEnrollment): ApiPromise<Enrollment> {
   return httpClient().post(`courses/${courseID}/enrollments`, { enrollment })
 }
 
-export function acceptEnrollment (courseID: string, enrollmentID: string): Promise<ApiResponse<Object>> {
+export function acceptEnrollment (courseID: string, enrollmentID: string): ApiPromise<Object> {
   return httpClient().post(`courses/${courseID}/enrollments/${enrollmentID}/accept`)
 }
 
-export function rejectEnrollment (courseID: string, enrollmentID: string): Promise<ApiResponse<Object>> {
+export function rejectEnrollment (courseID: string, enrollmentID: string): ApiPromise<Object> {
   return httpClient().post(`courses/${courseID}/enrollments/${enrollmentID}/reject`)
 }

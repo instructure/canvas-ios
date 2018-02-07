@@ -39,6 +39,12 @@ export type Folder = {
   for_submissions: boolean,
 }
 
+export type NewFolder = {
+  name: string,
+  parent_folder_id: string,
+  locked: boolean,
+}
+
 export type UpdateFolderParameters = {
   name?: string,
   parent_folder_id?: ?string,

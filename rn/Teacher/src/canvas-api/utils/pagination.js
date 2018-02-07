@@ -14,7 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-/* @flow */
+// @flow
 
 import parseLink from './parse-link-header'
 import httpClient from '../httpClient'
@@ -38,7 +38,7 @@ export function parseNext (response: any): ?string {
   return parseNextFromLinkHeader(response) || parseNextFromJSON(response)
 }
 
-export function paginate<T> (url: string, config: AxiosRequestConfig = {}): Promise<ApiResponse<T>> {
+export function paginate<T> (url: string, config: ApiConfig = {}): ApiPromise<T> {
   return httpClient().get(url, config).then((response: any) => {
     const next = parseNext(response)
     return {
@@ -50,13 +50,9 @@ export function paginate<T> (url: string, config: AxiosRequestConfig = {}): Prom
 
 // If keys are supplied, the result is implied to be a object instead of an array
 // The keys are then used to extract and append the data from the result
-export async function exhaust<T> (initial: Promise<ApiResponse<[T]>>, keys?: string[] = []): Promise<ApiResponse<[T]>> {
-  let result
-  if (keys.length) {
-    result = {}
-  } else {
-    result = []
-  }
+export async function exhaust<T> (initial: ApiPromise<T[]>, keys?: string[] = []): ApiPromise<T[]> {
+  let result = []
+  let resultMap = {}
 
   let next = () => initial
   while (next) {
@@ -65,8 +61,8 @@ export async function exhaust<T> (initial: Promise<ApiResponse<[T]>>, keys?: str
       if (keys.length) {
         keys.forEach((key) => {
           const newData = response.data[key] || []
-          const oldData = result[key] || []
-          result[key] = [...oldData, ...newData]
+          const oldData = resultMap[key] || []
+          resultMap[key] = [...oldData, ...newData]
         })
       } else {
         result = [...result, ...response.data]
@@ -75,7 +71,6 @@ export async function exhaust<T> (initial: Promise<ApiResponse<[T]>>, keys?: str
     next = response.next
   }
   return {
-    data: result,
-    next: null,
+    data: keys.length ? resultMap : result,
   }
 }

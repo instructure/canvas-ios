@@ -14,12 +14,12 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-/* @flow */
+// @flow
 
 import httpClient from '../httpClient'
 import { paginate, exhaust } from '../utils/pagination'
 
-export function getDiscussions (courseID: string, parameters: GetDiscussionsParameters = {}): Promise<ApiResponse<Discussion[]>> {
+export function getDiscussions (courseID: string, parameters: GetDiscussionsParameters = {}): ApiPromise<Discussion[]> {
   const url = `courses/${courseID}/discussion_topics`
   const options = {
     params: {
@@ -31,7 +31,7 @@ export function getDiscussions (courseID: string, parameters: GetDiscussionsPara
   return exhaust(discussions)
 }
 
-export function getAllDiscussionEntries (courseID: string, discussionID: string, includeNewEntries: boolean = true): Promise<ApiResponse<DiscussionView>> {
+export function getAllDiscussionEntries (courseID: string, discussionID: string, includeNewEntries: boolean = true): ApiPromise<DiscussionView> {
   const options = {
     params: { include_new_entries: includeNewEntries ? 1 : 0 },
   }
@@ -39,54 +39,54 @@ export function getAllDiscussionEntries (courseID: string, discussionID: string,
   return httpClient().get(url, options)
 }
 
-export function getDiscussion (courseID: string, discussionID: string): Promise<ApiResponse<Discussion>> {
+export function getDiscussion (courseID: string, discussionID: string): ApiPromise<Discussion> {
   const url = `courses/${courseID}/discussion_topics/${discussionID}`
   return httpClient().get(url)
 }
 
-export function createDiscussion (courseID: string, parameters: CreateDiscussionParameters): Promise<ApiResponse<Discussion>> {
+export function createDiscussion (courseID: string, parameters: CreateDiscussionParameters): ApiPromise<Discussion> {
   const url = `courses/${courseID}/discussion_topics`
   const formdata = discussionFormData(parameters)
   return httpClient().post(url, formdata)
 }
 
-export function createEntry (courseID: string, discussionID: string, entryID: string = '', parameters: CreateEntryParameters): Promise<ApiResponse<Discussion>> {
+export function createEntry (courseID: string, discussionID: string, entryID: string = '', parameters: CreateEntryParameters): ApiPromise<Discussion> {
   const url = entryID ? `courses/${courseID}/discussion_topics/${discussionID}/entries/${entryID}/replies` : `courses/${courseID}/discussion_topics/${discussionID}/entries`
   return httpClient().post(url, parameters)
 }
 
-export function editEntry (courseID: string, discussionID: string, entryID: string, parameters: CreateEntryParameters): Promise<ApiResponse<Discussion>> {
+export function editEntry (courseID: string, discussionID: string, entryID: string, parameters: CreateEntryParameters): ApiPromise<Discussion> {
   const url = `courses/${courseID}/discussion_topics/${discussionID}/entries/${entryID}`
   return httpClient().put(url, parameters)
 }
 
-export function updateDiscussion (courseID: string, parameters: UpdateDiscussionParameters): Promise<ApiResponse<Discussion>> {
+export function updateDiscussion (courseID: string, parameters: UpdateDiscussionParameters): ApiPromise<Discussion> {
   const url = `courses/${courseID}/discussion_topics/${parameters.id}`
   const formdata = discussionFormData(parameters)
   return httpClient().put(url, formdata)
 }
 
-export function deleteDiscussionEntry (courseID: string, discussionID: string, entryID: string): Promise<ApiResponse<Discussion>> {
+export function deleteDiscussionEntry (courseID: string, discussionID: string, entryID: string): ApiPromise<Discussion> {
   const url = `courses/${courseID}/discussion_topics/${discussionID}/entries/${entryID}`
   return httpClient().delete(url, {})
 }
 
-export function deleteDiscussion (courseID: string, discussionID: string): Promise<ApiResponse<Discussion>> {
+export function deleteDiscussion (courseID: string, discussionID: string): ApiPromise<Discussion> {
   const url = `courses/${courseID}/discussion_topics/${discussionID}`
   return httpClient().delete(url)
 }
 
-export function subscribeDiscussion (courseID: string, discussionID: string, subscribed: boolean): Promise<ApiResponse<Discussion>> {
+export function subscribeDiscussion (courseID: string, discussionID: string, subscribed: boolean): ApiPromise<Discussion> {
   const url = `courses/${courseID}/discussion_topics/${discussionID}/subscribed`
   return httpClient()[subscribed ? 'put' : 'delete'](url)
 }
 
-export function markEntryAsRead (courseID: string, discussionID: string, entryID: string): Promise<ApiResponse<>> {
+export function markEntryAsRead (courseID: string, discussionID: string, entryID: string): ApiPromise<null> {
   const url = `courses/${courseID}/discussion_topics/${discussionID}/entries/${entryID}/read`
   return httpClient().put(url)
 }
 
-export function markAllAsRead (courseID: string, discussionID: string): Promise<ApiResponse<>> {
+export function markAllAsRead (courseID: string, discussionID: string): ApiPromise<null> {
   const url = `courses/${courseID}/discussion_topics/${discussionID}/read_all`
   return httpClient().put(url)
 }

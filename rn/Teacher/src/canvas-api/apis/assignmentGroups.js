@@ -14,11 +14,11 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-/* @flow */
+// @flow
 
 import { paginate, exhaust } from '../utils/pagination'
 
-export function getAssignmentGroups (courseID: string, gradingPeriodID?: string, include?: string[]): Promise<ApiResponse<AssignmentGroup[]>> {
+export function getAssignmentGroups (courseID: string, gradingPeriodID?: string, include?: string[]): ApiPromise<AssignmentGroup[]> {
   const url = `courses/${courseID}/assignment_groups`
   let options = {
     params: {

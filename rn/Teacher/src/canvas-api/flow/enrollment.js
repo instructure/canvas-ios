@@ -15,6 +15,7 @@
 //
 
 // @flow
+
 export type EnrollmentType =
   'StudentEnrollment' |
   // I believe `StudentViewEnrollment` is a legacy thing which

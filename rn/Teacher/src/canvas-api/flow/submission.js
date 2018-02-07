@@ -67,7 +67,7 @@ export type Submission = {
   body: ?string,
   preview_url: string,
   attempt: ?number,
-  attachments?: Array<Attachment>,
+  attachments?: Attachment[],
   url?: string,
   media_comment?: MediaComment,
   discussion_entries?: SubmissionDiscussionEntry[],

@@ -10,7 +10,7 @@ import colors from '../../common/colors'
 
 type Props = {
   navigator: Navigator,
-  getTermsOfService: () => Promise<ApiResponse<TermsOfService>>,
+  getTermsOfService: () => ApiPromise<TermsOfService>,
 }
 
 type State = {

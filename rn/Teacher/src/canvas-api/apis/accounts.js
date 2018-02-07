@@ -14,17 +14,17 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-/* @flow */
+// @flow
 
 import httpClient from '../httpClient'
 import { paginate, exhaust } from '../utils/pagination'
 
 // Only admins can hit this api successfully. Otherwise, will send back a 401
-export function account (): Promise<ApiResponse<Account>> {
+export function account (): ApiPromise<Account> {
   return httpClient().get('accounts/self')
 }
 
-export function roles (accountID: string): Promise<ApiResponse<Role[]>> {
+export function roles (accountID: string): ApiPromise<Role[]> {
   const roles = paginate(`/accounts/${accountID}/roles`)
   return exhaust(roles)
 }

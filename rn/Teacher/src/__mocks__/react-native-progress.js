@@ -14,12 +14,12 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-/* @flow */
+// @flow
 
 import React, { Component } from 'react'
 
 const RealCircle = require.requireActual('react-native-progress').Circle
-export class Circle extends Component {
+export class Circle extends Component<*> {
   render () {
     return React.createElement('Circle', this.props, this.props.children)
   }

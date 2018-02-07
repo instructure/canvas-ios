@@ -19,7 +19,7 @@
 import { paginate, exhaust } from '../utils/pagination'
 import httpClient from '../httpClient'
 
-export function getSubmissions (courseID: string, assignmentID: string, grouped: boolean = false): Promise<ApiResponse<Array<SubmissionWithHistory>>> {
+export function getSubmissions (courseID: string, assignmentID: string, grouped: boolean = false): ApiPromise<SubmissionWithHistory[]> {
   const submissions = paginate(`courses/${courseID}/assignments/${assignmentID}/submissions`, {
     params: {
       include: [
@@ -42,19 +42,19 @@ type SubmissionGradeParams = {
   posted_grade?: string,
 }
 
-export function gradeSubmission (courseID: string, assignmentID: string, userID: string, submissionParams: SubmissionGradeParams): Promise<ApiResponse<Submission>> {
+export function gradeSubmission (courseID: string, assignmentID: string, userID: string, submissionParams: SubmissionGradeParams): ApiPromise<Submission> {
   return httpClient().put(`/courses/${courseID}/assignments/${assignmentID}/submissions/${userID}`, {
     submission: submissionParams,
   })
 }
 
-export function gradeSubmissionWithRubric (courseID: string, assignmentID: string, userID: string, rubricParams: { [string]: RubricAssessment }): Promise<ApiResponse<Submission>> {
+export function gradeSubmissionWithRubric (courseID: string, assignmentID: string, userID: string, rubricParams: { [string]: RubricAssessment }): ApiPromise<Submission> {
   return httpClient().put(`/courses/${courseID}/assignments/${assignmentID}/submissions/${userID}`, {
     rubric_assessment: rubricParams,
   })
 }
 
-export function commentOnSubmission (courseID: string, assignmentID: string, userID: string, comment: SubmissionCommentParams): Promise<ApiResponse<any>> {
+export function commentOnSubmission (courseID: string, assignmentID: string, userID: string, comment: SubmissionCommentParams): ApiPromise<any> {
   const data = { comment: {} }
   switch (comment.type) {
     case 'text':
@@ -73,11 +73,11 @@ export function commentOnSubmission (courseID: string, assignmentID: string, use
   return httpClient().put(`/courses/${courseID}/assignments/${assignmentID}/submissions/${userID}`, data)
 }
 
-export function refreshSubmissionSummary (courseID: string, assignmentID: string): Promise<ApiResponse<Submission>> {
+export function refreshSubmissionSummary (courseID: string, assignmentID: string): ApiPromise<Submission> {
   return httpClient().get(`/courses/${courseID}/assignments/${assignmentID}/submission_summary`)
 }
 
-export function getSubmissionsForUsers (courseID: string, userIDs: string[]): Promise<ApiResponse<Submission[]>> {
+export function getSubmissionsForUsers (courseID: string, userIDs: string[]): ApiPromise<Submission[]> {
   const submissions = paginate(`/courses/${courseID}/students/submissions`, {
     params: {
       student_ids: userIDs,
@@ -94,4 +94,3 @@ export function getSubmissionsForUsers (courseID: string, userIDs: string[]): Pr
 
   return exhaust(submissions)
 }
-

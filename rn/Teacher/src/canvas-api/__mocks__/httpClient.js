@@ -17,7 +17,7 @@
 // @flow
 
 const fetching = () => {
-  const promise = Promise.resolve()
+  const promise: ApiPromise<any> = Promise.resolve()
   promise.request = { abort: jest.fn() }
   return promise
 }

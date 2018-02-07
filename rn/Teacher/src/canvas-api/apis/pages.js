@@ -27,7 +27,7 @@ export type PageParameters = {
   front_page: boolean,
 }
 
-export function getPages (courseID: string): Promise<ApiResponse<Page[]>> {
+export function getPages (courseID: string): ApiPromise<Page[]> {
   const url = `courses/${courseID}/pages`
   const options = {
     params: {
@@ -38,18 +38,18 @@ export function getPages (courseID: string): Promise<ApiResponse<Page[]>> {
   return exhaust(pages)
 }
 
-export function getPage (courseID: string, url: string): Promise<ApiResponse<Page>> {
+export function getPage (courseID: string, url: string): ApiPromise<Page> {
   return httpClient().get(`courses/${courseID}/pages/${url}`)
 }
 
-export function updatePage (courseID: string, url: string, parameters: PageParameters): Promise<ApiResponse<Page>> {
+export function updatePage (courseID: string, url: string, parameters: PageParameters): ApiPromise<Page> {
   return httpClient().put(`courses/${courseID}/pages/${url}`, { wiki_page: parameters })
 }
 
-export function createPage (courseID: string, parameters: PageParameters): Promise<ApiResponse<Page>> {
+export function createPage (courseID: string, parameters: PageParameters): ApiPromise<Page> {
   return httpClient().post(`courses/${courseID}/pages`, { wiki_page: parameters })
 }
 
-export function deletePage (courseID: string, url: string): Promise<ApiResponse<Page>> {
+export function deletePage (courseID: string, url: string): ApiPromise<Page> {
   return httpClient().delete(`courses/${courseID}/pages/${url}`)
 }

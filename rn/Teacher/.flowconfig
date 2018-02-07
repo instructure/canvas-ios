@@ -19,6 +19,18 @@
 
 [include]
 
+[untyped]
+.*/node_modules/react-native/Libraries/.*
+
+; Ignore flow annotation for files we haven't fixed yet :(
+.*/danger/.*
+.*/i18n/.*
+.*/src/common/.*
+.*/src/modules/.*
+.*/src/redux/.*
+.*/src/routing/.*
+.*/src/utils/.*
+
 [libs]
 node_modules/react-native/Libraries/react-native/react-native-interface.js
 flow
@@ -27,7 +39,7 @@ src/canvas-api/flow
 
 [options]
 emoji=true
-
+max_header_tokens=20
 module.system=haste
 
 munge_underscores=true
@@ -45,7 +57,5 @@ suppress_comment=\\(.\\|\n\\)*\\$FlowIssue\\((\\(>=0\\.\\(5[0-6]\\|[1-4][0-9]\\|
 suppress_comment=\\(.\\|\n\\)*\\$FlowFixedInNextDeploy
 suppress_comment=\\(.\\|\n\\)*\\$FlowExpectedError
 
-unsafe.enable_getters_and_setters=true
-
 [version]
-^0.59.0
+^0.63.0

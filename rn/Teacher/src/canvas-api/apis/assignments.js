@@ -14,13 +14,13 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-/* @flow */
+// @flow
 
 import httpClient from '../httpClient'
 import cloneDeep from 'lodash/cloneDeep'
 import { paginate, exhaust } from '../utils/pagination'
 
-export function getAssignment (courseID: string, assignmentID: string): Promise<ApiResponse<Assignment>> {
+export function getAssignment (courseID: string, assignmentID: string): ApiPromise<Assignment> {
   const url = `courses/${courseID}/assignments/${assignmentID}`
   const options = {
     params: {
@@ -32,7 +32,7 @@ export function getAssignment (courseID: string, assignmentID: string): Promise<
   return httpClient().get(url, options)
 }
 
-export function updateAssignment (courseID: string, assignment: Assignment): Promise<ApiResponse<Assignment>> {
+export function updateAssignment (courseID: string, assignment: Assignment): ApiPromise<Assignment> {
   // For whatever reason, overrides has a different name when you try to update it
   const updatedAssignment = cloneDeep(assignment)
   if (updatedAssignment.overrides) {
@@ -46,7 +46,7 @@ export function updateAssignment (courseID: string, assignment: Assignment): Pro
   })
 }
 
-export function getAssignmentGradeableStudents (courseID: string, assignmentID: string): Promise<ApiResponse<[UserDisplay]>> {
+export function getAssignmentGradeableStudents (courseID: string, assignmentID: string): ApiPromise<UserDisplay[]> {
   const url = `courses/${courseID}/assignments/${assignmentID}/gradeable_students`
 
   let options = {

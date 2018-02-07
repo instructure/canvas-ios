@@ -14,7 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-/* @flow */
+// @flow
 
 import httpClient from '../httpClient'
 
@@ -74,10 +74,13 @@ async function postFile (uri: string, target: UploadTarget, options: UploadOptio
       'Accept': 'application/json',
     },
   })
-  uploading.request.upload.addEventListener('progress', ({ loaded, total }) => {
-    options.onProgress && options.onProgress({ loaded, total })
-  })
-  options.cancelUpload && options.cancelUpload(() => uploading.request.abort())
+  const request = uploading.request
+  if (request) {
+    request.upload.addEventListener('progress', ({ loaded, total }) => {
+      options.onProgress && options.onProgress({ loaded, total })
+    })
+    options.cancelUpload && options.cancelUpload(() => request.abort())
+  }
   const response = await uploading
 
   return response.data

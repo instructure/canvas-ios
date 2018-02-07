@@ -14,12 +14,12 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-/* @flow */
+// @flow
 
 import { paginate, exhaust } from '../utils/pagination'
 import httpClient from '../httpClient'
 
-export function getQuizzes (courseID: string): Promise<ApiResponse<Quiz[]>> {
+export function getQuizzes (courseID: string): ApiPromise<Quiz[]> {
   const url = `courses/${courseID}/quizzes`
   const options = {
     params: {
@@ -30,12 +30,12 @@ export function getQuizzes (courseID: string): Promise<ApiResponse<Quiz[]>> {
   return exhaust(quizzes)
 }
 
-export function getQuiz (courseID: string, quizID: string): Promise<ApiResponse<Quiz>> {
+export function getQuiz (courseID: string, quizID: string): ApiPromise<Quiz> {
   const url = `courses/${courseID}/quizzes/${quizID}`
   return httpClient().get(url)
 }
 
-export function getQuizSubmissions (courseID: string, quizID: string): Promise<ApiResponse<QuizSubmission>> {
+export function getQuizSubmissions (courseID: string, quizID: string) {
   const url = `courses/${courseID}/quizzes/${quizID}/submissions`
   let options = {
     params: {
@@ -47,7 +47,7 @@ export function getQuizSubmissions (courseID: string, quizID: string): Promise<A
   return exhaust(submissions, ['quiz_submissions', 'submissions'])
 }
 
-export function updateQuiz (quiz: Quiz, courseID: string): Promise<ApiResponse<Quiz>> {
+export function updateQuiz (quiz: Quiz, courseID: string): ApiPromise<Quiz> {
   const params = {
     ...quiz,
     one_question_at_a_time: quiz.one_question_at_a_time || 0, // silly Canvas
