@@ -280,4 +280,4 @@ export function mapStateToProps (state: AppState): UserInfo {
 }
 
 let Connected = connect(mapStateToProps, { ...Actions })(Profile)
-export default (Connected: Component<any, CourseDetailsProps, any>)
+export default (Connected: Component<CourseDetailsProps, any>)

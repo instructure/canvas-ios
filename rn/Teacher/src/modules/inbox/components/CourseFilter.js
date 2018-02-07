@@ -35,7 +35,7 @@ export type CourseFilterProps = {
   onSelectFilter: (string) => void,
 }
 
-export default class CourseFilter extends Component<any, CourseFilterProps, any> {
+export default class CourseFilter extends Component<CourseFilterProps, any> {
   chooseFilter = () => {
     const options = this.props.courses.map((course) => course.name)
     options.push(i18n('Cancel'))

@@ -49,7 +49,7 @@ import {
   TouchableHighlight,
 } from 'react-native'
 
-export class AssignmentDetails extends Component<any, AssignmentDetailsProps, any> {
+export class AssignmentDetails extends Component<AssignmentDetailsProps, any> {
   props: AssignmentDetailsProps
 
   render () {
@@ -347,4 +347,4 @@ let Refreshed = refresh(
   props => Boolean(props.pending)
 )(AssignmentDetails)
 let Connected = connect(mapStateToProps, AssignmentActions, mergeProps)(Refreshed)
-export default (Connected: Component<any, AssignmentDetailsProps, any>)
+export default (Connected: Component<AssignmentDetailsProps, any>)

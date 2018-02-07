@@ -37,7 +37,7 @@ export type SubmissionGraphProps = {
   pending: boolean,
 }
 
-export default class SubmissionGraph extends Component<any, SubmissionGraphProps, any> {
+export default class SubmissionGraph extends Component<SubmissionGraphProps, any> {
   countInterval: number
 
   constructor (props: SubmissionGraphProps) {

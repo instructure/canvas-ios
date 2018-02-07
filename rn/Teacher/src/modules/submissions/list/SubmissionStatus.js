@@ -30,7 +30,7 @@ type SubmissionStatusProps = {
   style: any,
 }
 
-export default class SubmissionStatus extends Component<any, SubmissionStatusProps, any> {
+export default class SubmissionStatus extends Component<SubmissionStatusProps, any> {
 
   render () {
     let color: string = '#8B969E' // none

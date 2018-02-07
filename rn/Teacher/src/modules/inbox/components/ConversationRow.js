@@ -38,7 +38,7 @@ export type ConversationRowProps = {
   onPress: (string) => void,
 }
 
-export default class ConversationRow extends Component<any, ConversationRowProps, any> {
+export default class ConversationRow extends Component<ConversationRowProps, any> {
 
   _onPress = () => {
     this.props.onPress(this.props.conversation.id)

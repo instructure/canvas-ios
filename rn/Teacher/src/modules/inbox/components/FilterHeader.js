@@ -34,7 +34,7 @@ export type InboxFilterHeaderProps = {
   onFilterChange: (InboxScope) => void,
 }
 
-export default class InboxFilterHeader extends Component<any, InboxFilterHeaderProps, any> {
+export default class InboxFilterHeader extends Component<InboxFilterHeaderProps, any> {
 
   constructor (props: InboxFilterHeaderProps) {
     super(props)

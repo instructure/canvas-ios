@@ -55,7 +55,7 @@ type State = {
 
 const { NativeAccessibility } = NativeModules
 
-export class AssignmentList extends Component<any, AssignmentListProps, State> {
+export class AssignmentList extends Component<AssignmentListProps, State> {
   state: State
   isRegularScreenDisplayMode: boolean
   data: any = []
@@ -269,4 +269,4 @@ const Refreshed = refresh(
   props => Boolean(props.pending),
 )(AssignmentList)
 const Connected = connect(mapStateToProps, { ...AssignmentListActions, ...CourseActions })(Refreshed)
-export default (Connected: Component<any, AssignmentListProps, State>)
+export default (Connected: Component<AssignmentListProps, State>)

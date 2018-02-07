@@ -29,7 +29,7 @@ export type SavingBannerProps = {
   title?: string,
 }
 
-export default class SavingBanner extends PureComponent<any, SavingBannerProps, any> {
+export default class SavingBanner extends PureComponent<SavingBannerProps, any> {
   render () {
     const title = this.props.title || i18n('Saving...')
     return (<View style={[style.container, this.props.style]}>

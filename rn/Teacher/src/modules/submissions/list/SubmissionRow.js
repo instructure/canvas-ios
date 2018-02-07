@@ -61,7 +61,7 @@ export type SubmissionRowProps = {
   anonymous: boolean,
 } & SubmissionRowDataProps
 
-class Row extends Component<any, RowProps, any> {
+class Row extends Component<RowProps, any> {
   render () {
     const { onPress, testID, children, disclosure } = this.props
     return (
@@ -92,7 +92,7 @@ const Grade = ({ grade, gradingType }: {grade: ?GradeProp, gradingType: GradingT
   return <Text style={[ styles.gradeText, { alignSelf: 'center' } ]}>{ gradeText }</Text>
 }
 
-class SubmissionRow extends Component<any, SubmissionRowProps, any> {
+class SubmissionRow extends Component<SubmissionRowProps, any> {
   onPress = () => {
     this.props.onPress(this.props.userID)
   }

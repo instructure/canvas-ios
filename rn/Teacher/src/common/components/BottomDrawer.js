@@ -63,7 +63,7 @@ type State = {
   width: number,
 }
 
-export default class BottomDrawer extends Component<any, Props, State> {
+export default class BottomDrawer extends Component<Props, State> {
   props: Props
   state: State
   _deltaY: Animated.Value

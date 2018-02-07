@@ -269,7 +269,7 @@ const Connected = connect(mapStateToProps, {
   ...SectionActions,
   ...CourseActions,
 })(Refreshed)
-export default (Connected: Component<any, SubmissionListProps, any>)
+export default (Connected: Component<SubmissionListProps, any>)
 
 function createFilterFromSection (section) {
   return {

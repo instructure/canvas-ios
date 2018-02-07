@@ -334,4 +334,4 @@ export const Refreshed: any = refresh(
   props => Boolean(props.pending)
 )(ConversationDetails)
 const Connected = connect(mapStateToProps, InboxActions)(Refreshed)
-export default (Connected: Component<any, ConversationDetailsProps, any>)
+export default (Connected: Component<ConversationDetailsProps, any>)

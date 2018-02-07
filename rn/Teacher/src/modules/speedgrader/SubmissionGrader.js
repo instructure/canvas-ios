@@ -66,7 +66,7 @@ type SubmissionGraderProps = {
 const DRAWER_WIDTH = 375
 const COMPACT_DEVICE_WIDTH = 768
 
-export default class SubmissionGrader extends Component<any, SubmissionGraderProps, State> {
+export default class SubmissionGrader extends Component<SubmissionGraderProps, State> {
   state: State
   props: SubmissionGraderProps
   drawer: BottomDrawer

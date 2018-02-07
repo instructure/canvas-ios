@@ -413,4 +413,4 @@ export let Refreshed: any = refresh(
   props => Boolean(props.pending)
 )(CourseDetails)
 let Connected = connect(mapStateToProps, { ...CourseDetailsActions, ...CourseActions, ...LTIActions })(Refreshed)
-export default (Connected: Component<any, CourseDetailsProps, any>)
+export default (Connected: Component<CourseDetailsProps, any>)

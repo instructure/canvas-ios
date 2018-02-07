@@ -50,7 +50,7 @@ export type RowProps = {
   subtitleStyles?: Text.propTypes,
 }
 
-export default class Row extends Component<any, RowProps, any> {
+export default class Row extends Component<RowProps, any> {
 
   onPress = () => {
     if (this.props.onPress) {

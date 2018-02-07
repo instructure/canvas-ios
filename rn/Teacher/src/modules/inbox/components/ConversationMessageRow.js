@@ -47,7 +47,7 @@ export type ConversationMessageProps = {
   navigator: Navigator,
 }
 
-export default class ConversationMessageRow extends Component<any, ConversationMessageProps, any> {
+export default class ConversationMessageRow extends Component<ConversationMessageProps, any> {
 
   constructor (props: ConversationMessageProps) {
     super(props)

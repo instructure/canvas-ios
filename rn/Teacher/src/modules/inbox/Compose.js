@@ -420,4 +420,4 @@ export function mapStateToProps (): any {
 }
 
 const Connected = connect(mapStateToProps, Actions)(Compose)
-export default (Connected: PureComponent<any, any, any>)
+export default (Connected: PureComponent<any, any>)

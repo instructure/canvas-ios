@@ -33,7 +33,7 @@ type BubbleProps = {
   from: 'me' | 'them',
 }
 
-export default class ChatBubble extends Component<any, BubbleProps, any> {
+export default class ChatBubble extends Component<BubbleProps, any> {
   render () {
     let image
     let fromStyle

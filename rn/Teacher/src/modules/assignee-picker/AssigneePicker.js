@@ -42,7 +42,7 @@ import { Text } from '../../common/text'
 import Screen from '../../routing/Screen'
 import DisclosureIndicator from '../../common/components/DisclosureIndicator'
 
-export class AssigneePicker extends Component<any, AssigneePickerProps, any> {
+export class AssigneePicker extends Component<AssigneePickerProps, any> {
 
   constructor (props: AssigneePickerProps) {
     super(props)
@@ -203,4 +203,4 @@ const styles = StyleSheet.create({
 })
 
 let Connected = connect(pickerMapStateToProps, { ...Actions, ...EnrollmentActions, ...UserActions, ...GroupActions })(AssigneePicker)
-export default (Connected: Component<any, AssigneePickerProps, any>)
+export default (Connected: Component<AssigneePickerProps, any>)

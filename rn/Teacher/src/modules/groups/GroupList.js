@@ -50,7 +50,7 @@ type GroupActionsProps = {
 
 type GroupListProps = RouterProps & GroupActionsProps & NavigationProps & StateProps & RefreshProps
 
-export class GroupList extends Component<any, GroupListProps, any> {
+export class GroupList extends Component<GroupListProps, any> {
 
   constructor (props: GroupListProps) {
     super(props)

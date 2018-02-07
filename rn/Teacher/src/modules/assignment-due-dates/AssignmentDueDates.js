@@ -36,7 +36,7 @@ import i18n from 'format-message'
 import { Text, Heading1 } from '../../common/text'
 import Screen from '../../routing/Screen'
 
-export class AssignmentDueDates extends Component<any, AssignmentDueDatesProps, any> {
+export class AssignmentDueDates extends Component<AssignmentDueDatesProps, any> {
 
   componentWillMount () {
     const studentIDs = new AssignmentDates(this.props.assignment).studentIDs()
@@ -161,4 +161,4 @@ const styles = StyleSheet.create({
 })
 
 let Connected = connect(mapStateToProps, UserActions)(AssignmentDueDates)
-export default (Connected: Component<any, AssignmentDueDatesProps, any>)
+export default (Connected: Component<AssignmentDueDatesProps, any>)

@@ -23,7 +23,7 @@ import {
 } from 'react-native'
 import colors from '../../colors'
 
-export default class RowSeparator extends PureComponent<any, any, any> {
+export default class RowSeparator extends PureComponent<any, any> {
   render () {
     return <View style={[style.separator, this.props.style]} />
   }

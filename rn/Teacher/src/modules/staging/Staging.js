@@ -35,7 +35,7 @@ type StagingProps = {
   navigator: Navigator,
 }
 
-export default class Staging extends Component<any, StagingProps, any> {
+export default class Staging extends Component<StagingProps, any> {
   componentDidMount = () => {
     AsyncStorage.getItem(stagingKey)
       .then(path => this.setState({ path }))

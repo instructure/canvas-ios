@@ -30,7 +30,7 @@ export type RowWithSwitchProps = RowProps & {
   onValueChange: Function,
 }
 
-export default class RowWithSwitch extends Component<any, RowWithSwitchProps, any> {
+export default class RowWithSwitch extends Component<RowWithSwitchProps, any> {
 
   onValueChange = (value: boolean) => {
     this.props.onValueChange(value, this.props.identifier)

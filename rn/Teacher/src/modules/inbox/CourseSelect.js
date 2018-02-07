@@ -140,4 +140,4 @@ export function mapStateToProps (state: AppState): CourseSelectDataProps {
 }
 
 const Connected = connect(mapStateToProps, { ...CourseActions, ...GroupActions })(Refreshed)
-export default (Connected: PureComponent<any, CourseSelectDataProps, any>)
+export default (Connected: PureComponent<CourseSelectDataProps, any>)

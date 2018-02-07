@@ -19,7 +19,7 @@
 import React, { PureComponent } from 'react'
 import { View, StyleSheet, ActivityIndicator } from 'react-native'
 
-export default class ActivityIndicatorView extends PureComponent<any, any, any> {
+export default class ActivityIndicatorView extends PureComponent<any, any> {
   render () {
     return <View style={styles.container}>
               <ActivityIndicator style={styles.indicator} />

@@ -31,7 +31,7 @@ type RowWithSwitchProps = RowProps & {
   detailSelected?: boolean,
 }
 
-export default class RowWithDetail extends Component<any, RowWithSwitchProps, any> {
+export default class RowWithDetail extends Component<RowWithSwitchProps, any> {
 
   render () {
     let detailStyle = this.props.detailSelected ? { color: branding.primaryBrandColor } : {}

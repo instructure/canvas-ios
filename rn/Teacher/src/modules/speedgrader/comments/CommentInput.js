@@ -47,7 +47,7 @@ type State = {
   textComment: string,
 }
 
-export default class CommentInput extends Component<any, CommentInputProps, any> {
+export default class CommentInput extends Component<CommentInputProps, any> {
   state: State
   _textInput: TextInput
 

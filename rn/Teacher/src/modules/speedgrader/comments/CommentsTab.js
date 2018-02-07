@@ -45,7 +45,7 @@ const Actions = {
   ...SpeedGraderActions,
 }
 
-export class CommentsTab extends Component<any, CommentsTabProps, any> {
+export class CommentsTab extends Component<CommentsTabProps, any> {
   constructor (props: CommentsTabProps) {
     super(props)
 

@@ -39,7 +39,7 @@ const anonymousSubtitle = i18n('Anonymous grading')
 const mutedSubtitle = i18n('Grades muted')
 const bothSubtitle = i18n('Grades muted, Anonymous grading')
 
-export default class SubmissionsHeader extends Component<any, SubmissionsHeaderProps, any> {
+export default class SubmissionsHeader extends Component<SubmissionsHeaderProps, any> {
 
   navigateToFilter = () => {
     this.props.navigator.show('/filter', {

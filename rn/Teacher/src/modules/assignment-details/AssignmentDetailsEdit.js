@@ -69,7 +69,7 @@ export function gradeDisplayOptions (): Map<string, string> {
   ])
 }
 
-export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps, any> {
+export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any> {
   props: AssignmentDetailsProps
   state: any = {}
   datesEditor: AssignmentDatesEditor
@@ -459,4 +459,4 @@ const style = StyleSheet.create({
 })
 
 let Connected = connect(updateMapStateToProps, AssignmentActions)(AssignmentDetailsEdit)
-export default (Connected: Component<any, AssignmentDetailsProps, any>)
+export default (Connected: Component<AssignmentDetailsProps, any>)

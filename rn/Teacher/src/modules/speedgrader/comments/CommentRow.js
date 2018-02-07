@@ -37,7 +37,7 @@ import Button from 'react-native-button'
 import i18n from 'format-message'
 import Video from '../../../common/components/Video'
 
-export default class CommentRow extends Component<any, CommentRowProps, any> {
+export default class CommentRow extends Component<CommentRowProps, any> {
   showFailedOptions = () => {
     ActionSheetIOS.showActionSheetWithOptions({
       options: [i18n('Retry'), i18n('Delete'), i18n('Cancel')],

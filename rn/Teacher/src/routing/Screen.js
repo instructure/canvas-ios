@@ -58,7 +58,7 @@ type ScreenProps = {
   disableGlobalSafeArea: boolean,
 }
 
-class Screen extends React.Component<any, ScreenProps, any> {
+class Screen extends React.Component<ScreenProps, any> {
   deviceEventEmitterSubscriptions: Object = {}
 
   static propTypes = {

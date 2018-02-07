@@ -423,4 +423,4 @@ const styles = StyleSheet.create({
 })
 
 let Connected = connect(mapStateToProps, Actions)(CourseFilesList)
-export default (Connected: Component<any, any, any>)
+export default (Connected: Component<any, any>)

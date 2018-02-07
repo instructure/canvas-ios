@@ -75,7 +75,7 @@ type ContextCardState = {
   hasGottenSubmissions: boolean,
 }
 
-export class ContextCard extends Component<any, ContextCardProps, any> {
+export class ContextCard extends Component<ContextCardProps, any> {
   state: ContextCardState
 
   constructor (props: ContextCardProps) {

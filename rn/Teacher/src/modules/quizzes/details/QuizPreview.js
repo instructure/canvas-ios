@@ -37,7 +37,7 @@ type LocalProps = Props & {
   navigator: Navigator,
 }
 
-export class QuizPreview extends Component<any, LocalProps, any> {
+export class QuizPreview extends Component<LocalProps, any> {
 
   webView: AuthenticatedWebView
 

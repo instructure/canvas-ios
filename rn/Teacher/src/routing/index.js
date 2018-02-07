@@ -57,7 +57,7 @@ export function registerScreen (
 
 export function wrapComponentInReduxProvider (moduleName: string, generator: () => any, store: Store): any {
   const generatorWrapper = () =>
-    class extends React.Component<any, any, any> {
+    class extends React.Component<any, any> {
       static displayName = `Scene(${moduleName})`
 
       static propTypes = {

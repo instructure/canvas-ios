@@ -51,7 +51,7 @@ export type SubmissionBreakdownGraphSectionInitProps = {
   assignmentID: string,
 }
 
-export class SubmissionBreakdownGraphSection extends Component<any, SubmissionBreakdownGraphSectionProps, any> {
+export class SubmissionBreakdownGraphSection extends Component<SubmissionBreakdownGraphSectionProps, any> {
   componentDidMount () {
     refreshSubmissionList(this.props)
   }
