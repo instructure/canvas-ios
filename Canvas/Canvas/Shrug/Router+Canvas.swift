@@ -107,6 +107,16 @@ extension Router {
 
         // Modules
         addContextRoute([.course], subPath: "modules") { contextID, _ in
+            // Restrict access to Modules tab if it's hidden (unless it is the home tab)
+            let modulesTab = try Tab.modulesTab(for: contextID, in: currentSession)
+            let homeTab = try Tab.homeTab(for: contextID, in: currentSession)
+            let modulesAreHome = homeTab != nil && homeTab!.routingURL(currentSession).flatMap { $0.path.contains("/modules") } ?? false
+            if !modulesAreHome, modulesTab == nil || modulesTab!.hidden {
+                let message = NSLocalizedString("That page has been disabled for this course", comment: "")
+                let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("Dismiss", comment: ""), style: UIAlertActionStyle.default, handler: nil))
+                return alert
+            }
             let controller = try ModulesTableViewController(session: currentSession, courseID: contextID.id, route: route)
             return controller
         }

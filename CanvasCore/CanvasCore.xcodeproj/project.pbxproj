@@ -41,7 +41,6 @@
 		3BD43DE91FD20597001A6B34 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD43DE81FD20597001A6B34 /* EmptyViewController.swift */; };
 		3BDE87761FD76BE600912CB3 /* UISplitViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */; };
 		4902ADBE1FB26E860004837D /* LTIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4902ADBD1FB26E860004837D /* LTIViewController.swift */; };
-		490BA0D71FCDDA2A004643EA /* Session+ContentAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490BA0D61FCDDA2A004643EA /* Session+ContentAccess.swift */; };
 		490F91F11FB0F94A00A7DA38 /* CanvasWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490F91F01FB0F94A00A7DA38 /* CanvasWebViewController.swift */; };
 		49295B501F86D3B2001DAB1F /* HelmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49295B4F1F86D3B2001DAB1F /* HelmTests.swift */; };
 		49301FBD1F901260006BD777 /* Activity+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FB61F90125E006BD777 /* Activity+Network.swift */; };
@@ -299,6 +298,7 @@
 		496C7D641F8BEF690010DC03 /* TabBarBadgeCounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C7D631F8BEF690010DC03 /* TabBarBadgeCounts.swift */; };
 		496C7D661F8C00250010DC03 /* TabBarBadgeCounts.m in Sources */ = {isa = PBXBuildFile; fileRef = 496C7D651F8C00250010DC03 /* TabBarBadgeCounts.m */; };
 		497815311FCE14B800D57BBB /* Tab+Modules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497815301FCE14B800D57BBB /* Tab+Modules.swift */; };
+		497815311FCE14B800D57BBB /* Tab+Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497815301FCE14B800D57BBB /* Tab+Details.swift */; };
 		497C0F8A1FACD0D200084032 /* CanvasWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C0F891FACD0D200084032 /* CanvasWebView.swift */; };
 		497CA76E1F82D19600501613 /* Helm.m in Sources */ = {isa = PBXBuildFile; fileRef = 497CA75F1F82D18900501613 /* Helm.m */; };
 		497CA76F1F82D19600501613 /* Helm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA7661F82D18B00501613 /* Helm.swift */; };
@@ -560,7 +560,6 @@
 		3BD43DE81FD20597001A6B34 /* EmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
 		3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISplitViewControllerExtensions.swift; sourceTree = "<group>"; };
 		4902ADBD1FB26E860004837D /* LTIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTIViewController.swift; sourceTree = "<group>"; };
-		490BA0D61FCDDA2A004643EA /* Session+ContentAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+ContentAccess.swift"; sourceTree = "<group>"; };
 		490F91F01FB0F94A00A7DA38 /* CanvasWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasWebViewController.swift; sourceTree = "<group>"; };
 		4917183B1F8EE797008B4599 /* DiscussionEntry+Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiscussionEntry+Network.swift"; sourceTree = "<group>"; };
 		4917183C1F8EE797008B4599 /* DiscussionEntry+Collections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiscussionEntry+Collections.swift"; sourceTree = "<group>"; };
@@ -831,6 +830,7 @@
 		496C7D631F8BEF690010DC03 /* TabBarBadgeCounts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarBadgeCounts.swift; sourceTree = "<group>"; };
 		496C7D651F8C00250010DC03 /* TabBarBadgeCounts.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarBadgeCounts.m; sourceTree = "<group>"; };
 		497815301FCE14B800D57BBB /* Tab+Modules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tab+Modules.swift"; sourceTree = "<group>"; };
+		497815301FCE14B800D57BBB /* Tab+Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tab+Details.swift"; sourceTree = "<group>"; };
 		497C0F891FACD0D200084032 /* CanvasWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasWebView.swift; sourceTree = "<group>"; };
 		497CA75F1F82D18900501613 /* Helm.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Helm.m; sourceTree = "<group>"; };
 		497CA7601F82D18900501613 /* NoAnimatedTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoAnimatedTransitioning.swift; sourceTree = "<group>"; };
@@ -1558,7 +1558,6 @@
 		4930205E1F902413006BD777 /* Session */ = {
 			isa = PBXGroup;
 			children = (
-				490BA0D61FCDDA2A004643EA /* Session+ContentAccess.swift */,
 				493020601F902460006BD777 /* Ala Alamofire */,
 				4930206C1F902462006BD777 /* Context */,
 				493020691F902461006BD777 /* NSDate+Marshal.swift */,
@@ -1989,7 +1988,7 @@
 				4961F5FD1F8FB6C40093EC86 /* Tab+Collections.swift */,
 				4961F5FE1F8FB6C40093EC86 /* Tab+Network.swift */,
 				4961F5FF1F8FB6C40093EC86 /* Tab.swift */,
-				497815301FCE14B800D57BBB /* Tab+Modules.swift */,
+				497815301FCE14B800D57BBB /* Tab+Details.swift */,
 			);
 			path = Tab;
 			sourceTree = "<group>";
@@ -3202,7 +3201,7 @@
 				4961F5921F8FB2230093EC86 /* PagedViewController.swift in Sources */,
 				49CE96E11F8FFC4400121A43 /* MasteryPathAssignment+Collections.swift in Sources */,
 				49CE967A1F8FF41B00121A43 /* DropdownAnswersPickerView.swift in Sources */,
-				497815311FCE14B800D57BBB /* Tab+Modules.swift in Sources */,
+				497815311FCE14B800D57BBB /* Tab+Details.swift in Sources */,
 				49CE968F1F8FF41B00121A43 /* JSONDecodable.swift in Sources */,
 				49CE96901F8FF41B00121A43 /* CanvasRequest.swift in Sources */,
 				2CE40C9A1F87D36900ECEACB /* CanvadocViewManager.m in Sources */,
@@ -3279,7 +3278,6 @@
 				493020581F902364006BD777 /* Temporal.swift in Sources */,
 				4961F5DD1F8FB3EF0093EC86 /* Session+CoreData.swift in Sources */,
 				4961F62F1F8FB70A0093EC86 /* Grade.swift in Sources */,
-				490BA0D71FCDDA2A004643EA /* Session+ContentAccess.swift in Sources */,
 				49CE967B1F8FF41B00121A43 /* FileUploadAnswerCell.swift in Sources */,
 				49CE966A1F8FF41B00121A43 /* QuizPresentingViewController.swift in Sources */,
 				49CE965C1F8FF41B00121A43 /* QuizIntroViewController.swift in Sources */,
