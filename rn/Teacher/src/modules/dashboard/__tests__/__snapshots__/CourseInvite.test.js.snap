@@ -627,7 +627,7 @@ exports[`CourseInvite renders hidden 1`] = `
           onPress={[Function]}
           style={
             Object {
-              "color": "#7F91A7",
+              "color": "#73818C",
               "fontWeight": "600",
             }
           }
@@ -779,7 +779,7 @@ exports[`CourseInvite renders invite 1`] = `
           onPress={[Function]}
           style={
             Object {
-              "color": "#7F91A7",
+              "color": "#73818C",
               "fontWeight": "600",
             }
           }
@@ -929,7 +929,7 @@ exports[`CourseInvite renders invite with course section 1`] = `
           onPress={[Function]}
           style={
             Object {
-              "color": "#7F91A7",
+              "color": "#73818C",
               "fontWeight": "600",
             }
           }

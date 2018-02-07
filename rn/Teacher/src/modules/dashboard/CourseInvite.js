@@ -98,7 +98,7 @@ export default class CourseInvite extends React.Component<Props> {
               <View style={styles.buttonContainer}>
                 <Button
                   onPress={() => this.handleInvite('reject')}
-                  style={{ color: colors.lightText, fontWeight: '600' }}
+                  style={{ color: colors.secondaryButton, fontWeight: '600' }}
                   containerStyle={[styles.button, styles.declineButton, declineColor]}
                   testID={`course-invite.${invite.id}.reject-button`}
                   accessibilityTraits='button'

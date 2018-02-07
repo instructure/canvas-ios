@@ -6174,7 +6174,7 @@ exports[`renders course invites 1`] = `
                               "color": "white",
                             },
                             Object {
-                              "color": "#7F91A7",
+                              "color": "#73818C",
                               "fontWeight": "600",
                             },
                           ],
@@ -6475,7 +6475,7 @@ exports[`renders course invites 1`] = `
                               "color": "white",
                             },
                             Object {
-                              "color": "#7F91A7",
+                              "color": "#73818C",
                               "fontWeight": "600",
                             },
                           ],
