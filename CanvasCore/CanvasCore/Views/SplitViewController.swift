@@ -62,13 +62,10 @@ extension SplitViewController: UISplitViewControllerDelegate {
 extension UISplitViewController {
     open var prettyDisplayModeButtonItem: UIBarButtonItem {
         let defaultButton = self.displayModeButtonItem
-        let icon: UIImage
-        if displayMode == .primaryOverlay || displayMode == .primaryHidden {
-            icon = .icon(.collapse)
-        } else {
-            icon = .icon(.expand)
-        }
+        let collapse = displayMode == .primaryOverlay || displayMode == .primaryHidden
+        let icon: UIImage = collapse ? .icon(.collapse) : .icon(.expand)
         let prettyButton = UIBarButtonItem(image: icon, style: .plain, target: defaultButton.target, action: defaultButton.action)
+        prettyButton.accessibilityLabel = collapse ? NSLocalizedString("Collapse", comment: "") : NSLocalizedString("Expand", comment: "")
         return prettyButton
     }
 }

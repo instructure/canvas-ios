@@ -85,7 +85,7 @@ export class CourseDetails extends Component<CourseDetailsProps, any> {
         }
       }
     }
-    if (this.state.windowTraits.horizontal !== 'compact') {
+    if (this.state.windowTraits.horizontal !== 'compact' && tab.type !== 'external') {
       this.setState({ selectedTabId: tab.id })
     }
   }

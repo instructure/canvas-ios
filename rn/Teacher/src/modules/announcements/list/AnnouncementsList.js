@@ -61,6 +61,7 @@ export class AnnouncementsList extends Component<Props, any> {
             image: Images.add,
             testID: 'announcements.list.addButton',
             action: this.addAnnouncement,
+            accessibilityLabel: i18n('New Announcement'),
           },
         ]}
       >

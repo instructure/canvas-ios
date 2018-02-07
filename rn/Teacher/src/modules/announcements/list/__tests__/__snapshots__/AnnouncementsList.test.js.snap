@@ -6,6 +6,7 @@ exports[`AnnouncementsList renders 1`] = `
   rightBarButtons={
     Array [
       Object {
+        "accessibilityLabel": "New Announcement",
         "action": [Function],
         "image": Object {
           "testUri": "../../../src/images/Add.png",
@@ -520,6 +521,7 @@ exports[`AnnouncementsList renders empty list 1`] = `
   rightBarButtons={
     Array [
       Object {
+        "accessibilityLabel": "New Announcement",
         "action": [Function],
         "image": Object {
           "testUri": "../../../src/images/Add.png",
@@ -652,6 +654,7 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
   rightBarButtons={
     Array [
       Object {
+        "accessibilityLabel": "New Announcement",
         "action": [Function],
         "image": Object {
           "testUri": "../../../src/images/Add.png",
