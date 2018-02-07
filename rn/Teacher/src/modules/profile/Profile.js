@@ -73,7 +73,7 @@ export class Profile extends Component {
 
   async launchExternalTool (tool: ExternalToolLaunchDefinitionGlobalNavigationItem) {
     await this.props.navigator.dismiss()
-    this.props.navigator.show('/launch_external_tool', { modal: true }, { url: tool.url, toolName: tool.title })
+    this.props.navigator.launchExternalTool(tool.url)
   }
 
   switchUser = () => {

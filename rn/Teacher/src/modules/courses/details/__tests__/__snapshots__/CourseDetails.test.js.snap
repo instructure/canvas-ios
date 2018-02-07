@@ -7,6 +7,7 @@ exports[`CourseDetails refreshes courses and tabs 1`] = `
     Object {
       "dismiss": [Function],
       "dismissAllModals": [Function],
+      "launchExternalTool": [Function],
       "pop": [Function],
       "show": [Function],
       "traitCollection": [Function],
@@ -51,6 +52,7 @@ exports[`CourseDetails refreshes when props change 1`] = `
     Object {
       "dismiss": [Function],
       "dismissAllModals": [Function],
+      "launchExternalTool": [Function],
       "pop": [Function],
       "show": [Function],
       "traitCollection": [Function],

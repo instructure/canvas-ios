@@ -19,6 +19,7 @@
 import { shallow } from 'enzyme'
 import React from 'react'
 import { CourseDetails, Refreshed } from '../CourseDetails'
+import App from '../../../app'
 
 const template = {
   ...require('../../../../__templates__/course'),
@@ -129,6 +130,34 @@ describe('CourseDetails', () => {
       .find('[testID="courses-details.tab.assignments"]')
       .simulate('Press', tab)
     expect(props.navigator.show).toHaveBeenCalledWith('/courses/12/assignments')
+  })
+
+  it('launches external tool tab', () => {
+    const currentApp = App.current()
+    App.setCurrentApp('student')
+
+    let url = 'https://canvas.instructure.com/courses/1/sessionless_launch?url=blah'
+    const tab = template.tab({
+      id: 'external_tool_4',
+      type: 'external',
+      url,
+    })
+    const props = {
+      ...defaultProps,
+      tabs: [tab],
+      navigator: template.navigator({
+        launchExternalTool: jest.fn(),
+      }),
+    }
+
+    const tree = shallow(<CourseDetails {...props} />)
+    tree
+      .find('OnLayout').first().dive()
+      .find('[testID="courses-details.tab.external_tool_4"]')
+      .simulate('Press', tab)
+    expect(props.navigator.launchExternalTool).toHaveBeenCalledWith(url)
+
+    App.setCurrentApp(currentApp.appId)
   })
 
   it('can edit course', () => {

@@ -102,7 +102,7 @@ extension Router {
             guard let url = params["url"] as? URL else {
                 fatalError("Router passes URL as parameter to route handlers.")
             }
-            return LTIViewController(toolName: "", courseID: contextID.id, launchURL: url, in: currentSession, showDoneButton: false)
+            return LTIViewController(toolName: "", courseID: contextID.id, launchURL: url, in: currentSession)
         }
 
         // Modules

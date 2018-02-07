@@ -154,6 +154,5 @@ export function registerScreens (store: Store): void {
   registerScreen('/support/:type')
   registerScreen('/courses/:courseID/tabs/:tabID')
   registerScreen('/ui', wrap(UI), store)
-  registerScreen('/launch_external_tool')
   registerScreen('/push-notifications', wrap(PushNotifications), store)
 }

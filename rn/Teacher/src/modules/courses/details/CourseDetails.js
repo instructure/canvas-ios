@@ -77,8 +77,12 @@ export class CourseDetails extends Component<CourseDetailsProps, any> {
       if (isTeacher()) {
         this.props.navigator.show(tab.html_url)
       } else {
-        const url = `/courses/${this.props.courseID}/tabs/${tab.id}`
-        this.props.navigator.show(url)
+        if (tab.type === 'external') {
+          this.props.navigator.launchExternalTool(tab.url)
+        } else {
+          const url = `/courses/${this.props.courseID}/tabs/${tab.id}`
+          this.props.navigator.show(url)
+        }
       }
     }
     if (this.state.windowTraits.horizontal !== 'compact') {

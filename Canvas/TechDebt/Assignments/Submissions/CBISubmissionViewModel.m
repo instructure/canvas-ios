@@ -179,7 +179,7 @@ static UIImage *(^iconForSubmissionType)(NSString *) = ^(NSString *submissionTyp
         // For now we don't do anything
         [controller.tableView deselectRowAtIndexPath:indexPath animated:YES];
     } else if ([self.assignment.submissionTypes containsObject:CKISubmissionTypeExternalTool]) {
-        LTIViewController *lti = [[LTIViewController alloc] initWithToolName:self.assignment.name courseID:self.assignment.courseID launchURL:self.assignment.url in:TheKeymaster.currentClient.authSession showDoneButton:NO];
+        LTIViewController *lti = [[LTIViewController alloc] initWithToolName:self.assignment.name courseID:self.assignment.courseID launchURL:self.assignment.url in:TheKeymaster.currentClient.authSession fallbackURL: self.assignment.htmlURL];
         [controller.navigationController pushViewController:lti animated:YES];
     } else if ([self.model.submissionType isEqualToString:CKISubmissionTypeQuiz]) {
         CKIQuiz *quiz = [CKIQuiz modelWithID:self.assignment.quizID context:self.assignment.context];

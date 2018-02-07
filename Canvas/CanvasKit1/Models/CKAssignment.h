@@ -65,6 +65,7 @@ typedef enum {
 @property (nonatomic, assign) uint64_t quizIdent;
 @property (nonatomic) NSURL *url;
 @property (readonly) CKContentLock *contentLock;
+@property (nonatomic, strong) NSURL *externalToolTagAttributesURL;
 
 @property (nonatomic, readonly) NSURL *urlForSubmissionFileUpload;
 

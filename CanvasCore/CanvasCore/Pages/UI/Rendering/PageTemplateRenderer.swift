@@ -45,6 +45,8 @@ public class PageTemplateRenderer: NSObject {
         template = template.replacingOccurrences(of: "{$CONTENT_WIDTH$}", with: format(viewportWidth))
         template = template.replacingOccurrences(of: "{$TITLE$}", with: htmlTitle)
         template = template.replacingOccurrences(of: "{$PAGE_BODY$}", with: body)
+        template = template.replacingOccurrences(of: "{$PRIMARY_BUTTON_COLOR$}", with: Brand.current.primaryButtonColor.hex)
+        template = template.replacingOccurrences(of: "{$LTI_LAUNCH_TEXT$}", with: NSLocalizedString("Launch External Tool", comment: ""))
         
         return template
     }

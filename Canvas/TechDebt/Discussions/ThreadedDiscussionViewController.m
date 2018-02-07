@@ -1699,7 +1699,7 @@ NSArray *indexPathsForRangeInSection(NSRange range, NSInteger section) {
 ////////////////////////////////////////
 
 - (void)entryCell:(DiscussionEntryCell *)cell requestsOpenURL:(NSURL *)url {
-    [[Router sharedRouter] routeFromController:self toURL:url];
+    [[ExternalToolManager shared] launch:url in:[CanvasKeymaster theKeymaster].currentClient.authSession from:self completionHandler:nil];
 }
 
 - (void)entryCell:(DiscussionEntryCell *)cell requestLikeEntry:(BOOL)like completion:(void(^)(NSError*))completion {

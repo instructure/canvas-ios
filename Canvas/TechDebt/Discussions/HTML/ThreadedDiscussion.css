@@ -48,3 +48,13 @@ video {
     
     color: #165f99;
 }
+
+a.canvas-ios-lti-launch-button {
+    display: block;
+    margin: 20 auto 20 auto;
+    padding: 12px 8px 12px 8px;
+    background-color: {$PRIMARY_BUTTON_COLOR$};
+    color: white;
+    text-decoration: none;
+    text-align: center;
+}

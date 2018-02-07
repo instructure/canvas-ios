@@ -46,10 +46,9 @@
     [self willChangeValueForKey:@"isExecuting"];
     _isExecuting = YES;
     [self didChangeValueForKey:@"isExecuting"];
-    
-    self.boundsSize = self.tableView.bounds.size;
-    
+
     dispatch_async(dispatch_get_main_queue(), ^{
+        self.boundsSize = self.tableView.bounds.size;
         NSString *identifier = [DiscussionEntryCell reuseIdentifierForItem:self.entry];
         static NSInteger concurrentCount = 0;
         ++concurrentCount;

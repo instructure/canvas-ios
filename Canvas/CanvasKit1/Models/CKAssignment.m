@@ -119,6 +119,11 @@
     _contentLock = [CKContentLock contentLockWithInfo:info];
     
     self.groupCategoryID = info[@"group_category_id"];
+
+    NSString *externalToolTagAttributesURL = [info valueForKeyPath:@"external_tool_tag_attributes.url"];
+    if (externalToolTagAttributesURL) {
+        self.externalToolTagAttributesURL = [NSURL URLWithString:externalToolTagAttributesURL];
+    }
 }
 
 

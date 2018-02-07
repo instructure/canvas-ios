@@ -9,63 +9,74 @@
 import Foundation
 import UIKit
 import Marshal
+import SafariServices
 
-public class LTIViewController: CanvasWebViewController {
-    let session: Session
-    let context: ContextID?
-    let launchURL: URL
-    let toolName: String
-    
-    public init(toolName: String, courseID: String?, launchURL: URL, in session: Session, showDoneButton: Bool) {
-        self.session = session
-        self.toolName = toolName
-        self.launchURL = launchURL
-        self.context = courseID.map { .course(withID: $0) }
-        super.init(showDoneButton: showDoneButton)
-        
-        initiateLTISession()
+public class LTIViewController: UIViewController {
+    public let toolName: String
+    public let courseID: String?
+    public let launchURL: URL
+    public let session: Session
+    public let fallbackURL: URL?
+
+    var spinner: UIActivityIndicatorView!
+    var button: UIButton!
+
+    public convenience init(toolName: String, courseID: String?, launchURL: URL, in session: Session) {
+        self.init(toolName: toolName, courseID: courseID, launchURL: launchURL, in: session, fallbackURL: nil)
     }
     
-    private func initiateLTISession() {
-        let request = URLRequest(url: launchURL).authorized(with: session)
-        let cache = session.URLSession.configuration.urlCache
-        cache?.removeCachedResponse(for: request)
-        
-        session.JSONSignalProducer(request).start { [weak self] event in
-            DispatchQueue.main.async {
-                guard let me = self else { return }
-                switch event {
-                case .value(let ltiLaunch):
-                    guard
-                        let toolURL: URL = try? ltiLaunch <| "url",
-                        let mobileURL = toolURL.appending(value: "mobile", forQueryParameter: "platform")
-                    else {
-                        me.webView.load(source:
-                            .error(NSLocalizedString("Error retrieving tool launch URL", comment: "LTI Launch failed"))
-                        )
-                        return
-                    }
-                    
-                    me.webView.load(source: .url(mobileURL))
-                    if let context = me.context {
-                        me.session.progressDispatcher.dispatch(
-                            Progress(
-                                kind: .viewed,
-                                contextID: context,
-                                itemType: Progress.ItemType.externalTool,
-                                itemID: me.launchURL.absoluteString
-                            )
-                        )
-                    }
-                case .failed(let error):
-                    me.webView.load(source: .error(error.localizedDescription))
-                default:
-                    break
-                }
-            }
+    public init(toolName: String, courseID: String?, launchURL: URL, in session: Session, fallbackURL: URL? = nil) {
+        self.toolName = toolName
+        self.courseID = courseID
+        self.launchURL = launchURL
+        self.session = session
+        self.fallbackURL = fallbackURL
+
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+
+        view.backgroundColor = .white
+
+        button = UIButton(type: .system)
+        button.setTitleColor(Brand.current.primaryButtonTextColor, for: .normal)
+        button.backgroundColor = Brand.current.primaryButtonColor
+        button.setTitle(NSLocalizedString("Launch External Tool", comment: ""), for: .normal)
+        button.addTarget(self, action: #selector(launch), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)
+        button.sizeToFit()
+        view.addSubview(button)
+        NSLayoutConstraint.activate([
+            NSLayoutConstraint(item: button, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: button, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1, constant: 0)
+        ])
+
+        spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        spinner.hidesWhenStopped = true
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(spinner)
+        NSLayoutConstraint.activate([
+            NSLayoutConstraint(item: spinner, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: spinner, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1, constant: 0)
+        ])
+    }
+
+    func launch() {
+        showLoading(true)
+        let presentingVC = navigationController ?? self
+        ExternalToolManager.shared.launch(launchURL, in: session, from: presentingVC, courseID: courseID, fallbackURL: fallbackURL) { [weak self] in
+            self?.showLoading(false)
         }
     }
-    
+
+    func showLoading(_ loading: Bool) {
+        loading ? spinner.startAnimating() : spinner.stopAnimating()
+        button.isHidden = loading
+    }
+
     public required init?(coder aDecoder: NSCoder) {
         fatalError("not supported")
     }

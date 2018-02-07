@@ -153,23 +153,52 @@
                 break;
             case CKSubmissionTypeExternalTool:
             {
+                UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Can't load tool", nil)
+                                                                                    message:NSLocalizedString(@"This assignment doesn't appear to be a valid external tool or is misconfigured.", nil)
+                                                                             preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Dismiss", nil) style:UIAlertActionStyleDefault handler:nil];
+                [errorAlert addAction:dismissAction];
                 if (self.legacyAssignment.url == nil) {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Can't load tool", @"Invalid LTI tool error title")
-                                                                    message:NSLocalizedString(@"This assignment doesn't appear to be a valid external tool or is misconfigured.", @"Invalid LTI tool error message")
-                                                                   delegate:nil
-                                                          cancelButtonTitle:NSLocalizedString(@"Dismiss",nil)
-                                                          otherButtonTitles:nil];
-                    [alert show];
+                    [self.viewController presentViewController:errorAlert animated:YES completion:nil];
+                    break;
+                }
+
+                Session *currentSession = TheKeymaster.currentClient.authSession;
+
+                // Launch QuizzesNext in a WebView so that we can intercept the 'Return' button action.
+                NSURL *externalToolTagAttributesURL = self.assignment.externalToolTagAttributes.url;
+                if ([ExternalToolManager isQuizzesNext: externalToolTagAttributesURL] && self.legacyAssignment.courseIdent) {
+                    NSString *courseID = [NSString stringWithFormat:@"%lld", self.legacyAssignment.courseIdent];
+                    [[ExternalToolManager shared] getSessionlessLaunchURLForLaunchURL:self.legacyAssignment.url in:currentSession courseID:courseID completionHandler:^(NSURL * _Nullable url, NSError * _Nullable error) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            if (error) {
+                                [self.viewController presentViewController:errorAlert animated:YES completion:nil];
+                                return;
+                            }
+                            if (url) {
+                                NSURLRequest *request = [NSURLRequest requestWithURL:url];
+                                CanvasWebView *webView = [[CanvasWebView alloc] init];
+                                CanvasWebViewController *controller = [[CanvasWebViewController alloc] initWithWebView:webView showDoneButton:YES];
+                                UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:controller];
+                                [self.viewController presentViewController:nav animated:YES completion:^{
+                                    [webView loadRequest:request];
+                                }];
+                                return;
+                            }
+
+                        });
+                    }];
+
                     break;
                 }
                 
-                CKIExternalTool *externalTool = [CKIExternalTool modelWithID:[NSString stringWithFormat: @"%lld", self.legacyAssignment.ident]];
-                externalTool.name = self.legacyAssignment.name;
-                externalTool.url = self.legacyAssignment.url;
-                if (externalTool.name && externalTool.url && self.legacyAssignment.courseIdent) {
+                if (self.legacyAssignment.name && self.legacyAssignment.url && self.legacyAssignment.courseIdent) {
                     NSString *courseID = [NSString stringWithFormat:@"%lld", self.legacyAssignment.courseIdent];
-                    LTIViewController *lti = [[LTIViewController alloc] initWithToolName:externalTool.name courseID:courseID launchURL:externalTool.url in:TheKeymaster.currentClient.authSession showDoneButton:NO];
-                    [self.viewController.navigationController pushViewController:lti animated:YES];
+                    [[ExternalToolManager shared] launch:self.legacyAssignment.url
+                                                      in:TheKeymaster.currentClient.authSession
+                                                    from:self.viewController
+                                                courseID:courseID
+                                       completionHandler:nil];
                 }
                 break;
             }

@@ -9,6 +9,7 @@
 import WebKit
 import CanvasKeymaster
 import CanvasKit
+import ReactiveSwift
 
 let sharedPool = WKProcessPool()
 public class CanvasWebView: WKWebView {
@@ -26,14 +27,28 @@ public class CanvasWebView: WKWebView {
     
     fileprivate var source: Source?
     public var navigation = Navigation.internal
-    
+
+    fileprivate lazy var userContentController: WKUserContentController = {
+        let content = WKUserContentController()
+        content.add(self, name: "dismiss")
+
+        if let jsPath = Bundle.core.url(forResource: "CanvasWebView", withExtension: "js"),
+            let js = try? String(contentsOf: jsPath, encoding: .utf8) {
+            let script = WKUserScript(source: js, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
+            content.addUserScript(script)
+        }
+        return content
+    }()
+
     @objc
     public var finishedLoading: (() -> Void)?
     
     @objc var requestClose: (() -> Void)?
     
     @objc
-    public var presentingViewController: UIViewController?
+    public weak var presentingViewController: UIViewController?
+
+    fileprivate var externalToolLaunchDisposable: Disposable?
     
     @objc
     public func load(html: String, title: String?, baseURL: URL, routeToURL: @escaping (URL) -> Void) {
@@ -77,6 +92,14 @@ public class CanvasWebView: WKWebView {
         config.allowsInlineMediaPlayback = true
         config.processPool = sharedPool
         self.init(config: config)
+
+        config.userContentController.add(self, name: "dismiss")
+
+        if let jsPath = Bundle.core.url(forResource: "CanvasWebView", withExtension: "js"),
+            let js = try? String(contentsOf: jsPath, encoding: .utf8) {
+            let script = WKUserScript(source: js, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
+            config.userContentController.addUserScript(script)
+        }
     }
     
     public required init?(coder: NSCoder) {
@@ -150,6 +173,14 @@ extension CanvasWebView: WKNavigationDelegate {
         if let url = request.url, url.absoluteString.contains("google-drive-lti") {
             customUserAgent = CKILoginViewController.safariUserAgent()
         }
+
+        if let url = request.url, url.path.contains("/external_tools/retrieve"), action.navigationType == .linkActivated {
+            let session = CanvasKeymaster.the().currentClient.authSession
+            if let presentingViewController = presentingViewController {
+                ExternalToolManager.shared.launch(url, in: session, from: presentingViewController)
+            }
+            return decisionHandler(.cancel)
+        }
         
         if Secrets.openExternalResourceIfNecessary(aURL: request.url) {
             return decisionHandler(.cancel)
@@ -185,7 +216,7 @@ extension CanvasWebView: WKNavigationDelegate {
             return decisionHandler(.cancel)
         }
     }
-    
+
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if (!webView.isLoading) {
             replaceHREFsWithAPISafeURLs()
@@ -218,5 +249,13 @@ extension CanvasWebView: WKUIDelegate {
     
     public func webViewDidClose(_ webView: WKWebView) {
         requestClose?()
+    }
+}
+
+extension CanvasWebView: WKScriptMessageHandler {
+    public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        if message.name == "dismiss" {
+            requestClose?()
+        }
     }
 }

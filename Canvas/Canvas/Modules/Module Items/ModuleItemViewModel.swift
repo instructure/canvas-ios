@@ -39,11 +39,17 @@ class ModuleItemViewModel: NSObject {
         let masteryPathsItemModuleItemID = self.moduleItem.producer.map { $0 as? MasteryPathsItem }.map { $0?.moduleItemID }.skipRepeats(==)
         let url = self.url.producer.skipRepeats(==)
         let moduleID = self.moduleID.producer.skipRepeats(==)
-        return SignalProducer.combineLatest(url, content, masteryPathsItemModuleItemID, moduleID).map { url, content, moduleItemID, moduleID in
+        let courseID = self.moduleItem.producer.map { $0?.courseID }.skipRepeats(==)
+        let htmlURL = self.moduleItem.producer.map { $0?.htmlURL }.skipRepeats(==)
+        return SignalProducer.combineLatest(url, content, masteryPathsItemModuleItemID, moduleID, courseID, htmlURL).map { url, content, moduleItemID, moduleID, courseID, htmlURL in
             if let content = content {
                 switch content {
                 case .externalURL(url: let url):
                     return WebBrowserViewController(url: url, delegate: self)
+                case .externalTool(_, _):
+                    if let url = url {
+                        return LTIViewController(toolName: "", courseID: courseID, launchURL: url, in: self.session, fallbackURL: htmlURL.flatMap(URL.init))
+                    }
                 case .masteryPaths:
                     if let moduleItemID = moduleItemID, let moduleID = moduleID {
                         return try! MasteryPathSelectOptionViewController(session: self.session, moduleID: moduleID, itemIDWithMasteryPaths: moduleItemID)

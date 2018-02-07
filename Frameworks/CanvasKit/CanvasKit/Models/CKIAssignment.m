@@ -23,6 +23,23 @@
 #import "CKIRubric.h"
 #import "CKIDiscussionTopic.h"
 
+@implementation CKIExternalToolTagAttributes
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey
+{
+    NSDictionary *keyPaths = @{
+        @"url": @"url",
+    };
+    return keyPaths;
+}
+
++ (NSValueTransformer *)urlJSONTransformer
+{
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+}
+
+@end
+
 @interface CKIAssignment ()
 @end
 
@@ -60,6 +77,7 @@
         @"quizID": @"quiz_id",
         @"url": @"url",
         @"needsGradingCountBySection": @"needs_grading_count_by_section",
+        @"externalToolTagAttributes": @"external_tool_tag_attributes",
     };
     NSDictionary *superPaths = [super JSONKeyPathsByPropertyKey];
     return [superPaths dictionaryByAddingObjectsFromDictionary:keyPaths];
@@ -130,6 +148,11 @@
 + (NSValueTransformer *)discussionTopicJSONTransformer
 {
     return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[CKIDiscussionTopic class]];
+}
+
++ (NSValueTransformer *)externalToolTagAttributesJSONTransformer
+{
+    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[CKIExternalToolTagAttributes class]];
 }
 
 + (NSValueTransformer *)urlJSONTransformer {

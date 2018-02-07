@@ -2052,6 +2052,7 @@ exports[`QuizEdit changes assignment group 1`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
@@ -4122,6 +4123,7 @@ exports[`QuizEdit changes quiz type 1`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
@@ -6430,6 +6432,7 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
@@ -8738,6 +8741,7 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
@@ -10827,6 +10831,7 @@ exports[`QuizEdit hides modal when save finishes 1`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
@@ -12873,6 +12878,7 @@ exports[`QuizEdit renders 1`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
@@ -14959,6 +14965,7 @@ exports[`QuizEdit saving invalid due dates displays banner 1`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
@@ -17083,6 +17090,7 @@ exports[`QuizEdit saving invalid name displays banner 1`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
@@ -19547,6 +19555,7 @@ exports[`QuizEdit saving invalid viewing dates displays banner 1`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
@@ -21796,6 +21805,7 @@ exports[`QuizEdit saving password displays banner 1`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
@@ -23854,6 +23864,7 @@ exports[`QuizEdit shows Assignment Group picker 1`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
@@ -25943,6 +25954,7 @@ exports[`QuizEdit shows modal while saving 1`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
@@ -28013,6 +28025,7 @@ exports[`QuizEdit shows quiz time picker 1`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
@@ -30166,6 +30179,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 1`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
@@ -32319,6 +32333,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 2`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
@@ -34472,6 +34487,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 1`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
@@ -36518,6 +36534,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 2`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
@@ -38689,6 +38706,7 @@ exports[`QuizEdit toggles "access code" 1`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
@@ -40735,6 +40753,7 @@ exports[`QuizEdit toggles "access code" 2`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
@@ -43089,6 +43108,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
@@ -45436,6 +45456,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
@@ -47482,6 +47503,7 @@ exports[`QuizEdit toggles "let students see responses" 1`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
@@ -49635,6 +49657,7 @@ exports[`QuizEdit toggles "one question at a time" 1`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
@@ -51681,6 +51704,7 @@ exports[`QuizEdit toggles "only once after each attempt" 1`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
@@ -53727,6 +53751,7 @@ exports[`QuizEdit toggles "only once after each attempt" 2`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
@@ -56081,6 +56106,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
@@ -58428,6 +58454,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
@@ -60474,6 +60501,7 @@ exports[`QuizEdit toggles "show correct answers" options 1`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
@@ -62520,6 +62548,7 @@ exports[`QuizEdit toggles publish 1`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
@@ -64566,6 +64595,7 @@ exports[`QuizEdit toggles publish 2`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
@@ -66612,6 +66642,7 @@ exports[`QuizEdit toggles shuffle answers 1`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
@@ -68658,6 +68689,7 @@ exports[`QuizEdit toggles shuffle answers 2`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
@@ -70829,6 +70861,7 @@ exports[`QuizEdit toggles time limit 1`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
@@ -72875,6 +72908,7 @@ exports[`QuizEdit toggles time limit 2`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
@@ -75229,6 +75263,7 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
@@ -77583,6 +77618,7 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "launchExternalTool": [Function],
               "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],

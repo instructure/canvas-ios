@@ -145,6 +145,7 @@ exports[`EditReply calls dismiss on cancel 1`] = `
         Object {
           "dismiss": [Function],
           "dismissAllModals": [Function],
+          "launchExternalTool": [Function],
           "pop": [Function],
           "show": [Function],
           "traitCollection": [Function],
@@ -304,6 +305,7 @@ exports[`EditReply dismisses modal activity upon save error 1`] = `
         Object {
           "dismiss": [Function],
           "dismissAllModals": [Function],
+          "launchExternalTool": [Function],
           "pop": [Function],
           "show": [Function],
           "traitCollection": [Function],
@@ -463,6 +465,7 @@ exports[`EditReply renders 1`] = `
         Object {
           "dismiss": [Function],
           "dismissAllModals": [Function],
+          "launchExternalTool": [Function],
           "pop": [Function],
           "show": [Function],
           "traitCollection": [Function],

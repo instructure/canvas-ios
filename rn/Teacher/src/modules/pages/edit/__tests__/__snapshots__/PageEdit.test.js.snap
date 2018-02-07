@@ -197,6 +197,7 @@ exports[`PageEdit renders 1`] = `
               Object {
                 "dismiss": [Function],
                 "dismissAllModals": [Function],
+                "launchExternalTool": [Function],
                 "pop": [Function],
                 "show": [Function],
                 "traitCollection": [Function],

@@ -179,7 +179,7 @@
     [_contentWebView loadHTMLString:htmlContent baseURL:TheKeymaster.currentClient.baseURL];
     DebugDiscussionLog(@"0x%llx loading html", (unsigned long long)self.entry);
     
-    if (_contentWebView == nil && _preferredHeightHandler) {
+    if (_contentWebView != nil && _preferredHeightHandler) {
         _preferredHeightHandler(self.bounds.size.height);
         _preferredHeightHandler = nil;
     }
@@ -340,7 +340,7 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     DebugDiscussionLog(@"0x%llx starting request (%@)", (unsigned long long)self.entry, self.entry.entryMessage);
-    if ((navigationType == UIWebViewNavigationTypeLinkClicked || navigationType == UIWebViewNavigationTypeFormSubmitted) && ![self entryContainsEmbeddedLTI])
+    if (navigationType == UIWebViewNavigationTypeLinkClicked && [request.URL.absoluteString containsString:@"/external_tools/retrieve"])
     {        
         [self.delegate entryCell:self requestsOpenURL:request.URL];
         return NO;

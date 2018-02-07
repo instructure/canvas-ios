@@ -541,7 +541,7 @@ CGFloat square(CGFloat x){return x*x;}
     // Don't need to localize this: this is a proper noun, our product name
     tool.name = @"Gauge";
     
-    LTIViewController *ltiVC = [[LTIViewController alloc] initWithToolName:tool.name courseID:@"" launchURL:tool.url in:TheKeymaster.currentClient.authSession showDoneButton:NO];
+    LTIViewController *ltiVC = [[LTIViewController alloc] initWithToolName:tool.name courseID:@"" launchURL:tool.url in:TheKeymaster.currentClient.authSession];
     [self.navigationController pushViewController:ltiVC animated:YES];
 }
 

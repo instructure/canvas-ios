@@ -9,7 +9,6 @@
       -webkit-overflow-scrolling: touch;
       font-weight: 300;
       letter-spacing: 1px;
-      width: 100%;
       height: auto;
     }
     #page {
@@ -46,6 +45,15 @@
       height: auto !important;
       margin: 0 auto 0 auto;
     }
+    a.canvas-ios-lti-launch-button {
+      display: block;
+      margin: 20 auto 20 auto;
+      padding: 12px 8px 12px 8px;
+      background-color: {$PRIMARY_BUTTON_COLOR$};
+      color: white;
+      text-decoration: none;
+      text-align: center;
+    }
   </style>
   <script>
     function onLoadAllImages(callback) {
@@ -73,6 +81,24 @@
     {$TITLE$}
     {$PAGE_BODY$}
   </div>
+  <script>
+    // Replace all iframes with a button to launch in SFSafariViewController
+    document.querySelectorAll('iframe').forEach(iframe => {
+        const replace = iframe => {
+            const a = document.createElement('a')
+            a.textContent = '{$LTI_LAUNCH_TEXT$}'
+            a.classList.add('canvas-ios-lti-launch-button')
+            a.href = iframe.src
+            iframe.parentNode.replaceChild(a, iframe)
+        }
+        if (/\/courses\/\d+\/external_tools\/retrieve/.test(iframe.src)) {
+            replace(iframe)
+        } else {
+            iframe.addEventListener('error', event => replace(event.target))
+        }
+    })
+  </script>
+
   <script>
     // This script checks for data-api-endpoint attributes inside <a> tags.
     // If present, it replaces the href with the endpoint, with a few changes.

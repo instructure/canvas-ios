@@ -132,6 +132,8 @@ extension Page {
                 }
                 route(me, url)
             })
+
+            webView.presentingViewController = self
         }
 
 

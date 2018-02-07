@@ -30,6 +30,11 @@ typedef NS_ENUM(NSUInteger, CKIAssignmentScoringType) {
     CKIAssignmentScoringTypeNotGraded
 };
 
+@interface CKIExternalToolTagAttributes: MTLModel <MTLJSONSerializing>
+
+@property (nonatomic, strong) NSURL *url;
+
+@end
 
 @interface CKIAssignment : CKILockableModel
 
@@ -241,6 +246,11 @@ The discussion topic corresponding to this assignment.
  the url of the external tool
  */
 @property (nonatomic) NSURL *url;
+
+/**
+ external tool attributes
+ */
+@property (nonatomic, strong) CKIExternalToolTagAttributes *externalToolTagAttributes;
 
 /**
  the id of the quiz if this assignment represents a quiz
