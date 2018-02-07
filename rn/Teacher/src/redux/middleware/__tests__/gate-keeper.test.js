@@ -98,6 +98,9 @@ describe('gateKeeper middleware', () => {
     store.dispatch(asyncAction)
 
     expect(Alert.alert).toHaveBeenCalledTimes(1)
+    expect(store.getActions()).toEqual([
+      action,
+    ])
   })
 
   it('will let through a non async action when you are offline', () => {

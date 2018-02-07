@@ -53,6 +53,7 @@ const gateKeeperMiddleware: MiddlewareAPI = () => {
           ]
         )
       }
+      return
     }
 
     if (isLoggedIn || action.type === logoutAction.type) {

@@ -15,10 +15,25 @@
 //
 
 // @flow
-import { NetInfo } from 'react-native'
+import { NetInfo, AppState } from 'react-native'
 
 let onlineStatus = 'wifi'
+let appState = 'active'
+
 NetInfo.addEventListener('change', updateStatus)
+AppState.addEventListener('change', updateAppState)
+
+export async function updateAppState (nextAppState: string) {
+  if (appState === 'background' && nextAppState === 'active') {
+    await refreshOnlineStatus()
+  }
+  appState = nextAppState
+}
+
+export async function refreshOnlineStatus () {
+  let status = await NetInfo.fetch()
+  onlineStatus = status
+}
 
 export function updateStatus (status: string): void {
   onlineStatus = status
