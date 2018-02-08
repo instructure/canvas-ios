@@ -33,6 +33,7 @@ import Navigator from '../../routing/Navigator'
 import { getSession } from '../../canvas-api'
 import AccountNotificationActions from './account-notification-actions'
 import { extractGradeInfo } from '../../utils/course-grades'
+import { extractDateFromString } from '../../utils/dateUtils'
 
 type ColorfulCourse = { color: string } & Course
 type Props = {
@@ -46,6 +47,7 @@ type Props = {
   sections: SectionsState,
   enrollments: Invite[],
   courses: ColorfulCourse[],
+  concludedCourses: ColorfulCourse[],
   closeNotification: (string) => any,
   groups: GroupRowProps[],
   acceptEnrollment?: (string, string) => any,
@@ -226,11 +228,24 @@ export class Dashboard extends React.Component<Props, State> {
 
   loadSections = () => {
     if (!this.props.isFullDashboard) {
-      return [{
+      let sections = [{
         sectionID: 'dashboard.courses',
         data: this.props.courses,
         renderItem: this.renderCourseCard,
+        keyExtractor: ({ id }: ColorfulCourse) => id,
       }]
+
+      if (this.props.concludedCourses.length > 0) {
+        sections.push({
+          sectionID: 'dashboard.concluded-courses',
+          title: i18n('Past Enrollments'),
+          data: this.props.concludedCourses,
+          renderItem: this.renderCourseCard,
+          keyExtractor: ({ id }: ColorfulCourse) => id,
+        })
+      }
+
+      return sections
     }
 
     const coursesHeader = {
@@ -393,6 +408,20 @@ const styles = StyleSheet.create({
   },
 })
 
+export function isCourseConcluded (course: Course): boolean {
+  let endAt = extractDateFromString(course.end_at)
+  if (endAt && endAt < new Date()) {
+    return true
+  }
+
+  endAt = extractDateFromString(course.term ? course.term.end_at : null)
+  if (endAt && endAt < new Date()) {
+    return true
+  }
+
+  return course.workflow_state === 'completed'
+}
+
 export function mapStateToProps (isFullDashboard: boolean) {
   return (state: AppState) => {
     const { courses: allCourses, accountNotifications, enrollments: allEnrollments } = state.entities
@@ -410,18 +439,32 @@ export function mapStateToProps (isFullDashboard: boolean) {
 
     const { courseRefs } = state.favoriteCourses
     let courseStates = []
+    let concludedCourseStates = []
     if (isFullDashboard) {
       // we only want favorite courses here
       courseStates = courseRefs.map(ref => allCourses[ref])
     } else {
       // all courses view
       const blacklist = ['invited', 'rejected'] // except invited and rejected
-      courseStates = allCourseStates.filter(c => !blacklist.includes(c.course.enrollments[0].enrollment_state))
+      const filterFunc = (concluded: boolean) => {
+        return (c: CourseState) => {
+          if (blacklist.includes(c.course.enrollments[0].enrollment_state)) return false
+          return concluded ? isCourseConcluded(c.course) : !isCourseConcluded(c.course)
+        }
+      }
+      courseStates = allCourseStates.filter(filterFunc(false))
+      concludedCourseStates = allCourseStates.filter(filterFunc(true))
     }
-    const courses: Array<ColorfulCourse> = courseStates
-      .map(({ course, color }) => ({ ...course, color }))
-      .filter(App.current().filterCourse)
-      .sort((c1, cs2) => localeSort(c1.name, cs2.name))
+
+    const prepareCourses = (states: Array<CourseState>): Array<ColorfulCourse> => {
+      return states
+        .map(({ course, color }) => ({ ...course, color }))
+        .filter(App.current().filterCourse)
+        .sort((c1, cs2) => localeSort(c1.name, cs2.name))
+    }
+
+    const courses: Array<ColorfulCourse> = prepareCourses(courseStates)
+    const concludedCourses: Array<ColorfulCourse> = prepareCourses(concludedCourseStates)
 
     const announcements = accountNotifications.list
       .filter(({ id }) => !accountNotifications.closing.includes(id))
@@ -455,7 +498,7 @@ export function mapStateToProps (isFullDashboard: boolean) {
     const pending = state.favoriteCourses.pending + accountNotifications.pending
     const error = state.favoriteCourses.error || accountNotifications.error
     const showGrades = state.userInfo.showsGradesOnCourseCards
-    return { pending, error, announcements, courses, totalCourseCount, isFullDashboard, groups, showGrades, allCourses: allCoursesStringKeys, sections, enrollments }
+    return { pending, error, announcements, courses, concludedCourses, totalCourseCount, isFullDashboard, groups, showGrades, allCourses: allCoursesStringKeys, sections, enrollments }
   }
 }
 

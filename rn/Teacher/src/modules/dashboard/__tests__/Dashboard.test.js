@@ -5,6 +5,7 @@ import 'react-native'
 import renderer from 'react-test-renderer'
 import {
   Dashboard,
+  isCourseConcluded,
 } from '../Dashboard'
 import explore from '../../../../test/helpers/explore'
 import App from '../../app/index'
@@ -53,10 +54,23 @@ const course3 = template.course({
   short_name: 'FOO 102',
   is_favorite: true,
 })
+
+const course4 = template.course({
+  name: 'Foobar 102',
+  course_code: 'FOO 102',
+  id: '4',
+  short_name: 'FOO 102',
+  workflow_state: 'completed',
+})
+
 const courses = [
   course1,
   course2,
   course3,
+].map(course => ({ ...course, color: colors[course.id] }))
+
+const concludedCourses = [
+  course4,
 ].map(course => ({ ...course, color: colors[course.id] }))
 
 const allCourses = {
@@ -103,6 +117,7 @@ const sections = {
 let defaultProps = {
   navigator: template.navigator(),
   courses,
+  concludedCourses,
   enrollments: [],
   sections: {},
   allCourses: {},
@@ -144,7 +159,7 @@ test('render without favorite courses', () => {
 
 test('render without courses and *zero* total courses', () => {
   let tree = renderAndLayout(
-    <Dashboard {...defaultProps} courses={[]} totalCourseCount={0} />
+    <Dashboard {...defaultProps} courses={[]} concludedCourses={[]} totalCourseCount={0} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
@@ -347,4 +362,24 @@ test('handles accept invite', () => {
   courseInvite.props.onPress()
   expect(props.rejectEnrollment).toHaveBeenCalledWith('4', '1')
   App.setCurrentApp(currentApp)
+})
+
+test('isCourseConcluded', () => {
+  let course = template.course({ term: {} })
+  expect(isCourseConcluded(course)).toEqual(false)
+
+  course = template.course({ term: null })
+  expect(isCourseConcluded(course)).toEqual(false)
+
+  course = template.course({ term: { end_at: '2016-12-11T04:03:17Z' } })
+  expect(isCourseConcluded(course)).toEqual(true)
+
+  course = template.course({ end_at: '2016-12-11T04:03:17Z' })
+  expect(isCourseConcluded(course)).toEqual(true)
+
+  course = template.course({ workflow_state: 'available' })
+  expect(isCourseConcluded(course)).toEqual(false)
+
+  course = template.course({ workflow_state: 'completed' })
+  expect(isCourseConcluded(course)).toEqual(true)
 })

@@ -40,7 +40,21 @@ export type Course = {
   enrollments?: ?Enrollment[],
   sections?: Section[],
   access_restricted_by_date?: boolean,
+  end_at: ?string,
+  workflow_state: CourseWorkflowState,
+  term: ?CourseTerm,
 }
+
+export type CourseTerm = {
+  id: string,
+  created_at: string,
+  end_at: ?string,
+  start_at: ?string,
+  name: string,
+  workflow_state: string,
+}
+
+export type CourseWorkflowState = 'unpublished' | 'available' | 'completed' | 'deleted'
 
 export type CustomColors = {
   custom_colors: {
