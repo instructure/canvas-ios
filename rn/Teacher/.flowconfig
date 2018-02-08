@@ -23,13 +23,10 @@
 .*/node_modules/react-native/Libraries/.*
 
 ; Ignore flow annotation for files we haven't fixed yet :(
-.*/danger/.*
-.*/i18n/.*
 .*/src/common/.*
 .*/src/modules/.*
 .*/src/redux/.*
 .*/src/routing/.*
-.*/src/utils/.*
 
 [libs]
 node_modules/react-native/Libraries/react-native/react-native-interface.js

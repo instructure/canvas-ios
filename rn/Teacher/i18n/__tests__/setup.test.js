@@ -19,24 +19,28 @@
 import i18n from 'format-message'
 import setup, { sanitizeLocale } from '../setup'
 
-test('locale setup should work', () => {
-  const mock = jest.fn()
-  i18n.setup = mock
-  setup('en_US')
-  expect(mock).toBeCalled()
+describe('locale setup', () => {
+  it('should work', () => {
+    // $FlowFixMe
+    i18n.setup = jest.fn()
+    setup('en_US')
+    expect(i18n.setup).toBeCalled()
+  })
 })
 
-test('sanitize apple locale should work', () => {
-  const sanitized = sanitizeLocale('en_US')
-  expect(sanitized).toEqual('en-US')
-})
+describe('sanitize locale', () => {
+  it('should work with apple locale', () => {
+    const sanitized = sanitizeLocale('en_US')
+    expect(sanitized).toEqual('en-US')
+  })
 
-test('sanitize apple locale should work with all the weird apple stuff', () => {
-  const sanitized = sanitizeLocale('en_US@calendar=gregorian')
-  expect(sanitized).toEqual('en-US')
-})
+  it('should work with all the weird apple stuff', () => {
+    const sanitized = sanitizeLocale('en_US@calendar=gregorian')
+    expect(sanitized).toEqual('en-US')
+  })
 
-test('missing locale', () => {
-  const sanitized = sanitizeLocale(null)
-  expect(sanitized).toEqual('en')
+  it('handles missing locale', () => {
+    const sanitized = sanitizeLocale(null)
+    expect(sanitized).toEqual('en')
+  })
 })

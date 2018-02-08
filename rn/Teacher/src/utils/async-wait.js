@@ -16,6 +16,6 @@
 
 // @flow
 
-export async function wait (milliseconds: number): void {
+export async function wait (milliseconds: number) {
   await new Promise(resolve => setTimeout(resolve, milliseconds))
 }

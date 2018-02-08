@@ -16,13 +16,16 @@
 
 /* @flow */
 
-import 'react-native'
 import { extractGradeInfo } from '../course-grades'
+
+const template = {
+  ...require('../../__templates__/course'),
+}
 
 describe('course grade utils', () => {
   describe('extractGradeInfo', () => {
     it('extracts when multiple_grading_periods_enabled is enabled', () => {
-      const course = {
+      const course = template.course({
         enrollments: [{
           type: 'student',
           current_grading_period_id: '1',
@@ -30,7 +33,7 @@ describe('course grade utils', () => {
           current_period_computed_current_grade: 'A-',
           current_period_computed_current_score: '92.3',
         }],
-      }
+      })
 
       const result = extractGradeInfo(course)
       expect(result).toMatchObject({
@@ -40,7 +43,7 @@ describe('course grade utils', () => {
     })
 
     it('does not use period grades when no current period', () => {
-      const course = {
+      const course = template.course({
         enrollments: [{
           type: 'student',
           current_grading_period_id: null,
@@ -48,7 +51,7 @@ describe('course grade utils', () => {
           computed_current_grade: 'A-',
           computed_current_score: '92.3',
         }],
-      }
+      })
 
       const result = extractGradeInfo(course)
       expect(result).toMatchObject({
@@ -58,14 +61,14 @@ describe('course grade utils', () => {
     })
 
     it('extracts when multiple_grading_periods_enabled is not enabled', () => {
-      const course = {
+      const course = template.course({
         enrollments: [{
           type: 'student',
           multiple_grading_periods_enabled: false,
           computed_current_grade: 'A-',
           computed_current_score: '92.3',
         }],
-      }
+      })
 
       const result = extractGradeInfo(course)
       expect(result).toMatchObject({
@@ -75,13 +78,13 @@ describe('course grade utils', () => {
     })
 
     it('handles edge case when there is a grade but not a score (which should not actually be possible)', () => {
-      const course = {
+      const course = template.course({
         enrollments: [{
           type: 'student',
           multiple_grading_periods_enabled: false,
           computed_current_grade: 'A-',
         }],
-      }
+      })
 
       const result = extractGradeInfo(course)
       expect(result).toMatchObject({
@@ -91,10 +94,10 @@ describe('course grade utils', () => {
     })
 
     it('handles no enrollments', () => {
-      let result = extractGradeInfo({})
+      let result = extractGradeInfo(template.course({}))
       expect(result).toBeNull()
 
-      result = extractGradeInfo({ enrollments: [] })
+      result = extractGradeInfo(template.course({ enrollments: [] }))
       expect(result).toBeNull()
     })
   })

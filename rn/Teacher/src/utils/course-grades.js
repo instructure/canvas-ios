@@ -16,25 +16,24 @@
 
 // @flow
 
-import { find } from 'lodash'
 import i18n from 'format-message'
 
 export type CourseGradeInfo = {
   currentGrade: string,
   currentScore: number,
-  currentDisplay: string,
+  currentDisplay: ?string,
   finalGrade: string,
   finalScore: number,
-  finalDisplay: string,
+  finalDisplay: ?string,
 }
 
 export function extractGradeInfo (course: Course): ?CourseGradeInfo {
   const enrollments = course.enrollments
   if (!enrollments) return null
-  const enrollment = find(enrollments, { type: 'student' })
+  const enrollment = enrollments.find(({ type }) => type === 'student')
   if (!enrollment) return null
 
-  const createDisplay = (score: ?number, grade: ?string): string => {
+  const createDisplay = (score: ?number, grade: ?string): ?string => {
     if (!score && !grade) return ''
     if (!score) return grade
     return [i18n.number(score / 100, 'percent'), grade].filter(a => a).join(' - ')

@@ -36,17 +36,12 @@ export default function refresh (
   let updates = {}
 
   return function (TheirComponent) {
-    class Refreshed extends Component {
-      state: RefreshState
+    class Refreshed extends Component<*, RefreshState> {
+      state: RefreshState = { refreshing: false }
 
       refreshFunction = refreshFunction
       shouldRefresh = shouldRefresh
       isFetchingData = isFetchingData
-
-      constructor (props) {
-        super(props)
-        this.state = { refreshing: false }
-      }
 
       componentWillReceiveProps (nextProps) {
         this.setState({
@@ -72,7 +67,7 @@ export default function refresh (
         })
       }
 
-      setLastUpdate = (date: Date) => {
+      setLastUpdate = (date: number) => {
         updates[ttlKeyExtractor(this.props)] = date
       }
 

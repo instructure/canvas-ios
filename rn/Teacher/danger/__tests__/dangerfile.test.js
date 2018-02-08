@@ -65,6 +65,7 @@ describe('annotations', () => {
       files[path.join('../../', p)] = MOCK_FILE_INFO[p]
     }
 
+    // $FlowFixMe
     require('fs').__setMockFiles(files)
   })
 

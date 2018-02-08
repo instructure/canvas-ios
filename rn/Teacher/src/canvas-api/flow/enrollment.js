@@ -30,6 +30,8 @@ export type EnrollmentState = 'active' | 'invited' | 'inactive'
 
 export type Enrollment = {
   id: string,
+  role: string,
+  role_id: string,
   user_id: string,
   user: User,
   type: EnrollmentType,
@@ -38,6 +40,10 @@ export type Enrollment = {
   last_activity_at: string,
   course_section_id: string,
   computed_current_grade: string,
+  current_period_computed_current_grade?: string,
+  current_period_computed_current_score?: string,
+  current_period_computed_final_grade?: string,
+  current_period_computed_final_score?: string,
 }
 
 export type Invite = {

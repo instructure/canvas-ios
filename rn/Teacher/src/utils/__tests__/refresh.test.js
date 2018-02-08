@@ -33,7 +33,7 @@ describe('refresh', () => {
   })
 
   it('has all the correct statics', () => {
-    class C extends Component {
+    class C extends Component<{}> {
       static yo = 'asdf'
     }
     let Refreshed = refresh(() => {}, () => true, () => false)(C)
