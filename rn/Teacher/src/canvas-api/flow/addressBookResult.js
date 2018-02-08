@@ -23,4 +23,7 @@ export type AddressBookResult = {
   type?: 'context',
   context_name?: string,
   user_count?: number,
+  common_courses?: {
+    [string]: ?EnrollmentType,
+  },
 }

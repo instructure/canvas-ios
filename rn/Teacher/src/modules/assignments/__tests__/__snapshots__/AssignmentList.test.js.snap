@@ -135,17 +135,25 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                   "id": "1",
                 },
                 "due_at": "2037-06-01T05:59:00Z",
+                "grade_group_students_individually": false,
                 "grading_type": "points",
+                "group_category_id": null,
+                "has_overrides": false,
                 "html_url": "http://hostname.tld/whatever",
                 "id": "123456789",
                 "lock_at": "2037-06-01T05:59:59Z",
                 "name": "learn to write code",
                 "needs_grading_count": 0,
+                "only_visible_to_overrides": false,
                 "overrides": Array [],
                 "peer_reviews": false,
                 "points_possible": 20,
                 "position": 1,
+                "published": true,
                 "quiz_id": "1",
+                "rubric": null,
+                "rubric_assessment": Object {},
+                "rubric_settings": null,
                 "submission_types": Array [
                   "online_text_entry",
                   "online_url",
@@ -153,6 +161,7 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                   "online_upload",
                 ],
                 "unlock_at": "2017-03-17T06:00:00Z",
+                "unpublishable": false,
                 "updated_at": "2017-03-17T19:15:25Z",
               },
             ],
@@ -167,17 +176,25 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                   "id": "1",
                 },
                 "due_at": "2037-06-01T05:59:00Z",
+                "grade_group_students_individually": false,
                 "grading_type": "points",
+                "group_category_id": null,
+                "has_overrides": false,
                 "html_url": "http://hostname.tld/whatever",
                 "id": "123456789",
                 "lock_at": "2037-06-01T05:59:59Z",
                 "name": "learn to write code",
                 "needs_grading_count": 0,
+                "only_visible_to_overrides": false,
                 "overrides": Array [],
                 "peer_reviews": false,
                 "points_possible": 20,
                 "position": 1,
+                "published": true,
                 "quiz_id": "1",
+                "rubric": null,
+                "rubric_assessment": Object {},
+                "rubric_settings": null,
                 "submission_types": Array [
                   "online_text_entry",
                   "online_url",
@@ -185,13 +202,17 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                   "online_upload",
                 ],
                 "unlock_at": "2017-03-17T06:00:00Z",
+                "unpublishable": false,
                 "updated_at": "2017-03-17T19:15:25Z",
               },
             ],
+            "group_weight": 1,
             "id": "1",
+            "integration_data": Object {},
             "key": "1",
             "name": "Learn React Native",
             "position": 1,
+            "sis_source_id": "",
           },
         ]
       }
@@ -236,17 +257,25 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                   "id": "1",
                 },
                 "due_at": "2037-06-01T05:59:00Z",
+                "grade_group_students_individually": false,
                 "grading_type": "points",
+                "group_category_id": null,
+                "has_overrides": false,
                 "html_url": "http://hostname.tld/whatever",
                 "id": "123456789",
                 "lock_at": "2037-06-01T05:59:59Z",
                 "name": "learn to write code",
                 "needs_grading_count": 0,
+                "only_visible_to_overrides": false,
                 "overrides": Array [],
                 "peer_reviews": false,
                 "points_possible": 20,
                 "position": 1,
+                "published": true,
                 "quiz_id": "1",
+                "rubric": null,
+                "rubric_assessment": Object {},
+                "rubric_settings": null,
                 "submission_types": Array [
                   "online_text_entry",
                   "online_url",
@@ -254,6 +283,7 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                   "online_upload",
                 ],
                 "unlock_at": "2017-03-17T06:00:00Z",
+                "unpublishable": false,
                 "updated_at": "2017-03-17T19:15:25Z",
               },
             ],
@@ -268,17 +298,25 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                   "id": "1",
                 },
                 "due_at": "2037-06-01T05:59:00Z",
+                "grade_group_students_individually": false,
                 "grading_type": "points",
+                "group_category_id": null,
+                "has_overrides": false,
                 "html_url": "http://hostname.tld/whatever",
                 "id": "123456789",
                 "lock_at": "2037-06-01T05:59:59Z",
                 "name": "learn to write code",
                 "needs_grading_count": 0,
+                "only_visible_to_overrides": false,
                 "overrides": Array [],
                 "peer_reviews": false,
                 "points_possible": 20,
                 "position": 1,
+                "published": true,
                 "quiz_id": "1",
+                "rubric": null,
+                "rubric_assessment": Object {},
+                "rubric_settings": null,
                 "submission_types": Array [
                   "online_text_entry",
                   "online_url",
@@ -286,13 +324,17 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                   "online_upload",
                 ],
                 "unlock_at": "2017-03-17T06:00:00Z",
+                "unpublishable": false,
                 "updated_at": "2017-03-17T19:15:25Z",
               },
             ],
+            "group_weight": 1,
             "id": "1",
+            "integration_data": Object {},
             "key": "1",
             "name": "Learn React Native",
             "position": 1,
+            "sis_source_id": "",
           },
         ]
       }
@@ -421,10 +463,10 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                         "alignSelf": "flex-start",
                       }
                     }
-                    testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
+                    testID="assignment-list-row-assignment-icon-published-123456789.icon-img"
                   >
                     <View
-                      accessibilityLabel="Restricted"
+                      accessibilityLabel="Published"
                       style={
                         Object {
                           "alignItems": "center",
@@ -472,14 +514,14 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Restricted.png",
+                              "testUri": "../../../src/images/Published.png",
                             }
                           }
                           style={
                             Object {
-                              "height": 14,
-                              "tintColor": "#FF0000",
-                              "width": 14,
+                              "height": 12,
+                              "tintColor": "#00AC18",
+                              "width": 12,
                             }
                           }
                         />
@@ -594,7 +636,18 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                 </View>
               </TouchableHighlight>
             </View>
-            <View />
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#00AC18",
+                  "bottom": 4,
+                  "left": 0,
+                  "position": "absolute",
+                  "top": 4,
+                  "width": 3,
+                }
+              }
+            />
           </View>
         </View>
         <View
@@ -739,16 +792,24 @@ exports[`applyFilter will apply a new filter 1`] = `
                 "created_at": "2017-03-17T19:15:25Z",
                 "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
                 "due_at": "2037-06-01T05:59:00Z",
+                "grade_group_students_individually": false,
                 "grading_type": "points",
+                "group_category_id": null,
+                "has_overrides": false,
                 "html_url": "http://hostname.tld/whatever",
                 "id": 1,
                 "lock_at": "2037-06-01T05:59:59Z",
                 "name": "learn to write code",
                 "needs_grading_count": 0,
+                "only_visible_to_overrides": false,
                 "overrides": Array [],
                 "peer_reviews": false,
                 "points_possible": 20,
                 "position": 1,
+                "published": true,
+                "rubric": null,
+                "rubric_assessment": Object {},
+                "rubric_settings": null,
                 "submission_types": Array [
                   "online_text_entry",
                   "online_url",
@@ -756,6 +817,7 @@ exports[`applyFilter will apply a new filter 1`] = `
                   "online_upload",
                 ],
                 "unlock_at": "2017-03-17T06:00:00Z",
+                "unpublishable": false,
                 "updated_at": "2017-03-17T19:15:25Z",
               },
             ],
@@ -767,16 +829,24 @@ exports[`applyFilter will apply a new filter 1`] = `
                 "created_at": "2017-03-17T19:15:25Z",
                 "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
                 "due_at": "2037-06-01T05:59:00Z",
+                "grade_group_students_individually": false,
                 "grading_type": "points",
+                "group_category_id": null,
+                "has_overrides": false,
                 "html_url": "http://hostname.tld/whatever",
                 "id": 1,
                 "lock_at": "2037-06-01T05:59:59Z",
                 "name": "learn to write code",
                 "needs_grading_count": 0,
+                "only_visible_to_overrides": false,
                 "overrides": Array [],
                 "peer_reviews": false,
                 "points_possible": 20,
                 "position": 1,
+                "published": true,
+                "rubric": null,
+                "rubric_assessment": Object {},
+                "rubric_settings": null,
                 "submission_types": Array [
                   "online_text_entry",
                   "online_url",
@@ -784,13 +854,17 @@ exports[`applyFilter will apply a new filter 1`] = `
                   "online_upload",
                 ],
                 "unlock_at": "2017-03-17T06:00:00Z",
+                "unpublishable": false,
                 "updated_at": "2017-03-17T19:15:25Z",
               },
             ],
+            "group_weight": 1,
             "id": 1,
+            "integration_data": Object {},
             "key": 1,
             "name": "Learn React Native",
             "position": 1,
+            "sis_source_id": "",
           },
         ]
       }
@@ -832,16 +906,24 @@ exports[`applyFilter will apply a new filter 1`] = `
                 "created_at": "2017-03-17T19:15:25Z",
                 "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
                 "due_at": "2037-06-01T05:59:00Z",
+                "grade_group_students_individually": false,
                 "grading_type": "points",
+                "group_category_id": null,
+                "has_overrides": false,
                 "html_url": "http://hostname.tld/whatever",
                 "id": 1,
                 "lock_at": "2037-06-01T05:59:59Z",
                 "name": "learn to write code",
                 "needs_grading_count": 0,
+                "only_visible_to_overrides": false,
                 "overrides": Array [],
                 "peer_reviews": false,
                 "points_possible": 20,
                 "position": 1,
+                "published": true,
+                "rubric": null,
+                "rubric_assessment": Object {},
+                "rubric_settings": null,
                 "submission_types": Array [
                   "online_text_entry",
                   "online_url",
@@ -849,6 +931,7 @@ exports[`applyFilter will apply a new filter 1`] = `
                   "online_upload",
                 ],
                 "unlock_at": "2017-03-17T06:00:00Z",
+                "unpublishable": false,
                 "updated_at": "2017-03-17T19:15:25Z",
               },
             ],
@@ -860,16 +943,24 @@ exports[`applyFilter will apply a new filter 1`] = `
                 "created_at": "2017-03-17T19:15:25Z",
                 "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
                 "due_at": "2037-06-01T05:59:00Z",
+                "grade_group_students_individually": false,
                 "grading_type": "points",
+                "group_category_id": null,
+                "has_overrides": false,
                 "html_url": "http://hostname.tld/whatever",
                 "id": 1,
                 "lock_at": "2037-06-01T05:59:59Z",
                 "name": "learn to write code",
                 "needs_grading_count": 0,
+                "only_visible_to_overrides": false,
                 "overrides": Array [],
                 "peer_reviews": false,
                 "points_possible": 20,
                 "position": 1,
+                "published": true,
+                "rubric": null,
+                "rubric_assessment": Object {},
+                "rubric_settings": null,
                 "submission_types": Array [
                   "online_text_entry",
                   "online_url",
@@ -877,13 +968,17 @@ exports[`applyFilter will apply a new filter 1`] = `
                   "online_upload",
                 ],
                 "unlock_at": "2017-03-17T06:00:00Z",
+                "unpublishable": false,
                 "updated_at": "2017-03-17T19:15:25Z",
               },
             ],
+            "group_weight": 1,
             "id": 1,
+            "integration_data": Object {},
             "key": 1,
             "name": "Learn React Native",
             "position": 1,
+            "sis_source_id": "",
           },
         ]
       }
@@ -1012,10 +1107,10 @@ exports[`applyFilter will apply a new filter 1`] = `
                         "alignSelf": "flex-start",
                       }
                     }
-                    testID="assignment-list-row-assignment-icon-not-published-1.icon-img"
+                    testID="assignment-list-row-assignment-icon-published-1.icon-img"
                   >
                     <View
-                      accessibilityLabel="Restricted"
+                      accessibilityLabel="Published"
                       style={
                         Object {
                           "alignItems": "center",
@@ -1063,14 +1158,14 @@ exports[`applyFilter will apply a new filter 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Restricted.png",
+                              "testUri": "../../../src/images/Published.png",
                             }
                           }
                           style={
                             Object {
-                              "height": 14,
-                              "tintColor": "#FF0000",
-                              "width": 14,
+                              "height": 12,
+                              "tintColor": "#00AC18",
+                              "width": 12,
                             }
                           }
                         />
@@ -1185,7 +1280,18 @@ exports[`applyFilter will apply a new filter 1`] = `
                 </View>
               </TouchableHighlight>
             </View>
-            <View />
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#00AC18",
+                  "bottom": 4,
+                  "left": 0,
+                  "position": "absolute",
+                  "top": 4,
+                  "width": 3,
+                }
+              }
+            />
           </View>
         </View>
         <View
@@ -1278,17 +1384,25 @@ exports[`filter button only shows when there are grading periods 1`] = `
                   "id": "1",
                 },
                 "due_at": "2037-06-01T05:59:00Z",
+                "grade_group_students_individually": false,
                 "grading_type": "points",
+                "group_category_id": null,
+                "has_overrides": false,
                 "html_url": "http://hostname.tld/whatever",
                 "id": "123456789",
                 "lock_at": "2037-06-01T05:59:59Z",
                 "name": "learn to write code",
                 "needs_grading_count": 0,
+                "only_visible_to_overrides": false,
                 "overrides": Array [],
                 "peer_reviews": false,
                 "points_possible": 20,
                 "position": 1,
+                "published": true,
                 "quiz_id": "1",
+                "rubric": null,
+                "rubric_assessment": Object {},
+                "rubric_settings": null,
                 "submission_types": Array [
                   "online_text_entry",
                   "online_url",
@@ -1296,6 +1410,7 @@ exports[`filter button only shows when there are grading periods 1`] = `
                   "online_upload",
                 ],
                 "unlock_at": "2017-03-17T06:00:00Z",
+                "unpublishable": false,
                 "updated_at": "2017-03-17T19:15:25Z",
               },
             ],
@@ -1310,17 +1425,25 @@ exports[`filter button only shows when there are grading periods 1`] = `
                   "id": "1",
                 },
                 "due_at": "2037-06-01T05:59:00Z",
+                "grade_group_students_individually": false,
                 "grading_type": "points",
+                "group_category_id": null,
+                "has_overrides": false,
                 "html_url": "http://hostname.tld/whatever",
                 "id": "123456789",
                 "lock_at": "2037-06-01T05:59:59Z",
                 "name": "learn to write code",
                 "needs_grading_count": 0,
+                "only_visible_to_overrides": false,
                 "overrides": Array [],
                 "peer_reviews": false,
                 "points_possible": 20,
                 "position": 1,
+                "published": true,
                 "quiz_id": "1",
+                "rubric": null,
+                "rubric_assessment": Object {},
+                "rubric_settings": null,
                 "submission_types": Array [
                   "online_text_entry",
                   "online_url",
@@ -1328,13 +1451,17 @@ exports[`filter button only shows when there are grading periods 1`] = `
                   "online_upload",
                 ],
                 "unlock_at": "2017-03-17T06:00:00Z",
+                "unpublishable": false,
                 "updated_at": "2017-03-17T19:15:25Z",
               },
             ],
+            "group_weight": 1,
             "id": "1",
+            "integration_data": Object {},
             "key": "1",
             "name": "Learn React Native",
             "position": 1,
+            "sis_source_id": "",
           },
         ]
       }
@@ -1379,17 +1506,25 @@ exports[`filter button only shows when there are grading periods 1`] = `
                   "id": "1",
                 },
                 "due_at": "2037-06-01T05:59:00Z",
+                "grade_group_students_individually": false,
                 "grading_type": "points",
+                "group_category_id": null,
+                "has_overrides": false,
                 "html_url": "http://hostname.tld/whatever",
                 "id": "123456789",
                 "lock_at": "2037-06-01T05:59:59Z",
                 "name": "learn to write code",
                 "needs_grading_count": 0,
+                "only_visible_to_overrides": false,
                 "overrides": Array [],
                 "peer_reviews": false,
                 "points_possible": 20,
                 "position": 1,
+                "published": true,
                 "quiz_id": "1",
+                "rubric": null,
+                "rubric_assessment": Object {},
+                "rubric_settings": null,
                 "submission_types": Array [
                   "online_text_entry",
                   "online_url",
@@ -1397,6 +1532,7 @@ exports[`filter button only shows when there are grading periods 1`] = `
                   "online_upload",
                 ],
                 "unlock_at": "2017-03-17T06:00:00Z",
+                "unpublishable": false,
                 "updated_at": "2017-03-17T19:15:25Z",
               },
             ],
@@ -1411,17 +1547,25 @@ exports[`filter button only shows when there are grading periods 1`] = `
                   "id": "1",
                 },
                 "due_at": "2037-06-01T05:59:00Z",
+                "grade_group_students_individually": false,
                 "grading_type": "points",
+                "group_category_id": null,
+                "has_overrides": false,
                 "html_url": "http://hostname.tld/whatever",
                 "id": "123456789",
                 "lock_at": "2037-06-01T05:59:59Z",
                 "name": "learn to write code",
                 "needs_grading_count": 0,
+                "only_visible_to_overrides": false,
                 "overrides": Array [],
                 "peer_reviews": false,
                 "points_possible": 20,
                 "position": 1,
+                "published": true,
                 "quiz_id": "1",
+                "rubric": null,
+                "rubric_assessment": Object {},
+                "rubric_settings": null,
                 "submission_types": Array [
                   "online_text_entry",
                   "online_url",
@@ -1429,13 +1573,17 @@ exports[`filter button only shows when there are grading periods 1`] = `
                   "online_upload",
                 ],
                 "unlock_at": "2017-03-17T06:00:00Z",
+                "unpublishable": false,
                 "updated_at": "2017-03-17T19:15:25Z",
               },
             ],
+            "group_weight": 1,
             "id": "1",
+            "integration_data": Object {},
             "key": "1",
             "name": "Learn React Native",
             "position": 1,
+            "sis_source_id": "",
           },
         ]
       }
@@ -1564,10 +1712,10 @@ exports[`filter button only shows when there are grading periods 1`] = `
                         "alignSelf": "flex-start",
                       }
                     }
-                    testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
+                    testID="assignment-list-row-assignment-icon-published-123456789.icon-img"
                   >
                     <View
-                      accessibilityLabel="Restricted"
+                      accessibilityLabel="Published"
                       style={
                         Object {
                           "alignItems": "center",
@@ -1615,14 +1763,14 @@ exports[`filter button only shows when there are grading periods 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Restricted.png",
+                              "testUri": "../../../src/images/Published.png",
                             }
                           }
                           style={
                             Object {
-                              "height": 14,
-                              "tintColor": "#FF0000",
-                              "width": 14,
+                              "height": 12,
+                              "tintColor": "#00AC18",
+                              "width": 12,
                             }
                           }
                         />
@@ -1737,7 +1885,18 @@ exports[`filter button only shows when there are grading periods 1`] = `
                 </View>
               </TouchableHighlight>
             </View>
-            <View />
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#00AC18",
+                  "bottom": 4,
+                  "left": 0,
+                  "position": "absolute",
+                  "top": 4,
+                  "width": 3,
+                }
+              }
+            />
           </View>
         </View>
         <View
@@ -1882,16 +2041,24 @@ exports[`renders correctly 1`] = `
                 "created_at": "2017-03-17T19:15:25Z",
                 "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
                 "due_at": "2037-06-01T05:59:00Z",
+                "grade_group_students_individually": false,
                 "grading_type": "points",
+                "group_category_id": null,
+                "has_overrides": false,
                 "html_url": "http://hostname.tld/whatever",
                 "id": "123456789",
                 "lock_at": "2037-06-01T05:59:59Z",
                 "name": "learn to write code",
                 "needs_grading_count": 0,
+                "only_visible_to_overrides": false,
                 "overrides": Array [],
                 "peer_reviews": false,
                 "points_possible": 20,
                 "position": 1,
+                "published": true,
+                "rubric": null,
+                "rubric_assessment": Object {},
+                "rubric_settings": null,
                 "submission_types": Array [
                   "online_text_entry",
                   "online_url",
@@ -1899,6 +2066,7 @@ exports[`renders correctly 1`] = `
                   "online_upload",
                 ],
                 "unlock_at": "2017-03-17T06:00:00Z",
+                "unpublishable": false,
                 "updated_at": "2017-03-17T19:15:25Z",
               },
             ],
@@ -1910,16 +2078,24 @@ exports[`renders correctly 1`] = `
                 "created_at": "2017-03-17T19:15:25Z",
                 "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
                 "due_at": "2037-06-01T05:59:00Z",
+                "grade_group_students_individually": false,
                 "grading_type": "points",
+                "group_category_id": null,
+                "has_overrides": false,
                 "html_url": "http://hostname.tld/whatever",
                 "id": "123456789",
                 "lock_at": "2037-06-01T05:59:59Z",
                 "name": "learn to write code",
                 "needs_grading_count": 0,
+                "only_visible_to_overrides": false,
                 "overrides": Array [],
                 "peer_reviews": false,
                 "points_possible": 20,
                 "position": 1,
+                "published": true,
+                "rubric": null,
+                "rubric_assessment": Object {},
+                "rubric_settings": null,
                 "submission_types": Array [
                   "online_text_entry",
                   "online_url",
@@ -1927,13 +2103,17 @@ exports[`renders correctly 1`] = `
                   "online_upload",
                 ],
                 "unlock_at": "2017-03-17T06:00:00Z",
+                "unpublishable": false,
                 "updated_at": "2017-03-17T19:15:25Z",
               },
             ],
+            "group_weight": 1,
             "id": "1",
+            "integration_data": Object {},
             "key": "1",
             "name": "Learn React Native",
             "position": 1,
+            "sis_source_id": "",
           },
         ]
       }
@@ -1975,16 +2155,24 @@ exports[`renders correctly 1`] = `
                 "created_at": "2017-03-17T19:15:25Z",
                 "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
                 "due_at": "2037-06-01T05:59:00Z",
+                "grade_group_students_individually": false,
                 "grading_type": "points",
+                "group_category_id": null,
+                "has_overrides": false,
                 "html_url": "http://hostname.tld/whatever",
                 "id": "123456789",
                 "lock_at": "2037-06-01T05:59:59Z",
                 "name": "learn to write code",
                 "needs_grading_count": 0,
+                "only_visible_to_overrides": false,
                 "overrides": Array [],
                 "peer_reviews": false,
                 "points_possible": 20,
                 "position": 1,
+                "published": true,
+                "rubric": null,
+                "rubric_assessment": Object {},
+                "rubric_settings": null,
                 "submission_types": Array [
                   "online_text_entry",
                   "online_url",
@@ -1992,6 +2180,7 @@ exports[`renders correctly 1`] = `
                   "online_upload",
                 ],
                 "unlock_at": "2017-03-17T06:00:00Z",
+                "unpublishable": false,
                 "updated_at": "2017-03-17T19:15:25Z",
               },
             ],
@@ -2003,16 +2192,24 @@ exports[`renders correctly 1`] = `
                 "created_at": "2017-03-17T19:15:25Z",
                 "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
                 "due_at": "2037-06-01T05:59:00Z",
+                "grade_group_students_individually": false,
                 "grading_type": "points",
+                "group_category_id": null,
+                "has_overrides": false,
                 "html_url": "http://hostname.tld/whatever",
                 "id": "123456789",
                 "lock_at": "2037-06-01T05:59:59Z",
                 "name": "learn to write code",
                 "needs_grading_count": 0,
+                "only_visible_to_overrides": false,
                 "overrides": Array [],
                 "peer_reviews": false,
                 "points_possible": 20,
                 "position": 1,
+                "published": true,
+                "rubric": null,
+                "rubric_assessment": Object {},
+                "rubric_settings": null,
                 "submission_types": Array [
                   "online_text_entry",
                   "online_url",
@@ -2020,13 +2217,17 @@ exports[`renders correctly 1`] = `
                   "online_upload",
                 ],
                 "unlock_at": "2017-03-17T06:00:00Z",
+                "unpublishable": false,
                 "updated_at": "2017-03-17T19:15:25Z",
               },
             ],
+            "group_weight": 1,
             "id": "1",
+            "integration_data": Object {},
             "key": "1",
             "name": "Learn React Native",
             "position": 1,
+            "sis_source_id": "",
           },
         ]
       }
@@ -2155,10 +2356,10 @@ exports[`renders correctly 1`] = `
                         "alignSelf": "flex-start",
                       }
                     }
-                    testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
+                    testID="assignment-list-row-assignment-icon-published-123456789.icon-img"
                   >
                     <View
-                      accessibilityLabel="Restricted"
+                      accessibilityLabel="Published"
                       style={
                         Object {
                           "alignItems": "center",
@@ -2206,14 +2407,14 @@ exports[`renders correctly 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Restricted.png",
+                              "testUri": "../../../src/images/Published.png",
                             }
                           }
                           style={
                             Object {
-                              "height": 14,
-                              "tintColor": "#FF0000",
-                              "width": 14,
+                              "height": 12,
+                              "tintColor": "#00AC18",
+                              "width": 12,
                             }
                           }
                         />
@@ -2328,7 +2529,18 @@ exports[`renders correctly 1`] = `
                 </View>
               </TouchableHighlight>
             </View>
-            <View />
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#00AC18",
+                  "bottom": 4,
+                  "left": 0,
+                  "position": "absolute",
+                  "top": 4,
+                  "width": 3,
+                }
+              }
+            />
           </View>
         </View>
         <View
@@ -2500,17 +2712,25 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                   "id": "1",
                 },
                 "due_at": "2037-06-01T05:59:00Z",
+                "grade_group_students_individually": false,
                 "grading_type": "points",
+                "group_category_id": null,
+                "has_overrides": false,
                 "html_url": "http://hostname.tld/whatever",
                 "id": "123456789",
                 "lock_at": "2037-06-01T05:59:59Z",
                 "name": "learn to write code",
                 "needs_grading_count": 0,
+                "only_visible_to_overrides": false,
                 "overrides": Array [],
                 "peer_reviews": false,
                 "points_possible": 20,
                 "position": 1,
+                "published": true,
                 "quiz_id": "1",
+                "rubric": null,
+                "rubric_assessment": Object {},
+                "rubric_settings": null,
                 "submission_types": Array [
                   "online_text_entry",
                   "online_url",
@@ -2518,6 +2738,7 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                   "online_upload",
                 ],
                 "unlock_at": "2017-03-17T06:00:00Z",
+                "unpublishable": false,
                 "updated_at": "2017-03-17T19:15:25Z",
               },
             ],
@@ -2532,17 +2753,25 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                   "id": "1",
                 },
                 "due_at": "2037-06-01T05:59:00Z",
+                "grade_group_students_individually": false,
                 "grading_type": "points",
+                "group_category_id": null,
+                "has_overrides": false,
                 "html_url": "http://hostname.tld/whatever",
                 "id": "123456789",
                 "lock_at": "2037-06-01T05:59:59Z",
                 "name": "learn to write code",
                 "needs_grading_count": 0,
+                "only_visible_to_overrides": false,
                 "overrides": Array [],
                 "peer_reviews": false,
                 "points_possible": 20,
                 "position": 1,
+                "published": true,
                 "quiz_id": "1",
+                "rubric": null,
+                "rubric_assessment": Object {},
+                "rubric_settings": null,
                 "submission_types": Array [
                   "online_text_entry",
                   "online_url",
@@ -2550,13 +2779,17 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                   "online_upload",
                 ],
                 "unlock_at": "2017-03-17T06:00:00Z",
+                "unpublishable": false,
                 "updated_at": "2017-03-17T19:15:25Z",
               },
             ],
+            "group_weight": 1,
             "id": "1",
+            "integration_data": Object {},
             "key": "1",
             "name": "Learn React Native",
             "position": 1,
+            "sis_source_id": "",
           },
         ]
       }
@@ -2601,17 +2834,25 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                   "id": "1",
                 },
                 "due_at": "2037-06-01T05:59:00Z",
+                "grade_group_students_individually": false,
                 "grading_type": "points",
+                "group_category_id": null,
+                "has_overrides": false,
                 "html_url": "http://hostname.tld/whatever",
                 "id": "123456789",
                 "lock_at": "2037-06-01T05:59:59Z",
                 "name": "learn to write code",
                 "needs_grading_count": 0,
+                "only_visible_to_overrides": false,
                 "overrides": Array [],
                 "peer_reviews": false,
                 "points_possible": 20,
                 "position": 1,
+                "published": true,
                 "quiz_id": "1",
+                "rubric": null,
+                "rubric_assessment": Object {},
+                "rubric_settings": null,
                 "submission_types": Array [
                   "online_text_entry",
                   "online_url",
@@ -2619,6 +2860,7 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                   "online_upload",
                 ],
                 "unlock_at": "2017-03-17T06:00:00Z",
+                "unpublishable": false,
                 "updated_at": "2017-03-17T19:15:25Z",
               },
             ],
@@ -2633,17 +2875,25 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                   "id": "1",
                 },
                 "due_at": "2037-06-01T05:59:00Z",
+                "grade_group_students_individually": false,
                 "grading_type": "points",
+                "group_category_id": null,
+                "has_overrides": false,
                 "html_url": "http://hostname.tld/whatever",
                 "id": "123456789",
                 "lock_at": "2037-06-01T05:59:59Z",
                 "name": "learn to write code",
                 "needs_grading_count": 0,
+                "only_visible_to_overrides": false,
                 "overrides": Array [],
                 "peer_reviews": false,
                 "points_possible": 20,
                 "position": 1,
+                "published": true,
                 "quiz_id": "1",
+                "rubric": null,
+                "rubric_assessment": Object {},
+                "rubric_settings": null,
                 "submission_types": Array [
                   "online_text_entry",
                   "online_url",
@@ -2651,13 +2901,17 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                   "online_upload",
                 ],
                 "unlock_at": "2017-03-17T06:00:00Z",
+                "unpublishable": false,
                 "updated_at": "2017-03-17T19:15:25Z",
               },
             ],
+            "group_weight": 1,
             "id": "1",
+            "integration_data": Object {},
             "key": "1",
             "name": "Learn React Native",
             "position": 1,
+            "sis_source_id": "",
           },
         ]
       }
@@ -2786,10 +3040,10 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                         "alignSelf": "flex-start",
                       }
                     }
-                    testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
+                    testID="assignment-list-row-assignment-icon-published-123456789.icon-img"
                   >
                     <View
-                      accessibilityLabel="Restricted"
+                      accessibilityLabel="Published"
                       style={
                         Object {
                           "alignItems": "center",
@@ -2837,14 +3091,14 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Restricted.png",
+                              "testUri": "../../../src/images/Published.png",
                             }
                           }
                           style={
                             Object {
-                              "height": 14,
-                              "tintColor": "#FF0000",
-                              "width": 14,
+                              "height": 12,
+                              "tintColor": "#00AC18",
+                              "width": 12,
                             }
                           }
                         />
@@ -2959,7 +3213,18 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                 </View>
               </TouchableHighlight>
             </View>
-            <View />
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#00AC18",
+                  "bottom": 4,
+                  "left": 0,
+                  "position": "absolute",
+                  "top": 4,
+                  "width": 3,
+                }
+              }
+            />
           </View>
         </View>
         <View

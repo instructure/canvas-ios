@@ -42,6 +42,15 @@ export const assignment: Template<Assignment> = template({
   needs_grading_count: 0,
   html_url: 'http://hostname.tld/whatever',
   overrides: [],
+  grade_group_students_individually: false,
+  group_category_id: null,
+  has_overrides: false,
+  only_visible_to_overrides: false,
+  published: true,
+  unpublishable: false,
+  rubric_assessment: {},
+  rubric_settings: null,
+  rubric: null,
 })
 
 export const assignmentGroup: Template<AssignmentGroup> = template({
@@ -49,15 +58,27 @@ export const assignmentGroup: Template<AssignmentGroup> = template({
   name: 'Learn React Native',
   position: 1,
   assignments: [assignment()],
+  group_weight: 1,
+  integration_data: {},
+  sis_source_id: '',
 })
 
 export const assignmentDueDate: Template<AssignmentDate> = template({
+  title: 'due',
   due_at: '2037-06-01T05:59:00Z',
   unlock_at: '2017-03-17T06:00:00Z',
   lock_at: '2037-06-01T05:59:59Z',
 })
 
-export const assignmentOverride: Template<assignmentOverride> = template({
+export const assignmentOverride: Template<AssignmentOverride> = template({
+  id: '1',
+  assignment_id: '1',
+  student_ids: [],
+  group_id: '1',
+  course_section_id: '1',
+  title: 'override',
+  all_day: false,
+  all_date_date: '',
   due_at: '2037-06-01T05:59:00Z',
   unlock_at: '2017-03-17T06:00:00Z',
   lock_at: '2037-06-01T05:59:59Z',

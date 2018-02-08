@@ -25,7 +25,6 @@
 ; Ignore flow annotation for files we haven't fixed yet :(
 .*/src/common/.*
 .*/src/modules/.*
-.*/src/redux/.*
 .*/src/routing/.*
 
 [libs]

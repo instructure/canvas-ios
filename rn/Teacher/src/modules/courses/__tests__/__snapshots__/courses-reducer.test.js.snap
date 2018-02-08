@@ -18,6 +18,7 @@ Array [
       },
       "color": "#fff",
       "course": Object {
+        "account_id": "1",
         "course_code": "rn 101",
         "default_view": "wiki",
         "enrollments": Array [
@@ -83,6 +84,7 @@ Array [
       },
       "color": "#aaa",
       "course": Object {
+        "account_id": "1",
         "course_code": "rn 101",
         "default_view": "wiki",
         "enrollments": Array [],

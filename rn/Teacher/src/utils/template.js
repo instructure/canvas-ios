@@ -16,13 +16,11 @@
 
 // @flow
 
-export type Template<T> = (overrides: any) => T
+export type Template<T> = (overrides: $Supertype<T>) => T
 
-export default function template<T> (defaults: any): Template<T> {
-  return (overrides) => {
-    return {
-      ...defaults,
-      ...overrides,
-    }
-  }
+export default function template<T> (defaults: T): Template<T> {
+  return (overrides) => ({
+    ...defaults,
+    ...overrides,
+  })
 }

@@ -18,14 +18,23 @@
 
 import template, { type Template } from '../../utils/template'
 
-const emptyAppState: AppState = {
+export const toDoState: Template<ToDoState> = template({
+  items: [],
+})
+
+export const appState: Template<AppState> = template({
   drawer: { currentSnap: 2, currentTab: -1 },
   favoriteCourses: {
     pending: 0,
     courseRefs: [],
   },
   entities: {
-    accountNotifications: {},
+    accountNotifications: {
+      pending: 0,
+      list: [],
+      closing: [],
+      error: '',
+    },
     courses: {},
     groups: {},
     assignmentGroups: {},
@@ -40,6 +49,7 @@ const emptyAppState: AppState = {
     discussions: {},
     announcements: {},
     courseDetailsTabSelectedRow: { rowID: '' },
+    pages: {},
   },
   inbox: {
     selectedScope: 'all',
@@ -53,7 +63,10 @@ const emptyAppState: AppState = {
   asyncActions: {},
   files: {},
   folders: {},
-  userInfo: {},
-}
-
-export const appState: Template<AppState> = template(emptyAppState)
+  userInfo: {
+    canMasquerade: false,
+    showsGradesOnCourseCards: true,
+    externalTools: [],
+  },
+  toDo: toDoState(),
+})

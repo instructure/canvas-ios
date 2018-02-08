@@ -19,7 +19,7 @@
 import template, { type Template } from '../utils/template'
 
 export const accountNotification: Template<AccountNotification> = template({
-  id: 1,
+  id: '1',
   subject: 'Permission Slips!',
   message: 'Don’t forget your permission slips this Wednesday.',
   start_at: '2016-12-31T12:00:00.000Z',

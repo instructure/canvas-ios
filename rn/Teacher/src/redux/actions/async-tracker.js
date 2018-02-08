@@ -22,7 +22,7 @@ import { Reducer } from 'redux'
 import { createAction, handleActions } from 'redux-actions'
 
 // Helper method to know if a set of dependent async actions are pending
-export function asyncChecker (state: AppState, dependencies: [string]): boolean {
+export function asyncChecker (state: AppState, dependencies: string[]): boolean {
   const reports = dependencies
                   .map((d) => d.toString())
                   .map((d) => state.asyncActions[d]).filter(a => a)
@@ -30,7 +30,7 @@ export function asyncChecker (state: AppState, dependencies: [string]): boolean 
 }
 
 // Pass the number of seconds that needs to be elapsed for data to be refreshed
-export function asyncTTLCheck (state: AppState, dependencies: [string], ttl: number): boolean {
+export function asyncTTLCheck (state: AppState, dependencies: string[], ttl: number): boolean {
   const reports = dependencies
                   .map((d) => d.toString())
                   .map((d) => state.asyncActions[d])
@@ -39,10 +39,10 @@ export function asyncTTLCheck (state: AppState, dependencies: [string], ttl: num
   // If the actions exist, but never successfully ended, also should refresh
   if (reports.filter(a => !a.lastResolvedDate).length > 0) return true
   const oldest = reports.map(a => a.lastResolvedDate).reduce((previous, current) => {
-    if (previous < current) return previous
+    if (previous != null && previous < current) return previous
     return current
   })
-  const diff = (new Date()) - oldest
+  const diff = (new Date()) - (oldest || NaN)
   return diff > ttl
 }
 

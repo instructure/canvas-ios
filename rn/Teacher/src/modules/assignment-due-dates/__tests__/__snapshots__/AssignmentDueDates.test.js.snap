@@ -146,7 +146,7 @@ exports[`renders with overrides 1`] = `
                 ]
               }
             >
-              Everyone
+              due
             </Text>
           </View>
           <View
@@ -834,7 +834,7 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
                 ]
               }
             >
-              Everyone
+              due
             </Text>
           </View>
           <View

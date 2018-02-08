@@ -50,15 +50,15 @@ export type QuizSubmission = {
   quiz_id: string,
   user_id: string,
   submission_id: string,
-  started_at: ?string,
-  finished_at: ?string,
-  end_at: ?string,
+  started_at?: ?string,
+  finished_at?: ?string,
+  end_at?: ?string,
   attempt: number,
   extra_attempts: number,
   extra_time: number, // minutes
   manually_unlocked: boolean,
-  time_spent: ?number, // seconds
-  score: ?number, // The score of the quiz submission, if graded.
+  time_spent?: ?number, // seconds
+  score?: ?number, // The score of the quiz submission, if graded.
   score_before_regrade: number,
   kept_score: number,
   fudge_points: number,

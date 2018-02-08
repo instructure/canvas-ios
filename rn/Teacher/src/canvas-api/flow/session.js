@@ -27,5 +27,5 @@ export type Session = {
   authToken: string,
   baseURL: string,
   user: SessionUser,
-  actAsUserID: ?string,
+  actAsUserID?: ?string,
 }

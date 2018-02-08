@@ -24,6 +24,8 @@ export const conversation: Template<Conversation> = template({
   workflow_state: 'read',
   last_message: 'this is the worst class ever',
   last_message_at: '2037-06-01T05:59:00Z',
+  last_authored_message: 'this is the worst class ever',
+  last_authored_message_at: '2037-06-01T05:59:00Z',
   participants: [
     {
       id: '1234',
@@ -37,6 +39,14 @@ export const conversation: Template<Conversation> = template({
   avatar_url: 'http://www.fillmurray.com/200/300',
   context_name: 'Test Class',
   context_code: 'course_1',
+  audience_contexts: {},
+  audience: [],
+  message_count: 2,
+  private: false,
+  properties: null,
+  starred: false,
+  subscribed: false,
+  visible: true,
 })
 
 export const conversationMessage: Template<ConversationMessage> = template({
@@ -51,4 +61,5 @@ export const conversationMessage: Template<ConversationMessage> = template({
       mime_class: 'pdf',
     },
   ],
+  generated: false,
 })

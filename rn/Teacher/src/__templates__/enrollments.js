@@ -21,6 +21,9 @@ import { user } from './users'
 
 export const enrollment: Template<Enrollment> = template({
   id: '32',
+  course_id: '1',
+  role: '',
+  role_id: '',
   user_id: '5123',
   user: user(),
   type: 'StudentEnrollment',

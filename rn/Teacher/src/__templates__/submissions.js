@@ -33,6 +33,7 @@ export const submission: Template<Submission> = template({
   body: 'This is my submission!',
   attempt: 1,
   grade_matches_current_submission: true,
+  preview_url: '',
 })
 
 export function submissionHistory (submissionOverrides: Array<Object> = [submission()], commentOverrides: Array<Object> = []): SubmissionWithHistory {

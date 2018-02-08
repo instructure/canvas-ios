@@ -755,7 +755,7 @@ exports[`error occurs when done pressed 1`] = `
         </TouchableHighlight>
         <View />
         <TouchableHighlight
-          accessibilityLabel="Publish, Off"
+          accessibilityLabel="Publish, On"
           accessibilityTraits={
             Array [
               "button",
@@ -868,7 +868,7 @@ exports[`error occurs when done pressed 1`] = `
                   testID="published"
                   tintColor="#374A59"
                   title="Publish"
-                  value={false}
+                  value={true}
                 />
               </View>
             </View>
@@ -884,16 +884,24 @@ exports[`error occurs when done pressed 1`] = `
               "created_at": "2017-03-17T19:15:25Z",
               "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
               "due_at": "2037-06-01T05:59:00Z",
+              "grade_group_students_individually": false,
               "grading_type": "points",
+              "group_category_id": null,
+              "has_overrides": false,
               "html_url": "http://hostname.tld/whatever",
               "id": "123456789",
               "lock_at": "2037-06-01T05:59:59Z",
               "name": "learn to write code",
               "needs_grading_count": 0,
+              "only_visible_to_overrides": false,
               "overrides": Array [],
               "peer_reviews": false,
               "points_possible": 20,
               "position": 1,
+              "published": true,
+              "rubric": null,
+              "rubric_assessment": Object {},
+              "rubric_settings": null,
               "submission_types": Array [
                 "online_text_entry",
                 "online_url",
@@ -901,6 +909,7 @@ exports[`error occurs when done pressed 1`] = `
                 "online_upload",
               ],
               "unlock_at": "2017-03-17T06:00:00Z",
+              "unpublishable": false,
               "updated_at": "2017-03-17T19:15:25Z",
             }
           }
@@ -1677,7 +1686,7 @@ exports[`modal saving is shown on assignment update 1`] = `
         </TouchableHighlight>
         <View />
         <TouchableHighlight
-          accessibilityLabel="Publish, Off"
+          accessibilityLabel="Publish, On"
           accessibilityTraits={
             Array [
               "button",
@@ -1790,7 +1799,7 @@ exports[`modal saving is shown on assignment update 1`] = `
                   testID="published"
                   tintColor="#374A59"
                   title="Publish"
-                  value={false}
+                  value={true}
                 />
               </View>
             </View>
@@ -1806,16 +1815,24 @@ exports[`modal saving is shown on assignment update 1`] = `
               "created_at": "2017-03-17T19:15:25Z",
               "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
               "due_at": "2037-06-01T05:59:00Z",
+              "grade_group_students_individually": false,
               "grading_type": "points",
+              "group_category_id": null,
+              "has_overrides": false,
               "html_url": "http://hostname.tld/whatever",
               "id": "123456789",
               "lock_at": "2037-06-01T05:59:59Z",
               "name": "learn to write code",
               "needs_grading_count": 0,
+              "only_visible_to_overrides": false,
               "overrides": Array [],
               "peer_reviews": false,
               "points_possible": 20,
               "position": 1,
+              "published": true,
+              "rubric": null,
+              "rubric_assessment": Object {},
+              "rubric_settings": null,
               "submission_types": Array [
                 "online_text_entry",
                 "online_url",
@@ -1823,6 +1840,7 @@ exports[`modal saving is shown on assignment update 1`] = `
                 "online_upload",
               ],
               "unlock_at": "2017-03-17T06:00:00Z",
+              "unpublishable": false,
               "updated_at": "2017-03-17T19:15:25Z",
             }
           }
@@ -2599,7 +2617,7 @@ exports[`renders 1`] = `
         </TouchableHighlight>
         <View />
         <TouchableHighlight
-          accessibilityLabel="Publish, Off"
+          accessibilityLabel="Publish, On"
           accessibilityTraits={
             Array [
               "button",
@@ -2712,7 +2730,7 @@ exports[`renders 1`] = `
                   testID="published"
                   tintColor="#374A59"
                   title="Publish"
-                  value={false}
+                  value={true}
                 />
               </View>
             </View>
@@ -2728,16 +2746,24 @@ exports[`renders 1`] = `
               "created_at": "2017-03-17T19:15:25Z",
               "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
               "due_at": "2037-06-01T05:59:00Z",
+              "grade_group_students_individually": false,
               "grading_type": "points",
+              "group_category_id": null,
+              "has_overrides": false,
               "html_url": "http://hostname.tld/whatever",
               "id": "123456789",
               "lock_at": "2037-06-01T05:59:59Z",
               "name": "learn to write code",
               "needs_grading_count": 0,
+              "only_visible_to_overrides": false,
               "overrides": Array [],
               "peer_reviews": false,
               "points_possible": 20,
               "position": 1,
+              "published": true,
+              "rubric": null,
+              "rubric_assessment": Object {},
+              "rubric_settings": null,
               "submission_types": Array [
                 "online_text_entry",
                 "online_url",
@@ -2745,6 +2771,7 @@ exports[`renders 1`] = `
                 "online_upload",
               ],
               "unlock_at": "2017-03-17T06:00:00Z",
+              "unpublishable": false,
               "updated_at": "2017-03-17T19:15:25Z",
             }
           }
@@ -3521,7 +3548,7 @@ exports[`saving invalid dates displays banner 1`] = `
         </TouchableHighlight>
         <View />
         <TouchableHighlight
-          accessibilityLabel="Publish, Off"
+          accessibilityLabel="Publish, On"
           accessibilityTraits={
             Array [
               "button",
@@ -3634,7 +3661,7 @@ exports[`saving invalid dates displays banner 1`] = `
                   testID="published"
                   tintColor="#374A59"
                   title="Publish"
-                  value={false}
+                  value={true}
                 />
               </View>
             </View>
@@ -3654,16 +3681,24 @@ exports[`saving invalid dates displays banner 1`] = `
               "created_at": "2017-03-17T19:15:25Z",
               "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
               "due_at": "2037-06-01T05:59:00Z",
+              "grade_group_students_individually": false,
               "grading_type": "points",
+              "group_category_id": null,
+              "has_overrides": false,
               "html_url": "http://hostname.tld/whatever",
               "id": "123456789",
               "lock_at": "2037-06-01T05:59:59Z",
               "name": "learn to write code",
               "needs_grading_count": 0,
+              "only_visible_to_overrides": false,
               "overrides": Array [],
               "peer_reviews": false,
               "points_possible": 20,
               "position": 1,
+              "published": true,
+              "rubric": null,
+              "rubric_assessment": Object {},
+              "rubric_settings": null,
               "submission_types": Array [
                 "online_text_entry",
                 "online_url",
@@ -3671,6 +3706,7 @@ exports[`saving invalid dates displays banner 1`] = `
                 "online_upload",
               ],
               "unlock_at": "2017-03-17T06:00:00Z",
+              "unpublishable": false,
               "updated_at": "2017-03-17T19:15:25Z",
             }
           }
@@ -4485,7 +4521,7 @@ exports[`saving invalid name displays banner 1`] = `
         </TouchableHighlight>
         <View />
         <TouchableHighlight
-          accessibilityLabel="Publish, Off"
+          accessibilityLabel="Publish, On"
           accessibilityTraits={
             Array [
               "button",
@@ -4598,7 +4634,7 @@ exports[`saving invalid name displays banner 1`] = `
                   testID="published"
                   tintColor="#374A59"
                   title="Publish"
-                  value={false}
+                  value={true}
                 />
               </View>
             </View>
@@ -4614,16 +4650,24 @@ exports[`saving invalid name displays banner 1`] = `
               "created_at": "2017-03-17T19:15:25Z",
               "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
               "due_at": "2037-06-01T05:59:00Z",
+              "grade_group_students_individually": false,
               "grading_type": "points",
+              "group_category_id": null,
+              "has_overrides": false,
               "html_url": "http://hostname.tld/whatever",
               "id": "123456789",
               "lock_at": "2037-06-01T05:59:59Z",
               "name": "",
               "needs_grading_count": 0,
+              "only_visible_to_overrides": false,
               "overrides": Array [],
               "peer_reviews": false,
               "points_possible": 20,
               "position": 1,
+              "published": true,
+              "rubric": null,
+              "rubric_assessment": Object {},
+              "rubric_settings": null,
               "submission_types": Array [
                 "online_text_entry",
                 "online_url",
@@ -4631,6 +4675,7 @@ exports[`saving invalid name displays banner 1`] = `
                 "online_upload",
               ],
               "unlock_at": "2017-03-17T06:00:00Z",
+              "unpublishable": false,
               "updated_at": "2017-03-17T19:15:25Z",
             }
           }
@@ -5410,7 +5455,7 @@ exports[`saving invalid points possible displays banner 1`] = `
         </TouchableHighlight>
         <View />
         <TouchableHighlight
-          accessibilityLabel="Publish, Off"
+          accessibilityLabel="Publish, On"
           accessibilityTraits={
             Array [
               "button",
@@ -5523,7 +5568,7 @@ exports[`saving invalid points possible displays banner 1`] = `
                   testID="published"
                   tintColor="#374A59"
                   title="Publish"
-                  value={false}
+                  value={true}
                 />
               </View>
             </View>
@@ -5574,16 +5619,24 @@ exports[`saving invalid points possible displays banner 1`] = `
               "created_at": "2017-03-17T19:15:25Z",
               "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
               "due_at": "2037-06-01T05:59:00Z",
+              "grade_group_students_individually": false,
               "grading_type": "points",
+              "group_category_id": null,
+              "has_overrides": false,
               "html_url": "http://hostname.tld/whatever",
               "id": "123456789",
               "lock_at": "2037-06-01T05:59:59Z",
               "name": "learn to write code",
               "needs_grading_count": 0,
+              "only_visible_to_overrides": false,
               "overrides": Array [],
               "peer_reviews": false,
               "points_possible": "D",
               "position": 1,
+              "published": true,
+              "rubric": null,
+              "rubric_assessment": Object {},
+              "rubric_settings": null,
               "submission_types": Array [
                 "online_text_entry",
                 "online_url",
@@ -5591,6 +5644,7 @@ exports[`saving invalid points possible displays banner 1`] = `
                 "online_upload",
               ],
               "unlock_at": "2017-03-17T06:00:00Z",
+              "unpublishable": false,
               "updated_at": "2017-03-17T19:15:25Z",
             }
           }
@@ -6370,7 +6424,7 @@ exports[`saving negative points possible displays banner 1`] = `
         </TouchableHighlight>
         <View />
         <TouchableHighlight
-          accessibilityLabel="Publish, Off"
+          accessibilityLabel="Publish, On"
           accessibilityTraits={
             Array [
               "button",
@@ -6483,7 +6537,7 @@ exports[`saving negative points possible displays banner 1`] = `
                   testID="published"
                   tintColor="#374A59"
                   title="Publish"
-                  value={false}
+                  value={true}
                 />
               </View>
             </View>
@@ -6534,16 +6588,24 @@ exports[`saving negative points possible displays banner 1`] = `
               "created_at": "2017-03-17T19:15:25Z",
               "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
               "due_at": "2037-06-01T05:59:00Z",
+              "grade_group_students_individually": false,
               "grading_type": "points",
+              "group_category_id": null,
+              "has_overrides": false,
               "html_url": "http://hostname.tld/whatever",
               "id": "123456789",
               "lock_at": "2037-06-01T05:59:59Z",
               "name": "learn to write code",
               "needs_grading_count": 0,
+              "only_visible_to_overrides": false,
               "overrides": Array [],
               "peer_reviews": false,
               "points_possible": -1,
               "position": 1,
+              "published": true,
+              "rubric": null,
+              "rubric_assessment": Object {},
+              "rubric_settings": null,
               "submission_types": Array [
                 "online_text_entry",
                 "online_url",
@@ -6551,6 +6613,7 @@ exports[`saving negative points possible displays banner 1`] = `
                 "online_upload",
               ],
               "unlock_at": "2017-03-17T06:00:00Z",
+              "unpublishable": false,
               "updated_at": "2017-03-17T19:15:25Z",
             }
           }

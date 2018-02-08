@@ -23,34 +23,70 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
       data={
         Array [
           Object {
+            "context_id": "1",
+            "context_type": "course",
+            "created_at": "",
+            "files_count": 2,
+            "files_url": "",
+            "folders_count": 1,
+            "folders_url": "",
+            "for_submissions": false,
             "full_name": "course files/some_folder",
+            "hidden": false,
+            "hidden_for_user": false,
             "id": "111",
             "key": "folder-1",
+            "lock_at": null,
+            "locked": false,
+            "locked_for_user": false,
             "name": "some folder",
+            "parent_folder_id": null,
+            "position": 1,
             "type": "folder",
+            "unlock_at": null,
+            "updated_at": "",
           },
           Object {
             "display_name": "Book Report",
+            "filename": "/bookreport",
+            "hidden": false,
             "id": "111",
             "key": "file-1",
+            "lock_at": null,
+            "locked": false,
             "mime_class": "document",
+            "parent_folder_id": null,
             "preview_url": "/",
             "size": 488212,
             "thumbnail_url": "http://fillmurray.com/322/200",
             "type": "file",
+            "unlock_at": null,
             "url": "http://canvaslms.com/bookreport",
+            "usage_rights": Object {
+              "legal_copyright": "",
+              "use_justification": "own_copyright",
+            },
           },
           Object {
             "display_name": "Book Report",
+            "filename": "/bookreport",
+            "hidden": false,
             "id": "111",
             "key": "file-2",
+            "lock_at": null,
             "locked": true,
             "mime_class": "document",
+            "parent_folder_id": null,
             "preview_url": "/",
             "size": 488212,
             "thumbnail_url": "http://fillmurray.com/322/200",
             "type": "file",
+            "unlock_at": null,
             "url": "http://canvaslms.com/bookreport",
+            "usage_rights": Object {
+              "legal_copyright": "",
+              "use_justification": "own_copyright",
+            },
           },
         ]
       }
@@ -304,7 +340,7 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                       }
                       testID="course-file-list.course-file-list-row.cell-folder-1-subtitle-lbl"
                     >
-                      NaN files
+                      2 files
                     </Text>
                   </View>
                   <View
@@ -948,34 +984,70 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
       data={
         Array [
           Object {
+            "context_id": "1",
+            "context_type": "course",
+            "created_at": "",
+            "files_count": 2,
+            "files_url": "",
+            "folders_count": 1,
+            "folders_url": "",
+            "for_submissions": false,
             "full_name": "course files/some_folder",
+            "hidden": false,
+            "hidden_for_user": false,
             "id": "111",
             "key": "folder-1",
+            "lock_at": null,
+            "locked": false,
+            "locked_for_user": false,
             "name": "some folder",
+            "parent_folder_id": null,
+            "position": 1,
             "type": "folder",
+            "unlock_at": null,
+            "updated_at": "",
           },
           Object {
             "display_name": "Book Report",
+            "filename": "/bookreport",
+            "hidden": false,
             "id": "111",
             "key": "file-1",
+            "lock_at": null,
+            "locked": false,
             "mime_class": "document",
+            "parent_folder_id": null,
             "preview_url": "/",
             "size": 488212,
             "thumbnail_url": "http://fillmurray.com/322/200",
             "type": "file",
+            "unlock_at": null,
             "url": "http://canvaslms.com/bookreport",
+            "usage_rights": Object {
+              "legal_copyright": "",
+              "use_justification": "own_copyright",
+            },
           },
           Object {
             "display_name": "Book Report",
+            "filename": "/bookreport",
+            "hidden": false,
             "id": "111",
             "key": "file-2",
+            "lock_at": null,
             "locked": true,
             "mime_class": "document",
+            "parent_folder_id": null,
             "preview_url": "/",
             "size": 488212,
             "thumbnail_url": "http://fillmurray.com/322/200",
             "type": "file",
+            "unlock_at": null,
             "url": "http://canvaslms.com/bookreport",
+            "usage_rights": Object {
+              "legal_copyright": "",
+              "use_justification": "own_copyright",
+            },
           },
         ]
       }
@@ -1229,7 +1301,7 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                       }
                       testID="course-file-list.course-file-list-row.cell-folder-1-subtitle-lbl"
                     >
-                      NaN files
+                      2 files
                     </Text>
                   </View>
                   <View
@@ -1873,34 +1945,70 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
       data={
         Array [
           Object {
+            "context_id": "1",
+            "context_type": "course",
+            "created_at": "",
+            "files_count": 2,
+            "files_url": "",
+            "folders_count": 1,
+            "folders_url": "",
+            "for_submissions": false,
             "full_name": "course files/some_folder",
+            "hidden": false,
+            "hidden_for_user": false,
             "id": "111",
             "key": "folder-1",
+            "lock_at": null,
+            "locked": false,
+            "locked_for_user": false,
             "name": "some folder",
+            "parent_folder_id": null,
+            "position": 1,
             "type": "folder",
+            "unlock_at": null,
+            "updated_at": "",
           },
           Object {
             "display_name": "Book Report",
+            "filename": "/bookreport",
+            "hidden": false,
             "id": "111",
             "key": "file-1",
+            "lock_at": null,
+            "locked": false,
             "mime_class": "document",
+            "parent_folder_id": null,
             "preview_url": "/",
             "size": 488212,
             "thumbnail_url": "http://fillmurray.com/322/200",
             "type": "file",
+            "unlock_at": null,
             "url": "http://canvaslms.com/bookreport",
+            "usage_rights": Object {
+              "legal_copyright": "",
+              "use_justification": "own_copyright",
+            },
           },
           Object {
             "display_name": "Book Report",
+            "filename": "/bookreport",
+            "hidden": false,
             "id": "111",
             "key": "file-2",
+            "lock_at": null,
             "locked": true,
             "mime_class": "document",
+            "parent_folder_id": null,
             "preview_url": "/",
             "size": 488212,
             "thumbnail_url": "http://fillmurray.com/322/200",
             "type": "file",
+            "unlock_at": null,
             "url": "http://canvaslms.com/bookreport",
+            "usage_rights": Object {
+              "legal_copyright": "",
+              "use_justification": "own_copyright",
+            },
           },
         ]
       }
@@ -2154,7 +2262,7 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                       }
                       testID="course-file-list.course-file-list-row.cell-folder-1-subtitle-lbl"
                     >
-                      NaN files
+                      2 files
                     </Text>
                   </View>
                   <View
@@ -2798,34 +2906,70 @@ exports[`CourseFileList sending weird data into the progress update function sho
       data={
         Array [
           Object {
+            "context_id": "1",
+            "context_type": "course",
+            "created_at": "",
+            "files_count": 2,
+            "files_url": "",
+            "folders_count": 1,
+            "folders_url": "",
+            "for_submissions": false,
             "full_name": "course files/some_folder",
+            "hidden": false,
+            "hidden_for_user": false,
             "id": "111",
             "key": "folder-1",
+            "lock_at": null,
+            "locked": false,
+            "locked_for_user": false,
             "name": "some folder",
+            "parent_folder_id": null,
+            "position": 1,
             "type": "folder",
+            "unlock_at": null,
+            "updated_at": "",
           },
           Object {
             "display_name": "Book Report",
+            "filename": "/bookreport",
+            "hidden": false,
             "id": "111",
             "key": "file-1",
+            "lock_at": null,
+            "locked": false,
             "mime_class": "document",
+            "parent_folder_id": null,
             "preview_url": "/",
             "size": 488212,
             "thumbnail_url": "http://fillmurray.com/322/200",
             "type": "file",
+            "unlock_at": null,
             "url": "http://canvaslms.com/bookreport",
+            "usage_rights": Object {
+              "legal_copyright": "",
+              "use_justification": "own_copyright",
+            },
           },
           Object {
             "display_name": "Book Report",
+            "filename": "/bookreport",
+            "hidden": false,
             "id": "111",
             "key": "file-2",
+            "lock_at": null,
             "locked": true,
             "mime_class": "document",
+            "parent_folder_id": null,
             "preview_url": "/",
             "size": 488212,
             "thumbnail_url": "http://fillmurray.com/322/200",
             "type": "file",
+            "unlock_at": null,
             "url": "http://canvaslms.com/bookreport",
+            "usage_rights": Object {
+              "legal_copyright": "",
+              "use_justification": "own_copyright",
+            },
           },
         ]
       }
@@ -3079,7 +3223,7 @@ exports[`CourseFileList sending weird data into the progress update function sho
                       }
                       testID="course-file-list.course-file-list-row.cell-folder-1-subtitle-lbl"
                     >
-                      NaN files
+                      2 files
                     </Text>
                   </View>
                   <View
@@ -3723,34 +3867,70 @@ exports[`CourseFileList should render 1`] = `
       data={
         Array [
           Object {
+            "context_id": "1",
+            "context_type": "course",
+            "created_at": "",
+            "files_count": 2,
+            "files_url": "",
+            "folders_count": 1,
+            "folders_url": "",
+            "for_submissions": false,
             "full_name": "course files/some_folder",
+            "hidden": false,
+            "hidden_for_user": false,
             "id": "111",
             "key": "folder-1",
+            "lock_at": null,
+            "locked": false,
+            "locked_for_user": false,
             "name": "some folder",
+            "parent_folder_id": null,
+            "position": 1,
             "type": "folder",
+            "unlock_at": null,
+            "updated_at": "",
           },
           Object {
             "display_name": "Book Report",
+            "filename": "/bookreport",
+            "hidden": false,
             "id": "111",
             "key": "file-1",
+            "lock_at": null,
+            "locked": false,
             "mime_class": "document",
+            "parent_folder_id": null,
             "preview_url": "/",
             "size": 488212,
             "thumbnail_url": "http://fillmurray.com/322/200",
             "type": "file",
+            "unlock_at": null,
             "url": "http://canvaslms.com/bookreport",
+            "usage_rights": Object {
+              "legal_copyright": "",
+              "use_justification": "own_copyright",
+            },
           },
           Object {
             "display_name": "Book Report",
+            "filename": "/bookreport",
+            "hidden": false,
             "id": "111",
             "key": "file-2",
+            "lock_at": null,
             "locked": true,
             "mime_class": "document",
+            "parent_folder_id": null,
             "preview_url": "/",
             "size": 488212,
             "thumbnail_url": "http://fillmurray.com/322/200",
             "type": "file",
+            "unlock_at": null,
             "url": "http://canvaslms.com/bookreport",
+            "usage_rights": Object {
+              "legal_copyright": "",
+              "use_justification": "own_copyright",
+            },
           },
         ]
       }
@@ -4004,7 +4184,7 @@ exports[`CourseFileList should render 1`] = `
                       }
                       testID="course-file-list.course-file-list-row.cell-folder-1-subtitle-lbl"
                     >
-                      NaN files
+                      2 files
                     </Text>
                   </View>
                   <View
@@ -4648,34 +4828,70 @@ exports[`CourseFileList should render with folders 1`] = `
       data={
         Array [
           Object {
+            "context_id": "1",
+            "context_type": "course",
+            "created_at": "",
+            "files_count": 2,
+            "files_url": "",
+            "folders_count": 1,
+            "folders_url": "",
+            "for_submissions": false,
             "full_name": "course files/some_folder",
+            "hidden": false,
+            "hidden_for_user": false,
             "id": "111",
             "key": "folder-1",
+            "lock_at": null,
+            "locked": false,
+            "locked_for_user": false,
             "name": "some folder",
+            "parent_folder_id": null,
+            "position": 1,
             "type": "folder",
+            "unlock_at": null,
+            "updated_at": "",
           },
           Object {
             "display_name": "Book Report",
+            "filename": "/bookreport",
+            "hidden": false,
             "id": "111",
             "key": "file-1",
+            "lock_at": null,
+            "locked": false,
             "mime_class": "document",
+            "parent_folder_id": null,
             "preview_url": "/",
             "size": 488212,
             "thumbnail_url": "http://fillmurray.com/322/200",
             "type": "file",
+            "unlock_at": null,
             "url": "http://canvaslms.com/bookreport",
+            "usage_rights": Object {
+              "legal_copyright": "",
+              "use_justification": "own_copyright",
+            },
           },
           Object {
             "display_name": "Book Report",
+            "filename": "/bookreport",
+            "hidden": false,
             "id": "111",
             "key": "file-2",
+            "lock_at": null,
             "locked": true,
             "mime_class": "document",
+            "parent_folder_id": null,
             "preview_url": "/",
             "size": 488212,
             "thumbnail_url": "http://fillmurray.com/322/200",
             "type": "file",
+            "unlock_at": null,
             "url": "http://canvaslms.com/bookreport",
+            "usage_rights": Object {
+              "legal_copyright": "",
+              "use_justification": "own_copyright",
+            },
           },
         ]
       }
@@ -4929,7 +5145,7 @@ exports[`CourseFileList should render with folders 1`] = `
                       }
                       testID="course-file-list.course-file-list-row.cell-folder-1-subtitle-lbl"
                     >
-                      NaN files
+                      2 files
                     </Text>
                   </View>
                   <View

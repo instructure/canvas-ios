@@ -18,6 +18,11 @@
 
 import template, { type Template } from '../utils/template'
 
+export const usageRights: Template<UsageRights> = template({
+  legal_copyright: '',
+  use_justification: 'own_copyright',
+})
+
 export const file: Template<File> = template({
   id: '111',
   display_name: 'Book Report',
@@ -26,4 +31,11 @@ export const file: Template<File> = template({
   thumbnail_url: 'http://fillmurray.com/322/200',
   mime_class: 'document',
   preview_url: '/',
+  filename: '/bookreport',
+  parent_folder_id: null,
+  locked: false,
+  hidden: false,
+  unlock_at: null,
+  lock_at: null,
+  usage_rights: usageRights(),
 })

@@ -24,6 +24,7 @@ import { NativeModules } from 'react-native'
 let { pending, resolved, rejected } = AsyncActionTracker
 
 export type Action = {
+  type: string,
   payload: any,
   pending?: boolean,
   error?: boolean,

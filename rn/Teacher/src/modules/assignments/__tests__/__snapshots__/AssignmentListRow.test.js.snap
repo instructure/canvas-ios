@@ -72,10 +72,10 @@ exports[`renders correctly 1`] = `
               "alignSelf": "flex-start",
             }
           }
-          testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
+          testID="assignment-list-row-assignment-icon-published-123456789.icon-img"
         >
           <View
-            accessibilityLabel="Restricted"
+            accessibilityLabel="Published"
             style={
               Object {
                 "alignItems": "center",
@@ -123,14 +123,14 @@ exports[`renders correctly 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Restricted.png",
+                    "testUri": "../../../src/images/Published.png",
                   }
                 }
                 style={
                   Object {
-                    "height": 14,
-                    "tintColor": "#FF0000",
-                    "width": 14,
+                    "height": 12,
+                    "tintColor": "#00AC18",
+                    "width": 12,
                   }
                 }
               />
@@ -245,7 +245,18 @@ exports[`renders correctly 1`] = `
       </View>
     </View>
   </View>
-  <View />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#00AC18",
+        "bottom": 4,
+        "left": 0,
+        "position": "absolute",
+        "top": 4,
+        "width": 3,
+      }
+    }
+  />
 </View>
 `;
 
@@ -321,10 +332,10 @@ exports[`renders correctly assignment icon 1`] = `
               "alignSelf": "flex-start",
             }
           }
-          testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
+          testID="assignment-list-row-assignment-icon-published-123456789.icon-img"
         >
           <View
-            accessibilityLabel="Restricted"
+            accessibilityLabel="Published"
             style={
               Object {
                 "alignItems": "center",
@@ -372,14 +383,14 @@ exports[`renders correctly assignment icon 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Restricted.png",
+                    "testUri": "../../../src/images/Published.png",
                   }
                 }
                 style={
                   Object {
-                    "height": 14,
-                    "tintColor": "#FF0000",
-                    "width": 14,
+                    "height": 12,
+                    "tintColor": "#00AC18",
+                    "width": 12,
                   }
                 }
               />
@@ -494,7 +505,18 @@ exports[`renders correctly assignment icon 1`] = `
       </View>
     </View>
   </View>
-  <View />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#00AC18",
+        "bottom": 4,
+        "left": 0,
+        "position": "absolute",
+        "top": 4,
+        "width": 3,
+      }
+    }
+  />
 </View>
 `;
 
@@ -570,10 +592,10 @@ exports[`renders correctly discussion icon 1`] = `
               "alignSelf": "flex-start",
             }
           }
-          testID="assignment-list-row-discussion-icon-not-published-123456789.icon-img"
+          testID="assignment-list-row-discussion-icon-published-123456789.icon-img"
         >
           <View
-            accessibilityLabel="Restricted"
+            accessibilityLabel="Published"
             style={
               Object {
                 "alignItems": "center",
@@ -621,14 +643,14 @@ exports[`renders correctly discussion icon 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Restricted.png",
+                    "testUri": "../../../src/images/Published.png",
                   }
                 }
                 style={
                   Object {
-                    "height": 14,
-                    "tintColor": "#FF0000",
-                    "width": 14,
+                    "height": 12,
+                    "tintColor": "#00AC18",
+                    "width": 12,
                   }
                 }
               />
@@ -743,7 +765,18 @@ exports[`renders correctly discussion icon 1`] = `
       </View>
     </View>
   </View>
-  <View />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#00AC18",
+        "bottom": 4,
+        "left": 0,
+        "position": "absolute",
+        "top": 4,
+        "width": 3,
+      }
+    }
+  />
 </View>
 `;
 
@@ -1328,10 +1361,10 @@ exports[`renders correctly quiz icon 1`] = `
               "alignSelf": "flex-start",
             }
           }
-          testID="assignment-list-row-quiz-icon-not-published-123456789.icon-img"
+          testID="assignment-list-row-quiz-icon-published-123456789.icon-img"
         >
           <View
-            accessibilityLabel="Restricted"
+            accessibilityLabel="Published"
             style={
               Object {
                 "alignItems": "center",
@@ -1379,14 +1412,14 @@ exports[`renders correctly quiz icon 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Restricted.png",
+                    "testUri": "../../../src/images/Published.png",
                   }
                 }
                 style={
                   Object {
-                    "height": 14,
-                    "tintColor": "#FF0000",
-                    "width": 14,
+                    "height": 12,
+                    "tintColor": "#00AC18",
+                    "width": 12,
                   }
                 }
               />
@@ -1501,7 +1534,18 @@ exports[`renders correctly quiz icon 1`] = `
       </View>
     </View>
   </View>
-  <View />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#00AC18",
+        "bottom": 4,
+        "left": 0,
+        "position": "absolute",
+        "top": 4,
+        "width": 3,
+      }
+    }
+  />
 </View>
 `;
 
@@ -1577,10 +1621,10 @@ exports[`renders correctly with closed due dates 1`] = `
               "alignSelf": "flex-start",
             }
           }
-          testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
+          testID="assignment-list-row-assignment-icon-published-123456789.icon-img"
         >
           <View
-            accessibilityLabel="Restricted"
+            accessibilityLabel="Published"
             style={
               Object {
                 "alignItems": "center",
@@ -1628,14 +1672,14 @@ exports[`renders correctly with closed due dates 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Restricted.png",
+                    "testUri": "../../../src/images/Published.png",
                   }
                 }
                 style={
                   Object {
-                    "height": 14,
-                    "tintColor": "#FF0000",
-                    "width": 14,
+                    "height": 12,
+                    "tintColor": "#00AC18",
+                    "width": 12,
                   }
                 }
               />
@@ -1750,7 +1794,18 @@ exports[`renders correctly with closed due dates 1`] = `
       </View>
     </View>
   </View>
-  <View />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#00AC18",
+        "bottom": 4,
+        "left": 0,
+        "position": "absolute",
+        "top": 4,
+        "width": 3,
+      }
+    }
+  />
 </View>
 `;
 
@@ -1826,10 +1881,10 @@ exports[`renders correctly with needs_grading_count 1`] = `
               "alignSelf": "flex-start",
             }
           }
-          testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
+          testID="assignment-list-row-assignment-icon-published-123456789.icon-img"
         >
           <View
-            accessibilityLabel="Restricted"
+            accessibilityLabel="Published"
             style={
               Object {
                 "alignItems": "center",
@@ -1877,14 +1932,14 @@ exports[`renders correctly with needs_grading_count 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Restricted.png",
+                    "testUri": "../../../src/images/Published.png",
                   }
                 }
                 style={
                   Object {
-                    "height": 14,
-                    "tintColor": "#FF0000",
-                    "width": 14,
+                    "height": 12,
+                    "tintColor": "#00AC18",
+                    "width": 12,
                   }
                 }
               />
@@ -2036,7 +2091,18 @@ exports[`renders correctly with needs_grading_count 1`] = `
       </View>
     </View>
   </View>
-  <View />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#00AC18",
+        "bottom": 4,
+        "left": 0,
+        "position": "absolute",
+        "top": 4,
+        "width": 3,
+      }
+    }
+  />
 </View>
 `;
 
@@ -2112,10 +2178,10 @@ exports[`renders correctly with needs_grading_count and set to not_graded 1`] = 
               "alignSelf": "flex-start",
             }
           }
-          testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
+          testID="assignment-list-row-assignment-icon-published-123456789.icon-img"
         >
           <View
-            accessibilityLabel="Restricted"
+            accessibilityLabel="Published"
             style={
               Object {
                 "alignItems": "center",
@@ -2163,14 +2229,14 @@ exports[`renders correctly with needs_grading_count and set to not_graded 1`] = 
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Restricted.png",
+                    "testUri": "../../../src/images/Published.png",
                   }
                 }
                 style={
                   Object {
-                    "height": 14,
-                    "tintColor": "#FF0000",
-                    "width": 14,
+                    "height": 12,
+                    "tintColor": "#00AC18",
+                    "width": 12,
                   }
                 }
               />
@@ -2285,7 +2351,18 @@ exports[`renders correctly with needs_grading_count and set to not_graded 1`] = 
       </View>
     </View>
   </View>
-  <View />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#00AC18",
+        "bottom": 4,
+        "left": 0,
+        "position": "absolute",
+        "top": 4,
+        "width": 3,
+      }
+    }
+  />
 </View>
 `;
 
@@ -2361,10 +2438,10 @@ exports[`renders correctly with open due dates 1`] = `
               "alignSelf": "flex-start",
             }
           }
-          testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
+          testID="assignment-list-row-assignment-icon-published-123456789.icon-img"
         >
           <View
-            accessibilityLabel="Restricted"
+            accessibilityLabel="Published"
             style={
               Object {
                 "alignItems": "center",
@@ -2412,14 +2489,14 @@ exports[`renders correctly with open due dates 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Restricted.png",
+                    "testUri": "../../../src/images/Published.png",
                   }
                 }
                 style={
                   Object {
-                    "height": 14,
-                    "tintColor": "#FF0000",
-                    "width": 14,
+                    "height": 12,
+                    "tintColor": "#00AC18",
+                    "width": 12,
                   }
                 }
               />
@@ -2534,7 +2611,18 @@ exports[`renders correctly with open due dates 1`] = `
       </View>
     </View>
   </View>
-  <View />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#00AC18",
+        "bottom": 4,
+        "left": 0,
+        "position": "absolute",
+        "top": 4,
+        "width": 3,
+      }
+    }
+  />
 </View>
 `;
 
@@ -2610,10 +2698,10 @@ exports[`renders correctly with selected props 1`] = `
               "alignSelf": "flex-start",
             }
           }
-          testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
+          testID="assignment-list-row-assignment-icon-published-123456789.icon-img"
         >
           <View
-            accessibilityLabel="Restricted"
+            accessibilityLabel="Published"
             style={
               Object {
                 "alignItems": "center",
@@ -2661,14 +2749,14 @@ exports[`renders correctly with selected props 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Restricted.png",
+                    "testUri": "../../../src/images/Published.png",
                   }
                 }
                 style={
                   Object {
-                    "height": 14,
-                    "tintColor": "#FF0000",
-                    "width": 14,
+                    "height": 12,
+                    "tintColor": "#00AC18",
+                    "width": 12,
                   }
                 }
               />
@@ -2783,6 +2871,17 @@ exports[`renders correctly with selected props 1`] = `
       </View>
     </View>
   </View>
-  <View />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#00AC18",
+        "bottom": 4,
+        "left": 0,
+        "position": "absolute",
+        "top": 4,
+        "width": 3,
+      }
+    }
+  />
 </View>
 `;

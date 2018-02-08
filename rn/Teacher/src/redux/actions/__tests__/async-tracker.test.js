@@ -20,9 +20,13 @@ import { asyncTTLCheck, asyncChecker, AsyncActionTracker, asyncActions as reduce
 
 const { resolved, pending, rejected } = AsyncActionTracker
 
+const template = {
+  ...require('../../__templates__/app-state'),
+}
+
 describe('asyncChecker', () => {
   test('return true when they are pending', () => {
-    const state = {
+    const state = template.appState({
       asyncActions: {
         'action1': {
           pending: 0,
@@ -33,7 +37,7 @@ describe('asyncChecker', () => {
           total: 0,
         },
       },
-    }
+    })
 
     const result = asyncChecker(state, Object.keys(state.asyncActions))
     expect(result).toBeTruthy()
@@ -42,7 +46,7 @@ describe('asyncChecker', () => {
 
 describe('asyncTTLCheck', () => {
   test('return true when the ttl has passed', () => {
-    const state = {
+    const state = template.appState({
       asyncActions: {
         'action1': {
           pending: 0,
@@ -65,14 +69,14 @@ describe('asyncTTLCheck', () => {
           lastResolvedDate: (new Date()) - 10,
         },
       },
-    }
+    })
 
     const result = asyncTTLCheck(state, Object.keys(state.asyncActions), 50)
     expect(result).toBeTruthy()
   })
 
   test('return false when the ttl has not passed', () => {
-    const state = {
+    const state = template.appState({
       asyncActions: {
         'action1': {
           pending: 0,
@@ -100,30 +104,30 @@ describe('asyncTTLCheck', () => {
           lastResolvedDate: (new Date()) - 3,
         },
       },
-    }
+    })
 
     const result = asyncTTLCheck(state, Object.keys(state.asyncActions), 50)
     expect(result).toBeFalsy()
   })
 
   test('return false when the ttl has not passed', () => {
-    const state = {
+    const state = template.appState({
       asyncActions: {
         'action1': {
           pending: 0,
           total: 0,
         },
       },
-    }
+    })
 
     const result = asyncTTLCheck(state, ['action1'], 50)
     expect(result).toBeTruthy()
   })
 
   test('return false when the ttl has not passed', () => {
-    const state = {
+    const state = template.appState({
       asyncActions: {},
-    }
+    })
 
     const result = asyncTTLCheck(state, ['action1'], 50)
     expect(result).toBeTruthy()

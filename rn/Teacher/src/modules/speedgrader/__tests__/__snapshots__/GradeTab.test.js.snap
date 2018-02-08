@@ -141,6 +141,7 @@ exports[`Rubric has the correct score 1`] = `
             rubricScore={0}
             rubricSettings={
               Object {
+                "free_form_criterion_comments": false,
                 "id": "1",
                 "points_possible": 100,
                 "title": "A possible item",
@@ -734,6 +735,7 @@ exports[`Rubric renders a rubric 1`] = `
             rubricScore={10}
             rubricSettings={
               Object {
+                "free_form_criterion_comments": false,
                 "id": "1",
                 "points_possible": 100,
                 "title": "A possible item",
@@ -1817,6 +1819,7 @@ exports[`Rubric renders the grade picker when there is no rubric 1`] = `
             rubricScore={10}
             rubricSettings={
               Object {
+                "free_form_criterion_comments": false,
                 "id": "1",
                 "points_possible": 100,
                 "title": "A possible item",
@@ -1979,6 +1982,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
             rubricScore={10}
             rubricSettings={
               Object {
+                "free_form_criterion_comments": false,
                 "id": "1",
                 "points_possible": 100,
                 "title": "A possible item",

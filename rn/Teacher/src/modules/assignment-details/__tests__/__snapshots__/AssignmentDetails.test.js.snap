@@ -148,20 +148,20 @@ exports[`renders 1`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Unpublished.png",
+                        "testUri": "../../../src/images/Published.png",
                       }
                     }
                     style={
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#8B969E",
+                          "tintColor": "#00AC18",
                           "width": 21,
                         },
                         Object {},
                       ]
                     }
-                    testID="assignment-details.published-icon.unpublished-status-img"
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -183,7 +183,7 @@ exports[`renders 1`] = `
                             "marginLeft": 5,
                           },
                           Object {
-                            "color": "#8B969E",
+                            "color": "#00AC18",
                           },
                         ],
                         Object {
@@ -193,7 +193,7 @@ exports[`renders 1`] = `
                     }
                     testID="assignment-details.published-icon.publish-status-lbl"
                   >
-                    Unpublished
+                    Published
                   </Text>
                 </View>
               </View>
@@ -1041,20 +1041,20 @@ exports[`renders as a designer 1`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Unpublished.png",
+                        "testUri": "../../../src/images/Published.png",
                       }
                     }
                     style={
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#8B969E",
+                          "tintColor": "#00AC18",
                           "width": 21,
                         },
                         Object {},
                       ]
                     }
-                    testID="assignment-details.published-icon.unpublished-status-img"
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -1076,7 +1076,7 @@ exports[`renders as a designer 1`] = `
                             "marginLeft": 5,
                           },
                           Object {
-                            "color": "#8B969E",
+                            "color": "#00AC18",
                           },
                         ],
                         Object {
@@ -1086,7 +1086,7 @@ exports[`renders as a designer 1`] = `
                     }
                     testID="assignment-details.published-icon.publish-status-lbl"
                   >
-                    Unpublished
+                    Published
                   </Text>
                 </View>
               </View>
@@ -1859,20 +1859,20 @@ exports[`renders loading 1`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Unpublished.png",
+                        "testUri": "../../../src/images/Published.png",
                       }
                     }
                     style={
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#8B969E",
+                          "tintColor": "#00AC18",
                           "width": 21,
                         },
                         Object {},
                       ]
                     }
-                    testID="assignment-details.published-icon.unpublished-status-img"
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -1894,7 +1894,7 @@ exports[`renders loading 1`] = `
                             "marginLeft": 5,
                           },
                           Object {
-                            "color": "#8B969E",
+                            "color": "#00AC18",
                           },
                         ],
                         Object {
@@ -1904,7 +1904,7 @@ exports[`renders loading 1`] = `
                     }
                     testID="assignment-details.published-icon.publish-status-lbl"
                   >
-                    Unpublished
+                    Published
                   </Text>
                 </View>
               </View>
@@ -2675,20 +2675,20 @@ exports[`renders with no submission types 1`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Unpublished.png",
+                        "testUri": "../../../src/images/Published.png",
                       }
                     }
                     style={
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#8B969E",
+                          "tintColor": "#00AC18",
                           "width": 21,
                         },
                         Object {},
                       ]
                     }
-                    testID="assignment-details.published-icon.unpublished-status-img"
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -2710,7 +2710,7 @@ exports[`renders with no submission types 1`] = `
                             "marginLeft": 5,
                           },
                           Object {
-                            "color": "#8B969E",
+                            "color": "#00AC18",
                           },
                         ],
                         Object {
@@ -2720,7 +2720,7 @@ exports[`renders with no submission types 1`] = `
                     }
                     testID="assignment-details.published-icon.publish-status-lbl"
                   >
-                    Unpublished
+                    Published
                   </Text>
                 </View>
               </View>
@@ -3493,20 +3493,20 @@ exports[`renders with not_graded submission type 1`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Unpublished.png",
+                        "testUri": "../../../src/images/Published.png",
                       }
                     }
                     style={
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#8B969E",
+                          "tintColor": "#00AC18",
                           "width": 21,
                         },
                         Object {},
                       ]
                     }
-                    testID="assignment-details.published-icon.unpublished-status-img"
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -3528,7 +3528,7 @@ exports[`renders with not_graded submission type 1`] = `
                             "marginLeft": 5,
                           },
                           Object {
-                            "color": "#8B969E",
+                            "color": "#00AC18",
                           },
                         ],
                         Object {
@@ -3538,7 +3538,7 @@ exports[`renders with not_graded submission type 1`] = `
                     }
                     testID="assignment-details.published-icon.publish-status-lbl"
                   >
-                    Unpublished
+                    Published
                   </Text>
                 </View>
               </View>
@@ -4309,20 +4309,20 @@ exports[`renders without description 1`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Unpublished.png",
+                        "testUri": "../../../src/images/Published.png",
                       }
                     }
                     style={
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#8B969E",
+                          "tintColor": "#00AC18",
                           "width": 21,
                         },
                         Object {},
                       ]
                     }
-                    testID="assignment-details.published-icon.unpublished-status-img"
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -4344,7 +4344,7 @@ exports[`renders without description 1`] = `
                             "marginLeft": 5,
                           },
                           Object {
-                            "color": "#8B969E",
+                            "color": "#00AC18",
                           },
                         ],
                         Object {
@@ -4354,7 +4354,7 @@ exports[`renders without description 1`] = `
                     }
                     testID="assignment-details.published-icon.publish-status-lbl"
                   >
-                    Unpublished
+                    Published
                   </Text>
                 </View>
               </View>

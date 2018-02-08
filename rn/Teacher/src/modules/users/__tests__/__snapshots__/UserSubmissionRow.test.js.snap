@@ -72,10 +72,10 @@ exports[`UserSubmissionRow renders 1`] = `
               "alignSelf": "flex-start",
             }
           }
-          testID="user-submission-row-icon-not-published-1.icon-img"
+          testID="user-submission-row-icon-published-1.icon-img"
         >
           <View
-            accessibilityLabel="Restricted"
+            accessibilityLabel="Published"
             style={
               Object {
                 "alignItems": "center",
@@ -123,14 +123,14 @@ exports[`UserSubmissionRow renders 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Restricted.png",
+                    "testUri": "../../../src/images/Published.png",
                   }
                 }
                 style={
                   Object {
-                    "height": 14,
-                    "tintColor": "#FF0000",
-                    "width": 14,
+                    "height": 12,
+                    "tintColor": "#00AC18",
+                    "width": 12,
                   }
                 }
               />
@@ -303,7 +303,18 @@ exports[`UserSubmissionRow renders 1`] = `
       </View>
     </View>
   </View>
-  <View />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#00AC18",
+        "bottom": 4,
+        "left": 0,
+        "position": "absolute",
+        "top": 4,
+        "width": 3,
+      }
+    }
+  />
 </View>
 `;
 
@@ -379,10 +390,10 @@ exports[`UserSubmissionRow renders complete 1`] = `
               "alignSelf": "flex-start",
             }
           }
-          testID="user-submission-row-icon-not-published-1.icon-img"
+          testID="user-submission-row-icon-published-1.icon-img"
         >
           <View
-            accessibilityLabel="Restricted"
+            accessibilityLabel="Published"
             style={
               Object {
                 "alignItems": "center",
@@ -430,14 +441,14 @@ exports[`UserSubmissionRow renders complete 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Restricted.png",
+                    "testUri": "../../../src/images/Published.png",
                   }
                 }
                 style={
                   Object {
-                    "height": 14,
-                    "tintColor": "#FF0000",
-                    "width": 14,
+                    "height": 12,
+                    "tintColor": "#00AC18",
+                    "width": 12,
                   }
                 }
               />
@@ -610,7 +621,18 @@ exports[`UserSubmissionRow renders complete 1`] = `
       </View>
     </View>
   </View>
-  <View />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#00AC18",
+        "bottom": 4,
+        "left": 0,
+        "position": "absolute",
+        "top": 4,
+        "width": 3,
+      }
+    }
+  />
 </View>
 `;
 
@@ -686,10 +708,10 @@ exports[`UserSubmissionRow renders excused 1`] = `
               "alignSelf": "flex-start",
             }
           }
-          testID="user-submission-row-icon-not-published-1.icon-img"
+          testID="user-submission-row-icon-published-1.icon-img"
         >
           <View
-            accessibilityLabel="Restricted"
+            accessibilityLabel="Published"
             style={
               Object {
                 "alignItems": "center",
@@ -737,14 +759,14 @@ exports[`UserSubmissionRow renders excused 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Restricted.png",
+                    "testUri": "../../../src/images/Published.png",
                   }
                 }
                 style={
                   Object {
-                    "height": 14,
-                    "tintColor": "#FF0000",
-                    "width": 14,
+                    "height": 12,
+                    "tintColor": "#00AC18",
+                    "width": 12,
                   }
                 }
               />
@@ -824,7 +846,18 @@ exports[`UserSubmissionRow renders excused 1`] = `
       </View>
     </View>
   </View>
-  <View />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#00AC18",
+        "bottom": 4,
+        "left": 0,
+        "position": "absolute",
+        "top": 4,
+        "width": 3,
+      }
+    }
+  />
 </View>
 `;
 
@@ -900,10 +933,10 @@ exports[`UserSubmissionRow renders incomplete 1`] = `
               "alignSelf": "flex-start",
             }
           }
-          testID="user-submission-row-icon-not-published-1.icon-img"
+          testID="user-submission-row-icon-published-1.icon-img"
         >
           <View
-            accessibilityLabel="Restricted"
+            accessibilityLabel="Published"
             style={
               Object {
                 "alignItems": "center",
@@ -951,14 +984,14 @@ exports[`UserSubmissionRow renders incomplete 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Restricted.png",
+                    "testUri": "../../../src/images/Published.png",
                   }
                 }
                 style={
                   Object {
-                    "height": 14,
-                    "tintColor": "#FF0000",
-                    "width": 14,
+                    "height": 12,
+                    "tintColor": "#00AC18",
+                    "width": 12,
                   }
                 }
               />
@@ -1131,7 +1164,18 @@ exports[`UserSubmissionRow renders incomplete 1`] = `
       </View>
     </View>
   </View>
-  <View />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#00AC18",
+        "bottom": 4,
+        "left": 0,
+        "position": "absolute",
+        "top": 4,
+        "width": 3,
+      }
+    }
+  />
 </View>
 `;
 
@@ -1207,10 +1251,10 @@ exports[`UserSubmissionRow renders needs grading 1`] = `
               "alignSelf": "flex-start",
             }
           }
-          testID="user-submission-row-icon-not-published-1.icon-img"
+          testID="user-submission-row-icon-published-1.icon-img"
         >
           <View
-            accessibilityLabel="Restricted"
+            accessibilityLabel="Published"
             style={
               Object {
                 "alignItems": "center",
@@ -1258,14 +1302,14 @@ exports[`UserSubmissionRow renders needs grading 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Restricted.png",
+                    "testUri": "../../../src/images/Published.png",
                   }
                 }
                 style={
                   Object {
-                    "height": 14,
-                    "tintColor": "#FF0000",
-                    "width": 14,
+                    "height": 12,
+                    "tintColor": "#00AC18",
+                    "width": 12,
                   }
                 }
               />
@@ -1395,6 +1439,17 @@ exports[`UserSubmissionRow renders needs grading 1`] = `
       </View>
     </View>
   </View>
-  <View />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#00AC18",
+        "bottom": 4,
+        "left": 0,
+        "position": "absolute",
+        "top": 4,
+        "width": 3,
+      }
+    }
+  />
 </View>
 `;

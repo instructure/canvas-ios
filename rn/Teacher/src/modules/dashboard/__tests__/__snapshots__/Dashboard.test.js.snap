@@ -28,6 +28,7 @@ exports[`Doesnt render groups when in the teacher app 1`] = `
         Object {
           "data": Array [
             Object {
+              "account_id": "1",
               "color": "#27B9CD",
               "course_code": "BIO 101",
               "default_view": "wiki",
@@ -50,6 +51,7 @@ exports[`Doesnt render groups when in the teacher app 1`] = `
               },
             },
             Object {
+              "account_id": "1",
               "color": "#8F3E97",
               "course_code": "LIT 401",
               "default_view": "wiki",
@@ -72,6 +74,7 @@ exports[`Doesnt render groups when in the teacher app 1`] = `
               },
             },
             Object {
+              "account_id": "1",
               "color": "#8F3E99",
               "course_code": "FOO 102",
               "default_view": "wiki",
@@ -140,6 +143,7 @@ exports[`Doesnt render groups when in the teacher app 1`] = `
         Object {
           "data": Array [
             Object {
+              "account_id": "1",
               "color": "#27B9CD",
               "course_code": "BIO 101",
               "default_view": "wiki",
@@ -162,6 +166,7 @@ exports[`Doesnt render groups when in the teacher app 1`] = `
               },
             },
             Object {
+              "account_id": "1",
               "color": "#8F3E97",
               "course_code": "LIT 401",
               "default_view": "wiki",
@@ -184,6 +189,7 @@ exports[`Doesnt render groups when in the teacher app 1`] = `
               },
             },
             Object {
+              "account_id": "1",
               "color": "#8F3E99",
               "course_code": "FOO 102",
               "default_view": "wiki",
@@ -912,6 +918,7 @@ exports[`Only renders courses when !isFullDashboard 1`] = `
         Object {
           "data": Array [
             Object {
+              "account_id": "1",
               "color": "#27B9CD",
               "course_code": "BIO 101",
               "default_view": "wiki",
@@ -934,6 +941,7 @@ exports[`Only renders courses when !isFullDashboard 1`] = `
               },
             },
             Object {
+              "account_id": "1",
               "color": "#8F3E97",
               "course_code": "LIT 401",
               "default_view": "wiki",
@@ -956,6 +964,7 @@ exports[`Only renders courses when !isFullDashboard 1`] = `
               },
             },
             Object {
+              "account_id": "1",
               "color": "#8F3E99",
               "course_code": "FOO 102",
               "default_view": "wiki",
@@ -1015,6 +1024,7 @@ exports[`Only renders courses when !isFullDashboard 1`] = `
         Object {
           "data": Array [
             Object {
+              "account_id": "1",
               "color": "#27B9CD",
               "course_code": "BIO 101",
               "default_view": "wiki",
@@ -1037,6 +1047,7 @@ exports[`Only renders courses when !isFullDashboard 1`] = `
               },
             },
             Object {
+              "account_id": "1",
               "color": "#8F3E97",
               "course_code": "LIT 401",
               "default_view": "wiki",
@@ -1059,6 +1070,7 @@ exports[`Only renders courses when !isFullDashboard 1`] = `
               },
             },
             Object {
+              "account_id": "1",
               "color": "#8F3E99",
               "course_code": "FOO 102",
               "default_view": "wiki",
@@ -1690,6 +1702,7 @@ exports[`render 1`] = `
         Object {
           "data": Array [
             Object {
+              "account_id": "1",
               "color": "#27B9CD",
               "course_code": "BIO 101",
               "default_view": "wiki",
@@ -1712,6 +1725,7 @@ exports[`render 1`] = `
               },
             },
             Object {
+              "account_id": "1",
               "color": "#8F3E97",
               "course_code": "LIT 401",
               "default_view": "wiki",
@@ -1734,6 +1748,7 @@ exports[`render 1`] = `
               },
             },
             Object {
+              "account_id": "1",
               "color": "#8F3E99",
               "course_code": "FOO 102",
               "default_view": "wiki",
@@ -1823,6 +1838,7 @@ exports[`render 1`] = `
         Object {
           "data": Array [
             Object {
+              "account_id": "1",
               "color": "#27B9CD",
               "course_code": "BIO 101",
               "default_view": "wiki",
@@ -1845,6 +1861,7 @@ exports[`render 1`] = `
               },
             },
             Object {
+              "account_id": "1",
               "color": "#8F3E97",
               "course_code": "LIT 401",
               "default_view": "wiki",
@@ -1867,6 +1884,7 @@ exports[`render 1`] = `
               },
             },
             Object {
+              "account_id": "1",
               "color": "#8F3E99",
               "course_code": "FOO 102",
               "default_view": "wiki",
@@ -2940,6 +2958,7 @@ exports[`render while pending 1`] = `
         Object {
           "data": Array [
             Object {
+              "account_id": "1",
               "color": "#27B9CD",
               "course_code": "BIO 101",
               "default_view": "wiki",
@@ -2962,6 +2981,7 @@ exports[`render while pending 1`] = `
               },
             },
             Object {
+              "account_id": "1",
               "color": "#8F3E97",
               "course_code": "LIT 401",
               "default_view": "wiki",
@@ -2984,6 +3004,7 @@ exports[`render while pending 1`] = `
               },
             },
             Object {
+              "account_id": "1",
               "color": "#8F3E99",
               "course_code": "FOO 102",
               "default_view": "wiki",
@@ -3073,6 +3094,7 @@ exports[`render while pending 1`] = `
         Object {
           "data": Array [
             Object {
+              "account_id": "1",
               "color": "#27B9CD",
               "course_code": "BIO 101",
               "default_view": "wiki",
@@ -3095,6 +3117,7 @@ exports[`render while pending 1`] = `
               },
             },
             Object {
+              "account_id": "1",
               "color": "#8F3E97",
               "course_code": "LIT 401",
               "default_view": "wiki",
@@ -3117,6 +3140,7 @@ exports[`render while pending 1`] = `
               },
             },
             Object {
+              "account_id": "1",
               "color": "#8F3E99",
               "course_code": "FOO 102",
               "default_view": "wiki",
@@ -5635,12 +5659,15 @@ exports[`renders course invites 1`] = `
               "enrollment_state": "invited",
               "id": "1",
               "last_activity_at": "2017-04-05T15:12:45Z",
+              "role": "",
+              "role_id": "",
               "type": "StudentEnrollment",
               "user": Object {
                 "avatar_url": "http://www.fillmurray.com/100/100",
                 "bio": "my bio is yuuuuuuuge",
                 "id": "1",
                 "name": "Donald Trump",
+                "primary_email": "donald@trump.com",
                 "short_name": "The Donald",
                 "sortable_name": "Mr. President",
               },
@@ -5652,12 +5679,15 @@ exports[`renders course invites 1`] = `
               "enrollment_state": "invited",
               "id": "2",
               "last_activity_at": "2017-04-05T15:12:45Z",
+              "role": "",
+              "role_id": "",
               "type": "StudentEnrollment",
               "user": Object {
                 "avatar_url": "http://www.fillmurray.com/100/100",
                 "bio": "my bio is yuuuuuuuge",
                 "id": "1",
                 "name": "Donald Trump",
+                "primary_email": "donald@trump.com",
                 "short_name": "The Donald",
                 "sortable_name": "Mr. President",
               },
@@ -5671,6 +5701,7 @@ exports[`renders course invites 1`] = `
         Object {
           "data": Array [
             Object {
+              "account_id": "1",
               "color": "#27B9CD",
               "course_code": "BIO 101",
               "default_view": "wiki",
@@ -5693,6 +5724,7 @@ exports[`renders course invites 1`] = `
               },
             },
             Object {
+              "account_id": "1",
               "color": "#8F3E97",
               "course_code": "LIT 401",
               "default_view": "wiki",
@@ -5715,6 +5747,7 @@ exports[`renders course invites 1`] = `
               },
             },
             Object {
+              "account_id": "1",
               "color": "#8F3E99",
               "course_code": "FOO 102",
               "default_view": "wiki",
@@ -5809,12 +5842,15 @@ exports[`renders course invites 1`] = `
               "enrollment_state": "invited",
               "id": "1",
               "last_activity_at": "2017-04-05T15:12:45Z",
+              "role": "",
+              "role_id": "",
               "type": "StudentEnrollment",
               "user": Object {
                 "avatar_url": "http://www.fillmurray.com/100/100",
                 "bio": "my bio is yuuuuuuuge",
                 "id": "1",
                 "name": "Donald Trump",
+                "primary_email": "donald@trump.com",
                 "short_name": "The Donald",
                 "sortable_name": "Mr. President",
               },
@@ -5826,12 +5862,15 @@ exports[`renders course invites 1`] = `
               "enrollment_state": "invited",
               "id": "2",
               "last_activity_at": "2017-04-05T15:12:45Z",
+              "role": "",
+              "role_id": "",
               "type": "StudentEnrollment",
               "user": Object {
                 "avatar_url": "http://www.fillmurray.com/100/100",
                 "bio": "my bio is yuuuuuuuge",
                 "id": "1",
                 "name": "Donald Trump",
+                "primary_email": "donald@trump.com",
                 "short_name": "The Donald",
                 "sortable_name": "Mr. President",
               },
@@ -5845,6 +5884,7 @@ exports[`renders course invites 1`] = `
         Object {
           "data": Array [
             Object {
+              "account_id": "1",
               "color": "#27B9CD",
               "course_code": "BIO 101",
               "default_view": "wiki",
@@ -5867,6 +5907,7 @@ exports[`renders course invites 1`] = `
               },
             },
             Object {
+              "account_id": "1",
               "color": "#8F3E97",
               "course_code": "LIT 401",
               "default_view": "wiki",
@@ -5889,6 +5930,7 @@ exports[`renders course invites 1`] = `
               },
             },
             Object {
+              "account_id": "1",
               "color": "#8F3E99",
               "course_code": "FOO 102",
               "default_view": "wiki",

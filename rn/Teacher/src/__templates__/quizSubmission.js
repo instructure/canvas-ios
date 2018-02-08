@@ -20,11 +20,20 @@ import template, { type Template } from '../utils/template'
 import { user } from './users'
 import { quiz } from './quiz'
 
-export const quizSubmission: Template<Submission> = template({
+export const quizSubmission: Template<QuizSubmission> = template({
   id: '32',
   quiz_id: quiz().id,
   user_id: user().id,
   finished_at: '2017-04-05T15:12:45Z',
   kept_score: 5,
   workflow_state: 'complete',
+  submission_id: '1',
+  attempt: 1,
+  extra_attempts: 0,
+  extra_time: 0,
+  manually_unlocked: false,
+  score_before_regrade: 0,
+  fudge_points: 0,
+  has_seen_results: false,
+  overdue_and_needs_submission: false,
 })

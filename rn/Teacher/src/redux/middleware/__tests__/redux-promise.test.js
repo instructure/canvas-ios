@@ -42,7 +42,7 @@ test('it immediately dispatches pending', async () => {
 })
 
 test('it dispatches on resolution', async () => {
-  let _resolve = () => {}
+  let _resolve = (v: any) => {}
   let promise = new Promise((resolve) => { _resolve = resolve })
 
   let store = mockStore()
@@ -91,7 +91,7 @@ test('it dispatches on rejection', async () => {
 test('it post notification on resolution', async () => {
   let spy = jest.fn()
   NativeNotificationCenter.postAsyncActionNotification = spy
-  let _resolve = () => {}
+  let _resolve = (v: any) => {}
   let promise = new Promise((resolve) => { _resolve = resolve })
 
   let store = mockStore()

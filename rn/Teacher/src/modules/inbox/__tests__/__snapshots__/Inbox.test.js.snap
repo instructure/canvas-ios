@@ -462,12 +462,17 @@ exports[`filters conversations based on course 1`] = `
       data={
         Array [
           Object {
+            "audience": Array [],
+            "audience_contexts": Object {},
             "avatar_url": "http://www.fillmurray.com/200/300",
             "context_code": "course_1",
             "context_name": "Test Class",
             "id": "1",
+            "last_authored_message": "this is the worst class ever",
+            "last_authored_message_at": "2037-06-01T05:59:00Z",
             "last_message": "this is the worst class ever",
             "last_message_at": "2037-06-01T05:59:00Z",
+            "message_count": 2,
             "participants": Array [
               Object {
                 "id": "1234",
@@ -478,7 +483,12 @@ exports[`filters conversations based on course 1`] = `
                 "name": "solaire of astora",
               },
             ],
+            "private": false,
+            "properties": null,
+            "starred": false,
             "subject": "learn to write code",
+            "subscribed": false,
+            "visible": true,
             "workflow_state": "read",
           },
         ]
@@ -1779,12 +1789,17 @@ exports[`renders correctly 1`] = `
       data={
         Array [
           Object {
+            "audience": Array [],
+            "audience_contexts": Object {},
             "avatar_url": "http://www.fillmurray.com/200/300",
             "context_code": "course_1",
             "context_name": "Test Class",
             "id": "1",
+            "last_authored_message": "this is the worst class ever",
+            "last_authored_message_at": "2037-06-01T05:59:00Z",
             "last_message": "this is the worst class ever",
             "last_message_at": "2037-06-01T05:59:00Z",
+            "message_count": 2,
             "participants": Array [
               Object {
                 "id": "1234",
@@ -1795,16 +1810,26 @@ exports[`renders correctly 1`] = `
                 "name": "solaire of astora",
               },
             ],
+            "private": false,
+            "properties": null,
+            "starred": false,
             "subject": "learn to write code",
+            "subscribed": false,
+            "visible": true,
             "workflow_state": "read",
           },
           Object {
+            "audience": Array [],
+            "audience_contexts": Object {},
             "avatar_url": "http://www.fillmurray.com/200/300",
             "context_code": "course_2",
             "context_name": "Test Class",
             "id": "2",
+            "last_authored_message": "this is the worst class ever",
+            "last_authored_message_at": "2037-06-01T05:59:00Z",
             "last_message": "this is the worst class ever",
             "last_message_at": "2037-06-01T05:59:00Z",
+            "message_count": 2,
             "participants": Array [
               Object {
                 "id": "1234",
@@ -1815,7 +1840,12 @@ exports[`renders correctly 1`] = `
                 "name": "solaire of astora",
               },
             ],
+            "private": false,
+            "properties": null,
+            "starred": false,
             "subject": "learn to write code",
+            "subscribed": false,
+            "visible": true,
             "workflow_state": "read",
           },
         ]

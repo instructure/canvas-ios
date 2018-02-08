@@ -22,7 +22,7 @@ export type File = {
   filename: string,
   url: string,
   size: number,
-  thumbnail_url: number,
+  thumbnail_url: string,
   mime_class: string,
   parent_folder_id: ?string,
   locked: boolean,

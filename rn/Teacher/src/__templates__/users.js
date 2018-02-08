@@ -25,6 +25,7 @@ export const user: Template<User> = template({
   sortable_name: 'Mr. President',
   bio: 'my bio is yuuuuuuuge',
   avatar_url: 'http://www.fillmurray.com/100/100',
+  primary_email: 'donald@trump.com',
 })
 
 export const userDisplay: Template<UserDisplay> = template({
@@ -32,4 +33,6 @@ export const userDisplay: Template<UserDisplay> = template({
   short_name: 'The Donald',
   display_name: 'The Donald',
   avatar_url: 'http://www.fillmurray.com/100/100',
+  avatar_image_url: 'http://www.fillmurray.com/100/100',
+  html_url: '',
 })

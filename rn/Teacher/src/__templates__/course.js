@@ -21,6 +21,7 @@ import { section } from './section'
 
 export const course: Template<Course> = template({
   id: '1',
+  account_id: '1',
   name: 'Learn React Native',
   short_name: 'rn',
   course_code: 'rn 101',

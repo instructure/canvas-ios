@@ -39,7 +39,7 @@ export type Enrollment = {
   course_id: string,
   last_activity_at: string,
   course_section_id: string,
-  computed_current_grade: string,
+  computed_current_grade?: string,
   current_period_computed_current_grade?: string,
   current_period_computed_current_score?: string,
   current_period_computed_final_grade?: string,

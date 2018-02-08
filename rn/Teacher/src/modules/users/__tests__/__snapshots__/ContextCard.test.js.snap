@@ -206,16 +206,24 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
           "created_at": "2017-03-17T19:15:25Z",
           "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
           "due_at": "2037-06-01T05:59:00Z",
+          "grade_group_students_individually": false,
           "grading_type": "points",
+          "group_category_id": null,
+          "has_overrides": false,
           "html_url": "http://hostname.tld/whatever",
           "id": "1",
           "lock_at": "2037-06-01T05:59:59Z",
           "name": "learn to write code",
           "needs_grading_count": 0,
+          "only_visible_to_overrides": false,
           "overrides": Array [],
           "peer_reviews": false,
           "points_possible": 100,
           "position": 1,
+          "published": true,
+          "rubric": null,
+          "rubric_assessment": Object {},
+          "rubric_settings": null,
           "submission_types": Array [
             "online_text_entry",
             "online_url",
@@ -223,6 +231,7 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
             "online_upload",
           ],
           "unlock_at": "2017-03-17T06:00:00Z",
+          "unpublishable": false,
           "updated_at": "2017-03-17T19:15:25Z",
         },
       ]
@@ -707,10 +716,10 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
                       "alignSelf": "flex-start",
                     }
                   }
-                  testID="user-submission-row-icon-not-published-1.icon-img"
+                  testID="user-submission-row-icon-published-1.icon-img"
                 >
                   <View
-                    accessibilityLabel="Restricted"
+                    accessibilityLabel="Published"
                     style={
                       Object {
                         "alignItems": "center",
@@ -758,14 +767,14 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/Restricted.png",
+                            "testUri": "../../../src/images/Published.png",
                           }
                         }
                         style={
                           Object {
-                            "height": 14,
-                            "tintColor": "#FF0000",
-                            "width": 14,
+                            "height": 12,
+                            "tintColor": "#00AC18",
+                            "width": 12,
                           }
                         }
                       />
@@ -938,7 +947,18 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
               </View>
             </TouchableHighlight>
           </View>
-          <View />
+          <View
+            style={
+              Object {
+                "backgroundColor": "#00AC18",
+                "bottom": 4,
+                "left": 0,
+                "position": "absolute",
+                "top": 4,
+                "width": 3,
+              }
+            }
+          />
         </View>
       </View>
     </View>
@@ -1152,16 +1172,24 @@ exports[`ContextCard renders 1`] = `
           "created_at": "2017-03-17T19:15:25Z",
           "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
           "due_at": "2037-06-01T05:59:00Z",
+          "grade_group_students_individually": false,
           "grading_type": "points",
+          "group_category_id": null,
+          "has_overrides": false,
           "html_url": "http://hostname.tld/whatever",
           "id": "1",
           "lock_at": "2037-06-01T05:59:59Z",
           "name": "learn to write code",
           "needs_grading_count": 0,
+          "only_visible_to_overrides": false,
           "overrides": Array [],
           "peer_reviews": false,
           "points_possible": 100,
           "position": 1,
+          "published": true,
+          "rubric": null,
+          "rubric_assessment": Object {},
+          "rubric_settings": null,
           "submission_types": Array [
             "online_text_entry",
             "online_url",
@@ -1169,6 +1197,7 @@ exports[`ContextCard renders 1`] = `
             "online_upload",
           ],
           "unlock_at": "2017-03-17T06:00:00Z",
+          "unpublishable": false,
           "updated_at": "2017-03-17T19:15:25Z",
         },
       ]
@@ -1653,10 +1682,10 @@ exports[`ContextCard renders 1`] = `
                       "alignSelf": "flex-start",
                     }
                   }
-                  testID="user-submission-row-icon-not-published-1.icon-img"
+                  testID="user-submission-row-icon-published-1.icon-img"
                 >
                   <View
-                    accessibilityLabel="Restricted"
+                    accessibilityLabel="Published"
                     style={
                       Object {
                         "alignItems": "center",
@@ -1704,14 +1733,14 @@ exports[`ContextCard renders 1`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/Restricted.png",
+                            "testUri": "../../../src/images/Published.png",
                           }
                         }
                         style={
                           Object {
-                            "height": 14,
-                            "tintColor": "#FF0000",
-                            "width": 14,
+                            "height": 12,
+                            "tintColor": "#00AC18",
+                            "width": 12,
                           }
                         }
                       />
@@ -1884,7 +1913,18 @@ exports[`ContextCard renders 1`] = `
               </View>
             </TouchableHighlight>
           </View>
-          <View />
+          <View
+            style={
+              Object {
+                "backgroundColor": "#00AC18",
+                "bottom": 4,
+                "left": 0,
+                "position": "absolute",
+                "top": 4,
+                "width": 3,
+              }
+            }
+          />
         </View>
       </View>
     </View>
@@ -3070,16 +3110,24 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
           "created_at": "2017-03-17T19:15:25Z",
           "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
           "due_at": "2037-06-01T05:59:00Z",
+          "grade_group_students_individually": false,
           "grading_type": "points",
+          "group_category_id": null,
+          "has_overrides": false,
           "html_url": "http://hostname.tld/whatever",
           "id": "1",
           "lock_at": "2037-06-01T05:59:59Z",
           "name": "learn to write code",
           "needs_grading_count": 0,
+          "only_visible_to_overrides": false,
           "overrides": Array [],
           "peer_reviews": false,
           "points_possible": 100,
           "position": 1,
+          "published": true,
+          "rubric": null,
+          "rubric_assessment": Object {},
+          "rubric_settings": null,
           "submission_types": Array [
             "online_text_entry",
             "online_url",
@@ -3087,6 +3135,7 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
             "online_upload",
           ],
           "unlock_at": "2017-03-17T06:00:00Z",
+          "unpublishable": false,
           "updated_at": "2017-03-17T19:15:25Z",
         },
       ]
@@ -3571,10 +3620,10 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
                       "alignSelf": "flex-start",
                     }
                   }
-                  testID="user-submission-row-icon-not-published-1.icon-img"
+                  testID="user-submission-row-icon-published-1.icon-img"
                 >
                   <View
-                    accessibilityLabel="Restricted"
+                    accessibilityLabel="Published"
                     style={
                       Object {
                         "alignItems": "center",
@@ -3622,14 +3671,14 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/Restricted.png",
+                            "testUri": "../../../src/images/Published.png",
                           }
                         }
                         style={
                           Object {
-                            "height": 14,
-                            "tintColor": "#FF0000",
-                            "width": 14,
+                            "height": 12,
+                            "tintColor": "#00AC18",
+                            "width": 12,
                           }
                         }
                       />
@@ -3802,7 +3851,18 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
               </View>
             </TouchableHighlight>
           </View>
-          <View />
+          <View
+            style={
+              Object {
+                "backgroundColor": "#00AC18",
+                "bottom": 4,
+                "left": 0,
+                "position": "absolute",
+                "top": 4,
+                "width": 3,
+              }
+            }
+          />
         </View>
       </View>
     </View>

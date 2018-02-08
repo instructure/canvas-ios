@@ -55,27 +55,6 @@ export const discussion: Template<Discussion> = template({
   can_unpublish: true,
 })
 
-export const discussionView: Template<DiscussionView> = template({
-  'unread_entries': [
-    '25458826',
-    '25458830',
-  ],
-  participants: [userDisplay()],
-  'view': [
-    {
-      'id': '25472827',
-      'user_id': '1',
-      'parent_id': null,
-      'created_at': '2017-05-23T17:12:04Z',
-      'updated_at': '2017-05-23T17:12:04Z',
-      'rating_count': null,
-      'rating_sum': null,
-      'message': '<p>1.0</p>',
-      'replies': [],
-    },
-  ],
-})
-
 export const discussionReply: Template<DiscussionReply> = template({
   'id': '25472827',
   'user_id': userDisplay().id,
@@ -101,13 +80,37 @@ export const discussionEditReply: Template<DiscussionReply> = template({
   'replies': [],
 })
 
-export const discussionViewLarge: Template<DiscussionView> = template({
+export const discussionView: Template<DiscussionView> = template({
+  'new_entries': [],
   'unread_entries': [
     '25458826',
     '25458830',
   ],
+  participants: [userDisplay()],
   'view': [
-    {
+    discussionReply({
+      'id': '25472827',
+      'user_id': '1',
+      'parent_id': null,
+      'created_at': '2017-05-23T17:12:04Z',
+      'updated_at': '2017-05-23T17:12:04Z',
+      'rating_count': null,
+      'rating_sum': null,
+      'message': '<p>1.0</p>',
+      'replies': [],
+    }),
+  ],
+})
+
+export const discussionViewLarge: Template<DiscussionView> = template({
+  'new_entries': [],
+  'unread_entries': [
+    '25458826',
+    '25458830',
+  ],
+  participants: [userDisplay()],
+  'view': [
+    discussionReply({
       'id': '25472827',
       'user_id': '5347622',
       'parent_id': null,
@@ -117,7 +120,7 @@ export const discussionViewLarge: Template<DiscussionView> = template({
       'rating_sum': null,
       'message': '<p>1.0</p>',
       'replies': [
-        {
+        discussionReply({
           'id': '25472860',
           'user_id': '5347622',
           'parent_id': '25472827',
@@ -126,8 +129,8 @@ export const discussionViewLarge: Template<DiscussionView> = template({
           'rating_count': null,
           'rating_sum': null,
           'message': '<p>1.1</p>',
-        },
-        {
+        }),
+        discussionReply({
           'id': '25472862',
           'user_id': '5347622',
           'parent_id': '25472827',
@@ -136,10 +139,10 @@ export const discussionViewLarge: Template<DiscussionView> = template({
           'rating_count': null,
           'rating_sum': null,
           'message': '<p>1.2</p>',
-        },
+        }),
       ],
-    },
-    {
+    }),
+    discussionReply({
       'id': '25472831',
       'user_id': '5347622',
       'parent_id': null,
@@ -181,7 +184,7 @@ export const discussionViewLarge: Template<DiscussionView> = template({
           },
         },
       ],
-    }],
+    })],
 })
 
 export const createDiscussionParams: Template<CreateDiscussionParameters> = template({

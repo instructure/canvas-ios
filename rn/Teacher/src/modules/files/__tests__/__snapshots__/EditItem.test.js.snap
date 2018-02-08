@@ -352,6 +352,7 @@ exports[`EditItem folder shows availability when there is a lock_at date 1`] = `
         <RowSeparator />
         <RowWithDateInput
           border="both"
+          date={null}
           onPress={[Function]}
           onRemoveDatePress={[Function]}
           showRemoveButton={true}
@@ -518,6 +519,7 @@ exports[`EditItem folder shows availability when there is an unlock_at date 1`] 
         />
         <RowWithDateInput
           border="bottom"
+          date={null}
           onPress={[Function]}
           onRemoveDatePress={[Function]}
           showRemoveButton={true}

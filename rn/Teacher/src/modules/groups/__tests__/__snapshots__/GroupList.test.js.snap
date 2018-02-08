@@ -145,6 +145,7 @@ exports[`GroupList renders properly 1`] = `
             "bio": "my bio is yuuuuuuuge",
             "id": "1",
             "name": "Donald Trump",
+            "primary_email": "donald@trump.com",
             "short_name": "The Donald",
             "sortable_name": "Mr. President",
           },
