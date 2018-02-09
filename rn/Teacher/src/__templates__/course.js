@@ -38,13 +38,13 @@ export const course: Template<Course> = template({
   workflow_state: 'available',
   term: {
     id: '1',
-    created_at: new Date().toLocaleDateString(),
-    end_at: new Date('2030-02-08T23:13:39.736Z').toLocaleDateString(),
-    start_at: new Date().toLocaleDateString(),
+    created_at: '2018-02-08T23:13:39Z',
+    end_at: '2030-02-08T23:13:39Z',
+    start_at: '2018-02-08T23:13:39Z',
     name: 'Default Term',
     workflow_state: 'available',
   },
-  end_at: new Date('2030-02-08T23:13:39.736Z').toLocaleDateString(),
+  end_at: '2030-02-08T23:13:39Z',
 })
 
 export const courseWithSection: Template<Course> = function (defaults) {

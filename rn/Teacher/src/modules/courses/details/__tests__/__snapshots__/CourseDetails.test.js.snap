@@ -30,7 +30,7 @@ exports[`CourseDetails refreshes when props change 1`] = `
       "account_id": "1",
       "course_code": "rn 101",
       "default_view": "wiki",
-      "end_at": "2030-2-8",
+      "end_at": "2030-02-08T23:13:39Z",
       "enrollments": Array [
         Object {
           "enrollment_state": "active",
@@ -46,11 +46,11 @@ exports[`CourseDetails refreshes when props change 1`] = `
       "name": "Learn React Native",
       "short_name": "rn",
       "term": Object {
-        "created_at": "2018-2-8",
-        "end_at": "2030-2-8",
+        "created_at": "2018-02-08T23:13:39Z",
+        "end_at": "2030-02-08T23:13:39Z",
         "id": "1",
         "name": "Default Term",
-        "start_at": "2018-2-8",
+        "start_at": "2018-02-08T23:13:39Z",
         "workflow_state": "available",
       },
       "workflow_state": "available",

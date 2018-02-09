@@ -32,7 +32,7 @@ exports[`Doesnt render groups when in the teacher app 1`] = `
               "color": "#27B9CD",
               "course_code": "BIO 101",
               "default_view": "wiki",
-              "end_at": "2030-2-8",
+              "end_at": "2030-02-08T23:13:39Z",
               "enrollments": Array [
                 Object {
                   "enrollment_state": "active",
@@ -48,11 +48,11 @@ exports[`Doesnt render groups when in the teacher app 1`] = `
               "name": "Biology 101",
               "short_name": "BIO 101",
               "term": Object {
-                "created_at": "2018-2-8",
-                "end_at": "2030-2-8",
+                "created_at": "2018-02-08T23:13:39Z",
+                "end_at": "2030-02-08T23:13:39Z",
                 "id": "1",
                 "name": "Default Term",
-                "start_at": "2018-2-8",
+                "start_at": "2018-02-08T23:13:39Z",
                 "workflow_state": "available",
               },
               "workflow_state": "available",
@@ -62,7 +62,7 @@ exports[`Doesnt render groups when in the teacher app 1`] = `
               "color": "#8F3E97",
               "course_code": "LIT 401",
               "default_view": "wiki",
-              "end_at": "2030-2-8",
+              "end_at": "2030-02-08T23:13:39Z",
               "enrollments": Array [
                 Object {
                   "enrollment_state": "active",
@@ -78,11 +78,11 @@ exports[`Doesnt render groups when in the teacher app 1`] = `
               "name": "American Literature Psysicks foobar hello world 401",
               "short_name": "LIT 401",
               "term": Object {
-                "created_at": "2018-2-8",
-                "end_at": "2030-2-8",
+                "created_at": "2018-02-08T23:13:39Z",
+                "end_at": "2030-02-08T23:13:39Z",
                 "id": "1",
                 "name": "Default Term",
-                "start_at": "2018-2-8",
+                "start_at": "2018-02-08T23:13:39Z",
                 "workflow_state": "available",
               },
               "workflow_state": "available",
@@ -92,7 +92,7 @@ exports[`Doesnt render groups when in the teacher app 1`] = `
               "color": "#8F3E99",
               "course_code": "FOO 102",
               "default_view": "wiki",
-              "end_at": "2030-2-8",
+              "end_at": "2030-02-08T23:13:39Z",
               "enrollments": Array [
                 Object {
                   "enrollment_state": "active",
@@ -108,11 +108,11 @@ exports[`Doesnt render groups when in the teacher app 1`] = `
               "name": "Foobar 102",
               "short_name": "FOO 102",
               "term": Object {
-                "created_at": "2018-2-8",
-                "end_at": "2030-2-8",
+                "created_at": "2018-02-08T23:13:39Z",
+                "end_at": "2030-02-08T23:13:39Z",
                 "id": "1",
                 "name": "Default Term",
-                "start_at": "2018-2-8",
+                "start_at": "2018-02-08T23:13:39Z",
                 "workflow_state": "available",
               },
               "workflow_state": "available",
@@ -168,7 +168,7 @@ exports[`Doesnt render groups when in the teacher app 1`] = `
               "color": "#27B9CD",
               "course_code": "BIO 101",
               "default_view": "wiki",
-              "end_at": "2030-2-8",
+              "end_at": "2030-02-08T23:13:39Z",
               "enrollments": Array [
                 Object {
                   "enrollment_state": "active",
@@ -184,11 +184,11 @@ exports[`Doesnt render groups when in the teacher app 1`] = `
               "name": "Biology 101",
               "short_name": "BIO 101",
               "term": Object {
-                "created_at": "2018-2-8",
-                "end_at": "2030-2-8",
+                "created_at": "2018-02-08T23:13:39Z",
+                "end_at": "2030-02-08T23:13:39Z",
                 "id": "1",
                 "name": "Default Term",
-                "start_at": "2018-2-8",
+                "start_at": "2018-02-08T23:13:39Z",
                 "workflow_state": "available",
               },
               "workflow_state": "available",
@@ -198,7 +198,7 @@ exports[`Doesnt render groups when in the teacher app 1`] = `
               "color": "#8F3E97",
               "course_code": "LIT 401",
               "default_view": "wiki",
-              "end_at": "2030-2-8",
+              "end_at": "2030-02-08T23:13:39Z",
               "enrollments": Array [
                 Object {
                   "enrollment_state": "active",
@@ -214,11 +214,11 @@ exports[`Doesnt render groups when in the teacher app 1`] = `
               "name": "American Literature Psysicks foobar hello world 401",
               "short_name": "LIT 401",
               "term": Object {
-                "created_at": "2018-2-8",
-                "end_at": "2030-2-8",
+                "created_at": "2018-02-08T23:13:39Z",
+                "end_at": "2030-02-08T23:13:39Z",
                 "id": "1",
                 "name": "Default Term",
-                "start_at": "2018-2-8",
+                "start_at": "2018-02-08T23:13:39Z",
                 "workflow_state": "available",
               },
               "workflow_state": "available",
@@ -228,7 +228,7 @@ exports[`Doesnt render groups when in the teacher app 1`] = `
               "color": "#8F3E99",
               "course_code": "FOO 102",
               "default_view": "wiki",
-              "end_at": "2030-2-8",
+              "end_at": "2030-02-08T23:13:39Z",
               "enrollments": Array [
                 Object {
                   "enrollment_state": "active",
@@ -244,11 +244,11 @@ exports[`Doesnt render groups when in the teacher app 1`] = `
               "name": "Foobar 102",
               "short_name": "FOO 102",
               "term": Object {
-                "created_at": "2018-2-8",
-                "end_at": "2030-2-8",
+                "created_at": "2018-02-08T23:13:39Z",
+                "end_at": "2030-02-08T23:13:39Z",
                 "id": "1",
                 "name": "Default Term",
-                "start_at": "2018-2-8",
+                "start_at": "2018-02-08T23:13:39Z",
                 "workflow_state": "available",
               },
               "workflow_state": "available",
@@ -964,7 +964,7 @@ exports[`Only renders courses when !isFullDashboard 1`] = `
               "color": "#27B9CD",
               "course_code": "BIO 101",
               "default_view": "wiki",
-              "end_at": "2030-2-8",
+              "end_at": "2030-02-08T23:13:39Z",
               "enrollments": Array [
                 Object {
                   "enrollment_state": "active",
@@ -980,11 +980,11 @@ exports[`Only renders courses when !isFullDashboard 1`] = `
               "name": "Biology 101",
               "short_name": "BIO 101",
               "term": Object {
-                "created_at": "2018-2-8",
-                "end_at": "2030-2-8",
+                "created_at": "2018-02-08T23:13:39Z",
+                "end_at": "2030-02-08T23:13:39Z",
                 "id": "1",
                 "name": "Default Term",
-                "start_at": "2018-2-8",
+                "start_at": "2018-02-08T23:13:39Z",
                 "workflow_state": "available",
               },
               "workflow_state": "available",
@@ -994,7 +994,7 @@ exports[`Only renders courses when !isFullDashboard 1`] = `
               "color": "#8F3E97",
               "course_code": "LIT 401",
               "default_view": "wiki",
-              "end_at": "2030-2-8",
+              "end_at": "2030-02-08T23:13:39Z",
               "enrollments": Array [
                 Object {
                   "enrollment_state": "active",
@@ -1010,11 +1010,11 @@ exports[`Only renders courses when !isFullDashboard 1`] = `
               "name": "American Literature Psysicks foobar hello world 401",
               "short_name": "LIT 401",
               "term": Object {
-                "created_at": "2018-2-8",
-                "end_at": "2030-2-8",
+                "created_at": "2018-02-08T23:13:39Z",
+                "end_at": "2030-02-08T23:13:39Z",
                 "id": "1",
                 "name": "Default Term",
-                "start_at": "2018-2-8",
+                "start_at": "2018-02-08T23:13:39Z",
                 "workflow_state": "available",
               },
               "workflow_state": "available",
@@ -1024,7 +1024,7 @@ exports[`Only renders courses when !isFullDashboard 1`] = `
               "color": "#8F3E99",
               "course_code": "FOO 102",
               "default_view": "wiki",
-              "end_at": "2030-2-8",
+              "end_at": "2030-02-08T23:13:39Z",
               "enrollments": Array [
                 Object {
                   "enrollment_state": "active",
@@ -1040,11 +1040,11 @@ exports[`Only renders courses when !isFullDashboard 1`] = `
               "name": "Foobar 102",
               "short_name": "FOO 102",
               "term": Object {
-                "created_at": "2018-2-8",
-                "end_at": "2030-2-8",
+                "created_at": "2018-02-08T23:13:39Z",
+                "end_at": "2030-02-08T23:13:39Z",
                 "id": "1",
                 "name": "Default Term",
-                "start_at": "2018-2-8",
+                "start_at": "2018-02-08T23:13:39Z",
                 "workflow_state": "available",
               },
               "workflow_state": "available",
@@ -1061,7 +1061,7 @@ exports[`Only renders courses when !isFullDashboard 1`] = `
               "color": undefined,
               "course_code": "FOO 102",
               "default_view": "wiki",
-              "end_at": "2030-2-8",
+              "end_at": "2030-02-08T23:13:39Z",
               "enrollments": Array [
                 Object {
                   "enrollment_state": "active",
@@ -1077,11 +1077,11 @@ exports[`Only renders courses when !isFullDashboard 1`] = `
               "name": "Foobar 102",
               "short_name": "FOO 102",
               "term": Object {
-                "created_at": "2018-2-8",
-                "end_at": "2030-2-8",
+                "created_at": "2018-02-08T23:13:39Z",
+                "end_at": "2030-02-08T23:13:39Z",
                 "id": "1",
                 "name": "Default Term",
-                "start_at": "2018-2-8",
+                "start_at": "2018-02-08T23:13:39Z",
                 "workflow_state": "available",
               },
               "workflow_state": "completed",
@@ -1130,7 +1130,7 @@ exports[`Only renders courses when !isFullDashboard 1`] = `
               "color": "#27B9CD",
               "course_code": "BIO 101",
               "default_view": "wiki",
-              "end_at": "2030-2-8",
+              "end_at": "2030-02-08T23:13:39Z",
               "enrollments": Array [
                 Object {
                   "enrollment_state": "active",
@@ -1146,11 +1146,11 @@ exports[`Only renders courses when !isFullDashboard 1`] = `
               "name": "Biology 101",
               "short_name": "BIO 101",
               "term": Object {
-                "created_at": "2018-2-8",
-                "end_at": "2030-2-8",
+                "created_at": "2018-02-08T23:13:39Z",
+                "end_at": "2030-02-08T23:13:39Z",
                 "id": "1",
                 "name": "Default Term",
-                "start_at": "2018-2-8",
+                "start_at": "2018-02-08T23:13:39Z",
                 "workflow_state": "available",
               },
               "workflow_state": "available",
@@ -1160,7 +1160,7 @@ exports[`Only renders courses when !isFullDashboard 1`] = `
               "color": "#8F3E97",
               "course_code": "LIT 401",
               "default_view": "wiki",
-              "end_at": "2030-2-8",
+              "end_at": "2030-02-08T23:13:39Z",
               "enrollments": Array [
                 Object {
                   "enrollment_state": "active",
@@ -1176,11 +1176,11 @@ exports[`Only renders courses when !isFullDashboard 1`] = `
               "name": "American Literature Psysicks foobar hello world 401",
               "short_name": "LIT 401",
               "term": Object {
-                "created_at": "2018-2-8",
-                "end_at": "2030-2-8",
+                "created_at": "2018-02-08T23:13:39Z",
+                "end_at": "2030-02-08T23:13:39Z",
                 "id": "1",
                 "name": "Default Term",
-                "start_at": "2018-2-8",
+                "start_at": "2018-02-08T23:13:39Z",
                 "workflow_state": "available",
               },
               "workflow_state": "available",
@@ -1190,7 +1190,7 @@ exports[`Only renders courses when !isFullDashboard 1`] = `
               "color": "#8F3E99",
               "course_code": "FOO 102",
               "default_view": "wiki",
-              "end_at": "2030-2-8",
+              "end_at": "2030-02-08T23:13:39Z",
               "enrollments": Array [
                 Object {
                   "enrollment_state": "active",
@@ -1206,11 +1206,11 @@ exports[`Only renders courses when !isFullDashboard 1`] = `
               "name": "Foobar 102",
               "short_name": "FOO 102",
               "term": Object {
-                "created_at": "2018-2-8",
-                "end_at": "2030-2-8",
+                "created_at": "2018-02-08T23:13:39Z",
+                "end_at": "2030-02-08T23:13:39Z",
                 "id": "1",
                 "name": "Default Term",
-                "start_at": "2018-2-8",
+                "start_at": "2018-02-08T23:13:39Z",
                 "workflow_state": "available",
               },
               "workflow_state": "available",
@@ -1227,7 +1227,7 @@ exports[`Only renders courses when !isFullDashboard 1`] = `
               "color": undefined,
               "course_code": "FOO 102",
               "default_view": "wiki",
-              "end_at": "2030-2-8",
+              "end_at": "2030-02-08T23:13:39Z",
               "enrollments": Array [
                 Object {
                   "enrollment_state": "active",
@@ -1243,11 +1243,11 @@ exports[`Only renders courses when !isFullDashboard 1`] = `
               "name": "Foobar 102",
               "short_name": "FOO 102",
               "term": Object {
-                "created_at": "2018-2-8",
-                "end_at": "2030-2-8",
+                "created_at": "2018-02-08T23:13:39Z",
+                "end_at": "2030-02-08T23:13:39Z",
                 "id": "1",
                 "name": "Default Term",
-                "start_at": "2018-2-8",
+                "start_at": "2018-02-08T23:13:39Z",
                 "workflow_state": "available",
               },
               "workflow_state": "completed",
@@ -2101,7 +2101,7 @@ exports[`render 1`] = `
               "color": "#27B9CD",
               "course_code": "BIO 101",
               "default_view": "wiki",
-              "end_at": "2030-2-8",
+              "end_at": "2030-02-08T23:13:39Z",
               "enrollments": Array [
                 Object {
                   "enrollment_state": "active",
@@ -2117,11 +2117,11 @@ exports[`render 1`] = `
               "name": "Biology 101",
               "short_name": "BIO 101",
               "term": Object {
-                "created_at": "2018-2-8",
-                "end_at": "2030-2-8",
+                "created_at": "2018-02-08T23:13:39Z",
+                "end_at": "2030-02-08T23:13:39Z",
                 "id": "1",
                 "name": "Default Term",
-                "start_at": "2018-2-8",
+                "start_at": "2018-02-08T23:13:39Z",
                 "workflow_state": "available",
               },
               "workflow_state": "available",
@@ -2131,7 +2131,7 @@ exports[`render 1`] = `
               "color": "#8F3E97",
               "course_code": "LIT 401",
               "default_view": "wiki",
-              "end_at": "2030-2-8",
+              "end_at": "2030-02-08T23:13:39Z",
               "enrollments": Array [
                 Object {
                   "enrollment_state": "active",
@@ -2147,11 +2147,11 @@ exports[`render 1`] = `
               "name": "American Literature Psysicks foobar hello world 401",
               "short_name": "LIT 401",
               "term": Object {
-                "created_at": "2018-2-8",
-                "end_at": "2030-2-8",
+                "created_at": "2018-02-08T23:13:39Z",
+                "end_at": "2030-02-08T23:13:39Z",
                 "id": "1",
                 "name": "Default Term",
-                "start_at": "2018-2-8",
+                "start_at": "2018-02-08T23:13:39Z",
                 "workflow_state": "available",
               },
               "workflow_state": "available",
@@ -2161,7 +2161,7 @@ exports[`render 1`] = `
               "color": "#8F3E99",
               "course_code": "FOO 102",
               "default_view": "wiki",
-              "end_at": "2030-2-8",
+              "end_at": "2030-02-08T23:13:39Z",
               "enrollments": Array [
                 Object {
                   "enrollment_state": "active",
@@ -2177,11 +2177,11 @@ exports[`render 1`] = `
               "name": "Foobar 102",
               "short_name": "FOO 102",
               "term": Object {
-                "created_at": "2018-2-8",
-                "end_at": "2030-2-8",
+                "created_at": "2018-02-08T23:13:39Z",
+                "end_at": "2030-02-08T23:13:39Z",
                 "id": "1",
                 "name": "Default Term",
-                "start_at": "2018-2-8",
+                "start_at": "2018-02-08T23:13:39Z",
                 "workflow_state": "available",
               },
               "workflow_state": "available",
@@ -2258,7 +2258,7 @@ exports[`render 1`] = `
               "color": "#27B9CD",
               "course_code": "BIO 101",
               "default_view": "wiki",
-              "end_at": "2030-2-8",
+              "end_at": "2030-02-08T23:13:39Z",
               "enrollments": Array [
                 Object {
                   "enrollment_state": "active",
@@ -2274,11 +2274,11 @@ exports[`render 1`] = `
               "name": "Biology 101",
               "short_name": "BIO 101",
               "term": Object {
-                "created_at": "2018-2-8",
-                "end_at": "2030-2-8",
+                "created_at": "2018-02-08T23:13:39Z",
+                "end_at": "2030-02-08T23:13:39Z",
                 "id": "1",
                 "name": "Default Term",
-                "start_at": "2018-2-8",
+                "start_at": "2018-02-08T23:13:39Z",
                 "workflow_state": "available",
               },
               "workflow_state": "available",
@@ -2288,7 +2288,7 @@ exports[`render 1`] = `
               "color": "#8F3E97",
               "course_code": "LIT 401",
               "default_view": "wiki",
-              "end_at": "2030-2-8",
+              "end_at": "2030-02-08T23:13:39Z",
               "enrollments": Array [
                 Object {
                   "enrollment_state": "active",
@@ -2304,11 +2304,11 @@ exports[`render 1`] = `
               "name": "American Literature Psysicks foobar hello world 401",
               "short_name": "LIT 401",
               "term": Object {
-                "created_at": "2018-2-8",
-                "end_at": "2030-2-8",
+                "created_at": "2018-02-08T23:13:39Z",
+                "end_at": "2030-02-08T23:13:39Z",
                 "id": "1",
                 "name": "Default Term",
-                "start_at": "2018-2-8",
+                "start_at": "2018-02-08T23:13:39Z",
                 "workflow_state": "available",
               },
               "workflow_state": "available",
@@ -2318,7 +2318,7 @@ exports[`render 1`] = `
               "color": "#8F3E99",
               "course_code": "FOO 102",
               "default_view": "wiki",
-              "end_at": "2030-2-8",
+              "end_at": "2030-02-08T23:13:39Z",
               "enrollments": Array [
                 Object {
                   "enrollment_state": "active",
@@ -2334,11 +2334,11 @@ exports[`render 1`] = `
               "name": "Foobar 102",
               "short_name": "FOO 102",
               "term": Object {
-                "created_at": "2018-2-8",
-                "end_at": "2030-2-8",
+                "created_at": "2018-02-08T23:13:39Z",
+                "end_at": "2030-02-08T23:13:39Z",
                 "id": "1",
                 "name": "Default Term",
-                "start_at": "2018-2-8",
+                "start_at": "2018-02-08T23:13:39Z",
                 "workflow_state": "available",
               },
               "workflow_state": "available",
@@ -3399,7 +3399,7 @@ exports[`render while pending 1`] = `
               "color": "#27B9CD",
               "course_code": "BIO 101",
               "default_view": "wiki",
-              "end_at": "2030-2-8",
+              "end_at": "2030-02-08T23:13:39Z",
               "enrollments": Array [
                 Object {
                   "enrollment_state": "active",
@@ -3415,11 +3415,11 @@ exports[`render while pending 1`] = `
               "name": "Biology 101",
               "short_name": "BIO 101",
               "term": Object {
-                "created_at": "2018-2-8",
-                "end_at": "2030-2-8",
+                "created_at": "2018-02-08T23:13:39Z",
+                "end_at": "2030-02-08T23:13:39Z",
                 "id": "1",
                 "name": "Default Term",
-                "start_at": "2018-2-8",
+                "start_at": "2018-02-08T23:13:39Z",
                 "workflow_state": "available",
               },
               "workflow_state": "available",
@@ -3429,7 +3429,7 @@ exports[`render while pending 1`] = `
               "color": "#8F3E97",
               "course_code": "LIT 401",
               "default_view": "wiki",
-              "end_at": "2030-2-8",
+              "end_at": "2030-02-08T23:13:39Z",
               "enrollments": Array [
                 Object {
                   "enrollment_state": "active",
@@ -3445,11 +3445,11 @@ exports[`render while pending 1`] = `
               "name": "American Literature Psysicks foobar hello world 401",
               "short_name": "LIT 401",
               "term": Object {
-                "created_at": "2018-2-8",
-                "end_at": "2030-2-8",
+                "created_at": "2018-02-08T23:13:39Z",
+                "end_at": "2030-02-08T23:13:39Z",
                 "id": "1",
                 "name": "Default Term",
-                "start_at": "2018-2-8",
+                "start_at": "2018-02-08T23:13:39Z",
                 "workflow_state": "available",
               },
               "workflow_state": "available",
@@ -3459,7 +3459,7 @@ exports[`render while pending 1`] = `
               "color": "#8F3E99",
               "course_code": "FOO 102",
               "default_view": "wiki",
-              "end_at": "2030-2-8",
+              "end_at": "2030-02-08T23:13:39Z",
               "enrollments": Array [
                 Object {
                   "enrollment_state": "active",
@@ -3475,11 +3475,11 @@ exports[`render while pending 1`] = `
               "name": "Foobar 102",
               "short_name": "FOO 102",
               "term": Object {
-                "created_at": "2018-2-8",
-                "end_at": "2030-2-8",
+                "created_at": "2018-02-08T23:13:39Z",
+                "end_at": "2030-02-08T23:13:39Z",
                 "id": "1",
                 "name": "Default Term",
-                "start_at": "2018-2-8",
+                "start_at": "2018-02-08T23:13:39Z",
                 "workflow_state": "available",
               },
               "workflow_state": "available",
@@ -3556,7 +3556,7 @@ exports[`render while pending 1`] = `
               "color": "#27B9CD",
               "course_code": "BIO 101",
               "default_view": "wiki",
-              "end_at": "2030-2-8",
+              "end_at": "2030-02-08T23:13:39Z",
               "enrollments": Array [
                 Object {
                   "enrollment_state": "active",
@@ -3572,11 +3572,11 @@ exports[`render while pending 1`] = `
               "name": "Biology 101",
               "short_name": "BIO 101",
               "term": Object {
-                "created_at": "2018-2-8",
-                "end_at": "2030-2-8",
+                "created_at": "2018-02-08T23:13:39Z",
+                "end_at": "2030-02-08T23:13:39Z",
                 "id": "1",
                 "name": "Default Term",
-                "start_at": "2018-2-8",
+                "start_at": "2018-02-08T23:13:39Z",
                 "workflow_state": "available",
               },
               "workflow_state": "available",
@@ -3586,7 +3586,7 @@ exports[`render while pending 1`] = `
               "color": "#8F3E97",
               "course_code": "LIT 401",
               "default_view": "wiki",
-              "end_at": "2030-2-8",
+              "end_at": "2030-02-08T23:13:39Z",
               "enrollments": Array [
                 Object {
                   "enrollment_state": "active",
@@ -3602,11 +3602,11 @@ exports[`render while pending 1`] = `
               "name": "American Literature Psysicks foobar hello world 401",
               "short_name": "LIT 401",
               "term": Object {
-                "created_at": "2018-2-8",
-                "end_at": "2030-2-8",
+                "created_at": "2018-02-08T23:13:39Z",
+                "end_at": "2030-02-08T23:13:39Z",
                 "id": "1",
                 "name": "Default Term",
-                "start_at": "2018-2-8",
+                "start_at": "2018-02-08T23:13:39Z",
                 "workflow_state": "available",
               },
               "workflow_state": "available",
@@ -3616,7 +3616,7 @@ exports[`render while pending 1`] = `
               "color": "#8F3E99",
               "course_code": "FOO 102",
               "default_view": "wiki",
-              "end_at": "2030-2-8",
+              "end_at": "2030-02-08T23:13:39Z",
               "enrollments": Array [
                 Object {
                   "enrollment_state": "active",
@@ -3632,11 +3632,11 @@ exports[`render while pending 1`] = `
               "name": "Foobar 102",
               "short_name": "FOO 102",
               "term": Object {
-                "created_at": "2018-2-8",
-                "end_at": "2030-2-8",
+                "created_at": "2018-02-08T23:13:39Z",
+                "end_at": "2030-02-08T23:13:39Z",
                 "id": "1",
                 "name": "Default Term",
-                "start_at": "2018-2-8",
+                "start_at": "2018-02-08T23:13:39Z",
                 "workflow_state": "available",
               },
               "workflow_state": "available",
@@ -6184,7 +6184,7 @@ exports[`renders course invites 1`] = `
               "color": "#27B9CD",
               "course_code": "BIO 101",
               "default_view": "wiki",
-              "end_at": "2030-2-8",
+              "end_at": "2030-02-08T23:13:39Z",
               "enrollments": Array [
                 Object {
                   "enrollment_state": "active",
@@ -6200,11 +6200,11 @@ exports[`renders course invites 1`] = `
               "name": "Biology 101",
               "short_name": "BIO 101",
               "term": Object {
-                "created_at": "2018-2-8",
-                "end_at": "2030-2-8",
+                "created_at": "2018-02-08T23:13:39Z",
+                "end_at": "2030-02-08T23:13:39Z",
                 "id": "1",
                 "name": "Default Term",
-                "start_at": "2018-2-8",
+                "start_at": "2018-02-08T23:13:39Z",
                 "workflow_state": "available",
               },
               "workflow_state": "available",
@@ -6214,7 +6214,7 @@ exports[`renders course invites 1`] = `
               "color": "#8F3E97",
               "course_code": "LIT 401",
               "default_view": "wiki",
-              "end_at": "2030-2-8",
+              "end_at": "2030-02-08T23:13:39Z",
               "enrollments": Array [
                 Object {
                   "enrollment_state": "active",
@@ -6230,11 +6230,11 @@ exports[`renders course invites 1`] = `
               "name": "American Literature Psysicks foobar hello world 401",
               "short_name": "LIT 401",
               "term": Object {
-                "created_at": "2018-2-8",
-                "end_at": "2030-2-8",
+                "created_at": "2018-02-08T23:13:39Z",
+                "end_at": "2030-02-08T23:13:39Z",
                 "id": "1",
                 "name": "Default Term",
-                "start_at": "2018-2-8",
+                "start_at": "2018-02-08T23:13:39Z",
                 "workflow_state": "available",
               },
               "workflow_state": "available",
@@ -6244,7 +6244,7 @@ exports[`renders course invites 1`] = `
               "color": "#8F3E99",
               "course_code": "FOO 102",
               "default_view": "wiki",
-              "end_at": "2030-2-8",
+              "end_at": "2030-02-08T23:13:39Z",
               "enrollments": Array [
                 Object {
                   "enrollment_state": "active",
@@ -6260,11 +6260,11 @@ exports[`renders course invites 1`] = `
               "name": "Foobar 102",
               "short_name": "FOO 102",
               "term": Object {
-                "created_at": "2018-2-8",
-                "end_at": "2030-2-8",
+                "created_at": "2018-02-08T23:13:39Z",
+                "end_at": "2030-02-08T23:13:39Z",
                 "id": "1",
                 "name": "Default Term",
-                "start_at": "2018-2-8",
+                "start_at": "2018-02-08T23:13:39Z",
                 "workflow_state": "available",
               },
               "workflow_state": "available",
@@ -6388,7 +6388,7 @@ exports[`renders course invites 1`] = `
               "color": "#27B9CD",
               "course_code": "BIO 101",
               "default_view": "wiki",
-              "end_at": "2030-2-8",
+              "end_at": "2030-02-08T23:13:39Z",
               "enrollments": Array [
                 Object {
                   "enrollment_state": "active",
@@ -6404,11 +6404,11 @@ exports[`renders course invites 1`] = `
               "name": "Biology 101",
               "short_name": "BIO 101",
               "term": Object {
-                "created_at": "2018-2-8",
-                "end_at": "2030-2-8",
+                "created_at": "2018-02-08T23:13:39Z",
+                "end_at": "2030-02-08T23:13:39Z",
                 "id": "1",
                 "name": "Default Term",
-                "start_at": "2018-2-8",
+                "start_at": "2018-02-08T23:13:39Z",
                 "workflow_state": "available",
               },
               "workflow_state": "available",
@@ -6418,7 +6418,7 @@ exports[`renders course invites 1`] = `
               "color": "#8F3E97",
               "course_code": "LIT 401",
               "default_view": "wiki",
-              "end_at": "2030-2-8",
+              "end_at": "2030-02-08T23:13:39Z",
               "enrollments": Array [
                 Object {
                   "enrollment_state": "active",
@@ -6434,11 +6434,11 @@ exports[`renders course invites 1`] = `
               "name": "American Literature Psysicks foobar hello world 401",
               "short_name": "LIT 401",
               "term": Object {
-                "created_at": "2018-2-8",
-                "end_at": "2030-2-8",
+                "created_at": "2018-02-08T23:13:39Z",
+                "end_at": "2030-02-08T23:13:39Z",
                 "id": "1",
                 "name": "Default Term",
-                "start_at": "2018-2-8",
+                "start_at": "2018-02-08T23:13:39Z",
                 "workflow_state": "available",
               },
               "workflow_state": "available",
@@ -6448,7 +6448,7 @@ exports[`renders course invites 1`] = `
               "color": "#8F3E99",
               "course_code": "FOO 102",
               "default_view": "wiki",
-              "end_at": "2030-2-8",
+              "end_at": "2030-02-08T23:13:39Z",
               "enrollments": Array [
                 Object {
                   "enrollment_state": "active",
@@ -6464,11 +6464,11 @@ exports[`renders course invites 1`] = `
               "name": "Foobar 102",
               "short_name": "FOO 102",
               "term": Object {
-                "created_at": "2018-2-8",
-                "end_at": "2030-2-8",
+                "created_at": "2018-02-08T23:13:39Z",
+                "end_at": "2030-02-08T23:13:39Z",
                 "id": "1",
                 "name": "Default Term",
-                "start_at": "2018-2-8",
+                "start_at": "2018-02-08T23:13:39Z",
                 "workflow_state": "available",
               },
               "workflow_state": "available",
