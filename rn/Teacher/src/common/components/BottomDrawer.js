@@ -53,7 +53,7 @@ const SNAP_DEFAULT_INDEX = 0
 type Props = {
   containerWidth?: number,
   containerHeight?: number,
-  children?: React.Element<*>,
+  children?: React$Node,
   renderHandleContent?: () => any,
   drawerState: DrawerState,
 }
@@ -64,21 +64,12 @@ type State = {
 }
 
 export default class BottomDrawer extends Component<Props, State> {
-  props: Props
-  state: State
-  _deltaY: Animated.Value
-  drawer: InteractableView
-
-  constructor (props: Props) {
-    super(props)
-
-    this.state = {
-      height: props.containerHeight || height,
-      width: props.containerWidth || width,
-    }
-
-    this._deltaY = props.drawerState.deltaY
+  state: State = {
+    height: this.props.containerHeight || height,
+    width: this.props.containerWidth || width,
   }
+  _deltaY: Animated.Value = this.props.drawerState.deltaY
+  drawer: InteractableView
 
   shouldComponentUpdate (nextProps: Props, nextState: State) {
     if (nextProps.containerHeight === 0) return false
@@ -130,7 +121,7 @@ export default class BottomDrawer extends Component<Props, State> {
     }
   }
 
-  captureDrawer = (d: InteractableView) => {
+  captureDrawer = (d: any) => {
     this.drawer = d
   }
 

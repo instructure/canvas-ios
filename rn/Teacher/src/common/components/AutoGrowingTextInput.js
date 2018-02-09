@@ -26,15 +26,8 @@ type Props = {
   onContentSizeChange?: Function,
 }
 
-export default class AutoGrowingTextInput extends PureComponent {
-  props: Props
-  state: State
-
-  constructor (props: Props) {
-    super(props)
-
-    this.state = { height: this.props.defaultHeight }
-  }
+export default class AutoGrowingTextInput extends PureComponent<Props, State> {
+  state: State = { height: this.props.defaultHeight }
 
   updateContentSize = (e: any) => {
     // By adding a few pixels to the height of this content size, it ensures that the view will not scroll

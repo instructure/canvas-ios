@@ -19,7 +19,7 @@
 import React, { Component } from 'react'
 import { requireNativeComponent } from 'react-native'
 
-export default class A11yGroup extends Component {
+export default class A11yGroup extends Component<Object> {
   render () {
     return <NativeA11yGroup {...this.props} />
   }

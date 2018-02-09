@@ -32,8 +32,7 @@ type Props = {
   testID?: string,
 }
 
-export default class RequiredFieldSubscript extends React.Component {
-  props: Props
+export default class RequiredFieldSubscript extends React.Component<Props> {
 
   componentWillUpdate () {
     LayoutAnimation.easeInEaseOut()

@@ -28,24 +28,17 @@ import { Text } from '../text'
 
 const INITIAL_SCALE = 0.6
 
-export default class ToolTip extends Component {
-  state: {
-    screenWidth: number,
-    toolTipLayoutWidth?: number,
-    sourcePoint?: { x: number, y: number },
-    tip?: string,
-  }
-  opacity: Animated.Value
-  scale: Animated.Value
+type State = {
+  screenWidth: number,
+  toolTipLayoutWidth?: number,
+  sourcePoint?: { x: number, y: number },
+  tip?: string,
+}
 
-  constructor (props: any) {
-    super(props)
-
-    const { width } = Dimensions.get('window')
-    this.state = { screenWidth: width }
-    this.opacity = new Animated.Value(0)
-    this.scale = new Animated.Value(INITIAL_SCALE)
-  }
+export default class ToolTip extends Component<{}, State> {
+  state: State = { screenWidth: Dimensions.get('window').width }
+  opacity: Animated.Value = new Animated.Value(0)
+  scale: Animated.Value = new Animated.Value(INITIAL_SCALE)
 
   onToolTipLayout = ({ nativeEvent }: { nativeEvent: { layout: { width: number }}}) => {
     if (this.state.toolTipLayoutWidth) {

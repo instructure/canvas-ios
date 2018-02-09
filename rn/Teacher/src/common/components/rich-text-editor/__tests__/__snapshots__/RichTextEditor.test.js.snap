@@ -21,7 +21,12 @@ exports[`RichTextEditor hides toolbar when editor blurs 1`] = `
     _setMock={[Function]}
     editorItemsChanged={[Function]}
     html=""
-    navigator={undefined}
+    navigator={
+      Navigator {
+        "isModal": undefined,
+        "moduleName": "",
+      }
+    }
     onBlur={[Function]}
     onFocus={[Function]}
     onHeightChange={undefined}
@@ -50,7 +55,12 @@ exports[`RichTextEditor renders 1`] = `
     _setMock={[Function]}
     editorItemsChanged={[Function]}
     html=""
-    navigator={undefined}
+    navigator={
+      Navigator {
+        "isModal": undefined,
+        "moduleName": "",
+      }
+    }
     onBlur={[Function]}
     onFocus={[Function]}
     onHeightChange={undefined}
@@ -79,7 +89,12 @@ exports[`RichTextEditor renders toolbar when editor focused 1`] = `
     _setMock={[Function]}
     editorItemsChanged={[Function]}
     html=""
-    navigator={undefined}
+    navigator={
+      Navigator {
+        "isModal": undefined,
+        "moduleName": "",
+      }
+    }
     onBlur={[Function]}
     onFocus={[Function]}
     onHeightChange={undefined}
@@ -120,7 +135,12 @@ exports[`RichTextEditor should update active editor items in toolbar 1`] = `
     _setMock={[Function]}
     editorItemsChanged={[Function]}
     html=""
-    navigator={undefined}
+    navigator={
+      Navigator {
+        "isModal": undefined,
+        "moduleName": "",
+      }
+    }
     onBlur={[Function]}
     onFocus={[Function]}
     onHeightChange={undefined}
@@ -165,7 +185,12 @@ exports[`RichTextEditor should update active editor items in toolbar 2`] = `
     _setMock={[Function]}
     editorItemsChanged={[Function]}
     html=""
-    navigator={undefined}
+    navigator={
+      Navigator {
+        "isModal": undefined,
+        "moduleName": "",
+      }
+    }
     onBlur={[Function]}
     onFocus={[Function]}
     onHeightChange={undefined}

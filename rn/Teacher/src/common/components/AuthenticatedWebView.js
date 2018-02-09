@@ -23,7 +23,7 @@ import WKWebView from 'react-native-wkwebview-reborn'
 
 export default class AuthenticatedWebView extends React.Component<any, any> {
 
-  webView: WebView
+  webView: WKWebView
 
   constructor (props: any) {
     super(props)
@@ -36,7 +36,7 @@ export default class AuthenticatedWebView extends React.Component<any, any> {
     this.webView.evaluateJavaScript(script)
   }
 
-  captureRef = (c: WebView) => {
+  captureRef = (c: WKWebView) => {
     this.webView = c
   }
 

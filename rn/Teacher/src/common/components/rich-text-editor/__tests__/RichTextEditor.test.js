@@ -22,6 +22,7 @@ import renderer from 'react-test-renderer'
 
 import RichTextEditor, { type Props } from '../RichTextEditor'
 import explore from '../../../../../test/helpers/explore'
+import Navigator from '../../../../routing/Navigator'
 
 jest
   .mock('WebView', () => 'WebView')
@@ -38,6 +39,7 @@ describe('RichTextEditor', () => {
     props = {
       onChangeValue: jest.fn(),
       defaultValue: '',
+      navigator: new Navigator(''),
     }
   })
 

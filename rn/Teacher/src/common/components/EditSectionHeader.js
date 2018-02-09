@@ -26,7 +26,7 @@ import {
   StyleSheet,
 } from 'react-native'
 
-export default class EditSectionHeader extends PureComponent {
+export default class EditSectionHeader extends PureComponent<*> {
   render () {
     return (
       <View style={[style.container, this.props.style]}>

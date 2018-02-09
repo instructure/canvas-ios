@@ -27,7 +27,7 @@ import Row, { type RowProps } from './Row'
 type Props = RowProps & {
   defaultValue?: ?string,
   value?: ?string,
-  onChangeText?: (text: string, identifier: string) => void,
+  onChangeText?: (text: string, identifier: ?string) => void,
   inputWidth?: number, // only applies with title, default is 50
   inputHeight?: number, // only applies with title, default is 50
   placeholder?: ?string,
@@ -36,11 +36,11 @@ type Props = RowProps & {
 }
 
 export default class RowWithTextInput extends Component<Props, any> {
-  input: TextInput
+  input: ?TextInput
 
   handlePress = (event: Event) => {
     this.props.onPress && this.props.onPress(event)
-    this.input.focus()
+    this.input && this.input.focus()
   }
 
   render () {
@@ -65,7 +65,7 @@ export default class RowWithTextInput extends Component<Props, any> {
       <Row
         {...this.props}
         accessories={accessory}
-        accessibilityLabel={`${this.props.title}, ${this.props.value}`}
+        accessibilityLabel={`${this.props.title}, ${this.props.value || ''}`}
         onPress={this.handlePress}
       />
     )

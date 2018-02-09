@@ -26,8 +26,9 @@ import i18n from 'format-message'
 import colors from '../../colors'
 
 export type RowWithSwitchProps = RowProps & {
-  value: boolean,
+  value?: boolean,
   onValueChange: Function,
+  disabled?: boolean,
 }
 
 export default class RowWithSwitch extends Component<RowWithSwitchProps, any> {

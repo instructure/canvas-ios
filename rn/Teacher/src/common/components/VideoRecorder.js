@@ -51,7 +51,7 @@ const StartStopButtonAnimation = {
 
 export default class VideoRecorder extends Component<Props, any> {
   camera: Camera
-  currentTimeInterval: ?number
+  currentTimeInterval: ?IntervalID
 
   constructor (props: Props) {
     super(props)

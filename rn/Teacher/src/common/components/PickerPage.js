@@ -28,7 +28,7 @@ import Row from './rows/Row'
 
 type Props = {
   onSelect: (string) => any,
-  options: { [string]: [string] },
+  options: { [string]: string },
   selectedValue: string,
   title: string,
 }

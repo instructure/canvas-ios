@@ -33,7 +33,7 @@ type Props = {
   onLoad?: () => void,
   onFocus?: () => void,
   onBlur?: () => void,
-  editorItemsChanged?: (items: [string]) => void,
+  editorItemsChanged?: (items: string[]) => void,
   scrollEnabled?: boolean,
   navigator: Navigator,
 }
@@ -42,6 +42,7 @@ type State = {
   linkModalVisible: boolean,
   lastHeightUpdate: number,
   setHTML: boolean,
+  items: string[],
 }
 
 export default class ZSSRichTextEditor extends Component<Props, State> {
@@ -52,6 +53,7 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
     linkModalVisible: false,
     lastHeightUpdate: 0,
     setHTML: false,
+    items: [],
   }
 
   componentWillReceiveProps (newProps: Props) {

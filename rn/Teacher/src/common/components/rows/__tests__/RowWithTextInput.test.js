@@ -21,8 +21,12 @@ import React from 'react'
 import RowWithTextInput from '../RowWithTextInput'
 
 describe('RowWithTextInput', () => {
+  const defaults = {
+    title: '',
+  }
+
   it('renders', () => {
-    const tree = shallow(<RowWithTextInput />)
+    const tree = shallow(<RowWithTextInput {...defaults} />)
     expect(tree).toMatchSnapshot()
   })
 
@@ -30,6 +34,7 @@ describe('RowWithTextInput', () => {
     const onChangeText = jest.fn()
     const tree = shallow(
       <RowWithTextInput
+        {...defaults}
         onChangeText={onChangeText}
         identifier='test'
       />
@@ -41,6 +46,7 @@ describe('RowWithTextInput', () => {
   it('sets default value', () => {
     const tree = shallow(
       <RowWithTextInput
+        {...defaults}
         defaultValue='test default value'
       />
     )

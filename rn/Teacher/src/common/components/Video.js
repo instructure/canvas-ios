@@ -22,7 +22,7 @@ import { requireNativeComponent } from 'react-native'
 
 type Props = {
   source: { uri: string },
-  style?: Object,
+  style?: Object | number,
 }
 
 export default class Video extends Component<Props, any> {
@@ -38,12 +38,13 @@ export default class Video extends Component<Props, any> {
     this._container && this._container.setNativeProps({ playing: true })
   }
 
-  captureContainer = (container: typeof VideoContainer) => {
+  captureContainer = (container: ?typeof VideoContainer) => {
     this._container = container
   }
 
   render () {
     return <VideoContainer
+      // $FlowFixMe
       ref={this.captureContainer}
       style={this.props.style}
       {...this.props}

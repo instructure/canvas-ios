@@ -32,6 +32,11 @@ type Props = {
 }
 
 export default class UnmetRequirementBanner extends PureComponent<Props, any> {
+  static defaultProps = {
+    visible: false,
+    text: 'Unmet Requirements',
+    backgroundColor: '#EE0612',
+  }
 
   componentWillUpdate () {
     LayoutAnimation.easeInEaseOut()
@@ -48,12 +53,6 @@ export default class UnmetRequirementBanner extends PureComponent<Props, any> {
       </View>
     )
   }
-}
-
-UnmetRequirementBanner.defaultProps = {
-  visible: false,
-  text: 'Unmet Requirements',
-  backgroundColor: '#EE0612',
 }
 
 const styles = StyleSheet.create({

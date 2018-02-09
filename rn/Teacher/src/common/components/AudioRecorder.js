@@ -31,7 +31,7 @@ import images from '../../images'
 import colors from '../colors'
 
 type Props = {
-  onFinishedRecording: (Recording) => void,
+  onFinishedRecording: (Recording) => any,
   onCancel: () => void,
   doneButtonText?: string,
 }

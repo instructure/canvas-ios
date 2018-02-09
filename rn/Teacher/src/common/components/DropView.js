@@ -22,9 +22,9 @@ import { requireNativeComponent, Platform, View } from 'react-native'
 const DropViewNative = requireNativeComponent('DropView', null)
 
 type BaseProps = {
-  children?: any,
+  children?: React$Node,
 }
-type DataProps = { dragItem: string } | { dragItems: string[] }
+type DataProps = { dragItem?: string } | { dragItems?: string[] }
 export type Props = BaseProps & DataProps
 
 export default class DragView extends Component<Props, any> {

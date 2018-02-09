@@ -27,6 +27,7 @@ import i18n from 'format-message'
 
 export type SavingBannerProps = {
   title?: string,
+  style?: Object | number,
 }
 
 export default class SavingBanner extends PureComponent<SavingBannerProps, any> {

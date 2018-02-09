@@ -19,7 +19,7 @@
 import React, { PureComponent } from 'react'
 import { View, StyleSheet } from 'react-native'
 
-export default class DisclosureIndicator extends PureComponent {
+export default class DisclosureIndicator extends PureComponent<{}> {
   render () {
     return <View style={styles.disclosureIndicator} />
   }

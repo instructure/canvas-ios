@@ -31,23 +31,23 @@ import { Text } from '../../text'
 export type RowProps = {
   title: string,
   subtitle?: string,
-  image?: string,
+  image?: { uri: string } | number,
   imageTint?: string,
   imageSize?: { height: number, width: number }, // Defaults to 20 x 20 if not supplied
   disclosureIndicator?: boolean,
   border?: 'top' | 'bottom' | 'both',
   onPress?: Function,
   testID?: string,
-  children: any,
+  children?: React$Node,
   renderImage?: Function,
-  identifier: any, // Passed in as the first parameter to the onPress callback
-  accessories: any,
-  accessibilityLabel: ?string,
-  accessibilityTraits: ?string | ?string[],
+  identifier?: any, // Passed in as the first parameter to the onPress callback
+  accessories?: any,
+  accessibilityLabel?: ?string,
+  accessibilityTraits?: React$ElementProps<typeof View>,
   titleProps?: { ellipsizeMode?: string, numberOfLines?: number },
-  selected: boolean,
-  titleStyles?: Text.propTypes,
-  subtitleStyles?: Text.propTypes,
+  selected?: boolean,
+  titleStyles?: Object | number,
+  subtitleStyles?: Object | number,
 }
 
 export default class Row extends Component<RowProps, any> {

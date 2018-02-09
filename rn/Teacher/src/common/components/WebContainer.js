@@ -150,7 +150,7 @@ export default class WebContainer extends Component<Props, any> {
 
     html = TEMPLATE.replace('{{content}}', html)
     html = html.replace('{{content-width}}', `${this.state.viewportWidth}`)
-    const baseUrl = getSession().baseURL
+    const baseUrl = (getSession() || {}).baseURL
 
     return (
       <View style={style} onLayout={this.onLayout} testID='web-container.view'>

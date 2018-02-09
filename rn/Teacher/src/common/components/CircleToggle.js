@@ -35,8 +35,7 @@ type Props = {
   accessibilityLabel?: string,
 }
 
-export default class CircleToggle extends PureComponent {
-  props: Props
+export default class CircleToggle extends PureComponent<Props> {
   buttonViewRef: any
 
   onPress = () => {

@@ -32,55 +32,55 @@ export const SEMI_BOLD_FONT = '.SFUIDisplay-semibold'
 export const BOLD_FONT = '.SFUIDisplay-bold'
 export const HEAVY_FONT = '.SFUIDisplay-heavy'
 
-export function Text ({ style, ...props }: Object): ReactNative.Element<ReactNative.Text> {
+export function Text ({ style, ...props }: Object) {
   let font = fontFamilyFromStyle(style)
   return <ReactNative.Text style={ [styles.font, styles.text, style, { fontFamily: font }] } {...props} />
 }
 
-Text.propTypes = ReactNative.Text.propsTypes
+Text.propTypes = ReactNative.Text.propTypes
 
-export function Heading1 ({ style, ...props }: Object): ReactNative.Element<ReactNative.Text> {
+export function Heading1 ({ style, ...props }: Object) {
   return <ReactNative.Text style={[styles.font, styles.h1, style]} {...props} accessibilityTraits='header' />
 }
 
-export function Heading2 ({ style, ...props }: Object): ReactNative.Element<ReactNative.Text> {
+export function Heading2 ({ style, ...props }: Object) {
   return <ReactNative.Text style={[styles.font, styles.h2, style]} {...props} />
 }
 
-export function Title ({ style, ...props }: Object): ReactNative.Element<ReactNative.Text> {
+export function Title ({ style, ...props }: Object) {
   return <ReactNative.Text style={[styles.font, styles.title, style]} { ...props } />
 }
 
-export function SubTitle ({ style, ...props }: Object): ReactNative.Element<ReactNative.Text> {
+export function SubTitle ({ style, ...props }: Object) {
   return <ReactNative.Text style={[styles.font, styles.subtitle, style]} { ...props } />
 }
 
-export function Paragraph ({ style, ...props }: Object): ReactNative.Element<ReactNative.Text> {
+export function Paragraph ({ style, ...props }: Object) {
   return <ReactNative.Text style={[styles.font, styles.p, style]} {...props} />
 }
 
-export function Heavy ({ style, ...props }: Object): ReactNative.Element<ReactNative.Text> {
+export function Heavy ({ style, ...props }: Object) {
   return <ReactNative.Text style={[styles.heavy, style]} {...props} />
 }
 
-export function TextInput ({ style, ...props }: Object): ReactNative.Element<ReactNative.Text> {
+export function TextInput ({ style, ...props }: Object) {
   let font = fontFamilyFromStyle(style)
   return <ReactNative.TextInput style={[styles.font, styles.textInput, style, { fontFamily: font }]} {...props} />
 }
 
-export function ModalActivityIndicatorAlertText ({ style, ...props }: Object): ReactNative.Element<ReactNative.Text> {
+export function ModalActivityIndicatorAlertText ({ style, ...props }: Object) {
   return <ReactNative.Text style={[styles.font, styles.modalActivityIndicatorAlertText, style]} {...props} />
 }
 
-export function UnmetRequirementBannerText ({ style, ...props }: Object): ReactNative.Element<ReactNative.Text> {
+export function UnmetRequirementBannerText ({ style, ...props }: Object) {
   return <ReactNative.Text style={[styles.font, styles.unmetRequirementBannerText, style]} {...props} />
 }
 
-export function UnmetRequirementSubscriptText ({ style, ...props }: Object): ReactNative.Element<ReactNative.Text> {
+export function UnmetRequirementSubscriptText ({ style, ...props }: Object) {
   return <ReactNative.Text style={[styles.font, styles.unmetRequirementSubscriptText, style]} {...props} />
 }
 
-export function Separated (props: Object): ReactNative.Element<typeof View> {
+export function Separated (props: Object) {
   const uniqueKey = Math.random().toString(36).substr(2, 16)
   let count = 0
   const result = props.separated
@@ -109,7 +109,7 @@ export function Separated (props: Object): ReactNative.Element<typeof View> {
   )
 }
 
-export function DotSeparated (props: Object): ReactNative.Element<Separated> {
+export function DotSeparated (props: Object) {
   return <Separated {...props} separator={'  •  '} />
 }
 

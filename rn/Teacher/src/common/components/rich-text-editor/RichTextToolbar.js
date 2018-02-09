@@ -41,8 +41,8 @@ type Props = {
   setOrderedList?: () => void,
   insertLink?: () => void,
   insertImage?: () => void,
-  onTappedDone: () => void,
-  onColorPickerShown: (shown: boolean) => void,
+  onTappedDone?: () => void,
+  onColorPickerShown?: (shown: boolean) => void,
 }
 
 type State = {

@@ -48,8 +48,16 @@ type Props = {
   navigator: Navigator,
 }
 
-export default class AttachmentView extends Component<Props, any> {
-  state = {
+type State = {
+  size: { width: number, height: number },
+  filePath: ?string,
+  jobID?: ?number,
+  error?: ?string,
+  downloadPromise?: Promise<*>,
+}
+
+export default class AttachmentView extends Component<Props, State> {
+  state: State = {
     size: { width: 0, height: 0 },
     filePath: null,
   }
@@ -149,6 +157,7 @@ export default class AttachmentView extends Component<Props, any> {
     return (
       <View style={styles.centeredContainer} onLayout={this.handleLayout}>
         <Video
+          // $FlowFixMe
           source={{ uri: this.state.filePath }}
           style={{ width: this.state.size.width, height: Math.ceil(this.state.size.width * 9.0 / 16.0) }}
         />

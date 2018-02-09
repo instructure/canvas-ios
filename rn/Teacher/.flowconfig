@@ -24,7 +24,6 @@
 .*/node_modules/react-native-sfsafariviewcontroller/.*
 
 ; Ignore flow annotation for files we haven't fixed yet :(
-.*/src/common/.*
 .*/src/modules/.*
 
 [libs]

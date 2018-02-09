@@ -54,8 +54,8 @@ type ScreenProps = {
   rightBarButtons?: any,
   backButtonTitle?: string,
 
-  children: any,
-  disableGlobalSafeArea: boolean,
+  children?: React$Node,
+  disableGlobalSafeArea?: boolean,
 }
 
 type State = {

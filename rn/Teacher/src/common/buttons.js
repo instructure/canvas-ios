@@ -19,7 +19,7 @@
  */
 
 import React, { PureComponent } from 'react'
-import ReactNative, {
+import {
   View,
   StyleSheet,
   TouchableOpacity,
@@ -28,7 +28,7 @@ import BaseButton from 'react-native-button'
 import colors from './colors'
 import { Text, BOLD_FONT } from './text'
 
-export function Button ({ style, containerStyle, ...props }: Object): ReactNative.TouchableHighlight {
+export function Button ({ style, containerStyle, ...props }: Object) {
   let brandingContainerStyles = {
     backgroundColor: colors.primaryButtonColor,
   }
@@ -38,7 +38,7 @@ export function Button ({ style, containerStyle, ...props }: Object): ReactNativ
   return (<BaseButton style={[styles.textColor, brandingStyles, style]} containerStyle={[styles.container, brandingContainerStyles, containerStyle]} {...props} />)
 }
 
-export class LinkButton extends PureComponent {
+export class LinkButton extends PureComponent<Object> {
   render () {
     const brandingStyles = { color: colors.primaryButtonColor }
     const textAttributes = this.props.textAttributes || {}

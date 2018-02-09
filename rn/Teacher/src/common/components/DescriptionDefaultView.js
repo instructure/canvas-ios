@@ -29,6 +29,9 @@ type Props = {
 }
 
 export default class DescriptionDefaultView extends PureComponent<Props, any> {
+  static defaultProps = {
+    text: 'Help your students with this assignment by adding instructions.',
+  }
 
   render () {
     return (
@@ -37,10 +40,6 @@ export default class DescriptionDefaultView extends PureComponent<Props, any> {
       </View>
     )
   }
-}
-
-DescriptionDefaultView.defaultProps = {
-  text: 'Help your students with this assignment by adding instructions.',
 }
 
 const styles = StyleSheet.create({

@@ -29,7 +29,7 @@ type Props = {
 }
 
 export class RefreshableListView extends ListView {
-  props: Props & ListView.Props
+  props: Props & React$ElementProps<typeof ListView>
 
   render () {
     return (
@@ -46,8 +46,9 @@ export class RefreshableListView extends ListView {
   }
 }
 
+// $FlowFixMe
 export class RefreshableScrollView extends ScrollView {
-  props: Props & ScrollView.Props
+  props: Props & React$ElementProps<typeof ScrollView>
 
   render () {
     return (

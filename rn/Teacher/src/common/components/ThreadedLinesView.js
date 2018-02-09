@@ -33,13 +33,12 @@ type Props = {
   reply: DiscussionReply,
 }
 
-export default class ThreadedLinesView extends PureComponent {
-  props: Props
+export default class ThreadedLinesView extends PureComponent<Props> {
   render () {
     return this.createThreadDepth(this.props.depth)
   }
 
-  renderLine (index: number) {
+  renderLine (index: number = 0) {
     const { reply } = this.props || { id: '' }
 
     return (

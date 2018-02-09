@@ -21,19 +21,30 @@ import { View, StyleSheet, ActivityIndicator, Modal } from 'react-native'
 import { ModalActivityIndicatorAlertText } from '../text'
 
 type Props = {
-  style: Object,
+  style?: Object,
   animationType: string,
   transparent: boolean,
   visible: boolean,
   text: string,
-  textStyle: Object,
+  textStyle?: Object,
   activityIndicatorColor: string,
   backgroundColor: string,
   height: number,
   width: number,
 }
 
-export default class ModalActivityIndicator extends React.Component<Props, any> {
+export default class ModalActivityIndicator extends React.Component<Props> {
+  static defaultProps = {
+    animationType: 'fade',
+    transparent: true,
+    visible: false,
+    text: '',
+    activityIndicatorColor: '#fff',
+    backgroundColor: 'rgba(0,0,0,0.8)',
+    width: 170,
+    height: 170,
+  }
+
   render () {
     return (
       <Modal animationType={this.props.animationType}
@@ -55,17 +66,6 @@ export default class ModalActivityIndicator extends React.Component<Props, any> 
       </Modal>
     )
   }
-}
-
-ModalActivityIndicator.defaultProps = {
-  animationType: 'fade',
-  transparent: true,
-  visible: false,
-  text: '',
-  activityIndicatorColor: '#fff',
-  backgroundColor: 'rgba(0,0,0,0.8)',
-  width: 170,
-  height: 170,
 }
 
 const style = StyleSheet.create({

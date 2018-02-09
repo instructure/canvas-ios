@@ -40,7 +40,7 @@ type Props = {
   image: any,
   // Offset for the status icon that appears in the bottom right.
   // Needed because some images have different sizes so a single offset doesn't work for all images
-  statusOffset: {
+  statusOffset?: {
     top?: number,
     left?: number,
   },

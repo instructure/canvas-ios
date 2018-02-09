@@ -40,18 +40,20 @@ export type Props = {
   navigator: Navigator,
 }
 
-export default class RichTextEditor extends Component<Props> {
+type State = {
+  activeEditorItems: string[],
+  editorFocused: boolean,
+  topKeyboardSpace: number,
+}
+
+export default class RichTextEditor extends Component<Props, State> {
   editor: ZSSRichTextEditor
   container: View
 
-  constructor (props: Props) {
-    super(props)
-
-    this.state = {
-      activeEditorItems: [],
-      editorFocused: false,
-      topKeyboardSpace: 0,
-    }
+  state: State = {
+    activeEditorItems: [],
+    editorFocused: false,
+    topKeyboardSpace: 0,
   }
 
   onLayout = () => {
@@ -70,7 +72,7 @@ export default class RichTextEditor extends Component<Props> {
         onLayout={this.onLayout}
       >
         <ZSSRichTextEditor
-          ref={(editor) => { this.editor = editor }}
+          ref={(editor: any) => { this.editor = editor }}
           html={this.props.defaultValue}
           onLoad={this._onLoad}
           onFocus={this._onFocus}
@@ -105,7 +107,7 @@ export default class RichTextEditor extends Component<Props> {
     )
   }
 
-  _captureContainer = (ref: View) => { this.container = ref }
+  _captureContainer = (ref: any) => { this.container = ref }
 
   _setKeyboardSpace = () => {
     this.container.measureInWindow((x, y, width, height) => {

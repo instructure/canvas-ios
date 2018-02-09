@@ -22,7 +22,7 @@ import { httpClient, isAbort } from '../canvas-api'
 import { parseNext } from '../canvas-api/utils/pagination'
 import i18n from 'format-message'
 
-export type TypeAheadSearchResults = () => { results: ?any[], error: ?string }
+export type TypeAheadSearchResults = (results: ?any[], error: ?string) => void
 
 export type Props = {
   endpoint: string,
@@ -34,7 +34,7 @@ export type Props = {
   defaultQuery?: string,
 }
 
-export default class TypeAheadSearch extends Component<Props, any> {
+export default class TypeAheadSearch extends Component<Props> {
   searchBar: SearchBar
   nextURL: ?string
   cancel: ?(() => void)
@@ -51,7 +51,7 @@ export default class TypeAheadSearch extends Component<Props, any> {
     try {
       const fetching = httpClient().get(url, { params })
       if (fetching.request) {
-        this.cancel = () => fetching.request.abort()
+        this.cancel = () => fetching.request && fetching.request.abort()
       }
       let response = await fetching
       this.nextURL = parseNext(response)
