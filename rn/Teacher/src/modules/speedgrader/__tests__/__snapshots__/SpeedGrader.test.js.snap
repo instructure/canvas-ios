@@ -146,6 +146,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   Object {
                     "dismiss": [Function],
                     "dismissAllModals": [Function],
+                    "isModal": false,
                     "launchExternalTool": [Function],
                     "pop": [Function],
                     "show": [Function],
@@ -347,6 +348,7 @@ exports[`SpeedGrader renders with a filter 1`] = `
                   Object {
                     "dismiss": [Function],
                     "dismissAllModals": [Function],
+                    "isModal": false,
                     "launchExternalTool": [Function],
                     "pop": [Function],
                     "show": [Function],
@@ -462,6 +464,7 @@ exports[`SpeedGrader renders with a filter 1`] = `
                   Object {
                     "dismiss": [Function],
                     "dismissAllModals": [Function],
+                    "isModal": false,
                     "launchExternalTool": [Function],
                     "pop": [Function],
                     "show": [Function],

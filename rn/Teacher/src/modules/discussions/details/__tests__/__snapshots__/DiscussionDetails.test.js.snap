@@ -2,7 +2,7 @@
 
 exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
 <Screen
-  leftBarButtons={undefined}
+  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   onTraitCollectionChange={[Function]}
@@ -1500,7 +1500,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
 
 exports[`DiscussionDetails renders no replies 1`] = `
 <Screen
-  leftBarButtons={undefined}
+  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   onTraitCollectionChange={[Function]}
@@ -2608,7 +2608,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
 
 exports[`DiscussionDetails renders with nested replies selected 1`] = `
 <Screen
-  leftBarButtons={undefined}
+  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   onTraitCollectionChange={[Function]}
@@ -4736,7 +4736,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
 
 exports[`DiscussionDetails renders with no discussion 1`] = `
 <Screen
-  leftBarButtons={undefined}
+  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   onTraitCollectionChange={[Function]}
@@ -4807,7 +4807,7 @@ exports[`DiscussionDetails renders with no discussion 1`] = `
 
 exports[`DiscussionDetails renders with replies 1`] = `
 <Screen
-  leftBarButtons={undefined}
+  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   onTraitCollectionChange={[Function]}
@@ -6399,7 +6399,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
 
 exports[`DiscussionDetails renders without a discussion 1`] = `
 <Screen
-  leftBarButtons={undefined}
+  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   onTraitCollectionChange={[Function]}

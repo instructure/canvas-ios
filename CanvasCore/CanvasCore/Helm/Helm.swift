@@ -57,6 +57,7 @@ open class HelmManager: NSObject {
     }
 
     open func reactWillReload() {
+        self.cleanup()
         onReactReload()
     }
 
@@ -111,8 +112,13 @@ open class HelmManager: NSObject {
         let replaceInNav: (UINavigationController) -> Void
         let pushToReplace = options["replace"] as? Bool ?? false
         
+        // The views need to know when they are shown modaly and potentially other options
+        // Doing it here instead of in JS so that native routing will also work
+        var propsFRD = props
+        propsFRD["navigatorOptions"] = options
+        
         if let factory = nativeViewControllerFactories[destinationModule]?.factory {
-            guard let vc = factory(props) else { return }
+            guard let vc = factory(propsFRD) else { return }
             viewController = vc
             
             if pushToReplace {
@@ -133,7 +139,7 @@ open class HelmManager: NSObject {
                 nav.navigationBar.isTranslucent = false
             }
         } else {
-            let helmViewController = HelmViewController(moduleName: destinationModule, props: props)
+            let helmViewController = HelmViewController(moduleName: destinationModule, props: propsFRD)
             viewController = helmViewController
             viewController.edgesForExtendedLayout = [.left, .right]
             
@@ -170,7 +176,7 @@ open class HelmManager: NSObject {
             let sourceViewController = splitViewController.sourceController(moduleName: sourceModule)
             let resetDetailNavStackIfClickedFromMaster = splitViewController.masterTopViewController == sourceViewController
             
-            if let nav = navigationControllerForSplitViewControllerPush(splitViewController: splitViewController, sourceModule: sourceModule, destinationModule: destinationModule, props: props, options: options) {
+            if let nav = navigationControllerForSplitViewControllerPush(splitViewController: splitViewController, sourceModule: sourceModule, destinationModule: destinationModule, props: propsFRD, options: options) {
                 if (resetDetailNavStackIfClickedFromMaster && !canBecomeMaster && splitViewController.viewControllers.count > 1) {
                     viewController.navigationItem.leftBarButtonItem = splitViewController.prettyDisplayModeButtonItem
                     viewController.navigationItem.leftItemsSupplementBackButton = true
@@ -253,9 +259,14 @@ open class HelmManager: NSObject {
             }
         }
         
+        // The views need to know when they are shown modaly and potentially other options
+        // Doing it here instead of in JS so that native routing will also work
+        var propsFRD = props
+        propsFRD["navigatorOptions"] = options
+        
         if let stuff = nativeViewControllerFactories[module] {
             let factory = stuff.factory
-            guard let viewController = factory(props) else {
+            guard let viewController = factory(propsFRD) else {
                 callback?()
                 return
             }
@@ -281,7 +292,7 @@ open class HelmManager: NSObject {
             var toPresent: UIViewController
             var helmVC: HelmViewController
             
-            let vc = HelmViewController(moduleName: module, props: props)
+            let vc = HelmViewController(moduleName: module, props: propsFRD)
             toPresent = vc
             helmVC = vc
             if let embedInNavigationController: Bool = options["embedInNavigationController"] as? Bool, embedInNavigationController {

@@ -96,6 +96,7 @@ exports[`Rubric has the correct score 1`] = `
               Object {
                 "dismiss": [Function],
                 "dismissAllModals": [Function],
+                "isModal": false,
                 "launchExternalTool": [Function],
                 "pop": [Function],
                 "show": [Function],
@@ -690,6 +691,7 @@ exports[`Rubric renders a rubric 1`] = `
               Object {
                 "dismiss": [Function],
                 "dismissAllModals": [Function],
+                "isModal": false,
                 "launchExternalTool": [Function],
                 "pop": [Function],
                 "show": [Function],
@@ -1284,6 +1286,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
               Object {
                 "dismiss": [Function],
                 "dismissAllModals": [Function],
+                "isModal": false,
                 "launchExternalTool": [Function],
                 "pop": [Function],
                 "show": [Function],
@@ -1800,6 +1803,7 @@ exports[`Rubric renders the grade picker when there is no rubric 1`] = `
               Object {
                 "dismiss": [Function],
                 "dismissAllModals": [Function],
+                "isModal": false,
                 "launchExternalTool": [Function],
                 "pop": [Function],
                 "show": [Function],
@@ -1937,6 +1941,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
               Object {
                 "dismiss": [Function],
                 "dismissAllModals": [Function],
+                "isModal": false,
                 "launchExternalTool": [Function],
                 "pop": [Function],
                 "show": [Function],

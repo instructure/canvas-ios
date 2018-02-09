@@ -75,6 +75,14 @@ export default class Staging extends Component<StagingProps, any> {
     this.navigate(route => this.props.navigator.show(route.screen, { modal: true }, route.passProps))
   }
 
+  deepLink = () => {
+    this.navigate(route => this.props.navigator.show(route.screen, {
+      modal: true,
+      embedInNavigationController: true,
+      deepLink: true,
+    }, route.passProps))
+  }
+
   close = () => {
     this.props.navigator.dismiss()
   }
@@ -121,6 +129,14 @@ export default class Staging extends Component<StagingProps, any> {
                 onPress={ this.go }
                 style={ styles.buttonText }>
                 Push!
+              </Button>
+            </View>
+            <View style={{ paddingLeft: 8 }}>
+              <Button
+                testID='staging.deep-link'
+                onPress={ this.deepLink }
+                style={styles.buttonText}>
+                Deep!
               </Button>
             </View>
           </View>

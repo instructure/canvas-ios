@@ -150,7 +150,7 @@ export class ConversationDetails extends Component <any, ConversationDetailsProp
         navBarStyle='dark'
         drawUnderNavBar={true}
         title={i18n('Message Details')}
-        leftBarButtons={this.props.pushNotification && [
+        leftBarButtons={this.props.navigator.isModal && [
           {
             title: i18n('Done'),
             testID: 'inbox.detail.dismiss.button',

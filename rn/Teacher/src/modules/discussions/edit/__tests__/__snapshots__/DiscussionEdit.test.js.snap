@@ -316,6 +316,7 @@ exports[`DiscussionEdit renders 1`] = `
               Object {
                 "dismiss": [Function],
                 "dismissAllModals": [Function],
+                "isModal": false,
                 "launchExternalTool": [Function],
                 "pop": [Function],
                 "show": [Function],
@@ -3234,6 +3235,7 @@ exports[`DiscussionEdit updates with new props 1`] = `
               Object {
                 "dismiss": [Function],
                 "dismissAllModals": [Function],
+                "isModal": false,
                 "launchExternalTool": [Function],
                 "pop": [Function],
                 "show": [Function],

@@ -25,4 +25,5 @@ export const navigator: Template<any> = template({
   traitCollection: jest.fn(),
   pop: jest.fn(() => Promise.resolve()),
   launchExternalTool: jest.fn(() => Promise.resolve()),
+  isModal: false,
 })

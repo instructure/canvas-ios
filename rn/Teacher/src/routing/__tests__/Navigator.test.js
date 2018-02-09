@@ -190,4 +190,10 @@ describe('Navigator', () => {
       expect(SFSafariViewController.open).toHaveBeenCalledWith('https://google.com')
     }
   })
+
+  it('sets options', () => {
+    let n = new Navigator('push', { modal: true })
+
+    expect(n.isModal).toEqual(true)
+  })
 })

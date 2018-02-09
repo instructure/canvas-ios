@@ -31,9 +31,13 @@ export type TraitCollection = { [scope: string]: { [key: string]: TraitCollectio
 
 export default class Navigator {
   moduleName = ''
+  isModal = false
 
-  constructor (moduleName: string) {
+  constructor (moduleName: string, options: { String: any } = {}) {
     this.moduleName = moduleName
+    // options consists of any option that was passed into show when
+    // routing so we can add other options here as needed
+    this.isModal = options.modal
   }
 
   show (url: string, options: Object = { modal: false, modalPresentationStyle: 'formsheet', deepLink: false }, additionalProps: Object = {}) {

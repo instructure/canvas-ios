@@ -28,7 +28,6 @@ export const course: Template<Course> = template({
   image_download_url: 'https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg',
   is_favorite: true,
   default_view: 'wiki',
-  term: { name: 'Default Term' },
   enrollments: [{
     enrollment_state: 'active',
     role: 'TeacherEnrollment',
@@ -36,6 +35,16 @@ export const course: Template<Course> = template({
     type: 'teacher',
     user_id: '1',
   }],
+  workflow_state: 'available',
+  term: {
+    id: '1',
+    created_at: new Date().toLocaleDateString(),
+    end_at: new Date('2030-02-08T23:13:39.736Z').toLocaleDateString(),
+    start_at: new Date().toLocaleDateString(),
+    name: 'Default Term',
+    workflow_state: 'available',
+  },
+  end_at: new Date('2030-02-08T23:13:39.736Z').toLocaleDateString(),
 })
 
 export const courseWithSection: Template<Course> = function (defaults) {

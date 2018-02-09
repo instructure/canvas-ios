@@ -23,10 +23,6 @@ export type CourseHome =
   | 'assignments'
   | 'syllabus'
 
-export type Term = {
-  name: string,
-}
-
 export type Course = {
   id: string,
   account_id: string,
@@ -36,7 +32,6 @@ export type Course = {
   image_download_url?: ?string,
   is_favorite?: boolean,
   default_view: CourseHome,
-  term: Term,
   enrollments?: ?Enrollment[],
   sections?: Section[],
   access_restricted_by_date?: boolean,

@@ -75,14 +75,18 @@ export function wrapComponentInReduxProvider (moduleName: string, generator: () 
       }
 
       render () {
-        const navigator = new Navigator(moduleName)
+        let {
+          navigatorOptions,
+          ...props
+         } = this.props
+        const navigator = new Navigator(moduleName, navigatorOptions)
         const ScreenComponent = generator()
         return (
           <Provider store={store}>
             <ScreenComponent
               testID={moduleName}
               navigator={navigator}
-              {...this.props}
+              {...props}
               {...routeProps.get(this.props.screenInstanceID)}
             />
           </Provider>
