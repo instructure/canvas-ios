@@ -14,6 +14,9 @@
   "a_title_is_required_71222850": {
     "message": "A title is required"
   },
+  "accept_2fdd362e": {
+    "message": "Accept"
+  },
   "access_9a94f04e": {
     "message": "Access"
   },
@@ -22,6 +25,9 @@
   },
   "account_group_cb00ca73": {
     "message": "Account Group"
+  },
+  "account_has_no_terms_of_use_1048a785": {
+    "message": "Account has no Terms of Use"
   },
   "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
     "message": "\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users'' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user."
@@ -389,6 +395,9 @@
   "date_date_mmm_d_date_time_short_e82719d6": {
     "message": "{ date, date, 'MMM d' } { date, time, short }"
   },
+  "decline_7eeb5ff4": {
+    "message": "Decline"
+  },
   "delay_posting_f45eed7d": {
     "message": "Delay Posting"
   },
@@ -436,6 +445,9 @@
   },
   "dismiss_dacdb625": {
     "message": "Dismiss"
+  },
+  "dismiss_invitation_to_name_a650b2c4": {
+    "message": "Dismiss invitation to { name }"
   },
   "dismiss_name_8646b9fd": {
     "message": "Dismiss { name }"
@@ -593,6 +605,9 @@
   "filter_submissions_81bc50de": {
     "message": "Filter Submissions"
   },
+  "final_grade_4d7f6545": {
+    "message": "Final Grade"
+  },
   "for_974cbb84": {
     "message": "For"
   },
@@ -691,6 +706,12 @@
   },
   "invalid_field_54480fae": {
     "message": "Invalid field"
+  },
+  "invite_accepted_290abc90": {
+    "message": "Invite accepted!"
+  },
+  "invite_declined_d0a9e398": {
+    "message": "Invite declined!"
   },
   "italic_ac45200a": {
     "message": "Italic"
@@ -793,6 +814,9 @@
   },
   "new_13daf639": {
     "message": "New"
+  },
+  "new_announcement_23af4598": {
+    "message": "New Announcement"
   },
   "new_discussion_dae4fae3": {
     "message": "New Discussion"
@@ -953,6 +977,9 @@
   "pass_8abee039": {
     "message": "Pass"
   },
+  "past_enrollments_a846da48": {
+    "message": "Past Enrollments"
+  },
   "people_b4ebb13c": {
     "message": "People"
   },
@@ -976,6 +1003,9 @@
   },
   "points_number_out_of_totalpoints_number_291efb47": {
     "message": "{ points, number } out of { totalPoints, number }"
+  },
+  "points_number_pts_cc4a4a59": {
+    "message": "{ points, number }pts"
   },
   "points_possible_must_be_a_number_4a592dc6": {
     "message": "Points possible must be a number"
@@ -1076,8 +1106,8 @@
   "report_a_problem_4d48624a": {
     "message": "Report a Problem"
   },
-  "request_a_feature_f33319e5": {
-    "message": "Request a feature"
+  "request_a_feature_3c8e2079": {
+    "message": "Request a Feature"
   },
   "require_an_access_code_46a02601": {
     "message": "Require an Access Code"
@@ -1268,6 +1298,9 @@
   "teachers_and_students_ba2db3e4": {
     "message": "Teachers and students"
   },
+  "terms_of_use_62ee73ad": {
+    "message": "Terms Of Use"
+  },
   "terms_of_use_6542769b": {
     "message": "Terms of Use"
   },
@@ -1330,6 +1363,9 @@
   },
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
     "message": "There was a problem loading the quizzes."
+  },
+  "there_was_a_problem_retreiving_the_terms_of_use_3a5fa00c": {
+    "message": "There was a problem retreiving the Terms Of Use"
   },
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "There was an error loading the attachment."
@@ -1531,6 +1567,9 @@
   },
   "yes_dde87d5": {
     "message": "Yes"
+  },
+  "you_have_been_invited_a724be1a": {
+    "message": "You have been invited"
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "You must enable Camera and Microphone permissions in Settings to use the camera."
