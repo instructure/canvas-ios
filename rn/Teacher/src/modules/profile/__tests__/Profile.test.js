@@ -15,9 +15,10 @@
 //
 
 /* @flow */
+import { shallow } from 'enzyme'
 import { NativeModules, ActionSheetIOS, Linking } from 'react-native'
 import React from 'react'
-import { Profile } from '../Profile.js'
+import { Profile } from '../Profile'
 import app from '../../app'
 
 // Note: test renderer must be required after react-native.
@@ -26,8 +27,9 @@ import { setSession } from '../../../canvas-api'
 
 const template = {
   ...require('../../../__templates__/session'),
-  ...require('../../../__templates__/helm.js'),
-  ...require('../../../__templates__/launch-definitions.js'),
+  ...require('../../../__templates__/helm'),
+  ...require('../../../__templates__/launch-definitions'),
+  ...require('../../../__templates__/users'),
 }
 
 jest.mock('ActionSheetIOS', () => ({
@@ -57,6 +59,7 @@ describe('Profile Tests', () => {
       refreshAccountExternalTools: jest.fn(),
       canMasquerade: true,
       externalTools: [],
+      getUserProfile: jest.fn(() => Promise.resolve({ data: template.user() })),
     }
   })
   it('renders correctly', () => {
@@ -220,5 +223,25 @@ describe('Profile Tests', () => {
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
+  })
+
+  it('refreshes avatar url on mount', async () => {
+    const url = 'test-refresh-on-mount'
+    const user = template.user({
+      avatar_url: url,
+    })
+    let promise = Promise.resolve({ data: user })
+    const getUserProfile = jest.fn(() => promise)
+    const props = {
+      ...defaultProps,
+      getUserProfile,
+    }
+    const tree = shallow(<Profile {...props} />)
+    await promise
+    tree.update()
+
+    expect(getUserProfile).toHaveBeenCalledWith('self')
+    const avatar = tree.find('Avatar').first()
+    expect(avatar.props().avatarURL).toEqual(url)
   })
 })

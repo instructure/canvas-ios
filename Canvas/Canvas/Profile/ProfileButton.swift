@@ -24,11 +24,8 @@ import CanvasCore
 
 let transitioningDelegate = DrawerTransitionDelegate()
 
-func profileController(_ session: Session) -> UINavigationController {
+func profileController(_ session: Session) -> ProfileViewController {
     let profile = ProfileViewController()
-    profile.settingsViewControllerFactory = {
-        return SettingsViewController.controller(CKCanvasAPI.current())
-    }
     profile.canvasAPI = CKCanvasAPI.current()
     profile.user = profile.canvasAPI.user
     profile.profileImageSelected = { newProfileImage in
@@ -40,11 +37,5 @@ func profileController(_ session: Session) -> UINavigationController {
             }
         }
     }
-    let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
-    doneButton.rac_command = RACCommand() { [weak profile] _ in
-        profile?.dismiss(animated: true, completion: nil)
-        return .empty()
-    }
-    profile.navigationItem.leftBarButtonItem = doneButton
-    return UINavigationController(rootViewController: profile)
+    return profile
 }

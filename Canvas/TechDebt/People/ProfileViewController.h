@@ -26,24 +26,5 @@
 @property CKCanvasAPI *canvasAPI;
 @property (nonatomic) CKUser *user;
 @property (nonatomic, copy) void (^profileImageSelected)(UIImage *newProfileImage);
-@property (nonatomic, copy) UIViewController *(^settingsViewControllerFactory)();
-
-@end
-
-@interface ProfileContentViewController: UITableViewController
-
-@property (nonatomic, readwrite) BOOL showGauge;
-
-@property (nonatomic, weak) IBOutlet UITableViewCell *filesCell;
-@property (nonatomic, weak) IBOutlet UITableViewCell *gaugeCell;
-@property (nonatomic, weak) IBOutlet UITableViewCell *settingsCell;
-@property (nonatomic, weak) IBOutlet UITableViewCell *helpCell;
-@property (nonatomic, weak) IBOutlet UITableViewCell *logoutCell;
-
-@property (nonatomic, copy) void (^filesAction)();
-@property (nonatomic, copy) void (^gaugeAction)();
-@property (nonatomic, copy) void (^settingsAction)();
-@property (nonatomic, copy) void (^helpAction)(UITableViewCell *sender);
-@property (nonatomic, copy) void (^logoutAction)(UITableViewCell *sender);
 
 @end

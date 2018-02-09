@@ -47,6 +47,7 @@ export class Profile extends Component {
 
   static defaultProps = {
     account: canvas.account,
+    getUserProfile: canvas.getUserProfile,
   }
 
   constructor (props: any) {
@@ -60,11 +61,24 @@ export class Profile extends Component {
     settingsActions.push({ title: i18n('Terms of Use'), id: 'terms' })
     settingsActions.push({ title: i18n('Cancel'), id: 'cancel' })
     this.settingsActions = settingsActions
+
+    let session = getSession()
+    this.state = {
+      avatarURL: session && session.user.avatar_url,
+    }
   }
 
   componentDidMount () {
     this.props.refreshCanMasquerade()
     this.props.refreshAccountExternalTools()
+    this.refreshAvatarURL()
+  }
+
+  refreshAvatarURL = async () => {
+    const { data } = await this.props.getUserProfile('self')
+    if (data && data.avatar_url) {
+      this.setState({ avatarURL: data.avatar_url })
+    }
   }
 
   logout = () => {
@@ -197,7 +211,7 @@ export class Profile extends Component {
         <View style={styles.container} testID="module.profile">
           <View style={styles.header}>
             <Avatar
-              avatarURL={user.avatar_url}
+              avatarURL={this.state.avatarURL}
               userName={user.name}
               height={56}
               width={56}

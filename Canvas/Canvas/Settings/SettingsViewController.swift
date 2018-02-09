@@ -127,6 +127,11 @@ private class EnablePushSettingsRow: SettingsRow {
 extension SettingsViewController {
     
     fileprivate func data() -> [SettingsRow] {
+        let profile = TextSettingsRow(title: NSLocalizedString("Profile", comment: "")) { () -> () in
+            let session = CanvasKeymaster.the().currentClient.authSession
+            self.navigationController?.pushViewController(profileController(session), animated: true)
+        }
+
         let about = TextSettingsRow(title: NSLocalizedString("About", comment: "Settings entry title for About")) { () -> () in
             let aboutViewController = AboutViewController.init()
             aboutViewController.canvasAPI = self.canvasAPI
@@ -148,7 +153,7 @@ extension SettingsViewController {
             self.navigationController?.pushViewController(viewController, animated: true)
         }
         
-        var dataSource: [SettingsRow] = [about, landingPage, notificationPreferences]
+        var dataSource: [SettingsRow] = [profile, about, landingPage, notificationPreferences]
         
         if PushPreAuthStatus.currentPushPreAuthStatus() == .shownAndDeclined {
             let enablePush = EnablePushSettingsRow(protocolHandler: self)
