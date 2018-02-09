@@ -21,8 +21,11 @@ import { type TraitCollection } from '../routing/Navigator'
 
 const Manager = NativeModules.WindowTraitsManager
 
-let windowTraits = { horizontal: 'compact', vertical: 'regular' }
-export default function currentWindowTraits (): TraitCollection {
+let windowTraits: $PropertyType<TraitCollection, 'window'> = {
+  horizontal: 'compact',
+  vertical: 'regular',
+}
+export default function currentWindowTraits () {
   return windowTraits
 }
 

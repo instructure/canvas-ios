@@ -58,7 +58,15 @@ type ScreenProps = {
   disableGlobalSafeArea: boolean,
 }
 
-class Screen extends React.Component<ScreenProps, any> {
+type State = {
+  hasRendered: boolean,
+}
+
+type Context = {
+  screenInstanceID: string,
+}
+
+class Screen extends React.Component<ScreenProps, State> {
   deviceEventEmitterSubscriptions: Object = {}
 
   static propTypes = {
@@ -69,7 +77,7 @@ class Screen extends React.Component<ScreenProps, any> {
     screenInstanceID: PropTypes.string,
   }
 
-  constructor (props: Object, context: Screen.contextTypes) {
+  constructor (props: Object, context: Context) {
     super(props, context)
     this.state = { hasRendered: false }
     this.handleProps(props, context.screenInstanceID, false)
@@ -80,7 +88,7 @@ class Screen extends React.Component<ScreenProps, any> {
     this.setState({ hasRendered: true })
   }
 
-  componentWillReceiveProps (nextProps: Object, nextContext: Screen.contextTypes) {
+  componentWillReceiveProps (nextProps: Object, nextContext: Context) {
     this.handleProps(nextProps, nextContext.screenInstanceID, this.state.hasRendered)
   }
 

@@ -15,7 +15,7 @@
 //
 
 // @flow
-import { NativeModules } from 'react-native'
+import { NativeModules, type PushNotificationIOS } from 'react-native'
 import { route } from './index'
 import SFSafariViewController from 'react-native-sfsafariviewcontroller'
 import { getAuthenticatedSessionURL } from '../canvas-api'
@@ -27,13 +27,18 @@ type ShowOptions = {
 }
 
 export type TraitCollectionType = 'compact' | 'regular' | 'unspecified'
-export type TraitCollection = { [scope: string]: { [key: string]: TraitCollectionType} }
+export type TraitCollection = {
+  ['screen' | 'window']: {
+    horizontal: TraitCollectionType,
+    vertical: TraitCollectionType,
+  },
+}
 
 export default class Navigator {
   moduleName = ''
   isModal = false
 
-  constructor (moduleName: string, options: { String: any } = {}) {
+  constructor (moduleName: string, options: { [string]: any } = {}) {
     this.moduleName = moduleName
     // options consists of any option that was passed into show when
     // routing so we can add other options here as needed
@@ -101,9 +106,9 @@ export default class Navigator {
   }
 
   showNotification (notification: PushNotificationIOS) {
-    if (notification.getData() && notification.getData().html_url) {
-      const url = notification.getData().html_url
-      this.show(url, {
+    const data = notification.getData()
+    if (data && data.html_url) {
+      this.show(data.html_url, {
         modal: true,
         modalPresentationStyle: 'fullscreen',
         embedInNavigationController: true,
@@ -111,7 +116,7 @@ export default class Navigator {
       }, {
         pushNotification: {
           alert: notification.getAlert(),
-          data: notification.getData(),
+          data,
         },
       })
     }

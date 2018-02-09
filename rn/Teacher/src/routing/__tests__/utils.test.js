@@ -83,13 +83,19 @@ describe('routing utils', () => {
     })
 
     it('handles regular traits', () => {
-      let traits = { 'window': { 'horizontal': 'regular' } }
+      let traits = {
+        window: { horizontal: 'regular', vertical: 'regular' },
+        screen: { horizontal: 'regular', vertical: 'regular' },
+      }
       const result = utils.isRegularDisplayMode(traits)
       expect(result).toBe(true)
     })
 
     it('handles compact traits', () => {
-      let traits = { 'window': { 'horizontal': 'compact' } }
+      let traits = {
+        window: { horizontal: 'compact', vertical: 'regular' },
+        screen: { horizontal: 'compact', vertical: 'regular' },
+      }
       const result = utils.isRegularDisplayMode(traits)
       expect(result).toBe(false)
     })

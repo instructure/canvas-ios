@@ -28,13 +28,14 @@ import Navigator from './Navigator'
 export const routes: Map<Route, RouteConfig> = new Map()
 export const routeProps: Map<string, ?Object> = new Map()
 export type RouteConfig = {
-  canBecomeMaster: boolean,
-  checkRoles: boolean,
+  canBecomeMaster?: boolean,
+  checkRoles?: boolean,
+  deepLink?: boolean,
 }
 export type RouteOptions = {
     screen: string,
     passProps: Object,
-    config: ?RouteConfig,
+    config: RouteConfig,
 }
 
 export function screenID (path: string): string {
@@ -109,7 +110,7 @@ export function route (url: string, additionalProps: Object = {}): RouteOptions 
       return {
         screen: r.spec.replace('(/api/v1)', ''),
         passProps: params,
-        config: routes.get(r),
+        config: routes.get(r) || {},
       }
     }
   }

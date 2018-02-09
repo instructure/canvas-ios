@@ -23,7 +23,7 @@ import { wrapComponentInReduxProvider, route } from '../'
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer'
 
-class TestScreen extends React.Component {
+class TestScreen extends React.Component<{}> {
   render () {
     return (<View>
               <Text>Test Screen</Text>

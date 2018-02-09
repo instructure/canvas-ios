@@ -20,12 +20,12 @@
 [include]
 
 [untyped]
-.*/node_modules/react-native/Libraries/.*
+.*/node_modules/react-native/Libraries/.*\(StyleSheetValidation\|Share\|List.*\|Easing\|Inspector\|InteractionManager\|ScrollResponder\|CameraRoll\)\.js
+.*/node_modules/react-native-sfsafariviewcontroller/.*
 
 ; Ignore flow annotation for files we haven't fixed yet :(
 .*/src/common/.*
 .*/src/modules/.*
-.*/src/routing/.*
 
 [libs]
 node_modules/react-native/Libraries/react-native/react-native-interface.js
