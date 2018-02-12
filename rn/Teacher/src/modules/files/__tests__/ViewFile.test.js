@@ -19,6 +19,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import { ActionSheetIOS } from 'react-native'
 import {
+  exists,
   downloadFile,
   stopDownload,
 } from 'react-native-fs'
@@ -41,6 +42,7 @@ jest.mock('react-native-fs', () => ({
     promise: Promise.resolve({ statusCode: 200 }),
   })),
   stopDownload: jest.fn(),
+  exists: jest.fn(() => Promise.resolve(false)),
 }))
 
 const selectors = {
@@ -99,6 +101,7 @@ describe('ViewFile', () => {
   it('ignores fetching the file for zip', async () => {
     props.file.mime_class = 'zip'
     const tree = shallow(<ViewFile {...props} />)
+    await updatedState(tree)
     expect(tree.find('Text').children().text()).toBe('Previewing this file type is not supported')
   })
 
@@ -107,6 +110,7 @@ describe('ViewFile', () => {
     const tree = shallow(<ViewFile {...props} />)
     await Promise.resolve() // wait for file download.
     await updatedState(tree)
+    tree.update()
     expect(tree.find('Video').exists()).toBe(true)
     tree.find('[onLayout]').simulate('Layout', { nativeEvent: { layout: { width: 480, height: 320 } } })
     tree.find('[onLayout]').simulate('Layout', { nativeEvent: { layout: { width: 480, height: 320 } } }) // duplicate doesn't throw
@@ -122,6 +126,7 @@ describe('ViewFile', () => {
     const tree = shallow(<ViewFile {...props} />)
     await Promise.resolve() // wait for file download.
     await updatedState(tree)
+    tree.update()
     expect(tree.find('Image').length).toBe(2)
   })
 
@@ -130,25 +135,31 @@ describe('ViewFile', () => {
     const tree = shallow(<ViewFile {...props} />)
     await Promise.resolve() // wait for file download.
     await updatedState(tree)
+    tree.update()
     tree.find('Image').at(0).simulate('Error')
     await updatedState(tree)
+    tree.update()
     expect(tree.find('Text').children().text()).toBe('There was an error loading the file.')
   })
 
   it('renders an error message if loading fails', async () => {
+    let promise = Promise.resolve({ statusCode: 500 })
     downloadFile.mockImplementationOnce(() => ({
       jobId: '2',
-      promise: Promise.resolve({ statusCode: 500 }),
+      promise: promise,
     }))
     const tree = shallow(<ViewFile {...props} />)
-    await Promise.resolve() // wait for downloadFile to complete.
+    await Promise.resolve()
+    await promise // wait for downloadFile to complete.
     await updatedState(tree)
+    tree.update()
     expect(tree.find('Text').children().text()).toBe('There was an error loading the file.')
   })
 
   it('handles sharing the file', async () => {
     const tree = shallow(<ViewFile {...props} />)
     await Promise.resolve() // wait for downloadFile to complete.
+    await updatedState(tree)
     tree.find(selectors.share).simulate('Press')
     expect(ActionSheetIOS.showShareActionSheetWithOptions).toHaveBeenCalledWith(
       { url: 'file://caches/file-24.jpg' },
@@ -167,6 +178,7 @@ describe('ViewFile', () => {
   it('does not throw when sharing errors or completes', async () => {
     const tree = shallow(<ViewFile {...props} />)
     await Promise.resolve() // wait for downloadFile to complete.
+    await updatedState(tree)
     tree.find(selectors.share).simulate('Press')
     expect(() => {
       ActionSheetIOS.showShareActionSheetWithOptions.mock.calls[0][1]()
@@ -220,14 +232,36 @@ describe('ViewFile', () => {
   it('does not try to stop a download if complete on unmount', async () => {
     const tree = shallow(<ViewFile {...props} />)
     await Promise.resolve() // wait for downloadFile to complete.
+    await updatedState(tree)
     stopDownload.mockReset()
     tree.unmount()
     expect(stopDownload).not.toHaveBeenCalled()
   })
 
-  it('stops downloading the file on unmount', () => {
+  it('stops downloading the file on unmount', async () => {
     const tree = shallow(<ViewFile {...props} />)
+    await Promise.resolve()
     tree.unmount()
     expect(stopDownload).toHaveBeenCalledWith('1')
+  })
+
+  it('gets the file information when it doesnt have it', async () => {
+    let getFile = jest.fn()
+    shallow(<ViewFile {...props} file={null} getFile={getFile} />)
+    expect(getFile).toHaveBeenCalledWith('24')
+  })
+
+  it('checks if the file already exists locally and if it does, uses it', async () => {
+    let existsPromise = Promise.resolve(true)
+    exists.mockReturnValueOnce(existsPromise)
+
+    let tree = shallow(<ViewFile {...props} />)
+    await existsPromise
+    expect(tree.state()).toMatchObject({
+      jobID: null,
+      localPath: 'file://caches/file-24.jpg',
+      loadingDone: true,
+      error: null,
+    })
   })
 })

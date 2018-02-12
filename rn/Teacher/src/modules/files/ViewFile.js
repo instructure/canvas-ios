@@ -31,6 +31,7 @@ import {
   downloadFile,
   CachesDirectoryPath,
   stopDownload,
+  exists,
 } from 'react-native-fs'
 import i18n from 'format-message'
 
@@ -44,10 +45,11 @@ import Video from '../../common/components/Video'
 type Props = {
   courseID?: string,
   fileID: string,
-  file: File,
+  file: ?File,
   navigator: Navigator,
   onChange?: (File) => any,
   getCourse: typeof api.getCourse,
+  getFile: typeof api.getFile,
 }
 
 type State = {
@@ -55,13 +57,15 @@ type State = {
   height: number,
   jobID: ?string,
   localPath: ?string,
-  updated: File,
+  file: ?File,
+  loadingDone: boolean,
   course: ?Course,
 }
 
 export default class ViewFile extends Component<Props, State> {
   static defaultProps = {
     getCourse: api.getCourse,
+    getFile: api.getFile,
   }
 
   state = {
@@ -70,25 +74,50 @@ export default class ViewFile extends Component<Props, State> {
     height: 0,
     jobID: null,
     localPath: null,
-    updated: this.props.file,
+    file: this.props.file,
+    loadingDone: false,
   }
 
   componentWillMount () {
     this.fetchCourse()
-    this.fetchFile()
+    if (this.state.file) {
+      this.fetchFile(this.state.file)
+    } else {
+      this.getFileDetails()
+    }
   }
 
-  fetchFile = async () => {
-    const { file } = this.props
-    if ([ 'zip', 'flash' ].includes(file.mime_class)) return
+  getFileDetails = async () => {
+    try {
+      let { data } = await this.props.getFile(this.props.fileID)
+      this.setState({ file: data })
+      this.fetchFile(data)
+    } catch (err) {
+      this.setState({ loadingDone: true, error: i18n('There was an error loading the file') })
+    }
+  }
+
+  fetchFile = async (file: File) => {
+    if ([ 'zip', 'flash' ].includes(file.mime_class)) {
+      this.setState({ loadingDone: true })
+      return
+    }
+
     const toFile = `${CachesDirectoryPath}/file-${file.id}.${file.filename.split('.').pop()}`
+
+    let fileExists = await exists(toFile)
+    if (fileExists) {
+      this.setState({ loadingDone: true, jobID: null, localPath: `file://${toFile}`, error: null })
+      return
+    }
+
     let { jobId: jobID, promise } = downloadFile({ fromUrl: file.url, toFile })
     this.setState({ jobID })
     const { statusCode } = await promise
     if (statusCode === 200) {
-      this.setState({ jobID: null, localPath: `file://${toFile}`, error: null })
+      this.setState({ loadingDone: true, jobID: null, localPath: `file://${toFile}`, error: null })
     } else {
-      this.setState({ jobID: null, localPath: null, error: i18n('There was an error loading the file.') })
+      this.setState({ loadingDone: true, jobID: null, localPath: null, error: i18n('There was an error loading the file.') })
     }
   }
 
@@ -120,27 +149,27 @@ export default class ViewFile extends Component<Props, State> {
 
   handleDone = async () => {
     await this.props.navigator.dismiss()
-    if (this.props.onChange && this.state.updated !== this.props.file) {
-      this.props.onChange(this.state.updated)
+    if (this.props.onChange && this.state.file !== this.props.file) {
+      this.props.onChange(this.state.file)
     }
   }
 
   handleEdit = () => {
     this.props.navigator.show(`/courses/${this.props.courseID}/file/${this.props.fileID}/edit`, { modal: true }, {
       courseID: this.props.courseID,
-      file: this.state.updated,
+      file: this.state.file,
       onChange: this.handleChange,
       onDelete: this.handleDelete,
     })
   }
 
-  handleChange = (updated: File) => {
-    this.setState({ updated })
+  handleChange = (file: File) => {
+    this.setState({ file })
   }
 
   handleDelete = async () => {
     await this.props.navigator.dismiss()
-    if (this.props.onChange) this.props.onChange(this.state.updated)
+    if (this.props.onChange) this.props.onChange(this.state.file)
   }
 
   handleShare = () => {
@@ -154,7 +183,7 @@ export default class ViewFile extends Component<Props, State> {
   }
 
   renderPreview () {
-    const { file } = this.props
+    const { file } = this.state
     const { error, localPath, width } = this.state
     if (error) {
       return (
@@ -197,10 +226,10 @@ export default class ViewFile extends Component<Props, State> {
   }
 
   render () {
-    const { course, updated, jobID } = this.state
+    const { course, file, loadingDone } = this.state
     return (
       <Screen
-        title={updated.name || updated.display_name}
+        title={file ? file.name || file.display_name : ''}
         subtitle={course && course.name}
         navBarStyle='light'
         navBarTitleColor={Colors.darkText}
@@ -220,7 +249,7 @@ export default class ViewFile extends Component<Props, State> {
         }]}
       >
         <View style={styles.container}>
-          {jobID != null ? (
+          {!loadingDone ? (
             <View style={styles.centeredContainer}>
               <ActivityIndicator />
             </View>

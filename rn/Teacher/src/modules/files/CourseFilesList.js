@@ -59,7 +59,7 @@ type CourseFileListNavProps = {
   subFolder?: ?string,
 }
 
-type Props = CourseFilesListProps & CourseFileListNavProps
+type Props = CourseFilesListProps & CourseFileListNavProps & NavigationProps
 
 type State = {
   pending: boolean,
@@ -79,6 +79,10 @@ export class CourseFilesList extends Component<Props, State> {
 
   componentWillMount () {
     this.update()
+  }
+
+  dismiss = () => {
+    this.props.navigator.dismiss()
   }
 
   update = async () => {
@@ -303,6 +307,15 @@ export class CourseFilesList extends Component<Props, State> {
       : i18n('Files')
     const empty = <ListEmptyComponent title={i18n('This folder is empty.')} />
 
+    const leftBarButtons = []
+    if (this.props.navigator.isModal) {
+      leftBarButtons.push({
+        testID: 'course-files.modal.dismiss',
+        action: this.dismiss,
+        title: i18n('Done'),
+      })
+    }
+
     const rightBarButtons = []
     if (!this.state.uploadPending) {
       rightBarButtons.push({
@@ -324,6 +337,7 @@ export class CourseFilesList extends Component<Props, State> {
         title={title}
         navBarTitleColor={'#fff'}
         rightBarButtons={rightBarButtons}
+        leftBarButtons={leftBarButtons}
       >
         <DropView style={{ flex: 1 }}>
           { this.state.uploadPending && <SavingBanner title={this.state.uploadMessage} /> }

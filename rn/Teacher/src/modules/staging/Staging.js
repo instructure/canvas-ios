@@ -96,7 +96,7 @@ export default class Staging extends Component<StagingProps, any> {
     return (
       <Screen
         title='Dev Menu'
-        leftBarButtons={[
+        leftBarButtons={this.props.navigator.isModal && [
           {
             action: this.close,
             title: 'Close',

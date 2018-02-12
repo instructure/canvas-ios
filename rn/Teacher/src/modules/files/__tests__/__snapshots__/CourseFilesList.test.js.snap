@@ -1,12 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CourseFileList progress function should update the UI correctly 1`] = `
-<RCTSafeAreaView
-  style={
-    Object {
-      "flex": 1,
-    }
+<Screen
+  leftBarButtons={Array []}
+  navBarTitleColor="#fff"
+  rightBarButtons={
+    Array [
+      Object {
+        "accessibilityLabel": "Add Item",
+        "action": [Function],
+        "image": Object {
+          "testUri": "../../../src/images/Add.png",
+        },
+        "testID": "course-files.add.button",
+      },
+    ]
   }
+  title="Files"
 >
   <View
     style={
@@ -958,16 +968,26 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
       }
     />
   </View>
-</RCTSafeAreaView>
+</Screen>
 `;
 
 exports[`CourseFileList progress function should update the UI correctly 2`] = `
-<RCTSafeAreaView
-  style={
-    Object {
-      "flex": 1,
-    }
+<Screen
+  leftBarButtons={Array []}
+  navBarTitleColor="#fff"
+  rightBarButtons={
+    Array [
+      Object {
+        "accessibilityLabel": "Add Item",
+        "action": [Function],
+        "image": Object {
+          "testUri": "../../../src/images/Add.png",
+        },
+        "testID": "course-files.add.button",
+      },
+    ]
   }
+  title="Files"
 >
   <View
     style={
@@ -1919,16 +1939,26 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
       }
     />
   </View>
-</RCTSafeAreaView>
+</Screen>
 `;
 
 exports[`CourseFileList progress function should update the UI correctly 3`] = `
-<RCTSafeAreaView
-  style={
-    Object {
-      "flex": 1,
-    }
+<Screen
+  leftBarButtons={Array []}
+  navBarTitleColor="#fff"
+  rightBarButtons={
+    Array [
+      Object {
+        "accessibilityLabel": "Add Item",
+        "action": [Function],
+        "image": Object {
+          "testUri": "../../../src/images/Add.png",
+        },
+        "testID": "course-files.add.button",
+      },
+    ]
   }
+  title="Files"
 >
   <View
     style={
@@ -2880,16 +2910,26 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
       }
     />
   </View>
-</RCTSafeAreaView>
+</Screen>
 `;
 
 exports[`CourseFileList sending weird data into the progress update function should not break all the things 1`] = `
-<RCTSafeAreaView
-  style={
-    Object {
-      "flex": 1,
-    }
+<Screen
+  leftBarButtons={Array []}
+  navBarTitleColor="#fff"
+  rightBarButtons={
+    Array [
+      Object {
+        "accessibilityLabel": "Add Item",
+        "action": [Function],
+        "image": Object {
+          "testUri": "../../../src/images/Add.png",
+        },
+        "testID": "course-files.add.button",
+      },
+    ]
   }
+  title="Files"
 >
   <View
     style={
@@ -3841,16 +3881,26 @@ exports[`CourseFileList sending weird data into the progress update function sho
       }
     />
   </View>
-</RCTSafeAreaView>
+</Screen>
 `;
 
 exports[`CourseFileList should render 1`] = `
-<RCTSafeAreaView
-  style={
-    Object {
-      "flex": 1,
-    }
+<Screen
+  leftBarButtons={Array []}
+  navBarTitleColor="#fff"
+  rightBarButtons={
+    Array [
+      Object {
+        "accessibilityLabel": "Add Item",
+        "action": [Function],
+        "image": Object {
+          "testUri": "../../../src/images/Add.png",
+        },
+        "testID": "course-files.add.button",
+      },
+    ]
   }
+  title="Files"
 >
   <View
     style={
@@ -4802,16 +4852,26 @@ exports[`CourseFileList should render 1`] = `
       }
     />
   </View>
-</RCTSafeAreaView>
+</Screen>
 `;
 
 exports[`CourseFileList should render with folders 1`] = `
-<RCTSafeAreaView
-  style={
-    Object {
-      "flex": 1,
-    }
+<Screen
+  leftBarButtons={Array []}
+  navBarTitleColor="#fff"
+  rightBarButtons={
+    Array [
+      Object {
+        "accessibilityLabel": "Add Item",
+        "action": [Function],
+        "image": Object {
+          "testUri": "../../../src/images/Add.png",
+        },
+        "testID": "course-files.add.button",
+      },
+    ]
   }
+  title="Files"
 >
   <View
     style={
@@ -5763,16 +5823,26 @@ exports[`CourseFileList should render with folders 1`] = `
       }
     />
   </View>
-</RCTSafeAreaView>
+</Screen>
 `;
 
 exports[`CourseFileList should render with no data at all 1`] = `
-<RCTSafeAreaView
-  style={
-    Object {
-      "flex": 1,
-    }
+<Screen
+  leftBarButtons={Array []}
+  navBarTitleColor="#fff"
+  rightBarButtons={
+    Array [
+      Object {
+        "accessibilityLabel": "Add Item",
+        "action": [Function],
+        "image": Object {
+          "testUri": "../../../src/images/Add.png",
+        },
+        "testID": "course-files.add.button",
+      },
+    ]
   }
+  title="Files"
 >
   <View
     style={
@@ -5833,5 +5903,5 @@ exports[`CourseFileList should render with no data at all 1`] = `
       }
     />
   </View>
-</RCTSafeAreaView>
+</Screen>
 `;

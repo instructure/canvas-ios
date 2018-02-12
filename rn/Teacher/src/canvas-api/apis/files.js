@@ -86,6 +86,10 @@ export function getFolder (folderID: string): ApiPromise<Folder> {
   return httpClient().get(url, options)
 }
 
+export function getFile (fileID: string): ApiPromise<File> {
+  return httpClient().get(`files/${fileID}`)
+}
+
 export function createFolder (courseID: string, folder: NewFolder): ApiPromise<Folder> {
   return httpClient().post(`courses/${courseID}/folders`, folder)
 }

@@ -22,6 +22,7 @@ import renderer from 'react-test-renderer'
 import { ActionSheetIOS, AlertIOS, Alert } from 'react-native'
 
 import { CourseFilesList, mapStateToProps } from '../CourseFilesList'
+import explore from '../../../../test/helpers/explore'
 
 const template = {
   ...require('../../../__templates__/file'),
@@ -37,12 +38,14 @@ const data = [
   template.file({ type: 'file', locked: true, key: 'file-2' }),
 ]
 
-jest.mock('../../attachments/AttachmentPicker', () => 'AttachmentPicker')
+jest
+  .mock('../../attachments/AttachmentPicker', () => 'AttachmentPicker')
+  .mock('../../../routing/Screen')
 
 describe('CourseFileList', () => {
   it('should render', () => {
     const tree = renderer.create(
-      <CourseFilesList data={data} />
+      <CourseFilesList data={data} navigator={template.navigator()}/>
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -50,7 +53,7 @@ describe('CourseFileList', () => {
 
   it('should render with folders', () => {
     let tree = renderer.create(
-      <CourseFilesList data={data} folders={'course files/some_folder'} />
+      <CourseFilesList data={data} folders={'course files/some_folder'} navigator={template.navigator()}/>
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -58,7 +61,7 @@ describe('CourseFileList', () => {
 
   it('should render with no data at all', () => {
     let tree = renderer.create(
-      <CourseFilesList data={[]} />
+      <CourseFilesList data={[]} navigator={template.navigator()}/>
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -80,7 +83,8 @@ describe('CourseFileList', () => {
         getFolderFolders={getFolderFolders}
         getFolderFiles={getFolderFiles}
         filesUpdated={filesUpdated}
-        foldersUpdated={foldersUpdated} />
+        foldersUpdated={foldersUpdated}
+        navigator={template.navigator()} />
     )
 
     await tree.getInstance().update()
@@ -265,6 +269,20 @@ describe('CourseFileList', () => {
     const instance = tree.getInstance()
     instance.updateUploadProgress({ loaded: 'sdfsdjkf', total: 100 })
     expect(tree.toJSON()).toMatchSnapshot()
+  })
+
+  it('should show a done button when rendered modally', () => {
+    let navigator = template.navigator({
+      isModal: true,
+      dismiss: jest.fn(),
+    })
+
+    let button: any = explore(renderer.create(
+      <CourseFilesList data={data} navigator={navigator} />
+    ).toJSON()).selectLeftBarButton('course-files.modal.dismiss')
+    button.action()
+
+    expect(navigator.dismiss).toHaveBeenCalled()
   })
 
   describe('map state to props', () => {
