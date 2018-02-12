@@ -279,7 +279,7 @@ export class Compose extends PureComponent {
               <TouchableHighlight testID='compose.course-select' underlayColor='#fff' style={styles.wrapper} onPress={this.props.canSelectCourse ? this.selectCourse : null}>
                 <View style={styles.courseSelect}>
                   <Text style={[styles.courseSelectText, this.state.contextName ? styles.courseSelectedText : undefined]}>
-                    { this.state.contextName || i18n('Select a course') }
+                    { this.state.contextName || i18n('Select a Course') }
                   </Text>
                   { this.props.canSelectCourse &&
                     <DisclosureIndicator />
@@ -310,7 +310,7 @@ export class Compose extends PureComponent {
               <TextInput
                 placeholder={i18n('Subject')}
                 value={this.props.canEditSubject ? this.state.subject : this.state.subject || i18n('(no subject)')}
-                style={styles.cell}
+                style={[styles.cell, styles.courseSelectText, styles.courseSelectedText]}
                 placeholderTextColor={colors.lightText}
                 onChangeText={this._subjectChanged}
                 editable={this.props.canEditSubject}
@@ -327,7 +327,7 @@ export class Compose extends PureComponent {
             }
             <View style={[styles.message, styles.messageWrapper]}>
               <AutoGrowingTextInput
-                placeholder={i18n('Compose message')}
+                placeholder={i18n('Compose Message')}
                 style={styles.cell}
                 placeholderTextColor={colors.lightText}
                 defaultHeight={54}

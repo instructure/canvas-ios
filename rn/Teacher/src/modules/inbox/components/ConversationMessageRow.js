@@ -64,6 +64,7 @@ export default class ConversationMessageRow extends Component<ConversationMessag
       subject: this.props.conversation.subject,
       canSelectCourse: false,
       canEditSubject: false,
+      navBarTitle: i18n('Reply'),
     })
   }
 

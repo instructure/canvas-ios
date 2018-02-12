@@ -106,7 +106,7 @@ exports[`Compose renders 1`] = `
               ]
             }
           >
-            Select a course
+            Select a Course
           </Text>
           <DisclosureIndicator />
         </View>
@@ -127,11 +127,21 @@ exports[`Compose renders 1`] = `
           placeholder="Subject"
           placeholderTextColor="#7F91A7"
           style={
-            Object {
-              "fontSize": 16,
-              "height": 54,
-              "lineHeight": 19,
-            }
+            Array [
+              Object {
+                "fontSize": 16,
+                "height": 54,
+                "lineHeight": 19,
+              },
+              Object {
+                "color": "#7F91A7",
+                "fontSize": 16,
+                "lineHeight": 19,
+              },
+              Object {
+                "color": "#2D3B45",
+              },
+            ]
           }
           value={null}
         />
@@ -167,7 +177,7 @@ exports[`Compose renders 1`] = `
           extraHeight={20}
           onChangeText={[Function]}
           onContentSizeChange={[Function]}
-          placeholder="Compose message"
+          placeholder="Compose Message"
           placeholderTextColor="#7F91A7"
           style={
             Object {
@@ -290,7 +300,7 @@ exports[`Compose renders after picking a course 1`] = `
               ]
             }
           >
-            Select a course
+            Select a Course
           </Text>
           <DisclosureIndicator />
         </View>
@@ -311,11 +321,21 @@ exports[`Compose renders after picking a course 1`] = `
           placeholder="Subject"
           placeholderTextColor="#7F91A7"
           style={
-            Object {
-              "fontSize": 16,
-              "height": 54,
-              "lineHeight": 19,
-            }
+            Array [
+              Object {
+                "fontSize": 16,
+                "height": 54,
+                "lineHeight": 19,
+              },
+              Object {
+                "color": "#7F91A7",
+                "fontSize": 16,
+                "lineHeight": 19,
+              },
+              Object {
+                "color": "#2D3B45",
+              },
+            ]
           }
           value={null}
         />
@@ -351,7 +371,7 @@ exports[`Compose renders after picking a course 1`] = `
           extraHeight={20}
           onChangeText={[Function]}
           onContentSizeChange={[Function]}
-          placeholder="Compose message"
+          placeholder="Compose Message"
           placeholderTextColor="#7F91A7"
           style={
             Object {
@@ -575,11 +595,21 @@ exports[`Compose renders reply 1`] = `
           placeholder="Subject"
           placeholderTextColor="#7F91A7"
           style={
-            Object {
-              "fontSize": 16,
-              "height": 54,
-              "lineHeight": 19,
-            }
+            Array [
+              Object {
+                "fontSize": 16,
+                "height": 54,
+                "lineHeight": 19,
+              },
+              Object {
+                "color": "#7F91A7",
+                "fontSize": 16,
+                "lineHeight": 19,
+              },
+              Object {
+                "color": "#2D3B45",
+              },
+            ]
           }
           value="(no subject)"
         />
@@ -615,7 +645,7 @@ exports[`Compose renders reply 1`] = `
           extraHeight={20}
           onChangeText={[Function]}
           onContentSizeChange={[Function]}
-          placeholder="Compose message"
+          placeholder="Compose Message"
           placeholderTextColor="#7F91A7"
           style={
             Object {
@@ -738,7 +768,7 @@ exports[`Compose renders with passed in recipients 1`] = `
               ]
             }
           >
-            Select a course
+            Select a Course
           </Text>
           <DisclosureIndicator />
         </View>
@@ -759,11 +789,21 @@ exports[`Compose renders with passed in recipients 1`] = `
           placeholder="Subject"
           placeholderTextColor="#7F91A7"
           style={
-            Object {
-              "fontSize": 16,
-              "height": 54,
-              "lineHeight": 19,
-            }
+            Array [
+              Object {
+                "fontSize": 16,
+                "height": 54,
+                "lineHeight": 19,
+              },
+              Object {
+                "color": "#7F91A7",
+                "fontSize": 16,
+                "lineHeight": 19,
+              },
+              Object {
+                "color": "#2D3B45",
+              },
+            ]
           }
           value={null}
         />
@@ -799,7 +839,7 @@ exports[`Compose renders with passed in recipients 1`] = `
           extraHeight={20}
           onChangeText={[Function]}
           onContentSizeChange={[Function]}
-          placeholder="Compose message"
+          placeholder="Compose Message"
           placeholderTextColor="#7F91A7"
           style={
             Object {

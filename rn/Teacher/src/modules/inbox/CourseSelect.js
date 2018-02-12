@@ -53,10 +53,6 @@ type CourseSelectProps = {
 export class CourseSelect extends PureComponent {
   props: CourseSelectProps
 
-  goBack = () => {
-    this.props.navigator.pop()
-  }
-
   onCourseSelect = (course: Course) => {
     this.props.onSelect(course)
   }
@@ -86,11 +82,6 @@ export class CourseSelect extends PureComponent {
         navBarColor='#fff'
         navBarStyle='light'
         drawUnderNavBar
-        leftBarButtons={[{
-          title: i18n('Cancel'),
-          testID: 'inbox.course-select.cancel',
-          action: this.goBack,
-        }]}
       >
         <SectionList
           sections={this.props.sections}

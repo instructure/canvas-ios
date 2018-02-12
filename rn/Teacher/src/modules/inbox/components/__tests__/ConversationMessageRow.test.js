@@ -142,6 +142,7 @@ it('navigates to compose when reply to first message button pressed', () => {
       subject: 'Subject 1',
       canSelectCourse: false,
       canEditSubject: false,
+      navBarTitle: 'Reply',
     },
   )
 })

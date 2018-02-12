@@ -90,8 +90,6 @@ describe('CourseSelect', () => {
     const courseRow = explore(tree).selectByID(`inbox.course-select.course-${c1.id}`) || {}
     courseRow.props.onPress()
     expect(defaultProps.onSelect).toHaveBeenCalled()
-    component.getInstance().goBack()
-    expect(defaultProps.navigator.pop).toHaveBeenCalled()
   })
 
   it('mapStateToProps', () => {
