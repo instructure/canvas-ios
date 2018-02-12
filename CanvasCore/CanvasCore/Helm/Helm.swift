@@ -407,8 +407,6 @@ extension UIViewController {
             return tabBarSelected.topMostViewController()
         } else if let navVisible = (self as? UINavigationController)?.visibleViewController {
             return navVisible.topMostViewController()
-        } else if let wrapper = (self as? HelmSplitViewControllerWrapper) {
-            return wrapper.childViewControllers.last?.topMostViewController()
         } else {
             return self
         }

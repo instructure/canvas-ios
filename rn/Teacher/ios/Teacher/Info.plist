@@ -2,6 +2,17 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>canvas-teacher</string>
+			</array>
+			<key>CFBundleURLName</key>
+			<string>com.instructure.ios.teacher</string>
+		</dict>
+	</array>
 	<key>BugsnagAPIKey</key>
 	<string>2f55f80393ae9510379f412d8dbefb25</string>
 	<key>CFBundleDevelopmentRegion</key>

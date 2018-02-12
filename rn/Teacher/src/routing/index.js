@@ -24,6 +24,7 @@ import URL from 'url-parse'
 import Route from 'route-parser'
 import { AppRegistry } from 'react-native'
 import Navigator from './Navigator'
+import { getSession } from '../canvas-api'
 
 export const routes: Map<Route, RouteConfig> = new Map()
 export const routeProps: Map<string, ?Object> = new Map()
@@ -98,6 +99,12 @@ export function wrapComponentInReduxProvider (moduleName: string, generator: () 
 }
 
 export function route (url: string, additionalProps: Object = {}): RouteOptions {
+  let session = getSession()
+  let baseURL = session && session.baseURL || ''
+  if (new RegExp('://').test(url) && new URL(baseURL).hostname !== new URL(url).hostname) {
+    throw new URIError('Cannot route to ' + url)
+  }
+
   const path = new URL(url).pathname
   for (let r of routes.keys()) {
     let params = r.match(path)

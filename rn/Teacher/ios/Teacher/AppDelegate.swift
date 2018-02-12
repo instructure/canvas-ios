@@ -124,6 +124,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             AppStoreReview.requestReview()
         }
     }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        StartupManager.shared.enqueueTask {
+            if url.path == "/" || url.path == "" {
+                let vc = HelmManager.shared.topMostViewController()
+                if let navigationController = vc as? UINavigationController {
+                    navigationController.popToRootViewController(animated: true)
+                } else if let splitViewController = vc as? UISplitViewController,
+                    let navigationController = splitViewController.viewControllers.first as? UINavigationController {
+                    navigationController.popToRootViewController(animated: true)
+                }
+            } else {
+                RCTLinkingManager.application(app, open: url, options: options)
+            }
+        }
+        return true
+    }
 }
 
 

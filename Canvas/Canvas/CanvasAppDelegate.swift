@@ -208,22 +208,31 @@ extension AppDelegate {
 extension AppDelegate {
     func openCanvasURL(_ url: URL) -> Bool {
         StartupManager.shared.enqueueTask({
-            
-            if handleDropboxOpenURL(url) {
-                return
-            }
-            
-            if url.scheme == "file" {
-                do {
-                    try ReceivedFilesViewController.add(toReceivedFiles: url)
-                } catch let e as NSError {
-                    self.handleError(e)
+            if url.path == "/" || url.path == "" {
+                let vc = HelmManager.shared.topMostViewController()
+                if let navigationController = vc as? UINavigationController {
+                    navigationController.popToRootViewController(animated: true)
+                } else if let splitViewController = vc as? UISplitViewController,
+                    let navigationController = splitViewController.viewControllers.first as? UINavigationController {
+                    navigationController.popToRootViewController(animated: true)
                 }
             } else {
-                Router.shared().openCanvasURL(url)
+                
+                if handleDropboxOpenURL(url) {
+                    return
+                }
+                
+                if url.scheme == "file" {
+                    do {
+                        try ReceivedFilesViewController.add(toReceivedFiles: url)
+                    } catch let e as NSError {
+                        self.handleError(e)
+                    }
+                } else {
+                    Router.shared().openCanvasURL(url)
+                }
             }
-        })
-        
+        })        
         return true
     }
 }

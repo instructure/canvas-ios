@@ -27,6 +27,17 @@ import SFSafariViewController from 'react-native-sfsafariviewcontroller'
 
 jest.mock('../../canvas-api', () => ({
   getAuthenticatedSessionURL: jest.fn(),
+  getSession: () => ({
+    authToken: '',
+    baseURL: 'canvas.instructure.com',
+    user: {
+      primary_email: 'user@user.com',
+      id: '1',
+      avatar_url: 'image.image.com',
+      name: 'User User',
+    },
+    actAsUserID: null,
+  }),
 }))
 
 jest.mock('react-native-sfsafariviewcontroller', () => ({

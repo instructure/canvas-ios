@@ -10,7 +10,7 @@ import Foundation
 
 extension UIApplicationDelegate {
     
-    var topViewController: UIViewController? {
+    public var topViewController: UIViewController? {
         guard let window = self.window else { return nil }
         guard let rootViewController = window?.rootViewController else { return nil }
         var topViewControler = rootViewController

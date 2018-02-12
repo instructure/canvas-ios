@@ -26,6 +26,7 @@ import {
   NativeEventEmitter,
   AppState,
   PushNotificationIOS,
+  Linking,
 } from 'react-native'
 import store from './src/redux/store'
 import setupI18n from './i18n/setup'
@@ -102,6 +103,15 @@ const loginHandler = async ({
       const navigator = new Navigator('')
       navigator.showNotification(notification)
       notification.finish(PushNotificationIOS.FetchResult.NewData)
+    })
+
+    Linking.addEventListener('url', (event) => {
+      const navigator = new Navigator('')
+      navigator.show(event.url, {
+        modal: true,
+        embedInNavigationController: true,
+        deepLink: true,
+      })
     })
 
     setSession(session)
