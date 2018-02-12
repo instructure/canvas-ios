@@ -605,6 +605,9 @@
   "forwarded_message_3acb578c": {
     "message": "Videresendt besked:"
   },
+  "front_page_50cae87e": {
+    "message": "Forside"
+  },
   "full_screen_712e95f1": {
     "message": "Fuld skærm"
   },
@@ -772,6 +775,9 @@
   },
   "mute_grades_b85bece1": {
     "message": "Giv ikke besked til de studerende om karakterer"
+  },
+  "n_a_d6f6c42f": {
+    "message": "N/A"
   },
   "name_1aed4a1b": {
     "message": "Navn"
@@ -1027,6 +1033,9 @@
   },
   "quizzes_7e598f57": {
     "message": "Quizzer"
+  },
+  "recent_activity_51239235": {
+    "message": "Seneste aktivitet"
   },
   "recipient_recipient_394cf528": {
     "message": "Modtager: { recipient }"

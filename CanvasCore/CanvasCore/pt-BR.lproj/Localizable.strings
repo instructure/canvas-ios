@@ -205,6 +205,9 @@
 /* Data encoding error title */
 "Encoding Error" = "Erro de Codificação";
 
+/* No comment provided by engineer. */
+"End Act as User" = "Fim de Agir como Usuário";
+
 /* Text submission option */
 "Enter Text" = "Inserir Texto";
 
@@ -238,7 +241,7 @@
 /* No comment provided by engineer. */
 "Error parsing the Roll Call response. Unexpected null value: (k)" = "Erro ao analisar a resposta da Lista de chamada. Valor nulo insperado: (k)";
 
-/* LTI Launch failed */
+/* No comment provided by engineer. */
 "Error retrieving tool launch URL" = "Erro ao recuperar a URL de lançamento da ferramenta";
 
 /* rollcall status error */
@@ -544,6 +547,9 @@
 /* stop recording button a11y label */
 "Stop" = "Parar";
 
+/* No comment provided by engineer. */
+"Stop acting as..." = "Parar de agir como...";
+
 /* File upload was stopped */
 "Stopped" = "Parado";
 
@@ -587,9 +593,6 @@
 
 /* Teal course color button */
 "Teal" = "Cerceta";
-
-/* No comment provided by engineer. */
-"That page has been disabled for this course" = "Esta página foi desativada para este curso";
 
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "As Páginas sumiram!? Por que as páginas sempre somem?";
@@ -782,6 +785,12 @@
 
 /* permission was rejected */
 "You must grant (appName) Microphone access in the Settings app in order to record audio." = "Você deve conceder ao (appName) acesso ao Microfone em Configurações do aplicativo, a fim de gravar áudio.";
+
+/* No comment provided by engineer. */
+"You will stop acting as %@ and return to your account." = "Você parará de agir como %@ e voltará à sua conta.";
+
+/* No comment provided by engineer. */
+"You will stop acting as this user and return to your account." = "Você parará de agir como esse usuário e voltará à sua conta.";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "O seu dispositivo não tem espaço. Crie espaço e tente novamente.";

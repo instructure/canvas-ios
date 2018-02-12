@@ -387,8 +387,7 @@
 /* (No Comment) */
 "Course Syllabus" = "Emneoversikt";
 
-/* Courses landing page title
-   Courses page title */
+/* Courses landing page title */
 "Courses" = "Emne";
 
 /* (No Comment) */
@@ -958,7 +957,7 @@
 /* (No Comment) */
 "Privacy Policy" = "Personvern";
 
-/* (No Comment) */
+/* No comment provided by engineer. */
 "Profile" = "Profil";
 
 /* Quiz module item type */

@@ -4,9 +4,6 @@
 /* No comment provided by engineer. */
 "Build all the things" = "Hanga ngā mea katoa";
 
-/* Help label when user can't find their school. */
-"Can't find your school?" = "Kaore e taea te kimi i tō kura?";
-
 /* No comment provided by engineer. */
 "Cancel" = "Whakakore";
 
@@ -15,6 +12,9 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "pātai causal mana'o ranei";
+
+/* No comment provided by engineer. */
+"Check network and try again!" = "Tirohia te whatunga ka ngana anō!";
 
 /* No comment provided by engineer. */
 "Choose One" = "Kōwhiri Kotahi";
@@ -73,6 +73,9 @@
 /* No comment provided by engineer. */
 "Not authorized." = "Kaore i whakamanahia";
 
+/* No comment provided by engineer. */
+"OK" = "Ae";
+
 /* Placeholder for help icon (question mark) on Domain Picker View */
 "Open help menu" = "Huaki tahua āwhina";
 
@@ -80,13 +83,10 @@
 "Report a Problem" = "Pūrongo i te Raruraru";
 
 /* No comment provided by engineer. */
-"Report a problem" = "Pūrongo i te raruraru";
+"Request Failed!" = "I rāhua te tono!";
 
 /* No comment provided by engineer. */
 "Request a Feature" = "Tono te Āhuahira";
-
-/* No comment provided by engineer. */
-"Request a feature" = "Tono he āhuatanga";
 
 /* No comment provided by engineer. */
 "Right Behind You" = "Tika ki muri ia koe";
@@ -105,6 +105,12 @@
 
 /* No comment provided by engineer. */
 "Something is broken but I can work around it" = "pakaru te tahi mea te engari ka taea e ahau te mahi a tawhio noa te reira";
+
+/* No comment provided by engineer. */
+"Success!" = "Angitu!";
+
+/* No comment provided by engineer. */
+"Thanks, your request was received!" = "Mihi, ka riro koutou tono!";
 
 /* when the access token has been revoked */
 "Your login has expired or has been removed by the server. Please log in again." = "Kua mutu tō takiuru, kua tangohia rānei e te tūmau Tēnā takiuru anō";

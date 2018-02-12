@@ -387,8 +387,7 @@
 /* (No Comment) */
 "Course Syllabus" = "コースシラバス";
 
-/* Courses landing page title
-   Courses page title */
+/* Courses landing page title */
 "Courses" = "コース";
 
 /* (No Comment) */
@@ -958,7 +957,7 @@
 /* (No Comment) */
 "Privacy Policy" = "個人情報保護方針";
 
-/* (No Comment) */
+/* No comment provided by engineer. */
 "Profile" = "プロファイル";
 
 /* Quiz module item type */

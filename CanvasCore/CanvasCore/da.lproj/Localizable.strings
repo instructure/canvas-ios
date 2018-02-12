@@ -205,6 +205,9 @@
 /* Data encoding error title */
 "Encoding Error" = "Krypteringsfejl";
 
+/* No comment provided by engineer. */
+"End Act as User" = "Afslut \\'funger som bruger\\'";
+
 /* Text submission option */
 "Enter Text" = "Indtast tekst";
 
@@ -238,7 +241,7 @@
 /* No comment provided by engineer. */
 "Error parsing the Roll Call response. Unexpected null value: (k)" = "Der opstod en fejl ved parsing af navneopkald-responsen. Uventet null-værdi: (k)";
 
-/* LTI Launch failed */
+/* No comment provided by engineer. */
 "Error retrieving tool launch URL" = "Der opstod en fejl under hentning af værktøjsstarterens URL";
 
 /* rollcall status error */
@@ -544,6 +547,9 @@
 /* stop recording button a11y label */
 "Stop" = "Stop";
 
+/* No comment provided by engineer. */
+"Stop acting as..." = "Stop med at fungere som ...";
+
 /* File upload was stopped */
 "Stopped" = "Stoppede";
 
@@ -587,9 +593,6 @@
 
 /* Teal course color button */
 "Teal" = "Grønblå";
-
-/* No comment provided by engineer. */
-"That page has been disabled for this course" = "Den pågældende side er blevet deaktiveret for dette fag";
 
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "Siderne er væk!? Hvorfor er siderne altid væk?";
@@ -782,6 +785,12 @@
 
 /* permission was rejected */
 "You must grant (appName) Microphone access in the Settings app in order to record audio." = "Du skal give (appName) mikrofonadgang i Indstillinger for at optage lyd.";
+
+/* No comment provided by engineer. */
+"You will stop acting as %@ and return to your account." = "Du vil stoppe med at fungere som %@ og vende tilbage til din konto.";
+
+/* No comment provided by engineer. */
+"You will stop acting as this user and return to your account." = "Du vil stoppe med at fungere som denne bruger og vende tilbage til din konto.";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "Din enhed har ikke mere lagerplads. Frigør plads og prøv igen.";

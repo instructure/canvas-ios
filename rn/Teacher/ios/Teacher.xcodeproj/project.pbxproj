@@ -232,26 +232,26 @@
 		494BC60A1F954E1A00C77257 /* SoGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoGrey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		497CA7321F82ACF400501613 /* CanvasCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49B274C01E8437D700828E42 /* CanvasLoginPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasLoginPage.swift; sourceTree = "<group>"; };
-		5B014F162015CA8A003496AF /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = Teacher/pt.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		5B0A61962015CA910092F4D1 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "Teacher/pt-BR.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
-		5B13FA7C2015CA980046FB42 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = Teacher/ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		5B1CB80E2015CAA000A6EB42 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = Teacher/sv.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		5B2570DA2015CAA700615B49 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = Teacher/zh.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		5B2E49B82015CAAF00BE75AA /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "Teacher/zh-HK.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
-		5B82BF412015CA2E00279375 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = Teacher/ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		5B8B0C8D2015CA3400C95C09 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = Teacher/da.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		5B94FB842015CA3A00A10730 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Teacher/de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		5B9D73512015CA4000D360E7 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "Teacher/en-AU.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
-		5BA603D92015CA46004EA79F /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "Teacher/en-GB.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
-		5BAFCA2C2015CA4D00497563 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Teacher/es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		5BB86F652015CA5300000B2E /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = Teacher/fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		5BC1232B2015CA5A00BDEDF8 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "Teacher/fr-CA.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
-		5BCAF8D82015CA60007ECA07 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = Teacher/ht.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		5BD3355E2015CA6700C753F6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = Teacher/ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		5BDC62CF2015CA6E0059B60B /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = Teacher/mi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		5BE546732015CA750064538B /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = Teacher/nb.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		5BEE6CC92015CA7C00B8438D /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = Teacher/nl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		5BF8E8042015CA830008E032 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = Teacher/pl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		5B0508CB203179F6004DFC9A /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "Teacher/en-AU.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		5B0E3D2B203179FD00F45C25 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "Teacher/en-GB.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		5B18C4D320317A0400CD8239 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Teacher/es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		5B21BBDF20317A0A009313A2 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = Teacher/fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		5B2A942820317A1100651B14 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "Teacher/fr-CA.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		5B33012F20317A18003153A3 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = Teacher/ht.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		5B3C377020317A1F001CA776 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = Teacher/ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		5B45978920317A2600E50AAA /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = Teacher/mi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		5B4EFF9920317A2D00D9E8FB /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = Teacher/nb.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		5B57734920317A340042420C /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = Teacher/nl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		5B6024B420317A3B00FE4B8C /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = Teacher/pl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		5B694BC120317A42001FC534 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = Teacher/pt.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		5B72B10F20317A4900617919 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "Teacher/pt-BR.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		5B7B21AF20317A5100335CCC /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = Teacher/ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		5B84172020317A5800A90B68 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = Teacher/sv.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		5B8EF63020317A6000E13F2D /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = Teacher/zh.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		5B97ADA920317A670083EAAB /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "Teacher/zh-HK.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		5BEA4877203179E300E25A15 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = Teacher/ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		5BF38602203179E900CA3A83 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = Teacher/da.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		5BFC7C90203179F000E64F79 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Teacher/de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		61B5365C1E7749F5000FEABB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61B536DD1E784946000FEABB /* DomainPickerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainPickerTests.swift; sourceTree = "<group>"; };
 		61B536DF1E784A4B000FEABB /* Pages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pages.swift; sourceTree = "<group>"; };
@@ -1118,34 +1118,26 @@
 			isa = PBXVariantGroup;
 			children = (
 				2C96863C1FFE9FC3005127A3 /* Base */,
-				5B82BF412015CA2E00279375 /* ar */,
-				5B8B0C8D2015CA3400C95C09 /* da */,
-				5B94FB842015CA3A00A10730 /* de */,
-				5B9D73512015CA4000D360E7 /* en-AU */,
-				5BA603D92015CA46004EA79F /* en-GB */,
-				5BAFCA2C2015CA4D00497563 /* es */,
-				5BB86F652015CA5300000B2E /* fr */,
-				5BC1232B2015CA5A00BDEDF8 /* fr-CA */,
-				5BCAF8D82015CA60007ECA07 /* ht */,
-				5BD3355E2015CA6700C753F6 /* ja */,
-				5BDC62CF2015CA6E0059B60B /* mi */,
-				5BE546732015CA750064538B /* nb */,
-				5BEE6CC92015CA7C00B8438D /* nl */,
-				5BF8E8042015CA830008E032 /* pl */,
-				5B014F162015CA8A003496AF /* pt */,
-				5B0A61962015CA910092F4D1 /* pt-BR */,
-				5B13FA7C2015CA980046FB42 /* ru */,
-				5B1CB80E2015CAA000A6EB42 /* sv */,
-				5B2570DA2015CAA700615B49 /* zh */,
-				5B2E49B82015CAAF00BE75AA /* zh-HK */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		2C96863B1FFE9FC3005127A3 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2C96863C1FFE9FC3005127A3 /* Base */,
+				5BEA4877203179E300E25A15 /* ar */,
+				5BF38602203179E900CA3A83 /* da */,
+				5BFC7C90203179F000E64F79 /* de */,
+				5B0508CB203179F6004DFC9A /* en-AU */,
+				5B0E3D2B203179FD00F45C25 /* en-GB */,
+				5B18C4D320317A0400CD8239 /* es */,
+				5B21BBDF20317A0A009313A2 /* fr */,
+				5B2A942820317A1100651B14 /* fr-CA */,
+				5B33012F20317A18003153A3 /* ht */,
+				5B3C377020317A1F001CA776 /* ja */,
+				5B45978920317A2600E50AAA /* mi */,
+				5B4EFF9920317A2D00D9E8FB /* nb */,
+				5B57734920317A340042420C /* nl */,
+				5B6024B420317A3B00FE4B8C /* pl */,
+				5B694BC120317A42001FC534 /* pt */,
+				5B72B10F20317A4900617919 /* pt-BR */,
+				5B7B21AF20317A5100335CCC /* ru */,
+				5B84172020317A5800A90B68 /* sv */,
+				5B8EF63020317A6000E13F2D /* zh */,
+				5B97ADA920317A670083EAAB /* zh-HK */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

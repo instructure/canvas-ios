@@ -605,6 +605,9 @@
   "forwarded_message_3acb578c": {
     "message": "Doorgestuurd bericht:"
   },
+  "front_page_50cae87e": {
+    "message": "Voorpagina"
+  },
   "full_screen_712e95f1": {
     "message": "Volledig scherm"
   },
@@ -772,6 +775,9 @@
   },
   "mute_grades_b85bece1": {
     "message": "Cijfers verbergen"
+  },
+  "n_a_d6f6c42f": {
+    "message": "Niet van toepassing"
   },
   "name_1aed4a1b": {
     "message": "Naam"
@@ -1027,6 +1033,9 @@
   },
   "quizzes_7e598f57": {
     "message": "Toetsen"
+  },
+  "recent_activity_51239235": {
+    "message": "Recente activiteit"
   },
   "recipient_recipient_394cf528": {
     "message": "Ontvanger: { recipient }"

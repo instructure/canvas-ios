@@ -205,6 +205,9 @@
 /* Data encoding error title */
 "Encoding Error" = "Erreur d'encodage";
 
+/* No comment provided by engineer. */
+"End Act as User" = "Terminer Agir en tant qu'utilisateur";
+
 /* Text submission option */
 "Enter Text" = "Entrer du texte";
 
@@ -238,7 +241,7 @@
 /* No comment provided by engineer. */
 "Error parsing the Roll Call response. Unexpected null value: (k)" = "Erreur d'analyse de la réponse de Roll Call. Valeur null inattendue : (k)";
 
-/* LTI Launch failed */
+/* No comment provided by engineer. */
 "Error retrieving tool launch URL" = "Erreur lors de la récupération de l’URL de lancement de l’outil";
 
 /* rollcall status error */
@@ -544,6 +547,9 @@
 /* stop recording button a11y label */
 "Stop" = "Stop";
 
+/* No comment provided by engineer. */
+"Stop acting as..." = "Cesser d'agir en tant que...";
+
 /* File upload was stopped */
 "Stopped" = "Arrêté";
 
@@ -587,9 +593,6 @@
 
 /* Teal course color button */
 "Teal" = "Sarcelle";
-
-/* No comment provided by engineer. */
-"That page has been disabled for this course" = "Cette page a été désactivée pour ce cours";
 
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "Les pages ont disparu !? Mais pourquoi les pages disparaissent-elles à chaque fois ?";
@@ -782,6 +785,12 @@
 
 /* permission was rejected */
 "You must grant (appName) Microphone access in the Settings app in order to record audio." = "Vous devez autoriser (appName) à accéder au microphone dans l'application Paramètres pour enregistrer du son.";
+
+/* No comment provided by engineer. */
+"You will stop acting as %@ and return to your account." = "Vous cesserez d'agir en tant que %@ et retournerez sur votre compte.";
+
+/* No comment provided by engineer. */
+"You will stop acting as this user and return to your account." = "Vous cesserez d'agir en tant que cet utilisateur et retournerez sur votre compte.";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "Votre appareil n'a plus assez d'espace libre. Veuillez libérer de l'espace, puis réessayez.";

@@ -605,6 +605,9 @@
   "forwarded_message_3acb578c": {
     "message": "Mensaje reenviado"
   },
+  "front_page_50cae87e": {
+    "message": "Página de inicio"
+  },
   "full_screen_712e95f1": {
     "message": "Pantalla completa"
   },
@@ -772,6 +775,9 @@
   },
   "mute_grades_b85bece1": {
     "message": "Silenciar calificaciones"
+  },
+  "n_a_d6f6c42f": {
+    "message": "N/A"
   },
   "name_1aed4a1b": {
     "message": "Nombre"
@@ -1027,6 +1033,9 @@
   },
   "quizzes_7e598f57": {
     "message": "Evaluaciones"
+  },
+  "recent_activity_51239235": {
+    "message": "Actividad reciente"
   },
   "recipient_recipient_394cf528": {
     "message": "Destinatario: { recipient }"

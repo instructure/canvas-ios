@@ -297,7 +297,6 @@
 		49698D801F8FA2D000E38B78 /* StatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49698D761F8FA2D000E38B78 /* StatusCell.swift */; };
 		496C7D641F8BEF690010DC03 /* TabBarBadgeCounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C7D631F8BEF690010DC03 /* TabBarBadgeCounts.swift */; };
 		496C7D661F8C00250010DC03 /* TabBarBadgeCounts.m in Sources */ = {isa = PBXBuildFile; fileRef = 496C7D651F8C00250010DC03 /* TabBarBadgeCounts.m */; };
-		497815311FCE14B800D57BBB /* Tab+Modules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497815301FCE14B800D57BBB /* Tab+Modules.swift */; };
 		497815311FCE14B800D57BBB /* Tab+Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497815301FCE14B800D57BBB /* Tab+Details.swift */; };
 		497C0F8A1FACD0D200084032 /* CanvasWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C0F891FACD0D200084032 /* CanvasWebView.swift */; };
 		497CA76E1F82D19600501613 /* Helm.m in Sources */ = {isa = PBXBuildFile; fileRef = 497CA75F1F82D18900501613 /* Helm.m */; };
@@ -829,7 +828,6 @@
 		49698D761F8FA2D000E38B78 /* StatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusCell.swift; sourceTree = "<group>"; };
 		496C7D631F8BEF690010DC03 /* TabBarBadgeCounts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarBadgeCounts.swift; sourceTree = "<group>"; };
 		496C7D651F8C00250010DC03 /* TabBarBadgeCounts.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarBadgeCounts.m; sourceTree = "<group>"; };
-		497815301FCE14B800D57BBB /* Tab+Modules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tab+Modules.swift"; sourceTree = "<group>"; };
 		497815301FCE14B800D57BBB /* Tab+Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tab+Details.swift"; sourceTree = "<group>"; };
 		497C0F891FACD0D200084032 /* CanvasWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasWebView.swift; sourceTree = "<group>"; };
 		497CA75F1F82D18900501613 /* Helm.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Helm.m; sourceTree = "<group>"; };

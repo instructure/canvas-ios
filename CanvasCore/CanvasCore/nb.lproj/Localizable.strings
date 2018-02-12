@@ -205,6 +205,9 @@
 /* Data encoding error title */
 "Encoding Error" = "Kodefeil";
 
+/* No comment provided by engineer. */
+"End Act as User" = "Avlustt opptre som bruker";
+
 /* Text submission option */
 "Enter Text" = "Skriv inn tekst";
 
@@ -238,7 +241,7 @@
 /* No comment provided by engineer. */
 "Error parsing the Roll Call response. Unexpected null value: (k)" = "Feil ved parsering av svar på opprop. Uventet null verdi: (k)";
 
-/* LTI Launch failed */
+/* No comment provided by engineer. */
 "Error retrieving tool launch URL" = "Feil i pålogging av URL";
 
 /* rollcall status error */
@@ -544,6 +547,9 @@
 /* stop recording button a11y label */
 "Stop" = "Stopp";
 
+/* No comment provided by engineer. */
+"Stop acting as..." = "Slutt å opptre som...";
+
 /* File upload was stopped */
 "Stopped" = "Stoppet";
 
@@ -587,9 +593,6 @@
 
 /* Teal course color button */
 "Teal" = "Blågrønn";
-
-/* No comment provided by engineer. */
-"That page has been disabled for this course" = "Den siden er deaktivert for dette emnet";
 
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "Sidene er borte!? Hvorfor er sidene alltid borte?";
@@ -782,6 +785,12 @@
 
 /* permission was rejected */
 "You must grant (appName) Microphone access in the Settings app in order to record audio." = "Du må gi (appName) mikrofontilgang i Innstillinger-appen for å gjøre opptak av lyd.";
+
+/* No comment provided by engineer. */
+"You will stop acting as %@ and return to your account." = "Du vil slutte å opptre som %@ og gå tilbake til din egen konto.";
+
+/* No comment provided by engineer. */
+"You will stop acting as this user and return to your account." = "Du vil slutte å opptre som denne brukeren og gå tilbake til din egen konto.";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "Enheten din har gått tom for lagringsplass. Frigjør plass og prøv igjen.";

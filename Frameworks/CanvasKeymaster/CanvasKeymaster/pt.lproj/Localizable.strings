@@ -4,9 +4,6 @@
 /* No comment provided by engineer. */
 "Build all the things" = "Construa todas as coisas";
 
-/* Help label when user can't find their school. */
-"Can't find your school?" = "Não consegue encontrar a sua escola?";
-
 /* No comment provided by engineer. */
 "Cancel" = "Cancelar";
 
@@ -15,6 +12,9 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "Pergunta casual ou seguestão";
+
+/* No comment provided by engineer. */
+"Check network and try again!" = "Verifique a rede e tente novamente.";
 
 /* No comment provided by engineer. */
 "Choose One" = "Escolha Um";
@@ -73,6 +73,9 @@
 /* No comment provided by engineer. */
 "Not authorized." = "Não autorizado.";
 
+/* No comment provided by engineer. */
+"OK" = "OK";
+
 /* Placeholder for help icon (question mark) on Domain Picker View */
 "Open help menu" = "Abrir menu de ajuda";
 
@@ -80,13 +83,10 @@
 "Report a Problem" = "Denunciar um problema";
 
 /* No comment provided by engineer. */
-"Report a problem" = "Denunciar um problema";
+"Request Failed!" = "A solicitação falhou!";
 
 /* No comment provided by engineer. */
 "Request a Feature" = "Pedir uma Caraterística";
-
-/* No comment provided by engineer. */
-"Request a feature" = "Pedir uma caraterística";
 
 /* No comment provided by engineer. */
 "Right Behind You" = "Bem atrás de si";
@@ -105,6 +105,12 @@
 
 /* No comment provided by engineer. */
 "Something is broken but I can work around it" = "Algo está avariado mas consigo resolver";
+
+/* No comment provided by engineer. */
+"Success!" = "Sucesso!";
+
+/* No comment provided by engineer. */
+"Thanks, your request was received!" = "Obrigado, o seu pedido foi recebido!";
 
 /* when the access token has been revoked */
 "Your login has expired or has been removed by the server. Please log in again." = "Seu login expirou ou foi removido pelo servidor. Por favor faça login novamente.";

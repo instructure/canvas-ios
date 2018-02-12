@@ -387,8 +387,7 @@
 /* (No Comment) */
 "Course Syllabus" = "مناهج المساق";
 
-/* Courses landing page title
-   Courses page title */
+/* Courses landing page title */
 "Courses" = "المساقات";
 
 /* (No Comment) */
@@ -958,7 +957,7 @@
 /* (No Comment) */
 "Privacy Policy" = "سياسة الخصوصية";
 
-/* (No Comment) */
+/* No comment provided by engineer. */
 "Profile" = "ملف التعريف";
 
 /* Quiz module item type */

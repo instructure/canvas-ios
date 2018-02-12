@@ -205,6 +205,9 @@
 /* Data encoding error title */
 "Encoding Error" = "Encoding Error";
 
+/* No comment provided by engineer. */
+"End Act as User" = "End Act as User";
+
 /* Text submission option */
 "Enter Text" = "Enter Text";
 
@@ -238,7 +241,7 @@
 /* No comment provided by engineer. */
 "Error parsing the Roll Call response. Unexpected null value: (k)" = "Error parsing the Roll Call response. Unexpected null value: (k)";
 
-/* LTI Launch failed */
+/* No comment provided by engineer. */
 "Error retrieving tool launch URL" = "Error retrieving tool launch URL";
 
 /* rollcall status error */
@@ -544,6 +547,9 @@
 /* stop recording button a11y label */
 "Stop" = "Stop";
 
+/* No comment provided by engineer. */
+"Stop acting as..." = "Stop acting as...";
+
 /* File upload was stopped */
 "Stopped" = "Stopped";
 
@@ -587,9 +593,6 @@
 
 /* Teal course color button */
 "Teal" = "Teal";
-
-/* No comment provided by engineer. */
-"That page has been disabled for this course" = "That page has been disabled for this course";
 
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "The Pages are gone!? Why are the pages always gone?";
@@ -782,6 +785,12 @@
 
 /* permission was rejected */
 "You must grant (appName) Microphone access in the Settings app in order to record audio." = "You must grant (appName) Microphone access in the Settings app in order to record audio.";
+
+/* No comment provided by engineer. */
+"You will stop acting as %@ and return to your account." = "You will stop acting as %@ and return to your account.";
+
+/* No comment provided by engineer. */
+"You will stop acting as this user and return to your account." = "You will stop acting as this user and return to your account.";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "Your device is out of storage space. Please free up space and try again.";

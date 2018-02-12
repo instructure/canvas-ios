@@ -605,6 +605,9 @@
   "forwarded_message_3acb578c": {
     "message": "Перенаправленное сообщение:"
   },
+  "front_page_50cae87e": {
+    "message": "Первая страница"
+  },
   "full_screen_712e95f1": {
     "message": "Полный экран"
   },
@@ -772,6 +775,9 @@
   },
   "mute_grades_b85bece1": {
     "message": "Скрыть оценки"
+  },
+  "n_a_d6f6c42f": {
+    "message": "Н/Д"
   },
   "name_1aed4a1b": {
     "message": "Имя"
@@ -1027,6 +1033,9 @@
   },
   "quizzes_7e598f57": {
     "message": "Тесты"
+  },
+  "recent_activity_51239235": {
+    "message": "Недавно выполненные действия"
   },
   "recipient_recipient_394cf528": {
     "message": "Получатель: { recipient }"

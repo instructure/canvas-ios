@@ -241,7 +241,7 @@
 /* (No Comment) */
 "Archived" = "Архивировано";
 
-/* Action sheet title verifying that a user wants to logout. */
+/* (No Comment) */
 "Are you ready to logout?" = "Вы готовы выйти из системы?";
 
 /* Confirmation alert text for submitting an Arc video for an assignment */
@@ -289,7 +289,7 @@
 /* (No Comment) */
 "Calendar" = "Календарь";
 
-/* Invalid LTI tool error title */
+/* No comment provided by engineer. */
 "Can't load tool" = "Не удается загрузить инструмент";
 
 /* Setup only allows media but no Kaltura instance error title */
@@ -317,7 +317,7 @@
 /* button to change user's profile image */
 "Change Profile Image" = "Изменить изображение профиля";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Change User" = "Сменить пользователя";
 
 /* Button label for choosing a photo */
@@ -520,7 +520,7 @@
 /* (No Comment) */
 "Enable Push Notifications" = "Включить Push-уведомления";
 
-/* masquerade prompt */
+/* (No Comment) */
 "Enter User ID and Domain." = "Ввести ID пользователя и домен.";
 
 /* Submission input view placeholder text */
@@ -583,6 +583,9 @@
 /* Title for the files screen */
 "Files" = "Файлы";
 
+/* No comment provided by engineer. */
+"Final Grade" = "Итоговая оценка";
+
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Загрузка завершена";
 
@@ -637,7 +640,7 @@
 /* (No Comment) */
 "Groups" = "Группы";
 
-/* help button */
+/* (No Comment) */
 "Help" = "Справка";
 
 /* (No Comment) */
@@ -697,6 +700,9 @@
 /* Title for an alert popup */
 "Large file" = "Большой файл";
 
+/* No comment provided by engineer. */
+"Late Penalty" = "Снижение оценки за опоздание";
+
 /* (No Comment) */
 "Later" = "Позже";
 
@@ -721,7 +727,7 @@
 /* (No Comment) */
 "Login Problem" = "Проблемы со входом в систему";
 
-/* Title for a button to logout a user */
+/* (No Comment) */
 "Logout" = "Выйти";
 
 /* (No Comment) */
@@ -790,7 +796,7 @@
 /* (No Comment) */
 "Must view" = "Нужно просмотреть";
 
-/* files button */
+/* (No Comment) */
 "My Files" = "Мои файлы";
 
 /* the users name */
@@ -1013,10 +1019,10 @@
 /* Button title for confirming a file deletion */
 "Remove this file?" = "Удалить этот файл?";
 
-/* option to report a problem */
+/* (No Comment) */
 "Report a problem" = "Сообщить о проблеме";
 
-/* option to request a feature */
+/* (No Comment) */
 "Request a feature" = "Запрос функции";
 
 /* (No Comment) */
@@ -1082,13 +1088,13 @@
 /* (No Comment) */
 "Starts recording a media comment" = "Начало записи медиа-комментария";
 
-/* button title for cancelling a logout. */
+/* (No Comment) */
 "Stay Logged In" = "Оставаться в системе";
 
 /* Stop loading button for webview */
 "Stop" = "Остановить";
 
-/* Button title for stopping masquerading; when a privileged user becomes another user in the system */
+/* (No Comment) */
 "Stop Masquerading" = "Остановить Маскарадинг";
 
 /* (No Comment) */
@@ -1223,7 +1229,7 @@
 /* (No Comment) */
 "This app is not authorized for use." = "Это приложение не авторизовано для использования.";
 
-/* Invalid LTI tool error message */
+/* No comment provided by engineer. */
 "This assignment doesn't appear to be a valid external tool or is misconfigured." = "Это задание не является допустимым внешним инструментом или неправильно настроено.";
 
 /* message displayed in the details section if there is no comment. */
@@ -1252,6 +1258,9 @@
 
 /* Threaded switch label to to make discussion threaded */
 "Threaded" = "Связанные в цепочки";
+
+/* Discussion title placeholder */
+"Title" = "Заголовок";
 
 /* (No Comment) */
 "To Do" = "Для выполнения";
@@ -1346,7 +1355,7 @@
 /* button for using the recorded audio */
 "Use" = "Использовать";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "User ID" = "ID пользователя";
 
 /* Title for User Info section on the about page */
@@ -1388,7 +1397,7 @@
 /* No comment provided by engineer. */
 "Yes" = "Да";
 
-/* Masquerade title telling who you are masquerading as */
+/* (No Comment) */
 "You are now masquerading as %@" = "Теперь вы маскируетесь под %@";
 
 /* Masquerade success message */

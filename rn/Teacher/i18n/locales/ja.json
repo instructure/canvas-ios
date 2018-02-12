@@ -605,6 +605,9 @@
   "forwarded_message_3acb578c": {
     "message": "転送されたメッセージ："
   },
+  "front_page_50cae87e": {
+    "message": "フロントページ"
+  },
   "full_screen_712e95f1": {
     "message": "全画面表示"
   },
@@ -772,6 +775,9 @@
   },
   "mute_grades_b85bece1": {
     "message": "成績をミュートする"
+  },
+  "n_a_d6f6c42f": {
+    "message": "N/A"
   },
   "name_1aed4a1b": {
     "message": "名前"
@@ -1027,6 +1033,9 @@
   },
   "quizzes_7e598f57": {
     "message": "クイズ"
+  },
+  "recent_activity_51239235": {
+    "message": "最近のアクティビティ"
   },
   "recipient_recipient_394cf528": {
     "message": "受信者：{ recipient }"

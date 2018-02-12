@@ -605,6 +605,9 @@
   "forwarded_message_3acb578c": {
     "message": "Vidarebefordrat meddelande:"
   },
+  "front_page_50cae87e": {
+    "message": "Framsida"
+  },
   "full_screen_712e95f1": {
     "message": "Fullskärm"
   },
@@ -772,6 +775,9 @@
   },
   "mute_grades_b85bece1": {
     "message": "Tysta betyg"
+  },
+  "n_a_d6f6c42f": {
+    "message": "Ej tillgängligt"
   },
   "name_1aed4a1b": {
     "message": "Namn"
@@ -1027,6 +1033,9 @@
   },
   "quizzes_7e598f57": {
     "message": "Quiz"
+  },
+  "recent_activity_51239235": {
+    "message": "Senaste aktivitet"
   },
   "recipient_recipient_394cf528": {
     "message": "Mottagare: { recipient }"

@@ -241,7 +241,7 @@
 /* (No Comment) */
 "Archived" = "Archived";
 
-/* Action sheet title verifying that a user wants to logout. */
+/* (No Comment) */
 "Are you ready to logout?" = "Are you ready to logout?";
 
 /* Confirmation alert text for submitting an Arc video for an assignment */
@@ -289,7 +289,7 @@
 /* (No Comment) */
 "Calendar" = "Calendar";
 
-/* Invalid LTI tool error title */
+/* No comment provided by engineer. */
 "Can't load tool" = "Can't load tool";
 
 /* Setup only allows media but no Kaltura instance error title */
@@ -317,7 +317,7 @@
 /* button to change user's profile image */
 "Change Profile Image" = "Change Profile Image";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Change User" = "Change User";
 
 /* Button label for choosing a photo */
@@ -520,7 +520,7 @@
 /* (No Comment) */
 "Enable Push Notifications" = "Enable Push Notifications";
 
-/* masquerade prompt */
+/* (No Comment) */
 "Enter User ID and Domain." = "Enter User ID and Domain.";
 
 /* Submission input view placeholder text */
@@ -583,6 +583,9 @@
 /* Title for the files screen */
 "Files" = "Files";
 
+/* No comment provided by engineer. */
+"Final Grade" = "Final Grade";
+
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Finished downloading";
 
@@ -637,7 +640,7 @@
 /* (No Comment) */
 "Groups" = "Groups";
 
-/* help button */
+/* (No Comment) */
 "Help" = "Help";
 
 /* (No Comment) */
@@ -697,6 +700,9 @@
 /* Title for an alert popup */
 "Large file" = "Large file";
 
+/* No comment provided by engineer. */
+"Late Penalty" = "Late Penalty";
+
 /* (No Comment) */
 "Later" = "Later";
 
@@ -721,7 +727,7 @@
 /* (No Comment) */
 "Login Problem" = "Login Problem";
 
-/* Title for a button to logout a user */
+/* (No Comment) */
 "Logout" = "Logout";
 
 /* (No Comment) */
@@ -790,7 +796,7 @@
 /* (No Comment) */
 "Must view" = "Must view";
 
-/* files button */
+/* (No Comment) */
 "My Files" = "My Files";
 
 /* the users name */
@@ -1013,10 +1019,10 @@
 /* Button title for confirming a file deletion */
 "Remove this file?" = "Remove this file?";
 
-/* option to report a problem */
+/* (No Comment) */
 "Report a problem" = "Report a problem";
 
-/* option to request a feature */
+/* (No Comment) */
 "Request a feature" = "Request a feature";
 
 /* (No Comment) */
@@ -1082,13 +1088,13 @@
 /* (No Comment) */
 "Starts recording a media comment" = "Starts recording a media comment";
 
-/* button title for cancelling a logout. */
+/* (No Comment) */
 "Stay Logged In" = "Stay Logged In";
 
 /* Stop loading button for webview */
 "Stop" = "Stop";
 
-/* Button title for stopping masquerading; when a privileged user becomes another user in the system */
+/* (No Comment) */
 "Stop Masquerading" = "Stop Masquerading";
 
 /* (No Comment) */
@@ -1223,7 +1229,7 @@
 /* (No Comment) */
 "This app is not authorized for use." = "This app is not authorised for use.";
 
-/* Invalid LTI tool error message */
+/* No comment provided by engineer. */
 "This assignment doesn't appear to be a valid external tool or is misconfigured." = "This assignment doesn't appear to be a valid external tool or is misconfigured.";
 
 /* message displayed in the details section if there is no comment. */
@@ -1252,6 +1258,9 @@
 
 /* Threaded switch label to to make discussion threaded */
 "Threaded" = "Threaded";
+
+/* Discussion title placeholder */
+"Title" = "Title";
 
 /* (No Comment) */
 "To Do" = "To Do";
@@ -1346,7 +1355,7 @@
 /* button for using the recorded audio */
 "Use" = "Use";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "User ID" = "User ID";
 
 /* Title for User Info section on the about page */
@@ -1388,7 +1397,7 @@
 /* No comment provided by engineer. */
 "Yes" = "Yes";
 
-/* Masquerade title telling who you are masquerading as */
+/* (No Comment) */
 "You are now masquerading as %@" = "You are now masquerading as %@.";
 
 /* Masquerade success message */

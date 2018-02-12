@@ -205,6 +205,9 @@
 /* Data encoding error title */
 "Encoding Error" = "Verschlüsselungsfehler";
 
+/* No comment provided by engineer. */
+"End Act as User" = "„Handeln als Benutzer“ beenden";
+
 /* Text submission option */
 "Enter Text" = "Text eingeben";
 
@@ -238,7 +241,7 @@
 /* No comment provided by engineer. */
 "Error parsing the Roll Call response. Unexpected null value: (k)" = "Fehler beim Analysieren der Roll Call-Antwort. Unerwarteter NULL-Wert: (k)";
 
-/* LTI Launch failed */
+/* No comment provided by engineer. */
 "Error retrieving tool launch URL" = "Fehler beim Abrufen des URL zum Starten des Tools";
 
 /* rollcall status error */
@@ -544,6 +547,9 @@
 /* stop recording button a11y label */
 "Stop" = "Stopp";
 
+/* No comment provided by engineer. */
+"Stop acting as..." = "Aufhören, als Benutzer [...] zu handeln";
+
 /* File upload was stopped */
 "Stopped" = "Angehalten";
 
@@ -587,9 +593,6 @@
 
 /* Teal course color button */
 "Teal" = "Blaugrün";
-
-/* No comment provided by engineer. */
-"That page has been disabled for this course" = "Diese Seite wurde für diesen Kurs deaktiviert.";
 
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "Die Seiten sind weg!? Warum werden die Seiten immer weg?";
@@ -782,6 +785,12 @@
 
 /* permission was rejected */
 "You must grant (appName) Microphone access in the Settings app in order to record audio." = "Für eine Audioaufzeichnung müssen Sie (appName) in der Einstellungs-App Mikrofonzugriffsrechte erteilen.";
+
+/* No comment provided by engineer. */
+"You will stop acting as %@ and return to your account." = "Sie hören auf, als %@ zu handeln, und kehren zu Ihrem Konto zurück.";
+
+/* No comment provided by engineer. */
+"You will stop acting as this user and return to your account." = "Sie hören auf, als dieser Benutzer zu handeln, und kehren zu Ihrem Konto zurück.";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "Der Speicher Ihres Geräts ist voll. Bitte geben Sie Speicherplatz frei, und versuchen Sie es erneut.";

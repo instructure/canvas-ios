@@ -205,6 +205,9 @@
 /* Data encoding error title */
 "Encoding Error" = "Ошибка при кодировании";
 
+/* No comment provided by engineer. */
+"End Act as User" = "Завершить функцию «Действовать как пользователь»";
+
 /* Text submission option */
 "Enter Text" = "Ввести текст";
 
@@ -238,7 +241,7 @@
 /* No comment provided by engineer. */
 "Error parsing the Roll Call response. Unexpected null value: (k)" = "Ошибка при анализе ответа проверки присутствия. Неожиданное нулевое значение: (k)";
 
-/* LTI Launch failed */
+/* No comment provided by engineer. */
 "Error retrieving tool launch URL" = "Ошибка при запросе URL запуска инструмента";
 
 /* rollcall status error */
@@ -544,6 +547,9 @@
 /* stop recording button a11y label */
 "Stop" = "Стоп";
 
+/* No comment provided by engineer. */
+"Stop acting as..." = "Прекратить действовать как...";
+
 /* File upload was stopped */
 "Stopped" = "Процесс остановлен";
 
@@ -587,9 +593,6 @@
 
 /* Teal course color button */
 "Teal" = "Бирюзовый";
-
-/* No comment provided by engineer. */
-"That page has been disabled for this course" = "Эта страница отключена для этого курса";
 
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "Страницы исчезли!? Почему страницы постоянно исчезают?";
@@ -782,6 +785,12 @@
 
 /* permission was rejected */
 "You must grant (appName) Microphone access in the Settings app in order to record audio." = "Вы должны предоставить (appName) доступ к микрофону в настройках для записи аудио.";
+
+/* No comment provided by engineer. */
+"You will stop acting as %@ and return to your account." = "Вы прекратите действовать как %@ и вернетесь в свою учетную запись.";
+
+/* No comment provided by engineer. */
+"You will stop acting as this user and return to your account." = "Вы прекратите действовать как этот пользователь и вернетесь в свою учетную запись.";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "На вашем устройстве закончилась свободная память. Освободите память и попробуйте снова.";

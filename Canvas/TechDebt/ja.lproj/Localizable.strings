@@ -241,7 +241,7 @@
 /* (No Comment) */
 "Archived" = "アーカイブに保存されました";
 
-/* Action sheet title verifying that a user wants to logout. */
+/* (No Comment) */
 "Are you ready to logout?" = "ログアウトしますか？";
 
 /* Confirmation alert text for submitting an Arc video for an assignment */
@@ -289,7 +289,7 @@
 /* (No Comment) */
 "Calendar" = "カレンダー";
 
-/* Invalid LTI tool error title */
+/* No comment provided by engineer. */
 "Can't load tool" = "ツールの読み込みができません";
 
 /* Setup only allows media but no Kaltura instance error title */
@@ -317,7 +317,7 @@
 /* button to change user's profile image */
 "Change Profile Image" = "プロフィール画像を変更する";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Change User" = "ユーザーを変更する";
 
 /* Button label for choosing a photo */
@@ -520,7 +520,7 @@
 /* (No Comment) */
 "Enable Push Notifications" = "プッシュ通知を有効にする";
 
-/* masquerade prompt */
+/* (No Comment) */
 "Enter User ID and Domain." = "ユーザーIDとドメインを入力する。";
 
 /* Submission input view placeholder text */
@@ -583,6 +583,9 @@
 /* Title for the files screen */
 "Files" = "ファイル";
 
+/* No comment provided by engineer. */
+"Final Grade" = "最終的な成績";
+
 /* Shown when we finish downloading a file */
 "Finished downloading" = "ダウンロードが終了しました";
 
@@ -637,7 +640,7 @@
 /* (No Comment) */
 "Groups" = "グループ";
 
-/* help button */
+/* (No Comment) */
 "Help" = "ヘルプ";
 
 /* (No Comment) */
@@ -697,6 +700,9 @@
 /* Title for an alert popup */
 "Large file" = "大きなファイル";
 
+/* No comment provided by engineer. */
+"Late Penalty" = "遅延ペナルティ：";
+
 /* (No Comment) */
 "Later" = "後で";
 
@@ -721,7 +727,7 @@
 /* (No Comment) */
 "Login Problem" = "ログインでの問題";
 
-/* Title for a button to logout a user */
+/* (No Comment) */
 "Logout" = "ログアウト";
 
 /* (No Comment) */
@@ -790,7 +796,7 @@
 /* (No Comment) */
 "Must view" = "必ず閲覧しなければならない";
 
-/* files button */
+/* (No Comment) */
 "My Files" = "マイファイル";
 
 /* the users name */
@@ -1013,10 +1019,10 @@
 /* Button title for confirming a file deletion */
 "Remove this file?" = "このファイルを削除しますか？";
 
-/* option to report a problem */
+/* (No Comment) */
 "Report a problem" = "問題を報告する";
 
-/* option to request a feature */
+/* (No Comment) */
 "Request a feature" = "機能をリクエストする";
 
 /* (No Comment) */
@@ -1082,13 +1088,13 @@
 /* (No Comment) */
 "Starts recording a media comment" = "メディアコメントの録音を開始する";
 
-/* button title for cancelling a logout. */
+/* (No Comment) */
 "Stay Logged In" = "ログイン状態にしておく";
 
 /* Stop loading button for webview */
 "Stop" = "中止する";
 
-/* Button title for stopping masquerading; when a privileged user becomes another user in the system */
+/* (No Comment) */
 "Stop Masquerading" = "マスカレードを中止する";
 
 /* (No Comment) */
@@ -1223,7 +1229,7 @@
 /* (No Comment) */
 "This app is not authorized for use." = "このアプリは使用を許可されていません。";
 
-/* Invalid LTI tool error message */
+/* No comment provided by engineer. */
 "This assignment doesn't appear to be a valid external tool or is misconfigured." = "この課題は有効な外部ツールではないか、設定が正しくない可能性があります。";
 
 /* message displayed in the details section if there is no comment. */
@@ -1252,6 +1258,9 @@
 
 /* Threaded switch label to to make discussion threaded */
 "Threaded" = "スレッドあり";
+
+/* Discussion title placeholder */
+"Title" = "タイトル";
 
 /* (No Comment) */
 "To Do" = "するべきこと";
@@ -1346,7 +1355,7 @@
 /* button for using the recorded audio */
 "Use" = "使用";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "User ID" = "ユーザーID";
 
 /* Title for User Info section on the about page */
@@ -1388,7 +1397,7 @@
 /* No comment provided by engineer. */
 "Yes" = "はい";
 
-/* Masquerade title telling who you are masquerading as */
+/* (No Comment) */
 "You are now masquerading as %@" = "現在 %@としてマスカレードしています";
 
 /* Masquerade success message */

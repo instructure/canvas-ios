@@ -605,6 +605,9 @@
   "forwarded_message_3acb578c": {
     "message": "转发消息："
   },
+  "front_page_50cae87e": {
+    "message": "首页"
+  },
   "full_screen_712e95f1": {
     "message": "全屏"
   },
@@ -772,6 +775,9 @@
   },
   "mute_grades_b85bece1": {
     "message": "屏蔽评分"
+  },
+  "n_a_d6f6c42f": {
+    "message": "不适用"
   },
   "name_1aed4a1b": {
     "message": "名称、名字"
@@ -1027,6 +1033,9 @@
   },
   "quizzes_7e598f57": {
     "message": "测验"
+  },
+  "recent_activity_51239235": {
+    "message": "最近活动"
   },
   "recipient_recipient_394cf528": {
     "message": "接收人：{ recipient }"

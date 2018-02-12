@@ -205,6 +205,9 @@
 /* Data encoding error title */
 "Encoding Error" = "Erè Kodaj";
 
+/* No comment provided by engineer. */
+"End Act as User" = "Fini Aksyon kòm yon Itilizatè";
+
 /* Text submission option */
 "Enter Text" = "Antre Tèks";
 
@@ -238,7 +241,7 @@
 /* No comment provided by engineer. */
 "Error parsing the Roll Call response. Unexpected null value: (k)" = "Erè pandan analiz repons Apèl Nominal la. Valè nil sanzatann: (k)";
 
-/* LTI Launch failed */
+/* No comment provided by engineer. */
 "Error retrieving tool launch URL" = "Erè pandan rekiperasyon URL lansman enstriman";
 
 /* rollcall status error */
@@ -544,6 +547,9 @@
 /* stop recording button a11y label */
 "Stop" = "Kanpe";
 
+/* No comment provided by engineer. */
+"Stop acting as..." = "Sispann aji tankou...";
+
 /* File upload was stopped */
 "Stopped" = "Kanpe";
 
@@ -587,9 +593,6 @@
 
 /* Teal course color button */
 "Teal" = "Ble vèt";
-
-/* No comment provided by engineer. */
-"That page has been disabled for this course" = "Paj sa a dezaktive pou kou sa a";
 
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "Paj yo ale!? Poukisa paj yo toujou ap fèmen?";
@@ -782,6 +785,12 @@
 
 /* permission was rejected */
 "You must grant (appName) Microphone access in the Settings app in order to record audio." = "Ou dwe otorize (appName) aksè Mikwofòn nan Paramèt app la pou w ka anrejistre odyo.";
+
+/* No comment provided by engineer. */
+"You will stop acting as %@ and return to your account." = "Ou pral sispann aji tankou %@ epi sou kont ou.";
+
+/* No comment provided by engineer. */
+"You will stop acting as this user and return to your account." = "Ou pral sispann aji tankou yon itilizatè epi retounen sou kont ou.";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "Pa gen espas estojak sou aparèy ou a ankò. Tanpri libere kèk espas epi eseye ankò.";

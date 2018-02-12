@@ -205,6 +205,9 @@
 /* Data encoding error title */
 "Encoding Error" = "Hapa Whakawaehere";
 
+/* No comment provided by engineer. */
+"End Act as User" = "Whakamutu mahi hei Kaiwhakamahi";
+
 /* Text submission option */
 "Enter Text" = "Whakauru Kuputuhi";
 
@@ -238,7 +241,7 @@
 /* No comment provided by engineer. */
 "Error parsing the Roll Call response. Unexpected null value: (k)" = "Hapa e poroporo ana te whakautu a te Roll Call Uarakore kaore e tūmanakohia (k)";
 
-/* LTI Launch failed */
+/* No comment provided by engineer. */
 "Error retrieving tool launch URL" = "He hapa i te wā e tiki ana i te taputapu whakarewatanga URL";
 
 /* rollcall status error */
@@ -544,6 +547,9 @@
 /* stop recording button a11y label */
 "Stop" = "Kāti";
 
+/* No comment provided by engineer. */
+"Stop acting as..." = "Kāti te mahi hei....";
+
 /* File upload was stopped */
 "Stopped" = "Mutu";
 
@@ -587,9 +593,6 @@
 
 /* Teal course color button */
 "Teal" = "Teal";
-
-/* No comment provided by engineer. */
-"That page has been disabled for this course" = "Kua monokia taua whārangi mō tēnei akoranga";
 
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "Kua kore ngā Pagesi!? He aha e kore ana i ngā wā katoa te pages?";
@@ -782,6 +785,12 @@
 
 /* permission was rejected */
 "You must grant (appName) Microphone access in the Settings app in order to record audio." = "Me tuku e koe (appName) te uru ki te Hopuoro i te taupānga Tautuhinga hei tuhi ororongo.";
+
+/* No comment provided by engineer. */
+"You will stop acting as %@ and return to your account." = "Ka mutu tō mahi hei %@ ka hoki ki tāu kaute.";
+
+/* No comment provided by engineer. */
+"You will stop acting as this user and return to your account." = "Ka mutu tō mahi hei kaiwhakamahi nei, ka hoki ki tāu kaute.";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "Kua kore te wāhi rokiroki i roto i tō pūrere Tēnā whakawātea ake he wāhi,me te tarai anō";

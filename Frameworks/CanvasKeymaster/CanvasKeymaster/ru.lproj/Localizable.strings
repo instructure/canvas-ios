@@ -4,9 +4,6 @@
 /* No comment provided by engineer. */
 "Build all the things" = "Построить все";
 
-/* Help label when user can't find their school. */
-"Can't find your school?" = "Не можете найти ваше учебное заведение?";
-
 /* No comment provided by engineer. */
 "Cancel" = "Отменить";
 
@@ -15,6 +12,9 @@
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "Обычный вопрос или предложение";
+
+/* No comment provided by engineer. */
+"Check network and try again!" = "Проверьте сеть и попробуйте еще раз!";
 
 /* No comment provided by engineer. */
 "Choose One" = "Выберите один";
@@ -73,6 +73,9 @@
 /* No comment provided by engineer. */
 "Not authorized." = "Не разрешено.";
 
+/* No comment provided by engineer. */
+"OK" = "OK";
+
 /* Placeholder for help icon (question mark) on Domain Picker View */
 "Open help menu" = "Открыть меню Справка";
 
@@ -80,13 +83,10 @@
 "Report a Problem" = "Сообщить о проблеме";
 
 /* No comment provided by engineer. */
-"Report a problem" = "Сообщить о проблеме";
+"Request Failed!" = "Сбой при выполнении запроса!";
 
 /* No comment provided by engineer. */
 "Request a Feature" = "Запрос функции";
-
-/* No comment provided by engineer. */
-"Request a feature" = "Запрос функции";
 
 /* No comment provided by engineer. */
 "Right Behind You" = "Прямо позади вас";
@@ -105,6 +105,12 @@
 
 /* No comment provided by engineer. */
 "Something is broken but I can work around it" = "Что-то сломалось, но я могу работать и без этого";
+
+/* No comment provided by engineer. */
+"Success!" = "Успешно!";
+
+/* No comment provided by engineer. */
+"Thanks, your request was received!" = "Спасибо, ваш запрос был получен!";
 
 /* when the access token has been revoked */
 "Your login has expired or has been removed by the server. Please log in again." = "Ваша учетная запись устарела или была удалена сервером. Пожалуйста, войдите снова.";

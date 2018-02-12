@@ -241,7 +241,7 @@
 /* (No Comment) */
 "Archived" = "Archiviert";
 
-/* Action sheet title verifying that a user wants to logout. */
+/* (No Comment) */
 "Are you ready to logout?" = "Sind Sie bereit, sich abzumelden?";
 
 /* Confirmation alert text for submitting an Arc video for an assignment */
@@ -289,7 +289,7 @@
 /* (No Comment) */
 "Calendar" = "Kalender";
 
-/* Invalid LTI tool error title */
+/* No comment provided by engineer. */
 "Can't load tool" = "Tool kann nicht geladen werden";
 
 /* Setup only allows media but no Kaltura instance error title */
@@ -317,7 +317,7 @@
 /* button to change user's profile image */
 "Change Profile Image" = "Profilbild ändern";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Change User" = "Benutzer wechseln";
 
 /* Button label for choosing a photo */
@@ -520,7 +520,7 @@
 /* (No Comment) */
 "Enable Push Notifications" = "Push-Benachrichtigungen aktivieren";
 
-/* masquerade prompt */
+/* (No Comment) */
 "Enter User ID and Domain." = "Benutzer-ID und Domain eingeben.";
 
 /* Submission input view placeholder text */
@@ -583,6 +583,9 @@
 /* Title for the files screen */
 "Files" = "Dateien";
 
+/* No comment provided by engineer. */
+"Final Grade" = "Gesamtnote";
+
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Download abgeschlossen";
 
@@ -637,7 +640,7 @@
 /* (No Comment) */
 "Groups" = "Gruppen";
 
-/* help button */
+/* (No Comment) */
 "Help" = "Hilfe";
 
 /* (No Comment) */
@@ -697,6 +700,9 @@
 /* Title for an alert popup */
 "Large file" = "Große Datei";
 
+/* No comment provided by engineer. */
+"Late Penalty" = "Strafe für Verspätung";
+
 /* (No Comment) */
 "Later" = "Später";
 
@@ -721,7 +727,7 @@
 /* (No Comment) */
 "Login Problem" = "Anmeldeproblem";
 
-/* Title for a button to logout a user */
+/* (No Comment) */
 "Logout" = "Abmeldung";
 
 /* (No Comment) */
@@ -790,7 +796,7 @@
 /* (No Comment) */
 "Must view" = "Muss ansehen";
 
-/* files button */
+/* (No Comment) */
 "My Files" = "Meine Dateien";
 
 /* the users name */
@@ -1013,10 +1019,10 @@
 /* Button title for confirming a file deletion */
 "Remove this file?" = "Diese Datei entfernen?";
 
-/* option to report a problem */
+/* (No Comment) */
 "Report a problem" = "Ein Problem melden";
 
-/* option to request a feature */
+/* (No Comment) */
 "Request a feature" = "Ein Feature anfordern";
 
 /* (No Comment) */
@@ -1082,13 +1088,13 @@
 /* (No Comment) */
 "Starts recording a media comment" = "Startet die Aufzeichnung eines Medienkommentars";
 
-/* button title for cancelling a logout. */
+/* (No Comment) */
 "Stay Logged In" = "Angemeldet bleiben";
 
 /* Stop loading button for webview */
 "Stop" = "Anhalten";
 
-/* Button title for stopping masquerading; when a privileged user becomes another user in the system */
+/* (No Comment) */
 "Stop Masquerading" = "Ausgeben als... anhalten";
 
 /* (No Comment) */
@@ -1223,7 +1229,7 @@
 /* (No Comment) */
 "This app is not authorized for use." = "Keine Autorisierung, um diese App zu verwenden.";
 
-/* Invalid LTI tool error message */
+/* No comment provided by engineer. */
 "This assignment doesn't appear to be a valid external tool or is misconfigured." = "Diese Aufgabe scheint kein zulässiges externes Tool oder falsch konfiguriert zu sein.";
 
 /* message displayed in the details section if there is no comment. */
@@ -1252,6 +1258,9 @@
 
 /* Threaded switch label to to make discussion threaded */
 "Threaded" = "Im Thread";
+
+/* Discussion title placeholder */
+"Title" = "Titel";
 
 /* (No Comment) */
 "To Do" = "To Do";
@@ -1346,7 +1355,7 @@
 /* button for using the recorded audio */
 "Use" = "Verwendung";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "User ID" = "Benutzer-ID";
 
 /* Title for User Info section on the about page */
@@ -1388,7 +1397,7 @@
 /* No comment provided by engineer. */
 "Yes" = "Ja";
 
-/* Masquerade title telling who you are masquerading as */
+/* (No Comment) */
 "You are now masquerading as %@" = "Sie geben sich nun als %@ aus";
 
 /* Masquerade success message */

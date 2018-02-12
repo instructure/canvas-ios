@@ -605,6 +605,9 @@
   "forwarded_message_3acb578c": {
     "message": "轉發訊息："
   },
+  "front_page_50cae87e": {
+    "message": "標題版"
+  },
   "full_screen_712e95f1": {
     "message": "全屏顯示"
   },
@@ -772,6 +775,9 @@
   },
   "mute_grades_b85bece1": {
     "message": "隱藏評分"
+  },
+  "n_a_d6f6c42f": {
+    "message": "不適用"
   },
   "name_1aed4a1b": {
     "message": "名稱"
@@ -1027,6 +1033,9 @@
   },
   "quizzes_7e598f57": {
     "message": "考試"
+  },
+  "recent_activity_51239235": {
+    "message": "最近的活動"
   },
   "recipient_recipient_394cf528": {
     "message": "收件者：{ recipient }"

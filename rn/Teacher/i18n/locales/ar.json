@@ -605,6 +605,9 @@
   "forwarded_message_3acb578c": {
     "message": "الرسالة المعاد توجيهها:"
   },
+  "front_page_50cae87e": {
+    "message": "الصفحة الأمامية"
+  },
   "full_screen_712e95f1": {
     "message": "ملء الشاشة"
   },
@@ -772,6 +775,9 @@
   },
   "mute_grades_b85bece1": {
     "message": "إخفاء الدرجات"
+  },
+  "n_a_d6f6c42f": {
+    "message": "لا يوجد"
   },
   "name_1aed4a1b": {
     "message": "الاسم"
@@ -1027,6 +1033,9 @@
   },
   "quizzes_7e598f57": {
     "message": "اختبارات"
+  },
+  "recent_activity_51239235": {
+    "message": "النشاط الأخير"
   },
   "recipient_recipient_394cf528": {
     "message": "المتلقي: { recipient }"

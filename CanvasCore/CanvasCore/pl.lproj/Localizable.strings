@@ -205,6 +205,9 @@
 /* Data encoding error title */
 "Encoding Error" = "Błąd kodowania";
 
+/* No comment provided by engineer. */
+"End Act as User" = "Zakończ podszywanie się jako użytkownik";
+
 /* Text submission option */
 "Enter Text" = "Wpisz tekst";
 
@@ -238,7 +241,7 @@
 /* No comment provided by engineer. */
 "Error parsing the Roll Call response. Unexpected null value: (k)" = "Błąd analizowania odpowiedzi Roll Call. Nieoczekiwana wartość null: (k)";
 
-/* LTI Launch failed */
+/* No comment provided by engineer. */
 "Error retrieving tool launch URL" = "Błąd podczas pobierania adresu URL uruchamiania narzędzia";
 
 /* rollcall status error */
@@ -544,6 +547,9 @@
 /* stop recording button a11y label */
 "Stop" = "Zatrzymaj";
 
+/* No comment provided by engineer. */
+"Stop acting as..." = "Zatrzymaj podszywanie się jako...";
+
 /* File upload was stopped */
 "Stopped" = "Zatrzymano";
 
@@ -587,9 +593,6 @@
 
 /* Teal course color button */
 "Teal" = "Morski";
-
-/* No comment provided by engineer. */
-"That page has been disabled for this course" = "Strona została zablokowana dla tego kursu";
 
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "Nie ma stron?! Dlaczego stron zawsze nie ma?";
@@ -782,6 +785,12 @@
 
 /* permission was rejected */
 "You must grant (appName) Microphone access in the Settings app in order to record audio." = "Aby nagrywać dźwięk, należy zmienić uprawnienia dla mikrofonu (appName) w aplikacji Ustawienia.";
+
+/* No comment provided by engineer. */
+"You will stop acting as %@ and return to your account." = "Zatrzymasz podszywanie się jako %@ i powrócisz do swojego konta.";
+
+/* No comment provided by engineer. */
+"You will stop acting as this user and return to your account." = "Zatrzymasz podszywanie się jako ten użytkownik i powrócisz do swojego konta.";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "Brak wolnego miejsca na urządzeniu. Zwolnij trochę miejsca i spróbuj ponownie";

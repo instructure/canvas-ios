@@ -241,7 +241,7 @@
 /* (No Comment) */
 "Archived" = "Archivado";
 
-/* Action sheet title verifying that a user wants to logout. */
+/* (No Comment) */
 "Are you ready to logout?" = "¿Está listo para salir?";
 
 /* Confirmation alert text for submitting an Arc video for an assignment */
@@ -289,7 +289,7 @@
 /* (No Comment) */
 "Calendar" = "Calendario";
 
-/* Invalid LTI tool error title */
+/* No comment provided by engineer. */
 "Can't load tool" = "No se puede cargar la herramienta";
 
 /* Setup only allows media but no Kaltura instance error title */
@@ -317,7 +317,7 @@
 /* button to change user's profile image */
 "Change Profile Image" = "Cambiar imagen de perfil";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Change User" = "Cambiar usuario";
 
 /* Button label for choosing a photo */
@@ -520,7 +520,7 @@
 /* (No Comment) */
 "Enable Push Notifications" = "Habilitar notificaciones automáticas";
 
-/* masquerade prompt */
+/* (No Comment) */
 "Enter User ID and Domain." = "Ingresar ID y dominio del usuario.";
 
 /* Submission input view placeholder text */
@@ -583,6 +583,9 @@
 /* Title for the files screen */
 "Files" = "Archivos";
 
+/* No comment provided by engineer. */
+"Final Grade" = "Calificación final";
+
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Descarga terminada";
 
@@ -637,7 +640,7 @@
 /* (No Comment) */
 "Groups" = "Grupos";
 
-/* help button */
+/* (No Comment) */
 "Help" = "Ayuda";
 
 /* (No Comment) */
@@ -697,6 +700,9 @@
 /* Title for an alert popup */
 "Large file" = "Archivo grande";
 
+/* No comment provided by engineer. */
+"Late Penalty" = "Sanción por presentación tardía";
+
 /* (No Comment) */
 "Later" = "Más tarde";
 
@@ -721,7 +727,7 @@
 /* (No Comment) */
 "Login Problem" = "Problema para iniciar sesión";
 
-/* Title for a button to logout a user */
+/* (No Comment) */
 "Logout" = "Cerrar sesión";
 
 /* (No Comment) */
@@ -790,7 +796,7 @@
 /* (No Comment) */
 "Must view" = "Debe ver";
 
-/* files button */
+/* (No Comment) */
 "My Files" = "Mis archivos";
 
 /* the users name */
@@ -1013,10 +1019,10 @@
 /* Button title for confirming a file deletion */
 "Remove this file?" = "¿Remover este archivo?";
 
-/* option to report a problem */
+/* (No Comment) */
 "Report a problem" = "Reportar un problema";
 
-/* option to request a feature */
+/* (No Comment) */
 "Request a feature" = "Solicitar una función";
 
 /* (No Comment) */
@@ -1082,13 +1088,13 @@
 /* (No Comment) */
 "Starts recording a media comment" = "Empieza a grabar un comentario multimedia";
 
-/* button title for cancelling a logout. */
+/* (No Comment) */
 "Stay Logged In" = "Permanecer conectado";
 
 /* Stop loading button for webview */
 "Stop" = "Parar";
 
-/* Button title for stopping masquerading; when a privileged user becomes another user in the system */
+/* (No Comment) */
 "Stop Masquerading" = "Dejar de hacerse pasar";
 
 /* (No Comment) */
@@ -1223,7 +1229,7 @@
 /* (No Comment) */
 "This app is not authorized for use." = "Esta aplicación no está autorizada para usarse";
 
-/* Invalid LTI tool error message */
+/* No comment provided by engineer. */
 "This assignment doesn't appear to be a valid external tool or is misconfigured." = "Esta tarea no parece ser una herramienta externa válida o está mal configurada.";
 
 /* message displayed in the details section if there is no comment. */
@@ -1252,6 +1258,9 @@
 
 /* Threaded switch label to to make discussion threaded */
 "Threaded" = "Subproceso";
+
+/* Discussion title placeholder */
+"Title" = "Título";
 
 /* (No Comment) */
 "To Do" = "Que hacer";
@@ -1346,7 +1355,7 @@
 /* button for using the recorded audio */
 "Use" = "Usar";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "User ID" = "ID del usuario";
 
 /* Title for User Info section on the about page */
@@ -1388,7 +1397,7 @@
 /* No comment provided by engineer. */
 "Yes" = "Sí";
 
-/* Masquerade title telling who you are masquerading as */
+/* (No Comment) */
 "You are now masquerading as %@" = "Ahora se está haciendo pasar por %@";
 
 /* Masquerade success message */

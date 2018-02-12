@@ -241,7 +241,7 @@
 /* (No Comment) */
 "Archived" = "Pūrangatia";
 
-/* Action sheet title verifying that a user wants to logout. */
+/* (No Comment) */
 "Are you ready to logout?" = "Kei te rite ki te takiputa koe?";
 
 /* Confirmation alert text for submitting an Arc video for an assignment */
@@ -289,7 +289,7 @@
 /* (No Comment) */
 "Calendar" = "Maramataka";
 
-/* Invalid LTI tool error title */
+/* No comment provided by engineer. */
 "Can't load tool" = "e kore e taea te uta taputapu";
 
 /* Setup only allows media but no Kaltura instance error title */
@@ -317,7 +317,7 @@
 /* button to change user's profile image */
 "Change Profile Image" = "Tīni i te Kōtaha Āhua";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Change User" = "Huri Kaiwhakamahi";
 
 /* Button label for choosing a photo */
@@ -520,7 +520,7 @@
 /* (No Comment) */
 "Enable Push Notifications" = "Whakahohea Whakamōhiotanga Pana";
 
-/* masquerade prompt */
+/* (No Comment) */
 "Enter User ID and Domain." = "Tomo ID Kaiwhakamahi me te Rohe.";
 
 /* Submission input view placeholder text */
@@ -583,6 +583,9 @@
 /* Title for the files screen */
 "Files" = "Kōnae";
 
+/* No comment provided by engineer. */
+"Final Grade" = "Kōeke whakamutunga";
+
 /* Shown when we finish downloading a file */
 "Finished downloading" = "tikiake oti";
 
@@ -637,7 +640,7 @@
 /* (No Comment) */
 "Groups" = "Rōpū";
 
-/* help button */
+/* (No Comment) */
 "Help" = "Āwhina";
 
 /* (No Comment) */
@@ -697,6 +700,9 @@
 /* Title for an alert popup */
 "Large file" = "kōnae nui";
 
+/* No comment provided by engineer. */
+"Late Penalty" = "Whiu tōmuri";
+
 /* (No Comment) */
 "Later" = "i muri mai";
 
@@ -721,7 +727,7 @@
 /* (No Comment) */
 "Login Problem" = "Takiuru Raru";
 
-/* Title for a button to logout a user */
+/* (No Comment) */
 "Logout" = "Takiuru Out";
 
 /* (No Comment) */
@@ -790,7 +796,7 @@
 /* (No Comment) */
 "Must view" = "Me tiro";
 
-/* files button */
+/* (No Comment) */
 "My Files" = "Toku Kōnae";
 
 /* the users name */
@@ -1013,10 +1019,10 @@
 /* Button title for confirming a file deletion */
 "Remove this file?" = "Tangohia te tenei kōnae?";
 
-/* option to report a problem */
+/* (No Comment) */
 "Report a problem" = "Pūrongo i te raruraru";
 
-/* option to request a feature */
+/* (No Comment) */
 "Request a feature" = "Tono he āhuatanga";
 
 /* (No Comment) */
@@ -1082,13 +1088,13 @@
 /* (No Comment) */
 "Starts recording a media comment" = "Tīmata tuhi he kōrero pāpāho";
 
-/* button title for cancelling a logout. */
+/* (No Comment) */
 "Stay Logged In" = "Noho takiuru";
 
 /* Stop loading button for webview */
 "Stop" = "Kāti";
 
-/* Button title for stopping masquerading; when a privileged user becomes another user in the system */
+/* (No Comment) */
 "Stop Masquerading" = "Kāti e whakaahua ana";
 
 /* (No Comment) */
@@ -1223,7 +1229,7 @@
 /* (No Comment) */
 "This app is not authorized for use." = "e kore te tēnei taupānga mana hoki te whakamahi.";
 
-/* Invalid LTI tool error message */
+/* No comment provided by engineer. */
 "This assignment doesn't appear to be a valid external tool or is misconfigured." = "Kāore tēnei taumahi puta ki te waiho i te taputapu waho whaimana te whirihoranga ranei.";
 
 /* message displayed in the details section if there is no comment. */
@@ -1252,6 +1258,9 @@
 
 /* Threaded switch label to to make discussion threaded */
 "Threaded" = "Whakairinga";
+
+/* Discussion title placeholder */
+"Title" = "taitara";
 
 /* (No Comment) */
 "To Do" = "ki te E";
@@ -1346,7 +1355,7 @@
 /* button for using the recorded audio */
 "Use" = "Whakamahi";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "User ID" = "ID Kaiwhakamahi";
 
 /* Title for User Info section on the about page */
@@ -1388,7 +1397,7 @@
 /* No comment provided by engineer. */
 "Yes" = "Ae";
 
-/* Masquerade title telling who you are masquerading as */
+/* (No Comment) */
 "You are now masquerading as %@" = "E whakaahua koe i teie nei rite %@";
 
 /* Masquerade success message */

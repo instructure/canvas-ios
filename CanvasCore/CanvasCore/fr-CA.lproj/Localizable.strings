@@ -205,6 +205,9 @@
 /* Data encoding error title */
 "Encoding Error" = "Erreur d'encodage";
 
+/* No comment provided by engineer. */
+"End Act as User" = "Arrêtez d'agir en tant qu'utilisateur";
+
 /* Text submission option */
 "Enter Text" = "Saisir un texte";
 
@@ -238,7 +241,7 @@
 /* No comment provided by engineer. */
 "Error parsing the Roll Call response. Unexpected null value: (k)" = "Erreur lors de l'analyse de la réponse d'appel nominal. Valeur nulle inattendue : (k)";
 
-/* LTI Launch failed */
+/* No comment provided by engineer. */
 "Error retrieving tool launch URL" = "Erreur lors de la récupération de l'URL de lancement de l’outil";
 
 /* rollcall status error */
@@ -544,6 +547,9 @@
 /* stop recording button a11y label */
 "Stop" = "Arrêt";
 
+/* No comment provided by engineer. */
+"Stop acting as..." = "Cesser d'agir comme...";
+
 /* File upload was stopped */
 "Stopped" = "Arrêté";
 
@@ -587,9 +593,6 @@
 
 /* Teal course color button */
 "Teal" = "Bleu sarcelle";
-
-/* No comment provided by engineer. */
-"That page has been disabled for this course" = "Cette page a été désactivée pour ce cours";
 
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "Les pages sont disparues!? Pourquoi les pages sont toujours disparues?";
@@ -782,6 +785,12 @@
 
 /* permission was rejected */
 "You must grant (appName) Microphone access in the Settings app in order to record audio." = "Vous devez donner à (appName) l'accès à votre microphone dans l'application des Réglages pour pouvoir enregistrer de l'audio.";
+
+/* No comment provided by engineer. */
+"You will stop acting as %@ and return to your account." = "Vous allez arrêter d’agir comme %@ et retournerez à votre compte.";
+
+/* No comment provided by engineer. */
+"You will stop acting as this user and return to your account." = "Vous allez arrêter d’agir en tant que cet utilisateur et retournerez à votre compte.";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "Espace de stockage de votre appareil insuffisant. Veuillez libérer de l'espace et essayez à nouveau.";

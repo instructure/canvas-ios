@@ -205,6 +205,9 @@
 /* Data encoding error title */
 "Encoding Error" = "編碼錯誤";
 
+/* No comment provided by engineer. */
+"End Act as User" = "結束作為使用者";
+
 /* Text submission option */
 "Enter Text" = "輸入文字";
 
@@ -238,7 +241,7 @@
 /* No comment provided by engineer. */
 "Error parsing the Roll Call response. Unexpected null value: (k)" = "解析點名回應時出錯。意外的空值：(k)";
 
-/* LTI Launch failed */
+/* No comment provided by engineer. */
 "Error retrieving tool launch URL" = "檢索工具啟動 URL 時發生錯誤";
 
 /* rollcall status error */
@@ -544,6 +547,9 @@
 /* stop recording button a11y label */
 "Stop" = "停止";
 
+/* No comment provided by engineer. */
+"Stop acting as..." = "停止作為...";
+
 /* File upload was stopped */
 "Stopped" = "已停止";
 
@@ -587,9 +593,6 @@
 
 /* Teal course color button */
 "Teal" = "深青色";
-
-/* No comment provided by engineer. */
-"That page has been disabled for this course" = "已針對此課程停用該頁面";
 
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "內容頁消失了！？為甚麼內容頁經常消失？";
@@ -782,6 +785,12 @@
 
 /* permission was rejected */
 "You must grant (appName) Microphone access in the Settings app in order to record audio." = "您必須在設定程式中批准 (appName) 使用麥克風的權限，以便錄製音頻。";
+
+/* No comment provided by engineer. */
+"You will stop acting as %@ and return to your account." = "您將會停止作為 %@ 並返回到您的帳戶。";
+
+/* No comment provided by engineer. */
+"You will stop acting as this user and return to your account." = "您將會停止作為此使用者並返回到您的帳戶。";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "您的設備沒有儲存空間了。請釋放空間，然後重試。";

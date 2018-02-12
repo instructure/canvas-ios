@@ -241,7 +241,7 @@
 /* (No Comment) */
 "Archived" = "تمت الأرشفة";
 
-/* Action sheet title verifying that a user wants to logout. */
+/* (No Comment) */
 "Are you ready to logout?" = "هل أنت مستعد لتسجيل الخروج؟";
 
 /* Confirmation alert text for submitting an Arc video for an assignment */
@@ -289,7 +289,7 @@
 /* (No Comment) */
 "Calendar" = "التقويم";
 
-/* Invalid LTI tool error title */
+/* No comment provided by engineer. */
 "Can't load tool" = "لا يمكن تحميل الأداة";
 
 /* Setup only allows media but no Kaltura instance error title */
@@ -317,7 +317,7 @@
 /* button to change user's profile image */
 "Change Profile Image" = "تغيير صورة الملف التعريفي";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Change User" = "تغيير المستخدم";
 
 /* Button label for choosing a photo */
@@ -520,7 +520,7 @@
 /* (No Comment) */
 "Enable Push Notifications" = "تمكين إرسال الإخطارات";
 
-/* masquerade prompt */
+/* (No Comment) */
 "Enter User ID and Domain." = "إدخال معرف المستخدم والمجال.";
 
 /* Submission input view placeholder text */
@@ -583,6 +583,9 @@
 /* Title for the files screen */
 "Files" = "ملفات";
 
+/* No comment provided by engineer. */
+"Final Grade" = "الدرجة النهائية";
+
 /* Shown when we finish downloading a file */
 "Finished downloading" = "انتهى التنزيل";
 
@@ -637,7 +640,7 @@
 /* (No Comment) */
 "Groups" = "المجموعات";
 
-/* help button */
+/* (No Comment) */
 "Help" = "مساعدة";
 
 /* (No Comment) */
@@ -697,6 +700,9 @@
 /* Title for an alert popup */
 "Large file" = "ملف كبير الحجم";
 
+/* No comment provided by engineer. */
+"Late Penalty" = "عقوبة التأخير:";
+
 /* (No Comment) */
 "Later" = "فيما بعد";
 
@@ -721,7 +727,7 @@
 /* (No Comment) */
 "Login Problem" = "مشكلة في تسجيل الدخول";
 
-/* Title for a button to logout a user */
+/* (No Comment) */
 "Logout" = "تسجيل الخروج";
 
 /* (No Comment) */
@@ -790,7 +796,7 @@
 /* (No Comment) */
 "Must view" = "يجب العرض";
 
-/* files button */
+/* (No Comment) */
 "My Files" = "ملفاتي";
 
 /* the users name */
@@ -1013,10 +1019,10 @@
 /* Button title for confirming a file deletion */
 "Remove this file?" = "إزالة هذا الملف؟";
 
-/* option to report a problem */
+/* (No Comment) */
 "Report a problem" = "الإبلاغ عن مشكلة";
 
-/* option to request a feature */
+/* (No Comment) */
 "Request a feature" = "طلب ميزة";
 
 /* (No Comment) */
@@ -1082,13 +1088,13 @@
 /* (No Comment) */
 "Starts recording a media comment" = "بدء تسجيل تعليق الوسط";
 
-/* button title for cancelling a logout. */
+/* (No Comment) */
 "Stay Logged In" = "الاستمرار في الجلسة";
 
 /* Stop loading button for webview */
 "Stop" = "إيقاف";
 
-/* Button title for stopping masquerading; when a privileged user becomes another user in the system */
+/* (No Comment) */
 "Stop Masquerading" = "إيقاف التخفي";
 
 /* (No Comment) */
@@ -1223,7 +1229,7 @@
 /* (No Comment) */
 "This app is not authorized for use." = "هذا التطبيق غير مخول للاستخدام.";
 
-/* Invalid LTI tool error message */
+/* No comment provided by engineer. */
 "This assignment doesn't appear to be a valid external tool or is misconfigured." = "يبدو أن هذه المهمة ليست أداة خارجية صالحة أو تم تكوينها بشكل غير صحيح.";
 
 /* message displayed in the details section if there is no comment. */
@@ -1252,6 +1258,9 @@
 
 /* Threaded switch label to to make discussion threaded */
 "Threaded" = "مرتبطة";
+
+/* Discussion title placeholder */
+"Title" = "العنوان";
 
 /* (No Comment) */
 "To Do" = "ما يجب القيام به";
@@ -1346,7 +1355,7 @@
 /* button for using the recorded audio */
 "Use" = "استخدام";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "User ID" = "معرف المستخدم";
 
 /* Title for User Info section on the about page */
@@ -1388,7 +1397,7 @@
 /* No comment provided by engineer. */
 "Yes" = "نعم";
 
-/* Masquerade title telling who you are masquerading as */
+/* (No Comment) */
 "You are now masquerading as %@" = "أنت الآن متخفي بصفة %@";
 
 /* Masquerade success message */
