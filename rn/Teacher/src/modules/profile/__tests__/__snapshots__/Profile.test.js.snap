@@ -3,20 +3,27 @@
 exports[`Profile Tests render with no session 1`] = `null`;
 
 exports[`Profile Tests renders correctly 1`] = `
-<RCTSafeAreaView
+<View
   style={
     Object {
       "flex": 1,
     }
   }
+  testID="module.profile"
 >
   <View
+    style={
+      Object {
+        "height": null,
+      }
+    }
+  />
+  <RCTSafeAreaView
     style={
       Object {
         "flex": 1,
       }
     }
-    testID="module.profile"
   >
     <View
       style={
@@ -664,25 +671,32 @@ exports[`Profile Tests renders correctly 1`] = `
         v. 1.0
       </Text>
     </View>
-  </View>
-</RCTSafeAreaView>
+  </RCTSafeAreaView>
+</View>
 `;
 
 exports[`Profile Tests renders correctly for students 1`] = `
-<RCTSafeAreaView
+<View
   style={
     Object {
       "flex": 1,
     }
   }
+  testID="module.profile"
 >
   <View
+    style={
+      Object {
+        "height": null,
+      }
+    }
+  />
+  <RCTSafeAreaView
     style={
       Object {
         "flex": 1,
       }
     }
-    testID="module.profile"
   >
     <View
       style={
@@ -1600,25 +1614,32 @@ exports[`Profile Tests renders correctly for students 1`] = `
         v. 1.0
       </Text>
     </View>
-  </View>
-</RCTSafeAreaView>
+  </RCTSafeAreaView>
+</View>
 `;
 
 exports[`Profile Tests renders correctly with lti apps 1`] = `
-<RCTSafeAreaView
+<View
   style={
     Object {
       "flex": 1,
     }
   }
+  testID="module.profile"
 >
   <View
+    style={
+      Object {
+        "height": null,
+      }
+    }
+  />
+  <RCTSafeAreaView
     style={
       Object {
         "flex": 1,
       }
     }
-    testID="module.profile"
   >
     <View
       style={
@@ -2648,25 +2669,32 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
         v. 1.0
       </Text>
     </View>
-  </View>
-</RCTSafeAreaView>
+  </RCTSafeAreaView>
+</View>
 `;
 
 exports[`Profile Tests renders correctly without masquerade 1`] = `
-<RCTSafeAreaView
+<View
   style={
     Object {
       "flex": 1,
     }
   }
+  testID="module.profile"
 >
   <View
+    style={
+      Object {
+        "height": null,
+      }
+    }
+  />
+  <RCTSafeAreaView
     style={
       Object {
         "flex": 1,
       }
     }
-    testID="module.profile"
   >
     <View
       style={
@@ -3202,6 +3230,6 @@ exports[`Profile Tests renders correctly without masquerade 1`] = `
         v. 1.0
       </Text>
     </View>
-  </View>
-</RCTSafeAreaView>
+  </RCTSafeAreaView>
+</View>
 `;

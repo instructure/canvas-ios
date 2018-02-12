@@ -4815,6 +4815,10 @@ react-native-sound@^0.10.4:
   version "0.10.4"
   resolved "https://registry.yarnpkg.com/react-native-sound/-/react-native-sound-0.10.4.tgz#242286558f457e023dbed42e8c6cbe52cfd313d4"
 
+react-native-status-bar-size@^0.3.3:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/react-native-status-bar-size/-/react-native-status-bar-size-0.3.3.tgz#009ea83f0d0a7a849bcb7cf3da9f0b8f9e048a1f"
+
 react-native-test-utils@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/react-native-test-utils/-/react-native-test-utils-1.0.6.tgz#b719dd081f39f823e15fc86d221bf038b9805c4a"

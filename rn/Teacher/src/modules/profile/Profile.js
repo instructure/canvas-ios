@@ -27,6 +27,7 @@ import {
   Linking,
   TouchableWithoutFeedback,
   TouchableOpacity,
+  SafeAreaView,
 } from 'react-native'
 import i18n from 'format-message'
 import { Text, Paragraph, Heavy } from '../../common/text'
@@ -42,6 +43,7 @@ import App from '../app'
 import canvas, { getSession } from '../../canvas-api'
 import { connect } from 'react-redux'
 import Actions from '../userInfo/actions'
+import StatusBar from '../../common/components/StatusBar'
 
 export class Profile extends Component {
 
@@ -207,38 +209,42 @@ export class Profile extends Component {
         navBarHidden={true}
         navBarButtonColor={color.darkText}
         statusBarStyle='dark'
+        disableGlobalSafeArea
       >
         <View style={styles.container} testID="module.profile">
-          <View style={styles.header}>
-            <Avatar
-              avatarURL={this.state.avatarURL}
-              userName={user.name}
-              height={56}
-              width={56}
-              testID='profile.avatar' />
-            <TouchableOpacity
-              onPress={this.settings}
-              testID='profile.navigation-settings-btn'
-              accessibilityLabel={i18n('Settings')}
-              accessibilityTraits='button'
-              style={styles.settingsButtonContainer}
-              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
-              <Image source={Images.course.settings} style={styles.settingsImage}/>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.infoHeader}>
-            <Heavy style={styles.name}>{user.short_name || user.name}</Heavy>
-            { user.primary_email && <Paragraph style={styles.email}>{user.primary_email}</Paragraph> }
-          </View>
-          <ScrollView>
-            { this.renderList() }
-          </ScrollView>
-          <View style={styles.versionContainer}>
-            <TouchableWithoutFeedback onPress={this.secretTap} testID='profile-btn-secret-tap'>
-              { /* I removed localization for this because i highly doubt a translator will know what v. is */ }
-              <Text style={styles.versionText}>{`v. ${device.getVersion()}`}</Text>
-            </TouchableWithoutFeedback>
-          </View>
+          <StatusBar />
+          <SafeAreaView style={{ flex: 1 }}>
+            <View style={styles.header}>
+              <Avatar
+                avatarURL={this.state.avatarURL}
+                userName={user.name}
+                height={56}
+                width={56}
+                testID='profile.avatar' />
+              <TouchableOpacity
+                onPress={this.settings}
+                testID='profile.navigation-settings-btn'
+                accessibilityLabel={i18n('Settings')}
+                accessibilityTraits='button'
+                style={styles.settingsButtonContainer}
+                hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
+                <Image source={Images.course.settings} style={styles.settingsImage}/>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.infoHeader}>
+              <Heavy style={styles.name}>{user.short_name || user.name}</Heavy>
+              { user.primary_email && <Paragraph style={styles.email}>{user.primary_email}</Paragraph> }
+            </View>
+            <ScrollView>
+              { this.renderList() }
+            </ScrollView>
+            <View style={styles.versionContainer}>
+              <TouchableWithoutFeedback onPress={this.secretTap} testID='profile-btn-secret-tap'>
+                { /* I removed localization for this because i highly doubt a translator will know what v. is */ }
+                <Text style={styles.versionText}>{`v. ${device.getVersion()}`}</Text>
+              </TouchableWithoutFeedback>
+            </View>
+          </SafeAreaView>
         </View>
       </Screen>
     )
