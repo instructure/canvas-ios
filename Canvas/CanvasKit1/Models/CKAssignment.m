@@ -235,8 +235,13 @@
 
             NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
             [formatter setMaximumFractionDigits:2];
+            formatter.numberStyle = NSNumberFormatterDecimalStyle;
+            
+            // all numbers come back from the api formated in EN so we need to parse it as
+            // en and then we can format with the users locale
+            [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en"]];
             NSNumber *gradeNumber = [formatter numberFromString:submissionGrade];
-
+            [formatter setLocale:[NSLocale currentLocale]];
 
             if (gradeNumber) {
                 return [NSString stringWithFormat:@"%@/%g", [formatter stringFromNumber:gradeNumber], self.pointsPossible];
