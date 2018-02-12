@@ -72,6 +72,13 @@ export class PagesList extends Component<Props, any> {
         navBarStyle='dark'
         title={i18n('Pages')}
         subtitle={this.props.courseName}
+        leftBarButtons={this.props.navigator.isModal && [
+          {
+            title: i18n('Done'),
+            testID: 'pages.list.dismiss.button',
+            action: this.props.navigator.dismiss,
+          },
+        ]}
         rightBarButtons={[
           {
             image: Images.add,

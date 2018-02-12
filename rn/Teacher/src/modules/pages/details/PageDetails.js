@@ -88,6 +88,13 @@ export class PageDetails extends Component<Props, any> {
         navBarStyle='dark'
         title={i18n('Page Details')}
         subtitle={this.props.courseName}
+        leftBarButtons={this.props.navigator.isModal && [
+          {
+            title: i18n('Done'),
+            testID: 'page.details.dismiss.button',
+            action: this.props.navigator.dismiss,
+          },
+        ]}
         rightBarButtons={[
           {
             image: Images.kabob,

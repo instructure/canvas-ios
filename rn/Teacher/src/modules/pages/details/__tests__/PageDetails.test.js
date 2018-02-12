@@ -140,6 +140,29 @@ describe('PageDetails', () => {
     expect(spy).not.toHaveBeenCalled()
   })
 
+  it('only shows done button if presented modally', async () => {
+    const view = await render(props)
+    expect(
+      explore(view.toJSON()).selectLeftBarButton('page.details.dismiss.button')
+    ).toBeNull()
+
+    props.navigator = template.navigator({ isModal: true })
+    const view2 = await render(props)
+    expect(
+      explore(view2.toJSON()).selectLeftBarButton('page.details.dismiss.button')
+    ).not.toBeNull()
+  })
+
+  it('dismisses when tap done', async () => {
+    props.navigator = template.navigator({ isModal: true })
+    const spy = jest.fn()
+    props.navigator.dismiss = spy
+    const view = await render(props)
+    const doneButton: any = explore(view.toJSON()).selectLeftBarButton('page.details.dismiss.button')
+    doneButton.action()
+    expect(spy).toHaveBeenCalled()
+  })
+
   async function render (props: Props, page: ?Page = template.page(), options: any = {}): any {
     if (page) {
       props.getPage = jest.fn(() => Promise.resolve({ data: page }))
