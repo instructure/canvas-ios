@@ -144,7 +144,7 @@ export default class ConversationMessageRow extends Component<ConversationMessag
                       height={32}
                       avatarURL={author.avatar_url}
                       userName={author.name}
-                      onPress={this.props.conversation.context_code && this.onAvatarPress}
+                      onPress={this.props.conversation.context_code ? this.onAvatarPress : undefined}
                     />
                   </View>
                 <View>

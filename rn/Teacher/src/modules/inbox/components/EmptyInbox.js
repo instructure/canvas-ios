@@ -20,7 +20,7 @@ import React, { PureComponent } from 'react'
 import { View, Image, StyleSheet } from 'react-native'
 import { Text } from '../../../common/text'
 
-export default class EmptyInbox extends PureComponent {
+export default class EmptyInbox extends PureComponent<*> {
   render () {
     return (
       <View style={styles.container}>

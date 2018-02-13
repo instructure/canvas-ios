@@ -101,7 +101,7 @@ export type Props = State & OwnProps & AsyncState & NavigationProps & typeof Act
 
 export class DiscussionEdit extends Component<Props, any> {
   scrollView: KeyboardAwareScrollView
-  datesEditor: AssignmentDatesEditor
+  datesEditor: ?AssignmentDatesEditor
 
   constructor (props: Props) {
     super(props)
@@ -296,7 +296,7 @@ export class DiscussionEdit extends Component<Props, any> {
                 <RowWithDetail
                   title={i18n('Display Grade as...')}
                   detailSelected={this.state.gradingTypePickerShown}
-                  detail={gradeDisplayOpts.get(this.state.grading_type)}
+                  detail={gradeDisplayOpts.get(this.state.grading_type) || ''}
                   disclosureIndicator={true}
                   border='bottom'
                   onPress={this._toggleGradingTypePicker}
@@ -470,7 +470,7 @@ export class DiscussionEdit extends Component<Props, any> {
 
   validate () {
     const errors = {}
-    if (this.state.assignment && !this.datesEditor.validate()) {
+    if (this.state.assignment && this.datesEditor && !this.datesEditor.validate()) {
       errors.dates = true
     }
 
@@ -493,7 +493,7 @@ export class DiscussionEdit extends Component<Props, any> {
   }
 
   updateAssignment () {
-    if (this.state.assignment) {
+    if (this.state.assignment && this.datesEditor) {
       const updatedAssignment = this.datesEditor.updateAssignment({ ...this.state.assignment })
       updatedAssignment.points_possible = this.state.points_possible || 0
       updatedAssignment.grading_type = this.state.grading_type

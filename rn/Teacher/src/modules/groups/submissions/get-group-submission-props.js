@@ -15,9 +15,6 @@
 //
 
 // @flow
-import type {
-  AsyncSubmissionsDataProps,
-} from '../../submissions/list/submission-prop-types'
 import { statusProp, gradeProp } from '../../submissions/list/get-submissions-props'
 
 const groupPropsForSubmissionsAndDueDate = (submissionsByGroupID: { [string]: SubmissionWithHistory }, dueDate: ?string) => (group: Group) => {
@@ -32,10 +29,12 @@ const groupPropsForSubmissionsAndDueDate = (submissionsByGroupID: { [string]: Su
     score: submission ? submission.score : null,
     submissionID: submission ? submission.id : null,
     submission,
+    sectionID: null,
+    allSectionIDs: null,
   }
 }
 
-export function getGroupSubmissionProps (entities: Entities, courseID: string, assignmentID: string): AsyncSubmissionsDataProps {
+export function getGroupSubmissionProps (entities: Entities, courseID: string, assignmentID: string) {
   const assignmentState = entities.assignments[assignmentID]
   const courseState = entities.courses[courseID]
 

@@ -42,11 +42,8 @@ export class AssigneeSearch extends Component<AssigneeSearchProps, any> {
   searchBar: SearchBar
   filterString: string
 
-  constructor (props: AssigneeSearchProps) {
-    super(props)
-    this.state = {
-      sections: [],
-    }
+  state = {
+    sections: [],
   }
 
   updateFilterString = (filterString: string) => {

@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-// @flow
+/* eslint-disable flowtype/require-valid-file-annotation */
 
 import { mapStateToProps } from '../map-state-to-props'
 import type { SubmissionDataProps } from '../submission-prop-types'

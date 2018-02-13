@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-// @flow
+/* eslint-disable flowtype/require-valid-file-annotation */
 
 import React from 'react'
 import { Animated, NativeModules } from 'react-native'

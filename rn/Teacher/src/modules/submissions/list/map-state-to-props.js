@@ -16,9 +16,6 @@
 
 // @flow
 
-import type {
-  SubmissionListDataProps,
-} from './submission-prop-types'
 import { getSubmissionsProps } from './get-submissions-props'
 import shuffle from 'knuth-shuffle-seeded'
 import {
@@ -30,7 +27,7 @@ type RoutingProps = {
   assignmentID: string,
 }
 
-export function mapStateToProps ({ entities }: AppState, { courseID, assignmentID }: RoutingProps): SubmissionListDataProps {
+export function mapStateToProps ({ entities }: AppState, { courseID, assignmentID }: RoutingProps) {
   // submissions
   const assignmentContent = entities.assignments[assignmentID]
   const courseContent = entities.courses[courseID]
@@ -78,7 +75,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID, assignmentI
     gradingType = assignmentContent.data.grading_type
   }
 
-  const sections = Object.values(entities.sections).filter((s) => {
+  const sections = Object.values(entities.sections).filter((s: any) => {
     return s.course_id === courseID
   })
 

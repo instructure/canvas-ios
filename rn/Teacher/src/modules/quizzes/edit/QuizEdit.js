@@ -14,7 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-/* @flow */
+/* eslint-disable flowtype/require-valid-file-annotation */
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
@@ -91,24 +91,24 @@ function booleanTransformer<T> (truthy: T, falsey: T): (b: boolean) => T {
 const PickerItem = PickerIOS.Item
 
 export class QuizEdit extends Component<Props, any> {
+  static defaultProps = {
+    updateQuiz: canvas.updateQuiz,
+  }
+
   datesEditor: AssignmentDatesEditor
   scrollView: KeyboardAwareScrollView
 
-  constructor (props: Props) {
-    super(props)
-
-    this.state = {
-      pending: false,
-      quiz: props.quiz,
-      pickers: {},
-      assignment: props.assignment,
-      validation: {
-        isValid: true,
-        title: true,
-        showCorrectAnswerDates: true,
-        accessCode: true,
-      },
-    }
+  state = {
+    pending: false,
+    quiz: this.props.quiz,
+    pickers: {},
+    assignment: this.props.assignment,
+    validation: {
+      isValid: true,
+      title: true,
+      showCorrectAnswerDates: true,
+      accessCode: true,
+    },
   }
 
   componentWillReceiveProps ({ quiz, pending, error, assignment }: Props) {
@@ -619,10 +619,6 @@ export class QuizEdit extends Component<Props, any> {
       placeholder: i18n('Description'),
     })
   }
-}
-
-QuizEdit.defaultProps = {
-  updateQuiz: canvas.updateQuiz,
 }
 
 const style = StyleSheet.create({

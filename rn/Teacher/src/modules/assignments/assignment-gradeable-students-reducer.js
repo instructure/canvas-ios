@@ -15,7 +15,7 @@
 //
 
 /* @flow */
-
+import { type Reducer } from 'redux'
 import Actions from './actions'
 import { asyncRefsReducer } from '../../redux/async-refs-reducer'
 import i18n from 'format-message'

@@ -41,7 +41,7 @@ import find from 'lodash/find'
 import { getSession } from '../../../canvas-api'
 
 export type ConversationOwnProps = {
-  conversation: ?Conversation,
+  conversation: Conversation,
   conversationID: string,
   messages: ConversationMessage[],
   pending?: boolean,
@@ -59,13 +59,9 @@ export type RefreshProps = {
 
 export type ConversationDetailsProps = ConversationOwnProps & RefreshProps & NavigationProps & PushNotificationProps
 
-export class ConversationDetails extends Component <any, ConversationDetailsProps, any> {
-  constructor (props: ConversationDetailsProps) {
-    super(props)
-
-    this.state = {
-      deletePending: false,
-    }
+export class ConversationDetails extends Component <ConversationDetailsProps, any> {
+  state = {
+    deletePending: false,
   }
 
   componentDidMount () {
@@ -132,6 +128,7 @@ export class ConversationDetails extends Component <any, ConversationDetailsProp
       <View style={styles.container}>
         <FlatList
           style={styles.list}
+          // $FlowFixMe
           data={this.props.messages.filter(message => !message.pendingDelete)}
           renderItem={this._renderItem}
           ListHeaderComponent={header}
@@ -215,6 +212,7 @@ export class ConversationDetails extends Component <any, ConversationDetailsProp
   }
 
   deleteConversationMessage (id: string) {
+    // $FlowFixMe
     this.props.deleteConversationMessage(this.props.conversationID, id)
   }
 
@@ -298,7 +296,7 @@ const styles = StyleSheet.create({
   },
 })
 
-export function mapStateToProps (state: AppState, props: any): ConversationOwnProps {
+export function mapStateToProps (state: AppState, props: any) {
   const inbox = state.inbox
   const conversationID = props.conversationID
   const convoState = inbox.conversations[conversationID]
@@ -334,4 +332,4 @@ export const Refreshed: any = refresh(
   props => Boolean(props.pending)
 )(ConversationDetails)
 const Connected = connect(mapStateToProps, InboxActions)(Refreshed)
-export default (Connected: Component<ConversationDetailsProps, any>)
+export default Connected

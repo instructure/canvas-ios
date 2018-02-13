@@ -43,14 +43,12 @@ const LETTER = 'letter_grade'
 const GPA = 'gpa_scale'
 const NOT_GRADED = 'not_graded'
 
-export class GradePicker extends Component {
-  props: GradePickerProps
-  state: GradePickerState
+export class GradePicker extends Component<GradePickerProps, GradePickerState> {
 
   constructor (props: GradePickerProps) {
     super(props)
 
-    let state = {
+    let state: GradePickerState = {
       passFailValue: '',
       pickerOpen: false,
       easeAnimation: new Animated.Value(0),
@@ -151,7 +149,7 @@ export class GradePicker extends Component {
     ]
   }
 
-  renderGrade = (latePolicy = false) => {
+  renderGrade = (latePolicy: boolean = false) => {
     if (this.state.originalRubricScore !== this.props.rubricScore) {
       this.setState({ useCustomGrade: false, originalRubricScore: this.props.rubricScore })
     }
@@ -161,7 +159,7 @@ export class GradePicker extends Component {
 
     let score = this.props.useRubricForGrading && !this.state.useCustomGrade ? this.props.rubricScore : scoreToUse
     let points = i18n(`{ score, number }/{ pointsPossible, number }`, { score, pointsPossible: this.props.pointsPossible })
-    let grade = this.props.gradingType === 'points' ? '' : `${formatGradeText(gradeToUse, this.props.gradingType)} `
+    let grade = this.props.gradingType === 'points' ? '' : `${formatGradeText(gradeToUse, this.props.gradingType) || ''} `
     return <Heading1 style={this.getButtonStyles(latePolicy)}>{grade}{points}</Heading1>
   }
 
@@ -188,7 +186,7 @@ export class GradePicker extends Component {
     }
   }
 
-  getButtonStyles = (latePolicy = false) => {
+  getButtonStyles = (latePolicy: boolean = false) => {
     if (this.props.gradingType === PASS_FAIL && this.state.pickerOpen) {
       return { color: branding.primaryBrandColor }
     } else if (this.applyLatePolicy() && latePolicy) {
@@ -198,7 +196,7 @@ export class GradePicker extends Component {
 
   applyLatePolicy = () => {
     const { late, pointsDeducted } = this.props
-    return !!(late && pointsDeducted > 0)
+    return !!(late && pointsDeducted && pointsDeducted > 0)
   }
 
   renderModeratedGradingUnsuported () {
@@ -399,5 +397,5 @@ type GradePickerState = {
   easeAnimation: Animated.Value,
   useCustomGrade: boolean,
   originalRubricScore: string,
-  promptValue: ?string,
+  promptValue?: ?string,
 }

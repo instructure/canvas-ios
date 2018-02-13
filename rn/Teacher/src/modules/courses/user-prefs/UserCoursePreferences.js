@@ -55,25 +55,16 @@ type Props = {
   course: Course,
   color: string,
   updateCourseColor: (string, string) => void,
-  updateCourseNickname: (Course, Course) => Course,
+  updateCourseNickname: (Course, string) => Course,
   pending: number,
   error: ?string,
 } & RefreshProps
 
-export class UserCoursePreferences extends Component {
-  props: Props
-  state: any
-
-  constructor (props: Props) {
-    super(props)
-
-    const { width } = Dimensions.get('window')
-
-    this.state = {
-      name: this.props.course ? this.props.course.name : '',
-      pending: false,
-      width,
-    }
+export class UserCoursePreferences extends Component<Props, any> {
+  state = {
+    name: this.props.course ? this.props.course.name : '',
+    pending: false,
+    width: Dimensions.get('window').width,
   }
 
   onLayout = (event: any) => {

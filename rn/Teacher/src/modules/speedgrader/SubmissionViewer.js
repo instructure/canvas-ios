@@ -44,8 +44,7 @@ type SubmissionViewerProps = {
   drawerInset: number,
 }
 
-export default class SubmissionViewer extends Component {
-  props: SubmissionViewerProps
+export default class SubmissionViewer extends Component<SubmissionViewerProps> {
   videoPlayer: ?Video
 
   componentWillReceiveProps (newProps: SubmissionViewerProps) {
@@ -54,7 +53,7 @@ export default class SubmissionViewer extends Component {
     }
   }
 
-  captureVideoPlayer = (video: Video) => {
+  captureVideoPlayer = (video: ?Video) => {
     this.videoPlayer = video
   }
 
@@ -120,7 +119,7 @@ export default class SubmissionViewer extends Component {
         case 'online_text_entry':
           body = <WebContainer
             style={styles.webContainer}
-            html={submission.body}
+            html={submission.body || ''}
             contentInset={{ bottom: this.props.drawerInset }}
           />
           break

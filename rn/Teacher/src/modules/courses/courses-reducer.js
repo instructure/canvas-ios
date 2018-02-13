@@ -80,6 +80,7 @@ const emptyCourseState: CourseContentState = {
   pages: { pending: 0, refs: [] },
   enabledFeatures: [],
   gradingPeriods: { pending: 0, refs: [] },
+  permissions: null,
 }
 
 export const normalizeCourse = (course: Course, colors: { [courseId: string]: string } = {}, prevState: CourseContentState = emptyCourseState): CourseState => {

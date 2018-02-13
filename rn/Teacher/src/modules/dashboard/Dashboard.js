@@ -512,7 +512,7 @@ const Refreshed = refresh(
       props.refreshUserEnrollments()
     }
   },
-  props => props => props.courses.length === 0 ||
+  props => props.courses.length === 0 ||
     (App.current().appId === 'student' && props.groups.length === 0) ||
     (App.current().appId === 'student' && Object.keys(props.enrollments).length === 0),
   props => Boolean(props.pending)

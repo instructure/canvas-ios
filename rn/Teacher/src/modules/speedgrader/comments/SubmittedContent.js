@@ -34,7 +34,7 @@ export type SubmittedContentDataProps = {
 }
 
 export type SubmittedContentActionProps = {
-  onPress: () => void,
+  onPress: Function,
 }
 
 type Props

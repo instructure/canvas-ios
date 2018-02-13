@@ -620,7 +620,7 @@ exports[`CourseInvite renders hidden 1`] = `
                 "marginRight": 8,
               },
               Object {
-                "borderColor": undefined,
+                "borderColor": "#8B969E",
               },
             ]
           }
@@ -772,7 +772,7 @@ exports[`CourseInvite renders invite 1`] = `
                 "marginRight": 8,
               },
               Object {
-                "borderColor": undefined,
+                "borderColor": "#8B969E",
               },
             ]
           }
@@ -922,7 +922,7 @@ exports[`CourseInvite renders invite with course section 1`] = `
                 "marginRight": 8,
               },
               Object {
-                "borderColor": undefined,
+                "borderColor": "#8B969E",
               },
             ]
           }

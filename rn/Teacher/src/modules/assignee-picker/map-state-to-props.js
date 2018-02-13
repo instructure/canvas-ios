@@ -39,6 +39,7 @@ export type AssigneeSearchProps = {
   refreshSections: Function,
   refreshEnrollments: Function,
   refreshGroupsForCategory: Function,
+  pending: boolean,
 }
 
 function studentEnrollmentsForCourseID (courseID: string, state: AppState): any {

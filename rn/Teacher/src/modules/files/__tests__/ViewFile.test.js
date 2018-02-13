@@ -14,7 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-// @flow
+/* eslint-disable flowtype/require-valid-file-annotation */
 import React from 'react'
 import { shallow } from 'enzyme'
 import { ActionSheetIOS } from 'react-native'
@@ -88,14 +88,14 @@ describe('ViewFile', () => {
     props.courseID = null
     const tree = shallow(<ViewFile {...props} />)
     expect(props.getCourse).not.toHaveBeenCalled()
-    expect(tree.find('Screen').prop('subtitle')).toBeNull()
+    expect(tree.find('Screen').prop('subtitle')).toBeUndefined()
   })
 
   it('ignores subtitle if course loading fails', async () => {
     props.getCourse = jest.fn(() => Promise.reject())
     const tree = shallow(<ViewFile {...props} />)
     await Promise.resolve() // wait for course failure.
-    expect(tree.find('Screen').prop('subtitle')).toBeNull()
+    expect(tree.find('Screen').prop('subtitle')).toBeUndefined()
   })
 
   it('ignores fetching the file for zip', async () => {

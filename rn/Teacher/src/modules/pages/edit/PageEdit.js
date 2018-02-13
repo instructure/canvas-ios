@@ -68,8 +68,7 @@ function convertEditingRolesFromAPI (editingRoles: string) {
   return 'teachers'
 }
 
-export class PageEdit extends Component<Props, any> {
-  state: State
+export class PageEdit extends Component<Props, State> {
   scrollView: ?KeyboardAwareScrollView
 
   static defaultProps = {
@@ -77,18 +76,14 @@ export class PageEdit extends Component<Props, any> {
     updatePage,
   }
 
-  constructor (props: Props) {
-    super(props)
-
-    this.state = {
-      title: props.title,
-      body: props.body,
-      editing_roles: props.editing_roles,
-      published: props.published,
-      front_page: props.front_page,
-      editingRolesPickerShown: false,
-      pending: false,
-    }
+  state: State = {
+    title: this.props.title,
+    body: this.props.body,
+    editing_roles: this.props.editing_roles,
+    published: this.props.published,
+    front_page: this.props.front_page,
+    editingRolesPickerShown: false,
+    pending: false,
   }
 
   render () {

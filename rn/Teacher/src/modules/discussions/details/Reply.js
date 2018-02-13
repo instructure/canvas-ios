@@ -52,7 +52,7 @@ export type Props = {
   isRootReply?: boolean,
 }
 
-export default class Reply extends Component <any, Props, any> {
+export default class Reply extends Component<Props> {
 
   showAttachment = () => {
     if (this.props.reply.attachment) {
@@ -63,6 +63,7 @@ export default class Reply extends Component <any, Props, any> {
   }
 
   _userFromParticipants (reply: DiscussionReply, participants: { [key: string]: UserDisplay }): UserDisplay {
+    // $FlowFixMe
     let user = participants[reply.user_id ? reply.user_id : reply.editor_id]
     if (!user) {
       user = {
@@ -172,7 +173,7 @@ export default class Reply extends Component <any, Props, any> {
     )
   }
 
-  _renderUnreadDot (reply: Reply, state: ReadState) {
+  _renderUnreadDot (reply: DiscussionReply, state: ReadState) {
     return state === 'unread' && !reply.deleted ? (<View style={style.unreadDot}/>) : <View />
   }
 

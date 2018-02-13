@@ -14,9 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-/**
- * @flow
- */
+// @flow
 
 import React, { Component } from 'react'
 import {
@@ -49,7 +47,7 @@ import uuid from 'uuid/v1'
 import { wait } from '../../utils/async-wait'
 
 type CourseFilesListProps = {
-  data: [any], // The folders and files that are currently being shown
+  data: any[], // The folders and files that are currently being shown
   folder: Folder, // The folder that is currently being displayed
   courseColor: ?string, // Color of the course in this files list
 }
@@ -59,7 +57,21 @@ type CourseFileListNavProps = {
   subFolder?: ?string,
 }
 
-type Props = CourseFilesListProps & CourseFileListNavProps & NavigationProps
+type Props =
+  CourseFilesListProps &
+  CourseFileListNavProps &
+  NavigationProps & {
+    updateFile: Function,
+    uploadFile: Function,
+    createFolder: Function,
+    folderUpdated: Function,
+    foldersUpdated: Function,
+    filesUpdated: Function,
+    getCourseFolder: Function,
+    getFolderFolders: Function,
+    getFolderFiles: Function,
+    getFolder: Function,
+  }
 
 type State = {
   pending: boolean,
@@ -68,6 +80,15 @@ type State = {
 }
 
 export class CourseFilesList extends Component<Props, State> {
+  static defaultProps = {
+    getCourseFolder: canvas.getCourseFolder,
+    getFolderFolders: canvas.getFolderFolders,
+    getFolderFiles: canvas.getFolderFiles,
+    getFolder: canvas.getFolder,
+    createFolder: canvas.createFolder,
+    uploadFile: canvas.uploadAttachment,
+    updateFile: canvas.updateFile,
+  }
 
   attachmentPicker: AttachmentPicker
 
@@ -182,6 +203,7 @@ export class CourseFilesList extends Component<Props, State> {
     AlertIOS.prompt(
       i18n('Create Folder'),
       null,
+      // $FlowFixMe
       this.createNewFolder,
     )
   }
@@ -205,10 +227,11 @@ export class CourseFilesList extends Component<Props, State> {
   }
 
   addFile = () => {
+    // $FlowFixMe
     this.attachmentPicker.show(null, this.finishAddFile)
   }
 
-  finishAddFile = async (attachment: Attachment, type: MediaType) => {
+  finishAddFile = async (attachment: Attachment, type: 'audio' | 'video') => {
     if (type === 'audio') {
       // RN Modal component is bugged. :(
       // If state is updated before it goes away, it comes back like it's all mad or something.
@@ -235,7 +258,7 @@ export class CourseFilesList extends Component<Props, State> {
     this.setState({ uploadPending: false, uploadMessage: null })
   }
 
-  updateUploadProgress = (progress: Progress) => {
+  updateUploadProgress = (progress: { loaded: number, total: number }) => {
     let amountUploaded = bytes(progress.loaded, { decimalPlaces: 0, unitSeparator: ';' })
     if (amountUploaded) {
       amountUploaded = amountUploaded.split(';')[0]
@@ -247,7 +270,7 @@ export class CourseFilesList extends Component<Props, State> {
     }
   }
 
-  captureAttachmentPicker = (ref: AttachmentPicker) => {
+  captureAttachmentPicker = (ref: any) => {
     this.attachmentPicker = ref
   }
 
@@ -268,9 +291,9 @@ export class CourseFilesList extends Component<Props, State> {
     } else {
       name = item.name
       icon = images.files.folder
-      subtitle = i18n(`{ 
-        file_count, plural, 
-          one {# file} 
+      subtitle = i18n(`{
+        file_count, plural,
+          one {# file}
           other {# files}
       }`, { file_count: item.files_count })
       tintColor = this.props.courseColor
@@ -340,7 +363,7 @@ export class CourseFilesList extends Component<Props, State> {
         leftBarButtons={leftBarButtons}
       >
         <DropView style={{ flex: 1 }}>
-          { this.state.uploadPending && <SavingBanner title={this.state.uploadMessage} /> }
+          { this.state.uploadPending && <SavingBanner title={this.state.uploadMessage || ''} /> }
           <FlatList
             data={this.props.data}
             renderItem={this.renderRow}
@@ -360,17 +383,7 @@ export class CourseFilesList extends Component<Props, State> {
   }
 }
 
-CourseFilesList.defaultProps = {
-  getCourseFolder: canvas.getCourseFolder,
-  getFolderFolders: canvas.getFolderFolders,
-  getFolderFiles: canvas.getFolderFiles,
-  getFolder: canvas.getFolder,
-  createFolder: canvas.createFolder,
-  uploadFile: canvas.uploadAttachment,
-  updateFile: canvas.updateFile,
-}
-
-export function mapStateToProps (state: AppState, props: CourseFileListNavProps): CourseFilesListProps {
+export function mapStateToProps (state: Object, props: CourseFileListNavProps) {
   let parentFolder
   const key = `Course-${props.courseID}`
   const courseFolders = state.folders[key] || {}

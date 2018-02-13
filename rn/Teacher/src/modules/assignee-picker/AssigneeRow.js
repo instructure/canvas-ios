@@ -35,11 +35,11 @@ import Avatar from '../../common/components/Avatar'
 
 export type Props = {
   assignee: Assignee,
-  onPress: Function,
-  onDelete: Function,
+  onPress?: Function,
+  onDelete?: Function,
 }
 
-export default class AssigneeRow extends Component<Props, any> {
+export default class AssigneeRow extends Component<Props> {
 
   renderImage (): any {
     const assignee = this.props.assignee

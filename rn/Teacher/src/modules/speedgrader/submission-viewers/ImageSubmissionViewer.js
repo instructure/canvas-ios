@@ -22,16 +22,14 @@ import {
   ScrollView,
 } from 'react-native'
 
-export default class ImageSubmissionViewer extends Component {
-  state: {
-    width: number,
-    height: number,
-  }
-  props: {
-    attachment: Attachment,
-    width: number,
-    height: number,
-  }
+export default class ImageSubmissionViewer extends Component<{
+  attachment: Attachment,
+  width: number,
+  height: number,
+}, {
+  width: number,
+  height: number,
+}> {
 
   componentDidMount () {
     Image.getSize(this.props.attachment.url, (width, height) => {

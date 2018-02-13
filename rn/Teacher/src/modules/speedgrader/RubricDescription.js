@@ -24,7 +24,7 @@ import Navigator from '../../routing/Navigator'
 import Screen from '../../routing/Screen'
 import WebContainer from '../../common/components/WebContainer'
 
-export class RubricDescription extends Component {
+export class RubricDescription extends Component<*> {
 
   dismiss = () => {
     this.props.navigator.dismiss()

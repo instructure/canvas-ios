@@ -25,8 +25,8 @@ type UploadTarget = {
 
 export type UploadOptions = {
   path: string,
-  parentFolderID?: string,
-  parentFolderPath?: string,
+  parentFolderID?: ?string,
+  parentFolderPath?: ?string,
   onProgress?: (Progress) => void,
   cancelUpload?: (() => void) => void,
 }

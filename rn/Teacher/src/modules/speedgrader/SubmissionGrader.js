@@ -76,6 +76,7 @@ export default class SubmissionGrader extends Component<SubmissionGraderProps, S
   constructor (props: SubmissionGraderProps) {
     super(props)
 
+    // $FlowFixMe
     this.state = {
       width: width,
       height: height,
@@ -129,7 +130,7 @@ export default class SubmissionGrader extends Component<SubmissionGraderProps, S
     }
   }
 
-  captureToolTip = (toolTip: ToolTip) => {
+  captureToolTip = (toolTip: any) => {
     this.toolTip = toolTip
   }
 

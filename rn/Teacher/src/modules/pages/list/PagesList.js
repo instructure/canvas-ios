@@ -45,6 +45,8 @@ type StateProps = AsyncState & {
 
 type OwnProps = {
   courseID: string,
+  pending: boolean,
+  refreshing: boolean,
 }
 
 export type Props = OwnProps & StateProps & typeof Actions & NavigationProps
@@ -140,6 +142,7 @@ export class PagesList extends Component<Props, any> {
   refresh = async () => {
     this.setState({ pending: true })
     try {
+      // $FlowFixMe
       const { data } = await this.props.getPages(this.props.courseID)
       this.props.refreshedPages(data, this.props.courseID)
     } catch (error) {
@@ -172,7 +175,7 @@ const styles = StyleSheet.create({
   },
 })
 
-export function mapStateToProps ({ entities }: AppState, { courseID }: OwnProps): StateProps {
+export function mapStateToProps ({ entities }: AppState, { courseID }: OwnProps) {
   let pages = []
   let courseName = ''
   let courseColor = null
@@ -198,4 +201,4 @@ export function mapStateToProps ({ entities }: AppState, { courseID }: OwnProps)
 }
 
 const Connected = connect(mapStateToProps, Actions)(PagesList)
-export default (Connected: Component<Props, any>)
+export default Connected

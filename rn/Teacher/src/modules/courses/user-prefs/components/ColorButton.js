@@ -16,7 +16,7 @@
 
 // @flow
 import React, { Component } from 'react'
-import ReactNative, {
+import {
   TouchableHighlight,
   View,
   StyleSheet,
@@ -31,10 +31,8 @@ type Props = {
   selected: boolean,
 }
 
-export default class ColorButton extends Component {
-  props: Props
-
-  onPress = (event: ReactNative.NativeSyntheticEvent) => {
+export default class ColorButton extends Component<Props> {
+  onPress = () => {
     this.props.onPress(this.props.color)
   }
 

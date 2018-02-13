@@ -38,7 +38,7 @@ type CommentInputProps = {
   drawerState: DrawerState,
   addMedia?: () => void,
   initialValue: ?string,
-  disabled: boolean,
+  disabled?: boolean,
   autoFocus?: boolean,
   onBlur?: () => void,
 }
@@ -47,14 +47,13 @@ type State = {
   textComment: string,
 }
 
-export default class CommentInput extends Component<CommentInputProps, any> {
-  state: State
-  _textInput: TextInput
-
-  constructor (props: CommentInputProps) {
-    super(props)
-    this.state = { textComment: props.initialValue || '' }
+export default class CommentInput extends Component<CommentInputProps, State> {
+  static defaultProps = {
+    disabled: false,
   }
+
+  state: State = { textComment: this.props.initialValue || '' }
+  _textInput: TextInput
 
   addMedia = () => {
     console.log('Add some media!')
@@ -88,7 +87,7 @@ export default class CommentInput extends Component<CommentInputProps, any> {
     this.props.onBlur && this.props.onBlur()
   }
 
-  captureTextInput = (textInput: TextInput) => {
+  captureTextInput = (textInput: any) => {
     this._textInput = textInput
   }
 
@@ -162,10 +161,6 @@ export default class CommentInput extends Component<CommentInputProps, any> {
     </View>
     )
   }
-}
-
-CommentInput.defaultProps = {
-  disabled: false,
 }
 
 const styles = StyleSheet.create({

@@ -84,7 +84,7 @@ export class Attachments extends Component<Props, any> {
     }
   }
 
-  captureAttachmentPicker = (ref: AttachmentPicker) => {
+  captureAttachmentPicker = (ref: any) => {
     this.attachmentPicker = ref
   }
 
@@ -188,8 +188,8 @@ export class Attachments extends Component<Props, any> {
 
   dismiss = () => {
     const attachments = Object.values(this.state.attachments)
-      .filter(a => a.error == null)
-      .map(a => a.data)
+      .filter((a: any) => a.error == null)
+      .map((a: any) => a.data)
     this.props.onComplete(attachments)
     this.props.navigator.dismiss()
   }

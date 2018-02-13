@@ -48,5 +48,5 @@ export default ({
     onChange={onChange}
     onDelete={onDelete}
     update={updateFile}
-    updateUsageRights={updateCourseFileUsageRights.bind(null, courseID, fileID)}
+    updateUsageRights={updateCourseFileUsageRights.bind(null, courseID || '', fileID)}
   />

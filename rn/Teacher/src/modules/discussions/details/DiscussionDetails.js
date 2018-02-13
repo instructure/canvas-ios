@@ -53,6 +53,7 @@ import { type TraitCollection } from '../../../routing/Navigator'
 import { isRegularDisplayMode } from '../../../routing/utils'
 
 type OwnProps = {
+  announcementID: string,
   discussionID: string,
   courseID: string,
 }
@@ -282,6 +283,7 @@ export class DiscussionDetails extends Component<Props, any> {
           readState={reply.readState}
           depth={reply.depth}
           myPath={path}
+          // $FlowFixMe
           participants={participants}
           onPressMoreReplies={this._onPressMoreReplies}
           isRootReply

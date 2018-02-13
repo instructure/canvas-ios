@@ -32,7 +32,7 @@ import { extractDateFromString } from '../../../utils/dateUtils'
 
 type DateRowProps = {
   title: string,
-  date: string,
+  date: ?string,
   showRemoveButton?: boolean,
   onPress?: Function,
   onRemoveDatePress?: Function,

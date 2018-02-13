@@ -36,9 +36,12 @@ import { getSession } from '../../canvas-api/session'
 import URL from 'url-parse'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
-export default class Masquerade extends Component {
+export default class Masquerade extends Component<*, any> {
+  animatedOpacity = new Animated.Value(0)
+  domainTextInput: TextInput
+  userIdTextInput: TextInput
 
-  constructor (props) {
+  constructor (props: Object) {
     super(props)
     let domain = ''
     const session = getSession()
@@ -51,7 +54,6 @@ export default class Masquerade extends Component {
       domain,
       submitButtonDisabled: true,
     }
-    this.animatedOpacity = new Animated.Value(0)
   }
 
   async componentDidMount () {
@@ -152,7 +154,7 @@ export default class Masquerade extends Component {
                       placeholder={i18n('User ID')}
                       style={styles.textInput}
                       returnKeyType={'next'}
-                      ref={ r => { this.userIdTextInput = r } }
+                      ref={(r: any) => { this.userIdTextInput = r }}
                       onSubmitEditing={ this.nextInput }
                       onChangeText={this.updateUserId}
                       autoCapitalize="none"
@@ -164,7 +166,7 @@ export default class Masquerade extends Component {
                       placeholder={i18n('Domain')}
                       style={styles.textInput}
                       returnKeyType={'done'}
-                      ref={ r => { this.domainTextInput = r } }
+                      ref={(r: any) => { this.domainTextInput = r }}
                       onSubmitEditing={ this.finishInput }
                       onChangeText={this.updateDomain}
                       autoCapitalize="none"

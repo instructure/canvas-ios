@@ -16,9 +16,9 @@
 
 /* @flow */
 
+import { type Reducer } from 'redux'
 import { handleActions } from 'redux-actions'
 import Actions from './actions'
-import findIndex from 'lodash/findIndex'
 
 const { filesUpdated, foldersUpdated, folderUpdated } = Actions
 
@@ -54,7 +54,7 @@ export const foldersData: Reducer<any, any> = handleActions({
     const path = folder.full_name.substring(0, folder.full_name.lastIndexOf('/'))
     const context = state[key] || {}
     const contents = context[path] || []
-    const index = findIndex(contents, { id: folder.id })
+    const index = contents.findIndex(({ id }) => id === folder.id)
     const newContents = [...contents]
     // Add it if it doesn't exist, othewise update
     if (!~index) {

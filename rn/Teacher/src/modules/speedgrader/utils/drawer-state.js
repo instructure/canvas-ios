@@ -20,7 +20,7 @@ import { Animated, Keyboard } from 'react-native'
 
 export type DrawerPosition = 0 | 1 | 2
 export type DrawerObserver = {
-  snapTo: (position: DrawerPosition) => void,
+  snapTo: (position: DrawerPosition, animated?: boolean) => void,
   onDragBegan?: () => void,
 }
 

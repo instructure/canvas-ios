@@ -25,7 +25,7 @@ import i18n from 'format-message'
 import { Text } from '../../../common/text'
 import colors from '../../../common/colors'
 
-export default class PublishedIcon extends React.Component {
+export default class PublishedIcon extends React.Component<Object> {
   render () {
     let { published, style, iconSize } = this.props
 

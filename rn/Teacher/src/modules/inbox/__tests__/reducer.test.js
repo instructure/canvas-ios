@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-// @flow
+/* eslint-disable flowtype/require-valid-file-annotation */
 
 import inbox, { conversations } from '../reducer'
 import { InboxActions } from '../actions'

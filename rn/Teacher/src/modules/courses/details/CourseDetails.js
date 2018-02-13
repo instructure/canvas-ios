@@ -76,7 +76,7 @@ export class CourseDetails extends Component<CourseDetailsProps, any> {
       if (isTeacher()) {
         this.props.navigator.show(tab.html_url)
       } else {
-        if (tab.type === 'external') {
+        if (tab.type === 'external' && tab.url) {
           this.props.navigator.launchExternalTool(tab.url)
         } else {
           const url = `/courses/${this.props.courseID}/tabs/${tab.id}`
@@ -101,7 +101,7 @@ export class CourseDetails extends Component<CourseDetailsProps, any> {
     if (this.homeDidShow || !this.props.course || !this.props.tabs.length) return
     this.homeDidShow = true
     if (this.state.windowTraits.horizontal !== 'compact') {
-      let home = this.props.tabs.find(({ id }) => id === 'home')
+      const home = this.props.tabs.find(({ id }) => id === 'home')
       if (home) {
         Promise.resolve().then(() => this.selectTab(home))
       } else {
@@ -114,7 +114,7 @@ export class CourseDetails extends Component<CourseDetailsProps, any> {
     this.props.navigator.traitCollection((traits) => {
       if (
         this.state.windowTraits.horizontal === 'compact' &&
-        traits.horizontal !== 'compact'
+        traits.window.horizontal !== 'compact'
       ) {
         this.homeDidShow = false
       }
@@ -122,7 +122,7 @@ export class CourseDetails extends Component<CourseDetailsProps, any> {
     })
   }
 
-  onScroll = (event) => {
+  onScroll = (event: any) => {
     const offsetY = event.nativeEvent.contentOffset.y
     // Random bug/issue with rn or ios
     // Sometimes this would randomly be reported as 0, which is impossible based on our content inset/offsets

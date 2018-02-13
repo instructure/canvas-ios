@@ -49,22 +49,13 @@ type State = {
 
 const SPEED_GRADER_TUTORIAL_KEY = 'speed-grader-tutorial'
 
-export default class Tutorial extends PureComponent {
-  props: Props
-  state: State
-  opacity: Animated.Value
-
-  constructor (props: Props) {
-    super(props)
-
-    this.state = {
-      hasLoaded: false,
-      hasSeen: {},
-      currentTutorial: null,
-    }
-
-    this.opacity = new Animated.Value(0)
+export default class Tutorial extends PureComponent<Props, State> {
+  state: State = {
+    hasLoaded: false,
+    hasSeen: {},
+    currentTutorial: null,
   }
+  opacity: Animated.Value = new Animated.Value(0)
 
   componentDidMount () {
     this.setup()

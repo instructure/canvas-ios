@@ -17,7 +17,7 @@
 // @flow
 
 import React, { Component } from 'react'
-import ReactNative, {
+import {
   View,
   StyleSheet,
   Image,
@@ -27,11 +27,12 @@ import i18n from 'format-message'
 import { Text, Heading1 } from '../../../common/text'
 import Images from '../../../images'
 import A11yGroup from '../../../common/components/A11yGroup'
+import { type CourseGradeInfo } from '../../../utils/course-grades'
 
 type Props = {
   course: Course,
   grade: ?CourseGradeInfo,
-  showGrade: boolean,
+  showGrade?: boolean,
   color: string,
   style: any,
   onPress: Function,
@@ -43,16 +44,9 @@ type State = {
   height: number,
 }
 
-export default class CourseCard extends Component {
-  props: Props
-  state: State
-
-  constructor (props: Props) {
-    super(props)
-
-    this.state = {
-      height: props.initialHeight || 0,
-    }
+export default class CourseCard extends Component<Props, State> {
+  state: State = {
+    height: this.props.initialHeight || 0,
   }
 
   createImageStyles () {
@@ -76,7 +70,7 @@ export default class CourseCard extends Component {
     })
   }
 
-  onPress = (event: ReactNative.NativeSyntheticEvent): void => {
+  onPress = () => {
     this.props.onPress(this.props.course)
   }
 
@@ -228,4 +222,3 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
 })
-

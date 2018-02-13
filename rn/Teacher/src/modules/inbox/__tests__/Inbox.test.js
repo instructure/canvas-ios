@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-/* @flow */
+/* eslint-disable flowtype/require-valid-file-annotation */
 import 'react-native'
 import React from 'react'
 import { Inbox, handleRefresh, shouldRefresh, mapStateToProps, Refreshed } from '../Inbox'

@@ -22,6 +22,7 @@ export type SubmissionStatusProp =
   'none' |
   'missing' |
   'late' |
+  'excused' |
   'submitted'
 
 export type GradeProp = 'not_submitted' | 'ungraded' | 'excused' | string
@@ -36,8 +37,8 @@ export type SubmissionDataProps = {
   score?: ?number,
   submissionID: ?string,
   submission: ?Object,
-  sectionID: string,
-  allSectionIDs: [string],
+  sectionID: ?string,
+  allSectionIDs: ?string[],
 }
 
 export type SubmissionProps = SubmissionDataProps & {

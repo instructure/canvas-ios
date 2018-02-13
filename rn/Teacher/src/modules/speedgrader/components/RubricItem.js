@@ -37,18 +37,11 @@ import colors from '../../../common/colors'
 const CANCEL = 2
 const DELETE = 1
 
-export default class RubricItem extends Component {
-  props: RubricItemProps
-  state: RubricItemState
+export default class RubricItem extends Component<RubricItemProps, RubricItemState> {
   customizeButton: any
 
-  constructor (props: RubricItemProps) {
-    super(props)
-    let grade = this.props.grade && this.props.grade.points
-
-    this.state = {
-      selectedOption: grade,
-    }
+  state: RubricItemState = {
+    selectedOption: this.props.grade && this.props.grade.points,
   }
 
   componentWillReceiveProps (nextProps: RubricItemProps) {
@@ -84,6 +77,7 @@ export default class RubricItem extends Component {
       [{
         text: i18n('Cancel'),
         style: 'cancel',
+        // $FlowFixMe
         onPress: () => AccessibilityInfo.setAccessibilityFocus(findNodeHandle(this.customizeButton)),
       }, {
         text: i18n('OK'),
@@ -96,6 +90,7 @@ export default class RubricItem extends Component {
           }
 
           this.changeSelected(numValue)
+          // $FlowFixMe
           AccessibilityInfo.setAccessibilityFocus(findNodeHandle(this.customizeButton))
         },
       }],
@@ -175,7 +170,7 @@ export default class RubricItem extends Component {
             ref={r => { this.customizeButton = r }}
           >
             { isCustomGrade
-              ? i18n.number(this.state.selectedOption)
+              ? i18n.number(this.state.selectedOption || 0)
               : <Image style={{ tintColor: colors.grey4 }} source={Images.add} />
             }
           </CircleToggle>

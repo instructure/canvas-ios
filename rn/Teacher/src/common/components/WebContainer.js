@@ -96,7 +96,7 @@ const TEMPLATE = `<!doctype html>
 type Props = {
   html: string,
   style?: any,
-  scrollEnabled: boolean,
+  scrollEnabled?: boolean,
   contentInset?: { top?: number, left?: number, bottom?: number, right?: number },
   navigator?: Navigator,
 }

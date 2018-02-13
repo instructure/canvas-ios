@@ -38,6 +38,10 @@ type Props = RowProps & {
 export default class RowWithTextInput extends Component<Props, any> {
   input: ?TextInput
 
+  static defaultProps = {
+    title: '',
+  }
+
   handlePress = (event: Event) => {
     this.props.onPress && this.props.onPress(event)
     this.input && this.input.focus()

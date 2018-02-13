@@ -35,7 +35,7 @@ export const refs: Reducer<AsyncRefs, any> = asyncRefsReducer(
   ({ result }) => result.data.grading_periods.map(gp => gp.id)
 )
 
-export const gradingPeriods: Reducer<AssignmentListState, any> = handleActions({
+export const gradingPeriods: Reducer<any, any> = handleActions({
   [refreshGradingPeriods.toString()]: handleAsync({
     resolved: (state, { result: { data: { grading_periods } } }) => {
       let newState = grading_periods.reduce((current, gradingPeriod) => {

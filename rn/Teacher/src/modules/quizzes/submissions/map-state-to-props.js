@@ -14,7 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-// @flow
+/* eslint-disable flowtype/require-valid-file-annotation */
 
 import { type SubmissionRowDataProps } from '../../submissions/list/SubmissionRow'
 import { gradeProp, statusProp } from '../../submissions/list/get-submissions-props'

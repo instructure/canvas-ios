@@ -30,7 +30,7 @@ import { Text } from '../../text'
 
 export type RowProps = {
   title: string,
-  subtitle?: string,
+  subtitle?: ?string,
   image?: { uri: string } | number,
   imageTint?: string,
   imageSize?: { height: number, width: number }, // Defaults to 20 x 20 if not supplied
@@ -45,12 +45,12 @@ export type RowProps = {
   accessibilityLabel?: ?string,
   accessibilityTraits?: React$ElementProps<typeof View>,
   titleProps?: { ellipsizeMode?: string, numberOfLines?: number },
-  selected?: boolean,
-  titleStyles?: Object | number,
-  subtitleStyles?: Object | number,
+  selected?: ?boolean,
+  titleStyles?: any,
+  subtitleStyles?: any,
 }
 
-export default class Row extends Component<RowProps, any> {
+export default class Row extends Component<RowProps> {
 
   onPress = () => {
     if (this.props.onPress) {

@@ -9,7 +9,11 @@ exports[`SubmissionSettings renders properly 1`] = `
   }
 >
   <RCTScrollView
-    style={undefined}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
   >
     <View>
       <View
@@ -349,7 +353,11 @@ exports[`SubmissionSettings renders the anonymous grading toggle as disabled whe
   }
 >
   <RCTScrollView
-    style={undefined}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
   >
     <View>
       <View

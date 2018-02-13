@@ -98,7 +98,7 @@ export function updateFolder (folderID: string, folder: UpdateFolderParameters):
   return httpClient().put(`folders/${folderID}`, folder)
 }
 
-export function deleteFolder (folderID: string, force: boolean): ApiPromise<null> {
+export function deleteFolder (folderID: string, force?: boolean): ApiPromise<null> {
   return httpClient().delete(`folders/${folderID}`, { params: { force } })
 }
 

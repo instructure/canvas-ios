@@ -14,9 +14,7 @@
 // limitations under the License.
 //
 
-/**
- * @flow
- */
+/* eslint-disable flowtype/require-valid-file-annotation */
 
 import { Alert } from 'react-native'
 import React from 'react'

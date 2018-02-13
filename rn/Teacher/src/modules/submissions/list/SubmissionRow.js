@@ -48,7 +48,7 @@ export type SubmissionRowDataProps = {
   avatarURL: string,
   name: string,
   status: SubmissionStatusProp,
-  grade: GradeProp,
+  grade: ?GradeProp,
   gradingType: GradingType,
   score: ?number,
   disclosure?: boolean,
@@ -56,7 +56,7 @@ export type SubmissionRowDataProps = {
 }
 
 export type SubmissionRowProps = {
-  onPress: () => void,
+  onPress: (userID: string) => any,
   onAvatarPress?: Function,
   anonymous: boolean,
 } & SubmissionRowDataProps
@@ -94,6 +94,7 @@ const Grade = ({ grade, gradingType }: {grade: ?GradeProp, gradingType: GradingT
 
 class SubmissionRow extends Component<SubmissionRowProps, any> {
   onPress = () => {
+    // $FlowFixMe
     this.props.onPress(this.props.userID)
   }
 

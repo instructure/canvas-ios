@@ -68,6 +68,7 @@ Array [
         "refs": Array [],
       },
       "pending": 0,
+      "permissions": null,
       "quizzes": Object {
         "pending": 0,
         "refs": Array [],
@@ -133,6 +134,7 @@ Array [
         "refs": Array [],
       },
       "pending": 0,
+      "permissions": null,
       "quizzes": Object {
         "pending": 0,
         "refs": Array [],

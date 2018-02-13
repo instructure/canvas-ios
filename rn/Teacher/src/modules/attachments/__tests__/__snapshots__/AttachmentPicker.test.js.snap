@@ -15,7 +15,6 @@ exports[`AttachmentPicker renders 1`] = `
     animationType="fade"
     hardwareAccelerated={false}
     onLayout={[Function]}
-    style={undefined}
     transparent={true}
     visible={false}
   >

@@ -33,7 +33,7 @@ import RowSeparator from '../../common/components/rows/RowSeparator'
 import CoursesActions from '../courses/actions'
 
 export type AddressBookDataProps = {
-  permissions: { [string]: boolean },
+  permissions: ?{ [string]: boolean },
   courseID: string,
 }
 
@@ -43,7 +43,18 @@ export type Props = {
   name: string,
 }
 
-export type AddressBookProps = NavigationProps & AddressBookDataProps & Props
+export type AddressBookProps =
+  NavigationProps &
+  AddressBookDataProps &
+  Props &
+  typeof CoursesActions
+
+type State = {
+  searchResults: AddressBookResult[],
+  searchString: string,
+  error: ?string,
+  pending: boolean,
+}
 
 function isBranch (id: string): boolean {
   return id.startsWith('course') ||
@@ -51,19 +62,15 @@ function isBranch (id: string): boolean {
     id.startsWith('section')
 }
 
-export class AddressBook extends Component<AddressBookProps, any> {
+export class AddressBook extends Component<AddressBookProps, State> {
 
-  typeAhead: TypeAheadSearch
+  typeAhead: ?TypeAheadSearch
 
-  constructor (props: Props) {
-    super(props)
-
-    this.state = {
-      searchResults: [],
-      searchString: '',
-      error: null,
-      pending: false,
-    }
+  state: State = {
+    searchResults: [],
+    searchString: '',
+    error: null,
+    pending: false,
   }
 
   componentDidMount () {
@@ -92,7 +99,7 @@ export class AddressBook extends Component<AddressBookProps, any> {
 
   _nextRequestFinished = (results: ?AddressBookResult[], error: ?string) => {
     this.setState({
-      searchResults: this.state.searchResults.concat(results),
+      searchResults: this.state.searchResults.concat(results || []),
       pending: false,
       error,
     })
@@ -167,7 +174,7 @@ export class AddressBook extends Component<AddressBookProps, any> {
                 ListHeaderComponent={searchBar}
                 ListEmptyComponent={this.state.pending ? null : empty}
                 refreshing={this.state.pending}
-                onEndReached={() => this.typeAhead.next()}
+                onEndReached={() => this.typeAhead && this.typeAhead.next()}
                 ItemSeparatorComponent={RowSeparator}
               />
             </View>)
@@ -233,7 +240,7 @@ const styles = StyleSheet.create({
   },
 })
 
-export function mapStateToProps (state: AppState, ownProps: Props): AddressBookDataProps {
+export function mapStateToProps (state: AppState, ownProps: Props) {
   let courseID = ownProps.context.split('_')[1]
   let courseData = state.entities.courses[courseID]
   let permissions = courseData && courseData.permissions
@@ -241,4 +248,4 @@ export function mapStateToProps (state: AppState, ownProps: Props): AddressBookD
 }
 
 const Connected = connect(mapStateToProps, CoursesActions)(AddressBook)
-export default (Connected: Component<Props, any>)
+export default Connected

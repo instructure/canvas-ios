@@ -22,7 +22,7 @@ import { Text } from '../../common/text'
 import images from '../../images'
 import i18n from 'format-message'
 
-export default class EmptyAttachments extends PureComponent {
+export default class EmptyAttachments extends PureComponent<{}> {
   render () {
     return (
       <View style={styles.container}>
@@ -59,4 +59,3 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 })
-

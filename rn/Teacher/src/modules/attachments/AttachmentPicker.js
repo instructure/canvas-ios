@@ -122,7 +122,6 @@ export default class AttachmentPicker extends Component<Props, any> {
         <Modal
           visible={this.state.audioRecorderVisible}
           transparent={true}
-          style={style.modal}
           animationType='fade'
           onLayout={this.onLayout}
         >
@@ -141,14 +140,13 @@ export default class AttachmentPicker extends Component<Props, any> {
 
   _chooseUploadOption (options: ?Options, callback: Callback) {
     return (index: number) => {
-      const all = [
-        this.useCamera,
-        this.recordAudio,
-        this.useLibrary,
-        this.pickDocument,
-        this.cancel,
-      ]
-      all[index].bind(this)(options, callback)
+      switch (index) {
+        case 0: return this.useCamera(options, callback)
+        case 1: return this.recordAudio(options, callback)
+        case 2: return this.useLibrary(options, callback)
+        case 3: return this.pickDocument(options, callback)
+        case 4: return this.cancel()
+      }
     }
   }
 

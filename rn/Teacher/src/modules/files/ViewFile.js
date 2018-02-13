@@ -55,11 +55,12 @@ type Props = {
 type State = {
   width: number,
   height: number,
-  jobID: ?string,
+  jobID: ?number,
   localPath: ?string,
   file: ?File,
   loadingDone: boolean,
   course: ?Course,
+  error: ?string,
 }
 
 export default class ViewFile extends Component<Props, State> {
@@ -76,6 +77,7 @@ export default class ViewFile extends Component<Props, State> {
     localPath: null,
     file: this.props.file,
     loadingDone: false,
+    error: null,
   }
 
   componentWillMount () {
@@ -149,13 +151,13 @@ export default class ViewFile extends Component<Props, State> {
 
   handleDone = async () => {
     await this.props.navigator.dismiss()
-    if (this.props.onChange && this.state.file !== this.props.file) {
+    if (this.props.onChange && this.state.file && this.state.file !== this.props.file) {
       this.props.onChange(this.state.file)
     }
   }
 
   handleEdit = () => {
-    this.props.navigator.show(`/courses/${this.props.courseID}/file/${this.props.fileID}/edit`, { modal: true }, {
+    this.props.navigator.show(`/courses/${this.props.courseID || ''}/file/${this.props.fileID}/edit`, { modal: true }, {
       courseID: this.props.courseID,
       file: this.state.file,
       onChange: this.handleChange,
@@ -169,7 +171,7 @@ export default class ViewFile extends Component<Props, State> {
 
   handleDelete = async () => {
     await this.props.navigator.dismiss()
-    if (this.props.onChange) this.props.onChange(this.state.file)
+    if (this.props.onChange && this.state.file) this.props.onChange(this.state.file)
   }
 
   handleShare = () => {
@@ -192,7 +194,7 @@ export default class ViewFile extends Component<Props, State> {
         </View>
       )
     }
-    switch (file.mime_class) {
+    switch (file && file.mime_class) {
       case 'image':
         return (
           <View style={styles.imageContainer}>
@@ -204,7 +206,7 @@ export default class ViewFile extends Component<Props, State> {
         return (
           <View style={styles.centeredContainer} onLayout={this.handleLayout}>
             <Video
-              source={{ uri: localPath }}
+              source={{ uri: localPath || '' }}
               style={{ width, height: Math.ceil(width * 9.0 / 16.0) }}
             />
           </View>
@@ -227,10 +229,12 @@ export default class ViewFile extends Component<Props, State> {
 
   render () {
     const { course, file, loadingDone } = this.state
+    // $FlowFixMe
+    const name: string = file ? file.name || file.display_name : ''
     return (
       <Screen
-        title={file ? file.name || file.display_name : ''}
-        subtitle={course && course.name}
+        title={name}
+        subtitle={course && course.name || undefined}
         navBarStyle='light'
         navBarTitleColor={Colors.darkText}
         navBarButtonColor={Colors.link}

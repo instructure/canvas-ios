@@ -29,14 +29,14 @@ import Images from '../../images'
 import i18n from 'format-message'
 
 type Props = {
-  entry: {
+  entry: Object, /* {
     published?: boolean,
     locked?: boolean,
     hidden?: boolean,
     lock_at?: ?string,
     unlock_at?: ?string,
-  },
-  tintColor: string,
+  }, */
+  tintColor: ?string,
   image: any,
   // Offset for the status icon that appears in the bottom right.
   // Needed because some images have different sizes so a single offset doesn't work for all images

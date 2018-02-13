@@ -51,12 +51,10 @@ type Props = SubmissionListProps & { navigator: Navigator } & RefreshProps
 type State = {
   isConnected: boolean,
   filterOptions: SubmissionFilterOption[],
+  filter: Function,
 }
 
-export class SubmissionList extends Component {
-  props: Props
-  state: State
-
+export class SubmissionList extends Component<Props, State> {
   constructor (props: Props) {
     super(props)
     let filterOptions = [ ...defaultFilterOptions(this.props.filterType), ...this.props.sections.map(createFilterFromSection) ]
@@ -121,7 +119,7 @@ export class SubmissionList extends Component {
     return (
       <SubmissionRow
         {...item}
-        onAvatarPress={!this.props.groupAssignment && this.navigateToContextCard}
+        onAvatarPress={!this.props.groupAssignment ? this.navigateToContextCard : undefined}
         onPress={this.navigateToSubmission(index)}
         anonymous={this.props.anonymous}
         gradingType={this.props.gradingType}

@@ -25,7 +25,7 @@ type Props = {
     previewPath: string,
     drawerInset: number,
   },
-  style?: Object,
+  style?: any,
 }
 
 export default class CanvadocViewer extends Component<Props, any> {

@@ -44,6 +44,8 @@ export type CourseContentState = {
   attendanceTool: AttendanceToolState,
   pages: AsyncRefs,
   gradingPeriods: AsyncRefs,
+  permissions: ?{ [string]: boolean },
+  enabledFeatures: string[],
 }
 
 export type GroupState = AsyncState & {

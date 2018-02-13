@@ -38,17 +38,14 @@ type State = {
   size: { width: number, height: number },
 }
 
-export default class URLSubmissionViewer extends Component {
-  props: Props
-  state: State
+export default class URLSubmissionViewer extends Component<Props, State> {
+  state: State = {
+    aspectRatio: 4.0 / 3.0,
+    size: { width: 375, height: 667 },
+  }
 
   constructor (props: Props) {
     super(props)
-
-    this.state = {
-      aspectRatio: 4.0 / 3.0,
-      size: { width: 375, height: 667 },
-    }
     this.fetchImageSize(this.previewImageURL(props))
   }
 

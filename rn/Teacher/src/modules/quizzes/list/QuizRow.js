@@ -55,7 +55,7 @@ export default class QuizRow extends Component<Props, any> {
             height='auto'
             selected={selected}
           >
-            <DotSeparated style={style.subtitle} separated={this._dueDate(quiz)} />
+            <DotSeparated style={style.subtitle} separated={this._dueDate()} />
             <View style={style.details}>
               {this._details()}
             </View>

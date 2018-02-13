@@ -38,37 +38,34 @@ import SavingBanner from '../../common/components/SavingBanner'
 import { alertError } from '../../redux/middleware/error-handler'
 import EditUsageRights from './EditUsageRights'
 
-type Item = File | Folder
-
 type Props = {
   courseID?: string,
-  delete: (string, force?: boolean) => Promise,
-  item: Item,
+  delete: (string, force?: boolean) => Promise<any>,
+  item: Object,
   itemID: string,
-  type: 'file' | 'folder',
   navigator: Navigator,
-  onChange?: (Item) => any,
-  onDelete?: (Item) => any,
+  onChange?: (Object) => any,
+  onDelete?: (Object) => any,
   style?: any,
-  update: (string, Item) => Promise,
-  updateUsageRights?: (UpdateUsageRightsParameters) => Promise,
+  update: (string, Object) => Promise<any>,
+  updateUsageRights?: (UpdateUsageRightsParameters) => Promise<any>,
   getCourseEnabledFeatures: typeof api.getCourseEnabledFeatures,
   getCourseLicenses: typeof api.getCourseLicenses,
 }
 
 type State = {
-  updated: Folder,
+  updated: Object,
   pending: boolean,
   showAvailability: boolean,
   showLockedAt: boolean,
   showUnlockedAt: boolean,
   licenses: License[],
   features: string[],
-  validate: {
-    title: string,
+  validation: {
+    name: string,
     unlock_at: string,
     lock_at: string,
-    usage_rights: strings,
+    usage_rights: string,
   },
 }
 
@@ -78,7 +75,7 @@ export default class EditItem extends Component<Props, State> {
     getCourseLicenses: api.getCourseLicenses,
   }
 
-  state = {
+  state: State = {
     updated: {
       ...this.props.item,
       name: this.props.item.name || this.props.item.display_name,
@@ -297,7 +294,8 @@ export default class EditItem extends Component<Props, State> {
       validation,
     } = this.state
     const isFile = this.isFile()
-    const secondaryAccessTitle = this.get2ndAccessOptions()[this.get2ndAccessKey(updated)]
+    const secondaryAccessKey = this.get2ndAccessKey(updated)
+    const secondaryAccessTitle = secondaryAccessKey && this.get2ndAccessOptions()[secondaryAccessKey]
     return (
       <Screen
         title={isFile ? i18n('Edit File') : i18n('Edit Folder')}

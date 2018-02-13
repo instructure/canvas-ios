@@ -34,16 +34,10 @@ import GradePicker from './components/GradePicker'
 import CommentInput from './comments/CommentInput'
 import DrawerState from './utils/drawer-state'
 
-export class GradeTab extends Component {
-  props: GradeTabProps
-  state: GradeTabState
-
-  constructor (props: GradeTabProps) {
-    super(props)
-    this.state = {
-      ratings: props.rubricAssessment || {},
-      criterionCommentInput: null,
-    }
+export class GradeTab extends Component<GradeTabProps, GradeTabState> {
+  state: GradeTabState = {
+    ratings: this.props.rubricAssessment || {},
+    criterionCommentInput: null,
   }
 
   componentWillReceiveProps (nextProps: GradeTabProps) {
@@ -69,7 +63,7 @@ export class GradeTab extends Component {
   // This allows score and comments to be updated independently
   // When merged, overwrites new values with old ones
   // Also manages updating the state for whatever change there was to the assessment
-  updateAssessment = (id: string, assessment: RubricAssessment) => {
+  updateAssessment = (id: string, assessment: $Supertype<RubricAssessment>) => {
     this.setState((prevState) => {
       const current = this.state.ratings[id] || {}
       const updated = { ...current, ...assessment }

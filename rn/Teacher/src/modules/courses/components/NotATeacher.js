@@ -33,7 +33,7 @@ import { Text, Paragraph } from '../../../common/text'
 import Images from '../../../images'
 import Screen from '../../../routing/Screen'
 
-export class NotATeacher extends PureComponent {
+export class NotATeacher extends PureComponent<{}> {
 
   logout = () => {
     NativeModules.NativeLogin.logout()

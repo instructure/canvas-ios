@@ -81,6 +81,7 @@ export default class ConversationRow extends Component<ConversationRowProps, any
       containerStyles.push(styles.topHairline)
     }
     const unread = c.workflow_state === 'unread'
+    // $FlowFixMe
     const date = new Date(ConversationRow.extractDate(c))
     const dateTitle = i18n.date(date, 'M/d/yyyy')
     const accessibilityDateTitle = i18n.date(date, 'long')

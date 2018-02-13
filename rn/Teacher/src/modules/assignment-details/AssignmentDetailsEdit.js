@@ -216,7 +216,7 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
             {/* Display Grade As */}
             <RowWithDetail title={displayGradeAs}
               detailSelected={this.state.showPicker}
-              detail={i18n(gradeDisplayOptions().get(this.state.assignment.grading_type))}
+              detail={i18n(gradeDisplayOptions().get(this.state.assignment.grading_type) || '')}
               onPress={this.toggleDisplayGradeAsPicker}
               border={'bottom'}
               testID="assignment-details.toggle-display-grade-as-picker" />
@@ -235,7 +235,7 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
             {/* Due Dates */}
             <AssignmentDatesEditor
               assignment={this.props.assignmentDetails}
-              ref={c => { this.datesEditor = c }}
+              ref={(c: any) => { this.datesEditor = c }}
               canEditAssignees={Boolean(this.state.assignment)}
               navigator={this.props.navigator} />
 

@@ -461,7 +461,6 @@ exports[`Compose renders reply 1`] = `
     >
       <TouchableHighlight
         activeOpacity={0.85}
-        onPress={null}
         style={
           Object {
             "borderBottomColor": "#C7CDD1",

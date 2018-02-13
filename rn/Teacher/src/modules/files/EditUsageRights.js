@@ -52,17 +52,17 @@ export default class EditUsageRights extends Component<Props, State> {
     }
   }
 
-  handleChangeCopyright = (value) => this.props.onChange({
+  handleChangeCopyright = (value: string) => this.props.onChange({
     ...this.props.rights,
     legal_copyright: value,
   })
 
-  handleChangeJustification = (value) => this.props.onChange({
+  handleChangeJustification = (value: any) => this.props.onChange({
     ...this.props.rights,
     use_justification: value,
   })
 
-  handleChangeLicense = (value) => this.props.onChange({
+  handleChangeLicense = (value: any) => this.props.onChange({
     ...this.props.rights,
     license: value,
   })

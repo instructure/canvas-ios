@@ -6709,7 +6709,7 @@ exports[`renders course invites 1`] = `
                             "marginRight": 8,
                           },
                           Object {
-                            "borderColor": undefined,
+                            "borderColor": "#8B969E",
                           },
                         ],
                       ]
@@ -7010,7 +7010,7 @@ exports[`renders course invites 1`] = `
                             "marginRight": 8,
                           },
                           Object {
-                            "borderColor": undefined,
+                            "borderColor": "#8B969E",
                           },
                         ],
                       ]

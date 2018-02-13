@@ -46,7 +46,7 @@ export type Props = {
 }
 
 export class AudioComment extends Component<Props, any> {
-  playbackInterval: number
+  playbackInterval: IntervalID
 
   constructor (props: Props) {
     super(props)

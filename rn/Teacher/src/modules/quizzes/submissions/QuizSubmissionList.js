@@ -61,13 +61,13 @@ export type QuizSubmissionListDataProps = {
 export type QuizSubmissionListProps = QuizSubmissionListDataProps & QuizSubmissionListNavProps
 
 export type QuizSubmissionListState = {
-  filterOptions: Array<SubmissionFilterOptions>,
+  filterOptions: Array<SubmissionFilterOption>,
 }
 
 export class QuizSubmissionList extends Component<QuizSubmissionListProps, any> {
 
   filterOptions: SubmissionFilterOption[]
-  selectedFilter: ?SelectedSubmissionFilter
+  selectedFilter: ?Function
 
   constructor (props: any) {
     super(props)

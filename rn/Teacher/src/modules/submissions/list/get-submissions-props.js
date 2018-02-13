@@ -79,7 +79,7 @@ export function gradeProp (submission: ?Submission): GradeProp {
   return 'ungraded'
 }
 
-function submissionProps (enrollment: Enrollment, submission: ?SubmissionWithHistory, dueDate: ?string, sectionIDs: { string: [string] }): SubmissionDataProps {
+function submissionProps (enrollment: Enrollment, submission: ?SubmissionWithHistory, dueDate: ?any, sectionIDs: { string: [string] }): SubmissionDataProps {
   let { user, course_section_id: sectionID } = enrollment
   const { id, name } = user
   const avatarURL = user.avatar_url
@@ -164,6 +164,7 @@ export function getSubmissionsProps (entities: Entities, courseID: string, assig
     .map(enrollment => {
       const submission: ?SubmissionWithHistory = submissionsByUserID[enrollment.user_id]
       const due = assignmentContent && dueDate(assignmentContent.data, enrollment.user)
+      // $FlowFixMe
       return submissionProps(enrollment, submission, due, sectionIDs)
     })
 

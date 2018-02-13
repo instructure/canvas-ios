@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-/* @flow */
+/* eslint-disable flowtype/require-valid-file-annotation */
 import { shallow } from 'enzyme'
 import { NativeModules, ActionSheetIOS, Linking } from 'react-native'
 import React from 'react'

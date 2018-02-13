@@ -14,9 +14,7 @@
 // limitations under the License.
 //
 
-/**
- * @flow
- */
+/* eslint-disable flowtype/require-valid-file-annotation */
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { ActionSheetIOS, AlertIOS, Alert } from 'react-native'

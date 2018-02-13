@@ -60,6 +60,7 @@ exports[`EditItem file renders usage rights editing when feature is enabled 1`] 
             "height": 45,
           }
         }
+        title=""
         value="passwords.txt"
       />
       <RequiredFieldSubscript
@@ -202,6 +203,7 @@ exports[`EditItem folder should render 1`] = `
             "height": 45,
           }
         }
+        title=""
         value="Folder"
       />
       <RequiredFieldSubscript
@@ -312,6 +314,7 @@ exports[`EditItem folder shows availability when there is a lock_at date 1`] = `
             "height": 45,
           }
         }
+        title=""
         value="Folder"
       />
       <RequiredFieldSubscript
@@ -466,6 +469,7 @@ exports[`EditItem folder shows availability when there is an unlock_at date 1`] 
             "height": 45,
           }
         }
+        title=""
         value="Folder"
       />
       <RequiredFieldSubscript
@@ -620,6 +624,7 @@ exports[`EditItem folder shows the type of restriction when hidden 1`] = `
             "height": 45,
           }
         }
+        title=""
         value="Folder"
       />
       <RequiredFieldSubscript

@@ -37,7 +37,7 @@ import Images from '../../images'
 import color from '../../common/colors'
 import device from 'react-native-device-info'
 import Row from '../../common/components/rows/Row'
-import RowWithSwitch, { RowWithSwitchProps } from '../../common/components/rows/RowWithSwitch'
+import RowWithSwitch from '../../common/components/rows/RowWithSwitch'
 import RowSeparator from '../../common/components/rows/RowSeparator'
 import App from '../app'
 import canvas, { getSession } from '../../canvas-api'
@@ -45,12 +45,19 @@ import { connect } from 'react-redux'
 import Actions from '../userInfo/actions'
 import StatusBar from '../../common/components/StatusBar'
 
-export class Profile extends Component {
+type State = {
+  avatarURL: string,
+}
+
+export class Profile extends Component<Object, State> {
 
   static defaultProps = {
     account: canvas.account,
     getUserProfile: canvas.getUserProfile,
   }
+
+  secretTapCount: number
+  settingsActions: { title: string, id: string }[]
 
   constructor (props: any) {
     super(props)
@@ -66,7 +73,7 @@ export class Profile extends Component {
 
     let session = getSession()
     this.state = {
-      avatarURL: session && session.user.avatar_url,
+      avatarURL: session && session.user.avatar_url || '',
     }
   }
 
@@ -179,7 +186,7 @@ export class Profile extends Component {
     if (!session) { return <View /> }
     let externalTools = (this.props.externalTools || [])
 
-    const buildRow = (title: string, onPress?: Function, switchProps?: RowWithSwitchProps) => {
+    const buildRow = (title: string, onPress: ?Function, switchProps?: Object) => {
       return (<View>
                 { onPress && <Row title={title} titleStyles={titleStyles} onPress={onPress} />}
                 { switchProps && <RowWithSwitch title={title} titleStyles={titleStyles} {...switchProps} />}
@@ -300,4 +307,4 @@ export function mapStateToProps (state: AppState): UserInfo {
 }
 
 let Connected = connect(mapStateToProps, { ...Actions })(Profile)
-export default (Connected: Component<CourseDetailsProps, any>)
+export default Connected

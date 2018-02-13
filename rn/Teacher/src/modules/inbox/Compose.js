@@ -75,9 +75,7 @@ type ComposeState = {
   attachments: Attachment[],
 }
 
-export class Compose extends PureComponent {
-  props: ComposeProps & OwnProps
-  state: ComposeState
+export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState> {
   scrollView: KeyboardAwareScrollView
 
   static defaultProps = {
@@ -88,20 +86,16 @@ export class Compose extends PureComponent {
     onlySendIndividualMessages: false,
   }
 
-  constructor (props: ComposeProps) {
-    super(props)
-
-    this.state = {
-      sendDisabled: true,
-      sendToAll: props.onlySendIndividualMessages,
-      recipients: props.recipients || [],
-      contextCode: props.contextCode || null,
-      contextName: props.contextName || null,
-      body: null,
-      subject: props.subject || null,
-      pending: false,
-      attachments: [],
-    }
+  state: ComposeState = {
+    sendDisabled: true,
+    sendToAll: this.props.onlySendIndividualMessages,
+    recipients: this.props.recipients || [],
+    contextCode: this.props.contextCode || null,
+    contextName: this.props.contextName || null,
+    body: null,
+    subject: this.props.subject || null,
+    pending: false,
+    attachments: [],
   }
 
   cancelCompose = () => {
@@ -132,7 +126,7 @@ export class Compose extends PureComponent {
       group_conversation: true,
       included_messages: this.props.includedMessages && this.props.includedMessages.map(({ id }) => id),
       attachment_ids: this.state.attachments.map(a => a.id),
-      context_code: state.contextCode,
+      context_code: state.contextCode || undefined,
     }
 
     if (this.state.sendToAll) {
@@ -276,7 +270,7 @@ export class Compose extends PureComponent {
             contentContainerStyle={{ flexGrow: 1, paddingBottom: 16 }}
           >
             { this.props.showCourseSelect &&
-              <TouchableHighlight testID='compose.course-select' underlayColor='#fff' style={styles.wrapper} onPress={this.props.canSelectCourse ? this.selectCourse : null}>
+              <TouchableHighlight testID='compose.course-select' underlayColor='#fff' style={styles.wrapper} onPress={this.props.canSelectCourse ? this.selectCourse : undefined}>
                 <View style={styles.courseSelect}>
                   <Text style={[styles.courseSelectText, this.state.contextName ? styles.courseSelectedText : undefined]}>
                     { this.state.contextName || i18n('Select a Course') }

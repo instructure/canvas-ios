@@ -75,17 +75,17 @@ type ContextCardState = {
   hasGottenSubmissions: boolean,
 }
 
-export class ContextCard extends Component<ContextCardProps, any> {
-  state: ContextCardState
-
-  constructor (props: ContextCardProps) {
-    super(props)
-    this.state = { hasGottenSubmissions: false }
+export class ContextCard extends Component<ContextCardProps, ContextCardState> {
+  static defaultProps = {
+    modal: true,
   }
+
+  state: ContextCardState = { hasGottenSubmissions: false }
 
   componentDidMount () {
     this.refreshSubmissions(this.props)
   }
+
   componentWillReceiveProps (nextProps: ContextCardProps) {
     this.refreshSubmissions(nextProps)
   }
@@ -254,10 +254,6 @@ export class ContextCard extends Component<ContextCardProps, any> {
   }
 }
 
-ContextCard.defaultProps = {
-  modal: true,
-}
-
 const styles = StyleSheet.create({
   header: {
     paddingTop: 8,
@@ -365,7 +361,7 @@ export function mapStateToProps (state: AppState, ownProps: ContextCardOwnProps)
       else return -1
     })
 
-  const sections = Object.values(state.entities.sections).filter((s) => {
+  const sections = Object.values(state.entities.sections).filter((s: any) => {
     return s.course_id === ownProps.courseID
   })
 

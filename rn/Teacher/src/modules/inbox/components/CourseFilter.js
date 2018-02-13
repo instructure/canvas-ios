@@ -30,7 +30,7 @@ import i18n from 'format-message'
 
 export type CourseFilterProps = {
   courses: Array<Course>,
-  selectedCourse: Course,
+  selectedCourse?: ?Course | 'all',
   onClearFilter: () => void,
   onSelectFilter: (string) => void,
 }

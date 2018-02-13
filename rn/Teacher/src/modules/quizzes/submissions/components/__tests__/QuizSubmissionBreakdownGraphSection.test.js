@@ -14,9 +14,7 @@
 // limitations under the License.
 //
 
-/**
- * @flow
- */
+/* eslint-disable flowtype/require-valid-file-annotation */
 
 import 'react-native'
 import React from 'react'
@@ -324,4 +322,3 @@ test('mapStateToProps with no data should not explode', () => {
     pending: false,
   })
 })
-

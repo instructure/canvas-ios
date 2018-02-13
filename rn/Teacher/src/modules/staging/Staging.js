@@ -41,7 +41,7 @@ export default class Staging extends Component<StagingProps, any> {
       .then(path => this.setState({ path }))
   }
 
-  navigate = (nav: (route: RouteOptions) => void) => {
+  navigate = (nav: (route: RouteOptions) => any) => {
     let path = this.state && this.state.path || ''
     try {
       let r = route(path)

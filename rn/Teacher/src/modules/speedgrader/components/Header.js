@@ -31,16 +31,9 @@ import type {
 import SubmissionStatus from '../../submissions/list/SubmissionStatus'
 import Avatar from '../../../common/components/Avatar'
 
-export class Header extends Component {
-  props: HeaderProps
-  state: State
-
-  constructor (props: HeaderProps) {
-    super(props)
-
-    this.state = {
-      showingPicker: false,
-    }
+export class Header extends Component<HeaderProps, State> {
+  state: State = {
+    showingPicker: false,
   }
 
   navigateToContextCard = () => {
@@ -181,7 +174,7 @@ const styles = StyleSheet.create({
   },
 })
 
-export function mapStateToProps (state: AppState, ownProps: RouterProps): HeaderDataProps {
+export function mapStateToProps (state: AppState, ownProps: RouterProps) {
   let assignmentContent = state.entities.assignments[ownProps.assignmentID]
   let quiz = assignmentContent.data.quiz_id && state.entities.quizzes[assignmentContent.data.quiz_id].data
   let course = state.entities.courses[ownProps.courseID]

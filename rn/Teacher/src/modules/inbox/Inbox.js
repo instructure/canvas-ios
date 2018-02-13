@@ -45,13 +45,12 @@ export type InboxProps = {
   courses: Array<Course>,
   next: ?Function,
   navigator: Navigator,
-}
+  refreshing: boolean,
+  refresh: Function,
+} & typeof Actions & typeof CourseActions
 
-export class Inbox extends Component {
-  constructor (props: InboxProps) {
-    super(props)
-    this.state = { selectedCourse: 'all' }
-  }
+export class Inbox extends Component<InboxProps, any> {
+  state = { selectedCourse: 'all' }
 
   componentWillReceiveProps (newProps: InboxProps) {
     if (newProps.scope !== this.props.scope) {
@@ -182,7 +181,7 @@ const styles = StyleSheet.create({
   },
 })
 
-export function mapStateToProps ({ inbox, entities }: AppState): InboxProps {
+export function mapStateToProps ({ inbox, entities }: AppState) {
   const scope = inbox.selectedScope
   const scopeData = inbox[scope]
   const conversations = scopeData.refs.map((id) => inbox.conversations[id] && inbox.conversations[id].data).filter(Boolean)
@@ -200,7 +199,7 @@ export function mapStateToProps ({ inbox, entities }: AppState): InboxProps {
   }
 }
 
-export function handleRefresh (props: InboxProps, next: Function): void {
+export function handleRefresh (props: Object, next?: Function): void {
   if (!props.courses || props.courses.length === 0) {
     props.refreshCourses()
   }
@@ -218,9 +217,10 @@ export function shouldRefresh (props: InboxProps): boolean {
 }
 
 export const Refreshed: any = refresh(
+  // $FlowFixMe
   handleRefresh,
   shouldRefresh,
   props => Boolean(props.pending)
 )(Inbox)
 const Connected = connect(mapStateToProps, { ...Actions, ...CourseActions })(Refreshed)
-export default (Connected: Component<Props, any>)
+export default Connected

@@ -28,7 +28,7 @@ import colors from '../colors'
 import Images from '../../images'
 
 type Props = {
-  avatarURL?: string,
+  avatarURL?: ?string,
   userName: string,
   height?: number, // Width will always be equal to the height
   border?: boolean,

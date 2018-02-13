@@ -50,8 +50,7 @@ type CourseSelectProps = {
   onSelect: (course: Course) => void,
 } & CourseSelectDataProps
 
-export class CourseSelect extends PureComponent {
-  props: CourseSelectProps
+export class CourseSelect extends PureComponent<CourseSelectProps> {
 
   onCourseSelect = (course: Course) => {
     this.props.onSelect(course)

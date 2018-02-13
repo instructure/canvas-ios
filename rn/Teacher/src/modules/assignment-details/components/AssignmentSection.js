@@ -30,7 +30,7 @@ import {
   StyleSheet,
 } from 'react-native'
 
-export default class AssignmentSection extends Component {
+export default class AssignmentSection extends Component<Object> {
 
   render () {
     let dividerStyle = {}

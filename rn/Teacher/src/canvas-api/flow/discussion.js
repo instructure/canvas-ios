@@ -79,6 +79,7 @@ export type Discussion = {
   discussion_type: DiscussionType,
   unlock_at?: ?string,
   can_unpublish: boolean,
+  locked?: boolean,
 }
 
 // api params

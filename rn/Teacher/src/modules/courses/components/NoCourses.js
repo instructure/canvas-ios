@@ -33,7 +33,7 @@ type Props = {
   style?: any,
 }
 
-export class NoCourses extends Component {
+export class NoCourses extends Component<Props> {
   props: Props
 
   render () {

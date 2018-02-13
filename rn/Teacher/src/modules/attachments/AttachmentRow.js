@@ -39,10 +39,10 @@ export type Props = {
   progress: Progress,
   error: ?string,
   testID: string,
-  onRemovePressed: () => void,
-  onPress: () => void,
-  onRetry: () => void,
-  onCancel: () => void,
+  onRemovePressed: () => any,
+  onPress: () => any,
+  onRetry: () => any,
+  onCancel: () => any,
 }
 
 export default class AttachmentRow extends Component<Props, any> {

@@ -51,7 +51,7 @@ export default class UserSubmissionRow extends Component<Props, any> {
   }
 
   submissionStatus = () => {
-    let status = ''
+    let status = 'none'
     if (this.props.submission && this.props.submission.excused) {
       status = 'excused'
     } else {

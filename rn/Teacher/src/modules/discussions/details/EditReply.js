@@ -36,6 +36,8 @@ type OwnProps = {
   indexPath?: number[],
   entryID?: ?string,
   lastReplyAt: string,
+  message: string,
+  isEdit?: boolean,
 }
 
 type State = {
@@ -97,8 +99,8 @@ export class EditReply extends React.Component<Props, any> {
 
   componentWillReceiveProps (props: Props) {
     if (props.error) {
-      this.setState({ pending: false })
       this._handleError(props.error)
+      this.setState({ pending: false })
       return
     }
     if (this.state.pending && !props.pending) {

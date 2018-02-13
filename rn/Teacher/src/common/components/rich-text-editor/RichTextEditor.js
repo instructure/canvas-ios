@@ -30,7 +30,7 @@ import {
 export type Props = {
   onChangeValue?: (value: string) => void,
   onChangeHeight?: (height: number) => void,
-  defaultValue?: string,
+  defaultValue?: ?string,
   showToolbar?: 'never' | 'always' | 'onFocus',
   keyboardAware?: boolean,
   scrollEnabled?: boolean,

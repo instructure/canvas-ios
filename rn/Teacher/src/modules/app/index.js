@@ -16,9 +16,6 @@
 
 // @flow
 
-import find from 'lodash/find'
-import { type Course } from '../../canvas-api'
-
 export type AppId = 'student' | 'teacher'
 export type App = {
   appId: AppId,
@@ -31,14 +28,14 @@ const teacher = {
     if (course.access_restricted_by_date) return false
     const enrollments = course.enrollments
     if (!enrollments) return false
-    return !!find(enrollments, (e) => {
-      return [
+    return enrollments.some((e) =>
+      [
         'teacher',
         'teacherenrollment',
         'designer',
         'ta',
       ].includes(e.type.toLowerCase())
-    })
+    )
   },
 }
 
@@ -70,4 +67,4 @@ export function isStudent (): boolean {
   return app.current().appId === 'student'
 }
 
-export default (app: *)
+export default app

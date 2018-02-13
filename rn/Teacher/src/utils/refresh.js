@@ -32,10 +32,10 @@ export default function refresh (
     isFetchingData: IsFetchingData,
     ttl: ?number = 1000 * 60 * 60, // 1 hour
     ttlKeyExtractor: TtlKeyExtractor = (props) => DEFAULT_TTL_KEY,
-  ): * {
+  ) {
   let updates = {}
 
-  return function (TheirComponent) {
+  return function (TheirComponent: React$ElementType) {
     class Refreshed extends Component<*, RefreshState> {
       state: RefreshState = { refreshing: false }
 

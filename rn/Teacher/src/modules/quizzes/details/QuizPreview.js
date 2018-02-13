@@ -39,7 +39,7 @@ type LocalProps = Props & {
 
 export class QuizPreview extends Component<LocalProps, any> {
 
-  webView: AuthenticatedWebView
+  webView: ?AuthenticatedWebView
 
   constructor (props: any) {
     super(props)
@@ -51,7 +51,7 @@ export class QuizPreview extends Component<LocalProps, any> {
     setTimeout(this.onTimeout, 30000)
   }
 
-  captureRef = (c: AuthenticatedWebView) => {
+  captureRef = (c: ?AuthenticatedWebView) => {
     this.webView = c
   }
 
@@ -87,7 +87,7 @@ export class QuizPreview extends Component<LocalProps, any> {
         window.webkit.messageHandlers.reactNative.postMessage('error')
       }
     `
-    this.webView.injectJavaScript(js)
+    this.webView && this.webView.injectJavaScript(js)
   }
 
   onError = (event: any) => {

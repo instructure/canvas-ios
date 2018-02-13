@@ -17,7 +17,7 @@
 // @flow
 
 import React, { Component } from 'react'
-import ReactNative, {
+import {
   StyleSheet,
 } from 'react-native'
 import { connect } from 'react-redux'
@@ -42,14 +42,11 @@ type Props = {
 } & RefreshProps
 
 type State = {
-  ds: ReactNative.ListViewDataSource,
-  dataSource: ReactNative.ListViewDataSource,
+  ds: RefreshableListView.DataSource,
+  dataSource: RefreshableListView.DataSource,
 }
 
-export class FavoritesList extends Component {
-  props: Props
-  state: State
-
+export class FavoritesList extends Component<Props, State> {
   constructor (props: Props) {
     super(props)
 

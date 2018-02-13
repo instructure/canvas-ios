@@ -25,6 +25,7 @@ const templates = {
 
 const submissionWithHistory = templates.submissionHistory()
 
+// $FlowFixMe
 export const submissionProps: Template<SubmissionDataProps> = template({
   grade: 'B-',
   name: submissionWithHistory.user.name,

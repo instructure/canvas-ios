@@ -42,6 +42,7 @@ export type Props = NavigationProps & {
   courseColor: string,
   course: Course,
   showFilter?: boolean,
+  courseID: string,
 }
 
 function isBranch (id: string): boolean {
@@ -229,7 +230,7 @@ export class PeopleList extends Component<Props, any> {
   _renderSearchBar = () => {
     return <View>
       <TypeAheadSearch
-            ref={r => { this.typeAhead = r }}
+            ref={(r: any) => { this.typeAhead = r }}
             endpoint='/search/recipients'
             parameters={this._buildParams}
             onRequestStarted={this._requestStarted}

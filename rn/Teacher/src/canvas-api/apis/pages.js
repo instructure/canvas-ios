@@ -20,7 +20,7 @@ import { paginate, exhaust } from '../utils/pagination'
 import httpClient from '../httpClient'
 
 export type PageParameters = {
-  title: string,
+  title: ?string,
   body: ?string,
   editing_roles: ?string,
   published: boolean,

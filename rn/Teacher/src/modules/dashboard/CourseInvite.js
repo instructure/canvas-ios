@@ -76,7 +76,7 @@ export default class CourseInvite extends React.Component<Props> {
     }
     const color = colors.checkmarkGreen
     const declineColor = {
-      borderColor: colors.gray4,
+      borderColor: colors.grey4,
     }
     return (
       <DashboardContent

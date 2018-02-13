@@ -29,7 +29,7 @@ const source = require('../../../../lib/zss-rich-text-editor.html')
 type Props = {
   onInputChange?: (value: string) => void,
   onHeightChange?: (height: number) => void,
-  html?: string,
+  html?: ?string,
   onLoad?: () => void,
   onFocus?: () => void,
   onBlur?: () => void,

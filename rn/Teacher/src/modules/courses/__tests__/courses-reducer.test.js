@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-// @flow
+/* eslint-disable flowtype/require-valid-file-annotation */
 
 import { CoursesActions } from '../actions'
 import { CourseSettingsActions } from '../settings/actions'
@@ -80,6 +80,7 @@ describe('courses refresher', () => {
         pending: 0,
         refs: [],
       },
+      permissions: null,
     }
     expect(state).toEqual([{}, {
       [course.id]: expected,

@@ -27,7 +27,7 @@ import { Text } from '../../../common/text'
 
 type SubmissionStatusProps = {
   status: SubmissionStatusProp,
-  style: any,
+  style?: any,
 }
 
 export default class SubmissionStatus extends Component<SubmissionStatusProps, any> {

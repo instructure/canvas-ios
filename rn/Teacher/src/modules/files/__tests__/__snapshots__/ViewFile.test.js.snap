@@ -26,7 +26,6 @@ exports[`ViewFile renders loading while fetching the file 1`] = `
       },
     ]
   }
-  subtitle={null}
   title="Book Report"
 >
   <View

@@ -96,7 +96,8 @@ export class QuizDetails extends Component<Props, any> {
             <Heading1>{quiz.title}</Heading1>
             <View style={style.pointsContainer}>
               { Boolean(quiz.points_possible) &&
-                <Text style={style.points}>{`${quiz.points_possible} ${i18n('pts')}`}</Text>
+                // TODO: fix i18n here
+                <Text style={style.points}>{`${quiz.points_possible || 0} ${i18n('pts')}`}</Text>
               }
               <PublishedIcon published={quiz.published} />
           </View>
@@ -110,7 +111,10 @@ export class QuizDetails extends Component<Props, any> {
             onPress={this.props.assignment && this._viewDueDates}
             testID='quizzes.details.viewDueDatesButton'
           >
-            <AssignmentDates assignment={this.props.assignment || quiz} />
+            <AssignmentDates
+              // $FlowFixMe
+              assignment={this.props.assignment || quiz}
+            />
           </AssignmentSection>
 
           {this.props.showSubmissionSummary &&
@@ -235,6 +239,7 @@ export class QuizDetails extends Component<Props, any> {
     if (description) {
       return (<WebContainer style={{ flex: 1 }} html={description} scrollEnabled={false} navigator={this.props.navigator}/>)
     } else {
+      // $FlowFixMe
       return (<DescriptionDefaultView />)
     }
   }

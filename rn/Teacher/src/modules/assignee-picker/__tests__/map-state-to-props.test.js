@@ -14,9 +14,7 @@
 // limitations under the License.
 //
 
-/**
- * @flow
- */
+/* eslint-disable flowtype/require-valid-file-annotation */
 
 import 'react-native'
 import { searchMapStateToProps, pickerMapStateToProps, type AssigneeSearchProps, type AssigneePickerProps } from '../map-state-to-props'

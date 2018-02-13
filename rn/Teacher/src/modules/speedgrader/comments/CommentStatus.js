@@ -39,17 +39,12 @@ type CommentStatusProps = {
   userID: string,
 }
 
-export default class CommentStatus extends Component {
-  props: CommentStatusProps
-  state: CommentStatusState
-  progress: Animated.Value
+export default class CommentStatus extends Component<CommentStatusProps, CommentStatusState> {
+  state: CommentStatusState = { width: DEVICE_WIDTH }
+  progress: Animated.Value = this.props.drawerState.commentProgress[this.props.userID] || new Animated.Value(0)
 
   constructor (props: CommentStatusProps) {
     super(props)
-
-    this.state = { width: DEVICE_WIDTH }
-
-    this.progress = this.props.drawerState.commentProgress[this.props.userID] || new Animated.Value(0)
     this.props.drawerState.registerCommentProgress(this.props.userID, this.progress)
   }
 

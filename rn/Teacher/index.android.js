@@ -27,7 +27,7 @@ import {
   View,
 } from 'react-native'
 
-export default class Teacher extends Component {
+export default class Teacher extends Component<{}> {
   render () {
     return (
       <View>

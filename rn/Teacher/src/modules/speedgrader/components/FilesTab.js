@@ -30,8 +30,7 @@ import { Text } from '../../../common/text'
 import Images from '../../../images'
 import SpeedGraderActions from '../actions'
 
-export class FilesTab extends Component {
-  props: FileTabProps
+export class FilesTab extends Component<FileTabProps> {
 
   listOfFiles () {
     const submission = this.props.submissionProps.submission
