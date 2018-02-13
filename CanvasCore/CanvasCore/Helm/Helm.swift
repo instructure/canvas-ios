@@ -360,7 +360,6 @@ open class HelmManager: NSObject {
         }
         viewControllers.removeAllObjects()
         dismissAllModals(["animated": false])
-        UIApplication.shared.keyWindow?.rootViewController = UIViewController()
     }
 }
 

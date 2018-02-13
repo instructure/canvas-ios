@@ -52,7 +52,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         setupForPushNotifications()
         preparePSPDFKit()
         window = MasqueradableWindow(frame: UIScreen.main.bounds)
-        window?.backgroundColor = .red
         showLoadingState()
         window?.makeKeyAndVisible()
         UIApplication.shared.reactive.applicationIconBadgeNumber <~ TabBarBadgeCounts.applicationIconBadgeNumber
