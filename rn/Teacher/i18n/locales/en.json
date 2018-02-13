@@ -314,8 +314,8 @@
   "complete_incomplete_15b3a89c": {
     "message": "Complete/Incomplete"
   },
-  "compose_message_45002196": {
-    "message": "Compose message"
+  "compose_message_8abd180a": {
+    "message": "Compose Message"
   },
   "conversation_options_8be926f3": {
     "message": "Conversation options"
@@ -1169,9 +1169,6 @@
   "see_all_ffa422ef": {
     "message": "See All"
   },
-  "select_a_course_40bc3229": {
-    "message": "Select a course"
-  },
   "select_a_course_4710371f": {
     "message": "Select a Course"
   },
@@ -1369,6 +1366,9 @@
   },
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "There was an error loading the attachment."
+  },
+  "there_was_an_error_loading_the_file_19deb988": {
+    "message": "There was an error loading the file"
   },
   "there_was_an_error_loading_the_file_a046378e": {
     "message": "There was an error loading the file."
