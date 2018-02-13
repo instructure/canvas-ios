@@ -204,6 +204,7 @@ public class ExternalToolManager: NSObject {
     private func present(_ url: URL, from viewController: UIViewController, completionHandler: (() -> Void)? = nil) {
         DispatchQueue.main.async {
             let safari = SFSafariViewController(url: url)
+            safari.modalPresentationStyle = .overFullScreen
             viewController.present(safari, animated: true, completion: completionHandler)
         }
     }
