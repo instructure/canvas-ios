@@ -36,6 +36,7 @@ import { RefreshableScrollView } from '../../common/components/RefreshableList'
 import DisclosureIndicator from '../../common/components/DisclosureIndicator'
 import refresh from '../../utils/refresh'
 import AssignmentActions from '../assignments/actions'
+import CourseActions from '../courses/actions'
 import Images from '../../images'
 import Screen from '../../routing/Screen'
 import RCTSFSafariViewController from 'react-native-sfsafariviewcontroller'
@@ -54,6 +55,7 @@ export class AssignmentDetails extends Component<AssignmentDetailsProps, any> {
 
   render () {
     const assignment = this.props.assignmentDetails
+    if (!assignment) return null
 
     let sectionTitleDue = i18n('Due')
 
@@ -72,6 +74,15 @@ export class AssignmentDetails extends Component<AssignmentDetailsProps, any> {
 
     const isExternalTool = submissionTypes.includes('external_tool')
 
+    let doneButton = null
+    if (this.props.navigator.isModal) {
+      doneButton = {
+        title: i18n('Done'),
+        style: 'done',
+        testID: 'assignment-details.done-btn',
+        action: this.dismiss,
+      }
+    }
     return (
       <Screen
         navBarColor={this.props.courseColor}
@@ -86,6 +97,7 @@ export class AssignmentDetails extends Component<AssignmentDetailsProps, any> {
             action: this.editAssignment,
           },
         ]}
+        leftBarButtons={doneButton && [doneButton]}
       >
         <RefreshableScrollView
           refreshing={Boolean(this.props.pending)}
@@ -181,10 +193,13 @@ export class AssignmentDetails extends Component<AssignmentDetailsProps, any> {
               </View>
             </TouchableHighlight>
           }
-
         </RefreshableScrollView>
       </Screen>
     )
+  }
+
+  dismiss = () => {
+    this.props.navigator.dismiss()
   }
 
   onSubmissionDialPress = (type: string) => {
@@ -342,9 +357,16 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => ({
 })
 
 let Refreshed = refresh(
-  props => props.refreshAssignmentDetails(props.courseID, props.assignmentID, props.showSubmissionSummary),
-  props => !props.assignmentDetails,
+  props => {
+    props.refreshAssignmentList(props.courseID)
+    props.refreshCourses()
+    props.refreshAssignmentDetails(props.courseID, props.assignmentID, props.showSubmissionSummary)
+  },
+  props => !props.assignmentDetails || !props.course || !props.courseColor,
   props => Boolean(props.pending)
 )(AssignmentDetails)
-let Connected = connect(mapStateToProps, AssignmentActions, mergeProps)(Refreshed)
+let Connected = connect(mapStateToProps, {
+  ...AssignmentActions,
+  ...CourseActions,
+}, mergeProps)(Refreshed)
 export default (Connected: Component<AssignmentDetailsProps, any>)

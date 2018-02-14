@@ -2527,6 +2527,8 @@ exports[`renders loading 1`] = `
 </RCTSafeAreaView>
 `;
 
+exports[`renders with no assignment 1`] = `null`;
+
 exports[`renders with no submission types 1`] = `
 <RCTSafeAreaView
   style={

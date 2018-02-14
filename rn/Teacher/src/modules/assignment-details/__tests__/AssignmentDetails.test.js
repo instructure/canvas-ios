@@ -46,6 +46,7 @@ let assignment: any = template.assignment()
 let defaultProps = {
   navigator: template.navigator(),
   courseID: course.id,
+  course: course,
   assignmentID: assignment.id,
   refreshAssignmentDetails: (courseID: string, assignmentID: string) => {},
   assignmentDetails: assignment,
@@ -69,6 +70,17 @@ test('renders with no submission types', () => {
   defaultProps.assignmentDetails = template.assignment({ submission_types: ['none'] })
   let tree = renderer.create(
     <AssignmentDetails {...defaultProps} />
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
+test('renders with no assignment', () => {
+  let props = {
+    ...defaultProps,
+    assignmentDetails: null,
+  }
+  let tree = renderer.create(
+    <AssignmentDetails {...props} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })

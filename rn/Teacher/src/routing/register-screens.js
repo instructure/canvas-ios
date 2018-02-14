@@ -90,7 +90,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/settings', wrap(CourseSettings), store)
   registerScreen('/courses/:courseID/user_preferences', wrap(UserCoursePreferences), store)
   registerScreen('/courses/:courseID/assignments', wrap(AssignmentList), store, { canBecomeMaster: true })
-  registerScreen('/courses/:courseID/assignments/:assignmentID', wrap(AssignmentDetails), store)
+  registerScreen('/courses/:courseID/assignments/:assignmentID', wrap(AssignmentDetails), store, { deepLink: true })
   registerScreen('/courses/:courseID/assignments/:assignmentID/edit', wrap(AssignmentDetailsEdit), store)
   registerScreen('/courses/:courseID/assignments/:assignmentID/due_dates', wrap(AssignmentDueDates), store)
   registerScreen('/courses/:courseID/assignments/:assignmentID/assignee-picker', wrap(AssigneePicker), store)

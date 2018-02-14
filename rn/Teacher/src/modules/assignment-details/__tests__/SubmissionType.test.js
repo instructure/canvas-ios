@@ -49,3 +49,14 @@ test('render single type', () => {
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
+
+test('render no data', () => {
+  let props = {
+    ...defaultProps,
+    data: null,
+  }
+  let tree = renderer.create(
+    <SubmissionType {...props} />
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})

@@ -184,7 +184,7 @@ export function mapStateToProps (state: AppState, ownProps: SubmissionBreakdownG
   let pending = false
   let submissionTotalCount = 0
   let summary = { graded: 0, ungraded: 0, not_submitted: 0 }
-  if (assignment && assignment.submissionSummary) {
+  if (assignment && assignment.submissionSummary && assignment.submissionSummary.data) {
     summary = assignment.submissionSummary.data
     submissionTotalCount = summary.graded + summary.ungraded + summary.not_submitted
     pending = Boolean(assignment.pending || assignment.submissionSummary.pending)

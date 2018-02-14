@@ -28,6 +28,7 @@ export type AssignmentDetailsState = {
 export type AssignmentDetailsProps = {
   assignmentDetails: Assignment,
   navigator: Navigator,
+  course: Course,
   courseID: string,
   courseColor?: string,
   courseName?: string,
@@ -35,28 +36,31 @@ export type AssignmentDetailsProps = {
   error?: any,
   pending?: number,
   updateAssignment: Function,
-  refreshAssignment: (courseID: string, assignmentID: string) => Promise<Assignment>,
+  refreshAssignmentDetails: (courseID: string, assignmentID: string, getSubmissionStatus?: boolean) => Promise<Assignment>,
+  refreshAssignmentList: (courseID: string) => Promise<Assignment>,
+  refreshCourses: () => void,
   cancelAssignmentUpdate: (originalAssignment: Assignment) => void,
   getSessionlessLaunchURL: Function,
   showSubmissionSummary: boolean,
 } & RefreshProps
 
 export function mapStateToProps (state: AppState, ownProps: AssignmentDetailsProps): AssignmentDetailsState {
-  const assignment = state.entities.assignments[ownProps.assignmentID].data
-  const course = state.entities.courses[ownProps.courseID]
-  let courseName = ''
+  const assignmentEntity = state.entities.assignments[ownProps.assignmentID]
+  let assignment = assignmentEntity && assignmentEntity.data
 
-  if (course.course) {
-    courseName = course.course.name
-  }
+  const courseEntity = state.entities.courses[ownProps.courseID]
+  let course = courseEntity && courseEntity.course
+  let courseName = course ? course.name : ''
 
-  let enrollment = course && course.course && course.course.enrollments[0]
+  let enrollment = course && course.enrollments && course.enrollments[0]
+  let pending = course && course.assignmentGroups ? course.assignmentGroups.pending : 0
 
   return {
     assignmentDetails: assignment,
-    courseColor: course.color,
+    course: course,
+    courseColor: courseEntity && courseEntity.color,
     courseName,
-    pending: state.entities.courses[ownProps.courseID].assignmentGroups.pending,
+    pending,
     showSubmissionSummary: enrollment && enrollment.type !== 'designer' || false,
   }
 }

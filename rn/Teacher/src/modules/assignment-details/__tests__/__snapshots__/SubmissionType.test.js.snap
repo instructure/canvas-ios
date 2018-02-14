@@ -67,6 +67,8 @@ exports[`render 1`] = `
 </View>
 `;
 
+exports[`render no data 1`] = `null`;
+
 exports[`render single type 1`] = `
 <View
   style={

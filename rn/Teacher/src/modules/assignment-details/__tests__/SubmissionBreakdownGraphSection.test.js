@@ -236,3 +236,28 @@ test('misc functions', () => {
     instance.onPress(null)
   }).not.toThrow()
 })
+
+test('mapStateToProps no submissionSummary data', () => {
+  const course = template.course()
+  const assignment = template.assignment()
+
+  const appState = template.appState()
+
+  let state = {
+    ...appState,
+    entities: {
+      assignments: {
+        [assignment.id]: { data: assignment, pending: 0, submissionSummary: { pending: 1 } },
+      },
+    },
+  }
+
+  const result = mapStateToProps(state, { courseID: course.id, assignmentID: assignment.id })
+  expect(result).toMatchObject({
+    submissionTotalCount: 0,
+    graded: 0,
+    ungraded: 0,
+    not_submitted: 0,
+    pending: true,
+  })
+})

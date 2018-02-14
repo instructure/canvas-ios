@@ -51,13 +51,57 @@ test('map state to props assignment', async () => {
   let props: AssignmentDetailsProps = {
     courseID: course.id,
     assignmentID: assignment.id,
+    course,
     refreshAssignmentDetails: jest.fn(),
     navigator: template.navigator(),
     assignmentDetails: assignment,
     refresh: jest.fn(),
     refreshing: false,
     updateAssignment: jest.fn(),
-    refreshAssignment: jest.fn(),
+    cancelAssignmentUpdate: jest.fn(),
+    getSessionlessLaunchURL: jest.fn(),
+  }
+
+  const result = mapStateToProps(state, props)
+  expect(result).toMatchObject({
+    assignmentDetails: assignment,
+    courseName: course.name,
+  })
+})
+
+test('map state to props no assignment, no enrollment', async () => {
+  let course = template.course({ enrollments: [] })
+  let assignmentGroup = template.assignmentGroup()
+  let assignment = template.assignment()
+
+  let state = template.appState({
+    entities: {
+      courses: {
+        [course.id]: {
+          assignmentGroups: { refs: [assignmentGroup.id] },
+          course: course,
+        },
+      },
+      assignmentGroups: {
+        [assignmentGroup.id]: assignmentGroup,
+      },
+      assignments: {
+        [assignment.id]: { data: assignment, pending: 0 },
+      },
+      gradingPeriods: {},
+    },
+  })
+
+  let props: AssignmentDetailsProps = {
+    courseID: course.id,
+    assignmentID: assignment.id,
+    course: null,
+    refreshAssignmentDetails: jest.fn(),
+    navigator: template.navigator(),
+    assignmentDetails: null,
+    refresh: jest.fn(),
+    refreshing: false,
+    updateAssignment: jest.fn(),
     cancelAssignmentUpdate: jest.fn(),
     getSessionlessLaunchURL: jest.fn(),
   }
@@ -94,13 +138,13 @@ test('map state to props without course', async () => {
   let props: AssignmentDetailsProps = {
     courseID: course.id,
     assignmentID: assignment.id,
+    course,
     refreshAssignmentDetails: jest.fn(),
     navigator: template.navigator(),
     assignmentDetails: assignment,
     refresh: jest.fn(),
     refreshing: false,
     updateAssignment: jest.fn(),
-    refreshAssignment: jest.fn(),
     cancelAssignmentUpdate: jest.fn(),
     getSessionlessLaunchURL: jest.fn(),
   }
@@ -134,13 +178,13 @@ test('map state to props update assignment', async () => {
   let props: AssignmentDetailsProps = {
     courseID: course.id,
     assignmentID: assignment.id,
+    course,
     refreshAssignmentDetails: jest.fn(),
     navigator: template.navigator(),
     assignmentDetails: assignment,
     refresh: jest.fn(),
     refreshing: false,
     updateAssignment: jest.fn(),
-    refreshAssignment: jest.fn(),
     cancelAssignmentUpdate: jest.fn(),
     getSessionlessLaunchURL: jest.fn(),
   }
@@ -174,13 +218,13 @@ test('it returns showSubmissionSummary as false if the user is a designer', () =
   let props: AssignmentDetailsProps = {
     courseID: course.id,
     assignmentID: assignment.id,
+    course,
     refreshAssignmentDetails: jest.fn(),
     navigator: template.navigator(),
     assignmentDetails: assignment,
     refresh: jest.fn(),
     refreshing: false,
     updateAssignment: jest.fn(),
-    refreshAssignment: jest.fn(),
     cancelAssignmentUpdate: jest.fn(),
     getSessionlessLaunchURL: jest.fn(),
   }
