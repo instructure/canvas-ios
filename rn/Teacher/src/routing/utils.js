@@ -50,7 +50,7 @@ function processConfig (config: Object, id: string, configureCallback: (event: s
     } else if ((typeof config[key] !== 'string') && isImageKey(key)) {
       obj[key] = Image.resolveAssetSource(config[key])
     } else if (Array.isArray(config[key])) {
-      obj[key] = config[key].map(c => {
+      obj[key] = config[key].filter(c => c).map(c => {
         return processConfig(c, id, configureCallback)
       })
     } else {
