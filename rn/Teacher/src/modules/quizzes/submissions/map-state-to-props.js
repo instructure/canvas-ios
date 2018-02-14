@@ -40,6 +40,9 @@ export function buildRows (enrollments: Enrollment[],
       grade = gradeProp(submission)
       status = statusProp(submission, dueAt)
       score = submission.score // same as quiz submission keptScore
+      if (submission.workflow_state === 'pending_review') {
+        grade = 'ungraded'
+      }
     } else if (quizSubmission && quizSubmission.data) {
       // only use quiz submission data for ungraded quizzes
       // note: ungraded quiz submissions always have a null data.end_at

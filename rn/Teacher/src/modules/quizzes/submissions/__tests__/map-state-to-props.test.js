@@ -34,7 +34,7 @@ const template = {
 }
 
 describe('QuizSubmissionList mapStateToProps', () => {
-  test('works correctly with the best of the data', () => {
+  it('works correctly with the best of the data', () => {
     const course = template.course()
     const quiz = template.quiz({
       assignment_id: '1',
@@ -181,7 +181,104 @@ describe('QuizSubmissionList mapStateToProps', () => {
     expect(shuffle).toHaveBeenCalled()
   })
 
-  test('missing data and it should still work and not explode', () => {
+  it('ignores grade data if pending review', () => {
+    const course = template.course()
+    const quiz = template.quiz({
+      assignment_id: '1',
+    })
+
+    const u1 = template.user({
+      id: '1',
+    })
+    const e1 = template.enrollment({
+      id: '1',
+      user_id: u1.id,
+      user: u1,
+    })
+    const qs1 = template.quizSubmission({
+      id: '1',
+      quiz_id: quiz.id,
+      user_id: e1.user.id,
+      workflow_state: 'pending_review',
+    })
+
+    const u2 = template.user({
+      id: '2',
+    })
+    const e2 = template.enrollment({
+      id: '2',
+      user_id: u2.id,
+      user: u2,
+    })
+    const s2 = template.submission({
+      id: '2',
+      user_id: e2.user.id,
+      workflow_state: 'pending_review',
+    })
+    const qs2 = template.quizSubmission({
+      id: '2',
+      quiz_id: quiz.id,
+      user_id: e2.user.id,
+      submission_id: s2.id,
+      kept_score: null,
+    })
+
+    const appState = template.appState({
+      entities: {
+        courses: {
+          [course.id]: { enrollments: { refs: [e1.id, e2.id] } },
+        },
+        assignments: {
+          '1': {
+            data: template.assignment({ muted: true }),
+            anonymousGradingOn: true,
+          },
+        },
+        enrollments: {
+          [e1.id]: e1,
+          [e2.id]: e2,
+        },
+        quizzes: {
+          [quiz.id]: {
+            data: quiz,
+            quizSubmissions: { refs: [qs1.id, qs2.id] },
+            submissions: { refs: [s2.id] },
+          },
+        },
+        quizSubmissions: {
+          [qs1.id]: { data: qs1 },
+          [qs2.id]: { data: qs2 },
+        },
+        submissions: {
+          [s2.id]: { submission: s2 },
+        },
+        sections: [template.section({ course_id: course.id })],
+      },
+    })
+
+    const result = mapStateToProps(appState, { courseID: course.id, quizID: quiz.id })
+    expect(result).toMatchObject({
+      quiz: { data: quiz },
+      rows: [
+        {
+          userID: '1',
+          grade: 'ungraded',
+          status: 'submitted',
+          sectionID: '1',
+        },
+        {
+          userID: '2',
+          grade: 'ungraded',
+          status: 'submitted',
+          sectionID: '1',
+        },
+      ],
+      anonymous: true,
+      muted: true,
+    })
+  })
+
+  it('should still work and not explode with missing data', () => {
     const course = template.course()
     const quiz = template.quiz()
     const appState = template.appState()
@@ -193,7 +290,7 @@ describe('QuizSubmissionList mapStateToProps', () => {
     })
   })
 
-  test('anonymous will be true if the quiz has anonymous submissions turned on', () => {
+  it('will set anonymous to true if the quiz has anonymous submissions turned on', () => {
     const course = template.course()
     const quiz = template.quiz({
       anonymous_submissions: true,
@@ -223,7 +320,7 @@ describe('QuizSubmissionList mapStateToProps', () => {
     expect(shuffle).toHaveBeenCalled()
   })
 
-  test('anonymous will be true if the course has anonymous grading turned on', () => {
+  it('will set anonymous to true if the course has anonymous grading turned on', () => {
     const course = template.course()
     const quiz = template.quiz()
 
