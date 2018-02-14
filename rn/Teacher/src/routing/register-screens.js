@@ -139,7 +139,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/announcements/:announcementID', wrap(DiscussionDetails), store, { deepLink: true })
   registerScreen('/courses/:courseID/announcements/:announcementID/edit', wrap(AnnouncementEdit), store)
   registerScreen('/notATeacher', wrap(NoATeacher), store)
-  registerScreen('/courses/:courseID/users/:userID', wrap(ContextCard), store)
+  registerScreen('/courses/:courseID/users/:userID', wrap(ContextCard), store, { deepLink: true })
   registerScreen('/attendance')
   registerScreen('/filter', wrap(Filter), store)
   registerScreen('/to-do', wrap(ToDoList), store, { canBecomeMaster: true })

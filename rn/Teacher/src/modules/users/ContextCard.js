@@ -303,7 +303,7 @@ const styles = StyleSheet.create({
 })
 
 export function shouldRefresh (props: ContextCardProps): boolean {
-  return !props.user || !props.course || !props.enrollment || !props.totalPoints
+  return !props.user || !props.course || !props.enrollment || !props.totalPoints || !props.assignments
 }
 
 export function fetchData (props: ContextCardProps): void {
@@ -380,7 +380,7 @@ export function mapStateToProps (state: AppState, ownProps: ContextCardOwnProps)
     submissions,
     assignments,
     sections,
-    userIsDesigner: course && course.enrollments[0].type === 'designer',
+    userIsDesigner: course && course.enrollments && course.enrollments[0].type === 'designer',
     totalPoints: calculateTotalPoints(state, ownProps),
     numLate: calculateStatus(state, ownProps, 'late'),
     numMissing: calculateStatus(state, ownProps, 'missing'),
