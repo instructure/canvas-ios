@@ -22,6 +22,14 @@ sudo xcode-select -s /Applications/Xcode.app
   (note: if you already have a simulator running, kill it before running that
    command)
 
+### Git LFS
+
+We use [Git LFS](https://git-lfs.github.com/) for data seeding to power the UI automation.
+
+- `brew install git-lfs`
+- `git lfs install`
+- `git lfs fetch`
+
 ### BuddyBuild
 We use BuddyBuild's [selective builds](https://docs.buddybuild.com/builds/selective_builds.html) feature to ensure that only the apps with relevant changes will build.
 
