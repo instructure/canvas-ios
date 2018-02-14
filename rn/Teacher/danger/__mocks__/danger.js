@@ -29,6 +29,7 @@ danger.__setGithub = __setGithub
 danger.__setGit = __setGit
 danger.__TEST__ = true
 
-const warn: Function = jest.fn()
+const warn = jest.fn()
+const markdown = jest.fn()
 
-module.exports = { danger, warn }
+module.exports = { danger, warn, markdown }

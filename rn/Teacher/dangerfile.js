@@ -62,8 +62,14 @@ export function annotations (): void {
 export function jira (): void {
   const title = danger.github.pr.title || ''
   const body = danger.github.pr.body || ''
-  if (!title.match(/mbl-/i) && !body.match(/mbl-/i)) {
+  const issues = (title + ' ' + body).match(/mbl-\d+/gi) || []
+  if (!issues.length) {
     warn('Please add a JIRA ticket number to the pull request.')
+  } else {
+    const set = new Set(issues.map(issue => issue.toUpperCase()))
+    markdown([ ...set ].map(issue =>
+      `[${issue}](https://instructure.atlassian.net/browse/${issue})`
+    ).join('\n'))
   }
 }
 

@@ -22,7 +22,7 @@ import {
   untestedFiles,
   packages,
 } from '../../dangerfile'
-import { warn, danger } from 'danger'
+import { warn, danger, markdown } from 'danger'
 import path from 'path'
 
 jest
@@ -84,15 +84,17 @@ describe('jira', () => {
   })
 
   it('does not warn if there is a reference in the title', () => {
-    danger.__setGithub({ pr: { title: '[MBL-1234] Title', body: 'No reference' } })
+    danger.__setGithub({ pr: { title: '[Mbl-1234] Title', body: 'No reference' } })
     jira()
     expect(warn).not.toHaveBeenCalled()
+    expect(markdown).toHaveBeenCalledWith('[MBL-1234](https://instructure.atlassian.net/browse/MBL-1234)')
   })
 
   it('does not warn if there is a reference in the body', () => {
-    danger.__setGithub({ pr: { title: 'Title', body: 'Body MBL-1234' } })
+    danger.__setGithub({ pr: { title: 'Title', body: 'Body mbl-1234' } })
     jira()
     expect(warn).not.toHaveBeenCalled()
+    expect(markdown).toHaveBeenCalledWith('[MBL-1234](https://instructure.atlassian.net/browse/MBL-1234)')
   })
 })
 
