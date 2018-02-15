@@ -1128,9 +1128,9 @@ bytes@2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/bytes/-/bytes-2.4.0.tgz#7d97196f9d5baf7f6935e25985549edd2a6c2339"
 
-"bytes@https://github.com/n8armstrong/bytes.js":
-  version "2.5.0"
-  resolved "https://github.com/n8armstrong/bytes.js#e92630a888227d9978e5143e2b96f8bffac605b8"
+bytes@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/bytes/-/bytes-3.0.0.tgz#d32815404d689699f85a4ea4fa8755dd13a96048"
 
 caller-path@^0.1.0:
   version "0.1.0"
@@ -4716,9 +4716,9 @@ react-dom@^16.1.1:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
-"react-native-audio@https://github.com/derrh/react-native-audio.git":
-  version "3.2.2"
-  resolved "https://github.com/derrh/react-native-audio.git#98a9d5823acb2779420d9265fe8fb5a81a51f8a9"
+react-native-audio@^3.5.1:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/react-native-audio/-/react-native-audio-3.5.1.tgz#4acf1d5731c51cfdf76b0b8c8e60e0af41783f6e"
 
 react-native-blur@^3.1.2:
   version "3.2.0"
@@ -4738,9 +4738,9 @@ react-native-camera@^0.10.0:
   dependencies:
     prop-types "^15.5.10"
 
-"react-native-counter@https://github.com/instructure/react-native-counter":
+react-native-counter@Kerumen/react-native-counter:
   version "0.2.0"
-  resolved "https://github.com/instructure/react-native-counter#a4f74a5607610d862cc38f9c6e37017b25c1d907"
+  resolved "https://codeload.github.com/Kerumen/react-native-counter/tar.gz/5d951bb214c54f06e684e87a54d27967da859a71"
   dependencies:
     eases "^1.0.8"
 
@@ -4748,9 +4748,9 @@ react-native-device-info@^0.10.1:
   version "0.10.2"
   resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-0.10.2.tgz#350cd68ed43839022ddea0a3a423439f16fa4fba"
 
-"react-native-document-picker@https://github.com/Elyx0/react-native-document-picker.git":
+react-native-document-picker@Elyx0/react-native-document-picker:
   version "2.1.0"
-  resolved "https://github.com/Elyx0/react-native-document-picker.git#15847888478f4c16f648201a54f0a0c349ff3b4c"
+  resolved "https://codeload.github.com/Elyx0/react-native-document-picker/tar.gz/6b4f4f46f118eb7aa501cd1dd4667d4b47e43487"
 
 react-native-fs@^2.3.2:
   version "2.8.1"
@@ -4763,9 +4763,9 @@ react-native-image-picker@^0.26.3:
   version "0.26.7"
   resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-0.26.7.tgz#ad2ee957f7f6cc01396893ea03d84cb2adb2e376"
 
-"react-native-interactable@https://github.com/derrh/react-native-interactable.git":
+react-native-interactable@derrh/react-native-interactable:
   version "0.0.9"
-  resolved "https://github.com/derrh/react-native-interactable.git#8849e730650956a6c658f6314185f812753cd11d"
+  resolved "https://codeload.github.com/derrh/react-native-interactable/tar.gz/8849e730650956a6c658f6314185f812753cd11d"
 
 react-native-keyboard-aware-scroll-view@^0.3.0:
   version "0.3.0"
@@ -4775,9 +4775,9 @@ react-native-keyboard-aware-scroll-view@^0.3.0:
     prop-types "^15.5.10"
     react-timer-mixin "^0.13.3"
 
-"react-native-keyboard-spacer@https://github.com/n8armstrong/react-native-keyboard-spacer.git":
+react-native-keyboard-spacer@n8armstrong/react-native-keyboard-spacer:
   version "0.4.1"
-  resolved "https://github.com/n8armstrong/react-native-keyboard-spacer.git#551938c6690e7bde10d87fcb854ed7a6f5986fb1"
+  resolved "https://codeload.github.com/n8armstrong/react-native-keyboard-spacer/tar.gz/551938c6690e7bde10d87fcb854ed7a6f5986fb1"
 
 react-native-kill-packager@^1.0.0:
   version "1.0.0"
@@ -4789,9 +4789,9 @@ react-native-linear-gradient@^2.2.0:
   dependencies:
     prop-types "^15.5.10"
 
-"react-native-mail@https://github.com/instructure/react-native-mail":
+react-native-mail@instructure/react-native-mail:
   version "3.0.4"
-  resolved "https://github.com/instructure/react-native-mail#3b32b0cb86994d18c20edc0eea11522c2d083a2c"
+  resolved "https://codeload.github.com/instructure/react-native-mail/tar.gz/3b32b0cb86994d18c20edc0eea11522c2d083a2c"
 
 react-native-on-layout@^2.0.2:
   version "2.0.2"
@@ -4803,13 +4803,15 @@ react-native-progress@^3.3.0:
   dependencies:
     prop-types "^15.5.8"
 
-"react-native-search-bar@https://github.com/instructure/react-native-search-bar":
-  version "3.0.1"
-  resolved "https://github.com/instructure/react-native-search-bar#db4422655b4746ece1d986c42f235b18b2d4f978"
+react-native-search-bar@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/react-native-search-bar/-/react-native-search-bar-3.4.0.tgz#cedbdc3cc53c177fe5bdf5129cf7401d8c9b4abb"
+  dependencies:
+    prop-types "^15.5.10"
 
-"react-native-sfsafariviewcontroller@https://github.com/derrh/react-native-sfsafariviewcontroller.git":
+react-native-sfsafariviewcontroller@skycocker/react-native-sfsafariviewcontroller:
   version "0.2.4"
-  resolved "https://github.com/derrh/react-native-sfsafariviewcontroller.git#eaf28f6777a5c01b4f9a764a543ab93929f833f1"
+  resolved "https://codeload.github.com/skycocker/react-native-sfsafariviewcontroller/tar.gz/79821401ec0a33c03afeab506d4b22237276e28f"
 
 react-native-sound@^0.10.4:
   version "0.10.4"
@@ -4825,9 +4827,9 @@ react-native-test-utils@^1.0.6:
   dependencies:
     css-selector-parser "^1.3.0"
 
-"react-native-wkwebview-reborn@https://github.com/instructure/react-native-wkwebview":
-  version "1.8.0"
-  resolved "https://github.com/instructure/react-native-wkwebview#c1e00307b0128ece331fe8f0b8f3c20b8825b8d6"
+react-native-wkwebview-reborn@^1.13.0:
+  version "1.13.0"
+  resolved "https://registry.yarnpkg.com/react-native-wkwebview-reborn/-/react-native-wkwebview-reborn-1.13.0.tgz#a1e9196dd926c86fd1c4c18cdd7fdac543fb7c96"
   dependencies:
     fbjs "^0.8.3"
 
@@ -5955,8 +5957,8 @@ vinyl@^0.5.0:
     replace-ext "0.0.1"
 
 voca@^1.2.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/voca/-/voca-1.3.0.tgz#02751ac839bf0c92e2cfe88e49c393c94dd50ac3"
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/voca/-/voca-1.4.0.tgz#e15ac58b38290b72acc0c330366b6cc7984924d7"
 
 walker@~1.0.5:
   version "1.0.7"

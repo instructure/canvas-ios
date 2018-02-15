@@ -77,7 +77,7 @@ PODS:
     - React
   - react-native-mail (3.0.4):
     - React
-  - react-native-wkwebview (1.8.0):
+  - react-native-wkwebview (1.13.0):
     - React
   - React/ART (0.50.4):
     - React/Core
@@ -126,10 +126,10 @@ PODS:
     - ReactiveSwift (~> 1.1.5)
   - ReactiveSwift (1.1.5):
     - Result (~> 3.2)
-  - ReactNativeSearchBar (3.0.1):
+  - ReactNativeSearchBar (3.4.0):
     - React
   - Result (3.2.4)
-  - RNAudio (3.2.2):
+  - RNAudio (3.5.1):
     - React
   - RNDeviceInfo (0.9.3):
     - React
@@ -299,14 +299,14 @@ SPEC CHECKSUMS:
   react-native-document-picker: 1e75650447a24dd5621d0d02884f004c619547f9
   react-native-image-picker: 3693786b3d5958c8f71deed66ec068b323565e0d
   react-native-mail: 8bf6f105a7df00faad2ad258671611a6ac9f3ba4
-  react-native-wkwebview: 302cd5ea20cb00eda83bfb84cb63171ab97ba6c3
+  react-native-wkwebview: b11cfa2a11bc3a446293373a6bcd994473f33d37
   ReactiveCocoa: b31e754d15937811ede648fc83cd68f5de70a3d4
   ReactiveObjC: ce79989e8684b9086b5f8d0c74bc7b81a8729c9e
   ReactiveObjCBridge: 8a8623e1d5b8f7bb14e5f6eaef94e4a1aa159d51
   ReactiveSwift: 3fea31f8fc49f112d2dc613282c5d395c4d167bb
-  ReactNativeSearchBar: bf1e0740423743603077eb656fd02c1d2235ce5e
+  ReactNativeSearchBar: cb48a15b28341a1eaa0720a67a52bde4e9b32c1c
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
-  RNAudio: df81928c9981683b34b8e8bca4b3b56aa988a0be
+  RNAudio: 7846e34218e3247f3e480b0b20277a3aab24b07b
   RNDeviceInfo: dc3cbee96cd2392cf03d6ff6191dc15f1606a166
   RNFS: 44ef20bb355e894d86a439be668c3c5ac70838a5
   RNSound: dcbb42c698757ee4fa9a8528317c40d18a5deb1b
