@@ -664,9 +664,7 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
         style={null}
       >
         <View>
-          <View
-            style={undefined}
-          >
+          <View>
             <TouchableHighlight
               accessibilityLabel={undefined}
               accessibilityTraits={
@@ -1621,9 +1619,7 @@ exports[`ContextCard renders 1`] = `
         style={null}
       >
         <View>
-          <View
-            style={undefined}
-          >
+          <View>
             <TouchableHighlight
               accessibilityLabel={undefined}
               accessibilityTraits={
@@ -3550,9 +3546,7 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
         style={null}
       >
         <View>
-          <View
-            style={undefined}
-          >
+          <View>
             <TouchableHighlight
               accessibilityLabel={undefined}
               accessibilityTraits={

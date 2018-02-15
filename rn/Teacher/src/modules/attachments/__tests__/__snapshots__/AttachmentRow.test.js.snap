@@ -41,7 +41,7 @@ exports[`AttachmentRow renders 1`] = `
     <View
       accessibilityLabel="Upload complete"
       accessible={true}
-      style={undefined}
+      style={Object {}}
     >
       <Image
         source={

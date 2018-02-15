@@ -801,11 +801,16 @@ exports[`AnnouncementsList renders as student app 1`] = `
             >
               <View
                 style={
-                  Object {
-                    "flex": 1,
-                    "flexDirection": "column",
-                    "justifyContent": "center",
-                  }
+                  Array [
+                    Object {
+                      "flex": 1,
+                      "flexDirection": "column",
+                      "justifyContent": "center",
+                    },
+                    Object {
+                      "marginLeft": 0,
+                    },
+                  ]
                 }
               >
                 <Text
@@ -962,11 +967,16 @@ exports[`AnnouncementsList renders as student app 1`] = `
             >
               <View
                 style={
-                  Object {
-                    "flex": 1,
-                    "flexDirection": "column",
-                    "justifyContent": "center",
-                  }
+                  Array [
+                    Object {
+                      "flex": 1,
+                      "flexDirection": "column",
+                      "justifyContent": "center",
+                    },
+                    Object {
+                      "marginLeft": 0,
+                    },
+                  ]
                 }
               >
                 <Text

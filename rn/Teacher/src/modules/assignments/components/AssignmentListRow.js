@@ -78,7 +78,7 @@ export default class AssignmentListRow extends PureComponent<Props> {
     const { assignment, selected } = this.props
     return (
       <View>
-        <View style={styles.row}>
+        <View>
           <Row
             renderImage={this._renderIcon}
             title={assignment.name}

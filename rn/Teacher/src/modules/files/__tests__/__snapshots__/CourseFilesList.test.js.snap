@@ -154,9 +154,7 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
           style={null}
         >
           <View>
-            <View
-              style={undefined}
-            >
+            <View>
               <View
                 accessibilityComponentType={undefined}
                 accessibilityLabel={undefined}
@@ -413,9 +411,7 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
           style={null}
         >
           <View>
-            <View
-              style={undefined}
-            >
+            <View>
               <View
                 accessibilityComponentType={undefined}
                 accessibilityLabel={undefined}
@@ -672,9 +668,7 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
           style={null}
         >
           <View>
-            <View
-              style={undefined}
-            >
+            <View>
               <View
                 accessibilityComponentType={undefined}
                 accessibilityLabel={undefined}
@@ -1090,9 +1084,7 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
           style={null}
         >
           <View>
-            <View
-              style={undefined}
-            >
+            <View>
               <View
                 accessibilityComponentType={undefined}
                 accessibilityLabel={undefined}
@@ -1349,9 +1341,7 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
           style={null}
         >
           <View>
-            <View
-              style={undefined}
-            >
+            <View>
               <View
                 accessibilityComponentType={undefined}
                 accessibilityLabel={undefined}
@@ -1608,9 +1598,7 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
           style={null}
         >
           <View>
-            <View
-              style={undefined}
-            >
+            <View>
               <View
                 accessibilityComponentType={undefined}
                 accessibilityLabel={undefined}
@@ -2026,9 +2014,7 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
           style={null}
         >
           <View>
-            <View
-              style={undefined}
-            >
+            <View>
               <View
                 accessibilityComponentType={undefined}
                 accessibilityLabel={undefined}
@@ -2285,9 +2271,7 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
           style={null}
         >
           <View>
-            <View
-              style={undefined}
-            >
+            <View>
               <View
                 accessibilityComponentType={undefined}
                 accessibilityLabel={undefined}
@@ -2544,9 +2528,7 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
           style={null}
         >
           <View>
-            <View
-              style={undefined}
-            >
+            <View>
               <View
                 accessibilityComponentType={undefined}
                 accessibilityLabel={undefined}
@@ -2962,9 +2944,7 @@ exports[`CourseFileList sending weird data into the progress update function sho
           style={null}
         >
           <View>
-            <View
-              style={undefined}
-            >
+            <View>
               <View
                 accessibilityComponentType={undefined}
                 accessibilityLabel={undefined}
@@ -3221,9 +3201,7 @@ exports[`CourseFileList sending weird data into the progress update function sho
           style={null}
         >
           <View>
-            <View
-              style={undefined}
-            >
+            <View>
               <View
                 accessibilityComponentType={undefined}
                 accessibilityLabel={undefined}
@@ -3480,9 +3458,7 @@ exports[`CourseFileList sending weird data into the progress update function sho
           style={null}
         >
           <View>
-            <View
-              style={undefined}
-            >
+            <View>
               <View
                 accessibilityComponentType={undefined}
                 accessibilityLabel={undefined}
@@ -3898,9 +3874,7 @@ exports[`CourseFileList should render 1`] = `
           style={null}
         >
           <View>
-            <View
-              style={undefined}
-            >
+            <View>
               <View
                 accessibilityComponentType={undefined}
                 accessibilityLabel={undefined}
@@ -4157,9 +4131,7 @@ exports[`CourseFileList should render 1`] = `
           style={null}
         >
           <View>
-            <View
-              style={undefined}
-            >
+            <View>
               <View
                 accessibilityComponentType={undefined}
                 accessibilityLabel={undefined}
@@ -4416,9 +4388,7 @@ exports[`CourseFileList should render 1`] = `
           style={null}
         >
           <View>
-            <View
-              style={undefined}
-            >
+            <View>
               <View
                 accessibilityComponentType={undefined}
                 accessibilityLabel={undefined}
@@ -4834,9 +4804,7 @@ exports[`CourseFileList should render with folders 1`] = `
           style={null}
         >
           <View>
-            <View
-              style={undefined}
-            >
+            <View>
               <View
                 accessibilityComponentType={undefined}
                 accessibilityLabel={undefined}
@@ -5093,9 +5061,7 @@ exports[`CourseFileList should render with folders 1`] = `
           style={null}
         >
           <View>
-            <View
-              style={undefined}
-            >
+            <View>
               <View
                 accessibilityComponentType={undefined}
                 accessibilityLabel={undefined}
@@ -5352,9 +5318,7 @@ exports[`CourseFileList should render with folders 1`] = `
           style={null}
         >
           <View>
-            <View
-              style={undefined}
-            >
+            <View>
               <View
                 accessibilityComponentType={undefined}
                 accessibilityLabel={undefined}

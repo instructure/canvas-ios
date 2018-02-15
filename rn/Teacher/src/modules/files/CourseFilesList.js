@@ -301,7 +301,7 @@ export class CourseFilesList extends Component<Props, State> {
     }
 
     return (<View>
-              <View style={styles.row}>
+              <View>
                 <Row
                   renderImage={renderImage}
                   title={name}

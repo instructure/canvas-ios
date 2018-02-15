@@ -204,4 +204,5 @@ const style = StyleSheet.create({
     width: 6,
     height: 6,
   },
+  image: {},
 })

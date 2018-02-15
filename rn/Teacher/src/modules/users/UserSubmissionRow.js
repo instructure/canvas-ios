@@ -96,7 +96,7 @@ export default class UserSubmissionRow extends Component<Props, any> {
 
     return (
       <View>
-        <View style={styles.row}>
+        <View>
           <Row
             renderImage={this._renderIcon}
             title={assignment.name}

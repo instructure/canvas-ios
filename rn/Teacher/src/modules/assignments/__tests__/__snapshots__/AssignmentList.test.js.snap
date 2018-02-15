@@ -411,9 +411,7 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
           style={null}
         >
           <View>
-            <View
-              style={undefined}
-            >
+            <View>
               <TouchableHighlight
                 accessibilityLabel={undefined}
                 accessibilityTraits={
@@ -1046,9 +1044,7 @@ exports[`applyFilter will apply a new filter 1`] = `
           style={null}
         >
           <View>
-            <View
-              style={undefined}
-            >
+            <View>
               <TouchableHighlight
                 accessibilityLabel={undefined}
                 accessibilityTraits={
@@ -1642,9 +1638,7 @@ exports[`filter button only shows when there are grading periods 1`] = `
           style={null}
         >
           <View>
-            <View
-              style={undefined}
-            >
+            <View>
               <TouchableHighlight
                 accessibilityLabel={undefined}
                 accessibilityTraits={
@@ -2277,9 +2271,7 @@ exports[`renders correctly 1`] = `
           style={null}
         >
           <View>
-            <View
-              style={undefined}
-            >
+            <View>
               <TouchableHighlight
                 accessibilityLabel={undefined}
                 accessibilityTraits={
@@ -2952,9 +2944,7 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
           style={null}
         >
           <View>
-            <View
-              style={undefined}
-            >
+            <View>
               <TouchableHighlight
                 accessibilityLabel={undefined}
                 accessibilityTraits={
