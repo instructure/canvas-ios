@@ -60,6 +60,7 @@ describe('DiscussionReplies', () => {
       navigator: template.navigator(),
       onPressMoreReplies: jest.fn(),
       maxReplyNodeDepth: 2,
+      discussionLockedForUser: false,
     }
   })
 
@@ -75,6 +76,11 @@ describe('DiscussionReplies', () => {
   it('renders with no user', () => {
     props.reply.user_id = ''
     props.reply.editor_id = ''
+    testRender(props)
+  })
+
+  it('renders with closed discussion as student', () => {
+    props.discussionLockedForUser = true
     testRender(props)
   })
 

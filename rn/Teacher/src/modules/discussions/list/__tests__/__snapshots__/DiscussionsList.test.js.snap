@@ -3,6 +3,7 @@
 exports[`DiscussionsList renders 1`] = `
 <Screen
   drawUnderNavBar={true}
+  leftBarButtons={false}
   navBarColor={null}
   navBarStyle="dark"
   rightBarButtons={
@@ -129,9 +130,105 @@ exports[`DiscussionsList renders an activity indicator while loading 1`] = `
 </View>
 `;
 
+exports[`DiscussionsList renders as student app 1`] = `
+<Screen
+  drawUnderNavBar={true}
+  leftBarButtons={false}
+  navBarColor={null}
+  navBarStyle="dark"
+  rightBarButtons={false}
+  subtitle={undefined}
+  title="Discussions"
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <RCTScrollView
+      ItemSeparatorComponent={undefined}
+      ListEmptyComponent={
+        <ListEmptyComponent
+          title="There are no discussions to display."
+        />
+      }
+      data={Array []}
+      disableVirtualization={false}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      onContentSizeChange={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onRefresh={undefined}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      onViewableItemsChanged={undefined}
+      refreshing={false}
+      renderItem={[Function]}
+      renderSectionHeader={[Function]}
+      scrollEventThrottle={50}
+      sections={Array []}
+      stickyHeaderIndices={Array []}
+      stickySectionHeadersEnabled={true}
+      testID="discussion-list.list"
+      updateCellsBatchingPeriod={50}
+      windowSize={21}
+    >
+      <View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "height": 100,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 16,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              There are no discussions to display.
+            </Text>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</Screen>
+`;
+
 exports[`DiscussionsList renders discussions 1`] = `
 <Screen
   drawUnderNavBar={true}
+  leftBarButtons={false}
   navBarColor={null}
   navBarStyle="dark"
   rightBarButtons={
@@ -1431,6 +1528,7 @@ exports[`DiscussionsList renders discussions 1`] = `
 exports[`DiscussionsList renders discussions with no assignments 1`] = `
 <Screen
   drawUnderNavBar={true}
+  leftBarButtons={false}
   navBarColor={null}
   navBarStyle="dark"
   rightBarButtons={
@@ -2528,6 +2626,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
 exports[`DiscussionsList renders in correct order 1`] = `
 <Screen
   drawUnderNavBar={true}
+  leftBarButtons={false}
   navBarColor={null}
   navBarStyle="dark"
   rightBarButtons={
@@ -3831,6 +3930,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
 exports[`DiscussionsList renders pinned discussions 1`] = `
 <Screen
   drawUnderNavBar={true}
+  leftBarButtons={false}
   navBarColor={null}
   navBarStyle="dark"
   rightBarButtons={

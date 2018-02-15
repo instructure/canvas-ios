@@ -31,6 +31,7 @@ import { formattedDueDateWithStatus, formattedDueDate } from '../../../common/fo
 import { extractDateFromString } from '../../../utils/dateUtils'
 import Images from '../../../images/'
 import { DotSeparated, Text } from '../../../common/text'
+import { isTeacher } from '../../app'
 
 export type Props = {
   discussion: Discussion,
@@ -76,7 +77,7 @@ export default class DiscussionsRow extends PureComponent<Props> {
                 </View>
                 }
               </View>
-              { this._renderKabob() }
+              { isTeacher() && this._renderKabob() }
             </View>
           </Row>
 

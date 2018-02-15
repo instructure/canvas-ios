@@ -27,6 +27,7 @@ import { DiscussionDetails, mapStateToProps, type Props } from '../DiscussionDet
 import explore from '../../../../../test/helpers/explore'
 import setProps from '../../../../../test/helpers/setProps'
 import { setSession } from '../../../../canvas-api'
+import app from '../../../app'
 
 jest
   .mock('Button', () => 'Button')
@@ -40,6 +41,9 @@ jest
   .mock('../../../assignment-details/components/PublishedIcon', () => 'PublishedIcon')
   .mock('LayoutAnimation', () => ({
     easeInEaseOut: jest.fn(),
+  }))
+  .mock('../../../app', () => ({
+    isTeacher: jest.fn(),
   }))
 
 const template = {
@@ -58,7 +62,9 @@ describe('DiscussionDetails', () => {
   let props: Props
   beforeEach(() => {
     jest.clearAllMocks()
-    let discussion = template.discussion({ id: '1', replies: [template.discussionReply()] })
+    setSession(template.session())
+    app.isTeacher = jest.fn(() => true)
+    let discussion = template.discussion({ id: '1', replies: [template.discussionReply()], participants: { [template.userDisplay().id]: template.userDisplay() } })
     props = {
       refresh: jest.fn(),
       refreshing: false,
@@ -88,6 +94,17 @@ describe('DiscussionDetails', () => {
       discussion: undefined,
     }
     testRender(newProps)
+  })
+
+  it('renders in student app', () => {
+    app.isTeacher = jest.fn(() => false)
+    testRender(props)
+  })
+
+  it('renders closed discussion as student', () => {
+    app.isTeacher = jest.fn(() => false)
+    props.discussion.locked_for_user = true
+    testRender(props)
   })
 
   it('renders with replies', () => {

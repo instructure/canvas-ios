@@ -33,6 +33,7 @@ import Images from '../../../images'
 import RowSeparator from '../../../common/components/rows/RowSeparator'
 import ActivityIndicatorView from '../../../common/components/ActivityIndicatorView'
 import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
+import { isTeacher } from '../../app'
 
 type State = AsyncState & {
   announcements: Discussion[],
@@ -56,7 +57,7 @@ export class AnnouncementsList extends Component<Props, any> {
         navBarStyle='dark'
         title={i18n('Announcements')}
         subtitle={this.props.courseName}
-        rightBarButtons={[
+        rightBarButtons={ isTeacher() && [
           {
             image: Images.add,
             testID: 'announcements.list.addButton',

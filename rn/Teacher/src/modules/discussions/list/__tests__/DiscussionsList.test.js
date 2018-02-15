@@ -22,6 +22,7 @@ import renderer from 'react-test-renderer'
 
 import { DiscussionsList, mapStateToProps, type Props } from '../DiscussionsList'
 import explore from '../../../../../test/helpers/explore'
+import app from '../../../app'
 
 jest
   .mock('Button', () => 'Button')
@@ -32,6 +33,9 @@ jest
     showActionSheetWithOptions: jest.fn(),
   }))
   .mock('../../../../routing/Screen')
+  .mock('../../../app', () => ({
+    isTeacher: jest.fn(),
+  }))
 
 const template = {
   ...require('../../../../__templates__/helm'),
@@ -43,6 +47,7 @@ describe('DiscussionsList', () => {
   let props: Props
   beforeEach(() => {
     jest.resetAllMocks()
+    app.isTeacher = jest.fn(() => true)
     props = {
       pending: false,
       refreshing: false,
@@ -57,6 +62,11 @@ describe('DiscussionsList', () => {
   })
 
   it('renders', () => {
+    testRender(props)
+  })
+
+  it('renders as student app', () => {
+    app.isTeacher = jest.fn(() => false)
     testRender(props)
   })
 

@@ -33,6 +33,8 @@ import WebContainer from '../../../common/components/WebContainer'
 import i18n from 'format-message'
 import Navigator from '../../../routing/Navigator'
 import ThreadedLinesView from '../../../common/components/ThreadedLinesView'
+import { isTeacher } from '../../app'
+import { getSession } from '../../../canvas-api'
 
 type ReadState = 'read' | 'unread'
 
@@ -50,6 +52,7 @@ export type Props = {
   navigator: Navigator,
   maxReplyNodeDepth: number,
   isRootReply?: boolean,
+  discussionLockedForUser?: boolean,
 }
 
 export default class Reply extends Component<Props> {
@@ -87,7 +90,7 @@ export default class Reply extends Component<Props> {
   }
 
   render () {
-    let { reply, depth, participants, maxReplyNodeDepth, readState } = this.props
+    let { reply, depth, participants, maxReplyNodeDepth, readState, discussionLockedForUser } = this.props
     participants = participants || {}
 
     let user = this._userFromParticipants(reply, participants)
@@ -136,7 +139,7 @@ export default class Reply extends Component<Props> {
             }
 
             {reply.deleted && <View style={{ marginTop: global.style.defaultPadding }}/>}
-            {(!reply.deleted) && this._renderButtons()}
+            {(!reply.deleted && !discussionLockedForUser) && this._renderButtons()}
             {this._renderMoreRepliesButton(depth, reply, maxReplyNodeDepth)}
 
           </View>
@@ -165,10 +168,10 @@ export default class Reply extends Component<Props> {
        <LinkButton style={style.footer} textAttributes={{ fontWeight: '500', color: colors.grey4 }} onPress={this._actionReply} testID='discussion.reply-btn'>
             {i18n('Reply')}
         </LinkButton>
-        <Text style={[style.footer, { color: colors.grey2, textAlign: 'center', alignSelf: 'center', paddingLeft: 10, paddingRight: 10 }]} accessible={false}>|</Text>
-        <LinkButton style={style.footer} textAttributes={{ fontWeight: '500', color: colors.grey4 }} onPress={this._actionEdit} testID='discussion.edit-btn'>
-            {i18n('Edit')}
-        </LinkButton>
+      {this._canEdit() && <Text style={[style.footer, { color: colors.grey2, textAlign: 'center', alignSelf: 'center', paddingLeft: 10, paddingRight: 10 }]} accessible={false}>|</Text>}
+      {this._canEdit() && <LinkButton style={style.footer} textAttributes={{ fontWeight: '500', color: colors.grey4 }} onPress={this._actionEdit} testID='discussion.edit-btn'>
+          {i18n('Edit')}
+      </LinkButton>}
       </View>
     )
   }
@@ -203,6 +206,18 @@ export default class Reply extends Component<Props> {
         return
       }
     })
+  }
+
+  _canEdit = () => {
+    if (isTeacher()) return true
+
+    const session = getSession()
+    if (!session) return false
+
+    let { reply, participants } = this.props
+    let replyUser = participants[reply.user_id]
+    const currentUser = session.user
+    return currentUser.id === replyUser.id
   }
 }
 

@@ -51,6 +51,7 @@ import Reply from './Reply'
 import { replyFromLocalIndexPath } from '../reducer'
 import { type TraitCollection } from '../../../routing/Navigator'
 import { isRegularDisplayMode } from '../../../routing/utils'
+import { isTeacher } from '../../app'
 
 type OwnProps = {
   announcementID: string,
@@ -160,12 +161,12 @@ export class DiscussionDetails extends Component<Props, any> {
             { !this.props.isAnnouncement &&
               <View style={style.pointsContainer}>
                 {Boolean(points) && <Text style={style.points}>{points}</Text>}
-                  <PublishedIcon published={discussion.published} />
+                  {isTeacher() && <PublishedIcon published={discussion.published} />}
               </View>
             }
         </AssignmentSection>
 
-        {this.props.assignment && <AssignmentSection
+        { isTeacher() && this.props.assignment && <AssignmentSection
           title={i18n('Due')}
           image={Images.assignments.calendar}
           showDisclosureIndicator={true}
@@ -173,7 +174,7 @@ export class DiscussionDetails extends Component<Props, any> {
           <AssignmentDates assignment={this.props.assignment} />
         </AssignmentSection>}
 
-        {assignmentID && <AssignmentSection
+        { isTeacher() && assignmentID && <AssignmentSection
           title={i18n('Submissions')}
           testID='discussions.submission-graphs'
           onPress={() => this.viewSubmissions()}
@@ -219,7 +220,7 @@ export class DiscussionDetails extends Component<Props, any> {
             </View>
           }
 
-          <View style={style.authorContainer}>
+          {!discussion.locked_for_user && <View style={style.authorContainer}>
             <TouchableHighlight
               underlayColor='white'
               onPress={this._onPressReply}
@@ -230,7 +231,7 @@ export class DiscussionDetails extends Component<Props, any> {
                   <Text style={style.link}>{i18n('Reply')}</Text>
                 </View>
             </TouchableHighlight>
-          </View>
+          </View>}
         </View>
 
         { showReplies && this.state.rootNodePath.length === 0 &&
@@ -269,6 +270,7 @@ export class DiscussionDetails extends Component<Props, any> {
     const reply = item
     let participants = discussion && discussion.participants || []
     let path = (this.state.rootNodePath.length > 1) ? this.state.rootNodePath.concat(reply.myPath.slice(1, reply.myPath.length)) : reply.myPath
+    const discussionLockedForUser = discussion.locked_for_user
 
     return (
       <View style={style.row}>
@@ -287,6 +289,7 @@ export class DiscussionDetails extends Component<Props, any> {
           participants={participants}
           onPressMoreReplies={this._onPressMoreReplies}
           isRootReply
+          discussionLockedForUser={discussionLockedForUser}
         />
       </View>
     )
@@ -346,7 +349,7 @@ export class DiscussionDetails extends Component<Props, any> {
             action: this.props.navigator.dismiss,
           },
         ]}
-        rightBarButtons={[
+        rightBarButtons={ isTeacher() && [
           {
             image: Images.kabob,
             testID: 'discussions.details.edit.button',

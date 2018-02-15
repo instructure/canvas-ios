@@ -22,6 +22,7 @@ import renderer from 'react-test-renderer'
 
 import { AnnouncementsList, type Props, mapStateToProps } from '../AnnouncementsList'
 import explore from '../../../../../test/helpers/explore'
+import app from '../../../app'
 
 const template = {
   ...require('../../../../__templates__/discussion'),
@@ -38,6 +39,8 @@ jest
 describe('AnnouncementsList', () => {
   let props: Props
   beforeEach(() => {
+    jest.resetAllMocks()
+    app.setCurrentApp('teacher')
     props = {
       courseID: '1',
       refreshing: false,
@@ -63,6 +66,11 @@ describe('AnnouncementsList', () => {
   })
 
   it('renders', () => {
+    testRender(props)
+  })
+
+  it('renders as student app', () => {
+    app.setCurrentApp('student')
     testRender(props)
   })
 

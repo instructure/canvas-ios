@@ -33,7 +33,6 @@
 
 #import "WebBrowserViewController.h"
 #import "ThreadedDiscussionViewController.h"
-#import "CBIDiscussionsTabViewModel.h"
 #import "CBIFilesTabViewModel.h"
 #import "CBIFolderViewModel.h"
 #import "CBISyllabusDetailViewController.h"
@@ -128,111 +127,6 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
     };
 }
 
-- (id(^)(NSDictionary *params, id viewModel)) courseGroupAnnouncementsBlockForClass:(Class)type
-{
-    return ^ (NSDictionary *params, id viewModel) {
-        if(viewModel == nil){
-            CKIModel *context = [type modelWithID:[params[@"contextID"] description]];
-            CKITab *announcementsTab = [CKITab modelWithID:@"announcements" context:context];
-            viewModel = [CBIAnnouncementsTabViewModel viewModelForModel:announcementsTab];
-            ((CBIColorfulViewModel *)viewModel).viewControllerTitle = NSLocalizedString(@"Announcements", @"Title for the announcements view controller");
-        }
-
-        ((CBIColorfulViewModel *)viewModel).tintColor = [self tintColorForContextID:params[@"contextID"] contextClass:type];
-        
-        return [self MLVCTableViewControllerForViewModel:viewModel screenName:@"Announcements List Screen" canBeMaster:YES style:UITableViewStyleGrouped];
-    };
-}
-
-- (id(^)(NSDictionary *params, CBIAnnouncementViewModel *viewModel)) courseGroupAnnouncementBlockForClass:(Class)type
-{
-    return ^ (NSDictionary *params, CBIAnnouncementViewModel *viewModel) {
-        NSString *contextID = [params[@"contextID"] description];
-        NSString *topicID = [params[@"announcementID"] description];
-        
-        CKContextInfo *info;
-        if (type == [CKICourse class]) {
-            info = [CKContextInfo contextInfoFromCourseIdent:[contextID longLongValue]];
-        } else {
-            info = [CKContextInfo contextInfoFromGroupIdent:[contextID longLongValue]];
-        }
-
-        ThreadedDiscussionViewController *discussionViewController = [ThreadedDiscussionViewController new];
-        discussionViewController.viewModel = viewModel;
-        [discussionViewController trackScreenViewWithScreenName:@"Announcement Screen"];
-
-        discussionViewController.contextInfo = info;
-        discussionViewController.topicIdent = [topicID longLongValue];
-        discussionViewController.canvasAPI = CKCanvasAPI.currentAPI;
-        [discussionViewController performSelector:@selector(fetchTopic:) withObject:@YES];
-        return discussionViewController;
-    };
-}
-
-- (id(^)(NSDictionary *params, id viewModel)) courseGroupDiscussionsBlockForClass:(Class)type
-{
-    return ^ (NSDictionary *params, CBIDiscussionsTabViewModel *viewModel) {
-        if (viewModel == nil) {
-            CKIModel *context = [type modelWithID:[params[@"contextID"] description]];
-            CKITab *tab = [CKITab modelWithID:@"discussions" context:context];
-            viewModel = [CBIDiscussionsTabViewModel viewModelForModel:tab];
-            ((CBIColorfulViewModel *)viewModel).viewControllerTitle = NSLocalizedString(@"Discussions",@"Title for Discussions view controller");
-        }
-
-        ((CBIColorfulViewModel *)viewModel).tintColor = [self tintColorForContextID:params[@"contextID"] contextClass:type];
-        
-        return [self MLVCTableViewControllerForViewModel:viewModel screenName:@"Discussions List Screen" canBeMaster:YES style:UITableViewStyleGrouped];
-    };
-}
-
-- (id(^)(NSDictionary *params, id viewModel)) courseGroupDiscussionTopicsBlockForClass:(Class)type
-{
-    return ^ (NSDictionary *params, CBIDiscussionsTabViewModel *viewModel) {
-        if (viewModel == nil) {
-            CKIModel *context = [type modelWithID:[params[@"contextID"] description]];
-            CKITab *tab = [CKITab modelWithID:@"discussions" context:context];
-            viewModel = [CBIDiscussionsTabViewModel viewModelForModel:tab];
-            ((CBIColorfulViewModel *)viewModel).viewControllerTitle = NSLocalizedString(@"Discussion Topics",@"Title for Discussion Topics view controller");
-        }
-
-        ((CBIColorfulViewModel *)viewModel).tintColor = [self tintColorForContextID:params[@"contextID"] contextClass:type];
-        
-        return [self MLVCTableViewControllerForViewModel:viewModel screenName:@"Discussion Topics List Screen" canBeMaster:YES style:UITableViewStyleGrouped];
-    };
-}
-
-- (id(^)(NSDictionary *params, id viewModel)) courseGroupDiscussionTopicBlockForClass:(Class)type
-{
-
-    return ^ UIViewController *(NSDictionary *params, id viewModel) {
-        if ([self moduleItemControllerForParams:params forClass:type]) {
-            return [self moduleItemControllerForParams:params forClass:type];
-        }
-
-        NSString *contextID = [params[@"contextID"] description];
-        NSString *topicID = [params[@"topicID"] description];
-
-        ThreadedDiscussionViewController *discussionViewController = [ThreadedDiscussionViewController new];
-        [discussionViewController trackScreenViewWithScreenName:@"Discussion Screen"];
-        
-        discussionViewController.viewModel = viewModel;
-
-        ((CBIColorfulViewModel *)viewModel).tintColor = [self tintColorForContextID:params[@"contextID"] contextClass:type];
-
-        discussionViewController.topicIdent = [topicID longLongValue];
-        discussionViewController.canvasAPI = CKCanvasAPI.currentAPI;
-
-        if (type == [CKICourse class]) {
-            discussionViewController.contextInfo = [CKContextInfo contextInfoFromCourseIdent:[contextID longLongValue]];
-        } else if(type == [CKIGroup class]) {
-            discussionViewController.contextInfo = [CKContextInfo contextInfoFromGroupIdent:[contextID longLongValue]];
-        }
-    
-        [discussionViewController performSelector:@selector(fetchTopic:) withObject:@NO];
-        return discussionViewController;
-    };
-}
-
 - (id(^)(NSDictionary *params, id viewModel)) usersDetailBlockForClass:(Class)type
 {
     return ^ (NSDictionary *params, id viewModel) {
@@ -323,14 +217,6 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
     };
     
     [self addRoutesWithDictionary:@{
-        @"/courses/:contextID/announcements" : [self courseGroupAnnouncementsBlockForClass:[CKICourse class]],
-        @"/groups/:contextID/announcements" : [self courseGroupAnnouncementsBlockForClass:[CKIGroup class]],
-        @"/courses/:contextID/discussions" : [self courseGroupDiscussionsBlockForClass:[CKICourse class]],
-        @"/groups/:contextID/discussions" : [self courseGroupDiscussionsBlockForClass:[CKIGroup class]],
-        //This is identical to @"/courses/:courseID/discussions" but both routes are needed
-        @"/courses/:contextID/discussion_topics" : [self courseGroupDiscussionTopicsBlockForClass:[CKICourse class]],
-        @"/groups/:contextID/discussion_topics" : [self courseGroupDiscussionTopicsBlockForClass:[CKIGroup class]],
-        
         // TODO: SoPersistent assignments
         @"/courses/:courseID/assignments/:assignmentID" : ^ (NSDictionary *params, id viewModel) {
             if ([self moduleItemControllerForParams:params forClass:[CKICourse class]]) {
@@ -387,10 +273,6 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
         
             return [self MLVCTableViewControllerForViewModel:viewModel screenName:@"Folder List Screen" canBeMaster:YES style:UITableViewStylePlain];
         },
-        @"/courses/:contextID/discussion_topics/:topicID" : [self courseGroupDiscussionTopicBlockForClass:[CKICourse class]],
-        @"/groups/:contextID/discussion_topics/:topicID" : [self courseGroupDiscussionTopicBlockForClass:[CKIGroup class]],
-        @"/courses/:contextID/announcements/:announcementID" : [self courseGroupAnnouncementBlockForClass:[CKICourse class]],
-        @"/groups/:contextID/announcements/:announcementID" : [self courseGroupAnnouncementBlockForClass:[CKIGroup class]],
         @"/courses/:contextID/people" : [self usersBlockForClass:[CKICourse class]],
         @"/courses/:contextID/users" : [self usersBlockForClass:[CKICourse class]],
         @"/groups/:contextID/people" : [self usersBlockForClass:[CKIGroup class]],

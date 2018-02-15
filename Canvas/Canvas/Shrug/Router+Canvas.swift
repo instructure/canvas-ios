@@ -105,6 +105,32 @@ extension Router {
             return LTIViewController(toolName: "", courseID: contextID.id, launchURL: url, in: currentSession)
         }
 
+        // Discussions
+        let topics: (ContextID, [String: Any]) -> UIViewController = { contextID, _ in
+            return HelmViewController(
+                moduleName: "/courses/:courseID/discussion_topics",
+                props: contextID.props
+            )
+        }
+        let announcementsHandler: (ContextID, [String: Any]) -> UIViewController = { contextID, _ in
+            return HelmViewController(
+                moduleName: "/courses/:courseID/announcements",
+                props: contextID.props
+            )
+        }
+        addContextRoute([.course, .group], subPath: "discussion_topics", handler: topics)
+        addContextRoute([.course, .group], subPath: "discussions", handler: topics)
+        addContextRoute([.course, .group], subPath: "announcements", handler: announcementsHandler)
+        let discussion: (ContextID, [String: Any]) throws -> UIViewController = { contextID, params in
+            let discussionID: String = try params.stringID("discussionID")
+            return HelmViewController(
+                    moduleName: "/courses/:courseID/discussion_topics/:discussionID",
+                    props: ["courseID": contextID.id, "discussionID": discussionID]
+            )
+        }
+        addContextRoute([.course, .group], subPath: "discussion_topics/:discussionID", handler: discussion)
+        addContextRoute([.course, .group], subPath: "discussions/:discussionID", handler: discussion)
+
         // Modules
         addContextRoute([.course], subPath: "modules") { contextID, _ in
             // Restrict access to Modules tab if it's hidden (unless it is the home tab)
@@ -175,6 +201,21 @@ extension Router {
                     "embedInNavigationController": true,
                 ]
             )
+        }
+    }
+}
+
+extension ContextID {
+    var props: [String: Any] {
+        switch context {
+        case .course:
+            return ["context": "courses", "contextID": id, "courseID" : id]
+        case .group:
+            return ["context": "groups", "contextID": id]
+        case .account:
+            return ["context": "accounts", "contextID": id]
+        case .user:
+            return ["context": "users", "contextID": id]
         }
     }
 }

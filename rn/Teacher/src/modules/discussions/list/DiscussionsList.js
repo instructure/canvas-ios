@@ -38,6 +38,7 @@ import Screen from '../../../routing/Screen'
 import Images from '../../../images'
 import ActivityIndicatorView from '../../../common/components/ActivityIndicatorView'
 import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
+import { isTeacher } from '../../app'
 
 const { refreshDiscussions } = ListActions
 const { updateDiscussion, deleteDiscussion } = EditActions
@@ -175,7 +176,14 @@ export class DiscussionsList extends Component<Props, any> {
         navBarColor={this.props.courseColor}
         navBarStyle='dark'
         drawUnderNavBar={true}
-        rightBarButtons={[
+        leftBarButtons={this.props.navigator.isModal && [
+          {
+            title: i18n('Done'),
+            testID: 'discussions.list.dismiss.button',
+            action: this.props.navigator.dismiss,
+          },
+        ]}
+        rightBarButtons={ isTeacher() && [
           {
             image: Images.add,
             testID: 'discussions.list.add.button',

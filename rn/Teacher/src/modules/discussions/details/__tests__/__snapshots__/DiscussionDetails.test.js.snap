@@ -55,6 +55,16 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                 "last_reply_at": "2016-12-11T04:03:17Z",
                 "message": "<p>And why?</p>",
                 "only_graders_can_rate": false,
+                "participants": Object {
+                  "1": Object {
+                    "avatar_image_url": "http://www.fillmurray.com/100/100",
+                    "avatar_url": "http://www.fillmurray.com/100/100",
+                    "display_name": "The Donald",
+                    "html_url": "",
+                    "id": "1",
+                    "short_name": "The Donald",
+                  },
+                },
                 "permissions": Object {
                   "attach": true,
                   "delete": true,
@@ -168,6 +178,16 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                 "last_reply_at": "2016-12-11T04:03:17Z",
                 "message": "<p>And why?</p>",
                 "only_graders_can_rate": false,
+                "participants": Object {
+                  "1": Object {
+                    "avatar_image_url": "http://www.fillmurray.com/100/100",
+                    "avatar_url": "http://www.fillmurray.com/100/100",
+                    "display_name": "The Donald",
+                    "html_url": "",
+                    "id": "1",
+                    "short_name": "The Donald",
+                  },
+                },
                 "permissions": Object {
                   "attach": true,
                   "delete": true,
@@ -1201,7 +1221,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
               >
                 <View />
                 <Avatar
-                  avatarURL=""
+                  avatarURL="http://www.fillmurray.com/100/100"
                   height={24}
                   onPress={[Function]}
                   style={
@@ -1214,7 +1234,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                     }
                   }
                   testID="reply.avatar"
-                  userName="?"
+                  userName="The Donald"
                 />
                 <View
                   style={
@@ -1265,7 +1285,1857 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                       ]
                     }
                   >
-                    Unknown Author
+                    The Donald
+                  </Text>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "color": "#8B969E",
+                          "fontSize": 12,
+                          "marginBottom": 16,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
+                    May 23 at 11:12 AM
+                  </Text>
+                  <View
+                    onLayout={[Function]}
+                    style={
+                      Object {
+                        "flex": 1,
+                      }
+                    }
+                    testID="web-container.view"
+                  />
+                  <View
+                    style={
+                      Object {
+                        "flexDirection": "row",
+                        "justifyContent": "flex-start",
+                        "marginTop": 16,
+                      }
+                    }
+                  >
+                    <TouchableOpacity
+                      accessibilityTraits="button"
+                      hitSlop={
+                        Object {
+                          "bottom": 15,
+                          "left": 15,
+                          "right": 15,
+                          "top": 15,
+                        }
+                      }
+                      onPress={[Function]}
+                      style={
+                        Object {
+                          "alignSelf": "flex-end",
+                          "paddingBottom": 2,
+                          "paddingRight": 2,
+                          "paddingTop": 2,
+                        }
+                      }
+                      testID="discussion.reply-btn"
+                      textAttributes={
+                        Object {
+                          "color": "#8B969E",
+                          "fontWeight": "500",
+                        }
+                      }
+                    >
+                      <View>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Array [
+                                Object {
+                                  "color": "#374A59",
+                                  "fontSize": 14,
+                                },
+                                Object {
+                                  "fontFamily": ".SFUIDisplay-bold",
+                                },
+                                Object {
+                                  "color": "#374A59",
+                                },
+                                Object {
+                                  "color": "#8B969E",
+                                  "fontWeight": "500",
+                                },
+                              ],
+                              Object {
+                                "fontFamily": ".SFUIDisplay-medium",
+                              },
+                            ]
+                          }
+                        >
+                          Reply
+                        </Text>
+                      </View>
+                    </TouchableOpacity>
+                    <Text
+                      accessible={false}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Array [
+                            Object {
+                              "alignSelf": "flex-end",
+                              "paddingBottom": 2,
+                              "paddingRight": 2,
+                              "paddingTop": 2,
+                            },
+                            Object {
+                              "alignSelf": "center",
+                              "color": "#C7CDD1",
+                              "paddingLeft": 10,
+                              "paddingRight": 10,
+                              "textAlign": "center",
+                            },
+                          ],
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                        ]
+                      }
+                    >
+                      |
+                    </Text>
+                    <TouchableOpacity
+                      accessibilityTraits="button"
+                      hitSlop={
+                        Object {
+                          "bottom": 15,
+                          "left": 15,
+                          "right": 15,
+                          "top": 15,
+                        }
+                      }
+                      onPress={[Function]}
+                      style={
+                        Object {
+                          "alignSelf": "flex-end",
+                          "paddingBottom": 2,
+                          "paddingRight": 2,
+                          "paddingTop": 2,
+                        }
+                      }
+                      testID="discussion.edit-btn"
+                      textAttributes={
+                        Object {
+                          "color": "#8B969E",
+                          "fontWeight": "500",
+                        }
+                      }
+                    >
+                      <View>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Array [
+                                Object {
+                                  "color": "#374A59",
+                                  "fontSize": 14,
+                                },
+                                Object {
+                                  "fontFamily": ".SFUIDisplay-bold",
+                                },
+                                Object {
+                                  "color": "#374A59",
+                                },
+                                Object {
+                                  "color": "#8B969E",
+                                  "fontWeight": "500",
+                                },
+                              ],
+                              Object {
+                                "fontFamily": ".SFUIDisplay-medium",
+                              },
+                            ]
+                          }
+                        >
+                          Edit
+                        </Text>
+                      </View>
+                    </TouchableOpacity>
+                  </View>
+                  <View />
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        />
+      </View>
+    </RCTScrollView>
+  </View>
+</Screen>
+`;
+
+exports[`DiscussionDetails renders closed discussion as student 1`] = `
+<Screen
+  leftBarButtons={false}
+  navBarColor="#fff"
+  navBarStyle="dark"
+  onTraitCollectionChange={[Function]}
+  rightBarButtons={false}
+  subtitle="HOTS For Dummies"
+  title="Discussion Details"
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <RCTScrollView
+      ItemSeparatorComponent={undefined}
+      data={
+        Array [
+          Object {
+            "data": Array [
+              Object {
+                "allow_rating": false,
+                "assignment": Object {
+                  "assignment_group_id": 1376,
+                  "automatic_peer_reviews": false,
+                  "course_id": "987654321",
+                  "created_at": "2017-03-17T19:15:25Z",
+                  "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+                  "due_at": "2037-06-01T05:59:00Z",
+                  "grade_group_students_individually": false,
+                  "grading_type": "points",
+                  "group_category_id": null,
+                  "has_overrides": false,
+                  "html_url": "http://hostname.tld/whatever",
+                  "id": "123456789",
+                  "lock_at": "2037-06-01T05:59:59Z",
+                  "name": "learn to write code",
+                  "needs_grading_count": 0,
+                  "only_visible_to_overrides": false,
+                  "overrides": Array [],
+                  "peer_reviews": false,
+                  "points_possible": 20,
+                  "position": 1,
+                  "published": true,
+                  "rubric": null,
+                  "rubric_assessment": Object {},
+                  "rubric_settings": null,
+                  "submission_types": Array [
+                    "online_text_entry",
+                    "online_url",
+                    "media_recording",
+                    "online_upload",
+                  ],
+                  "unlock_at": "2017-03-17T06:00:00Z",
+                  "unpublishable": false,
+                  "updated_at": "2017-03-17T19:15:25Z",
+                },
+                "assignment_id": "123456789",
+                "author": Object {
+                  "avatar_image_url": "http://www.fillmurray.com/100/100",
+                  "avatar_url": "http://www.fillmurray.com/100/100",
+                  "display_name": "The Donald",
+                  "html_url": "",
+                  "id": "1",
+                  "short_name": "The Donald",
+                },
+                "can_unpublish": true,
+                "delayed_post_at": null,
+                "discussion_subentry_count": 2,
+                "discussion_type": "side_comment",
+                "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
+                "id": "1",
+                "last_reply_at": "2016-12-11T04:03:17Z",
+                "locked_for_user": true,
+                "message": "<p>And why?</p>",
+                "only_graders_can_rate": false,
+                "participants": Object {
+                  "1": Object {
+                    "avatar_image_url": "http://www.fillmurray.com/100/100",
+                    "avatar_url": "http://www.fillmurray.com/100/100",
+                    "display_name": "The Donald",
+                    "html_url": "",
+                    "id": "1",
+                    "short_name": "The Donald",
+                  },
+                },
+                "permissions": Object {
+                  "attach": true,
+                  "delete": true,
+                  "reply": true,
+                  "update": true,
+                },
+                "pinned": false,
+                "position": 1,
+                "posted_at": "2016-11-11T04:03:17Z",
+                "published": true,
+                "read_state": "read",
+                "replies": Array [
+                  Object {
+                    "created_at": "2017-05-23T17:12:04Z",
+                    "id": "25472827",
+                    "message": "<p>1.0</p>",
+                    "parent_id": null,
+                    "rating_count": null,
+                    "rating_sum": null,
+                    "replies": Array [],
+                    "updated_at": "2017-05-23T17:12:04Z",
+                    "user_id": "1",
+                  },
+                ],
+                "require_initial_post": false,
+                "sort_by_rating": false,
+                "subscribed": true,
+                "title": "Dear Ivy Iversen, your last name cannot start with your first name",
+                "unlock_at": null,
+                "unread_count": 1,
+                "user_can_see_posts": true,
+                "user_name": "Ivy Iversen",
+              },
+            ],
+            "renderItem": [Function],
+            "title": "",
+          },
+          Object {
+            "data": Array [
+              Object {
+                "created_at": "2017-05-23T17:12:04Z",
+                "depth": 0,
+                "id": "25472827",
+                "message": "<p>1.0</p>",
+                "myPath": Array [
+                  0,
+                ],
+                "parent_id": null,
+                "rating_count": null,
+                "rating_sum": null,
+                "readState": "read",
+                "replies": Array [],
+                "updated_at": "2017-05-23T17:12:04Z",
+                "user_id": "1",
+              },
+            ],
+            "renderItem": [Function],
+            "title": "",
+          },
+        ]
+      }
+      disableVirtualization={false}
+      extraData={Array []}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      onContentSizeChange={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onRefresh={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      onViewableItemsChanged={[Function]}
+      refreshControl={
+        <RefreshControlMock
+          onRefresh={[Function]}
+          progressViewOffset={undefined}
+          refreshing={false}
+        />
+      }
+      refreshing={false}
+      renderItem={[Function]}
+      scrollEventThrottle={50}
+      sections={
+        Array [
+          Object {
+            "data": Array [
+              Object {
+                "allow_rating": false,
+                "assignment": Object {
+                  "assignment_group_id": 1376,
+                  "automatic_peer_reviews": false,
+                  "course_id": "987654321",
+                  "created_at": "2017-03-17T19:15:25Z",
+                  "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+                  "due_at": "2037-06-01T05:59:00Z",
+                  "grade_group_students_individually": false,
+                  "grading_type": "points",
+                  "group_category_id": null,
+                  "has_overrides": false,
+                  "html_url": "http://hostname.tld/whatever",
+                  "id": "123456789",
+                  "lock_at": "2037-06-01T05:59:59Z",
+                  "name": "learn to write code",
+                  "needs_grading_count": 0,
+                  "only_visible_to_overrides": false,
+                  "overrides": Array [],
+                  "peer_reviews": false,
+                  "points_possible": 20,
+                  "position": 1,
+                  "published": true,
+                  "rubric": null,
+                  "rubric_assessment": Object {},
+                  "rubric_settings": null,
+                  "submission_types": Array [
+                    "online_text_entry",
+                    "online_url",
+                    "media_recording",
+                    "online_upload",
+                  ],
+                  "unlock_at": "2017-03-17T06:00:00Z",
+                  "unpublishable": false,
+                  "updated_at": "2017-03-17T19:15:25Z",
+                },
+                "assignment_id": "123456789",
+                "author": Object {
+                  "avatar_image_url": "http://www.fillmurray.com/100/100",
+                  "avatar_url": "http://www.fillmurray.com/100/100",
+                  "display_name": "The Donald",
+                  "html_url": "",
+                  "id": "1",
+                  "short_name": "The Donald",
+                },
+                "can_unpublish": true,
+                "delayed_post_at": null,
+                "discussion_subentry_count": 2,
+                "discussion_type": "side_comment",
+                "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
+                "id": "1",
+                "last_reply_at": "2016-12-11T04:03:17Z",
+                "locked_for_user": true,
+                "message": "<p>And why?</p>",
+                "only_graders_can_rate": false,
+                "participants": Object {
+                  "1": Object {
+                    "avatar_image_url": "http://www.fillmurray.com/100/100",
+                    "avatar_url": "http://www.fillmurray.com/100/100",
+                    "display_name": "The Donald",
+                    "html_url": "",
+                    "id": "1",
+                    "short_name": "The Donald",
+                  },
+                },
+                "permissions": Object {
+                  "attach": true,
+                  "delete": true,
+                  "reply": true,
+                  "update": true,
+                },
+                "pinned": false,
+                "position": 1,
+                "posted_at": "2016-11-11T04:03:17Z",
+                "published": true,
+                "read_state": "read",
+                "replies": Array [
+                  Object {
+                    "created_at": "2017-05-23T17:12:04Z",
+                    "id": "25472827",
+                    "message": "<p>1.0</p>",
+                    "parent_id": null,
+                    "rating_count": null,
+                    "rating_sum": null,
+                    "replies": Array [],
+                    "updated_at": "2017-05-23T17:12:04Z",
+                    "user_id": "1",
+                  },
+                ],
+                "require_initial_post": false,
+                "sort_by_rating": false,
+                "subscribed": true,
+                "title": "Dear Ivy Iversen, your last name cannot start with your first name",
+                "unlock_at": null,
+                "unread_count": 1,
+                "user_can_see_posts": true,
+                "user_name": "Ivy Iversen",
+              },
+            ],
+            "renderItem": [Function],
+            "title": "",
+          },
+          Object {
+            "data": Array [
+              Object {
+                "created_at": "2017-05-23T17:12:04Z",
+                "depth": 0,
+                "id": "25472827",
+                "message": "<p>1.0</p>",
+                "myPath": Array [
+                  0,
+                ],
+                "parent_id": null,
+                "rating_count": null,
+                "rating_sum": null,
+                "readState": "read",
+                "replies": Array [],
+                "updated_at": "2017-05-23T17:12:04Z",
+                "user_id": "1",
+              },
+            ],
+            "renderItem": [Function],
+            "title": "",
+          },
+        ]
+      }
+      stickyHeaderIndices={
+        Array [
+          0,
+          3,
+        ]
+      }
+      stickySectionHeadersEnabled={true}
+      updateCellsBatchingPeriod={50}
+      windowSize={21}
+    >
+      <RCTRefreshControl />
+      <View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        />
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View>
+            <TouchableHighlight
+              onPress={undefined}
+              testID={undefined}
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "white",
+                      "flex": 1,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                    },
+                    Object {
+                      "paddingBottom": 17,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 14,
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={Object {}}
+                />
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                      }
+                    }
+                  >
+                    <View
+                      accessibilityLabel={undefined}
+                      accessible={false}
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "flexDirection": "row",
+                          "marginBottom": 4,
+                        }
+                      }
+                    />
+                    <Text
+                      accessibilityTraits="header"
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontFamily": ".SFUIDisplay-semibold",
+                            "fontSize": 20,
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      Dear Ivy Iversen, your last name cannot start with your first name
+                    </Text>
+                    <View
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "marginTop": 2,
+                        }
+                      }
+                    >
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "color": "#8B969E",
+                              "fontWeight": "500",
+                              "marginRight": 14,
+                            },
+                            Object {
+                              "fontFamily": ".SFUIDisplay-medium",
+                            },
+                          ]
+                        }
+                      >
+                        20 pts
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </TouchableHighlight>
+            <View
+              style={
+                Object {
+                  "backgroundColor": "white",
+                  "borderTopColor": "#C7CDD1",
+                  "borderTopWidth": 0.5,
+                  "flex": 1,
+                  "paddingBottom": 16,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 16,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "justifyContent": "flex-start",
+                  }
+                }
+              >
+                <Avatar
+                  avatarURL="http://www.fillmurray.com/100/100"
+                  height={32}
+                  onPress={[Function]}
+                  style={
+                    Object {
+                      "marginTop": 16,
+                    }
+                  }
+                  testID="discussion.details.avatar"
+                  userName="The Donald"
+                />
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "flex-start",
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "flex-start",
+                      },
+                      Object {
+                        "marginLeft": 16,
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "fontSize": 14,
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-semibold",
+                        },
+                      ]
+                    }
+                  >
+                    The Donald
+                  </Text>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "color": "#A5AFB5",
+                          "fontSize": 12,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                    testID="discussion.details.post-date-lbl"
+                  >
+                    Nov 10 at 9:03 PM
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={
+                  Object {
+                    "paddingBottom": 16,
+                    "paddingTop": 16,
+                  }
+                }
+              >
+                <View
+                  onLayout={[Function]}
+                  style={
+                    Object {
+                      "flex": 1,
+                    }
+                  }
+                  testID="web-container.view"
+                />
+              </View>
+            </View>
+            <TouchableHighlight
+              onPress={undefined}
+              testID={undefined}
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "white",
+                      "flex": 1,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                    },
+                    Object {
+                      "paddingBottom": 0,
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "borderTopColor": "#C7CDD1",
+                      "borderTopWidth": 0.5,
+                      "paddingBottom": 16,
+                    }
+                  }
+                />
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                      }
+                    }
+                  >
+                    <View
+                      accessibilityLabel={undefined}
+                      accessible={false}
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "flexDirection": "row",
+                          "marginBottom": 4,
+                        }
+                      }
+                    />
+                    <Text
+                      accessibilityTraits="header"
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontFamily": ".SFUIDisplay-semibold",
+                            "fontSize": 20,
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      Replies
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </TouchableHighlight>
+            <View />
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        />
+        <View
+          onLayout={[Function]}
+          style={null}
+        />
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "row",
+                "paddingHorizontal": 16,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <View />
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "column",
+                    "justifyContent": "flex-start",
+                    "marginRight": 8,
+                    "marginTop": 10,
+                    "paddingTop": 6,
+                  }
+                }
+              >
+                <View />
+                <Avatar
+                  avatarURL="http://www.fillmurray.com/100/100"
+                  height={24}
+                  onPress={[Function]}
+                  style={
+                    Object {
+                      "backgroundColor": "#f5f5f5",
+                      "borderRadius": 12,
+                      "height": 24,
+                      "marginTop": 12.8,
+                      "width": 24,
+                    }
+                  }
+                  testID="reply.avatar"
+                  userName="The Donald"
+                />
+                <View
+                  style={
+                    Object {
+                      "backgroundColor": "#f5f5f5",
+                      "flex": 1,
+                      "width": 1,
+                    }
+                  }
+                />
+              </View>
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignSelf": "stretch",
+                      "marginTop": 12.8,
+                    }
+                  }
+                >
+                  <Text
+                    accessibilityTraits="header"
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "fontSize": 14,
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-semibold",
+                        },
+                      ]
+                    }
+                  >
+                    The Donald
+                  </Text>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "color": "#8B969E",
+                          "fontSize": 12,
+                          "marginBottom": 16,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
+                    May 23 at 11:12 AM
+                  </Text>
+                  <View
+                    onLayout={[Function]}
+                    style={
+                      Object {
+                        "flex": 1,
+                      }
+                    }
+                    testID="web-container.view"
+                  />
+                  <View />
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        />
+      </View>
+    </RCTScrollView>
+  </View>
+</Screen>
+`;
+
+exports[`DiscussionDetails renders in student app 1`] = `
+<Screen
+  leftBarButtons={false}
+  navBarColor="#fff"
+  navBarStyle="dark"
+  onTraitCollectionChange={[Function]}
+  rightBarButtons={false}
+  subtitle="HOTS For Dummies"
+  title="Discussion Details"
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <RCTScrollView
+      ItemSeparatorComponent={undefined}
+      data={
+        Array [
+          Object {
+            "data": Array [
+              Object {
+                "allow_rating": false,
+                "assignment": Object {
+                  "assignment_group_id": 1376,
+                  "automatic_peer_reviews": false,
+                  "course_id": "987654321",
+                  "created_at": "2017-03-17T19:15:25Z",
+                  "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+                  "due_at": "2037-06-01T05:59:00Z",
+                  "grade_group_students_individually": false,
+                  "grading_type": "points",
+                  "group_category_id": null,
+                  "has_overrides": false,
+                  "html_url": "http://hostname.tld/whatever",
+                  "id": "123456789",
+                  "lock_at": "2037-06-01T05:59:59Z",
+                  "name": "learn to write code",
+                  "needs_grading_count": 0,
+                  "only_visible_to_overrides": false,
+                  "overrides": Array [],
+                  "peer_reviews": false,
+                  "points_possible": 20,
+                  "position": 1,
+                  "published": true,
+                  "rubric": null,
+                  "rubric_assessment": Object {},
+                  "rubric_settings": null,
+                  "submission_types": Array [
+                    "online_text_entry",
+                    "online_url",
+                    "media_recording",
+                    "online_upload",
+                  ],
+                  "unlock_at": "2017-03-17T06:00:00Z",
+                  "unpublishable": false,
+                  "updated_at": "2017-03-17T19:15:25Z",
+                },
+                "assignment_id": "123456789",
+                "author": Object {
+                  "avatar_image_url": "http://www.fillmurray.com/100/100",
+                  "avatar_url": "http://www.fillmurray.com/100/100",
+                  "display_name": "The Donald",
+                  "html_url": "",
+                  "id": "1",
+                  "short_name": "The Donald",
+                },
+                "can_unpublish": true,
+                "delayed_post_at": null,
+                "discussion_subentry_count": 2,
+                "discussion_type": "side_comment",
+                "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
+                "id": "1",
+                "last_reply_at": "2016-12-11T04:03:17Z",
+                "message": "<p>And why?</p>",
+                "only_graders_can_rate": false,
+                "participants": Object {
+                  "1": Object {
+                    "avatar_image_url": "http://www.fillmurray.com/100/100",
+                    "avatar_url": "http://www.fillmurray.com/100/100",
+                    "display_name": "The Donald",
+                    "html_url": "",
+                    "id": "1",
+                    "short_name": "The Donald",
+                  },
+                },
+                "permissions": Object {
+                  "attach": true,
+                  "delete": true,
+                  "reply": true,
+                  "update": true,
+                },
+                "pinned": false,
+                "position": 1,
+                "posted_at": "2016-11-11T04:03:17Z",
+                "published": true,
+                "read_state": "read",
+                "replies": Array [
+                  Object {
+                    "created_at": "2017-05-23T17:12:04Z",
+                    "id": "25472827",
+                    "message": "<p>1.0</p>",
+                    "parent_id": null,
+                    "rating_count": null,
+                    "rating_sum": null,
+                    "replies": Array [],
+                    "updated_at": "2017-05-23T17:12:04Z",
+                    "user_id": "1",
+                  },
+                ],
+                "require_initial_post": false,
+                "sort_by_rating": false,
+                "subscribed": true,
+                "title": "Dear Ivy Iversen, your last name cannot start with your first name",
+                "unlock_at": null,
+                "unread_count": 1,
+                "user_can_see_posts": true,
+                "user_name": "Ivy Iversen",
+              },
+            ],
+            "renderItem": [Function],
+            "title": "",
+          },
+          Object {
+            "data": Array [
+              Object {
+                "created_at": "2017-05-23T17:12:04Z",
+                "depth": 0,
+                "id": "25472827",
+                "message": "<p>1.0</p>",
+                "myPath": Array [
+                  0,
+                ],
+                "parent_id": null,
+                "rating_count": null,
+                "rating_sum": null,
+                "readState": "read",
+                "replies": Array [],
+                "updated_at": "2017-05-23T17:12:04Z",
+                "user_id": "1",
+              },
+            ],
+            "renderItem": [Function],
+            "title": "",
+          },
+        ]
+      }
+      disableVirtualization={false}
+      extraData={Array []}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      onContentSizeChange={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onRefresh={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      onViewableItemsChanged={[Function]}
+      refreshControl={
+        <RefreshControlMock
+          onRefresh={[Function]}
+          progressViewOffset={undefined}
+          refreshing={false}
+        />
+      }
+      refreshing={false}
+      renderItem={[Function]}
+      scrollEventThrottle={50}
+      sections={
+        Array [
+          Object {
+            "data": Array [
+              Object {
+                "allow_rating": false,
+                "assignment": Object {
+                  "assignment_group_id": 1376,
+                  "automatic_peer_reviews": false,
+                  "course_id": "987654321",
+                  "created_at": "2017-03-17T19:15:25Z",
+                  "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+                  "due_at": "2037-06-01T05:59:00Z",
+                  "grade_group_students_individually": false,
+                  "grading_type": "points",
+                  "group_category_id": null,
+                  "has_overrides": false,
+                  "html_url": "http://hostname.tld/whatever",
+                  "id": "123456789",
+                  "lock_at": "2037-06-01T05:59:59Z",
+                  "name": "learn to write code",
+                  "needs_grading_count": 0,
+                  "only_visible_to_overrides": false,
+                  "overrides": Array [],
+                  "peer_reviews": false,
+                  "points_possible": 20,
+                  "position": 1,
+                  "published": true,
+                  "rubric": null,
+                  "rubric_assessment": Object {},
+                  "rubric_settings": null,
+                  "submission_types": Array [
+                    "online_text_entry",
+                    "online_url",
+                    "media_recording",
+                    "online_upload",
+                  ],
+                  "unlock_at": "2017-03-17T06:00:00Z",
+                  "unpublishable": false,
+                  "updated_at": "2017-03-17T19:15:25Z",
+                },
+                "assignment_id": "123456789",
+                "author": Object {
+                  "avatar_image_url": "http://www.fillmurray.com/100/100",
+                  "avatar_url": "http://www.fillmurray.com/100/100",
+                  "display_name": "The Donald",
+                  "html_url": "",
+                  "id": "1",
+                  "short_name": "The Donald",
+                },
+                "can_unpublish": true,
+                "delayed_post_at": null,
+                "discussion_subentry_count": 2,
+                "discussion_type": "side_comment",
+                "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
+                "id": "1",
+                "last_reply_at": "2016-12-11T04:03:17Z",
+                "message": "<p>And why?</p>",
+                "only_graders_can_rate": false,
+                "participants": Object {
+                  "1": Object {
+                    "avatar_image_url": "http://www.fillmurray.com/100/100",
+                    "avatar_url": "http://www.fillmurray.com/100/100",
+                    "display_name": "The Donald",
+                    "html_url": "",
+                    "id": "1",
+                    "short_name": "The Donald",
+                  },
+                },
+                "permissions": Object {
+                  "attach": true,
+                  "delete": true,
+                  "reply": true,
+                  "update": true,
+                },
+                "pinned": false,
+                "position": 1,
+                "posted_at": "2016-11-11T04:03:17Z",
+                "published": true,
+                "read_state": "read",
+                "replies": Array [
+                  Object {
+                    "created_at": "2017-05-23T17:12:04Z",
+                    "id": "25472827",
+                    "message": "<p>1.0</p>",
+                    "parent_id": null,
+                    "rating_count": null,
+                    "rating_sum": null,
+                    "replies": Array [],
+                    "updated_at": "2017-05-23T17:12:04Z",
+                    "user_id": "1",
+                  },
+                ],
+                "require_initial_post": false,
+                "sort_by_rating": false,
+                "subscribed": true,
+                "title": "Dear Ivy Iversen, your last name cannot start with your first name",
+                "unlock_at": null,
+                "unread_count": 1,
+                "user_can_see_posts": true,
+                "user_name": "Ivy Iversen",
+              },
+            ],
+            "renderItem": [Function],
+            "title": "",
+          },
+          Object {
+            "data": Array [
+              Object {
+                "created_at": "2017-05-23T17:12:04Z",
+                "depth": 0,
+                "id": "25472827",
+                "message": "<p>1.0</p>",
+                "myPath": Array [
+                  0,
+                ],
+                "parent_id": null,
+                "rating_count": null,
+                "rating_sum": null,
+                "readState": "read",
+                "replies": Array [],
+                "updated_at": "2017-05-23T17:12:04Z",
+                "user_id": "1",
+              },
+            ],
+            "renderItem": [Function],
+            "title": "",
+          },
+        ]
+      }
+      stickyHeaderIndices={
+        Array [
+          0,
+          3,
+        ]
+      }
+      stickySectionHeadersEnabled={true}
+      updateCellsBatchingPeriod={50}
+      windowSize={21}
+    >
+      <RCTRefreshControl />
+      <View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        />
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View>
+            <TouchableHighlight
+              onPress={undefined}
+              testID={undefined}
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "white",
+                      "flex": 1,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                    },
+                    Object {
+                      "paddingBottom": 17,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 14,
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={Object {}}
+                />
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                      }
+                    }
+                  >
+                    <View
+                      accessibilityLabel={undefined}
+                      accessible={false}
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "flexDirection": "row",
+                          "marginBottom": 4,
+                        }
+                      }
+                    />
+                    <Text
+                      accessibilityTraits="header"
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontFamily": ".SFUIDisplay-semibold",
+                            "fontSize": 20,
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      Dear Ivy Iversen, your last name cannot start with your first name
+                    </Text>
+                    <View
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "marginTop": 2,
+                        }
+                      }
+                    >
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "color": "#8B969E",
+                              "fontWeight": "500",
+                              "marginRight": 14,
+                            },
+                            Object {
+                              "fontFamily": ".SFUIDisplay-medium",
+                            },
+                          ]
+                        }
+                      >
+                        20 pts
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </TouchableHighlight>
+            <View
+              style={
+                Object {
+                  "backgroundColor": "white",
+                  "borderTopColor": "#C7CDD1",
+                  "borderTopWidth": 0.5,
+                  "flex": 1,
+                  "paddingBottom": 16,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 16,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "justifyContent": "flex-start",
+                  }
+                }
+              >
+                <Avatar
+                  avatarURL="http://www.fillmurray.com/100/100"
+                  height={32}
+                  onPress={[Function]}
+                  style={
+                    Object {
+                      "marginTop": 16,
+                    }
+                  }
+                  testID="discussion.details.avatar"
+                  userName="The Donald"
+                />
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "flex-start",
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "flex-start",
+                      },
+                      Object {
+                        "marginLeft": 16,
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "fontSize": 14,
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-semibold",
+                        },
+                      ]
+                    }
+                  >
+                    The Donald
+                  </Text>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "color": "#A5AFB5",
+                          "fontSize": 12,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                    testID="discussion.details.post-date-lbl"
+                  >
+                    Nov 10 at 9:03 PM
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={
+                  Object {
+                    "paddingBottom": 16,
+                    "paddingTop": 16,
+                  }
+                }
+              >
+                <View
+                  onLayout={[Function]}
+                  style={
+                    Object {
+                      "flex": 1,
+                    }
+                  }
+                  testID="web-container.view"
+                />
+              </View>
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "justifyContent": "flex-start",
+                  }
+                }
+              >
+                <TouchableHighlight
+                  accessibilityTraits="button"
+                  onPress={[Function]}
+                  testID="discussion-reply"
+                  underlayColor="white"
+                >
+                  <View
+                    style={
+                      Object {
+                        "backgroundColor": "white",
+                        "flex": 1,
+                      }
+                    }
+                  >
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Object {
+                            "color": "#008EE2",
+                          },
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                        ]
+                      }
+                    >
+                      Reply
+                    </Text>
+                  </View>
+                </TouchableHighlight>
+              </View>
+            </View>
+            <TouchableHighlight
+              onPress={undefined}
+              testID={undefined}
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "white",
+                      "flex": 1,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                    },
+                    Object {
+                      "paddingBottom": 0,
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "borderTopColor": "#C7CDD1",
+                      "borderTopWidth": 0.5,
+                      "paddingBottom": 16,
+                    }
+                  }
+                />
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                      }
+                    }
+                  >
+                    <View
+                      accessibilityLabel={undefined}
+                      accessible={false}
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "flexDirection": "row",
+                          "marginBottom": 4,
+                        }
+                      }
+                    />
+                    <Text
+                      accessibilityTraits="header"
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontFamily": ".SFUIDisplay-semibold",
+                            "fontSize": 20,
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      Replies
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </TouchableHighlight>
+            <View />
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        />
+        <View
+          onLayout={[Function]}
+          style={null}
+        />
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "row",
+                "paddingHorizontal": 16,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <View />
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "column",
+                    "justifyContent": "flex-start",
+                    "marginRight": 8,
+                    "marginTop": 10,
+                    "paddingTop": 6,
+                  }
+                }
+              >
+                <View />
+                <Avatar
+                  avatarURL="http://www.fillmurray.com/100/100"
+                  height={24}
+                  onPress={[Function]}
+                  style={
+                    Object {
+                      "backgroundColor": "#f5f5f5",
+                      "borderRadius": 12,
+                      "height": 24,
+                      "marginTop": 12.8,
+                      "width": 24,
+                    }
+                  }
+                  testID="reply.avatar"
+                  userName="The Donald"
+                />
+                <View
+                  style={
+                    Object {
+                      "backgroundColor": "#f5f5f5",
+                      "flex": 1,
+                      "width": 1,
+                    }
+                  }
+                />
+              </View>
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignSelf": "stretch",
+                      "marginTop": 12.8,
+                    }
+                  }
+                >
+                  <Text
+                    accessibilityTraits="header"
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "fontSize": 14,
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-semibold",
+                        },
+                      ]
+                    }
+                  >
+                    The Donald
                   </Text>
                   <Text
                     accessible={true}
@@ -2695,6 +4565,16 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                 "last_reply_at": "2016-12-11T04:03:17Z",
                 "message": "<p>And why?</p>",
                 "only_graders_can_rate": false,
+                "participants": Object {
+                  "1": Object {
+                    "avatar_image_url": "http://www.fillmurray.com/100/100",
+                    "avatar_url": "http://www.fillmurray.com/100/100",
+                    "display_name": "The Donald",
+                    "html_url": "",
+                    "id": "1",
+                    "short_name": "The Donald",
+                  },
+                },
                 "permissions": Object {
                   "attach": true,
                   "delete": true,
@@ -2919,6 +4799,16 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                 "last_reply_at": "2016-12-11T04:03:17Z",
                 "message": "<p>And why?</p>",
                 "only_graders_can_rate": false,
+                "participants": Object {
+                  "1": Object {
+                    "avatar_image_url": "http://www.fillmurray.com/100/100",
+                    "avatar_url": "http://www.fillmurray.com/100/100",
+                    "display_name": "The Donald",
+                    "html_url": "",
+                    "id": "1",
+                    "short_name": "The Donald",
+                  },
+                },
                 "permissions": Object {
                   "attach": true,
                   "delete": true,
@@ -4094,7 +5984,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
               >
                 <View />
                 <Avatar
-                  avatarURL=""
+                  avatarURL="http://www.fillmurray.com/100/100"
                   height={24}
                   onPress={[Function]}
                   style={
@@ -4107,7 +5997,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     }
                   }
                   testID="reply.avatar"
-                  userName="?"
+                  userName="The Donald"
                 />
                 <View
                   style={
@@ -4158,7 +6048,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       ]
                     }
                   >
-                    Unknown Author
+                    The Donald
                   </Text>
                   <Text
                     accessible={true}
@@ -4437,7 +6327,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
               >
                 <View />
                 <Avatar
-                  avatarURL=""
+                  avatarURL="http://www.fillmurray.com/100/100"
                   height={24}
                   onPress={[Function]}
                   style={
@@ -4450,7 +6340,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     }
                   }
                   testID="reply.avatar"
-                  userName="?"
+                  userName="The Donald"
                 />
                 <View
                   style={
@@ -4501,7 +6391,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       ]
                     }
                   >
-                    Unknown Author
+                    The Donald
                   </Text>
                   <Text
                     accessible={true}
@@ -4894,6 +6784,16 @@ exports[`DiscussionDetails renders with replies 1`] = `
                 "last_reply_at": "2016-12-11T04:03:17Z",
                 "message": "<p>And why?</p>",
                 "only_graders_can_rate": false,
+                "participants": Object {
+                  "1": Object {
+                    "avatar_image_url": "http://www.fillmurray.com/100/100",
+                    "avatar_url": "http://www.fillmurray.com/100/100",
+                    "display_name": "The Donald",
+                    "html_url": "",
+                    "id": "1",
+                    "short_name": "The Donald",
+                  },
+                },
                 "permissions": Object {
                   "attach": true,
                   "delete": true,
@@ -5041,6 +6941,16 @@ exports[`DiscussionDetails renders with replies 1`] = `
                 "last_reply_at": "2016-12-11T04:03:17Z",
                 "message": "<p>And why?</p>",
                 "only_graders_can_rate": false,
+                "participants": Object {
+                  "1": Object {
+                    "avatar_image_url": "http://www.fillmurray.com/100/100",
+                    "avatar_url": "http://www.fillmurray.com/100/100",
+                    "display_name": "The Donald",
+                    "html_url": "",
+                    "id": "1",
+                    "short_name": "The Donald",
+                  },
+                },
                 "permissions": Object {
                   "attach": true,
                   "delete": true,
@@ -6100,7 +8010,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
               >
                 <View />
                 <Avatar
-                  avatarURL=""
+                  avatarURL="http://www.fillmurray.com/100/100"
                   height={24}
                   onPress={[Function]}
                   style={
@@ -6113,7 +8023,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                     }
                   }
                   testID="reply.avatar"
-                  userName="?"
+                  userName="The Donald"
                 />
                 <View
                   style={
@@ -6164,7 +8074,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                       ]
                     }
                   >
-                    Unknown Author
+                    The Donald
                   </Text>
                   <Text
                     accessible={true}

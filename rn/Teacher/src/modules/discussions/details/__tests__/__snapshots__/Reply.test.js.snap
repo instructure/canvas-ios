@@ -1142,6 +1142,137 @@ exports[`DiscussionReplies renders more button with some deleted replies 1`] = `
 </View>
 `;
 
+exports[`DiscussionReplies renders with closed discussion as student 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "flexDirection": "row",
+    }
+  }
+>
+  <View />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "column",
+        "justifyContent": "flex-start",
+        "marginRight": 8,
+        "marginTop": 10,
+        "paddingTop": 6,
+      }
+    }
+  >
+    <View />
+    <Avatar
+      avatarURL="http://www.fillmurray.com/100/100"
+      height={24}
+      onPress={[Function]}
+      style={
+        Object {
+          "backgroundColor": "#f5f5f5",
+          "borderRadius": 12,
+          "height": 24,
+          "marginTop": 12.8,
+          "width": 24,
+        }
+      }
+      testID="reply.avatar"
+      userName="The Donald"
+    />
+    <View
+      style={
+        Object {
+          "backgroundColor": "#f5f5f5",
+          "flex": 1,
+          "width": 1,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignSelf": "stretch",
+          "marginTop": 12.8,
+        }
+      }
+    >
+      <Text
+        accessibilityTraits="none"
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "fontSize": 14,
+              "fontWeight": "600",
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
+            },
+          ]
+        }
+      >
+        The Donald
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#8B969E",
+              "fontSize": 12,
+              "marginBottom": 16,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        May 23 at 11:12 AM
+      </Text>
+      <View
+        onLayout={[Function]}
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+        testID="web-container.view"
+      />
+      <View />
+    </View>
+  </View>
+</View>
+`;
+
 exports[`DiscussionReplies renders with no user 1`] = `
 <View
   style={
