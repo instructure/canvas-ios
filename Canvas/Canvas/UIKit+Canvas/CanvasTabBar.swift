@@ -30,7 +30,7 @@ class CanvasTabBarController: UITabBarController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        NotificationKitController.registerForPushNotificationsIfAppropriate(self)
+        NotificationKitController.registerForPushNotifications()
         DispatchQueue.main.async {
             StartupManager.shared.markStartupFinished()
         }

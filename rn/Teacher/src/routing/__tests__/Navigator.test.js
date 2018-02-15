@@ -125,6 +125,7 @@ describe('Navigator', () => {
         assignmentID: '2',
         userID: '3',
         screenInstanceID: expect.any(String),
+        forceRefresh: true,
         pushNotification: {
           alert: 'New Submission',
           data: {

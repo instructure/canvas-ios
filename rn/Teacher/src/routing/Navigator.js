@@ -114,6 +114,7 @@ export default class Navigator {
         embedInNavigationController: true,
         deepLink: true,
       }, {
+        forceRefresh: true,
         pushNotification: {
           alert: notification.getAlert(),
           data,

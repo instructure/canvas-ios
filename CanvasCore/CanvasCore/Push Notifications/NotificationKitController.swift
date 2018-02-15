@@ -13,13 +13,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-    
-    
 
 import Foundation
-
 import Result
-
 
 open class NotificationKitController {
     
@@ -31,6 +27,33 @@ open class NotificationKitController {
     public enum RegisterPushNotificationTokenResult {
         case success()
         case error(NSError)
+    }
+
+    public static func setupForPushNotifications(delegate: UNUserNotificationCenterDelegate) {
+        UNUserNotificationCenter.current().delegate = delegate
+        #if !arch(i386) && !arch(x86_64) // Can't register on simulator
+            UIApplication.shared.registerForRemoteNotifications()
+        #endif
+    }
+
+    public static func didRegisterForRemoteNotifications(_ deviceToken: Data, errorHandler: @escaping (NSError) -> Void) {
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            guard settings.authorizationStatus == .authorized else {
+                return
+            }
+            if let client = CanvasKeymaster.the().currentClient {
+                let session = client.authSession
+                let controller = NotificationKitController(session: session)
+                controller.registerPushNotificationTokenWithPushService(deviceToken, registrationCompletion: { result in
+                    switch result {
+                    case .success():
+                        break
+                    case .error(let error):
+                        errorHandler(error.addingInfo())
+                    }
+                })
+            }
+        }
     }
     
     // This is super ugly, change with Swift 2.0 - guard
@@ -167,54 +190,14 @@ open class NotificationKitController {
 
 
     // MARK: Pre-authorization for Push Notifications
-    open static func registerForPushNotificationsIfAppropriate(_ controller: UIViewController) {
-        if UIApplication.shared.isRegisteredForRemoteNotifications {
-            return
-        }
-        if PushPreAuthStatus.currentPushPreAuthStatus() == .neverShown {
-            showPreauthorizationAlert(controller)
-        } else if PushPreAuthStatus.currentPushPreAuthStatus() != .shownAndDeclined {
-            registerForRemoteNotifications()
-        }
-    }
-    
-    public typealias ShowPreauthorizationAlertCompletion = (_ result: Bool) -> ()
-    open static func showPreauthorizationAlert(_ controller: UIViewController, completion: ShowPreauthorizationAlertCompletion? = nil) {
-        let yesActionTitle = NSLocalizedString("Yes", tableName: "Localizable", bundle: .core, value: "", comment: "Title for yes button for push notification pre-authorization alert")
-        let yesAction = UIAlertAction(title: yesActionTitle, style: UIAlertActionStyle.default) { (alertAction) -> Void in
-            PushPreAuthStatus.setCurrentPushPreAuthStatus(PushPreAuthStatus.shownAndAccepted)
-            if completion != nil {
-                completion!(true)
-            }
-            self.registerForRemoteNotifications()
-        }
-        
-        let noActionTitle = NSLocalizedString("No", tableName: "Localizable", bundle: .core, value: "", comment: "Title for no button for push notification pre-authorization alert")
-        let noAction = UIAlertAction(title: noActionTitle, style: .cancel) { (alertAction) -> Void in
-            PushPreAuthStatus.setCurrentPushPreAuthStatus(PushPreAuthStatus.shownAndDeclined)
-            if completion != nil {
-                completion!(false)
+    open static func registerForPushNotifications() {
+        if NSClassFromString("EarlGreyImpl") != nil { return }
+        UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .sound, .alert]) { granted, _ in
+            if granted {
+                DispatchQueue.main.async {
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
             }
         }
-        
-        let alertTitle = NSLocalizedString("Allow Push Notifications?", tableName: "Localizable", bundle: .core, value: "", comment: "Title for push notification pre-authorization alert")
-        let alertMessage = NSLocalizedString("Would you like to allow Canvas to send you important notifications about announcements, course, assignments, etc?", tableName: "Localizable", bundle: .core, value: "", comment: "Message for push notification pre-authorization alert")
-        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(noAction)
-        alert.addAction(yesAction)
-        
-        controller.present(alert, animated: true, completion: nil)
-    }
-    
-    // MARK: Register for push
-    open static func registerForRemoteNotifications() {
-        let categories = Set<UIUserNotificationCategory>()
-        let settings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: categories)
-        UIApplication.shared.registerUserNotificationSettings(settings)
-    }
-    
-    // MARK: Unregister for push
-    open static func unregisterForRemoteNotifications() {
-        UIApplication.shared.unregisterForRemoteNotifications()
     }
 }

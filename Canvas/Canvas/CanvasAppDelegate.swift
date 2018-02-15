@@ -23,6 +23,7 @@ import Crashlytics
 import CanvasCore
 import ReactiveSwift
 import BugsnagReactNative
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -38,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         BuddyBuildSDK.setup()
         BugsnagReactNative.start()
+        NotificationKitController.setupForPushNotifications(delegate: self)
         TheKeymaster?.fetchesBranding = true
         TheKeymaster?.delegate = loginConfig
         
@@ -73,37 +75,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 // MARK: Push notifications
-extension AppDelegate {
-
-    func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
-        #if !arch(i386) && !arch(x86_64)
-            application.registerForRemoteNotifications()
-        #endif
-    }
-
+extension AppDelegate: UNUserNotificationCenterDelegate {
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        didRegisterForRemoteNotifications(deviceToken)
+        NotificationKitController.didRegisterForRemoteNotifications(deviceToken, errorHandler: handleError)
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        didFailToRegisterForRemoteNotifications(error as NSError)
+        handleError((error as NSError).addingInfo())
     }
-    
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
-        app(application, didReceiveRemoteNotification: userInfo)
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        StartupManager.shared.enqueueTask { [weak self] in
+            let userInfo = response.notification.request.content.userInfo
+
+            // Handle local notifications we know about first
+            if let assignmentURL = userInfo[CBILocalNotificationAssignmentURLKey] as? String,
+                let url = URL(string: assignmentURL) {
+                self?.openCanvasURL(url)
+                return
+            }
+
+            // Must be a push notification
+            self?.routeToPushNotificationPayloadURL(userInfo)
+        }
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .sound])
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         AppStoreReview.requestReview()
-    }
-}
-
-// MARK: Local notifications
-extension AppDelegate {
-    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
-        if let assignmentURL = (notification.userInfo?[CBILocalNotificationAssignmentURLKey] as? String).flatMap({ URL(string: $0) }) {
-            _ = openCanvasURL(assignmentURL)
-        }
     }
 }
 
@@ -206,7 +208,7 @@ extension AppDelegate {
 
 // MARK: Launching URLS
 extension AppDelegate {
-    func openCanvasURL(_ url: URL) -> Bool {
+    @discardableResult func openCanvasURL(_ url: URL) -> Bool {
         StartupManager.shared.enqueueTask({
             if url.path == "/" || url.path == "" {
                 let vc = HelmManager.shared.topMostViewController()

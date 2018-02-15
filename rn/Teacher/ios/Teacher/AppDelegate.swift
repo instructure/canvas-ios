@@ -34,10 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var window: UIWindow?
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        UNUserNotificationCenter.current().getNotificationSettings { [weak self] settings in
-            if settings.authorizationStatus == .authorized {
-                self?.didRegisterForRemoteNotifications(deviceToken)
-            }
+        NotificationKitController.didRegisterForRemoteNotifications(deviceToken) { [weak self] error in
+            ErrorReporter.reportError(error.addingInfo(), from: self?.window?.rootViewController)
         }
     }
 
@@ -100,9 +98,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func setupForPushNotifications() {
-        let center = UNUserNotificationCenter.current()
-        center.delegate = self
-        UIApplication.shared.registerForRemoteNotifications()
+        NotificationKitController.setupForPushNotifications(delegate: self)
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {

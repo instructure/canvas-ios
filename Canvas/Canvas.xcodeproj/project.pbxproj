@@ -30,7 +30,6 @@
 		3B6DCCB11FB502CE005EE8D2 /* GradesWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3B6DCCA51FB502CD005EE8D2 /* GradesWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4902E1251CF4C8890069E043 /* Analytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 4902E1231CF4C8890069E043 /* Analytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4902E1261CF4C8890069E043 /* Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 4902E1241CF4C8890069E043 /* Analytics.m */; };
-		490687941D02151E0072DBEA /* PushNotificationPreauthorizationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490687901D02151E0072DBEA /* PushNotificationPreauthorizationCell.swift */; };
 		490687951D02151E0072DBEA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490687911D02151E0072DBEA /* SettingsViewController.swift */; };
 		490687961D02151E0072DBEA /* SystemSettingsLinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490687921D02151E0072DBEA /* SystemSettingsLinkCell.swift */; };
 		490687981D0215330072DBEA /* LandingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490687971D0215330072DBEA /* LandingPageViewController.swift */; };
@@ -827,7 +826,6 @@
 		3E3C1D72C08DB705A5532B30 /* Pods-Canvas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canvas.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Canvas/Pods-Canvas.release.xcconfig"; sourceTree = "<group>"; };
 		4902E1231CF4C8890069E043 /* Analytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Analytics.h; sourceTree = "<group>"; };
 		4902E1241CF4C8890069E043 /* Analytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Analytics.m; sourceTree = "<group>"; };
-		490687901D02151E0072DBEA /* PushNotificationPreauthorizationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationPreauthorizationCell.swift; sourceTree = "<group>"; };
 		490687911D02151E0072DBEA /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		490687921D02151E0072DBEA /* SystemSettingsLinkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemSettingsLinkCell.swift; sourceTree = "<group>"; };
 		490687971D0215330072DBEA /* LandingPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingPageViewController.swift; sourceTree = "<group>"; };
@@ -1864,7 +1862,6 @@
 			children = (
 				B177E6FF1E2EC8BA00D7477D /* Settings.storyboard */,
 				490687971D0215330072DBEA /* LandingPageViewController.swift */,
-				490687901D02151E0072DBEA /* PushNotificationPreauthorizationCell.swift */,
 				490687911D02151E0072DBEA /* SettingsViewController.swift */,
 				490687921D02151E0072DBEA /* SystemSettingsLinkCell.swift */,
 			);
@@ -4249,7 +4246,6 @@
 				49A04E711CF64E210051E1E7 /* ProfileButton.swift in Sources */,
 				ACC968801D245768006AEAB1 /* Page+ViewModel.swift in Sources */,
 				61A6747D1DB58990008A27FD /* ModuleItemViewModel.swift in Sources */,
-				490687941D02151E0072DBEA /* PushNotificationPreauthorizationCell.swift in Sources */,
 				61A6747F1DB589C5008A27FD /* ModulesTableViewController.swift in Sources */,
 				5EB46DF11D21A75C00C859A4 /* CalendarCollectionViewLayout.swift in Sources */,
 				61CF10AD1DBFF98800B68E45 /* MasteryPathAssignmentInfoCell.swift in Sources */,
