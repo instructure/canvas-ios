@@ -63,10 +63,19 @@ describe('AddressBook', () => {
     testRender(props)
   })
 
-  it('calls getCoursePermissions when rendered and no permissions are available', () => {
+  it('calls getCoursePermissions when rendered', () => {
     let newProps = {
       ...props,
+      getCoursePermissions: jest.fn(),
       permissions: undefined,
+    }
+    testRender(newProps)
+    expect(newProps.getCoursePermissions).toHaveBeenCalledWith('1')
+
+    newProps = {
+      ...props,
+      getCoursePermissions: jest.fn(),
+      permissions: {},
     }
     testRender(newProps)
     expect(newProps.getCoursePermissions).toHaveBeenCalledWith('1')
