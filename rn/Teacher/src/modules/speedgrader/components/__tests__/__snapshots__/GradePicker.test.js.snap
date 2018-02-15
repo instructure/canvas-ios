@@ -243,7 +243,6 @@ exports[`GradePicker renders points based grades 1`] = `
             ]
           }
         >
-          
           5/10
         </Text>
       </TouchableOpacity>
@@ -509,7 +508,6 @@ exports[`GradePicker renders the rubric score when useRubricForGrading 1`] = `
             ]
           }
         >
-          
           22/10
         </Text>
       </TouchableOpacity>
@@ -686,7 +684,6 @@ exports[`GradePicker renders with late policy 1`] = `
             ]
           }
         >
-          
           9/10
         </Text>
       </TouchableOpacity>
@@ -804,7 +801,6 @@ exports[`GradePicker renders with late policy 1`] = `
           ]
         }
       >
-        
         8/10
       </Text>
     </View>
@@ -967,7 +963,6 @@ exports[`GradePicker updates the visible rubric score when useRubricForGrading a
             ]
           }
         >
-          
           22/10
         </Text>
       </TouchableOpacity>

@@ -16,7 +16,8 @@
 
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-import { ActionSheetIOS, AlertIOS, AppState } from 'react-native'
+import { shallow } from 'enzyme'
+import { ActionSheetIOS, AlertIOS, AppState, FlatList } from 'react-native'
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { CommentsTab, mapStateToProps } from '../CommentsTab'
@@ -41,6 +42,24 @@ jest
   .mock('../CommentInput', () => 'CommentInput')
   .mock('../../../../common/components/MediaComment', () => 'MediaComment')
   .mock('../../../../common/permissions')
+  .mock('FlatList', () => {
+    return ({
+      ListEmptyComponent,
+      data,
+      renderItem,
+    }) => (
+      <view>
+        {data.length > 0
+          ? data.map((item, index) => (
+            <view key={index}>
+              {renderItem({ item, index })}
+            </view>
+          ))
+          : <ListEmptyComponent />
+        }
+      </view>
+    )
+  })
 
 const comments = [
   {
@@ -95,7 +114,15 @@ const comments = [
     date: new Date('2017-03-17T19:40:25Z'),
     avatarURL: 'http://fillmurray.com/220/400',
     from: 'them',
-    contents: { type: 'submission', items: [] },
+    contents: {
+      type: 'submission',
+      items: [{
+        contentID: '1',
+        icon: 0,
+        title: 'Item 1',
+        subtitle: 'Item 1 Subtitle',
+      }],
+    },
   },
 ]
 
@@ -127,6 +154,26 @@ test('calling switchFile will call the correct actions', () => {
   instance.switchFile('1', '2', '3')
   expect(actions.selectSubmissionFromHistory).toHaveBeenCalledWith('1', '2')
   expect(actions.selectFile).toHaveBeenCalledWith('1', '3')
+})
+
+test('selecting file closes drawer', () => {
+  const props = {
+    commentRows: comments,
+    drawerState: {
+      snapTo: jest.fn(),
+    },
+    selectSubmissionFromHistory: jest.fn(),
+    selectFile: jest.fn(),
+  }
+  const tree = shallow(<CommentsTab {...props} />)
+  const row = tree
+    .find(FlatList)
+    .dive()
+    .find('[testID="submission-comment-submission"]')
+    .dive()
+    .find('SubmittedContent')
+  row.simulate('Press')
+  expect(props.drawerState.snapTo).toHaveBeenCalledWith(0, true)
 })
 
 test('adding media shows action sheet', () => {

@@ -141,7 +141,7 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
 
       if (this._flatList && !prevState.hasSetInitialDrawerPosition) {
         if (this.getInitialTabIndex() >= 0) {
-          SpeedGrader.drawerState.snapTo(1, false)
+          SpeedGrader.drawerState.snapTo(this.getInitialTabIndex(), false)
         }
         nextState = { ...nextState, hasSetInitialDrawerPosition: true }
       }

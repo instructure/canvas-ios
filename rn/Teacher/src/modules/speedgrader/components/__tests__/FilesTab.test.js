@@ -20,6 +20,7 @@ import React from 'react'
 import { FilesTab, mapStateToProps } from '../FilesTab'
 import renderer from 'react-test-renderer'
 import explore from '../../../../../test/helpers/explore'
+import DrawerState from '../../utils/drawer-state'
 
 jest
   .mock('TouchableHighlight', () => 'TouchableHighlight')
@@ -115,6 +116,7 @@ let defaultProps = {
   selectFile: jest.fn(),
   selectedIndex: 0,
   selectedAttachmentIndex: null,
+  drawerState: new DrawerState(),
 }
 
 let withIndex = {
@@ -174,14 +176,21 @@ describe('SpeedGraderFilesTab', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('changes the selected file on tap', () => {
+  it('changes the selected file and closes drawer on tap', () => {
+    const drawerState = new DrawerState()
+    drawerState.snapTo = jest.fn()
+    const props = {
+      ...withIndex,
+      drawerState,
+    }
     let tree = renderer.create(
-      <FilesTab {...withIndex} />
+      <FilesTab {...props} />
     ).toJSON()
 
     const thirdRow = explore(tree).selectByID('speedgrader.files.row2') || {}
     thirdRow.props.onPress()
     expect(withIndex.selectFile).toHaveBeenCalled()
+    expect(drawerState.snapTo).toHaveBeenCalledWith(0, true)
   })
 
   it('ignores attachments for URL Submissions', () => {

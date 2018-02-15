@@ -111,16 +111,18 @@ export default class AudioRecorder extends Component<Props, any> {
             </Text>
           </View>
           <View style={[style.headerButton, style.cancel]}>
-            <TouchableHighlight
-              onPress={this._cancel}
-              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-              testID='audio-recorder.cancel-btn'
-              underlayColor='transparent'
-              accessibilityLabel={i18n('Cancel')}
-              accessibilityTraits='button'
-            >
-              <Image source={images.mediaComments.x} style={style.headerButtonImage} />
-            </TouchableHighlight>
+            { !this.state.recording &&
+              <TouchableHighlight
+                onPress={this._cancel}
+                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                testID='audio-recorder.cancel-btn'
+                underlayColor='transparent'
+                accessibilityLabel={i18n('Cancel')}
+                accessibilityTraits='button'
+              >
+                <Image source={images.mediaComments.x} style={style.headerButtonImage} />
+              </TouchableHighlight>
+            }
           </View>
         </View>
         <View style={style.buttonContainer}>
@@ -272,6 +274,7 @@ const style = StyleSheet.create({
     marginHorizontal: 8,
     alignItems: 'center',
     flexDirection: 'row',
+    minHeight: 24,
   },
   title: {
     flex: 1,
@@ -288,7 +291,6 @@ const style = StyleSheet.create({
     height: 24,
   },
   cancel: {
-    flexDirection: 'row',
     justifyContent: 'flex-end',
   },
   buttonContainer: {

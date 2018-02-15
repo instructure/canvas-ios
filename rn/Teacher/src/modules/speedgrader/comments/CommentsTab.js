@@ -153,6 +153,7 @@ export class CommentsTab extends Component<CommentsTabProps, any> {
   switchFile = (submissionID: string, attemptIndex: number, attachmentIndex: number) => {
     this.props.selectSubmissionFromHistory(submissionID, attemptIndex)
     this.props.selectFile(submissionID, attachmentIndex)
+    this.props.drawerState.snapTo(0, true)
   }
 
   navigateToContextCard = (userID: string) => {

@@ -29,6 +29,7 @@ import {
 import { Text } from '../../../common/text'
 import Images from '../../../images'
 import SpeedGraderActions from '../actions'
+import DrawerState from '../utils/drawer-state'
 
 export class FilesTab extends Component<FileTabProps> {
 
@@ -47,6 +48,7 @@ export class FilesTab extends Component<FileTabProps> {
   selectFile = (index: number) => {
     if (this.props.submissionID) {
       this.props.selectFile(this.props.submissionID, index)
+      this.props.drawerState.snapTo(0, true)
     }
   }
 
@@ -183,6 +185,7 @@ type RouterProps = {
   submissionID: ?string,
   submissionProps: Object,
   selectedIndex: ?number,
+  drawerState: DrawerState,
 }
 
 type FileTabDataProps = {

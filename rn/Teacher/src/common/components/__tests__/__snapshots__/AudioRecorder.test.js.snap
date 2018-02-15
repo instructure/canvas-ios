@@ -18,6 +18,7 @@ exports[`AudioRecorder renders default state 1`] = `
         "flexDirection": "row",
         "marginHorizontal": 8,
         "marginTop": 10,
+        "minHeight": 24,
       }
     }
   >
@@ -61,7 +62,6 @@ exports[`AudioRecorder renders default state 1`] = `
             "width": 24,
           },
           Object {
-            "flexDirection": "row",
             "justifyContent": "flex-end",
           },
         ]
@@ -160,6 +160,7 @@ exports[`AudioRecorder renders recording state 1`] = `
         "flexDirection": "row",
         "marginHorizontal": 8,
         "marginTop": 10,
+        "minHeight": 24,
       }
     }
   >
@@ -203,43 +204,11 @@ exports[`AudioRecorder renders recording state 1`] = `
             "width": 24,
           },
           Object {
-            "flexDirection": "row",
             "justifyContent": "flex-end",
           },
         ]
       }
-    >
-      <TouchableHighlight
-        accessibilityLabel="Cancel"
-        accessibilityTraits="button"
-        hitSlop={
-          Object {
-            "bottom": 8,
-            "left": 8,
-            "right": 8,
-            "top": 8,
-          }
-        }
-        onPress={[Function]}
-        testID="audio-recorder.cancel-btn"
-        underlayColor="transparent"
-      >
-        <Image
-          source={
-            Object {
-              "testUri": "../../../src/images/media-comments/Close.png",
-            }
-          }
-          style={
-            Object {
-              "height": 24,
-              "tintColor": "#9FA9AF",
-              "width": 24,
-            }
-          }
-        />
-      </TouchableHighlight>
-    </View>
+    />
   </View>
   <View
     style={
@@ -301,6 +270,7 @@ exports[`AudioRecorder renders reset state 1`] = `
         "flexDirection": "row",
         "marginHorizontal": 8,
         "marginTop": 10,
+        "minHeight": 24,
       }
     }
   >
@@ -344,7 +314,6 @@ exports[`AudioRecorder renders reset state 1`] = `
             "width": 24,
           },
           Object {
-            "flexDirection": "row",
             "justifyContent": "flex-end",
           },
         ]
@@ -443,6 +412,7 @@ exports[`AudioRecorder renders stopped state 1`] = `
         "flexDirection": "row",
         "marginHorizontal": 8,
         "marginTop": 10,
+        "minHeight": 24,
       }
     }
   >
@@ -517,7 +487,6 @@ exports[`AudioRecorder renders stopped state 1`] = `
             "width": 24,
           },
           Object {
-            "flexDirection": "row",
             "justifyContent": "flex-end",
           },
         ]

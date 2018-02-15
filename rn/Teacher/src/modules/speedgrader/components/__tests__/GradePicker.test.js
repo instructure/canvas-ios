@@ -16,6 +16,7 @@
 
 /* eslint-disable flowtype/require-valid-file-annotation */
 
+import { shallow } from 'enzyme'
 import React from 'react'
 import { AlertIOS, Animated } from 'react-native'
 import { GradePicker, mapStateToProps } from '../GradePicker'
@@ -94,6 +95,19 @@ describe('GradePicker', () => {
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
+  })
+
+  it('renders points and grade', () => {
+    let props = {
+      ...defaultProps,
+      score: 1,
+      pointsPossible: 10,
+      grade: 'F',
+      gradingType: 'gpa_scale',
+    }
+    let tree = shallow(<GradePicker {...props} />)
+    const label = tree.find('[testID="grade-picker.button"]').find('Heading1')
+    expect(label.children().text()).toEqual('1/10 (F)')
   })
 
   it('renders the activity indicator when pending', () => {

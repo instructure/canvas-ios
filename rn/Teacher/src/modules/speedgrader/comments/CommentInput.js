@@ -111,7 +111,7 @@ export default class CommentInput extends Component<CommentInputProps, State> {
               accessible
               accessibilityLabel={addMedia}
               accessibilityTraits={['button']}
-              hitSlop={{ top: 8, right: 8, bottom: 8, left: 8 }}
+              hitSlop={{ top: 11, right: 11, bottom: 11, left: 11 }}
             >
               <Image
                 resizeMode="center"
@@ -166,7 +166,7 @@ export default class CommentInput extends Component<CommentInputProps, State> {
 const styles = StyleSheet.create({
   mediaButton: {
     alignSelf: 'center',
-    paddingHorizontal: 4,
+    paddingHorizontal: 11,
   },
   plus: {
     tintColor: colors.secondaryButton,

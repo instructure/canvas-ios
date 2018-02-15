@@ -159,8 +159,10 @@ export class GradePicker extends Component<GradePickerProps, GradePickerState> {
 
     let score = this.props.useRubricForGrading && !this.state.useCustomGrade ? this.props.rubricScore : scoreToUse
     let points = i18n(`{ score, number }/{ pointsPossible, number }`, { score, pointsPossible: this.props.pointsPossible })
-    let grade = this.props.gradingType === 'points' ? '' : `${formatGradeText(gradeToUse, this.props.gradingType) || ''} `
-    return <Heading1 style={this.getButtonStyles(latePolicy)}>{grade}{points}</Heading1>
+
+    let grade = this.props.gradingType !== 'points' && formatGradeText(gradeToUse, this.props.gradingType)
+    let result = grade ? `${points} (${grade})` : points
+    return <Heading1 style={this.getButtonStyles(latePolicy)}>{result}</Heading1>
   }
 
   renderField = () => {

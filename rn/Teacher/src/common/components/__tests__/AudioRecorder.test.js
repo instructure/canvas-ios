@@ -111,13 +111,11 @@ describe('AudioRecorder', () => {
     })
   })
 
-  it('does not call onFinishedRecording if onFinish is called after cancel', async () => {
+  it('removes cancel button while recording', () => {
     const recordBtn: any = explore(recorder.toJSON()).selectByID('audio-recorder.record-btn')
     recordBtn.props.onPress()
     const cancelBtn: any = explore(recorder.toJSON()).selectByID('audio-recorder.cancel-btn')
-    await cancelBtn.props.onPress()
-    RNAudioRecorder.onFinished(data)
-    expect(props.onFinishedRecording).not.toHaveBeenCalled()
+    expect(cancelBtn).toBeNull()
   })
 
   it('alerts start recording errors', () => {
