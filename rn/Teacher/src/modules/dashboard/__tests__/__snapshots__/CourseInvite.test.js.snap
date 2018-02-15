@@ -10,6 +10,7 @@ exports[`CourseInvite can hide 1`] = `
       },
     ]
   }
+  hideShadow={true}
 >
   <View
     style={
@@ -113,6 +114,7 @@ exports[`CourseInvite renders action taken -- accept 1`] = `
       },
     ]
   }
+  hideShadow={true}
 >
   <View
     style={
@@ -216,6 +218,7 @@ exports[`CourseInvite renders action taken -- reject 1`] = `
       },
     ]
   }
+  hideShadow={true}
 >
   <View
     style={
@@ -319,6 +322,7 @@ exports[`CourseInvite renders displayState acted -- accept 1`] = `
       },
     ]
   }
+  hideShadow={true}
 >
   <View
     style={
@@ -422,6 +426,7 @@ exports[`CourseInvite renders displayState acted -- reject 1`] = `
       },
     ]
   }
+  hideShadow={true}
 >
   <View
     style={
@@ -525,6 +530,7 @@ exports[`CourseInvite renders hidden 1`] = `
       },
     ]
   }
+  hideShadow={true}
 >
   <View
     style={
@@ -677,6 +683,7 @@ exports[`CourseInvite renders invite 1`] = `
       },
     ]
   }
+  hideShadow={true}
 >
   <View
     style={
@@ -829,6 +836,7 @@ exports[`CourseInvite renders invite with course section 1`] = `
       },
     ]
   }
+  hideShadow={true}
 >
   <View
     style={

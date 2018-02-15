@@ -318,11 +318,16 @@ exports[`GroupList renders properly 1`] = `
               </View>
               <View
                 style={
-                  Object {
-                    "flex": 1,
-                    "flexDirection": "column",
-                    "justifyContent": "center",
-                  }
+                  Array [
+                    Object {
+                      "flex": 1,
+                      "flexDirection": "column",
+                      "justifyContent": "center",
+                    },
+                    Object {
+                      "marginLeft": 12,
+                    },
+                  ]
                 }
               >
                 <Text

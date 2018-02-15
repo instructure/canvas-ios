@@ -258,11 +258,16 @@ exports[`AnnouncementEdit renders 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <TextInput
@@ -419,11 +424,16 @@ exports[`AnnouncementEdit renders 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -477,7 +487,7 @@ exports[`AnnouncementEdit renders 1`] = `
                   onTintColor="#374A59"
                   onValueChange={[Function]}
                   testID="announcements.edit.delay-posting-toggle"
-                  tintColor="#374A59"
+                  tintColor={null}
                   title="Delay Posting"
                   value={false}
                 />
@@ -526,11 +536,16 @@ exports[`AnnouncementEdit renders 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -583,7 +598,7 @@ exports[`AnnouncementEdit renders 1`] = `
                   onTintColor="#374A59"
                   onValueChange={[Function]}
                   testID={undefined}
-                  tintColor="#374A59"
+                  tintColor={null}
                   title="Users must post before seeing replies"
                   value={false}
                 />
@@ -839,11 +854,16 @@ exports[`AnnouncementEdit updates with new props 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <TextInput
@@ -1000,11 +1020,16 @@ exports[`AnnouncementEdit updates with new props 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -1058,7 +1083,7 @@ exports[`AnnouncementEdit updates with new props 1`] = `
                   onTintColor="#374A59"
                   onValueChange={[Function]}
                   testID="announcements.edit.delay-posting-toggle"
-                  tintColor="#374A59"
+                  tintColor={null}
                   title="Delay Posting"
                   value={false}
                 />
@@ -1107,11 +1132,16 @@ exports[`AnnouncementEdit updates with new props 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -1164,7 +1194,7 @@ exports[`AnnouncementEdit updates with new props 1`] = `
                   onTintColor="#374A59"
                   onValueChange={[Function]}
                   testID={undefined}
-                  tintColor="#374A59"
+                  tintColor={null}
                   title="Users must post before seeing replies"
                   value={false}
                 />

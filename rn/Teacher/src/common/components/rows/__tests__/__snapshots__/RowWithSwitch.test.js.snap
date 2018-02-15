@@ -57,11 +57,16 @@ exports[`Render row with switch 1`] = `
   >
     <View
       style={
-        Object {
-          "flex": 1,
-          "flexDirection": "column",
-          "justifyContent": "center",
-        }
+        Array [
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+            "justifyContent": "center",
+          },
+          Object {
+            "marginLeft": 0,
+          },
+        ]
       }
     >
       <Text
@@ -127,7 +132,7 @@ exports[`Render row with switch 1`] = `
             ]
           }
           testID="test"
-          tintColor="#374A59"
+          tintColor={null}
           title="Row with a switch in it!"
           value={false}
         />

@@ -242,11 +242,16 @@ exports[`DiscussionEdit renders 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <TextInput
@@ -404,11 +409,16 @@ exports[`DiscussionEdit renders 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -461,7 +471,7 @@ exports[`DiscussionEdit renders 1`] = `
                   onTintColor="#374A59"
                   onValueChange={[Function]}
                   testID={undefined}
-                  tintColor="#374A59"
+                  tintColor={null}
                   title="Publish"
                   value={false}
                 />
@@ -510,11 +520,16 @@ exports[`DiscussionEdit renders 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -568,7 +583,7 @@ exports[`DiscussionEdit renders 1`] = `
                   onTintColor="#374A59"
                   onValueChange={[Function]}
                   testID="discussions.edit.discussion_type.switch"
-                  tintColor="#374A59"
+                  tintColor={null}
                   title="Allow threaded replies"
                   value={false}
                 />
@@ -617,11 +632,16 @@ exports[`DiscussionEdit renders 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -675,7 +695,7 @@ exports[`DiscussionEdit renders 1`] = `
                   onTintColor="#374A59"
                   onValueChange={[Function]}
                   testID="discussions.edit.subscribed.switch"
-                  tintColor="#374A59"
+                  tintColor={null}
                   title="Subscribe"
                   value={false}
                 />
@@ -724,11 +744,16 @@ exports[`DiscussionEdit renders 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -781,7 +806,7 @@ exports[`DiscussionEdit renders 1`] = `
                   onTintColor="#374A59"
                   onValueChange={[Function]}
                   testID={undefined}
-                  tintColor="#374A59"
+                  tintColor={null}
                   title="Users must post before seeing replies"
                   value={false}
                 />
@@ -1293,11 +1318,16 @@ exports[`DiscussionEdit renders new form 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <TextInput
@@ -1445,11 +1475,16 @@ exports[`DiscussionEdit renders new form 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -1502,7 +1537,7 @@ exports[`DiscussionEdit renders new form 1`] = `
                   onTintColor="#374A59"
                   onValueChange={[Function]}
                   testID={undefined}
-                  tintColor="#374A59"
+                  tintColor={null}
                   title="Publish"
                   value={undefined}
                 />
@@ -1551,11 +1586,16 @@ exports[`DiscussionEdit renders new form 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -1609,7 +1649,7 @@ exports[`DiscussionEdit renders new form 1`] = `
                   onTintColor="#374A59"
                   onValueChange={[Function]}
                   testID="discussions.edit.discussion_type.switch"
-                  tintColor="#374A59"
+                  tintColor={null}
                   title="Allow threaded replies"
                   value={false}
                 />
@@ -1658,11 +1698,16 @@ exports[`DiscussionEdit renders new form 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -1715,7 +1760,7 @@ exports[`DiscussionEdit renders new form 1`] = `
                   onTintColor="#374A59"
                   onValueChange={[Function]}
                   testID={undefined}
-                  tintColor="#374A59"
+                  tintColor={null}
                   title="Users must post before seeing replies"
                   value={undefined}
                 />
@@ -2227,11 +2272,16 @@ exports[`DiscussionEdit updates from props 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <TextInput
@@ -2379,11 +2429,16 @@ exports[`DiscussionEdit updates from props 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -2436,7 +2491,7 @@ exports[`DiscussionEdit updates from props 1`] = `
                   onTintColor="#374A59"
                   onValueChange={[Function]}
                   testID={undefined}
-                  tintColor="#374A59"
+                  tintColor={null}
                   title="Publish"
                   value={undefined}
                 />
@@ -2485,11 +2540,16 @@ exports[`DiscussionEdit updates from props 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -2543,7 +2603,7 @@ exports[`DiscussionEdit updates from props 1`] = `
                   onTintColor="#374A59"
                   onValueChange={[Function]}
                   testID="discussions.edit.discussion_type.switch"
-                  tintColor="#374A59"
+                  tintColor={null}
                   title="Allow threaded replies"
                   value={false}
                 />
@@ -2592,11 +2652,16 @@ exports[`DiscussionEdit updates from props 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -2649,7 +2714,7 @@ exports[`DiscussionEdit updates from props 1`] = `
                   onTintColor="#374A59"
                   onValueChange={[Function]}
                   testID={undefined}
-                  tintColor="#374A59"
+                  tintColor={null}
                   title="Users must post before seeing replies"
                   value={undefined}
                 />
@@ -3161,11 +3226,16 @@ exports[`DiscussionEdit updates with new props 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <TextInput
@@ -3323,11 +3393,16 @@ exports[`DiscussionEdit updates with new props 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -3380,7 +3455,7 @@ exports[`DiscussionEdit updates with new props 1`] = `
                   onTintColor="#374A59"
                   onValueChange={[Function]}
                   testID={undefined}
-                  tintColor="#374A59"
+                  tintColor={null}
                   title="Publish"
                   value={false}
                 />
@@ -3429,11 +3504,16 @@ exports[`DiscussionEdit updates with new props 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -3487,7 +3567,7 @@ exports[`DiscussionEdit updates with new props 1`] = `
                   onTintColor="#374A59"
                   onValueChange={[Function]}
                   testID="discussions.edit.discussion_type.switch"
-                  tintColor="#374A59"
+                  tintColor={null}
                   title="Allow threaded replies"
                   value={false}
                 />
@@ -3536,11 +3616,16 @@ exports[`DiscussionEdit updates with new props 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -3594,7 +3679,7 @@ exports[`DiscussionEdit updates with new props 1`] = `
                   onTintColor="#374A59"
                   onValueChange={[Function]}
                   testID="discussions.edit.subscribed.switch"
-                  tintColor="#374A59"
+                  tintColor={null}
                   title="Subscribe"
                   value={false}
                 />
@@ -3643,11 +3728,16 @@ exports[`DiscussionEdit updates with new props 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -3700,7 +3790,7 @@ exports[`DiscussionEdit updates with new props 1`] = `
                   onTintColor="#374A59"
                   onValueChange={[Function]}
                   testID={undefined}
-                  tintColor="#374A59"
+                  tintColor={null}
                   title="Users must post before seeing replies"
                   value={false}
                 />

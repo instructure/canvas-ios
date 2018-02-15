@@ -41,11 +41,7 @@ exports[`AttachmentRow renders 1`] = `
     <View
       accessibilityLabel="Upload complete"
       accessible={true}
-      style={
-        Object {
-          "marginRight": 16,
-        }
-      }
+      style={undefined}
     >
       <Image
         source={
@@ -58,11 +54,16 @@ exports[`AttachmentRow renders 1`] = `
     </View>
     <View
       style={
-        Object {
-          "flex": 1,
-          "flexDirection": "column",
-          "justifyContent": "center",
-        }
+        Array [
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+            "justifyContent": "center",
+          },
+          Object {
+            "marginLeft": 12,
+          },
+        ]
       }
     >
       <Text

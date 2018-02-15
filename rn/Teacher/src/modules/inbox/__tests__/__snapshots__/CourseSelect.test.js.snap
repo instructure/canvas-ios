@@ -345,11 +345,16 @@ exports[`CourseSelect renders 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -487,11 +492,16 @@ exports[`CourseSelect renders 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -570,11 +580,16 @@ exports[`CourseSelect renders 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -962,11 +977,16 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -1104,11 +1124,16 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -1187,11 +1212,16 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text

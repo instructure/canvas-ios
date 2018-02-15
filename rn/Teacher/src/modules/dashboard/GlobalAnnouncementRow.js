@@ -94,6 +94,7 @@ export default class GlobalAnnouncementRow extends React.Component<Props, State>
       <DashboardContent
         style={style}
         contentStyle={[{ borderColor: color, borderWidth: 1 }]}
+        hideShadow={true}
       >
         {collapsed ? (
           <TouchableHighlight

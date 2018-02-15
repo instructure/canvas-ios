@@ -758,7 +758,7 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                             ]
                           }
                         >
-                          AOT
+                          AO
                         </Text>
                       </View>
                     </TouchableHighlight>

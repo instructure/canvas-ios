@@ -111,7 +111,7 @@ export default class Avatar extends PureComponent<Props, any> {
           .map((word) => word[0])
           .filter((c) => c)
           .reduce((m, c) => m + c, '')
-          .substring(0, 3)
+          .substring(0, 2)
           .toUpperCase()
         : ''
       comp = (

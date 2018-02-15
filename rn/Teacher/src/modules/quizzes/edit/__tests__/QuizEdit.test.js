@@ -16,6 +16,7 @@
 
 /* eslint-disable flowtype/require-valid-file-annotation */
 
+import { shallow } from 'enzyme'
 import React from 'react'
 import {
   Alert,
@@ -448,7 +449,7 @@ describe('QuizEdit', () => {
     expect(NativeModules.NativeAccessibility.focusElement).toHaveBeenCalledWith(`quizEdit.unmet-requirement-banner`)
   })
 
-  test('saving invalid name displays banner', () => {
+  it('saving invalid name displays banner', () => {
     props.quiz.title = ''
     const component = renderer.create(
     <QuizEdit {...props} />, options
@@ -458,7 +459,7 @@ describe('QuizEdit', () => {
     expect(component.toJSON()).toMatchSnapshot()
   })
 
-  test('saving password displays banner', () => {
+  it('saving password displays banner', () => {
     props.quiz.access_code = ''
     const component = renderer.create(
     <QuizEdit {...props} />, options
@@ -468,7 +469,7 @@ describe('QuizEdit', () => {
     expect(component.toJSON()).toMatchSnapshot()
   })
 
-  test('saving invalid viewing dates displays banner', () => {
+  it('saving invalid viewing dates displays banner', () => {
     props.quiz.show_correct_answers = true
     props.quiz.show_correct_answers_at = '2017-06-01T07:59:00Z'
     props.quiz.hide_correct_answers_at = '2017-06-01T05:59:00Z'
@@ -480,7 +481,7 @@ describe('QuizEdit', () => {
     expect(component.toJSON()).toMatchSnapshot()
   })
 
-  test('saving invalid due dates displays banner', () => {
+  it('saving invalid due dates displays banner', () => {
     props.quiz.all_dates = [{
       due_at: '2017-06-01T07:59:00Z',
       lock_at: '2017-06-01T05:59:00Z',
@@ -491,6 +492,26 @@ describe('QuizEdit', () => {
     const doneBtn: any = explore(component.toJSON()).selectRightBarButton('quizzes.edit.doneButton')
     doneBtn.action()
     expect(component.toJSON()).toMatchSnapshot()
+  })
+
+  it('renders publish switch if not published', () => {
+    props.quiz.published = false
+    const tree = shallow(<QuizEdit {...props} />)
+    expect(tree.find('[identifier="quizzes.edit.published-toggle"]')).toHaveLength(1)
+  })
+
+  it('renders publish switch if can unpublish', () => {
+    props.quiz.published = true
+    props.quiz.can_unpublish = true
+    const tree = shallow(<QuizEdit {...props} />)
+    expect(tree.find('[identifier="quizzes.edit.published-toggle"]')).toHaveLength(1)
+  })
+
+  it('does not render publish switch if cant unpublish', () => {
+    props.quiz.published = true
+    props.quiz.can_unpublish = false
+    const tree = shallow(<QuizEdit {...props} />)
+    expect(tree.find('[identifier="quizzes.edit.published-toggle"]')).toHaveLength(0)
   })
 })
 

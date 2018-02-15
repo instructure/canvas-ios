@@ -3,11 +3,7 @@
 exports[`renders correctly 1`] = `
 <View>
   <View
-    style={
-      Object {
-        "marginLeft": -10,
-      }
-    }
+    style={undefined}
   >
     <View
       accessibilityComponentType={undefined}
@@ -80,8 +76,6 @@ exports[`renders correctly 1`] = `
               Object {
                 "alignItems": "center",
                 "flex": 0,
-                "height": 32,
-                "width": 46,
               }
             }
           >
@@ -92,32 +86,24 @@ exports[`renders correctly 1`] = `
                 }
               }
               style={
-                Array [
-                  Object {
-                    "position": "absolute",
-                  },
-                  Object {
-                    "tintColor": "#fff",
-                  },
-                ]
+                Object {
+                  "tintColor": "#fff",
+                }
               }
             />
             <View
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "white",
-                    "borderRadius": 8,
-                    "height": 16,
-                    "justifyContent": "center",
-                    "left": 20,
-                    "position": "absolute",
-                    "top": 10,
-                    "width": 16,
-                  },
-                  undefined,
-                ]
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "bottom": -6,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": -5,
+                  "width": 16,
+                }
               }
             >
               <Image
@@ -139,11 +125,16 @@ exports[`renders correctly 1`] = `
         </View>
         <View
           style={
-            Object {
-              "flex": 1,
-              "flexDirection": "column",
-              "justifyContent": "center",
-            }
+            Array [
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+              Object {
+                "marginLeft": 12,
+              },
+            ]
           }
         >
           <Text
@@ -263,11 +254,7 @@ exports[`renders correctly 1`] = `
 exports[`renders correctly assignment icon 1`] = `
 <View>
   <View
-    style={
-      Object {
-        "marginLeft": -10,
-      }
-    }
+    style={undefined}
   >
     <View
       accessibilityComponentType={undefined}
@@ -340,8 +327,6 @@ exports[`renders correctly assignment icon 1`] = `
               Object {
                 "alignItems": "center",
                 "flex": 0,
-                "height": 32,
-                "width": 46,
               }
             }
           >
@@ -352,32 +337,24 @@ exports[`renders correctly assignment icon 1`] = `
                 }
               }
               style={
-                Array [
-                  Object {
-                    "position": "absolute",
-                  },
-                  Object {
-                    "tintColor": undefined,
-                  },
-                ]
+                Object {
+                  "tintColor": undefined,
+                }
               }
             />
             <View
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "white",
-                    "borderRadius": 8,
-                    "height": 16,
-                    "justifyContent": "center",
-                    "left": 20,
-                    "position": "absolute",
-                    "top": 10,
-                    "width": 16,
-                  },
-                  undefined,
-                ]
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "bottom": -6,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": -5,
+                  "width": 16,
+                }
               }
             >
               <Image
@@ -399,11 +376,16 @@ exports[`renders correctly assignment icon 1`] = `
         </View>
         <View
           style={
-            Object {
-              "flex": 1,
-              "flexDirection": "column",
-              "justifyContent": "center",
-            }
+            Array [
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+              Object {
+                "marginLeft": 12,
+              },
+            ]
           }
         >
           <Text
@@ -523,11 +505,7 @@ exports[`renders correctly assignment icon 1`] = `
 exports[`renders correctly discussion icon 1`] = `
 <View>
   <View
-    style={
-      Object {
-        "marginLeft": -10,
-      }
-    }
+    style={undefined}
   >
     <View
       accessibilityComponentType={undefined}
@@ -600,8 +578,6 @@ exports[`renders correctly discussion icon 1`] = `
               Object {
                 "alignItems": "center",
                 "flex": 0,
-                "height": 32,
-                "width": 46,
               }
             }
           >
@@ -612,32 +588,24 @@ exports[`renders correctly discussion icon 1`] = `
                 }
               }
               style={
-                Array [
-                  Object {
-                    "position": "absolute",
-                  },
-                  Object {
-                    "tintColor": undefined,
-                  },
-                ]
+                Object {
+                  "tintColor": undefined,
+                }
               }
             />
             <View
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "white",
-                    "borderRadius": 8,
-                    "height": 16,
-                    "justifyContent": "center",
-                    "left": 20,
-                    "position": "absolute",
-                    "top": 10,
-                    "width": 16,
-                  },
-                  undefined,
-                ]
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "bottom": -6,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": -5,
+                  "width": 16,
+                }
               }
             >
               <Image
@@ -659,11 +627,16 @@ exports[`renders correctly discussion icon 1`] = `
         </View>
         <View
           style={
-            Object {
-              "flex": 1,
-              "flexDirection": "column",
-              "justifyContent": "center",
-            }
+            Array [
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+              Object {
+                "marginLeft": 12,
+              },
+            ]
           }
         >
           <Text
@@ -783,11 +756,7 @@ exports[`renders correctly discussion icon 1`] = `
 exports[`renders correctly not published icon 1`] = `
 <View>
   <View
-    style={
-      Object {
-        "marginLeft": -10,
-      }
-    }
+    style={undefined}
   >
     <View
       accessibilityComponentType={undefined}
@@ -860,8 +829,6 @@ exports[`renders correctly not published icon 1`] = `
               Object {
                 "alignItems": "center",
                 "flex": 0,
-                "height": 32,
-                "width": 46,
               }
             }
           >
@@ -872,32 +839,24 @@ exports[`renders correctly not published icon 1`] = `
                 }
               }
               style={
-                Array [
-                  Object {
-                    "position": "absolute",
-                  },
-                  Object {
-                    "tintColor": undefined,
-                  },
-                ]
+                Object {
+                  "tintColor": undefined,
+                }
               }
             />
             <View
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "white",
-                    "borderRadius": 8,
-                    "height": 16,
-                    "justifyContent": "center",
-                    "left": 20,
-                    "position": "absolute",
-                    "top": 10,
-                    "width": 16,
-                  },
-                  undefined,
-                ]
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "bottom": -6,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": -5,
+                  "width": 16,
+                }
               }
             >
               <Image
@@ -919,11 +878,16 @@ exports[`renders correctly not published icon 1`] = `
         </View>
         <View
           style={
-            Object {
-              "flex": 1,
-              "flexDirection": "column",
-              "justifyContent": "center",
-            }
+            Array [
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+              Object {
+                "marginLeft": 12,
+              },
+            ]
           }
         >
           <Text
@@ -1032,11 +996,7 @@ exports[`renders correctly not published icon 1`] = `
 exports[`renders correctly published icon 1`] = `
 <View>
   <View
-    style={
-      Object {
-        "marginLeft": -10,
-      }
-    }
+    style={undefined}
   >
     <View
       accessibilityComponentType={undefined}
@@ -1109,8 +1069,6 @@ exports[`renders correctly published icon 1`] = `
               Object {
                 "alignItems": "center",
                 "flex": 0,
-                "height": 32,
-                "width": 46,
               }
             }
           >
@@ -1121,32 +1079,24 @@ exports[`renders correctly published icon 1`] = `
                 }
               }
               style={
-                Array [
-                  Object {
-                    "position": "absolute",
-                  },
-                  Object {
-                    "tintColor": undefined,
-                  },
-                ]
+                Object {
+                  "tintColor": undefined,
+                }
               }
             />
             <View
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "white",
-                    "borderRadius": 8,
-                    "height": 16,
-                    "justifyContent": "center",
-                    "left": 20,
-                    "position": "absolute",
-                    "top": 10,
-                    "width": 16,
-                  },
-                  undefined,
-                ]
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "bottom": -6,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": -5,
+                  "width": 16,
+                }
               }
             >
               <Image
@@ -1168,11 +1118,16 @@ exports[`renders correctly published icon 1`] = `
         </View>
         <View
           style={
-            Object {
-              "flex": 1,
-              "flexDirection": "column",
-              "justifyContent": "center",
-            }
+            Array [
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+              Object {
+                "marginLeft": 12,
+              },
+            ]
           }
         >
           <Text
@@ -1292,11 +1247,7 @@ exports[`renders correctly published icon 1`] = `
 exports[`renders correctly quiz icon 1`] = `
 <View>
   <View
-    style={
-      Object {
-        "marginLeft": -10,
-      }
-    }
+    style={undefined}
   >
     <View
       accessibilityComponentType={undefined}
@@ -1369,8 +1320,6 @@ exports[`renders correctly quiz icon 1`] = `
               Object {
                 "alignItems": "center",
                 "flex": 0,
-                "height": 32,
-                "width": 46,
               }
             }
           >
@@ -1381,32 +1330,24 @@ exports[`renders correctly quiz icon 1`] = `
                 }
               }
               style={
-                Array [
-                  Object {
-                    "position": "absolute",
-                  },
-                  Object {
-                    "tintColor": undefined,
-                  },
-                ]
+                Object {
+                  "tintColor": undefined,
+                }
               }
             />
             <View
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "white",
-                    "borderRadius": 8,
-                    "height": 16,
-                    "justifyContent": "center",
-                    "left": 20,
-                    "position": "absolute",
-                    "top": 10,
-                    "width": 16,
-                  },
-                  undefined,
-                ]
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "bottom": -6,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": -5,
+                  "width": 16,
+                }
               }
             >
               <Image
@@ -1428,11 +1369,16 @@ exports[`renders correctly quiz icon 1`] = `
         </View>
         <View
           style={
-            Object {
-              "flex": 1,
-              "flexDirection": "column",
-              "justifyContent": "center",
-            }
+            Array [
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+              Object {
+                "marginLeft": 12,
+              },
+            ]
           }
         >
           <Text
@@ -1552,11 +1498,7 @@ exports[`renders correctly quiz icon 1`] = `
 exports[`renders correctly with closed due dates 1`] = `
 <View>
   <View
-    style={
-      Object {
-        "marginLeft": -10,
-      }
-    }
+    style={undefined}
   >
     <View
       accessibilityComponentType={undefined}
@@ -1629,8 +1571,6 @@ exports[`renders correctly with closed due dates 1`] = `
               Object {
                 "alignItems": "center",
                 "flex": 0,
-                "height": 32,
-                "width": 46,
               }
             }
           >
@@ -1641,32 +1581,24 @@ exports[`renders correctly with closed due dates 1`] = `
                 }
               }
               style={
-                Array [
-                  Object {
-                    "position": "absolute",
-                  },
-                  Object {
-                    "tintColor": "#fff",
-                  },
-                ]
+                Object {
+                  "tintColor": "#fff",
+                }
               }
             />
             <View
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "white",
-                    "borderRadius": 8,
-                    "height": 16,
-                    "justifyContent": "center",
-                    "left": 20,
-                    "position": "absolute",
-                    "top": 10,
-                    "width": 16,
-                  },
-                  undefined,
-                ]
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "bottom": -6,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": -5,
+                  "width": 16,
+                }
               }
             >
               <Image
@@ -1688,11 +1620,16 @@ exports[`renders correctly with closed due dates 1`] = `
         </View>
         <View
           style={
-            Object {
-              "flex": 1,
-              "flexDirection": "column",
-              "justifyContent": "center",
-            }
+            Array [
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+              Object {
+                "marginLeft": 12,
+              },
+            ]
           }
         >
           <Text
@@ -1812,11 +1749,7 @@ exports[`renders correctly with closed due dates 1`] = `
 exports[`renders correctly with needs_grading_count 1`] = `
 <View>
   <View
-    style={
-      Object {
-        "marginLeft": -10,
-      }
-    }
+    style={undefined}
   >
     <View
       accessibilityComponentType={undefined}
@@ -1889,8 +1822,6 @@ exports[`renders correctly with needs_grading_count 1`] = `
               Object {
                 "alignItems": "center",
                 "flex": 0,
-                "height": 32,
-                "width": 46,
               }
             }
           >
@@ -1901,32 +1832,24 @@ exports[`renders correctly with needs_grading_count 1`] = `
                 }
               }
               style={
-                Array [
-                  Object {
-                    "position": "absolute",
-                  },
-                  Object {
-                    "tintColor": "#fff",
-                  },
-                ]
+                Object {
+                  "tintColor": "#fff",
+                }
               }
             />
             <View
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "white",
-                    "borderRadius": 8,
-                    "height": 16,
-                    "justifyContent": "center",
-                    "left": 20,
-                    "position": "absolute",
-                    "top": 10,
-                    "width": 16,
-                  },
-                  undefined,
-                ]
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "bottom": -6,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": -5,
+                  "width": 16,
+                }
               }
             >
               <Image
@@ -1948,11 +1871,16 @@ exports[`renders correctly with needs_grading_count 1`] = `
         </View>
         <View
           style={
-            Object {
-              "flex": 1,
-              "flexDirection": "column",
-              "justifyContent": "center",
-            }
+            Array [
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+              Object {
+                "marginLeft": 12,
+              },
+            ]
           }
         >
           <Text
@@ -2109,11 +2037,7 @@ exports[`renders correctly with needs_grading_count 1`] = `
 exports[`renders correctly with needs_grading_count and set to not_graded 1`] = `
 <View>
   <View
-    style={
-      Object {
-        "marginLeft": -10,
-      }
-    }
+    style={undefined}
   >
     <View
       accessibilityComponentType={undefined}
@@ -2186,8 +2110,6 @@ exports[`renders correctly with needs_grading_count and set to not_graded 1`] = 
               Object {
                 "alignItems": "center",
                 "flex": 0,
-                "height": 32,
-                "width": 46,
               }
             }
           >
@@ -2198,32 +2120,24 @@ exports[`renders correctly with needs_grading_count and set to not_graded 1`] = 
                 }
               }
               style={
-                Array [
-                  Object {
-                    "position": "absolute",
-                  },
-                  Object {
-                    "tintColor": "#fff",
-                  },
-                ]
+                Object {
+                  "tintColor": "#fff",
+                }
               }
             />
             <View
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "white",
-                    "borderRadius": 8,
-                    "height": 16,
-                    "justifyContent": "center",
-                    "left": 20,
-                    "position": "absolute",
-                    "top": 10,
-                    "width": 16,
-                  },
-                  undefined,
-                ]
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "bottom": -6,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": -5,
+                  "width": 16,
+                }
               }
             >
               <Image
@@ -2245,11 +2159,16 @@ exports[`renders correctly with needs_grading_count and set to not_graded 1`] = 
         </View>
         <View
           style={
-            Object {
-              "flex": 1,
-              "flexDirection": "column",
-              "justifyContent": "center",
-            }
+            Array [
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+              Object {
+                "marginLeft": 12,
+              },
+            ]
           }
         >
           <Text
@@ -2369,11 +2288,7 @@ exports[`renders correctly with needs_grading_count and set to not_graded 1`] = 
 exports[`renders correctly with open due dates 1`] = `
 <View>
   <View
-    style={
-      Object {
-        "marginLeft": -10,
-      }
-    }
+    style={undefined}
   >
     <View
       accessibilityComponentType={undefined}
@@ -2446,8 +2361,6 @@ exports[`renders correctly with open due dates 1`] = `
               Object {
                 "alignItems": "center",
                 "flex": 0,
-                "height": 32,
-                "width": 46,
               }
             }
           >
@@ -2458,32 +2371,24 @@ exports[`renders correctly with open due dates 1`] = `
                 }
               }
               style={
-                Array [
-                  Object {
-                    "position": "absolute",
-                  },
-                  Object {
-                    "tintColor": "#fff",
-                  },
-                ]
+                Object {
+                  "tintColor": "#fff",
+                }
               }
             />
             <View
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "white",
-                    "borderRadius": 8,
-                    "height": 16,
-                    "justifyContent": "center",
-                    "left": 20,
-                    "position": "absolute",
-                    "top": 10,
-                    "width": 16,
-                  },
-                  undefined,
-                ]
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "bottom": -6,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": -5,
+                  "width": 16,
+                }
               }
             >
               <Image
@@ -2505,11 +2410,16 @@ exports[`renders correctly with open due dates 1`] = `
         </View>
         <View
           style={
-            Object {
-              "flex": 1,
-              "flexDirection": "column",
-              "justifyContent": "center",
-            }
+            Array [
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+              Object {
+                "marginLeft": 12,
+              },
+            ]
           }
         >
           <Text
@@ -2629,11 +2539,7 @@ exports[`renders correctly with open due dates 1`] = `
 exports[`renders correctly with selected props 1`] = `
 <View>
   <View
-    style={
-      Object {
-        "marginLeft": -10,
-      }
-    }
+    style={undefined}
   >
     <View
       accessibilityComponentType={undefined}
@@ -2706,8 +2612,6 @@ exports[`renders correctly with selected props 1`] = `
               Object {
                 "alignItems": "center",
                 "flex": 0,
-                "height": 32,
-                "width": 46,
               }
             }
           >
@@ -2718,32 +2622,24 @@ exports[`renders correctly with selected props 1`] = `
                 }
               }
               style={
-                Array [
-                  Object {
-                    "position": "absolute",
-                  },
-                  Object {
-                    "tintColor": "#fff",
-                  },
-                ]
+                Object {
+                  "tintColor": "#fff",
+                }
               }
             />
             <View
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "white",
-                    "borderRadius": 8,
-                    "height": 16,
-                    "justifyContent": "center",
-                    "left": 20,
-                    "position": "absolute",
-                    "top": 10,
-                    "width": 16,
-                  },
-                  undefined,
-                ]
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "bottom": -6,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": -5,
+                  "width": 16,
+                }
               }
             >
               <Image
@@ -2765,11 +2661,16 @@ exports[`renders correctly with selected props 1`] = `
         </View>
         <View
           style={
-            Object {
-              "flex": 1,
-              "flexDirection": "column",
-              "justifyContent": "center",
-            }
+            Array [
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+              Object {
+                "marginLeft": 12,
+              },
+            ]
           }
         >
           <Text

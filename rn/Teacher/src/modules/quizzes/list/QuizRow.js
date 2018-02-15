@@ -43,7 +43,7 @@ export default class QuizRow extends Component<Props, any> {
     const { quiz, selected } = this.props
     return (
       <View>
-        <View style={{ marginLeft: -12 }}>
+        <View>
           <Row
             renderImage={this._renderIcon}
             title={quiz.title}

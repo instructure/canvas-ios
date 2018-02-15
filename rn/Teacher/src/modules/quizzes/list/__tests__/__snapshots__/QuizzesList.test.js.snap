@@ -125,6 +125,7 @@ exports[`QuizzesList renders in correct order 1`] = `
                 "all_dates": Array [],
                 "allowed_attempts": -1,
                 "assignment_group_id": null,
+                "can_unpublish": true,
                 "cant_go_back": false,
                 "description": "This is quiz 1",
                 "due_at": "2117-03-28T15:07:56.312Z",
@@ -152,6 +153,7 @@ exports[`QuizzesList renders in correct order 1`] = `
                 "all_dates": Array [],
                 "allowed_attempts": -1,
                 "assignment_group_id": null,
+                "can_unpublish": true,
                 "cant_go_back": false,
                 "description": "This is quiz 1",
                 "due_at": "2118-03-28T15:07:56.312Z",
@@ -210,6 +212,7 @@ exports[`QuizzesList renders in correct order 1`] = `
                 "all_dates": Array [],
                 "allowed_attempts": -1,
                 "assignment_group_id": null,
+                "can_unpublish": true,
                 "cant_go_back": false,
                 "description": "This is quiz 1",
                 "due_at": "2117-03-28T15:07:56.312Z",
@@ -237,6 +240,7 @@ exports[`QuizzesList renders in correct order 1`] = `
                 "all_dates": Array [],
                 "allowed_attempts": -1,
                 "assignment_group_id": null,
+                "can_unpublish": true,
                 "cant_go_back": false,
                 "description": "This is quiz 1",
                 "due_at": "2118-03-28T15:07:56.312Z",
@@ -337,13 +341,7 @@ exports[`QuizzesList renders in correct order 1`] = `
           style={null}
         >
           <View>
-            <View
-              style={
-                Object {
-                  "marginLeft": -12,
-                }
-              }
-            >
+            <View>
               <TouchableHighlight
                 accessibilityLabel={undefined}
                 accessibilityTraits={
@@ -396,8 +394,6 @@ exports[`QuizzesList renders in correct order 1`] = `
                         Object {
                           "alignItems": "center",
                           "flex": 0,
-                          "height": 32,
-                          "width": 46,
                         }
                       }
                     >
@@ -408,32 +404,24 @@ exports[`QuizzesList renders in correct order 1`] = `
                           }
                         }
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": null,
-                            },
-                          ]
+                          Object {
+                            "tintColor": null,
+                          }
                         }
                       />
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderRadius": 8,
-                              "height": 16,
-                              "justifyContent": "center",
-                              "left": 20,
-                              "position": "absolute",
-                              "top": 10,
-                              "width": 16,
-                            },
-                            undefined,
-                          ]
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "bottom": -6,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "position": "absolute",
+                            "right": -5,
+                            "width": 16,
+                          }
                         }
                       >
                         <Image
@@ -455,11 +443,16 @@ exports[`QuizzesList renders in correct order 1`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "column",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "marginLeft": 12,
+                        },
+                      ]
                     }
                   >
                     <Text
@@ -693,13 +686,7 @@ exports[`QuizzesList renders in correct order 1`] = `
           style={null}
         >
           <View>
-            <View
-              style={
-                Object {
-                  "marginLeft": -12,
-                }
-              }
-            >
+            <View>
               <TouchableHighlight
                 accessibilityLabel={undefined}
                 accessibilityTraits={
@@ -752,8 +739,6 @@ exports[`QuizzesList renders in correct order 1`] = `
                         Object {
                           "alignItems": "center",
                           "flex": 0,
-                          "height": 32,
-                          "width": 46,
                         }
                       }
                     >
@@ -764,32 +749,24 @@ exports[`QuizzesList renders in correct order 1`] = `
                           }
                         }
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": null,
-                            },
-                          ]
+                          Object {
+                            "tintColor": null,
+                          }
                         }
                       />
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderRadius": 8,
-                              "height": 16,
-                              "justifyContent": "center",
-                              "left": 20,
-                              "position": "absolute",
-                              "top": 10,
-                              "width": 16,
-                            },
-                            undefined,
-                          ]
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "bottom": -6,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "position": "absolute",
+                            "right": -5,
+                            "width": 16,
+                          }
                         }
                       >
                         <Image
@@ -811,11 +788,16 @@ exports[`QuizzesList renders in correct order 1`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "column",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "marginLeft": 12,
+                        },
+                      ]
                     }
                   >
                     <Text
@@ -1085,6 +1067,7 @@ exports[`QuizzesList renders quizzes 1`] = `
                 "all_dates": Array [],
                 "allowed_attempts": -1,
                 "assignment_group_id": null,
+                "can_unpublish": true,
                 "cant_go_back": false,
                 "description": "This is quiz 1",
                 "due_at": "2013-01-23T23:59:00-07:00",
@@ -1112,6 +1095,7 @@ exports[`QuizzesList renders quizzes 1`] = `
                 "all_dates": Array [],
                 "allowed_attempts": -1,
                 "assignment_group_id": null,
+                "can_unpublish": true,
                 "cant_go_back": false,
                 "description": "This is quiz 1",
                 "due_at": "2013-01-23T23:59:00-07:00",
@@ -1170,6 +1154,7 @@ exports[`QuizzesList renders quizzes 1`] = `
                 "all_dates": Array [],
                 "allowed_attempts": -1,
                 "assignment_group_id": null,
+                "can_unpublish": true,
                 "cant_go_back": false,
                 "description": "This is quiz 1",
                 "due_at": "2013-01-23T23:59:00-07:00",
@@ -1197,6 +1182,7 @@ exports[`QuizzesList renders quizzes 1`] = `
                 "all_dates": Array [],
                 "allowed_attempts": -1,
                 "assignment_group_id": null,
+                "can_unpublish": true,
                 "cant_go_back": false,
                 "description": "This is quiz 1",
                 "due_at": "2013-01-23T23:59:00-07:00",
@@ -1297,13 +1283,7 @@ exports[`QuizzesList renders quizzes 1`] = `
           style={null}
         >
           <View>
-            <View
-              style={
-                Object {
-                  "marginLeft": -12,
-                }
-              }
-            >
+            <View>
               <TouchableHighlight
                 accessibilityLabel={undefined}
                 accessibilityTraits={
@@ -1356,8 +1336,6 @@ exports[`QuizzesList renders quizzes 1`] = `
                         Object {
                           "alignItems": "center",
                           "flex": 0,
-                          "height": 32,
-                          "width": 46,
                         }
                       }
                     >
@@ -1368,32 +1346,24 @@ exports[`QuizzesList renders quizzes 1`] = `
                           }
                         }
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": null,
-                            },
-                          ]
+                          Object {
+                            "tintColor": null,
+                          }
                         }
                       />
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderRadius": 8,
-                              "height": 16,
-                              "justifyContent": "center",
-                              "left": 20,
-                              "position": "absolute",
-                              "top": 10,
-                              "width": 16,
-                            },
-                            undefined,
-                          ]
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "bottom": -6,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "position": "absolute",
+                            "right": -5,
+                            "width": 16,
+                          }
                         }
                       >
                         <Image
@@ -1415,11 +1385,16 @@ exports[`QuizzesList renders quizzes 1`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "column",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "marginLeft": 12,
+                        },
+                      ]
                     }
                   >
                     <Text
@@ -1653,13 +1628,7 @@ exports[`QuizzesList renders quizzes 1`] = `
           style={null}
         >
           <View>
-            <View
-              style={
-                Object {
-                  "marginLeft": -12,
-                }
-              }
-            >
+            <View>
               <TouchableHighlight
                 accessibilityLabel={undefined}
                 accessibilityTraits={
@@ -1712,8 +1681,6 @@ exports[`QuizzesList renders quizzes 1`] = `
                         Object {
                           "alignItems": "center",
                           "flex": 0,
-                          "height": 32,
-                          "width": 46,
                         }
                       }
                     >
@@ -1724,32 +1691,24 @@ exports[`QuizzesList renders quizzes 1`] = `
                           }
                         }
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": null,
-                            },
-                          ]
+                          Object {
+                            "tintColor": null,
+                          }
                         }
                       />
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderRadius": 8,
-                              "height": 16,
-                              "justifyContent": "center",
-                              "left": 20,
-                              "position": "absolute",
-                              "top": 10,
-                              "width": 16,
-                            },
-                            undefined,
-                          ]
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "bottom": -6,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "position": "absolute",
+                            "right": -5,
+                            "width": 16,
+                          }
                         }
                       >
                         <Image
@@ -1771,11 +1730,16 @@ exports[`QuizzesList renders quizzes 1`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "column",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "marginLeft": 12,
+                        },
+                      ]
                     }
                   >
                     <Text

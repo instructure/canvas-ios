@@ -38,12 +38,6 @@ type Props = {
   }, */
   tintColor: ?string,
   image: any,
-  // Offset for the status icon that appears in the bottom right.
-  // Needed because some images have different sizes so a single offset doesn't work for all images
-  statusOffset?: {
-    top?: number,
-    left?: number,
-  },
 }
 
 export default class AccessIcon extends React.Component<Props> {
@@ -67,8 +61,8 @@ export default class AccessIcon extends React.Component<Props> {
     }
     return (
       <View style={styles.container} accessibilityLabel={accessibilityLabel}>
-        <Image source={this.props.image} style={[styles.image, { tintColor: this.props.tintColor }]} />
-        <View style={[styles.publishedIconContainer, this.props.statusOffset]}>
+        <Image source={this.props.image} style={{ tintColor: this.props.tintColor }} />
+        <View style={styles.publishedIconContainer}>
           <Image source={icon} style={iconStyle} />
         </View>
       </View>
@@ -79,19 +73,14 @@ export default class AccessIcon extends React.Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 0,
-    height: 32,
-    width: 46,
     alignItems: 'center',
-  },
-  image: {
-    position: 'absolute',
   },
   publishedIconContainer: {
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    top: 10,
-    left: 20,
+    bottom: -6,
+    right: -5,
     backgroundColor: 'white',
     height: 16,
     width: 16,

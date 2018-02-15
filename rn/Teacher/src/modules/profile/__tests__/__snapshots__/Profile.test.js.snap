@@ -229,11 +229,16 @@ exports[`Profile Tests renders correctly 1`] = `
               >
                 <View
                   style={
-                    Object {
-                      "flex": 1,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
-                    }
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "marginLeft": 0,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -341,11 +346,16 @@ exports[`Profile Tests renders correctly 1`] = `
               >
                 <View
                   style={
-                    Object {
-                      "flex": 1,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
-                    }
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "marginLeft": 0,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -453,11 +463,16 @@ exports[`Profile Tests renders correctly 1`] = `
               >
                 <View
                   style={
-                    Object {
-                      "flex": 1,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
-                    }
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "marginLeft": 0,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -565,11 +580,16 @@ exports[`Profile Tests renders correctly 1`] = `
               >
                 <View
                   style={
-                    Object {
-                      "flex": 1,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
-                    }
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "marginLeft": 0,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -902,11 +922,16 @@ exports[`Profile Tests renders correctly for students 1`] = `
               >
                 <View
                   style={
-                    Object {
-                      "flex": 1,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
-                    }
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "marginLeft": 0,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -1014,11 +1039,16 @@ exports[`Profile Tests renders correctly for students 1`] = `
               >
                 <View
                   style={
-                    Object {
-                      "flex": 1,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
-                    }
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "marginLeft": 0,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -1126,11 +1156,16 @@ exports[`Profile Tests renders correctly for students 1`] = `
               >
                 <View
                   style={
-                    Object {
-                      "flex": 1,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
-                    }
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "marginLeft": 0,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -1199,7 +1234,7 @@ exports[`Profile Tests renders correctly for students 1`] = `
                         ]
                       }
                       testID={undefined}
-                      tintColor="#374A59"
+                      tintColor={null}
                       title="Show Grades"
                       titleStyles={
                         Object {
@@ -1284,11 +1319,16 @@ exports[`Profile Tests renders correctly for students 1`] = `
               >
                 <View
                   style={
-                    Object {
-                      "flex": 1,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
-                    }
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "marginLeft": 0,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -1396,11 +1436,16 @@ exports[`Profile Tests renders correctly for students 1`] = `
               >
                 <View
                   style={
-                    Object {
-                      "flex": 1,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
-                    }
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "marginLeft": 0,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -1508,11 +1553,16 @@ exports[`Profile Tests renders correctly for students 1`] = `
               >
                 <View
                   style={
-                    Object {
-                      "flex": 1,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
-                    }
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "marginLeft": 0,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -1845,11 +1895,16 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
               >
                 <View
                   style={
-                    Object {
-                      "flex": 1,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
-                    }
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "marginLeft": 0,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -1957,11 +2012,16 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
               >
                 <View
                   style={
-                    Object {
-                      "flex": 1,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
-                    }
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "marginLeft": 0,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -2069,11 +2129,16 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
               >
                 <View
                   style={
-                    Object {
-                      "flex": 1,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
-                    }
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "marginLeft": 0,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -2181,11 +2246,16 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
               >
                 <View
                   style={
-                    Object {
-                      "flex": 1,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
-                    }
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "marginLeft": 0,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -2254,7 +2324,7 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                         ]
                       }
                       testID={undefined}
-                      tintColor="#374A59"
+                      tintColor={null}
                       title="Show Grades"
                       titleStyles={
                         Object {
@@ -2339,11 +2409,16 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
               >
                 <View
                   style={
-                    Object {
-                      "flex": 1,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
-                    }
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "marginLeft": 0,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -2451,11 +2526,16 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
               >
                 <View
                   style={
-                    Object {
-                      "flex": 1,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
-                    }
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "marginLeft": 0,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -2563,11 +2643,16 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
               >
                 <View
                   style={
-                    Object {
-                      "flex": 1,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
-                    }
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "marginLeft": 0,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -2900,11 +2985,16 @@ exports[`Profile Tests renders correctly without masquerade 1`] = `
               >
                 <View
                   style={
-                    Object {
-                      "flex": 1,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
-                    }
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "marginLeft": 0,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -3012,11 +3102,16 @@ exports[`Profile Tests renders correctly without masquerade 1`] = `
               >
                 <View
                   style={
-                    Object {
-                      "flex": 1,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
-                    }
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "marginLeft": 0,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -3124,11 +3219,16 @@ exports[`Profile Tests renders correctly without masquerade 1`] = `
               >
                 <View
                   style={
-                    Object {
-                      "flex": 1,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
-                    }
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "marginLeft": 0,
+                      },
+                    ]
                   }
                 >
                   <Text

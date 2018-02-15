@@ -43,6 +43,7 @@ export type Quiz = {
   access_code: ?string,
   assignment_group_id: ?string,
   all_dates?: AssignmentDate[],
+  can_unpublish: boolean,
 }
 
 export type QuizSubmission = {

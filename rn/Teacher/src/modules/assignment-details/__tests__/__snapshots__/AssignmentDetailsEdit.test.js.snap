@@ -538,11 +538,16 @@ exports[`error occurs when done pressed 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -623,6 +628,7 @@ exports[`error occurs when done pressed 1`] = `
             </View>
           </View>
         </TouchableHighlight>
+        <View />
         <TouchableHighlight
           accessibilityLabel="Display Grade As, Points"
           accessibilityTraits={
@@ -664,11 +670,16 @@ exports[`error occurs when done pressed 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -795,11 +806,16 @@ exports[`error occurs when done pressed 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -866,7 +882,7 @@ exports[`error occurs when done pressed 1`] = `
                     ]
                   }
                   testID="published"
-                  tintColor="#374A59"
+                  tintColor={null}
                   title="Publish"
                   value={true}
                 />
@@ -874,7 +890,6 @@ exports[`error occurs when done pressed 1`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <View />
         <AssignmentDatesEditor
           assignment={
             Object {
@@ -909,7 +924,7 @@ exports[`error occurs when done pressed 1`] = `
                 "online_upload",
               ],
               "unlock_at": "2017-03-17T06:00:00Z",
-              "unpublishable": false,
+              "unpublishable": true,
               "updated_at": "2017-03-17T19:15:25Z",
             }
           }
@@ -1470,11 +1485,16 @@ exports[`modal saving is shown on assignment update 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -1555,6 +1575,7 @@ exports[`modal saving is shown on assignment update 1`] = `
             </View>
           </View>
         </TouchableHighlight>
+        <View />
         <TouchableHighlight
           accessibilityLabel="Display Grade As, Points"
           accessibilityTraits={
@@ -1596,11 +1617,16 @@ exports[`modal saving is shown on assignment update 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -1727,11 +1753,16 @@ exports[`modal saving is shown on assignment update 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -1798,7 +1829,7 @@ exports[`modal saving is shown on assignment update 1`] = `
                     ]
                   }
                   testID="published"
-                  tintColor="#374A59"
+                  tintColor={null}
                   title="Publish"
                   value={true}
                 />
@@ -1806,7 +1837,6 @@ exports[`modal saving is shown on assignment update 1`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <View />
         <AssignmentDatesEditor
           assignment={
             Object {
@@ -1841,7 +1871,7 @@ exports[`modal saving is shown on assignment update 1`] = `
                 "online_upload",
               ],
               "unlock_at": "2017-03-17T06:00:00Z",
-              "unpublishable": false,
+              "unpublishable": true,
               "updated_at": "2017-03-17T19:15:25Z",
             }
           }
@@ -2402,11 +2432,16 @@ exports[`renders 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -2487,6 +2522,7 @@ exports[`renders 1`] = `
             </View>
           </View>
         </TouchableHighlight>
+        <View />
         <TouchableHighlight
           accessibilityLabel="Display Grade As, Points"
           accessibilityTraits={
@@ -2528,11 +2564,16 @@ exports[`renders 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -2659,11 +2700,16 @@ exports[`renders 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -2730,7 +2776,7 @@ exports[`renders 1`] = `
                     ]
                   }
                   testID="published"
-                  tintColor="#374A59"
+                  tintColor={null}
                   title="Publish"
                   value={true}
                 />
@@ -2738,7 +2784,6 @@ exports[`renders 1`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <View />
         <AssignmentDatesEditor
           assignment={
             Object {
@@ -2773,7 +2818,7 @@ exports[`renders 1`] = `
                 "online_upload",
               ],
               "unlock_at": "2017-03-17T06:00:00Z",
-              "unpublishable": false,
+              "unpublishable": true,
               "updated_at": "2017-03-17T19:15:25Z",
             }
           }
@@ -3334,11 +3379,16 @@ exports[`saving invalid dates displays banner 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -3419,6 +3469,7 @@ exports[`saving invalid dates displays banner 1`] = `
             </View>
           </View>
         </TouchableHighlight>
+        <View />
         <TouchableHighlight
           accessibilityLabel="Display Grade As, Points"
           accessibilityTraits={
@@ -3460,11 +3511,16 @@ exports[`saving invalid dates displays banner 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -3591,11 +3647,16 @@ exports[`saving invalid dates displays banner 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -3662,7 +3723,7 @@ exports[`saving invalid dates displays banner 1`] = `
                     ]
                   }
                   testID="published"
-                  tintColor="#374A59"
+                  tintColor={null}
                   title="Publish"
                   value={true}
                 />
@@ -3670,7 +3731,6 @@ exports[`saving invalid dates displays banner 1`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <View />
         <AssignmentDatesEditor
           assignment={
             Object {
@@ -3709,7 +3769,7 @@ exports[`saving invalid dates displays banner 1`] = `
                 "online_upload",
               ],
               "unlock_at": "2017-03-17T06:00:00Z",
-              "unpublishable": false,
+              "unpublishable": true,
               "updated_at": "2017-03-17T19:15:25Z",
             }
           }
@@ -4308,11 +4368,16 @@ exports[`saving invalid name displays banner 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -4393,6 +4458,7 @@ exports[`saving invalid name displays banner 1`] = `
             </View>
           </View>
         </TouchableHighlight>
+        <View />
         <TouchableHighlight
           accessibilityLabel="Display Grade As, Points"
           accessibilityTraits={
@@ -4434,11 +4500,16 @@ exports[`saving invalid name displays banner 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -4565,11 +4636,16 @@ exports[`saving invalid name displays banner 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -4636,7 +4712,7 @@ exports[`saving invalid name displays banner 1`] = `
                     ]
                   }
                   testID="published"
-                  tintColor="#374A59"
+                  tintColor={null}
                   title="Publish"
                   value={true}
                 />
@@ -4644,7 +4720,6 @@ exports[`saving invalid name displays banner 1`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <View />
         <AssignmentDatesEditor
           assignment={
             Object {
@@ -4679,7 +4754,7 @@ exports[`saving invalid name displays banner 1`] = `
                 "online_upload",
               ],
               "unlock_at": "2017-03-17T06:00:00Z",
-              "unpublishable": false,
+              "unpublishable": true,
               "updated_at": "2017-03-17T19:15:25Z",
             }
           }
@@ -5243,11 +5318,16 @@ exports[`saving invalid points possible displays banner 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -5328,6 +5408,42 @@ exports[`saving invalid points possible displays banner 1`] = `
             </View>
           </View>
         </TouchableHighlight>
+        <View
+          style={
+            Object {
+              "alignItems": "stretch",
+              "backgroundColor": "#F5F5F5",
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "flex-start",
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#EE0612",
+                  "fontFamily": ".SFUIDisplay",
+                  "fontSize": 14,
+                },
+                Object {
+                  "marginHorizontal": 16,
+                  "marginTop": 4,
+                },
+              ]
+            }
+            testID={undefined}
+          >
+            Points possible must be a number
+          </Text>
+        </View>
         <TouchableHighlight
           accessibilityLabel="Display Grade As, Points"
           accessibilityTraits={
@@ -5369,11 +5485,16 @@ exports[`saving invalid points possible displays banner 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -5500,11 +5621,16 @@ exports[`saving invalid points possible displays banner 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -5571,7 +5697,7 @@ exports[`saving invalid points possible displays banner 1`] = `
                     ]
                   }
                   testID="published"
-                  tintColor="#374A59"
+                  tintColor={null}
                   title="Publish"
                   value={true}
                 />
@@ -5579,42 +5705,6 @@ exports[`saving invalid points possible displays banner 1`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <View
-          style={
-            Object {
-              "alignItems": "stretch",
-              "backgroundColor": "#F5F5F5",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "flex-start",
-            }
-          }
-        >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#EE0612",
-                  "fontFamily": ".SFUIDisplay",
-                  "fontSize": 14,
-                },
-                Object {
-                  "marginHorizontal": 16,
-                  "marginTop": 4,
-                },
-              ]
-            }
-            testID={undefined}
-          >
-            Points possible must be a number
-          </Text>
-        </View>
         <AssignmentDatesEditor
           assignment={
             Object {
@@ -5649,7 +5739,7 @@ exports[`saving invalid points possible displays banner 1`] = `
                 "online_upload",
               ],
               "unlock_at": "2017-03-17T06:00:00Z",
-              "unpublishable": false,
+              "unpublishable": true,
               "updated_at": "2017-03-17T19:15:25Z",
             }
           }
@@ -6213,11 +6303,16 @@ exports[`saving negative points possible displays banner 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -6298,6 +6393,42 @@ exports[`saving negative points possible displays banner 1`] = `
             </View>
           </View>
         </TouchableHighlight>
+        <View
+          style={
+            Object {
+              "alignItems": "stretch",
+              "backgroundColor": "#F5F5F5",
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "flex-start",
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#EE0612",
+                  "fontFamily": ".SFUIDisplay",
+                  "fontSize": 14,
+                },
+                Object {
+                  "marginHorizontal": 16,
+                  "marginTop": 4,
+                },
+              ]
+            }
+            testID={undefined}
+          >
+            The value of possible points must be zero or greater
+          </Text>
+        </View>
         <TouchableHighlight
           accessibilityLabel="Display Grade As, Points"
           accessibilityTraits={
@@ -6339,11 +6470,16 @@ exports[`saving negative points possible displays banner 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -6470,11 +6606,16 @@ exports[`saving negative points possible displays banner 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -6541,7 +6682,7 @@ exports[`saving negative points possible displays banner 1`] = `
                     ]
                   }
                   testID="published"
-                  tintColor="#374A59"
+                  tintColor={null}
                   title="Publish"
                   value={true}
                 />
@@ -6549,42 +6690,6 @@ exports[`saving negative points possible displays banner 1`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <View
-          style={
-            Object {
-              "alignItems": "stretch",
-              "backgroundColor": "#F5F5F5",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "flex-start",
-            }
-          }
-        >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#EE0612",
-                  "fontFamily": ".SFUIDisplay",
-                  "fontSize": 14,
-                },
-                Object {
-                  "marginHorizontal": 16,
-                  "marginTop": 4,
-                },
-              ]
-            }
-            testID={undefined}
-          >
-            The value of possible points must be zero or greater
-          </Text>
-        </View>
         <AssignmentDatesEditor
           assignment={
             Object {
@@ -6619,7 +6724,7 @@ exports[`saving negative points possible displays banner 1`] = `
                 "online_upload",
               ],
               "unlock_at": "2017-03-17T06:00:00Z",
-              "unpublishable": false,
+              "unpublishable": true,
               "updated_at": "2017-03-17T19:15:25Z",
             }
           }

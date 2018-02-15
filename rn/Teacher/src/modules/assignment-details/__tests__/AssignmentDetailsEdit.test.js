@@ -18,6 +18,7 @@
  * @flow
  */
 
+import { shallow } from 'enzyme'
 import { NativeModules } from 'react-native'
 import React from 'react'
 import { AssignmentDetailsEdit } from '../AssignmentDetailsEdit'
@@ -71,7 +72,10 @@ beforeEach(() => {
   jest.clearAllMocks()
 
   course = template.course()
-  assignment = template.assignment()
+  assignment = template.assignment({
+    published: true,
+    unpublishable: true,
+  })
 
   defaultProps = {
     navigator: template.navigator(),
@@ -278,6 +282,45 @@ test('change points', () => {
 
 test('change published', () => {
   testSwitchToggled('published', true, 'published')
+})
+
+test('renders publish switch if not published', () => {
+  let props = {
+    ...defaultProps,
+    assignmentDetails: {
+      ...assignment,
+      published: false,
+      unpublishable: false,
+    },
+  }
+  const tree = shallow(<AssignmentDetailsEdit {...props} />)
+  expect(tree.find('[identifier="published"]')).toHaveLength(1)
+})
+
+test('renders publish switch if unpublishable', () => {
+  let props = {
+    ...defaultProps,
+    assignmentDetails: {
+      ...assignment,
+      published: true,
+      unpublishable: true,
+    },
+  }
+  const tree = shallow(<AssignmentDetailsEdit {...props} />)
+  expect(tree.find('[identifier="published"]')).toHaveLength(1)
+})
+
+test('does not render publish switch if unpublishable', () => {
+  let props = {
+    ...defaultProps,
+    assignmentDetails: {
+      ...assignment,
+      published: true,
+      unpublishable: false,
+    },
+  }
+  const tree = shallow(<AssignmentDetailsEdit {...props} />)
+  expect(tree.find('[identifier="published"]')).toHaveLength(0)
 })
 
 function testInputField (ref: string, input: any, assignmentField: string) {

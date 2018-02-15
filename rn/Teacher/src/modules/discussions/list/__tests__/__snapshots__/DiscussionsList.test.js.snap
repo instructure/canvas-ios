@@ -573,11 +573,6 @@ exports[`DiscussionsList renders discussions 1`] = `
           >
             <View
               accessible={false}
-              style={
-                Object {
-                  "marginLeft": -12,
-                }
-              }
             >
               <TouchableHighlight
                 accessibilityLabel="discussion 1"
@@ -632,8 +627,6 @@ exports[`DiscussionsList renders discussions 1`] = `
                         Object {
                           "alignItems": "center",
                           "flex": 0,
-                          "height": 32,
-                          "width": 46,
                         }
                       }
                     >
@@ -644,32 +637,24 @@ exports[`DiscussionsList renders discussions 1`] = `
                           }
                         }
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": null,
-                            },
-                          ]
+                          Object {
+                            "tintColor": null,
+                          }
                         }
                       />
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderRadius": 8,
-                              "height": 16,
-                              "justifyContent": "center",
-                              "left": 20,
-                              "position": "absolute",
-                              "top": 10,
-                              "width": 16,
-                            },
-                            undefined,
-                          ]
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "bottom": -6,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "position": "absolute",
+                            "right": -5,
+                            "width": 16,
+                          }
                         }
                       >
                         <Image
@@ -691,11 +676,16 @@ exports[`DiscussionsList renders discussions 1`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "column",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "marginLeft": 12,
+                        },
+                      ]
                     }
                   >
                     <Text
@@ -1010,11 +1000,6 @@ exports[`DiscussionsList renders discussions 1`] = `
           >
             <View
               accessible={false}
-              style={
-                Object {
-                  "marginLeft": -12,
-                }
-              }
             >
               <TouchableHighlight
                 accessibilityLabel="discussion 2"
@@ -1069,8 +1054,6 @@ exports[`DiscussionsList renders discussions 1`] = `
                         Object {
                           "alignItems": "center",
                           "flex": 0,
-                          "height": 32,
-                          "width": 46,
                         }
                       }
                     >
@@ -1081,32 +1064,24 @@ exports[`DiscussionsList renders discussions 1`] = `
                           }
                         }
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": null,
-                            },
-                          ]
+                          Object {
+                            "tintColor": null,
+                          }
                         }
                       />
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderRadius": 8,
-                              "height": 16,
-                              "justifyContent": "center",
-                              "left": 20,
-                              "position": "absolute",
-                              "top": 10,
-                              "width": 16,
-                            },
-                            undefined,
-                          ]
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "bottom": -6,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "position": "absolute",
+                            "right": -5,
+                            "width": 16,
+                          }
                         }
                       >
                         <Image
@@ -1128,11 +1103,16 @@ exports[`DiscussionsList renders discussions 1`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "column",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "marginLeft": 12,
+                        },
+                      ]
                     }
                   >
                     <Text
@@ -1756,11 +1736,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
           >
             <View
               accessible={false}
-              style={
-                Object {
-                  "marginLeft": -12,
-                }
-              }
             >
               <TouchableHighlight
                 accessibilityLabel="discussion 1"
@@ -1815,8 +1790,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                         Object {
                           "alignItems": "center",
                           "flex": 0,
-                          "height": 32,
-                          "width": 46,
                         }
                       }
                     >
@@ -1827,32 +1800,24 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                           }
                         }
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": null,
-                            },
-                          ]
+                          Object {
+                            "tintColor": null,
+                          }
                         }
                       />
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderRadius": 8,
-                              "height": 16,
-                              "justifyContent": "center",
-                              "left": 20,
-                              "position": "absolute",
-                              "top": 10,
-                              "width": 16,
-                            },
-                            undefined,
-                          ]
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "bottom": -6,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "position": "absolute",
+                            "right": -5,
+                            "width": 16,
+                          }
                         }
                       >
                         <Image
@@ -1874,11 +1839,16 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "column",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "marginLeft": 12,
+                        },
+                      ]
                     }
                   >
                     <Text
@@ -2160,11 +2130,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
           >
             <View
               accessible={false}
-              style={
-                Object {
-                  "marginLeft": -12,
-                }
-              }
             >
               <TouchableHighlight
                 accessibilityLabel="discussion 2"
@@ -2219,8 +2184,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                         Object {
                           "alignItems": "center",
                           "flex": 0,
-                          "height": 32,
-                          "width": 46,
                         }
                       }
                     >
@@ -2231,32 +2194,24 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                           }
                         }
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": null,
-                            },
-                          ]
+                          Object {
+                            "tintColor": null,
+                          }
                         }
                       />
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderRadius": 8,
-                              "height": 16,
-                              "justifyContent": "center",
-                              "left": 20,
-                              "position": "absolute",
-                              "top": 10,
-                              "width": 16,
-                            },
-                            undefined,
-                          ]
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "bottom": -6,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "position": "absolute",
+                            "right": -5,
+                            "width": 16,
+                          }
                         }
                       >
                         <Image
@@ -2278,11 +2233,16 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "column",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "marginLeft": 12,
+                        },
+                      ]
                     }
                   >
                     <Text
@@ -3013,11 +2973,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
           >
             <View
               accessible={false}
-              style={
-                Object {
-                  "marginLeft": -12,
-                }
-              }
             >
               <TouchableHighlight
                 accessibilityLabel="First"
@@ -3072,8 +3027,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
                         Object {
                           "alignItems": "center",
                           "flex": 0,
-                          "height": 32,
-                          "width": 46,
                         }
                       }
                     >
@@ -3084,32 +3037,24 @@ exports[`DiscussionsList renders in correct order 1`] = `
                           }
                         }
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": null,
-                            },
-                          ]
+                          Object {
+                            "tintColor": null,
+                          }
                         }
                       />
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderRadius": 8,
-                              "height": 16,
-                              "justifyContent": "center",
-                              "left": 20,
-                              "position": "absolute",
-                              "top": 10,
-                              "width": 16,
-                            },
-                            undefined,
-                          ]
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "bottom": -6,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "position": "absolute",
+                            "right": -5,
+                            "width": 16,
+                          }
                         }
                       >
                         <Image
@@ -3131,11 +3076,16 @@ exports[`DiscussionsList renders in correct order 1`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "column",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "marginLeft": 12,
+                        },
+                      ]
                     }
                   >
                     <Text
@@ -3450,11 +3400,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
           >
             <View
               accessible={false}
-              style={
-                Object {
-                  "marginLeft": -12,
-                }
-              }
             >
               <TouchableHighlight
                 accessibilityLabel="Second"
@@ -3509,8 +3454,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
                         Object {
                           "alignItems": "center",
                           "flex": 0,
-                          "height": 32,
-                          "width": 46,
                         }
                       }
                     >
@@ -3521,32 +3464,24 @@ exports[`DiscussionsList renders in correct order 1`] = `
                           }
                         }
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": null,
-                            },
-                          ]
+                          Object {
+                            "tintColor": null,
+                          }
                         }
                       />
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderRadius": 8,
-                              "height": 16,
-                              "justifyContent": "center",
-                              "left": 20,
-                              "position": "absolute",
-                              "top": 10,
-                              "width": 16,
-                            },
-                            undefined,
-                          ]
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "bottom": -6,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "position": "absolute",
+                            "right": -5,
+                            "width": 16,
+                          }
                         }
                       >
                         <Image
@@ -3568,11 +3503,16 @@ exports[`DiscussionsList renders in correct order 1`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "column",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "marginLeft": 12,
+                        },
+                      ]
                     }
                   >
                     <Text
@@ -4345,11 +4285,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
           >
             <View
               accessible={false}
-              style={
-                Object {
-                  "marginLeft": -12,
-                }
-              }
             >
               <TouchableHighlight
                 accessibilityLabel="discussion 1"
@@ -4404,8 +4339,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                         Object {
                           "alignItems": "center",
                           "flex": 0,
-                          "height": 32,
-                          "width": 46,
                         }
                       }
                     >
@@ -4416,32 +4349,24 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                           }
                         }
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": null,
-                            },
-                          ]
+                          Object {
+                            "tintColor": null,
+                          }
                         }
                       />
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderRadius": 8,
-                              "height": 16,
-                              "justifyContent": "center",
-                              "left": 20,
-                              "position": "absolute",
-                              "top": 10,
-                              "width": 16,
-                            },
-                            undefined,
-                          ]
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "bottom": -6,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "position": "absolute",
+                            "right": -5,
+                            "width": 16,
+                          }
                         }
                       >
                         <Image
@@ -4463,11 +4388,16 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "column",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "marginLeft": 12,
+                        },
+                      ]
                     }
                   >
                     <Text
@@ -4838,11 +4768,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
           >
             <View
               accessible={false}
-              style={
-                Object {
-                  "marginLeft": -12,
-                }
-              }
             >
               <TouchableHighlight
                 accessibilityLabel="discussion 2"
@@ -4897,8 +4822,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                         Object {
                           "alignItems": "center",
                           "flex": 0,
-                          "height": 32,
-                          "width": 46,
                         }
                       }
                     >
@@ -4909,32 +4832,24 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                           }
                         }
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": null,
-                            },
-                          ]
+                          Object {
+                            "tintColor": null,
+                          }
                         }
                       />
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderRadius": 8,
-                              "height": 16,
-                              "justifyContent": "center",
-                              "left": 20,
-                              "position": "absolute",
-                              "top": 10,
-                              "width": 16,
-                            },
-                            undefined,
-                          ]
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "bottom": -6,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "position": "absolute",
+                            "right": -5,
+                            "width": 16,
+                          }
                         }
                       >
                         <Image
@@ -4956,11 +4871,16 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "column",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "marginLeft": 12,
+                        },
+                      ]
                     }
                   >
                     <Text

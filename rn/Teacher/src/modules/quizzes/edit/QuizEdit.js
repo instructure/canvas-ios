@@ -217,13 +217,15 @@ export class QuizEdit extends Component<Props, any> {
                 ))}
               </PickerIOS>
             }
-            <RowWithSwitch
-              title={i18n('Publish')}
-              border='bottom'
-              onValueChange={this._updateQuiz('published')}
-              value={quiz.published}
-              identifier='quizzes.edit.published-toggle'
-            />
+            { (!quiz.published || quiz.can_unpublish) &&
+              <RowWithSwitch
+                title={i18n('Publish')}
+                border='bottom'
+                onValueChange={this._updateQuiz('published')}
+                value={quiz.published}
+                identifier='quizzes.edit.published-toggle'
+              />
+            }
             { graded &&
               <View>
                 <RowWithDetail

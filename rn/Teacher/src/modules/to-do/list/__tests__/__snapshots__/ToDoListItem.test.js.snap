@@ -2,13 +2,7 @@
 
 exports[`ToDoListItem renders 1`] = `
 <View>
-  <View
-    style={
-      Object {
-        "marginLeft": -10,
-      }
-    }
-  >
+  <View>
     <TouchableHighlight
       accessibilityLabel={undefined}
       accessibilityTraits={
@@ -59,8 +53,6 @@ exports[`ToDoListItem renders 1`] = `
               Object {
                 "alignItems": "center",
                 "flex": 0,
-                "height": 32,
-                "width": 46,
               }
             }
           >
@@ -71,32 +63,24 @@ exports[`ToDoListItem renders 1`] = `
                 }
               }
               style={
-                Array [
-                  Object {
-                    "position": "absolute",
-                  },
-                  Object {
-                    "tintColor": null,
-                  },
-                ]
+                Object {
+                  "tintColor": null,
+                }
               }
             />
             <View
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "white",
-                    "borderRadius": 8,
-                    "height": 16,
-                    "justifyContent": "center",
-                    "left": 20,
-                    "position": "absolute",
-                    "top": 10,
-                    "width": 16,
-                  },
-                  undefined,
-                ]
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "bottom": -6,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": -5,
+                  "width": 16,
+                }
               }
             >
               <Image
@@ -118,11 +102,16 @@ exports[`ToDoListItem renders 1`] = `
         </View>
         <View
           style={
-            Object {
-              "flex": 1,
-              "flexDirection": "column",
-              "justifyContent": "center",
-            }
+            Array [
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+              Object {
+                "marginLeft": 12,
+              },
+            ]
           }
         >
           <Text
@@ -318,13 +307,7 @@ exports[`ToDoListItem renders 1`] = `
 
 exports[`ToDoListItem renders discussion 1`] = `
 <View>
-  <View
-    style={
-      Object {
-        "marginLeft": -10,
-      }
-    }
-  >
+  <View>
     <TouchableHighlight
       accessibilityLabel={undefined}
       accessibilityTraits={
@@ -375,8 +358,6 @@ exports[`ToDoListItem renders discussion 1`] = `
               Object {
                 "alignItems": "center",
                 "flex": 0,
-                "height": 32,
-                "width": 46,
               }
             }
           >
@@ -387,32 +368,24 @@ exports[`ToDoListItem renders discussion 1`] = `
                 }
               }
               style={
-                Array [
-                  Object {
-                    "position": "absolute",
-                  },
-                  Object {
-                    "tintColor": "#000",
-                  },
-                ]
+                Object {
+                  "tintColor": "#000",
+                }
               }
             />
             <View
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "white",
-                    "borderRadius": 8,
-                    "height": 16,
-                    "justifyContent": "center",
-                    "left": 20,
-                    "position": "absolute",
-                    "top": 10,
-                    "width": 16,
-                  },
-                  undefined,
-                ]
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "bottom": -6,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": -5,
+                  "width": 16,
+                }
               }
             >
               <Image
@@ -434,11 +407,16 @@ exports[`ToDoListItem renders discussion 1`] = `
         </View>
         <View
           style={
-            Object {
-              "flex": 1,
-              "flexDirection": "column",
-              "justifyContent": "center",
-            }
+            Array [
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+              Object {
+                "marginLeft": 12,
+              },
+            ]
           }
         >
           <Text
@@ -634,13 +612,7 @@ exports[`ToDoListItem renders discussion 1`] = `
 
 exports[`ToDoListItem renders null due date 1`] = `
 <View>
-  <View
-    style={
-      Object {
-        "marginLeft": -10,
-      }
-    }
-  >
+  <View>
     <TouchableHighlight
       accessibilityLabel={undefined}
       accessibilityTraits={
@@ -691,8 +663,6 @@ exports[`ToDoListItem renders null due date 1`] = `
               Object {
                 "alignItems": "center",
                 "flex": 0,
-                "height": 32,
-                "width": 46,
               }
             }
           >
@@ -703,32 +673,24 @@ exports[`ToDoListItem renders null due date 1`] = `
                 }
               }
               style={
-                Array [
-                  Object {
-                    "position": "absolute",
-                  },
-                  Object {
-                    "tintColor": "#000",
-                  },
-                ]
+                Object {
+                  "tintColor": "#000",
+                }
               }
             />
             <View
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "white",
-                    "borderRadius": 8,
-                    "height": 16,
-                    "justifyContent": "center",
-                    "left": 20,
-                    "position": "absolute",
-                    "top": 10,
-                    "width": 16,
-                  },
-                  undefined,
-                ]
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "bottom": -6,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": -5,
+                  "width": 16,
+                }
               }
             >
               <Image
@@ -750,11 +712,16 @@ exports[`ToDoListItem renders null due date 1`] = `
         </View>
         <View
           style={
-            Object {
-              "flex": 1,
-              "flexDirection": "column",
-              "justifyContent": "center",
-            }
+            Array [
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+              Object {
+                "marginLeft": 12,
+              },
+            ]
           }
         >
           <Text
@@ -950,13 +917,7 @@ exports[`ToDoListItem renders null due date 1`] = `
 
 exports[`ToDoListItem renders published assignment 1`] = `
 <View>
-  <View
-    style={
-      Object {
-        "marginLeft": -10,
-      }
-    }
-  >
+  <View>
     <TouchableHighlight
       accessibilityLabel={undefined}
       accessibilityTraits={
@@ -1007,8 +968,6 @@ exports[`ToDoListItem renders published assignment 1`] = `
               Object {
                 "alignItems": "center",
                 "flex": 0,
-                "height": 32,
-                "width": 46,
               }
             }
           >
@@ -1019,32 +978,24 @@ exports[`ToDoListItem renders published assignment 1`] = `
                 }
               }
               style={
-                Array [
-                  Object {
-                    "position": "absolute",
-                  },
-                  Object {
-                    "tintColor": "#000",
-                  },
-                ]
+                Object {
+                  "tintColor": "#000",
+                }
               }
             />
             <View
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "white",
-                    "borderRadius": 8,
-                    "height": 16,
-                    "justifyContent": "center",
-                    "left": 20,
-                    "position": "absolute",
-                    "top": 10,
-                    "width": 16,
-                  },
-                  undefined,
-                ]
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "bottom": -6,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": -5,
+                  "width": 16,
+                }
               }
             >
               <Image
@@ -1066,11 +1017,16 @@ exports[`ToDoListItem renders published assignment 1`] = `
         </View>
         <View
           style={
-            Object {
-              "flex": 1,
-              "flexDirection": "column",
-              "justifyContent": "center",
-            }
+            Array [
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+              Object {
+                "marginLeft": 12,
+              },
+            ]
           }
         >
           <Text
@@ -1266,13 +1222,7 @@ exports[`ToDoListItem renders published assignment 1`] = `
 
 exports[`ToDoListItem renders quiz 1`] = `
 <View>
-  <View
-    style={
-      Object {
-        "marginLeft": -10,
-      }
-    }
-  >
+  <View>
     <TouchableHighlight
       accessibilityLabel={undefined}
       accessibilityTraits={
@@ -1323,8 +1273,6 @@ exports[`ToDoListItem renders quiz 1`] = `
               Object {
                 "alignItems": "center",
                 "flex": 0,
-                "height": 32,
-                "width": 46,
               }
             }
           >
@@ -1335,32 +1283,24 @@ exports[`ToDoListItem renders quiz 1`] = `
                 }
               }
               style={
-                Array [
-                  Object {
-                    "position": "absolute",
-                  },
-                  Object {
-                    "tintColor": "#000",
-                  },
-                ]
+                Object {
+                  "tintColor": "#000",
+                }
               }
             />
             <View
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "white",
-                    "borderRadius": 8,
-                    "height": 16,
-                    "justifyContent": "center",
-                    "left": 20,
-                    "position": "absolute",
-                    "top": 10,
-                    "width": 16,
-                  },
-                  undefined,
-                ]
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "bottom": -6,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": -5,
+                  "width": 16,
+                }
               }
             >
               <Image
@@ -1382,11 +1322,16 @@ exports[`ToDoListItem renders quiz 1`] = `
         </View>
         <View
           style={
-            Object {
-              "flex": 1,
-              "flexDirection": "column",
-              "justifyContent": "center",
-            }
+            Array [
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+              Object {
+                "marginLeft": 12,
+              },
+            ]
           }
         >
           <Text
@@ -1582,13 +1527,7 @@ exports[`ToDoListItem renders quiz 1`] = `
 
 exports[`ToDoListItem renders unpublished assignment 1`] = `
 <View>
-  <View
-    style={
-      Object {
-        "marginLeft": -10,
-      }
-    }
-  >
+  <View>
     <TouchableHighlight
       accessibilityLabel={undefined}
       accessibilityTraits={
@@ -1639,8 +1578,6 @@ exports[`ToDoListItem renders unpublished assignment 1`] = `
               Object {
                 "alignItems": "center",
                 "flex": 0,
-                "height": 32,
-                "width": 46,
               }
             }
           >
@@ -1651,32 +1588,24 @@ exports[`ToDoListItem renders unpublished assignment 1`] = `
                 }
               }
               style={
-                Array [
-                  Object {
-                    "position": "absolute",
-                  },
-                  Object {
-                    "tintColor": "#000",
-                  },
-                ]
+                Object {
+                  "tintColor": "#000",
+                }
               }
             />
             <View
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "white",
-                    "borderRadius": 8,
-                    "height": 16,
-                    "justifyContent": "center",
-                    "left": 20,
-                    "position": "absolute",
-                    "top": 10,
-                    "width": 16,
-                  },
-                  undefined,
-                ]
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "bottom": -6,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": -5,
+                  "width": 16,
+                }
               }
             >
               <Image
@@ -1698,11 +1627,16 @@ exports[`ToDoListItem renders unpublished assignment 1`] = `
         </View>
         <View
           style={
-            Object {
-              "flex": 1,
-              "flexDirection": "column",
-              "justifyContent": "center",
-            }
+            Array [
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+              Object {
+                "marginLeft": 12,
+              },
+            ]
           }
         >
           <Text

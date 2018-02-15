@@ -48,7 +48,7 @@ export default class DiscussionsRow extends PureComponent<Props> {
     const unreadDot = this._renderUnreadDot(discussion)
     return (
       <View accessible={false}>
-        <View style={{ marginLeft: -12 }} accessible={false}>
+        <View accessible={false}>
           <Row accessible={false}
             accessibilityLabel={`${discussion.title}`}
             renderImage={this._renderIcon}

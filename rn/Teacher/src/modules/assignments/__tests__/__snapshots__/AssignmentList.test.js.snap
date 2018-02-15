@@ -412,11 +412,7 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
         >
           <View>
             <View
-              style={
-                Object {
-                  "marginLeft": -10,
-                }
-              }
+              style={undefined}
             >
               <TouchableHighlight
                 accessibilityLabel={undefined}
@@ -471,8 +467,6 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                         Object {
                           "alignItems": "center",
                           "flex": 0,
-                          "height": 32,
-                          "width": 46,
                         }
                       }
                     >
@@ -483,32 +477,24 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                           }
                         }
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": "#fff",
-                            },
-                          ]
+                          Object {
+                            "tintColor": "#fff",
+                          }
                         }
                       />
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderRadius": 8,
-                              "height": 16,
-                              "justifyContent": "center",
-                              "left": 20,
-                              "position": "absolute",
-                              "top": 10,
-                              "width": 16,
-                            },
-                            undefined,
-                          ]
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "bottom": -6,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "position": "absolute",
+                            "right": -5,
+                            "width": 16,
+                          }
                         }
                       >
                         <Image
@@ -530,11 +516,16 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "column",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "marginLeft": 12,
+                        },
+                      ]
                     }
                   >
                     <Text
@@ -1056,11 +1047,7 @@ exports[`applyFilter will apply a new filter 1`] = `
         >
           <View>
             <View
-              style={
-                Object {
-                  "marginLeft": -10,
-                }
-              }
+              style={undefined}
             >
               <TouchableHighlight
                 accessibilityLabel={undefined}
@@ -1115,8 +1102,6 @@ exports[`applyFilter will apply a new filter 1`] = `
                         Object {
                           "alignItems": "center",
                           "flex": 0,
-                          "height": 32,
-                          "width": 46,
                         }
                       }
                     >
@@ -1127,32 +1112,24 @@ exports[`applyFilter will apply a new filter 1`] = `
                           }
                         }
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": "#fff",
-                            },
-                          ]
+                          Object {
+                            "tintColor": "#fff",
+                          }
                         }
                       />
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderRadius": 8,
-                              "height": 16,
-                              "justifyContent": "center",
-                              "left": 20,
-                              "position": "absolute",
-                              "top": 10,
-                              "width": 16,
-                            },
-                            undefined,
-                          ]
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "bottom": -6,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "position": "absolute",
+                            "right": -5,
+                            "width": 16,
+                          }
                         }
                       >
                         <Image
@@ -1174,11 +1151,16 @@ exports[`applyFilter will apply a new filter 1`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "column",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "marginLeft": 12,
+                        },
+                      ]
                     }
                   >
                     <Text
@@ -1661,11 +1643,7 @@ exports[`filter button only shows when there are grading periods 1`] = `
         >
           <View>
             <View
-              style={
-                Object {
-                  "marginLeft": -10,
-                }
-              }
+              style={undefined}
             >
               <TouchableHighlight
                 accessibilityLabel={undefined}
@@ -1720,8 +1698,6 @@ exports[`filter button only shows when there are grading periods 1`] = `
                         Object {
                           "alignItems": "center",
                           "flex": 0,
-                          "height": 32,
-                          "width": 46,
                         }
                       }
                     >
@@ -1732,32 +1708,24 @@ exports[`filter button only shows when there are grading periods 1`] = `
                           }
                         }
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": "#fff",
-                            },
-                          ]
+                          Object {
+                            "tintColor": "#fff",
+                          }
                         }
                       />
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderRadius": 8,
-                              "height": 16,
-                              "justifyContent": "center",
-                              "left": 20,
-                              "position": "absolute",
-                              "top": 10,
-                              "width": 16,
-                            },
-                            undefined,
-                          ]
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "bottom": -6,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "position": "absolute",
+                            "right": -5,
+                            "width": 16,
+                          }
                         }
                       >
                         <Image
@@ -1779,11 +1747,16 @@ exports[`filter button only shows when there are grading periods 1`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "column",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "marginLeft": 12,
+                        },
+                      ]
                     }
                   >
                     <Text
@@ -2305,11 +2278,7 @@ exports[`renders correctly 1`] = `
         >
           <View>
             <View
-              style={
-                Object {
-                  "marginLeft": -10,
-                }
-              }
+              style={undefined}
             >
               <TouchableHighlight
                 accessibilityLabel={undefined}
@@ -2364,8 +2333,6 @@ exports[`renders correctly 1`] = `
                         Object {
                           "alignItems": "center",
                           "flex": 0,
-                          "height": 32,
-                          "width": 46,
                         }
                       }
                     >
@@ -2376,32 +2343,24 @@ exports[`renders correctly 1`] = `
                           }
                         }
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": "#fff",
-                            },
-                          ]
+                          Object {
+                            "tintColor": "#fff",
+                          }
                         }
                       />
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderRadius": 8,
-                              "height": 16,
-                              "justifyContent": "center",
-                              "left": 20,
-                              "position": "absolute",
-                              "top": 10,
-                              "width": 16,
-                            },
-                            undefined,
-                          ]
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "bottom": -6,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "position": "absolute",
+                            "right": -5,
+                            "width": 16,
+                          }
                         }
                       >
                         <Image
@@ -2423,11 +2382,16 @@ exports[`renders correctly 1`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "column",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "marginLeft": 12,
+                        },
+                      ]
                     }
                   >
                     <Text
@@ -2989,11 +2953,7 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
         >
           <View>
             <View
-              style={
-                Object {
-                  "marginLeft": -10,
-                }
-              }
+              style={undefined}
             >
               <TouchableHighlight
                 accessibilityLabel={undefined}
@@ -3048,8 +3008,6 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                         Object {
                           "alignItems": "center",
                           "flex": 0,
-                          "height": 32,
-                          "width": 46,
                         }
                       }
                     >
@@ -3060,32 +3018,24 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                           }
                         }
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": "#fff",
-                            },
-                          ]
+                          Object {
+                            "tintColor": "#fff",
+                          }
                         }
                       />
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderRadius": 8,
-                              "height": 16,
-                              "justifyContent": "center",
-                              "left": 20,
-                              "position": "absolute",
-                              "top": 10,
-                              "width": 16,
-                            },
-                            undefined,
-                          ]
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "bottom": -6,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "position": "absolute",
+                            "right": -5,
+                            "width": 16,
+                          }
                         }
                       >
                         <Image
@@ -3107,11 +3057,16 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "column",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "marginLeft": 12,
+                        },
+                      ]
                     }
                   >
                     <Text

@@ -70,7 +70,7 @@ export default class CourseDetailsTab extends React.Component<Props> {
                 border='bottom'
                 selected={this.props.selected}
                 testID={`courses-details.${tab.id}-cell`}
-                titleStyles={{ marginLeft: -4, fontWeight: '500' }}
+                titleStyles={{ fontWeight: '500' }}
               />
             </SafeAreaView>)
   }

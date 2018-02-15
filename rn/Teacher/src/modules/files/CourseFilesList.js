@@ -284,10 +284,6 @@ export class CourseFilesList extends Component<Props, State> {
       name = item.display_name
       icon = images.document
       subtitle = bytes(item.size)
-      statusOffset = {
-        top: 15,
-        left: 25,
-      }
     } else {
       name = item.name
       icon = images.files.folder
@@ -297,7 +293,6 @@ export class CourseFilesList extends Component<Props, State> {
           other {# files}
       }`, { file_count: item.files_count })
       tintColor = this.props.courseColor
-      statusOffset.left = 26
     }
     const renderImage = () => {
       return <View style={styles.icon}>
@@ -418,9 +413,6 @@ export function mapStateToProps (state: Object, props: CourseFileListNavProps) {
 }
 
 const styles = StyleSheet.create({
-  row: {
-    marginLeft: -10,
-  },
   icon: {
     alignSelf: 'flex-start',
   },

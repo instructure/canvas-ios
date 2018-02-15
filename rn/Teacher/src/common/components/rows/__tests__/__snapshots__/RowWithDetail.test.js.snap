@@ -53,11 +53,16 @@ exports[`Render row with detail label 1`] = `
   >
     <View
       style={
-        Object {
-          "flex": 1,
-          "flexDirection": "column",
-          "justifyContent": "center",
-        }
+        Array [
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+            "justifyContent": "center",
+          },
+          Object {
+            "marginLeft": 0,
+          },
+        ]
       }
     >
       <Text

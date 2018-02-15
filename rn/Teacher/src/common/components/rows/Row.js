@@ -62,6 +62,7 @@ export default class Row extends Component<RowProps> {
     const imageSize = this.props.imageSize || { height: 20, width: 20 }
     const title = this.props.title
     const testID = this.props.testID || 'row.undefined-cell'
+    const hasIcon = this.props.image || this.props.renderImage
 
     let topBorder
     let bottomBorder
@@ -102,7 +103,7 @@ export default class Row extends Component<RowProps> {
               <View style={[style.container, { backgroundColor }]}>
                 { this.props.renderImage && this.props.renderImage() }
                 { this.props.image && <Image style={[style.image, { tintColor: this.props.imageTint, height: imageSize.height, width: imageSize.width }]} source={this.props.image} /> }
-                <View style={style.titlesContainer}>
+                <View style={[style.titlesContainer, { marginLeft: hasIcon ? 12 : 0 }]}>
                   { Boolean(title) &&
                     <Text
                       style={titleStyles}
@@ -172,6 +173,5 @@ const style = StyleSheet.create({
   },
   image: {
     resizeMode: 'contain',
-    marginRight: global.style.defaultPadding,
   },
 })

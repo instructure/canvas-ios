@@ -141,9 +141,6 @@ export default class UserSubmissionRow extends Component<Props, any> {
 }
 
 const styles = StyleSheet.create({
-  row: {
-    marginLeft: -10,
-  },
   ungradedText: {
     flex: 0,
     alignSelf: 'flex-start',

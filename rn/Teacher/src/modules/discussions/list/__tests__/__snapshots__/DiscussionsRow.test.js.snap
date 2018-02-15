@@ -6,11 +6,6 @@ exports[`DiscussionsRow renders 1`] = `
 >
   <View
     accessible={false}
-    style={
-      Object {
-        "marginLeft": -12,
-      }
-    }
   >
     <TouchableHighlight
       accessibilityLabel="Dear Ivy Iversen, your last name cannot start with your first name"
@@ -65,8 +60,6 @@ exports[`DiscussionsRow renders 1`] = `
               Object {
                 "alignItems": "center",
                 "flex": 0,
-                "height": 32,
-                "width": 46,
               }
             }
           >
@@ -77,32 +70,24 @@ exports[`DiscussionsRow renders 1`] = `
                 }
               }
               style={
-                Array [
-                  Object {
-                    "position": "absolute",
-                  },
-                  Object {
-                    "tintColor": "#fff",
-                  },
-                ]
+                Object {
+                  "tintColor": "#fff",
+                }
               }
             />
             <View
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "white",
-                    "borderRadius": 8,
-                    "height": 16,
-                    "justifyContent": "center",
-                    "left": 20,
-                    "position": "absolute",
-                    "top": 10,
-                    "width": 16,
-                  },
-                  undefined,
-                ]
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "bottom": -6,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": -5,
+                  "width": 16,
+                }
               }
             >
               <Image
@@ -124,11 +109,16 @@ exports[`DiscussionsRow renders 1`] = `
         </View>
         <View
           style={
-            Object {
-              "flex": 1,
-              "flexDirection": "column",
-              "justifyContent": "center",
-            }
+            Array [
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+              Object {
+                "marginLeft": 12,
+              },
+            ]
           }
         >
           <Text
@@ -441,11 +431,6 @@ exports[`DiscussionsRow renders published 1`] = `
 >
   <View
     accessible={false}
-    style={
-      Object {
-        "marginLeft": -12,
-      }
-    }
   >
     <TouchableHighlight
       accessibilityLabel="Dear Ivy Iversen, your last name cannot start with your first name"
@@ -500,8 +485,6 @@ exports[`DiscussionsRow renders published 1`] = `
               Object {
                 "alignItems": "center",
                 "flex": 0,
-                "height": 32,
-                "width": 46,
               }
             }
           >
@@ -512,32 +495,24 @@ exports[`DiscussionsRow renders published 1`] = `
                 }
               }
               style={
-                Array [
-                  Object {
-                    "position": "absolute",
-                  },
-                  Object {
-                    "tintColor": "#fff",
-                  },
-                ]
+                Object {
+                  "tintColor": "#fff",
+                }
               }
             />
             <View
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "white",
-                    "borderRadius": 8,
-                    "height": 16,
-                    "justifyContent": "center",
-                    "left": 20,
-                    "position": "absolute",
-                    "top": 10,
-                    "width": 16,
-                  },
-                  undefined,
-                ]
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "bottom": -6,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": -5,
+                  "width": 16,
+                }
               }
             >
               <Image
@@ -559,11 +534,16 @@ exports[`DiscussionsRow renders published 1`] = `
         </View>
         <View
           style={
-            Object {
-              "flex": 1,
-              "flexDirection": "column",
-              "justifyContent": "center",
-            }
+            Array [
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+              Object {
+                "marginLeft": 12,
+              },
+            ]
           }
         >
           <Text
@@ -876,11 +856,6 @@ exports[`DiscussionsRow renders unpublished 1`] = `
 >
   <View
     accessible={false}
-    style={
-      Object {
-        "marginLeft": -12,
-      }
-    }
   >
     <TouchableHighlight
       accessibilityLabel="Dear Ivy Iversen, your last name cannot start with your first name"
@@ -935,8 +910,6 @@ exports[`DiscussionsRow renders unpublished 1`] = `
               Object {
                 "alignItems": "center",
                 "flex": 0,
-                "height": 32,
-                "width": 46,
               }
             }
           >
@@ -947,32 +920,24 @@ exports[`DiscussionsRow renders unpublished 1`] = `
                 }
               }
               style={
-                Array [
-                  Object {
-                    "position": "absolute",
-                  },
-                  Object {
-                    "tintColor": "#fff",
-                  },
-                ]
+                Object {
+                  "tintColor": "#fff",
+                }
               }
             />
             <View
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "white",
-                    "borderRadius": 8,
-                    "height": 16,
-                    "justifyContent": "center",
-                    "left": 20,
-                    "position": "absolute",
-                    "top": 10,
-                    "width": 16,
-                  },
-                  undefined,
-                ]
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "bottom": -6,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": -5,
+                  "width": 16,
+                }
               }
             >
               <Image
@@ -994,11 +959,16 @@ exports[`DiscussionsRow renders unpublished 1`] = `
         </View>
         <View
           style={
-            Object {
-              "flex": 1,
-              "flexDirection": "column",
-              "justifyContent": "center",
-            }
+            Array [
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+              Object {
+                "marginLeft": 12,
+              },
+            ]
           }
         >
           <Text
@@ -1300,11 +1270,6 @@ exports[`DiscussionsRow renders with no assignment 1`] = `
 >
   <View
     accessible={false}
-    style={
-      Object {
-        "marginLeft": -12,
-      }
-    }
   >
     <TouchableHighlight
       accessibilityLabel="Dear Ivy Iversen, your last name cannot start with your first name"
@@ -1359,8 +1324,6 @@ exports[`DiscussionsRow renders with no assignment 1`] = `
               Object {
                 "alignItems": "center",
                 "flex": 0,
-                "height": 32,
-                "width": 46,
               }
             }
           >
@@ -1371,32 +1334,24 @@ exports[`DiscussionsRow renders with no assignment 1`] = `
                 }
               }
               style={
-                Array [
-                  Object {
-                    "position": "absolute",
-                  },
-                  Object {
-                    "tintColor": "#fff",
-                  },
-                ]
+                Object {
+                  "tintColor": "#fff",
+                }
               }
             />
             <View
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "white",
-                    "borderRadius": 8,
-                    "height": 16,
-                    "justifyContent": "center",
-                    "left": 20,
-                    "position": "absolute",
-                    "top": 10,
-                    "width": 16,
-                  },
-                  undefined,
-                ]
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "bottom": -6,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": -5,
+                  "width": 16,
+                }
               }
             >
               <Image
@@ -1418,11 +1373,16 @@ exports[`DiscussionsRow renders with no assignment 1`] = `
         </View>
         <View
           style={
-            Object {
-              "flex": 1,
-              "flexDirection": "column",
-              "justifyContent": "center",
-            }
+            Array [
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+              Object {
+                "marginLeft": 12,
+              },
+            ]
           }
         >
           <Text
@@ -1702,11 +1662,6 @@ exports[`DiscussionsRow renders with no unread count 1`] = `
 >
   <View
     accessible={false}
-    style={
-      Object {
-        "marginLeft": -12,
-      }
-    }
   >
     <TouchableHighlight
       accessibilityLabel="Dear Ivy Iversen, your last name cannot start with your first name"
@@ -1761,8 +1716,6 @@ exports[`DiscussionsRow renders with no unread count 1`] = `
               Object {
                 "alignItems": "center",
                 "flex": 0,
-                "height": 32,
-                "width": 46,
               }
             }
           >
@@ -1773,32 +1726,24 @@ exports[`DiscussionsRow renders with no unread count 1`] = `
                 }
               }
               style={
-                Array [
-                  Object {
-                    "position": "absolute",
-                  },
-                  Object {
-                    "tintColor": "#fff",
-                  },
-                ]
+                Object {
+                  "tintColor": "#fff",
+                }
               }
             />
             <View
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "white",
-                    "borderRadius": 8,
-                    "height": 16,
-                    "justifyContent": "center",
-                    "left": 20,
-                    "position": "absolute",
-                    "top": 10,
-                    "width": 16,
-                  },
-                  undefined,
-                ]
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "bottom": -6,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": -5,
+                  "width": 16,
+                }
               }
             >
               <Image
@@ -1820,11 +1765,16 @@ exports[`DiscussionsRow renders with no unread count 1`] = `
         </View>
         <View
           style={
-            Object {
-              "flex": 1,
-              "flexDirection": "column",
-              "justifyContent": "center",
-            }
+            Array [
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+              Object {
+                "marginLeft": 12,
+              },
+            ]
           }
         >
           <Text
@@ -2125,11 +2075,6 @@ exports[`DiscussionsRow renders with points possible 1`] = `
 >
   <View
     accessible={false}
-    style={
-      Object {
-        "marginLeft": -12,
-      }
-    }
   >
     <TouchableHighlight
       accessibilityLabel="Dear Ivy Iversen, your last name cannot start with your first name"
@@ -2184,8 +2129,6 @@ exports[`DiscussionsRow renders with points possible 1`] = `
               Object {
                 "alignItems": "center",
                 "flex": 0,
-                "height": 32,
-                "width": 46,
               }
             }
           >
@@ -2196,32 +2139,24 @@ exports[`DiscussionsRow renders with points possible 1`] = `
                 }
               }
               style={
-                Array [
-                  Object {
-                    "position": "absolute",
-                  },
-                  Object {
-                    "tintColor": "#fff",
-                  },
-                ]
+                Object {
+                  "tintColor": "#fff",
+                }
               }
             />
             <View
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "white",
-                    "borderRadius": 8,
-                    "height": 16,
-                    "justifyContent": "center",
-                    "left": 20,
-                    "position": "absolute",
-                    "top": 10,
-                    "width": 16,
-                  },
-                  undefined,
-                ]
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "bottom": -6,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": -5,
+                  "width": 16,
+                }
               }
             >
               <Image
@@ -2243,11 +2178,16 @@ exports[`DiscussionsRow renders with points possible 1`] = `
         </View>
         <View
           style={
-            Object {
-              "flex": 1,
-              "flexDirection": "column",
-              "justifyContent": "center",
-            }
+            Array [
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+              Object {
+                "marginLeft": 12,
+              },
+            ]
           }
         >
           <Text
@@ -2560,11 +2500,6 @@ exports[`DiscussionsRow renders without points possible 1`] = `
 >
   <View
     accessible={false}
-    style={
-      Object {
-        "marginLeft": -12,
-      }
-    }
   >
     <TouchableHighlight
       accessibilityLabel="Dear Ivy Iversen, your last name cannot start with your first name"
@@ -2619,8 +2554,6 @@ exports[`DiscussionsRow renders without points possible 1`] = `
               Object {
                 "alignItems": "center",
                 "flex": 0,
-                "height": 32,
-                "width": 46,
               }
             }
           >
@@ -2631,32 +2564,24 @@ exports[`DiscussionsRow renders without points possible 1`] = `
                 }
               }
               style={
-                Array [
-                  Object {
-                    "position": "absolute",
-                  },
-                  Object {
-                    "tintColor": "#fff",
-                  },
-                ]
+                Object {
+                  "tintColor": "#fff",
+                }
               }
             />
             <View
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "white",
-                    "borderRadius": 8,
-                    "height": 16,
-                    "justifyContent": "center",
-                    "left": 20,
-                    "position": "absolute",
-                    "top": 10,
-                    "width": 16,
-                  },
-                  undefined,
-                ]
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "bottom": -6,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": -5,
+                  "width": 16,
+                }
               }
             >
               <Image
@@ -2678,11 +2603,16 @@ exports[`DiscussionsRow renders without points possible 1`] = `
         </View>
         <View
           style={
-            Object {
-              "flex": 1,
-              "flexDirection": "column",
-              "justifyContent": "center",
-            }
+            Array [
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+              Object {
+                "marginLeft": 12,
+              },
+            ]
           }
         >
           <Text

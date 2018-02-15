@@ -103,7 +103,7 @@ export class ToDoListItem extends Component<Props, any> {
 
     return (
       <View>
-        <View style={{ marginLeft: -10 }}>
+        <View>
           <Row
             title={title}
             renderImage={renderIcon}

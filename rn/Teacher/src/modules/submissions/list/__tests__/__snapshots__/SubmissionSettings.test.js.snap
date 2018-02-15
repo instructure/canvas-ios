@@ -83,11 +83,16 @@ exports[`SubmissionSettings renders properly 1`] = `
         >
           <View
             style={
-              Object {
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
+              Array [
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                },
+                Object {
+                  "marginLeft": 0,
+                },
+              ]
             }
           >
             <Text
@@ -153,7 +158,7 @@ exports[`SubmissionSettings renders properly 1`] = `
                   ]
                 }
                 testID="submission-settings.muted"
-                tintColor="#374A59"
+                tintColor={null}
                 title="Mute Grades"
                 value={false}
               />
@@ -228,11 +233,16 @@ exports[`SubmissionSettings renders properly 1`] = `
         >
           <View
             style={
-              Object {
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
+              Array [
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                },
+                Object {
+                  "marginLeft": 0,
+                },
+              ]
             }
           >
             <Text
@@ -298,7 +308,7 @@ exports[`SubmissionSettings renders properly 1`] = `
                   ]
                 }
                 testID="submission-settings.anonymous"
-                tintColor="#374A59"
+                tintColor={null}
                 title="Anonymous Grading"
                 value={false}
               />
@@ -427,11 +437,16 @@ exports[`SubmissionSettings renders the anonymous grading toggle as disabled whe
         >
           <View
             style={
-              Object {
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
+              Array [
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                },
+                Object {
+                  "marginLeft": 0,
+                },
+              ]
             }
           >
             <Text
@@ -497,7 +512,7 @@ exports[`SubmissionSettings renders the anonymous grading toggle as disabled whe
                   ]
                 }
                 testID="submission-settings.muted"
-                tintColor="#374A59"
+                tintColor={null}
                 title="Mute Grades"
                 value={false}
               />
@@ -573,11 +588,16 @@ exports[`SubmissionSettings renders the anonymous grading toggle as disabled whe
         >
           <View
             style={
-              Object {
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
+              Array [
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                },
+                Object {
+                  "marginLeft": 0,
+                },
+              ]
             }
           >
             <Text
@@ -643,7 +663,7 @@ exports[`SubmissionSettings renders the anonymous grading toggle as disabled whe
                   ]
                 }
                 testID="submission-settings.anonymous"
-                tintColor="#374A59"
+                tintColor={null}
                 title="Anonymous Grading"
                 value={false}
               />

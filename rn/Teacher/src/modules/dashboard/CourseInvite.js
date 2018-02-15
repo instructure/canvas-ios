@@ -82,6 +82,7 @@ export default class CourseInvite extends React.Component<Props> {
       <DashboardContent
         style={style}
         contentStyle={[{ borderColor: color, borderWidth: 1 }]}
+        hideShadow={true}
       >
         <View style={styles.rowContent}>
           <View style={[styles.iconContainer, { backgroundColor: color }]}>

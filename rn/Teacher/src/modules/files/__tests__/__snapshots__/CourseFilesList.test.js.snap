@@ -155,11 +155,7 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
         >
           <View>
             <View
-              style={
-                Object {
-                  "marginLeft": -10,
-                }
-              }
+              style={undefined}
             >
               <View
                 accessibilityComponentType={undefined}
@@ -228,8 +224,6 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                         Object {
                           "alignItems": "center",
                           "flex": 0,
-                          "height": 32,
-                          "width": 46,
                         }
                       }
                     >
@@ -240,34 +234,24 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                           }
                         }
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": undefined,
-                            },
-                          ]
+                          Object {
+                            "tintColor": undefined,
+                          }
                         }
                       />
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderRadius": 8,
-                              "height": 16,
-                              "justifyContent": "center",
-                              "left": 20,
-                              "position": "absolute",
-                              "top": 10,
-                              "width": 16,
-                            },
-                            Object {
-                              "left": 26,
-                            },
-                          ]
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "bottom": -6,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "position": "absolute",
+                            "right": -5,
+                            "width": 16,
+                          }
                         }
                       >
                         <Image
@@ -289,11 +273,16 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "column",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "marginLeft": 12,
+                        },
+                      ]
                     }
                   >
                     <Text
@@ -425,11 +414,7 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
         >
           <View>
             <View
-              style={
-                Object {
-                  "marginLeft": -10,
-                }
-              }
+              style={undefined}
             >
               <View
                 accessibilityComponentType={undefined}
@@ -498,8 +483,6 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                         Object {
                           "alignItems": "center",
                           "flex": 0,
-                          "height": 32,
-                          "width": 46,
                         }
                       }
                     >
@@ -510,35 +493,24 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                           }
                         }
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": undefined,
-                            },
-                          ]
+                          Object {
+                            "tintColor": undefined,
+                          }
                         }
                       />
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderRadius": 8,
-                              "height": 16,
-                              "justifyContent": "center",
-                              "left": 20,
-                              "position": "absolute",
-                              "top": 10,
-                              "width": 16,
-                            },
-                            Object {
-                              "left": 25,
-                              "top": 15,
-                            },
-                          ]
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "bottom": -6,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "position": "absolute",
+                            "right": -5,
+                            "width": 16,
+                          }
                         }
                       >
                         <Image
@@ -560,11 +532,16 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "column",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "marginLeft": 12,
+                        },
+                      ]
                     }
                   >
                     <Text
@@ -696,11 +673,7 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
         >
           <View>
             <View
-              style={
-                Object {
-                  "marginLeft": -10,
-                }
-              }
+              style={undefined}
             >
               <View
                 accessibilityComponentType={undefined}
@@ -769,8 +742,6 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                         Object {
                           "alignItems": "center",
                           "flex": 0,
-                          "height": 32,
-                          "width": 46,
                         }
                       }
                     >
@@ -781,35 +752,24 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                           }
                         }
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": undefined,
-                            },
-                          ]
+                          Object {
+                            "tintColor": undefined,
+                          }
                         }
                       />
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderRadius": 8,
-                              "height": 16,
-                              "justifyContent": "center",
-                              "left": 20,
-                              "position": "absolute",
-                              "top": 10,
-                              "width": 16,
-                            },
-                            Object {
-                              "left": 25,
-                              "top": 15,
-                            },
-                          ]
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "bottom": -6,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "position": "absolute",
+                            "right": -5,
+                            "width": 16,
+                          }
                         }
                       >
                         <Image
@@ -831,11 +791,16 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "column",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "marginLeft": 12,
+                        },
+                      ]
                     }
                   >
                     <Text
@@ -1126,11 +1091,7 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
         >
           <View>
             <View
-              style={
-                Object {
-                  "marginLeft": -10,
-                }
-              }
+              style={undefined}
             >
               <View
                 accessibilityComponentType={undefined}
@@ -1199,8 +1160,6 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                         Object {
                           "alignItems": "center",
                           "flex": 0,
-                          "height": 32,
-                          "width": 46,
                         }
                       }
                     >
@@ -1211,34 +1170,24 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                           }
                         }
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": undefined,
-                            },
-                          ]
+                          Object {
+                            "tintColor": undefined,
+                          }
                         }
                       />
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderRadius": 8,
-                              "height": 16,
-                              "justifyContent": "center",
-                              "left": 20,
-                              "position": "absolute",
-                              "top": 10,
-                              "width": 16,
-                            },
-                            Object {
-                              "left": 26,
-                            },
-                          ]
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "bottom": -6,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "position": "absolute",
+                            "right": -5,
+                            "width": 16,
+                          }
                         }
                       >
                         <Image
@@ -1260,11 +1209,16 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "column",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "marginLeft": 12,
+                        },
+                      ]
                     }
                   >
                     <Text
@@ -1396,11 +1350,7 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
         >
           <View>
             <View
-              style={
-                Object {
-                  "marginLeft": -10,
-                }
-              }
+              style={undefined}
             >
               <View
                 accessibilityComponentType={undefined}
@@ -1469,8 +1419,6 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                         Object {
                           "alignItems": "center",
                           "flex": 0,
-                          "height": 32,
-                          "width": 46,
                         }
                       }
                     >
@@ -1481,35 +1429,24 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                           }
                         }
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": undefined,
-                            },
-                          ]
+                          Object {
+                            "tintColor": undefined,
+                          }
                         }
                       />
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderRadius": 8,
-                              "height": 16,
-                              "justifyContent": "center",
-                              "left": 20,
-                              "position": "absolute",
-                              "top": 10,
-                              "width": 16,
-                            },
-                            Object {
-                              "left": 25,
-                              "top": 15,
-                            },
-                          ]
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "bottom": -6,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "position": "absolute",
+                            "right": -5,
+                            "width": 16,
+                          }
                         }
                       >
                         <Image
@@ -1531,11 +1468,16 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "column",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "marginLeft": 12,
+                        },
+                      ]
                     }
                   >
                     <Text
@@ -1667,11 +1609,7 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
         >
           <View>
             <View
-              style={
-                Object {
-                  "marginLeft": -10,
-                }
-              }
+              style={undefined}
             >
               <View
                 accessibilityComponentType={undefined}
@@ -1740,8 +1678,6 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                         Object {
                           "alignItems": "center",
                           "flex": 0,
-                          "height": 32,
-                          "width": 46,
                         }
                       }
                     >
@@ -1752,35 +1688,24 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                           }
                         }
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": undefined,
-                            },
-                          ]
+                          Object {
+                            "tintColor": undefined,
+                          }
                         }
                       />
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderRadius": 8,
-                              "height": 16,
-                              "justifyContent": "center",
-                              "left": 20,
-                              "position": "absolute",
-                              "top": 10,
-                              "width": 16,
-                            },
-                            Object {
-                              "left": 25,
-                              "top": 15,
-                            },
-                          ]
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "bottom": -6,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "position": "absolute",
+                            "right": -5,
+                            "width": 16,
+                          }
                         }
                       >
                         <Image
@@ -1802,11 +1727,16 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "column",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "marginLeft": 12,
+                        },
+                      ]
                     }
                   >
                     <Text
@@ -2097,11 +2027,7 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
         >
           <View>
             <View
-              style={
-                Object {
-                  "marginLeft": -10,
-                }
-              }
+              style={undefined}
             >
               <View
                 accessibilityComponentType={undefined}
@@ -2170,8 +2096,6 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                         Object {
                           "alignItems": "center",
                           "flex": 0,
-                          "height": 32,
-                          "width": 46,
                         }
                       }
                     >
@@ -2182,34 +2106,24 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                           }
                         }
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": undefined,
-                            },
-                          ]
+                          Object {
+                            "tintColor": undefined,
+                          }
                         }
                       />
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderRadius": 8,
-                              "height": 16,
-                              "justifyContent": "center",
-                              "left": 20,
-                              "position": "absolute",
-                              "top": 10,
-                              "width": 16,
-                            },
-                            Object {
-                              "left": 26,
-                            },
-                          ]
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "bottom": -6,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "position": "absolute",
+                            "right": -5,
+                            "width": 16,
+                          }
                         }
                       >
                         <Image
@@ -2231,11 +2145,16 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "column",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "marginLeft": 12,
+                        },
+                      ]
                     }
                   >
                     <Text
@@ -2367,11 +2286,7 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
         >
           <View>
             <View
-              style={
-                Object {
-                  "marginLeft": -10,
-                }
-              }
+              style={undefined}
             >
               <View
                 accessibilityComponentType={undefined}
@@ -2440,8 +2355,6 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                         Object {
                           "alignItems": "center",
                           "flex": 0,
-                          "height": 32,
-                          "width": 46,
                         }
                       }
                     >
@@ -2452,35 +2365,24 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                           }
                         }
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": undefined,
-                            },
-                          ]
+                          Object {
+                            "tintColor": undefined,
+                          }
                         }
                       />
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderRadius": 8,
-                              "height": 16,
-                              "justifyContent": "center",
-                              "left": 20,
-                              "position": "absolute",
-                              "top": 10,
-                              "width": 16,
-                            },
-                            Object {
-                              "left": 25,
-                              "top": 15,
-                            },
-                          ]
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "bottom": -6,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "position": "absolute",
+                            "right": -5,
+                            "width": 16,
+                          }
                         }
                       >
                         <Image
@@ -2502,11 +2404,16 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "column",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "marginLeft": 12,
+                        },
+                      ]
                     }
                   >
                     <Text
@@ -2638,11 +2545,7 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
         >
           <View>
             <View
-              style={
-                Object {
-                  "marginLeft": -10,
-                }
-              }
+              style={undefined}
             >
               <View
                 accessibilityComponentType={undefined}
@@ -2711,8 +2614,6 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                         Object {
                           "alignItems": "center",
                           "flex": 0,
-                          "height": 32,
-                          "width": 46,
                         }
                       }
                     >
@@ -2723,35 +2624,24 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                           }
                         }
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": undefined,
-                            },
-                          ]
+                          Object {
+                            "tintColor": undefined,
+                          }
                         }
                       />
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderRadius": 8,
-                              "height": 16,
-                              "justifyContent": "center",
-                              "left": 20,
-                              "position": "absolute",
-                              "top": 10,
-                              "width": 16,
-                            },
-                            Object {
-                              "left": 25,
-                              "top": 15,
-                            },
-                          ]
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "bottom": -6,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "position": "absolute",
+                            "right": -5,
+                            "width": 16,
+                          }
                         }
                       >
                         <Image
@@ -2773,11 +2663,16 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "column",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "marginLeft": 12,
+                        },
+                      ]
                     }
                   >
                     <Text
@@ -3068,11 +2963,7 @@ exports[`CourseFileList sending weird data into the progress update function sho
         >
           <View>
             <View
-              style={
-                Object {
-                  "marginLeft": -10,
-                }
-              }
+              style={undefined}
             >
               <View
                 accessibilityComponentType={undefined}
@@ -3141,8 +3032,6 @@ exports[`CourseFileList sending weird data into the progress update function sho
                         Object {
                           "alignItems": "center",
                           "flex": 0,
-                          "height": 32,
-                          "width": 46,
                         }
                       }
                     >
@@ -3153,34 +3042,24 @@ exports[`CourseFileList sending weird data into the progress update function sho
                           }
                         }
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": undefined,
-                            },
-                          ]
+                          Object {
+                            "tintColor": undefined,
+                          }
                         }
                       />
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderRadius": 8,
-                              "height": 16,
-                              "justifyContent": "center",
-                              "left": 20,
-                              "position": "absolute",
-                              "top": 10,
-                              "width": 16,
-                            },
-                            Object {
-                              "left": 26,
-                            },
-                          ]
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "bottom": -6,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "position": "absolute",
+                            "right": -5,
+                            "width": 16,
+                          }
                         }
                       >
                         <Image
@@ -3202,11 +3081,16 @@ exports[`CourseFileList sending weird data into the progress update function sho
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "column",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "marginLeft": 12,
+                        },
+                      ]
                     }
                   >
                     <Text
@@ -3338,11 +3222,7 @@ exports[`CourseFileList sending weird data into the progress update function sho
         >
           <View>
             <View
-              style={
-                Object {
-                  "marginLeft": -10,
-                }
-              }
+              style={undefined}
             >
               <View
                 accessibilityComponentType={undefined}
@@ -3411,8 +3291,6 @@ exports[`CourseFileList sending weird data into the progress update function sho
                         Object {
                           "alignItems": "center",
                           "flex": 0,
-                          "height": 32,
-                          "width": 46,
                         }
                       }
                     >
@@ -3423,35 +3301,24 @@ exports[`CourseFileList sending weird data into the progress update function sho
                           }
                         }
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": undefined,
-                            },
-                          ]
+                          Object {
+                            "tintColor": undefined,
+                          }
                         }
                       />
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderRadius": 8,
-                              "height": 16,
-                              "justifyContent": "center",
-                              "left": 20,
-                              "position": "absolute",
-                              "top": 10,
-                              "width": 16,
-                            },
-                            Object {
-                              "left": 25,
-                              "top": 15,
-                            },
-                          ]
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "bottom": -6,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "position": "absolute",
+                            "right": -5,
+                            "width": 16,
+                          }
                         }
                       >
                         <Image
@@ -3473,11 +3340,16 @@ exports[`CourseFileList sending weird data into the progress update function sho
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "column",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "marginLeft": 12,
+                        },
+                      ]
                     }
                   >
                     <Text
@@ -3609,11 +3481,7 @@ exports[`CourseFileList sending weird data into the progress update function sho
         >
           <View>
             <View
-              style={
-                Object {
-                  "marginLeft": -10,
-                }
-              }
+              style={undefined}
             >
               <View
                 accessibilityComponentType={undefined}
@@ -3682,8 +3550,6 @@ exports[`CourseFileList sending weird data into the progress update function sho
                         Object {
                           "alignItems": "center",
                           "flex": 0,
-                          "height": 32,
-                          "width": 46,
                         }
                       }
                     >
@@ -3694,35 +3560,24 @@ exports[`CourseFileList sending weird data into the progress update function sho
                           }
                         }
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": undefined,
-                            },
-                          ]
+                          Object {
+                            "tintColor": undefined,
+                          }
                         }
                       />
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderRadius": 8,
-                              "height": 16,
-                              "justifyContent": "center",
-                              "left": 20,
-                              "position": "absolute",
-                              "top": 10,
-                              "width": 16,
-                            },
-                            Object {
-                              "left": 25,
-                              "top": 15,
-                            },
-                          ]
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "bottom": -6,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "position": "absolute",
+                            "right": -5,
+                            "width": 16,
+                          }
                         }
                       >
                         <Image
@@ -3744,11 +3599,16 @@ exports[`CourseFileList sending weird data into the progress update function sho
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "column",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "marginLeft": 12,
+                        },
+                      ]
                     }
                   >
                     <Text
@@ -4039,11 +3899,7 @@ exports[`CourseFileList should render 1`] = `
         >
           <View>
             <View
-              style={
-                Object {
-                  "marginLeft": -10,
-                }
-              }
+              style={undefined}
             >
               <View
                 accessibilityComponentType={undefined}
@@ -4112,8 +3968,6 @@ exports[`CourseFileList should render 1`] = `
                         Object {
                           "alignItems": "center",
                           "flex": 0,
-                          "height": 32,
-                          "width": 46,
                         }
                       }
                     >
@@ -4124,34 +3978,24 @@ exports[`CourseFileList should render 1`] = `
                           }
                         }
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": undefined,
-                            },
-                          ]
+                          Object {
+                            "tintColor": undefined,
+                          }
                         }
                       />
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderRadius": 8,
-                              "height": 16,
-                              "justifyContent": "center",
-                              "left": 20,
-                              "position": "absolute",
-                              "top": 10,
-                              "width": 16,
-                            },
-                            Object {
-                              "left": 26,
-                            },
-                          ]
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "bottom": -6,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "position": "absolute",
+                            "right": -5,
+                            "width": 16,
+                          }
                         }
                       >
                         <Image
@@ -4173,11 +4017,16 @@ exports[`CourseFileList should render 1`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "column",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "marginLeft": 12,
+                        },
+                      ]
                     }
                   >
                     <Text
@@ -4309,11 +4158,7 @@ exports[`CourseFileList should render 1`] = `
         >
           <View>
             <View
-              style={
-                Object {
-                  "marginLeft": -10,
-                }
-              }
+              style={undefined}
             >
               <View
                 accessibilityComponentType={undefined}
@@ -4382,8 +4227,6 @@ exports[`CourseFileList should render 1`] = `
                         Object {
                           "alignItems": "center",
                           "flex": 0,
-                          "height": 32,
-                          "width": 46,
                         }
                       }
                     >
@@ -4394,35 +4237,24 @@ exports[`CourseFileList should render 1`] = `
                           }
                         }
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": undefined,
-                            },
-                          ]
+                          Object {
+                            "tintColor": undefined,
+                          }
                         }
                       />
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderRadius": 8,
-                              "height": 16,
-                              "justifyContent": "center",
-                              "left": 20,
-                              "position": "absolute",
-                              "top": 10,
-                              "width": 16,
-                            },
-                            Object {
-                              "left": 25,
-                              "top": 15,
-                            },
-                          ]
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "bottom": -6,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "position": "absolute",
+                            "right": -5,
+                            "width": 16,
+                          }
                         }
                       >
                         <Image
@@ -4444,11 +4276,16 @@ exports[`CourseFileList should render 1`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "column",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "marginLeft": 12,
+                        },
+                      ]
                     }
                   >
                     <Text
@@ -4580,11 +4417,7 @@ exports[`CourseFileList should render 1`] = `
         >
           <View>
             <View
-              style={
-                Object {
-                  "marginLeft": -10,
-                }
-              }
+              style={undefined}
             >
               <View
                 accessibilityComponentType={undefined}
@@ -4653,8 +4486,6 @@ exports[`CourseFileList should render 1`] = `
                         Object {
                           "alignItems": "center",
                           "flex": 0,
-                          "height": 32,
-                          "width": 46,
                         }
                       }
                     >
@@ -4665,35 +4496,24 @@ exports[`CourseFileList should render 1`] = `
                           }
                         }
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": undefined,
-                            },
-                          ]
+                          Object {
+                            "tintColor": undefined,
+                          }
                         }
                       />
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderRadius": 8,
-                              "height": 16,
-                              "justifyContent": "center",
-                              "left": 20,
-                              "position": "absolute",
-                              "top": 10,
-                              "width": 16,
-                            },
-                            Object {
-                              "left": 25,
-                              "top": 15,
-                            },
-                          ]
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "bottom": -6,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "position": "absolute",
+                            "right": -5,
+                            "width": 16,
+                          }
                         }
                       >
                         <Image
@@ -4715,11 +4535,16 @@ exports[`CourseFileList should render 1`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "column",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "marginLeft": 12,
+                        },
+                      ]
                     }
                   >
                     <Text
@@ -5010,11 +4835,7 @@ exports[`CourseFileList should render with folders 1`] = `
         >
           <View>
             <View
-              style={
-                Object {
-                  "marginLeft": -10,
-                }
-              }
+              style={undefined}
             >
               <View
                 accessibilityComponentType={undefined}
@@ -5083,8 +4904,6 @@ exports[`CourseFileList should render with folders 1`] = `
                         Object {
                           "alignItems": "center",
                           "flex": 0,
-                          "height": 32,
-                          "width": 46,
                         }
                       }
                     >
@@ -5095,34 +4914,24 @@ exports[`CourseFileList should render with folders 1`] = `
                           }
                         }
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": undefined,
-                            },
-                          ]
+                          Object {
+                            "tintColor": undefined,
+                          }
                         }
                       />
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderRadius": 8,
-                              "height": 16,
-                              "justifyContent": "center",
-                              "left": 20,
-                              "position": "absolute",
-                              "top": 10,
-                              "width": 16,
-                            },
-                            Object {
-                              "left": 26,
-                            },
-                          ]
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "bottom": -6,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "position": "absolute",
+                            "right": -5,
+                            "width": 16,
+                          }
                         }
                       >
                         <Image
@@ -5144,11 +4953,16 @@ exports[`CourseFileList should render with folders 1`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "column",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "marginLeft": 12,
+                        },
+                      ]
                     }
                   >
                     <Text
@@ -5280,11 +5094,7 @@ exports[`CourseFileList should render with folders 1`] = `
         >
           <View>
             <View
-              style={
-                Object {
-                  "marginLeft": -10,
-                }
-              }
+              style={undefined}
             >
               <View
                 accessibilityComponentType={undefined}
@@ -5353,8 +5163,6 @@ exports[`CourseFileList should render with folders 1`] = `
                         Object {
                           "alignItems": "center",
                           "flex": 0,
-                          "height": 32,
-                          "width": 46,
                         }
                       }
                     >
@@ -5365,35 +5173,24 @@ exports[`CourseFileList should render with folders 1`] = `
                           }
                         }
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": undefined,
-                            },
-                          ]
+                          Object {
+                            "tintColor": undefined,
+                          }
                         }
                       />
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderRadius": 8,
-                              "height": 16,
-                              "justifyContent": "center",
-                              "left": 20,
-                              "position": "absolute",
-                              "top": 10,
-                              "width": 16,
-                            },
-                            Object {
-                              "left": 25,
-                              "top": 15,
-                            },
-                          ]
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "bottom": -6,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "position": "absolute",
+                            "right": -5,
+                            "width": 16,
+                          }
                         }
                       >
                         <Image
@@ -5415,11 +5212,16 @@ exports[`CourseFileList should render with folders 1`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "column",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "marginLeft": 12,
+                        },
+                      ]
                     }
                   >
                     <Text
@@ -5551,11 +5353,7 @@ exports[`CourseFileList should render with folders 1`] = `
         >
           <View>
             <View
-              style={
-                Object {
-                  "marginLeft": -10,
-                }
-              }
+              style={undefined}
             >
               <View
                 accessibilityComponentType={undefined}
@@ -5624,8 +5422,6 @@ exports[`CourseFileList should render with folders 1`] = `
                         Object {
                           "alignItems": "center",
                           "flex": 0,
-                          "height": 32,
-                          "width": 46,
                         }
                       }
                     >
@@ -5636,35 +5432,24 @@ exports[`CourseFileList should render with folders 1`] = `
                           }
                         }
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": undefined,
-                            },
-                          ]
+                          Object {
+                            "tintColor": undefined,
+                          }
                         }
                       />
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderRadius": 8,
-                              "height": 16,
-                              "justifyContent": "center",
-                              "left": 20,
-                              "position": "absolute",
-                              "top": 10,
-                              "width": 16,
-                            },
-                            Object {
-                              "left": 25,
-                              "top": 15,
-                            },
-                          ]
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "bottom": -6,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "position": "absolute",
+                            "right": -5,
+                            "width": 16,
+                          }
                         }
                       >
                         <Image
@@ -5686,11 +5471,16 @@ exports[`CourseFileList should render with folders 1`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "column",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "marginLeft": 12,
+                        },
+                      ]
                     }
                   >
                     <Text

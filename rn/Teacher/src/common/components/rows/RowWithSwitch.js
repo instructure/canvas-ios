@@ -46,8 +46,8 @@ export default class RowWithSwitch extends Component<RowWithSwitchProps, any> {
     const accessories = <Switch {...this.props}
                                 testID={this.props.identifier}
                                 onValueChange={this.onValueChange}
-                                tintColor={ colors.primaryBrandColor}
-                                onTintColor={ colors.primaryBrandColor} />
+                                tintColor={null}
+                                onTintColor={colors.primaryBrandColor} />
     const accessibilityLabel = this.props.accessibilityLabel || `${this.props.title}, ${this.props.value ? i18n('On') : i18n('Off')}`
     return (
       <Row {...this.props}

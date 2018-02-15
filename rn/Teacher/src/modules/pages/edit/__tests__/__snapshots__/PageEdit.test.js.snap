@@ -123,11 +123,16 @@ exports[`PageEdit renders 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <TextInput
@@ -277,11 +282,16 @@ exports[`PageEdit renders 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -335,7 +345,7 @@ exports[`PageEdit renders 1`] = `
                   onTintColor="#374A59"
                   onValueChange={[Function]}
                   testID="pages.edit.published.switch"
-                  tintColor="#374A59"
+                  tintColor={null}
                   title="Publish"
                   value={false}
                 />
@@ -384,11 +394,16 @@ exports[`PageEdit renders 1`] = `
           >
             <View
               style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
+                Array [
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "marginLeft": 0,
+                  },
+                ]
               }
             >
               <Text

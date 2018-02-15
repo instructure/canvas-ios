@@ -10,6 +10,7 @@ exports[`GlobalAnnouncementRow renders calendar announcements 1`] = `
       },
     ]
   }
+  hideShadow={true}
 >
   <TouchableHighlight
     accessibilityTraits="button"
@@ -120,6 +121,7 @@ exports[`GlobalAnnouncementRow renders error announcements 1`] = `
       },
     ]
   }
+  hideShadow={true}
 >
   <TouchableHighlight
     accessibilityTraits="button"
@@ -230,6 +232,7 @@ exports[`GlobalAnnouncementRow renders information announcements 1`] = `
       },
     ]
   }
+  hideShadow={true}
 >
   <TouchableHighlight
     accessibilityTraits="button"
@@ -340,6 +343,7 @@ exports[`GlobalAnnouncementRow renders question announcements 1`] = `
       },
     ]
   }
+  hideShadow={true}
 >
   <TouchableHighlight
     accessibilityTraits="button"
@@ -450,6 +454,7 @@ exports[`GlobalAnnouncementRow renders unexpected icon as information 1`] = `
       },
     ]
   }
+  hideShadow={true}
 >
   <TouchableHighlight
     accessibilityTraits="button"
@@ -560,6 +565,7 @@ exports[`GlobalAnnouncementRow renders warning announcements 1`] = `
       },
     ]
   }
+  hideShadow={true}
 >
   <TouchableHighlight
     accessibilityTraits="button"

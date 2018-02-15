@@ -44,4 +44,5 @@ export const quiz: Template<Quiz> = template({
   access_code: null,
   assignment_group_id: null,
   all_dates: [],
+  can_unpublish: true,
 })

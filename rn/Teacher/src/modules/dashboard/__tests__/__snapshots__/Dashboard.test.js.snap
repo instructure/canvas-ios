@@ -6529,16 +6529,7 @@ exports[`renders course invites 1`] = `
         <View
           style={
             Array [
-              Object {
-                "backgroundColor": "#ffffff01",
-                "shadowColor": "#000",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 0,
-                },
-                "shadowOpacity": 0.2,
-                "shadowRadius": 1,
-              },
+              false,
               Object {
                 "padding": 8,
                 "width": 359,
@@ -6830,16 +6821,7 @@ exports[`renders course invites 1`] = `
         <View
           style={
             Array [
-              Object {
-                "backgroundColor": "#ffffff01",
-                "shadowColor": "#000",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 0,
-                },
-                "shadowOpacity": 0.2,
-                "shadowRadius": 1,
-              },
+              false,
               Object {
                 "padding": 8,
                 "width": 359,

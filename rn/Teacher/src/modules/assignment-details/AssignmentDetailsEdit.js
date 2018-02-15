@@ -213,6 +213,8 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
               identifier='assignmentDetails.edit.points_possible.input'
             />
 
+            <RequiredFieldSubscript title={this.state.validation.points} visible={this.state.validation.points} />
+
             {/* Display Grade As */}
             <RowWithDetail title={displayGradeAs}
               detailSelected={this.state.showPicker}
@@ -223,14 +225,14 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
             {this.renderDataMapPicker()}
 
             {/* Publish */}
-            <RowWithSwitch
-              title={publish}
-              border={'bottom'}
-              value={this.defaultValueForBooleanInput('published')}
-              identifier='published'
-              onValueChange={this._updateToggleValue} />
-
-            <RequiredFieldSubscript title={this.state.validation.points} visible={this.state.validation.points} />
+            { (!this.props.assignmentDetails.published || this.props.assignmentDetails.unpublishable) &&
+              <RowWithSwitch
+                title={publish}
+                border={'bottom'}
+                value={this.defaultValueForBooleanInput('published')}
+                identifier='published'
+                onValueChange={this._updateToggleValue} />
+            }
 
             {/* Due Dates */}
             <AssignmentDatesEditor

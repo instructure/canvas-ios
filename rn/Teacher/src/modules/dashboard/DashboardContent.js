@@ -6,12 +6,13 @@ import {
   StyleSheet,
 } from 'react-native'
 
-export default ({ children, style, contentStyle, ...props }: {
+export default ({ children, style, contentStyle, hideShadow, ...props }: {
   children?: React.Node,
   style?: any,
   contentStyle?: any,
+  hideShadow?: boolean,
 }) => (
-  <View {...props} style={[styles.shadow, style]}>
+  <View {...props} style={[!hideShadow && styles.shadow, style]}>
     <View style={[styles.content, contentStyle]}>
       {children}
     </View>

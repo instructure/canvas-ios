@@ -120,9 +120,6 @@ export default class AssignmentListRow extends PureComponent<Props> {
 }
 
 const styles = StyleSheet.create({
-  row: {
-    marginLeft: -10,
-  },
   ungradedText: {
     flex: 0,
     alignSelf: 'flex-start',

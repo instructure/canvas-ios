@@ -70,7 +70,6 @@ exports[`Render the base row 1`] = `
       style={
         Array [
           Object {
-            "marginRight": 16,
             "resizeMode": "contain",
           },
           Object {
@@ -83,11 +82,16 @@ exports[`Render the base row 1`] = `
     />
     <View
       style={
-        Object {
-          "flex": 1,
-          "flexDirection": "column",
-          "justifyContent": "center",
-        }
+        Array [
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+            "justifyContent": "center",
+          },
+          Object {
+            "marginLeft": 12,
+          },
+        ]
       }
     >
       <Text

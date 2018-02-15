@@ -191,9 +191,6 @@ const style = StyleSheet.create({
     height: 14,
     tintColor: 'black',
   },
-  image: {
-    marginRight: global.style.defaultPadding,
-  },
   cancel: {
     position: 'absolute',
     top: 0,
