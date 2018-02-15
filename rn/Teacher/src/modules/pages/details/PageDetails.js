@@ -36,6 +36,7 @@ import { Heading1 } from '../../../common/text'
 type StateProps = {
   pages: { [string]: Page },
   courseName: string,
+  courseColor: ?string,
 }
 
 type OwnProps = {
@@ -86,6 +87,7 @@ export class PageDetails extends Component<Props, any> {
     return (
       <Screen
         navBarStyle='dark'
+        navBarColor={this.props.courseColor}
         title={i18n('Page Details')}
         subtitle={this.props.courseName}
         leftBarButtons={this.props.navigator.isModal && [
@@ -109,6 +111,7 @@ export class PageDetails extends Component<Props, any> {
           <WebContainer
             style={{ flex: 1 }}
             html={page ? page.body : ''}
+            navigator={this.props.navigator}
           />
         </View>
       </Screen>
@@ -198,11 +201,13 @@ const styles = StyleSheet.create({
 export function mapStateToProps ({ entities }: AppState, { courseID, url }: OwnProps): StateProps {
   let pages = {}
   let courseName = ''
+  let courseColor = null
   if (entities &&
     entities.courses &&
     entities.courses[courseID]) {
     const course = entities.courses[courseID]
     courseName = course.course && course.course.name
+    courseColor = course.color
     if (course.pages && course.pages.refs) {
       pages = course.pages.refs
         .reduce((memo, ref) => ({
@@ -215,6 +220,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID, url }: OwnP
   return {
     pages,
     courseName,
+    courseColor,
   }
 }
 

@@ -3,12 +3,14 @@
 import { shallow } from 'enzyme'
 import React from 'react'
 import { accountNotification } from '../../../__templates__/account-notification'
+import { navigator } from '../../../__templates__/helm'
 import GlobalAnnouncementRow from '../GlobalAnnouncementRow'
 
 describe('GlobalAnnouncementRow', () => {
   const defaults = {
     notification: accountNotification({}),
     onDismiss () {},
+    navigator: navigator(),
   }
 
   it('renders error announcements', () => {

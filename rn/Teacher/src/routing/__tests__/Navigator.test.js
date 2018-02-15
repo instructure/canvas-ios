@@ -170,9 +170,7 @@ describe('Navigator', () => {
   it('opens a webview if we try to deepLink to something that is unsupported', async () => {
     let promise = Promise.resolve({ data: { session_url: 'https://google.com' } })
     canvas.getAuthenticatedSessionURL.mockReturnValueOnce(promise)
-    new Navigator('deepLink').show('/courses/1/assignments/3/edit', {
-      modal: true,
-      embedInNavigationController: true,
+    new Navigator('deepLink').show('/courses/1/modules/3/items', {
       deepLink: true,
     })
 

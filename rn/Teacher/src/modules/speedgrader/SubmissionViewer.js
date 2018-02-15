@@ -42,6 +42,7 @@ type SubmissionViewerProps = {
   size: { width: number, height: number },
   isModeratedGrading: boolean,
   drawerInset: number,
+  navigator: Navigator,
 }
 
 export default class SubmissionViewer extends Component<SubmissionViewerProps> {
@@ -121,6 +122,7 @@ export default class SubmissionViewer extends Component<SubmissionViewerProps> {
             style={styles.webContainer}
             html={submission.body || ''}
             contentInset={{ bottom: this.props.drawerInset }}
+            navigator={this.props.navigator}
           />
           break
         case 'online_quiz':

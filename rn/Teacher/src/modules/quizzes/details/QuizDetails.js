@@ -55,6 +55,7 @@ type State = {
   assignment: ?Assignment,
   courseName: string,
   showSubmissionSummary: boolean,
+  courseColor: ?string,
 }
 
 export type Props = State & OwnProps & RefreshProps & typeof Actions & {
@@ -157,6 +158,7 @@ export class QuizDetails extends Component<Props, any> {
 
     return (
       <Screen
+        navBarColor={this.props.courseColor}
         navBarStyle='dark'
         title={i18n('Quiz Details')}
         subtitle={this.props.courseName}
@@ -322,6 +324,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID, quizID }: O
   let assignmentGroup = null
   let assignment = null
   let courseName = ''
+  let courseColor = null
 
   if (entities.quizzes &&
     entities.quizzes[quizID] &&
@@ -336,6 +339,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID, quizID }: O
       entities.courses[courseID] &&
       entities.courses[courseID].course) {
       courseName = entities.courses[courseID].course.name
+      courseColor = entities.courses[courseID].color
     }
 
     if (quiz.assignment_group_id &&
@@ -360,6 +364,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID, quizID }: O
     error,
     courseID,
     courseName,
+    courseColor,
     quizID,
     assignmentGroup,
     assignment,

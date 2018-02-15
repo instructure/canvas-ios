@@ -29,7 +29,7 @@ const MESSAGE_STYLE = `
 </style>
 `
 
-type Props = {
+type Props = NavigationProps & {
   style?: any,
   notification: AccountNotification,
   onDismiss: (string) => any,
@@ -127,6 +127,7 @@ export default class GlobalAnnouncementRow extends React.Component<Props, State>
                 scrollEnabled={false}
                 style={styles.message}
                 html={MESSAGE_STYLE + message}
+                navigator={this.props.navigator}
               />
               <LinkButton
                 accessibilityLabel={i18n('Dismiss {name}', { name: subject })}

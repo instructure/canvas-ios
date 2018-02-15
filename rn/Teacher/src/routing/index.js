@@ -32,6 +32,7 @@ export type RouteConfig = {
   canBecomeMaster?: boolean,
   checkRoles?: boolean,
   deepLink?: boolean,
+  showInWebView?: boolean,
 }
 export type RouteOptions = {
     screen: string,
@@ -45,7 +46,7 @@ export function screenID (path: string): string {
 
 export function registerScreen (
   path: string,
-  componentGenerator?: () => any,
+  componentGenerator?: ?(() => any),
   store?: Store,
   options: RouteConfig = { canBecomeMaster: false, checkRoles: false }
 ): void {

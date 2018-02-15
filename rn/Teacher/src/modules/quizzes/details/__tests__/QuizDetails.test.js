@@ -56,6 +56,7 @@ describe('QuizDetails', () => {
       assignmentGroup: null,
       assignment: null,
       showSubmissionSummary: true,
+      courseColor: '#fff',
     }
   })
 
@@ -303,6 +304,7 @@ describe('mapStateToProps', () => {
               enrollments: [{ type: 'designer' }],
               name: 'CS1010',
             },
+            color: '#123456',
           },
         },
       },
@@ -319,6 +321,7 @@ describe('mapStateToProps', () => {
       quizID: '1',
       assignmentGroup: null,
       assignment: null,
+      courseColor: '#123456',
     })
   })
 

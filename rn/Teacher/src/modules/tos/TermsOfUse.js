@@ -74,6 +74,7 @@ export default class TermsOfUse extends Component<Props, State> {
                 <WebContainer
                   html={this.state.termsContent}
                   style={{ flex: 1 }}
+                  navigator={this.props.navigator}
                 />
               </View>
         }

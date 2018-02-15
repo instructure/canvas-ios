@@ -162,6 +162,7 @@ export class Dashboard extends React.Component<Props, State> {
         style={{ width: this.state.contentWidth, padding }}
         notification={item}
         onDismiss={this.props.closeNotification}
+        navigator={this.props.navigator}
       />
     )
   }

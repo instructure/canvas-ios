@@ -54,6 +54,7 @@ describe('PageDetails', () => {
       navigator: template.navigator(),
       courseName: 'Course 1',
       url: 'page-1',
+      courseColor: '#fff',
     }
   })
 
@@ -201,6 +202,7 @@ describe('mapStateToProps', () => {
     expect(mapStateToProps(state, { courseID: '1', url: 'page-1' })).toEqual({
       pages: { '1': page },
       courseName: '',
+      courseColor: undefined,
     })
   })
 
@@ -218,6 +220,24 @@ describe('mapStateToProps', () => {
     expect(mapStateToProps(state, { courseID: '1', url: 'page-1' })).toEqual({
       pages: {},
       courseName: 'Course FTW',
+      courseColor: undefined,
+    })
+  })
+
+  it('maps course color to props', () => {
+    const state = template.appState({
+      entities: {
+        courses: {
+          '1': {
+            pages: { refs: [] },
+            course: template.course(),
+            color: '#fff666',
+          },
+        },
+      },
+    })
+    expect(mapStateToProps(state, { courseID: '1', url: 'page-1' })).toMatchObject({
+      courseColor: '#fff666',
     })
   })
 })

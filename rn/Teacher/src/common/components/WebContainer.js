@@ -22,7 +22,7 @@ import React, { Component } from 'react'
 import { View, WebView } from 'react-native'
 import RCTSFSafariViewController from 'react-native-sfsafariviewcontroller'
 import { isWebUri } from 'valid-url'
-import canvas, { getSession } from '../../canvas-api'
+import { getSession } from '../../canvas-api'
 
 const TEMPLATE = `<!doctype html>
 <html>
@@ -98,7 +98,7 @@ type Props = {
   style?: any,
   scrollEnabled?: boolean,
   contentInset?: { top?: number, left?: number, bottom?: number, right?: number },
-  navigator?: Navigator,
+  navigator: Navigator,
 }
 export default class WebContainer extends Component<Props, any> {
 
@@ -133,14 +133,8 @@ export default class WebContainer extends Component<Props, any> {
   }
 
   loadAuthenticatedURL = (url: string) => {
-    let authedURL = url
-    canvas.getAuthenticatedSessionURL(url).then(({ data }) => {
-      if (data.session_url) {
-        authedURL = data.session_url
-      }
-      RCTSFSafariViewController.open(authedURL)
-    }).catch((e) => {
-      RCTSFSafariViewController.open(authedURL)
+    this.props.navigator.show(url, {
+      deepLink: true,
     })
   }
 

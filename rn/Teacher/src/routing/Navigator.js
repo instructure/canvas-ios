@@ -48,7 +48,7 @@ export default class Navigator {
   show (url: string, options: Object = { modal: false, modalPresentationStyle: 'formsheet', deepLink: false }, additionalProps: Object = {}) {
     try {
       const r = route(url, additionalProps)
-      if (options.deepLink && !r.config.deepLink) {
+      if (r.config.showInWebView || (options.deepLink && !r.config.deepLink)) {
         return this.showWebView(url)
       }
 

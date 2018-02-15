@@ -19,7 +19,7 @@ import { shallow } from 'enzyme'
 import React from 'react'
 import WebContainer from '../WebContainer'
 import RCTSFSafariViewController from 'react-native-sfsafariviewcontroller'
-import api, { setSession } from '../../../canvas-api'
+import { setSession } from '../../../canvas-api'
 
 jest
   .unmock('ScrollView')
@@ -154,13 +154,15 @@ describe('WebContainer', () => {
     tree.find('WebView').simulate('ShouldStartLoadWithRequest')
     expect(RCTSFSafariViewController.open).not.toHaveBeenCalled()
 
-    api.getAuthenticatedSessionURL.mockReturnValueOnce(Promise.resolve({ data: { session_url: 'http://mobiledev.instructure.com/courses/1/modules/1/items-authenticated' } }))
-
     tree.find('WebView').simulate('ShouldStartLoadWithRequest', {
-      url: 'http://mobiledev.instructure.com/courses/1/modules/1/items',
+      url: 'http://mobiledev.instructure.com/courses/1/discussion_topics/1',
       navigationType: 'click',
     })
-    await Promise.resolve()
-    expect(RCTSFSafariViewController.open).toHaveBeenCalledWith('http://mobiledev.instructure.com/courses/1/modules/1/items-authenticated')
+    expect(navigator.show).toHaveBeenCalledWith(
+      'http://mobiledev.instructure.com/courses/1/discussion_topics/1',
+      {
+        deepLink: true,
+      },
+    )
   })
 })

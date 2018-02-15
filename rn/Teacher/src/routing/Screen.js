@@ -41,18 +41,18 @@ type ScreenProps = {
 
   // Nav bar stuff
   navBarStyle?: 'light' | 'dark',
-  navBarButtonColor?: string,
-  navBarColor?: string,
+  navBarButtonColor?: ?string,
+  navBarColor?: ?string,
   navBarHidden?: boolean,
   navBarTranslucent?: boolean,
-  navBarImage?: string,
+  navBarImage?: ?string,
   hideNavBarShadowImage?: boolean,
   navBarTransparent?: boolean,
   drawUnderNavBar?: boolean,
   drawUnderTabBar?: boolean,
   leftBarButtons?: any,
   rightBarButtons?: any,
-  backButtonTitle?: string,
+  backButtonTitle?: ?string,
 
   children?: React$Node,
   disableGlobalSafeArea?: boolean,
