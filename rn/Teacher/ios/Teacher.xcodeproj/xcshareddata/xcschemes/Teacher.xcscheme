@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0820"
+   LastUpgradeVersion = "0920"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "NO"
@@ -42,7 +42,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C898374B0816077ED52971505243B3A8"
+               BlueprintIdentifier = "179B8B0A76BDB3256076A7DE7C5576AB"
                BuildableName = "Pods_defaults_CanvasKeymaster.framework"
                BlueprintName = "Pods-defaults-CanvasKeymaster"
                ReferencedContainer = "container:../../../Pods/Pods.xcodeproj">
@@ -56,7 +56,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9536D2A2B37B64D05A5191FACDF4F572"
+               BlueprintIdentifier = "A330E41AA1A0B70B98A69D2629195D88"
                BuildableName = "Pods_defaults_CanvasKit.framework"
                BlueprintName = "Pods-defaults-CanvasKit"
                ReferencedContainer = "container:../../../Pods/Pods.xcodeproj">

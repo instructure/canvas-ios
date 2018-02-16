@@ -5,7 +5,6 @@ workspace 'AllTheThings.xcworkspace'
 inhibit_all_warnings!
 platform :ios, '10.0'
 
-
 abstract_target 'defaults' do
   use_frameworks!
 
@@ -98,10 +97,6 @@ abstract_target 'defaults' do
   target 'Canvas' do
     project 'Canvas/Canvas.xcodeproj'
   end
-  
-  target 'GradesWidget' do
-    project 'Canvas/Canvas.xcodeproj'
-  end
 
   target 'CanvasCore' do
     project 'CanvasCore/CanvasCore.xcodeproj'
@@ -131,6 +126,15 @@ abstract_target 'defaults' do
       project 'rn/Teacher/ios/Teacher.xcodeproj'
     end
   end
+end
+
+target 'GradesWidget' do
+    use_frameworks!
+    project 'Canvas/Canvas.xcodeproj'
+    pod 'Mantle', '~> 1.5.5'
+    pod 'AFNetworking', '~> 3.0'
+    pod 'ReactiveObjC', '~> 3.0'
+    pod 'FXKeychain', '~> 1.5'
 end
 
 post_install do |installer|
