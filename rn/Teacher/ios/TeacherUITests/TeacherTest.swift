@@ -54,7 +54,7 @@ class TeacherTest: XCTestCase {
     CanvasKeymaster.the().resetKeymasterForTesting()
     NativeLoginManager.shared().injectLoginInformation(nil)
     GREYTestHelper.enableFastAnimation()
-    domainPickerPage.assertPageObjects()
+    loginPage.assertPageObjects()
   }
 
   override func tearDown() {

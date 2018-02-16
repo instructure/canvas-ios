@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C0A5C2C203650DE00B8C14F /* LoginFinished.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C0A5C2B203650DE00B8C14F /* LoginFinished.storyboard */; };
+		2C0A5C2F2036515A00B8C14F /* CKILoginFinishedViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C0A5C2D2036515A00B8C14F /* CKILoginFinishedViewController.h */; };
+		2C0A5C302036515A00B8C14F /* CKILoginFinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0A5C2E2036515A00B8C14F /* CKILoginFinishedViewController.m */; };
 		3B2940161E7209AA00F2E49C /* CKIBrand.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B2940141E7209AA00F2E49C /* CKIBrand.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3B2940171E7209AA00F2E49C /* CKIBrand.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2940151E7209AA00F2E49C /* CKIBrand.m */; };
 		496FC3B11F3A592900054359 /* CKIClient+CKIEnrollment.h in Headers */ = {isa = PBXBuildFile; fileRef = 496FC3AF1F3A592900054359 /* CKIClient+CKIEnrollment.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -418,6 +421,9 @@
 /* Begin PBXFileReference section */
 		04B7BBDCB828F414AA45D2B6 /* Pods-defaults-CanvasKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasKit.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-CanvasKit/Pods-defaults-CanvasKit.debug.xcconfig"; sourceTree = "<group>"; };
 		25D4C8ECA1605DDE28318957 /* Pods-CanvasKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasKit.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-CanvasKit/Pods-CanvasKit.debug.xcconfig"; sourceTree = "<group>"; };
+		2C0A5C2B203650DE00B8C14F /* LoginFinished.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginFinished.storyboard; sourceTree = "<group>"; };
+		2C0A5C2D2036515A00B8C14F /* CKILoginFinishedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CKILoginFinishedViewController.h; sourceTree = "<group>"; };
+		2C0A5C2E2036515A00B8C14F /* CKILoginFinishedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CKILoginFinishedViewController.m; sourceTree = "<group>"; };
 		2CD80599201BCF1A001D22CC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3A2D00B0E16C49DC751FD964 /* Pods_CanvasKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B2940141E7209AA00F2E49C /* CKIBrand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKIBrand.h; sourceTree = "<group>"; };
@@ -1284,6 +1290,9 @@
 			children = (
 				499D19801C8644A3005A86D2 /* CKILoginViewController.h */,
 				499D19811C8644A3005A86D2 /* CKILoginViewController.m */,
+				2C0A5C2B203650DE00B8C14F /* LoginFinished.storyboard */,
+				2C0A5C2D2036515A00B8C14F /* CKILoginFinishedViewController.h */,
+				2C0A5C2E2036515A00B8C14F /* CKILoginFinishedViewController.m */,
 			);
 			path = "UIKit+CanvasKit";
 			sourceTree = "<group>";
@@ -1616,6 +1625,7 @@
 				499D1A181C8644A3005A86D2 /* CKIClient+CKICourse.h in Headers */,
 				499D19BC1C8644A3005A86D2 /* CKIFavorite.h in Headers */,
 				499D19C41C8644A3005A86D2 /* CKIGroupCategory.h in Headers */,
+				2C0A5C2F2036515A00B8C14F /* CKILoginFinishedViewController.h in Headers */,
 				499D1A561C8644A3005A86D2 /* CKIClient+CKILiveAssessmentResult.h in Headers */,
 				499D1A461C8644A3005A86D2 /* CKIClient+CKISubmissionRecord.h in Headers */,
 				499D1A541C8644A3005A86D2 /* CKIClient+CKILiveAssessment.h in Headers */,
@@ -1730,6 +1740,7 @@
 				499D19F61C8644A3005A86D2 /* jquery-1.4.2.min.js in Resources */,
 				499D19F71C8644A3005A86D2 /* jquery.json-2.2.min.js in Resources */,
 				499D19F41C8644A3005A86D2 /* discussion_submissions.css in Resources */,
+				2C0A5C2C203650DE00B8C14F /* LoginFinished.storyboard in Resources */,
 				9FE0B52C1FBB7710003826AA /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1854,6 +1865,7 @@
 				499D19A81C8644A3005A86D2 /* CKIAttachment.m in Sources */,
 				499D19B91C8644A3005A86D2 /* CKIEnrollment.m in Sources */,
 				499D19921C8644A3005A86D2 /* CKIActivityStreamAnnouncementItem.m in Sources */,
+				2C0A5C302036515A00B8C14F /* CKILoginFinishedViewController.m in Sources */,
 				499D19D51C8644A3005A86D2 /* CKIOutcomeLink.m in Sources */,
 				499D19F31C8644A3005A86D2 /* CKISubmissionRecord.m in Sources */,
 				499D19B51C8644A3005A86D2 /* CKIDiscussionEntry.m in Sources */,

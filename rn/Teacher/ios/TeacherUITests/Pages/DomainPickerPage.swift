@@ -17,17 +17,16 @@
 import SoGrey
 import EarlGrey
 
-class DomainPickerPage {
+class LoginPage {
 
     // MARK: Singleton
 
-    static let sharedInstance = DomainPickerPage()
+    static let sharedInstance = LoginPage()
     private init() {}
 
     // MARK: Page Elements
 
-    private let domainField = e.selectBy(id: "domainPickerTextField")
-    private let connectButton = e.selectBy(label: "Search for domain.")
+    private let findMySchoolButton = e.selectBy(id: "findMySchoolButton")
 
     // MARK: - Assertions
 
@@ -35,36 +34,6 @@ class DomainPickerPage {
         grey_fromFile(file, line)
     
         grey_dismissKeyboard()
-        domainField.assertExists()
-    }
-
-    func assertDomainField(contains string: String, _ file: StaticString = #file, _ line: UInt = #line) {
-        grey_fromFile(file, line)
-
-        domainField.assertExists() // wait for element to exist. TODO: handle this in dsl.swift
-        domainField.assert(with: grey_text(string))
-    }
-
-    // MARK: UI Actions
-
-    func enterDomain(_ domain: String, _ file: StaticString = #file, _ line: UInt = #line) {
-        grey_fromFile(file, line)
-
-        domainField.assertExists() // wait for element to exist. TODO: handle this in dsl.swift
-        domainField.perform(grey_replaceText(domain))
-    }
-
-    func openDomain(_ domain: String, _ file: StaticString = #file, _ line: UInt = #line) {
-        grey_fromFile(file, line)
-
-        enterDomain(domain)
-        connectButton.tap()
-    }
-
-    func clearDomain(_ file: StaticString = #file, _ line: UInt = #line) {
-        grey_fromFile(file, line)
-
-        domainField.assertExists() // wait for element to exist. TODO: handle this in dsl.swift
-        domainField.perform(grey_replaceText(""))
+        findMySchoolButton.assertExists()
     }
 }

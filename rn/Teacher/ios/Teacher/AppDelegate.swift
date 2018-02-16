@@ -30,7 +30,7 @@ public let EarlGreyExists = NSClassFromString("EarlGreyImpl") != nil;
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
-    let loginConfig = LoginConfiguration(mobileVerifyName: "iosTeacher", logo: #imageLiteral(resourceName: "logo"))
+    let loginConfig = LoginConfiguration(mobileVerifyName: "iosTeacher", logo: UIImage(named: "teacher-logomark")!, fullLogo: UIImage(named: "teacher-logo")!)
     var window: UIWindow?
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
@@ -66,7 +66,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         HelmManager.shared.bridge = RCTBridge(delegate: self, launchOptions: nil)
         registerNativeRoutes()
         HelmManager.shared.onReactLoginComplete = {
-            self.window?.rootViewController = RootTabBarController()
+            guard let window = self.window else { return }
+            UIView.transition(with: window, duration: 0.25, options: .transitionCrossDissolve, animations: {
+                let loading = UIViewController()
+                loading.view.backgroundColor = .white
+                window.rootViewController = loading
+            }, completion: { _ in
+                window.rootViewController = RootTabBarController()
+            })
         }
         HelmManager.shared.onReactReload = {
             self.showLoadingState()
@@ -74,14 +81,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func showLoadingState() {
-        if let root = window?.rootViewController, let tag = root.tag, tag == "LaunchScreenPlaceholder" { return }
+        guard let window = self.window else { return }
+        if let root = window.rootViewController, let tag = root.tag, tag == "LaunchScreenPlaceholder" { return }
         let placeholder = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateViewController(withIdentifier: "LaunchScreen")
         placeholder.tag = "LaunchScreenPlaceholder"
-        window?.rootViewController = placeholder
         
-        if let icon = placeholder.view.viewWithTag(12345) {
-            icon.layer.add(StartupIconAnimation(), forKey: nil)
-        }
+        UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {
+            window.rootViewController = placeholder
+        }, completion:nil)
     }
     
     func preparePSPDFKit() {
@@ -157,6 +164,10 @@ extension AppDelegate: NativeLoginManagerDelegate {
     }
     
     func didLogout(_ controller: UIViewController) {
-        self.window?.rootViewController = controller
+        guard let window = self.window else { return }
+        
+        UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {
+            window.rootViewController = controller
+        }, completion:nil)
     }
 }

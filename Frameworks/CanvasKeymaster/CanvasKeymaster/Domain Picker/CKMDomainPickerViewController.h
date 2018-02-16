@@ -21,8 +21,6 @@
 
 @interface CKMDomainPickerViewController : UIViewController
 
-@property (nonatomic, weak) IBOutlet UIActivityIndicatorView *activityIndicatorView;
-
 /**
  This indicates whether the user selected default, canvas login, or
  site admin login
@@ -46,11 +44,5 @@
  * Signal sends a CKIClient of the selected user.
  */
 - (RACSignal *)selectUserSignal;
-
-
-/**
- Prepopulate the domain picker with the given domain.
- */
-- (void)prepopulateWithDomain:(NSString *)domain;
 
 @end

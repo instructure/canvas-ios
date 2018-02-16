@@ -14,12 +14,9 @@
 // limitations under the License.
 //
 
-class DomainPickerTests: TeacherTest {
+class LoginPageTests: TeacherTest {
     
-    func testDomainPicker_domainFieldAllowsInput() {
-        let domain = "mobiledev"
-        domainPickerPage.enterDomain(domain)
-        domainPickerPage.assertDomainField(contains: domain)
+    func testLoginPage_findMySchoolButtonExists() {
+        loginPage.assertPageObjects()
     }
-
 }

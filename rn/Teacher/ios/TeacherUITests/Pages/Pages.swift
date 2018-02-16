@@ -21,7 +21,7 @@ extension XCTestCase {
     var allCoursesListPage: AllCoursesListPage { return AllCoursesListPage.sharedInstance }
     var assignmentDetailsPage: AssignmentDetailsPage { return AssignmentDetailsPage.sharedInstance }
     var assignmentListPage: AssignmentListPage { return AssignmentListPage.sharedInstance }
-    var domainPickerPage: DomainPickerPage { return DomainPickerPage.sharedInstance }
+    var loginPage: LoginPage { return LoginPage.sharedInstance }
     var canvasLoginPage: CanvasLoginPage { return CanvasLoginPage.sharedInstance }
     var coursesListPage: CoursesListPage { return CoursesListPage.sharedInstance }
     var editCoursesListPage: EditCoursesListPage { return EditCoursesListPage.sharedInstance }

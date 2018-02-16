@@ -28,7 +28,7 @@ import UserNotifications
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    let loginConfig = LoginConfiguration(mobileVerifyName: "iCanvas", logo: #imageLiteral(resourceName: "login_logo"))
+    let loginConfig = LoginConfiguration(mobileVerifyName: "iCanvas", logo: UIImage(named: "student-logomark")!, fullLogo: UIImage(named: "student-logo")!)
     var session: Session?
     var window: UIWindow?
     var syncDisposable: Disposable?
@@ -55,14 +55,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func showLoadingState() {
-        if let root = window?.rootViewController, let tag = root.tag, tag == "LaunchScreenPlaceholder" { return }
+        guard let window = self.window else { return }
+        if let root = window.rootViewController, let tag = root.tag, tag == "LaunchScreenPlaceholder" { return }
         let placeholder = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateViewController(withIdentifier: "LaunchScreen")
         placeholder.tag = "LaunchScreenPlaceholder"
-        window?.rootViewController = placeholder
         
-        if let icon = placeholder.view.viewWithTag(12345) {
-            icon.layer.add(StartupIconAnimation(), forKey: nil)
-        }
+        UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {
+            window.rootViewController = placeholder
+        }, completion:nil)
     }
     
     func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
@@ -119,10 +119,7 @@ extension AppDelegate {
         Analytics.prepare()
         NetworkMonitor.engage()
         CBILogger.install(loginConfig.logFileManager)
-        Brand.current.apply(self.window!)
         excludeHelmInBranding()
-        UINavigationBar.appearance().barStyle = .black
-        if let w = window { Brand.current.apply(w) }
         Router.shared().addCanvasRoutes(handleError)
         setupDefaultErrorHandling()
         UIApplication.shared.reactive.applicationIconBadgeNumber
@@ -247,15 +244,20 @@ extension AppDelegate: RCTBridgeDelegate {
         NativeLoginManager.shared().app = .student
         HelmManager.shared.bridge = RCTBridge(delegate: self, launchOptions: nil)
         HelmManager.shared.onReactLoginComplete = {
-            guard let session = self.session else {
-                return
-            }
+            guard let session = self.session, let window = self.window else { return }
 
             self.syncDisposable = startSyncingAsyncActions(session)
-
+ 
             let root = rootViewController(session)
             self.addClearCacheGesture(root.view)
-            self.window?.rootViewController = root
+            
+            UIView.transition(with: window, duration: 0.25, options: .transitionCrossDissolve, animations: {
+                let loading = UIViewController()
+                loading.view.backgroundColor = .white
+                window.rootViewController = loading
+            }, completion: { _ in
+                window.rootViewController = root
+            })
         }
         
         HelmManager.shared.onReactReload = {
@@ -370,6 +372,9 @@ extension AppDelegate: NativeLoginManagerDelegate {
     }
     
     func didLogout(_ controller: UIViewController) {
-        self.window?.rootViewController = controller
+        guard let window = self.window else { return }
+        UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {
+            window.rootViewController = controller
+        }, completion:nil)
     }
 }

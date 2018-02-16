@@ -21,11 +21,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" tag="12345" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="spinner-icon" translatesAutoresizingMaskIntoConstraints="NO" id="pwt-X3-yOC">
-                                <rect key="frame" x="147.5" y="293.5" width="80" height="80"/>
+                            <imageView userInteractionEnabled="NO" tag="12345" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="student-logomark" translatesAutoresizingMaskIntoConstraints="NO" id="pwt-X3-yOC">
+                                <rect key="frame" x="155.5" y="301.5" width="64" height="64"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="4Ki-wQ-e9l"/>
-                                    <constraint firstAttribute="width" constant="80" id="c65-dS-SaK"/>
+                                    <constraint firstAttribute="height" constant="64" id="4Ki-wQ-e9l"/>
+                                    <constraint firstAttribute="width" constant="64" id="c65-dS-SaK"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -42,6 +42,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="spinner-icon" width="80" height="80"/>
+        <image name="student-logomark" width="64" height="64"/>
     </resources>
 </document>

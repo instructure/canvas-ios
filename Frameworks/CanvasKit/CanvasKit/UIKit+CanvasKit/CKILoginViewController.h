@@ -35,4 +35,8 @@
 - (void)cancelOAuth;
 
 + (NSString *)safariUserAgent;
+
++ (void)setLoadingImage:(UIImage *)image;
++ (UIImage *)loadingImage;
+
 @end

@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		0427ED71F9517BC9C905670E /* Pods_defaults_CanvasKeymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E66D20238B73967062C6B28D /* Pods_defaults_CanvasKeymaster.framework */; };
+		2C0D62A620335C6300EBE7AB /* CKMDomainSearchViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C0D62A420335C6300EBE7AB /* CKMDomainSearchViewController.h */; };
+		2C0D62A720335C6300EBE7AB /* CKMDomainSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0D62A520335C6300EBE7AB /* CKMDomainSearchViewController.m */; };
+		2CA6637C20349D7C00F0DCAB /* NSLayoutConstraintHairline.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CA6637A20349D7C00F0DCAB /* NSLayoutConstraintHairline.h */; };
+		2CA6637D20349D7C00F0DCAB /* NSLayoutConstraintHairline.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA6637B20349D7C00F0DCAB /* NSLayoutConstraintHairline.m */; };
+		2CAF046C2033A2A1007BC62D /* x-icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CAF04692033A2A0007BC62D /* x-icon@3x.png */; };
+		2CAF046D2033A2A1007BC62D /* x-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CAF046A2033A2A0007BC62D /* x-icon.png */; };
+		2CAF046E2033A2A1007BC62D /* x-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CAF046B2033A2A1007BC62D /* x-icon@2x.png */; };
 		3BCAF3CC1F63B12200EEF0A7 /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ADC6FE1C90F9EA00E85895 /* CanvasKit.framework */; };
 		49C0FB30190B167900572CA1 /* LaunchImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49C0FB2F190B167900572CA1 /* LaunchImage.xcassets */; };
 		49E545A21909B4AC001AD3BC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E9586B190967B000A1BFB7 /* Foundation.framework */; };
@@ -23,17 +30,13 @@
 		6181F12D1DFF365900B94488 /* CKMDomainPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E958981909979B00A1BFB7 /* CKMDomainPickerViewController.m */; };
 		B10E9F751E2FDB87000F5D01 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B10E9F771E2FDB87000F5D01 /* Localizable.strings */; };
 		B10E9F7B1E2FDB88000F5D01 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B10E9F7D1E2FDB88000F5D01 /* InfoPlist.strings */; };
-		B181D2A41DFB20C600114ACE /* CKMDomainPickerPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B181D2A61DFB20C600114ACE /* CKMDomainPickerPhone.storyboard */; };
-		B181D2A71DFB210000114ACE /* CKMDomainPickerPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B181D2A91DFB210000114ACE /* CKMDomainPickerPad.storyboard */; };
+		B181D2A41DFB20C600114ACE /* CKMDomainPickerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B181D2A61DFB20C600114ACE /* CKMDomainPickerViewController.storyboard */; };
 		B181D2AA1DFB211500114ACE /* SupportTicket.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B181D2AC1DFB211500114ACE /* SupportTicket.storyboard */; };
 		B1FC3AF61C98B4E500A8001F /* CanvasKeymaster.h in Headers */ = {isa = PBXBuildFile; fileRef = B1FC3AF51C98B4E500A8001F /* CanvasKeymaster.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1FC3B001C98B5AE00A8001F /* CanvasKeymaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E958921909768F00A1BFB7 /* CanvasKeymaster.m */; };
 		B1FC3B011C98B60E00A8001F /* icon_forward_arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B58A48EE1A894A21002445A3 /* icon_forward_arrow@3x.png */; };
 		B1FC3B021C98B60E00A8001F /* icon_forward_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B58A48EF1A894A21002445A3 /* icon_forward_arrow@2x.png */; };
 		B1FC3B031C98B60E00A8001F /* icon_forward_arrow@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = B58A48F01A894A21002445A3 /* icon_forward_arrow@1x.png */; };
-		B1FC3B041C98B60E00A8001F /* icon_x_delete@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B58A48F11A894A4B002445A3 /* icon_x_delete@3x.png */; };
-		B1FC3B051C98B60E00A8001F /* icon_x_delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B58A48F21A894A4B002445A3 /* icon_x_delete@2x.png */; };
-		B1FC3B061C98B60E00A8001F /* icon_x_delete@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = B58A48F31A894A4B002445A3 /* icon_x_delete@1x.png */; };
 		B1FC3B071C98B60E00A8001F /* icon_help.png in Resources */ = {isa = PBXBuildFile; fileRef = BD94CF0C19A3D87B000423DE /* icon_help.png */; };
 		B1FC3B081C98B60E00A8001F /* icon_help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BD94CF0D19A3D87B000423DE /* icon_help@2x.png */; };
 		B1FC3B091C98B60E00A8001F /* icon_cancel_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E274A401914434100E04789 /* icon_cancel_light.png */; };
@@ -45,8 +48,6 @@
 		B1FC3B0F1C98B60E00A8001F /* CKMMultiUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED1DCD319103DCB00368AE7 /* CKMMultiUserTableViewController.m */; };
 		B1FC3B141C98B60E00A8001F /* CKMDomainSuggester.h in Headers */ = {isa = PBXBuildFile; fileRef = 49E958991909979C00A1BFB7 /* CKMDomainSuggester.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1FC3B151C98B60E00A8001F /* CKMDomainSuggester.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E9589A1909979C00A1BFB7 /* CKMDomainSuggester.m */; };
-		B1FC3B161C98B60E00A8001F /* CKMDomainSuggestionTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 49E9589B1909979C00A1BFB7 /* CKMDomainSuggestionTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B1FC3B171C98B60E00A8001F /* CKMDomainSuggestionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E9589C1909979C00A1BFB7 /* CKMDomainSuggestionTableViewCell.m */; };
 		B1FC3B181C98B60E00A8001F /* CKMDomainSuggestionTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 49E9589D1909979C00A1BFB7 /* CKMDomainSuggestionTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1FC3B191C98B60E00A8001F /* CKMDomainSuggestionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E9589E1909979C00A1BFB7 /* CKMDomainSuggestionTableViewController.m */; };
 		B1FC3B1A1C98B60E00A8001F /* CKMLocationSchoolSuggester.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EDE06401999FE7D009244F9 /* CKMLocationSchoolSuggester.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -105,7 +106,14 @@
 
 /* Begin PBXFileReference section */
 		0BA1F2BA47D5098035222EA1 /* Pods_CanvasKeymaster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CanvasKeymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C0D62A420335C6300EBE7AB /* CKMDomainSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CKMDomainSearchViewController.h; sourceTree = "<group>"; };
+		2C0D62A520335C6300EBE7AB /* CKMDomainSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CKMDomainSearchViewController.m; sourceTree = "<group>"; };
 		2C73C9C81E0333830064A19D /* CWNotification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CWNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CA6637A20349D7C00F0DCAB /* NSLayoutConstraintHairline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSLayoutConstraintHairline.h; sourceTree = "<group>"; };
+		2CA6637B20349D7C00F0DCAB /* NSLayoutConstraintHairline.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSLayoutConstraintHairline.m; sourceTree = "<group>"; };
+		2CAF04692033A2A0007BC62D /* x-icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "x-icon@3x.png"; sourceTree = "<group>"; };
+		2CAF046A2033A2A0007BC62D /* x-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "x-icon.png"; sourceTree = "<group>"; };
+		2CAF046B2033A2A1007BC62D /* x-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "x-icon@2x.png"; sourceTree = "<group>"; };
 		4917EDAE1D947C9D009D58B5 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		499F7FDC1C9B6812005CCD00 /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49C0FB2F190B167900572CA1 /* LaunchImage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = LaunchImage.xcassets; sourceTree = "<group>"; };
@@ -135,8 +143,6 @@
 		49E958981909979B00A1BFB7 /* CKMDomainPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CKMDomainPickerViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		49E958991909979C00A1BFB7 /* CKMDomainSuggester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKMDomainSuggester.h; sourceTree = "<group>"; };
 		49E9589A1909979C00A1BFB7 /* CKMDomainSuggester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKMDomainSuggester.m; sourceTree = "<group>"; };
-		49E9589B1909979C00A1BFB7 /* CKMDomainSuggestionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKMDomainSuggestionTableViewCell.h; sourceTree = "<group>"; };
-		49E9589C1909979C00A1BFB7 /* CKMDomainSuggestionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKMDomainSuggestionTableViewCell.m; sourceTree = "<group>"; };
 		49E9589D1909979C00A1BFB7 /* CKMDomainSuggestionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKMDomainSuggestionTableViewController.h; sourceTree = "<group>"; };
 		49E9589E1909979C00A1BFB7 /* CKMDomainSuggestionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKMDomainSuggestionTableViewController.m; sourceTree = "<group>"; };
 		49E958A31909A66B00A1BFB7 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -170,149 +176,128 @@
 		5EEEB1771B56C9A7001438C3 /* SupportTicketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupportTicketViewController.h; sourceTree = "<group>"; };
 		5EEEB1781B56C9A7001438C3 /* SupportTicketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupportTicketViewController.m; sourceTree = "<group>"; };
 		A2C655512AEE7F55037ED04C /* Pods-CanvasKeymaster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasKeymaster.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-CanvasKeymaster/Pods-CanvasKeymaster.release.xcconfig"; sourceTree = "<group>"; };
-		B10E9F701E2FDB84000F5D01 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/CKMDomainPickerPad.strings; sourceTree = "<group>"; };
 		B10E9F711E2FDB85000F5D01 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/SupportTicket.strings; sourceTree = "<group>"; };
 		B10E9F721E2FDB85000F5D01 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
 		B10E9F761E2FDB87000F5D01 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B10E9F781E2FDB87000F5D01 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B10E9F7C1E2FDB88000F5D01 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B10E9F7E1E2FDB89000F5D01 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/CKMDomainPickerPhone.strings; sourceTree = "<group>"; };
-		B10E9F7F1E2FDB97000F5D01 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/CKMDomainPickerPad.strings; sourceTree = "<group>"; };
+		B10E9F7E1E2FDB89000F5D01 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/CKMDomainPickerViewController.strings; sourceTree = "<group>"; };
 		B10E9F801E2FDB98000F5D01 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/SupportTicket.strings; sourceTree = "<group>"; };
 		B10E9F811E2FDB98000F5D01 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Main.strings; sourceTree = "<group>"; };
 		B10E9F821E2FDB99000F5D01 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B10E9F831E2FDB9A000F5D01 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B10E9F841E2FDB9B000F5D01 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B10E9F851E2FDB9C000F5D01 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/CKMDomainPickerPhone.strings; sourceTree = "<group>"; };
-		B10E9F861E2FDBA6000F5D01 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CKMDomainPickerPad.strings; sourceTree = "<group>"; };
+		B10E9F851E2FDB9C000F5D01 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/CKMDomainPickerViewController.strings; sourceTree = "<group>"; };
 		B10E9F871E2FDBA6000F5D01 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SupportTicket.strings; sourceTree = "<group>"; };
 		B10E9F881E2FDBA7000F5D01 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		B10E9F891E2FDBA8000F5D01 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B10E9F8A1E2FDBA9000F5D01 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B10E9F8B1E2FDBA9000F5D01 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B10E9F8C1E2FDBAA000F5D01 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CKMDomainPickerPhone.strings; sourceTree = "<group>"; };
-		B10E9F8D1E2FDBB4000F5D01 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/CKMDomainPickerPad.strings"; sourceTree = "<group>"; };
+		B10E9F8C1E2FDBAA000F5D01 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CKMDomainPickerViewController.strings; sourceTree = "<group>"; };
 		B10E9F8E1E2FDBB5000F5D01 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/SupportTicket.strings"; sourceTree = "<group>"; };
 		B10E9F8F1E2FDBB6000F5D01 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/Main.strings"; sourceTree = "<group>"; };
 		B10E9F901E2FDBB7000F5D01 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B10E9F911E2FDBB7000F5D01 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		B10E9F921E2FDBB8000F5D01 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		B10E9F931E2FDBB9000F5D01 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/CKMDomainPickerPhone.strings"; sourceTree = "<group>"; };
-		B10E9F941E2FDBC2000F5D01 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/CKMDomainPickerPad.strings"; sourceTree = "<group>"; };
+		B10E9F931E2FDBB9000F5D01 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/CKMDomainPickerViewController.strings"; sourceTree = "<group>"; };
 		B10E9F951E2FDBC3000F5D01 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/SupportTicket.strings"; sourceTree = "<group>"; };
 		B10E9F961E2FDBC4000F5D01 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Main.strings"; sourceTree = "<group>"; };
 		B10E9F971E2FDBC4000F5D01 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B10E9F981E2FDBC5000F5D01 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		B10E9F991E2FDBC6000F5D01 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		B10E9F9A1E2FDBC7000F5D01 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/CKMDomainPickerPhone.strings"; sourceTree = "<group>"; };
-		B10E9F9B1E2FDBDF000F5D01 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/CKMDomainPickerPad.strings; sourceTree = "<group>"; };
+		B10E9F9A1E2FDBC7000F5D01 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/CKMDomainPickerViewController.strings"; sourceTree = "<group>"; };
 		B10E9F9C1E2FDBDF000F5D01 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/SupportTicket.strings; sourceTree = "<group>"; };
 		B10E9F9D1E2FDBE0000F5D01 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		B10E9F9E1E2FDBE1000F5D01 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B10E9F9F1E2FDBE2000F5D01 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B10E9FA01E2FDBE2000F5D01 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B10E9FA11E2FDBE3000F5D01 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/CKMDomainPickerPhone.strings; sourceTree = "<group>"; };
-		B10E9FA21E2FDBED000F5D01 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/CKMDomainPickerPad.strings"; sourceTree = "<group>"; };
+		B10E9FA11E2FDBE3000F5D01 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/CKMDomainPickerViewController.strings; sourceTree = "<group>"; };
 		B10E9FA31E2FDBED000F5D01 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/SupportTicket.strings"; sourceTree = "<group>"; };
 		B10E9FA41E2FDBEE000F5D01 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Main.strings"; sourceTree = "<group>"; };
 		B10E9FA51E2FDBEF000F5D01 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B10E9FA61E2FDBF0000F5D01 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		B10E9FA71E2FDBF1000F5D01 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		B10E9FA81E2FDBF1000F5D01 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/CKMDomainPickerPhone.strings"; sourceTree = "<group>"; };
-		B10E9FA91E2FDBFA000F5D01 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/CKMDomainPickerPad.strings; sourceTree = "<group>"; };
+		B10E9FA81E2FDBF1000F5D01 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/CKMDomainPickerViewController.strings"; sourceTree = "<group>"; };
 		B10E9FAA1E2FDBFB000F5D01 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/SupportTicket.strings; sourceTree = "<group>"; };
 		B10E9FAB1E2FDBFC000F5D01 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
 		B10E9FAC1E2FDBFC000F5D01 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B10E9FAD1E2FDBFD000F5D01 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B10E9FAE1E2FDBFE000F5D01 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B10E9FAF1E2FDBFF000F5D01 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/CKMDomainPickerPhone.strings; sourceTree = "<group>"; };
-		B10E9FB01E2FDC07000F5D01 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/CKMDomainPickerPad.strings; sourceTree = "<group>"; };
+		B10E9FAF1E2FDBFF000F5D01 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/CKMDomainPickerViewController.strings; sourceTree = "<group>"; };
 		B10E9FB11E2FDC08000F5D01 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/SupportTicket.strings; sourceTree = "<group>"; };
 		B10E9FB21E2FDC08000F5D01 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/Main.strings; sourceTree = "<group>"; };
 		B10E9FB31E2FDC09000F5D01 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B10E9FB41E2FDC0A000F5D01 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B10E9FB51E2FDC0A000F5D01 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B10E9FB61E2FDC0B000F5D01 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/CKMDomainPickerPhone.strings; sourceTree = "<group>"; };
-		B10E9FB71E2FDC14000F5D01 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/CKMDomainPickerPad.strings; sourceTree = "<group>"; };
+		B10E9FB61E2FDC0B000F5D01 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/CKMDomainPickerViewController.strings; sourceTree = "<group>"; };
 		B10E9FB81E2FDC14000F5D01 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SupportTicket.strings; sourceTree = "<group>"; };
 		B10E9FB91E2FDC15000F5D01 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		B10E9FBA1E2FDC16000F5D01 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B10E9FBB1E2FDC17000F5D01 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B10E9FBC1E2FDC17000F5D01 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B10E9FBD1E2FDC18000F5D01 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/CKMDomainPickerPhone.strings; sourceTree = "<group>"; };
-		B10E9FBE1E2FDC22000F5D01 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/CKMDomainPickerPad.strings; sourceTree = "<group>"; };
+		B10E9FBD1E2FDC18000F5D01 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/CKMDomainPickerViewController.strings; sourceTree = "<group>"; };
 		B10E9FBF1E2FDC23000F5D01 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/SupportTicket.strings; sourceTree = "<group>"; };
 		B10E9FC01E2FDC24000F5D01 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/Main.strings; sourceTree = "<group>"; };
 		B10E9FC11E2FDC24000F5D01 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B10E9FC21E2FDC25000F5D01 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B10E9FC31E2FDC26000F5D01 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B10E9FC41E2FDC27000F5D01 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/CKMDomainPickerPhone.strings; sourceTree = "<group>"; };
-		B10E9FC51E2FDC2F000F5D01 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/CKMDomainPickerPad.strings; sourceTree = "<group>"; };
+		B10E9FC41E2FDC27000F5D01 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/CKMDomainPickerViewController.strings; sourceTree = "<group>"; };
 		B10E9FC61E2FDC30000F5D01 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/SupportTicket.strings; sourceTree = "<group>"; };
 		B10E9FC71E2FDC31000F5D01 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Main.strings; sourceTree = "<group>"; };
 		B10E9FC81E2FDC31000F5D01 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B10E9FC91E2FDC32000F5D01 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B10E9FCA1E2FDC33000F5D01 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B10E9FCB1E2FDC33000F5D01 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/CKMDomainPickerPhone.strings; sourceTree = "<group>"; };
-		B10E9FCC1E2FDC3D000F5D01 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/CKMDomainPickerPad.strings; sourceTree = "<group>"; };
+		B10E9FCB1E2FDC33000F5D01 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/CKMDomainPickerViewController.strings; sourceTree = "<group>"; };
 		B10E9FCD1E2FDC3E000F5D01 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/SupportTicket.strings; sourceTree = "<group>"; };
 		B10E9FCE1E2FDC3F000F5D01 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Main.strings; sourceTree = "<group>"; };
 		B10E9FCF1E2FDC40000F5D01 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B10E9FD01E2FDC40000F5D01 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B10E9FD11E2FDC41000F5D01 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B10E9FD21E2FDC42000F5D01 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/CKMDomainPickerPhone.strings; sourceTree = "<group>"; };
-		B10E9FD31E2FDC54000F5D01 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/CKMDomainPickerPad.strings; sourceTree = "<group>"; };
+		B10E9FD21E2FDC42000F5D01 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/CKMDomainPickerViewController.strings; sourceTree = "<group>"; };
 		B10E9FD41E2FDC55000F5D01 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/SupportTicket.strings; sourceTree = "<group>"; };
 		B10E9FD51E2FDC55000F5D01 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Main.strings; sourceTree = "<group>"; };
 		B10E9FD61E2FDC56000F5D01 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B10E9FD71E2FDC57000F5D01 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B10E9FD81E2FDC57000F5D01 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B10E9FD91E2FDC58000F5D01 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/CKMDomainPickerPhone.strings; sourceTree = "<group>"; };
-		B10E9FDA1E2FDC63000F5D01 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/CKMDomainPickerPad.strings"; sourceTree = "<group>"; };
+		B10E9FD91E2FDC58000F5D01 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/CKMDomainPickerViewController.strings; sourceTree = "<group>"; };
 		B10E9FDB1E2FDC64000F5D01 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/SupportTicket.strings"; sourceTree = "<group>"; };
 		B10E9FDC1E2FDC64000F5D01 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Main.strings"; sourceTree = "<group>"; };
 		B10E9FDD1E2FDC65000F5D01 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B10E9FDE1E2FDC65000F5D01 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		B10E9FDF1E2FDC66000F5D01 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		B10E9FE01E2FDC67000F5D01 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/CKMDomainPickerPhone.strings"; sourceTree = "<group>"; };
-		B10E9FE11E2FDC7B000F5D01 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/CKMDomainPickerPad.strings; sourceTree = "<group>"; };
+		B10E9FE01E2FDC67000F5D01 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/CKMDomainPickerViewController.strings"; sourceTree = "<group>"; };
 		B10E9FE21E2FDC7B000F5D01 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SupportTicket.strings; sourceTree = "<group>"; };
 		B10E9FE31E2FDC7C000F5D01 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Main.strings; sourceTree = "<group>"; };
 		B10E9FE41E2FDC7C000F5D01 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B10E9FE51E2FDC7D000F5D01 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B10E9FE61E2FDC7E000F5D01 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B10E9FE71E2FDC7E000F5D01 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/CKMDomainPickerPhone.strings; sourceTree = "<group>"; };
-		B10E9FE81E2FDC8D000F5D01 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/CKMDomainPickerPad.strings; sourceTree = "<group>"; };
+		B10E9FE71E2FDC7E000F5D01 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/CKMDomainPickerViewController.strings; sourceTree = "<group>"; };
 		B10E9FE91E2FDC8E000F5D01 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/SupportTicket.strings; sourceTree = "<group>"; };
 		B10E9FEA1E2FDC8F000F5D01 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		B10E9FEB1E2FDC90000F5D01 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B10E9FEC1E2FDC90000F5D01 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B10E9FED1E2FDC92000F5D01 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B10E9FEE1E2FDC92000F5D01 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/CKMDomainPickerPhone.strings; sourceTree = "<group>"; };
-		B10E9FEF1E2FDCAB000F5D01 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/CKMDomainPickerPad.strings; sourceTree = "<group>"; };
+		B10E9FEE1E2FDC92000F5D01 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/CKMDomainPickerViewController.strings; sourceTree = "<group>"; };
 		B10E9FF01E2FDCAC000F5D01 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/SupportTicket.strings; sourceTree = "<group>"; };
 		B10E9FF11E2FDCAC000F5D01 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Main.strings; sourceTree = "<group>"; };
 		B10E9FF21E2FDCAD000F5D01 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B10E9FF31E2FDCAE000F5D01 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B10E9FF41E2FDCAF000F5D01 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B10E9FF51E2FDCAF000F5D01 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/CKMDomainPickerPhone.strings; sourceTree = "<group>"; };
-		B10E9FF61E2FDCCC000F5D01 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/CKMDomainPickerPad.strings"; sourceTree = "<group>"; };
+		B10E9FF51E2FDCAF000F5D01 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/CKMDomainPickerViewController.strings; sourceTree = "<group>"; };
 		B10E9FF71E2FDCCD000F5D01 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/SupportTicket.strings"; sourceTree = "<group>"; };
 		B10E9FF81E2FDCCD000F5D01 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Main.strings"; sourceTree = "<group>"; };
 		B10E9FF91E2FDCCE000F5D01 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B10E9FFA1E2FDCCF000F5D01 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		B10E9FFB1E2FDCCF000F5D01 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		B10E9FFC1E2FDCD0000F5D01 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/CKMDomainPickerPhone.strings"; sourceTree = "<group>"; };
-		B10E9FFD1E2FDCD8000F5D01 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/CKMDomainPickerPad.strings; sourceTree = "<group>"; };
+		B10E9FFC1E2FDCD0000F5D01 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/CKMDomainPickerViewController.strings"; sourceTree = "<group>"; };
 		B10E9FFE1E2FDCD9000F5D01 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/SupportTicket.strings; sourceTree = "<group>"; };
 		B10E9FFF1E2FDCD9000F5D01 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/Main.strings; sourceTree = "<group>"; };
 		B10EA0001E2FDCDA000F5D01 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B10EA0011E2FDCDA000F5D01 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B10EA0021E2FDCDB000F5D01 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B10EA0031E2FDCDC000F5D01 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/CKMDomainPickerPhone.strings; sourceTree = "<group>"; };
+		B10EA0031E2FDCDC000F5D01 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/CKMDomainPickerViewController.strings; sourceTree = "<group>"; };
 		B16702041E32817D00C901E9 /* CWNotification.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CWNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B181D2A51DFB20C600114ACE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CKMDomainPickerPhone.storyboard; sourceTree = "<group>"; };
-		B181D2A81DFB210000114ACE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CKMDomainPickerPad.storyboard; sourceTree = "<group>"; };
+		B181D2A51DFB20C600114ACE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CKMDomainPickerViewController.storyboard; sourceTree = "<group>"; };
 		B181D2AB1DFB211500114ACE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SupportTicket.storyboard; sourceTree = "<group>"; };
 		B1ADC6FA1C90F94F00E85895 /* FXKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FXKeychain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1ADC6FE1C90F9EA00E85895 /* CanvasKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -324,9 +309,6 @@
 		B58A48EE1A894A21002445A3 /* icon_forward_arrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_forward_arrow@3x.png"; sourceTree = "<group>"; };
 		B58A48EF1A894A21002445A3 /* icon_forward_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_forward_arrow@2x.png"; sourceTree = "<group>"; };
 		B58A48F01A894A21002445A3 /* icon_forward_arrow@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_forward_arrow@1x.png"; sourceTree = "<group>"; };
-		B58A48F11A894A4B002445A3 /* icon_x_delete@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_x_delete@3x.png"; sourceTree = "<group>"; };
-		B58A48F21A894A4B002445A3 /* icon_x_delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_x_delete@2x.png"; sourceTree = "<group>"; };
-		B58A48F31A894A4B002445A3 /* icon_x_delete@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_x_delete@1x.png"; sourceTree = "<group>"; };
 		BD94CF0C19A3D87B000423DE /* icon_help.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_help.png; sourceTree = "<group>"; };
 		BD94CF0D19A3D87B000423DE /* icon_help@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_help@2x.png"; sourceTree = "<group>"; };
 		DDFE3E845A72769CE0B91EB1 /* Pods-defaults-CanvasKeymaster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasKeymaster.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-CanvasKeymaster/Pods-defaults-CanvasKeymaster.debug.xcconfig"; sourceTree = "<group>"; };
@@ -393,6 +375,8 @@
 			children = (
 				49E5466F190AACA6001AD3BC /* UIDevice+CKMHardware.h */,
 				49E54670190AACA6001AD3BC /* UIDevice+CKMHardware.m */,
+				2CA6637A20349D7C00F0DCAB /* NSLayoutConstraintHairline.h */,
+				2CA6637B20349D7C00F0DCAB /* NSLayoutConstraintHairline.m */,
 			);
 			path = "UIKit+CanvasKeymaster";
 			sourceTree = "<group>";
@@ -452,14 +436,13 @@
 				5ED1DCD119103DCB00368AE7 /* CKMMultiUserTableViewCell.m */,
 				5ED1DCD219103DCB00368AE7 /* CKMMultiUserTableViewController.h */,
 				5ED1DCD319103DCB00368AE7 /* CKMMultiUserTableViewController.m */,
-				B181D2A91DFB210000114ACE /* CKMDomainPickerPad.storyboard */,
-				B181D2A61DFB20C600114ACE /* CKMDomainPickerPhone.storyboard */,
+				B181D2A61DFB20C600114ACE /* CKMDomainPickerViewController.storyboard */,
 				49E958971909979B00A1BFB7 /* CKMDomainPickerViewController.h */,
 				49E958981909979B00A1BFB7 /* CKMDomainPickerViewController.m */,
+				2C0D62A420335C6300EBE7AB /* CKMDomainSearchViewController.h */,
+				2C0D62A520335C6300EBE7AB /* CKMDomainSearchViewController.m */,
 				49E958991909979C00A1BFB7 /* CKMDomainSuggester.h */,
 				49E9589A1909979C00A1BFB7 /* CKMDomainSuggester.m */,
-				49E9589B1909979C00A1BFB7 /* CKMDomainSuggestionTableViewCell.h */,
-				49E9589C1909979C00A1BFB7 /* CKMDomainSuggestionTableViewCell.m */,
 				49E9589D1909979C00A1BFB7 /* CKMDomainSuggestionTableViewController.h */,
 				49E9589E1909979C00A1BFB7 /* CKMDomainSuggestionTableViewController.m */,
 				5EDE06401999FE7D009244F9 /* CKMLocationSchoolSuggester.h */,
@@ -491,9 +474,9 @@
 				B58A48EE1A894A21002445A3 /* icon_forward_arrow@3x.png */,
 				B58A48EF1A894A21002445A3 /* icon_forward_arrow@2x.png */,
 				B58A48F01A894A21002445A3 /* icon_forward_arrow@1x.png */,
-				B58A48F11A894A4B002445A3 /* icon_x_delete@3x.png */,
-				B58A48F21A894A4B002445A3 /* icon_x_delete@2x.png */,
-				B58A48F31A894A4B002445A3 /* icon_x_delete@1x.png */,
+				2CAF046A2033A2A0007BC62D /* x-icon.png */,
+				2CAF046B2033A2A1007BC62D /* x-icon@2x.png */,
+				2CAF04692033A2A0007BC62D /* x-icon@3x.png */,
 				BD94CF0C19A3D87B000423DE /* icon_help.png */,
 				BD94CF0D19A3D87B000423DE /* icon_help@2x.png */,
 				5E274A401914434100E04789 /* icon_cancel_light.png */,
@@ -579,13 +562,14 @@
 				B1FC3AF61C98B4E500A8001F /* CanvasKeymaster.h in Headers */,
 				B1FC3B0E1C98B60E00A8001F /* CKMMultiUserTableViewController.h in Headers */,
 				B1FC3B361C98B6B700A8001F /* CKMDomainPickerViewController.h in Headers */,
-				B1FC3B161C98B60E00A8001F /* CKMDomainSuggestionTableViewCell.h in Headers */,
 				B1FC3B1E1C98B60E00A8001F /* CKMLocationManager.h in Headers */,
 				B1FC3B301C98B66800A8001F /* SupportTicketViewController.h in Headers */,
 				B1FC3B181C98B60E00A8001F /* CKMDomainSuggestionTableViewController.h in Headers */,
+				2C0D62A620335C6300EBE7AB /* CKMDomainSearchViewController.h in Headers */,
 				B1FC3B2A1C98B66800A8001F /* ImpactTableViewController.h in Headers */,
 				B1FC3B261C98B66000A8001F /* CLLocation+CKMDistance.h in Headers */,
 				B1FC3B2E1C98B66800A8001F /* SupportTicketManager.h in Headers */,
+				2CA6637C20349D7C00F0DCAB /* NSLayoutConstraintHairline.h in Headers */,
 				B1FC3B241C98B65900A8001F /* FXKeychain+CKMKeyChain.h in Headers */,
 				B1FC3B141C98B60E00A8001F /* CKMDomainSuggester.h in Headers */,
 				B1FC3B2C1C98B66800A8001F /* SupportTicket.h in Headers */,
@@ -693,23 +677,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1FC3B061C98B60E00A8001F /* icon_x_delete@1x.png in Resources */,
-				B1FC3B041C98B60E00A8001F /* icon_x_delete@3x.png in Resources */,
+				2CAF046C2033A2A1007BC62D /* x-icon@3x.png in Resources */,
+				2CAF046E2033A2A1007BC62D /* x-icon@2x.png in Resources */,
 				B1FC3B0A1C98B60E00A8001F /* icon_cancel_light@2x.png in Resources */,
 				B1FC3B071C98B60E00A8001F /* icon_help.png in Resources */,
 				B1FC3B221C98B60E00A8001F /* CKMDomainHelpViewController.storyboard in Resources */,
 				B10E9F7B1E2FDB88000F5D01 /* InfoPlist.strings in Resources */,
 				B1FC3B031C98B60E00A8001F /* icon_forward_arrow@1x.png in Resources */,
 				B181D2AA1DFB211500114ACE /* SupportTicket.storyboard in Resources */,
-				B1FC3B051C98B60E00A8001F /* icon_x_delete@2x.png in Resources */,
 				B1FC3B0B1C98B60E00A8001F /* icon_profile@2x.png in Resources */,
-				B181D2A41DFB20C600114ACE /* CKMDomainPickerPhone.storyboard in Resources */,
+				B181D2A41DFB20C600114ACE /* CKMDomainPickerViewController.storyboard in Resources */,
 				B1FC3B091C98B60E00A8001F /* icon_cancel_light.png in Resources */,
 				B1FC3B011C98B60E00A8001F /* icon_forward_arrow@3x.png in Resources */,
 				B1FC3B081C98B60E00A8001F /* icon_help@2x.png in Resources */,
 				B10E9F751E2FDB87000F5D01 /* Localizable.strings in Resources */,
-				B181D2A71DFB210000114ACE /* CKMDomainPickerPad.storyboard in Resources */,
 				B1FC3B021C98B60E00A8001F /* icon_forward_arrow@2x.png in Resources */,
+				2CAF046D2033A2A1007BC62D /* x-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -771,15 +754,16 @@
 				B1FC3B191C98B60E00A8001F /* CKMDomainSuggestionTableViewController.m in Sources */,
 				B1FC3B0F1C98B60E00A8001F /* CKMMultiUserTableViewController.m in Sources */,
 				B1FC3B0D1C98B60E00A8001F /* CKMMultiUserTableViewCell.m in Sources */,
+				2C0D62A720335C6300EBE7AB /* CKMDomainSearchViewController.m in Sources */,
 				B1FC3B2B1C98B66800A8001F /* ImpactTableViewController.m in Sources */,
 				B1FC3B151C98B60E00A8001F /* CKMDomainSuggester.m in Sources */,
 				6181F12D1DFF365900B94488 /* CKMDomainPickerViewController.m in Sources */,
 				B1FC3B1B1C98B60E00A8001F /* CKMLocationSchoolSuggester.m in Sources */,
 				B1FC3B271C98B66000A8001F /* CLLocation+CKMDistance.m in Sources */,
 				B1FC3B251C98B65900A8001F /* FXKeychain+CKMKeyChain.m in Sources */,
-				B1FC3B171C98B60E00A8001F /* CKMDomainSuggestionTableViewCell.m in Sources */,
 				B1FC3B2D1C98B66800A8001F /* SupportTicket.m in Sources */,
 				B1FC3B2F1C98B66800A8001F /* SupportTicketManager.m in Sources */,
+				2CA6637D20349D7C00F0DCAB /* NSLayoutConstraintHairline.m in Sources */,
 				B1FC3B311C98B66800A8001F /* SupportTicketViewController.m in Sources */,
 				B1FC3B1F1C98B60E00A8001F /* CKMLocationManager.m in Sources */,
 				B1FC3B001C98B5AE00A8001F /* CanvasKeymaster.m in Sources */,
@@ -908,7 +892,7 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		B181D2A61DFB20C600114ACE /* CKMDomainPickerPhone.storyboard */ = {
+		B181D2A61DFB20C600114ACE /* CKMDomainPickerViewController.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				B181D2A51DFB20C600114ACE /* Base */,
@@ -933,35 +917,7 @@
 				B10E9FFC1E2FDCD0000F5D01 /* zh-HK */,
 				B10EA0031E2FDCDC000F5D01 /* zh */,
 			);
-			name = CKMDomainPickerPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		B181D2A91DFB210000114ACE /* CKMDomainPickerPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B181D2A81DFB210000114ACE /* Base */,
-				B10E9F701E2FDB84000F5D01 /* ar */,
-				B10E9F7F1E2FDB97000F5D01 /* da */,
-				B10E9F861E2FDBA6000F5D01 /* de */,
-				B10E9F8D1E2FDBB4000F5D01 /* en-AU */,
-				B10E9F941E2FDBC2000F5D01 /* en-GB */,
-				B10E9F9B1E2FDBDF000F5D01 /* es */,
-				B10E9FA21E2FDBED000F5D01 /* fr-CA */,
-				B10E9FA91E2FDBFA000F5D01 /* fr */,
-				B10E9FB01E2FDC07000F5D01 /* ht */,
-				B10E9FB71E2FDC14000F5D01 /* ja */,
-				B10E9FBE1E2FDC22000F5D01 /* mi */,
-				B10E9FC51E2FDC2F000F5D01 /* nb */,
-				B10E9FCC1E2FDC3D000F5D01 /* nl */,
-				B10E9FD31E2FDC54000F5D01 /* pl */,
-				B10E9FDA1E2FDC63000F5D01 /* pt-BR */,
-				B10E9FE11E2FDC7B000F5D01 /* pt */,
-				B10E9FE81E2FDC8D000F5D01 /* ru */,
-				B10E9FEF1E2FDCAB000F5D01 /* sv */,
-				B10E9FF61E2FDCCC000F5D01 /* zh-HK */,
-				B10E9FFD1E2FDCD8000F5D01 /* zh */,
-			);
-			name = CKMDomainPickerPad.storyboard;
+			name = CKMDomainPickerViewController.storyboard;
 			sourceTree = "<group>";
 		};
 		B181D2AC1DFB211500114ACE /* SupportTicket.storyboard */ = {

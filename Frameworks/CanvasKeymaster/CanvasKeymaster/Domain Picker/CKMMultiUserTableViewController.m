@@ -90,7 +90,8 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
     
     cell.profileImage.clipsToBounds = YES;
     cell.profileImage.layer.cornerRadius = cell.profileImage.frame.size.height/2;
-    [cell.profileImage setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"icon_profile" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil]];
+    UIImage *placeholder = [UIImage imageNamed:@"icon_profile" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil];
+    [cell.profileImage setImageWithURL:client.currentUser.avatarURL placeholderImage:placeholder];
     
     cell.deleteButton.tag = indexPath.row;
     [cell.deleteButton addTarget:self action:@selector(deleteClient:) forControlEvents:UIControlEventTouchUpInside];
@@ -137,14 +138,17 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
     [self reloadClients];
 }
 
-- (void)reloadClients {
-    
+- (void)prepareClients {
     self.clients = [[[FXKeychain sharedKeychain] clients] sortedArrayUsingComparator:^NSComparisonResult(CKIClient *obj1, CKIClient *obj2) {
         return [obj1.currentUser.name compare:obj2.currentUser.name];
     }];
     for (CKIClient *client in self.clients) {
         client.ignoreUnauthorizedErrors = YES;
     }
+}
+
+- (void)reloadClients {
+    [self prepareClients];
     [self.tableView reloadData];
 }
 

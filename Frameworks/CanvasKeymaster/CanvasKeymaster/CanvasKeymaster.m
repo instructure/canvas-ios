@@ -41,6 +41,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
 @interface CanvasKeymaster ()
 
 @property (nonatomic, strong) CKMDomainPickerViewController *domainPicker;
+@property (nonatomic, strong) UINavigationController *domainPickerNavigationController;
 
 @end
 
@@ -231,7 +232,8 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
 - (RACSignal *)clientForSuggestedDomain:(NSString *)host
 {
     self.domainPicker = [CKMDomainPickerViewController new];
-    [self.domainPicker prepopulateWithDomain:host];
+    self.domainPickerNavigationController = [[UINavigationController alloc] initWithRootViewController:self.domainPicker];
+    [self.domainPickerNavigationController setNavigationBarHidden:YES animated:NO];
     
     RACSignal *signalForClientForUsersDomain =  [[self.domainPicker selectedADomainSignal] flattenMap:^__kindof RACStream * _Nullable(CKIAccountDomain *domain) {
         return [[self clientForMobileVerifiedDomain:domain] deliverOn:[RACScheduler mainThreadScheduler]];
@@ -243,7 +245,6 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
     
     return [[signalForLoggedInUser merge:[self.domainPicker selectUserSignal]] deliverOn:[RACScheduler mainThreadScheduler]];
 }
-
 
 - (void)login
 {
@@ -262,7 +263,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
         [self login];
     }];
     
-    [_subjectForClientLogout sendNext:self.domainPicker];
+    [_subjectForClientLogout sendNext:self.domainPickerNavigationController];
 }
 
 - (RACSignal *)signalForLogout
@@ -284,7 +285,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
         } else if (self.currentClient == nil) {
             [self login];
         } else {
-            [_subjectForClientCannotLogInAutomatically sendNext:self.domainPicker];
+            [_subjectForClientCannotLogInAutomatically sendNext:self.domainPickerNavigationController];
         }
         [subscriber sendCompleted];
         

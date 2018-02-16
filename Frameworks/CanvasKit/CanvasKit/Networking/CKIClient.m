@@ -25,6 +25,7 @@
 #import "CKIBrand.h"
 #import "NSHTTPURLResponse+Pagination.h"
 #import "NSDictionary+DictionaryByAddingObjectsFromDictionary.h"
+#import "CKILoginFinishedViewController.h"
 
 #if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
 #import "CKILoginViewController.h"
@@ -513,15 +514,26 @@ NSString *const CKIClientAccessTokenExpiredNotification = @"CKIClientAccessToken
         UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:loginViewController action:@selector(cancelOAuth)];
         [button setAccessibilityIdentifier:@"cancelLoginButton"];
         [button setAccessibilityLabel:NSLocalizedString(@"Cancel", nil)];
-        [loginViewController.navigationItem setRightBarButtonItem:button];
-
+        [loginViewController.navigationItem setLeftBarButtonItem:button]; 
+        [navigationController.navigationBar setBarStyle:UIBarStyleDefault];
+        [navigationController.navigationBar setBarTintColor:nil];
+        [navigationController.navigationBar setTintColor:nil];
+        [navigationController.navigationBar setTitleTextAttributes:nil];
+        
         UIViewController *presentingViewController = [[[UIApplication sharedApplication] delegate] window].rootViewController;
         [presentingViewController presentViewController:navigationController animated:YES completion:nil];
         self.webLoginViewController = navigationController;
 
         return [RACDisposable disposableWithBlock:^{
-            [self.webLoginViewController dismissViewControllerAnimated:YES completion:^void(){
-                self.webLoginViewController = nil;
+            CKILoginFinishedViewController *finished = [CKILoginFinishedViewController new];
+            [finished setLoadingImage:[CKILoginViewController loadingImage]];
+            UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+            [UIView transitionWithView:window duration:0.25 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+                window.rootViewController = finished;
+            } completion:^(BOOL finished) {
+                [self.webLoginViewController.presentingViewController dismissViewControllerAnimated:NO completion:^{
+                    self.webLoginViewController = nil;
+                }];
             }];
         }];
     }];

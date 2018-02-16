@@ -60,12 +60,12 @@
 
 + (CKIAccountDomain *)cantFindSchool {
     CKIAccountDomain *canvasNetSchool = [CKIAccountDomain new];
-    canvasNetSchool.name = NSLocalizedStringFromTableInBundle(@"Can't find your school?", nil, [NSBundle bundleForClass:[self class]], @"Help label when user can't find their school.");
+    canvasNetSchool.name = NSLocalizedStringFromTableInBundle(@"Can't find your school? Try typing the full school URL.", nil, [NSBundle bundleForClass:[self class]], @"Help label when user can't find their school.");
     return canvasNetSchool;
 }
 
 + (NSArray *)developmentSchools {
-    NSArray *devDomains = @[@"mobiledev", @"mobileqa", @"mobileqat"];
+    NSArray *devDomains = @[@"twilson", @"mobiledev", @"mobileqa", @"mobileqat"];
     
     __block NSMutableArray *devSchools = [NSMutableArray array];
     [devDomains enumerateObjectsUsingBlock:^(NSString *domain, NSUInteger idx, BOOL *stop) {

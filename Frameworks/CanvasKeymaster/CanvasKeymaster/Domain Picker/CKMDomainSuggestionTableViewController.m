@@ -18,7 +18,6 @@
 
 @import Mantle;
 #import "CKMLocationSchoolSuggester.h"
-#import "CKMDomainSuggestionTableViewCell.h"
 @import ReactiveObjC;
 #import <CoreLocation/CoreLocation.h>
 #import <CanvasKit/CanvasKit.h>
@@ -43,6 +42,9 @@
     [super viewDidLoad];
 
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    self.tableView.tableFooterView = [UIView new];
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 44.f;
     
     self.numberFormatter = [NSNumberFormatter new];
     [self.numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
@@ -95,27 +97,19 @@
     return self.suggestions.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    CKMDomainSuggestionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    CKIAccountDomain *school = [self suggestionForIndexPath:indexPath];
-    cell.textLabel.text = school.name;
-    
-    cell.detailTextLabel.textColor = [UIColor lightGrayColor];
-    
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CLLocation *currentLocation = [[CKMLocationManager sharedInstance] currentLocation];
-    
-    if ([school.name isEqualToString:@"Canvas Network"]) {
-        cell.detailTextLabel.text = NSLocalizedStringFromTableInBundle(@"Right Behind You", nil, [NSBundle bundleForClass:[self class]], nil);
-
+    CKIAccountDomain *school = [self suggestionForIndexPath:indexPath];
+    UITableViewCell *cell;
+    if (school.domain != nil) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"SuggestionCell" forIndexPath:indexPath];
+    } else {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"HelpCell" forIndexPath:indexPath];
     }
-    // No domain means the user clicked on the help cell
-    else if (!school.domain) {
-        cell.detailTextLabel.text = NSLocalizedStringFromTableInBundle(@"Enter your school's domain or tap for help.", nil, [NSBundle bundleForClass:[self class]], @"Subtitle help text describing how to find a school.");
-        
-
+    
+    cell.textLabel.text = school.name;
+    if (school.domain == nil) {
+        cell.detailTextLabel.text = NSLocalizedStringFromTableInBundle(@"Tap here for help.", nil, [NSBundle bundleForClass:[self class]], @"Subtitle help text describing how to find a school.");
     }
     // if we have a current location, let's show it off
     else if (currentLocation && school.distance) {
@@ -140,6 +134,10 @@
     }
     
     [self.suggestionSelectionSubject sendNext:school];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewAutomaticDimension;
 }
 
 - (RACSubject *)selectedHelpSubject

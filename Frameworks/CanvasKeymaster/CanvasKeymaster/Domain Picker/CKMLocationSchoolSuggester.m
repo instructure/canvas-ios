@@ -121,8 +121,6 @@ int ddLogLevel =
 }
 
 - (void)addStandardDomainsToArray:(NSMutableArray *)array {
-    [array insertObject:[CKIAccountDomain canvasNetSchool] atIndex:0];
-    
 #if DEBUG
     NSArray *developmentDomains = [CKIAccountDomain developmentSchools];
     [array insertObjects:developmentDomains atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, developmentDomains.count)]];

@@ -34,6 +34,7 @@ FOUNDATION_EXPORT const unsigned char CanvasKeymasterVersionString[];
 @property (nonatomic, readonly) NSString *appNameForMobileVerify;
 @property (nonatomic, readonly) UIView *backgroundViewForDomainPicker;
 @property (nonatomic, readonly) UIImage *logoForDomainPicker;
+@property (nonatomic, readonly) UIImage *fullLogoForDomainPicker;
 @property (nonatomic, readonly) NSString *logFilePath;
 @end
 
@@ -120,7 +121,6 @@ FOUNDATION_EXPORT const unsigned char CanvasKeymasterVersionString[];
 
 #import <CanvasKeymaster/CKMMultiUserTableViewController.h>
 #import <CanvasKeymaster/CKMDomainPickerViewController.h>
-#import <CanvasKeymaster/CKMDomainSuggestionTableViewCell.h>
 #import <CanvasKeymaster/CKMLocationManager.h>
 #import <CanvasKeymaster/SupportTicketViewController.h>
 #import <CanvasKeymaster/CKMDomainSuggestionTableViewController.h>

@@ -54,7 +54,7 @@
     [self.webView setDelegate:self];
     [self.webView setScalesPageToFit:YES];
     [self.webView setOpaque:NO];
-    [self.webView setBackgroundColor:[UIColor blackColor]];
+    [self.webView setBackgroundColor:[UIColor whiteColor]];
     self.view = self.webView;
     
     [self clearExistingSessions];
@@ -78,6 +78,16 @@
 
 + (NSString *)safariUserAgent {
     return @"Mozilla/5.0 (iPhone; CPU iPhone OS %@ like Mac OS X) AppleWebKit/603.1.23 (KHTML, like Gecko) Version/10.0 Mobile/14E5239e Safari/602.1";
+}
+
+static UIImage *_loadingImage = nil;
+
++ (void)setLoadingImage:(UIImage *)image {
+    _loadingImage = image;
+}
+
++ (UIImage *)loadingImage {
+    return _loadingImage;
 }
 
 - (void)registerUserAgentForGoogle
@@ -198,11 +208,23 @@
     return parameters[key];
 }
 
-- (void)cancelOAuth
-{
-    [self dismissViewControllerAnimated:YES completion:^{
-        self.failureBlock([NSError errorWithDomain:@"com.instructure.canvaskit" code:0 userInfo:@{NSLocalizedDescriptionKey: @"User cancelled authentication"}]);
-    }];
+- (void)cancelOAuth {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (BOOL)shouldAutorotate {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        return NO;
+    }
+    return YES;
+}
+    
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        return UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskPortraitUpsideDown;
+    }
+    
+    return UIInterfaceOrientationMaskAll;
+}
+    
 @end
