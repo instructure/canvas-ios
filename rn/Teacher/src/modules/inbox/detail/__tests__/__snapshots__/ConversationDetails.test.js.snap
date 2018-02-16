@@ -163,6 +163,7 @@ exports[`ConversationDetails doesnt render messages that are pendingDelete 1`] =
               accessibilityTraits="button"
               accessible={true}
               collapsable={undefined}
+              hasTVPreferredFocus={undefined}
               hitSlop={
                 Object {
                   "bottom": 8,
@@ -382,6 +383,7 @@ exports[`ConversationDetails renders correctly 1`] = `
               accessibilityTraits="button"
               accessible={true}
               collapsable={undefined}
+              hasTVPreferredFocus={undefined}
               hitSlop={
                 Object {
                   "bottom": 8,
@@ -618,6 +620,7 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
               accessibilityTraits="button"
               accessible={true}
               collapsable={undefined}
+              hasTVPreferredFocus={undefined}
               hitSlop={
                 Object {
                   "bottom": 8,
@@ -869,6 +872,7 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                   accessibilityTraits="button"
                   accessible={true}
                   collapsable={undefined}
+                  hasTVPreferredFocus={undefined}
                   hitSlop={undefined}
                   isTVSelectable={true}
                   nativeID={undefined}
@@ -967,6 +971,7 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                 accessibilityTraits={undefined}
                 accessible={true}
                 collapsable={undefined}
+                hasTVPreferredFocus={undefined}
                 hitSlop={undefined}
                 isTVSelectable={true}
                 nativeID={undefined}
@@ -1041,6 +1046,7 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                 accessibilityTraits="button"
                 accessible={true}
                 collapsable={undefined}
+                hasTVPreferredFocus={undefined}
                 hitSlop={
                   Object {
                     "bottom": 15,
@@ -1280,6 +1286,7 @@ exports[`ConversationDetails renders with alternate data 1`] = `
               accessibilityTraits="button"
               accessible={true}
               collapsable={undefined}
+              hasTVPreferredFocus={undefined}
               hitSlop={
                 Object {
                   "bottom": 8,

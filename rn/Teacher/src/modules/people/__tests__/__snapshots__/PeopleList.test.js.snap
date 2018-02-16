@@ -145,6 +145,7 @@ exports[`People List renders 1`] = `
                 accessibilityTraits="button"
                 accessible={true}
                 collapsable={undefined}
+                hasTVPreferredFocus={undefined}
                 hitSlop={
                   Object {
                     "bottom": 15,
@@ -434,6 +435,7 @@ exports[`People List test update filter 1`] = `
                 accessibilityTraits="button"
                 accessible={true}
                 collapsable={undefined}
+                hasTVPreferredFocus={undefined}
                 hitSlop={
                   Object {
                     "bottom": 15,

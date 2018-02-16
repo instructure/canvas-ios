@@ -138,6 +138,7 @@ exports[`renders NotATeacher correctly 1`] = `
           ]
         }
         disabled={undefined}
+        hasTVPreferredFocus={undefined}
         onPress={[Function]}
         testID="no-teacher.logout"
       >

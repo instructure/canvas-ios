@@ -74,6 +74,7 @@ exports[`Profile Tests renders correctly 1`] = `
         accessibilityTraits="button"
         accessible={true}
         collapsable={undefined}
+        hasTVPreferredFocus={undefined}
         hitSlop={
           Object {
             "bottom": 10,
@@ -767,6 +768,7 @@ exports[`Profile Tests renders correctly for students 1`] = `
         accessibilityTraits="button"
         accessible={true}
         collapsable={undefined}
+        hasTVPreferredFocus={undefined}
         hitSlop={
           Object {
             "bottom": 10,
@@ -1740,6 +1742,7 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
         accessibilityTraits="button"
         accessible={true}
         collapsable={undefined}
+        hasTVPreferredFocus={undefined}
         hitSlop={
           Object {
             "bottom": 10,
@@ -2830,6 +2833,7 @@ exports[`Profile Tests renders correctly without masquerade 1`] = `
         accessibilityTraits="button"
         accessible={true}
         collapsable={undefined}
+        hasTVPreferredFocus={undefined}
         hitSlop={
           Object {
             "bottom": 10,

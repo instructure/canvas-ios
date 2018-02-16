@@ -71,6 +71,7 @@ exports[`SubmissionList loaded 1`] = `
         accessibilityTraits="button"
         accessible={true}
         collapsable={undefined}
+        hasTVPreferredFocus={undefined}
         hitSlop={
           Object {
             "bottom": 15,
@@ -1307,6 +1308,7 @@ exports[`SubmissionList renders correctly with empty list 1`] = `
         accessibilityTraits="button"
         accessible={true}
         collapsable={undefined}
+        hasTVPreferredFocus={undefined}
         hitSlop={
           Object {
             "bottom": 15,
@@ -1544,6 +1546,7 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
         accessibilityTraits="button"
         accessible={true}
         collapsable={undefined}
+        hasTVPreferredFocus={undefined}
         hitSlop={
           Object {
             "bottom": 15,
@@ -2533,6 +2536,7 @@ exports[`SubmissionList renders correctly with not_submitted filter 1`] = `
         accessibilityTraits="button"
         accessible={true}
         collapsable={undefined}
+        hasTVPreferredFocus={undefined}
         hitSlop={
           Object {
             "bottom": 15,
@@ -2960,6 +2964,7 @@ exports[`SubmissionList renders correctly with ungraded filter 1`] = `
         accessibilityTraits="button"
         accessible={true}
         collapsable={undefined}
+        hasTVPreferredFocus={undefined}
         hitSlop={
           Object {
             "bottom": 15,

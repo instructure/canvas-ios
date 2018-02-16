@@ -37,6 +37,7 @@ exports[`renders link correctly 1`] = `
   accessibilityTraits="button"
   accessible={true}
   collapsable={undefined}
+  hasTVPreferredFocus={undefined}
   hitSlop={
     Object {
       "bottom": 15,

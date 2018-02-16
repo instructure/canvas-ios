@@ -71,6 +71,7 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
         accessibilityTraits="button"
         accessible={true}
         collapsable={undefined}
+        hasTVPreferredFocus={undefined}
         hitSlop={
           Object {
             "bottom": 15,
@@ -499,6 +500,7 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
         accessibilityTraits="button"
         accessible={true}
         collapsable={undefined}
+        hasTVPreferredFocus={undefined}
         hitSlop={
           Object {
             "bottom": 15,
@@ -895,6 +897,7 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
         accessibilityTraits="button"
         accessible={true}
         collapsable={undefined}
+        hasTVPreferredFocus={undefined}
         hitSlop={
           Object {
             "bottom": 15,

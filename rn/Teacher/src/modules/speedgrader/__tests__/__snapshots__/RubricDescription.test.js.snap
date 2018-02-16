@@ -35,6 +35,7 @@ exports[`RubricDescription renders 1`] = `
       onScrollShouldSetResponder={[Function]}
       onStartShouldSetResponder={[Function]}
       onStartShouldSetResponderCapture={[Function]}
+      onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchMove={[Function]}
       onTouchStart={[Function]}
