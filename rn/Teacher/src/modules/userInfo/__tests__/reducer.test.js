@@ -21,8 +21,49 @@ describe('userInfo', () => {
       }
 
       expect(userInfo({ }, resolved)).toMatchObject({
-        externalTools: [template.launchDefinitionGlobalNavigationItem()],
+        externalTools: [],
       })
+    })
+  })
+
+  describe('matches gauge by launch url', () => {
+    const gauge1 = template.launchDefinitionGlobalNavigationItem({
+      url: 'https://test.gauge-edge.inseng.net/lti/launch',
+    })
+    const app1 = template.launchDefinition({
+      placements: { global_navigation: gauge1 },
+    })
+    const gauge2 = template.launchDefinitionGlobalNavigationItem({
+      url: 'https://gauge.docker/lti/launch',
+    })
+    const app2 = template.launchDefinition({
+      domain: 'gauge.instructure.com',
+      placements: { global_navigation: gauge2 },
+    })
+    const app3 = template.launchDefinition({
+      placements: { global_navigation: template.launchDefinitionGlobalNavigationItem() },
+    })
+    const app4 = template.launchDefinition({
+      domain: 'somewhere-else.com',
+      placements: { global_navigation: gauge1 },
+    })
+    const gauge5 = template.launchDefinitionGlobalNavigationItem({
+      url: 'https://usu.gauge-iad-prod.instructure.com/lti/launch',
+    })
+    const app5 = template.launchDefinition({
+      placements: { global_navigation: gauge5 },
+    })
+    const resolved = {
+      type: refreshAccountExternalTools.toString(),
+      payload: { result: { data: [ app1, app2, app3, app4, app5 ] } },
+    }
+
+    expect(userInfo({ }, resolved)).toMatchObject({
+      externalTools: [
+        gauge1,
+        gauge2,
+        gauge5,
+      ],
     })
   })
 

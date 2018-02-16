@@ -41,6 +41,7 @@ export type ExternalToolLaunchDefinition = {
   definition_id: string,
   name: string,
   description: string,
+  domain: ?string,
   placements: { [string]: any },
 }
 

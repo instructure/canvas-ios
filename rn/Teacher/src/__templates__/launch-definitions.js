@@ -29,7 +29,7 @@ export const launchDefinition: Template<ExternalToolLaunchDefinition> = template
   definition_id: '360860',
   name: 'Arc',
   description: 'Video for Education',
-  domain: 'gauge.instructure.com',
+  domain: null,
   placements: {
     global_navigation: launchDefinitionGlobalNavigationItem(),
   },
