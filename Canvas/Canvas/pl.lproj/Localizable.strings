@@ -405,6 +405,9 @@
 /* (No Comment) */
 "Customize" = "Dostosuj";
 
+/* dashboard page title */
+"Dashboard" = "Panel nawigacyjny";
+
 /* (No Comment) */
 "Delete" = "Usuń";
 
@@ -521,6 +524,9 @@
 
 /* (No Comment) */
 "Error deleting folder" = "Wystąpił błąd podczas usuwania folderu";
+
+/* No comment provided by engineer. */
+"Error loading course." = "Błąd podczas wczytywania kursu.";
 
 /* (No Comment) */
 "Event" = "Wydarzenie";
@@ -1210,6 +1216,9 @@
 
 /* (No Comment) */
 "Text entry" = "Wpis tekstowy";
+
+/* No comment provided by engineer. */
+"That page has been disabled for this course" = "Strona została zablokowana dla tego kursu";
 
 /* (No Comment) */
 "The recipients could not be added. Please try again. (%@)" = "Nie udało się dodać odbiorców. Spróbuj ponownie później. (%@)";

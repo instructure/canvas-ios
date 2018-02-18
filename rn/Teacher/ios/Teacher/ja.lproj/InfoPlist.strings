@@ -1,4 +1,10 @@
 /* (No Comment) */
+"CFBundleDisplayName" = "講師";
+
+/* (No Comment) */
+"CFBundleName" = "$(PRODUCT_NAME)";
+
+/* (No Comment) */
 "NSCameraUsageDescription" = "投稿のコメントに写真や動画を添付します。";
 
 /* (No Comment) */

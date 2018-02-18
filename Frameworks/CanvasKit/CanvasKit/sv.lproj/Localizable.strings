@@ -17,5 +17,5 @@
 "Username" = "Användarnamn";
 
 /* No comment provided by engineer. */
-"You are not authorized to perform this action." = "Du är inte tillåten att utföra den här åtgärden.";
+"You are not authorized to perform this action." = "Du har inte behörighet att utföra denna åtgärd.";
 

@@ -14,6 +14,9 @@
   "a_title_is_required_71222850": {
     "message": "Требуется заголовок"
   },
+  "accept_2fdd362e": {
+    "message": "Принять"
+  },
   "access_9a94f04e": {
     "message": "Доступ"
   },
@@ -22,6 +25,9 @@
   },
   "account_group_cb00ca73": {
     "message": "Рабочая группа клиента"
+  },
+  "account_has_no_terms_of_use_1048a785": {
+    "message": "У учетной записи нет условия использования"
   },
   "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
     "message": "\"Действовать как пользователь\" является по существу входом в систему в качестве этого пользователя без пароля. Вы сможете выполнять любые действия, как будто вы являетесь этим пользователем, и с точки зрения других пользователей это будет выглядеть так, как будто именно этот пользователь выполнил это действие. Тем не менее, в контрольных журналах записывается информация от том, что именно вы выполняли указанные действия от имени этого пользователя."
@@ -308,7 +314,7 @@
   "complete_incomplete_15b3a89c": {
     "message": "Завершено/не завершено"
   },
-  "compose_message_45002196": {
+  "compose_message_8abd180a": {
     "message": "Написать сообщение"
   },
   "conversation_options_8be926f3": {
@@ -389,6 +395,9 @@
   "date_date_mmm_d_date_time_short_e82719d6": {
     "message": "{ date, date, 'MMM d' } { date, time, short }"
   },
+  "decline_7eeb5ff4": {
+    "message": "Снизить"
+  },
   "delay_posting_f45eed7d": {
     "message": "Задержка публикации"
   },
@@ -436,6 +445,9 @@
   },
   "dismiss_dacdb625": {
     "message": "Исключить"
+  },
+  "dismiss_invitation_to_name_a650b2c4": {
+    "message": "Отказаться от приглашения на { name }"
   },
   "dismiss_name_8646b9fd": {
     "message": "Исключить { name }"
@@ -593,6 +605,9 @@
   "filter_submissions_81bc50de": {
     "message": "Фильтр отправок"
   },
+  "final_grade_4d7f6545": {
+    "message": "Итоговая оценка"
+  },
   "for_974cbb84": {
     "message": "Для"
   },
@@ -656,6 +671,9 @@
   "haven_t_submitted_yet_3a127a27": {
     "message": "Не отправлено"
   },
+  "help_4c4968b1": {
+    "message": "Справка"
+  },
   "hidden_files_inside_will_be_available_with_links_e9e3d233": {
     "message": "Скрыто. Находящиеся внутри файлы будут доступны по ссылкам."
   },
@@ -688,6 +706,12 @@
   },
   "invalid_field_54480fae": {
     "message": "Недействительное поле"
+  },
+  "invite_accepted_290abc90": {
+    "message": "Приглашение принято!"
+  },
+  "invite_declined_d0a9e398": {
+    "message": "Приглашение отклонено!"
   },
   "italic_ac45200a": {
     "message": "Курсив"
@@ -730,9 +754,6 @@
   },
   "long_description_7d89285c": {
     "message": "Длинное описание"
-  },
-  "mail_is_unavailable_on_your_device_fb52a13c": {
-    "message": "Почта недоступна на вашем устройстве."
   },
   "mark_all_as_read_8f3bdf57": {
     "message": "Отметить все как прочитанное"
@@ -793,6 +814,9 @@
   },
   "new_13daf639": {
     "message": "Новый"
+  },
+  "new_announcement_23af4598": {
+    "message": "Новое объявление"
   },
   "new_discussion_dae4fae3": {
     "message": "Новая дискуссия"
@@ -953,6 +977,9 @@
   "pass_8abee039": {
     "message": "Прохождение"
   },
+  "past_enrollments_a846da48": {
+    "message": "Прошлые регистрации"
+  },
   "people_b4ebb13c": {
     "message": "Люди"
   },
@@ -976,6 +1003,9 @@
   },
   "points_number_out_of_totalpoints_number_291efb47": {
     "message": "{ points, number } из { totalPoints, number }"
+  },
+  "points_number_pts_cc4a4a59": {
+    "message": "{ points, number }баллов"
   },
   "points_possible_must_be_a_number_4a592dc6": {
     "message": "Значение возможных баллов должно быть числом"
@@ -1076,6 +1106,9 @@
   "report_a_problem_4d48624a": {
     "message": "Сообщить о проблеме"
   },
+  "request_a_feature_3c8e2079": {
+    "message": "Запросить функцию"
+  },
   "require_an_access_code_46a02601": {
     "message": "Запросить код доступа"
   },
@@ -1135,9 +1168,6 @@
   },
   "see_all_ffa422ef": {
     "message": "Смотреть все"
-  },
-  "select_a_course_40bc3229": {
-    "message": "Выбрать курс"
   },
   "select_a_course_4710371f": {
     "message": "Выбрать курс"
@@ -1214,6 +1244,9 @@
   "subject_114b2e98": {
     "message": "Тема"
   },
+  "submission_comment_873e8f1c": {
+    "message": "комментарий к отправке"
+  },
   "submission_settings_f57b0cf8": {
     "message": "Настройки отправки"
   },
@@ -1261,6 +1294,9 @@
   },
   "teachers_and_students_ba2db3e4": {
     "message": "Учителя и студенты"
+  },
+  "terms_of_use_62ee73ad": {
+    "message": "Условия использования"
   },
   "terms_of_use_6542769b": {
     "message": "Условия использования"
@@ -1325,8 +1361,14 @@
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
     "message": "Проблема при загрузке контрольных."
   },
+  "there_was_a_problem_retreiving_the_terms_of_use_3a5fa00c": {
+    "message": "Не удалось получить условия использования"
+  },
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "Произошла ошибка при загрузке вложения."
+  },
+  "there_was_an_error_loading_the_file_19deb988": {
+    "message": "Произошла ошибка при загрузке файла"
   },
   "there_was_an_error_loading_the_file_a046378e": {
     "message": "Произошла ошибка при загрузке файла."
@@ -1417,9 +1459,6 @@
   },
   "un_starred_8fef021f": {
     "message": "Звездочка убрана"
-  },
-  "unavailable_46d2c344": {
-    "message": "Недоступно"
   },
   "undo_a7be8fef": {
     "message": "Аннулировать"
@@ -1528,6 +1567,9 @@
   },
   "yes_dde87d5": {
     "message": "Да"
+  },
+  "you_have_been_invited_a724be1a": {
+    "message": "Вам поступило приглашение"
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "Вы должны активировать разрешения для камеры и микрофона в настройках для использования камеры."

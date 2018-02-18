@@ -14,6 +14,9 @@
   "a_title_is_required_71222850": {
     "message": "Se requiere un título"
   },
+  "accept_2fdd362e": {
+    "message": "Aceptar"
+  },
   "access_9a94f04e": {
     "message": "Acceso"
   },
@@ -22,6 +25,9 @@
   },
   "account_group_cb00ca73": {
     "message": "Grupo de cuenta"
+  },
+  "account_has_no_terms_of_use_1048a785": {
+    "message": "La cuenta no tiene Términos de uso"
   },
   "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
     "message": "\"Actuar como\" es esencialmente iniciar sesión como este usuario sin una contraseña. Podrá realizar cualquier acción como si fuese este usuario y desde el punto de vista de otros usuarios, como si este usuario las realizara. Sin embargo, los registros de auditoría indican que usted es quien realizó las acciones en representación de este usuario."
@@ -308,7 +314,7 @@
   "complete_incomplete_15b3a89c": {
     "message": "Completo/Incompleto"
   },
-  "compose_message_45002196": {
+  "compose_message_8abd180a": {
     "message": "Escribir un mensaje"
   },
   "conversation_options_8be926f3": {
@@ -389,6 +395,9 @@
   "date_date_mmm_d_date_time_short_e82719d6": {
     "message": "{ date, date, 'MMM d' } { date, time, short }"
   },
+  "decline_7eeb5ff4": {
+    "message": "Rechazar"
+  },
   "delay_posting_f45eed7d": {
     "message": "Atrasar la publicación"
   },
@@ -436,6 +445,9 @@
   },
   "dismiss_dacdb625": {
     "message": "Descartar"
+  },
+  "dismiss_invitation_to_name_a650b2c4": {
+    "message": "Rechazar invitación de { name }"
   },
   "dismiss_name_8646b9fd": {
     "message": "Descartar { name }"
@@ -593,6 +605,9 @@
   "filter_submissions_81bc50de": {
     "message": "Filtrar presentaciones"
   },
+  "final_grade_4d7f6545": {
+    "message": "Calificación final"
+  },
   "for_974cbb84": {
     "message": "Para"
   },
@@ -656,6 +671,9 @@
   "haven_t_submitted_yet_3a127a27": {
     "message": "Aún no ha presentado"
   },
+  "help_4c4968b1": {
+    "message": "Ayuda"
+  },
   "hidden_files_inside_will_be_available_with_links_e9e3d233": {
     "message": "Oculto. Los archivos del interior estarán disponibles con enlaces."
   },
@@ -688,6 +706,12 @@
   },
   "invalid_field_54480fae": {
     "message": "Campo inválido"
+  },
+  "invite_accepted_290abc90": {
+    "message": "¡Invitación aceptada!"
+  },
+  "invite_declined_d0a9e398": {
+    "message": "¡Invitación rechazada!"
   },
   "italic_ac45200a": {
     "message": "Cursiva"
@@ -730,9 +754,6 @@
   },
   "long_description_7d89285c": {
     "message": "Descripción completa"
-  },
-  "mail_is_unavailable_on_your_device_fb52a13c": {
-    "message": "El correo no está disponible en tu dispositivo."
   },
   "mark_all_as_read_8f3bdf57": {
     "message": "Marcar todas como leídas"
@@ -793,6 +814,9 @@
   },
   "new_13daf639": {
     "message": "Nuevo"
+  },
+  "new_announcement_23af4598": {
+    "message": "Nuevo anuncio"
   },
   "new_discussion_dae4fae3": {
     "message": "Nuevo debate"
@@ -953,6 +977,9 @@
   "pass_8abee039": {
     "message": "Aprobado"
   },
+  "past_enrollments_a846da48": {
+    "message": "Inscripciones pasadas"
+  },
   "people_b4ebb13c": {
     "message": "Personas"
   },
@@ -976,6 +1003,9 @@
   },
   "points_number_out_of_totalpoints_number_291efb47": {
     "message": "{ points, number } de { totalPoints, number }"
+  },
+  "points_number_pts_cc4a4a59": {
+    "message": "{ points, number }ptos."
   },
   "points_possible_must_be_a_number_4a592dc6": {
     "message": "Puntos posibles debe ser un número"
@@ -1076,6 +1106,9 @@
   "report_a_problem_4d48624a": {
     "message": "Reportar un problema"
   },
+  "request_a_feature_3c8e2079": {
+    "message": "Solicitar una función"
+  },
   "require_an_access_code_46a02601": {
     "message": "Requiere un código de acceso"
   },
@@ -1135,9 +1168,6 @@
   },
   "see_all_ffa422ef": {
     "message": "Ver todos"
-  },
-  "select_a_course_40bc3229": {
-    "message": "Seleccionar un curso"
   },
   "select_a_course_4710371f": {
     "message": "Seleccionar un curso"
@@ -1214,6 +1244,9 @@
   "subject_114b2e98": {
     "message": "Asunto"
   },
+  "submission_comment_873e8f1c": {
+    "message": "comentario de la presentación"
+  },
   "submission_settings_f57b0cf8": {
     "message": "Configuraciones de presentación"
   },
@@ -1261,6 +1294,9 @@
   },
   "teachers_and_students_ba2db3e4": {
     "message": "Profesores y alumnos"
+  },
+  "terms_of_use_62ee73ad": {
+    "message": "Términos de uso"
   },
   "terms_of_use_6542769b": {
     "message": "Términos de uso"
@@ -1325,8 +1361,14 @@
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
     "message": "Hubo un problema al cargar las evaluaciones."
   },
+  "there_was_a_problem_retreiving_the_terms_of_use_3a5fa00c": {
+    "message": "Hubo un problema al recuperar los Términos de uso"
+  },
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "Se produjo un error al cargar este archivo adjunto."
+  },
+  "there_was_an_error_loading_the_file_19deb988": {
+    "message": "Hubo un error al cargar el archivo"
   },
   "there_was_an_error_loading_the_file_a046378e": {
     "message": "Hubo un error al cargar el archivo."
@@ -1417,9 +1459,6 @@
   },
   "un_starred_8fef021f": {
     "message": "Sin calificación mediante estrellas"
-  },
-  "unavailable_46d2c344": {
-    "message": "No disponible"
   },
   "undo_a7be8fef": {
     "message": "Deshacer"
@@ -1528,6 +1567,9 @@
   },
   "yes_dde87d5": {
     "message": "Sí"
+  },
+  "you_have_been_invited_a724be1a": {
+    "message": "Ha recibido una invitación"
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "Debes habilitar los permisos de cámara y micrófono en Configuraciones para usar la cámara."

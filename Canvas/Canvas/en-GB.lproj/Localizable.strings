@@ -405,6 +405,9 @@
 /* (No Comment) */
 "Customize" = "Customise";
 
+/* dashboard page title */
+"Dashboard" = "Dashboard";
+
 /* (No Comment) */
 "Delete" = "Delete";
 
@@ -521,6 +524,9 @@
 
 /* (No Comment) */
 "Error deleting folder" = "Error deleting folder";
+
+/* No comment provided by engineer. */
+"Error loading course." = "Error loading course.";
 
 /* (No Comment) */
 "Event" = "Event";
@@ -1210,6 +1216,9 @@
 
 /* (No Comment) */
 "Text entry" = "Text entry";
+
+/* No comment provided by engineer. */
+"That page has been disabled for this course" = "That page has been disabled for this course";
 
 /* (No Comment) */
 "The recipients could not be added. Please try again. (%@)" = "The recipients could not be added. Please try again. (%@)";

@@ -120,6 +120,9 @@
 "Choose your answers below" = "於下方選擇您的回答";
 
 /* No comment provided by engineer. */
+"Collapse" = "收起";
+
+/* No comment provided by engineer. */
 "Comments" = "評論";
 
 /* File upload completed */
@@ -230,6 +233,9 @@
 "Error loading cache management database." = "載入緩存管理資料庫時出錯。";
 
 /* No comment provided by engineer. */
+"Error loading course." = "載入課程時發生錯誤。";
+
+/* No comment provided by engineer. */
 "Error parsing the Roll Call response. Expected (e), received (a)" = "解析點名回應時出錯。預期 (e)，收到 (a)";
 
 /* No comment provided by engineer. */
@@ -249,6 +255,9 @@
 
 /* Exit button to leave the quiz */
 "Exit" = "退出";
+
+/* No comment provided by engineer. */
+"Expand" = "展開";
 
 /* Error message when the server returns a invalid response */
 "Expected a response in the 200-299 range. Got %@" = "回應應在 200-299 範圍內。得到%@";
@@ -301,6 +310,9 @@
 /* Mark student late
    Student is present in class */
 "Late" = "逾期";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "啟動外部工具";
 
 /* Leave the quiz */
 "Leave" = "離開";

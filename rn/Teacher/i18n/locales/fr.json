@@ -14,6 +14,9 @@
   "a_title_is_required_71222850": {
     "message": "Titre obligatoire"
   },
+  "accept_2fdd362e": {
+    "message": "Accepter"
+  },
   "access_9a94f04e": {
     "message": "Accès"
   },
@@ -22,6 +25,9 @@
   },
   "account_group_cb00ca73": {
     "message": "Groupe de comptes"
+  },
+  "account_has_no_terms_of_use_1048a785": {
+    "message": "Le compte n'a pas de Conditions d'utilisation"
   },
   "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
     "message": "\"Agir comme\" permet essentiellement de se connecter en tant qu'utilisateur sans mot de passe. Vous pourrez réaliser n'importe quelle action comme si vous étiez cet utilisateur, et du point de vue d'autres utilisateurs, comme si cet utilisateur les exécutait. Cependant, les journaux d’audit enregistrent le fait que c’est vous qui avez effectué ces actions au nom de l’utilisateur."
@@ -308,7 +314,7 @@
   "complete_incomplete_15b3a89c": {
     "message": "Complet / Incomplet"
   },
-  "compose_message_45002196": {
+  "compose_message_8abd180a": {
     "message": "Composer un message"
   },
   "conversation_options_8be926f3": {
@@ -389,6 +395,9 @@
   "date_date_mmm_d_date_time_short_e82719d6": {
     "message": "{ date, date, 'MMM d' } { date, time, short }"
   },
+  "decline_7eeb5ff4": {
+    "message": "Refuser"
+  },
   "delay_posting_f45eed7d": {
     "message": "Retarder publication"
   },
@@ -436,6 +445,9 @@
   },
   "dismiss_dacdb625": {
     "message": "Rejeter"
+  },
+  "dismiss_invitation_to_name_a650b2c4": {
+    "message": "Rejeter l’invitation à { name }"
   },
   "dismiss_name_8646b9fd": {
     "message": "Rejeter { name }"
@@ -593,6 +605,9 @@
   "filter_submissions_81bc50de": {
     "message": "Filtrer les envois"
   },
+  "final_grade_4d7f6545": {
+    "message": "Note Finale"
+  },
   "for_974cbb84": {
     "message": "Pour"
   },
@@ -656,6 +671,9 @@
   "haven_t_submitted_yet_3a127a27": {
     "message": "N’ont pas encore été envoyés"
   },
+  "help_4c4968b1": {
+    "message": "Aide"
+  },
   "hidden_files_inside_will_be_available_with_links_e9e3d233": {
     "message": "Masqué. Les fichiers à l’intérieur seront disponibles via un lien."
   },
@@ -688,6 +706,12 @@
   },
   "invalid_field_54480fae": {
     "message": "Champ invalide"
+  },
+  "invite_accepted_290abc90": {
+    "message": "Invitation acceptée !"
+  },
+  "invite_declined_d0a9e398": {
+    "message": "Invitation refusée !"
   },
   "italic_ac45200a": {
     "message": "Italique"
@@ -730,9 +754,6 @@
   },
   "long_description_7d89285c": {
     "message": "Description longue"
-  },
-  "mail_is_unavailable_on_your_device_fb52a13c": {
-    "message": "Le courrier électronique est indisponible sur votre appareil."
   },
   "mark_all_as_read_8f3bdf57": {
     "message": "Marquer tout comme lu"
@@ -793,6 +814,9 @@
   },
   "new_13daf639": {
     "message": "Nouveau"
+  },
+  "new_announcement_23af4598": {
+    "message": "Nouvelle annonce"
   },
   "new_discussion_dae4fae3": {
     "message": "Nouvelle discussion"
@@ -953,6 +977,9 @@
   "pass_8abee039": {
     "message": "Passe"
   },
+  "past_enrollments_a846da48": {
+    "message": "Inscriptions antérieures"
+  },
   "people_b4ebb13c": {
     "message": "Personnes"
   },
@@ -976,6 +1003,9 @@
   },
   "points_number_out_of_totalpoints_number_291efb47": {
     "message": "{ points, number } sur { totalPoints, number }"
+  },
+  "points_number_pts_cc4a4a59": {
+    "message": "{ points, number } pts"
   },
   "points_possible_must_be_a_number_4a592dc6": {
     "message": "Les points possibles doivent être spécifiés par un nombre"
@@ -1076,6 +1106,9 @@
   "report_a_problem_4d48624a": {
     "message": "Signaler un problème"
   },
+  "request_a_feature_3c8e2079": {
+    "message": "Demander une fonctionnalité"
+  },
   "require_an_access_code_46a02601": {
     "message": "Nécessite un code d’accès"
   },
@@ -1135,9 +1168,6 @@
   },
   "see_all_ffa422ef": {
     "message": "Tout voir"
-  },
-  "select_a_course_40bc3229": {
-    "message": "Sélectionnez un cours"
   },
   "select_a_course_4710371f": {
     "message": "Sélectionnez un cours"
@@ -1214,6 +1244,9 @@
   "subject_114b2e98": {
     "message": "Sujet"
   },
+  "submission_comment_873e8f1c": {
+    "message": "commentaire de soumission"
+  },
   "submission_settings_f57b0cf8": {
     "message": "Paramètres de soumission"
   },
@@ -1261,6 +1294,9 @@
   },
   "teachers_and_students_ba2db3e4": {
     "message": "Enseignants et étudiants"
+  },
+  "terms_of_use_62ee73ad": {
+    "message": "Conditions d'utilisation"
   },
   "terms_of_use_6542769b": {
     "message": "Conditions d'utilisation"
@@ -1325,8 +1361,14 @@
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
     "message": "Une erreur est survenue lors du téléchargement des questionnaires."
   },
+  "there_was_a_problem_retreiving_the_terms_of_use_3a5fa00c": {
+    "message": "Un problème est survenu pendant la récupération des Conditions d'utilisation"
+  },
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "Une erreur est survenue pendant le chargement de la pièce jointe."
+  },
+  "there_was_an_error_loading_the_file_19deb988": {
+    "message": "Une erreur est survenue pendant le chargement du fichier"
   },
   "there_was_an_error_loading_the_file_a046378e": {
     "message": "Une erreur est survenue lors du chargement du fichier."
@@ -1417,9 +1459,6 @@
   },
   "un_starred_8fef021f": {
     "message": "Étoile retirée"
-  },
-  "unavailable_46d2c344": {
-    "message": "Indisponible"
   },
   "undo_a7be8fef": {
     "message": "Annuler"
@@ -1528,6 +1567,9 @@
   },
   "yes_dde87d5": {
     "message": "Oui"
+  },
+  "you_have_been_invited_a724be1a": {
+    "message": "Vous êtes invité"
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "Vous devez activer les autorisations « appareil photo et microphone » dans les Paramètres pour utiliser l’appareil photo."

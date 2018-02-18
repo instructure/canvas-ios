@@ -120,6 +120,9 @@
 "Choose your answers below" = "Kies je antwoorden hieronder";
 
 /* No comment provided by engineer. */
+"Collapse" = "Samenvouwen";
+
+/* No comment provided by engineer. */
 "Comments" = "Opmerkingen";
 
 /* File upload completed */
@@ -230,6 +233,9 @@
 "Error loading cache management database." = "Fout bij het laden van cache beheer gegevensbestand.";
 
 /* No comment provided by engineer. */
+"Error loading course." = "Fout bij laden van cursus.";
+
+/* No comment provided by engineer. */
 "Error parsing the Roll Call response. Expected (e), received (a)" = "Fout bij het parseren van de Roll Call-reactie. Verwacht (e), ontvangen (a)";
 
 /* No comment provided by engineer. */
@@ -249,6 +255,9 @@
 
 /* Exit button to leave the quiz */
 "Exit" = "Afsluiten";
+
+/* No comment provided by engineer. */
+"Expand" = "Uitvouwen";
 
 /* Error message when the server returns a invalid response */
 "Expected a response in the 200-299 range. Got %@" = "Een reactie verwacht in het bereik 200-299. Werd %@";
@@ -301,6 +310,9 @@
 /* Mark student late
    Student is present in class */
 "Late" = "Te laat";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "Extern hulpmiddel lanceren";
 
 /* Leave the quiz */
 "Leave" = "Verlaten";

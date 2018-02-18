@@ -120,6 +120,9 @@
 "Choose your answers below" = "下の回答を選択してください";
 
 /* No comment provided by engineer. */
+"Collapse" = "折りたたみ";
+
+/* No comment provided by engineer. */
 "Comments" = "コメント";
 
 /* File upload completed */
@@ -230,6 +233,9 @@
 "Error loading cache management database." = "キャッシュ管理データベースの読み込みエラー";
 
 /* No comment provided by engineer. */
+"Error loading course." = "コースの読み込み中にエラー。";
+
+/* No comment provided by engineer. */
 "Error parsing the Roll Call response. Expected (e), received (a)" = "ロールコール応答を解析中にエラーが発生しました。期待される（e）、受け取られた（a）";
 
 /* No comment provided by engineer. */
@@ -249,6 +255,9 @@
 
 /* Exit button to leave the quiz */
 "Exit" = "終了";
+
+/* No comment provided by engineer. */
+"Expand" = "展開";
 
 /* Error message when the server returns a invalid response */
 "Expected a response in the 200-299 range. Got %@" = "200-299の範囲で応答が期待されます。取得%@";
@@ -301,6 +310,9 @@
 /* Mark student late
    Student is present in class */
 "Late" = "遅れている";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "外部ツールを起動する";
 
 /* Leave the quiz */
 "Leave" = "退出する";

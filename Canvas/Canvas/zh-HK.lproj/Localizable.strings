@@ -405,6 +405,9 @@
 /* (No Comment) */
 "Customize" = "自定義";
 
+/* dashboard page title */
+"Dashboard" = "儀表板";
+
 /* (No Comment) */
 "Delete" = "刪除";
 
@@ -521,6 +524,9 @@
 
 /* (No Comment) */
 "Error deleting folder" = "刪除資料夾時出錯";
+
+/* No comment provided by engineer. */
+"Error loading course." = "載入課程時發生錯誤。";
 
 /* (No Comment) */
 "Event" = "事件";
@@ -1210,6 +1216,9 @@
 
 /* (No Comment) */
 "Text entry" = "文字條目";
+
+/* No comment provided by engineer. */
+"That page has been disabled for this course" = "已針對此課程停用該內容頁";
 
 /* (No Comment) */
 "The recipients could not be added. Please try again. (%@)" = "收信人無法被添加。請重試。(%@)";

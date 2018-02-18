@@ -120,6 +120,9 @@
 "Choose your answers below" = "اختر إجاباتك أدناه";
 
 /* No comment provided by engineer. */
+"Collapse" = "طي";
+
+/* No comment provided by engineer. */
 "Comments" = "التعليقات";
 
 /* File upload completed */
@@ -230,6 +233,9 @@
 "Error loading cache management database." = "حدث خطأ أثناء تحميل قاعدة بيانات إدارة ذاكرة التخزين المؤقت.";
 
 /* No comment provided by engineer. */
+"Error loading course." = "خطأ أثناء تحميل المساق.";
+
+/* No comment provided by engineer. */
 "Error parsing the Roll Call response. Expected (e), received (a)" = "خطأ أثناء تحليل استجابة Roll Call. متوقع (e)، متلقى (a)";
 
 /* No comment provided by engineer. */
@@ -249,6 +255,9 @@
 
 /* Exit button to leave the quiz */
 "Exit" = "خروج";
+
+/* No comment provided by engineer. */
+"Expand" = "توسيع";
 
 /* Error message when the server returns a invalid response */
 "Expected a response in the 200-299 range. Got %@" = "توقع استجابة في النطاق 200-299. حصل %@";
@@ -301,6 +310,9 @@
 /* Mark student late
    Student is present in class */
 "Late" = "متأخر";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "تشغيل الأداة الخارجية";
 
 /* Leave the quiz */
 "Leave" = "مغادرة";

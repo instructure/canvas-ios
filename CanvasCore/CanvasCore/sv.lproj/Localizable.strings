@@ -120,6 +120,9 @@
 "Choose your answers below" = "Välj dina svar nedan";
 
 /* No comment provided by engineer. */
+"Collapse" = "Minska";
+
+/* No comment provided by engineer. */
 "Comments" = "Kommentarer";
 
 /* File upload completed */
@@ -230,6 +233,9 @@
 "Error loading cache management database." = "Fel vid inläsning av databasen för hantering av cache.";
 
 /* No comment provided by engineer. */
+"Error loading course." = "Fel vid laddning av kurs.";
+
+/* No comment provided by engineer. */
 "Error parsing the Roll Call response. Expected (e), received (a)" = "Ett fel uppstod vid Roll call respons. Förväntade (e), mottog (a)";
 
 /* No comment provided by engineer. */
@@ -249,6 +255,9 @@
 
 /* Exit button to leave the quiz */
 "Exit" = "Gå ur";
+
+/* No comment provided by engineer. */
+"Expand" = "Förstora";
 
 /* Error message when the server returns a invalid response */
 "Expected a response in the 200-299 range. Got %@" = "Förväntat ett svar inom 200-299 intervallet. Erhöll %@";
@@ -301,6 +310,9 @@
 /* Mark student late
    Student is present in class */
 "Late" = "Sen";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "Starta externt verktyg";
 
 /* Leave the quiz */
 "Leave" = "Lämna";

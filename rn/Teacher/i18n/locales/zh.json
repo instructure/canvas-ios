@@ -14,6 +14,9 @@
   "a_title_is_required_71222850": {
     "message": "标题必填"
   },
+  "accept_2fdd362e": {
+    "message": "接受"
+  },
   "access_9a94f04e": {
     "message": "访问"
   },
@@ -22,6 +25,9 @@
   },
   "account_group_cb00ca73": {
     "message": "账户组"
+  },
+  "account_has_no_terms_of_use_1048a785": {
+    "message": "账户没有使用条款"
   },
   "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
     "message": "\"Act as\"实际上已经登录，因为该用户没有密码。您将能够使用该用户的身份执行任何操作，从其他用户的立场来看，这些操作仿佛是该用户执行的。但是，审计日志记录您是代表该用户执行操作的人。"
@@ -308,7 +314,7 @@
   "complete_incomplete_15b3a89c": {
     "message": "完成/未完成"
   },
-  "compose_message_45002196": {
+  "compose_message_8abd180a": {
     "message": "撰写消息"
   },
   "conversation_options_8be926f3": {
@@ -389,6 +395,9 @@
   "date_date_mmm_d_date_time_short_e82719d6": {
     "message": "{ date, date, 'MMM d' } { date, time, short }"
   },
+  "decline_7eeb5ff4": {
+    "message": "拒绝"
+  },
   "delay_posting_f45eed7d": {
     "message": "延迟发布"
   },
@@ -436,6 +445,9 @@
   },
   "dismiss_dacdb625": {
     "message": "撤销"
+  },
+  "dismiss_invitation_to_name_a650b2c4": {
+    "message": "撤销给{ name }的邀请"
   },
   "dismiss_name_8646b9fd": {
     "message": "撤销{ name }"
@@ -593,6 +605,9 @@
   "filter_submissions_81bc50de": {
     "message": "筛选器提交项"
   },
+  "final_grade_4d7f6545": {
+    "message": "最终评分"
+  },
   "for_974cbb84": {
     "message": "用于"
   },
@@ -656,6 +671,9 @@
   "haven_t_submitted_yet_3a127a27": {
     "message": "尚未提交"
   },
+  "help_4c4968b1": {
+    "message": "帮助"
+  },
   "hidden_files_inside_will_be_available_with_links_e9e3d233": {
     "message": "隐藏。使用链接可获取里面的文件。"
   },
@@ -688,6 +706,12 @@
   },
   "invalid_field_54480fae": {
     "message": "无效的字段"
+  },
+  "invite_accepted_290abc90": {
+    "message": "已接受邀请！"
+  },
+  "invite_declined_d0a9e398": {
+    "message": "已拒绝邀请！"
   },
   "italic_ac45200a": {
     "message": "斜体"
@@ -730,9 +754,6 @@
   },
   "long_description_7d89285c": {
     "message": "长说明"
-  },
-  "mail_is_unavailable_on_your_device_fb52a13c": {
-    "message": "邮箱在您的设备上不可用。"
   },
   "mark_all_as_read_8f3bdf57": {
     "message": "全部标记为已读"
@@ -793,6 +814,9 @@
   },
   "new_13daf639": {
     "message": "新建"
+  },
+  "new_announcement_23af4598": {
+    "message": "新公告"
   },
   "new_discussion_dae4fae3": {
     "message": "新讨论"
@@ -953,6 +977,9 @@
   "pass_8abee039": {
     "message": "通过"
   },
+  "past_enrollments_a846da48": {
+    "message": "以前的注册"
+  },
   "people_b4ebb13c": {
     "message": "人员、人们"
   },
@@ -976,6 +1003,9 @@
   },
   "points_number_out_of_totalpoints_number_291efb47": {
     "message": "{ points, number } 共{ totalPoints, number }"
+  },
+  "points_number_pts_cc4a4a59": {
+    "message": "{ points, number }分"
   },
   "points_possible_must_be_a_number_4a592dc6": {
     "message": "满分必须为数字"
@@ -1076,6 +1106,9 @@
   "report_a_problem_4d48624a": {
     "message": "报告一个问题"
   },
+  "request_a_feature_3c8e2079": {
+    "message": "请求功能"
+  },
   "require_an_access_code_46a02601": {
     "message": "要求访问代码"
   },
@@ -1135,9 +1168,6 @@
   },
   "see_all_ffa422ef": {
     "message": "查看全部"
-  },
-  "select_a_course_40bc3229": {
-    "message": "选择课程"
   },
   "select_a_course_4710371f": {
     "message": "选择课程"
@@ -1214,6 +1244,9 @@
   "subject_114b2e98": {
     "message": "主题"
   },
+  "submission_comment_873e8f1c": {
+    "message": "提交项评论"
+  },
   "submission_settings_f57b0cf8": {
     "message": "提交设置"
   },
@@ -1261,6 +1294,9 @@
   },
   "teachers_and_students_ba2db3e4": {
     "message": "教师和学生"
+  },
+  "terms_of_use_62ee73ad": {
+    "message": "使用条款"
   },
   "terms_of_use_6542769b": {
     "message": "使用条款"
@@ -1325,8 +1361,14 @@
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
     "message": "加载测验时出现问题。"
   },
+  "there_was_a_problem_retreiving_the_terms_of_use_3a5fa00c": {
+    "message": "检索使用条款时出现问题"
+  },
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "加载附件时出错。"
+  },
+  "there_was_an_error_loading_the_file_19deb988": {
+    "message": "加载文件时出错"
   },
   "there_was_an_error_loading_the_file_a046378e": {
     "message": "加载文件时出错。"
@@ -1417,9 +1459,6 @@
   },
   "un_starred_8fef021f": {
     "message": "未标记星号"
-  },
-  "unavailable_46d2c344": {
-    "message": "不可用"
   },
   "undo_a7be8fef": {
     "message": "后退"
@@ -1528,6 +1567,9 @@
   },
   "yes_dde87d5": {
     "message": "是"
+  },
+  "you_have_been_invited_a724be1a": {
+    "message": "您已获得邀请"
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "您必须在“设置”中启用照相机和麦克风权限才能使用照相机。"

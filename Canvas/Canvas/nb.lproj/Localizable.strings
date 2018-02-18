@@ -405,6 +405,9 @@
 /* (No Comment) */
 "Customize" = "Tilpass";
 
+/* dashboard page title */
+"Dashboard" = "Instrumentbord";
+
 /* (No Comment) */
 "Delete" = "Slett";
 
@@ -521,6 +524,9 @@
 
 /* (No Comment) */
 "Error deleting folder" = "Feil ved sletting av mappe";
+
+/* No comment provided by engineer. */
+"Error loading course." = "Kunne ikke laste inn emne.";
 
 /* (No Comment) */
 "Event" = "Arrangement";
@@ -1210,6 +1216,9 @@
 
 /* (No Comment) */
 "Text entry" = "Tekstinntasting";
+
+/* No comment provided by engineer. */
+"That page has been disabled for this course" = "Den siden er deaktivert for dette emnet";
 
 /* (No Comment) */
 "The recipients could not be added. Please try again. (%@)" = "Mottakere kunne ikke legges til. Forsøk igjen. (%@)";

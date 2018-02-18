@@ -405,6 +405,9 @@
 /* (No Comment) */
 "Customize" = "Pèsonalize";
 
+/* dashboard page title */
+"Dashboard" = "Tablo";
+
 /* (No Comment) */
 "Delete" = "Efase";
 
@@ -521,6 +524,9 @@
 
 /* (No Comment) */
 "Error deleting folder" = "Erè nan eliminasyon dosye";
+
+/* No comment provided by engineer. */
+"Error loading course." = "Erè nan telechajman kou an.";
 
 /* (No Comment) */
 "Event" = "Evènman";
@@ -1210,6 +1216,9 @@
 
 /* (No Comment) */
 "Text entry" = "Antre Tèks";
+
+/* No comment provided by engineer. */
+"That page has been disabled for this course" = "Paj sa a dezaktive pou kou sa a";
 
 /* (No Comment) */
 "The recipients could not be added. Please try again. (%@)" = "Destinatè a pa kapab ajoute. Tanpri eseye ankò. (%@)";

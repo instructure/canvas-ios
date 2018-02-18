@@ -14,6 +14,9 @@
   "a_title_is_required_71222850": {
     "message": "En rubrik krävs"
   },
+  "accept_2fdd362e": {
+    "message": "Acceptera"
+  },
   "access_9a94f04e": {
     "message": "Åtkomst"
   },
@@ -22,6 +25,9 @@
   },
   "account_group_cb00ca73": {
     "message": "Kontogrupp"
+  },
+  "account_has_no_terms_of_use_1048a785": {
+    "message": "Kontot har inga användarvillkor"
   },
   "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
     "message": "\"Act as\" loggar huvudsakligen in som den här användaren utan lösenord.Du kommer att kunna vidta åtgärder som om du var den här användaren, och från andra användares synpunkter som om den här användaren utförde dem.I historik-loggar registreras dock att du var den som utförde åtgärderna på den här användarens vägnar."
@@ -308,8 +314,8 @@
   "complete_incomplete_15b3a89c": {
     "message": "Färdig/Ofärdig"
   },
-  "compose_message_45002196": {
-    "message": "Skriv meddelande"
+  "compose_message_8abd180a": {
+    "message": "Skapa ett meddelande"
   },
   "conversation_options_8be926f3": {
     "message": "Konversationsalternativ"
@@ -389,6 +395,9 @@
   "date_date_mmm_d_date_time_short_e82719d6": {
     "message": "{ date, date, 'MMM d' } { date, time, short }"
   },
+  "decline_7eeb5ff4": {
+    "message": "Neka"
+  },
   "delay_posting_f45eed7d": {
     "message": "Fördröj inlägg"
   },
@@ -436,6 +445,9 @@
   },
   "dismiss_dacdb625": {
     "message": "Avfärda"
+  },
+  "dismiss_invitation_to_name_a650b2c4": {
+    "message": "Avvisa inbjudan till { name }"
   },
   "dismiss_name_8646b9fd": {
     "message": "Avfärda { name }"
@@ -593,6 +605,9 @@
   "filter_submissions_81bc50de": {
     "message": "Filtrera inlämningar"
   },
+  "final_grade_4d7f6545": {
+    "message": "Slutbetyg"
+  },
   "for_974cbb84": {
     "message": "Till"
   },
@@ -656,6 +671,9 @@
   "haven_t_submitted_yet_3a127a27": {
     "message": "Har inte lämnat in ännu"
   },
+  "help_4c4968b1": {
+    "message": "Hjälp"
+  },
   "hidden_files_inside_will_be_available_with_links_e9e3d233": {
     "message": "Dold. Filer inuti kommer bli tllgänliga med länkar."
   },
@@ -688,6 +706,12 @@
   },
   "invalid_field_54480fae": {
     "message": "Ogiltigt fält"
+  },
+  "invite_accepted_290abc90": {
+    "message": "Inbjudan accepterades!"
+  },
+  "invite_declined_d0a9e398": {
+    "message": "Inbjudan avböjd!"
   },
   "italic_ac45200a": {
     "message": "Italic"
@@ -730,9 +754,6 @@
   },
   "long_description_7d89285c": {
     "message": "Lång beskrivning"
-  },
-  "mail_is_unavailable_on_your_device_fb52a13c": {
-    "message": "E-post är otillgänglig på din enhet."
   },
   "mark_all_as_read_8f3bdf57": {
     "message": "Markera alla som lästa"
@@ -793,6 +814,9 @@
   },
   "new_13daf639": {
     "message": "Ny"
+  },
+  "new_announcement_23af4598": {
+    "message": "Nytt meddelande"
   },
   "new_discussion_dae4fae3": {
     "message": "Ny diskussion"
@@ -953,6 +977,9 @@
   "pass_8abee039": {
     "message": "Pass"
   },
+  "past_enrollments_a846da48": {
+    "message": "Tidigare registreringar"
+  },
   "people_b4ebb13c": {
     "message": "Personer"
   },
@@ -976,6 +1003,9 @@
   },
   "points_number_out_of_totalpoints_number_291efb47": {
     "message": "{ points, number } av { totalPoints, number }"
+  },
+  "points_number_pts_cc4a4a59": {
+    "message": "{ points, number }poäng"
   },
   "points_possible_must_be_a_number_4a592dc6": {
     "message": "Möjliga poäng måste vara ett nummer"
@@ -1076,6 +1106,9 @@
   "report_a_problem_4d48624a": {
     "message": "Rapportera ett problem"
   },
+  "request_a_feature_3c8e2079": {
+    "message": "Begär en funktion"
+  },
   "require_an_access_code_46a02601": {
     "message": "Kräv en tillgångskod"
   },
@@ -1135,9 +1168,6 @@
   },
   "see_all_ffa422ef": {
     "message": "Se alla"
-  },
-  "select_a_course_40bc3229": {
-    "message": "Välj en kurs"
   },
   "select_a_course_4710371f": {
     "message": "Välj en kurs"
@@ -1214,6 +1244,9 @@
   "subject_114b2e98": {
     "message": "Ämne"
   },
+  "submission_comment_873e8f1c": {
+    "message": "inlämnings kommentar"
+  },
   "submission_settings_f57b0cf8": {
     "message": "Inlämningsinställningar"
   },
@@ -1261,6 +1294,9 @@
   },
   "teachers_and_students_ba2db3e4": {
     "message": "Lärare och studenter"
+  },
+  "terms_of_use_62ee73ad": {
+    "message": "Användarvillkor"
   },
   "terms_of_use_6542769b": {
     "message": "Användarvillkor"
@@ -1325,8 +1361,14 @@
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
     "message": "Det uppstod ett problem vid laddning av quizzes."
   },
+  "there_was_a_problem_retreiving_the_terms_of_use_3a5fa00c": {
+    "message": "Det gick inte att återställa användarvillkoren"
+  },
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "Ett fel uppstod vid laddning av bilagan."
+  },
+  "there_was_an_error_loading_the_file_19deb988": {
+    "message": "Det uppstod ett fel då filen laddas"
   },
   "there_was_an_error_loading_the_file_a046378e": {
     "message": "Ett fel uppstod vid laddning av filen."
@@ -1417,9 +1459,6 @@
   },
   "un_starred_8fef021f": {
     "message": "Ej stjärnmärkta"
-  },
-  "unavailable_46d2c344": {
-    "message": "Otillgänglig"
   },
   "undo_a7be8fef": {
     "message": "Ångra"
@@ -1528,6 +1567,9 @@
   },
   "yes_dde87d5": {
     "message": "Ja"
+  },
+  "you_have_been_invited_a724be1a": {
+    "message": "Du har blivit inbjuden"
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "Du måste aktivera kamera- och mikrofonbehörigheter i Inställningar för att kunna använda kameran."

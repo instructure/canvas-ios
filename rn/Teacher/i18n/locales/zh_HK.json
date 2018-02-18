@@ -14,6 +14,9 @@
   "a_title_is_required_71222850": {
     "message": "標題為必填"
   },
+  "accept_2fdd362e": {
+    "message": "接受"
+  },
   "access_9a94f04e": {
     "message": "訪問"
   },
@@ -22,6 +25,9 @@
   },
   "account_group_cb00ca73": {
     "message": "帳戶群組"
+  },
+  "account_has_no_terms_of_use_1048a785": {
+    "message": "帳戶未有使用條款"
   },
   "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
     "message": "”作為”本質上是以此使用者身份登錄，沒有密碼。您將能夠進行任何操作，就好像您就是此使用者一樣，並且，其他使用者也會認為是此使用者執行了操作。然而，審計日誌會記錄事實，即您是代表此使用者執行操作的人。"
@@ -308,7 +314,7 @@
   "complete_incomplete_15b3a89c": {
     "message": "完成/未完成"
   },
-  "compose_message_45002196": {
+  "compose_message_8abd180a": {
     "message": "編輯訊息"
   },
   "conversation_options_8be926f3": {
@@ -389,6 +395,9 @@
   "date_date_mmm_d_date_time_short_e82719d6": {
     "message": "{ date, date, 'MMM d' } { date, time, short }"
   },
+  "decline_7eeb5ff4": {
+    "message": "拒絕"
+  },
   "delay_posting_f45eed7d": {
     "message": "延遲發佈"
   },
@@ -436,6 +445,9 @@
   },
   "dismiss_dacdb625": {
     "message": "解除"
+  },
+  "dismiss_invitation_to_name_a650b2c4": {
+    "message": "解除 { name } 的邀請"
   },
   "dismiss_name_8646b9fd": {
     "message": "解除 { name }"
@@ -593,6 +605,9 @@
   "filter_submissions_81bc50de": {
     "message": "篩選器所選項目"
   },
+  "final_grade_4d7f6545": {
+    "message": "最終評分"
+  },
   "for_974cbb84": {
     "message": "對於"
   },
@@ -656,6 +671,9 @@
   "haven_t_submitted_yet_3a127a27": {
     "message": "尚未提交"
   },
+  "help_4c4968b1": {
+    "message": "支援"
+  },
   "hidden_files_inside_will_be_available_with_links_e9e3d233": {
     "message": "已隱藏。透過連結可獲取裡面的檔案。"
   },
@@ -688,6 +706,12 @@
   },
   "invalid_field_54480fae": {
     "message": "無效字段"
+  },
+  "invite_accepted_290abc90": {
+    "message": "接受邀請！"
+  },
+  "invite_declined_d0a9e398": {
+    "message": "拒絕邀請！"
   },
   "italic_ac45200a": {
     "message": "斜體"
@@ -730,9 +754,6 @@
   },
   "long_description_7d89285c": {
     "message": "完整描述"
-  },
-  "mail_is_unavailable_on_your_device_fb52a13c": {
-    "message": "郵件在您的設備上不可用。"
   },
   "mark_all_as_read_8f3bdf57": {
     "message": "全部標記為已讀"
@@ -793,6 +814,9 @@
   },
   "new_13daf639": {
     "message": "新"
+  },
+  "new_announcement_23af4598": {
+    "message": "新通告"
   },
   "new_discussion_dae4fae3": {
     "message": "新討論區"
@@ -953,6 +977,9 @@
   "pass_8abee039": {
     "message": "合格"
   },
+  "past_enrollments_a846da48": {
+    "message": "過去的註冊"
+  },
   "people_b4ebb13c": {
     "message": "人"
   },
@@ -976,6 +1003,9 @@
   },
   "points_number_out_of_totalpoints_number_291efb47": {
     "message": "{ points, number } 總分{ totalPoints, number }"
+  },
+  "points_number_pts_cc4a4a59": {
+    "message": "{ points, number } 分"
   },
   "points_possible_must_be_a_number_4a592dc6": {
     "message": "可能的分數必須是數字"
@@ -1076,6 +1106,9 @@
   "report_a_problem_4d48624a": {
     "message": "報告問題"
   },
+  "request_a_feature_3c8e2079": {
+    "message": "請求功能"
+  },
   "require_an_access_code_46a02601": {
     "message": "需要訪問碼"
   },
@@ -1135,9 +1168,6 @@
   },
   "see_all_ffa422ef": {
     "message": "檢視所有"
-  },
-  "select_a_course_40bc3229": {
-    "message": "選擇課程"
   },
   "select_a_course_4710371f": {
     "message": "選擇課程"
@@ -1214,6 +1244,9 @@
   "subject_114b2e98": {
     "message": "課程"
   },
+  "submission_comment_873e8f1c": {
+    "message": "提交項目評論"
+  },
   "submission_settings_f57b0cf8": {
     "message": "提交項目設定"
   },
@@ -1261,6 +1294,9 @@
   },
   "teachers_and_students_ba2db3e4": {
     "message": "教師和學生"
+  },
+  "terms_of_use_62ee73ad": {
+    "message": "使用條款"
   },
   "terms_of_use_6542769b": {
     "message": "使用條款"
@@ -1325,8 +1361,14 @@
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
     "message": "載入測驗時發生問題。"
   },
+  "there_was_a_problem_retreiving_the_terms_of_use_3a5fa00c": {
+    "message": "取得使用條款時出現問題。"
+  },
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "載入附件時出現錯誤。"
+  },
+  "there_was_an_error_loading_the_file_19deb988": {
+    "message": "載入檔案時出現錯誤"
   },
   "there_was_an_error_loading_the_file_a046378e": {
     "message": "載入檔案時出現錯誤。"
@@ -1417,9 +1459,6 @@
   },
   "un_starred_8fef021f": {
     "message": "移除星號"
-  },
-  "unavailable_46d2c344": {
-    "message": "不可用"
   },
   "undo_a7be8fef": {
     "message": "撤銷"
@@ -1528,6 +1567,9 @@
   },
   "yes_dde87d5": {
     "message": "是"
+  },
+  "you_have_been_invited_a724be1a": {
+    "message": "您已被邀請"
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "您必須在設定中啟用攝像頭和麥克風的權限才能使用攝影機。"

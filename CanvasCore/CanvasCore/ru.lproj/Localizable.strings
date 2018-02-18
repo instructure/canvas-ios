@@ -120,6 +120,9 @@
 "Choose your answers below" = "Выберите несколько из представленных ниже вариантов ответов";
 
 /* No comment provided by engineer. */
+"Collapse" = "Свернуть";
+
+/* No comment provided by engineer. */
 "Comments" = "Комментарии";
 
 /* File upload completed */
@@ -230,6 +233,9 @@
 "Error loading cache management database." = "Ошибка при загрузке базы данных управления кэшем.";
 
 /* No comment provided by engineer. */
+"Error loading course." = "Ошибка загрузки курса.";
+
+/* No comment provided by engineer. */
 "Error parsing the Roll Call response. Expected (e), received (a)" = "Ошибка при анализе ответа проверки присутствия. Ожидалось (e), получено (a)";
 
 /* No comment provided by engineer. */
@@ -249,6 +255,9 @@
 
 /* Exit button to leave the quiz */
 "Exit" = "Выход";
+
+/* No comment provided by engineer. */
+"Expand" = "Развернуть";
 
 /* Error message when the server returns a invalid response */
 "Expected a response in the 200-299 range. Got %@" = "Ожидался ответ в диапазоне 200-299. Получено %@";
@@ -301,6 +310,9 @@
 /* Mark student late
    Student is present in class */
 "Late" = "Поздно";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "Запуск внешнего инструмента";
 
 /* Leave the quiz */
 "Leave" = "Оставить";

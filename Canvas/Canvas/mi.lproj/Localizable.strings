@@ -405,6 +405,9 @@
 /* (No Comment) */
 "Customize" = "Whakaritea";
 
+/* dashboard page title */
+"Dashboard" = "Papatohu";
+
 /* (No Comment) */
 "Delete" = "Mukua";
 
@@ -521,6 +524,9 @@
 
 /* (No Comment) */
 "Error deleting folder" = "kōpaki te muku Hapa";
+
+/* No comment provided by engineer. */
+"Error loading course." = "He hapa i te wā e uta ana i te akoranga.";
 
 /* (No Comment) */
 "Event" = "Takahanga";
@@ -1210,6 +1216,9 @@
 
 /* (No Comment) */
 "Text entry" = "tāurunga Kuputuhi";
+
+/* No comment provided by engineer. */
+"That page has been disabled for this course" = "Kua monokia taua whārangi mō tēnei akoranga";
 
 /* (No Comment) */
 "The recipients could not be added. Please try again. (%@)" = "e kore i taea te tāpiri i te kaiwhiwhi. Koa ngana anō. (%@)";

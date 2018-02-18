@@ -1,4 +1,10 @@
 /* (No Comment) */
+"CFBundleDisplayName" = "Pwofesè";
+
+/* (No Comment) */
+"CFBundleName" = "$(PRODUCT_NAME)";
+
+/* (No Comment) */
 "NSCameraUsageDescription" = "Ajoute foto ak videyo nan kòmantè soumisyon yo.";
 
 /* (No Comment) */

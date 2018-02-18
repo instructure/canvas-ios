@@ -405,6 +405,9 @@
 /* (No Comment) */
 "Customize" = "Настроить";
 
+/* dashboard page title */
+"Dashboard" = "Информационная панель";
+
 /* (No Comment) */
 "Delete" = "Удалить";
 
@@ -521,6 +524,9 @@
 
 /* (No Comment) */
 "Error deleting folder" = "Ошибка при удалении папки";
+
+/* No comment provided by engineer. */
+"Error loading course." = "Ошибка загрузки курса.";
 
 /* (No Comment) */
 "Event" = "Событие";
@@ -1210,6 +1216,9 @@
 
 /* (No Comment) */
 "Text entry" = "Текстовая запись";
+
+/* No comment provided by engineer. */
+"That page has been disabled for this course" = "Эта страница отключена для этого курса";
 
 /* (No Comment) */
 "The recipients could not be added. Please try again. (%@)" = "Получатели не могут быть добавлены. Пожалуйста, попробуйте еще раз. (%@)";

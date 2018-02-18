@@ -120,6 +120,9 @@
 "Choose your answers below" = "Velg svarene dine nedenfor";
 
 /* No comment provided by engineer. */
+"Collapse" = "Skjul";
+
+/* No comment provided by engineer. */
 "Comments" = "Kommentarer";
 
 /* File upload completed */
@@ -230,6 +233,9 @@
 "Error loading cache management database." = "Feil med lasting av hurtiglager administrasjonsdatabase.";
 
 /* No comment provided by engineer. */
+"Error loading course." = "Kunne ikke laste inn emne.";
+
+/* No comment provided by engineer. */
 "Error parsing the Roll Call response. Expected (e), received (a)" = "Feil ved parsering av svar på opprop. Forventet (e), mottatt (a)";
 
 /* No comment provided by engineer. */
@@ -249,6 +255,9 @@
 
 /* Exit button to leave the quiz */
 "Exit" = "Avslutt";
+
+/* No comment provided by engineer. */
+"Expand" = "Utvid";
 
 /* Error message when the server returns a invalid response */
 "Expected a response in the 200-299 range. Got %@" = "Forventet et svar i området 200-299. Fikk %@";
@@ -301,6 +310,9 @@
 /* Mark student late
    Student is present in class */
 "Late" = "Sent";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "Åpne eksternt verktøy";
 
 /* Leave the quiz */
 "Leave" = "Forlate";

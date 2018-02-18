@@ -14,6 +14,9 @@
   "a_title_is_required_71222850": {
     "message": "タイトルは必須です"
   },
+  "accept_2fdd362e": {
+    "message": "受諾"
+  },
   "access_9a94f04e": {
     "message": "アクセス"
   },
@@ -22,6 +25,9 @@
   },
   "account_group_cb00ca73": {
     "message": "アカウントグループ"
+  },
+  "account_has_no_terms_of_use_1048a785": {
+    "message": "アカウントに使用条件なし"
   },
   "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
     "message": "\"Act as\" は、基本的にこのユーザーとしてパスワードなしでログインしているということです。他のユーザーの視点からは、あたかもあなたがこのユーザーであるかのように、また、どんなアクションもあたかもこのユーザーが実行したかのようにすることができます。ただし、監査ログには、このユーザーの代わりにアクションを実行したのは、あなた だったと記録されます。"
@@ -308,8 +314,8 @@
   "complete_incomplete_15b3a89c": {
     "message": "完了/未完了"
   },
-  "compose_message_45002196": {
-    "message": "メッセージを作成する"
+  "compose_message_8abd180a": {
+    "message": "メッセージを作成"
   },
   "conversation_options_8be926f3": {
     "message": "会話のオプション"
@@ -389,6 +395,9 @@
   "date_date_mmm_d_date_time_short_e82719d6": {
     "message": "{ date, date, 'MMM d' } { date, time, short }"
   },
+  "decline_7eeb5ff4": {
+    "message": "辞退する"
+  },
   "delay_posting_f45eed7d": {
     "message": "転記遅延"
   },
@@ -436,6 +445,9 @@
   },
   "dismiss_dacdb625": {
     "message": "却下する"
+  },
+  "dismiss_invitation_to_name_a650b2c4": {
+    "message": "{ name }への招待を断る"
   },
   "dismiss_name_8646b9fd": {
     "message": "却下する { name }"
@@ -593,6 +605,9 @@
   "filter_submissions_81bc50de": {
     "message": "フィルターを提出"
   },
+  "final_grade_4d7f6545": {
+    "message": "最終的な成績"
+  },
   "for_974cbb84": {
     "message": "対象"
   },
@@ -656,6 +671,9 @@
   "haven_t_submitted_yet_3a127a27": {
     "message": "まだ提出されていません"
   },
+  "help_4c4968b1": {
+    "message": "ヘルプ"
+  },
   "hidden_files_inside_will_be_available_with_links_e9e3d233": {
     "message": "非表示。内部のファイルはリンクで利用可能となります。"
   },
@@ -688,6 +706,12 @@
   },
   "invalid_field_54480fae": {
     "message": "無効なフィールド"
+  },
+  "invite_accepted_290abc90": {
+    "message": "招待が受け入れられました！"
+  },
+  "invite_declined_d0a9e398": {
+    "message": "招待が拒否されました！"
   },
   "italic_ac45200a": {
     "message": "イタリック体"
@@ -730,9 +754,6 @@
   },
   "long_description_7d89285c": {
     "message": "長い説明"
-  },
-  "mail_is_unavailable_on_your_device_fb52a13c": {
-    "message": "お使いのデバイスではメールが利用できません。"
   },
   "mark_all_as_read_8f3bdf57": {
     "message": "すべて既読にする"
@@ -793,6 +814,9 @@
   },
   "new_13daf639": {
     "message": "新規作成"
+  },
+  "new_announcement_23af4598": {
+    "message": "新規発表"
   },
   "new_discussion_dae4fae3": {
     "message": "新しいディスカッション"
@@ -953,6 +977,9 @@
   "pass_8abee039": {
     "message": "合格"
   },
+  "past_enrollments_a846da48": {
+    "message": "過去の登録"
+  },
   "people_b4ebb13c": {
     "message": "人"
   },
@@ -976,6 +1003,9 @@
   },
   "points_number_out_of_totalpoints_number_291efb47": {
     "message": "{ points, number } 中{ totalPoints, number }"
+  },
+  "points_number_pts_cc4a4a59": {
+    "message": "{ points, number }ポイント"
   },
   "points_possible_must_be_a_number_4a592dc6": {
     "message": "配点は数値で入力してください"
@@ -1076,6 +1106,9 @@
   "report_a_problem_4d48624a": {
     "message": "問題を報告する"
   },
+  "request_a_feature_3c8e2079": {
+    "message": "機能をリクエストする"
+  },
   "require_an_access_code_46a02601": {
     "message": "アクセスコードが必要"
   },
@@ -1135,9 +1168,6 @@
   },
   "see_all_ffa422ef": {
     "message": "すべてを見る"
-  },
-  "select_a_course_40bc3229": {
-    "message": "コースを選択する"
   },
   "select_a_course_4710371f": {
     "message": "コースを選択する"
@@ -1214,6 +1244,9 @@
   "subject_114b2e98": {
     "message": "件名"
   },
+  "submission_comment_873e8f1c": {
+    "message": "コメント提出"
+  },
   "submission_settings_f57b0cf8": {
     "message": "投稿の設定"
   },
@@ -1261,6 +1294,9 @@
   },
   "teachers_and_students_ba2db3e4": {
     "message": "講師と受講生"
+  },
+  "terms_of_use_62ee73ad": {
+    "message": "利用規約/使用条件"
   },
   "terms_of_use_6542769b": {
     "message": "利用規約"
@@ -1325,8 +1361,14 @@
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
     "message": "クイズを読み込み中、問題がありました。."
   },
+  "there_was_a_problem_retreiving_the_terms_of_use_3a5fa00c": {
+    "message": "利用規約を読み込み中に問題が発生しました"
+  },
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "添付読み込み中にエラーが発生しました。"
+  },
+  "there_was_an_error_loading_the_file_19deb988": {
+    "message": "ファイル読み込み中にエラーが発生しました"
   },
   "there_was_an_error_loading_the_file_a046378e": {
     "message": "ファイル読み込み中にエラーが発生しました。"
@@ -1417,9 +1459,6 @@
   },
   "un_starred_8fef021f": {
     "message": "スターなし"
-  },
-  "unavailable_46d2c344": {
-    "message": "利用不可能"
   },
   "undo_a7be8fef": {
     "message": "アンドゥーする"
@@ -1528,6 +1567,9 @@
   },
   "yes_dde87d5": {
     "message": "はい"
+  },
+  "you_have_been_invited_a724be1a": {
+    "message": "あなたは招待されています"
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "カメラを使用するには、「設定」でカメラとマイクの許可を有効にしなければなりません。"

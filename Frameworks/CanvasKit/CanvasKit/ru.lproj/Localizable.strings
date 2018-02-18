@@ -17,5 +17,5 @@
 "Username" = "Имя пользователя";
 
 /* No comment provided by engineer. */
-"You are not authorized to perform this action." = "У вас нет полномочий для совершения данного действия.";
+"You are not authorized to perform this action." = "У вас нет прав для выполнения этого действия.";
 

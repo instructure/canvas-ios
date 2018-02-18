@@ -14,6 +14,9 @@
   "a_title_is_required_71222850": {
     "message": "En titel er påkrævet"
   },
+  "accept_2fdd362e": {
+    "message": "Acceptér"
+  },
   "access_9a94f04e": {
     "message": "Adgang"
   },
@@ -22,6 +25,9 @@
   },
   "account_group_cb00ca73": {
     "message": "Kontogruppe"
+  },
+  "account_has_no_terms_of_use_1048a785": {
+    "message": "Kontoen har ingen Betingelser for brug"
   },
   "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
     "message": "\"Funger som\" betyder i bund og grund, at du logger ind som denne bruger uden adgangskode. Du kan foretage dig alt, som om du var denne bruger, og for andre brugere er det lige som om, det var denne bruger, der gjorde det. Dog registrerer audit-logs, at det faktisk var dig, der udførte handlingerne på vegne af denne bruger."
@@ -308,7 +314,7 @@
   "complete_incomplete_15b3a89c": {
     "message": "Fuldstændig/ufuldstændig"
   },
-  "compose_message_45002196": {
+  "compose_message_8abd180a": {
     "message": "Skriv besked"
   },
   "conversation_options_8be926f3": {
@@ -389,6 +395,9 @@
   "date_date_mmm_d_date_time_short_e82719d6": {
     "message": "{ date, date, 'MMM d' } { date, time, short }"
   },
+  "decline_7eeb5ff4": {
+    "message": "Afvis"
+  },
   "delay_posting_f45eed7d": {
     "message": "Forsink indlæg"
   },
@@ -436,6 +445,9 @@
   },
   "dismiss_dacdb625": {
     "message": "Afvis"
+  },
+  "dismiss_invitation_to_name_a650b2c4": {
+    "message": "Afvis invitation til { name }"
   },
   "dismiss_name_8646b9fd": {
     "message": "Afvis { name }"
@@ -593,6 +605,9 @@
   "filter_submissions_81bc50de": {
     "message": "Filtrer afleveringer"
   },
+  "final_grade_4d7f6545": {
+    "message": "Endelig karakter"
+  },
   "for_974cbb84": {
     "message": "Til"
   },
@@ -656,6 +671,9 @@
   "haven_t_submitted_yet_3a127a27": {
     "message": "Er ikke blevet indsendt endnu"
   },
+  "help_4c4968b1": {
+    "message": "Hjælp"
+  },
   "hidden_files_inside_will_be_available_with_links_e9e3d233": {
     "message": "Skjult. Filerne inde i vil være tilgængelige med links."
   },
@@ -688,6 +706,12 @@
   },
   "invalid_field_54480fae": {
     "message": "Ugyldigt felt"
+  },
+  "invite_accepted_290abc90": {
+    "message": "Invitation accepteret!"
+  },
+  "invite_declined_d0a9e398": {
+    "message": "Invitation afvist!"
   },
   "italic_ac45200a": {
     "message": "Kursiv"
@@ -730,9 +754,6 @@
   },
   "long_description_7d89285c": {
     "message": "Lang beskrivelse"
-  },
-  "mail_is_unavailable_on_your_device_fb52a13c": {
-    "message": "Mail er ikke tilgængelig på din enhed."
   },
   "mark_all_as_read_8f3bdf57": {
     "message": "Markér alle som \"læst\""
@@ -793,6 +814,9 @@
   },
   "new_13daf639": {
     "message": "Ny"
+  },
+  "new_announcement_23af4598": {
+    "message": "Ny besked"
   },
   "new_discussion_dae4fae3": {
     "message": "Ny diskussion"
@@ -953,6 +977,9 @@
   "pass_8abee039": {
     "message": "Bestået"
   },
+  "past_enrollments_a846da48": {
+    "message": "Tidligere tilmeldinger"
+  },
   "people_b4ebb13c": {
     "message": "Personer"
   },
@@ -976,6 +1003,9 @@
   },
   "points_number_out_of_totalpoints_number_291efb47": {
     "message": "{ points, number } ud af { totalPoints, number }"
+  },
+  "points_number_pts_cc4a4a59": {
+    "message": "{ points, number }point"
   },
   "points_possible_must_be_a_number_4a592dc6": {
     "message": "Mulige point skal være et tal"
@@ -1076,6 +1106,9 @@
   "report_a_problem_4d48624a": {
     "message": "Rapporter et problem"
   },
+  "request_a_feature_3c8e2079": {
+    "message": "Anmod om en funktion"
+  },
   "require_an_access_code_46a02601": {
     "message": "Kræv en adgangskode"
   },
@@ -1135,9 +1168,6 @@
   },
   "see_all_ffa422ef": {
     "message": "Se alle"
-  },
-  "select_a_course_40bc3229": {
-    "message": "Vælg et fag"
   },
   "select_a_course_4710371f": {
     "message": "Vælg et fag"
@@ -1214,6 +1244,9 @@
   "subject_114b2e98": {
     "message": "Emne"
   },
+  "submission_comment_873e8f1c": {
+    "message": "afleveringskommentar"
+  },
   "submission_settings_f57b0cf8": {
     "message": "Afleveringsindstillinger"
   },
@@ -1261,6 +1294,9 @@
   },
   "teachers_and_students_ba2db3e4": {
     "message": "Lærere og studerende"
+  },
+  "terms_of_use_62ee73ad": {
+    "message": "Betingelser for brug"
   },
   "terms_of_use_6542769b": {
     "message": "Betingelser for brug"
@@ -1325,8 +1361,14 @@
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
     "message": "Der opstod et problem ved indlæsning af quizzer."
   },
+  "there_was_a_problem_retreiving_the_terms_of_use_3a5fa00c": {
+    "message": "Der opstod et problem ved hentning af Betingelser for brug"
+  },
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "Der opstod en fejl under indlæsning af den vedhæftede fil."
+  },
+  "there_was_an_error_loading_the_file_19deb988": {
+    "message": "Der opstod en fejl ved indlæsning af filen"
   },
   "there_was_an_error_loading_the_file_a046378e": {
     "message": "Der opstod en fejl ved indlæsning af filen."
@@ -1417,9 +1459,6 @@
   },
   "un_starred_8fef021f": {
     "message": "Uden stjerne"
-  },
-  "unavailable_46d2c344": {
-    "message": "Ikke tilgængelig"
   },
   "undo_a7be8fef": {
     "message": "Fortryd"
@@ -1528,6 +1567,9 @@
   },
   "yes_dde87d5": {
     "message": "Ja"
+  },
+  "you_have_been_invited_a724be1a": {
+    "message": "Du er blevet inviteret"
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "Du skal aktivere kamera- og mikrofonrettigheder i Indstillinger for at bruge kameraet."

@@ -405,6 +405,9 @@
 /* (No Comment) */
 "Customize" = "Anpassa";
 
+/* dashboard page title */
+"Dashboard" = "Översikt";
+
 /* (No Comment) */
 "Delete" = "Ta bort";
 
@@ -521,6 +524,9 @@
 
 /* (No Comment) */
 "Error deleting folder" = "Fel när mappen togs bort";
+
+/* No comment provided by engineer. */
+"Error loading course." = "Fel vid laddning av kurs.";
 
 /* (No Comment) */
 "Event" = "Händelse";
@@ -1210,6 +1216,9 @@
 
 /* (No Comment) */
 "Text entry" = "Textinlägg";
+
+/* No comment provided by engineer. */
+"That page has been disabled for this course" = "Sidan har avaktiverats för den här kursen";
 
 /* (No Comment) */
 "The recipients could not be added. Please try again. (%@)" = "Mottagarna kunde inte läggas till. Försök igen. (%@)";

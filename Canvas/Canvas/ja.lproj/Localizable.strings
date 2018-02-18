@@ -405,6 +405,9 @@
 /* (No Comment) */
 "Customize" = "カスタマイズする";
 
+/* dashboard page title */
+"Dashboard" = "ダッシュボード";
+
 /* (No Comment) */
 "Delete" = "消去する";
 
@@ -521,6 +524,9 @@
 
 /* (No Comment) */
 "Error deleting folder" = "フォルダの消去中にエラーが発生しました";
+
+/* No comment provided by engineer. */
+"Error loading course." = "コースの読み込み中にエラー。";
 
 /* (No Comment) */
 "Event" = "イベント";
@@ -1210,6 +1216,9 @@
 
 /* (No Comment) */
 "Text entry" = "テキストの入力";
+
+/* No comment provided by engineer. */
+"That page has been disabled for this course" = "そのページは、このコースに対して無効になっています";
 
 /* (No Comment) */
 "The recipients could not be added. Please try again. (%@)" = "受信者を追加することができませんでした。時間をおいて再度お試しください。(%@)";

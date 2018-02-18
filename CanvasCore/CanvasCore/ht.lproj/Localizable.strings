@@ -120,6 +120,9 @@
 "Choose your answers below" = "Chwazi repons ou yo pi ba a";
 
 /* No comment provided by engineer. */
+"Collapse" = "Redwi";
+
+/* No comment provided by engineer. */
 "Comments" = "Kòmantè";
 
 /* File upload completed */
@@ -230,6 +233,9 @@
 "Error loading cache management database." = "Erè nan chajman baz de done jesyon kache.";
 
 /* No comment provided by engineer. */
+"Error loading course." = "Erè nan telechajman kou an.";
+
+/* No comment provided by engineer. */
 "Error parsing the Roll Call response. Expected (e), received (a)" = "Erè pandan analiz repons Apèl Nominal la. Espere (e), resevwa (a)";
 
 /* No comment provided by engineer. */
@@ -249,6 +255,9 @@
 
 /* Exit button to leave the quiz */
 "Exit" = "Soti";
+
+/* No comment provided by engineer. */
+"Expand" = "Elaji";
 
 /* Error message when the server returns a invalid response */
 "Expected a response in the 200-299 range. Got %@" = "Atann yon repons nan gam 200-299. Jwenn %@";
@@ -301,6 +310,9 @@
 /* Mark student late
    Student is present in class */
 "Late" = "An reta";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "Lanse Zouti Eksteryè";
 
 /* Leave the quiz */
 "Leave" = "Sòti";

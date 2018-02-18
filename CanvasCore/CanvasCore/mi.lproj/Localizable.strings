@@ -120,6 +120,9 @@
 "Choose your answers below" = "Whiriwhiri ō whakautu i raro";
 
 /* No comment provided by engineer. */
+"Collapse" = "Hinga";
+
+/* No comment provided by engineer. */
 "Comments" = "Ngā kōrero";
 
 /* File upload completed */
@@ -230,6 +233,9 @@
 "Error loading cache management database." = "Hapa uta whakahaere keteroki pātengi raraunga.";
 
 /* No comment provided by engineer. */
+"Error loading course." = "He hapa i te wā e uta ana i te akoranga.";
+
+/* No comment provided by engineer. */
 "Error parsing the Roll Call response. Expected (e), received (a)" = "Hapa e poroporo ana te whakautu a te Roll Call I tūmanakohia (e), i taea (a)";
 
 /* No comment provided by engineer. */
@@ -249,6 +255,9 @@
 
 /* Exit button to leave the quiz */
 "Exit" = "Puta";
+
+/* No comment provided by engineer. */
+"Expand" = "whakawhānui";
 
 /* Error message when the server returns a invalid response */
 "Expected a response in the 200-299 range. Got %@" = "Te whakahoki i tūmanakohia i roto i te  200-299 tawhititanga. I whiwhia %@";
@@ -301,6 +310,9 @@
 /* Mark student late
    Student is present in class */
 "Late" = "Tūreiti";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "Neke Taputapu Waho";
 
 /* Leave the quiz */
 "Leave" = "Wehe atu";

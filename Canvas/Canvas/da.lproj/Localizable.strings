@@ -405,6 +405,9 @@
 /* (No Comment) */
 "Customize" = "Brugertilpasset";
 
+/* dashboard page title */
+"Dashboard" = "Oversigt";
+
 /* (No Comment) */
 "Delete" = "Slet";
 
@@ -521,6 +524,9 @@
 
 /* (No Comment) */
 "Error deleting folder" = "Fejl ved sletning af mapper";
+
+/* No comment provided by engineer. */
+"Error loading course." = "Fejl ved indlæsning af fag.";
 
 /* (No Comment) */
 "Event" = "Begivenhed";
@@ -1210,6 +1216,9 @@
 
 /* (No Comment) */
 "Text entry" = "Tekst indsendelse";
+
+/* No comment provided by engineer. */
+"That page has been disabled for this course" = "Den pågældende side er blevet deaktiveret for dette fag";
 
 /* (No Comment) */
 "The recipients could not be added. Please try again. (%@)" = "Modtagerne kunne ikke tilføjes. Prøv venligst igen. (%@)";

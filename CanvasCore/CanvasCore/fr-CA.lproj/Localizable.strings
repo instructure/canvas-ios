@@ -120,6 +120,9 @@
 "Choose your answers below" = "Choisissez vos réponses ci-dessous";
 
 /* No comment provided by engineer. */
+"Collapse" = "Réduire";
+
+/* No comment provided by engineer. */
 "Comments" = "Commentaires";
 
 /* File upload completed */
@@ -230,6 +233,9 @@
 "Error loading cache management database." = "Erreur de chargement de la base de données de gestion de mémoire cache.";
 
 /* No comment provided by engineer. */
+"Error loading course." = "Erreur lors du chargement du cours.";
+
+/* No comment provided by engineer. */
 "Error parsing the Roll Call response. Expected (e), received (a)" = "Erreur lors de l'analyse de la réponse d'appel nominal. Attendu (e), reçu (a)";
 
 /* No comment provided by engineer. */
@@ -249,6 +255,9 @@
 
 /* Exit button to leave the quiz */
 "Exit" = "Quitter";
+
+/* No comment provided by engineer. */
+"Expand" = "Développer";
 
 /* Error message when the server returns a invalid response */
 "Expected a response in the 200-299 range. Got %@" = "Réponse attendue dans la fourchette 200-299. Indiqué : %@";
@@ -301,6 +310,9 @@
 /* Mark student late
    Student is present in class */
 "Late" = "En retard";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "Lancer l'outil externe";
 
 /* Leave the quiz */
 "Leave" = "Quitter";
