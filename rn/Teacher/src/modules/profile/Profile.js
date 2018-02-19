@@ -200,7 +200,7 @@ export class Profile extends Component<Object, State> {
               { isStudent && buildRow(i18n('Files'), this.userFiles) }
               { externalTools.length > 0 && externalTools.map((externalTool) => buildRow(externalTool.title, () => { this.launchExternalTool(externalTool) })) }
               { (this.props.canMasquerade || masquerading) && buildRow(masqueradeTitle, this.toggleMasquerade) }
-              { isStudent && buildRow('Show Grades', null, { onValueChange: this.toggleShowGrades, value: this.props.showsGradesOnCourseCards }) }
+              { isStudent && buildRow(i18n('Show Grades'), null, { onValueChange: this.toggleShowGrades, value: this.props.showsGradesOnCourseCards }) }
               { buildRow(i18n('Help'), this.showHelpMenu) }
               { !masquerading && buildRow(i18n('Change User'), this.switchUser) }
               { !masquerading && buildRow(i18n('Log Out'), this.logout) }

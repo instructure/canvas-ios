@@ -29,6 +29,9 @@
   "account_has_no_terms_of_use_1048a785": {
     "message": "帳戶未有使用條款"
   },
+  "show_grades_8680e38e": {
+    "message": "顯示等級"
+  },
   "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
     "message": "”作為”本質上是以此使用者身份登錄，沒有密碼。您將能夠進行任何操作，就好像您就是此使用者一樣，並且，其他使用者也會認為是此使用者執行了操作。然而，審計日誌會記錄事實，即您是代表此使用者執行操作的人。"
   },

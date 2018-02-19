@@ -74,7 +74,7 @@ class MasqueradeOverlay: UIView {
         button.addTarget(self, action: #selector(endMasquerade), for: .touchUpInside)
         button.backgroundColor = .white
         button.clipsToBounds = true
-        button.accessibilityLabel = NSLocalizedString("End Act as User", comment: "")
+        button.accessibilityLabel = NSLocalizedString("End Act as User", tableName: nil, bundle: .core, value: "End Act as User", comment: "")
         return button
     }()
     
@@ -133,17 +133,18 @@ class MasqueradeOverlay: UIView {
     
     func endMasquerade() {
         guard let viewController = UIApplication.shared.delegate?.topViewController else { return }
-        var message = NSLocalizedString("You will stop acting as this user and return to your account.", comment: "")
+        var message = NSLocalizedString("You will stop acting as this user and return to your account.", tableName: nil, bundle: .core, value: "You will stop acting as this user and return to your account.", comment: "")
         if let name = CanvasKeymaster.the().currentClient?.currentUser?.name {
-            let template = NSLocalizedString("You will stop acting as %@ and return to your account.", comment: "")
+            let template = NSLocalizedString("You will stop acting as %@ and return to your account.", tableName: nil, bundle: .core, value: "You will stop acting as %@ and return to your account.", comment: "")
             message = String.localizedStringWithFormat(template, name)
         }
-        let title = NSLocalizedString("Stop acting as...", comment: "")
+        let title = NSLocalizedString("Stop acting as...", tableName: nil, bundle: .core, value: "Stop acting as...", comment: "")
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let ok = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { _ in
+        let ok = UIAlertAction(title: NSLocalizedString("OK", tableName: nil, bundle: .core, value: "OK", comment: ""), style: .default) { _ in
             NativeLoginManager.shared().stopMasquerding()
         }
-        let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil)
+        let cancelTitle = NSLocalizedString("Cancel", tableName: nil, bundle: .core, value: "Cancel", comment: "")
+        let cancel = UIAlertAction(title: cancelTitle, style: .cancel, handler: nil)
         alert.addAction(ok)
         alert.addAction(cancel)
         viewController.present(alert, animated: true)

@@ -29,6 +29,9 @@
   "account_has_no_terms_of_use_1048a785": {
     "message": "A conta não possui termos de uso"
   },
+  "show_grades_8680e38e": {
+    "message": "Mostrar Classificações"
+  },
   "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
     "message": "\"Atuar como\" é essencialmente fazer logon como esse utilizador sem uma palavra passe. Você será capaz de executar qualquer ação como se fosse este utilizador e de pontos de vista de outros utilizadores, como se este utilizador executou-as. No entanto, registos de auditoria registam que você foi o único que realizou as ações em nome desse utilizador."
   },

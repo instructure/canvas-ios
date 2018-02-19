@@ -29,6 +29,9 @@
   "account_has_no_terms_of_use_1048a785": {
     "message": "账户没有使用条款"
   },
+  "show_grades_8680e38e": {
+    "message": "显示评分"
+  },
   "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
     "message": "\"Act as\"实际上已经登录，因为该用户没有密码。您将能够使用该用户的身份执行任何操作，从其他用户的立场来看，这些操作仿佛是该用户执行的。但是，审计日志记录您是代表该用户执行操作的人。"
   },

@@ -1139,6 +1139,9 @@
   "schedule_student_availability_332154a": {
     "message": "Schedule student availability"
   },
+  "show_grades_8680e38e": {
+    "message": "Show Grades"
+  },
   "score_number_pointspossible_number_fd8705b8": {
     "message": "{ score, number }/{ pointsPossible, number }"
   },
