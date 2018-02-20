@@ -91,15 +91,12 @@
 }
 
 - (RACSignal *)signalForIndexPathsOfObjectChangesOfType:(NSKeyValueChange)changeType {
-    @weakify(self);
     RACSignal *newGroups = [[self groupsInsertedIndexSetSignal] map:^id(NSIndexSet *insertedGroups) {
         NSArray *groups = [self.groups objectsAtIndexes:insertedGroups];
         return groups;
     }];
     
     return [[[RACSignal return:self.groups] concat:newGroups] flattenMap:^__kindof RACStream *(NSArray *groups) {
-        @strongify(self);
-        
         NSArray *insertionSignalsForGroups = [[groups.rac_sequence map:^id(MLVCCollectionControllerGroup *group) {
             @weakify(group);
             return [[group rac_filteredIndexSetsForChangeType:changeType forCollectionForKeyPath:@"groupedObjects"] map:^id(NSIndexSet *indexes) {
@@ -139,7 +136,7 @@
 
 - (MLVCCollectionControllerGroup *)insertGroupForObject:(id)object
 {
-    return [self insertGroupWithGroupID:self.groupByBlock(object) title:self.groupTitleBlock(object)];
+    return (MLVCCollectionControllerGroup *)[self insertGroupWithGroupID:self.groupByBlock(object) title:self.groupTitleBlock(object)];
 }
 
 - (MLVCCollectionControllerGroup *)insertGroupWithGroupID:(id)groupID title:(NSString *)title

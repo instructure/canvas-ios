@@ -110,6 +110,7 @@ static NSString *const CBISubmissionCommentCellPlayingNotification = @"CBISubmis
 }
 
 - (void)prepareForReuse {
+    [super prepareForReuse];
     [self stopPlayback];
     [self.mediaPlayer.view removeFromSuperview];
     self.mediaPlayer = nil;

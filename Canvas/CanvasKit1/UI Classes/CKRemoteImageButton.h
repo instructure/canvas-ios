@@ -20,7 +20,7 @@
 @class CKRemoteImageView;
 
 
-typedef void(^CKRemoteImageButtonTappedBlock)();
+typedef void(^CKRemoteImageButtonTappedBlock)(void);
 
 
 @interface CKRemoteImageButton : UIButton

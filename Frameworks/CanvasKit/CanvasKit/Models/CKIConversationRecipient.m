@@ -103,13 +103,13 @@ NSString *const CKIRecipientTypeContext = @"context";
         NSMutableDictionary *result = [NSMutableDictionary dictionary];
         for (NSNumber *key in [map allKeys]) {
             NSArray *enrollmentTypes = map[key];
-            NSMutableArray *jsonEnrollmentTypes = [enrollmentTypes arrayByMappingValues:@{
-                                                                                          @"student": @"StudentEnrollment",
-                                                                                          @"teacher": @"TeacherEnrollment",
-                                                                                          @"ta": @"TaEnrollment",
-                                                                                          @"observer": @"ObserverEnrollment",
-                                                                                          @"member": @"Member"
-                                                                                          }];
+            NSArray *jsonEnrollmentTypes = [enrollmentTypes arrayByMappingValues:@{
+                                                                                  @"student": @"StudentEnrollment",
+                                                                                  @"teacher": @"TeacherEnrollment",
+                                                                                  @"ta": @"TaEnrollment",
+                                                                                  @"observer": @"ObserverEnrollment",
+                                                                                  @"member": @"Member"
+                                                                                  }];
             result[key] = jsonEnrollmentTypes;
         }
         return [result copy];

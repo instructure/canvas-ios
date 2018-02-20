@@ -25,7 +25,7 @@
 @property (copy) NSString *cancelText;
 
 // Clients set this to add a cancel button
-@property (nonatomic, copy) void (^cancelBlock) ();
+@property (nonatomic, copy) void (^cancelBlock)(void);
 
 + (CGFloat)preferredHeight;
 

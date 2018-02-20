@@ -22,6 +22,6 @@
 @interface CBIStudentSubmissionViewController : MLVCTableViewController
 @property (nonatomic) CBIStudentSubmissionViewModel *viewModel;
 
-- (void)submitComment:(NSString *)commentText onSuccess:(void (^)())success onFailure:(void (^)())failure;
+- (void)submitComment:(NSString *)commentText onSuccess:(void (^)(void))success onFailure:(void (^)(void))failure;
 - (void)chooseMediaComment:(UIButton *)sender;
 @end

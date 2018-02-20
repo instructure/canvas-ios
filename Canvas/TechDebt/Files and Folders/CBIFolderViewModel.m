@@ -28,14 +28,6 @@
 @import CanvasCore;
 @import CanvasKeymaster;
 
-@interface CBIDeleteFolderConfirmationAlertView : UIAlertView
-@property (nonatomic) MLVCTableViewController *tableViewController;
-@property (nonatomic) NSIndexPath *indexPathToDelete;
-@end
-
-@implementation CBIDeleteFolderConfirmationAlertView
-@end
-
 @interface CBIFolderViewModel () <UIAlertViewDelegate, UIActionSheetDelegate>
 @property (nonatomic, strong) UIBarButtonItem *addItem;
 @property (nonatomic, strong) ToastManager *toastManager;
@@ -43,6 +35,8 @@
 @end
 
 @implementation CBIFolderViewModel
+
+@dynamic model;
 
 - (id)init
 {
@@ -188,23 +182,6 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error deleting folder", @"Error deleting folder alert view title") message:error.localizedDescription delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
         [alert show];
     }];
-}
-
-#pragma mark - alert view deleage
-
-- (void)alertView:(CBIDeleteFolderConfirmationAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex != alertView.cancelButtonIndex) {
-        CKIFolder *folder = [CKIFolder new];
-        folder.name = [alertView textFieldAtIndex:0].text;
-        [[[CKIClient currentClient] createFolder:folder InFolder:self.model] subscribeNext:^(CKIFolder *newFolder) {
-            CBIFolderViewModel *folderViewModel = [[CBIFolderViewModel alloc] init];
-            folderViewModel.model = newFolder;
-            folderViewModel.index = 0;
-            folderViewModel.tintColor = self.tintColor;
-            [self.collectionController insertObjects:@[folderViewModel]];
-        }];
-    }
 }
 
 #pragma mark - syncing

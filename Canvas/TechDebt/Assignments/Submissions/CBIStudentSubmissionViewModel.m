@@ -30,6 +30,8 @@
 
 @implementation CBIStudentSubmissionViewModel
 
+@dynamic model;
+
 - (instancetype)init
 {
     self = [super init];

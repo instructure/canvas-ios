@@ -23,12 +23,12 @@ BOOL handleDropboxOpenURL(NSURL *url) {
 
 @implementation CBIDropbox
 
-+ (void)chooseFileFromViewController:(UIViewController *)fromViewController completionBlock:(ChooseFileCompletionBlock)completionBlock cancelledBlock:(void (^)())cancelledBlock
++ (void)chooseFileFromViewController:(UIViewController *)fromViewController completionBlock:(ChooseFileCompletionBlock)completionBlock cancelledBlock:(void (^)(void))cancelledBlock
 {
     [CBIDropbox chooseFileWithLinkType:DBChooserLinkTypePreview fromViewController:fromViewController completionBlock:completionBlock cancelledBlock:cancelledBlock];
 }
 
-+ (void)chooseFileWithLinkType:(DBChooserLinkType)linkType fromViewController:(UIViewController *)fromViewController completionBlock:(ChooseFileCompletionBlock)completionBlock cancelledBlock:(void (^)())cancelledBlock
++ (void)chooseFileWithLinkType:(DBChooserLinkType)linkType fromViewController:(UIViewController *)fromViewController completionBlock:(ChooseFileCompletionBlock)completionBlock cancelledBlock:(void (^)(void))cancelledBlock
 {
     [[DBChooser defaultChooser] openChooserForLinkType:linkType
                                     fromViewController:fromViewController completion:^(NSArray *results)

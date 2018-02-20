@@ -34,6 +34,8 @@
 
 @implementation CBIPeopleViewModel
 
+@dynamic model;
+
 - (id)init
 {
     self = [super init];

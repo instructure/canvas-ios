@@ -20,8 +20,6 @@
 #import "SupportTicketManager.h"
 #import "CanvasKeymaster.h"
 
-static float DefaultToastDuration = 1.65f;
-
 @interface SupportTicketViewController () <UITextViewDelegate, UITextFieldDelegate, UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *subjectTextField;
 @property (weak, nonatomic) IBOutlet UIButton *impactButton;

@@ -667,7 +667,7 @@ static const NSString *ItemStatusContext;
 - (void)rotateVideoToOrientation:(UIInterfaceOrientation)orientation
 {
     if (![self.videoFileOutput isRecording]) {
-        self.previewLayer.connection.videoOrientation = orientation;
+        self.previewLayer.connection.videoOrientation = (AVCaptureVideoOrientation)orientation;
     }
     
     if (self.videoFileOutput && ![self.videoFileOutput isRecording]) {
@@ -683,7 +683,7 @@ static const NSString *ItemStatusContext;
         }
         
         if ([videoConnection isVideoOrientationSupported]) {
-            [videoConnection setVideoOrientation:orientation];
+            [videoConnection setVideoOrientation:(AVCaptureVideoOrientation)orientation];
         }
     }
 }

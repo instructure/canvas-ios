@@ -35,7 +35,7 @@
 @property (nonatomic) BOOL showPostButton;
 @property (nonatomic) NSString *initialText;
 @property (nonatomic) NSString *placeholderText;
-@property (nonatomic, strong) void (^finishedLoadingWebViewBlock)();
+@property (nonatomic, strong) void (^finishedLoadingWebViewBlock)(void);
 @property (nonatomic) NSString *attachmentSheetTitle;
 @property (nonatomic) UIImage *attachmentButtonImage;
 @property (strong, nonatomic) IBOutlet UIWebView *webView;

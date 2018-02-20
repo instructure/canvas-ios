@@ -49,7 +49,7 @@
 // OR
 - (void)setContentHTML:(NSString *)html baseURL:(NSURL *)baseURL;
 
-@property (nonatomic, copy) void (^browserWillDismissBlock)();
+@property (nonatomic, copy) void (^browserWillDismissBlock)(void);
 
 @property (nonatomic, weak) id<WebBrowserViewControllerDelegate> delegate;
 

@@ -45,7 +45,7 @@
 #define PADDING_BOTTOM 10
 typedef void (^FetchAll)(NSArray *allObjects);
 typedef void (^FetchAllDiscussions)(NSArray *allObjects, unsigned long long assignmentID);
-typedef void (^RouteToGroupDiscussionFailureBlock)();
+typedef void (^RouteToGroupDiscussionFailureBlock)(void);
 
 static NSInteger const kUnsavedReplyAlertTag = 1;
 

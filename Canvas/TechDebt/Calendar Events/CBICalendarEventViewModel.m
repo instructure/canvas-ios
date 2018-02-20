@@ -24,6 +24,8 @@
 
 @implementation CBICalendarEventViewModel
 
+@dynamic model;
+
 - (id)init
 {
     self = [super init];

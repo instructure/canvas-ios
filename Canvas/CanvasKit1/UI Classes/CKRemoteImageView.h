@@ -22,7 +22,7 @@
 
 @property (weak) NSCache *imageCache; // required!
 @property (nonatomic, copy) NSURL *imageURL;
-@property (copy) void (^afterLoadingBlock) ();
+@property (copy) void (^afterLoadingBlock) (void);
 
 - (void)reloadImage;
 

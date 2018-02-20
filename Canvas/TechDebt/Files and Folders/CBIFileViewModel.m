@@ -26,19 +26,13 @@
 
 @import CanvasCore;
 
-@interface CBIDeleteFileConfirmationAlertView : UIAlertView
-@property (nonatomic) MLVCTableViewController *tableViewController;
-@property (nonatomic) NSIndexPath *indexPathToDelete;
-@end
-
-@implementation CBIDeleteFileConfirmationAlertView
-@end
-
 @interface CBIFileViewModel () <UIAlertViewDelegate>
 @property (nonatomic) ToastManager *toastManager;
 @end
 
 @implementation CBIFileViewModel
+
+@dynamic model;
 
 - (id)init
 {

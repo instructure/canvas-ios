@@ -35,6 +35,8 @@ static NSString *const CBISubmissionCommentCell_TheirAudio = @"CBISubmissionComm
 
 @implementation CBISubmissionCommentViewModel
 
+@dynamic model;
+
 - (instancetype)init
 {
     self = [super init];

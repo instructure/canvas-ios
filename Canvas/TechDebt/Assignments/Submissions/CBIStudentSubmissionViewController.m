@@ -79,6 +79,8 @@ typedef enum CBISubmissionState : NSUInteger {
 
 @implementation CBIStudentSubmissionViewController
 
+@dynamic viewModel;
+
 - (instancetype)init {
     self = [super initWithStyle:UITableViewStylePlain];
     DDLogVerbose(@"%@ - %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd));
@@ -558,7 +560,7 @@ typedef enum CBISubmissionState : NSUInteger {
     [self updateActions];
 }
 
-- (void)submitComment:(NSString *)commentText onSuccess:(void (^)())success onFailure:(void (^)())failure {
+- (void)submitComment:(NSString *)commentText onSuccess:(void (^)(void))success onFailure:(void (^)(void))failure {
     DDLogVerbose(@"%@ - %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd));
     CKISubmissionComment *comment = [CKISubmissionComment new];
     comment.context = self.viewModel.record;

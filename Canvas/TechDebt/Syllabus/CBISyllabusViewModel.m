@@ -23,6 +23,9 @@
 #import "CKCourse.h"
 
 @implementation CBISyllabusViewModel
+
+@dynamic model;
+
 - (UIImage *)imageForTypeName:(NSString *)typeString
 {
     return [[UIImage techDebtImageNamed:@"icon_syllabus"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];

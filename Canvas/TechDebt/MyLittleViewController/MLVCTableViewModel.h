@@ -23,7 +23,7 @@
 
 @protocol MLVCTableViewModel <MLVCViewModel>
 @property (nonatomic) MLVCCollectionController *collectionController;
-@property (nonatomic, copy) void (^tableviewRefreshCompleted)();
+@property (nonatomic, copy) void (^tableviewRefreshCompleted)(void);
 
 @optional
 @property (nonatomic, readonly) BOOL allowsMultipleSelectionDuringEditing;

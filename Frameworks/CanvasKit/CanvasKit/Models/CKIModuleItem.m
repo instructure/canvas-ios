@@ -41,6 +41,8 @@ NSString * const CKIModuleItemCompletionRequirementMustMarkDone = @"must_mark_do
 
 @implementation CKIModuleItem
 
+@dynamic context;
+
 + (NSDictionary *)JSONKeyPathsByPropertyKey
 {
     NSDictionary *keyPaths = @{

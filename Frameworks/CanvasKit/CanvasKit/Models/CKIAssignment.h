@@ -179,10 +179,6 @@ The discussion topic corresponding to this assignment.
  */
 @property (nonatomic, copy) NSArray *submissionTypes;
 
-
-//Whether or not the assignment is locked for the user
-@property (nonatomic) BOOL lockedForUser;
-
 /**
  Submission for the assignment.
  */

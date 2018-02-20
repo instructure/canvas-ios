@@ -58,8 +58,8 @@
 		B1FC3B211C98B60E00A8001F /* CKMDomainHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E93CC39199C1B1E004FC97F /* CKMDomainHelpViewController.m */; };
 		B1FC3B221C98B60E00A8001F /* CKMDomainHelpViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E93CC3B199C1B45004FC97F /* CKMDomainHelpViewController.storyboard */; };
 		B1FC3B231C98B62600A8001F /* UIDevice+CKMHardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E54670190AACA6001AD3BC /* UIDevice+CKMHardware.m */; };
-		B1FC3B241C98B65900A8001F /* FXKeychain+CKMKeyChain.h in Headers */ = {isa = PBXBuildFile; fileRef = 49E54673190AACDA001AD3BC /* FXKeychain+CKMKeyChain.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B1FC3B251C98B65900A8001F /* FXKeychain+CKMKeyChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E54674190AACDA001AD3BC /* FXKeychain+CKMKeyChain.m */; };
+		B1FC3B241C98B65900A8001F /* FXKeychain+CKMKeychain.h in Headers */ = {isa = PBXBuildFile; fileRef = 49E54673190AACDA001AD3BC /* FXKeychain+CKMKeychain.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B1FC3B251C98B65900A8001F /* FXKeychain+CKMKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E54674190AACDA001AD3BC /* FXKeychain+CKMKeychain.m */; };
 		B1FC3B261C98B66000A8001F /* CLLocation+CKMDistance.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EDE064C199A5E87009244F9 /* CLLocation+CKMDistance.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1FC3B271C98B66000A8001F /* CLLocation+CKMDistance.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDE064D199A5E87009244F9 /* CLLocation+CKMDistance.m */; };
 		B1FC3B2A1C98B66800A8001F /* ImpactTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E505F331B55ABF6007BD968 /* ImpactTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -133,8 +133,8 @@
 		49E545D51909C9DC001AD3BC /* CKMLockedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKMLockedViewController.m; sourceTree = "<group>"; };
 		49E5466F190AACA6001AD3BC /* UIDevice+CKMHardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+CKMHardware.h"; sourceTree = "<group>"; };
 		49E54670190AACA6001AD3BC /* UIDevice+CKMHardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+CKMHardware.m"; sourceTree = "<group>"; };
-		49E54673190AACDA001AD3BC /* FXKeychain+CKMKeyChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FXKeychain+CKMKeyChain.h"; sourceTree = "<group>"; };
-		49E54674190AACDA001AD3BC /* FXKeychain+CKMKeyChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FXKeychain+CKMKeyChain.m"; sourceTree = "<group>"; };
+		49E54673190AACDA001AD3BC /* FXKeychain+CKMKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FXKeychain+CKMKeychain.h"; sourceTree = "<group>"; };
+		49E54674190AACDA001AD3BC /* FXKeychain+CKMKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FXKeychain+CKMKeychain.m"; sourceTree = "<group>"; };
 		49E9586B190967B000A1BFB7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		49E95879190967B000A1BFB7 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		49E9587C190967B000A1BFB7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -384,8 +384,8 @@
 		49E54672190AACC0001AD3BC /* FXKeychain+CanvasKeymaster */ = {
 			isa = PBXGroup;
 			children = (
-				49E54673190AACDA001AD3BC /* FXKeychain+CKMKeyChain.h */,
-				49E54674190AACDA001AD3BC /* FXKeychain+CKMKeyChain.m */,
+				49E54673190AACDA001AD3BC /* FXKeychain+CKMKeychain.h */,
+				49E54674190AACDA001AD3BC /* FXKeychain+CKMKeychain.m */,
 			);
 			path = "FXKeychain+CanvasKeymaster";
 			sourceTree = "<group>";
@@ -570,7 +570,7 @@
 				B1FC3B261C98B66000A8001F /* CLLocation+CKMDistance.h in Headers */,
 				B1FC3B2E1C98B66800A8001F /* SupportTicketManager.h in Headers */,
 				2CA6637C20349D7C00F0DCAB /* NSLayoutConstraintHairline.h in Headers */,
-				B1FC3B241C98B65900A8001F /* FXKeychain+CKMKeyChain.h in Headers */,
+				B1FC3B241C98B65900A8001F /* FXKeychain+CKMKeychain.h in Headers */,
 				B1FC3B141C98B60E00A8001F /* CKMDomainSuggester.h in Headers */,
 				B1FC3B2C1C98B66800A8001F /* SupportTicket.h in Headers */,
 				B1FC3B0C1C98B60E00A8001F /* CKMMultiUserTableViewCell.h in Headers */,
@@ -760,7 +760,7 @@
 				6181F12D1DFF365900B94488 /* CKMDomainPickerViewController.m in Sources */,
 				B1FC3B1B1C98B60E00A8001F /* CKMLocationSchoolSuggester.m in Sources */,
 				B1FC3B271C98B66000A8001F /* CLLocation+CKMDistance.m in Sources */,
-				B1FC3B251C98B65900A8001F /* FXKeychain+CKMKeyChain.m in Sources */,
+				B1FC3B251C98B65900A8001F /* FXKeychain+CKMKeychain.m in Sources */,
 				B1FC3B2D1C98B66800A8001F /* SupportTicket.m in Sources */,
 				B1FC3B2F1C98B66800A8001F /* SupportTicketManager.m in Sources */,
 				2CA6637D20349D7C00F0DCAB /* NSLayoutConstraintHairline.m in Sources */,
