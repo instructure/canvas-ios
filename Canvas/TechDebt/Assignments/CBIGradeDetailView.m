@@ -70,9 +70,9 @@
                 self.pointsGrade.text = [NSString stringWithFormat:@"—/%g", assignment.pointsPossible];
                 [self.pointsGrade setAccessibilityLabel:[NSString stringWithFormat:@"%@ %g", NSLocalizedString(@"out of", @"Accessibility label modifier for point out of point possible"), assignment.pointsPossible]];
             } else {
-                float score = latePolicy ? [submission.enteredScore floatValue] : submission.score;
+                float score = latePolicy ? submission.enteredScore : submission.score;
                 self.pointsGrade.text = [NSString stringWithFormat:@"%g/%g", score, assignment.pointsPossible];
-                [self.pointsGrade setAccessibilityLabel:[NSString stringWithFormat:@"%g %@ %g", submission.score, NSLocalizedString(@"out of", @"Accessibility label modifier for point out of point possible"), assignment.pointsPossible]];
+                [self.pointsGrade setAccessibilityLabel:[NSString stringWithFormat:@"%g %@ %g", score, NSLocalizedString(@"out of", @"Accessibility label modifier for point out of point possible"), assignment.pointsPossible]];
             }
         } else{
             self.pointsGrade.text = @"—/—";

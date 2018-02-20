@@ -41,7 +41,7 @@
 @property (nonatomic, readonly) BOOL isGraded;
 @property (nonatomic, readonly) BOOL needsGrading;
 @property (nonatomic, strong) NSNumber *turnitinScore;
-@property (nonatomic, assign) NSNumber *enteredScore;
+@property (nonatomic, assign) float enteredScore;
 @property (nonatomic, strong) NSString *enteredGrade;
 @property (nonatomic, strong) NSNumber *pointsDeducted;
 

@@ -163,7 +163,7 @@
 
     NSNumber *enteredScore = info[@"entered_score"];
     if (enteredScore && (id)enteredScore != [NSNull null]) {
-        self.enteredScore = @([enteredScore floatValue]);
+        self.enteredScore = [enteredScore floatValue];
     }
     NSNumber *pointsDeducted = info[@"points_deducted"];
     if (pointsDeducted && (id)pointsDeducted != [NSNull null]) {
