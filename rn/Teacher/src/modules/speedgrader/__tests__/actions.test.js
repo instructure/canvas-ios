@@ -51,6 +51,7 @@ describe('SpeedGraderActions', () => {
       let { payload } = actions.gradeSubmission('1', '2', '3', '4', '1234')
       expect(payload).toHaveProperty('submissionID', '4')
       expect(payload).toHaveProperty('assignmentID', '2')
+      expect(payload).toHaveProperty('handlesError', true)
     })
   })
 

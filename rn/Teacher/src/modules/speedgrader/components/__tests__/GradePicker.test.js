@@ -282,7 +282,10 @@ describe('GradePicker', () => {
     setProps(view, { grade: 'asdf', pending: true })
     setProps(view, { grade: null, pending: false })
 
-    expect(AlertIOS.alert).toHaveBeenCalled()
+    expect(AlertIOS.alert).toHaveBeenCalledWith(
+      'Error Saving Grade',
+      'There was a problem saving the grade. Please try again.',
+    )
   })
 
   it('renders with late policy', () => {

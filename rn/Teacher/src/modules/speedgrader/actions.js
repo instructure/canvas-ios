@@ -41,6 +41,7 @@ export const SpeedGraderActions = (api: CanvasApi): * => ({
     }),
     submissionID,
     assignmentID,
+    handlesError: true,
   })),
   gradeSubmissionWithRubric: createAction('submission.gradeWithRubric', (courseID: string, assignmentID: string, userID: string, submissionID: ?string, rubricParams: { [string]: RubricAssessment }) => ({
     promise: api.gradeSubmissionWithRubric(courseID, assignmentID, userID, rubricParams),

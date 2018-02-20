@@ -67,8 +67,8 @@ export class GradePicker extends Component<GradePickerProps, GradePickerState> {
     if (this.state.promptValue && this.props.pending && !nextProps.pending && !nextProps.grade) {
       this.setState({ promptValue: null })
       AlertIOS.alert(
-        i18n('Error saving grade'),
-        i18n('The was a problem saving the grade. Please try again.')
+        i18n('Error Saving Grade'),
+        i18n('There was a problem saving the grade. Please try again.')
       )
     }
   }
