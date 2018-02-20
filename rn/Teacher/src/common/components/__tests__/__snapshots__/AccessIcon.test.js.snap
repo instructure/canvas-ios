@@ -21,6 +21,7 @@ exports[`AccessIcon published takes precedence over other properties 1`] = `
         "tintColor": "#fff",
       }
     }
+    testID="access-icon-image"
   />
   <View
     style={
@@ -50,6 +51,7 @@ exports[`AccessIcon published takes precedence over other properties 1`] = `
           "width": 12,
         }
       }
+      testID="access-icon-icon"
     />
   </View>
 </View>
@@ -76,6 +78,7 @@ exports[`AccessIcon shows published when not locked or hidden 1`] = `
         "tintColor": "#fff",
       }
     }
+    testID="access-icon-image"
   />
   <View
     style={
@@ -105,6 +108,7 @@ exports[`AccessIcon shows published when not locked or hidden 1`] = `
           "width": 12,
         }
       }
+      testID="access-icon-icon"
     />
   </View>
 </View>
@@ -131,6 +135,7 @@ exports[`AccessIcon shows resticted when hidden 1`] = `
         "tintColor": "#fff",
       }
     }
+    testID="access-icon-image"
   />
   <View
     style={
@@ -160,6 +165,7 @@ exports[`AccessIcon shows resticted when hidden 1`] = `
           "width": 14,
         }
       }
+      testID="access-icon-icon"
     />
   </View>
 </View>
@@ -186,6 +192,7 @@ exports[`AccessIcon shows resticted when lock_at is specified 1`] = `
         "tintColor": "#fff",
       }
     }
+    testID="access-icon-image"
   />
   <View
     style={
@@ -215,6 +222,7 @@ exports[`AccessIcon shows resticted when lock_at is specified 1`] = `
           "width": 14,
         }
       }
+      testID="access-icon-icon"
     />
   </View>
 </View>
@@ -241,6 +249,7 @@ exports[`AccessIcon shows resticted when unlock_at is specified 1`] = `
         "tintColor": "#fff",
       }
     }
+    testID="access-icon-image"
   />
   <View
     style={
@@ -270,6 +279,7 @@ exports[`AccessIcon shows resticted when unlock_at is specified 1`] = `
           "width": 14,
         }
       }
+      testID="access-icon-icon"
     />
   </View>
 </View>
@@ -296,6 +306,7 @@ exports[`AccessIcon shows unpublished when locked 1`] = `
         "tintColor": "#fff",
       }
     }
+    testID="access-icon-image"
   />
   <View
     style={
@@ -325,6 +336,7 @@ exports[`AccessIcon shows unpublished when locked 1`] = `
           "width": 12,
         }
       }
+      testID="access-icon-icon"
     />
   </View>
 </View>
@@ -351,6 +363,7 @@ exports[`AccessIcon shows unpublished when published is false 1`] = `
         "tintColor": "#fff",
       }
     }
+    testID="access-icon-image"
   />
   <View
     style={
@@ -380,6 +393,7 @@ exports[`AccessIcon shows unpublished when published is false 1`] = `
           "width": 12,
         }
       }
+      testID="access-icon-icon"
     />
   </View>
 </View>

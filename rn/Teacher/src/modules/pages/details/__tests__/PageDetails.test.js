@@ -16,6 +16,7 @@
 
 /* @flow */
 
+import { shallow } from 'enzyme'
 import React from 'react'
 import { Alert, ActionSheetIOS } from 'react-native'
 import renderer from 'react-test-renderer'
@@ -24,6 +25,7 @@ import { setSession } from '../../../../canvas-api'
 import { defaultErrorTitle } from '../../../../redux/middleware/error-handler'
 import explore from '../../../../../test/helpers/explore'
 import setProps from '../../../../../test/helpers/setProps'
+import app from '../../../app'
 
 jest
   .mock('Button', () => 'Button')
@@ -56,6 +58,8 @@ describe('PageDetails', () => {
       url: 'page-1',
       courseColor: '#fff',
     }
+
+    app.setCurrentApp('teacher')
   })
 
   it('renders', async () => {
@@ -152,6 +156,20 @@ describe('PageDetails', () => {
     expect(
       explore(view2.toJSON()).selectLeftBarButton('page.details.dismiss.button')
     ).not.toBeNull()
+  })
+
+  it('shows edit button if permitted', () => {
+    app.setCurrentApp('teacher')
+    let tree = shallow(<PageDetails {...props} />)
+    expect(
+      tree.props().rightBarButtons.find(b => b.testID === 'pages.details.editButton')
+    ).toBeTruthy()
+  })
+
+  it('hides edit button if not permitted', () => {
+    app.setCurrentApp('student')
+    let tree = shallow(<PageDetails {...props} />)
+    expect(tree.props().rightBarButtons).toBeFalsy()
   })
 
   it('dismisses when tap done', async () => {

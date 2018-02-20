@@ -408,6 +408,7 @@ exports[`QuizzesList renders in correct order 1`] = `
                             "tintColor": null,
                           }
                         }
+                        testID="access-icon-image"
                       />
                       <View
                         style={
@@ -437,6 +438,7 @@ exports[`QuizzesList renders in correct order 1`] = `
                               "width": 12,
                             }
                           }
+                          testID="access-icon-icon"
                         />
                       </View>
                     </View>
@@ -753,6 +755,7 @@ exports[`QuizzesList renders in correct order 1`] = `
                             "tintColor": null,
                           }
                         }
+                        testID="access-icon-image"
                       />
                       <View
                         style={
@@ -782,6 +785,7 @@ exports[`QuizzesList renders in correct order 1`] = `
                               "width": 12,
                             }
                           }
+                          testID="access-icon-icon"
                         />
                       </View>
                     </View>
@@ -1350,6 +1354,7 @@ exports[`QuizzesList renders quizzes 1`] = `
                             "tintColor": null,
                           }
                         }
+                        testID="access-icon-image"
                       />
                       <View
                         style={
@@ -1379,6 +1384,7 @@ exports[`QuizzesList renders quizzes 1`] = `
                               "width": 12,
                             }
                           }
+                          testID="access-icon-icon"
                         />
                       </View>
                     </View>
@@ -1695,6 +1701,7 @@ exports[`QuizzesList renders quizzes 1`] = `
                             "tintColor": null,
                           }
                         }
+                        testID="access-icon-image"
                       />
                       <View
                         style={
@@ -1724,6 +1731,7 @@ exports[`QuizzesList renders quizzes 1`] = `
                               "width": 12,
                             }
                           }
+                          testID="access-icon-icon"
                         />
                       </View>
                     </View>

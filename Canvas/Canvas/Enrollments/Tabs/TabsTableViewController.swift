@@ -23,10 +23,6 @@ import TechDebt
 
 extension Tab {
     func routingURL(_ session: Session) -> URL? {
-        if isPages {
-            let path = contextID.apiPath + "/pages_home"
-            return URL(string: path)
-        }
         if isHome {
             guard let enrollment = session.enrollmentsDataSource[contextID] else { return url }
             return URL(string: enrollment.defaultViewPath)

@@ -28,7 +28,7 @@ import {
 import Images from '../../images'
 import i18n from 'format-message'
 
-type Props = {
+export type Props = {
   entry: Object, /* {
     published?: boolean,
     locked?: boolean,
@@ -38,11 +38,13 @@ type Props = {
   }, */
   tintColor: ?string,
   image: any,
+  showAccessIcon: boolean,
 }
 
 export default class AccessIcon extends React.Component<Props> {
   static defaultProps = {
     entry: {},
+    showAccessIcon: true,
   }
 
   render () {
@@ -61,10 +63,16 @@ export default class AccessIcon extends React.Component<Props> {
     }
     return (
       <View style={styles.container} accessibilityLabel={accessibilityLabel}>
-        <Image source={this.props.image} style={{ tintColor: this.props.tintColor }} />
-        <View style={styles.publishedIconContainer}>
-          <Image source={icon} style={iconStyle} />
-        </View>
+        <Image
+          source={this.props.image}
+          style={{ tintColor: this.props.tintColor }}
+          testID='access-icon-image'
+        />
+        { this.props.showAccessIcon &&
+          <View style={styles.publishedIconContainer}>
+            <Image source={icon} style={iconStyle} testID='access-icon-icon' />
+          </View>
+        }
       </View>
     )
   }

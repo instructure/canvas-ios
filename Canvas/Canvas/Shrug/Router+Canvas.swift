@@ -73,8 +73,10 @@ extension Router {
         }
 
         let pagesListFactory: (ContextID, [String: Any]) throws -> UIViewController? = { contextID, _ in
-            let controller = try Page.TableViewController(session: currentSession, contextID: contextID, viewModelFactory: pagesListViewModelFactory, route: route)
-            return controller
+            return HelmViewController(
+                moduleName: "/courses/:courseID/pages",
+                props: ["courseID": contextID.id]
+            )
         }
         addContextRoute([.course, .group], subPath: "pages", handler: pagesListFactory)
         addContextRoute([.course, .group], subPath: "wiki", handler: pagesListFactory)
@@ -88,7 +90,10 @@ extension Router {
 
         let pageDetailFactory: (ContextID, [String: Any]) throws -> UIViewController? = { contextID, params in
             let url = params["url"] as! String
-            return try moduleItemDetailFactory(contextID, params) ?? Page.DetailViewController(session: currentSession, contextID: contextID, url: url, route: route)
+            if let moduleItemDetail = try moduleItemDetailFactory(contextID, params) {
+                return moduleItemDetail
+            }
+            return try Page.DetailViewController(session: currentSession, contextID: contextID, url: url, route: route)
         }
         addContextRoute([.course, .group], subPath: "pages/:url", handler: pageDetailFactory)
         addContextRoute([.course, .group], subPath: "wiki/:url", handler: pageDetailFactory)

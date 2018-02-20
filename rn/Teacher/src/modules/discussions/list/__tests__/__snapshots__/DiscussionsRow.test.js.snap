@@ -74,6 +74,7 @@ exports[`DiscussionsRow renders 1`] = `
                   "tintColor": "#fff",
                 }
               }
+              testID="access-icon-image"
             />
             <View
               style={
@@ -103,6 +104,7 @@ exports[`DiscussionsRow renders 1`] = `
                     "width": 12,
                   }
                 }
+                testID="access-icon-icon"
               />
             </View>
           </View>
@@ -499,6 +501,7 @@ exports[`DiscussionsRow renders published 1`] = `
                   "tintColor": "#fff",
                 }
               }
+              testID="access-icon-image"
             />
             <View
               style={
@@ -528,6 +531,7 @@ exports[`DiscussionsRow renders published 1`] = `
                     "width": 12,
                   }
                 }
+                testID="access-icon-icon"
               />
             </View>
           </View>
@@ -924,6 +928,7 @@ exports[`DiscussionsRow renders unpublished 1`] = `
                   "tintColor": "#fff",
                 }
               }
+              testID="access-icon-image"
             />
             <View
               style={
@@ -953,6 +958,7 @@ exports[`DiscussionsRow renders unpublished 1`] = `
                     "width": 12,
                   }
                 }
+                testID="access-icon-icon"
               />
             </View>
           </View>
@@ -1338,6 +1344,7 @@ exports[`DiscussionsRow renders with no assignment 1`] = `
                   "tintColor": "#fff",
                 }
               }
+              testID="access-icon-image"
             />
             <View
               style={
@@ -1367,6 +1374,7 @@ exports[`DiscussionsRow renders with no assignment 1`] = `
                     "width": 12,
                   }
                 }
+                testID="access-icon-icon"
               />
             </View>
           </View>
@@ -1730,6 +1738,7 @@ exports[`DiscussionsRow renders with no unread count 1`] = `
                   "tintColor": "#fff",
                 }
               }
+              testID="access-icon-image"
             />
             <View
               style={
@@ -1759,6 +1768,7 @@ exports[`DiscussionsRow renders with no unread count 1`] = `
                     "width": 12,
                   }
                 }
+                testID="access-icon-icon"
               />
             </View>
           </View>
@@ -2143,6 +2153,7 @@ exports[`DiscussionsRow renders with points possible 1`] = `
                   "tintColor": "#fff",
                 }
               }
+              testID="access-icon-image"
             />
             <View
               style={
@@ -2172,6 +2183,7 @@ exports[`DiscussionsRow renders with points possible 1`] = `
                     "width": 12,
                   }
                 }
+                testID="access-icon-icon"
               />
             </View>
           </View>
@@ -2568,6 +2580,7 @@ exports[`DiscussionsRow renders without points possible 1`] = `
                   "tintColor": "#fff",
                 }
               }
+              testID="access-icon-image"
             />
             <View
               style={
@@ -2597,6 +2610,7 @@ exports[`DiscussionsRow renders without points possible 1`] = `
                     "width": 12,
                   }
                 }
+                testID="access-icon-icon"
               />
             </View>
           </View>

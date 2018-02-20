@@ -16,11 +16,13 @@
 
 /* eslint-disable flowtype/require-valid-file-annotation */
 
+import { shallow } from 'enzyme'
 import React from 'react'
 import 'react-native'
 import renderer from 'react-test-renderer'
 import { PagesList, mapStateToProps, type Props } from '../PagesList'
 import explore from '../../../../../test/helpers/explore'
+import app from '../../../app'
 
 jest
   .mock('Button', () => 'Button')
@@ -31,6 +33,7 @@ jest
 const template = {
   ...require('../../../../__templates__/page'),
   ...require('../../../../__templates__/helm'),
+  ...require('../../../../__templates__/course'),
   ...require('../../../../redux/__templates__/app-state'),
 }
 
@@ -43,6 +46,7 @@ describe('PagesList', () => {
       getPages: jest.fn(() => Promise.resolve({ data: [template.page()] })),
       refreshedPages: jest.fn(),
       navigator: template.navigator(),
+      course: template.course({ id: '1' }),
     }
   })
 
@@ -74,10 +78,14 @@ describe('PagesList', () => {
     expect(spy).toHaveBeenCalledWith(pages, props.courseID)
   })
 
-  it('renders front page pill', () => {
-    props.pages = [template.page({ front_page: true })]
-    const pill = explore(render(props).toJSON()).selectByID('pages.list.front-page.pill')
-    expect(pill).not.toBeNull()
+  it('renders front page row', () => {
+    props.pages = [template.page({ front_page: true, title: 'Page 1' })]
+    const tree = shallow(<PagesList {...props} />)
+    const list = tree.find('FlatList')
+    const data = list.props().data
+    const row = shallow(list.props().renderItem({ item: data[0], index: 0 })).find('Row')
+    expect(row.props().title).toEqual('Front Page')
+    expect(row.props().subtitle).toEqual('Page 1')
   })
 
   it('navigates to page details', () => {
@@ -108,6 +116,65 @@ describe('PagesList', () => {
     })
   })
 
+  it('shows add button if permitted', () => {
+    app.setCurrentApp('teacher')
+    const tree = shallow(<PagesList {...props} />)
+    expect(
+      tree.props().rightBarButtons.find(b => b.testID === 'pages.list.add.button')
+    ).toBeTruthy()
+  })
+
+  it('hides add button if not permitted', () => {
+    app.setCurrentApp('student')
+    const tree = shallow(<PagesList {...props} />)
+    expect(tree.props().rightBarButtons).toBeFalsy()
+  })
+
+  it('shows front page', async () => {
+    props.navigator = template.navigator({
+      traitCollection: (callback) => {
+        callback({
+          screen: {
+            horizontal: 'regular',
+          },
+          window: {
+            horizontal: 'regular',
+          },
+        })
+      },
+    })
+    props.pages = [template.page({ url: 'front-page', front_page: true })]
+    shallow(<PagesList {...props} />)
+    await Promise.resolve() // wait for next run loop
+    expect(props.navigator.show).toHaveBeenLastCalledWith(
+      '/courses/1/pages/front-page',
+      { modal: false },
+    )
+  })
+
+  it('shows placeholder if no front page', () => {
+    props.navigator = template.navigator({
+      traitCollection: (callback) => {
+        callback({
+          screen: {
+            horizontal: 'regular',
+          },
+          window: {
+            horizontal: 'regular',
+          },
+        })
+      },
+    })
+    props.pages = [template.page({ front_page: false })]
+    props.course = template.course()
+    shallow(<PagesList {...props} />)
+    expect(props.navigator.show).toHaveBeenLastCalledWith(
+      '/courses/1/placeholder',
+      {},
+      { course: props.course },
+    )
+  })
+
   function render (props: Props, options: any = {}): any {
     return renderer.create(<PagesList {...props} />, options)
   }
@@ -118,14 +185,13 @@ describe('mapStateToProps', () => {
     const one = template.page({ url: 'page-1', title: 'A' })
     const two = template.page({ url: 'page-2', title: 'B' })
     const three = template.page({ url: 'page-3', title: 'C' })
+    const course = template.course({ name: 'Course 1' })
     const state = template.appState({
       entities: {
         courses: {
           '1': {
             color: '#fff',
-            course: {
-              name: 'Course 1',
-            },
+            course,
             pages: {
               pending: 0,
               refs: ['page-1', 'page-3'],
@@ -143,6 +209,7 @@ describe('mapStateToProps', () => {
       pages: [one, three],
       courseName: 'Course 1',
       courseColor: '#fff',
+      course: course,
     })
   })
 
@@ -152,6 +219,7 @@ describe('mapStateToProps', () => {
       pages: [],
       courseName: '',
       courseColor: null,
+      course: null,
     })
   })
 
@@ -182,6 +250,36 @@ describe('mapStateToProps', () => {
     })
     expect(mapStateToProps(state, { courseID: '1' })).toMatchObject({
       pages: [A, b, C],
+    })
+  })
+
+  it('sorts front page to the front', () => {
+    const one = template.page({ url: 'A', title: 'A', front_page: false })
+    const two = template.page({ url: 'B', title: 'b', front_page: false })
+    const front = template.page({ url: 'C', title: 'C', front_page: true })
+    const state = template.appState({
+      entities: {
+        courses: {
+          '1': {
+            color: '#fff',
+            course: {
+              name: 'Course 1',
+            },
+            pages: {
+              pending: 0,
+              refs: ['A', 'b', 'C'],
+            },
+          },
+        },
+        pages: {
+          'A': { data: one },
+          'b': { data: two },
+          'C': { data: front },
+        },
+      },
+    })
+    expect(mapStateToProps(state, { courseID: '1' })).toMatchObject({
+      pages: [front, one, two],
     })
   })
 })

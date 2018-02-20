@@ -27,20 +27,22 @@ import i18n from 'format-message'
 
 import Screen from '../../../routing/Screen'
 import Row from '../../../common/components/rows/Row'
+import FeatureRow from '../../../common/components/rows/FeatureRow'
 import Actions from './actions'
 import Images from '../../../images'
-import RowSeparator from '../../../common/components/rows/RowSeparator'
 import { getPages } from '../../../canvas-api'
 import { alertError } from '../../../redux/middleware/error-handler'
 import AccessIcon from '../../../common/components/AccessIcon'
-import { Text } from '../../../common/text'
 import localeSort from '../../../utils/locale-sort'
 import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
+import { isTeacher } from '../../app'
+import currentWindowTraits from '../../../utils/windowTraits'
 
 type StateProps = AsyncState & {
   pages: Page[],
   courseName: string,
   courseColor: ?string,
+  course: ?Course,
 }
 
 type OwnProps = {
@@ -56,24 +58,28 @@ export class PagesList extends Component<Props, any> {
     getPages,
   }
 
-  constructor (props: Props) {
-    super(props)
-
-    this.state = {
-      pending: false,
-    }
+  frontPageDidShow: boolean = false
+  state = {
+    windowTraits: currentWindowTraits(),
+    selectedPageURL: null,
+    pending: false,
   }
 
   componentWillMount () {
     this.refresh()
+    this.props.navigator.traitCollection((traits) => {
+      this.setState({ windowTraits: traits.window })
+    })
   }
 
   render () {
+    this.showFrontPage()
     return (
       <Screen
         navBarStyle='dark'
         title={i18n('Pages')}
         subtitle={this.props.courseName}
+        onTraitCollectionChange={this.onTraitCollectionChange}
         leftBarButtons={this.props.navigator.isModal && [
           {
             title: i18n('Done'),
@@ -81,7 +87,7 @@ export class PagesList extends Component<Props, any> {
             action: this.props.navigator.dismiss,
           },
         ]}
-        rightBarButtons={[
+        rightBarButtons={isTeacher() && [
           {
             image: Images.add,
             testID: 'pages.list.add.button',
@@ -98,7 +104,6 @@ export class PagesList extends Component<Props, any> {
             testID='pages.list.list'
             refreshing={this.state.pending}
             onRefresh={this.refresh}
-            ItemSeparatorComponent={RowSeparator}
             ListEmptyComponent={
               this.state.pending && !this.props.refreshing ? null
               : <ListEmptyComponent title={i18n('There are no pages to display.')} />
@@ -110,9 +115,26 @@ export class PagesList extends Component<Props, any> {
   }
 
   renderRow = ({ item, index }: { item: Page, index: number }) => {
+    if (item.front_page) {
+      return (
+        <FeatureRow
+          title={i18n('Front Page')}
+          subtitle={item.title}
+          testID='pages.list.front-page-row'
+          onPress={this.selectPage(item)}
+          disclosureIndicator
+        />
+      )
+    }
+
     let icon = (
       <View style={styles.rowIcon}>
-        <AccessIcon entry={item} tintColor={this.props.courseColor} image={Images.course.pages} />
+        <AccessIcon
+          entry={item}
+          tintColor={this.props.courseColor}
+          image={Images.course.pages}
+          showAccessIcon={isTeacher()}
+        />
       </View>
     )
     return (
@@ -125,18 +147,19 @@ export class PagesList extends Component<Props, any> {
         testID={`pages.list.page.row-${index}`}
         onPress={this.selectPage(item)}
         renderImage={() => icon}
-        accessories={item.front_page && (
-          <View style={styles.rowFrontPagePill}>
-            <Text style={styles.rowFrontPagePillText} testID='pages.list.front-page.pill'>Front Page</Text>
-          </View>
-        )}
+        selected={this.state.selectedPageURL === item.url}
       />
     )
   }
 
   selectPage (page: Page) {
     const route = `/courses/${this.props.courseID}/pages/${page.url}`
-    return () => this.props.navigator.show(route, { modal: false })
+    return () => {
+      this.props.navigator.show(route, { modal: false })
+      if (this.state.windowTraits.horizontal !== 'compact') {
+        this.setState({ selectedPageURL: page.url })
+      }
+    }
   }
 
   refresh = async () => {
@@ -153,6 +176,31 @@ export class PagesList extends Component<Props, any> {
 
   addPage = () => {
     this.props.navigator.show(`/courses/${this.props.courseID}/pages/new`, { modal: true, modalPresentationStyle: 'formsheet' })
+  }
+
+  onTraitCollectionChange = () => {
+    this.props.navigator.traitCollection((traits) => {
+      if (
+        this.state.windowTraits.horizontal === 'compact' &&
+        traits.window.horizontal !== 'compact'
+      ) {
+        this.frontPageDidShow = false
+      }
+      this.setState({ windowTraits: traits.window })
+    })
+  }
+
+  showFrontPage () {
+    if (this.frontPageDidShow || !this.props.course || !this.props.pages.length) return
+    this.frontPageDidShow = true
+    if (this.state.windowTraits.horizontal !== 'compact') {
+      const frontPage = this.props.pages.find(({ front_page: frontPage }) => frontPage)
+      if (frontPage) {
+        Promise.resolve().then(() => this.selectPage(frontPage)())
+      } else {
+        this.props.navigator.show(`/courses/${this.props.courseID}/placeholder`, {}, { courseColor: this.props.courseColor, course: this.props.course })
+      }
+    }
   }
 }
 
@@ -179,24 +227,26 @@ export function mapStateToProps ({ entities }: AppState, { courseID }: OwnProps)
   let pages = []
   let courseName = ''
   let courseColor = null
+  let course = null
   if (entities &&
     entities.courses &&
     entities.courses[courseID] &&
     entities.courses[courseID].pages) {
-    const course = entities.courses[courseID]
-    const refs = course.pages.refs
-    if (course.course) {
-      courseName = course.course.name
-      courseColor = course.color
-    }
+    const courseEntity = entities.courses[courseID]
+    course = courseEntity.course
+    courseName = course && course.name
+    courseColor = courseEntity.color
+    const refs = courseEntity.pages.refs
     pages = refs
       .map(ref => entities.pages[ref].data)
       .sort((a, b) => localeSort(a.title, b.title))
+      .sort((a, b) => b.front_page - a.front_page)
   }
   return {
     pages,
     courseName,
     courseColor,
+    course,
   }
 }
 

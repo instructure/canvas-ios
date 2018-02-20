@@ -4,6 +4,7 @@ exports[`PagesList renders 1`] = `
 <Screen
   leftBarButtons={false}
   navBarStyle="dark"
+  onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
       Object {
@@ -27,7 +28,6 @@ exports[`PagesList renders 1`] = `
     }
   >
     <RCTScrollView
-      ItemSeparatorComponent={[Function]}
       ListEmptyComponent={null}
       data={
         Array [
@@ -149,6 +149,7 @@ exports[`PagesList renders 1`] = `
                         "tintColor": undefined,
                       }
                     }
+                    testID="access-icon-image"
                   />
                   <View
                     style={
@@ -178,6 +179,7 @@ exports[`PagesList renders 1`] = `
                           "width": 12,
                         }
                       }
+                      testID="access-icon-icon"
                     />
                   </View>
                 </View>
@@ -304,6 +306,7 @@ exports[`PagesList renders empty 1`] = `
 <Screen
   leftBarButtons={false}
   navBarStyle="dark"
+  onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
       Object {
@@ -327,7 +330,6 @@ exports[`PagesList renders empty 1`] = `
     }
   >
     <RCTScrollView
-      ItemSeparatorComponent={[Function]}
       ListEmptyComponent={null}
       data={Array []}
       disableVirtualization={false}

@@ -69,6 +69,7 @@ exports[`QuizRow renders 1`] = `
                   "tintColor": "#fff",
                 }
               }
+              testID="access-icon-image"
             />
             <View
               style={
@@ -98,6 +99,7 @@ exports[`QuizRow renders 1`] = `
                     "width": 12,
                   }
                 }
+                testID="access-icon-icon"
               />
             </View>
           </View>
@@ -412,6 +414,7 @@ exports[`QuizRow renders multiple question count 1`] = `
                   "tintColor": "#fff",
                 }
               }
+              testID="access-icon-image"
             />
             <View
               style={
@@ -441,6 +444,7 @@ exports[`QuizRow renders multiple question count 1`] = `
                     "width": 12,
                   }
                 }
+                testID="access-icon-icon"
               />
             </View>
           </View>
@@ -755,6 +759,7 @@ exports[`QuizRow renders published 1`] = `
                   "tintColor": "#fff",
                 }
               }
+              testID="access-icon-image"
             />
             <View
               style={
@@ -784,6 +789,7 @@ exports[`QuizRow renders published 1`] = `
                     "width": 12,
                   }
                 }
+                testID="access-icon-icon"
               />
             </View>
           </View>
@@ -1099,6 +1105,7 @@ exports[`QuizRow renders selected 1`] = `
                   "tintColor": "#fff",
                 }
               }
+              testID="access-icon-image"
             />
             <View
               style={
@@ -1128,6 +1135,7 @@ exports[`QuizRow renders selected 1`] = `
                     "width": 12,
                   }
                 }
+                testID="access-icon-icon"
               />
             </View>
           </View>
@@ -1442,6 +1450,7 @@ exports[`QuizRow renders single question count 1`] = `
                   "tintColor": "#fff",
                 }
               }
+              testID="access-icon-image"
             />
             <View
               style={
@@ -1471,6 +1480,7 @@ exports[`QuizRow renders single question count 1`] = `
                     "width": 12,
                   }
                 }
+                testID="access-icon-icon"
               />
             </View>
           </View>
@@ -1785,6 +1795,7 @@ exports[`QuizRow renders unpublished 1`] = `
                   "tintColor": "#fff",
                 }
               }
+              testID="access-icon-image"
             />
             <View
               style={
@@ -1814,6 +1825,7 @@ exports[`QuizRow renders unpublished 1`] = `
                     "width": 12,
                   }
                 }
+                testID="access-icon-icon"
               />
             </View>
           </View>
@@ -2117,6 +2129,7 @@ exports[`QuizRow renders without points possible 1`] = `
                   "tintColor": "#fff",
                 }
               }
+              testID="access-icon-image"
             />
             <View
               style={
@@ -2146,6 +2159,7 @@ exports[`QuizRow renders without points possible 1`] = `
                     "width": 12,
                   }
                 }
+                testID="access-icon-icon"
               />
             </View>
           </View>

@@ -479,6 +479,7 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                             "tintColor": "#fff",
                           }
                         }
+                        testID="access-icon-image"
                       />
                       <View
                         style={
@@ -508,6 +509,7 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                               "width": 12,
                             }
                           }
+                          testID="access-icon-icon"
                         />
                       </View>
                     </View>
@@ -1112,6 +1114,7 @@ exports[`applyFilter will apply a new filter 1`] = `
                             "tintColor": "#fff",
                           }
                         }
+                        testID="access-icon-image"
                       />
                       <View
                         style={
@@ -1141,6 +1144,7 @@ exports[`applyFilter will apply a new filter 1`] = `
                               "width": 12,
                             }
                           }
+                          testID="access-icon-icon"
                         />
                       </View>
                     </View>
@@ -1706,6 +1710,7 @@ exports[`filter button only shows when there are grading periods 1`] = `
                             "tintColor": "#fff",
                           }
                         }
+                        testID="access-icon-image"
                       />
                       <View
                         style={
@@ -1735,6 +1740,7 @@ exports[`filter button only shows when there are grading periods 1`] = `
                               "width": 12,
                             }
                           }
+                          testID="access-icon-icon"
                         />
                       </View>
                     </View>
@@ -2339,6 +2345,7 @@ exports[`renders correctly 1`] = `
                             "tintColor": "#fff",
                           }
                         }
+                        testID="access-icon-image"
                       />
                       <View
                         style={
@@ -2368,6 +2375,7 @@ exports[`renders correctly 1`] = `
                               "width": 12,
                             }
                           }
+                          testID="access-icon-icon"
                         />
                       </View>
                     </View>
@@ -3012,6 +3020,7 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                             "tintColor": "#fff",
                           }
                         }
+                        testID="access-icon-image"
                       />
                       <View
                         style={
@@ -3041,6 +3050,7 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                               "width": 12,
                             }
                           }
+                          testID="access-icon-icon"
                         />
                       </View>
                     </View>

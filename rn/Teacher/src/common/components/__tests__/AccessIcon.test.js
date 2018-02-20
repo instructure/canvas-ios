@@ -18,16 +18,17 @@
 
 import React from 'react'
 import { shallow } from 'enzyme'
-import AccessIcon from '../AccessIcon'
+import AccessIcon, { type Props } from '../AccessIcon'
 import Images from '../../../images'
 
 describe('AccessIcon', () => {
-  let props
+  let props: Props
   beforeEach(() => {
     props = {
       entry: {},
       tintColor: '#fff',
       image: Images.kabob,
+      showAccessIcon: true,
     }
   })
 
@@ -81,5 +82,15 @@ describe('AccessIcon', () => {
     const tree = shallow(<AccessIcon {...props} />)
     expect(tree.find('Image').at(1).prop('source')).toBe(Images.restricted)
     expect(tree).toMatchSnapshot()
+  })
+
+  it('has option to hide access icon', () => {
+    props.showAccessIcon = false
+    let tree = shallow(<AccessIcon {...props} />)
+    expect(tree.find('[testID="access-icon-icon"]')).toHaveLength(0)
+
+    props.showAccessIcon = true
+    tree = shallow(<AccessIcon {...props} />)
+    expect(tree.find('[testID="access-icon-icon"]')).toHaveLength(1)
   })
 })

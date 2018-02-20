@@ -32,6 +32,7 @@ import Screen from '../../../routing/Screen'
 import i18n from 'format-message'
 import Images from '../../../images'
 import { Heading1 } from '../../../common/text'
+import { isTeacher } from '../../app'
 
 type StateProps = {
   pages: { [string]: Page },
@@ -97,7 +98,7 @@ export class PageDetails extends Component<Props, any> {
             action: this.props.navigator.dismiss,
           },
         ]}
-        rightBarButtons={[
+        rightBarButtons={isTeacher() && [
           {
             image: Images.kabob,
             testID: 'pages.details.editButton',

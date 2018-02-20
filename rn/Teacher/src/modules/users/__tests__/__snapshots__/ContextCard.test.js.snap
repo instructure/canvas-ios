@@ -732,6 +732,7 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
                           "tintColor": "#00BCD5",
                         }
                       }
+                      testID="access-icon-image"
                     />
                     <View
                       style={
@@ -761,6 +762,7 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
                             "width": 12,
                           }
                         }
+                        testID="access-icon-icon"
                       />
                     </View>
                   </View>
@@ -1687,6 +1689,7 @@ exports[`ContextCard renders 1`] = `
                           "tintColor": "#00BCD5",
                         }
                       }
+                      testID="access-icon-image"
                     />
                     <View
                       style={
@@ -1716,6 +1719,7 @@ exports[`ContextCard renders 1`] = `
                             "width": 12,
                           }
                         }
+                        testID="access-icon-icon"
                       />
                     </View>
                   </View>
@@ -3614,6 +3618,7 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
                           "tintColor": "#00BCD5",
                         }
                       }
+                      testID="access-icon-image"
                     />
                     <View
                       style={
@@ -3643,6 +3648,7 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
                             "width": 12,
                           }
                         }
+                        testID="access-icon-icon"
                       />
                     </View>
                   </View>

@@ -738,6 +738,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                             "tintColor": null,
                           }
                         }
+                        testID="access-icon-image"
                       />
                       <View
                         style={
@@ -767,6 +768,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                               "width": 12,
                             }
                           }
+                          testID="access-icon-icon"
                         />
                       </View>
                     </View>
@@ -1165,6 +1167,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                             "tintColor": null,
                           }
                         }
+                        testID="access-icon-image"
                       />
                       <View
                         style={
@@ -1194,6 +1197,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                               "width": 12,
                             }
                           }
+                          testID="access-icon-icon"
                         />
                       </View>
                     </View>
@@ -1902,6 +1906,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                             "tintColor": null,
                           }
                         }
+                        testID="access-icon-image"
                       />
                       <View
                         style={
@@ -1931,6 +1936,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                               "width": 12,
                             }
                           }
+                          testID="access-icon-icon"
                         />
                       </View>
                     </View>
@@ -2296,6 +2302,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                             "tintColor": null,
                           }
                         }
+                        testID="access-icon-image"
                       />
                       <View
                         style={
@@ -2325,6 +2332,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                               "width": 12,
                             }
                           }
+                          testID="access-icon-icon"
                         />
                       </View>
                     </View>
@@ -3140,6 +3148,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                             "tintColor": null,
                           }
                         }
+                        testID="access-icon-image"
                       />
                       <View
                         style={
@@ -3169,6 +3178,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                               "width": 12,
                             }
                           }
+                          testID="access-icon-icon"
                         />
                       </View>
                     </View>
@@ -3567,6 +3577,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                             "tintColor": null,
                           }
                         }
+                        testID="access-icon-image"
                       />
                       <View
                         style={
@@ -3596,6 +3607,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                               "width": 12,
                             }
                           }
+                          testID="access-icon-icon"
                         />
                       </View>
                     </View>
@@ -4453,6 +4465,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                             "tintColor": null,
                           }
                         }
+                        testID="access-icon-image"
                       />
                       <View
                         style={
@@ -4482,6 +4495,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                               "width": 12,
                             }
                           }
+                          testID="access-icon-icon"
                         />
                       </View>
                     </View>
@@ -4936,6 +4950,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                             "tintColor": null,
                           }
                         }
+                        testID="access-icon-image"
                       />
                       <View
                         style={
@@ -4965,6 +4980,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                               "width": 12,
                             }
                           }
+                          testID="access-icon-icon"
                         />
                       </View>
                     </View>

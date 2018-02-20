@@ -236,6 +236,7 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                             "tintColor": undefined,
                           }
                         }
+                        testID="access-icon-image"
                       />
                       <View
                         style={
@@ -265,6 +266,7 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                               "width": 12,
                             }
                           }
+                          testID="access-icon-icon"
                         />
                       </View>
                     </View>
@@ -493,6 +495,7 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                             "tintColor": undefined,
                           }
                         }
+                        testID="access-icon-image"
                       />
                       <View
                         style={
@@ -522,6 +525,7 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                               "width": 12,
                             }
                           }
+                          testID="access-icon-icon"
                         />
                       </View>
                     </View>
@@ -750,6 +754,7 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                             "tintColor": undefined,
                           }
                         }
+                        testID="access-icon-image"
                       />
                       <View
                         style={
@@ -779,6 +784,7 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                               "width": 12,
                             }
                           }
+                          testID="access-icon-icon"
                         />
                       </View>
                     </View>
@@ -1166,6 +1172,7 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                             "tintColor": undefined,
                           }
                         }
+                        testID="access-icon-image"
                       />
                       <View
                         style={
@@ -1195,6 +1202,7 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                               "width": 12,
                             }
                           }
+                          testID="access-icon-icon"
                         />
                       </View>
                     </View>
@@ -1423,6 +1431,7 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                             "tintColor": undefined,
                           }
                         }
+                        testID="access-icon-image"
                       />
                       <View
                         style={
@@ -1452,6 +1461,7 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                               "width": 12,
                             }
                           }
+                          testID="access-icon-icon"
                         />
                       </View>
                     </View>
@@ -1680,6 +1690,7 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                             "tintColor": undefined,
                           }
                         }
+                        testID="access-icon-image"
                       />
                       <View
                         style={
@@ -1709,6 +1720,7 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                               "width": 12,
                             }
                           }
+                          testID="access-icon-icon"
                         />
                       </View>
                     </View>
@@ -2096,6 +2108,7 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                             "tintColor": undefined,
                           }
                         }
+                        testID="access-icon-image"
                       />
                       <View
                         style={
@@ -2125,6 +2138,7 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                               "width": 12,
                             }
                           }
+                          testID="access-icon-icon"
                         />
                       </View>
                     </View>
@@ -2353,6 +2367,7 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                             "tintColor": undefined,
                           }
                         }
+                        testID="access-icon-image"
                       />
                       <View
                         style={
@@ -2382,6 +2397,7 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                               "width": 12,
                             }
                           }
+                          testID="access-icon-icon"
                         />
                       </View>
                     </View>
@@ -2610,6 +2626,7 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                             "tintColor": undefined,
                           }
                         }
+                        testID="access-icon-image"
                       />
                       <View
                         style={
@@ -2639,6 +2656,7 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                               "width": 12,
                             }
                           }
+                          testID="access-icon-icon"
                         />
                       </View>
                     </View>
@@ -3026,6 +3044,7 @@ exports[`CourseFileList sending weird data into the progress update function sho
                             "tintColor": undefined,
                           }
                         }
+                        testID="access-icon-image"
                       />
                       <View
                         style={
@@ -3055,6 +3074,7 @@ exports[`CourseFileList sending weird data into the progress update function sho
                               "width": 12,
                             }
                           }
+                          testID="access-icon-icon"
                         />
                       </View>
                     </View>
@@ -3283,6 +3303,7 @@ exports[`CourseFileList sending weird data into the progress update function sho
                             "tintColor": undefined,
                           }
                         }
+                        testID="access-icon-image"
                       />
                       <View
                         style={
@@ -3312,6 +3333,7 @@ exports[`CourseFileList sending weird data into the progress update function sho
                               "width": 12,
                             }
                           }
+                          testID="access-icon-icon"
                         />
                       </View>
                     </View>
@@ -3540,6 +3562,7 @@ exports[`CourseFileList sending weird data into the progress update function sho
                             "tintColor": undefined,
                           }
                         }
+                        testID="access-icon-image"
                       />
                       <View
                         style={
@@ -3569,6 +3592,7 @@ exports[`CourseFileList sending weird data into the progress update function sho
                               "width": 12,
                             }
                           }
+                          testID="access-icon-icon"
                         />
                       </View>
                     </View>
@@ -3956,6 +3980,7 @@ exports[`CourseFileList should render 1`] = `
                             "tintColor": undefined,
                           }
                         }
+                        testID="access-icon-image"
                       />
                       <View
                         style={
@@ -3985,6 +4010,7 @@ exports[`CourseFileList should render 1`] = `
                               "width": 12,
                             }
                           }
+                          testID="access-icon-icon"
                         />
                       </View>
                     </View>
@@ -4213,6 +4239,7 @@ exports[`CourseFileList should render 1`] = `
                             "tintColor": undefined,
                           }
                         }
+                        testID="access-icon-image"
                       />
                       <View
                         style={
@@ -4242,6 +4269,7 @@ exports[`CourseFileList should render 1`] = `
                               "width": 12,
                             }
                           }
+                          testID="access-icon-icon"
                         />
                       </View>
                     </View>
@@ -4470,6 +4498,7 @@ exports[`CourseFileList should render 1`] = `
                             "tintColor": undefined,
                           }
                         }
+                        testID="access-icon-image"
                       />
                       <View
                         style={
@@ -4499,6 +4528,7 @@ exports[`CourseFileList should render 1`] = `
                               "width": 12,
                             }
                           }
+                          testID="access-icon-icon"
                         />
                       </View>
                     </View>
@@ -4886,6 +4916,7 @@ exports[`CourseFileList should render with folders 1`] = `
                             "tintColor": undefined,
                           }
                         }
+                        testID="access-icon-image"
                       />
                       <View
                         style={
@@ -4915,6 +4946,7 @@ exports[`CourseFileList should render with folders 1`] = `
                               "width": 12,
                             }
                           }
+                          testID="access-icon-icon"
                         />
                       </View>
                     </View>
@@ -5143,6 +5175,7 @@ exports[`CourseFileList should render with folders 1`] = `
                             "tintColor": undefined,
                           }
                         }
+                        testID="access-icon-image"
                       />
                       <View
                         style={
@@ -5172,6 +5205,7 @@ exports[`CourseFileList should render with folders 1`] = `
                               "width": 12,
                             }
                           }
+                          testID="access-icon-icon"
                         />
                       </View>
                     </View>
@@ -5400,6 +5434,7 @@ exports[`CourseFileList should render with folders 1`] = `
                             "tintColor": undefined,
                           }
                         }
+                        testID="access-icon-image"
                       />
                       <View
                         style={
@@ -5429,6 +5464,7 @@ exports[`CourseFileList should render with folders 1`] = `
                               "width": 12,
                             }
                           }
+                          testID="access-icon-icon"
                         />
                       </View>
                     </View>

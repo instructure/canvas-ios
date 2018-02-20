@@ -67,6 +67,7 @@ exports[`ToDoListItem renders 1`] = `
                   "tintColor": null,
                 }
               }
+              testID="access-icon-image"
             />
             <View
               style={
@@ -96,6 +97,7 @@ exports[`ToDoListItem renders 1`] = `
                     "width": 12,
                   }
                 }
+                testID="access-icon-icon"
               />
             </View>
           </View>
@@ -372,6 +374,7 @@ exports[`ToDoListItem renders discussion 1`] = `
                   "tintColor": "#000",
                 }
               }
+              testID="access-icon-image"
             />
             <View
               style={
@@ -401,6 +404,7 @@ exports[`ToDoListItem renders discussion 1`] = `
                     "width": 12,
                   }
                 }
+                testID="access-icon-icon"
               />
             </View>
           </View>
@@ -677,6 +681,7 @@ exports[`ToDoListItem renders null due date 1`] = `
                   "tintColor": "#000",
                 }
               }
+              testID="access-icon-image"
             />
             <View
               style={
@@ -706,6 +711,7 @@ exports[`ToDoListItem renders null due date 1`] = `
                     "width": 12,
                   }
                 }
+                testID="access-icon-icon"
               />
             </View>
           </View>
@@ -982,6 +988,7 @@ exports[`ToDoListItem renders published assignment 1`] = `
                   "tintColor": "#000",
                 }
               }
+              testID="access-icon-image"
             />
             <View
               style={
@@ -1011,6 +1018,7 @@ exports[`ToDoListItem renders published assignment 1`] = `
                     "width": 12,
                   }
                 }
+                testID="access-icon-icon"
               />
             </View>
           </View>
@@ -1287,6 +1295,7 @@ exports[`ToDoListItem renders quiz 1`] = `
                   "tintColor": "#000",
                 }
               }
+              testID="access-icon-image"
             />
             <View
               style={
@@ -1316,6 +1325,7 @@ exports[`ToDoListItem renders quiz 1`] = `
                     "width": 12,
                   }
                 }
+                testID="access-icon-icon"
               />
             </View>
           </View>
@@ -1592,6 +1602,7 @@ exports[`ToDoListItem renders unpublished assignment 1`] = `
                   "tintColor": "#000",
                 }
               }
+              testID="access-icon-image"
             />
             <View
               style={
@@ -1621,6 +1632,7 @@ exports[`ToDoListItem renders unpublished assignment 1`] = `
                     "width": 12,
                   }
                 }
+                testID="access-icon-icon"
               />
             </View>
           </View>
