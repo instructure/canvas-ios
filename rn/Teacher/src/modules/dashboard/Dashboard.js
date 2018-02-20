@@ -429,6 +429,7 @@ export function mapStateToProps (isFullDashboard: boolean) {
 
     const allCourseStates = Object.keys(allCourses)
       .map(key => allCourses[key])
+      .filter(({ course }) => App.current().filterCourse(course))
 
     const enrollments = Object.keys(allEnrollments)
       .map(key => allEnrollments[key])
@@ -489,7 +490,8 @@ export function mapStateToProps (isFullDashboard: boolean) {
 
     let allCoursesStringKeys = {}
     const sections = allCourseStates.reduce((obj, { course }) => {
-      course.sections.forEach(sec => { obj[sec.id.toString()] = sec })
+      const courseSections = course.sections || []
+      courseSections.forEach(sec => { obj[sec.id.toString()] = sec })
       // this doesn't relate to sections,
       // but take advantage that we're looping through them all
       allCoursesStringKeys[course.id] = course
