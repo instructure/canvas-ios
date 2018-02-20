@@ -346,6 +346,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
 {
     [self setCurrentClient:nil];
     [self login];
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 }
 
 - (void)logout
