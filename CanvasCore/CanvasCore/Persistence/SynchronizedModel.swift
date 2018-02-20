@@ -31,11 +31,22 @@ extension SynchronizedModel where Self: NSManagedObject {
         return SignalProducer({ observer, disposable in
             context.perform {
                 do {
-                    let models: [Self] = try jsonArray.map { json in
+                    let models: [Self] = try jsonArray.flatMap { json in
                         let model: Self = (try context.findOne(withPredicate: uniquePredicateForObject(json)) ?? create(inContext: context))
                         
-                        try model.updateValues(json, inContext: context)
-                        try postProcess(model, json)
+                        // Historically we failed if _any_ of the models failed
+                        // However, since a lot of these models are coming from the javascript side
+                        // We just want these things to get into the database so that the existing native components work
+                        // This is no longer the source of truth, the RN stuff is
+                        do {
+                            try model.updateValues(json, inContext: context)
+                            try postProcess(model, json)
+                        } catch let e {
+                            print("error parsing model", e)
+                            context.delete(model)
+                            return nil
+                        }
+                        
                         return model
                     }
                     observer.send(value: models)
