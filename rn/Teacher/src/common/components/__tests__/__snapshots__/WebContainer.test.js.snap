@@ -35,10 +35,6 @@ exports[`WebContainer adds mathjax if needed 1`] = `
             height: auto;
             max-width: 100%;
           }
-          #whizzy_content {
-            padding: 0;
-            margin: 0;
-          }
           iframe {
             border: none;
             width: 100% !important;
@@ -46,14 +42,13 @@ exports[`WebContainer adds mathjax if needed 1`] = `
         </style>
       </head>
       <body>
-        <div id=\\"whizzy_content\\">
-          <math><mrow><msup><mi>&nbsp; a </mi><mn>2</mn></msup> <mo> + </mo> <msup><mi> b </mi><mn>2</mn></msup> <mo> = </mo> <msup><mi> c </mi><mn>2</mn></msup> </mrow> </math>
-        </div>
+        <math><mrow><msup><mi>&nbsp; a </mi><mn>2</mn></msup> <mo> + </mo> <msup><mi> b </mi><mn>2</mn></msup> <mo> = </mo> <msup><mi> c </mi><mn>2</mn></msup> </mrow> </math>
+        <div id=\\"_end_\\"></div>
         <script>
           window.onload = function () {
             let interval = setInterval(function () {
               if (window.originalPostMessage) {
-                let height = document.getElementById('whizzy_content').clientHeight;
+                let height = document.getElementById('_end_').offsetTop;
                 postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height }))
                 clearInterval(interval)
               }
@@ -134,10 +129,6 @@ exports[`WebContainer renders html 1`] = `
             height: auto;
             max-width: 100%;
           }
-          #whizzy_content {
-            padding: 0;
-            margin: 0;
-          }
           iframe {
             border: none;
             width: 100% !important;
@@ -145,14 +136,13 @@ exports[`WebContainer renders html 1`] = `
         </style>
       </head>
       <body>
-        <div id=\\"whizzy_content\\">
-          <div>hello world</div>
-        </div>
+        <div>hello world</div>
+        <div id=\\"_end_\\"></div>
         <script>
           window.onload = function () {
             let interval = setInterval(function () {
               if (window.originalPostMessage) {
-                let height = document.getElementById('whizzy_content').clientHeight;
+                let height = document.getElementById('_end_').offsetTop;
                 postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height }))
                 clearInterval(interval)
               }
@@ -233,10 +223,6 @@ exports[`WebContainer updates height from js 1`] = `
             height: auto;
             max-width: 100%;
           }
-          #whizzy_content {
-            padding: 0;
-            margin: 0;
-          }
           iframe {
             border: none;
             width: 100% !important;
@@ -244,14 +230,13 @@ exports[`WebContainer updates height from js 1`] = `
         </style>
       </head>
       <body>
-        <div id=\\"whizzy_content\\">
-          <div>hello world</div>
-        </div>
+        <div>hello world</div>
+        <div id=\\"_end_\\"></div>
         <script>
           window.onload = function () {
             let interval = setInterval(function () {
               if (window.originalPostMessage) {
-                let height = document.getElementById('whizzy_content').clientHeight;
+                let height = document.getElementById('_end_').offsetTop;
                 postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height }))
                 clearInterval(interval)
               }
@@ -325,10 +310,6 @@ exports[`WebContainer updates height from js with scroll disabled 1`] = `
             height: auto;
             max-width: 100%;
           }
-          #whizzy_content {
-            padding: 0;
-            margin: 0;
-          }
           iframe {
             border: none;
             width: 100% !important;
@@ -336,14 +317,13 @@ exports[`WebContainer updates height from js with scroll disabled 1`] = `
         </style>
       </head>
       <body>
-        <div id=\\"whizzy_content\\">
-          <div>hello world</div>
-        </div>
+        <div>hello world</div>
+        <div id=\\"_end_\\"></div>
         <script>
           window.onload = function () {
             let interval = setInterval(function () {
               if (window.originalPostMessage) {
-                let height = document.getElementById('whizzy_content').clientHeight;
+                let height = document.getElementById('_end_').offsetTop;
                 postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height }))
                 clearInterval(interval)
               }

@@ -47,10 +47,6 @@ const TEMPLATE = `<!doctype html>
       height: auto;
       max-width: 100%;
     }
-    #whizzy_content {
-      padding: 0;
-      margin: 0;
-    }
     iframe {
       border: none;
       width: 100% !important;
@@ -58,14 +54,13 @@ const TEMPLATE = `<!doctype html>
   </style>
 </head>
 <body>
-  <div id="whizzy_content">
-    {{content}}
-  </div>
+  {{content}}
+  <div id="_end_"></div>
   <script>
     window.onload = function () {
       let interval = setInterval(function () {
         if (window.originalPostMessage) {
-          let height = document.getElementById('whizzy_content').clientHeight;
+          let height = document.getElementById('_end_').offsetTop;
           postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height }))
           clearInterval(interval)
         }
