@@ -31,7 +31,7 @@ class CanvadocsAnnotationProvider: PSPDFContainerAnnotationProvider {
 
     var childrenMapping: [String:[CanvadocsCommentReplyAnnotation]] = [:]
 
-    weak var delegate: CanvadocsAnnotationProviderDelegate?
+    weak var limitDelegate: CanvadocsAnnotationProviderDelegate?
     
     init(documentProvider: PSPDFDocumentProvider!, annotations: [CanvadocsAnnotation], service: CanvadocsAnnotationService) {
         self.service = service
@@ -207,7 +207,7 @@ class CanvadocsAnnotationProvider: PSPDFContainerAnnotationProvider {
 
         if let inkAnnotation = annotation as? PSPDFInkAnnotation, inkAnnotation.lines.count > 120 {
             doc.undoController?.undo()
-            delegate?.annotationDidExceedLimit(annotation: canvadocsAnnotation)
+            limitDelegate?.annotationDidExceedLimit(annotation: canvadocsAnnotation)
             return
         }
 
@@ -229,7 +229,7 @@ class CanvadocsAnnotationProvider: PSPDFContainerAnnotationProvider {
                 doc.undoController?.undo()
                 switch error {
                 case .tooBig:
-                    self?.delegate?.annotationDidExceedLimit(annotation: canvadocsAnnotation)
+                    self?.limitDelegate?.annotationDidExceedLimit(annotation: canvadocsAnnotation)
                 case .nsError(let e):
                     print(e)
                 }

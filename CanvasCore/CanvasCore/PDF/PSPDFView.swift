@@ -16,6 +16,7 @@
 
 import UIKit
 import PSPDFKit
+import PSPDFKitUI
 
 // CREDIT: https://stackoverflow.com/a/24590678
 extension UIView {

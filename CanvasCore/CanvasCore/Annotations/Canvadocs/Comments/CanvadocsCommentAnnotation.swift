@@ -16,6 +16,7 @@
 
 import UIKit
 import PSPDFKit
+import PSPDFKitUI
 
 class CanvadocsCommentAnnotation: PSPDFNoteAnnotation {
     override var renderAnnotationIcon: UIImage? {

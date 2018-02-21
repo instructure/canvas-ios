@@ -94,7 +94,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func preparePSPDFKit() {
         guard let key = Secrets.fetch(.teacherPSPDFKit) else { return }
         PSPDFKit.setLicenseKey(key)
-        PSPDFScrollView.swizzleAllTehThings()
     }
     
     func initiateLoginProcess() {

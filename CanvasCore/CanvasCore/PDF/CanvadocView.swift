@@ -16,6 +16,7 @@
 
 import UIKit
 import PSPDFKit
+import PSPDFKitUI
 import React
 import CanvasKeymaster
 import AFNetworking
@@ -125,11 +126,11 @@ public class CanvadocView: UIView {
         flexibleToolbarContainer.frame = bounds
         openInButton.center = activityIndicator.center
         
-        if let margin = pdfViewController?.configuration.margin, margin.bottom != self.bottomInset {
+        if let insets = pdfViewController?.configuration.additionalScrollViewFrameInsets, insets.bottom != self.bottomInset {
             pdfViewController?.updateConfigurationWithoutReloading { config in
-                var updated = margin
+                var updated = insets
                 updated.bottom = self.bottomInset
-                config.margin = updated
+                config.additionalScrollViewFrameInsets = updated
             }
         }
     }

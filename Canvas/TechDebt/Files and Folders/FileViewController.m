@@ -35,6 +35,7 @@
 #import "CBIAssignmentDetailViewController.h"
 
 @import PSPDFKit;
+@import PSPDFKitUI;
 @import CanvasKeymaster;
 @import CanvasCore;
 

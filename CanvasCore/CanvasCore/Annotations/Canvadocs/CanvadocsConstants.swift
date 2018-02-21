@@ -18,6 +18,7 @@
 
 import UIKit
 import PSPDFKit
+import PSPDFKitUI
 
 let standardCanvadocsColors: [UIColor] = CanvadocsAnnotationColor.allColors.map { $0.color }
 let highlightCanvadocsColors: [UIColor] = CanvadocsHighlightColor.allColors.map { $0.color }
@@ -72,11 +73,11 @@ func applySharedAppConfiguration(to builder: PSPDFConfigurationBuilder) {
     builder.shouldAskForAnnotationUsername = false
     builder.pageTransition = PSPDFPageTransition.scrollContinuous
     builder.scrollDirection = PSPDFScrollDirection.vertical
-    builder.fitToWidthEnabled = .YES
-    builder.pagePadding = 5.0
+    builder.spreadFitting = .fit
+    builder.pageMode = .single
     builder.isRenderAnimationEnabled = true
-    builder.shouldHideNavigationBarWithHUD = false
-    builder.shouldHideStatusBarWithHUD = false
+    builder.shouldHideNavigationBarWithUserInterface = false
+    builder.shouldHideStatusBarWithUserInterface = false
     builder.applicationActivities = [PSPDFActivityTypeOpenIn, PSPDFActivityTypeGoToPage, PSPDFActivityTypeSearch]
     builder.editableAnnotationTypes = [.note, .highlight, .freeText, .strikeOut, .ink, .square]
     builder.naturalDrawingAnnotationEnabled = true
@@ -106,9 +107,9 @@ public func teacherAppConfiguration(bottomInset: CGFloat) -> PSPDFConfiguration 
     return PSPDFConfiguration { (builder) -> Void in
         applySharedAppConfiguration(to: builder)
         // 33 = height of toolbar... it's being weird
-        builder.margin = UIEdgeInsets(top: 33, left: 0, bottom: bottomInset, right: 0)
+        builder.additionalScrollViewFrameInsets = UIEdgeInsets(top: 33, left: 0, bottom: bottomInset, right: 0)
         builder.backgroundColor = UIColor(red: 165.0/255.0, green: 175.0/255.0, blue: 181.0/255.0, alpha: 1.0)
-        builder.hudViewMode = .never
+        builder.userInterfaceViewMode = .never
     }
 }
 

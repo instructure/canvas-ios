@@ -71,7 +71,7 @@ abstract_target 'defaults' do
   pod 'TPKeyboardAvoiding', '~> 1.3'
   pod 'Eureka', git: 'https://github.com/xmartlabs/Eureka', branch: 'feature/Xcode9-Swift3_2'
   pod 'SwiftSimplify'
-  pod 'PSPDFKit', podspec: 'https://customers.pspdfkit.com/cocoapods/8YzxfVzsGsqs4HKYsejmoeD6WEJ9ma/pspdfkit/6.9.3.podspec'
+  pod 'PSPDFKit', podspec: 'https://customers.pspdfkit.com/cocoapods/8YzxfVzsGsqs4HKYsejmoeD6WEJ9ma/pspdfkit/7.3.1.podspec'
 
   target 'Parent' do
     project 'Parent/Parent.xcodeproj'

@@ -80,7 +80,6 @@
 		493020161F901CF5006BD777 /* CanvadocsAnnotationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020041F901CF5006BD777 /* CanvadocsAnnotationProvider.swift */; };
 		493020171F901CF5006BD777 /* CanvadocsAnnotationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020051F901CF5006BD777 /* CanvadocsAnnotationService.swift */; };
 		493020181F901CF5006BD777 /* CanvadocsAnnotationToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020061F901CF5006BD777 /* CanvadocsAnnotationToolbar.swift */; };
-		493020191F901CF5006BD777 /* PSPDFScrollView+Fixed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020071F901CF5006BD777 /* PSPDFScrollView+Fixed.swift */; };
 		4930201A1F901CF5006BD777 /* CanvadocsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020081F901CF5006BD777 /* CanvadocsConstants.swift */; };
 		4930201B1F901CF5006BD777 /* CanvadocsPDFDocumentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020091F901CF5006BD777 /* CanvadocsPDFDocumentPresenter.swift */; };
 		4930201C1F901CF5006BD777 /* CanvadocsAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930200A1F901CF5006BD777 /* CanvadocsAnnotation.swift */; };
@@ -607,7 +606,6 @@
 		493020041F901CF5006BD777 /* CanvadocsAnnotationProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvadocsAnnotationProvider.swift; sourceTree = "<group>"; };
 		493020051F901CF5006BD777 /* CanvadocsAnnotationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvadocsAnnotationService.swift; sourceTree = "<group>"; };
 		493020061F901CF5006BD777 /* CanvadocsAnnotationToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvadocsAnnotationToolbar.swift; sourceTree = "<group>"; };
-		493020071F901CF5006BD777 /* PSPDFScrollView+Fixed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PSPDFScrollView+Fixed.swift"; sourceTree = "<group>"; };
 		493020081F901CF5006BD777 /* CanvadocsConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvadocsConstants.swift; sourceTree = "<group>"; };
 		493020091F901CF5006BD777 /* CanvadocsPDFDocumentPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvadocsPDFDocumentPresenter.swift; sourceTree = "<group>"; };
 		4930200A1F901CF5006BD777 /* CanvadocsAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvadocsAnnotation.swift; sourceTree = "<group>"; };
@@ -1473,7 +1471,6 @@
 				493020041F901CF5006BD777 /* CanvadocsAnnotationProvider.swift */,
 				493020051F901CF5006BD777 /* CanvadocsAnnotationService.swift */,
 				493020061F901CF5006BD777 /* CanvadocsAnnotationToolbar.swift */,
-				493020071F901CF5006BD777 /* PSPDFScrollView+Fixed.swift */,
 				493020081F901CF5006BD777 /* CanvadocsConstants.swift */,
 				493020091F901CF5006BD777 /* CanvadocsPDFDocumentPresenter.swift */,
 				4930200A1F901CF5006BD777 /* CanvadocsAnnotation.swift */,
@@ -3125,7 +3122,6 @@
 				49CE97A51F900D0000121A43 /* Session+Backdrop.swift in Sources */,
 				4930200C1F901CF5006BD777 /* GDataXMLNode.m in Sources */,
 				49301FF31F901854006BD777 /* NotificationPreference.swift in Sources */,
-				493020191F901CF5006BD777 /* PSPDFScrollView+Fixed.swift in Sources */,
 				4961F5EC1F8FB4070093EC86 /* TableViewController.swift in Sources */,
 				49CE965B1F8FF41B00121A43 /* QuizIntroViewController+Objective-C.swift in Sources */,
 				493020481F902364006BD777 /* ❨╯°□°❩╯⌢.swift in Sources */,

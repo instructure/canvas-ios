@@ -16,6 +16,7 @@
 
 import UIKit
 import PSPDFKit
+import PSPDFKitUI
 
 public class CanvadocsAnnotationToolbar: PSPDFAnnotationToolbar {
     
@@ -25,7 +26,7 @@ public class CanvadocsAnnotationToolbar: PSPDFAnnotationToolbar {
         return showDoneButton ? super.doneButton : nil
     }
     
-    override public init(annotationStateManager: PSPDFAnnotationStateManager) {
+    public override init(annotationStateManager: PSPDFAnnotationStateManager) {
         super.init(annotationStateManager: annotationStateManager)
         
         barTintColor = .colorFromHexString("#556572")

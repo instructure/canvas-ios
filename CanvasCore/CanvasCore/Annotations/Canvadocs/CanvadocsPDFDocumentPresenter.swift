@@ -18,6 +18,7 @@
 
 import Foundation
 import PSPDFKit
+import PSPDFKitUI
 
 let DisabledMenuItems: [String] = [
     PSPDFAnnotationMenuOpacity,
@@ -122,7 +123,7 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
         }
         pdfDocument.didCreateDocumentProviderBlock = { documentProvider in
             let canvadocsAnnotationProvider = CanvadocsAnnotationProvider(documentProvider: documentProvider, annotations: annotations, service: service)
-            canvadocsAnnotationProvider.delegate = self
+            canvadocsAnnotationProvider.limitDelegate = self
             documentProvider.annotationManager.annotationProviders = [canvadocsAnnotationProvider]
             self.annotationProvider = canvadocsAnnotationProvider
         }
