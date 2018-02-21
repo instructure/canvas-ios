@@ -530,8 +530,8 @@
   "error_98e81528": {
     "message": "Error"
   },
-  "error_saving_grade_ef8d2ddc": {
-    "message": "Error saving grade"
+  "error_saving_grade_367dd920": {
+    "message": "Error Saving Grade"
   },
   "everyone_854554dd": {
     "message": "Everyone"
@@ -1310,9 +1310,6 @@
   "the_value_of_possible_points_must_be_zero_or_great_374e175a": {
     "message": "The value of possible points must be zero or greater"
   },
-  "the_was_a_problem_saving_the_grade_please_try_agai_2aefe6a8": {
-    "message": "The was a problem saving the grade. Please try again."
-  },
   "there_are_no_announcements_to_display_a91880": {
     "message": "There are no announcements to display."
   },
@@ -1360,6 +1357,9 @@
   },
   "there_was_a_problem_retreiving_the_terms_of_use_3a5fa00c": {
     "message": "There was a problem retreiving the Terms Of Use"
+  },
+  "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
+    "message": "There was a problem saving the grade. Please try again."
   },
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "There was an error loading the attachment."
