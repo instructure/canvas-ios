@@ -25,6 +25,7 @@
 @import CocoaLumberjack;
 
 static double const CKMDistanceThreshold = 50.0;
+static CKMLocationSchoolSuggester* _sharedInstance = nil;
 
 int ddLogLevel =
 #ifdef DEBUG
@@ -34,7 +35,7 @@ int ddLogLevel =
 #endif
 
 @interface CKMLocationSchoolSuggester ()
-@property (nonatomic, strong) NSMutableArray *availableSchools;
+@property (nonatomic, strong) NSMutableSet *availableSchools;
 @property (nonatomic, strong) CLLocation *currentLocation;
 @end
 
@@ -47,26 +48,45 @@ int ddLogLevel =
         RAC(self, currentLocation) = [[[CKMLocationManager sharedInstance] locationSignal] catch:^RACSignal *(NSError *error) {
             return [RACSignal empty];
         }];
+        self.availableSchools = [NSMutableSet new];
         [self loadSchools];
     }
     return self;
 }
-
+    
++ (instancetype)shared {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sharedInstance = [CKMLocationSchoolSuggester new];
+    });
+    
+    return _sharedInstance;
+}
+    
 - (void)loadSchools {
-    self.availableSchools = [NSMutableArray new];
+    self.fetching = YES;
 
     // fetch the schools and when we're done, check to see if cache is expired.  Then download the new file for next time
     @weakify(self);
     [[CKIClient fetchAccountDomains] subscribeNext:^(NSArray *accountDomains) {
         @strongify(self);
         [self.availableSchools addObjectsFromArray:accountDomains];
+        self.schoolSearchString = [self.schoolSearchString copy];
     } error:^(NSError *error) {
         DDLogError(@"ERROR DOWNLOADING ACCOUNT DOMAINS: %@", error.localizedDescription);
+        self.fetching = NO;
     } completed:^{
+        self.fetching = NO;
         // Nothing to do here.  Searching will happen as soon as results start returning
     }];
 }
 
+- (void)fetchSchools {
+    if (!self.fetching) {
+        [self loadSchools];
+    }
+}
+    
 - (RACSignal *)suggestionsSignal
 {
     return [RACSignal combineLatest:@[RACObserve(self, schoolSearchString), RACObserve(self, currentLocation) ] reduce:^id(NSString *schoolSearchString, CLLocation *currentLocation) {

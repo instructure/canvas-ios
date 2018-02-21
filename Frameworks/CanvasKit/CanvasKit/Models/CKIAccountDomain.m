@@ -23,10 +23,10 @@
 + (NSDictionary *)JSONKeyPathsByPropertyKey
 {
     NSDictionary *keyPaths = @{
-            @"name": @"name"
-            ,@"domain": @"domain"
-            ,@"distance": @"distance"
-            ,@"authenticationProvider": @"authentication_provider"
+            @"name": @"name",
+            @"domain": @"domain",
+            @"distance": @"distance",
+            @"authenticationProvider": @"authentication_provider",
     };
     NSDictionary *superPaths = [super JSONKeyPathsByPropertyKey];
     return [superPaths dictionaryByAddingObjectsFromDictionary:keyPaths];
@@ -79,5 +79,16 @@
     return devSchools;
 }
 
-
+- (BOOL)isEqual:(id)object {
+    CKIAccountDomain *other = (CKIAccountDomain *)object;
+    if (![other isKindOfClass:[CKIAccountDomain class]]) {
+        return NO;
+    }
+    return [other.id isEqualToString:self.id];
+}
+    
+- (NSUInteger)hash {
+    return self.id.hash;
+}
+    
 @end

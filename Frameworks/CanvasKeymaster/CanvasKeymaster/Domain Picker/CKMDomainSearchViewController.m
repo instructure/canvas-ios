@@ -8,6 +8,7 @@
 
 #import "CKMDomainSearchViewController.h"
 #import "CKMDomainSuggestionTableViewController.h"
+#import "CKMLocationSchoolSuggester.h"
 #import "CanvasKeymaster.h"
 
 @import ReactiveObjC;
@@ -19,6 +20,7 @@
 @property (nonatomic, weak) IBOutlet UITextField *searchTextField;
 @property (nonatomic, weak) IBOutlet UIView *suggestionContainer;
 @property (nonatomic, weak) IBOutlet UIButton *closeButton;
+@property (nonatomic, weak) IBOutlet UIActivityIndicatorView *spinner;
 @property (nonatomic, weak) CKMDomainSuggestionTableViewController *suggestionTableViewController;
 
 @end
@@ -43,6 +45,15 @@
     }];
     
     [self.searchTextField addTarget:self action:@selector(textFieldWasEdited:) forControlEvents:UIControlEventAllEditingEvents];
+    
+    CKMLocationSchoolSuggester *suggestor = [CKMLocationSchoolSuggester shared];
+    RACSignal *fetching = RACObserve(suggestor, fetching);
+    RACSignal *text = self.searchTextField.rac_textSignal;
+    RAC(self.spinner, animating) = [[[fetching combineLatestWith:text] map:^id (RACTuple* value) {
+        NSNumber *fetching = value.first;
+        NSString *text = value.second;
+        return @([fetching boolValue] && text.length > 0);
+    }] deliverOnMainThread];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

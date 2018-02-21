@@ -26,9 +26,23 @@
 @property (nonatomic, copy) NSString *schoolSearchString;
 
 /**
+ *  YES if still in the process of fetching all the accounts, otherwise NO
+ */
+@property (nonatomic) BOOL fetching;
+    
+/**
  * A stream of arrays of strings, where each array of strings is a list of the possible autocompletions to be displayed.
  * This will be updated and send back values as appropriate when domainString is updated
  */
 - (RACSignal *)suggestionsSignal;
 
+/**
+ *  Shared instance of the suggestor
+ *
+ */
++ (instancetype)shared;
+    
+// Fetch accounts, if not already doing so
+- (void)fetchSchools;
+    
 @end

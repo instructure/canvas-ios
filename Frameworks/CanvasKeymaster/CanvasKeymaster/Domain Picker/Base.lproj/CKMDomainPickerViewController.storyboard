@@ -144,7 +144,7 @@
             <objects>
                 <tableViewController id="jsa-dV-wAc" customClass="CKMDomainSuggestionTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="MeQ-nj-aZ4">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="479"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="478"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="separatorColor" red="0.5869837403" green="0.62711781259999999" blue="0.65633940700000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -321,21 +321,21 @@
                                     <constraint firstAttribute="height" constant="32" id="iYd-HB-QJD"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's your school's name?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXv-Vt-Lud">
-                                <rect key="frame" x="16" y="98" width="343" height="26.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's your school's name?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXv-Vt-Lud">
+                                <rect key="frame" x="16" y="98" width="315" height="27"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                                 <color key="textColor" red="0.1764705882" green="0.23137254900000001" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RGm-r2-3cE">
-                                <rect key="frame" x="0.0" y="132" width="375" height="1"/>
+                                <rect key="frame" x="0.0" y="133" width="375" height="1"/>
                                 <color key="backgroundColor" red="0.5869837403" green="0.62711781259999999" blue="0.65633940700000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="Rgz-9R-1ur" customClass="NSLayoutConstraintHairline"/>
                                 </constraints>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="school.instructure.com" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="xzj-lX-iaI">
-                                <rect key="frame" x="16" y="149" width="343" height="22"/>
+                                <rect key="frame" x="16" y="150" width="343" height="22"/>
                                 <color key="textColor" red="0.20218595859999999" green="0.2543922663" blue="0.29195973279999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL" returnKeyType="go" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="url"/>
@@ -344,21 +344,25 @@
                                 </connections>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s4P-nx-kH2">
-                                <rect key="frame" x="0.0" y="187" width="375" height="1"/>
+                                <rect key="frame" x="0.0" y="188" width="375" height="1"/>
                                 <color key="backgroundColor" red="0.5869837403" green="0.62711781259999999" blue="0.65633940700000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="Sd0-py-oYk" customClass="NSLayoutConstraintHairline"/>
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mxb-I8-4zx">
-                                <rect key="frame" x="0.0" y="188" width="375" height="479"/>
+                                <rect key="frame" x="0.0" y="189" width="375" height="478"/>
                                 <connections>
                                     <segue destination="jsa-dV-wAc" kind="embed" identifier="EmbedSuggestions" id="JtW-Ab-y7f"/>
                                 </connections>
                             </containerView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="oxQ-Ay-g4E">
+                                <rect key="frame" x="339" y="101" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="oxQ-Ay-g4E" firstAttribute="leading" secondItem="hXv-Vt-Lud" secondAttribute="trailing" constant="8" id="6Qa-ia-eJX"/>
                             <constraint firstAttribute="trailing" secondItem="Mxb-I8-4zx" secondAttribute="trailing" id="6VC-QH-MDm"/>
                             <constraint firstItem="s4P-nx-kH2" firstAttribute="leading" secondItem="bhy-xl-PNG" secondAttribute="leading" id="9Qv-X9-dlb"/>
                             <constraint firstItem="2Rf-qw-NGd" firstAttribute="top" secondItem="xF3-3H-tfF" secondAttribute="bottom" constant="16" id="BxK-3r-7fD"/>
@@ -369,8 +373,9 @@
                             <constraint firstItem="aHi-ya-AL9" firstAttribute="leading" secondItem="bhy-xl-PNG" secondAttribute="leadingMargin" constant="-9" id="ERp-Jg-tFa"/>
                             <constraint firstItem="xzj-lX-iaI" firstAttribute="leading" secondItem="bhy-xl-PNG" secondAttribute="leadingMargin" id="IeF-ET-LuS"/>
                             <constraint firstItem="hXv-Vt-Lud" firstAttribute="leading" secondItem="bhy-xl-PNG" secondAttribute="leadingMargin" id="Ikj-oy-st7"/>
+                            <constraint firstItem="oxQ-Ay-g4E" firstAttribute="trailing" secondItem="bhy-xl-PNG" secondAttribute="trailingMargin" id="THp-LO-O8N"/>
+                            <constraint firstItem="RGm-r2-3cE" firstAttribute="top" secondItem="oxQ-Ay-g4E" secondAttribute="bottom" constant="12" id="V8q-vH-BIf"/>
                             <constraint firstAttribute="trailing" secondItem="s4P-nx-kH2" secondAttribute="trailing" id="YLD-ku-2Si"/>
-                            <constraint firstItem="hXv-Vt-Lud" firstAttribute="trailing" secondItem="bhy-xl-PNG" secondAttribute="trailingMargin" id="Yyr-rQ-UKf"/>
                             <constraint firstItem="xzj-lX-iaI" firstAttribute="top" secondItem="RGm-r2-3cE" secondAttribute="bottom" constant="16" id="b6h-C3-SO4"/>
                             <constraint firstItem="hXv-Vt-Lud" firstAttribute="top" secondItem="2Rf-qw-NGd" secondAttribute="bottom" constant="30" id="bLh-me-7BG"/>
                             <constraint firstItem="Mxb-I8-4zx" firstAttribute="top" secondItem="s4P-nx-kH2" secondAttribute="bottom" id="gs2-yQ-vpo"/>
@@ -386,6 +391,7 @@
                         <outlet property="closeButton" destination="aHi-ya-AL9" id="XR4-Lc-fHs"/>
                         <outlet property="logoImageView" destination="2Rf-qw-NGd" id="6Ep-lQ-Qfi"/>
                         <outlet property="searchTextField" destination="xzj-lX-iaI" id="eY8-f8-JVJ"/>
+                        <outlet property="spinner" destination="oxQ-Ay-g4E" id="IgD-tw-yyy"/>
                         <outlet property="suggestionContainer" destination="Mxb-I8-4zx" id="M5b-4x-Xz4"/>
                     </connections>
                 </viewController>

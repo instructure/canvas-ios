@@ -75,7 +75,7 @@
 - (CKMLocationSchoolSuggester *)schoolSuggester
 {
     if (!_schoolSuggester) {
-        _schoolSuggester = [CKMLocationSchoolSuggester new];
+        _schoolSuggester = [CKMLocationSchoolSuggester shared];
     }
     return _schoolSuggester;
 }

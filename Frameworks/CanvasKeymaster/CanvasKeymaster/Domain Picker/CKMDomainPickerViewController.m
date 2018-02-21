@@ -29,6 +29,7 @@
 #import "CKMLocationManager.h"
 #import "CKMDomainHelpViewController.h"
 #import "CKMDomainPickerViewController.h"
+#import "CKMLocationSchoolSuggester.h"
 
 #define ddLogLevel LOG_LEVEL_VERBOSE
 
@@ -96,6 +97,9 @@ static BOOL PerformedStartupAnimation = NO;
     if (PerformedStartupAnimation) {
         [self skipLaunchAnimations];
     }
+    
+    // Start getting all the accounts
+    [[CKMLocationSchoolSuggester shared] fetchSchools];
 }
 
 - (void)viewDidAppear:(BOOL)animated
