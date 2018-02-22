@@ -81,6 +81,7 @@ export class ConversationDetails extends Component <ConversationDetailsProps, an
     }
   }
   _renderItem = ({ item, index }) => {
+    if (!this.props.conversation) return <View />
     return <ConversationMessageRow
               navigator={this.props.navigator}
               message={item}
@@ -270,7 +271,7 @@ export class ConversationDetails extends Component <ConversationDetailsProps, an
       }
     }
 
-    this.props.navigator.show(`/conversations/${this.props.conversation.id}/add_message`, { modal: true }, options)
+    this.props.navigator.show(`/conversations/${this.props.conversationID}/add_message`, { modal: true }, options)
   }
 }
 
