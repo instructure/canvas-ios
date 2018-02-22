@@ -189,6 +189,7 @@
 
 - (void)updateOrCreateNewAttemptWithInfo:(NSDictionary *)attemptInfo
 {
+    if (![attemptInfo isKindOfClass:[NSDictionary class]]) return;
     // attempts with attempt = null are just placeholders for submissions that have comments before anything is submitted.
     if (attemptInfo[@"attempt"] != [NSNull null]) {
         NSString *newAttemptIdent = [CKSubmissionAttempt internalIdentForInfo:attemptInfo andSubmission:self];

@@ -83,6 +83,12 @@ NativeModules.TabBarItemCounts = {
   updateTodoListCount: jest.fn(),
 }
 
+NativeModules.SettingsManager = {
+  settings: {
+    AppleLocale: 'en',
+  },
+}
+
 jest.mock('NativeEventEmitter')
 
 jest.mock('NetInfo', () => ({

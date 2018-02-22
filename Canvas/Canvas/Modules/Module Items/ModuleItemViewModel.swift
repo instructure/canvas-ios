@@ -128,7 +128,7 @@ class ModuleItemViewModel: NSObject {
         vm.accessibilityIdentifier.value = "module_item"
         vm.titleLineBreakMode = .byWordWrapping
         
-        let type = self.moduleItem.value!.contentType
+        let type = self.moduleItem.value?.contentType
         vm.accessoryView <~ SignalProducer.combineLatest(self.completed.producer, self.locked.producer).map { (completed, locked) -> UIView? in
             if locked && type != .assignment {
                 let imageView = UIImageView(image: .icon(.lock))

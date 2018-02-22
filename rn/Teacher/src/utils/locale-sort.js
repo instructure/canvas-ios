@@ -16,20 +16,12 @@
 
 // @flow
 import { NativeModules } from 'react-native'
+import { sanitizeLocale } from '../../i18n/setup'
 
 declare var Intl: any
 
 export default function localeSort (first: any, second: any, locale?: string): number {
-  // Apple gives us the locale/region using an underscore instead of a dash. Silly.
-  if (!locale) {
-    locale = NativeModules.SettingsManager ? NativeModules.SettingsManager.settings.AppleLocale.replace('_', '-') : 'en'
-  }
-
-  // Found a weird case where we were getting a locale back that looked like this en-AF@calendar=gregorian
-  if (locale.indexOf('@') !== -1) {
-    const index = locale.indexOf('@')
-    locale = locale.substr(0, index)
-  }
+  locale = sanitizeLocale(locale || NativeModules.SettingsManager.settings.AppleLocale)
   let collator
   try {
     collator = new Intl.Collator(locale)

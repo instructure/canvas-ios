@@ -483,7 +483,7 @@ export function mapStateToProps (isFullDashboard: boolean) {
           id: group.id,
           name: group.name,
           contextName: courseData ? courseData.course.name : i18n('Account Group'),
-          term: courseData && courseData.course.term.name,
+          term: courseData && courseData.course.term && courseData.course.term.name,
           color: groupColor || (courseData ? courseData.color : color.lightText),
         }
       })

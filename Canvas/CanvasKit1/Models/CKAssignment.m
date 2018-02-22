@@ -87,7 +87,7 @@
     
     self.assignmentGroupId = [info[@"assignment_group_id"] unsignedLongLongValue];
     NSNumber *positionNum = info[@"position"];
-    if (positionNum && (id)positionNum != [NSNull null]) {
+    if ([positionNum isKindOfClass:[NSNumber class]]) {
         self.position = [positionNum intValue];
     }
     
@@ -98,7 +98,7 @@
     }
     
     NSString *urlString = info[@"url"];
-    if (urlString) {
+    if ([urlString isKindOfClass:[NSString class]]) {
         self.url = [NSURL URLWithString:urlString];
     }
     
@@ -121,7 +121,7 @@
     self.groupCategoryID = info[@"group_category_id"];
 
     NSString *externalToolTagAttributesURL = [info valueForKeyPath:@"external_tool_tag_attributes.url"];
-    if (externalToolTagAttributesURL) {
+    if ([externalToolTagAttributesURL isKindOfClass:[NSString class]]) {
         self.externalToolTagAttributesURL = [NSURL URLWithString:externalToolTagAttributesURL];
     }
 }

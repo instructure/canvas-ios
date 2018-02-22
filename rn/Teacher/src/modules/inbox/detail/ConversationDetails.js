@@ -41,7 +41,7 @@ import find from 'lodash/find'
 import { getSession } from '../../../canvas-api'
 
 export type ConversationOwnProps = {
-  conversation: Conversation,
+  conversation?: ?Conversation,
   conversationID: string,
   messages: ConversationMessage[],
   pending?: boolean,
@@ -248,9 +248,11 @@ export class ConversationDetails extends Component <ConversationDetailsProps, an
   }
 
   reply (id: ?string) {
-    const convo = this.props.conversation
+    const convo = this.props.conversation || {}
+    const participants = convo.participants || []
+    const messages = convo.messages || []
     const options = {
-      recipients: convo.participants.filter(p => convo.audience.includes(p.id)),
+      recipients: participants.filter(p => convo.audience.includes(p.id)),
       contextName: convo.context_name,
       contextCode: convo.context_code,
       subject: convo.subject,
@@ -259,11 +261,11 @@ export class ConversationDetails extends Component <ConversationDetailsProps, an
     }
 
     if (id) {
-      const message = find(convo.messages, { id })
+      const message = find(messages, { id })
       const me = (getSession() || {}).user
       if (message) {
         if (me && message.author_id !== me.id) {
-          options.recipients = convo.participants.filter(p => p.id === message.author_id)
+          options.recipients = participants.filter(p => p.id === message.author_id)
         }
       }
     }

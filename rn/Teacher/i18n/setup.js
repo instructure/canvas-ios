@@ -24,6 +24,9 @@ import translations from './locales/index'
 // and if we can't get a locale, default to english
 export function sanitizeLocale (locale: ?string): string {
   if (!locale) return 'en'
+  // Found some crash reports with this causing issues.
+  // Apparently apple uses that locale sometimes and it just means english.
+  if (locale === 'en-US_POSIX') return 'en'
   if (locale.indexOf('@') !== -1) {
     const index = locale.indexOf('@')
     locale = locale.substr(0, index)
