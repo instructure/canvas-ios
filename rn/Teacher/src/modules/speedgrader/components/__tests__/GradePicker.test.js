@@ -288,7 +288,7 @@ describe('GradePicker', () => {
     )
   })
 
-  it('renders with late policy', () => {
+  it('renders late policy with single point deducted', () => {
     let props = {
       ...defaultProps,
       late: true,
@@ -297,6 +297,24 @@ describe('GradePicker', () => {
       enteredScore: 9,
       grade: '8',
       score: 8,
+    }
+
+    let view = renderer.create(
+      <GradePicker {...props} />
+    )
+
+    expect(view).toMatchSnapshot()
+  })
+
+  it('renders late policy with multiple points deducted', () => {
+    let props = {
+      ...defaultProps,
+      late: true,
+      pointsDeducted: 2,
+      enteredGrade: '9',
+      enteredScore: 9,
+      grade: '7',
+      score: 7,
     }
 
     let view = renderer.create(

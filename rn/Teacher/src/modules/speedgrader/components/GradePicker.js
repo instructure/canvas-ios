@@ -137,10 +137,18 @@ export class GradePicker extends Component<GradePickerProps, GradePickerState> {
   renderLatePolicy () {
     if (!this.applyLatePolicy() || !this.props.grade) return null
     const { pointsDeducted } = this.props
+    let latePointsLabel = i18n({
+      default: `{ 
+        count, plural,
+          one {# pt}
+        other {# pts}
+      }`,
+      message: 'Number of points deducted.',
+    }, { count: pointsDeducted })
     return [
       <View style={styles.gradeCellMiddle}>
         <Text style={styles.orangeText}>{i18n('Late')}</Text>
-        <Text style={styles.orangeText}>-{i18n(`{ points, number }pts`, { points: pointsDeducted })}</Text>
+        <Text style={styles.orangeText}>-{latePointsLabel}</Text>
       </View>,
       <View style={styles.gradeCellBottom}>
         <Heading1>{i18n('Final Grade')}</Heading1>
