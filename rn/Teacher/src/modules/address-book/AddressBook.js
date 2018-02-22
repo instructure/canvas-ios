@@ -34,7 +34,7 @@ import CoursesActions from '../courses/actions'
 
 export type AddressBookDataProps = {
   permissions: ?{ [string]: boolean },
-  courseID: string,
+  courseID: ?string,
 }
 
 export type Props = {
@@ -74,7 +74,9 @@ export class AddressBook extends Component<AddressBookProps, State> {
   }
 
   componentDidMount () {
-    this.props.getCoursePermissions(this.props.courseID)
+    if (this.props.courseID) {
+      this.props.getCoursePermissions(this.props.courseID)
+    }
   }
 
   _queryChanged = (query: string) => {
@@ -239,8 +241,16 @@ const styles = StyleSheet.create({
 })
 
 export function mapStateToProps (state: AppState, ownProps: Props) {
-  let courseID = ownProps.context.split('_')[1]
-  let courseData = state.entities.courses[courseID]
+  let [ contextType, courseID ] = ownProps.context.split('_')
+  if (contextType === 'course') {
+    // courseID is already set correctly
+  } else if (contextType === 'section') {
+    let sectionData = state.entities.sections[courseID]
+    courseID = sectionData && sectionData.course_id
+  } else {
+    courseID = null
+  }
+  let courseData = courseID && state.entities.courses[courseID]
   let permissions = courseData && courseData.permissions
   return { permissions, courseID }
 }

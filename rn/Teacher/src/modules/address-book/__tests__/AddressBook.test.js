@@ -26,6 +26,7 @@ const template = {
   ...require('../../../__templates__/addressBook'),
   ...require('../../../redux/__templates__/app-state'),
   ...require('../../../__templates__/helm'),
+  ...require('../../../__templates__/section'),
 }
 
 jest
@@ -246,6 +247,22 @@ describe('map state to props', () => {
       context: 'course_1',
     }
     expect(mapStateToProps(template.appState(), ownProps).courseID).toEqual('1')
+  })
+
+  it('looks up the courseID from section', () => {
+    let ownProps = {
+      context: 'section_421',
+    }
+    let appState = template.appState()
+    appState.entities.sections['421'] = template.section({ course_id: '1' })
+    expect(mapStateToProps(appState, ownProps).courseID).toEqual('1')
+  })
+
+  it('does not use group id as courseID', () => {
+    let ownProps = {
+      context: 'group_1',
+    }
+    expect(mapStateToProps(template.appState(), ownProps).courseID).toBeNull()
   })
 
   it('returns the course permissions', () => {
