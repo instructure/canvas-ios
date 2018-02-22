@@ -60,8 +60,12 @@ export type RefreshProps = {
 export type ConversationDetailsProps = ConversationOwnProps & RefreshProps & NavigationProps & PushNotificationProps
 
 export class ConversationDetails extends Component <ConversationDetailsProps, any> {
-  state = {
-    deletePending: false,
+  constructor (props: ConversationDetailsProps) {
+    super(props)
+
+    this.state = {
+      deletePending: false,
+    }
   }
 
   componentDidMount () {
