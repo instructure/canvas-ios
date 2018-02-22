@@ -206,15 +206,24 @@ extension AppDelegate {
 // MARK: Launching URLS
 extension AppDelegate {
     @discardableResult func openCanvasURL(_ url: URL) -> Bool {
+        // the student app doesn't have as predictable of a tab bar setup and for
+        // several views, does not have a route configured for them so for now we
+        // will hard code until we move more things over to helm
+        let tabRoutes = ["/", "/calendar", "/to-do", "/notifications", "/conversations"]
         StartupManager.shared.enqueueTask({
-            if url.path == "/" || url.path == "" {
+            if let index = tabRoutes.index(of: url.path) {
+                guard let tabBarController = UIApplication.shared.keyWindow?.rootViewController as? UITabBarController else { return }
                 let vc = HelmManager.shared.topMostViewController()
-                if let navigationController = vc as? UINavigationController {
-                    navigationController.popToRootViewController(animated: true)
-                } else if let splitViewController = vc as? UISplitViewController,
-                    let navigationController = splitViewController.viewControllers.first as? UINavigationController {
-                    navigationController.popToRootViewController(animated: true)
+                var navigationController: UINavigationController?
+                if let navController = vc as? UINavigationController {
+                    navigationController = navController
+                } else if let splitViewController = vc as? UISplitViewController {
+                    navigationController = splitViewController.viewControllers.first as? UINavigationController
                 }
+                
+                vc?.dismiss(animated: true, completion: nil)
+                tabBarController.selectedIndex = index
+                navigationController?.popToRootViewController(animated: true)
             } else {
                 
                 if handleDropboxOpenURL(url) {

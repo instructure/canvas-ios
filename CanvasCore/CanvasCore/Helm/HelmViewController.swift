@@ -124,7 +124,7 @@ public class HelmNavigationItem: UINavigationItem {
 
 public final class HelmViewController: UIViewController, HelmScreen {
     
-    let moduleName: String
+    public let moduleName: String
     let screenInstanceID: String
     let props: Props
     var screenConfig: HelmScreenConfig = HelmScreenConfig(config: [:]) {

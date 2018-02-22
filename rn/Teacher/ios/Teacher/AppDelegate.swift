@@ -128,17 +128,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         StartupManager.shared.enqueueTask {
-            if url.path == "/" || url.path == "" {
-                let vc = HelmManager.shared.topMostViewController()
-                if let navigationController = vc as? UINavigationController {
-                    navigationController.popToRootViewController(animated: true)
-                } else if let splitViewController = vc as? UISplitViewController,
-                    let navigationController = splitViewController.viewControllers.first as? UINavigationController {
-                    navigationController.popToRootViewController(animated: true)
+            guard let rootView = app.keyWindow?.rootViewController as? RootTabBarController, let tabViewControllers = rootView.viewControllers else { return }
+            for (index, vc) in tabViewControllers.enumerated() {
+                let navigationController: UINavigationController?
+                if let split = vc as? UISplitViewController {
+                    navigationController = split.viewControllers.first as? UINavigationController
+                } else {
+                    navigationController = vc as? UINavigationController
                 }
-            } else {
-                RCTLinkingManager.application(app, open: url, options: options)
+                
+                guard let navController = navigationController, let helmVC = navController.viewControllers.first as? HelmViewController else { break }
+                if helmVC.moduleName == url.path {
+                    navController.dismiss(animated: true, completion: nil)
+                    rootView.selectedIndex = index
+                    navController.popToRootViewController(animated: true)
+                    return
+                }
             }
+            
+            RCTLinkingManager.application(app, open: url, options: options)
         }
         return true
     }
