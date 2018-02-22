@@ -79,7 +79,7 @@ describe('AddressBook', () => {
       permissions: {},
     }
     testRender(newProps)
-    expect(newProps.getCoursePermissions).toHaveBeenCalledWith('1')
+    expect(newProps.getCoursePermissions).not.toHaveBeenCalled()
   })
 
   it('renders "All in" row', () => {
