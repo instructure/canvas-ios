@@ -92,4 +92,9 @@ RCT_EXPORT_METHOD(setKeyboardDisplayRequiresUserAction:(BOOL)requiresUserAction)
   object_setClass(subview, newClass);
 }
 
+- (dispatch_queue_t)methodQueue
+{
+    return dispatch_get_main_queue();
+}
+
 @end

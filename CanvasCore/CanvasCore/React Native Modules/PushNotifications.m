@@ -73,4 +73,9 @@ RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(pushNotifications)
     return [[NSUserDefaults standardUserDefaults] arrayForKey:PushNotificationsStorageKey] ?: @[];
 }
 
+- (dispatch_queue_t)methodQueue
+{
+    return dispatch_get_main_queue();
+}
+
 @end

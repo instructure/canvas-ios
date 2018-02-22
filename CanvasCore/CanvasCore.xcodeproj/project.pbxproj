@@ -1133,16 +1133,6 @@
 			path = OSSAttribution;
 			sourceTree = "<group>";
 		};
-		2C5DD5A4201A78DB00BFE63C /* React Native Modules */ = {
-			isa = PBXGroup;
-			children = (
-				496C7D631F8BEF690010DC03 /* TabBarBadgeCounts.swift */,
-				496C7D651F8C00250010DC03 /* TabBarBadgeCounts.m */,
-			);
-			name = "React Native Modules";
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		2C60495C1F72B9CE00252BC5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1220,7 +1210,6 @@
 				49CE96A61F8FF8FE00121A43 /* Pages */,
 				494AE0AF1F843B1F001A8F31 /* PDF */,
 				49CE97791F900CBD00121A43 /* People */,
-				2C5DD5A4201A78DB00BFE63C /* React Native Modules */,
 				4961F5AA1F8FB37F0093EC86 /* Persistence */,
 				49301FD61F901826006BD777 /* Push Notifications */,
 				2CB68A331FED6DF300468313 /* Startup Manager */,
@@ -1662,6 +1651,8 @@
 				494AE0941F843A03001A8F31 /* PushNotifications.m */,
 				494AE0951F843A03001A8F31 /* ScrollViewDisablerManager.h */,
 				494AE08D1F843A01001A8F31 /* ScrollViewDisablerManager.m */,
+				496C7D631F8BEF690010DC03 /* TabBarBadgeCounts.swift */,
+				496C7D651F8C00250010DC03 /* TabBarBadgeCounts.m */,
 				494AE0AC1F843AAC001A8F31 /* VideoContainerManager.m */,
 				494AE0AB1F843AAB001A8F31 /* VideoContainerView.swift */,
 				494AE0981F843A04001A8F31 /* WebViewHacker.h */,

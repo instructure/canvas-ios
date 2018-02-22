@@ -29,4 +29,9 @@ RCT_EXPORT_METHOD(postAsyncActionNotification:(NSDictionary *)action)
     return @{ @"asyncActionNotification": AsyncActionNotificationName };
 }
 
+- (dispatch_queue_t)methodQueue
+{
+    return dispatch_get_main_queue();
+}
+
 @end

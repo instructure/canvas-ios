@@ -100,11 +100,15 @@ private enum AsyncAction {
                 .flatMap(.latest) { Enrollment.writeFavoriteColors([contextID: color], inContext: $0) }
         case .toggleFavorite(let courseID, let isFavorite):
             return attemptProducer {
-                let context = try session.enrollmentManagedObjectContext()
-                let contextID = ContextID(id: courseID, context: .course)
-                let enrollment = try Course.findOne(contextID, inContext: context)
-                enrollment?.isFavorite = isFavorite
-                try context.save()
+                let context = try session.enrollmentManagedObjectContext().syncContext
+                context.perform() {
+                    do {
+                        let contextID = ContextID(id: courseID, context: .course)
+                        let enrollment = try Course.findOne(contextID, inContext: context)
+                        enrollment?.isFavorite = isFavorite
+                        try context.save()
+                    } catch {}
+                }
             }
         case .refreshCourseTabs(let courseID, let tabs):
             let contextID = ContextID(id: courseID, context: .course)
