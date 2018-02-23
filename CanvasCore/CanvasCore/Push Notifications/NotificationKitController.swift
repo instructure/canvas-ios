@@ -195,7 +195,9 @@ open class NotificationKitController {
         UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .sound, .alert]) { granted, _ in
             if granted {
                 DispatchQueue.main.async {
-                    UIApplication.shared.registerForRemoteNotifications()
+                    #if !arch(i386) && !arch(x86_64) // Can't register on simulator
+                        UIApplication.shared.registerForRemoteNotifications()
+                    #endif
                 }
             }
         }
