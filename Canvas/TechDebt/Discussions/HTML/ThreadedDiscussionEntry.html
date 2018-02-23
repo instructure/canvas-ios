@@ -31,21 +31,4 @@
             iframe = null;
         });
     </script>
-
-    <script type="text/javascript">
-        document.querySelectorAll('iframe').forEach(iframe => {
-            const replace = iframe => {
-                const a = document.createElement('a')
-                a.textContent = '{$LTI_LAUNCH_TEXT$}'
-                a.classList.add('canvas-ios-lti-launch-button')
-                a.href = iframe.src
-                iframe.parentNode.replaceChild(a, iframe)
-            }
-            if (/\/courses\/\d+\/external_tools\/retrieve/.test(iframe.src)) {
-                replace(iframe)
-            } else {
-                iframe.addEventListener('error', event => replace(event.target))
-            }
-        })
-    </script>
 </html>

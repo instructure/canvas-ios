@@ -21,8 +21,6 @@
 #import "DiscussionTemplateRenderer.h"
 #import "NSString+IN_Additions.h"
 
-@import CanvasCore;
-
 @implementation DiscussionTemplateRenderer
 
 - (NSString *)sourceFileNamed:(NSString *)name ofType:(NSString *)type {
@@ -72,9 +70,6 @@
         [attachmentString appendFormat:@"<li><a href=\"%@\">%@</a></li>", url, attachment.displayName];
     }
     [renderedEntry in_replaceOccurrencesOfString:@"{$ATTACHMENTS$}" withString:attachmentString];
-
-    [renderedEntry in_replaceOccurrencesOfString:@"{$PRIMARY_BUTTON_COLOR$}" withString: [Brand.current.primaryButtonColor hex]];
-    [renderedEntry in_replaceOccurrencesOfString:@"{$LTI_LAUNCH_TEXT$}" withString:NSLocalizedString(@"Launch External Tool", nil)];
     
     return renderedEntry;
 }

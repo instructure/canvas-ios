@@ -31,7 +31,6 @@
 {
     __weak IBOutlet UINavigationBar *topToolbar;
     __weak IBOutlet UIToolbar *bottomToolbar;
-    __weak IBOutlet UIBarButtonItem *doneButton;
     __weak IBOutlet UIBarButtonItem *backButton;
     __weak IBOutlet UIBarButtonItem *forwardButton;
     __weak IBOutlet UIBarButtonItem *refreshButton;
@@ -104,7 +103,12 @@
     [super viewDidLoad];
     [self configureWebView];
 
-    doneButton.title = NSLocalizedString(@"Close", @"Close the window");
+    if ([self presentingViewController] || self.browserWillDismissBlock) {
+        self.doneButton.title = NSLocalizedString(@"Close", @"Close the window");
+    } else {
+        self.navigationItem.leftBarButtonItems = @[];
+    }
+
     topToolbar.topItem.title = @"";
     
     // Set up our two states of buttons for the bottom toolbar.

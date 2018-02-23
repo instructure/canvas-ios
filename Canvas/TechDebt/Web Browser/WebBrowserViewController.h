@@ -39,6 +39,8 @@
 
 @interface WebBrowserViewController : UIViewController
 
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *doneButton;
+
 - (instancetype)initWithURL:(NSURL *)url;
 - (instancetype)initWithURL:(NSURL *)url delegate:(id<WebBrowserViewControllerDelegate>)delegate;
 
