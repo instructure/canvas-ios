@@ -33,7 +33,7 @@ import Actions from './actions'
 import canvas from '../../../canvas-api'
 import ToDoListItem from './ToDoListItem'
 import RowSeparator from '../../../common/components/rows/RowSeparator'
-import { ERROR_TITLE, parseErrorMessage } from '../../../redux/middleware/error-handler'
+import { defaultErrorTitle, parseErrorMessage } from '../../../redux/middleware/error-handler'
 import { gradeProp } from '../../submissions/list/get-submissions-props'
 import { Text } from '../../../common/text'
 import i18n from 'format-message'
@@ -65,7 +65,7 @@ export class ToDoList extends Component<Props, any> {
   }
 
   // $FlowFixMe
-  async componentWillMount () {
+  async componentDidMount () {
     await this.refresh()
   }
 
@@ -114,7 +114,7 @@ export class ToDoList extends Component<Props, any> {
       this.props.refreshedToDo([])
       this.props.refreshedToDo(data)
     } catch (error) {
-      Alert.alert(ERROR_TITLE, parseErrorMessage(error))
+      Alert.alert(defaultErrorTitle(), parseErrorMessage(error))
     }
     this.setState({ refreshing: false })
   }
@@ -126,7 +126,7 @@ export class ToDoList extends Component<Props, any> {
       this.nextPage = next
       this.props.refreshedToDo(data)
     } catch (error) {
-      Alert.alert(ERROR_TITLE, parseErrorMessage(error))
+      Alert.alert(defaultErrorTitle(), parseErrorMessage(error))
     }
   }
 

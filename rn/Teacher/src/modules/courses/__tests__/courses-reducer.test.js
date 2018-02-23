@@ -18,10 +18,15 @@
 
 import { CoursesActions } from '../actions'
 import { CourseSettingsActions } from '../settings/actions'
+import { EnrollmentsActions } from '../../enrollments/actions'
 import { courses as coursesReducer } from '../courses-reducer'
 import { apiResponse, apiError } from '../../../../test/helpers/apiMock'
 import { testAsyncReducer } from '../../../../test/helpers/async'
 import * as courseTemplate from '../../../__templates__/course'
+
+let templates = {
+  ...require('../../../__templates__/enrollments'),
+}
 
 describe('courses refresher', () => {
   it('should capture courses from response', async () => {
@@ -458,5 +463,64 @@ describe('getCoursePermissions', () => {
         permissions: { send_messages: false },
       },
     })
+  })
+})
+
+describe('refresh users courses', () => {
+  it('should add the refs to the right course', () => {
+    let action = {
+      type: EnrollmentsActions().refreshUserEnrollments.toString(),
+      payload: {
+        result: {
+          data: [
+            templates.enrollment({ id: '1', course_id: '1' }),
+            templates.enrollment({ id: '2', course_id: '2' }),
+          ],
+        },
+      },
+    }
+
+    let state = {
+      '1': {},
+      '2': {},
+    }
+
+    let newState = coursesReducer(state, action)
+    expect(newState).toMatchObject({
+      '1': {
+        enrollments: {
+          refs: ['1'],
+        },
+      },
+      '2': {
+        enrollments: {
+          refs: ['2'],
+        },
+      },
+    })
+  })
+
+  it('should create initial course state if no course is present', () => {
+    let action = {
+      type: EnrollmentsActions().refreshUserEnrollments.toString(),
+      payload: {
+        result: {
+          data: [
+            templates.enrollment({ id: '1', course_id: '1' }),
+          ],
+        },
+      },
+    }
+
+    let state = {}
+    let newState = coursesReducer(state, action)
+    expect(newState).toMatchObject({
+      '1': {
+        enrollments: {
+          refs: ['1'],
+        },
+      },
+    })
+    expect(newState['1'].color).not.toBeUndefined()
   })
 })

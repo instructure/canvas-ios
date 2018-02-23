@@ -45,7 +45,7 @@ test('captures entities mapped by id', () => {
   })
 })
 
-test('refreshUserEnrollments uses the same action', () => {
+test('refreshUserEnrollments adds the enrollments', () => {
   const data = [
     templates.enrollment({ id: '3' }),
     templates.enrollment({ id: '5' }),

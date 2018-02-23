@@ -33,6 +33,6 @@ export function enrollmentRefsForResponse ({ result }: EnrollmentsResponse): Arr
 
 export const enrollments: Reducer<AsyncRefs, any> = asyncRefsReducer(
   refreshEnrollments.toString(),
-  i18n('There was a error loading the list of enrollments'),
+  i18n('There was an error loading the list of enrollments'),
   enrollmentRefsForResponse,
 )

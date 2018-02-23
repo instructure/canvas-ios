@@ -20,6 +20,7 @@ import { Reducer, Action, combineReducers } from 'redux'
 import { handleActions } from 'redux-actions'
 import CourseListActions, { UPDATE_COURSE_DETAILS_SELECTED_TAB_SELECTED_ROW_ACTION } from './actions'
 import CourseSettingsActions from './settings/actions'
+import EnrollmentsActions from '../enrollments/actions'
 import handleAsync from '../../utils/handleAsync'
 import { parseErrorMessage } from '../../redux/middleware/error-handler'
 import groupCustomColors from '../../utils/group-custom-colors'
@@ -252,6 +253,28 @@ const coursesData: Reducer<CoursesState, any> = handleActions({
           permissions: result.data,
         },
       }
+    },
+  }),
+  [EnrollmentsActions.refreshUserEnrollments.toString()]: handleAsync({
+    resolved: (state, { result }) => {
+      let enrollments = result.data
+      if (!enrollments) return state
+
+      return enrollments.reduce((nextState, enrollment) => {
+        let courseID = enrollment.course_id
+        // it's possible for this call to happen before courses are available
+        let course = nextState[courseID] || courseContents(undefined, {})
+        let refs = new Set(course && course.enrollments && course.enrollments.refs || [])
+        refs.add(enrollment.id)
+        nextState[courseID] = {
+          ...course,
+          enrollments: {
+            ...course.enrollments,
+            refs: [...refs],
+          },
+        }
+        return nextState
+      }, { ...state })
     },
   }),
 }, defaultState)

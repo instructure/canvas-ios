@@ -20,7 +20,7 @@ import React from 'react'
 import { Alert } from 'react-native'
 import renderer from 'react-test-renderer'
 import { ToDoList, mapStateToProps, type Props } from '../ToDoList'
-import { ERROR_TITLE } from '../../../../redux/middleware/error-handler'
+import { defaultErrorTitle } from '../../../../redux/middleware/error-handler'
 import explore from '../../../../../test/helpers/explore'
 
 jest
@@ -59,7 +59,7 @@ describe('ToDoList', () => {
     const spy = jest.fn(() => Promise.resolve({ data: [template.toDoItem()] }))
     props.getToDo = spy
     const view = render(props)
-    await view.getInstance().componentWillMount()
+    await view.getInstance().componentDidMount()
     expect(spy).toHaveBeenCalled()
   })
 
@@ -82,7 +82,7 @@ describe('ToDoList', () => {
       next: spy,
     }))
     const view = render(props)
-    await view.getInstance().componentWillMount()
+    await view.getInstance().componentDidMount()
     const list: any = explore(view.toJSON()).selectByType('RCTScrollView')
     await list.props.onEndReached()
     expect(spy).toHaveBeenCalled()
@@ -96,7 +96,7 @@ describe('ToDoList', () => {
     const view = render(props)
     const list: any = explore(view.toJSON()).selectByType('RCTScrollView')
     await list.props.onRefresh()
-    expect(spy).toHaveBeenCalledWith(ERROR_TITLE, 'ERROR')
+    expect(spy).toHaveBeenCalledWith(defaultErrorTitle(), 'ERROR')
   })
 
   it('shows Speed Grader on assignment press', () => {

@@ -509,10 +509,10 @@ const Refreshed = refresh(
   props => {
     props.refreshNotifications()
     props.refreshCourses()
+    props.refreshUserEnrollments()
 
     if (App.current().appId === 'student') {
       props.refreshUsersGroups()
-      props.refreshUserEnrollments()
     }
   },
   props => props.courses.length === 0 ||

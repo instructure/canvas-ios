@@ -24,7 +24,7 @@ export const EnrollmentsActions = (api: CanvasApi): * => ({
     promise: api.getCourseEnrollments(courseID),
     courseID,
   })),
-  refreshUserEnrollments: createAction('enrollments.update', (userID?: string = 'self') => ({
+  refreshUserEnrollments: createAction('enrollments.user-update', (userID?: string = 'self') => ({
     promise: api.getUserEnrollments(userID),
     userID,
   })),
