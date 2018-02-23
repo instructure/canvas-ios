@@ -22,11 +22,11 @@ PODS:
   - BVLinearGradient (2.3.0):
     - React
   - Cartography (1.1.0)
-  - CocoaLumberjack (3.3.0):
-    - CocoaLumberjack/Default (= 3.3.0)
-    - CocoaLumberjack/Extensions (= 3.3.0)
-  - CocoaLumberjack/Default (3.3.0)
-  - CocoaLumberjack/Extensions (3.3.0):
+  - CocoaLumberjack (3.4.1):
+    - CocoaLumberjack/Default (= 3.4.1)
+    - CocoaLumberjack/Extensions (= 3.4.1)
+  - CocoaLumberjack/Default (3.4.1)
+  - CocoaLumberjack/Extensions (3.4.1):
     - CocoaLumberjack/Default
   - Crashlytics (3.8.6):
     - Fabric (~> 1.6.3)
@@ -263,7 +263,7 @@ CHECKOUT OPTIONS:
     :commit: 05acfb04c24a480f1868e671d19b39e0f22fc265
     :git: https://github.com/xmartlabs/Eureka
   SVGKit:
-    :commit: 8949b61e7ae25529678e34a548288cc838061674
+    :commit: 34781db59cb2c97a1c66067cd8847c6c512ccdd6
     :git: https://github.com/SVGKit/SVGKit.git
 
 SPEC CHECKSUMS:
@@ -271,7 +271,7 @@ SPEC CHECKSUMS:
   BugsnagReactNative: 0b7626917d3612281d07aea84e5041f123290fee
   BVLinearGradient: 4b3f3bdf1ac1a52a5ef5e65c9585d793a7c3f825
   Cartography: 0538ccb4044acbbda2266335fc58cb4228794d90
-  CocoaLumberjack: 3c8c74683302f9012bb168e1c4b7ae3c0b558431
+  CocoaLumberjack: 2e258a064cacc8eb9a2aca318e24d02a0a7fd56d
   Crashlytics: 95d05f4e4c19a771250c4bd9ce344d996de32bbf
   DeviceKit: fa74d97499660e88081718b16688e19217595dba
   EarlGrey: f7774b813c888ebdb9a21e612d67874d17d5a326
