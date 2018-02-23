@@ -14,10 +14,10 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - BugsnagReactNative (2.7.5):
-    - BugsnagReactNative/Core (= 2.7.5)
+  - BugsnagReactNative (2.9.1):
+    - BugsnagReactNative/Core (= 2.9.1)
     - React
-  - BugsnagReactNative/Core (2.7.5):
+  - BugsnagReactNative/Core (2.9.1):
     - React
   - BVLinearGradient (2.3.0):
     - React

@@ -222,6 +222,7 @@ RCT_EXPORT_METHOD(stopObserving)
         return;
     }
     
+    NSLocale* locale = [NSLocale currentLocale];
     NSDictionary *body = @{
                            @"appId": self.app,
                            @"authToken": client.accessToken,
@@ -229,6 +230,7 @@ RCT_EXPORT_METHOD(stopObserving)
                            @"baseURL": client.baseURL.absoluteString,
                            @"branding": client.branding ? [client.branding JSONDictionary] : @{},
                            @"actAsUserID": client.actAsUserID ?: [NSNull null],
+                           @"countryCode": [locale countryCode] ?: @"",
                            };
     
     [[NativeLogin sharedInstance] sendEventWithName:@"Login" body:body];

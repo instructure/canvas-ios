@@ -1122,9 +1122,9 @@ bser@^2.0.0:
   dependencies:
     node-int64 "^0.4.0"
 
-bugsnag-react-native@^2.7.5:
-  version "2.7.5"
-  resolved "https://registry.yarnpkg.com/bugsnag-react-native/-/bugsnag-react-native-2.7.5.tgz#a9c6474faba0c65d50951cbe335908a3f83cc71a"
+bugsnag-react-native@^2.9.1:
+  version "2.9.1"
+  resolved "https://registry.yarnpkg.com/bugsnag-react-native/-/bugsnag-react-native-2.9.1.tgz#d719bf362ba7421abc0ee491f210c02090b8f925"
   dependencies:
     promise "^7"
     prop-types "^15.6.0"

@@ -43,9 +43,20 @@ import device from 'react-native-device-info'
 import Navigator from './src/routing/Navigator'
 
 import { Client, Configuration } from 'bugsnag-react-native'
+let shouldLogUserInfo = false
 const configuration = new Configuration()
 configuration.notifyReleaseStages = ['testflight', 'production']
 configuration.appVersion = `${device.getVersion()}-${device.getBuildNumber()}`
+
+configuration.beforeSendCallbacks.push((report) => {
+  const session = getSession()
+  if (shouldLogUserInfo && session) {
+    report.addMetadata('user', 'id', session.user.id)
+    report.addMetadata('user', 'baseURL', session.baseURL)
+  }
+  return true
+})
+
 global.crashReporter = new Client(configuration)
 
 // Useful for demos when you don't want that annoying yellow box showing up all over the place
@@ -67,6 +78,7 @@ const loginHandler = async ({
   user,
   actAsUserID,
   skipHydrate,
+  countryCode,
 }: {
   appId: AppId,
   authToken: string,
@@ -75,6 +87,7 @@ const loginHandler = async ({
   user: SessionUser,
   actAsUserID: ?string,
   skipHydrate: boolean,
+  countryCode: string,
 }) => {
   App.setCurrentApp(appId)
   stopUpdatingBadgeCounts()
@@ -97,6 +110,11 @@ const loginHandler = async ({
     if (previous && !compareSessions(session, previous)) {
       setSession(null)
       store.dispatch(logout)
+    }
+
+    if (countryCode !== 'CA') {
+      global.crashReporter.setUser(user.id)
+      shouldLogUserInfo = true
     }
 
     PushNotificationIOS.addEventListener('notification', (notification) => {
