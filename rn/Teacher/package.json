@@ -73,7 +73,7 @@
     "babel-eslint": "^7.2.3",
     "babel-jest": "^20.0.3",
     "babel-preset-react-native": "2.1.0",
-    "danger": "https://github.com/benkraus/danger-js/tarball/with-distribution",
+    "danger": "^1.2.0",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.0",
     "enzyme-to-json": "^3.2.2",

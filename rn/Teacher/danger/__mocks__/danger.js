@@ -15,7 +15,7 @@
 //
 
 /* @flow */
-const danger = require.requireActual('danger')
+const danger = {}
 
 function __setGit (git: any): void {
   danger.git = git
