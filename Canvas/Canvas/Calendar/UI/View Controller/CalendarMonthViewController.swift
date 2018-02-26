@@ -42,7 +42,6 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
 
     var allCoursesCollection: FetchedCollection<Course>!
     var favCoursesCollection: FetchedCollection<Course>!
-    var eventsCollection: FetchedCollection<CalendarEvent>!
 
     var refresher: Refresher? {
         didSet {
@@ -223,13 +222,14 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
     open func calendarViewNumberOfEventsForDate(_ calendarView: CalendarView, date: Date) -> Int {
         let min = date.dateAtMidnight
         let max = min.addingTimeInterval(24 * 60 * 60)
-        var count = 0
-        for event in eventsCollection {
-            if let start = event.startAt, let end = event.endAt, start < max && min < end {
-                count += 1
-            }
+        do {
+            let context = try session.calendarEventsManagedObjectContext()
+            let predicate = CalendarEvent.predicate(min, endDate: max, contextCodes: selectedContextCodes())
+            let fetch: NSFetchRequest<CalendarEvent> = context.fetch(predicate)
+            return try context.count(for: fetch)
+        } catch {
+            return 0
         }
-        return count
     }
 
     // ---------------------------------------------
@@ -264,14 +264,8 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
         let startDate = Date() + -365.daysComponents
         let endDate = Date() + 365.daysComponents
 
-        eventsCollection = try! CalendarEvent.collectionByDueDate(session, startDate: startDate, endDate: endDate, contextCodes: selectedContextCodes())
         refresher = try! CalendarEvent.refresher(session, startDate: startDate, endDate: endDate, contextCodes: selectedContextCodes())
         refresher?.refresh(false)
-        eventsDisposable = eventsCollection.collectionUpdates
-            .observe(on: UIScheduler())
-            .observeValues { [unowned self] updates in
-                self.calendarView?.reloadVisibleCells()
-            }.map(ScopedDisposable.init)
     }
 
     open func selectedContextCodes() -> [String] {
