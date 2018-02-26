@@ -40,6 +40,7 @@ public struct Status {
     public static let dateFormatter: DateFormatter = {
         let d = DateFormatter()
         d.dateFormat = "yyyy-MM-dd"
+        d.locale = Locale(identifier: "en-US")
         return d
     }()
 

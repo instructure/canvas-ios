@@ -40,7 +40,7 @@ export const refs: Reducer<AsyncRefs, any> = handleActions({
     pending: 0,
     refs: [...(state.refs || []).filter(ref => ref !== page.page_id)],
   }),
-}, {})
+}, { refs: [], pending: 0 })
 
 export const entities: Reducer<PagesState, any> = handleActions({
   [refreshedPages.toString()]: (state, { payload: { pages } }) => ({
