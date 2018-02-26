@@ -1328,9 +1328,6 @@
   "there_currently_is_no_long_description_for_this_it_ea943d61": {
     "message": "There currently is no long description for this item."
   },
-  "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
-    "message": "There was a error loading the list of enrollments"
-  },
   "there_was_a_problem_dismissing_the_announcement_9c5fb4c": {
     "message": "There was a problem dismissing the announcement."
   },
@@ -1369,6 +1366,9 @@
   },
   "there_was_an_error_loading_the_file_a046378e": {
     "message": "There was an error loading the file."
+  },
+  "there_was_an_error_loading_the_list_of_enrollments_7dc8bafe": {
+    "message": "There was an error loading the list of enrollments"
   },
   "there_was_an_error_loading_the_quiz_preview_3f3c8104": {
     "message": "There was an error loading the quiz preview."
