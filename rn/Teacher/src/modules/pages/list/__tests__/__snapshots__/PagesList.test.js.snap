@@ -3,6 +3,7 @@
 exports[`PagesList renders 1`] = `
 <Screen
   leftBarButtons={false}
+  navBarColor={undefined}
   navBarStyle="dark"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
@@ -305,6 +306,7 @@ exports[`PagesList renders 1`] = `
 exports[`PagesList renders empty 1`] = `
 <Screen
   leftBarButtons={false}
+  navBarColor={undefined}
   navBarStyle="dark"
   onTraitCollectionChange={[Function]}
   rightBarButtons={

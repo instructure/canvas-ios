@@ -18,7 +18,7 @@
  * @flow
  */
 
-import color from '../common/colors'
+import color, { isDark } from '../common/colors'
 
 export type BrandingConfiguration = {
   navBarColor: string,
@@ -59,6 +59,7 @@ export function setupBrandingFromNativeBrandingInfo (obj: Object): void {
   color.primaryButtonTextColor = branding.primaryButtonTextColor
   color.primaryButtonColor = branding.primaryButtonColor
   color.primaryBrandColor = branding.primaryBrandColor
+  color.statusBarStyle = isDark(color.navBarColor) ? 'light' : 'default'
 }
 
 export default branding

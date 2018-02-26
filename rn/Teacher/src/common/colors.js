@@ -18,6 +18,8 @@
  * @flow
  */
 
+import { processColor } from 'react-native'
+
 const colors = {
   link: '#008EE2',
   tabBarBg: '#fff',
@@ -45,6 +47,17 @@ const colors = {
   primaryButtonColor: '#374A59',
   primaryBrandColor: '#374A59',
   destructiveButtonColor: '#EE0612',
+  statusBarStyle: 'light', // set to contrast with navBarColor
 }
 
 export default colors
+
+export function isDark (color: string): boolean {
+  const c = processColor(color) || 0
+  const yiq = (
+    ((c >> 16) & 0xFF) * 299 +
+    ((c >> 8) & 0xFF) * 587 +
+    (c & 0xFF) * 114
+  ) / 1000
+  return yiq < 128
+}

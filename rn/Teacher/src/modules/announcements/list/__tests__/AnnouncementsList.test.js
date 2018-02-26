@@ -62,6 +62,7 @@ describe('AnnouncementsList', () => {
       ],
       refreshAnnouncements: jest.fn(),
       courseName: 'Im a course',
+      courseColor: 'blue',
     }
   })
 
@@ -188,6 +189,7 @@ describe('mapStateToProps', () => {
     ).toEqual({
       announcements: [],
       courseName: '',
+      courseColor: '',
       pending: 0,
       error: null,
     })
@@ -228,6 +230,7 @@ describe('mapStateToProps', () => {
       announcements: [one, three],
       pending: 1,
       courseName: '',
+      courseColor: '',
       error: null,
     })
   })

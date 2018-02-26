@@ -39,10 +39,9 @@ export default class PickerPage extends Component<Props> {
     return (
       <Screen
         title={title}
-        navBarStyle='light'
         navBarTitleColors={Colors.darkText}
         navBarButtonColor={Colors.link}
-        drawUnderNavBar={true}
+        drawUnderNavBar
       >
         <FlatList
           style={styles.container}

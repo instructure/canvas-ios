@@ -76,6 +76,7 @@ export class PagesList extends Component<Props, any> {
     this.showFrontPage()
     return (
       <Screen
+        navBarColor={this.props.courseColor}
         navBarStyle='dark'
         title={i18n('Pages')}
         subtitle={this.props.courseName}

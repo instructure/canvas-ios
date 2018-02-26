@@ -207,8 +207,6 @@ export class CourseDetails extends Component<CourseDetailsProps, any> {
     return (
       <Screen
         title={courseCode}
-        navBarTitleColor='#fff'
-        statusBarStyle='light'
         navBarColor={courseColor}
         navBarStyle='dark'
         onTraitCollectionChange={this.onTraitCollectionChange.bind(this)}

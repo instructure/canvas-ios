@@ -22,7 +22,7 @@ import {
 } from 'react-native'
 
 import Images from '../../images'
-import utils from '../utils'
+import * as utils from '../utils'
 
 describe('routing utils', () => {
   describe('processConfig', () => {
@@ -98,49 +98,6 @@ describe('routing utils', () => {
       }
       const result = utils.isRegularDisplayMode(traits)
       expect(result).toBe(false)
-    })
-  })
-
-  describe('checkDefaults', () => {
-    it('defaults back button title', () => {
-      let input = {
-        backButtonTitle: 'Bananas',
-        navBarTitle: 'Strawberries',
-      }
-      let output = utils.checkDefaults(input)
-      expect(input).toEqual(output)
-
-      input = {
-        navBarTitle: 'I feel empty inside',
-      }
-      output = utils.checkDefaults(input)
-      expect(output).toEqual({
-        navBarTitle: 'I feel empty inside',
-        backButtonTitle: 'Back',
-      })
-    })
-
-    it('defaults statusBarStyle to contrast with navBarColor', () => {
-      expect(utils.checkDefaults({
-        navBarColor: processColor('purple'),
-      })).toMatchObject({
-        statusBarStyle: 'light',
-      })
-
-      expect(utils.checkDefaults({
-        navBarColor: processColor('pink'),
-      })).toMatchObject({
-        statusBarStyle: 'default',
-      })
-    })
-
-    it('uses passed statusBarStyle as override', () => {
-      expect(utils.checkDefaults({
-        navBarColor: processColor('white'),
-        statusBarStyle: 'light',
-      })).toMatchObject({
-        statusBarStyle: 'light',
-      })
     })
   })
 })

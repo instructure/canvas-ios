@@ -169,7 +169,7 @@ export class QuizzesList extends Component<Props, any> {
       <Screen
         navBarColor={this.props.courseColor}
         navBarStyle='dark'
-        drawUnderNavBar={true}
+        drawUnderNavBar
         title={i18n('Quizzes')}
         onTraitCollectionChange={this.onTraitCollectionChange.bind(this)}
         subtitle={this.props.courseName}>

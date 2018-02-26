@@ -83,7 +83,6 @@ export class FavoritesList extends Component<Props, State> {
   render () {
     return (
       <Screen
-        navBarStyle='light'
         navBarTitleColor={colors.darkText}
         navBarButtonColor={colors.link}
         title={i18n('Edit Courses')}

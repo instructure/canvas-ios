@@ -212,8 +212,8 @@ export class ContextCard extends Component<ContextCardProps, ContextCardState> {
       <Screen
         title={this.props.user.name}
         subtitle={this.props.course.name}
-        navBarStyle='dark'
         navBarColor={this.props.courseColor}
+        navBarStyle='dark'
         leftBarButtons={leftBarButtons}
         rightBarButtons={rightBarButtons}
       >

@@ -37,7 +37,6 @@ export default class CourseDetailsSplitViewPlaceholder extends Component<*> {
       <Screen
         navBarColor={courseColor}
         navBarStyle='dark'
-        navBarTitleColor='#fff'
       >
         <View style={style.container}>
           <View style={style.subContainer}>

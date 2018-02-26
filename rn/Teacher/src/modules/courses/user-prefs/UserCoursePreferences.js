@@ -202,7 +202,6 @@ export class UserCoursePreferences extends Component<Props, any> {
         title={i18n('Customize Course')}
         subtitle={this.state.name}
         drawUnderNavBar={false}
-        navBarStyle='light'
         navBarButtonColor={colors.link}
         navBarTitleColor={colors.darkText}
         navBarSubtitleColor={this.props.color}

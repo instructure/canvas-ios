@@ -183,9 +183,7 @@ export class AddressBook extends Component<AddressBookProps, State> {
   render () {
     return (
       <Screen
-        navBarColor='#fff'
-        navBarStyle='light'
-        drawUnderNavBar={true}
+        drawUnderNavBar
         title={this.props.name}
         rightBarButtons={[{
           title: i18n('Cancel'),

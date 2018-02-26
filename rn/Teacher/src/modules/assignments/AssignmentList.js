@@ -202,8 +202,8 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
         title={i18n('Assignments')}
         onTraitCollectionChange={this.onTraitCollectionChange.bind(this)}
         subtitle={this.props.courseName}
-        navBarStyle='dark'
         navBarColor={this.props.courseColor}
+        navBarStyle='dark'
         testID='assignment-list'
       >
         <View style={styles.container} testID='assignment-list.container-view'>

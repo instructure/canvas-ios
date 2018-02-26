@@ -4,8 +4,8 @@ exports[`ConversationDetails doesnt render messages that are pendingDelete 1`] =
 <Screen
   drawUnderNavBar={true}
   leftBarButtons={false}
+  navBarButtonColor="#374A59"
   navBarColor="#374A59"
-  navBarStyle="dark"
   rightBarButtons={
     Array [
       Object {
@@ -18,6 +18,7 @@ exports[`ConversationDetails doesnt render messages that are pendingDelete 1`] =
       },
     ]
   }
+  statusBarStyle="light"
   title="Message Details"
 >
   <View
@@ -224,8 +225,8 @@ exports[`ConversationDetails renders correctly 1`] = `
 <Screen
   drawUnderNavBar={true}
   leftBarButtons={false}
+  navBarButtonColor="#374A59"
   navBarColor="#374A59"
-  navBarStyle="dark"
   rightBarButtons={
     Array [
       Object {
@@ -238,6 +239,7 @@ exports[`ConversationDetails renders correctly 1`] = `
       },
     ]
   }
+  statusBarStyle="light"
   title="Message Details"
 >
   <View
@@ -444,8 +446,8 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
 <Screen
   drawUnderNavBar={true}
   leftBarButtons={false}
+  navBarButtonColor="#374A59"
   navBarColor="#374A59"
-  navBarStyle="dark"
   rightBarButtons={
     Array [
       Object {
@@ -458,6 +460,7 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
       },
     ]
   }
+  statusBarStyle="light"
   title="Message Details"
 >
   <View
@@ -1127,8 +1130,8 @@ exports[`ConversationDetails renders with alternate data 1`] = `
 <Screen
   drawUnderNavBar={true}
   leftBarButtons={false}
+  navBarButtonColor="#374A59"
   navBarColor="#374A59"
-  navBarStyle="dark"
   rightBarButtons={
     Array [
       Object {
@@ -1141,6 +1144,7 @@ exports[`ConversationDetails renders with alternate data 1`] = `
       },
     ]
   }
+  statusBarStyle="light"
   title="Message Details"
 >
   <View

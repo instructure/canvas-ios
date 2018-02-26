@@ -38,6 +38,7 @@ import { isTeacher } from '../../app'
 type State = AsyncState & {
   announcements: Discussion[],
   courseName: string,
+  courseColor: string,
 }
 
 type OwnProps = {
@@ -54,6 +55,7 @@ export class AnnouncementsList extends Component<Props, any> {
     }
     return (
       <Screen
+        navBarColor={this.props.courseColor}
         navBarStyle='dark'
         title={i18n('Announcements')}
         subtitle={this.props.courseName}
@@ -120,6 +122,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID }: OwnProps)
   let pending = 0
   let error = null
   let courseName = ''
+  let courseColor = ''
   if (entities &&
     entities.courses &&
     entities.courses[courseID] &&
@@ -131,6 +134,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID }: OwnProps)
     error = course.announcements.error
     if (course.course) {
       courseName = course.course.name
+      courseColor = course.color
     }
     announcements = refs
       .map(ref => entities.discussions[ref].data)
@@ -138,6 +142,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID }: OwnProps)
   return {
     announcements,
     courseName,
+    courseColor,
     pending,
     error,
   }

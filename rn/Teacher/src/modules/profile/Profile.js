@@ -213,9 +213,8 @@ export class Profile extends Component<Object, State> {
     const user = session.user
     return (
       <Screen
-        navBarHidden={true}
+        navBarHidden
         navBarButtonColor={color.darkText}
-        statusBarStyle='dark'
         disableGlobalSafeArea
       >
         <View style={styles.container} testID="module.profile">

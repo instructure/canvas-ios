@@ -109,8 +109,6 @@ export class GroupList extends Component<GroupListProps, any> {
     const title = this.props.group ? this.props.group.name : ''
     return (
       <Screen
-        navBarColor='#fff'
-        navBarStyle='light'
         drawUnderNavBar={false}
         title={title}
         rightBarButtons={[{

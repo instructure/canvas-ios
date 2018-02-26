@@ -12,7 +12,6 @@ exports[`EditReply calls dismiss on cancel 1`] = `
     ]
   }
   navBarButtonColor="#008EE2"
-  navBarStyle="light"
   navBarTitleColor="#2D3B45"
   rightBarButtons={
     Array [
@@ -173,7 +172,6 @@ exports[`EditReply dismisses modal activity upon save error 1`] = `
     ]
   }
   navBarButtonColor="#008EE2"
-  navBarStyle="light"
   navBarTitleColor="#2D3B45"
   rightBarButtons={
     Array [
@@ -334,7 +332,6 @@ exports[`EditReply renders 1`] = `
     ]
   }
   navBarButtonColor="#008EE2"
-  navBarStyle="light"
   navBarTitleColor="#2D3B45"
   rightBarButtons={
     Array [

@@ -62,7 +62,7 @@ export default class TermsOfUse extends Component<Props, State> {
         }]}
         navBarColor={colors.navBarColor}
         navBarButtonColor={colors.navBarButtonColor}
-        navBarStyle='dark'
+        statusBarStyle={colors.statusBarStyle}
       >
         {this.state.loading
           ? <ActivityIndicatorView />

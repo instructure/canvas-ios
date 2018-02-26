@@ -26,6 +26,7 @@ exports[`ViewFile renders loading while fetching the file 1`] = `
       },
     ]
   }
+  statusBarStyle="default"
   title="Book Report"
 >
   <View

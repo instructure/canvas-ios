@@ -145,8 +145,9 @@ export class ConversationDetails extends Component <ConversationDetailsProps, an
     return (
       <Screen
         navBarColor={branding.navBarColor}
-        navBarStyle='dark'
-        drawUnderNavBar={true}
+        navBarButtonColor={color.navBarTextColor}
+        statusBarStyle={color.statusBarStyle}
+        drawUnderNavBar
         title={i18n('Message Details')}
         leftBarButtons={this.props.navigator.isModal && [
           {

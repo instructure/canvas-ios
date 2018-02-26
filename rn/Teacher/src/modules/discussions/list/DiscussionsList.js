@@ -175,7 +175,7 @@ export class DiscussionsList extends Component<Props, any> {
       <Screen
         navBarColor={this.props.courseColor}
         navBarStyle='dark'
-        drawUnderNavBar={true}
+        drawUnderNavBar
         leftBarButtons={this.props.navigator.isModal && [
           {
             title: i18n('Done'),

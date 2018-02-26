@@ -299,10 +299,9 @@ export default class EditItem extends Component<Props, State> {
     return (
       <Screen
         title={isFile ? i18n('Edit File') : i18n('Edit Folder')}
-        navBarStyle='light'
         navBarTitleColors={Colors.darkText}
         navBarButtonColor={Colors.link}
-        drawUnderNavBar={true}
+        drawUnderNavBar
         leftBarButtons={[{
           testID: 'edit-item.cancel-btn',
           title: i18n('Cancel'),

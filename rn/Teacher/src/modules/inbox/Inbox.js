@@ -154,8 +154,8 @@ export class Inbox extends Component<InboxProps, any> {
       <Screen
         navBarColor={color.navBarColor}
         navBarButtonColor={color.navBarTextColor}
-        navBarStyle='dark'
-        drawUnderNavBar={true}
+        statusBarStyle={color.statusBarStyle}
+        drawUnderNavBar
         navBarImage={branding.headerImage}
         rightBarButtons={[{
           accessibilityLabel: i18n('New Message'),

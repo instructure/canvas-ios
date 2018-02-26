@@ -324,12 +324,13 @@ export class PeopleList extends Component<Props, any> {
   }
 
   render () {
-    let screenProps = { navBarStyle: 'dark', title: this.props.name || i18n('People'), subtitle: (this.props.course && this.props.course.name) || '' }
     return (
       <Screen
         navBarColor={this.props.courseColor}
-        drawUnderNavBar={true}
-        {...screenProps}
+        navBarStyle='dark'
+        drawUnderNavBar
+        title={this.props.name || i18n('People')}
+        subtitle={(this.props.course && this.props.course.name) || ''}
       >
         { this._renderComponent() }
       </Screen>

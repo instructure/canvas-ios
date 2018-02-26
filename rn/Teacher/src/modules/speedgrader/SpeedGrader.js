@@ -270,9 +270,9 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
 
     return (
       <Screen
-        navBarHidden={true}
+        navBarHidden
         statusBarHidden={!DeviceInfo.isIPhoneX_deprecated}
-        noRotationInVerticallyCompact={true}
+        noRotationInVerticallyCompact
       >
         <View style={styles.speedGrader}>
           { this.renderBody() }

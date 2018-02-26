@@ -87,8 +87,8 @@ export class PageDetails extends Component<Props, any> {
     const { page } = this.state
     return (
       <Screen
-        navBarStyle='dark'
         navBarColor={this.props.courseColor}
+        navBarStyle='dark'
         title={i18n('Page Details')}
         subtitle={this.props.courseName}
         leftBarButtons={this.props.navigator.isModal && [

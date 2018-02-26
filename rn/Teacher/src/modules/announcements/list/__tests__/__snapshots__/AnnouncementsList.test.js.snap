@@ -2,6 +2,7 @@
 
 exports[`AnnouncementsList renders 1`] = `
 <Screen
+  navBarColor="blue"
   navBarStyle="dark"
   rightBarButtons={
     Array [
@@ -549,6 +550,7 @@ exports[`AnnouncementsList renders 1`] = `
 
 exports[`AnnouncementsList renders as student app 1`] = `
 <Screen
+  navBarColor="blue"
   navBarStyle="dark"
   rightBarButtons={false}
   subtitle="Im a course"
@@ -1085,6 +1087,7 @@ exports[`AnnouncementsList renders as student app 1`] = `
 
 exports[`AnnouncementsList renders empty list 1`] = `
 <Screen
+  navBarColor="blue"
   navBarStyle="dark"
   rightBarButtons={
     Array [
@@ -1218,6 +1221,7 @@ exports[`AnnouncementsList renders while pending 1`] = `
 
 exports[`AnnouncementsList renders while refreshing 1`] = `
 <Screen
+  navBarColor="blue"
   navBarStyle="dark"
   rightBarButtons={
     Array [

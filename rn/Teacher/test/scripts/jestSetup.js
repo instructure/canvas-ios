@@ -89,6 +89,16 @@ NativeModules.SettingsManager = {
   },
 }
 
+NativeModules.Helm = {
+  setScreenConfig: jest.fn(),
+  pushFrom: jest.fn(() => Promise.resolve()),
+  popFrom: jest.fn(() => Promise.resolve()),
+  present: jest.fn(() => Promise.resolve()),
+  dismiss: jest.fn(() => Promise.resolve()),
+  dismissAllModals: jest.fn(() => Promise.resolve()),
+  traitCollection: jest.fn(),
+}
+
 jest.mock('NativeEventEmitter')
 
 jest.mock('NetInfo', () => ({

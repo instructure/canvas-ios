@@ -235,10 +235,9 @@ export default class ViewFile extends Component<Props, State> {
       <Screen
         title={name}
         subtitle={course && course.name || undefined}
-        navBarStyle='light'
         navBarTitleColor={Colors.darkText}
         navBarButtonColor={Colors.link}
-        drawUnderNavBar={true}
+        drawUnderNavBar
         disableGlobalSafeArea
         leftBarButtons={[{
           testID: 'view-file.edit-btn',

@@ -21,7 +21,6 @@ import {
   Image,
 } from 'react-native'
 import { type TraitCollection } from './Navigator'
-import i18n from 'format-message'
 
 function isColorKey (key: string): boolean {
   const COLOR_REGEX = /color$/i
@@ -33,7 +32,7 @@ function isImageKey (key: string): boolean {
   return IMAGE_REGEX.test(key)
 }
 
-function processConfig (config: Object, id: string, configureCallback: (event: string, callback: () => void) => string): Object {
+export function processConfig (config: Object, id: string, configureCallback: (event: string, callback: () => void) => string): Object {
   const obj = {}
   Object.keys(config).forEach(key => {
     if (key === 'children') return
@@ -65,33 +64,9 @@ function processConfig (config: Object, id: string, configureCallback: (event: s
 *   compact = most other device orientation sizes , iphone, iphone+ in portrait
 *   unspecified = view has not registered traits yet
 */
-function isRegularDisplayMode (traits: TraitCollection): boolean {
+export function isRegularDisplayMode (traits: TraitCollection): boolean {
   try {
     return traits.window.horizontal === 'regular'
   } catch (e) {}
   return false   //  default to false
-}
-
-function checkDefaults (props: Object): Object {
-  let { navBarColor: bg, statusBarStyle } = props
-  if (bg && !statusBarStyle) {
-    const yiq = (
-      ((bg >> 16) & 0xFF) * 0.299 +
-      ((bg >> 8) & 0xFF) * 0.587 +
-      (bg & 0xFF) * 0.114
-    )
-    const isDarkBg = yiq < 128
-    statusBarStyle = isDarkBg ? 'light' : 'default'
-  }
-  return {
-    ...props,
-    backButtonTitle: props.backButtonTitle || i18n('Back'),
-    statusBarStyle,
-  }
-}
-
-module.exports = {
-  processConfig,
-  isRegularDisplayMode,
-  checkDefaults,
 }

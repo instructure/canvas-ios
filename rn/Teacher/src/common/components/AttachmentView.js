@@ -169,10 +169,9 @@ export default class AttachmentView extends Component<Props, State> {
     return (
       <Screen
         title={i18n('Attachment')}
-        navBarStyle='light'
         navBarTitleColors={Colors.darkText}
         navBarButtonColor={Colors.link}
-        drawUnderNavBar={true}
+        drawUnderNavBar
         leftBarButtons={[{
           testID: 'attachment-view.done-btn',
           title: i18n('Done'),

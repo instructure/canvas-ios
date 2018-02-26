@@ -232,9 +232,7 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
   render () {
     return (
       <Screen
-        navBarColor='#fff'
-        navBarStyle='light'
-        drawUnderNavBar={true}
+        drawUnderNavBar
         title={this.props.navBarTitle || i18n('New Message')}
         leftBarButtons={[{
           title: i18n('Cancel'),

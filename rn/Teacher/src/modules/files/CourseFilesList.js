@@ -353,7 +353,8 @@ export class CourseFilesList extends Component<Props, State> {
     return (
       <Screen
         title={title}
-        navBarTitleColor={'#fff'}
+        navBarColor={this.props.courseColor}
+        navBarStyle='dark'
         rightBarButtons={rightBarButtons}
         leftBarButtons={leftBarButtons}
       >

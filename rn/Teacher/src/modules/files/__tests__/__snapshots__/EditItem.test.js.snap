@@ -24,6 +24,7 @@ exports[`EditItem file renders usage rights editing when feature is enabled 1`] 
       },
     ]
   }
+  statusBarStyle="default"
   title="Edit File"
 >
   <View
@@ -167,6 +168,7 @@ exports[`EditItem folder should render 1`] = `
       },
     ]
   }
+  statusBarStyle="default"
   title="Edit Folder"
 >
   <View
@@ -278,6 +280,7 @@ exports[`EditItem folder shows availability when there is a lock_at date 1`] = `
       },
     ]
   }
+  statusBarStyle="default"
   title="Edit Folder"
 >
   <View
@@ -433,6 +436,7 @@ exports[`EditItem folder shows availability when there is an unlock_at date 1`] 
       },
     ]
   }
+  statusBarStyle="default"
   title="Edit Folder"
 >
   <View
@@ -588,6 +592,7 @@ exports[`EditItem folder shows the type of restriction when hidden 1`] = `
       },
     ]
   }
+  statusBarStyle="default"
   title="Edit Folder"
 >
   <View

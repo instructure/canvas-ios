@@ -149,7 +149,6 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
     return (
       <Screen
         title={i18n('Edit Assignment')}
-        navBarStyle='light'
         navBarTitleColor={color.darkText}
         navBarButtonColor={color.link}
         rightBarButtons={[

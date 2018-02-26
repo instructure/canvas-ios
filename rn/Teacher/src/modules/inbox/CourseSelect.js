@@ -78,8 +78,6 @@ export class CourseSelect extends PureComponent<CourseSelectProps> {
     return (
       <Screen
         title={i18n('Select a Course')}
-        navBarColor='#fff'
-        navBarStyle='light'
         drawUnderNavBar
       >
         <SectionList
