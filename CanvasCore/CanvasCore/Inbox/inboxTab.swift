@@ -27,9 +27,7 @@ public func inboxTab() -> UIViewController {
     inboxSplit.tabBarItem.accessibilityIdentifier = "tab-bar.inbox-btn"
     inboxSplit.extendedLayoutIncludesOpaqueBars = true
     
-    inboxSplit.tabBarItem.reactive.badgeValue
-        <~ TabBarBadgeCounts.unreadMessageCount
-            .map { count in count > 0 ? "\(count)" : nil }
+    inboxSplit.tabBarItem.reactive.badgeValue <~ TabBarBadgeCounts.unreadMessageCountString
     
     return inboxSplit
 }

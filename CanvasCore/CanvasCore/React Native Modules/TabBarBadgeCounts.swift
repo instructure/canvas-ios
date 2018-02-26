@@ -10,26 +10,49 @@ import Foundation
 import CanvasKit
 import ReactiveSwift
 
+let MaxTabBarCount = 99
+
 public class TabBarBadgeCounts: NSObject {
-    public static let unreadMessageCount = MutableProperty<Int>(0)
-    public static let todoListCount = MutableProperty<Int>(0)
+    public static let unreadMessageCountString = MutableProperty<String?>(nil)
+    public static let todoListCountString = MutableProperty<String?>(nil)
     public static let applicationIconBadgeNumber = MutableProperty<Int>(0)
+    public static var unreadMessageCount = 0 {
+        didSet {
+            if unreadMessageCount > MaxTabBarCount {
+                unreadMessageCountString.value = NSLocalizedString("99+", tableName: nil, bundle: .core, value: "99+", comment: "more than 99")
+            } else if unreadMessageCount > 0 {
+                unreadMessageCountString.value = String(unreadMessageCount)
+            } else {
+                unreadMessageCountString.value = nil
+            }
+            updateApplicationIconBadgeNumber()
+        }
+    }
+    public static var todoListCount = 0 {
+        didSet {
+            if todoListCount > MaxTabBarCount {
+                todoListCountString.value = NSLocalizedString("99+", tableName: nil, bundle: .core, value: "99+", comment: "more than 99")
+            } else if todoListCount > 0 {
+                todoListCountString.value = String(todoListCount)
+            } else {
+                todoListCountString.value = nil
+            }
+            updateApplicationIconBadgeNumber()
+        }
+    }
     
     @objc
     public func updateUnreadMessageCount(_ count: NSNumber) {
-        TabBarBadgeCounts.unreadMessageCount.value = count.intValue
-        updateApplicationIconBadgeNumber()
+        TabBarBadgeCounts.unreadMessageCount = count.intValue
     }
     
     @objc
     public func updateTodoListCount(_ count: NSNumber) {
-        TabBarBadgeCounts.todoListCount.value = count.intValue
-        updateApplicationIconBadgeNumber()
+        TabBarBadgeCounts.todoListCount = count.intValue
     }
     
-    func updateApplicationIconBadgeNumber() {
-        TabBarBadgeCounts.applicationIconBadgeNumber.value =
-            (TabBarBadgeCounts.unreadMessageCount.value +
-             TabBarBadgeCounts.todoListCount.value)
+    static func updateApplicationIconBadgeNumber() {
+        let count = (TabBarBadgeCounts.unreadMessageCount + TabBarBadgeCounts.todoListCount)
+        TabBarBadgeCounts.applicationIconBadgeNumber.value = min(count, MaxTabBarCount)
     }
 }

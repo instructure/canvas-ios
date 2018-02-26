@@ -78,7 +78,7 @@ class RootTabBarController: UITabBarController {
         toDoVC.view.accessibilityIdentifier = "to-do-list.view"
         toDoVC.tabBarItem = UITabBarItem(title: NSLocalizedString("To Do", comment: ""), image: UIImage(named: "todo"), selectedImage: nil)
         toDoVC.tabBarItem.accessibilityIdentifier = "tab-bar.to-do-btn"
-        toDoVC.tabBarItem.reactive.badgeValue <~ TabBarBadgeCounts.todoListCount .map { count in count > 0 ? "\(count)" : nil }
+        toDoVC.tabBarItem.reactive.badgeValue <~ TabBarBadgeCounts.todoListCountString
         return HelmNavigationController(rootViewController: toDoVC)
     }
     func profileTab() -> UIViewController {
