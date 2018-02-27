@@ -24,11 +24,12 @@ sudo xcode-select -s /Applications/Xcode.app
 
 ### Git LFS
 
-We use [Git LFS](https://git-lfs.github.com/) for data seeding to power the UI automation.
+We use [Git LFS](https://git-lfs.github.com/) for data seeding to power the UI automation. Make sure to use the latest stable version of Git (not system git). Install [JDK 1.8 from Oracle (not 1.9).](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
+- `brew install git`
 - `brew install git-lfs`
 - `git lfs install`
-- `git lfs fetch`
+- `git lfs pull`
 
 ### BuddyBuild
 We use BuddyBuild's [selective builds](https://docs.buddybuild.com/builds/selective_builds.html) feature to ensure that only the apps with relevant changes will build.
