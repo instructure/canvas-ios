@@ -39,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         BuddyBuildSDK.setup()
         configureBugSnag()
+        NotificationKitController.setupForPushNotifications(delegate: self)
         TheKeymaster?.fetchesBranding = true
         TheKeymaster?.delegate = loginConfig
         
