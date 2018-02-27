@@ -229,8 +229,17 @@
         }
     }
 
-    [sourceController cbi_transitionToViewController:destinationViewController animated:YES];
+    if ([destinationViewController isKindOfClass:[HelmViewController class]]) {
+        HelmViewController *controller = (HelmViewController *)destinationViewController;
+        if (controller.props[@"modal"]) {
+            HelmNavigationController *navigation = [[HelmNavigationController alloc] initWithRootViewController:controller];
+            [sourceController presentViewController:navigation animated:YES completion:nil];
+            return destinationViewController;
+        }
+    }
 
+    [sourceController cbi_transitionToViewController:destinationViewController animated:YES];
+    
     return destinationViewController;
 }
 
@@ -282,7 +291,17 @@
         params[@"query"] = [self parseURLQuery:url];
         
         if (urlComponents.count != routeComponents.count) {
-            return; // can't possibly match
+            BOOL shouldContinue = NO;
+            // I introduced supporting the *, but that broke a lot of assumptions in this route matching
+            // This seems like a little bit of a hack, but it does work without messing up the way things used to work
+            for (NSUInteger i = 0; i < routeComponents.count; i++) {
+                if ([routeComponents[i] hasPrefix:@"*"]) {
+                    shouldContinue = YES;
+                }
+            }
+            if (!shouldContinue) {
+                return; // can't possibly match
+            }
         }
         
         for (NSUInteger i = 0; i < routeComponents.count; i++) {
@@ -296,6 +315,11 @@
                 else {
                     params[paramKey] = param;
                 }
+            } else if ([routeComponents[i] hasPrefix:@"*"]) {
+                NSString *paramKey = [routeComponents[i] substringFromIndex:1];
+                NSArray  *remaining = [urlComponents subarrayWithRange:NSMakeRange(i, urlComponents.count - i)];
+                params[paramKey] = [remaining componentsJoinedByString:@"/"];
+                break;
             }
             else if (![urlComponents[i] isEqualToString:routeComponents[i]]) {
                 return; // not a match, continue to next key

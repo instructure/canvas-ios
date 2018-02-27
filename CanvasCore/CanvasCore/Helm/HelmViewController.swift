@@ -126,7 +126,7 @@ public final class HelmViewController: UIViewController, HelmScreen {
     
     public let moduleName: String
     let screenInstanceID: String
-    let props: Props
+    public let props: Props
     var screenConfig: HelmScreenConfig = HelmScreenConfig(config: [:]) {
         didSet {
             self.screenConfig.moduleName = self.moduleName

@@ -258,11 +258,8 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
         
             return assignmentDetailViewController;
         },
-        @"/courses/:contextID/files" : [self filesBlockForClass:[CKICourse class]],
         @"/groups/:contextID/files" : [self filesBlockForClass:[CKIGroup class]],
-        @"/courses/:contextID/folders/root": [self filesBlockForClass:[CKICourse class]],
         @"/groups/:contextID/folders/root": [self filesBlockForClass:[CKIGroup class]],
-        @"/courses/:contextID/folders/:folderID": [self folderBlockForClass:[CKICourse class]],
         @"/groups/:contextID/folders/:folderID": [self folderBlockForClass:[CKIGroup class]],
         @"/folders/:folderID" : ^(NSDictionary *params, CBIColorfulViewModel *viewModel) {
             if(viewModel == nil){
@@ -307,19 +304,6 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
         
             return [self MLVCTableViewControllerForViewModel:quizzesTabViewModel screenName:@"Quizzes List Screen" canBeMaster:YES style:UITableViewStylePlain];
         },
-        @"/courses/:courseIdent/files/:fileIdent" : ^(NSDictionary *params, CBIFileViewModel *viewModel) {
-            if (viewModel == nil) {
-                CKICourse *course = [CKICourse modelWithID:[params[@"courseIdent"] description]];
-                CKIFile *file = [CKIFile modelWithID:[params[@"fileIdent"] description] context:course];
-                viewModel = [CBIFileViewModel viewModelForModel:file];
-            }
-            
-            CBIFileViewController *controller = [[CBIFileViewController alloc] init];
-            controller.viewModel = viewModel;
-            [controller applyRoutingParameters:params];
-            return controller;
-        },
-
         @"/courses/:contextID/settings" : ^(NSDictionary *params, CBIFileViewModel *viewModel) {
             UnsupportedViewController *unsupportedVC = [UnsupportedViewController new];
             unsupportedVC.tabName = NSLocalizedString(@"Settings",@"Title for Settings");
@@ -343,20 +327,6 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
             unsupportedVC.tabName = NSLocalizedString(@"Outcomes",@"Title for Outcomes tab");
             unsupportedVC.canvasURL = params[@"url"];
             return unsupportedVC;
-        },
-
-        @"/files/:fileIdent/download" : ^(NSDictionary *params, id viewModel) {
-            NSURL *downloadURL = params[@"downloadURL"];
-        
-            if (downloadURL.absoluteString.length) {
-                WebBrowserViewController *browserController = [[WebBrowserViewController alloc] initWithNibName:@"WebBrowserViewController" bundle:[NSBundle bundleForClass:[self class]]];
-                [browserController setUrl:downloadURL];
-                return (UIViewController *)browserController;
-            }
-        
-            FileViewController *fileVC = [[FileViewController alloc] init];
-            [fileVC applyRoutingParameters:params];
-            return (UIViewController *)fileVC;
         },
     }];
     
@@ -383,13 +353,8 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
     [self addRoute:@"/courses/:courseID/quizzes/:quizID" handler:quizControllerConstructor];
     
     [self addRoutesWithDictionary:@{
-        // Discussions
-        @"/courses/:courseIdent/files/:fileIdent" : [FileViewController class],
         @"/groups/:groupIdent/files/:fileIdent" : [FileViewController class],
-        // Files
-        @"/files/:fileIdent" : [FileViewController class],
         @"/files" : [FileViewController class],
-        @"/courses/:courseIdent/files/:fileIdent/download" : [FileViewController class],
     }];
     
     [WhizzyWigView setOpenURLHandler:^(NSURL *url) {

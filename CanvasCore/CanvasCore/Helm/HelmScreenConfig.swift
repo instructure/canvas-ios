@@ -28,4 +28,12 @@ class HelmScreenConfig {
     var navBarTransparent: Bool {
         return self[PropKeys.navBarTransparent] as? Bool ?? false
     }
+    
+    var modal: Bool {
+        return self[PropKeys.modal] as? Bool ?? false
+    }
+    
+    var modalPresentationStyle: String? {
+        return self[PropKeys.modalPresentationStyle] as? String
+    }
 }

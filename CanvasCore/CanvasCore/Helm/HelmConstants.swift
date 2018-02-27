@@ -42,4 +42,8 @@ struct PropKeys {
     static let leftBarButtons = "leftBarButtons"
     static let rightBarButtons = "rightBarButtons"
     static let backButtonTitle = "backButtonTitle"
+    
+    static let modal = "modal"
+    static let modalPresentationStyle = "modalPresentationStyle"
+    static let modalTransitionStyle = "modalTransitionStyle"
 }

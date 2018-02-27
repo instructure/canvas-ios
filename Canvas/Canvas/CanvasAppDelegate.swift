@@ -232,7 +232,9 @@ extension AppDelegate {
         // will hard code until we move more things over to helm
         let tabRoutes = ["/", "/calendar", "/to-do", "/notifications", "/conversations"]
         StartupManager.shared.enqueueTask({
-            if let index = tabRoutes.index(of: url.path) {
+            var path = url.path
+            if path.count == 0 { path = "/" }
+            if let index = tabRoutes.index(of: path) {
                 guard let tabBarController = UIApplication.shared.keyWindow?.rootViewController as? UITabBarController else { return }
                 let vc = HelmManager.shared.topMostViewController()
                 var navigationController: UINavigationController?

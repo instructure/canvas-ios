@@ -236,7 +236,7 @@ open class HelmManager: NSObject {
         }
         
         func configureModalProps(for viewController: UIViewController) {
-            if let modalPresentationStyle = options["modalPresentationStyle"] as? String {
+            if let modalPresentationStyle = options[PropKeys.modalPresentationStyle] as? String {
                 switch modalPresentationStyle {
                 case "fullscreen": viewController.modalPresentationStyle = .fullScreen
                 case "formsheet": viewController.modalPresentationStyle = .formSheet
@@ -249,7 +249,7 @@ open class HelmManager: NSObject {
                 }
             }
             
-            if let modalTransitionStyle = options["modalTransitionStyle"] as? String {
+            if let modalTransitionStyle = options[PropKeys.modalPresentationStyle] as? String {
                 switch modalTransitionStyle {
                 case "flip": viewController.modalTransitionStyle = .flipHorizontal
                 case "fade": viewController.modalTransitionStyle = .crossDissolve

@@ -45,6 +45,7 @@ import SavingBanner from '../../common/components/SavingBanner'
 import AttachmentPicker from '../attachments/AttachmentPicker'
 import uuid from 'uuid/v1'
 import { wait } from '../../utils/async-wait'
+import { isTeacher } from '../app'
 
 type CourseFilesListProps = {
   data: any[], // The folders and files that are currently being shown
@@ -335,7 +336,7 @@ export class CourseFilesList extends Component<Props, State> {
     }
 
     const rightBarButtons = []
-    if (!this.state.uploadPending) {
+    if (!this.state.uploadPending && isTeacher()) {
       rightBarButtons.push({
         image: images.add,
         testID: 'course-files.add.button',
@@ -343,7 +344,9 @@ export class CourseFilesList extends Component<Props, State> {
         accessibilityLabel: i18n('Add Item'),
       })
     }
-    if (this.props.folder && this.props.subFolder) {
+    if (this.props.folder &&
+        this.props.subFolder &&
+        isTeacher()) {
       rightBarButtons.push({
         testID: 'course-files.edit-folder.button',
         title: i18n('Edit'),

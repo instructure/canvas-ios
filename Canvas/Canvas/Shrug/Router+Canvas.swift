@@ -81,6 +81,84 @@ extension Router {
         addContextRoute([.course, .group], subPath: "pages", handler: pagesListFactory)
         addContextRoute([.course, .group], subPath: "wiki", handler: pagesListFactory)
 
+        let fileListFactory = { (contextID: ContextID) -> UIViewController in
+            return HelmViewController(
+                moduleName: "/courses/:courseID/files",
+                props: ["courseID": contextID.id]
+            )
+        }
+        
+        let fileFactory = { (contextID: ContextID, fileID: String) -> UIViewController in
+            return HelmViewController(
+                moduleName: "/courses/:courseID/file/:fileID",
+                props: ["courseID": contextID.id, "fileID": fileID, "modal": true]
+            )
+        }
+        
+        addContextRoute([.course], subPath: "files") { contextID, params in
+            if let query = params["query"] as? Dictionary<String, Any>,
+                let fileID = query["preview"] as? String {
+                return fileFactory(contextID, fileID)
+            }
+            
+            return fileListFactory(contextID)
+        }
+        
+        addContextRoute([.course], subPath: "files/folder/*subFolder") { contextID, params in
+            if let query = params["query"] as? Dictionary<String, Any>,
+                let fileID = query["preview"] as? String {
+                return fileFactory(contextID, fileID)
+            }
+            
+            if let subFolder = params["subFolder"] as? String {
+                return HelmViewController(
+                    moduleName: "/courses/:courseID/files/folder/*subFolder",
+                    props: ["courseID": contextID.id, "subFolder": subFolder]
+                )
+            }
+            
+            return fileListFactory(contextID)
+        }
+        
+        addContextRoute([.course], subPath: "folders/:folderID") { contextID, params in
+            guard let folderID = params["folderID"] as? String else { return fileListFactory(contextID) }
+            if folderID == "root" { return fileListFactory(contextID) }
+            // We don't support routing to a specific folderID yet, that's to come later
+            return fileListFactory(contextID)
+        }
+        
+        addContextRoute([.course], subPath: "files/:fileID") { contextID, params in
+            if let fileID = params["fileID"] as? NSNumber {
+                return fileFactory(contextID, fileID.stringValue)
+            }
+            
+            return fileListFactory(contextID)
+        }
+        
+        addContextRoute([.course], subPath: "files/:fileID/download") { contextID, params in
+            if let fileID = params["fileID"] as? NSNumber {
+                return fileFactory(contextID, fileID.stringValue)
+            }
+            
+            return fileListFactory(contextID)
+        }
+        
+        addRoute("/files/:fileID") { parameters, _ in
+            guard let params = parameters, let fileID = (try? params.stringID("fileID")) else { return  nil }
+            return HelmViewController(
+                moduleName: "/files/:fileID/download",
+                props: ["fileID": fileID, "modal": true]
+            )
+        }
+        
+        addRoute("/files/:fileID/download") { parameters, _ in
+            guard let params = parameters, let fileID = (try? params.stringID("fileID")) else { return  nil }
+            return HelmViewController(
+                moduleName: "/files/:fileID/download",
+                props: ["fileID": fileID, "modal": true]
+            )
+        }
+        
         let moduleItemDetailFactory: (ContextID, [String: Any]) throws -> UIViewController? = { contextID, params in
             guard let query = params["query"] as? [String: Any], let moduleItemID = query["module_item_id"] as? CustomStringConvertible else {
                 return nil

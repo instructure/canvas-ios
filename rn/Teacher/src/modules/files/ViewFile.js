@@ -41,6 +41,7 @@ import Colors from '../../common/colors'
 import Images from '../../images'
 import Navigator from '../../routing/Navigator'
 import Video from '../../common/components/Video'
+import { isTeacher } from '../app'
 
 type Props = {
   courseID?: string,
@@ -61,6 +62,7 @@ type State = {
   loadingDone: boolean,
   course: ?Course,
   error: ?string,
+  forcedRefresh: boolean, // If there is a failure we'll do a single retry
 }
 
 export default class ViewFile extends Component<Props, State> {
@@ -78,6 +80,7 @@ export default class ViewFile extends Component<Props, State> {
     file: this.props.file,
     loadingDone: false,
     error: null,
+    forcedRefresh: false,
   }
 
   componentWillMount () {
@@ -95,11 +98,11 @@ export default class ViewFile extends Component<Props, State> {
       this.setState({ file: data })
       this.fetchFile(data)
     } catch (err) {
-      this.setState({ loadingDone: true, error: i18n('There was an error loading the file') })
+      this.setState({ loadingDone: true, error: i18n('There was an error loading the file.') })
     }
   }
 
-  fetchFile = async (file: File) => {
+  fetchFile = async (file: File, forceRefresh?: boolean) => {
     if ([ 'zip', 'flash' ].includes(file.mime_class)) {
       this.setState({ loadingDone: true })
       return
@@ -108,14 +111,17 @@ export default class ViewFile extends Component<Props, State> {
     const toFile = `${CachesDirectoryPath}/file-${file.id}.${file.filename.split('.').pop()}`
 
     let fileExists = await exists(toFile)
-    if (fileExists) {
+    if (fileExists && !forceRefresh) {
       this.setState({ loadingDone: true, jobID: null, localPath: `file://${toFile}`, error: null })
       return
     }
 
     let { jobId: jobID, promise } = downloadFile({ fromUrl: file.url, toFile })
     this.setState({ jobID })
-    const { statusCode } = await promise
+    let statusCode
+    try {
+      statusCode = (await promise).statusCode
+    } catch (e) {}
     if (statusCode === 200) {
       this.setState({ loadingDone: true, jobID: null, localPath: `file://${toFile}`, error: null })
     } else {
@@ -140,10 +146,21 @@ export default class ViewFile extends Component<Props, State> {
     }
   }
 
-  handleError = () => this.setState({
-    jobID: null,
-    error: i18n('There was an error loading the file.'),
-  })
+  handleError = () => {
+    const file = this.state.file
+    if (this.state.forcedRefresh || !file) {
+      this.setState({
+        jobID: null,
+        error: i18n('There was an error loading the file.'),
+        loadingDone: true,
+      })
+    }
+
+    if (file) {
+      this.setState({ forcedRefresh: true, loadingDone: false })
+      this.fetchFile(file, true)
+    }
+  }
 
   componentWillUnmount () {
     if (this.state.jobID) stopDownload(this.state.jobID)
@@ -231,6 +248,14 @@ export default class ViewFile extends Component<Props, State> {
     const { course, file, loadingDone } = this.state
     // $FlowFixMe
     const name: string = file ? file.name || file.display_name : ''
+    const leftBarButtons = []
+    if (isTeacher()) {
+      leftBarButtons.push({
+        testID: 'view-file.edit-btn',
+        title: i18n('Edit'),
+        action: this.handleEdit,
+      })
+    }
     return (
       <Screen
         title={name}
@@ -239,11 +264,7 @@ export default class ViewFile extends Component<Props, State> {
         navBarButtonColor={Colors.link}
         drawUnderNavBar
         disableGlobalSafeArea
-        leftBarButtons={[{
-          testID: 'view-file.edit-btn',
-          title: i18n('Edit'),
-          action: this.handleEdit,
-        }]}
+        leftBarButtons={leftBarButtons}
         rightBarButtons={[{
           testID: 'view-file.done-btn',
           title: i18n('Done'),

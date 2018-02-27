@@ -130,16 +130,16 @@ describe('ViewFile', () => {
     expect(tree.find('Image').length).toBe(2)
   })
 
-  it('renders image loading error', async () => {
+  it('tries to fetch image again after failing', async () => {
     props.file.mime_class = 'image'
     const tree = shallow(<ViewFile {...props} />)
-    await Promise.resolve() // wait for file download.
+    await Promise.resolve() // wait for file download first try
     await updatedState(tree)
     tree.update()
     tree.find('Image').at(0).simulate('Error')
     await updatedState(tree)
     tree.update()
-    expect(tree.find('Text').children().text()).toBe('There was an error loading the file.')
+    expect(tree.find('ActivityIndicator').length).toBe(1)
   })
 
   it('renders an error message if loading fails', async () => {
