@@ -23,11 +23,13 @@ import {
   StyleSheet,
   Alert,
   AsyncStorage,
+  NativeModules,
  } from 'react-native'
 import { Button } from '../../common/buttons'
 import { route, type RouteOptions } from '../../routing'
 import Navigator from '../../routing/Navigator'
 import Screen from '../../routing/Screen'
+const { NativeNotificationCenter } = NativeModules
 
 const stagingKey = 'teacher.staging.path'
 
@@ -65,6 +67,10 @@ export default class Staging extends Component<StagingProps, any> {
   forceCrash = () => {
     // $FlowFixMe
     this.fakeFunction()
+  }
+
+  forceNativeCrash = () => {
+    NativeNotificationCenter.postNotification('FakeCrash', {})
   }
 
   go = () => {
@@ -150,6 +156,11 @@ export default class Staging extends Component<StagingProps, any> {
           <View style={styles.purge}>
             <Button onPress={ this.forceCrash }>
               Force Crash
+            </Button>
+          </View>
+          <View style={styles.purge}>
+            <Button onPress={ this.forceNativeCrash }>
+              Force Native Crash
             </Button>
           </View>
           <View style={styles.purge}>

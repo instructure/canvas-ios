@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         BuddyBuildSDK.setup()
-        BugsnagReactNative.start()
+        configureBugSnag()
         NotificationKitController.setupForPushNotifications(delegate: self)
         TheKeymaster?.fetchesBranding = true
         TheKeymaster?.delegate = loginConfig
@@ -71,6 +71,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         return self.application(application, handleOpen: url)
+    }
+    
+    func configureBugSnag() {
+        let configuration = BugsnagConfiguration()
+        configuration.add { (data, report) -> Bool in
+            var user = Dictionary<String, String>()
+            let region = Locale.current.regionCode
+            if let session = self.session, region != "CA" {
+                user["baseURL"] = session.baseURL.absoluteString
+                user["id"] = session.user.id
+                report.addMetadata(user, toTabWithName: "user")
+            }
+            return true
+        }
+        BugsnagReactNative.start(with: configuration)
+        NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: "FakeCrash"), object: nil, queue: nil) { _  in
+            let exception = NSException(name:NSExceptionName(rawValue: "FakeException"),
+                                        reason:"The red coats are coming, the red coats are coming!",
+                                        userInfo:nil)
+            Bugsnag.notify(exception)
+        }
     }
 }
 
