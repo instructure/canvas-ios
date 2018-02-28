@@ -37,6 +37,12 @@ public class HelmNavigationController: UINavigationController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        self.navigationBar.barTintColor = Brand.current.navBgColor
+        self.navigationBar.tintColor = Brand.current.navButtonColor
+    }
+    
     public override var prefersStatusBarHidden: Bool {
         return topViewController?.prefersStatusBarHidden ?? super.prefersStatusBarHidden
     }

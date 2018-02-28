@@ -67,12 +67,11 @@ public func EnrollmentsTab(session: Session) throws -> UIViewController {
     let dashboardNav = HelmNavigationController(rootViewController: dashboardVC)
     let dashboardSplit = EnrollmentSplitViewController()
     let emptyNav = UINavigationController(rootViewController:EmptyViewController())
-    emptyNav.navigationBar.barTintColor = Brand.current.navBgColor
-    emptyNav.navigationBar.tintColor = Brand.current.navButtonColor
     emptyNav.navigationBar.isTranslucent = false
     dashboardNav.delegate = dashboardSplit
     dashboardSplit.viewControllers = [dashboardNav, emptyNav]
     dashboardSplit.tabBarItem.title = NSLocalizedString("Dashboard", comment: "dashboard page title")
     dashboardSplit.tabBarItem.image = .icon(.course)
+    dashboardSplit.navigationItem.titleView = Brand.current.navBarTitleView()
     return dashboardSplit
 }

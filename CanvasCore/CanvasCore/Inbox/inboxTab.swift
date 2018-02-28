@@ -14,11 +14,11 @@ public func inboxTab() -> UIViewController {
     let inboxVC = HelmViewController(moduleName: "/conversations", props: [:])
     let inboxNav = HelmNavigationController(rootViewController: inboxVC)
     
+    inboxVC.navigationItem.titleView = Brand.current.navBarTitleView()
+    
     let inboxSplit = HelmSplitViewController()
     
     let empty = HelmNavigationController()
-    empty.navigationBar.barTintColor = Brand.current.navBgColor
-    empty.navigationBar.tintColor = Brand.current.navButtonColor
     empty.navigationBar.isTranslucent = false
     
     inboxSplit.viewControllers = [inboxNav, empty]

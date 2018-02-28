@@ -378,8 +378,9 @@ extension AppDelegate: NativeLoginManagerDelegate {
         
         if let brandingInfo = client.branding?.jsonDictionary() as? [String: Any] {
             Brand.setCurrent(Brand(webPayload: brandingInfo))
-            UITabBar.appearance().tintColor = Brand.current.primaryBrandColor
-            UITabBar.appearance().barTintColor = .white
+            if let window = self.window {
+                Brand.current.apply(window)
+            }
         } else {
             let b = Brand.current
             guard let brand = CKIBrand() else {

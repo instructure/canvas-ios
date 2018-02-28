@@ -311,16 +311,7 @@ public final class HelmViewController: UIViewController, HelmScreen {
         }
         
         if let navBarImagePath = screenConfig[PropKeys.navBarImage] {
-            if let titleView: UIView = titleViewFromNavBarImagePath(navBarImagePath: navBarImagePath) {
-                titleView.contentMode = .scaleAspectFit
-                let container = UIView(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
-                titleView.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
-                container.addSubview(titleView)
-                self.navigationItem.titleView = container
-            }
-            else {
-                self.navigationItem.titleView = nil
-            }
+            self.navigationItem.titleView = HelmManager.narBarTitleViewFromImagePath(navBarImagePath)
         }
         
         if let backgroundColor = screenConfig[PropKeys.backgroundColor] {

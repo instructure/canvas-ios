@@ -63,6 +63,7 @@ open class Brand: NSObject {
             }
         }
     }
+    
     open func apply(_ window: UIWindow) {
         window.tintColor = primaryButtonColor
         
@@ -77,6 +78,11 @@ open class Brand: NSObject {
         tabsAppearance.tintColor = primaryBrandColor
         tabsAppearance.barTintColor = UIColor.white
         tabsAppearance.unselectedItemTintColor = UIColor(red: 115/255.0, green: 129/255.0, blue: 140/255.0, alpha: 1)
+    }
+    
+    open func navBarTitleView() -> UIView? {
+        guard headerImageURL.count > 0 else { return nil }
+        return HelmManager.narBarTitleViewFromImagePath(headerImageURL)
     }
     
     fileprivate override init() {

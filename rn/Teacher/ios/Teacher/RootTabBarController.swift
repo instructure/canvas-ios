@@ -60,7 +60,8 @@ class RootTabBarController: UITabBarController {
         enrollmentsVC.view.accessibilityIdentifier = "favorited-course-list.view1"
         enrollmentsVC.tabBarItem = UITabBarItem(title: NSLocalizedString("Courses", comment: ""), image: UIImage(named: "courses"), selectedImage: nil)
         enrollmentsVC.tabBarItem.accessibilityIdentifier = "tab-bar.courses-btn"
-
+        enrollmentsVC.navigationItem.titleView = Brand.current.navBarTitleView()
+        
         let masterNav = HelmNavigationController(rootViewController: enrollmentsVC)
         masterNav.view.backgroundColor = .white
         masterNav.delegate = split
@@ -79,6 +80,7 @@ class RootTabBarController: UITabBarController {
         toDoVC.tabBarItem = UITabBarItem(title: NSLocalizedString("To Do", comment: ""), image: UIImage(named: "todo"), selectedImage: nil)
         toDoVC.tabBarItem.accessibilityIdentifier = "tab-bar.to-do-btn"
         toDoVC.tabBarItem.reactive.badgeValue <~ TabBarBadgeCounts.todoListCountString
+        toDoVC.navigationItem.titleView = Brand.current.navBarTitleView()
         return HelmNavigationController(rootViewController: toDoVC)
     }
     func profileTab() -> UIViewController {
