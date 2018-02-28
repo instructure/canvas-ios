@@ -64,6 +64,34 @@ describe('TermsOfUse', () => {
     expect(webView.props().html).toEqual('TOS')
   })
 
+  it('renders the terms of service once the api call succeeds but has no conent', async () => {
+    let promise = Promise.resolve({
+      data: {
+        content: null,
+        terms_type: 'custom',
+        passive: false,
+        id: '1',
+        account_id: '1',
+      },
+      status: 200,
+      headers: {
+        link: null,
+      },
+    })
+
+    let view = shallow(
+      <TermsOfUse
+        {...defaultProps}
+        getTermsOfService={() => promise}
+      />
+    )
+
+    await promise
+    view.update()
+    let webView = view.find('WebContainer')
+    expect(webView.props().html).toEqual('Account has no Terms of Use')
+  })
+
   it('renders the error message when we fail to get the TOS', async () => {
     let promise = Promise.reject()
 

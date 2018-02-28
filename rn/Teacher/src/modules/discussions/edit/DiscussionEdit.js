@@ -51,6 +51,7 @@ import { default as AssignmentsActions } from '../../assignments/actions'
 import UnmetRequirementBanner from '../../../common/components/UnmetRequirementBanner'
 import RequiredFieldSubscript from '../../../common/components/RequiredFieldSubscript'
 import { extractDateFromString } from '../../../utils/dateUtils'
+import { isTeacher } from '../../app/index'
 
 const { NativeAccessibility } = NativeModules
 
@@ -78,7 +79,8 @@ const PickerItem = PickerIOS.Item
 
 type OwnProps = {
   discussionID: ?string,
-  courseID: string,
+  context: Context,
+  contextID: string,
 }
 
 type State = {
@@ -132,15 +134,16 @@ export class DiscussionEdit extends Component<Props, any> {
   }
 
   componentWillUnmount () {
-    this.props.deletePendingNewDiscussion(this.props.courseID)
+    this.props.deletePendingNewDiscussion(this.props.context, this.props.contextID)
     if (this.props.discussionID) {
-      this.props.refreshDiscussionEntries(this.props.courseID, this.props.discussionID, true)
+      this.props.refreshDiscussionEntries(this.props.context, this.props.contextID, this.props.discussionID, true)
     }
   }
 
   componentWillReceiveProps (props: Props) {
     const error = props.error
     if (error) {
+      this.setState({ pending: false })
       this._handleError(error)
       return
     }
@@ -249,14 +252,14 @@ export class DiscussionEdit extends Component<Props, any> {
             />
 
             <Heading1 style={style.heading}>{i18n('Options')}</Heading1>
-            { this.state.can_unpublish &&
-              <RowWithSwitch
+            { this.state.can_unpublish && isTeacher() &&
+               <RowWithSwitch
                 title={i18n('Publish')}
                 border='both'
                 value={this.state.published}
                 onValueChange={this._valueChanged('published')}
                 testID='discussions.edit.published.switch'
-              />
+            />
             }
             <RowWithSwitch
               title={i18n('Allow threaded replies')}
@@ -274,12 +277,12 @@ export class DiscussionEdit extends Component<Props, any> {
               identifier='discussions.edit.subscribed.switch'
             />
             }
-            <RowWithSwitch
+            { isTeacher() && <RowWithSwitch
               title={i18n('Users must post before seeing replies')}
               border='bottom'
               value={this.state.require_initial_post}
               onValueChange={this._valueChanged('require_initial_post')}
-            />
+            /> }
             { this.isGraded() &&
               <View>
                 <RowWithTextInput
@@ -332,7 +335,7 @@ export class DiscussionEdit extends Component<Props, any> {
               />
             }
 
-            { !this.isGraded() &&
+            { isTeacher() && !this.isGraded() &&
               <View>
                 <Heading1 style={style.heading}>{i18n('Availability')}</Heading1>
                 <RowWithDateInput
@@ -465,7 +468,7 @@ export class DiscussionEdit extends Component<Props, any> {
   }
 
   _subscribe = (shouldSubscribe: boolean) => {
-    this.props.subscribeDiscussion(this.props.courseID, this.props.discussionID, shouldSubscribe)
+    this.props.subscribeDiscussion(this.props.context, this.props.contextID, this.props.discussionID, shouldSubscribe)
   }
 
   validate () {
@@ -497,12 +500,12 @@ export class DiscussionEdit extends Component<Props, any> {
       const updatedAssignment = this.datesEditor.updateAssignment({ ...this.state.assignment })
       updatedAssignment.points_possible = this.state.points_possible || 0
       updatedAssignment.grading_type = this.state.grading_type
-      this.props.updateAssignment(this.props.courseID, updatedAssignment, this.props.assignment)
+      this.props.updateAssignment(this.props.contextID, updatedAssignment, this.props.assignment)
     }
   }
 
   updateDiscussion () {
-    const params = {
+    let params = {
       title: this.state.title || i18n('No Title'),
       message: this.state.message,
       published: this.state.published || false,
@@ -513,6 +516,9 @@ export class DiscussionEdit extends Component<Props, any> {
       delayed_post_at: this.state.delayed_post_at,
       attachment: this.state.attachment,
     }
+
+    if (!isTeacher()) delete params.published
+
     if (this.props.discussionID) {
       // $FlowFixMe
       params.id = this.props.discussionID
@@ -521,9 +527,10 @@ export class DiscussionEdit extends Component<Props, any> {
       // $FlowFixMe
       params.remove_attachment = true
     }
+
     this.props.discussionID
-      ? this.props.updateDiscussion(this.props.courseID, params)
-      : this.props.createDiscussion(this.props.courseID, params)
+      ? this.props.updateDiscussion(this.props.context, this.props.contextID, params)
+      : this.props.createDiscussion(this.props.context, this.props.contextID, params)
   }
 
   isGraded = () => Boolean(this.state.assignment)
@@ -564,19 +571,21 @@ const style = StyleSheet.create({
   },
 })
 
-export function mapStateToProps ({ entities }: AppState, { courseID, discussionID }: OwnProps): State {
+export function mapStateToProps ({ entities }: AppState, { context, contextID, discussionID }: OwnProps): State {
   let discussion = {}
   let error = null
   let pending = 0
   let assignment = null
   let attachment = null
 
+  let origin: DiscussionOriginEntity = context === 'courses' ? entities.courses : entities.groups
+
   if (!discussionID &&
-    entities.courses &&
-    entities.courses[courseID] &&
-    entities.courses[courseID].discussions &&
-    entities.courses[courseID].discussions.new) {
-    const newState = entities.courses[courseID].discussions.new
+    origin &&
+    origin[contextID] &&
+    origin[contextID].discussions &&
+    origin[contextID].discussions.new) {
+    const newState = origin[contextID].discussions.new
     error = newState.error
     pending = pending + (newState.pending || 0)
     discussionID = newState.id

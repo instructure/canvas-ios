@@ -20,68 +20,72 @@ import { createAction } from 'redux-actions'
 import canvas from '../../../canvas-api'
 
 export let Actions = (api: CanvasApi): * => ({
-  refreshDiscussionEntries: createAction('discussionDetailEntries.refresh', (courseID: string, discussionID: string, includeNewEntries: boolean) => {
+  refreshDiscussionEntries: createAction('discussionDetailEntries.refresh', (context: string, contextID: string, discussionID: string, includeNewEntries: boolean) => {
     return {
       promise: Promise.all([
-        api.getAllDiscussionEntries(courseID, discussionID, includeNewEntries),
-        api.getDiscussion(courseID, discussionID),
+        api.getAllDiscussionEntries(context, contextID, discussionID, includeNewEntries),
+        api.getDiscussion(context, contextID, discussionID),
       ]).then(([view, discussion]) => {
         if (discussion.data.assignment_id) {
           return Promise.all([
             Promise.resolve(view),
             Promise.resolve(discussion),
-            api.getAssignment(courseID, discussion.data.assignment_id),
+            api.getAssignment(contextID, discussion.data.assignment_id),
           ])
         }
         return Promise.resolve([view, discussion])
       }),
-      courseID,
+      context,
+      contextID,
       discussionID,
     }
   }),
-  refreshSingleDiscussion: createAction('discussions.details.refreshSingle', (courseID: string, discussionID: string) => {
+  refreshSingleDiscussion: createAction('discussions.details.refreshSingle', (context: string, contextID: string, discussionID: string) => {
     return {
-      promise: api.getDiscussion(courseID, discussionID),
+      promise: api.getDiscussion(context, contextID, discussionID),
       discussionID,
     }
   }),
-  deleteDiscussionEntry: createAction('discussionDetail.delete-entry', (courseID: string, discussionID: string, entryID: string, localIndexPath: number[]) => {
+  deleteDiscussionEntry: createAction('discussionDetail.delete-entry', (context: string, contextID: string, discussionID: string, entryID: string, localIndexPath: number[]) => {
     return {
-      promise: api.deleteDiscussionEntry(courseID, discussionID, entryID),
-      courseID,
+      promise: api.deleteDiscussionEntry(context, contextID, discussionID, entryID),
+      context,
+      contextID,
       discussionID,
       entryID,
       localIndexPath,
     }
   }),
-  createEntry: createAction('discussions.details.createEntry', (courseID: string, discussionID: string, entryID: string = '', parameters: CreateEntryParameters, indexPath: number[], lastReplyAt: string) => {
+  createEntry: createAction('discussions.details.createEntry', (context: string, contextID: string, discussionID: string, entryID: string = '', parameters: CreateEntryParameters, indexPath: number[], lastReplyAt: string) => {
     return {
-      promise: api.createEntry(courseID, discussionID, entryID, parameters),
-      courseID,
+      promise: api.createEntry(context, contextID, discussionID, entryID, parameters),
+      context,
+      contextID,
       discussionID,
       entryID,
       indexPath,
       lastReplyAt,
     }
   }),
-  markEntryAsRead: createAction('discussions.details.markEntryAsRead', (courseID: string, discussionID: string, entryID: string) => {
+  markEntryAsRead: createAction('discussions.details.markEntryAsRead', (context: string, contextID: string, discussionID: string, entryID: string) => {
     return {
-      promise: api.markEntryAsRead(courseID, discussionID, entryID),
+      promise: api.markEntryAsRead(context, contextID, discussionID, entryID),
       discussionID,
       entryID,
     }
   }),
-  markAllAsRead: createAction('discussions.details.markAllAsRead', (courseID: string, discussionID: string, oldUnreadCount: number) => {
+  markAllAsRead: createAction('discussions.details.markAllAsRead', (context: string, contextID: string, discussionID: string, oldUnreadCount: number) => {
     return {
-      promise: api.markAllAsRead(courseID, discussionID),
+      promise: api.markAllAsRead(context, contextID, discussionID),
       discussionID,
       oldUnreadCount,
     }
   }),
-  editEntry: createAction('discussions.details.editEntry', (courseID: string, discussionID: string, entryID: string, parameters: CreateEntryParameters, indexPath: number[]) => {
+  editEntry: createAction('discussions.details.editEntry', (context: string, contextID: string, discussionID: string, entryID: string, parameters: CreateEntryParameters, indexPath: number[]) => {
     return {
-      promise: api.editEntry(courseID, discussionID, entryID, parameters),
-      courseID,
+      promise: api.editEntry(context, contextID, discussionID, entryID, parameters),
+      context,
+      contextID,
       discussionID,
       entryID,
       indexPath,

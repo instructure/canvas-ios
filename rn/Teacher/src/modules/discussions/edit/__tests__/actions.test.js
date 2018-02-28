@@ -31,8 +31,10 @@ describe('createDiscussion', () => {
     const api = {
       createDiscussion: apiResponse(discussion),
     }
+    const context = 'courses'
+    const contextID = '21'
     const actions = Actions(api)
-    const action = actions.createDiscussion('21', params)
+    const action = actions.createDiscussion(context, contextID, params)
     const result = await testAsyncAction(action)
     expect(result).toMatchObject([
       {
@@ -41,7 +43,8 @@ describe('createDiscussion', () => {
         payload: {
           params,
           handlesError: true,
-          courseID: '21',
+          contextID,
+          context,
         },
       },
       {
@@ -50,7 +53,8 @@ describe('createDiscussion', () => {
           result: { data: discussion },
           params,
           handlesError: true,
-          courseID: '21',
+          contextID,
+          context,
         },
       },
     ])
@@ -64,8 +68,10 @@ describe('updateDiscussion', () => {
     const api = {
       updateDiscussion: apiResponse(discussion),
     }
+    const context = 'courses'
+    const contextID = '21'
     const actions = Actions(api)
-    const action = actions.updateDiscussion('21', params)
+    const action = actions.updateDiscussion(context, contextID, params)
     const result = await testAsyncAction(action)
     expect(result).toMatchObject([
       {
@@ -74,7 +80,8 @@ describe('updateDiscussion', () => {
         payload: {
           params,
           handlesError: true,
-          courseID: '21',
+          context,
+          contextID,
         },
       },
       {
@@ -83,7 +90,8 @@ describe('updateDiscussion', () => {
           result: { data: discussion },
           params,
           handlesError: true,
-          courseID: '21',
+          context,
+          contextID,
         },
       },
     ])
@@ -94,8 +102,10 @@ describe('updateDiscussion', () => {
     const api = {
       updateDiscussion: apiError({ message: 'Invalid token.', status: 500 }),
     }
+    const context = 'courses'
+    const contextID = '21'
     const actions = Actions(api)
-    const action = actions.updateDiscussion('21', params)
+    const action = actions.updateDiscussion(context, contextID, params)
     const result = await testAsyncAction(action)
     expect(result).toMatchObject([
       {
@@ -104,7 +114,8 @@ describe('updateDiscussion', () => {
         payload: {
           params,
           handlesError: true,
-          courseID: '21',
+          context,
+          contextID,
         },
       },
       {
@@ -113,7 +124,8 @@ describe('updateDiscussion', () => {
           error: { data: { errors: [{ message: 'Invalid token.' }] } },
           params,
           handlesError: true,
-          courseID: '21',
+          context,
+          contextID,
         },
       },
     ])
@@ -126,8 +138,10 @@ describe('delete discussion', () => {
     const api = {
       deleteDiscussion: apiResponse(discussion),
     }
+    const context = 'courses'
+    const contextID = '21'
     const actions = Actions(api)
-    const action = actions.deleteDiscussion('21', '43')
+    const action = actions.deleteDiscussion(context, contextID, '43')
     const result = await testAsyncAction(action)
     expect(result).toMatchObject([
       {
@@ -135,7 +149,8 @@ describe('delete discussion', () => {
         pending: true,
         payload: {
           discussionID: '43',
-          courseID: '21',
+          context,
+          contextID,
         },
       },
       {
@@ -143,7 +158,8 @@ describe('delete discussion', () => {
         payload: {
           result: { data: discussion },
           discussionID: '43',
-          courseID: '21',
+          context,
+          contextID,
         },
       },
     ])
@@ -155,8 +171,10 @@ describe('subscribeDiscussion', () => {
     const api = {
       subscribeDiscussion: apiResponse({}, { status: 204 }),
     }
+    const context = 'courses'
+    const contextID = '21'
     const actions = Actions(api)
-    const action = actions.subscribeDiscussion('1', '2', true)
+    const action = actions.subscribeDiscussion(context, contextID, '2', true)
     const result = await testAsyncAction(action)
     expect(result).toMatchObject([
       {
@@ -164,7 +182,8 @@ describe('subscribeDiscussion', () => {
         pending: true,
         payload: {
           discussionID: '2',
-          courseID: '1',
+          context,
+          contextID,
           subscribed: true,
         },
       },
@@ -173,7 +192,8 @@ describe('subscribeDiscussion', () => {
         payload: {
           result: { data: {} },
           discussionID: '2',
-          courseID: '1',
+          context,
+          contextID,
           subscribed: true,
         },
       },
@@ -182,12 +202,14 @@ describe('subscribeDiscussion', () => {
 })
 
 test('deletePendingNewDiscussion', () => {
+  const context = 'courses'
+  const contextID = '43'
   const actions = Actions({})
-  const action = actions.deletePendingNewDiscussion('43')
+  const action = actions.deletePendingNewDiscussion(context, contextID)
   expect(action).toEqual({
     type: actions.deletePendingNewDiscussion.toString(),
     payload: {
-      courseID: '43',
+      context, contextID,
     },
   })
 })

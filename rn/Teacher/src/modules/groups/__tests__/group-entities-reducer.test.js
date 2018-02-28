@@ -14,17 +14,20 @@
 // limitations under the License.
 //
 
-// @flow
+/* eslint-disable flowtype/require-valid-file-annotation */
 
 import Actions from '../actions'
 import CoursesActions from '../../courses/actions'
 import { groups } from '../group-entities-reducer'
+import DiscussionEditActions from '../../discussions/edit/actions'
 
 const { refreshGroupsForCourse, refreshGroup, listUsersForGroup } = Actions
 const { refreshCourses } = CoursesActions
+const { createDiscussion } = DiscussionEditActions
 
 const template = {
   ...require('../../../__templates__/group'),
+  ...require('../../../__templates__/discussion'),
   ...require('../../../__templates__/error'),
 }
 
@@ -51,6 +54,55 @@ test('captures entities', () => {
   expect(groups({}, action)).toEqual({
     '1': { group: groupTemplates[0] },
     '2': { group: groupTemplates[1] },
+  })
+})
+
+test('captures entities with discussion', () => {
+  let group = template.group({ id: '1' })
+
+  const action = {
+    type: createDiscussion.toString(),
+    payload: {
+      context: 'groups', contextID: group.id,
+    },
+    pending: true,
+  }
+
+  let announcement = template.discussion({ id: '2', is_announcement: true })
+  const action2 = {
+    type: createDiscussion.toString(),
+    payload: {
+      context: 'groups',
+      contextID: group.id,
+      params: { ...announcement },
+      result: { data: announcement },
+    },
+  }
+
+  let state = {
+    [group.id]: {
+      group,
+      discussions: { pending: 0, refs: [] },
+    },
+  }
+
+  let result1 = groups(state, action)
+  let result2 = groups(result1, action2)
+
+  expect(result1).toEqual({
+    [group.id]: {
+      group,
+      discussions: { pending: 0, refs: [], new: { pending: 1, id: null, error: null } },
+      announcements: { pending: 0, refs: [] },
+    },
+  })
+
+  expect(result2).toEqual({
+    [group.id]: {
+      group,
+      discussions: { pending: 0, refs: [], new: { pending: 0, id: announcement.id, error: null } },
+      announcements: { pending: 0, refs: [announcement.id] },
+    },
   })
 })
 
@@ -97,6 +149,15 @@ test('captures list of users resolved', () => {
       },
       error: null,
       pending: 0,
+      announcements: {
+        pending: 0,
+        refs: [],
+      },
+      discussions: {
+        pending: 0,
+        refs: [],
+      },
+
     },
   }
 
@@ -132,6 +193,15 @@ test('captures list of users pending', () => {
       },
       error: null,
       pending: 1,
+      announcements: {
+        pending: 0,
+        refs: [],
+      },
+      discussions: {
+        pending: 0,
+        refs: [],
+      },
+
     },
   }
 
@@ -168,6 +238,15 @@ test('captures list of users rejected', () => {
       },
       error: 'User not authorized',
       pending: 0,
+      announcements: {
+        pending: 0,
+        refs: [],
+      },
+      discussions: {
+        pending: 0,
+        refs: [],
+      },
+
     },
   }
 

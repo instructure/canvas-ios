@@ -31,6 +31,7 @@ import i18n from 'format-message'
 
 import { default as ListActions } from './actions'
 import { default as EditActions } from '../edit/actions'
+import CourseActions from '../../courses/actions'
 import refresh from '../../../utils/refresh'
 import DiscusionsRow from './DiscussionsRow'
 import SectionHeader from '../../../common/components/rows/SectionHeader'
@@ -38,8 +39,8 @@ import Screen from '../../../routing/Screen'
 import Images from '../../../images'
 import ActivityIndicatorView from '../../../common/components/ActivityIndicatorView'
 import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
-import { isTeacher } from '../../app'
 
+const { refreshCourse } = CourseActions
 const { refreshDiscussions } = ListActions
 const { updateDiscussion, deleteDiscussion } = EditActions
 
@@ -47,16 +48,19 @@ const Actions = {
   refreshDiscussions,
   updateDiscussion,
   deleteDiscussion,
+  refreshCourse,
 }
 
 type OwnProps = {
-  courseID: string,
+  context: Context,
+  contextID: string,
 }
 
 type State = {
   discussions: Discussion[],
   courseColor: ?string,
   pending: boolean,
+  permissions?: CoursePermissions,
 }
 
 export type Props = State & typeof Actions & OwnProps & {
@@ -117,7 +121,7 @@ export class DiscussionsList extends Component<Props, any> {
       if (button === 0) { updatedDiscussion.pinned = !updatedDiscussion.pinned; updatedDiscussion.locked = false }
       if (button === 1) { updatedDiscussion.locked = !updatedDiscussion.locked; updatedDiscussion.pinned = false }
 
-      this.props.updateDiscussion(this.props.courseID, updatedDiscussion)
+      this.props.updateDiscussion(this.props.contextID, updatedDiscussion)
     })
   }
 
@@ -183,7 +187,7 @@ export class DiscussionsList extends Component<Props, any> {
             action: this.props.navigator.dismiss,
           },
         ]}
-        rightBarButtons={ isTeacher() && [
+        rightBarButtons={ (this.props.permissions && this.props.permissions.create_discussion_topic) && [
           {
             image: Images.add,
             testID: 'discussions.list.add.button',
@@ -212,7 +216,7 @@ export class DiscussionsList extends Component<Props, any> {
   }
 
   addDiscussion = () => {
-    this.props.navigator.show(`/courses/${this.props.courseID}/discussion_topics/new`, { modal: true, modalPresentationStyle: 'formsheet' })
+    this.props.navigator.show(`/${this.props.context}/${this.props.contextID}/discussion_topics/new`, { modal: true, modalPresentationStyle: 'formsheet' })
   }
 
   _confirmDeleteDiscussion = (discussion: Discussion) => {
@@ -227,7 +231,7 @@ export class DiscussionsList extends Component<Props, any> {
   }
 
   _deleteDiscussion = (discussion: Discussion) => {
-    this.props.deleteDiscussion(this.props.courseID, discussion.id)
+    this.props.deleteDiscussion(this.props.context, this.props.contextID, discussion.id)
   }
 }
 
@@ -237,22 +241,37 @@ const styles = StyleSheet.create({
   },
 })
 
-export function mapStateToProps ({ entities }: AppState, { courseID }: OwnProps): State {
+export function mapStateToProps ({ entities }: AppState, { context, contextID }: OwnProps): State {
   let discussions = []
   let courseColor = null
   let courseName = null
   let pending = false
-  if (entities &&
-    entities.courses &&
-    entities.courses[courseID] &&
-    entities.discussions) {
-    const course = entities.courses[courseID]
-    const refs = course.discussions.refs
-    discussions = refs
-      .map(ref => entities.discussions[ref].data)
-    courseColor = course.color
-    courseName = course.course.name
-    pending = !!course.discussions.pending
+  let refs: EntityRefs = []
+  let permissions = {
+  }
+
+  if (entities && entities.discussions) {
+    if (context === 'courses' &&
+      entities.courses &&
+      entities.courses[contextID]) {
+      const course = entities.courses[contextID]
+      refs = course.discussions.refs
+      courseColor = course.color
+      courseName = course.course.name
+      permissions = course.permissions || permissions
+      pending = !!course.discussions.pending
+    } else if (context === 'groups' &&
+      entities.groups &&
+      entities.groups[contextID]) {
+      const group: GroupState & GroupContentState = entities.groups[contextID]
+      permissions.create_announcement = true
+      permissions.create_discussion_topic = true
+      refs = group.discussions && group.discussions.refs ? group.discussions.refs : []
+      courseName = group.group.name
+      courseColor = group.color
+    }
+
+    discussions = refs.map(ref => entities.discussions[ref].data)
   }
 
   return {
@@ -260,14 +279,18 @@ export function mapStateToProps ({ entities }: AppState, { courseID }: OwnProps)
     discussions,
     courseColor,
     courseName,
+    permissions,
   }
 }
 
 const Refreshed = refresh(
   props => {
-    props.refreshDiscussions(props.courseID)
+    props.refreshDiscussions(props.context, props.contextID)
+    if (props.context === 'courses') {
+      props.refreshCourse(props.contextID) // this is the only way to get `create discussion` permissions
+    }
   },
-  props => props.discussions.length === 0,
+  props => props.discussions.length === 0 || Object.keys(props.permissions).length === 0,
   props => Boolean(props.pending)
 )(DiscussionsList)
 const Connected = connect(mapStateToProps, Actions)(Refreshed)

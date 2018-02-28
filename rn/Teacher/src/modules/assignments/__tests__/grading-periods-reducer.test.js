@@ -66,6 +66,15 @@ test('refresh assignment groups list', async () => {
   }])
 })
 
+test('refresh assignment groups list with no gradingPeriodID', async () => {
+  let group = template.assignmentGroup()
+  let action = AssignmentListActions({ getAssignmentGroups: apiResponse([group]) }).refreshAssignmentList(1, null)
+  let state = await testAsyncReducer(gradingPeriods, action)
+
+  expect(state).toEqual([{}, {
+  }])
+})
+
 test('refs', async () => {
   const gradingPeriod = template.gradingPeriod({ id: '1' })
   let action = CoursesActions({ getCourseGradingPeriods: apiResponse({ grading_periods: [gradingPeriod] }) }).refreshGradingPeriods('1')

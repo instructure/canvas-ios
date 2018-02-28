@@ -32,7 +32,8 @@ import {
 
 type OwnProps = {
   discussionID: string,
-  courseID: string,
+  context: Context,
+  contextID: string,
   indexPath?: number[],
   entryID?: ?string,
   lastReplyAt: string,
@@ -103,7 +104,7 @@ export class EditReply extends React.Component<Props, any> {
       return
     }
     if (this.state.pending && !props.pending) {
-      this.props.refreshDiscussionEntries(this.props.courseID, this.props.discussionID, true)
+      this.props.refreshDiscussionEntries(this.props.context, this.props.contextID, this.props.discussionID, true)
       this.props.navigator.dismissAllModals()
       return
     }
@@ -119,9 +120,9 @@ export class EditReply extends React.Component<Props, any> {
     }
     this.setState({ pending: true })
     if (this.props.isEdit) {
-      this.props.editEntry(this.props.courseID, this.props.discussionID, this.props.entryID, params, this.props.indexPath)
+      this.props.editEntry(this.props.context, this.props.contextID, this.props.discussionID, this.props.entryID, params, this.props.indexPath)
     } else {
-      this.props.createEntry(this.props.courseID, this.props.discussionID, this.props.entryID, params, this.props.indexPath, this.props.lastReplyAt)
+      this.props.createEntry(this.props.context, this.props.contextID, this.props.discussionID, this.props.entryID, params, this.props.indexPath, this.props.lastReplyAt)
     }
   }
 
@@ -150,7 +151,7 @@ export class EditReply extends React.Component<Props, any> {
   }
 }
 
-export function mapStateToProps ({ entities }: AppState, { courseID, discussionID }: OwnProps): State {
+export function mapStateToProps ({ entities }: AppState, { context, contextID, discussionID }: OwnProps): State {
   let pending = 0
   let error = null
 

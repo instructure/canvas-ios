@@ -202,3 +202,8 @@ export const updateDiscussionParams: Template<UpdateDiscussionParameters> = temp
   id: '1',
   ...createDiscussionParams(),
 })
+
+export const discussionPermissions: Template<CoursePermissions> = template({
+  create_announcement: true,
+  create_discussion_topic: true,
+})

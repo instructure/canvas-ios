@@ -20,16 +20,16 @@ import template, { type Template } from '../utils/template'
 
 export const launchDefinitionGlobalNavigationItem: Template<ExternalToolLaunchDefinitionGlobalNavigationItem> = template({
   message_type: 'basic-lti-launch-request',
-  url: 'https://mobiledev.beta.instructuremedia.com/lti/launch?custom_arc_launch_type=global_nav',
-  title: 'Arc',
+  url: 'https://mobiledev.beta.instructuremedia.com/lti/launch?custom_gauge_launch_type=global_nav',
+  title: 'Gauge',
 })
 
 export const launchDefinition: Template<ExternalToolLaunchDefinition> = template({
   definition_type: 'ContextExternalTool',
   definition_id: '360860',
-  name: 'Arc',
-  description: 'Video for Education',
-  domain: null,
+  name: 'Gauge',
+  description: 'Tools for Education',
+  domain: 'gauge.instructure.com',
   placements: {
     global_navigation: launchDefinitionGlobalNavigationItem(),
   },

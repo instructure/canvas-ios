@@ -191,13 +191,13 @@ extension Router {
         // Discussions
         let topics: (ContextID, [String: Any]) -> UIViewController = { contextID, _ in
             return HelmViewController(
-                moduleName: "/courses/:courseID/discussion_topics",
+                moduleName: "/:context/:contextID/discussion_topics",
                 props: contextID.props
             )
         }
         let announcementsHandler: (ContextID, [String: Any]) -> UIViewController = { contextID, _ in
             return HelmViewController(
-                moduleName: "/courses/:courseID/announcements",
+                moduleName: "/:context/:contextID/announcements",
                 props: contextID.props
             )
         }
@@ -206,9 +206,11 @@ extension Router {
         addContextRoute([.course, .group], subPath: "announcements", handler: announcementsHandler)
         let discussion: (ContextID, [String: Any]) throws -> UIViewController = { contextID, params in
             let discussionID: String = try params.stringID("discussionID")
+            var props = contextID.props
+            props["discussionID"] = discussionID
             return HelmViewController(
-                    moduleName: "/courses/:courseID/discussion_topics/:discussionID",
-                    props: ["courseID": contextID.id, "discussionID": discussionID]
+                moduleName: "/:context/:contextID/discussion_topics/:discussionID",
+                props: props
             )
         }
         addContextRoute([.course, .group], subPath: "discussion_topics/:discussionID", handler: discussion)
@@ -292,7 +294,7 @@ extension ContextID {
     var props: [String: Any] {
         switch context {
         case .course:
-            return ["context": "courses", "contextID": id, "courseID" : id]
+            return ["context": "courses", "contextID": id]
         case .group:
             return ["context": "groups", "contextID": id]
         case .account:

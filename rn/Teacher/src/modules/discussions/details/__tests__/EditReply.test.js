@@ -58,7 +58,8 @@ describe('EditReply', () => {
       discussion: template.discussion({ id: '1' }),
       navigator: template.navigator(),
       discussionID: '1',
-      courseID: '1',
+      context: 'courses',
+      contextID: '1',
       entryID: '1',
       course: template.course({ id: 1 }),
       indexPath: [],
@@ -160,7 +161,7 @@ describe('EditReply', () => {
     component.update(<EditReply {...defaultProps} createEntry={postReply} refreshDiscussionEntries={refresh} />)
     const doneButton: any = explore(component.toJSON()).selectRightBarButton('edit-discussion-reply.done-btn')
     doneButton.action()
-    expect(postReply).toBeCalledWith(defaultProps.courseID, defaultProps.discussionID, defaultProps.entryID, { message }, [], defaultProps.lastReplyAt)
+    expect(postReply).toBeCalledWith(defaultProps.context, defaultProps.contextID, defaultProps.discussionID, defaultProps.entryID, { message }, [], defaultProps.lastReplyAt)
     expect(defaultProps.navigator.dismissAllModals).toHaveBeenCalled()
   })
 
@@ -183,7 +184,7 @@ describe('EditReply', () => {
     component.update(<EditReply {...editProps} editEntry={editReply} refreshDiscussionEntries={refresh} />)
     const doneButton: any = explore(component.toJSON()).selectRightBarButton('edit-discussion-reply.done-btn')
     doneButton.action()
-    expect(editReply).toBeCalledWith(editProps.courseID, editProps.discussionID, editProps.entryID, { message }, [])
+    expect(editReply).toBeCalledWith(defaultProps.context, defaultProps.contextID, editProps.discussionID, editProps.entryID, { message }, [])
     expect(defaultProps.navigator.dismissAllModals).toHaveBeenCalled()
   })
 })

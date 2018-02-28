@@ -20,10 +20,11 @@ import { createAction } from 'redux-actions'
 import canvas from '../../../canvas-api'
 
 export let Actions = (api: CanvasApi): * => ({
-  refreshDiscussions: createAction('discussionsList.refresh', (courseID: string) => {
+  refreshDiscussions: createAction('discussionsList.refresh', (context: Context, contextID: string) => {
     return {
-      promise: api.getDiscussions(courseID),
-      courseID,
+      promise: api.getDiscussions(context, contextID),
+      context,
+      contextID,
     }
   }),
 })

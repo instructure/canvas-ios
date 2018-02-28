@@ -466,6 +466,121 @@ describe('getCoursePermissions', () => {
   })
 })
 
+describe('refresh single course', () => {
+  it('no existing permissions', () => {
+    let action = {
+      type: CoursesActions().refreshCourse.toString(),
+      payload: {
+        result: {
+          data: {
+            permissions: {
+              create_announcement: true,
+              create_discussion_topic: true,
+            }
+            ,
+          },
+        },
+        context: 'courses',
+        contextID: '1',
+      },
+    }
+
+    let state = {}
+    let newState = coursesReducer(state, action)
+    expect(newState).toMatchObject(
+      {
+        '1': {
+          'announcements': { 'pending': 0, 'refs': [] },
+          'assignmentGroups': { 'pending': 0, 'refs': [] },
+          'attendanceTool': { 'pending': 0 },
+          'color': '#FFFFFF00',
+          'course': {},
+          'discussions': { 'pending': 0, 'refs': [] },
+          'enabledFeatures': [],
+          'enrollments': { 'pending': 0, 'refs': [] },
+          'error': null,
+          'gradingPeriods': { 'pending': 0, 'refs': [] },
+          'groups': { 'pending': 0, 'refs': [] },
+          'oldColor': '#FFFFFF00',
+          'pages': {},
+          'pending': 0,
+          'permissions': {},
+          'quizzes': { 'pending': 0, 'refs': [] },
+          'tabs': { 'pending': 0, 'tabs': [] },
+        },
+        'undefined': { 'permissions': { 'create_announcement': true, 'create_discussion_topic': true } },
+      }
+    )
+  })
+
+  it('existing permissions', () => {
+    let action = {
+      type: CoursesActions().refreshCourse.toString(),
+      payload: {
+        result: {
+          data: {
+            permissions: {
+              create_announcement: false,
+              create_discussion_topic: true,
+            }
+            ,
+          },
+        },
+        context: 'courses',
+        contextID: '1',
+      },
+    }
+
+    let state = {
+      '1': {
+        'announcements': { 'pending': 0, 'refs': [] },
+        'assignmentGroups': { 'pending': 0, 'refs': [] },
+        'attendanceTool': { 'pending': 0 },
+        'color': '#FFFFFF00',
+        'course': {},
+        'discussions': { 'pending': 0, 'refs': [] },
+        'enabledFeatures': [],
+        'enrollments': { 'pending': 0, 'refs': [] },
+        'error': null,
+        'gradingPeriods': { 'pending': 0, 'refs': [] },
+        'groups': { 'pending': 0, 'refs': [] },
+        'oldColor': '#FFFFFF00',
+        'pages': {},
+        'pending': 0,
+        'permissions': {},
+        'quizzes': { 'pending': 0, 'refs': [] },
+        'tabs': { 'pending': 0, 'tabs': [] },
+      },
+      'undefined': { 'permissions': { 'create_announcement': false, 'create_discussion_topic': true } },
+    }
+    let newState = coursesReducer(state, action)
+    expect(newState).toMatchObject(
+      {
+        '1': {
+          'announcements': { 'pending': 0, 'refs': [] },
+          'assignmentGroups': { 'pending': 0, 'refs': [] },
+          'attendanceTool': { 'pending': 0 },
+          'color': '#FFFFFF00',
+          'course': {},
+          'discussions': { 'pending': 0, 'refs': [] },
+          'enabledFeatures': [],
+          'enrollments': { 'pending': 0, 'refs': [] },
+          'error': null,
+          'gradingPeriods': { 'pending': 0, 'refs': [] },
+          'groups': { 'pending': 0, 'refs': [] },
+          'oldColor': '#FFFFFF00',
+          'pages': {},
+          'pending': 0,
+          'permissions': {},
+          'quizzes': { 'pending': 0, 'refs': [] },
+          'tabs': { 'pending': 0, 'tabs': [] },
+        },
+        'undefined': { 'permissions': { 'create_announcement': false, 'create_discussion_topic': true } },
+      }
+    )
+  })
+})
+
 describe('refresh users courses', () => {
   it('should add the refs to the right course', () => {
     let action = {

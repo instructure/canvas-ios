@@ -18,23 +18,26 @@
 import { shallow } from 'enzyme'
 import { NativeModules, ActionSheetIOS, Linking } from 'react-native'
 import React from 'react'
-import { Profile } from '../Profile'
+import { Profile, mapStateToProps } from '../Profile'
 import app from '../../app'
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer'
 import { setSession } from '../../../canvas-api'
+import explore from '../../../../test/helpers/explore'
 
 const template = {
   ...require('../../../__templates__/session'),
   ...require('../../../__templates__/helm'),
   ...require('../../../__templates__/launch-definitions'),
   ...require('../../../__templates__/users'),
+  ...require('../../../redux/__templates__/app-state'),
 }
 
 jest.mock('ActionSheetIOS', () => ({
   showActionSheetWithOptions: jest.fn(),
 }))
+jest.mock('TouchableHighlight', () => 'TouchableHighlight')
 
 let defaultProps = {}
 
@@ -70,9 +73,28 @@ describe('Profile Tests', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  it('renders correctly with no session', () => {
+    const tree = renderer.create(
+      <Profile { ...defaultProps } canMasquerade={true} />
+    ).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
   it('renders correctly with lti apps', () => {
     app.setCurrentApp('student')
-    let externalTools = [template.launchDefinitionGlobalNavigationItem()]
+    let externalTools = [template.launchDefinition()]
+    defaultProps = { ...defaultProps, externalTools }
+    const tree = renderer.create(
+      <Profile { ...defaultProps } canMasquerade={true} />
+    ).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('renders correctly with no lti apps', () => {
+    app.setCurrentApp('student')
+    let externalTools = null
     defaultProps = { ...defaultProps, externalTools }
     const tree = renderer.create(
       <Profile { ...defaultProps } canMasquerade={true} />
@@ -107,6 +129,19 @@ describe('Profile Tests', () => {
     expect(NativeModules.NativeLogin.logout).toHaveBeenCalled()
     instance.switchUser()
     expect(NativeModules.NativeLogin.switchUser).toHaveBeenCalled()
+  })
+
+  it('navigate to lti gauge tool', async () => {
+    app.setCurrentApp('student')
+    let externalTools = [template.launchDefinition()]
+    defaultProps = { ...defaultProps, externalTools }
+    const spy = jest.fn()
+    defaultProps.navigator.dismiss = spy
+    const row: any = explore(renderer.create(
+      <Profile {...defaultProps} />
+    ).toJSON()).selectByID('row-lti-gauge.instructure.com')
+    row.props.onPress()
+    expect(spy).toHaveBeenCalled()
   })
 
   it('navigate to student settings', async () => {
@@ -243,5 +278,23 @@ describe('Profile Tests', () => {
     expect(getUserProfile).toHaveBeenCalledWith('self')
     const avatar = tree.find('Avatar').first()
     expect(avatar.props().avatarURL).toEqual(url)
+  })
+})
+
+describe('map state to prop', () => {
+  it('maps state to props', () => {
+    const state: AppState = template.appState({
+      userInfo: {
+        canMasquerade: true,
+        showsGradesOnCourseCards: true,
+        externalTools: [],
+      },
+    })
+
+    expect(mapStateToProps(state, {})).toMatchObject({
+      canMasquerade: true,
+      showsGradesOnCourseCards: true,
+      externalTools: [],
+    })
   })
 })

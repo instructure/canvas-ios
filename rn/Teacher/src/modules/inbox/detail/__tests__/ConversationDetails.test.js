@@ -96,6 +96,11 @@ describe('ConversationDetails', () => {
     Screen(props).testRender()
   })
 
+  it('renders correctly with no conversation', () => {
+    props.conversation = null
+    Screen(props).testRender()
+  })
+
   it('renders correctly with some messages', () => {
     props.messages = [template.conversationMessage()]
     Screen(props).testRender()

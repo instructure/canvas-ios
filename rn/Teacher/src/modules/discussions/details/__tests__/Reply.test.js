@@ -51,7 +51,8 @@ describe('DiscussionReplies', () => {
       depth: 0,
       readState: 'read',
       participants: { [user.id]: user },
-      courseID: '1',
+      context: 'courses',
+      contextID: '1',
       discussionID: '1',
       entryID: '1',
       deleteDiscussionEntry: jest.fn(),
@@ -93,6 +94,14 @@ describe('DiscussionReplies', () => {
     )
   })
 
+  it('actionMore', () => {
+    props.depth = 2
+    props.reply.replies = [template.discussionReply({ id: 2 }), template.discussionReply({ id: 3 }), template.discussionReply({ id: 4 })]
+    let replyButton = explore(render(props).toJSON()).selectByID('discussion.more-replies') || {}
+    replyButton.props.onPress()
+    expect(props.onPressMoreReplies).toHaveBeenCalledWith([0])
+  })
+
   it('renders more button with some deleted replies', () => {
     let a = template.discussionReply({ id: '2' })
     let b = template.discussionReply({ id: '3' })
@@ -106,7 +115,7 @@ describe('DiscussionReplies', () => {
 
   it('edit action sheet calls delete', () => {
     testEditActionSheet(1)
-    expect(props.deleteDiscussionEntry).toHaveBeenCalledWith('1', '1', '1', [0])
+    expect(props.deleteDiscussionEntry).toHaveBeenCalledWith('courses', '1', '1', '1', [0])
   })
 
   it('edit action sheet calls cancel', () => {

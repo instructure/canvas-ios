@@ -46,7 +46,7 @@ export const userInfo: Reducer<UserInfo, any> = handleActions({
       let externalTools = result.data.reduce((globalNav, tool) => {
         //  we only want to show gauge right now as commons is not working yet, and there is no way to identify arc in
         //  in the response as the domain is coming back null
-        if (isGauge(tool)) globalNav.push(tool.placements.global_navigation)
+        if (isGauge(tool)) globalNav.push(tool)
         return globalNav
       }, [])
       return {

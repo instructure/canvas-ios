@@ -38,6 +38,7 @@ export type Course = {
   end_at: ?string,
   workflow_state: CourseWorkflowState,
   term: ?CourseTerm,
+  permissions?: ?CoursePermissions,
 }
 
 export type CourseTerm = {
@@ -96,4 +97,9 @@ export type CreateCourse = {
   offer?: boolean,
   enroll_me?: boolean,
   enable_sis_reactivation?: boolean,
+}
+
+export type CoursePermissions = {
+  create_announcement?: boolean,
+  create_discussion_topic?: boolean,
 }

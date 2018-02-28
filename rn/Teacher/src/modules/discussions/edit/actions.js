@@ -20,39 +20,44 @@ import { createAction } from 'redux-actions'
 import canvas from '../../../canvas-api'
 
 export let Actions = (api: CanvasApi): * => ({
-  createDiscussion: createAction('discussions.edit.create', (courseID: string, params: CreateDiscussionParameters) => {
+  createDiscussion: createAction('discussions.edit.create', (context: Context, contextID: string, params: CreateDiscussionParameters) => {
     return {
-      promise: api.createDiscussion(courseID, params),
+      promise: api.createDiscussion(context, contextID, params),
       params,
       handlesError: true,
-      courseID,
+      context,
+      contextID,
     }
   }),
-  updateDiscussion: createAction('discussions.edit.update', (courseID: string, params: UpdateDiscussionParameters) => {
+  updateDiscussion: createAction('discussions.edit.update', (context: Context, contextID: string, params: UpdateDiscussionParameters) => {
     return {
-      promise: api.updateDiscussion(courseID, params),
+      promise: api.updateDiscussion(context, contextID, params),
       params,
       handlesError: true,
-      courseID,
+      context,
+      contextID,
     }
   }),
-  deleteDiscussion: createAction('discussions.edit.delete', (courseID: string, discussionID: string) => {
+  deleteDiscussion: createAction('discussions.edit.delete', (context: Context, contextID: string, discussionID: string) => {
     return {
-      promise: api.deleteDiscussion(courseID, discussionID),
+      promise: api.deleteDiscussion(context, contextID, discussionID),
       discussionID,
-      courseID,
+      context,
+      contextID,
     }
   }),
-  subscribeDiscussion: createAction('discussions.edit.subscribe', (courseID: string, discussionID: string, subscribed: boolean) => {
+  subscribeDiscussion: createAction('discussions.edit.subscribe', (context: Context, contextID: string, discussionID: string, subscribed: boolean) => {
     return {
-      promise: api.subscribeDiscussion(courseID, discussionID, subscribed),
+      promise: api.subscribeDiscussion(context, contextID, discussionID, subscribed),
       discussionID,
-      courseID,
+      context,
+      contextID,
       subscribed,
     }
   }),
-  deletePendingNewDiscussion: createAction('discussions.edit.deletePendingNew', (courseID: string) => ({
-    courseID,
+  deletePendingNewDiscussion: createAction('discussions.edit.deletePendingNew', (context: Context, contextID: string) => ({
+    context,
+    contextID,
   })),
 })
 

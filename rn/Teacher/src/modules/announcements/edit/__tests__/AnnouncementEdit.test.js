@@ -76,7 +76,8 @@ describe('AnnouncementEdit', () => {
     props = {
       ...formFields,
       announcementID: '1',
-      courseID: '1',
+      context: 'courses',
+      contextID: '1',
       pending: 0,
       error: null,
       navigator: template.navigator(),
@@ -111,7 +112,7 @@ describe('AnnouncementEdit', () => {
     changeTitle(component, 'Haunted Mines')
     tapDone(component)
     expect(props.createDiscussion).toHaveBeenCalledWith(
-      props.courseID,
+      props.context, props.contextID,
       { ...formFields, is_announcement: true, title: 'Haunted Mines' },
     )
   })
@@ -121,7 +122,7 @@ describe('AnnouncementEdit', () => {
     props.createDiscussion = jest.fn()
     tapDone(render(props))
     expect(props.createDiscussion).toHaveBeenCalledWith(
-      props.courseID,
+      props.context, props.contextID,
       { ...formFields, is_announcement: true },
     )
   })
@@ -223,7 +224,7 @@ describe('AnnouncementEdit', () => {
   it('deletes pending new discussion on unmount', () => {
     props.deletePendingNewDiscussion = jest.fn()
     render(props).getInstance().componentWillUnmount()
-    expect(props.deletePendingNewDiscussion).toHaveBeenCalledWith(props.courseID)
+    expect(props.deletePendingNewDiscussion).toHaveBeenCalledWith(props.context, props.contextID)
   })
 
   it('calls dismiss on cancel', () => {
@@ -257,12 +258,13 @@ describe('AnnouncementEdit', () => {
 
   it('calls updateDiscussion on done', () => {
     props.updateDiscussion = jest.fn()
-    props.courseID = '1'
+    props.contextID = '1'
     props.announcementID = '2'
     const component = render(props)
     changeTitle(component, 'UPDATED TITLE')
     tapDone(component)
     expect(props.updateDiscussion).toHaveBeenCalledWith(
+      'courses',
       '1',
       { ...formFields, title: 'UPDATED TITLE', is_announcement: true, id: '2' },
     )
@@ -376,7 +378,7 @@ describe('map state to props', () => {
       },
     })
     expect(
-      mapStateToProps(state, { courseID: '1', announcementID: null })
+      mapStateToProps(state, { context: 'courses', contextID: '1', announcementID: null })
     ).toMatchObject({
       pending: 14,
       error: 'Map this error',
@@ -414,7 +416,42 @@ describe('map state to props', () => {
       },
     })
     expect(
-      mapStateToProps(state, { courseID: '1', announcementID: null })
+      mapStateToProps(state, { context: 'courses', contextID: '1', announcementID: null })
+    ).toMatchObject({ title: 'IT WORKED' })
+  })
+
+  it('maps announcement state to props using new id group context', () => {
+    const announcement = template.discussion({ id: '45', title: 'IT WORKED' })
+    const state: AppState = template.appState({
+      entities: {
+        ...template.appState().entities,
+        groups: {
+          '1': {
+            pending: 0,
+            error: null,
+            discussions: {
+              pending: 0,
+              error: null,
+              refs: [],
+              new: {
+                id: '45',
+                pending: 14,
+                error: 'Map this error',
+              },
+            },
+          },
+        },
+        discussions: {
+          '45': {
+            pending: 0,
+            error: null,
+            data: announcement,
+          },
+        },
+      },
+    })
+    expect(
+      mapStateToProps(state, { context: 'groups', contextID: '1', announcementID: null })
     ).toMatchObject({ title: 'IT WORKED' })
   })
 
@@ -439,7 +476,7 @@ describe('map state to props', () => {
       },
     })
     expect(
-      mapStateToProps(state, { courseID: '10', announcementID: '1' })
+      mapStateToProps(state, { context: 'courses', contextID: '10', announcementID: '1' })
     ).toMatchObject({
       title: 'Infernal Shrines',
       message: 'THE ENEMY IS ATTACKING YOUR CORE!',
@@ -469,7 +506,7 @@ describe('map state to props', () => {
       },
     })
     expect(
-      mapStateToProps(state, { courseID: '1', announcementID: '1' })
+      mapStateToProps(state, { context: 'courses', contextID: '1', announcementID: '1' })
     ).toMatchObject({ attachment })
   })
 })

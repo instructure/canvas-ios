@@ -135,6 +135,7 @@ export default class Masquerade extends Component<*, any> {
               leftBarButtons={[{
                 title: i18n('Done'),
                 action: this.dismiss,
+                testID: 'masquerage-dismiss-btn',
               }]}>
               <KeyboardAwareScrollView extraScrollHeight={16}>
                 <View style={styles.container}>

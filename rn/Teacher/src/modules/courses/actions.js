@@ -29,6 +29,12 @@ export let CoursesActions = (api: CanvasApi): * => ({
     ]),
     syncToNative: true,
   })),
+  refreshCourse: createAction('course.refresh', (courseID: string) => {
+    return {
+      promise: api.getCourse(courseID),
+      courseID,
+    }
+  }),
   updateCourseColor: createAction('courses.updateColor', (courseID: string, color: string) => {
     return {
       courseID,

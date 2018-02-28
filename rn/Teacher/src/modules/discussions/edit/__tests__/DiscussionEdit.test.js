@@ -82,7 +82,8 @@ describe('DiscussionEdit', () => {
     props = {
       ...formFields,
       discussionID: '1',
-      courseID: '1',
+      context: 'courses',
+      contextID: '1',
       pending: 0,
       error: null,
       navigator: template.navigator(),
@@ -131,7 +132,8 @@ describe('DiscussionEdit', () => {
     changeTitle(component, 'Haunted Mines')
     tapDone(component)
     expect(props.createDiscussion).toHaveBeenCalledWith(
-      props.courseID,
+      props.context,
+      props.contextID,
       { ...formFields, title: 'Haunted Mines' },
     )
   })
@@ -183,7 +185,7 @@ describe('DiscussionEdit', () => {
   it('deletes pending new discussion on unmount', () => {
     props.deletePendingNewDiscussion = jest.fn()
     render(props).getInstance().componentWillUnmount()
-    expect(props.deletePendingNewDiscussion).toHaveBeenCalledWith(props.courseID)
+    expect(props.deletePendingNewDiscussion).toHaveBeenCalledWith(props.context, props.contextID)
   })
 
   it('refreshes discussion on unmount', () => {
@@ -225,12 +227,13 @@ describe('DiscussionEdit', () => {
 
   it('calls updateDiscussion on done', () => {
     props.updateDiscussion = jest.fn()
-    props.courseID = '1'
+    props.contextID = '1'
     props.discussionID = '2'
     const component = render(props)
     changeTitle(component, 'UPDATED TITLE')
     tapDone(component)
     expect(props.updateDiscussion).toHaveBeenCalledWith(
+      'courses',
       '1',
       { ...formFields, title: 'UPDATED TITLE', id: '2' },
     )
@@ -247,7 +250,7 @@ describe('DiscussionEdit', () => {
       }
     }
     props.assignment = assignment
-    props.courseID = '1'
+    props.contextID = '1'
     props.updateAssignment = jest.fn()
     tapDone(render(props, { createNodeMock }))
     expect(props.updateAssignment).toHaveBeenCalledWith('1', assignment, assignment)
@@ -260,7 +263,7 @@ describe('DiscussionEdit', () => {
     const component = render(props)
     toggleThreadedReplies(component, true)
     tapDone(component)
-    expect(props.updateDiscussion).toHaveBeenCalledWith(props.courseID, {
+    expect(props.updateDiscussion).toHaveBeenCalledWith(props.context, props.contextID, {
       title: expect.anything(),
       message: expect.anything(),
       published: expect.anything(),
@@ -281,7 +284,7 @@ describe('DiscussionEdit', () => {
     const component = render(props)
     toggleThreadedReplies(component, false)
     tapDone(component)
-    expect(props.updateDiscussion).toHaveBeenCalledWith(props.courseID, {
+    expect(props.updateDiscussion).toHaveBeenCalledWith(props.context, props.contextID, {
       title: expect.anything(),
       message: expect.anything(),
       published: expect.anything(),
@@ -382,21 +385,21 @@ describe('DiscussionEdit', () => {
   })
 
   it('subscribes when subscribe switch toggled on', () => {
-    props.courseID = '1'
+    props.contextID = '1'
     props.discussionID = '2'
     props.subscribeDiscussion = jest.fn()
     props.subscribed = false
     toggleSubscribed(render(props), true)
-    expect(props.subscribeDiscussion).toHaveBeenCalledWith('1', '2', true)
+    expect(props.subscribeDiscussion).toHaveBeenCalledWith('courses', '1', '2', true)
   })
 
   it('unsubscribes when subscribe switch toggled off', () => {
-    props.courseID = '1'
+    props.contextID = '1'
     props.discussionID = '2'
     props.subscribeDiscussion = jest.fn()
     props.subscribed = true
     toggleSubscribed(render(props), false)
-    expect(props.subscribeDiscussion).toHaveBeenCalledWith('1', '2', false)
+    expect(props.subscribeDiscussion).toHaveBeenCalledWith('courses', '1', '2', false)
   })
 
   it('toggles available from date picker', () => {
@@ -595,7 +598,7 @@ describe('map state to props', () => {
       },
     })
     expect(
-      mapStateToProps(state, { courseID: '1', discussionID: null })
+      mapStateToProps(state, { context: 'courses', contextID: '1', discussionID: null })
     ).toMatchObject({
       pending: 14,
       error: 'Map this error',
@@ -633,7 +636,7 @@ describe('map state to props', () => {
       },
     })
     expect(
-      mapStateToProps(state, { courseID: '1', discussionID: null })
+      mapStateToProps(state, { context: 'courses', contextID: '1', discussionID: null })
     ).toMatchObject({ title: 'IT WORKED' })
   })
 
@@ -658,7 +661,7 @@ describe('map state to props', () => {
       },
     })
     expect(
-      mapStateToProps(state, { courseID: '10', discussionID: '1' })
+      mapStateToProps(state, { context: 'courses', contextID: '10', discussionID: '1' })
     ).toMatchObject({
       title: 'Infernal Shrines',
       message: 'THE ENEMY IS ATTACKING YOUR CORE!',
@@ -692,7 +695,7 @@ describe('map state to props', () => {
       },
     })
     expect(
-      mapStateToProps(state, { courseID: '3', discussionID: '1' })
+      mapStateToProps(state, { context: 'courses', contextID: '3', discussionID: '1' })
     ).toMatchObject({
       assignment,
       pending: 1,

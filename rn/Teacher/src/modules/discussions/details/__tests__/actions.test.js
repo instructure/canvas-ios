@@ -27,7 +27,8 @@ const template = {
 
 describe('discussion detail tests', () => {
   it('should refresh discussion entries', async () => {
-    const courseID = '1'
+    const context = 'courses'
+    const contextID = '1'
     const discussionID = '2'
     const discussionView = template.discussionView({ view: [] })
     const discussion = template.discussion({ assignment_id: '42' })
@@ -39,7 +40,7 @@ describe('discussion detail tests', () => {
       getAssignment: apiResponse(assignment),
     }
     const actions = Actions(api)
-    const action = actions.refreshDiscussionEntries(courseID, discussionID, false)
+    const action = actions.refreshDiscussionEntries(context, contextID, discussionID, false)
     const state = await testAsyncAction(action)
 
     expect(state).toMatchObject([
@@ -51,7 +52,8 @@ describe('discussion detail tests', () => {
         type: actions.refreshDiscussionEntries.toString(),
         payload: {
           result: [{ data: discussionView }, { data: discussion }, { data: assignment }],
-          courseID: courseID,
+          context,
+          contextID,
           discussionID: discussionID,
         },
       },
@@ -59,7 +61,8 @@ describe('discussion detail tests', () => {
   })
 
   it('should refresh non-assignment discussion entries', async () => {
-    const courseID = '1'
+    const context = 'courses'
+    const contextID = '1'
     const discussionID = '2'
     const discussionView = template.discussionView({ view: [] })
     const discussion = template.discussion({ assignment_id: null })
@@ -69,7 +72,7 @@ describe('discussion detail tests', () => {
       getDiscussion: apiResponse(discussion),
     }
     const actions = Actions(api)
-    const action = actions.refreshDiscussionEntries(courseID, discussionID)
+    const action = actions.refreshDiscussionEntries(context, contextID, discussionID)
     const state = await testAsyncAction(action)
 
     expect(state).toMatchObject([
@@ -81,7 +84,8 @@ describe('discussion detail tests', () => {
         type: actions.refreshDiscussionEntries.toString(),
         payload: {
           result: [{ data: discussionView }, { data: discussion }],
-          courseID: courseID,
+          context,
+          contextID,
           discussionID: discussionID,
         },
       },
@@ -91,7 +95,8 @@ describe('discussion detail tests', () => {
 
 describe('discussion edit reply tests', () => {
   it('should post a new reply', async () => {
-    const courseID = '1'
+    const context = 'courses'
+    const contextID = '1'
     const discussionID = '2'
     const entryID = '3'
     const discussionReply = template.discussionReply()
@@ -101,7 +106,7 @@ describe('discussion edit reply tests', () => {
       createEntry: apiResponse(discussionReply),
     }
     const actions = Actions(api)
-    const action = actions.createEntry(courseID, discussionID, entryID, { messsage: discussionReply.message }, [], lastReplyAt)
+    const action = actions.createEntry(context, contextID, discussionID, entryID, { messsage: discussionReply.message }, [], lastReplyAt)
     const state = await testAsyncAction(action)
 
     expect(state).toMatchObject([
@@ -113,7 +118,8 @@ describe('discussion edit reply tests', () => {
         type: actions.createEntry.toString(),
         payload: {
           result: { data: template.discussionReply() },
-          courseID,
+          context,
+          contextID,
           discussionID,
           entryID,
           indexPath: [],
@@ -124,7 +130,8 @@ describe('discussion edit reply tests', () => {
   })
 
   it('should edit an existing reply', async () => {
-    const courseID = '1'
+    const context = 'courses'
+    const contextID = '1'
     const discussionID = '2'
     const discussionReply = template.discussionEditReply()
     const entryID = discussionReply.id
@@ -137,7 +144,7 @@ describe('discussion edit reply tests', () => {
       editEntry: apiResponse(expectedData),
     }
     const actions = Actions(api)
-    const action = actions.editEntry(courseID, discussionID, entryID, { messsage: newMessage })
+    const action = actions.editEntry(context, contextID, discussionID, entryID, { messsage: newMessage })
     const state = await testAsyncAction(action)
 
     expect(state).toMatchObject([
@@ -149,7 +156,8 @@ describe('discussion edit reply tests', () => {
         type: actions.editEntry.toString(),
         payload: {
           result: { data: expectedData },
-          courseID: courseID,
+          context,
+          contextID,
           discussionID: discussionID,
           entryID: entryID,
         },
@@ -158,7 +166,8 @@ describe('discussion edit reply tests', () => {
   })
 
   it('should delete discussion entry', async () => {
-    const courseID = '1'
+    const context = 'courses'
+    const contextID = '1'
     const discussionID = '2'
     const entryID = '3'
 
@@ -166,7 +175,7 @@ describe('discussion edit reply tests', () => {
       deleteDiscussionEntry: apiResponse({}),
     }
     const actions = Actions(api)
-    const action = actions.deleteDiscussionEntry(courseID, discussionID, entryID)
+    const action = actions.deleteDiscussionEntry(context, contextID, discussionID, entryID)
     const state = await testAsyncAction(action)
 
     expect(state).toMatchObject([
@@ -178,7 +187,8 @@ describe('discussion edit reply tests', () => {
         type: actions.deleteDiscussionEntry.toString(),
         payload: {
           result: { data: {} },
-          courseID,
+          context,
+          contextID,
           discussionID,
           entryID,
         },
@@ -193,7 +203,7 @@ describe('markAllAsRead', () => {
       markAllAsRead: apiError({ message: 'error' }),
     }
     const actions = Actions(api)
-    const action = actions.markAllAsRead('1', '2', 3)
+    const action = actions.markAllAsRead('courses', '1', '2', 3)
     const result = await testAsyncAction(action)
 
     expect(result).toMatchObject([
@@ -219,14 +229,15 @@ describe('markAllAsRead', () => {
 
 describe('markEntryAsRead', () => {
   it('has the correct data', async () => {
-    const courseID = '1'
+    const context = 'courses'
+    const contextID = '1'
     const discussionID = '2'
     const entryID = '3'
     const api = {
       markEntryAsRead: apiError({ message: 'error' }),
     }
     const actions = Actions(api)
-    const action = actions.markEntryAsRead(courseID, discussionID, entryID)
+    const action = actions.markEntryAsRead(context, contextID, discussionID, entryID)
     const result = await testAsyncAction(action)
 
     expect(result).toMatchObject([
@@ -250,7 +261,8 @@ describe('markEntryAsRead', () => {
 
 describe('refreshSingleDiscussion', () => {
   it('gets the correct data', async () => {
-    const courseID = '1'
+    const context = 'courses'
+    const contextID = '1'
     const discussionID = '2'
     const discussion = template.discussion()
 
@@ -258,7 +270,7 @@ describe('refreshSingleDiscussion', () => {
       getDiscussion: apiResponse(discussion),
     }
     const actions = Actions(api)
-    const action = actions.refreshSingleDiscussion(courseID, discussionID)
+    const action = actions.refreshSingleDiscussion(context, contextID, discussionID)
     const state = await testAsyncAction(action)
 
     expect(state).toMatchObject([

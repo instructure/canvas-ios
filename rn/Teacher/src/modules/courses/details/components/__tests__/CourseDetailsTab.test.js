@@ -49,4 +49,22 @@ describe('CourseDetailsTab', () => {
     const tree = shallow(<CourseDetailsTab {...defaultProps} selected />)
     expect(tree).toMatchSnapshot()
   })
+
+  it('uses attendance tab image', () => {
+    const props = {
+      ...defaultProps,
+      attendanceTabID: defaultProps.tab.id,
+    }
+    const tree = shallow(<CourseDetailsTab {...props} />)
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('uses attendance lti image', () => {
+    const props = {
+      ...defaultProps,
+      tab: template.tab({ id: '/external_tool/' }),
+    }
+    const tree = shallow(<CourseDetailsTab {...props} />)
+    expect(tree).toMatchSnapshot()
+  })
 })

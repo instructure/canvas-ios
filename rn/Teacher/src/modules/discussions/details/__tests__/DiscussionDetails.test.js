@@ -71,7 +71,8 @@ describe('DiscussionDetails', () => {
       discussion: discussion,
       navigator: template.navigator(),
       discussionID: '1',
-      courseID: '1',
+      context: 'courses',
+      contextID: '1',
       courseName: 'HOTS For Dummies',
       courseColor: '#fff',
       title: null,
@@ -205,7 +206,7 @@ describe('DiscussionDetails', () => {
     ).getInstance()
     details.viewDueDateDetails()
     expect(navigator.show).toHaveBeenCalledWith(
-      `/courses/${props.courseID}/assignments/1/due_dates`,
+      `/courses/${props.contextID}/assignments/1/due_dates`,
       { modal: false },
       { onEditPressed: expect.any(Function) }
     )
@@ -246,7 +247,7 @@ describe('DiscussionDetails', () => {
 
     const kabob: any = explore(render(props).toJSON()).selectRightBarButton('discussions.details.edit.button')
     kabob.action()
-    expect(props.markAllAsRead).toHaveBeenCalledWith('1', '1', 1)
+    expect(props.markAllAsRead).toHaveBeenCalledWith('courses', '1', '1', 1)
   })
 
   it('alerts to confirm delete discussion', () => {
@@ -316,7 +317,7 @@ describe('DiscussionDetails', () => {
     }
     instance._markViewableAsRead(info)
     jest.runAllTimers()
-    expect(props.markEntryAsRead).toHaveBeenCalledWith('1', '1', '0')
+    expect(props.markEntryAsRead).toHaveBeenCalledWith('courses', '1', '1', '0')
   })
 
   it('does not marks unread entry as read when not in view', () => {
@@ -397,7 +398,7 @@ describe('DiscussionDetails', () => {
   it('calls refreshSingleDiscussion on unmount to update unread count', () => {
     props.refreshSingleDiscussion = jest.fn()
     render(props).getInstance().componentWillUnmount()
-    expect(props.refreshSingleDiscussion).toHaveBeenCalledWith(props.courseID, props.discussionID)
+    expect(props.refreshSingleDiscussion).toHaveBeenCalledWith(props.context, props.contextID, props.discussionID)
   })
 
   it('does not call refreshSingleDiscussion on unmount if no discussion (was deleted)', () => {
@@ -444,7 +445,7 @@ describe('DiscussionDetails', () => {
     props.discussionID = '2'
     const kabob: any = explore(render(props).toJSON()).selectRightBarButton('discussions.details.edit.button')
     kabob.action()
-    expect(props.deleteDiscussion).toHaveBeenCalledWith('1', '2')
+    expect(props.deleteDiscussion).toHaveBeenCalledWith('courses', '1', '2')
   })
 
   it('routes to discussion edit', () => {
@@ -523,7 +524,7 @@ describe('DiscussionDetails', () => {
     let details = render({ ...props, navigator }).getInstance()
     details.viewAllSubmissions()
     expect(navigator.show).toHaveBeenCalledWith(
-      `/courses/${props.courseID}/assignments/1/submissions`
+      `/courses/${props.contextID}/assignments/1/submissions`
     )
   })
 
@@ -537,7 +538,7 @@ describe('DiscussionDetails', () => {
     doneButton.props.onPress()
 
     expect(navigator.show).toHaveBeenCalledWith(
-      `/courses/${props.courseID}/assignments/1/submissions`
+      `/courses/${props.contextID}/assignments/1/submissions`
     )
   })
 
@@ -549,7 +550,7 @@ describe('DiscussionDetails', () => {
     let details = render({ ...props, navigator }).getInstance()
     details.onSubmissionDialPress('graded')
     expect(navigator.show).toHaveBeenCalledWith(
-      `/courses/${props.courseID}/assignments/1/submissions`,
+      `/courses/${props.contextID}/assignments/1/submissions`,
       { modal: false },
       { filterType: 'graded' }
     )
@@ -563,7 +564,7 @@ describe('DiscussionDetails', () => {
     let details = render({ ...props, navigator }).getInstance()
     details._editDiscussion()
     expect(navigator.show).toHaveBeenCalledWith(
-      `/courses/${props.courseID}/discussion_topics/1/edit`,
+      `/courses/${props.contextID}/discussion_topics/1/edit`,
       { modal: true, modalPresentationStyle: 'formsheet' },
     )
   })
@@ -665,12 +666,13 @@ describe('mapStateToProps', () => {
     })
 
     expect(
-      mapStateToProps(state, { courseID: '1', discussionID: '1' })
+      mapStateToProps(state, { context: 'courses', contextID: '1', discussionID: '1' })
     ).toMatchObject({
       discussion,
       pending: 1,
       error: null,
-      courseID: '1',
+      context: 'courses',
+      contextID: '1',
       discussionID: '1',
       courseName: 'Course',
       courseColor: '#fff',
@@ -706,12 +708,13 @@ describe('mapStateToProps', () => {
     })
 
     expect(
-      mapStateToProps(state, { courseID: '1', discussionID: '1' })
+      mapStateToProps(state, { context: 'courses', contextID: '1', discussionID: '1' })
     ).toMatchObject({
       discussion,
       pending: 1,
       error: null,
-      courseID: '1',
+      context: 'courses',
+      contextID: '1',
       discussionID: '1',
     })
   })
@@ -743,12 +746,13 @@ describe('mapStateToProps', () => {
     })
 
     expect(
-      mapStateToProps(state, { courseID: '1', announcementID: '1' })
+      mapStateToProps(state, { context: 'courses', contextID: '1', announcementID: '1' })
     ).toMatchObject({
       discussion,
       pending: 1,
       error: null,
-      courseID: '1',
+      context: 'courses',
+      contextID: '1',
       discussionID: '1',
       isAnnouncement: true,
     })

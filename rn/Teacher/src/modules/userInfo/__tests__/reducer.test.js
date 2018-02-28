@@ -14,14 +14,15 @@ const template = {
 describe('userInfo', () => {
   describe('refresh lti apps', () => {
     it('resolves', () => {
-      const apps = [template.launchDefinition()]
+      const lti = template.launchDefinition()
+      const apps = [lti]
       const resolved = {
         type: refreshAccountExternalTools.toString(),
         payload: { result: { data: apps } },
       }
 
       expect(userInfo({ }, resolved)).toMatchObject({
-        externalTools: [],
+        externalTools: [lti],
       })
     })
   })
@@ -40,7 +41,7 @@ describe('userInfo', () => {
       domain: 'gauge.instructure.com',
       placements: { global_navigation: gauge2 },
     })
-    const app3 = template.launchDefinition({
+    const app3 = template.launchDefinition({ domain: null,
       placements: { global_navigation: template.launchDefinitionGlobalNavigationItem() },
     })
     const app4 = template.launchDefinition({
@@ -60,9 +61,9 @@ describe('userInfo', () => {
 
     expect(userInfo({ }, resolved)).toMatchObject({
       externalTools: [
-        gauge1,
-        gauge2,
-        gauge5,
+        app1,
+        app2,
+        app5,
       ],
     })
   })

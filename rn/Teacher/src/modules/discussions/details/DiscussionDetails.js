@@ -56,15 +56,19 @@ import { isTeacher } from '../../app'
 type OwnProps = {
   announcementID: string,
   discussionID: string,
-  courseID: string,
+  context: Context,
+  contextID: string,
 }
 
 type State = {
   discussion: ?Discussion,
   assignment: ?Assignment,
-  courseColor: string,
+  courseColor: ?string,
   courseName: string,
   unreadEntries: ?string[],
+  context: Context,
+  contextID: string,
+  courseName: string,
 }
 
 type ViewableReply = {
@@ -115,7 +119,7 @@ export class DiscussionDetails extends Component<Props, any> {
 
   componentWillUnmount () {
     if (this.props.discussion) {
-      this.props.refreshSingleDiscussion(this.props.courseID, this.props.discussionID)
+      this.props.refreshSingleDiscussion(this.props.context, this.props.contextID, this.props.discussionID)
     }
   }
 
@@ -141,7 +145,7 @@ export class DiscussionDetails extends Component<Props, any> {
   navigateToContextCard = () => {
     if (this.props.discussion) {
       this.props.navigator.show(
-        `/courses/${this.props.courseID}/users/${this.props.discussion.author.id}`,
+        `/${this.props.context}/${this.props.contextID}/users/${this.props.discussion.author.id}`,
         { modal: true },
       )
     }
@@ -179,7 +183,7 @@ export class DiscussionDetails extends Component<Props, any> {
           testID='discussions.submission-graphs'
           onPress={() => this.viewSubmissions()}
           showDisclosureIndicator>
-          <SubmissionBreakdownGraphSection onPress={this.onSubmissionDialPress} courseID={this.props.courseID} assignmentID={assignmentID} style={style.submission}/>
+          <SubmissionBreakdownGraphSection onPress={this.onSubmissionDialPress} courseID={this.props.contextID} assignmentID={assignmentID} style={style.submission}/>
         </AssignmentSection>}
 
         <View style={style.section} >
@@ -279,7 +283,8 @@ export class DiscussionDetails extends Component<Props, any> {
           deleteDiscussionEntry={this._confirmDeleteReply}
           replyToEntry={this._onPressReplyToEntry}
           navigator={this.props.navigator}
-          courseID={this.props.courseID}
+          context={this.props.context}
+          contextID={this.props.contextID}
           discussionID={discussion.id}
           reply={reply}
           readState={reply.readState}
@@ -394,7 +399,8 @@ export class DiscussionDetails extends Component<Props, any> {
         break
       case 1:
         this.props.markAllAsRead(
-          this.props.courseID,
+          this.props.context,
+          this.props.contextID,
           this.props.discussionID,
           this.props.discussion && this.props.discussion.unread_count
         )
@@ -430,7 +436,7 @@ export class DiscussionDetails extends Component<Props, any> {
 
   viewDueDateDetails = () => {
     // $FlowFixMe
-    const route = `/courses/${this.props.courseID}/assignments/${this.props.assignment.id}/due_dates`
+    const route = `/courses/${this.props.contextID}/assignments/${this.props.assignment.id}/due_dates`
     this.props.navigator.show(route, { modal: false }, {
       onEditPressed: this._editDiscussion,
     })
@@ -441,12 +447,12 @@ export class DiscussionDetails extends Component<Props, any> {
   }
 
   viewSubmissions = (filterType: ?string) => {
-    const { courseID, assignment } = this.props
+    const { contextID, assignment } = this.props
     if (!assignment) return
     if (filterType) {
-      this.props.navigator.show(`/courses/${courseID}/assignments/${assignment.id}/submissions`, { modal: false }, { filterType })
+      this.props.navigator.show(`/courses/${contextID}/assignments/${assignment.id}/submissions`, { modal: false }, { filterType })
     } else {
-      this.props.navigator.show(`/courses/${courseID}/assignments/${assignment.id}/submissions`)
+      this.props.navigator.show(`/courses/${contextID}/assignments/${assignment.id}/submissions`)
     }
   }
 
@@ -494,12 +500,12 @@ export class DiscussionDetails extends Component<Props, any> {
 
   _onPressReply = () => {
     let lastReplyAt = this.props.discussion && this.props.discussion.last_reply_at
-    this.props.navigator.show(`/courses/${this.props.courseID}/discussion_topics/${this.props.discussionID}/reply`, { modal: true }, { indexPath: [], lastReplyAt })
+    this.props.navigator.show(`/${this.props.context}/${this.props.contextID}/discussion_topics/${this.props.discussionID}/reply`, { modal: true }, { indexPath: [], lastReplyAt })
   }
 
   _onPressReplyToEntry = (entryID: string, indexPath: number[]) => {
     let lastReplyAt = this.props.discussion && this.props.discussion.last_reply_at
-    this.props.navigator.show(`/courses/${this.props.courseID}/discussion_topics/${this.props.discussionID}/entries/${entryID}/replies`, { modal: true }, { indexPath: indexPath, entryID, lastReplyAt })
+    this.props.navigator.show(`/${this.props.context}/${this.props.contextID}/discussion_topics/${this.props.discussionID}/entries/${entryID}/replies`, { modal: true }, { indexPath: indexPath, entryID, lastReplyAt })
   }
 
   _editDiscussion = () => {
@@ -507,16 +513,16 @@ export class DiscussionDetails extends Component<Props, any> {
       this._editAnnouncement()
       return
     }
-    this.props.navigator.show(`/courses/${this.props.courseID}/discussion_topics/${this.props.discussionID}/edit`, { modal: true, modalPresentationStyle: 'formsheet' })
+    this.props.navigator.show(`/${this.props.context}/${this.props.contextID}/discussion_topics/${this.props.discussionID}/edit`, { modal: true, modalPresentationStyle: 'formsheet' })
   }
 
   _editAnnouncement = () => {
-    this.props.navigator.show(`/courses/${this.props.courseID}/announcements/${this.props.discussionID}/edit`, { modal: true, modalPresentationStyle: 'formsheet' })
+    this.props.navigator.show(`/${this.props.context}/${this.props.contextID}/announcements/${this.props.discussionID}/edit`, { modal: true, modalPresentationStyle: 'formsheet' })
   }
 
   _deleteDiscussion = () => {
     this.setState({ deletePending: true })
-    this.props.deleteDiscussion(this.props.courseID, this.props.discussionID)
+    this.props.deleteDiscussion(this.props.context, this.props.contextID, this.props.discussionID)
   }
 
   checkReadState (id: string) {
@@ -539,7 +545,7 @@ export class DiscussionDetails extends Component<Props, any> {
             let index = unread.indexOf(reply.id)
             if (index > -1) unread.splice(index, 1)
             if (this.props.discussion) {
-              this.props.markEntryAsRead(this.props.courseID, dID, reply.id)
+              this.props.markEntryAsRead(this.props.context, this.props.contextID, dID, reply.id)
             }
           }
         }
@@ -642,15 +648,27 @@ const style = StyleSheet.create({
 })
 
 export function mapStateToProps ({ entities }: AppState, ownProps: OwnProps): State {
-  const courseID = ownProps.courseID
+  const contextID = ownProps.contextID
+  const context = ownProps.context
   const discussionID = ownProps.announcementID || ownProps.discussionID
   const isAnnouncement = ownProps.isAnnouncement || ownProps.announcementID != null
   let discussion: ?Discussion
   let pending = 0
   let error = null
-  let courseColor = entities.courses[courseID].color
-  let courseName = entities.courses[courseID].course.name
+  let courseColor
+  let courseName = ''
   let unreadEntries = []
+
+  if (entities && entities.discussions) {
+    if (context === 'courses') {
+      courseColor = entities.courses[contextID].color
+      courseName = entities.courses[contextID].course.name
+    } else if (entities.groups[contextID]) {
+      let group = entities.groups[contextID]
+      courseName = group.group.name
+      courseColor = group.color
+    }
+  }
 
   if (entities.discussions &&
     entities.discussions[discussionID] &&
@@ -673,7 +691,8 @@ export function mapStateToProps ({ entities }: AppState, ownProps: OwnProps): St
     unreadEntries,
     pending,
     error,
-    courseID,
+    context,
+    contextID,
     discussionID,
     courseName,
     courseColor,
@@ -690,7 +709,7 @@ export function shouldRefresh (props: Props): boolean {
 }
 
 export function refreshData (props: Props): void {
-  props.refreshDiscussionEntries(props.courseID, props.discussionID, true)
+  props.refreshDiscussionEntries(props.context, props.contextID, props.discussionID, true)
 }
 
 let Refreshed = refresh(

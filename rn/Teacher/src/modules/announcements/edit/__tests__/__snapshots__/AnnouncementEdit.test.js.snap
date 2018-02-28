@@ -3,6 +3,7 @@
 exports[`AnnouncementEdit provides defaults for new announcement 1`] = `
 Array [
   Array [
+    "courses",
     "1",
     Object {
       "attachment": null,

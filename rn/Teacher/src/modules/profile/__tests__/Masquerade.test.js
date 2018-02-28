@@ -18,16 +18,73 @@
 import 'react-native'
 import React from 'react'
 import Masquerade from '../Masquerade.js'
+import { setSession } from '../../../canvas-api'
+import explore from '../../../../test/helpers/explore'
+
+const template = {
+  ...require('../../../__templates__/session'),
+  ...require('../../../__templates__/helm'),
+}
+
+jest
+  .mock('TouchableHighlight', () => 'TouchableHighlight')
+  .mock('../../../routing/Screen')
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer'
 
 describe('Masquerade Tests', () => {
+  let props = {}
+  beforeEach(() => {
+    jest.resetAllMocks()
+
+    props = {
+      // conversation: template.conversation({ id: '1' }),
+      // conversationID: '1',
+      // messages: [],
+      // refreshConversationDetails: jest.fn(),
+      // refreshEnrollments: jest.fn(),
+      // starConversation: jest.fn(),
+      // unstarConversation: jest.fn(),
+      // deleteConversation: jest.fn(),
+      // deleteConversationMessage: jest.fn(),
+      // markAsRead: jest.fn(),
+      navigator: template.navigator({
+        dismiss: jest.fn(() => {
+          return Promise.resolve()
+        }),
+      }),
+      // enrollments: [template.enrollment()],
+    }
+  })
+
+  beforeAll(() => {
+    setSession(template.session())
+  })
+
   it('renders correctly', () => {
     const tree = renderer.create(
       <Masquerade />
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
+  })
+
+  it('renders correctly with session', () => {
+    const tree = renderer.create(
+      <Masquerade />
+    ).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('will dismiss', async () => {
+    const spy = jest.fn()
+    props.navigator.dismiss = spy
+    const dismissButton: any = explore(renderer.create(
+      <Masquerade {...props} />
+    ).toJSON()).selectLeftBarButton('masquerage-dismiss-btn')
+    dismissButton.action()
+    expect(spy).toHaveBeenCalled()
   })
 })

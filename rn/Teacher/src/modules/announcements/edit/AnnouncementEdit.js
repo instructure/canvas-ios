@@ -42,6 +42,7 @@ import { default as EditDiscussionActions } from '../../discussions/edit/actions
 import { alertError } from '../../../redux/middleware/error-handler'
 import UnmetRequirementBanner from '../../../common/components/UnmetRequirementBanner'
 import RequiredFieldSubscript from '../../../common/components/RequiredFieldSubscript'
+import { isTeacher } from '../../app/index'
 
 const { NativeAccessibility } = NativeModules
 
@@ -59,7 +60,8 @@ const Actions = {
 
 type OwnProps = {
   announcementID: ?string,
-  courseID: string,
+  context: Context,
+  contextID: string,
 }
 
 type State = {
@@ -93,7 +95,7 @@ export class AnnouncementEdit extends Component<Props, any> {
   }
 
   componentWillUnmount () {
-    this.props.deletePendingNewDiscussion(this.props.courseID)
+    this.props.deletePendingNewDiscussion(this.props.context, this.props.contextID)
   }
 
   componentWillReceiveProps (props: Props) {
@@ -190,7 +192,9 @@ export class AnnouncementEdit extends Component<Props, any> {
             </View>
             <RequiredFieldSubscript title={i18n('A description is required')} visible={!this.state.isValid} />
 
-            <Heading1 style={style.heading}>{i18n('Options')}</Heading1>
+            { isTeacher() &&
+            <Heading1 style={style.heading}>{i18n('Options')}</Heading1> }
+            { isTeacher() &&
             <RowWithSwitch
               title={i18n('Delay Posting')}
               border='both'
@@ -198,7 +202,8 @@ export class AnnouncementEdit extends Component<Props, any> {
               onValueChange={this._toggleDelayPosting}
               identifier='announcements.edit.delay-posting-toggle'
             />
-            { this.state.delayPosting &&
+            }
+            { this.state.delayPosting && isTeacher() &&
               <View>
                 <RowWithDateInput
                   title={i18n('Post at...')}
@@ -221,12 +226,15 @@ export class AnnouncementEdit extends Component<Props, any> {
                 }
               </View>
             }
+            { isTeacher() &&
             <RowWithSwitch
               title={i18n('Users must post before seeing replies')}
               border='bottom'
               value={this.state.require_initial_post}
               onValueChange={this._valueChanged('require_initial_post')}
             />
+            }
+
           </KeyboardAwareScrollView>
         </View>
       </Screen>
@@ -298,8 +306,8 @@ export class AnnouncementEdit extends Component<Props, any> {
     }
     this.setState({ pending: true, isValid: true })
     this.props.announcementID
-      ? this.props.updateDiscussion(this.props.courseID, params)
-      : this.props.createDiscussion(this.props.courseID, params)
+      ? this.props.updateDiscussion(this.props.context, this.props.contextID, params)
+      : this.props.createDiscussion(this.props.context, this.props.contextID, params)
   }
 
   _cancelPressed = () => {
@@ -354,18 +362,20 @@ const style = StyleSheet.create({
   },
 })
 
-export function mapStateToProps ({ entities }: AppState, { courseID, announcementID }: OwnProps): State {
+export function mapStateToProps ({ entities }: AppState, { context, contextID, announcementID }: OwnProps): State {
   let announcement = {}
   let error = null
   let pending = 0
   let attachment = null
 
+  let origin: DiscussionOriginEntity = context === 'courses' ? entities.courses : entities.groups
+
   if (!announcementID &&
-    entities.courses &&
-    entities.courses[courseID] &&
-    entities.courses[courseID].discussions &&
-    entities.courses[courseID].discussions.new) {
-    const newState = entities.courses[courseID].discussions.new
+    origin &&
+    origin[contextID] &&
+    origin[contextID].discussions &&
+    origin[contextID].discussions.new) {
+    const newState = origin[contextID].discussions.new
     error = newState.error
     pending = newState.pending || 0
     announcementID = newState.id

@@ -19,7 +19,8 @@ const template = {
 }
 
 jest.mock('TouchableOpacity', () => 'TouchableOpacity')
-jest.mock('TouchableHighlight', () => 'TouchableHighlight')
+    .mock('TouchableHighlight', () => 'TouchableHighlight')
+    .mock('../../../routing/Screen')
 
 const colors = {
   '1': '#27B9CD',
@@ -162,6 +163,22 @@ test('render without courses and *zero* total courses', () => {
     <Dashboard {...defaultProps} courses={[]} concludedCourses={[]} totalCourseCount={0} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
+})
+
+test('select profile', () => {
+  const props = {
+    ...defaultProps,
+    navigator: template.navigator({
+      show: jest.fn(),
+    }),
+  }
+  let tree = renderAndLayout(
+    <Dashboard {...props} />
+  ).toJSON()
+
+  const leftButton = explore(tree).selectLeftBarButton('favorited-course-list.profile-btn') || {}
+  leftButton.action()
+  expect(props.navigator.show).toHaveBeenCalledWith('/profile', { modal: true, modalPresentationStyle: 'drawer' })
 })
 
 test('select course', () => {

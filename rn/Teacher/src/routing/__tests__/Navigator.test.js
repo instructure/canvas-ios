@@ -162,8 +162,8 @@ describe('Navigator', () => {
     })
 
     expect(NativeModules.Helm.present).toHaveBeenCalledWith(
-      '/courses/:courseID/announcements/:announcementID',
-      { courseID: '1', announcementID: '3', screenInstanceID: expect.any(String) },
+      '/:context/:contextID/announcements/:announcementID',
+      { context: 'courses', contextID: '1', announcementID: '3', screenInstanceID: expect.any(String) },
       { canBecomeMaster: false, embedInNavigationController: true, modal: true, modalPresentationStyle: 'formsheet' }
     )
   })

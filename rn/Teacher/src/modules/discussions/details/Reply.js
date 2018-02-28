@@ -42,7 +42,8 @@ export type Props = {
   depth: number,
   readState: ReadState,
   participants: { [key: string]: UserDisplay },
-  courseID: string,
+  context: Context,
+  contextID: string,
   discussionID: string,
   deleteDiscussionEntry: Function,
   replyToEntry: Function,
@@ -83,7 +84,7 @@ export default class Reply extends Component<Props> {
   navigateToContextCard = () => {
     let user = this._userFromParticipants(this.props.reply, this.props.participants)
     this.props.navigator.show(
-      `/courses/${this.props.courseID}/users/${user.id}`,
+      `/${this.props.context}/${this.props.contextID}/users/${user.id}`,
       { modal: true }
     )
   }
@@ -188,7 +189,7 @@ export default class Reply extends Component<Props> {
   }
 
   _actionEdit = () => {
-    const { courseID, discussionID } = this.props
+    const { context, contextID, discussionID } = this.props
     let options = []
     options.push(i18n('Edit'))
     options.push(i18n('Delete'))
@@ -199,9 +200,9 @@ export default class Reply extends Component<Props> {
       destructiveButtonIndex: options.length - 2,
     }, (button) => {
       if (button === (options.length - 1)) { return }
-      if (button === (options.length - 2)) { this.props.deleteDiscussionEntry(courseID, discussionID, this.props.reply.id, this.props.myPath); return }
+      if (button === (options.length - 2)) { this.props.deleteDiscussionEntry(context, contextID, discussionID, this.props.reply.id, this.props.myPath); return }
       if (button === 0) {
-        this.props.navigator.show(`/courses/${this.props.courseID}/discussion_topics/${this.props.discussionID}/reply`, { modal: true }, { message: this.props.reply.message, entryID: this.props.reply.id, isEdit: true, indexPath: this.props.myPath })
+        this.props.navigator.show(`/${context}/${contextID}/discussion_topics/${this.props.discussionID}/reply`, { modal: true }, { message: this.props.reply.message, entryID: this.props.reply.id, isEdit: true, indexPath: this.props.myPath })
         return
       }
     })

@@ -53,6 +53,11 @@ export type GroupState = AsyncState & {
   color: ?string,
 }
 
+export type GroupContentState = {
+  discussions?: AsyncRefs,
+  announcements?: AsyncRefs,
+}
+
 export type GradingPeriodsState = {
   [string]: {
     gradingPeriod: GradingPeriod,
@@ -158,7 +163,7 @@ export type CourseDetailsTabSelectedRowState = {
 }
 
 export type CoursesState = { [string]: CourseState & CourseContentState }
-export type GroupsState = { [string]: GroupState }
+export type GroupsState = { [string]: GroupState & GroupContentState }
 export type AssignmentGroupsState = { [string]: AssignmentGroupState & AssignmentGroupContentState }
 export type AssignmentsState = { [string]: AssignmentDetailState & AssignmentContentState }
 export type EnrollmentsState = { [string]: Enrollment }

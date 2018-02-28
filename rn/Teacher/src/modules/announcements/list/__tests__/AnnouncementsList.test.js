@@ -42,7 +42,8 @@ describe('AnnouncementsList', () => {
     jest.resetAllMocks()
     app.setCurrentApp('teacher')
     props = {
-      courseID: '1',
+      context: 'courses',
+      contextID: '1',
       refreshing: false,
       refresh: jest.fn(),
       pending: 0,
@@ -61,8 +62,10 @@ describe('AnnouncementsList', () => {
         }),
       ],
       refreshAnnouncements: jest.fn(),
+      refreshCourse: jest.fn(),
       courseName: 'Im a course',
       courseColor: 'blue',
+      permissions: template.discussionPermissions(),
     }
   })
 
@@ -70,8 +73,8 @@ describe('AnnouncementsList', () => {
     testRender(props)
   })
 
-  it('renders as student app', () => {
-    app.setCurrentApp('student')
+  it('renders with no create_announcement permission', () => {
+    props.permissions.create_announcement = false
     testRender(props)
   })
 
@@ -94,7 +97,8 @@ describe('AnnouncementsList', () => {
 
   it('navigates to new announcement', () => {
     props.navigator.show = jest.fn()
-    props.courseID = '2'
+
+    props.contextID = '2'
     tapAdd(render(props))
     expect(props.navigator.show).toHaveBeenCalledWith(
       '/courses/2/announcements/new',
@@ -171,7 +175,7 @@ describe('mapStateToProps', () => {
     })
 
     expect(
-      mapStateToProps(state, { courseID: '1' })
+      mapStateToProps(state, { context: 'courses', contextID: '1' })
     ).toEqual({
       announcements: [one, three],
       pending: 1,
@@ -180,18 +184,62 @@ describe('mapStateToProps', () => {
     })
   })
 
+  it('maps course announcement refs to props with group context', () => {
+    const one = template.discussion({ id: '1' })
+    const two = template.discussion({ id: '2' })
+    const three = template.discussion({ id: '3' })
+    const state = template.appState({
+      entities: {
+        groups: {
+          '1': {
+            announcements: {
+              pending: 1,
+              error: null,
+              refs: ['1', '3'],
+            },
+            group: {
+              name: 'CS 1010',
+            },
+          },
+        },
+        discussions: {
+          '1': {
+            data: one,
+          },
+          '2': {
+            data: two,
+          },
+          '3': {
+            data: three,
+          },
+        },
+      },
+    })
+
+    expect(
+      mapStateToProps(state, { context: 'groups', contextID: '1' })
+    ).toEqual({
+      announcements: [one, three],
+      pending: 1,
+      courseName: 'CS 1010',
+      error: null,
+      permissions: { create_announcement: true, create_discussion_topic: true },
+    })
+  })
+
   it('maps empty state', () => {
     const state = template.appState({
       entities: {},
     })
     expect(
-      mapStateToProps(state, { courseID: '1' })
+      mapStateToProps(state, { context: 'courses', contextID: '1' })
     ).toEqual({
       announcements: [],
       courseName: '',
       courseColor: '',
       pending: 0,
       error: null,
+      permissions: {},
     })
   })
 
@@ -225,7 +273,7 @@ describe('mapStateToProps', () => {
     })
 
     expect(
-      mapStateToProps(state, { courseID: '1' })
+      mapStateToProps(state, { context: 'courses', contextID: '1' })
     ).toEqual({
       announcements: [one, three],
       pending: 1,

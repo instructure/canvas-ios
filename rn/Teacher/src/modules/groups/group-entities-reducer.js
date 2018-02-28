@@ -16,7 +16,7 @@
 
 // @flow
 
-import { Reducer } from 'redux'
+import { Reducer, Action, combineReducers } from 'redux'
 import Actions from './actions'
 import AssigneeSearchActions from '../assignee-picker/actions'
 import CoursesActions from '../courses/actions'
@@ -24,9 +24,22 @@ import { handleActions } from 'redux-actions'
 import handleAsync from '../../utils/handleAsync'
 import groupCustomColors from '../../utils/group-custom-colors'
 import { parseErrorMessage } from '../../redux/middleware/error-handler'
+import DiscussionActions from '../discussions/list/actions'
+import AnnouncementActions from '../announcements/list/actions'
+import { refs as discussions } from '../discussions/reducer'
+import { refs as announcements } from '../announcements/reducer'
 
+const { refreshAnnouncements } = AnnouncementActions
+const { refreshDiscussions } = DiscussionActions
 const { refreshGroupsForCourse, refreshGroup, listUsersForGroup, refreshUsersGroups } = Actions
 const { refreshGroupsForCategory } = AssigneeSearchActions
+const group = (state) => (state || {})  // dummy's to appease combineReducers
+
+const groupContents: Reducer<GroupsState, Action> = combineReducers({
+  group,
+  discussions,
+  announcements,
+})
 
 const groupsEntityReducer = handleAsync({
   resolved: (state, { result }) => {
@@ -44,10 +57,38 @@ const groupsEntityReducer = handleAsync({
   },
 })
 
-export const groups: Reducer<GroupsState, any> = handleActions({
+const groupsData: Reducer<GroupsState, any> = handleActions({
   [refreshGroupsForCourse.toString()]: groupsEntityReducer,
   [refreshGroupsForCategory.toString()]: groupsEntityReducer,
   [refreshUsersGroups.toString()]: groupsEntityReducer,
+  [refreshDiscussions.toString()]: handleAsync({
+    resolved: (state, { result, context, contextID }) => {
+      if (context !== 'groups') return state
+      return {
+        ...state,
+        [contextID]: {
+          ...state[contextID],
+          discussions: {
+            refs: result.data.map(d => d.id),
+          },
+        },
+      }
+    },
+  }),
+  [refreshAnnouncements.toString()]: handleAsync({
+    resolved: (state, { result, context, contextID }) => {
+      if (context !== 'groups') return state
+      return {
+        ...state,
+        [contextID]: {
+          ...state[contextID],
+          announcements: {
+            refs: result.data.map(a => a.id),
+          },
+        },
+      }
+    },
+  }),
   [refreshGroup.toString()]: handleAsync({
     resolved: (state, { result }) => {
       const group = result.data
@@ -111,3 +152,19 @@ export const groups: Reducer<GroupsState, any> = handleActions({
     },
   }),
 }, {})
+
+const defaultState: { [groupID: string]: GroupState & GroupContentState } = {}
+
+export function groups (state: GroupsState = defaultState, action: Action): GroupsState {
+  let newState = state
+  if (action.payload && (action.payload.groupID || action.payload.context === 'groups' && action.payload.contextID)) {
+    const groupID = action.payload.groupID || action.payload.contextID
+    const currentGroupState = state[groupID]
+    const groupState = groupContents(currentGroupState, action)
+    newState = {
+      ...state,
+      [groupID]: groupState,
+    }
+  }
+  return groupsData(newState, action)
+}

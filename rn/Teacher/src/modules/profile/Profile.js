@@ -186,10 +186,10 @@ export class Profile extends Component<Object, State> {
     if (!session) { return <View /> }
     let externalTools = (this.props.externalTools || [])
 
-    const buildRow = (title: string, onPress: ?Function, switchProps?: Object) => {
+    const buildRow = (title: string, onPress: ?Function, switchProps?: Object, testIDProps?: Object = {}) => {
       return (<View>
-                { onPress && <Row title={title} titleStyles={titleStyles} onPress={onPress} />}
-                { switchProps && <RowWithSwitch title={title} titleStyles={titleStyles} {...switchProps} />}
+                { onPress && <Row title={title} titleStyles={titleStyles} onPress={onPress} {...testIDProps} />}
+                { switchProps && Object.keys(switchProps).length > 0 && <RowWithSwitch title={title} titleStyles={titleStyles} {...switchProps} />}
                 <RowSeparator style={styles.separator} />
               </View>)
     }
@@ -198,7 +198,7 @@ export class Profile extends Component<Object, State> {
     const masqueradeTitle = masquerading ? i18n('Stop Act as User') : i18n('Act as User')
     return (<View>
               { isStudent && buildRow(i18n('Files'), this.userFiles) }
-              { externalTools.length > 0 && externalTools.map((externalTool) => buildRow(externalTool.title, () => { this.launchExternalTool(externalTool) })) }
+              { externalTools.length > 0 && externalTools.map((externalTool) => buildRow(externalTool.placements.global_navigation.title, () => { this.launchExternalTool(externalTool) }, {}, { testID: `row-lti-${externalTool.domain}` })) }
               { (this.props.canMasquerade || masquerading) && buildRow(masqueradeTitle, this.toggleMasquerade) }
               { isStudent && buildRow(i18n('Show Grades'), null, { onValueChange: this.toggleShowGrades, value: this.props.showsGradesOnCourseCards }) }
               { buildRow(i18n('Help'), this.showHelpMenu) }

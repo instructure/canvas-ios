@@ -442,6 +442,81 @@ exports[`ConversationDetails renders correctly 1`] = `
 </Screen>
 `;
 
+exports[`ConversationDetails renders correctly with no conversation 1`] = `
+<Screen
+  drawUnderNavBar={true}
+  leftBarButtons={false}
+  navBarButtonColor="#374A59"
+  navBarColor="#374A59"
+  rightBarButtons={
+    Array [
+      Object {
+        "accessibilityLabel": "Conversation options",
+        "action": [Function],
+        "image": Object {
+          "testUri": "../../../src/images/kabob.png",
+        },
+        "testID": "inbox.detail.options.button",
+      },
+    ]
+  }
+  statusBarStyle="light"
+  title="Message Details"
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#F5F5F5",
+        "flex": 1,
+      }
+    }
+  >
+    <RCTScrollView
+      ItemSeparatorComponent={[Function]}
+      ListHeaderComponent={<View />}
+      data={Array []}
+      disableVirtualization={false}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      numColumns={1}
+      onContentSizeChange={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onRefresh={undefined}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      refreshing={undefined}
+      renderItem={[Function]}
+      scrollEventThrottle={50}
+      stickyHeaderIndices={Array []}
+      style={
+        Object {
+          "backgroundColor": "#F5F5F5",
+        }
+      }
+      updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
+      windowSize={21}
+    >
+      <View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View />
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</Screen>
+`;
+
 exports[`ConversationDetails renders correctly with some messages 1`] = `
 <Screen
   drawUnderNavBar={true}

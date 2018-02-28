@@ -32,7 +32,7 @@ describe('refreshAnnouncements', () => {
       getDiscussions: discussionsMock,
     }
     const actions = Actions(api)
-    const action = actions.refreshAnnouncements('35')
+    const action = actions.refreshAnnouncements('courses', '35')
     const result = await testAsyncAction(action)
     expect(result).toMatchObject([
       {
@@ -43,10 +43,11 @@ describe('refreshAnnouncements', () => {
         type: actions.refreshAnnouncements.toString(),
         payload: {
           result: { data: [announcement] },
-          courseID: '35',
+          contextID: '35',
+          context: 'courses',
         },
       },
     ])
-    expect(discussionsMock).toHaveBeenCalledWith('35', { only_announcements: true })
+    expect(discussionsMock).toHaveBeenCalledWith('courses', '35', { only_announcements: true })
   })
 })

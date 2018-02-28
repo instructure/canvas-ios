@@ -1,12 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Doesnt render groups when in the teacher app 1`] = `
-<RCTSafeAreaView
-  style={
+<Screen
+  leftBarButtons={
+    Array [
+      Object {
+        "accessibilityLabel": "Profile Menu",
+        "action": [Function],
+        "image": Object {
+          "testUri": "../../../src/images/hamburger.png",
+        },
+        "testID": "favorited-course-list.profile-btn",
+      },
+    ]
+  }
+  navBarButtonColor="#374A59"
+  navBarColor="#374A59"
+  navBarHidden={false}
+  navBarImage={
     Object {
-      "flex": 1,
+      "testUri": "../../../src/images/canvas-logo.png",
     }
   }
+  rightBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "disabled": false,
+        "testID": "dashboard.edit-btn",
+        "title": "Edit",
+      },
+    ]
+  }
+  statusBarStyle="light"
 >
   <RCTScrollView
     ItemSeparatorComponent={undefined}
@@ -935,16 +961,16 @@ exports[`Doesnt render groups when in the teacher app 1`] = `
       />
     </View>
   </RCTScrollView>
-</RCTSafeAreaView>
+</Screen>
 `;
 
 exports[`Only renders courses when !isFullDashboard 1`] = `
-<RCTSafeAreaView
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
+<Screen
+  navBarButtonColor="#374A59"
+  navBarColor="#374A59"
+  navBarHidden={false}
+  statusBarStyle="light"
+  title="All Courses"
 >
   <RCTScrollView
     ItemSeparatorComponent={undefined}
@@ -2066,16 +2092,42 @@ exports[`Only renders courses when !isFullDashboard 1`] = `
       />
     </View>
   </RCTScrollView>
-</RCTSafeAreaView>
+</Screen>
 `;
 
 exports[`render 1`] = `
-<RCTSafeAreaView
-  style={
+<Screen
+  leftBarButtons={
+    Array [
+      Object {
+        "accessibilityLabel": "Profile Menu",
+        "action": [Function],
+        "image": Object {
+          "testUri": "../../../src/images/hamburger.png",
+        },
+        "testID": "favorited-course-list.profile-btn",
+      },
+    ]
+  }
+  navBarButtonColor="#374A59"
+  navBarColor="#374A59"
+  navBarHidden={false}
+  navBarImage={
     Object {
-      "flex": 1,
+      "testUri": "../../../src/images/canvas-logo.png",
     }
   }
+  rightBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "disabled": false,
+        "testID": "dashboard.edit-btn",
+        "title": "Edit",
+      },
+    ]
+  }
+  statusBarStyle="light"
 >
   <RCTScrollView
     ItemSeparatorComponent={undefined}
@@ -3364,16 +3416,42 @@ exports[`render 1`] = `
       />
     </View>
   </RCTScrollView>
-</RCTSafeAreaView>
+</Screen>
 `;
 
 exports[`render while pending 1`] = `
-<RCTSafeAreaView
-  style={
+<Screen
+  leftBarButtons={
+    Array [
+      Object {
+        "accessibilityLabel": "Profile Menu",
+        "action": [Function],
+        "image": Object {
+          "testUri": "../../../src/images/hamburger.png",
+        },
+        "testID": "favorited-course-list.profile-btn",
+      },
+    ]
+  }
+  navBarButtonColor="#374A59"
+  navBarColor="#374A59"
+  navBarHidden={false}
+  navBarImage={
     Object {
-      "flex": 1,
+      "testUri": "../../../src/images/canvas-logo.png",
     }
   }
+  rightBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "disabled": false,
+        "testID": "dashboard.edit-btn",
+        "title": "Edit",
+      },
+    ]
+  }
+  statusBarStyle="light"
 >
   <RCTScrollView
     ItemSeparatorComponent={undefined}
@@ -4662,16 +4740,42 @@ exports[`render while pending 1`] = `
       />
     </View>
   </RCTScrollView>
-</RCTSafeAreaView>
+</Screen>
 `;
 
 exports[`render without courses and *zero* total courses 1`] = `
-<RCTSafeAreaView
-  style={
+<Screen
+  leftBarButtons={
+    Array [
+      Object {
+        "accessibilityLabel": "Profile Menu",
+        "action": [Function],
+        "image": Object {
+          "testUri": "../../../src/images/hamburger.png",
+        },
+        "testID": "favorited-course-list.profile-btn",
+      },
+    ]
+  }
+  navBarButtonColor="#374A59"
+  navBarColor="#374A59"
+  navBarHidden={false}
+  navBarImage={
     Object {
-      "flex": 1,
+      "testUri": "../../../src/images/canvas-logo.png",
     }
   }
+  rightBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "disabled": true,
+        "testID": "dashboard.edit-btn",
+        "title": "Edit",
+      },
+    ]
+  }
+  statusBarStyle="light"
 >
   <RCTScrollView
     ItemSeparatorComponent={undefined}
@@ -5382,16 +5486,42 @@ exports[`render without courses and *zero* total courses 1`] = `
       />
     </View>
   </RCTScrollView>
-</RCTSafeAreaView>
+</Screen>
 `;
 
 exports[`render without favorite courses 1`] = `
-<RCTSafeAreaView
-  style={
+<Screen
+  leftBarButtons={
+    Array [
+      Object {
+        "accessibilityLabel": "Profile Menu",
+        "action": [Function],
+        "image": Object {
+          "testUri": "../../../src/images/hamburger.png",
+        },
+        "testID": "favorited-course-list.profile-btn",
+      },
+    ]
+  }
+  navBarButtonColor="#374A59"
+  navBarColor="#374A59"
+  navBarHidden={false}
+  navBarImage={
     Object {
-      "flex": 1,
+      "testUri": "../../../src/images/canvas-logo.png",
     }
   }
+  rightBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "disabled": false,
+        "testID": "dashboard.edit-btn",
+        "title": "Edit",
+      },
+    ]
+  }
+  statusBarStyle="light"
 >
   <RCTScrollView
     ItemSeparatorComponent={undefined}
@@ -6102,16 +6232,42 @@ exports[`render without favorite courses 1`] = `
       />
     </View>
   </RCTScrollView>
-</RCTSafeAreaView>
+</Screen>
 `;
 
 exports[`renders course invites 1`] = `
-<RCTSafeAreaView
-  style={
+<Screen
+  leftBarButtons={
+    Array [
+      Object {
+        "accessibilityLabel": "Profile Menu",
+        "action": [Function],
+        "image": Object {
+          "testUri": "../../../src/images/hamburger.png",
+        },
+        "testID": "favorited-course-list.profile-btn",
+      },
+    ]
+  }
+  navBarButtonColor="#374A59"
+  navBarColor="#374A59"
+  navBarHidden={false}
+  navBarImage={
     Object {
-      "flex": 1,
+      "testUri": "../../../src/images/canvas-logo.png",
     }
   }
+  rightBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "disabled": false,
+        "testID": "dashboard.edit-btn",
+        "title": "Edit",
+      },
+    ]
+  }
+  statusBarStyle="light"
 >
   <RCTScrollView
     ItemSeparatorComponent={undefined}
@@ -7764,5 +7920,5 @@ exports[`renders course invites 1`] = `
       />
     </View>
   </RCTScrollView>
-</RCTSafeAreaView>
+</Screen>
 `;

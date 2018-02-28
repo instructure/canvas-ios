@@ -63,8 +63,7 @@ const courseContents: Reducer<CourseState, Action> = combineReducers({
   gradingPeriods,
   permissions,
 })
-
-const { refreshCourses, updateCourseColor, getCourseEnabledFeatures, getCoursePermissions, updateCourseNickname } = CourseListActions
+const { refreshCourses, refreshCourse, updateCourseColor, getCourseEnabledFeatures, getCoursePermissions, updateCourseNickname } = CourseListActions
 const { updateCourse } = CourseSettingsActions
 
 export const defaultState: { [courseID: string]: CourseState & CourseContentState } = {}
@@ -277,12 +276,23 @@ const coursesData: Reducer<CoursesState, any> = handleActions({
       }, { ...state })
     },
   }),
+  [refreshCourse.toString()]: handleAsync({
+    resolved: (state, { result, courseID }) => {
+      return {
+        ...state,
+        [courseID]: {
+          ...state[courseID],
+          permissions: { ...result.data.permissions, ...(state[courseID] && state[courseID].permissions || {}) },
+        },
+      }
+    },
+  }),
 }, defaultState)
 
 export function courses (state: CoursesState = defaultState, action: Action): CoursesState {
   let newState = state
-  if (action.payload && action.payload.courseID) {
-    const courseID = action.payload.courseID
+  if (action.payload && (action.payload.courseID || action.payload.context === 'courses' && action.payload.contextID)) {
+    const courseID = action.payload.courseID || action.payload.contextID
     const currentCourseState: CourseState = state[courseID]
     const courseState = courseContents(currentCourseState, action)
     newState = {

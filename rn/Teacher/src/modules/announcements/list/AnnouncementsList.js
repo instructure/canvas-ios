@@ -28,21 +28,31 @@ import i18n from 'format-message'
 import Screen from '../../../routing/Screen'
 import refresh from '../../../utils/refresh'
 import Row from '../../../common/components/rows/Row'
-import Actions from './actions'
+import ListActions from './actions'
+import CourseActions from '../../courses/actions'
 import Images from '../../../images'
 import RowSeparator from '../../../common/components/rows/RowSeparator'
 import ActivityIndicatorView from '../../../common/components/ActivityIndicatorView'
 import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
-import { isTeacher } from '../../app'
+
+const { refreshCourse } = CourseActions
+const { refreshAnnouncements } = ListActions
+
+const Actions = {
+  refreshAnnouncements,
+  refreshCourse,
+}
 
 type State = AsyncState & {
   announcements: Discussion[],
   courseName: string,
+  permissions: CoursePermissions,
   courseColor: string,
 }
 
 type OwnProps = {
-  courseID: string,
+  context: Context,
+  contextID: string,
 }
 
 export type Props = OwnProps & State & typeof Actions & RefreshProps & NavigationProps
@@ -59,7 +69,7 @@ export class AnnouncementsList extends Component<Props, any> {
         navBarStyle='dark'
         title={i18n('Announcements')}
         subtitle={this.props.courseName}
-        rightBarButtons={ isTeacher() && [
+        rightBarButtons={ (this.props.permissions && this.props.permissions.create_announcement) && [
           {
             image: Images.add,
             testID: 'announcements.list.addButton',
@@ -101,7 +111,7 @@ export class AnnouncementsList extends Component<Props, any> {
   }
 
   addAnnouncement = () => {
-    this.props.navigator.show(`/courses/${this.props.courseID}/announcements/new`, { modal: true })
+    this.props.navigator.show(`/${this.props.context}/${this.props.contextID}/announcements/new`, { modal: true })
   }
 
   selectAnnouncement (announcement: Discussion) {
@@ -117,42 +127,55 @@ const styles = StyleSheet.create({
   },
 })
 
-export function mapStateToProps ({ entities }: AppState, { courseID }: OwnProps): State {
+export function mapStateToProps ({ entities }: AppState, { context, contextID }: OwnProps): State {
   let announcements = []
   let pending = 0
   let error = null
   let courseName = ''
   let courseColor = ''
+  let permissions = {}
+
+  let origin: DiscussionOriginEntity = (context === 'courses') ? entities.courses : entities.groups
+
   if (entities &&
-    entities.courses &&
-    entities.courses[courseID] &&
-    entities.courses[courseID].announcements &&
-    entities.discussions) {
-    const course = entities.courses[courseID]
-    const refs = course.announcements.refs
-    pending = course.announcements.pending
-    error = course.announcements.error
-    if (course.course) {
-      courseName = course.course.name
-      courseColor = course.color
+    origin &&
+    origin[contextID] &&
+    origin[contextID].announcements) {
+    const entity = origin[contextID]
+    const refs = entity.announcements.refs
+    permissions = entity.permissions
+    pending = entity.announcements.pending
+    error = entity.announcements.error
+    if (context === 'courses' && entity.course) {
+      courseName = entity.course.name
+      courseColor = entity.course.color
+    } else if (entity.group) {
+      courseName = entity.group.name
+      courseColor = entity.group.color
+      permissions = { create_announcement: true, create_discussion_topic: true }
     }
     announcements = refs
       .map(ref => entities.discussions[ref].data)
   }
+
   return {
     announcements,
     courseName,
     courseColor,
     pending,
     error,
+    permissions,
   }
 }
 
 const Refreshed = refresh(
   props => {
-    props.refreshAnnouncements(props.courseID)
+    props.refreshAnnouncements(props.context, props.contextID)
+    if (props.context === 'courses') {
+      props.refreshCourse(props.contextID) // this is the only way to get `create announcement` permissions
+    }
   },
-  props => props.announcements.length === 0,
+  props => props.announcements.length === 0 || Object.keys(props.permissions).length === 0,
   props => Boolean(props.pending)
 )(AnnouncementsList)
 const Connected = connect(mapStateToProps, Actions)(Refreshed)

@@ -57,7 +57,9 @@ describe('DiscussionsList', () => {
       updateDiscussion: jest.fn(),
       refreshDiscussions: jest.fn(),
       deleteDiscussion: jest.fn(),
-      courseID: '1',
+      context: 'courses',
+      contextID: '1',
+      permissions: template.discussionPermissions(),
     }
   })
 
@@ -66,6 +68,7 @@ describe('DiscussionsList', () => {
   })
 
   it('renders as student app', () => {
+    props.permissions.create_discussion_topic = false
     app.isTeacher = jest.fn(() => false)
     testRender(props)
   })
@@ -188,15 +191,15 @@ describe('DiscussionsList', () => {
     ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(2))
     // $FlowFixMe
     AlertIOS.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
-    props.courseID = '1'
+    props.contextID = '1'
     const kabob: any = explore(render(props).toJSON()).selectByID(`discussion.kabob-${props.discussions[0].id}`)
     kabob.props.onPress()
-    expect(props.deleteDiscussion).toHaveBeenCalledWith('1', '1')
+    expect(props.deleteDiscussion).toHaveBeenCalledWith(props.context, props.contextID, '1')
   })
 
   it('navigates to new discussion form', () => {
     props.navigator.show = jest.fn()
-    props.courseID = '1'
+    props.contextID = '1'
     const addBtn: any = explore(render(props).toJSON()).selectRightBarButton('discussions.list.add.button')
     addBtn.action()
     expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/new', { modal: true, modalPresentationStyle: 'formsheet' })
@@ -256,7 +259,45 @@ describe('map state to prop', () => {
     })
 
     expect(
-      mapStateToProps(state, { courseID: '1' })
+      mapStateToProps(state, { context: 'courses', contextID: '1' })
+    ).toMatchObject({
+      discussions,
+      courseColor: '#fff',
+    })
+  })
+
+  it('maps state to props group context', () => {
+    const discussions = [
+      template.discussion({ id: '1' }),
+      template.discussion({ id: '2' }),
+    ]
+    const state: AppState = template.appState({
+      entities: {
+        ...template.appState().entities,
+        groups: {
+          '1': {
+            color: '#fff',
+            group: { name: 'Foo' },
+            discussions: {
+              pending: 0,
+              error: null,
+              refs: ['1', '2'],
+            },
+          },
+        },
+        discussions: {
+          '1': {
+            data: discussions[0],
+          },
+          '2': {
+            data: discussions[1],
+          },
+        },
+      },
+    })
+
+    expect(
+      mapStateToProps(state, { context: 'groups', contextID: '1' }),
     ).toMatchObject({
       discussions,
       courseColor: '#fff',

@@ -196,7 +196,7 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
   [refreshDiscussions.toString()]: handleAsyncDiscussions,
   [refreshAnnouncements.toString()]: handleAsyncDiscussions,
   [refreshDiscussionEntries.toString()]: handleAsync({
-    resolved: (state, { result: [discussionView, discussion], courseID, discussionID }) => {
+    resolved: (state, { result: [discussionView, discussion], context, contextID, discussionID }) => {
       let entity = { ...state[discussionID] } || {}
 
       let participantsAsMap = discussionView.data.participants.reduce((map, p) => ({ ...map, [p.id]: p }), {})

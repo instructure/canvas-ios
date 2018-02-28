@@ -176,40 +176,60 @@ test('refreshQuiz', () => {
     },
   }
   expect(
-    assignments(initialState, resolved)
-  ).toEqual({
-    '1': {
-      ...initialState['1'],
-      data: refreshedAssignment,
-    },
-  })
-
-  test('anonymousGrading', () => {
-    let actions = AssignmentListActions()
-    let state = {
+      assignments(initialState, resolved)
+    ).toEqual({
       '1': {
-        anonymousGradingOn: false,
-        data: assignment,
-        pending: 0,
-        submissions: { refs: [], pending: 0 },
-        submissionSummary: { data: {}, pending: 0, error: null },
-        gradeableStudents: { refs: [], pending: 0 },
-        pendingComments: {},
-      },
-    }
-    let action = {
-      type: actions.anonymousGrading,
-      payload: {
-        courseID: '1',
-        assignmentID: '1',
-        anonymous: true,
-      },
-    }
-    expect(assignments(state, action)).toEqual({
-      '1': {
-        anonymousGradingOn: true,
+        ...initialState['1'],
+        data: refreshedAssignment,
       },
     })
+})
+
+test('refresh quiz with no assignment', () => {
+  const resolved = {
+    type: refreshQuiz.toString(),
+    payload: {
+      result: [{}, {}, { data: null }],
+      courseID: '1',
+      quizID: '1',
+    },
+  }
+  expect(
+      assignments({}, resolved)
+    ).toEqual({
+
+    })
+})
+
+test('anonymousGrading', () => {
+  const assignment = template.assignment({
+    id: '1',
+    name: 'Old',
+  })
+  let actions = AssignmentListActions()
+  let state = {
+    '1': {
+      anonymousGradingOn: false,
+      data: assignment,
+      pending: 0,
+      submissions: { refs: [], pending: 0 },
+      submissionSummary: { data: {}, pending: 0, error: null },
+      gradeableStudents: { refs: [], pending: 0 },
+      pendingComments: {},
+    },
+  }
+  let action = {
+    type: actions.anonymousGrading,
+    payload: {
+      courseID: '1',
+      assignmentID: '1',
+      anonymous: true,
+    },
+  }
+  expect(assignments(state, action)).toMatchObject({
+    '1': {
+      anonymousGradingOn: true,
+    },
   })
 })
 
@@ -233,6 +253,38 @@ test('refreshDiscussionEntries', () => {
     ...assignment,
     name: 'Refreshed',
   }
+  const resolved = {
+    type: refreshDiscussionEntries.toString(),
+    payload: {
+      result: [{}, {}, { data: refreshedAssignment }],
+      courseID: '1',
+      discussionID: '1',
+    },
+  }
+  expect(
+    assignments(initialState, resolved)
+  ).toEqual({
+    '1': {
+      ...initialState['1'],
+      data: refreshedAssignment,
+    },
+  })
+})
+
+test('refreshDiscussionEntries with no assignment', () => {
+  const assignment = null
+  const initialState = {
+    '1': {
+      data: assignment,
+      pending: 0,
+      submissions: { refs: [], pending: 0 },
+      submissionSummary: { data: {}, pending: 0, error: null },
+      gradeableStudents: { refs: [], pending: 0 },
+      pendingComments: {},
+      anonymousGradingOn: false,
+    },
+  }
+  const refreshedAssignment = null
   const resolved = {
     type: refreshDiscussionEntries.toString(),
     payload: {
@@ -395,4 +447,16 @@ test('getUserSubmissions adds a submission ref to the assignment', () => {
   let newState = assignments(initialState, action)
   expect(newState['1'].submissions.refs[0]).toEqual('1')
   expect(newState['2'].submissions.refs[0]).toEqual('2')
+})
+
+test('getUserSubmissions pending', () => {
+  let action = {
+    type: getUserSubmissions.toString(),
+    pending: true,
+  }
+
+  let initialState = {}
+
+  let newState = assignments(initialState, action)
+  expect(newState).toEqual(initialState)
 })
