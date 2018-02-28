@@ -30,7 +30,7 @@ import color from '../../common/colors'
 import Images from '../../images'
 import branding from '../../common/branding'
 import Navigator from '../../routing/Navigator'
-import { getSession } from '../../canvas-api'
+import { getSessionUnsafe } from '../../canvas-api'
 import AccountNotificationActions from './account-notification-actions'
 import { extractGradeInfo } from '../../utils/course-grades'
 import { extractDateFromString } from '../../utils/dateUtils'
@@ -101,7 +101,7 @@ export class Dashboard extends React.Component<Props, State> {
         !newProps.totalCourseCount &&
         !this.state.showingModal &&
         App.current().appId === 'teacher' &&
-        getSession()) {
+        getSessionUnsafe()) {
       this.props.navigator.show('/notATeacher', { modal: true })
       this.setState({
         showingModal: true,

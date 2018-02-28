@@ -31,7 +31,7 @@ const defaultState: UserInfo = {
 
 function isSiteAdmin () {
   const session = getSession()
-  return session ? session.baseURL.match(/siteadmin/) : false
+  return Boolean(session.baseURL.match(/siteadmin/))
 }
 
 const isGauge = (tool: ExternalToolLaunchDefinition) => {

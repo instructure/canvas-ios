@@ -264,7 +264,7 @@ export class ConversationDetails extends Component <ConversationDetailsProps, an
 
     if (id) {
       const message = find(messages, { id })
-      const me = (getSession() || {}).user
+      const me = getSession().user
       if (message) {
         if (me && message.author_id !== me.id) {
           options.recipients = participants.filter(p => p.id === message.author_id)

@@ -46,8 +46,7 @@ export default class ConversationRow extends Component<ConversationRowProps, any
 
   _participantNames = (): string[] => {
     const participants = this.props.conversation.participants || []
-    const session = getSession()
-    const myUserId = session ? session.user.id : ''
+    const myUserId = getSession().user.id
     return participants
     .filter((p) => p.id !== myUserId)
     .map((p) => p.name)

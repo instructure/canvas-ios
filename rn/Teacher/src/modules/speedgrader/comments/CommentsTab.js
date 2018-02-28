@@ -277,8 +277,7 @@ type CommentRowData = {
 }
 
 function extractComments (submissionComments: SubmissionComment[]): Array<CommentRowData> {
-  const session = getSession()
-  const myUserID = session ? session.user.id : '😲'
+  const myUserID = getSession().user.id
 
   return submissionComments
     .map(comment => ({
@@ -405,7 +404,7 @@ function extractAttempts (submission: SubmissionWithHistory, assignment: Assignm
 
 function extractPendingComments (assignments: ?AssignmentContentState, userID): Array<CommentRowData> {
   const session = getSession()
-  if (!assignments || !session) {
+  if (!assignments) {
     return []
   }
 

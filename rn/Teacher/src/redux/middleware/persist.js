@@ -16,7 +16,7 @@
 
 // @flow
 import { AsyncStorage } from 'react-native'
-import { getSession } from '../../canvas-api'
+import { getSessionUnsafe } from '../../canvas-api'
 import type { MiddlewareAPI } from 'redux'
 import hydrate from '../hydrate-action'
 
@@ -43,7 +43,7 @@ async function persistState (store) {
     asyncActions: {},
   }
 
-  let session = getSession()
+  let session = getSessionUnsafe()
   if (!session) return
 
   let expires = new Date()
@@ -57,7 +57,7 @@ async function persistState (store) {
 }
 
 export async function hydrateStoreFromPersistedState (store: any): any {
-  let session = getSession()
+  let session = getSessionUnsafe()
   if (session) {
     let cachedState = await AsyncStorage.getItem(storeName(session))
     if (!cachedState) {

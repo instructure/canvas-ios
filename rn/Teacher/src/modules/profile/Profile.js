@@ -73,7 +73,7 @@ export class Profile extends Component<Object, State> {
 
     let session = getSession()
     this.state = {
-      avatarURL: session && session.user.avatar_url || '',
+      avatarURL: session.user.avatar_url || '',
     }
   }
 
@@ -106,7 +106,7 @@ export class Profile extends Component<Object, State> {
   toggleMasquerade = async () => {
     let session = getSession()
     await this.props.navigator.dismiss()
-    if (session && session.actAsUserID) {
+    if (session.actAsUserID) {
       NativeModules.NativeLogin.stopMasquerade()
     } else {
       this.props.navigator.show('/masquerade', { modal: true })
@@ -183,7 +183,6 @@ export class Profile extends Component<Object, State> {
     let isStudent = app.appId === 'student'
     let titleStyles = { fontSize: 20, fontWeight: '300' }
     let session = getSession()
-    if (!session) { return <View /> }
     let externalTools = (this.props.externalTools || [])
 
     const buildRow = (title: string, onPress: ?Function, switchProps?: Object, testIDProps?: Object = {}) => {
@@ -209,8 +208,8 @@ export class Profile extends Component<Object, State> {
 
   render () {
     const session = getSession()
-    if (!session) return null
     const user = session.user
+    const name = user.short_name || user.name
     return (
       <Screen
         navBarHidden
@@ -238,8 +237,8 @@ export class Profile extends Component<Object, State> {
               </TouchableOpacity>
             </View>
             <View style={styles.infoHeader}>
-              <Heavy style={styles.name}>{user.short_name || user.name}</Heavy>
-              { user.primary_email && <Paragraph style={styles.email}>{user.primary_email}</Paragraph> }
+              { !!name && <Heavy style={styles.name}>{name}</Heavy> }
+              { !!user.primary_email && <Paragraph style={styles.email}>{user.primary_email}</Paragraph> }
             </View>
             <ScrollView>
               { this.renderList() }

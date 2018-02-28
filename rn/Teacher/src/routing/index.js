@@ -100,8 +100,7 @@ export function wrapComponentInReduxProvider (moduleName: string, generator: () 
 }
 
 export function route (url: string, additionalProps: Object = {}): RouteOptions {
-  let session = getSession()
-  let baseURL = session && session.baseURL || ''
+  let baseURL = getSession().baseURL
   if (new RegExp('://').test(url) && new URL(baseURL).hostname !== new URL(url).hostname) {
     throw new URIError('Cannot route to ' + url)
   }

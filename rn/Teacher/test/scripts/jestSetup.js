@@ -16,14 +16,20 @@
 
 /* @flow */
 // import 'react-native-mock/mock'
+import { setSession } from '../../src/canvas-api/session'
 import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 Enzyme.configure({ adapter: new Adapter() })
+
+const template = {
+  ...require('../../src/__templates__/session'),
+}
 
 import setupI18n from '../../i18n/setup'
 import { shouldTrackAsyncActions } from '../../src/redux/middleware/redux-promise'
 setupI18n('en')
 shouldTrackAsyncActions(false)
+setSession(template.session())
 
 const { NativeModules } = require('react-native')
 

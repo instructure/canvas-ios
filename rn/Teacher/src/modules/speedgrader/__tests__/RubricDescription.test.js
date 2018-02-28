@@ -19,7 +19,6 @@
 import React from 'react'
 import { RubricDescription, mapStateToProps } from '../RubricDescription'
 import renderer from 'react-test-renderer'
-import { setSession } from '../../../canvas-api'
 
 jest.unmock('ScrollView')
 
@@ -43,7 +42,6 @@ let defaultProps = {
 }
 
 describe('RubricDescription', () => {
-  beforeAll(() => setSession(templates.session()))
   beforeEach(() => jest.resetAllMocks())
 
   it('calls dismiss modal when the done button is pressed', () => {

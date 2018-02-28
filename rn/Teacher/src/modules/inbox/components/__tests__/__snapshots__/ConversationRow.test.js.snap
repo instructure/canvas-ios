@@ -332,7 +332,7 @@ exports[`renders correctly with a bunch of people in there 1`] = `
               ]
             }
           >
-            0, 1, 2, 3, 4 + 95 more
+            0, 2, 3, 4, 5 + 94 more
           </Text>
           <View
             accessibilityLabel="May 31, 2037"

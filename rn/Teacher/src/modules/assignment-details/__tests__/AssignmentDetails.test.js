@@ -22,7 +22,6 @@ import { AssignmentDetails } from '../AssignmentDetails'
 import explore from '../../../../test/helpers/explore'
 import RCTSFSafariViewController from 'react-native-sfsafariviewcontroller'
 import renderer from 'react-test-renderer'
-import { setSession } from '../../../canvas-api'
 import { defaultErrorTitle } from '../../../redux/middleware/error-handler'
 
 const template = {
@@ -56,8 +55,6 @@ let defaultProps = {
   refreshing: false,
   getSessionlessLaunchURL: jest.fn(),
 }
-
-beforeAll(() => setSession(template.session()))
 
 test('renders', () => {
   let tree = renderer.create(
@@ -183,7 +180,6 @@ describe('external tool', () => {
       RCTSFSafariViewController.open = jest.fn()
     })
 
-    setSession(template.session())
     const url = 'https://canvas.instructure.com/external_tool'
     const props = {
       ...defaultProps,

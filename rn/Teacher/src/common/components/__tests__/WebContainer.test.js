@@ -19,7 +19,6 @@ import { shallow } from 'enzyme'
 import React from 'react'
 import WebContainer from '../WebContainer'
 import RCTSFSafariViewController from 'react-native-sfsafariviewcontroller'
-import { setSession } from '../../../canvas-api'
 
 jest
   .unmock('ScrollView')
@@ -38,10 +37,6 @@ const template = {
 }
 
 describe('WebContainer', () => {
-  beforeAll(() => {
-    setSession(template.session())
-  })
-
   it('renders', () => {
     let tree = shallow(<WebContainer />)
     expect(tree).toMatchSnapshot()

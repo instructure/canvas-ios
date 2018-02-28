@@ -20,8 +20,6 @@ import React from 'react'
 import { ActionSheetIOS } from 'react-native'
 import renderer from 'react-test-renderer'
 import explore from '../../../../../test/helpers/explore'
-import { setSession } from '../../../../canvas-api'
-
 import Reply, { type Props } from '../Reply'
 
 jest.mock('Button', () => 'Button').mock('TouchableHighlight', () => 'TouchableHighlight').mock('TouchableOpacity', () => 'TouchableOpacity')
@@ -39,8 +37,6 @@ jest.mock('WebView', () => 'WebView')
   .mock('../../../../common/components/Avatar', () => 'Avatar')
 
 describe('DiscussionReplies', () => {
-  beforeAll(() => setSession(template.session()))
-
   let props
   beforeEach(() => {
     let reply = template.discussionReply({ id: '1' })

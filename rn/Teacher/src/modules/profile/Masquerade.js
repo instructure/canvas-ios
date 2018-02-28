@@ -43,12 +43,9 @@ export default class Masquerade extends Component<*, any> {
 
   constructor (props: Object) {
     super(props)
-    let domain = ''
     const session = getSession()
-    if (session) {
-      const url = URL(session.baseURL)
-      domain = url.host
-    }
+    const url = URL(session.baseURL)
+    const domain = url.host
     this.state = {
       userId: '',
       domain,

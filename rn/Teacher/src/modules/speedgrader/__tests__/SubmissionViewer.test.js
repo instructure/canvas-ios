@@ -21,7 +21,6 @@ import SubmissionViewer from '../SubmissionViewer'
 import renderer from 'react-test-renderer'
 import setProps from '../../../../test/helpers/setProps'
 import explore from '../../../../test/helpers/explore'
-import { setSession } from '../../../canvas-api'
 
 const templates = {
   ...require('../../../__templates__/submissions'),
@@ -47,8 +46,6 @@ let defaultSub = {
 }
 
 describe('SubmissionViewer', () => {
-  beforeAll(() => setSession(templates.session()))
-
   it('renders an online_text_entry submission', () => {
     let sub = {
       ...defaultSub,

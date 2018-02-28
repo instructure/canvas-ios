@@ -26,7 +26,6 @@ import renderer from 'react-test-renderer'
 import { DiscussionDetails, mapStateToProps, type Props } from '../DiscussionDetails'
 import explore from '../../../../../test/helpers/explore'
 import setProps from '../../../../../test/helpers/setProps'
-import { setSession } from '../../../../canvas-api'
 import app from '../../../app'
 
 jest
@@ -57,12 +56,9 @@ const template = {
 }
 
 describe('DiscussionDetails', () => {
-  beforeAll(() => setSession(template.session()))
-
   let props: Props
   beforeEach(() => {
     jest.clearAllMocks()
-    setSession(template.session())
     app.isTeacher = jest.fn(() => true)
     let discussion = template.discussion({ id: '1', replies: [template.discussionReply()], participants: { [template.userDisplay().id]: template.userDisplay() } })
     props = {

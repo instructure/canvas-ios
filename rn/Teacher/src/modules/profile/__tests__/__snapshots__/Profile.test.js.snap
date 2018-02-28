@@ -1,7 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Profile Tests render with no session 1`] = `null`;
-
 exports[`Profile Tests renders correctly 1`] = `
 <View
   style={

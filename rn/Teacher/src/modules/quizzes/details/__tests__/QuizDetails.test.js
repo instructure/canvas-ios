@@ -19,7 +19,6 @@
 import React from 'react'
 import 'react-native'
 import renderer from 'react-test-renderer'
-import { setSession } from '../../../../canvas-api'
 
 import { QuizDetails, mapStateToProps } from '../QuizDetails'
 import explore from '../../../../../test/helpers/explore'
@@ -42,8 +41,6 @@ const template = {
 }
 
 describe('QuizDetails', () => {
-  beforeAll(() => setSession(template.session()))
-
   let props
   beforeEach(() => {
     jest.clearAllMocks()

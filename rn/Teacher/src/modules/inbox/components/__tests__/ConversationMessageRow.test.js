@@ -18,7 +18,7 @@
 import 'react-native'
 import React from 'react'
 import ConversationMessage from '../ConversationMessageRow'
-import { setSession } from '../../../../canvas-api'
+import { getSession, setSession } from '../../../../canvas-api'
 import explore from '../../../../../test/helpers/explore'
 
 const template = {
@@ -37,8 +37,6 @@ jest
 import renderer from 'react-test-renderer'
 
 it('renders correctly', () => {
-  const session = template.session()
-  setSession(session)
   const convo = template.conversation({
     id: '1',
   })
@@ -51,8 +49,7 @@ it('renders correctly', () => {
 })
 
 it('renders correctly with author being the logged in user', () => {
-  const session = template.session()
-  setSession(session)
+  const session = getSession()
   const convo = template.conversation({
     id: '1',
     participants: [
@@ -72,8 +69,8 @@ it('renders correctly with author being the logged in user', () => {
 })
 
 it('renders correctly with author lots of participants', () => {
-  const session = template.session()
-  setSession(session)
+  const session = getSession()
+
   const convo = template.conversation({
     id: '1',
     participants: [
@@ -148,8 +145,6 @@ it('navigates to compose when reply to first message button pressed', () => {
 })
 
 it('navigates to context card when the avatar is pressed', () => {
-  const session = template.session()
-  setSession(session)
   const convo = template.conversation({
     id: '1',
   })

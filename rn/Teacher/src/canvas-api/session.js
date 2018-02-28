@@ -22,7 +22,29 @@ export function setSession (session: ?Session): void {
   currentSession = session
 }
 
-export function getSession (): ?Session {
+export function getSession (): Session {
+  if (!currentSession) {
+    console.warn('The user session is being requested, yet none exists. Are you sure that is what you want?')
+    // The main usecase for actually returning this blank session is when components render on logout
+    // On logout, we clear out redux which triggers components to render, which in turn those components might need a session
+    // But, blank session is fine because the user has logged out
+    return {
+      baseURL: '',
+      authToken: '',
+      user: {
+        id: '',
+        primary_email: '',
+        avatar_url: '',
+        name: '',
+      },
+    }
+  }
+  return currentSession
+}
+
+// There are a few places where we do need to get the session and know whether it exists, but that's rare
+// Almost everywhere should use getSession() instead
+export function getSessionUnsafe (): ?Session {
   return currentSession
 }
 

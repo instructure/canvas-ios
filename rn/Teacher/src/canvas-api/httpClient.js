@@ -17,7 +17,7 @@
 // @flow
 /* global XMLHttpRequest, Blob */
 
-import { getSession } from './session'
+import { getSessionUnsafe } from './session'
 
 type Method = 'GET' | 'POST' | 'PUT' | 'DELETE'
 type Body = null | void | string | Object | FormData | Blob | ArrayBuffer
@@ -57,7 +57,7 @@ function xhr (method: Method, url: string, data: Body, config: ApiConfig = {}) {
       actAsUserID,
       authToken = '',
       baseURL = '',
-    } = getSession() || {}
+    } = getSessionUnsafe() || {}
 
     const params = { ...config.params }
     if (actAsUserID) params.as_user_id = actAsUserID

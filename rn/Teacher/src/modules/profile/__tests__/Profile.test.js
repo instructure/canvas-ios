@@ -23,7 +23,6 @@ import app from '../../app'
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer'
-import { setSession } from '../../../canvas-api'
 import explore from '../../../../test/helpers/explore'
 
 const template = {
@@ -43,7 +42,6 @@ let defaultProps = {}
 
 describe('Profile Tests', () => {
   beforeEach(() => {
-    setSession(template.session())
     jest.resetAllMocks()
 
     NativeModules.RNMail = {
@@ -249,15 +247,6 @@ describe('Profile Tests', () => {
       await instance.secretTap()
     }
     expect(defaultProps.navigator.show).toHaveBeenCalled()
-  })
-
-  it('render with no session', () => {
-    setSession(null)
-    const tree = renderer.create(
-      <Profile { ...defaultProps }/>
-    ).toJSON()
-
-    expect(tree).toMatchSnapshot()
   })
 
   it('refreshes avatar url on mount', async () => {

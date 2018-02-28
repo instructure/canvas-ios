@@ -30,7 +30,7 @@ import {
 } from 'react-native'
 import store from './src/redux/store'
 import setupI18n from './i18n/setup'
-import { setSession, getSession, compareSessions } from './src/canvas-api'
+import { setSession, compareSessions, getSessionUnsafe } from './src/canvas-api'
 import { registerScreens } from './src/routing/register-screens'
 import { setupBrandingFromNativeBrandingInfo } from './src/common/branding'
 import logout from './src/redux/logout-action'
@@ -49,7 +49,7 @@ configuration.notifyReleaseStages = ['testflight', 'production']
 configuration.appVersion = `${device.getVersion()}-${device.getBuildNumber()}`
 
 configuration.beforeSendCallbacks.push((report) => {
-  const session = getSession()
+  const session = getSessionUnsafe()
   if (shouldLogUserInfo && session) {
     report.addMetadata('user', 'id', session.user.id)
     report.addMetadata('user', 'baseURL', session.baseURL)
@@ -101,12 +101,12 @@ const loginHandler = async ({
     setupBrandingFromNativeBrandingInfo(branding)
   }
 
-  if (!authToken) {
+  if (!authToken || !baseURL) {
     setSession(null)
     store.dispatch(logout)
   } else {
     const session = { authToken, baseURL, user, actAsUserID }
-    const previous = getSession()
+    const previous = getSessionUnsafe()
     if (previous && !compareSessions(session, previous)) {
       setSession(null)
       store.dispatch(logout)

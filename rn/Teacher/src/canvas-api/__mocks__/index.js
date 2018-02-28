@@ -17,7 +17,7 @@
 /* @flow */
 
 import api from '../apis/index'
-import { getSession, setSession } from '../session'
+import { getSession, setSession, getSessionUnsafe } from '../session'
 import { default as httpClient, isAbort } from './httpClient'
 
 const moduleExports = {
@@ -26,6 +26,7 @@ const moduleExports = {
   isAbort,
   getSession,
   setSession,
+  getSessionUnsafe,
 }
 
 Object.keys(api).forEach((functionName) => {

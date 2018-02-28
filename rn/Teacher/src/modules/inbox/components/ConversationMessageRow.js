@@ -105,7 +105,7 @@ export default class ConversationMessageRow extends Component<ConversationMessag
 
   // The count of participants minus the author and me
   _extraParicipipantCount = (): number => {
-    const me = (getSession() || {}).user
+    const me = getSession().user
     const author = this._author()
     const participants = this.props.conversation.participants
     return participants.filter((p) => {
@@ -114,7 +114,7 @@ export default class ConversationMessageRow extends Component<ConversationMessag
   }
 
   _renderHeader = () => {
-    const me = (getSession() || {}).user
+    const me = getSession().user
     const message = this.props.message
     const author = this._author()
     let authorName = author.name

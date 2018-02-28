@@ -114,7 +114,7 @@ export default class WebContainer extends Component<Props, any> {
   onShouldStartLoadWithRequest = (event: any): boolean => {
     if (event && event.navigationType === 'click' && event.url && isWebUri(event.url)) {
       const session = getSession()
-      if (session && session.baseURL && event.url.includes(session.baseURL)) {
+      if (event.url.includes(session.baseURL)) {
         this.loadAuthenticatedURL(event.url)
         return false
       }
@@ -139,7 +139,7 @@ export default class WebContainer extends Component<Props, any> {
 
     html = TEMPLATE.replace('{{content}}', html)
     html = html.replace('{{content-width}}', `${this.state.viewportWidth}`)
-    const baseUrl = (getSession() || {}).baseURL
+    const baseUrl = getSession().baseURL
 
     return (
       <View style={style} onLayout={this.onLayout} testID='web-container.view'>

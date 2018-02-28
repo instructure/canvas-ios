@@ -21,7 +21,6 @@ import React from 'react'
 import { Alert, ActionSheetIOS } from 'react-native'
 import renderer from 'react-test-renderer'
 import { PageDetails, mapStateToProps, type Props } from '../PageDetails'
-import { setSession } from '../../../../canvas-api'
 import { defaultErrorTitle } from '../../../../redux/middleware/error-handler'
 import explore from '../../../../../test/helpers/explore'
 import setProps from '../../../../../test/helpers/setProps'
@@ -44,7 +43,6 @@ const template = {
 
 describe('PageDetails', () => {
   let props: Props
-  beforeAll(() => setSession(template.session()))
   beforeEach(() => {
     props = {
       pages: {},
