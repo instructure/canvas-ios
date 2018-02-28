@@ -20,7 +20,7 @@ import UIKit
 
 public extension UIColor {
     class var calendarTintColor: UIColor {
-        return UIColor(red: 9.0/255.0, green: 188.0/255.0, blue: 211.0/255.0, alpha: 1.0)
+        return UIColor(red: 0.0/255.0, green: 142.0/255.0, blue: 226.0/255.0, alpha: 1.0)
     }
     class var calendarHighlightTintColor: UIColor {
         return UIColor(red: 179.0/255.0, green: 224.0/255.0, blue: 234.0/255.0, alpha: 1.0)

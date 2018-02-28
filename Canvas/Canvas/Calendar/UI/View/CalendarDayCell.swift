@@ -88,7 +88,7 @@ open class CalendarDayCell: UICollectionViewCell {
         self.updateCellState()
         
         eventCountDot.layer.cornerRadius = 4
-        eventCountDot.backgroundColor = UIColor.colorFromHexString("#008EE2")
+        eventCountDot.backgroundColor = UIColor.calendarTintColor
         eventCountDot.isHidden = true
         self.addSubview(eventCountDot)
     }
@@ -123,7 +123,7 @@ open class CalendarDayCell: UICollectionViewCell {
         case .todaySelected:
             self.dateLabel.textColor = UIColor.white
         case .off:
-            self.dateLabel.textColor = UIColor.lightGray
+            self.dateLabel.textColor = UIColor.calendarDayOffTextColor
         case .offSelected:
             self.dateLabel.textColor = UIColor.white
         case .notMonth:
