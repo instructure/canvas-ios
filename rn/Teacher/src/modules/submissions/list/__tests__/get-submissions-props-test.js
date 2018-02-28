@@ -66,4 +66,12 @@ describe('GetSubmissionsProps gradeProp', () => {
     const result = gradeProp(submission)
     expect(result).toEqual('ungraded')
   })
+
+  test('pending review', () => {
+    const submission = template.submission({
+      grade: 12,
+      workflow_state: 'pending_review',
+    })
+    expect(gradeProp(submission)).toEqual('ungraded')
+  })
 })

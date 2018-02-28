@@ -72,7 +72,7 @@ export function gradeProp (submission: ?Submission): GradeProp {
     return 'not_submitted'
   }
 
-  if (submission.grade != null && submission.grade_matches_current_submission) {
+  if (submission.grade != null && submission.grade_matches_current_submission && submission.workflow_state !== 'pending_review') {
     return submission.grade
   }
 
