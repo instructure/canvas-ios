@@ -17,7 +17,7 @@
     
 
 #import <CanvasKit1/CanvasKit1.h>
-#import <CanvasKit1/CKAlertViewWithBlocks.h>
+#import "UIAlertController+TechDebt.h"
 #import <CanvasKit/CKIConversationRecipient.h>
 #import "CBIPeopleDetailViewController.h"
 #import "CBIPeopleViewModel.h"
@@ -99,15 +99,14 @@
     if (masqueradeAs.length > 0) {
         [[TheKeymaster masqueradeAsUserWithID:masqueradeAs] subscribeNext:^(id client) {
             DDLogVerbose(@"masqueradeAsUserSuccess : %@", [CKIClient currentClient].currentUser.id);
-            CKAlertViewWithBlocks *alert = [[CKAlertViewWithBlocks alloc] initWithTitle:NSLocalizedString(@"Success!", @"Masquerade success title") message:[NSString stringWithFormat:NSLocalizedString(@"You are now masquerading as %@. To Stop Masquerading go to your Profile.", @"Masquerade success message"), [CKIClient currentClient].currentUser.name]];
-            [alert addCancelButtonWithTitle:NSLocalizedString(@"OK", nil)];
-            [alert show];
+            NSString *title = NSLocalizedString(@"Success!", @"Masquerade success title");
+            NSString *message = [NSString stringWithFormat:NSLocalizedString(@"You are now masquerading as %@. To Stop Masquerading go to your Profile.", @"Masquerade success message"), [CKIClient currentClient].currentUser.name];
+            [UIAlertController showAlertWithTitle:title message:message];
         } error:^(NSError *error) {
             DDLogVerbose(@"masqueradeAsUserError : %@", [error localizedDescription]);
-            
-            CKAlertViewWithBlocks *alert = [[CKAlertViewWithBlocks alloc] initWithTitle:NSLocalizedString(@"Oops!", @"Title for an error alert") message:NSLocalizedString(@"You don't have permission to masquerade as this user or there is no user with that ID", @"Masquerade error message")];
-            [alert addCancelButtonWithTitle:NSLocalizedString(@"OK", nil)];
-            [alert show];
+            NSString *title = NSLocalizedString(@"Oops!", @"Title for an error alert");
+            NSString *message = NSLocalizedString(@"You don't have permission to masquerade as this user or there is no user with that ID", @"Masquerade error message");
+            [UIAlertController showAlertWithTitle:title message:message];
         }];
     }
 }

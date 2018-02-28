@@ -20,6 +20,7 @@
 #import "CKMediaCommentRecorderViewInternal.h"
 #import "INAVPlayerView.h"
 #import "UIImage+CanvasKit1.h"
+#import "UIAlertController+TechDebt.h"
 
 static const NSString *ItemStatusContext;
 
@@ -497,13 +498,7 @@ static const NSString *ItemStatusContext;
     recorder = [[AVAudioRecorder alloc] initWithURL:url settings:recorderSettings error:&err];
     if(!self.recorder){
         NSLog(@"recorder: %@ %ld %@", [err domain], (long)[err code], [[err userInfo] description]);
-        UIAlertView *alert =
-        [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Warning",nil)
-                                   message: [err localizedDescription]
-                                  delegate: nil
-                         cancelButtonTitle: NSLocalizedString(@"OK",nil)
-                         otherButtonTitles:nil];
-        [alert show];
+        [UIAlertController showAlertWithTitle:NSLocalizedString(@"Warning", nil) message:[err localizedDescription]];
         self.recorderFilePath = nil;
         return NO;
     }
@@ -514,13 +509,7 @@ static const NSString *ItemStatusContext;
     
     BOOL audioHWAvailable = audioSession.inputAvailable;
     if (! audioHWAvailable) {
-        UIAlertView *cantRecordAlert =
-        [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Warning",nil)
-                                   message: NSLocalizedString(@"Audio input hardware not available",nil)
-                                  delegate: nil
-                         cancelButtonTitle: NSLocalizedString(@"OK",nil)
-                         otherButtonTitles:nil];
-        [cantRecordAlert show];
+        [UIAlertController showAlertWithTitle:NSLocalizedString(@"Warning", nil) message:NSLocalizedString(@"Audio input hardware not available",nil)];
         self.recorder = nil;
         self.recorderFilePath = nil;
         return NO;
@@ -854,8 +843,7 @@ static const NSString *ItemStatusContext;
         NSLog(@"The video recording failed with an error: %@",error);
         [self stopAllMedia];
         // notify the user of the error (probably with an alert)
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Video error",nil) message:[error localizedDescription] delegate:nil cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil, nil];
-        [alert show];
+        [UIAlertController showAlertWithTitle:NSLocalizedString(@"Video Error", nil) message:[error localizedDescription]];
     }
     
     [self.captureSession removeOutput:self.videoFileOutput];

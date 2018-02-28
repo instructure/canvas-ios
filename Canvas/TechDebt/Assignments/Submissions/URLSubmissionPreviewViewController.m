@@ -20,6 +20,7 @@
 #import "UIViewController+AnalyticsTracking.h"
 #import "UIWebView+SafeAPIURL.h"
 #import "Analytics.h"
+#import "UIAlertController+TechDebt.h"
 
 @interface URLSubmissionPreviewViewController () <UIWebViewDelegate, UITextFieldDelegate>
 {
@@ -170,11 +171,7 @@
     }
     else {
         NSString *message = [NSString stringWithFormat:NSLocalizedString(@"%@ is not a valid URL", nil), textField.text];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Invalid URL", nil)
-                                                        message:message
-                                                       delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                              otherButtonTitles:nil];
-        [alert show];
+        [UIAlertController showAlertWithTitle:nil message:message];
     }
 }
 

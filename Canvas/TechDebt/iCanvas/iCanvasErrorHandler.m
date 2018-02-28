@@ -17,15 +17,14 @@
     
 
 #import <CanvasKit1/CanvasKit1.h>
-
+#import "UIAlertController+TechDebt.h"
 #import "iCanvasErrorHandler.h"
 
-@interface iCanvasErrorHandler () <UIAlertViewDelegate>
+@interface iCanvasErrorHandler ()
 @end
 
 @implementation iCanvasErrorHandler {
     BOOL _showedAccessTokenError;
-    UIAlertView *_accessTokenAlertView;
     NSMutableDictionary *_errorHistory;
 }
 
@@ -69,11 +68,10 @@
         // Sometimes, 'message' is apparently not a string. Cause that's useful. Thanks, API.
         if ([message isKindOfClass:[NSString class]] && [message isEqualToString:@"Invalid access token."]) {
             if (!_showedAccessTokenError) {
-                // Bad access token error.
-                _accessTokenAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Authentication error", @"Title for an error popup")
-                                                                   message:NSLocalizedString(@"Could not authenticate with server", nil)
-                                                                  delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-                [_accessTokenAlertView show];
+                // Bad access token error
+                [UIAlertController showAlertWithTitle:NSLocalizedString(@"Authentication error", @"Title for an error popup") message:NSLocalizedString(@"Could not authenticate with server", nil) handler:^{
+                    _showedAccessTokenError = NO;
+                }];
                 _showedAccessTokenError = YES;
             }
             return;
@@ -111,32 +109,16 @@
         if (!previousTimeStamp || [timeStamp timeIntervalSinceDate:previousTimeStamp] > 30.0) {
             _errorHistory[errorMessage] = timeStamp;
             
-            UIAlertView * errorAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"Title for an error popup")
-                                                                      message:errorMessage
-                                                                     delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-           
-            
             BOOL invalidAccessTokenMessageReturned = [errorMessage isEqualToString:@"Invalid access token."];
             BOOL unsupportedUrlMessageReturned = [errorMessage rangeOfString:@"unsupported URL"].length > 0;
             
             // Supressing two errors that appear to have no impact but are sometimes returned
             if (!invalidAccessTokenMessageReturned && !unsupportedUrlMessageReturned)
             {
-                [errorAlertView show];
+                [UIAlertController showAlertWithTitle:NSLocalizedString(@"Error", @"Title for an error popup") message:errorMessage];
             }
         }
     }
 }
-
-
-#pragma mark - UIAlertViewDelegate
-
--(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (alertView == _accessTokenAlertView) {
-        _showedAccessTokenError = NO;
-        _accessTokenAlertView = nil;
-    }
-}
-
 
 @end

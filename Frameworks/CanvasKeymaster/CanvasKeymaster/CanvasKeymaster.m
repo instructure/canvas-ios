@@ -18,6 +18,7 @@
 #import <objc/runtime.h>
 #import "FXKeychain+CKMKeyChain.h"
 #import "UIDevice+CKMHardware.h"
+#import "UIAlertController+Show.h"
 @import ReactiveObjC;
 
 #pragma mark - Mobile Verify
@@ -108,11 +109,12 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
 
 - (void)accessTokenExpired:(NSNotification *)note
 {
-    NSString *expiredAlertMessage = NSLocalizedString(@"Your login has expired or has been removed by the server. Please log in again.", @"when the access token has been revoked");
+    NSString *message = NSLocalizedString(@"Your login has expired or has been removed by the server. Please log in again.", @"when the access token has been revoked");
     NSString *dismissButtonTitle = NSLocalizedString(@"Dismiss", @"Dismiss login expired/revoked alert button");
     
-    [[[UIAlertView alloc] initWithTitle:@"" message:expiredAlertMessage delegate:nil cancelButtonTitle:dismissButtonTitle otherButtonTitles:nil] show];
-    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:dismissButtonTitle style:UIAlertActionStyleDefault handler:nil]];
+    [alert show];
     [self logout];
 }
 

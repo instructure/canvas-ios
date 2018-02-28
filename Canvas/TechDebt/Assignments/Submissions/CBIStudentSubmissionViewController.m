@@ -37,6 +37,7 @@
 #import "MobileQuizInformationViewController.h"
 #import "Router.h"
 #import "ThreadedDiscussionViewController.h"
+#import "UIAlertController+TechDebt.h"
 
 @import CanvasKeymaster;
 @import CanvasCore;
@@ -311,9 +312,9 @@ typedef enum CBISubmissionState : NSUInteger {
 
 - (void)postUploadError {
     DDLogVerbose(@"%@ - %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd));
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Submission Error", @"Title for file submission error") message:NSLocalizedString(@"There was a network problem while attempting to upload your submission", @"message for failed submission upload") delegate:nil cancelButtonTitle:NSLocalizedString(@"Dismiss", @"Dismiss button title") otherButtonTitles:nil];
-    
-    [alert show];
+    NSString *title = NSLocalizedString(@"Submission Error", @"Title for file submission error");
+    NSString *message = NSLocalizedString(@"There was a network problem while attempting to upload your submission", @"message for failed submission upload");
+    [UIAlertController showAlertWithTitle:title message:message];
 }
 
 - (IBAction)tappedTurnIn:(id)sender {
@@ -650,9 +651,9 @@ typedef enum CBISubmissionState : NSUInteger {
         progress = nil;
         if (error) {
             DDLogVerbose(@"%@ - error=%@", NSStringFromSelector(_cmd), error);
-            
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Comment Error", @"title for media comment upload failure") message:NSLocalizedString(@"There was a network error posting your comment.", @"message for media comment upload failure") delegate:nil cancelButtonTitle:NSLocalizedString(@"Dismiss", @"Dismiss button title") otherButtonTitles:nil];
-            [alert show];
+            NSString *title = NSLocalizedString(@"Comment Error", @"title for media comment upload failure");
+            NSString *message = NSLocalizedString(@"There was a network error posting your comment.", @"message for media comment upload failure");
+            [UIAlertController showAlertWithTitle:title message:message];
         }
         else {
             DDLogVerbose(@"%@ - success!", NSStringFromSelector(_cmd));

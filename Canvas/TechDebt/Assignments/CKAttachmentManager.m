@@ -29,6 +29,7 @@
 #import "UIImage+Resize.h"
 #import <AVFoundation/AVFoundation.h>
 #import "EXTScope.h"
+#import "UIAlertController+TechDebt.h"
 
 @import CanvasCore;
 
@@ -240,12 +241,8 @@
 
     if (!pathToAudio || mediaTypeToUse == CKAttachmentMediaTypeUnknown) {
         // This means that they tried to submit a comment without an audio attachment
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"No Recorded Audio", @"Title for attempting submission without a comment")
-                                                            message:NSLocalizedString(@"No audio was recorded.", @"Message for attempting submission without a comment")
-                                                           delegate:self
-                                                  cancelButtonTitle:nil
-                                                  otherButtonTitles:NSLocalizedString(@"OK", nil) , nil];
-        [alertView show];
+        [UIAlertController showAlertWithTitle:NSLocalizedString(@"No Recorded Audio", @"Title for attempting submission without a comment") message:NSLocalizedString(@"No audio was recorded.", @"Message for attempting submission without a comment")];
+        
         return;
     }
     

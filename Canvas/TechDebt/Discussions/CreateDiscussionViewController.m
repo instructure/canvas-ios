@@ -18,13 +18,13 @@
 
 #import <CanvasKit1/CanvasKit1.h>
 #import "UIViewController+AnalyticsTracking.h"
-#import <CanvasKit1/CKAlertViewWithBlocks.h>
+#import "UIAlertController+TechDebt.h"
 
 #import "CreateDiscussionViewController.h"
 
 #import "DiscussionCreationStrategy.h"
 #import "Analytics.h"
-
+#import "UIAlertController+TechDebt.h"
 @import CanvasCore;
 
 #import "CBILog.h"
@@ -165,9 +165,7 @@
 {
     DDLogVerbose(@"createDiscussionPressed");
     if (![self isReadyToPost]) {
-        CKAlertViewWithBlocks *alert = [[CKAlertViewWithBlocks alloc]initWithTitle:NSLocalizedString(@"Oops!", @"Title for an error alert") message:NSLocalizedString(@"You need a title and a description to post", @"Error message")];
-        [alert addCancelButtonWithTitle:NSLocalizedString(@"OK", @"OK Button Title")];
-        [alert show];
+        [UIAlertController showAlertWithTitle:NSLocalizedString(@"Oops!", @"Title for an error alert") message:NSLocalizedString(@"You need a title and a description to post", @"Error message")];
     }
     else {
         [descriptionInputView tappedPostCommentButton:nil];
@@ -228,11 +226,7 @@
             NSString *message = error.code >= 500
                 ? NSLocalizedString(@"Unable to post. Please try again later.", @"Error message")
                 : NSLocalizedString(@"Unable to post.", @"Error message without retry");
-            
-            CKAlertViewWithBlocks *alert = [[CKAlertViewWithBlocks alloc] initWithTitle:NSLocalizedString(@"Oops!", @"Title for an error alert") 
-                                                                                message:message];
-            [alert addCancelButtonWithTitle:NSLocalizedString(@"OK", @"OK Button Title")];
-            [alert show];
+            [UIAlertController showAlertWithTitle:NSLocalizedString(@"Oops!", @"Title for an error alert") message:message];
         }
         else {
             DDLogVerbose(@"newTopicCreated : %llu : %@", topic.ident, topic.title);

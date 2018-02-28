@@ -20,7 +20,7 @@
 #import "VideoRecorderController.h"
 #import "URLSubmissionPreviewViewController.h"
 #import "ReceivedFilesViewController.h"
-
+#import "UIAlertController+TechDebt.h"
 #import <CanvasKit1/CanvasKit1.h>
 #import <CanvasKit/CKIAssignment.h>
 #import "ThreadedDiscussionViewController.h"
@@ -29,6 +29,7 @@
 #import "CKIClient+CBIClient.h"
 #import "CKRichTextInputView.h"
 #import "MobileQuizInformationViewController.h"
+#import "UIAlertController+TechDebt.h"
 
 @import CanvasKeymaster;
 @import CanvasCore;
@@ -135,12 +136,9 @@
                     [self showMediaRecorderPicker];
                 }
                 else {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Can't submit media", @"Setup only allows media but no Kaltura instance error title")
-                                                                    message:NSLocalizedString(@"Your school's configuration does not allow the type of submission selected for this assignment", @"Media submission type selected with no Kaltura set up")
-                                                                   delegate:nil
-                                                          cancelButtonTitle:NSLocalizedString(@"OK",nil)
-                                                          otherButtonTitles:nil];
-                    [alert show];
+                    NSString *title = NSLocalizedString(@"Can't submit media", @"Setup only allows media but no Kaltura instance error title");
+                    NSString *message = NSLocalizedString(@"Your school's configuration does not allow the type of submission selected for this assignment", @"Media submission type selected with no Kaltura set up");
+                    [UIAlertController showAlertWithTitle:title message:message];
                 }
                 break;
             }
@@ -234,11 +232,7 @@ static void showErrorForAssignment(NSError *error, NSString *assignmentName) {
         [application presentLocalNotificationNow:note];
     }
     else {
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[error localizedDescription]
-                                                        message:message
-                                                       delegate:nil cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil];
-        [alert show];
+        [UIAlertController showAlertWithTitle:[error localizedDescription] message:message];
     }
 }
 
@@ -505,12 +499,7 @@ static void deleteFiles(NSArray *fileURLs) {
         
         for (NSURL *url in urls) {
             if (![assignment allowsExtension:[url pathExtension]]) {
-                CKAlertViewWithBlocks *alert = [[CKAlertViewWithBlocks alloc] initWithTitle:[assignment notAllowedAlertTitle:[url pathExtension]]
-                                                                                    message:[assignment notAllowedAlertMessage]];
-                
-                [alert addCancelButtonWithTitle:NSLocalizedString(@"OK", nil)];
-                [alert show];
-                
+                [UIAlertController showAlertWithTitle:[assignment notAllowedAlertTitle:[url pathExtension]] message:[assignment notAllowedAlertMessage]];
                 [application endBackgroundTask:backgroundTask];
                 return;
             }

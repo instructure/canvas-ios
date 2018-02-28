@@ -20,7 +20,7 @@
 #import <CanvasKit1/CanvasKit1.h>
 #import "UIViewController+AnalyticsTracking.h"
 #import <CanvasKit1/CKActionSheetWithBlocks.h>
-#import <CanvasKit1/CKAlertViewWithBlocks.h>
+#import "UIAlertController+TechDebt.h"
 
 #import "AboutViewController.h"
 #import "WebBrowserViewController.h"
@@ -322,8 +322,7 @@ typedef NS_ENUM(NSInteger, LegalRows) {
     [mutableURLStr replaceOccurrencesOfString:@"http://" withString:@"caldav://" options:0 range:NSMakeRange(0, mutableURLStr.length)];
     
     NSURL *caldavURL = [NSURL URLWithString:mutableURLStr];
-    
-    [[UIApplication sharedApplication] openURL:caldavURL];
+    [[UIApplication sharedApplication] openURL:caldavURL options:@{} completionHandler:nil];
 }
 
 @end

@@ -22,11 +22,12 @@
 #import "WebBrowserViewController.h"
 #import "iCanvasConstants.h"
 #import "Analytics.h"
+#import "UIAlertController+TechDebt.h"
 
 @import CanvasCore;
 @import CanvasKit;
 
-@interface WebBrowserViewController () <WKNavigationDelegate, UIDocumentInteractionControllerDelegate, UITextFieldDelegate, NSURLConnectionDataDelegate, UIAlertViewDelegate>
+@interface WebBrowserViewController () <WKNavigationDelegate, UIDocumentInteractionControllerDelegate, UITextFieldDelegate, NSURLConnectionDataDelegate>
 {
     __weak IBOutlet UINavigationBar *topToolbar;
     __weak IBOutlet UIToolbar *bottomToolbar;
@@ -437,19 +438,14 @@
 
     [webView evaluateJavaScript:@"document.body.innerHTML" completionHandler:^(id _Nullable html, NSError *_Nullable error) {
         if ([html isEqualToString:@"Could not find download URL"]) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"There was an error loading your content. If it is an audio or video upload it may still be processing.", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-            [alert show];
+            [UIAlertController showAlertWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"There was an error loading your content. If it is an audio or video upload it may still be processing.", nil) handler:^{
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }];
         }
     }];
 
     [webView replaceHREFsWithAPISafeURLs];
     [self.delegate webBrowser:self didFinishLoadingWebView:webView];
-}
-
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    // The only alertview shown will be for a 'Could not find download URL' error
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)toggleTitleDisplayState

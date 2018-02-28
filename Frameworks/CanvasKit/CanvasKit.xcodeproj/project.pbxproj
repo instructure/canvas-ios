@@ -10,6 +10,8 @@
 		2C0A5C2C203650DE00B8C14F /* LoginFinished.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C0A5C2B203650DE00B8C14F /* LoginFinished.storyboard */; };
 		2C0A5C2F2036515A00B8C14F /* CKILoginFinishedViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C0A5C2D2036515A00B8C14F /* CKILoginFinishedViewController.h */; };
 		2C0A5C302036515A00B8C14F /* CKILoginFinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0A5C2E2036515A00B8C14F /* CKILoginFinishedViewController.m */; };
+		2C7041A5203CD7D300745253 /* UIAlertController+Show.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C7041A3203CD7D300745253 /* UIAlertController+Show.h */; };
+		2C7041A6203CD7D300745253 /* UIAlertController+Show.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7041A4203CD7D300745253 /* UIAlertController+Show.m */; };
 		3B2940161E7209AA00F2E49C /* CKIBrand.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B2940141E7209AA00F2E49C /* CKIBrand.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3B2940171E7209AA00F2E49C /* CKIBrand.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2940151E7209AA00F2E49C /* CKIBrand.m */; };
 		496FC3B11F3A592900054359 /* CKIClient+CKIEnrollment.h in Headers */ = {isa = PBXBuildFile; fileRef = 496FC3AF1F3A592900054359 /* CKIClient+CKIEnrollment.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -424,6 +426,8 @@
 		2C0A5C2B203650DE00B8C14F /* LoginFinished.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginFinished.storyboard; sourceTree = "<group>"; };
 		2C0A5C2D2036515A00B8C14F /* CKILoginFinishedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CKILoginFinishedViewController.h; sourceTree = "<group>"; };
 		2C0A5C2E2036515A00B8C14F /* CKILoginFinishedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CKILoginFinishedViewController.m; sourceTree = "<group>"; };
+		2C7041A3203CD7D300745253 /* UIAlertController+Show.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+Show.h"; sourceTree = "<group>"; };
+		2C7041A4203CD7D300745253 /* UIAlertController+Show.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+Show.m"; sourceTree = "<group>"; };
 		2CD80599201BCF1A001D22CC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3A2D00B0E16C49DC751FD964 /* Pods_CanvasKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B2940141E7209AA00F2E49C /* CKIBrand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKIBrand.h; sourceTree = "<group>"; };
@@ -1022,6 +1026,8 @@
 				499D18AC1C8644A3005A86D2 /* NSString+CKIAdditions.m */,
 				499D18AD1C8644A3005A86D2 /* NSValueTransformer+CKIPredefinedTransformerAdditions.h */,
 				499D18AE1C8644A3005A86D2 /* NSValueTransformer+CKIPredefinedTransformerAdditions.m */,
+				2C7041A3203CD7D300745253 /* UIAlertController+Show.h */,
+				2C7041A4203CD7D300745253 /* UIAlertController+Show.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1540,6 +1546,7 @@
 				499D1A301C8644A3005A86D2 /* CKIClient+CKIOutcomeGroup.h in Headers */,
 				499D19E61C8644A3005A86D2 /* CKIService.h in Headers */,
 				499D19F21C8644A3005A86D2 /* CKISubmissionRecord.h in Headers */,
+				2C7041A5203CD7D300745253 /* UIAlertController+Show.h in Headers */,
 				499D19AC1C8644A3005A86D2 /* CKIConversation.h in Headers */,
 				499D199F1C8644A3005A86D2 /* CKIActivityStreamSubmissionItem.h in Headers */,
 				499D1A0A1C8644A3005A86D2 /* CKIClient+CKIAccountDomain.h in Headers */,
@@ -1897,6 +1904,7 @@
 				499D1A2D1C8644A3005A86D2 /* CKIClient+CKIModuleItem.m in Sources */,
 				499D1A451C8644A3005A86D2 /* CKIClient+CKISubmissionComment.m in Sources */,
 				499D19901C8644A3005A86D2 /* CKIAccountDomain.m in Sources */,
+				2C7041A6203CD7D300745253 /* UIAlertController+Show.m in Sources */,
 				499D199E1C8644A3005A86D2 /* CKIActivityStreamMessageItem.m in Sources */,
 				499D19DF1C8644A3005A86D2 /* CKIPollSubmission.m in Sources */,
 				499D1A071C8644A3005A86D2 /* CKIRubricCriterion.m in Sources */,

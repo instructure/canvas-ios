@@ -18,7 +18,7 @@
 
 #import <CanvasKit1/CanvasKit1.h>
 #import <CanvasKit1/CKActionSheetWithBlocks.h>
-#import <CanvasKit1/CKAlertViewWithBlocks.h>
+#import "UIAlertController+TechDebt.h"
 #import <CanvasKit1/CKActionSheetWithBlocks.h>
 #import <CanvasKit1/CKUploadProgressToolbar.h>
 #import <CanvasKit1/NSArray+CKAdditions.h>
@@ -240,17 +240,15 @@ static NSIndexSet *indexSetFromIndexPathRows(NSArray *paths) {
     if (nonEmptyFolders.count > 0) {
         DDLogVerbose(@"nonEmptyFolders");
         NSString *title = NSLocalizedString(@"Warning", @"Title for a warning popup");
-        
         NSString *message = NSLocalizedString(@"Some selected folders are not empty. Are you sure you want to delete them?", @"Message for a warning popup");
-        
-        CKAlertViewWithBlocks *alert = [[CKAlertViewWithBlocks alloc] initWithTitle:title message:message];
         NSString *confirmButton = NSLocalizedString(@"Delete", @"Delete Button title");
         NSString *cancelButton = NSLocalizedString(@"Don't delete", @"Button to cancel deleting folders");
-        [alert addButtonWithTitle:confirmButton handler:^{
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:cancelButton style:UIAlertActionStyleCancel handler:nil]];
+        [alert addAction:[UIAlertAction actionWithTitle:confirmButton style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
             [self deleteFolderItems:items];
-        }];
-        [alert addCancelButtonWithTitle:cancelButton];
-        [alert show];
+        }]];
+        [self presentViewController:alert animated:YES completion:nil];
     }
     else {
         [self deleteFolderItems:items];
@@ -274,11 +272,9 @@ static NSIndexSet *indexSetFromIndexPathRows(NSArray *paths) {
                 [rowsToRemove removeIndex:index];
             }
             NSLog(@"Error deleting items: %@", errors);
-            
             NSString *title = NSLocalizedString(@"Error", @"Title for an error popup");
             NSString *message = NSLocalizedString(@"Some items could not be deleted", @"Message for an error popup");
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-            [alert show];
+            [UIAlertController showAlertWithTitle:title message:message];
         }
         else {
             [self setEditing:NO animated:YES];
@@ -617,11 +613,7 @@ static NSIndexSet *indexSetFromIndexPathRows(NSArray *paths) {
     NetworkStatus status = [reachability currentReachabilityStatus];
     
     if (status == NotReachable) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"File unavailable", @"Title for an alert popup")
-                                                        message:NSLocalizedString(@"The server could not be reached", @"Explanation for while a file is unavailable")
-                                                       delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                              otherButtonTitles:nil];
-        [alert show];
+        [UIAlertController showAlertWithTitle:NSLocalizedString(@"File unavailable", @"Title for an alert popup") message:NSLocalizedString(@"The server could not be reached", @"Explanation for while a file is unavailable")];
     }
     else {
         uint64_t fileSizeAlertLimit = 0;
@@ -635,13 +627,14 @@ static NSIndexSet *indexSetFromIndexPathRows(NSArray *paths) {
         if (file.fileSize > fileSizeAlertLimit) {
             NSString *fileSize = [[CKByteCountFormatter new] stringFromByteCount:file.fileSize];
             NSString *message = [NSString stringWithFormat:@"This file is %@, and may take a while to download. Proceed?", fileSize];
-            CKAlertViewWithBlocks *alert = [[CKAlertViewWithBlocks alloc] initWithTitle:NSLocalizedString(@"Large file", @"Title for an alert popup")
-                                                                                message:message];
-            [alert addButtonWithTitle:NSLocalizedString(@"Show file", @"Title for button confirming showing a file") handler:^{
+            NSString *title = NSLocalizedString(@"Large file", @"Title for an alert popup");
+            NSString *cancelButton = NSLocalizedString(@"Cancel", @"Button to cancel deleting folders");
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:cancelButton style:UIAlertActionStyleCancel handler:nil]];
+            [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Show file", @"Title for button confirming showing a file") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 [self showFile:file];
-            }];
-            [alert addCancelButtonWithTitle:NSLocalizedString(@"Cancel", @"Cancel button title")];
-            [alert show];
+            }]];
+            [self presentViewController:alert animated:YES completion:nil];
         }
         else {
             [self showFile:file];
@@ -705,19 +698,15 @@ static NSIndexSet *indexSetFromIndexPathRows(NSArray *paths) {
     DDLogVerbose(@"tappedAddFolder");
     NSString *title = NSLocalizedString(@"New Folder", @"Title for an alert popup, where the user will be asked to provide a name for the new folder");
     NSString *message = NSLocalizedString(@"Choose a name for the new folder.", @"Content of an alert popup");
-    
-    CKAlertViewWithBlocks *alert = [[CKAlertViewWithBlocks alloc] initWithTitle:title message:message];
-    __weak CKAlertViewWithBlocks *weakAlert = alert;
-    
-    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-    [alert addCancelButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
-    
-    [alert addButtonWithTitle:NSLocalizedString(@"Save", nil) handler:^{
-        UITextField *textField = [weakAlert textFieldAtIndex:0];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil]];
+    [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Save", @"Title for button confirming showing a file") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UITextField *textField = alert.textFields[0];
         NSString *folderName = textField.text;
         [self createFolderWithName:folderName];
-    }];
-    [alert show];
+    }]];
+    [alert addTextFieldWithConfigurationHandler:nil];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)createFolderWithName:(NSString *)name {

@@ -21,7 +21,7 @@
 #import "UIViewController+AnalyticsTracking.h"
 #import <CanvasKit1/CKActionSheetWithBlocks.h>
 #import <CanvasKit1/NSFileManager+CKAdditions.h>
-
+#import "UIAlertController+TechDebt.h"
 #import "ReceivedFilesViewController.h"
 #import "DocumentLibraryView.h"
 
@@ -86,10 +86,7 @@ static NSURL *receivedFilesFolder() {
         NSString *title = NSLocalizedString(@"File received", nil);
         NSString *messageTemplate = NSLocalizedString(@"'%@' is now ready to submit to assignments", @"%@ will be replaced by the filename");
         NSString *message = [NSString stringWithFormat:messageTemplate, url.lastPathComponent];
-        NSString *ok = NSLocalizedString(@"OK", nil);
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:ok otherButtonTitles:nil];
-        [alert show];
-        
+        [UIAlertController showAlertWithTitle:title message:message];
         [[NSFileManager defaultManager] removeItemAtURL:url error:NULL];
     }
 
@@ -355,11 +352,7 @@ static NSURL *receivedFilesFolder() {
                                     [self updateSubmitButton];
                                 }
                                 else {
-                                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                                                    message:[error localizedDescription]
-                                                                                   delegate:nil
-                                                                          cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-                                    [alert show];
+                                    [UIAlertController showAlertWithTitle:nil message:[error localizedDescription]];
                                 }
                             }];
     actionSheet.destructiveButtonIndex = actionSheet.numberOfButtons - 1;

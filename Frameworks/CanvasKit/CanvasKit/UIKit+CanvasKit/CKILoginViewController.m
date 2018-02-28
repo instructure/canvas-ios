@@ -18,8 +18,9 @@
 #import "NSString+CKIAdditions.h"
 @import ReactiveObjC;
 #import "CKIClient.h"
+#import "UIAlertController+Show.h"
 
-@interface CKILoginViewController () <UIWebViewDelegate, NSURLSessionTaskDelegate, UIAlertViewDelegate>
+@interface CKILoginViewController () <UIWebViewDelegate, NSURLSessionTaskDelegate>
 @property (nonatomic, copy) NSURLRequest *request;
 @property (nonatomic) CKIAuthenticationMethod method;
 @property (nonatomic, copy) void(^completionHandler)(NSURLSessionAuthChallengeDisposition, NSURLCredential *);
@@ -120,23 +121,6 @@ static UIImage *_loadingImage = nil;
     [self.webView loadRequest:request];
 }
 
-#pragma mark - UIAlertView Delegate
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 1) {
-        [self cancelOAuth];
-    } else {
-        NSString *username = [[alertView textFieldAtIndex:0] text];
-        NSString *password = [[alertView textFieldAtIndex:1] text];
-        
-        NSURLCredential *secretHandshake = [NSURLCredential credentialWithUser:username password:password persistence:NSURLCredentialPersistenceForSession];
-        if (self.completionHandler) {
-            self.completionHandler(NSURLSessionAuthChallengeUseCredential,secretHandshake);
-        }
-    }
-}
-
 #pragma mark - NSURLSession Delegate
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential *))completionHandler
@@ -147,15 +131,33 @@ static UIImage *_loadingImage = nil;
         self.completionHandler = completionHandler;
         
         if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodNTLM] || [challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodHTTPBasic]){
-            UIAlertView *alertView = [UIAlertView new];
-            alertView.delegate = self;
-            alertView.title = NSLocalizedString(@"Login", nil);
-            alertView.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
-            [alertView textFieldAtIndex:0].placeholder = NSLocalizedString(@"Username", nil);
-            [alertView addButtonWithTitle:NSLocalizedString(@"OK", nil)];
-            [alertView addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
             
-            [alertView show];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Login", nil) message:nil preferredStyle:UIAlertControllerStyleAlert];
+            
+            [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+                textField.placeholder = NSLocalizedString(@"Username", nil);
+            }];
+            
+            [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+                textField.placeholder = NSLocalizedStringFromTableInBundle(@"Password", nil, [NSBundle bundleForClass:[self class]], nil);
+            }];
+            
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
+                [self cancelOAuth];
+            }];
+            UIAlertAction *OKAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                NSString *username = alert.textFields.firstObject.text;
+                NSString *password = alert.textFields.lastObject.text;
+                
+                NSURLCredential *secretHandshake = [NSURLCredential credentialWithUser:username password:password persistence:NSURLCredentialPersistenceForSession];
+                if (self.completionHandler) {
+                    self.completionHandler(NSURLSessionAuthChallengeUseCredential,secretHandshake);
+                }
+            }];
+            [alert addAction:cancelAction];
+            [alert addAction:OKAction];
+            
+            [alert show];
         } else if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]){
             //See AFURLSessionManager
             credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];

@@ -26,8 +26,6 @@
  Fetch all the modules for a given course.
  
  @param course the course that the modules are in
- @param success the block to be executed if the API call succeeds
- @param failure the block to be executed if the API call fails
  */
 - (RACSignal *)fetchModulesForCourse:(CKICourse *)course;
 
@@ -35,8 +33,6 @@
  Fetch a specific module for a course.
  
  @param course the course that the module is in
- @param success the block to be executed if the API call succeeds
- @param failure the block to be executed if the API call fails
  */
 - (RACSignal *)fetchModuleWithID:(NSString *)moduleID forCourse:(CKICourse *)course;
 

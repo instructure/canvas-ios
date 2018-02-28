@@ -18,7 +18,6 @@
 
 #import <CanvasKit1/CanvasKit1.h>
 #import <CanvasKit1/CKActionSheetWithBlocks.h>
-#import <CanvasKit1/CKAlertViewWithBlocks.h>
 #import <CanvasKit1/NSFileManager+CKAdditions.h>
 
 #import "ProfileViewController.h"
@@ -33,6 +32,7 @@
 #import "CKIUser+SwiftCompatibility.h"
 #import "CKCanvasAPI+CurrentAPI.h"
 #import "Analytics.h"
+#import "UIAlertController+TechDebt.h"
 
 @import CanvasCore;
 @import CanvasKit;
@@ -420,9 +420,7 @@ CGFloat square(CGFloat x){return x*x;}
         if (error) {
             NSString *title = NSLocalizedString(@"Error", nil);
             NSString *message = NSLocalizedString(@"Unable to upload to server", @"message saying that avatar couldn't be loaded to server");
-            CKAlertViewWithBlocks *alertView = [[CKAlertViewWithBlocks alloc] initWithTitle:title message:message];
-            [alertView addButtonWithTitle:NSLocalizedString(@"OK", nil) handler:^{}];
-            [alertView show];
+            [UIAlertController showAlertWithTitle:title message:message];
             return;
         }
         

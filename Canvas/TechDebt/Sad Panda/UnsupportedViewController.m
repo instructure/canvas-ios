@@ -17,8 +17,7 @@
     
 
 #import "UnsupportedViewController.h"
-
-
+#import "UIAlertController+TechDebt.h"
 #import "UIViewController+AnalyticsTracking.h"
 #import "CBILog.h"
 
@@ -57,8 +56,7 @@
     if ([[UIApplication sharedApplication] canOpenURL:self.canvasURL]) {
         [[UIApplication sharedApplication] openURL:self.canvasURL];
     } else {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Whoops!", "Error Title") message:NSLocalizedString(@"There was a problem launching Safari",nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil];
-        [alertView show];
+        [UIAlertController showAlertWithTitle:NSLocalizedString(@"Whoops!", "Error Title") message:NSLocalizedString(@"There was a problem launching Safari", nil)];
     }
 }
 

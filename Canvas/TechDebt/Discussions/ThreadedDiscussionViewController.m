@@ -21,7 +21,7 @@
 #import "UIViewController+AnalyticsTracking.h"
 #import <CanvasKit1/NSArray+CKAdditions.h>
 #import <CanvasKit1/CKUploadProgressToolbar.h>
-#import <CanvasKit1/CKAlertViewWithBlocks.h>
+#import "UIAlertController+TechDebt.h"
 #import "ThreadedDiscussionViewController.h"
 #import "ThreadedDiscussionViewControllerProtected.h"
 #import "DiscussionEntryCell.h"
@@ -1259,18 +1259,17 @@ CKDiscussionEntry *asEntry(id entryOrTopic) {
 
 - (void)deleteEntry:(id)sender
 {
-    CKAlertViewWithBlocks *alert = [[CKAlertViewWithBlocks alloc] initWithTitle:NSLocalizedString(@"Confirm deletion", @"Alert title") message:NSLocalizedString(@"Delete this reply?", @"Alert message")];
-    [alert addCancelButtonWithTitle:NSLocalizedString(@"Cancel", @"Cancel button title")];
-    [alert addButtonWithTitle:NSLocalizedString(@"Delete", @"Delete Button title") handler:^{
+    NSString *title = NSLocalizedString(@"Confirm deletion", @"Alert title");
+    NSString *message = NSLocalizedString(@"Delete this reply?", @"Alert message");
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel button title") style:UIAlertActionStyleCancel handler:nil]];
+    [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Delete", @"Delete Button title") style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
         CKDiscussionEntry *entry = [self itemForIndexPath:tappedIndexPath];
         
         [_canvasAPI deleteDiscussionEntry:entry block:^(NSError *error, BOOL isFinalValue) {
             if (error) {
                 NSLog(@"Unable to delete discussion entry. Error message: %@", error);
-                
-                CKAlertViewWithBlocks *errorAlert = [[CKAlertViewWithBlocks alloc] initWithTitle:NSLocalizedString(@"Error", @"Title for an error popup") message:NSLocalizedString(@"You do not have permission to delete this reply", @"Error message")];
-                [errorAlert addCancelButtonWithTitle:NSLocalizedString(@"OK", nil)];
-                [errorAlert show];
+                [UIAlertController showAlertWithTitle:NSLocalizedString(@"Error", @"Title for an error popup") message:NSLocalizedString(@"You do not have permission to delete this reply", @"Error message")];
             }
             else {
                 
@@ -1290,13 +1289,14 @@ CKDiscussionEntry *asEntry(id entryOrTopic) {
                 [queue calculateCellHeightForEntry:entry inTableView:self.tableView withIndentationLevel:(int)[self tableView:self.tableView indentationLevelForRowAtIndexPath:reloadingIndexPath] handler:^(CGFloat height) {
                     [weakSelf recordHeight:height forRoot:root indexPath:reloadingIndexPath orientation:orientation];
                     if ([[weakSelf rootEntry] isEqual:root]) {
-                     [weakSelf.tableView reloadRowsAtIndexPaths:@[ reloadingIndexPath ] withRowAnimation:UITableViewRowAnimationFade];
+                        [weakSelf.tableView reloadRowsAtIndexPaths:@[ reloadingIndexPath ] withRowAnimation:UITableViewRowAnimationFade];
                     }
                 }];
             }
         }];
-    }];
-    [alert show];
+    }]];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath {
