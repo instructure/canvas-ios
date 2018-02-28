@@ -34,7 +34,6 @@ import i18n from 'format-message'
 import Navigator from '../../../routing/Navigator'
 import ThreadedLinesView from '../../../common/components/ThreadedLinesView'
 import { isTeacher } from '../../app'
-import { getSession } from '../../../canvas-api'
 
 type ReadState = 'read' | 'unread'
 
@@ -209,15 +208,7 @@ export default class Reply extends Component<Props> {
   }
 
   _canEdit = () => {
-    if (isTeacher()) return true
-
-    const session = getSession()
-    if (!session) return false
-
-    let { reply, participants } = this.props
-    let replyUser = participants[reply.user_id]
-    const currentUser = session.user
-    return currentUser.id === replyUser.id
+    return isTeacher()
   }
 }
 
