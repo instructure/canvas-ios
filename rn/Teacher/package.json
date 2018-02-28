@@ -119,7 +119,8 @@
       "flow/*.js",
       "/src/modules/staging",
       "dangerfile.js",
-      "/src/canvas-api/apis"
+      "/src/canvas-api/apis",
+      "/test/scripts"
     ],
     "coverageDirectory": "./coverage",
     "coverageReporters": [

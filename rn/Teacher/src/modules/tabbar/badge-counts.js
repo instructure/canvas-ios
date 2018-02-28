@@ -31,9 +31,7 @@ export async function updateBadgeCounts () {
       let { data: todo } = await canvas.getToDoCount()
       TabBarBadgeCounts.updateTodoListCount(todo.needs_grading_count)
     }
-  } catch (error) {
-    console.log('There was a problem getting the updated badge counts', error)
-  }
+  } catch (e) {}
 }
 
 export async function beginUpdatingBadgeCounts () {

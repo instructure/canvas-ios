@@ -99,6 +99,11 @@ NativeModules.Helm = {
   traitCollection: jest.fn(),
 }
 
+NativeModules.TabBarBadgeCounts = {
+  updateUnreadMessageCount: jest.fn(),
+  updateTodoListCount: jest.fn(),
+}
+
 jest.mock('NativeEventEmitter')
 
 jest.mock('NetInfo', () => ({

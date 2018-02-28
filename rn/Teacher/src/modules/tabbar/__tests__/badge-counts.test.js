@@ -14,10 +14,12 @@
 // limitations under the License.
 //
 
-// @flow
+/* eslint-disable flowtype/require-valid-file-annotation */
 
+import { NativeModules } from 'react-native'
 import canvas from '../../../canvas-api'
 import { beginUpdatingBadgeCounts, stopUpdatingBadgeCounts, updateBadgeCounts, interval } from '../badge-counts'
+import App from '../../app/index'
 
 jest.mock('../../../canvas-api', () => {
   return {
@@ -28,22 +30,39 @@ jest.mock('../../../canvas-api', () => {
 
 describe('update counts', () => {
   beforeEach(() => {
-    jest.resetAllMocks()
+    jest.clearAllMocks()
   })
 
-  test('begin starts a timer', () => {
+  it('begin starts a timer', () => {
     beginUpdatingBadgeCounts()
     expect(canvas.getUnreadConversationsCount).toHaveBeenCalled()
     expect(interval).toBeDefined()
   })
 
-  test('fetches unread count', async () => {
+  it('fetches unread count and todo count for teachers', async () => {
+    await updateBadgeCounts()
+    expect(canvas.getUnreadConversationsCount).toHaveBeenCalled()
+    expect(canvas.getToDoCount).toHaveBeenCalled()
+    expect(NativeModules.TabBarBadgeCounts.updateUnreadMessageCount).toHaveBeenCalled()
+    expect(NativeModules.TabBarBadgeCounts.updateTodoListCount).toHaveBeenCalled()
+  })
+
+  it('fetches unread count for student', async () => {
+    App.setCurrentApp('student')
     await updateBadgeCounts()
     expect(canvas.getUnreadConversationsCount).toHaveBeenCalled()
     expect(canvas.getToDoCount).not.toHaveBeenCalled()
+    expect(NativeModules.TabBarBadgeCounts.updateUnreadMessageCount).toHaveBeenCalled()
   })
 
-  test('stops timer', () => {
+  it('fails when an error occurs', async () => {
+    canvas.getUnreadConversationsCount.mockImplementationOnce(() => Promise.resolve({}))
+    await updateBadgeCounts()
+    expect(canvas.getUnreadConversationsCount).toHaveBeenCalled()
+    expect(NativeModules.TabBarBadgeCounts.updateUnreadMessageCount).not.toHaveBeenCalled()
+  })
+
+  it('stops timer', () => {
     beginUpdatingBadgeCounts()
     expect(interval).toBeDefined()
     stopUpdatingBadgeCounts()
