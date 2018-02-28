@@ -12,6 +12,7 @@ import Foundation
 import CanvasKeymaster
 
 let MAX_NUM_COURSES = 9
+let MAX_NUM_RETRIES = 3
 let COURSE_ROW_HEIGHT: CGFloat = 55
 let DEFAULT_ERROR_MESSAGE = NSLocalizedString("Failed to load grades", comment: "")
 
@@ -38,6 +39,10 @@ enum GradesWidgetError: Error {
     }
 }
 
+func isRetryable (_ error: Error) -> Bool {
+    return !(error is DecodingError) && !(error is NetworkError)
+}
+
 class GradesTodayWidgetViewController: UIViewController {
 
     var courses: [Course] = [] {
@@ -52,6 +57,8 @@ class GradesTodayWidgetViewController: UIViewController {
     }
     var colors: CustomColors?
     var error: Error?
+    var colorRetries: Int = 0
+    var courseRetries: Int = 0
 
     var client: CKIClient?
 
@@ -136,7 +143,12 @@ class GradesTodayWidgetViewController: UIViewController {
                     self?.courses = Array(courses.prefix(MAX_NUM_COURSES))
                     self?.tableView.reloadData()
                 case .failed(let error):
-                    self?.showError(error)
+                    if isRetryable(error), let retries = self?.courseRetries, retries < MAX_NUM_RETRIES {
+                        self?.courseRetries += 1
+                        self?.reloadCourses(client)
+                    } else {
+                        self?.showError(error)
+                    }
                 }
             }
         }
@@ -150,7 +162,12 @@ class GradesTodayWidgetViewController: UIViewController {
                     self?.colors = colors
                     self?.tableView.reloadData()
                 case .failed(let error):
-                    self?.showError(error)
+                    if isRetryable(error), let retries = self?.colorRetries, retries < MAX_NUM_RETRIES {
+                        self?.colorRetries += 1
+                        self?.reloadColors(client)
+                    } else {
+                        self?.showError(error)
+                    }
                 }
             }
         }

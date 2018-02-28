@@ -48,6 +48,14 @@ struct Course: Codable {
         case enrollments
     }
 
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decode(String.self, forKey: .id)
+        self.name = try container.decodeIfPresent(String.self, forKey: .name) ?? ""
+        self.isFavorite = try container.decodeIfPresent(Bool.self, forKey: .isFavorite) ?? false
+        self.enrollments = try container.decodeIfPresent([Enrollment].self, forKey: .enrollments) ?? []
+    }
+
     static let scoreFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .percent
