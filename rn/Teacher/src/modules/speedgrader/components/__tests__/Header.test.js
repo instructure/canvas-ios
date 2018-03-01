@@ -16,16 +16,10 @@
 
 /* eslint-disable flowtype/require-valid-file-annotation */
 
+import { shallow } from 'enzyme'
 import _ from 'lodash'
 import React from 'react'
 import { Header, mapStateToProps } from '../Header'
-import renderer from 'react-test-renderer'
-import explore from '../../../../../test/helpers/explore'
-
-jest
-  .mock('TouchableHighlight', () => 'TouchableHighlight')
-  .mock('TouchableOpacity', () => 'TouchableOpacity')
-  .mock('../../../../common/components/Avatar', () => 'Avatar')
 
 const templates = {
   ...require('../../../../__templates__/submissions'),
@@ -85,29 +79,20 @@ let groupProps = {
 }
 
 describe('SpeedGraderHeader', () => {
-  beforeEach(() => jest.resetAllMocks())
+  beforeEach(() => jest.clearAllMocks())
 
   it('renders with no submission', () => {
-    let tree = renderer.create(
-      <Header {...noSubProps} />
-    ).toJSON()
-
+    let tree = shallow(<Header {...noSubProps} />)
     expect(tree).toMatchSnapshot()
   })
 
   it('renders with a submission', () => {
-    let tree = renderer.create(
-      <Header {...subProps} />
-    ).toJSON()
-
+    let tree = shallow(<Header {...subProps} />)
     expect(tree).toMatchSnapshot()
   })
 
   it('renders with a group submission', () => {
-    let tree = renderer.create(
-      <Header {...groupProps} />
-    ).toJSON()
-
+    let tree = shallow(<Header {...groupProps} />)
     expect(tree).toMatchSnapshot()
   })
 
@@ -115,10 +100,7 @@ describe('SpeedGraderHeader', () => {
     let props = _.cloneDeep(subProps)
     props.submissionProps.status = 'none'
 
-    let tree = renderer.create(
-      <Header {...props} />
-    ).toJSON()
-
+    let tree = shallow(<Header {...props} />)
     expect(tree).toMatchSnapshot()
   })
 
@@ -127,42 +109,24 @@ describe('SpeedGraderHeader', () => {
     props.submissionProps.status = 'missing'
     props.submissionProps.submission = null
 
-    let tree = renderer.create(
-      <Header {...props} />
-    ).toJSON()
-
+    let tree = shallow(<Header {...props} />)
     expect(tree).toMatchSnapshot()
   })
 
   it('anonymizes the avatar and name', () => {
-    let tree = renderer.create(<Header {...subProps} anonymous={true} />)
-    expect(tree.toJSON()).toMatchSnapshot()
-  })
-
-  it('closes the modal', () => {
-    let tree = renderer.create(
-      <Header {...subProps} />
-    ).toJSON()
-
-    const doneButton = explore(tree).selectByID('header.navigation-done') || {}
-    doneButton.props.onPress()
-    expect(subProps.closeModal).toHaveBeenCalled()
-  })
-
-  it('doesnt show the student name when anonymous', () => {
-    let tree = renderer.create(
-      <Header {...subProps} anonymous={true} />
-    ).toJSON()
+    let tree = shallow(<Header {...subProps} anonymous />)
     expect(tree).toMatchSnapshot()
   })
 
-  it('navigates to the context card when the avatar is pressed', () => {
-    let tree = renderer.create(
-      <Header {...subProps} />
-    ).toJSON()
+  it('closes the modal', () => {
+    let tree = shallow(<Header {...subProps} />)
+    tree.find('[testID="header.navigation-done"]').simulate('Press')
+    expect(subProps.closeModal).toHaveBeenCalled()
+  })
 
-    let avatar = explore(tree).selectByType('Avatar')
-    avatar.props.onPress()
+  it('navigates to the context card when name is pressed', () => {
+    let tree = shallow(<Header {...subProps} />)
+    tree.find('[testID="header.context.button"]').simulate('Press')
     expect(subProps.navigator.show).toHaveBeenCalledWith(
       `/courses/3/users/4`,
       { modal: true },
@@ -170,19 +134,13 @@ describe('SpeedGraderHeader', () => {
   })
 
   it('doesnt show the group name when anonymous', () => {
-    let tree = renderer.create(
-      <Header {...groupProps} anonymous={true} />
-    ).toJSON()
+    let tree = shallow(<Header {...groupProps} anonymous />)
     expect(tree).toMatchSnapshot()
   })
 
   it('opens student list when group is tapped', () => {
-    let tree = renderer.create(
-      <Header {...groupProps} />
-    ).toJSON()
-    const groupListButton = explore(tree).selectByID(`header.groupList.button`) || {}
-    groupListButton.props.onPress()
-
+    let tree = shallow(<Header {...groupProps} />)
+    tree.find('[testID="header.groupList.button"]').simulate('Press')
     expect(groupProps.navigator.show).toHaveBeenCalledWith(
       `/groups/1/users`,
       { modal: true },
