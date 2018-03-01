@@ -111,20 +111,10 @@ export class GroupList extends Component<GroupListProps, any> {
       <Screen
         drawUnderNavBar={false}
         title={title}
-        rightBarButtons={[{
-          style: 'done',
-          title: i18n('Done'),
-          testID: 'group-list.done',
-          action: this._onDone,
-        }]}
       >
         {this._renderComponent()}
       </Screen>
     )
-  }
-
-  _onDone = () => {
-    this.props.navigator.dismiss()
   }
 }
 

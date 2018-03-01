@@ -6,6 +6,7 @@ exports[`PickerPage renders the given options as rows 1`] = `
   navBarButtonColor="#008EE2"
   navBarStyle="light"
   navBarTitleColors="#2D3B45"
+  showDismissButton={true}
   statusBarStyle="default"
   title="Pick Something"
 >

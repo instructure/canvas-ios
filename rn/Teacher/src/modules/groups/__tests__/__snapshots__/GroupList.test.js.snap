@@ -3,16 +3,6 @@
 exports[`GroupList renders empty list 1`] = `
 <Screen
   drawUnderNavBar={false}
-  rightBarButtons={
-    Array [
-      Object {
-        "action": [Function],
-        "style": "done",
-        "testID": "group-list.done",
-        "title": "Done",
-      },
-    ]
-  }
   title="Red Squadron"
 >
   <View
@@ -108,16 +98,6 @@ exports[`GroupList renders empty list 1`] = `
 exports[`GroupList renders properly 1`] = `
 <Screen
   drawUnderNavBar={false}
-  rightBarButtons={
-    Array [
-      Object {
-        "action": [Function],
-        "style": "done",
-        "testID": "group-list.done",
-        "title": "Done",
-      },
-    ]
-  }
   title="Red Squadron"
 >
   <View
@@ -366,16 +346,6 @@ exports[`GroupList renders properly 1`] = `
 exports[`GroupList renders without a group 1`] = `
 <Screen
   drawUnderNavBar={false}
-  rightBarButtons={
-    Array [
-      Object {
-        "action": [Function],
-        "style": "done",
-        "testID": "group-list.done",
-        "title": "Done",
-      },
-    ]
-  }
   title=""
 >
   <View

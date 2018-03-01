@@ -211,6 +211,7 @@ export class UserCoursePreferences extends Component<Props, any> {
           testID: 'done_button',
           action: this.dismiss,
         }]}
+        showDismissButton={false}
       >
       { this._renderComponent() }
       </Screen>

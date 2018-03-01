@@ -54,10 +54,6 @@ type SubmissionSettingsProps =
 export class SubmissionSettings extends PureComponent<SubmissionSettingsProps> {
   props: SubmissionSettingsProps
 
-  dismiss = () => {
-    this.props.navigator.dismiss()
-  }
-
   toggleAnonymousGrading = (value: boolean) => {
     this.props.anonymousGrading(
       this.props.courseID,
@@ -82,12 +78,6 @@ export class SubmissionSettings extends PureComponent<SubmissionSettingsProps> {
       <Screen
         title={i18n('Submission Settings')}
         navBarButtonColor={branding.primaryButtonColor}
-        rightBarButtons={[{
-          title: i18n('Done'),
-          style: 'done',
-          testID: 'submission-settings.done',
-          action: this.dismiss,
-        }]}
       >
         <ScrollView style={style.container}>
           <RowSeparator />

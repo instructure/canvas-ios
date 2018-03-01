@@ -2,7 +2,6 @@
 
 exports[`ContextCard formats the last_activity_at properly 1`] = `
 <Screen
-  leftBarButtons={null}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -959,7 +958,6 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
 
 exports[`ContextCard renders 1`] = `
 <Screen
-  leftBarButtons={null}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -1916,7 +1914,6 @@ exports[`ContextCard renders 1`] = `
 
 exports[`ContextCard renders for a designer 1`] = `
 <Screen
-  leftBarButtons={null}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -2240,7 +2237,6 @@ exports[`ContextCard renders for a designer 1`] = `
 
 exports[`ContextCard renders for a designer 2`] = `
 <Screen
-  leftBarButtons={null}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -2564,7 +2560,6 @@ exports[`ContextCard renders for a designer 2`] = `
 
 exports[`ContextCard renders for a non student 1`] = `
 <Screen
-  leftBarButtons={null}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -2888,7 +2883,6 @@ exports[`ContextCard renders for a non student 1`] = `
 
 exports[`ContextCard shows points values when there is no grade 1`] = `
 <Screen
-  leftBarButtons={null}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={

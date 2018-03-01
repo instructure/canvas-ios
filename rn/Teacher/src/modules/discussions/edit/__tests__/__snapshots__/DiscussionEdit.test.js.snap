@@ -2,16 +2,7 @@
 
 exports[`DiscussionEdit renders 1`] = `
 <Screen
-  leftBarButtons={
-    Array [
-      Object {
-        "action": [Function],
-        "style": "cancel",
-        "testID": "discussions.edit.cancelButton",
-        "title": "Cancel",
-      },
-    ]
-  }
+  dismissButtonTitle="Cancel"
   rightBarButtons={
     Array [
       Object {
@@ -1078,16 +1069,7 @@ exports[`DiscussionEdit renders 1`] = `
 
 exports[`DiscussionEdit renders new form 1`] = `
 <Screen
-  leftBarButtons={
-    Array [
-      Object {
-        "action": [Function],
-        "style": "cancel",
-        "testID": "discussions.edit.cancelButton",
-        "title": "Cancel",
-      },
-    ]
-  }
+  dismissButtonTitle="Cancel"
   rightBarButtons={
     Array [
       Object {
@@ -2032,16 +2014,7 @@ exports[`DiscussionEdit renders new form 1`] = `
 
 exports[`DiscussionEdit updates from props 1`] = `
 <Screen
-  leftBarButtons={
-    Array [
-      Object {
-        "action": [Function],
-        "style": "cancel",
-        "testID": "discussions.edit.cancelButton",
-        "title": "Cancel",
-      },
-    ]
-  }
+  dismissButtonTitle="Cancel"
   rightBarButtons={
     Array [
       Object {
@@ -2986,16 +2959,7 @@ exports[`DiscussionEdit updates from props 1`] = `
 
 exports[`DiscussionEdit updates with new props 1`] = `
 <Screen
-  leftBarButtons={
-    Array [
-      Object {
-        "action": [Function],
-        "style": "cancel",
-        "testID": "discussions.edit.cancelButton",
-        "title": "Cancel",
-      },
-    ]
-  }
+  dismissButtonTitle="Cancel"
   rightBarButtons={
     Array [
       Object {

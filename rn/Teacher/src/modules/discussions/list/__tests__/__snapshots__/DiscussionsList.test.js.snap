@@ -3,7 +3,6 @@
 exports[`DiscussionsList renders 1`] = `
 <Screen
   drawUnderNavBar={true}
-  leftBarButtons={false}
   navBarColor={null}
   navBarStyle="dark"
   rightBarButtons={
@@ -133,7 +132,6 @@ exports[`DiscussionsList renders an activity indicator while loading 1`] = `
 exports[`DiscussionsList renders as student app 1`] = `
 <Screen
   drawUnderNavBar={true}
-  leftBarButtons={false}
   navBarColor={null}
   navBarStyle="dark"
   rightBarButtons={false}
@@ -228,7 +226,6 @@ exports[`DiscussionsList renders as student app 1`] = `
 exports[`DiscussionsList renders discussions 1`] = `
 <Screen
   drawUnderNavBar={true}
-  leftBarButtons={false}
   navBarColor={null}
   navBarStyle="dark"
   rightBarButtons={
@@ -1536,7 +1533,6 @@ exports[`DiscussionsList renders discussions 1`] = `
 exports[`DiscussionsList renders discussions with no assignments 1`] = `
 <Screen
   drawUnderNavBar={true}
-  leftBarButtons={false}
   navBarColor={null}
   navBarStyle="dark"
   rightBarButtons={
@@ -2642,7 +2638,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
 exports[`DiscussionsList renders in correct order 1`] = `
 <Screen
   drawUnderNavBar={true}
-  leftBarButtons={false}
   navBarColor={null}
   navBarStyle="dark"
   rightBarButtons={
@@ -3954,7 +3949,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
 exports[`DiscussionsList renders pinned discussions 1`] = `
 <Screen
   drawUnderNavBar={true}
-  leftBarButtons={false}
   navBarColor={null}
   navBarStyle="dark"
   rightBarButtons={

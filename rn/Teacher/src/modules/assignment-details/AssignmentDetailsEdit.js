@@ -156,16 +156,17 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
             title: i18n('Done'),
             style: 'done',
             testID: 'edit-assignment.dismiss-btn',
-            action: this.actionDonePressed.bind(this),
+            action: this.actionDonePressed,
           },
         ]}
         leftBarButtons={[
           {
             title: i18n('Cancel'),
             testID: 'edit-assignment.cancel-btn',
-            action: this.actionCancelPressed.bind(this),
+            action: this.actionCancelPressed,
           },
         ]}
+        showDismissButton={false}
       >
         <View style={{ flex: 1 }}>
           <ModalActivityIndicator text={savingText} visible={this.state.pending}/>
@@ -337,7 +338,7 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
     return validator
   }
 
-  actionDonePressed () {
+  actionDonePressed = () => {
     const validator = this.validateChanges()
 
     if (validator.invalid !== '') {
@@ -356,7 +357,7 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
     this.props.updateAssignment(this.props.courseID, updatedAssignment, this.props.assignmentDetails)
   }
 
-  actionCancelPressed () {
+  actionCancelPressed = () => {
     this.props.cancelAssignmentUpdate(this.props.assignmentDetails)
     this.props.navigator.dismiss()
   }

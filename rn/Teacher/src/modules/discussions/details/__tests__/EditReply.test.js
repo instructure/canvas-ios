@@ -90,19 +90,6 @@ describe('EditReply', () => {
     expect(Alert.alert).toHaveBeenCalledWith(defaultErrorTitle(), errorMessage)
   })
 
-  it('calls dismiss on cancel', () => {
-    let component = renderer.create(
-      <EditReply {...defaultProps} />
-    )
-    let postReply = jest.fn(() => {
-      setProps(component, { pending: 0, error: 'error' })
-    })
-    component.update(<EditReply {...defaultProps} updateCourse={postReply} />)
-    const doneButton: any = explore(component.toJSON()).selectLeftBarButton('edit-discussion-reply.cancel-btn')
-    doneButton.action()
-    expect(component.toJSON()).toMatchSnapshot()
-  })
-
   it('deletes pending replies on unmount', () => {
     let component = renderer.create(
       <EditReply {...defaultProps} />

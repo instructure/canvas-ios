@@ -2,7 +2,6 @@
 
 exports[`PageDetails renders 1`] = `
 <Screen
-  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -66,7 +65,6 @@ exports[`PageDetails renders 1`] = `
 
 exports[`PageDetails renders without page 1`] = `
 <Screen
-  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={

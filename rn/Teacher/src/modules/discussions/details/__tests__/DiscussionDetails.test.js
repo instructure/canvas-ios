@@ -479,26 +479,6 @@ describe('DiscussionDetails', () => {
     expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/2/edit', { modal: true, modalPresentationStyle: 'formsheet' })
   })
 
-  it('only shows done button if presented modally', () => {
-    expect(
-      explore(render(props).toJSON()).selectLeftBarButton('discussions.details.dismiss.button')
-    ).toBeNull()
-
-    props.navigator = template.navigator({ isModal: true })
-    expect(
-      explore(render(props).toJSON()).selectLeftBarButton('discussions.details.dismiss.button')
-    ).not.toBeNull()
-  })
-
-  it('dismisses when tap done', () => {
-    props.navigator = template.navigator({ isModal: true })
-    const spy = jest.fn()
-    props.navigator.dismiss = spy
-    const doneButton: any = explore(render(props).toJSON()).selectLeftBarButton('discussions.details.dismiss.button')
-    doneButton.action()
-    expect(spy).toHaveBeenCalled()
-  })
-
   it('routes to discussion edit on entry reply', () => {
     props.isAnnouncement = false
     props.navigator.show = jest.fn()

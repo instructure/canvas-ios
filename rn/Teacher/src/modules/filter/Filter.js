@@ -113,6 +113,7 @@ export default class Filter extends Component<FilterProps, FilterState> {
           testID: 'filter.done',
           action: this.applyFilters,
         }]}
+        showDismissButton={false}
       >
         <FlatList
           data={this.state.filterOptions}

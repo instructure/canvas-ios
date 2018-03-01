@@ -253,12 +253,6 @@ describe('EditItem folder', () => {
     expect(alertError.error).toBe('oh noes!')
   })
 
-  it('dismisses on cancel', () => {
-    const tree = shallow(<EditItem {...props} />)
-    tree.find('Screen').prop('leftBarButtons')[0].action()
-    expect(props.navigator.dismiss).toHaveBeenCalled()
-  })
-
   it('validates name on done', async () => {
     const tree = shallow(<EditItem {...props} />)
     tree.find(selector.name).simulate('ChangeText', ' \t')

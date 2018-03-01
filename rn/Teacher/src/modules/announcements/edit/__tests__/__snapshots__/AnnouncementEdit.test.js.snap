@@ -19,16 +19,7 @@ Array [
 
 exports[`AnnouncementEdit renders 1`] = `
 <Screen
-  leftBarButtons={
-    Array [
-      Object {
-        "action": [Function],
-        "style": "cancel",
-        "testID": "announcements.edit.cancelButton",
-        "title": "Cancel",
-      },
-    ]
-  }
+  dismissButtonTitle="Cancel"
   rightBarButtons={
     Array [
       Object {
@@ -771,16 +762,7 @@ exports[`AnnouncementEdit renders 1`] = `
 
 exports[`AnnouncementEdit updates with new props 1`] = `
 <Screen
-  leftBarButtons={
-    Array [
-      Object {
-        "action": [Function],
-        "style": "cancel",
-        "testID": "announcements.edit.cancelButton",
-        "title": "Cancel",
-      },
-    ]
-  }
+  dismissButtonTitle="Cancel"
   rightBarButtons={
     Array [
       Object {

@@ -53,7 +53,9 @@ type ScreenProps = {
   drawUnderTabBar?: boolean,
   leftBarButtons?: any,
   rightBarButtons?: any,
-  backButtonTitle?: ?string,
+  backButtonTitle?: string,
+  dismissButtonTitle?: string,
+  showDismissButton?: boolean,
 
   children?: React$Node,
   disableGlobalSafeArea?: boolean,
@@ -73,6 +75,7 @@ export default class Screen extends React.Component<ScreenProps, State> {
   static defaultProps = {
     navBarStyle: 'light',
     statusBarStyle: 'default',
+    showDismissButton: true,
   }
 
   static contextTypes = {

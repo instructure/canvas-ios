@@ -108,14 +108,6 @@ export class QuizPreview extends Component<LocalProps, any> {
     return (
       <Screen
         title={i18n('Quiz Preview')}
-        leftBarButtons={[
-          {
-            title: i18n('Done'),
-            style: 'done',
-            testID: 'quiz-preview.dismiss-btn',
-            action: this.props.navigator.dismiss.bind(this),
-          },
-        ]}
       >
         <View style={style.container}>
           { this.state.error &&

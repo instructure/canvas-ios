@@ -153,13 +153,6 @@ export class ConversationDetails extends Component <ConversationDetailsProps, an
         statusBarStyle={color.statusBarStyle}
         drawUnderNavBar
         title={i18n('Message Details')}
-        leftBarButtons={this.props.navigator.isModal && [
-          {
-            title: i18n('Done'),
-            testID: 'inbox.detail.dismiss.button',
-            action: this.props.navigator.dismiss,
-          },
-        ]}
         rightBarButtons={[
           {
             image: Images.kabob,

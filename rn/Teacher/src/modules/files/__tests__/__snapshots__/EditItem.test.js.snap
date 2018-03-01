@@ -2,16 +2,8 @@
 
 exports[`EditItem file renders usage rights editing when feature is enabled 1`] = `
 <Screen
+  dismissButtonTitle="Cancel"
   drawUnderNavBar={true}
-  leftBarButtons={
-    Array [
-      Object {
-        "action": [Function],
-        "testID": "edit-item.cancel-btn",
-        "title": "Cancel",
-      },
-    ]
-  }
   navBarButtonColor="#008EE2"
   navBarStyle="light"
   navBarTitleColors="#2D3B45"
@@ -24,6 +16,7 @@ exports[`EditItem file renders usage rights editing when feature is enabled 1`] 
       },
     ]
   }
+  showDismissButton={true}
   statusBarStyle="default"
   title="Edit File"
 >
@@ -146,16 +139,8 @@ exports[`EditItem file renders usage rights editing when feature is enabled 1`] 
 
 exports[`EditItem folder should render 1`] = `
 <Screen
+  dismissButtonTitle="Cancel"
   drawUnderNavBar={true}
-  leftBarButtons={
-    Array [
-      Object {
-        "action": [Function],
-        "testID": "edit-item.cancel-btn",
-        "title": "Cancel",
-      },
-    ]
-  }
   navBarButtonColor="#008EE2"
   navBarStyle="light"
   navBarTitleColors="#2D3B45"
@@ -168,6 +153,7 @@ exports[`EditItem folder should render 1`] = `
       },
     ]
   }
+  showDismissButton={true}
   statusBarStyle="default"
   title="Edit Folder"
 >
@@ -258,16 +244,8 @@ exports[`EditItem folder should render 1`] = `
 
 exports[`EditItem folder shows availability when there is a lock_at date 1`] = `
 <Screen
+  dismissButtonTitle="Cancel"
   drawUnderNavBar={true}
-  leftBarButtons={
-    Array [
-      Object {
-        "action": [Function],
-        "testID": "edit-item.cancel-btn",
-        "title": "Cancel",
-      },
-    ]
-  }
   navBarButtonColor="#008EE2"
   navBarStyle="light"
   navBarTitleColors="#2D3B45"
@@ -280,6 +258,7 @@ exports[`EditItem folder shows availability when there is a lock_at date 1`] = `
       },
     ]
   }
+  showDismissButton={true}
   statusBarStyle="default"
   title="Edit Folder"
 >
@@ -414,16 +393,8 @@ exports[`EditItem folder shows availability when there is a lock_at date 1`] = `
 
 exports[`EditItem folder shows availability when there is an unlock_at date 1`] = `
 <Screen
+  dismissButtonTitle="Cancel"
   drawUnderNavBar={true}
-  leftBarButtons={
-    Array [
-      Object {
-        "action": [Function],
-        "testID": "edit-item.cancel-btn",
-        "title": "Cancel",
-      },
-    ]
-  }
   navBarButtonColor="#008EE2"
   navBarStyle="light"
   navBarTitleColors="#2D3B45"
@@ -436,6 +407,7 @@ exports[`EditItem folder shows availability when there is an unlock_at date 1`] 
       },
     ]
   }
+  showDismissButton={true}
   statusBarStyle="default"
   title="Edit Folder"
 >
@@ -570,16 +542,8 @@ exports[`EditItem folder shows availability when there is an unlock_at date 1`] 
 
 exports[`EditItem folder shows the type of restriction when hidden 1`] = `
 <Screen
+  dismissButtonTitle="Cancel"
   drawUnderNavBar={true}
-  leftBarButtons={
-    Array [
-      Object {
-        "action": [Function],
-        "testID": "edit-item.cancel-btn",
-        "title": "Cancel",
-      },
-    ]
-  }
   navBarButtonColor="#008EE2"
   navBarStyle="light"
   navBarTitleColors="#2D3B45"
@@ -592,6 +556,7 @@ exports[`EditItem folder shows the type of restriction when hidden 1`] = `
       },
     ]
   }
+  showDismissButton={true}
   statusBarStyle="default"
   title="Edit Folder"
 >

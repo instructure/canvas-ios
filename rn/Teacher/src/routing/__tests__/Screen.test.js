@@ -30,6 +30,7 @@ describe('Screen component', () => {
     backButtonTitle: 'Back',
     navBarStyle: 'light',
     statusBarStyle: 'default',
+    showDismissButton: true,
   }
 
   beforeEach(() => {

@@ -45,7 +45,6 @@ type ContextCardOwnProps = {
   courseID: string,
   userID: string,
   navigator: Navigator,
-  modal: boolean,
 }
 
 type ContextCardActionProps = {
@@ -105,10 +104,6 @@ export class ContextCard extends Component<ContextCardProps, ContextCardState> {
       this.props.getUserSubmissions(this.props.courseID, this.props.userID)
     }
     this.props.refresh()
-  }
-
-  donePressed = () => {
-    this.props.navigator.dismiss()
   }
 
   renderHeader () {
@@ -188,16 +183,6 @@ export class ContextCard extends Component<ContextCardProps, ContextCardState> {
       return <Screen><ActivityIndicatorView /></Screen>
     }
 
-    let leftBarButtons = null
-    if (this.props.modal) {
-      leftBarButtons = [{
-        testID: 'context-card.done-btn',
-        title: i18n('Done'),
-        style: 'done',
-        action: this.donePressed,
-      }]
-    }
-
     let rightBarButtons = []
     if (course) {
       rightBarButtons = [{
@@ -214,7 +199,6 @@ export class ContextCard extends Component<ContextCardProps, ContextCardState> {
         subtitle={this.props.course.name}
         navBarColor={this.props.courseColor}
         navBarStyle='dark'
-        leftBarButtons={leftBarButtons}
         rightBarButtons={rightBarButtons}
       >
         <FlatList

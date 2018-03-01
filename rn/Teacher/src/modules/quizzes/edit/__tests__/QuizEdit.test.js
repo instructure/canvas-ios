@@ -311,14 +311,6 @@ describe('QuizEdit', () => {
     expect(component.toJSON()).toMatchSnapshot()
   })
 
-  it('calls dismiss on cancel', () => {
-    props.navigator.dismiss = jest.fn()
-    const tree = render(props).toJSON()
-    const cancelButton: any = explore(tree).selectLeftBarButton('quizzes.edit.cancelButton')
-    cancelButton.action()
-    expect(props.navigator.dismiss).toHaveBeenCalled()
-  })
-
   it('presents errors', async () => {
     props.updateQuiz = jest.fn(() => {
       return Promise.reject({ response: new Error('this is an error') })

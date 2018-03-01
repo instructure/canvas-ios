@@ -65,15 +65,3 @@ it('updates when courses prop changes', () => {
   setProps(component, { courses: [course] })
   expect(component.toJSON()).toMatchSnapshot()
 })
-
-test('calls dismiss when back button is selected', () => {
-  let navigator = navigationTemplate.navigator({
-    dismiss: jest.fn(),
-  })
-
-  let tree = renderer.create(
-    <FavoritesList {...defaultProps} navigator={navigator} />
-  )
-  tree.getInstance().dismiss()
-  expect(navigator.dismiss).toHaveBeenCalledWith()
-})

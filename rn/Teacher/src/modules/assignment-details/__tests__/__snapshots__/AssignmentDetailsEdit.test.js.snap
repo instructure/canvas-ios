@@ -23,6 +23,7 @@ exports[`error occurs when done pressed 1`] = `
       },
     ]
   }
+  showDismissButton={false}
   title="Edit Assignment"
 >
   <View
@@ -969,6 +970,7 @@ exports[`modal saving is shown on assignment update 1`] = `
       },
     ]
   }
+  showDismissButton={false}
   title="Edit Assignment"
 >
   <View
@@ -1915,6 +1917,7 @@ exports[`renders 1`] = `
       },
     ]
   }
+  showDismissButton={false}
   title="Edit Assignment"
 >
   <View
@@ -2861,6 +2864,7 @@ exports[`saving invalid dates displays banner 1`] = `
       },
     ]
   }
+  showDismissButton={false}
   title="Edit Assignment"
 >
   <View
@@ -3811,6 +3815,7 @@ exports[`saving invalid name displays banner 1`] = `
       },
     ]
   }
+  showDismissButton={false}
   title="Edit Assignment"
 >
   <View
@@ -4795,6 +4800,7 @@ exports[`saving invalid points possible displays banner 1`] = `
       },
     ]
   }
+  showDismissButton={false}
   title="Edit Assignment"
 >
   <View
@@ -5779,6 +5785,7 @@ exports[`saving negative points possible displays banner 1`] = `
       },
     ]
   }
+  showDismissButton={false}
   title="Edit Assignment"
 >
   <View

@@ -16,6 +16,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
       },
     ]
   }
+  showDismissButton={false}
   subtitle="Learn React Native"
   title="Customize Course"
 >
@@ -785,6 +786,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
       },
     ]
   }
+  showDismissButton={false}
   subtitle="Learn React Native"
   title="Customize Course"
 >
@@ -1583,6 +1585,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
       },
     ]
   }
+  showDismissButton={false}
   subtitle="New Course Name"
   title="Customize Course"
 >
@@ -2555,6 +2558,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
       },
     ]
   }
+  showDismissButton={false}
   subtitle="Learn React Native"
   title="Customize Course"
 >
@@ -3527,6 +3531,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
       },
     ]
   }
+  showDismissButton={false}
   subtitle="Learn React Native"
   title="Customize Course"
 >
@@ -4499,6 +4504,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
       },
     ]
   }
+  showDismissButton={false}
   subtitle="Learn React Native"
   title="Customize Course"
 >
@@ -5471,6 +5477,7 @@ exports[`UserCoursePreferences renders 1`] = `
       },
     ]
   }
+  showDismissButton={false}
   subtitle="Learn React Native"
   title="Customize Course"
 >
@@ -6459,6 +6466,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
       },
     ]
   }
+  showDismissButton={false}
   subtitle="Learn React Native"
   title="Customize Course"
 >
@@ -7431,6 +7439,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
       },
     ]
   }
+  showDismissButton={false}
   subtitle="Learn React Native"
   title="Customize Course"
 >

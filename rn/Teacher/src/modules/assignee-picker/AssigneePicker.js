@@ -129,13 +129,8 @@ export class AssigneePicker extends Component<AssigneePickerProps, any> {
             action: this.done,
           },
         ]}
-        leftBarButtons={[
-          {
-            title: i18n('Cancel'),
-            testID: 'assignee-picker.cancel-btn',
-            action: this.dismiss,
-          },
-        ]}>
+        dismissButtonTitle={i18n('Cancel')}
+      >
         <ScrollView style={styles.container}>
           { this.state.selected.length > 0 && <View style={styles.space} /> }
           { this.state.selected.map((assignee: Assignee) => <AssigneeRow assignee={assignee} onDelete={this.deleteAssignee} key={assignee.id}/>) }

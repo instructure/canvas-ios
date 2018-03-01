@@ -498,6 +498,19 @@ public final class HelmViewController: UIViewController, HelmScreen {
         let rightBarButtons = screenConfig[PropKeys.rightBarButtons] as? [[String: Any]] ?? []
         navigationItem.rightBarButtonItems = barButtonItems(fromConfig: rightBarButtons)
         
+        // show the dismiss button when view controller is shown modally
+        if let navigatorOptions = props[PropKeys.navigatorOptions] as? [String: Any], navigatorOptions["modal"] as? Bool == true && screenConfig[PropKeys.showDismissButton] as? Bool == true {
+            let dismissTitle = screenConfig[PropKeys.dismissButtonTitle] as? String ?? NSLocalizedString("Done", comment: "")
+            let button = UIBarButtonItem(title: dismissTitle, style: .plain, target: self, action:#selector(dismissTapped(_:)))
+            button.accessibilityIdentifier = "screen.dismiss"
+            if rightBarButtons.count == 0 {
+                button.style = .done
+                navigationItem.rightBarButtonItem = button
+            } else {
+                navigationItem.leftBarButtonItem = button
+            }
+        }
+        
         // Status bar props
         if let statusBarStyle = screenConfig[PropKeys.statusBarStyle] as? String {
             switch statusBarStyle {
@@ -520,7 +533,6 @@ public final class HelmViewController: UIViewController, HelmScreen {
             }
         }
         updateStatusBarIfNeeded()
-        
         if let backButtonTitle = screenConfig[PropKeys.backButtonTitle] as? String {
             self.navigationItem.backBarButtonItem = UIBarButtonItem(title: backButtonTitle, style: .plain, target: nil, action: nil)
         }
@@ -585,6 +597,10 @@ public final class HelmViewController: UIViewController, HelmScreen {
         if let action: NSString = barButton.getAssociatedObject(&Associated.barButtonAction) {
             HelmManager.shared.bridge.enqueueJSCall("RCTDeviceEventEmitter.emit", args: [action])
         }
+    }
+    
+    func dismissTapped(_ barButton: UIBarButtonItem) {
+        HelmManager.shared.dismiss(["animated": true])
     }
     
     func titleViewFromNavBarImagePath(navBarImagePath: Any) -> UIView? {

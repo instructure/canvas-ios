@@ -19,7 +19,6 @@
 import React from 'react'
 import { GroupList, mapStateToProps } from '../GroupList'
 import renderer from 'react-native-test-utils'
-import explore from '../../../../test/helpers/explore'
 
 const template = {
   ...require('../../../__templates__/helm'),
@@ -62,15 +61,6 @@ describe('GroupList', () => {
       <GroupList {...noGroupProps}/>
     ).toJSON()
     expect(tree).toMatchSnapshot()
-  })
-
-  it('calls navigator.dismiss when done is pressed', () => {
-    let component = renderer(
-      <GroupList {...defaultProps} />
-    )
-    const doneButton: any = explore(component.toJSON()).selectRightBarButton('group-list.done')
-    doneButton.action()
-    expect(defaultProps.navigator.dismiss).toHaveBeenCalled()
   })
 
   it('renders empty list', () => {

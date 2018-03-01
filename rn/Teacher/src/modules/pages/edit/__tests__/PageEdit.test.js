@@ -187,13 +187,6 @@ describe('PageEdit', () => {
     expect(spy).toHaveBeenCalled()
   })
 
-  it('dismisses on Cancel', async () => {
-    const spy = jest.fn()
-    props.navigator = template.navigator({ dismiss: spy })
-    await tapCancel(render(props))
-    expect(spy).toHaveBeenCalled()
-  })
-
   function render (props: Props, options: any) {
     return renderer.create(<PageEdit {...props} />, options)
   }
@@ -228,11 +221,6 @@ describe('PageEdit', () => {
   async function tapDone (view: any) {
     const done: any = explore(view.toJSON()).selectRightBarButton('pages.edit.doneButton')
     await done.action()
-  }
-
-  function tapCancel (view: any) {
-    const cancel: any = explore(view.toJSON()).selectLeftBarButton('pages.edit.cancelButton')
-    cancel.action()
   }
 })
 

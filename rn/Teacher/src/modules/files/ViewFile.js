@@ -271,6 +271,7 @@ export default class ViewFile extends Component<Props, State> {
           style: 'done',
           action: this.handleDone,
         }]}
+        showDismissButton={false}
       >
         <View style={styles.container}>
           {!loadingDone ? (

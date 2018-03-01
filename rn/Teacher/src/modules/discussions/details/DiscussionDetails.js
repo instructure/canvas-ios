@@ -356,13 +356,6 @@ export class DiscussionDetails extends Component<Props, any> {
         title={this.props.isAnnouncement ? i18n('Announcement Details') : i18n('Discussion Details')}
         navBarColor={this.props.courseColor}
         navBarStyle='dark'
-        leftBarButtons={this.props.navigator.isModal && [
-          {
-            title: i18n('Done'),
-            testID: 'discussions.details.dismiss.button',
-            action: this.props.navigator.dismiss,
-          },
-        ]}
         rightBarButtons={ isTeacher() && [
           {
             image: Images.kabob,

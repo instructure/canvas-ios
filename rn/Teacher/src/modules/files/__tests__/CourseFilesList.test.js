@@ -20,7 +20,6 @@ import renderer from 'react-test-renderer'
 import { ActionSheetIOS, AlertIOS, Alert } from 'react-native'
 
 import { CourseFilesList, mapStateToProps } from '../CourseFilesList'
-import explore from '../../../../test/helpers/explore'
 
 const template = {
   ...require('../../../__templates__/file'),
@@ -267,20 +266,6 @@ describe('CourseFileList', () => {
     const instance = tree.getInstance()
     instance.updateUploadProgress({ loaded: 'sdfsdjkf', total: 100 })
     expect(tree.toJSON()).toMatchSnapshot()
-  })
-
-  it('should show a done button when rendered modally', () => {
-    let navigator = template.navigator({
-      isModal: true,
-      dismiss: jest.fn(),
-    })
-
-    let button: any = explore(renderer.create(
-      <CourseFilesList data={data} navigator={navigator} />
-    ).toJSON()).selectLeftBarButton('course-files.modal.dismiss')
-    button.action()
-
-    expect(navigator.dismiss).toHaveBeenCalled()
   })
 
   describe('map state to props', () => {

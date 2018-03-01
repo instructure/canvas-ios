@@ -162,13 +162,6 @@ export class QuizDetails extends Component<Props, any> {
         navBarStyle='dark'
         title={i18n('Quiz Details')}
         subtitle={this.props.courseName}
-        leftBarButtons={this.props.navigator.isModal && [
-          {
-            title: i18n('Done'),
-            testID: 'quiz.detail.dismiss.button',
-            action: this.props.navigator.dismiss,
-          },
-        ]}
         rightBarButtons={[
           {
             title: i18n('Edit'),

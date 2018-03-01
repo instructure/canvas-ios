@@ -46,20 +46,10 @@ export default class TermsOfUse extends Component<Props, State> {
     }
   }
 
-  donePressed = () => {
-    this.props.navigator.dismiss()
-  }
-
   render () {
     return (
       <Screen
         title={i18n('Terms Of Use')}
-        leftBarButtons={[{
-          testID: 'tos.done',
-          title: i18n('Done'),
-          style: 'done',
-          action: this.donePressed,
-        }]}
         navBarColor={colors.navBarColor}
         navBarButtonColor={colors.navBarButtonColor}
         statusBarStyle={colors.statusBarStyle}

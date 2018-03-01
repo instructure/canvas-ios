@@ -26,7 +26,7 @@ class EditCoursesListPage {
 
     // MARK: Elements
 
-    private let doneButton = e.selectBy(id: "edit-favorites.done-btn")
+    private let doneButton = e.selectBy(id: "screen.dismiss")
 
     // MARK: - Helpers
 

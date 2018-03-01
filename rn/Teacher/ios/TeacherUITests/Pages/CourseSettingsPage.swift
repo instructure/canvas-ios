@@ -26,7 +26,7 @@ class CourseSettingsPage {
 
     // MARK: Elements
 
-    private let cancelButton = e.selectBy(id: "course-settings.cancel-btn")
+    private let cancelButton = e.selectBy(id: "screen.dismiss")
     private let doneButton = e.selectBy(id: "course-settings.done-btn")
     private let courseNameLabel = e.selectBy(id: "course-settings.name-lbl")
     private let courseNameTextbox = e.selectBy(id: "course-settings.name-input-textbox")

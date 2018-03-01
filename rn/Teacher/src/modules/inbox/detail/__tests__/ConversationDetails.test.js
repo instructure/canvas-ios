@@ -268,32 +268,6 @@ describe('ConversationDetails', () => {
 
     expect(props.markAsRead).not.toHaveBeenCalledWith('1')
   })
-
-  it('only shows done button if presented modally', () => {
-    expect(
-      explore(renderer.create(
-        <ConversationDetails {...props} />
-      ).toJSON()).selectLeftBarButton('inbox.detail.dismiss.button')
-    ).toBeNull()
-
-    props.navigator = template.navigator({ isModal: true })
-    expect(
-      explore(renderer.create(
-        <ConversationDetails {...props} />
-      ).toJSON()).selectLeftBarButton('inbox.detail.dismiss.button')
-    ).not.toBeNull()
-  })
-
-  it('dismisses when tap done', () => {
-    props.navigator = template.navigator({ isModal: true })
-    const spy = jest.fn()
-    props.navigator.dismiss = spy
-    const doneButton: any = explore(renderer.create(
-      <ConversationDetails {...props} />
-    ).toJSON()).selectLeftBarButton('inbox.detail.dismiss.button')
-    doneButton.action()
-    expect(spy).toHaveBeenCalled()
-  })
 })
 
 it('mapStateToProps', () => {

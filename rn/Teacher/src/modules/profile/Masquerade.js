@@ -76,10 +76,6 @@ export default class Masquerade extends Component<*, any> {
     ).start()
   }
 
-  dismiss = () => {
-    this.props.navigator.dismiss()
-  }
-
   nextInput = () => {
     this.domainTextInput.focus()
   }
@@ -129,11 +125,7 @@ export default class Masquerade extends Component<*, any> {
     })
     return (<Screen
               title={i18n('Act as User')}
-              leftBarButtons={[{
-                title: i18n('Done'),
-                action: this.dismiss,
-                testID: 'masquerage-dismiss-btn',
-              }]}>
+            >
               <KeyboardAwareScrollView extraScrollHeight={16}>
                 <View style={styles.container}>
                   <View style={styles.header}>

@@ -2,16 +2,7 @@
 
 exports[`PageEdit renders 1`] = `
 <Screen
-  leftBarButtons={
-    Array [
-      Object {
-        "action": [Function],
-        "style": "cancel",
-        "testID": "pages.edit.cancelButton",
-        "title": "Cancel",
-      },
-    ]
-  }
+  dismissButtonTitle="Cancel"
   rightBarButtons={
     Array [
       Object {

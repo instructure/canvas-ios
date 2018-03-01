@@ -156,10 +156,6 @@ export default class EditItem extends Component<Props, State> {
     if (this.props.onChange) this.props.onChange(updated)
   }
 
-  handleCancel = () => {
-    this.props.navigator.dismiss()
-  }
-
   handleDelete = () => {
     const { updated: { name } } = this.state
     const isFile = this.isFile()
@@ -302,11 +298,7 @@ export default class EditItem extends Component<Props, State> {
         navBarTitleColors={Colors.darkText}
         navBarButtonColor={Colors.link}
         drawUnderNavBar
-        leftBarButtons={[{
-          testID: 'edit-item.cancel-btn',
-          title: i18n('Cancel'),
-          action: this.handleCancel,
-        }]}
+        dismissButtonTitle={i18n('Cancel')}
         rightBarButtons={[{
           testID: 'edit-item.done-btn',
           title: i18n('Done'),

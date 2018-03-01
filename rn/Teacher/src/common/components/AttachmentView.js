@@ -106,10 +106,6 @@ export default class AttachmentView extends Component<Props, State> {
     }
   }
 
-  done = () => {
-    this.props.navigator.dismiss()
-  }
-
   share = () => {
     if (this.state.filePath) {
       ActionSheetIOS.showShareActionSheetWithOptions({ url: this.state.filePath }, (error: Error) => {
@@ -172,12 +168,6 @@ export default class AttachmentView extends Component<Props, State> {
         navBarTitleColors={Colors.darkText}
         navBarButtonColor={Colors.link}
         drawUnderNavBar
-        leftBarButtons={[{
-          testID: 'attachment-view.done-btn',
-          title: i18n('Done'),
-          style: 'done',
-          action: this.done,
-        }]}
         rightBarButtons={[{
           testID: 'attachment-view.share-btn',
           image: Images.share,

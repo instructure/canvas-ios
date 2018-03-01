@@ -94,10 +94,6 @@ export class CourseSettings extends Component<Props, any> {
     this.props.updateCourse(this.course(), this.props.course)
   }
 
-  dismiss = () => {
-    this.props.navigator.dismiss()
-  }
-
   _togglePicker = () => {
     let animation = LayoutAnimation.create(250, LayoutAnimation.Types.linear, LayoutAnimation.Properties.opacity)
     LayoutAnimation.configureNext(animation)
@@ -119,11 +115,7 @@ export class CourseSettings extends Component<Props, any> {
           title: i18n('Done'),
           action: this.done,
         }]}
-        leftBarButtons={[{
-          testID: 'course-settings.cancel-btn',
-          title: i18n('Cancel'),
-          action: this.dismiss,
-        }]}
+        dismissButtonTitle={i18n('Cancel')}
       >
         <View style={{ flex: 1 }}>
           <ModalActivityIndicator text={i18n('Saving')} visible={this.state.pending} />

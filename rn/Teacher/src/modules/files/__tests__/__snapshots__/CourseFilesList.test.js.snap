@@ -2,7 +2,6 @@
 
 exports[`CourseFileList progress function should update the UI correctly 1`] = `
 <Screen
-  leftBarButtons={Array []}
   navBarColor={undefined}
   navBarStyle="dark"
   rightBarButtons={
@@ -939,7 +938,6 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
 
 exports[`CourseFileList progress function should update the UI correctly 2`] = `
 <Screen
-  leftBarButtons={Array []}
   navBarColor={undefined}
   navBarStyle="dark"
   rightBarButtons={
@@ -1876,7 +1874,6 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
 
 exports[`CourseFileList progress function should update the UI correctly 3`] = `
 <Screen
-  leftBarButtons={Array []}
   navBarColor={undefined}
   navBarStyle="dark"
   rightBarButtons={
@@ -2813,7 +2810,6 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
 
 exports[`CourseFileList sending weird data into the progress update function should not break all the things 1`] = `
 <Screen
-  leftBarButtons={Array []}
   navBarColor={undefined}
   navBarStyle="dark"
   rightBarButtons={
@@ -3750,7 +3746,6 @@ exports[`CourseFileList sending weird data into the progress update function sho
 
 exports[`CourseFileList should render 1`] = `
 <Screen
-  leftBarButtons={Array []}
   navBarColor={undefined}
   navBarStyle="dark"
   rightBarButtons={
@@ -4687,7 +4682,6 @@ exports[`CourseFileList should render 1`] = `
 
 exports[`CourseFileList should render with folders 1`] = `
 <Screen
-  leftBarButtons={Array []}
   navBarColor={undefined}
   navBarStyle="dark"
   rightBarButtons={
@@ -5624,7 +5618,6 @@ exports[`CourseFileList should render with folders 1`] = `
 
 exports[`CourseFileList should render with no data at all 1`] = `
 <Screen
-  leftBarButtons={Array []}
   navBarColor={undefined}
   navBarStyle="dark"
   rightBarButtons={

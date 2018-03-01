@@ -26,10 +26,6 @@ import WebContainer from '../../common/components/WebContainer'
 
 export class RubricDescription extends Component<*> {
 
-  dismiss = () => {
-    this.props.navigator.dismiss()
-  }
-
   renderLongDescription () {
     if (!this.props.description || this.props.description.length === 0) {
       return (
@@ -52,12 +48,7 @@ export class RubricDescription extends Component<*> {
     return (
       <Screen
         title={i18n('Long Description')}
-        rightBarButtons={[{
-          title: i18n('Done'),
-          style: 'done',
-          testID: 'rubric-description.done',
-          action: this.dismiss,
-        }]}>
+      >
         { description }
       </Screen>
     )

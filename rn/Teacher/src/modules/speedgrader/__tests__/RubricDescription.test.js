@@ -44,15 +44,6 @@ let defaultProps = {
 describe('RubricDescription', () => {
   beforeEach(() => jest.resetAllMocks())
 
-  it('calls dismiss modal when the done button is pressed', () => {
-    let tree = renderer.create(
-      <RubricDescription {...defaultProps} />
-    )
-
-    tree.getInstance().dismiss()
-    expect(defaultProps.navigator.dismiss).toHaveBeenCalled()
-  })
-
   it('renders', () => {
     let tree = renderer.create(
       <RubricDescription {...defaultProps} />

@@ -116,7 +116,7 @@ open class HelmManager: NSObject {
         // The views need to know when they are shown modaly and potentially other options
         // Doing it here instead of in JS so that native routing will also work
         var propsFRD = props
-        propsFRD["navigatorOptions"] = options
+        propsFRD[PropKeys.navigatorOptions] = options
         
         if let factory = nativeViewControllerFactories[destinationModule]?.factory {
             guard let vc = factory(propsFRD) else { return }
@@ -263,7 +263,7 @@ open class HelmManager: NSObject {
         // The views need to know when they are shown modaly and potentially other options
         // Doing it here instead of in JS so that native routing will also work
         var propsFRD = props
-        propsFRD["navigatorOptions"] = options
+        propsFRD[PropKeys.navigatorOptions] = options
         
         if let stuff = nativeViewControllerFactories[module] {
             let factory = stuff.factory

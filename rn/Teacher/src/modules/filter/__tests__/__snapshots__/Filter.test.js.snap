@@ -20,6 +20,7 @@ exports[`Filter renders the filter options 1`] = `
       },
     ]
   }
+  showDismissButton={false}
   title="Filter by"
 >
   <RCTScrollView
@@ -806,6 +807,7 @@ exports[`Filter renders with preselected options 1`] = `
       },
     ]
   }
+  showDismissButton={false}
   title="Filter by"
 >
   <RCTScrollView
@@ -1649,6 +1651,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
       },
     ]
   }
+  showDismissButton={false}
   title="Filter by"
 >
   <RCTScrollView

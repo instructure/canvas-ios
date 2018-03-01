@@ -169,19 +169,4 @@ describe('AttachmentView', () => {
       }, expect.any(Function), expect.any(Function))
     })
   })
-
-  it('closes', () => {
-    const props = {
-      ...defaultProps,
-      navigator: templates.navigator({
-        dismiss: jest.fn(),
-      }),
-    }
-    let tree = renderer.create(
-      <AttachmentView {...props} />
-    )
-
-    tree.getInstance().done()
-    expect(props.navigator.dismiss).toHaveBeenCalled()
-  })
 })

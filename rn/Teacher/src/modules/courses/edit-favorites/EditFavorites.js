@@ -66,10 +66,6 @@ export class FavoritesList extends Component<Props, State> {
     })
   }
 
-  dismiss = () => {
-    this.props.navigator.dismiss()
-  }
-
   renderCourse = (course: Course) => {
     return (
       <CourseFavorite
@@ -86,14 +82,6 @@ export class FavoritesList extends Component<Props, State> {
         navBarTitleColor={colors.darkText}
         navBarButtonColor={colors.link}
         title={i18n('Edit Courses')}
-        rightBarButtons={[
-          {
-            title: i18n('Done'),
-            style: 'done',
-            testID: 'edit-favorites.done-btn',
-            action: this.dismiss,
-          },
-        ]}
       >
         <RefreshableListView
           style={styles.listStyle}

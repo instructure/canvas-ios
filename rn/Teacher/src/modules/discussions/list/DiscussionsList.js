@@ -180,14 +180,7 @@ export class DiscussionsList extends Component<Props, any> {
         navBarColor={this.props.courseColor}
         navBarStyle='dark'
         drawUnderNavBar
-        leftBarButtons={this.props.navigator.isModal && [
-          {
-            title: i18n('Done'),
-            testID: 'discussions.list.dismiss.button',
-            action: this.props.navigator.dismiss,
-          },
-        ]}
-        rightBarButtons={ (this.props.permissions && this.props.permissions.create_discussion_topic) && [
+        rightBarButtons={(this.props.permissions && this.props.permissions.create_discussion_topic) && [
           {
             image: Images.add,
             testID: 'discussions.list.add.button',

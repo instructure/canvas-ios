@@ -73,13 +73,7 @@ export class EditReply extends React.Component<Props, any> {
             action: this._actionDonePressed,
           },
         ]}
-        leftBarButtons={[
-          {
-            title: i18n('Cancel'),
-            testID: 'edit-discussion-reply.cancel-btn',
-            action: this._actionCancelPressed,
-          },
-        ]}
+        dismissButtonTitle={i18n('Cancel')}
       >
         <View style={{ flex: 1 }}>
           <ModalActivityIndicator text={i18n('Saving')} visible={this.state.pending} />
@@ -124,10 +118,6 @@ export class EditReply extends React.Component<Props, any> {
     } else {
       this.props.createEntry(this.props.context, this.props.contextID, this.props.discussionID, this.props.entryID, params, this.props.indexPath, this.props.lastReplyAt)
     }
-  }
-
-  _actionCancelPressed = () => {
-    this.props.navigator.dismiss()
   }
 
   _valueChanged (property: string, transformer?: any, animated?: boolean = true): Function {

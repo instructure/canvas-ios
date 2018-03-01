@@ -197,14 +197,7 @@ export class DiscussionEdit extends Component<Props, any> {
             },
           },
         ]}
-        leftBarButtons={[
-          {
-            title: i18n('Cancel'),
-            testID: 'discussions.edit.cancelButton',
-            style: 'cancel',
-            action: this._cancelPressed,
-          },
-        ]}
+        dismissButtonTitle={i18n('Cancel')}
       >
         <View style={{ flex: 1 }}>
           <ModalActivityIndicator text={i18n('Saving')} visible={this.state.pending}/>

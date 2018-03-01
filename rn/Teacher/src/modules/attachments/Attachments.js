@@ -115,6 +115,7 @@ export class Attachments extends Component<Props, any> {
             action: anyInProgress ? this.cancel : this.dismiss,
           },
         ]}
+        showDismissButton={false}
       >
         <View style={styles.container}>
           <FlatList

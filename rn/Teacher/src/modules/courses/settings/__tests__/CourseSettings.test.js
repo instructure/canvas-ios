@@ -166,21 +166,6 @@ describe('CourseSettings', () => {
     expect(props.navigator.dismissAllModals).toHaveBeenCalled()
   })
 
-  it('dismisses on cancel', () => {
-    const props = {
-      ...defaultProps,
-      navigator: templates.navigator({
-        dismissAllM: jest.fn(),
-      }),
-    }
-    const tree = renderer.create(
-      <CourseSettings {...props} />
-    )
-
-    tree.getInstance().dismiss()
-    expect(props.navigator.dismiss).toHaveBeenCalled()
-  })
-
   it('does not dismiss if there was an error', () => {
     const props = {
       ...defaultProps,

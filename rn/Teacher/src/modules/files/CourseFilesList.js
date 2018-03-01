@@ -103,10 +103,6 @@ export class CourseFilesList extends Component<Props, State> {
     this.update()
   }
 
-  dismiss = () => {
-    this.props.navigator.dismiss()
-  }
-
   update = async () => {
     this.setState({ pending: true })
     try {
@@ -326,15 +322,6 @@ export class CourseFilesList extends Component<Props, State> {
       : i18n('Files')
     const empty = <ListEmptyComponent title={i18n('This folder is empty.')} />
 
-    const leftBarButtons = []
-    if (this.props.navigator.isModal) {
-      leftBarButtons.push({
-        testID: 'course-files.modal.dismiss',
-        action: this.dismiss,
-        title: i18n('Done'),
-      })
-    }
-
     const rightBarButtons = []
     if (!this.state.uploadPending && isTeacher()) {
       rightBarButtons.push({
@@ -359,7 +346,6 @@ export class CourseFilesList extends Component<Props, State> {
         navBarColor={this.props.courseColor}
         navBarStyle='dark'
         rightBarButtons={rightBarButtons}
-        leftBarButtons={leftBarButtons}
       >
         <DropView style={{ flex: 1 }}>
           { this.state.uploadPending && <SavingBanner title={this.state.uploadMessage || ''} /> }

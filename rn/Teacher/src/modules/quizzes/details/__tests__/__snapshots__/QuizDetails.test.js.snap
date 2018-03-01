@@ -2,7 +2,6 @@
 
 exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
 <Screen
-  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -1390,7 +1389,6 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
 
 exports[`QuizDetails displays access code 1`] = `
 <Screen
-  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -2778,7 +2776,6 @@ exports[`QuizDetails displays access code 1`] = `
 
 exports[`QuizDetails does not render Show Correct Answers when hide_results is null 1`] = `
 <Screen
-  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -4050,7 +4047,6 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
 
 exports[`QuizDetails renders 1`] = `
 <Screen
-  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -5380,7 +5376,6 @@ exports[`QuizDetails renders 1`] = `
 
 exports[`QuizDetails renders One Question At A Time: 1`] = `
 <Screen
-  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -6768,7 +6763,6 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
 
 exports[`QuizDetails renders One Question At A Time: 2`] = `
 <Screen
-  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -8098,7 +8092,6 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
 
 exports[`QuizDetails renders Show Correct Answers dates 1`] = `
 <Screen
-  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -9428,7 +9421,6 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
 
 exports[`QuizDetails renders Show Correct Answers dates 2`] = `
 <Screen
-  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -10758,7 +10750,6 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
 
 exports[`QuizDetails renders Show Correct Answers dates 3`] = `
 <Screen
-  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -12088,7 +12079,6 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
 
 exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
 <Screen
-  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -13418,7 +13408,6 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
 
 exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
 <Screen
-  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -14690,7 +14679,6 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
 
 exports[`QuizDetails renders allowed attempts 1`] = `
 <Screen
-  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -16020,7 +16008,6 @@ exports[`QuizDetails renders allowed attempts 1`] = `
 
 exports[`QuizDetails renders allowed attempts 2`] = `
 <Screen
-  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -17350,7 +17337,6 @@ exports[`QuizDetails renders allowed attempts 2`] = `
 
 exports[`QuizDetails renders assignment due dates 1`] = `
 <Screen
-  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -18712,7 +18698,6 @@ exports[`QuizDetails renders assignment due dates 1`] = `
 
 exports[`QuizDetails renders assignment group 1`] = `
 <Screen
-  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -20100,7 +20085,6 @@ exports[`QuizDetails renders assignment group 1`] = `
 
 exports[`QuizDetails renders published state 1`] = `
 <Screen
-  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -21430,7 +21414,6 @@ exports[`QuizDetails renders published state 1`] = `
 
 exports[`QuizDetails renders published state 2`] = `
 <Screen
-  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -22760,7 +22743,6 @@ exports[`QuizDetails renders published state 2`] = `
 
 exports[`QuizDetails renders quiz type 1`] = `
 <Screen
-  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -24090,7 +24072,6 @@ exports[`QuizDetails renders quiz type 1`] = `
 
 exports[`QuizDetails renders quiz type 2`] = `
 <Screen
-  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -25420,7 +25401,6 @@ exports[`QuizDetails renders quiz type 2`] = `
 
 exports[`QuizDetails renders scoring policy 1`] = `
 <Screen
-  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -26750,7 +26730,6 @@ exports[`QuizDetails renders scoring policy 1`] = `
 
 exports[`QuizDetails renders scoring policy 2`] = `
 <Screen
-  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -28080,7 +28059,6 @@ exports[`QuizDetails renders scoring policy 2`] = `
 
 exports[`QuizDetails renders scoring policy 3`] = `
 <Screen
-  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -29410,7 +29388,6 @@ exports[`QuizDetails renders scoring policy 3`] = `
 
 exports[`QuizDetails renders show correct answers 1`] = `
 <Screen
-  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -30740,7 +30717,6 @@ exports[`QuizDetails renders show correct answers 1`] = `
 
 exports[`QuizDetails renders show correct answers 2`] = `
 <Screen
-  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -32070,7 +32046,6 @@ exports[`QuizDetails renders show correct answers 2`] = `
 
 exports[`QuizDetails renders shuffle answers 1`] = `
 <Screen
-  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -33400,7 +33375,6 @@ exports[`QuizDetails renders shuffle answers 1`] = `
 
 exports[`QuizDetails renders shuffle answers 2`] = `
 <Screen
-  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -34730,7 +34704,6 @@ exports[`QuizDetails renders shuffle answers 2`] = `
 
 exports[`QuizDetails renders time limit 1`] = `
 <Screen
-  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -36060,7 +36033,6 @@ exports[`QuizDetails renders time limit 1`] = `
 
 exports[`QuizDetails renders time limit 2`] = `
 <Screen
-  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -37390,7 +37362,6 @@ exports[`QuizDetails renders time limit 2`] = `
 
 exports[`QuizDetails renders view responses 1`] = `
 <Screen
-  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -38720,7 +38691,6 @@ exports[`QuizDetails renders view responses 1`] = `
 
 exports[`QuizDetails renders view responses 2`] = `
 <Screen
-  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -39992,7 +39962,6 @@ exports[`QuizDetails renders view responses 2`] = `
 
 exports[`QuizDetails renders view responses 3`] = `
 <Screen
-  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -41264,7 +41233,6 @@ exports[`QuizDetails renders view responses 3`] = `
 
 exports[`QuizDetails renders without a description 1`] = `
 <Screen
-  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
@@ -42616,7 +42584,6 @@ exports[`QuizDetails renders without a description 1`] = `
 
 exports[`QuizDetails renders without a quiz 1`] = `
 <Screen
-  leftBarButtons={false}
   navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={

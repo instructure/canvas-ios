@@ -153,14 +153,7 @@ export class QuizEdit extends Component<Props, any> {
             disabled: this.state.pending,
           },
         ]}
-        leftBarButtons={[
-          {
-            title: i18n('Cancel'),
-            testID: 'quizzes.edit.cancelButton',
-            action: this._cancelPressed,
-            disabled: this.state.pending,
-          },
-        ]}
+        dismissButtonTitle={i18n('Cancel')}
       >
         <View style={{ flex: 1, backgroundColor: '#F5F5F5' }}>
           { this.state.pending && <SavingBanner style={style.savingBanner} />}
@@ -606,10 +599,6 @@ export class QuizEdit extends Component<Props, any> {
       this.setState({ pending: this.props.pending || false })
       alertError(error)
     }
-  }
-
-  _cancelPressed = () => {
-    this.props.navigator.dismiss()
   }
 
   _editDescription = () => {

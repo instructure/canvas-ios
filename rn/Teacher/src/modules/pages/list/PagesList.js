@@ -81,13 +81,6 @@ export class PagesList extends Component<Props, any> {
         title={i18n('Pages')}
         subtitle={this.props.courseName}
         onTraitCollectionChange={this.onTraitCollectionChange}
-        leftBarButtons={this.props.navigator.isModal && [
-          {
-            title: i18n('Done'),
-            testID: 'pages.list.dismiss.button',
-            action: this.props.navigator.dismiss,
-          },
-        ]}
         rightBarButtons={isTeacher() && [
           {
             image: Images.add,

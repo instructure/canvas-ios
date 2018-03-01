@@ -234,12 +234,6 @@ describe('AnnouncementEdit', () => {
     expect(props.deletePendingNewDiscussion).toHaveBeenCalledWith(props.context, props.contextID)
   })
 
-  it('calls dismiss on cancel', () => {
-    props.navigator.dismiss = jest.fn()
-    tapCancel(render(props))
-    expect(props.navigator.dismiss).toHaveBeenCalled()
-  })
-
   it('sets message placeholder', () => {
     expect(getMessageEditor(render(props)).props.placeholder).toEqual('Add description (required)')
   })
@@ -341,11 +335,6 @@ describe('AnnouncementEdit', () => {
   function tapDone (component: any): any {
     getDoneButton(component).action()
     return component
-  }
-
-  function tapCancel (component: any) {
-    const done: any = explore(component.toJSON()).selectLeftBarButton('announcements.edit.cancelButton')
-    done.action()
   }
 
   function changeTitle (component: any, value: string) {

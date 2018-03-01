@@ -74,15 +74,6 @@ export class AssignmentDetails extends Component<AssignmentDetailsProps, any> {
 
     const isExternalTool = submissionTypes.includes('external_tool')
 
-    let doneButton = null
-    if (this.props.navigator.isModal) {
-      doneButton = {
-        title: i18n('Done'),
-        style: 'done',
-        testID: 'assignment-details.done-btn',
-        action: this.dismiss,
-      }
-    }
     return (
       <Screen
         navBarColor={this.props.courseColor}
@@ -97,7 +88,6 @@ export class AssignmentDetails extends Component<AssignmentDetailsProps, any> {
             action: this.editAssignment,
           },
         ]}
-        leftBarButtons={doneButton && [doneButton]}
       >
         <RefreshableScrollView
           refreshing={Boolean(this.props.pending)}
@@ -196,10 +186,6 @@ export class AssignmentDetails extends Component<AssignmentDetailsProps, any> {
         </RefreshableScrollView>
       </Screen>
     )
-  }
-
-  dismiss = () => {
-    this.props.navigator.dismiss()
   }
 
   onSubmissionDialPress = (type: string) => {

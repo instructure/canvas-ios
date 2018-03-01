@@ -99,14 +99,7 @@ export class PageEdit extends Component<Props, State> {
             action: this.done,
           },
         ]}
-        leftBarButtons={[
-          {
-            title: i18n('Cancel'),
-            testID: 'pages.edit.cancelButton',
-            style: 'cancel',
-            action: this.cancel,
-          },
-        ]}
+        dismissButtonTitle={i18n('Cancel')}
       >
         <View style={{ flex: 1 }}>
           { this.state.pending && <SavingBanner /> }
@@ -224,10 +217,6 @@ export class PageEdit extends Component<Props, State> {
       this.setState({ pending: false })
       alertError(error)
     }
-  }
-
-  cancel = () => {
-    this.props.navigator.dismiss()
   }
 
   updateValue (property: string): Function {
