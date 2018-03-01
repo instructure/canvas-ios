@@ -165,9 +165,6 @@ extension AppDelegate: NativeLoginManagerDelegate {
     func didLogin(_ client: CKIClient) {
         if let brandingInfo = client.branding?.jsonDictionary() as? [String: Any] {
             Brand.setCurrent(Brand(webPayload: brandingInfo))
-            if let window = self.window {
-                Brand.current.apply(window)
-            }
         }
     }
     

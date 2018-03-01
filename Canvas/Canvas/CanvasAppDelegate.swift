@@ -378,29 +378,6 @@ extension AppDelegate: NativeLoginManagerDelegate {
         
         if let brandingInfo = client.branding?.jsonDictionary() as? [String: Any] {
             Brand.setCurrent(Brand(webPayload: brandingInfo))
-            if let window = self.window {
-                Brand.current.apply(window)
-            }
-        } else {
-            let b = Brand.current
-            guard let brand = CKIBrand() else {
-                fatalError("Why can't I init a brand?")
-            }
-            brand.navigationBackground = "#313640" // ask me why this value is hard-coded and I'll tell you a sad sad tale
-            brand.navigationButtonColor = b.navButtonColor.hex
-            brand.navigationTextColor = b.navTextColor.hex
-            brand.primaryColor = b.tintColor.hex
-            brand.primaryButtonTextColor = b.secondaryTintColor.hex
-            brand.linkColor = b.tintColor.hex
-            brand.primaryButtonBackgroundColor = b.tintColor.hex
-            brand.primaryButtonTextColor = "#FFFFFF"
-            brand.secondaryButtonBackgroundColor = b.secondaryTintColor.hex
-            brand.secondaryButtonTextColor = "#FFFFFF"
-            brand.fontColorDark = "#000000"
-            brand.fontColorLight = "#666666"
-            brand.headerImageURL = ""
-            
-            client.branding = brand
         }
     }
     

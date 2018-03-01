@@ -14,12 +14,13 @@ public func inboxTab() -> UIViewController {
     let inboxVC = HelmViewController(moduleName: "/conversations", props: [:])
     let inboxNav = HelmNavigationController(rootViewController: inboxVC)
     
+    inboxNav.applyDefaultBranding()
     inboxVC.navigationItem.titleView = Brand.current.navBarTitleView()
     
     let inboxSplit = HelmSplitViewController()
     
     let empty = HelmNavigationController()
-    empty.navigationBar.isTranslucent = false
+    empty.applyDefaultBranding()
     
     inboxSplit.viewControllers = [inboxNav, empty]
     let icon = UIImage.icon(.email)

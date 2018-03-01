@@ -67,8 +67,9 @@ public func EnrollmentsTab(session: Session) throws -> UIViewController {
     let dashboardNav = HelmNavigationController(rootViewController: dashboardVC)
     let dashboardSplit = EnrollmentSplitViewController()
     let emptyNav = UINavigationController(rootViewController:EmptyViewController())
-    emptyNav.navigationBar.isTranslucent = false
+    emptyNav.applyDefaultBranding()
     dashboardNav.delegate = dashboardSplit
+    dashboardNav.applyDefaultBranding()
     dashboardSplit.viewControllers = [dashboardNav, emptyNav]
     dashboardSplit.tabBarItem.title = NSLocalizedString("Dashboard", comment: "dashboard page title")
     dashboardSplit.tabBarItem.image = .icon(.course)

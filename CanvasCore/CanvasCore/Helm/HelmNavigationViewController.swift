@@ -39,8 +39,6 @@ public class HelmNavigationController: UINavigationController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationBar.barTintColor = Brand.current.navBgColor
-        self.navigationBar.tintColor = Brand.current.navButtonColor
     }
     
     public override var prefersStatusBarHidden: Bool {
