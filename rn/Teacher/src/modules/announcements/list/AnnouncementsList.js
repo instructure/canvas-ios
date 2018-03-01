@@ -154,8 +154,13 @@ export function mapStateToProps ({ entities }: AppState, { context, contextID }:
       courseColor = entity.group.color
       permissions = { create_announcement: true, create_discussion_topic: true }
     }
+
     announcements = refs
       .map(ref => entities.discussions[ref].data)
+      .sort((a1, a2) => {
+        if (a1.position === a2.position) return 0
+        return a1.position > a2.position ? -1 : 1
+      })
   }
 
   return {

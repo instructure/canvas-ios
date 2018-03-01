@@ -355,258 +355,414 @@ exports[`AnnouncementEdit renders 1`] = `
           title="A description is required"
           visible={false}
         />
-        <Text
-          accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
-          }
-        >
-          Options
-        </Text>
-        <TouchableHighlight
-          accessibilityLabel="Delay Posting, Off"
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
-          onPress={[Function]}
-          style={
-            Array [
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
-              },
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-            ]
-          }
-          testID={undefined}
-        >
-          <View
+        <View>
+          <Text
+            accessibilityTraits="header"
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
             style={
               Array [
                 Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "minHeight": 54,
-                  "paddingBottom": 12,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 12,
+                  "fontFamily": ".SFUIDisplay",
                 },
                 Object {
-                  "backgroundColor": "white",
+                  "color": "#2D3B45",
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 20,
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "marginBottom": 8,
+                  "marginLeft": 16,
+                  "marginTop": 16,
                 },
               ]
             }
+          >
+            Options
+          </Text>
+          <TouchableHighlight
+            accessibilityLabel="Sections, All"
+            accessibilityTraits={
+              Array [
+                "button",
+              ]
+            }
+            onPress={[Function]}
+            style={
+              Array [
+                Object {
+                  "borderTopColor": "#C7CDD1",
+                  "borderTopWidth": 0.5,
+                },
+                Object {
+                  "borderBottomColor": "#C7CDD1",
+                  "borderBottomWidth": 0.5,
+                },
+              ]
+            }
+            testID={undefined}
           >
             <View
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
                     "flex": 1,
-                    "flexDirection": "column",
-                    "justifyContent": "center",
+                    "flexDirection": "row",
+                    "minHeight": 54,
+                    "paddingBottom": 12,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 12,
                   },
                   Object {
-                    "marginLeft": 0,
+                    "backgroundColor": "white",
                   },
                 ]
               }
             >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={0}
+              <View
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
+                      "flex": 1,
+                      "flexDirection": "column",
+                      "justifyContent": "center",
                     },
                     Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "fontWeight": "600",
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
+                      "marginLeft": 0,
                     },
                   ]
                 }
               >
-                Delay Posting
-              </Text>
-            </View>
-            <View
-              style={
-                Object {
-                  "flex": 0,
-                }
-              }
-            >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={0}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Array [
+                        Object {
+                          "fontWeight": "600",
+                        },
+                      ],
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Sections
+                </Text>
+              </View>
               <View
                 style={
                   Object {
-                    "alignItems": "center",
-                    "flex": 1,
-                    "flexDirection": "row",
-                    "justifyContent": "flex-end",
+                    "flex": 0,
                   }
                 }
               >
-                <Switch
-                  border="both"
-                  identifier="announcements.edit.delay-posting-toggle"
-                  onTintColor="#374A59"
-                  onValueChange={[Function]}
-                  testID="announcements.edit.delay-posting-toggle"
-                  tintColor={null}
-                  title="Delay Posting"
-                  value={false}
-                />
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "justifyContent": "flex-end",
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                      }
+                    }
+                  >
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
+                      numberOfLines={1}
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Object {},
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                        ]
+                      }
+                      testID={undefined}
+                    >
+                      All
+                    </Text>
+                    <View
+                      style={
+                        Object {
+                          "alignSelf": "center",
+                          "backgroundColor": "transparent",
+                          "borderColor": "#c7c7cc",
+                          "borderRightWidth": 2,
+                          "borderTopWidth": 2,
+                          "height": 10,
+                          "marginLeft": 7,
+                          "transform": Array [
+                            Object {
+                              "rotate": "45deg",
+                            },
+                          ],
+                          "width": 10,
+                        }
+                      }
+                    />
+                  </View>
+                </View>
               </View>
             </View>
-          </View>
-        </TouchableHighlight>
-        <TouchableHighlight
-          accessibilityLabel="Users must post before seeing replies, Off"
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
-          onPress={[Function]}
-          style={
-            Array [
-              undefined,
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-            ]
-          }
-          testID={undefined}
-        >
-          <View
+          </TouchableHighlight>
+          <TouchableHighlight
+            accessibilityLabel="Delay Posting, Off"
+            accessibilityTraits={
+              Array [
+                "button",
+              ]
+            }
+            onPress={[Function]}
             style={
               Array [
+                undefined,
                 Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "minHeight": 54,
-                  "paddingBottom": 12,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 12,
-                },
-                Object {
-                  "backgroundColor": "white",
+                  "borderBottomColor": "#C7CDD1",
+                  "borderBottomWidth": 0.5,
                 },
               ]
             }
+            testID={undefined}
           >
             <View
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
                     "flex": 1,
-                    "flexDirection": "column",
-                    "justifyContent": "center",
+                    "flexDirection": "row",
+                    "minHeight": 54,
+                    "paddingBottom": 12,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 12,
                   },
                   Object {
-                    "marginLeft": 0,
+                    "backgroundColor": "white",
                   },
                 ]
               }
             >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={0}
+              <View
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
+                      "flex": 1,
+                      "flexDirection": "column",
+                      "justifyContent": "center",
                     },
                     Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "fontWeight": "600",
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
+                      "marginLeft": 0,
                     },
                   ]
                 }
               >
-                Users must post before seeing replies
-              </Text>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={0}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Array [
+                        Object {
+                          "fontWeight": "600",
+                        },
+                      ],
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Delay Posting
+                </Text>
+              </View>
+              <View
+                style={
+                  Object {
+                    "flex": 0,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "justifyContent": "flex-end",
+                    }
+                  }
+                >
+                  <Switch
+                    border="bottom"
+                    identifier="announcements.edit.delay-posting-toggle"
+                    onTintColor="#374A59"
+                    onValueChange={[Function]}
+                    testID="announcements.edit.delay-posting-toggle"
+                    tintColor={null}
+                    title="Delay Posting"
+                    value={false}
+                  />
+                </View>
+              </View>
             </View>
+          </TouchableHighlight>
+          <TouchableHighlight
+            accessibilityLabel="Users must post before seeing replies, Off"
+            accessibilityTraits={
+              Array [
+                "button",
+              ]
+            }
+            onPress={[Function]}
+            style={
+              Array [
+                undefined,
+                Object {
+                  "borderBottomColor": "#C7CDD1",
+                  "borderBottomWidth": 0.5,
+                },
+              ]
+            }
+            testID={undefined}
+          >
             <View
               style={
-                Object {
-                  "flex": 0,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "flex": 1,
+                    "flexDirection": "row",
+                    "minHeight": 54,
+                    "paddingBottom": 12,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 12,
+                  },
+                  Object {
+                    "backgroundColor": "white",
+                  },
+                ]
               }
             >
               <View
                 style={
+                  Array [
+                    Object {
+                      "flex": 1,
+                      "flexDirection": "column",
+                      "justifyContent": "center",
+                    },
+                    Object {
+                      "marginLeft": 0,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={0}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Array [
+                        Object {
+                          "fontWeight": "600",
+                        },
+                      ],
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Users must post before seeing replies
+                </Text>
+              </View>
+              <View
+                style={
                   Object {
-                    "alignItems": "center",
-                    "flex": 1,
-                    "flexDirection": "row",
-                    "justifyContent": "flex-end",
+                    "flex": 0,
                   }
                 }
               >
-                <Switch
-                  border="bottom"
-                  onTintColor="#374A59"
-                  onValueChange={[Function]}
-                  testID={undefined}
-                  tintColor={null}
-                  title="Users must post before seeing replies"
-                  value={false}
-                />
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "justifyContent": "flex-end",
+                    }
+                  }
+                >
+                  <Switch
+                    border="bottom"
+                    onTintColor="#374A59"
+                    onValueChange={[Function]}
+                    testID={undefined}
+                    tintColor={null}
+                    title="Users must post before seeing replies"
+                    value={false}
+                  />
+                </View>
               </View>
             </View>
-          </View>
-        </TouchableHighlight>
+          </TouchableHighlight>
+        </View>
       </View>
     </RCTScrollView>
   </View>
@@ -951,258 +1107,414 @@ exports[`AnnouncementEdit updates with new props 1`] = `
           title="A description is required"
           visible={false}
         />
-        <Text
-          accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
-          }
-        >
-          Options
-        </Text>
-        <TouchableHighlight
-          accessibilityLabel="Delay Posting, Off"
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
-          onPress={[Function]}
-          style={
-            Array [
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
-              },
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-            ]
-          }
-          testID={undefined}
-        >
-          <View
+        <View>
+          <Text
+            accessibilityTraits="header"
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
             style={
               Array [
                 Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "minHeight": 54,
-                  "paddingBottom": 12,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 12,
+                  "fontFamily": ".SFUIDisplay",
                 },
                 Object {
-                  "backgroundColor": "white",
+                  "color": "#2D3B45",
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 20,
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "marginBottom": 8,
+                  "marginLeft": 16,
+                  "marginTop": 16,
                 },
               ]
             }
+          >
+            Options
+          </Text>
+          <TouchableHighlight
+            accessibilityLabel="Sections, All"
+            accessibilityTraits={
+              Array [
+                "button",
+              ]
+            }
+            onPress={[Function]}
+            style={
+              Array [
+                Object {
+                  "borderTopColor": "#C7CDD1",
+                  "borderTopWidth": 0.5,
+                },
+                Object {
+                  "borderBottomColor": "#C7CDD1",
+                  "borderBottomWidth": 0.5,
+                },
+              ]
+            }
+            testID={undefined}
           >
             <View
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
                     "flex": 1,
-                    "flexDirection": "column",
-                    "justifyContent": "center",
+                    "flexDirection": "row",
+                    "minHeight": 54,
+                    "paddingBottom": 12,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 12,
                   },
                   Object {
-                    "marginLeft": 0,
+                    "backgroundColor": "white",
                   },
                 ]
               }
             >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={0}
+              <View
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
+                      "flex": 1,
+                      "flexDirection": "column",
+                      "justifyContent": "center",
                     },
                     Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "fontWeight": "600",
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
+                      "marginLeft": 0,
                     },
                   ]
                 }
               >
-                Delay Posting
-              </Text>
-            </View>
-            <View
-              style={
-                Object {
-                  "flex": 0,
-                }
-              }
-            >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={0}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Array [
+                        Object {
+                          "fontWeight": "600",
+                        },
+                      ],
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Sections
+                </Text>
+              </View>
               <View
                 style={
                   Object {
-                    "alignItems": "center",
-                    "flex": 1,
-                    "flexDirection": "row",
-                    "justifyContent": "flex-end",
+                    "flex": 0,
                   }
                 }
               >
-                <Switch
-                  border="both"
-                  identifier="announcements.edit.delay-posting-toggle"
-                  onTintColor="#374A59"
-                  onValueChange={[Function]}
-                  testID="announcements.edit.delay-posting-toggle"
-                  tintColor={null}
-                  title="Delay Posting"
-                  value={false}
-                />
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "justifyContent": "flex-end",
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                      }
+                    }
+                  >
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
+                      numberOfLines={1}
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Object {},
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                        ]
+                      }
+                      testID={undefined}
+                    >
+                      All
+                    </Text>
+                    <View
+                      style={
+                        Object {
+                          "alignSelf": "center",
+                          "backgroundColor": "transparent",
+                          "borderColor": "#c7c7cc",
+                          "borderRightWidth": 2,
+                          "borderTopWidth": 2,
+                          "height": 10,
+                          "marginLeft": 7,
+                          "transform": Array [
+                            Object {
+                              "rotate": "45deg",
+                            },
+                          ],
+                          "width": 10,
+                        }
+                      }
+                    />
+                  </View>
+                </View>
               </View>
             </View>
-          </View>
-        </TouchableHighlight>
-        <TouchableHighlight
-          accessibilityLabel="Users must post before seeing replies, Off"
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
-          onPress={[Function]}
-          style={
-            Array [
-              undefined,
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-            ]
-          }
-          testID={undefined}
-        >
-          <View
+          </TouchableHighlight>
+          <TouchableHighlight
+            accessibilityLabel="Delay Posting, Off"
+            accessibilityTraits={
+              Array [
+                "button",
+              ]
+            }
+            onPress={[Function]}
             style={
               Array [
+                undefined,
                 Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "minHeight": 54,
-                  "paddingBottom": 12,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 12,
-                },
-                Object {
-                  "backgroundColor": "white",
+                  "borderBottomColor": "#C7CDD1",
+                  "borderBottomWidth": 0.5,
                 },
               ]
             }
+            testID={undefined}
           >
             <View
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
                     "flex": 1,
-                    "flexDirection": "column",
-                    "justifyContent": "center",
+                    "flexDirection": "row",
+                    "minHeight": 54,
+                    "paddingBottom": 12,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 12,
                   },
                   Object {
-                    "marginLeft": 0,
+                    "backgroundColor": "white",
                   },
                 ]
               }
             >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={0}
+              <View
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
+                      "flex": 1,
+                      "flexDirection": "column",
+                      "justifyContent": "center",
                     },
                     Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "fontWeight": "600",
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
+                      "marginLeft": 0,
                     },
                   ]
                 }
               >
-                Users must post before seeing replies
-              </Text>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={0}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Array [
+                        Object {
+                          "fontWeight": "600",
+                        },
+                      ],
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Delay Posting
+                </Text>
+              </View>
+              <View
+                style={
+                  Object {
+                    "flex": 0,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "justifyContent": "flex-end",
+                    }
+                  }
+                >
+                  <Switch
+                    border="bottom"
+                    identifier="announcements.edit.delay-posting-toggle"
+                    onTintColor="#374A59"
+                    onValueChange={[Function]}
+                    testID="announcements.edit.delay-posting-toggle"
+                    tintColor={null}
+                    title="Delay Posting"
+                    value={false}
+                  />
+                </View>
+              </View>
             </View>
+          </TouchableHighlight>
+          <TouchableHighlight
+            accessibilityLabel="Users must post before seeing replies, Off"
+            accessibilityTraits={
+              Array [
+                "button",
+              ]
+            }
+            onPress={[Function]}
+            style={
+              Array [
+                undefined,
+                Object {
+                  "borderBottomColor": "#C7CDD1",
+                  "borderBottomWidth": 0.5,
+                },
+              ]
+            }
+            testID={undefined}
+          >
             <View
               style={
-                Object {
-                  "flex": 0,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "flex": 1,
+                    "flexDirection": "row",
+                    "minHeight": 54,
+                    "paddingBottom": 12,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 12,
+                  },
+                  Object {
+                    "backgroundColor": "white",
+                  },
+                ]
               }
             >
               <View
                 style={
+                  Array [
+                    Object {
+                      "flex": 1,
+                      "flexDirection": "column",
+                      "justifyContent": "center",
+                    },
+                    Object {
+                      "marginLeft": 0,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={0}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Array [
+                        Object {
+                          "fontWeight": "600",
+                        },
+                      ],
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Users must post before seeing replies
+                </Text>
+              </View>
+              <View
+                style={
                   Object {
-                    "alignItems": "center",
-                    "flex": 1,
-                    "flexDirection": "row",
-                    "justifyContent": "flex-end",
+                    "flex": 0,
                   }
                 }
               >
-                <Switch
-                  border="bottom"
-                  onTintColor="#374A59"
-                  onValueChange={[Function]}
-                  testID={undefined}
-                  tintColor={null}
-                  title="Users must post before seeing replies"
-                  value={false}
-                />
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "justifyContent": "flex-end",
+                    }
+                  }
+                >
+                  <Switch
+                    border="bottom"
+                    onTintColor="#374A59"
+                    onValueChange={[Function]}
+                    testID={undefined}
+                    tintColor={null}
+                    title="Users must post before seeing replies"
+                    value={false}
+                  />
+                </View>
               </View>
             </View>
-          </View>
-        </TouchableHighlight>
+          </TouchableHighlight>
+        </View>
       </View>
     </RCTScrollView>
   </View>

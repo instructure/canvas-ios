@@ -33,6 +33,7 @@ import { Heading1 } from '../../../common/text'
 import RowWithTextInput from '../../../common/components/rows/RowWithTextInput'
 import RowWithSwitch from '../../../common/components/rows/RowWithSwitch'
 import RowWithDateInput from '../../../common/components/rows/RowWithDateInput'
+import RowWithDetail from '../../../common/components/rows/RowWithDetail'
 import colors from '../../../common/colors'
 import images from '../../../images'
 import RichTextEditor from '../../../common/components/rich-text-editor/RichTextEditor'
@@ -42,6 +43,8 @@ import { default as EditDiscussionActions } from '../../discussions/edit/actions
 import { alertError } from '../../../redux/middleware/error-handler'
 import UnmetRequirementBanner from '../../../common/components/UnmetRequirementBanner'
 import RequiredFieldSubscript from '../../../common/components/RequiredFieldSubscript'
+import AssigneePickerActions from '../../assignee-picker/actions'
+import DisclosureIndicator from '../../../common/components/DisclosureIndicator'
 import { isTeacher } from '../../app/index'
 
 const { NativeAccessibility } = NativeModules
@@ -56,6 +59,7 @@ const Actions = {
   createDiscussion,
   updateDiscussion,
   deletePendingNewDiscussion,
+  refreshSections: AssigneePickerActions.refreshSections,
 }
 
 type OwnProps = {
@@ -64,38 +68,43 @@ type OwnProps = {
   contextID: string,
 }
 
-type State = {
+type DataProps = {
   title: ?string,
   message: ?string,
   require_initial_post: ?boolean,
   delayed_post_at: ?string,
   attachment: ?Attachment,
+  sections: Section[],
+  selectedSections: string[],
 }
 
-export type Props = State & OwnProps & AsyncState & NavigationProps & typeof Actions & {
+export type Props = DataProps & OwnProps & AsyncState & NavigationProps & typeof Actions & {
   defaultDate?: Date,
 }
 
 export class AnnouncementEdit extends Component<Props, any> {
   scrollView: KeyboardAwareScrollView
-
-  constructor (props: Props) {
-    super(props)
-
-    this.state = {
-      title: props.title,
-      message: props.message,
-      require_initial_post: props.require_initial_post,
-      delayed_post_at: props.delayed_post_at,
-      delayPosting: Boolean(props.delayed_post_at),
-      delayedPostAtPickerShown: false,
-      attachment: props.attachment,
-      isValid: true,
-    }
+  state = {
+    title: this.props.title,
+    message: this.props.message,
+    require_initial_post: this.props.require_initial_post,
+    delayed_post_at: this.props.delayed_post_at,
+    delayPosting: Boolean(this.props.delayed_post_at),
+    delayedPostAtPickerShown: false,
+    attachment: this.props.attachment,
+    isValid: true,
+    selectedSections: this.props.selectedSections || [],
+    pending: false,
   }
 
   componentWillUnmount () {
     this.props.deletePendingNewDiscussion(this.props.context, this.props.contextID)
+  }
+
+  componentDidMount () {
+    if (this.props.context === 'courses') {
+      this.props.refreshSections(this.props.contextID)
+    }
   }
 
   componentWillReceiveProps (props: Props) {
@@ -106,25 +115,17 @@ export class AnnouncementEdit extends Component<Props, any> {
       return
     }
 
-    if (this.state.pending && !props.pending) {
-      this.props.navigator.dismissAllModals()
-      return
-    }
-
-    if (!this.state.pending) {
-      this.setState({
-        title: props.title,
-        message: props.message,
-        require_initial_post: props.require_initial_post,
-        delayed_post_at: props.delayed_post_at,
-        delayPosting: Boolean(props.delayed_post_at),
-        attachment: props.attachment,
+    if (this.props.pending && !props.pending) {
+      this.setState({ pending: false }, () => {
+        this.props.navigator.dismissAllModals()
       })
+      return
     }
   }
 
   render () {
     const title = this.props.announcementID ? i18n('Edit') : i18n('New')
+    const requireInitialPost = this.state.require_initial_post || false
     return (
       <Screen
         title={i18n('{title} Announcement', { title })}
@@ -193,48 +194,66 @@ export class AnnouncementEdit extends Component<Props, any> {
             <RequiredFieldSubscript title={i18n('A description is required')} visible={!this.state.isValid} />
 
             { isTeacher() &&
-            <Heading1 style={style.heading}>{i18n('Options')}</Heading1> }
-            { isTeacher() &&
-            <RowWithSwitch
-              title={i18n('Delay Posting')}
-              border='both'
-              value={this.state.delayPosting}
-              onValueChange={this._toggleDelayPosting}
-              identifier='announcements.edit.delay-posting-toggle'
-            />
-            }
-            { this.state.delayPosting && isTeacher() &&
               <View>
-                <RowWithDateInput
-                  title={i18n('Post at...')}
-                  date={this.state.delayed_post_at}
-                  selected={this.state.delayedPostAtPickerShown}
-                  showRemoveButton={Boolean(this.state.delayed_post_at)}
-                  border='bottom'
-                  onPress={this._toggleDelayedPostAtPicker}
-                  onRemoveDatePress={this._clearDelayedPostAt}
-                  testID={'announcements.edit.delayed-post-at-row'}
-                  dateTestID={'announcements.edit.delayed-post-at-value-label'}
-                  removeButtonTestID={'announcements.edit.clear-delayed-post-at-button'}
-                />
-                { this.state.delayedPostAtPickerShown &&
-                  <DatePickerIOS
-                    date={extractDateFromString(this.state.delayed_post_at) || this.props.defaultDate || new Date()}
-                    onDateChange={this._valueChanged('delayed_post_at', d => d.toISOString())}
-                    testID='announcements.edit.delayed-post-at-date-picker'
+                <Heading1 style={style.heading}>{i18n('Options')}</Heading1>
+                {this.props.context === 'courses' &&
+                  <RowWithDetail
+                    title={i18n('Sections')}
+                    border='both'
+                    onPress={this.selectSections}
+                    detail={
+                      this.state.selectedSections.length
+                      ? this.state.selectedSections
+                          .map(id => {
+                            let section = this.props.sections.find(s => s.id === id)
+                            return section && section.name
+                          })
+                          .filter(s => s)
+                          .join(', ')
+                      : i18n('All')
+
+                    }
+                    accessories={<DisclosureIndicator />}
                   />
                 }
+                <RowWithSwitch
+                  title={i18n('Delay Posting')}
+                  border='bottom'
+                  value={this.state.delayPosting}
+                  onValueChange={this._toggleDelayPosting}
+                  identifier='announcements.edit.delay-posting-toggle'
+                />
+                { this.state.delayPosting &&
+                  <View>
+                    <RowWithDateInput
+                      title={i18n('Post at...')}
+                      date={this.state.delayed_post_at}
+                      selected={this.state.delayedPostAtPickerShown}
+                      showRemoveButton={Boolean(this.state.delayed_post_at)}
+                      border='bottom'
+                      onPress={this._toggleDelayedPostAtPicker}
+                      onRemoveDatePress={this._clearDelayedPostAt}
+                      testID={'announcements.edit.delayed-post-at-row'}
+                      dateTestID={'announcements.edit.delayed-post-at-value-label'}
+                      removeButtonTestID={'announcements.edit.clear-delayed-post-at-button'}
+                    />
+                    { this.state.delayedPostAtPickerShown &&
+                      <DatePickerIOS
+                        date={extractDateFromString(this.state.delayed_post_at) || this.props.defaultDate || new Date()}
+                        onDateChange={this._valueChanged('delayed_post_at', d => d.toISOString())}
+                        testID='announcements.edit.delayed-post-at-date-picker'
+                      />
+                    }
+                  </View>
+                }
+                <RowWithSwitch
+                  title={i18n('Users must post before seeing replies')}
+                  border='bottom'
+                  value={requireInitialPost}
+                  onValueChange={this._valueChanged('require_initial_post')}
+                />
               </View>
             }
-            { isTeacher() &&
-            <RowWithSwitch
-              title={i18n('Users must post before seeing replies')}
-              border='bottom'
-              value={this.state.require_initial_post}
-              onValueChange={this._valueChanged('require_initial_post')}
-            />
-            }
-
           </KeyboardAwareScrollView>
         </View>
       </Screen>
@@ -288,7 +307,7 @@ export class AnnouncementEdit extends Component<Props, any> {
       return
     }
 
-    const params = {
+    const params: CreateDiscussionParameters | UpdateDiscussionParameters = {
       title: this.state.title || i18n('No Title'),
       message: this.state.message,
       require_initial_post: this.state.require_initial_post || false,
@@ -296,6 +315,12 @@ export class AnnouncementEdit extends Component<Props, any> {
       is_announcement: true,
       attachment: this.state.attachment,
     }
+
+    if (this.state.selectedSections.length) {
+      params.specific_sections = this.state.selectedSections.join(',')
+      params.sections = this.state.selectedSections.map(sectionID => this.props.sections.find(({ id }) => id === sectionID))
+    }
+
     if (this.props.announcementID) {
       // $FlowFixMe
       params.id = this.props.announcementID
@@ -304,6 +329,7 @@ export class AnnouncementEdit extends Component<Props, any> {
       // $FlowFixMe
       params.remove_attachment = true
     }
+
     this.setState({ pending: true, isValid: true })
     this.props.announcementID
       ? this.props.updateDiscussion(this.props.context, this.props.contextID, params)
@@ -336,6 +362,18 @@ export class AnnouncementEdit extends Component<Props, any> {
     })
   }
 
+  selectSections = () => {
+    this.props.navigator.show(`/courses/${this.props.contextID}/section-selector`, {}, {
+      updateSelectedSections: this.updateSelectedSections,
+      currentSelectedSections: this.state.selectedSections,
+    })
+  }
+
+  updateSelectedSections = (sectionIDs: string) => {
+    this.setState({
+      selectedSections: sectionIDs,
+    })
+  }
 }
 
 const style = StyleSheet.create({
@@ -362,7 +400,7 @@ const style = StyleSheet.create({
   },
 })
 
-export function mapStateToProps ({ entities }: AppState, { context, contextID, announcementID }: OwnProps): State {
+export function mapStateToProps ({ entities }: AppState, { context, contextID, announcementID }: OwnProps): DataProps {
   let announcement = {}
   let error = null
   let pending = 0
@@ -396,7 +434,16 @@ export function mapStateToProps ({ entities }: AppState, { context, contextID, a
     message,
     require_initial_post,
     delayed_post_at,
+    sections,
   } = announcement
+
+  let selectedSections = sections && sections.map(({ id }) => id) || []
+  let courseSections: Section[] = []
+  if (context === 'courses') {
+    // $FlowFixMe
+    courseSections = Object.values(entities.sections).filter(s => s.course_id === contextID)
+  }
+
   return {
     title,
     message,
@@ -405,6 +452,8 @@ export function mapStateToProps ({ entities }: AppState, { context, contextID, a
     pending,
     error,
     attachment,
+    sections: courseSections,
+    selectedSections,
   }
 }
 

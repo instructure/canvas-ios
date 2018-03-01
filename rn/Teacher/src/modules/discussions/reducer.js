@@ -222,7 +222,8 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
 
       pendingRepliesNeedingToBeRemoved.forEach((r) => { delete pendingReplies[r] })
 
-      entity.data = { ...discussion.data, replies: replies, participants: participantsAsMap }
+      let existingDiscussion = entity.data || {}
+      entity.data = { ...existingDiscussion, ...discussion.data, replies: replies, participants: participantsAsMap }
       entity.pendingReplies = pendingReplies
 
       return {
@@ -242,6 +243,7 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
       [discussionID]: {
         ...state[discussionID],
         data: {
+          ...state[discussionID].data,
           ...result.data,
         },
       },
@@ -322,10 +324,13 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
     },
   }),
   [createDiscussion.toString()]: handleAsync({
-    resolved: (state, { result: { data } }) => ({
+    resolved: (state, { params, result: { data } }) => ({
       ...state,
       [data.id]: {
-        data,
+        data: {
+          ...data,
+          sections: params.sections,
+        },
         pending: 0,
         error: null,
       },
@@ -344,7 +349,10 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
       ...state,
       [params.id]: {
         ...state[params.id],
-        data,
+        data: {
+          ...data,
+          sections: params.sections,
+        },
         pending: (state[params.id] && state[params.id].pending || 1) - 1,
         error: null,
       },

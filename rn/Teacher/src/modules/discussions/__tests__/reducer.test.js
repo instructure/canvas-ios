@@ -45,6 +45,7 @@ const template = {
   ...require('../../../__templates__/discussion'),
   ...require('../../../__templates__/file'),
   ...require('../../../__templates__/assignments'),
+  ...require('../../../__templates__/section'),
   ...require('../../../__templates__/error'),
   ...require('../../../__templates__/users'),
 }
@@ -558,6 +559,32 @@ describe('refreshSingleDiscussion', () => {
       },
     })
   })
+
+  it('doesnt overwrite data in the discussion that already exists', () => {
+    let section = template.section()
+    let discussion = template.discussion({ sections: [section] })
+    let state = {
+      [discussion.id]: {
+        data: discussion,
+      },
+    }
+
+    let actionRefresh = {
+      type: refreshSingleDiscussion.toString(),
+      payload: {
+        courseID: '1',
+        result: {
+          data: template.discussion(),
+        },
+        discussionID: discussion.id,
+      },
+    }
+    expect(discussions(state, actionRefresh)).toEqual({
+      [discussion.id]: {
+        data: discussion,
+      },
+    })
+  })
 })
 
 describe('refreshDiscussionEntries', () => {
@@ -846,7 +873,7 @@ describe('createDiscussion', () => {
     const resolved = {
       type: createDiscussion.toString(),
       payload: {
-        result: { data: discussion },
+        result: { data: discussion, params: discussion },
         params: template.createDiscussionParams(),
       },
     }
@@ -861,6 +888,27 @@ describe('createDiscussion', () => {
         error: null,
       },
     })
+  })
+
+  it('attaches sections to the discussion', () => {
+    const sections = [template.section()]
+    const discussion = template.discussion({
+      id: '2',
+      is_section_specific: true,
+      sections,
+    })
+    const initialState = {}
+    const resolved = {
+      type: createDiscussion.toString(),
+      payload: {
+        result: { data: discussion },
+        params: template.createDiscussionParams({ sections }),
+      },
+    }
+
+    expect(
+      discussions(initialState, resolved)['2'].data.sections
+    ).toEqual(sections)
   })
 })
 
@@ -956,6 +1004,30 @@ describe('updateDiscussion', () => {
           pending: 0,
         },
       })
+  })
+
+  it('attaches sections to the discussion', () => {
+    let sections = [template.section()]
+    const discussion = template.discussion({ id: '35' })
+    const params = template.updateDiscussionParams({
+      id: '35',
+      is_section_specific: true,
+      sections,
+    })
+    const initialState = {}
+    const resolved = {
+      type: updateDiscussion.toString(),
+      payload: {
+        result: { data: discussion },
+        params,
+        handlesError: true,
+        courseID: '3',
+      },
+    }
+
+    expect(
+      discussions(initialState, resolved)['35'].data.sections
+    ).toEqual(sections)
   })
 })
 

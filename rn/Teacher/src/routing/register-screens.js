@@ -72,6 +72,7 @@ import PickerPage from '../common/components/PickerPage'
 import Dashboard from '../modules/dashboard/Dashboard'
 import TermsOfUse from '../modules/tos/TermsOfUse'
 import PushNotifications from '../modules/staging/PushNotifications'
+import SectionSelector from '../modules/announcements/edit/SectionSelector'
 
 import { Store } from 'redux'
 import { registerScreen } from './'
@@ -140,6 +141,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/:context/:contextID/announcements/new', wrap(AnnouncementEdit), store)
   registerScreen('/:context/:contextID/announcements/:announcementID', wrap(DiscussionDetails), store, { deepLink: true })
   registerScreen('/:context/:contextID/announcements/:announcementID/edit', wrap(AnnouncementEdit), store)
+  registerScreen('/courses/:courseID/section-selector', wrap(SectionSelector), store)
   registerScreen('/notATeacher', wrap(NoATeacher), store)
   registerScreen('/courses/:courseID/users/:userID', wrap(ContextCard), store, { deepLink: true })
   registerScreen('/attendance')

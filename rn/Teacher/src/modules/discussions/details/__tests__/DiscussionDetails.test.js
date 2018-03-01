@@ -27,6 +27,7 @@ import { DiscussionDetails, mapStateToProps, type Props } from '../DiscussionDet
 import explore from '../../../../../test/helpers/explore'
 import setProps from '../../../../../test/helpers/setProps'
 import app from '../../../app'
+import { shallow } from 'enzyme'
 
 jest
   .mock('Button', () => 'Button')
@@ -49,6 +50,7 @@ const template = {
   ...require('../../../../__templates__/discussion'),
   ...require('../../../../__templates__/assignments'),
   ...require('../../../../__templates__/course'),
+  ...require('../../../../__templates__/section'),
   ...require('../../../../__templates__/users'),
   ...require('../../../../redux/__templates__/app-state'),
   ...require('../../../../__templates__/helm'),
@@ -96,6 +98,26 @@ describe('DiscussionDetails', () => {
   it('renders in student app', () => {
     app.isTeacher = jest.fn(() => false)
     testRender(props)
+  })
+
+  it('renders section names for section specific announcements', () => {
+    let discussion = template.discussion({
+      replies: [template.discussionReply()],
+      participants: {
+        [template.userDisplay().id]: template.userDisplay(),
+      },
+      is_section_specific: true,
+      sections: [template.section({ name: 'A Section' })],
+    })
+
+    let view = shallow(
+      new DiscussionDetails({
+        ...props,
+        discussion,
+      }).renderDetails({ item: discussion, index: 0 })
+    )
+    let subtitle = view.find('SubTitle')
+    expect(subtitle.props().children).toContain('A Section')
   })
 
   it('renders closed discussion as student', () => {

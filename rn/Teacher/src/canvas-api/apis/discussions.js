@@ -24,6 +24,7 @@ export function getDiscussions (context: Context, contextID: string, parameters:
   const options = {
     params: {
       per_page: 99,
+      include: ['sections'],
       ...parameters,
     },
   }
@@ -40,7 +41,7 @@ export function getAllDiscussionEntries (context: Context, contextID: string, di
 }
 
 export function getDiscussion (context: Context, contextID: string, discussionID: string): ApiPromise<Discussion> {
-  const url = `${context}/${contextID}/discussion_topics/${discussionID}`
+  const url = `${context}/${contextID}/discussion_topics/${discussionID}?include[]=sections`
   return httpClient().get(url)
 }
 

@@ -42,6 +42,7 @@ import Images from '../../../images'
 import {
   Heading1,
   Text,
+  SubTitle,
   BOLD_FONT,
 } from '../../../common/text'
 import colors from '../../../common/colors'
@@ -158,6 +159,7 @@ export class DiscussionDetails extends Component<Props, any> {
     let user = discussion.author
     const assignmentID = this.props.assignment ? this.props.assignment.id : null
     const date = new Date(discussion.delayed_post_at || discussion.posted_at)
+    const sections = discussion.sections || []
     return (
       <View>
         <AssignmentSection isFirstRow={true} style={style.topContainer}>
@@ -167,6 +169,13 @@ export class DiscussionDetails extends Component<Props, any> {
                 {Boolean(points) && <Text style={style.points}>{points}</Text>}
                   {isTeacher() && <PublishedIcon published={discussion.published} />}
               </View>
+            }
+            { discussion.is_section_specific &&
+              <SubTitle style={style.sectionsText}>
+                {i18n('Sections: {sections}', {
+                  sections: sections.map(section => section.name).join(', '),
+                })}
+              </SubTitle>
             }
         </AssignmentSection>
 
@@ -644,6 +653,9 @@ const style = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     paddingHorizontal: global.style.defaultPadding,
+  },
+  sectionsText: {
+    marginTop: 8,
   },
 })
 

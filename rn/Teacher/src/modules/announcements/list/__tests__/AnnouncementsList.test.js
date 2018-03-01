@@ -282,4 +282,39 @@ describe('mapStateToProps', () => {
       error: null,
     })
   })
+
+  it('puts announcements in order', () => {
+    const one = template.discussion({ id: '1', position: 1 })
+    const two = template.discussion({ id: '2', position: 2 })
+    const state = template.appState({
+      entities: {
+        courses: {
+          '1': {
+            announcements: {
+              pending: 1,
+              error: null,
+              refs: ['1', '2'],
+            },
+            course: {
+              name: 'CS 1010',
+            },
+          },
+        },
+        discussions: {
+          '1': {
+            data: one,
+          },
+          '2': {
+            data: two,
+          },
+        },
+      },
+    })
+
+    expect(
+      mapStateToProps(state, { context: 'courses', contextID: '1' })
+    ).toMatchObject({
+      announcements: [two, one],
+    })
+  })
 })

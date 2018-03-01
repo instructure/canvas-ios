@@ -81,12 +81,14 @@ export type Discussion = {
   can_unpublish: boolean,
   locked_for_user?: boolean,
   locked?: boolean,
+  sections?: Section[],
+  is_section_specific: boolean,
 }
 
 // api params
 
 export type GetDiscussionsParameters = {
-  only_announcents?: boolean,
+  only_announcements?: boolean,
 }
 
 export type CreateDiscussionParameters = {
@@ -105,6 +107,8 @@ export type CreateDiscussionParameters = {
   subscribed?: boolean,
   attachment?: ?Attachment,
   remove_attachment?: boolean,
+  specific_sections?: string,
+  sections?: Section[],
 }
 
 export type UpdateDiscussionParameters = CreateDiscussionParameters & {

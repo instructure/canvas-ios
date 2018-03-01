@@ -53,6 +53,7 @@ export const discussion: Template<Discussion> = template({
   discussion_type: 'side_comment',
   unlock_at: null,
   can_unpublish: true,
+  is_section_specific: false,
 })
 
 export const discussionReply: Template<DiscussionReply> = template({

@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-/* @flow */
+// @flow
 
 import React from 'react'
 import {
@@ -22,6 +22,7 @@ import {
   NativeModules,
 } from 'react-native'
 import renderer from 'react-test-renderer'
+import { shallow } from 'enzyme'
 
 import { AnnouncementEdit, mapStateToProps, type Props } from '../AnnouncementEdit'
 import explore from '../../../../../test/helpers/explore'
@@ -55,6 +56,7 @@ jest
 const template = {
   ...require('../../../../__templates__/discussion'),
   ...require('../../../../__templates__/attachment'),
+  ...require('../../../../__templates__/section'),
   ...require('../../../../__templates__/error'),
   ...require('../../../../__templates__/helm'),
   ...require('../../../../redux/__templates__/app-state'),
@@ -83,8 +85,11 @@ describe('AnnouncementEdit', () => {
       navigator: template.navigator(),
       createDiscussion: jest.fn(),
       updateDiscussion: jest.fn(),
+      refreshSections: jest.fn(),
       deletePendingNewDiscussion: jest.fn(),
       defaultDate: new Date(0),
+      sections: [],
+      selectedSections: [],
     }
   })
 
@@ -102,6 +107,11 @@ describe('AnnouncementEdit', () => {
     props.announcementID = '1'
     const title = getTitle(render(props))
     expect(title).toEqual('Edit Announcement')
+  })
+
+  it('calls refreshSections on mount', () => {
+    shallow(<AnnouncementEdit {...props} />)
+    expect(props.refreshSections).toHaveBeenCalled()
   })
 
   it('uses title from input', () => {
@@ -196,11 +206,8 @@ describe('AnnouncementEdit', () => {
     props.announcementID = null
     props.navigator.dismissAllModals = jest.fn()
     const component = render(props)
-    const createDiscussion = jest.fn(() => {
-      setProps(component, { pending: 0 })
-    })
-    component.update(<AnnouncementEdit {...props} createDiscussion={createDiscussion} />)
-    tapDone(component)
+    component.update(<AnnouncementEdit {...props} pending={1} />)
+    component.update(<AnnouncementEdit {...props} pending={0} />)
     expect(props.navigator.dismissAllModals).toHaveBeenCalled()
   })
 
@@ -287,6 +294,39 @@ describe('AnnouncementEdit', () => {
         },
         onComplete: expect.any(Function),
       },
+    )
+  })
+
+  it('has a sections option', () => {
+    let view = shallow(<AnnouncementEdit {...props} />)
+    expect(view.find('RowWithDetail').props().title).toEqual('Sections')
+  })
+
+  it('sections row has All when no sections selected', () => {
+    let view = shallow(<AnnouncementEdit {...props} />)
+    expect(view.find('RowWithDetail').props().detail).toEqual('All')
+  })
+
+  it('will update the selected sections', () => {
+    let section = template.section()
+    let view = shallow(<AnnouncementEdit {...props} sections={[section]} />)
+    view.instance().updateSelectedSections([section.id])
+    view.update()
+    expect(view.find('RowWithDetail').props().detail).toEqual(section.name)
+  })
+
+  it('will open the section-selector screen with props when sections row is pressed', () => {
+    let section = template.section()
+    let view = shallow(<AnnouncementEdit {...props} sections={[section]} />)
+    view.instance().updateSelectedSections([section.id])
+    view.find('RowWithDetail').simulate('press')
+    expect(props.navigator.show).toHaveBeenCalledWith(
+      '/courses/1/section-selector',
+      {},
+      {
+        updateSelectedSections: view.instance().updateSelectedSections,
+        currentSelectedSections: view.state().selectedSections,
+      }
     )
   })
 
