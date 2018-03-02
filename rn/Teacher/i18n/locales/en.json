@@ -365,6 +365,9 @@
   "course_settings_f6d0bbf8": {
     "message": "Course Settings"
   },
+  "coursename_sections_faeee6fc": {
+    "message": "{ courseName } Sections"
+  },
   "courses_43204aae": {
     "message": "Courses"
   },
@@ -1159,6 +1162,12 @@
   },
   "section_sectionname_a455be11": {
     "message": "Section: { sectionName }"
+  },
+  "sections_94731e51": {
+    "message": "Sections"
+  },
+  "sections_sections_70d64496": {
+    "message": "Sections: { sections }"
   },
   "see_all_ffa422ef": {
     "message": "See All"
