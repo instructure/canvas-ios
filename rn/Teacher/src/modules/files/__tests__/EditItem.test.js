@@ -219,7 +219,7 @@ describe('EditItem folder', () => {
     )
     AlertIOS.alert.mock.calls[0][2][1].onPress()
     await deleting
-    expect(props.delete).toHaveBeenCalled()
+    expect(props.delete).toHaveBeenCalledWith(props.itemID, true)
     await updatedState(tree)
     expect(tree.find('SavingBanner').exists()).toBe(true)
 

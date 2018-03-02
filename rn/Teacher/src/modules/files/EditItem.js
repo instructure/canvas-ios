@@ -177,7 +177,7 @@ export default class EditItem extends Component<Props, State> {
     const itemID = this.props.itemID
     this.setState({ pending: true })
     try {
-      await this.props.delete(itemID)
+      await this.props.delete(itemID, true)
     } catch (error) {
       this.setState({ pending: false })
       setTimeout(() => { alertError(error) }, 1000)
