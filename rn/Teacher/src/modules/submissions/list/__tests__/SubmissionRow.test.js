@@ -21,7 +21,6 @@ import React from 'react'
 import SubmissionRow from '../SubmissionRow'
 import type {
   SubmissionDataProps,
-  SubmissionStatusProp,
   GradeProp,
 } from '../submission-prop-types'
 import explore from '../../../../../test/helpers/explore'
@@ -31,7 +30,7 @@ jest
   .mock('TouchableHighlight', () => 'TouchableHighlight')
   .mock('../../../../common/components/Avatar', () => 'Avatar')
 
-const mockSubmission = (status: SubmissionStatusProp = 'none', grade: ?GradeProp = null): SubmissionDataProps => {
+const mockSubmission = (status: SubmissionStatus = 'none', grade: ?GradeProp = null): SubmissionDataProps => {
   return {
     userID: '1',
     avatarURL: 'https://cats.pajamas/',

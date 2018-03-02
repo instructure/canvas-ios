@@ -227,7 +227,7 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
   }
 
   renderBody = () => {
-    if (this.props.refreshing || !this.state.submissions.length) {
+    if (this.props.pending || !this.state.submissions.length) {
       return <View style={styles.loadingWrapper}><ActivityIndicator /></View>
     }
 

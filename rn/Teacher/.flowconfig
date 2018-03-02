@@ -30,6 +30,7 @@ node_modules/react-native/Libraries/react-native/react-native-interface.js
 flow
 node_modules/react-native/flow/
 src/canvas-api/flow
+src/canvas-api-v2/flow
 
 [options]
 emoji=true

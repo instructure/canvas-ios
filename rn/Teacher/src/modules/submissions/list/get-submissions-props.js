@@ -19,7 +19,6 @@
 import type {
   SubmissionDataProps,
   GradeProp,
-  SubmissionStatusProp,
   AsyncSubmissionsDataProps,
 } from './submission-prop-types'
 import localeSort from '../../../utils/locale-sort'
@@ -41,7 +40,7 @@ function getSubmissionsByUserID (assignmentContent?: AssignmentContentState, sub
     }, {})
 }
 
-export function statusProp (submission: ?Submission, dueDate: ?string): SubmissionStatusProp {
+export function statusProp (submission: ?Submission, dueDate: ?string): SubmissionStatus {
   if (!submission || submission.workflow_state === 'unsubmitted' || !submission.attempt) {
     if (dueDate && (new Date(dueDate) < new Date())) {
       return 'missing'

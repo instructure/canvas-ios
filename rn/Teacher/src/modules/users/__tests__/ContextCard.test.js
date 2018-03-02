@@ -19,10 +19,7 @@
 import React from 'react'
 import {
   ContextCard,
-  shouldRefresh,
-  fetchData,
-  isRefreshing,
-  mapStateToProps,
+  props,
 } from '../ContextCard'
 
 import renderer from 'react-test-renderer'
@@ -31,6 +28,7 @@ import explore from '../../../../test/helpers/explore'
 jest.mock('../../../routing/Screen')
     .mock('TouchableHighlight', () => 'TouchableHighlight')
     .mock('TouchableOpacity', () => 'TouchableOpacity')
+    .mock('../../../common/components/ErrorView.js', () => 'ErrorView')
 
 const templates = {
   ...require('../../../__templates__/course'),
@@ -40,31 +38,25 @@ const templates = {
   ...require('../../../__templates__/assignments'),
   ...require('../../../__templates__/submissions'),
   ...require('../../../redux/__templates__/app-state'),
+  ...require('../../../canvas-api-v2/queries/__templates__/ContextCard'),
 }
+
+const user = templates.user({ id: '1', analytics: { tardinessBreakdown: { late: 10, missing: 20 } } })
 const defaultProps = {
   courseID: '1',
   userID: '1',
-  user: templates.user({ id: '1' }),
-  course: templates.courseWithSection({ id: '1' }),
-  enrollment: templates.enrollment({ id: '1', course_id: '1', user_id: '1', course_section_id: '32', grades: { current_grade: 'A', current_score: 50 } }),
-  assignments: [templates.assignment({ id: '1', points_possible: 100 })],
-  submissions: [templates.submissionHistory([{ id: '1', assignment_id: '1', grade: 50 }])],
-  sections: [templates.section()],
+  user,
+  course: templates.course({ id: '1' }),
+  enrollment: templates.enrollment({ id: '1', course_id: '1', user_id: '1', course_section_id: '32', grades: { current_grade: 'A', current_score: 50 }, section: templates.section() }),
+  submissions: [templates.submission({ id: '1', assignment_id: '1', grade: 50, assignment: templates.assignment({ id: '1', points_possible: 100 }) })],
   courseColor: '#fff',
-  pending: false,
-  refreshUsers: jest.fn(),
-  refreshCourses: jest.fn(),
-  refreshEnrollments: jest.fn(),
-  refreshAssignmentList: jest.fn(),
   navigator: { dismiss: jest.fn(), show: jest.fn() },
   refresh: jest.fn(),
-  refreshing: false,
-  getUserSubmissions: jest.fn(),
-  numLate: 10,
-  numMissing: 20,
-  totalPoints: 100,
+  loading: false,
   modal: false,
-  userIsDesigner: false,
+  canViewAnalytics: true,
+  canViewGrades: true,
+  isStudent: true,
 }
 
 beforeEach(() => jest.resetAllMocks())
@@ -77,16 +69,16 @@ describe('ContextCard', () => {
     expect(view.toJSON()).toMatchSnapshot()
   })
 
-  it('renders for a designer', () => {
+  it('renders for a user that cannot view analytics', () => {
     let view = renderer.create(
-      <ContextCard {...defaultProps} userIsDesigner />
+      <ContextCard {...defaultProps} canViewAnalytics={false} isStudent={false} />
     )
     expect(view.toJSON()).toMatchSnapshot()
   })
 
   it('shows the activity indicator when pending', () => {
     let view = renderer.create(
-      <ContextCard {...defaultProps} pending={true} />
+      <ContextCard {...defaultProps} loading={true} course={null} />
     )
 
     expect(view.toJSON()).toMatchSnapshot()
@@ -102,6 +94,7 @@ describe('ContextCard', () => {
       grades: {
         current_grade: '100',
       },
+      section: templates.section(),
     })
     let view = renderer.create(
       <ContextCard {...defaultProps} enrollment={enrollment} />
@@ -120,6 +113,7 @@ describe('ContextCard', () => {
       grades: {
         current_score: 100,
       },
+      section: templates.section(),
     })
 
     let view = renderer.create(
@@ -127,23 +121,6 @@ describe('ContextCard', () => {
     )
 
     expect(view.toJSON()).toMatchSnapshot()
-  })
-
-  it('asks for submission when the user is a student', () => {
-    let enrollment = templates.enrollment({
-      id: '1',
-      course_id: '1',
-      user_id: '1',
-      course_section_id: '32',
-      type: 'StudentEnrollment',
-      grades: { current_grade: 'A' },
-    })
-
-    renderer.create(
-      <ContextCard {...defaultProps} enrollment={enrollment} />
-    )
-
-    expect(defaultProps.getUserSubmissions).toHaveBeenCalled()
   })
 
   it('renders for a non student', () => {
@@ -153,30 +130,46 @@ describe('ContextCard', () => {
       user_id: '1',
       course_section_id: '32',
       type: 'TeacherEnrollment',
+      section: templates.section(),
     })
 
+    let view = renderer.create(
+      <ContextCard {...defaultProps} enrollment={enrollment} isStudent={false} />
+    )
+
+    expect(view.toJSON()).toMatchSnapshot()
+  })
+
+  it('renders error if an error occured', () => {
+    let view = renderer.create(
+      <ContextCard {...defaultProps} error={Error('oh no an error happened')} />
+    )
+
+    expect(view.toJSON()).toMatchSnapshot()
+  })
+
+  it('renders if there is no enrollment', () => {
+    let view = renderer.create(
+      <ContextCard {...defaultProps} enrollment={null} />
+    )
+
+    expect(view.toJSON()).toMatchSnapshot()
+  })
+
+  it('renders if there is no section in the enrollment', () => {
+    let enrollment = templates.enrollment({ id: '1', course_id: '1', user_id: '1', course_section_id: '32' })
     let view = renderer.create(
       <ContextCard {...defaultProps} enrollment={enrollment} />
     )
 
     expect(view.toJSON()).toMatchSnapshot()
-    expect(defaultProps.getUserSubmissions).not.toHaveBeenCalled()
-  })
-
-  it('renders for a designer', () => {
-    let view = renderer.create(
-      <ContextCard {...defaultProps} userIsDesigner />
-    )
-
-    expect(view.toJSON()).toMatchSnapshot()
-    expect(defaultProps.getUserSubmissions).not.toHaveBeenCalled()
   })
 
   it('navigate to speedgrader', () => {
     let view = renderer.create(
       <ContextCard {...defaultProps} />
     )
-    let assignmentID = defaultProps.assignments[0].id
+    let assignmentID = defaultProps.submissions[0].assignment.id
     let row = explore(view.toJSON()).selectByID(`user-submission-row.cell-${assignmentID}`)
     expect(row).not.toBeNull()
     row && row.props.onPress()
@@ -193,289 +186,37 @@ describe('ContextCard', () => {
     const mailButton: any = explore(tree).selectRightBarButton('context-card.email-contact')
     expect(mailButton).not.toBeNull()
     mailButton.action()
-    let expectedProps = { 'canSelectCourse': false, 'contextCode': `course_${defaultProps.course.id}`, 'contextName': `${defaultProps.course.name}`, 'recipients': [templates.user()] }
+    let expectedProps = { 'canSelectCourse': false, 'contextCode': `course_${defaultProps.course.id}`, 'contextName': `${defaultProps.course.name}`, 'recipients': [user] }
     expect(defaultProps.navigator.show).toHaveBeenCalledWith(`/conversations/compose`, { 'modal': true }, expectedProps)
   })
 })
 
-describe('refresh', () => {
-  it('should refresh if the user is not there', () => {
-    let props = {
-      ...defaultProps,
-      user: undefined,
-    }
-    expect(shouldRefresh(props)).toEqual(true)
-  })
-  it('should refresh if the course is not there', () => {
-    let props = {
-      ...defaultProps,
-      course: undefined,
-    }
-    expect(shouldRefresh(props)).toEqual(true)
-  })
-  it('should refresh if the enrollment is not there', () => {
-    let props = {
-      ...defaultProps,
-      enrollment: undefined,
-    }
-    expect(shouldRefresh(props)).toEqual(true)
-  })
-  it('should refresh if the totalPoints are not there', () => {
-    let props = {
-      ...defaultProps,
-      totalPoints: undefined,
-    }
-    expect(shouldRefresh(props)).toEqual(true)
-  })
-  it('should not refresh if the user and course is there', () => {
-    expect(shouldRefresh(defaultProps)).toEqual(false)
+describe('props', () => {
+  it('should parse the props correctly from graphql data', () => {
+    const data = templates.ContextCardResult()
+    const result = props({ data })
+    expect(result.course).toMatchObject(data.course)
+    expect(result.user).toMatchObject(data.course.users.edges[0].user)
   })
 
-  it('should call refreshUsers and refreshCourses when fetchData is called', () => {
-    fetchData(defaultProps)
-    expect(defaultProps.refreshUsers).toHaveBeenCalledWith('1', ['1'])
-    expect(defaultProps.refreshCourses).toHaveBeenCalled()
-    expect(defaultProps.refreshEnrollments).toHaveBeenCalledWith('1')
-    expect(defaultProps.refreshAssignmentList).toHaveBeenCalledWith('1')
+  it('should parse the props correctly in an error case', () => {
+    const data = { error: Error('there was an error run for the hills') }
+    const result = props({ data })
+    expect(result.error).toMatchObject(data.error)
   })
 
-  it('isRefreshing when pending', () => {
-    let props = {
-      ...defaultProps,
-      pending: true,
-    }
-    expect(isRefreshing(props)).toEqual(true)
-
-    props.pending = false
-    expect(isRefreshing(props)).toEqual(false)
-  })
-})
-
-describe('mapStateToProps', () => {
-  let user = templates.user({ id: '1' })
-  let course = templates.courseWithSection({ id: '1' })
-  let enrollment = templates.enrollment({ id: '1', course_id: '1', user_id: '1', course_section_id: '1' })
-  let assignment = templates.assignment({ id: '1', course_id: '1' })
-  let assignmentContentState = {
-    anonymousGradingOn: false,
-    pending: 0,
-    pendingComments: {},
-    submissions: {
-      pending: 0,
-      refs: [],
-    },
-    submissionSummary: {
-      data: { graded: 0, ungraded: 0, not_submitted: 0 },
-      pending: 0,
-      error: null,
-    },
-    gradeableStudents: {
-      pending: 0,
-      refs: [],
-    },
-  }
-  let asyncState = {
-    pending: 0,
-    error: null,
-    refs: [],
-  }
-  let state = templates.appState()
-  state.entities = {
-    ...state.entities,
-    courses: {
-      '1': {
-        pending: 0,
-        color: '#fff',
-        course,
-        enrollments: {
-          pending: 0,
-          error: null,
-          refs: ['1'],
-        },
-        tabs: { ...asyncState, tabs: [] },
-        quizzes: asyncState,
-        groups: asyncState,
-        discussions: asyncState,
-        assignmentGroups: asyncState,
-        announcements: asyncState,
-        attendanceTool: { pending: 0 },
-      },
-    },
-    users: {
-      '1': {
-        data: user,
-        pending: true,
-      },
-    },
-    enrollments: {
-      '1': enrollment,
-    },
-    assignments: {
-      '1': {
-        data: assignment,
-        ...assignmentContentState,
-      },
-    },
-  }
-
-  const ownProps = {
-    userID: '1',
-    courseID: '1',
-    navigator: { dismiss: jest.fn() },
-    modal: false,
-  }
-  it('returns the user if it is there', () => {
-    let props = mapStateToProps(state, ownProps)
-    expect(props.user).toEqual(user)
+  it('should parse the props and get the loading state correctly', () => {
+    const data = templates.ContextCardResult()
+    data.course = null
+    data.loading = true
+    const result = props({ data })
+    expect(result).toMatchObject({ loading: true })
   })
 
-  it('returns when the user is not there', () => {
-    let state = templates.appState()
-    let props = mapStateToProps(state, ownProps)
-    expect(props.user).toBeUndefined()
-  })
-
-  it('returns the course color', () => {
-    let props = mapStateToProps(state, ownProps)
-    expect(props.courseColor).toEqual('#fff')
-  })
-
-  it('returns the course', () => {
-    let props = mapStateToProps(state, ownProps)
-    expect(props.course).toEqual(course)
-  })
-
-  it('returns with no course', () => {
-    let props = mapStateToProps(templates.appState(), ownProps)
-    expect(props.courseColor).toBeUndefined()
-    expect(props.course).toBeUndefined()
-  })
-
-  it('returns the users enrollment', () => {
-    let props = mapStateToProps(state, ownProps)
-    expect(props.enrollment).toEqual(enrollment)
-  })
-
-  it('returns when there is no enrollment', () => {
-    let props = mapStateToProps(templates.appState(), ownProps)
-    expect(props.enrollment).toBeUndefined()
-  })
-
-  it('returns the course assignments', () => {
-    let props = mapStateToProps(state, ownProps)
-    expect(props.assignments[0]).toEqual(assignment)
-  })
-
-  it('returns when there are no assignments', () => {
-    let state = templates.appState()
-    state.entities.courses['1'] = { course: templates.courseWithSection({ id: '1' }) }
-    let props = mapStateToProps(state, ownProps)
-    expect(props.assignments.length).toEqual(0)
-  })
-
-  it('calculates total points', () => {
-    let appState = {
-      ...state,
-      entities: {
-        ...state.entities,
-        assignments: {
-          '1': { data: templates.assignment({ id: '1', course_id: '1', points_possible: 10 }), ...assignmentContentState },
-          '2': { data: templates.assignment({ id: '2', course_id: '1', points_possible: 10, overrides: [{ student_ids: ['1'] }] }), ...assignmentContentState },
-          '3': { data: templates.assignment({ id: '3', course_id: '1', points_possible: 10, overrides: [{ student_ids: ['2'] }] }), ...assignmentContentState },
-        },
-      },
-    }
-    let props = mapStateToProps(appState, ownProps)
-    expect(props.totalPoints).toEqual(20)
-  })
-
-  it('calculates numLate', () => {
-    let appState = {
-      ...state,
-      entities: {
-        ...state.entities,
-        submissions: {
-          '1': {
-            submission: templates.submission({ id: '1', assignment_id: '1', user_id: '1', late: true }),
-            selectedIndex: 0,
-            selectedAttachmentIndex: 0,
-            pending: 0,
-            rubricGradePending: false,
-          },
-        },
-      },
-    }
-
-    let props = mapStateToProps(appState, ownProps)
-    expect(props.numLate).toEqual(1)
-  })
-
-  it('calculates numMissing', () => {
-    let appState = {
-      ...state,
-      entities: {
-        ...state.entities,
-        assignments: {
-          '1': {
-            data: templates.assignment({ id: '1', course_id: '1', due_at: '1990-06-01T05:59:00Z' }),
-            ...assignmentContentState,
-          },
-        },
-        submissions: {},
-      },
-    }
-
-    let props = mapStateToProps(appState, ownProps)
-    expect(props.numMissing).toEqual(1)
-  })
-
-  it('returns pending based off of pending async actions and enrollment presence', () => {
-    let pendingState = { ...state }
-    pendingState.asyncActions = {
-      'users.refresh': {
-        pending: 1,
-      },
-    }
-    expect(mapStateToProps(pendingState, ownProps).pending).toBeTruthy()
-
-    pendingState.asyncActions = {
-      'courses.refresh': {
-        pending: 1,
-      },
-    }
-    expect(mapStateToProps(pendingState, ownProps).pending).toBeTruthy()
-
-    pendingState.asyncActions = {
-      'enrollments.update': {
-        pending: 1,
-      },
-    }
-    expect(mapStateToProps(pendingState, ownProps).pending).toBeTruthy()
-
-    pendingState.asyncActions = {
-      'assignmentList.refresh': {
-        pending: 1,
-      },
-    }
-    expect(mapStateToProps(templates.appState(), ownProps).pending).toBeTruthy()
-
-    pendingState.asyncActions = {}
-
-    let enrollment = pendingState.entities.enrollments['1']
-    pendingState.entities.enrollments['1'] = undefined
-    expect(mapStateToProps(pendingState, ownProps).pending).toBeTruthy()
-    pendingState.entities.enrollments['1'] = enrollment
-
-    expect(mapStateToProps(pendingState, ownProps).pending).toBeFalsy()
-  })
-
-  it('determines if a user is a designer', () => {
-    let designerState = { ...state }
-    designerState.entities.courses['1'].course = templates.courseWithSection({
-      id: '1',
-      enrollments: [{ type: 'designer' }],
-    })
-
-    expect(mapStateToProps(designerState, ownProps).userIsDesigner).toBeTruthy()
+  it('should parse the props and if user or course is missing it should bail', () => {
+    const data = templates.ContextCardResult()
+    data.course = null
+    const result = props({ data })
+    expect(result.error).toBeDefined()
   })
 })

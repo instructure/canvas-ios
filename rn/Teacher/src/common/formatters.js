@@ -47,7 +47,11 @@ export function formatGradeText (grade: ?string, gradingType?: GradingType, poin
         return i18n('Incomplete')
     }
 
-    return grade
+    if (isNaN(grade)) {
+      return grade
+    }
+
+    return String(Math.round(Number(grade) * Math.pow(10, 2)) / Math.pow(10, 2))
   }
 
   if (gradingType === 'percent') {

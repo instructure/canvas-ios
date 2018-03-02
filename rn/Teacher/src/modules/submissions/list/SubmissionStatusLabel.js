@@ -20,17 +20,14 @@ import {
   StyleSheet,
 } from 'react-native'
 import i18n from 'format-message'
-import type {
-  SubmissionStatusProp,
-} from './submission-prop-types'
 import { Text } from '../../../common/text'
 
-type SubmissionStatusProps = {
-  status: SubmissionStatusProp,
+type SubmissionStatusLabelProps = {
+  status: SubmissionStatus,
   style?: any,
 }
 
-export default class SubmissionStatus extends Component<SubmissionStatusProps, any> {
+export default class SubmissionStatusLabel extends Component<SubmissionStatusLabelProps, any> {
 
   render () {
     let color: string = '#8B969E' // none
@@ -46,6 +43,7 @@ export default class SubmissionStatus extends Component<SubmissionStatusProps, a
         title = i18n('Missing')
         break
       case 'submitted':
+      case 'resubmitted':
         color = '#07AF1F'
         title = i18n('Submitted')
         break

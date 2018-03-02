@@ -41,6 +41,7 @@ require.requireActual('ActivityIndicator').displayName = 'ActivityIndicator'
 require.requireActual('TouchableOpacity').displayName = 'TouchableOpacity'
 
 jest.mock('../../src/canvas-api')
+global.fetch = require('jest-fetch-mock')
 
 NativeModules.NativeAccessibility = {
   focusElement: jest.fn(),

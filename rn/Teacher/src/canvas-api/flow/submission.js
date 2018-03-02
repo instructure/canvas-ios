@@ -28,6 +28,15 @@ export type SubmissionType
   | 'discussion_topic'
   | 'online_quiz'
 
+export type SubmissionStatus =
+  'none' |
+  'missing' |
+  'late' |
+  'submitted' |
+  'excused' |
+  'resubmitted' |
+  'unsubmitted'
+
 export type SubmissionDiscussionEntry = {
   message: string,
 }

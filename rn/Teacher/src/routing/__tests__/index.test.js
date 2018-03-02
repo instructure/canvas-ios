@@ -18,7 +18,11 @@
 
 import { View, Text } from 'react-native'
 import React from 'react'
-import { wrapComponentInReduxProvider, route } from '../'
+import { wrapComponentInProviders, route } from '../'
+import { setSession } from '../../canvas-api/session.js'
+const template = {
+  ...require('../../__templates__/session'),
+}
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer'
@@ -32,8 +36,10 @@ class TestScreen extends React.Component<{}> {
 }
 
 test('renders wrapped screen with store correctly', () => {
+  const session = template.session({ actAsUserID: 2 })
+  setSession(session)
   const generator = () => TestScreen
-  const wrappedGenerator = wrapComponentInReduxProvider('TestScreen', generator, {})
+  const wrappedGenerator = wrapComponentInProviders('TestScreen', generator, {})
   const Wrapped = wrappedGenerator()
 
   let tree = renderer.create(

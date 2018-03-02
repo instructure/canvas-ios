@@ -28,7 +28,7 @@ import i18n from 'format-message'
 import type {
   SubmissionDataProps,
 } from '../../submissions/list/submission-prop-types'
-import SubmissionStatus from '../../submissions/list/SubmissionStatus'
+import SubmissionStatusLabel from '../../submissions/list/SubmissionStatusLabel'
 import Avatar from '../../../common/components/Avatar'
 
 export class Header extends Component<HeaderProps, State> {
@@ -92,7 +92,7 @@ export class Header extends Component<HeaderProps, State> {
               </View>
               <View style={styles.nameContainer}>
                 <Text style={styles.name} accessibilityTraits='header'>{name}</Text>
-                <SubmissionStatus status={sub.status} />
+                <SubmissionStatusLabel status={sub.status} />
               </View>
             </View>
           </TouchableHighlight>
@@ -162,12 +162,19 @@ const styles = StyleSheet.create({
 })
 
 export function mapStateToProps (state: AppState, ownProps: RouterProps) {
-  let assignmentContent = state.entities.assignments[ownProps.assignmentID]
-  let quiz = assignmentContent.data.quiz_id && state.entities.quizzes[assignmentContent.data.quiz_id].data
-  let course = state.entities.courses[ownProps.courseID]
-  let anonymous = assignmentContent.anonymousGradingOn ||
+  const entities = state.entities
+  const { courseID, assignmentID } = ownProps
+
+  const assignmentContent = entities.assignments[assignmentID]
+  const assignmentData = assignmentContent ? assignmentContent.data : null
+  let quiz
+  if (assignmentData && assignmentData.quiz_id && entities.quizzes[assignmentData.quiz_id]) {
+    quiz = entities.quizzes[assignmentData.quiz_id].data
+  }
+  const courseContent = state.entities.courses[courseID]
+  const anonymous = assignmentContent.anonymousGradingOn ||
                   quiz && quiz.anonymous_submissions ||
-                  course && course.enabledFeatures.includes('anonymous_grading')
+                  courseContent && courseContent.enabledFeatures.includes('anonymous_grading')
   return {
     anonymous,
   }

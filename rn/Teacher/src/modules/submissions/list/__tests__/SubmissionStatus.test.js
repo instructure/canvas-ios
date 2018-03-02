@@ -18,41 +18,41 @@
 
 import 'react-native'
 import React from 'react'
-import SubmissionStatus from '../SubmissionStatus'
+import SubmissionStatusLabel from '../SubmissionStatusLabel'
 import renderer from 'react-test-renderer'
 
 describe('SubmissionStatus', () => {
   it('status `none` renders properly', () => {
     let tree = renderer.create(
-      <SubmissionStatus status={'none'} />
+      <SubmissionStatusLabel status={'none'} />
     ).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
   it('status `missing` renders properly', () => {
     let tree = renderer.create(
-      <SubmissionStatus status={'missing'} />
+      <SubmissionStatusLabel status={'missing'} />
     ).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
   it('status `late` renders properly', () => {
     let tree = renderer.create(
-      <SubmissionStatus status={'late'} />
+      <SubmissionStatusLabel status={'late'} />
     ).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
   it('status `submitted` renders properly', () => {
     let tree = renderer.create(
-      <SubmissionStatus status={'submitted'} />
+      <SubmissionStatusLabel status={'submitted'} />
     ).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
   it('status `excused` renders properly', () => {
     let tree = renderer.create(
-      <SubmissionStatus status='excused' />
+      <SubmissionStatusLabel status='excused' />
     ).toJSON()
     expect(tree).toMatchSnapshot()
   })

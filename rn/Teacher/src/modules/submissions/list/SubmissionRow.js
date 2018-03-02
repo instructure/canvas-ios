@@ -27,11 +27,10 @@ import Token from '../../../common/components/Token'
 import i18n from 'format-message'
 import type {
   GradeProp,
-  SubmissionStatusProp,
 } from './submission-prop-types'
 import colors from '../../../common/colors'
 import { Text } from '../../../common/text'
-import SubmissionStatus from './SubmissionStatus'
+import SubmissionStatusLabel from './SubmissionStatusLabel'
 import Avatar from '../../../common/components/Avatar'
 import { formatGradeText } from '../../../common/formatters'
 
@@ -47,7 +46,7 @@ export type SubmissionRowDataProps = {
   groupID?: string,
   avatarURL: string,
   name: string,
-  status: SubmissionStatusProp,
+  status: SubmissionStatus,
   grade: ?GradeProp,
   gradingType: GradingType,
   score: ?number,
@@ -128,7 +127,7 @@ class SubmissionRow extends Component<SubmissionRowProps, any> {
             style={styles.title}
             ellipsizeMode='tail'
             numberOfLines={2}>{name}</Text>
-          <SubmissionStatus status={status} />
+          <SubmissionStatusLabel status={status} />
           {grade === 'ungraded' && gradingType !== 'not_graded' &&
             <Token style={{ alignSelf: 'flex-start', marginTop: 8 }} color={ colors.primaryButton }>
               {i18n('Needs Grading')}

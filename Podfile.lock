@@ -19,7 +19,7 @@ PODS:
     - React
   - BugsnagReactNative/Core (2.9.1):
     - React
-  - BVLinearGradient (2.3.0):
+  - BVLinearGradient (2.4.0):
     - React
   - Cartography (1.1.0)
   - CocoaLumberjack (3.4.1):

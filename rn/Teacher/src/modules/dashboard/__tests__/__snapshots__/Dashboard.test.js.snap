@@ -72,6 +72,10 @@ exports[`Doesnt render groups when in the teacher app 1`] = `
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": true,
               "name": "Biology 101",
+              "permissions": Object {
+                "viewAllGrades": true,
+                "viewAnalytics": true,
+              },
               "short_name": "BIO 101",
               "term": Object {
                 "created_at": "2018-02-08T23:13:39Z",
@@ -102,6 +106,10 @@ exports[`Doesnt render groups when in the teacher app 1`] = `
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": false,
               "name": "American Literature Psysicks foobar hello world 401",
+              "permissions": Object {
+                "viewAllGrades": true,
+                "viewAnalytics": true,
+              },
               "short_name": "LIT 401",
               "term": Object {
                 "created_at": "2018-02-08T23:13:39Z",
@@ -132,6 +140,10 @@ exports[`Doesnt render groups when in the teacher app 1`] = `
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": true,
               "name": "Foobar 102",
+              "permissions": Object {
+                "viewAllGrades": true,
+                "viewAnalytics": true,
+              },
               "short_name": "FOO 102",
               "term": Object {
                 "created_at": "2018-02-08T23:13:39Z",
@@ -208,6 +220,10 @@ exports[`Doesnt render groups when in the teacher app 1`] = `
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": true,
               "name": "Biology 101",
+              "permissions": Object {
+                "viewAllGrades": true,
+                "viewAnalytics": true,
+              },
               "short_name": "BIO 101",
               "term": Object {
                 "created_at": "2018-02-08T23:13:39Z",
@@ -238,6 +254,10 @@ exports[`Doesnt render groups when in the teacher app 1`] = `
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": false,
               "name": "American Literature Psysicks foobar hello world 401",
+              "permissions": Object {
+                "viewAllGrades": true,
+                "viewAnalytics": true,
+              },
               "short_name": "LIT 401",
               "term": Object {
                 "created_at": "2018-02-08T23:13:39Z",
@@ -268,6 +288,10 @@ exports[`Doesnt render groups when in the teacher app 1`] = `
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": true,
               "name": "Foobar 102",
+              "permissions": Object {
+                "viewAllGrades": true,
+                "viewAnalytics": true,
+              },
               "short_name": "FOO 102",
               "term": Object {
                 "created_at": "2018-02-08T23:13:39Z",
@@ -1004,6 +1028,10 @@ exports[`Only renders courses when !isFullDashboard 1`] = `
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": true,
               "name": "Biology 101",
+              "permissions": Object {
+                "viewAllGrades": true,
+                "viewAnalytics": true,
+              },
               "short_name": "BIO 101",
               "term": Object {
                 "created_at": "2018-02-08T23:13:39Z",
@@ -1034,6 +1062,10 @@ exports[`Only renders courses when !isFullDashboard 1`] = `
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": false,
               "name": "American Literature Psysicks foobar hello world 401",
+              "permissions": Object {
+                "viewAllGrades": true,
+                "viewAnalytics": true,
+              },
               "short_name": "LIT 401",
               "term": Object {
                 "created_at": "2018-02-08T23:13:39Z",
@@ -1064,6 +1096,10 @@ exports[`Only renders courses when !isFullDashboard 1`] = `
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": true,
               "name": "Foobar 102",
+              "permissions": Object {
+                "viewAllGrades": true,
+                "viewAnalytics": true,
+              },
               "short_name": "FOO 102",
               "term": Object {
                 "created_at": "2018-02-08T23:13:39Z",
@@ -1101,6 +1137,10 @@ exports[`Only renders courses when !isFullDashboard 1`] = `
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": true,
               "name": "Foobar 102",
+              "permissions": Object {
+                "viewAllGrades": true,
+                "viewAnalytics": true,
+              },
               "short_name": "FOO 102",
               "term": Object {
                 "created_at": "2018-02-08T23:13:39Z",
@@ -1170,6 +1210,10 @@ exports[`Only renders courses when !isFullDashboard 1`] = `
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": true,
               "name": "Biology 101",
+              "permissions": Object {
+                "viewAllGrades": true,
+                "viewAnalytics": true,
+              },
               "short_name": "BIO 101",
               "term": Object {
                 "created_at": "2018-02-08T23:13:39Z",
@@ -1200,6 +1244,10 @@ exports[`Only renders courses when !isFullDashboard 1`] = `
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": false,
               "name": "American Literature Psysicks foobar hello world 401",
+              "permissions": Object {
+                "viewAllGrades": true,
+                "viewAnalytics": true,
+              },
               "short_name": "LIT 401",
               "term": Object {
                 "created_at": "2018-02-08T23:13:39Z",
@@ -1230,6 +1278,10 @@ exports[`Only renders courses when !isFullDashboard 1`] = `
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": true,
               "name": "Foobar 102",
+              "permissions": Object {
+                "viewAllGrades": true,
+                "viewAnalytics": true,
+              },
               "short_name": "FOO 102",
               "term": Object {
                 "created_at": "2018-02-08T23:13:39Z",
@@ -1267,6 +1319,10 @@ exports[`Only renders courses when !isFullDashboard 1`] = `
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": true,
               "name": "Foobar 102",
+              "permissions": Object {
+                "viewAllGrades": true,
+                "viewAnalytics": true,
+              },
               "short_name": "FOO 102",
               "term": Object {
                 "created_at": "2018-02-08T23:13:39Z",
@@ -2167,6 +2223,10 @@ exports[`render 1`] = `
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": true,
               "name": "Biology 101",
+              "permissions": Object {
+                "viewAllGrades": true,
+                "viewAnalytics": true,
+              },
               "short_name": "BIO 101",
               "term": Object {
                 "created_at": "2018-02-08T23:13:39Z",
@@ -2197,6 +2257,10 @@ exports[`render 1`] = `
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": false,
               "name": "American Literature Psysicks foobar hello world 401",
+              "permissions": Object {
+                "viewAllGrades": true,
+                "viewAnalytics": true,
+              },
               "short_name": "LIT 401",
               "term": Object {
                 "created_at": "2018-02-08T23:13:39Z",
@@ -2227,6 +2291,10 @@ exports[`render 1`] = `
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": true,
               "name": "Foobar 102",
+              "permissions": Object {
+                "viewAllGrades": true,
+                "viewAnalytics": true,
+              },
               "short_name": "FOO 102",
               "term": Object {
                 "created_at": "2018-02-08T23:13:39Z",
@@ -2324,6 +2392,10 @@ exports[`render 1`] = `
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": true,
               "name": "Biology 101",
+              "permissions": Object {
+                "viewAllGrades": true,
+                "viewAnalytics": true,
+              },
               "short_name": "BIO 101",
               "term": Object {
                 "created_at": "2018-02-08T23:13:39Z",
@@ -2354,6 +2426,10 @@ exports[`render 1`] = `
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": false,
               "name": "American Literature Psysicks foobar hello world 401",
+              "permissions": Object {
+                "viewAllGrades": true,
+                "viewAnalytics": true,
+              },
               "short_name": "LIT 401",
               "term": Object {
                 "created_at": "2018-02-08T23:13:39Z",
@@ -2384,6 +2460,10 @@ exports[`render 1`] = `
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": true,
               "name": "Foobar 102",
+              "permissions": Object {
+                "viewAllGrades": true,
+                "viewAnalytics": true,
+              },
               "short_name": "FOO 102",
               "term": Object {
                 "created_at": "2018-02-08T23:13:39Z",
@@ -3491,6 +3571,10 @@ exports[`render while pending 1`] = `
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": true,
               "name": "Biology 101",
+              "permissions": Object {
+                "viewAllGrades": true,
+                "viewAnalytics": true,
+              },
               "short_name": "BIO 101",
               "term": Object {
                 "created_at": "2018-02-08T23:13:39Z",
@@ -3521,6 +3605,10 @@ exports[`render while pending 1`] = `
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": false,
               "name": "American Literature Psysicks foobar hello world 401",
+              "permissions": Object {
+                "viewAllGrades": true,
+                "viewAnalytics": true,
+              },
               "short_name": "LIT 401",
               "term": Object {
                 "created_at": "2018-02-08T23:13:39Z",
@@ -3551,6 +3639,10 @@ exports[`render while pending 1`] = `
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": true,
               "name": "Foobar 102",
+              "permissions": Object {
+                "viewAllGrades": true,
+                "viewAnalytics": true,
+              },
               "short_name": "FOO 102",
               "term": Object {
                 "created_at": "2018-02-08T23:13:39Z",
@@ -3648,6 +3740,10 @@ exports[`render while pending 1`] = `
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": true,
               "name": "Biology 101",
+              "permissions": Object {
+                "viewAllGrades": true,
+                "viewAnalytics": true,
+              },
               "short_name": "BIO 101",
               "term": Object {
                 "created_at": "2018-02-08T23:13:39Z",
@@ -3678,6 +3774,10 @@ exports[`render while pending 1`] = `
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": false,
               "name": "American Literature Psysicks foobar hello world 401",
+              "permissions": Object {
+                "viewAllGrades": true,
+                "viewAnalytics": true,
+              },
               "short_name": "LIT 401",
               "term": Object {
                 "created_at": "2018-02-08T23:13:39Z",
@@ -3708,6 +3808,10 @@ exports[`render while pending 1`] = `
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": true,
               "name": "Foobar 102",
+              "permissions": Object {
+                "viewAllGrades": true,
+                "viewAnalytics": true,
+              },
               "short_name": "FOO 102",
               "term": Object {
                 "created_at": "2018-02-08T23:13:39Z",
@@ -6354,6 +6458,10 @@ exports[`renders course invites 1`] = `
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": true,
               "name": "Biology 101",
+              "permissions": Object {
+                "viewAllGrades": true,
+                "viewAnalytics": true,
+              },
               "short_name": "BIO 101",
               "term": Object {
                 "created_at": "2018-02-08T23:13:39Z",
@@ -6384,6 +6492,10 @@ exports[`renders course invites 1`] = `
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": false,
               "name": "American Literature Psysicks foobar hello world 401",
+              "permissions": Object {
+                "viewAllGrades": true,
+                "viewAnalytics": true,
+              },
               "short_name": "LIT 401",
               "term": Object {
                 "created_at": "2018-02-08T23:13:39Z",
@@ -6414,6 +6526,10 @@ exports[`renders course invites 1`] = `
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": true,
               "name": "Foobar 102",
+              "permissions": Object {
+                "viewAllGrades": true,
+                "viewAnalytics": true,
+              },
               "short_name": "FOO 102",
               "term": Object {
                 "created_at": "2018-02-08T23:13:39Z",
@@ -6558,6 +6674,10 @@ exports[`renders course invites 1`] = `
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": true,
               "name": "Biology 101",
+              "permissions": Object {
+                "viewAllGrades": true,
+                "viewAnalytics": true,
+              },
               "short_name": "BIO 101",
               "term": Object {
                 "created_at": "2018-02-08T23:13:39Z",
@@ -6588,6 +6708,10 @@ exports[`renders course invites 1`] = `
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": false,
               "name": "American Literature Psysicks foobar hello world 401",
+              "permissions": Object {
+                "viewAllGrades": true,
+                "viewAnalytics": true,
+              },
               "short_name": "LIT 401",
               "term": Object {
                 "created_at": "2018-02-08T23:13:39Z",
@@ -6618,6 +6742,10 @@ exports[`renders course invites 1`] = `
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": true,
               "name": "Foobar 102",
+              "permissions": Object {
+                "viewAllGrades": true,
+                "viewAnalytics": true,
+              },
               "short_name": "FOO 102",
               "term": Object {
                 "created_at": "2018-02-08T23:13:39Z",

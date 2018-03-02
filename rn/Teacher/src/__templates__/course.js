@@ -19,6 +19,12 @@
 import template, { type Template } from '../utils/template'
 import { section } from './section'
 
+export const courseTerm: Template<CourseTerm> = template({
+  id: '1',
+  created_at: '2017-03-17T19:15:25Z',
+  name: 'Default Term',
+})
+
 export const course: Template<Course> = template({
   id: '1',
   account_id: '1',
@@ -35,6 +41,10 @@ export const course: Template<Course> = template({
     type: 'teacher',
     user_id: '1',
   }],
+  permissions: {
+    viewAnalytics: true,
+    viewAllGrades: true,
+  },
   workflow_state: 'available',
   term: {
     id: '1',

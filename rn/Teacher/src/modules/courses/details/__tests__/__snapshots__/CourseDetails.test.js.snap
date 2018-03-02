@@ -44,6 +44,10 @@ exports[`CourseDetails refreshes when props change 1`] = `
       "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
       "is_favorite": true,
       "name": "Learn React Native",
+      "permissions": Object {
+        "viewAllGrades": true,
+        "viewAnalytics": true,
+      },
       "short_name": "rn",
       "term": Object {
         "created_at": "2018-02-08T23:13:39Z",
