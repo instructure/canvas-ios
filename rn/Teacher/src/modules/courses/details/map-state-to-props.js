@@ -25,12 +25,12 @@ type RoutingParams = {
 }
 
 export type CourseDetailsDataProps = {
-  +pending: number,
-  +error?: ?string,
-  +tabs: Array<Tab>,
-  +course: Course,
-  +color: string,
-  +attendanceTabID: ?string,
+  pending: number,
+  error?: ?string,
+  tabs: Array<Tab>,
+  course: ?Course,
+  color: string,
+  attendanceTabID: ?string,
 }
 
 export type CourseDetailsProps = CourseDetailsDataProps
@@ -41,6 +41,16 @@ export type CourseDetailsProps = CourseDetailsDataProps
 
 export default function mapStateToProps (state: AppState, { courseID }: RoutingParams): CourseDetailsDataProps {
   let courseState = state.entities.courses[courseID]
+
+  if (!courseState) {
+    return {
+      pending: 0,
+      tabs: [],
+      course: null,
+      color: '',
+      attendanceTabID: null,
+    }
+  }
 
   const {
     course,

@@ -57,16 +57,23 @@ test('mapStateToProps returns the correct props', () => {
   expect(props).toEqual(expected)
 })
 
-test('mapStateToProps throws without course', () => {
+test('mapStateToProps returns basic props without course', () => {
   const state: { [string]: any } = {
     entities: {
+      courses: {},
     },
     favoriteCourses: {},
   }
 
-  expect(() => {
+  expect(
     mapStateToProps(state, { courseID: '1' })
-  }).toThrow()
+  ).toEqual({
+    pending: 0,
+    tabs: [],
+    course: null,
+    color: '',
+    attendanceTabID: null,
+  })
 })
 
 test('mapStateToProps hides attendance tab if it is hidden', () => {

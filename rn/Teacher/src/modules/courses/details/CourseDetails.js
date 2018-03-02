@@ -65,7 +65,7 @@ export class CourseDetails extends Component<CourseDetailsProps, any> {
   }
 
   selectTab = (tab: Tab) => {
-    if (tab.id === this.props.attendanceTabID && tab.url) {
+    if (tab.id === this.props.attendanceTabID && tab.url && this.props.course) {
       this.props.navigator.show('/attendance', {}, {
         launchURL: tab.url,
         courseName: this.props.course.name,
@@ -94,18 +94,22 @@ export class CourseDetails extends Component<CourseDetailsProps, any> {
   }
 
   editCourse = () => {
-    this.props.navigator.show(`/courses/${this.props.course.id}/settings`, { modal: true, modalPresentationStyle: 'formsheet' })
+    let course = this.props.course || {}
+    this.props.navigator.show(`/courses/${course.id}/settings`, { modal: true, modalPresentationStyle: 'formsheet' })
   }
 
   showHome () {
-    if (this.homeDidShow || !this.props.course || !this.props.tabs.length) return
-    this.homeDidShow = true
-    if (this.state.windowTraits.horizontal !== 'compact') {
-      const home = this.props.tabs.find(({ id }) => id === 'home')
-      if (home) {
-        Promise.resolve().then(() => this.selectTab(home))
-      } else {
-        this.props.navigator.show(`/courses/${this.props.course.id}/placeholder`, {}, { courseColor: this.props.color, course: this.props.course })
+    if (this.homeDidShow) return
+    if (this.props.tabs.length) {
+      if (this.state.windowTraits.horizontal !== 'compact') {
+        const home = this.props.tabs.find(({ id }) => id === 'home')
+        if (home) {
+          this.homeDidShow = true
+          Promise.resolve().then(() => this.selectTab(home))
+        } else if (this.props.course) {
+          this.homeDidShow = true
+          this.props.navigator.show(`/courses/${this.props.course.id}/placeholder`, {}, { courseColor: this.props.color, course: this.props.course })
+        }
       }
     }
   }
@@ -132,21 +136,25 @@ export class CourseDetails extends Component<CourseDetailsProps, any> {
   }
 
   renderTab = (tab: Tab) => {
-    const props = {
-      key: tab.id,
-      tab,
-      courseColor: this.props.color,
-      onPress: this.selectTab,
-      attendanceTabID: this.props.attendanceTabID,
-      testID: `courses-details.tab.${tab.id}`,
-      selected: this.state.selectedTabId === tab.id,
-      course: this.props.course,
-    }
-    if (isStudent() && tab.id === 'home') {
-      return <CourseDetailsHomeTab {...props} />
-    }
+    // it will always be defined by this point because it checks in the render function
+    // but flow
+    if (this.props.course) {
+      const props = {
+        key: tab.id,
+        tab,
+        courseColor: this.props.color,
+        onPress: this.selectTab,
+        attendanceTabID: this.props.attendanceTabID,
+        testID: `courses-details.tab.${tab.id}`,
+        selected: this.state.selectedTabId === tab.id,
+        course: this.props.course,
+      }
+      if (isStudent() && tab.id === 'home') {
+        return <CourseDetailsHomeTab {...props} />
+      }
 
-    return <CourseDetailsTab {...props} />
+      return <CourseDetailsTab {...props} />
+    }
   }
 
   render () {
@@ -275,7 +283,7 @@ export class CourseDetails extends Component<CourseDetailsProps, any> {
                     <Animated.View
                       style={[styles.headerImageOverlay, {
                         backgroundColor: courseColor,
-                        opacity: this.props.course.image_download_url
+                        opacity: course.image_download_url
                           ? this.animatedValue.interpolate({
                             inputRange: [-headerHeight, -navbarHeight],
                             outputRange: [0.8, 1],

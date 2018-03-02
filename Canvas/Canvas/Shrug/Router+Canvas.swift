@@ -91,7 +91,7 @@ extension Router {
         let fileFactory = { (contextID: ContextID, fileID: String) -> UIViewController in
             return HelmViewController(
                 moduleName: "/courses/:courseID/file/:fileID",
-                props: ["courseID": contextID.id, "fileID": fileID, "modal": true]
+                props: ["courseID": contextID.id, "fileID": fileID, "navigatorOptions": ["modal": true]]
             )
         }
         
@@ -147,7 +147,7 @@ extension Router {
             guard let params = parameters, let fileID = (try? params.stringID("fileID")) else { return  nil }
             return HelmViewController(
                 moduleName: "/files/:fileID/download",
-                props: ["fileID": fileID, "modal": true]
+                props: ["fileID": fileID, "navigatorOptions": ["modal": true]]
             )
         }
         
@@ -155,8 +155,13 @@ extension Router {
             guard let params = parameters, let fileID = (try? params.stringID("fileID")) else { return  nil }
             return HelmViewController(
                 moduleName: "/files/:fileID/download",
-                props: ["fileID": fileID, "modal": true]
+                props: ["fileID": fileID, "navigatorOptions": ["modal": true]]
             )
+        }
+        
+        addRoute("/courses/:courseID") { parameters, _ in
+            guard let params = parameters, let courseID = (try? params.stringID("courseID")) else { return nil }
+            return HelmViewController(moduleName: "/courses/:courseID", props: ["courseID": courseID, "navigatorOptions": ["modal": true]])
         }
         
         let moduleItemDetailFactory: (ContextID, [String: Any]) throws -> UIViewController? = { contextID, params in

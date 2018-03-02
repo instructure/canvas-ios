@@ -66,7 +66,7 @@ describe('Navigator', () => {
       'push',
       '/courses/:courseID',
       { courseID: '1', screenInstanceID: expect.any(String) },
-      { canBecomeMaster: true }
+      { canBecomeMaster: true, deepLink: true }
     )
   })
 
@@ -81,7 +81,7 @@ describe('Navigator', () => {
       'replace',
       '/courses/:courseID',
       { courseID: '2', screenInstanceID: expect.any(String) },
-      { canBecomeMaster: true, replace: true },
+      { canBecomeMaster: true, replace: true, deepLink: true },
     )
   })
 

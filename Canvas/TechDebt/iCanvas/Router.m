@@ -231,7 +231,8 @@
 
     if ([destinationViewController isKindOfClass:[HelmViewController class]]) {
         HelmViewController *controller = (HelmViewController *)destinationViewController;
-        if (controller.props[@"modal"]) {
+        NSDictionary *navigatorOptions = controller.props[@"navigatorOptions"];
+        if (navigatorOptions && navigatorOptions[@"modal"]) {
             HelmNavigationController *navigation = [[HelmNavigationController alloc] initWithRootViewController:controller];
             [sourceController presentViewController:navigation animated:YES completion:nil];
             return destinationViewController;

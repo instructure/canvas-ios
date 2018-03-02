@@ -77,11 +77,13 @@ export default class Staging extends Component<StagingProps, any> {
     this.navigate(route => this.props.navigator.show(route.screen, {}, route.passProps))
   }
 
-  modal = () => {
+  modal = async () => {
+    await this.props.navigator.dismiss()
     this.navigate(route => this.props.navigator.show(route.screen, { modal: true }, route.passProps))
   }
 
-  deepLink = () => {
+  deepLink = async () => {
+    await this.props.navigator.dismiss()
     this.navigate(route => this.props.navigator.show(route.screen, {
       modal: true,
       embedInNavigationController: true,
