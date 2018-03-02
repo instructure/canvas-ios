@@ -29,7 +29,7 @@ import Row from '../../common/components/rows/Row'
 import images from '../../images'
 import colors from '../../common/colors'
 import { Circle } from 'react-native-progress'
-import bytes from 'bytes'
+import bytes from '../../utils/locale-bytes'
 import i18n from 'format-message'
 import { type Progress } from '../../canvas-api'
 
@@ -63,17 +63,13 @@ export default class AttachmentRow extends Component<Props, any> {
   renderSubtitle () {
     if (this.props.error) return null
     const { loaded, total } = this.props.progress
-    const bytesOpts = {
-      decimalPlaces: 0,
-      unitSeparator: ' ',
-    }
     if (total > 0) {
       if (loaded >= total) {
-        return bytes(total, bytesOpts)
+        return bytes(total, { style: 'integer' })
       }
       return i18n('Uploading {loaded} of {total}', {
-        loaded: bytes(loaded, bytesOpts),
-        total: bytes(total, bytesOpts),
+        loaded: bytes(loaded, { style: 'integer' }),
+        total: bytes(total, { style: 'integer' }),
       })
     }
 

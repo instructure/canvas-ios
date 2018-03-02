@@ -80,7 +80,7 @@ export default class SubmissionsHeader extends Component<SubmissionsHeaderProps,
 
     let selected = this.props.filterOptions.filter(option => option.selected)
     if (selected.length > 0) {
-      title = i18n('Filter ({numSelected})', { numSelected: selected.length })
+      title = i18n('Filter ({numSelected, number})', { numSelected: selected.length })
     }
 
     return (<LinkButton

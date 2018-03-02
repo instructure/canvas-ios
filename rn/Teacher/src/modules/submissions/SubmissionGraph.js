@@ -18,16 +18,29 @@
  * @flow
  */
 
+import i18n from 'format-message'
 import React, { Component } from 'react'
 import color from '../../common/colors'
 import * as Progress from 'react-native-progress'
 import { Text, MEDIUM_FONT } from '../../common/text'
 import {
+  Text as RNText,
   View,
   StyleSheet,
   ActivityIndicator,
 } from 'react-native'
-import Counter from 'react-native-counter'
+import RNCounter from 'react-native-counter'
+
+// localized counting
+class Counter extends RNCounter {
+  render () {
+    const { style } = this.props
+    const { value } = this.state
+    return (
+      <RNText style={style}>{i18n.number(value, 'integer')}</RNText>
+    )
+  }
+}
 
 export type SubmissionGraphProps = {
   total: number,

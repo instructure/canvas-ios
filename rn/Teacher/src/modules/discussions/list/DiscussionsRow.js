@@ -155,9 +155,16 @@ export default class DiscussionsRow extends PureComponent<Props> {
         one {# Reply}
         other {# Replies}
       }`,
-      message: 'Number of replies',
+      description: 'Number of replies',
     }, { count: discussion.discussion_subentry_count })
-    const unread = `${discussion.unread_count} ${i18n('Unread')}`
+    const unread = i18n({
+      default: `{
+        unread, plural,
+          one {# Unread}
+        other {# Unread}
+      }`,
+      description: 'Number of unread discussion posts',
+    }, { unread: discussion.unread_count })
 
     return <DotSeparated style={style.discussionDetails} separated={[replies, unread].filter(v => v)}/>
   }
@@ -170,7 +177,7 @@ export default class DiscussionsRow extends PureComponent<Props> {
         one {# pt}
         other {# pts}
       }`,
-        message: 'Number of points possible',
+        description: 'Number of points possible',
       }, { count: discussion.assignment.points_possible })
       return pointsPossible
     }

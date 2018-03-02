@@ -57,7 +57,7 @@ export function formatGradeText (grade: ?string, gradingType?: GradingType, poin
   const gradeNum = Math.round(Number(grade) * Math.pow(10, 2)) / Math.pow(10, 2)
 
   if (gradingType === 'points' && pointsPossible) {
-    return `${i18n.number(gradeNum)}/${pointsPossible}`
+    return `${i18n.number(gradeNum)}/${i18n.number(pointsPossible)}`
   }
 
   return i18n.number(gradeNum)

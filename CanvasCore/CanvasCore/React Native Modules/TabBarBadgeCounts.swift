@@ -21,7 +21,7 @@ public class TabBarBadgeCounts: NSObject {
             if unreadMessageCount > MaxTabBarCount {
                 unreadMessageCountString.value = NSLocalizedString("99+", tableName: nil, bundle: .core, value: "99+", comment: "more than 99")
             } else if unreadMessageCount > 0 {
-                unreadMessageCountString.value = String(unreadMessageCount)
+                unreadMessageCountString.value = NumberFormatter.localizedString(from: NSNumber(value: unreadMessageCount), number: .none)
             } else {
                 unreadMessageCountString.value = nil
             }
@@ -33,7 +33,7 @@ public class TabBarBadgeCounts: NSObject {
             if todoListCount > MaxTabBarCount {
                 todoListCountString.value = NSLocalizedString("99+", tableName: nil, bundle: .core, value: "99+", comment: "more than 99")
             } else if todoListCount > 0 {
-                todoListCountString.value = String(todoListCount)
+                todoListCountString.value = NumberFormatter.localizedString(from: NSNumber(value: todoListCount), number: .none)
             } else {
                 todoListCountString.value = nil
             }

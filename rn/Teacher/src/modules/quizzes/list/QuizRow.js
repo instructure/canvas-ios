@@ -93,7 +93,7 @@ export default class QuizRow extends Component<Props, any> {
         one {# pt}
         other {# pts}
       }`,
-      message: 'Number of points possible',
+      description: 'Number of points possible',
     }, { count: quiz.points_possible })
     const questionCount = i18n(`{
       count, plural,

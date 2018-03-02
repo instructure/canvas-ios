@@ -39,7 +39,7 @@ import localeSort from '../../utils/locale-sort'
 import AccessIcon from '../../common/components/AccessIcon'
 import ListEmptyComponent from '../../common/components/ListEmptyComponent'
 import images from '../../images'
-import bytes from 'bytes'
+import bytes, { unitFor } from '../../utils/locale-bytes'
 import DropView from '../../common/components/DropView'
 import SavingBanner from '../../common/components/SavingBanner'
 import AttachmentPicker from '../attachments/AttachmentPicker'
@@ -256,11 +256,15 @@ export class CourseFilesList extends Component<Props, State> {
   }
 
   updateUploadProgress = (progress: { loaded: number, total: number }) => {
-    let amountUploaded = bytes(progress.loaded, { decimalPlaces: 0, unitSeparator: ';' })
+    let amountUploaded = bytes(progress.loaded, {
+      style: 'integer',
+      separator: ';',
+      unit: unitFor(progress.total),
+    })
     if (amountUploaded) {
       amountUploaded = amountUploaded.split(';')[0]
     }
-    const amountTotal = bytes(progress.total, { decimalPlaces: 0 })
+    const amountTotal = bytes(progress.total, { style: 'integer' })
     if (amountUploaded && amountTotal) {
       const uploadMessage = i18n('Uploading {amountUploaded}/{amountTotal}', { amountUploaded, amountTotal })
       this.setState({ uploadMessage })

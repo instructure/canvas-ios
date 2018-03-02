@@ -598,7 +598,7 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                       }
                       testID="course-file-list.course-file-list-row.cell-file-1-subtitle-lbl"
                     >
-                      476.77KB
+                      476.77 KB
                     </Text>
                   </View>
                   <View
@@ -857,7 +857,7 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                       }
                       testID="course-file-list.course-file-list-row.cell-file-2-subtitle-lbl"
                     >
-                      476.77KB
+                      476.77 KB
                     </Text>
                   </View>
                   <View
@@ -1534,7 +1534,7 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                       }
                       testID="course-file-list.course-file-list-row.cell-file-1-subtitle-lbl"
                     >
-                      476.77KB
+                      476.77 KB
                     </Text>
                   </View>
                   <View
@@ -1793,7 +1793,7 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                       }
                       testID="course-file-list.course-file-list-row.cell-file-2-subtitle-lbl"
                     >
-                      476.77KB
+                      476.77 KB
                     </Text>
                   </View>
                   <View
@@ -2470,7 +2470,7 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                       }
                       testID="course-file-list.course-file-list-row.cell-file-1-subtitle-lbl"
                     >
-                      476.77KB
+                      476.77 KB
                     </Text>
                   </View>
                   <View
@@ -2729,7 +2729,7 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                       }
                       testID="course-file-list.course-file-list-row.cell-file-2-subtitle-lbl"
                     >
-                      476.77KB
+                      476.77 KB
                     </Text>
                   </View>
                   <View
@@ -3406,7 +3406,7 @@ exports[`CourseFileList sending weird data into the progress update function sho
                       }
                       testID="course-file-list.course-file-list-row.cell-file-1-subtitle-lbl"
                     >
-                      476.77KB
+                      476.77 KB
                     </Text>
                   </View>
                   <View
@@ -3665,7 +3665,7 @@ exports[`CourseFileList sending weird data into the progress update function sho
                       }
                       testID="course-file-list.course-file-list-row.cell-file-2-subtitle-lbl"
                     >
-                      476.77KB
+                      476.77 KB
                     </Text>
                   </View>
                   <View
@@ -4342,7 +4342,7 @@ exports[`CourseFileList should render 1`] = `
                       }
                       testID="course-file-list.course-file-list-row.cell-file-1-subtitle-lbl"
                     >
-                      476.77KB
+                      476.77 KB
                     </Text>
                   </View>
                   <View
@@ -4601,7 +4601,7 @@ exports[`CourseFileList should render 1`] = `
                       }
                       testID="course-file-list.course-file-list-row.cell-file-2-subtitle-lbl"
                     >
-                      476.77KB
+                      476.77 KB
                     </Text>
                   </View>
                   <View
@@ -5278,7 +5278,7 @@ exports[`CourseFileList should render with folders 1`] = `
                       }
                       testID="course-file-list.course-file-list-row.cell-file-1-subtitle-lbl"
                     >
-                      476.77KB
+                      476.77 KB
                     </Text>
                   </View>
                   <View
@@ -5537,7 +5537,7 @@ exports[`CourseFileList should render with folders 1`] = `
                       }
                       testID="course-file-list.course-file-list-row.cell-file-2-subtitle-lbl"
                     >
-                      476.77KB
+                      476.77 KB
                     </Text>
                   </View>
                   <View

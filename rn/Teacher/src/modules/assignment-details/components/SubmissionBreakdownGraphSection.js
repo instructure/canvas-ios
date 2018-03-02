@@ -95,7 +95,7 @@ export class SubmissionBreakdownGraphSection extends Component<SubmissionBreakdo
         one {There is # assignee without a grade.}
         other {There are # assignees without grades.}
       }`,
-      message: 'Number of assignees without grades.',
+      description: 'Number of assignees without grades.',
     }, { count: ungraded + notSubmitted })
 
     let data = [graded]

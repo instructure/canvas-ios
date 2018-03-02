@@ -187,7 +187,7 @@ export class SubmissionList extends Component<Props, State> {
               <SubmissionsHeader
                 filterOptions={this.state.filterOptions}
                 applyFilter={this.applyFilter}
-                filterPromptMessage={i18n('Out of {points}', { points: this.props.pointsPossible })}
+                filterPromptMessage={i18n('Out of {points, number}', { points: this.props.pointsPossible })}
                 initialFilterType={this.props.filterType}
                 pointsPossible={this.props.pointsPossible}
                 anonymous={this.props.anonymous}

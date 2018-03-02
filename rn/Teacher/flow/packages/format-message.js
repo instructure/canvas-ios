@@ -11,11 +11,11 @@ type FormatMessage = {
   namespace (): FormatMessage,
 }
 
-type MessageInfo = string | {
+type MessageInfo = string | {|
   id?: string,
   default?: string,
   description?: string,
-}
+|}
 
 type FormatMessageOptions = {
   locale?: string,

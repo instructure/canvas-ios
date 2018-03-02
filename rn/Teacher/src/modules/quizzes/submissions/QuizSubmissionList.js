@@ -187,7 +187,7 @@ export class QuizSubmissionList extends Component<QuizSubmissionListProps, any> 
                 filterOptions={this.state.filterOptions}
                 applyFilter={this.applyFilter}
                 initialFilterType={this.props.filterType}
-                filterPromptMessage={i18n('Out of {points}', { points: this.props.pointsPossible })}
+                filterPromptMessage={i18n('Out of {points, number}', { points: this.props.pointsPossible })}
                 navigator={this.props.navigator}
                 pointsPossible={this.props.pointsPossible}
                 anonymous={this.props.anonymous}

@@ -37,7 +37,7 @@ import Images from '../../../images'
 import MediaComment, { type Media } from '../../../common/components/MediaComment'
 import Permissions from '../../../common/permissions'
 import i18n from 'format-message'
-import filesize from 'filesize'
+import bytes from '../../../utils/locale-bytes'
 import striptags from 'striptags'
 
 const Actions = {
@@ -323,7 +323,7 @@ function contentForAttempt (attempt: Submission, assignment: Assignment): Array<
         contentID: `attachment-${attachment.id}`,
         icon: Images.speedGrader.submissions.document,
         title: attachment.display_name,
-        subtitle: filesize(attachment.size),
+        subtitle: bytes(attachment.size),
       }))
     case 'media_recording':
       if (!attempt.media_comment) {

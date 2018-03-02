@@ -70,7 +70,7 @@ export default class RubricItem extends Component<RubricItemProps, RubricItemSta
   }
 
   promptCustom = () => {
-    let message = i18n('Out of {score}', { score: this.props.rubricItem.points })
+    let message = i18n('Out of {points, number}', { points: this.props.rubricItem.points })
     AlertIOS.prompt(
       i18n('Customize Grade'),
       message,

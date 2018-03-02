@@ -99,7 +99,7 @@ export class GradePicker extends Component<GradePickerProps, GradePickerState> {
     let message = ''
     switch (this.props.gradingType) {
       case POINTS:
-        message = i18n('Out of {points}', { points: this.props.pointsPossible })
+        message = i18n('Out of {points, number}', { points: this.props.pointsPossible })
         break
       case PERCENTAGE:
         message = i18n('Percent (%)')
@@ -138,12 +138,12 @@ export class GradePicker extends Component<GradePickerProps, GradePickerState> {
     if (!this.applyLatePolicy() || !this.props.grade) return null
     const { pointsDeducted } = this.props
     let latePointsLabel = i18n({
-      default: `{ 
+      default: `{
         count, plural,
           one {# pt}
         other {# pts}
       }`,
-      message: 'Number of points deducted.',
+      description: 'Number of points deducted.',
     }, { count: pointsDeducted })
     return [
       <View style={styles.gradeCellMiddle}>
