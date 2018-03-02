@@ -23,7 +23,6 @@
 #import "UIAlertController+TechDebt.h"
 #import <CanvasKit1/CanvasKit1.h>
 #import <CanvasKit/CKIAssignment.h>
-#import "ThreadedDiscussionViewController.h"
 #import "CBISubmissionInputViewController.h"
 #import "Router.h"
 #import "CKIClient+CBIClient.h"
@@ -92,13 +91,8 @@
         [alert show];
         return;
     } else if (self.legacyAssignment.type == CKAssignmentTypeDiscussion) {
-        ThreadedDiscussionViewController *controller = [[ThreadedDiscussionViewController alloc] init];
-        controller.canvasAPI = self.canvasAPI;
-        controller.topicIdent = (uint64_t)[self.assignment.discussionTopic.id integerValue];
-        controller.contextInfo = self.contextInfo;
-        [controller performSelector:@selector(fetchTopic:) withObject:@YES];
-        
-        [self.viewController.navigationController pushViewController:controller animated:YES];
+        NSURL *url = [TheKeymaster.currentClient.baseURL URLByAppendingPathComponent:[NSString stringWithFormat:@"api/v1/courses/%@/discussion_topics/%@", @(self.legacyAssignment.courseIdent), @([self.assignment.discussionTopic.id integerValue])]];
+        [[Router sharedRouter] routeFromController:self.viewController toURL:url];
         return;
     }
     

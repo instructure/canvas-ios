@@ -26,13 +26,11 @@
 #import "CBIQuizViewModel.h"
 #import <TechDebt/MyLittleViewController.h>
 
-#import "CBIAnnouncementsTabViewModel.h"
 #import "CBISyllabusTabViewModel.h"
 #import "CBISyllabusViewModel.h"
 #import "CBICalendarEventViewModel.h"
 
 #import "WebBrowserViewController.h"
-#import "ThreadedDiscussionViewController.h"
 #import "CBIFilesTabViewModel.h"
 #import "CBIFolderViewModel.h"
 #import "CBISyllabusDetailViewController.h"
@@ -44,7 +42,6 @@
 #import "CBIPeopleTabViewModel.h"
 #import "CBIPeopleViewModel.h"
 #import "CBIPeopleDetailViewController.h"
-#import "CBIAnnouncementViewModel.h"
 #import "CKIClient+CBIClient.h"
 #import "UnsupportedViewController.h"
 

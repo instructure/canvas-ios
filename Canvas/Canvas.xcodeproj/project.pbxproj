@@ -39,12 +39,6 @@
 		492704AE1CF4B6D700C631C6 /* TechDebt.h in Headers */ = {isa = PBXBuildFile; fileRef = 492704AD1CF4B6D700C631C6 /* TechDebt.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		492704B21CF4B6D700C631C6 /* TechDebt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492704AB1CF4B6D700C631C6 /* TechDebt.framework */; };
 		492704B31CF4B6D700C631C6 /* TechDebt.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 492704AB1CF4B6D700C631C6 /* TechDebt.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		492704BF1CF4B6F100C631C6 /* AnnouncementCreationIPhoneStrategy.h in Headers */ = {isa = PBXBuildFile; fileRef = 492704B91CF4B6F100C631C6 /* AnnouncementCreationIPhoneStrategy.h */; };
-		492704C01CF4B6F100C631C6 /* AnnouncementCreationIPhoneStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 492704BA1CF4B6F100C631C6 /* AnnouncementCreationIPhoneStrategy.m */; };
-		492704C11CF4B6F100C631C6 /* CBIAnnouncementsTabViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 492704BB1CF4B6F100C631C6 /* CBIAnnouncementsTabViewModel.h */; };
-		492704C21CF4B6F100C631C6 /* CBIAnnouncementsTabViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 492704BC1CF4B6F100C631C6 /* CBIAnnouncementsTabViewModel.m */; };
-		492704C31CF4B6F100C631C6 /* CBIAnnouncementViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 492704BD1CF4B6F100C631C6 /* CBIAnnouncementViewModel.h */; };
-		492704C41CF4B6F100C631C6 /* CBIAnnouncementViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 492704BE1CF4B6F100C631C6 /* CBIAnnouncementViewModel.m */; };
 		492705101CF4B70600C631C6 /* AssignmentDetailsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492704C81CF4B70600C631C6 /* AssignmentDetailsViewController.h */; };
 		492705111CF4B70600C631C6 /* AssignmentDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492704C91CF4B70600C631C6 /* AssignmentDetailsViewController.m */; };
 		492705121CF4B70600C631C6 /* CBIAssignmentDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 492704CA1CF4B70600C631C6 /* CBIAssignmentDetail.storyboard */; };
@@ -170,42 +164,6 @@
 		492706131CF4B79B00C631C6 /* NonResponsiveTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706041CF4B79B00C631C6 /* NonResponsiveTextField.m */; };
 		492706141CF4B79B00C631C6 /* ProgressTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706051CF4B79B00C631C6 /* ProgressTableViewCell.h */; };
 		492706151CF4B79B00C631C6 /* ProgressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706061CF4B79B00C631C6 /* ProgressTableViewCell.m */; };
-		4927063E1CF4B7A800C631C6 /* CBIColorfulBadgeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706191CF4B7A800C631C6 /* CBIColorfulBadgeView.h */; };
-		4927063F1CF4B7A800C631C6 /* CBIColorfulBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927061A1CF4B7A800C631C6 /* CBIColorfulBadgeView.m */; };
-		492706401CF4B7A800C631C6 /* CBIDiscussionsTabViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 4927061B1CF4B7A800C631C6 /* CBIDiscussionsTabViewModel.h */; };
-		492706411CF4B7A800C631C6 /* CBIDiscussionsTabViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927061C1CF4B7A800C631C6 /* CBIDiscussionsTabViewModel.m */; };
-		492706421CF4B7A800C631C6 /* CBIDiscussionTopicCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 4927061D1CF4B7A800C631C6 /* CBIDiscussionTopicCell.h */; };
-		492706431CF4B7A800C631C6 /* CBIDiscussionTopicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927061E1CF4B7A800C631C6 /* CBIDiscussionTopicCell.m */; };
-		492706441CF4B7A800C631C6 /* CBIDiscussionTopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4927061F1CF4B7A800C631C6 /* CBIDiscussionTopicCell.xib */; };
-		492706451CF4B7A800C631C6 /* CBIDiscussionTopicViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706201CF4B7A800C631C6 /* CBIDiscussionTopicViewModel.h */; };
-		492706461CF4B7A800C631C6 /* CBIDiscussionTopicViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706211CF4B7A800C631C6 /* CBIDiscussionTopicViewModel.m */; };
-		492706471CF4B7A800C631C6 /* CKIDiscussionTopic+LegacySupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706221CF4B7A800C631C6 /* CKIDiscussionTopic+LegacySupport.h */; };
-		492706481CF4B7A800C631C6 /* CKIDiscussionTopic+LegacySupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706231CF4B7A800C631C6 /* CKIDiscussionTopic+LegacySupport.m */; };
-		492706491CF4B7A800C631C6 /* CreateDiscussion.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 492706241CF4B7A800C631C6 /* CreateDiscussion.storyboard */; };
-		4927064A1CF4B7A800C631C6 /* CreateDiscussionViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706251CF4B7A800C631C6 /* CreateDiscussionViewController.h */; };
-		4927064B1CF4B7A800C631C6 /* CreateDiscussionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706261CF4B7A800C631C6 /* CreateDiscussionViewController.m */; };
-		4927064C1CF4B7A800C631C6 /* DiscussionChildCountIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706271CF4B7A800C631C6 /* DiscussionChildCountIndicatorView.h */; };
-		4927064D1CF4B7A800C631C6 /* DiscussionChildCountIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706281CF4B7A800C631C6 /* DiscussionChildCountIndicatorView.m */; };
-		4927064E1CF4B7A800C631C6 /* DiscussionCreationIPhoneStrategy.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706291CF4B7A800C631C6 /* DiscussionCreationIPhoneStrategy.h */; };
-		4927064F1CF4B7A800C631C6 /* DiscussionCreationIPhoneStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927062A1CF4B7A800C631C6 /* DiscussionCreationIPhoneStrategy.m */; };
-		492706501CF4B7A800C631C6 /* DiscussionCreationStrategy.h in Headers */ = {isa = PBXBuildFile; fileRef = 4927062B1CF4B7A800C631C6 /* DiscussionCreationStrategy.h */; };
-		492706511CF4B7A800C631C6 /* DiscussionEntryCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 4927062C1CF4B7A800C631C6 /* DiscussionEntryCell.h */; };
-		492706521CF4B7A800C631C6 /* DiscussionEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927062D1CF4B7A800C631C6 /* DiscussionEntryCell.m */; };
-		492706531CF4B7A800C631C6 /* DiscussionEntryHeightCalculationOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 4927062E1CF4B7A800C631C6 /* DiscussionEntryHeightCalculationOperation.h */; };
-		492706541CF4B7A800C631C6 /* DiscussionEntryHeightCalculationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927062F1CF4B7A800C631C6 /* DiscussionEntryHeightCalculationOperation.m */; };
-		492706551CF4B7A800C631C6 /* DiscussionEntryHeightCalculationQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706301CF4B7A800C631C6 /* DiscussionEntryHeightCalculationQueue.h */; };
-		492706561CF4B7A800C631C6 /* DiscussionEntryHeightCalculationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706311CF4B7A800C631C6 /* DiscussionEntryHeightCalculationQueue.m */; };
-		492706571CF4B7A800C631C6 /* DiscussionPresentationStrategy.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706321CF4B7A800C631C6 /* DiscussionPresentationStrategy.h */; };
-		492706581CF4B7A800C631C6 /* DiscussionTemplateRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706331CF4B7A800C631C6 /* DiscussionTemplateRenderer.h */; };
-		492706591CF4B7A800C631C6 /* DiscussionTemplateRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706341CF4B7A800C631C6 /* DiscussionTemplateRenderer.m */; };
-		4927065A1CF4B7A800C631C6 /* ThreadedDiscussion.css in Resources */ = {isa = PBXBuildFile; fileRef = 492706361CF4B7A800C631C6 /* ThreadedDiscussion.css */; };
-		4927065B1CF4B7A800C631C6 /* ThreadedDiscussionEntry.html in Resources */ = {isa = PBXBuildFile; fileRef = 492706371CF4B7A800C631C6 /* ThreadedDiscussionEntry.html */; };
-		4927065C1CF4B7A800C631C6 /* ThreadedDiscussion.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 492706381CF4B7A800C631C6 /* ThreadedDiscussion.storyboard */; };
-		4927065D1CF4B7A800C631C6 /* ThreadedDiscussionViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706391CF4B7A800C631C6 /* ThreadedDiscussionViewController.h */; };
-		4927065E1CF4B7A800C631C6 /* ThreadedDiscussionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927063A1CF4B7A800C631C6 /* ThreadedDiscussionViewController.m */; };
-		4927065F1CF4B7A800C631C6 /* ThreadedDiscussionViewControllerProtected.h in Headers */ = {isa = PBXBuildFile; fileRef = 4927063B1CF4B7A800C631C6 /* ThreadedDiscussionViewControllerProtected.h */; };
-		492706601CF4B7A800C631C6 /* WTFInsets.h in Headers */ = {isa = PBXBuildFile; fileRef = 4927063C1CF4B7A800C631C6 /* WTFInsets.h */; };
-		492706611CF4B7A800C631C6 /* WTFInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927063D1CF4B7A800C631C6 /* WTFInsets.m */; };
 		492706651CF4B7CF00C631C6 /* CBIDropbox.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706631CF4B7CF00C631C6 /* CBIDropbox.h */; };
 		492706661CF4B7CF00C631C6 /* CBIDropbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706641CF4B7CF00C631C6 /* CBIDropbox.m */; };
 		4927068A1CF4B88600C631C6 /* CBIFilesTabViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 4927067B1CF4B88600C631C6 /* CBIFilesTabViewModel.h */; };
@@ -839,12 +797,6 @@
 		492704AB1CF4B6D700C631C6 /* TechDebt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TechDebt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		492704AD1CF4B6D700C631C6 /* TechDebt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TechDebt.h; sourceTree = "<group>"; };
 		492704AF1CF4B6D700C631C6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		492704B91CF4B6F100C631C6 /* AnnouncementCreationIPhoneStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnouncementCreationIPhoneStrategy.h; sourceTree = "<group>"; };
-		492704BA1CF4B6F100C631C6 /* AnnouncementCreationIPhoneStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnouncementCreationIPhoneStrategy.m; sourceTree = "<group>"; };
-		492704BB1CF4B6F100C631C6 /* CBIAnnouncementsTabViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIAnnouncementsTabViewModel.h; sourceTree = "<group>"; };
-		492704BC1CF4B6F100C631C6 /* CBIAnnouncementsTabViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CBIAnnouncementsTabViewModel.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		492704BD1CF4B6F100C631C6 /* CBIAnnouncementViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIAnnouncementViewModel.h; sourceTree = "<group>"; };
-		492704BE1CF4B6F100C631C6 /* CBIAnnouncementViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBIAnnouncementViewModel.m; sourceTree = "<group>"; };
 		492704C81CF4B70600C631C6 /* AssignmentDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssignmentDetailsViewController.h; sourceTree = "<group>"; };
 		492704C91CF4B70600C631C6 /* AssignmentDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AssignmentDetailsViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		492704CA1CF4B70600C631C6 /* CBIAssignmentDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CBIAssignmentDetail.storyboard; sourceTree = "<group>"; };
@@ -970,42 +922,6 @@
 		492706041CF4B79B00C631C6 /* NonResponsiveTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonResponsiveTextField.m; sourceTree = "<group>"; };
 		492706051CF4B79B00C631C6 /* ProgressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressTableViewCell.h; sourceTree = "<group>"; };
 		492706061CF4B79B00C631C6 /* ProgressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressTableViewCell.m; sourceTree = "<group>"; };
-		492706191CF4B7A800C631C6 /* CBIColorfulBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIColorfulBadgeView.h; sourceTree = "<group>"; };
-		4927061A1CF4B7A800C631C6 /* CBIColorfulBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBIColorfulBadgeView.m; sourceTree = "<group>"; };
-		4927061B1CF4B7A800C631C6 /* CBIDiscussionsTabViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIDiscussionsTabViewModel.h; sourceTree = "<group>"; };
-		4927061C1CF4B7A800C631C6 /* CBIDiscussionsTabViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CBIDiscussionsTabViewModel.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		4927061D1CF4B7A800C631C6 /* CBIDiscussionTopicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIDiscussionTopicCell.h; sourceTree = "<group>"; };
-		4927061E1CF4B7A800C631C6 /* CBIDiscussionTopicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CBIDiscussionTopicCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		4927061F1CF4B7A800C631C6 /* CBIDiscussionTopicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBIDiscussionTopicCell.xib; sourceTree = "<group>"; };
-		492706201CF4B7A800C631C6 /* CBIDiscussionTopicViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIDiscussionTopicViewModel.h; sourceTree = "<group>"; };
-		492706211CF4B7A800C631C6 /* CBIDiscussionTopicViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBIDiscussionTopicViewModel.m; sourceTree = "<group>"; };
-		492706221CF4B7A800C631C6 /* CKIDiscussionTopic+LegacySupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CKIDiscussionTopic+LegacySupport.h"; sourceTree = "<group>"; };
-		492706231CF4B7A800C631C6 /* CKIDiscussionTopic+LegacySupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CKIDiscussionTopic+LegacySupport.m"; sourceTree = "<group>"; };
-		492706241CF4B7A800C631C6 /* CreateDiscussion.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateDiscussion.storyboard; sourceTree = "<group>"; };
-		492706251CF4B7A800C631C6 /* CreateDiscussionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateDiscussionViewController.h; sourceTree = "<group>"; };
-		492706261CF4B7A800C631C6 /* CreateDiscussionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CreateDiscussionViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		492706271CF4B7A800C631C6 /* DiscussionChildCountIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscussionChildCountIndicatorView.h; sourceTree = "<group>"; };
-		492706281CF4B7A800C631C6 /* DiscussionChildCountIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscussionChildCountIndicatorView.m; sourceTree = "<group>"; };
-		492706291CF4B7A800C631C6 /* DiscussionCreationIPhoneStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscussionCreationIPhoneStrategy.h; sourceTree = "<group>"; };
-		4927062A1CF4B7A800C631C6 /* DiscussionCreationIPhoneStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscussionCreationIPhoneStrategy.m; sourceTree = "<group>"; };
-		4927062B1CF4B7A800C631C6 /* DiscussionCreationStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscussionCreationStrategy.h; sourceTree = "<group>"; };
-		4927062C1CF4B7A800C631C6 /* DiscussionEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscussionEntryCell.h; sourceTree = "<group>"; };
-		4927062D1CF4B7A800C631C6 /* DiscussionEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscussionEntryCell.m; sourceTree = "<group>"; };
-		4927062E1CF4B7A800C631C6 /* DiscussionEntryHeightCalculationOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscussionEntryHeightCalculationOperation.h; sourceTree = "<group>"; };
-		4927062F1CF4B7A800C631C6 /* DiscussionEntryHeightCalculationOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscussionEntryHeightCalculationOperation.m; sourceTree = "<group>"; };
-		492706301CF4B7A800C631C6 /* DiscussionEntryHeightCalculationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscussionEntryHeightCalculationQueue.h; sourceTree = "<group>"; };
-		492706311CF4B7A800C631C6 /* DiscussionEntryHeightCalculationQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscussionEntryHeightCalculationQueue.m; sourceTree = "<group>"; };
-		492706321CF4B7A800C631C6 /* DiscussionPresentationStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscussionPresentationStrategy.h; sourceTree = "<group>"; };
-		492706331CF4B7A800C631C6 /* DiscussionTemplateRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscussionTemplateRenderer.h; sourceTree = "<group>"; };
-		492706341CF4B7A800C631C6 /* DiscussionTemplateRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscussionTemplateRenderer.m; sourceTree = "<group>"; };
-		492706361CF4B7A800C631C6 /* ThreadedDiscussion.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = ThreadedDiscussion.css; sourceTree = "<group>"; };
-		492706371CF4B7A800C631C6 /* ThreadedDiscussionEntry.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ThreadedDiscussionEntry.html; sourceTree = "<group>"; };
-		492706381CF4B7A800C631C6 /* ThreadedDiscussion.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ThreadedDiscussion.storyboard; sourceTree = "<group>"; };
-		492706391CF4B7A800C631C6 /* ThreadedDiscussionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadedDiscussionViewController.h; sourceTree = "<group>"; };
-		4927063A1CF4B7A800C631C6 /* ThreadedDiscussionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadedDiscussionViewController.m; sourceTree = "<group>"; };
-		4927063B1CF4B7A800C631C6 /* ThreadedDiscussionViewControllerProtected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadedDiscussionViewControllerProtected.h; sourceTree = "<group>"; };
-		4927063C1CF4B7A800C631C6 /* WTFInsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WTFInsets.h; sourceTree = "<group>"; };
-		4927063D1CF4B7A800C631C6 /* WTFInsets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WTFInsets.m; sourceTree = "<group>"; };
 		492706631CF4B7CF00C631C6 /* CBIDropbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIDropbox.h; sourceTree = "<group>"; };
 		492706641CF4B7CF00C631C6 /* CBIDropbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBIDropbox.m; sourceTree = "<group>"; };
 		4927067B1CF4B88600C631C6 /* CBIFilesTabViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIFilesTabViewModel.h; sourceTree = "<group>"; };
@@ -1942,13 +1858,11 @@
 				492704AF1CF4B6D700C631C6 /* Info.plist */,
 				492704AD1CF4B6D700C631C6 /* TechDebt.h */,
 				49F9FA461CF7B6F600654758 /* TechDebt.xcassets */,
-				492704B81CF4B6F100C631C6 /* Announcements */,
 				492704C51CF4B70600C631C6 /* Assignments */,
 				492705581CF4B73200C631C6 /* Calendar Events */,
 				4927055B1CF4B73200C631C6 /* Categories */,
 				492705E61CF4B75300C631C6 /* Colorful */,
 				492705F91CF4B79B00C631C6 /* Custom Views and Cells */,
-				492706181CF4B7A800C631C6 /* Discussions */,
 				492706621CF4B7CF00C631C6 /* Dropbox */,
 				49642BBD1CF4C43800238B3F /* EXTObjC */,
 				4927067A1CF4B88600C631C6 /* Files and Folders */,
@@ -1973,19 +1887,6 @@
 				4927082C1CF4BC3200C631C6 /* Web Browser */,
 			);
 			path = TechDebt;
-			sourceTree = "<group>";
-		};
-		492704B81CF4B6F100C631C6 /* Announcements */ = {
-			isa = PBXGroup;
-			children = (
-				492704B91CF4B6F100C631C6 /* AnnouncementCreationIPhoneStrategy.h */,
-				492704BA1CF4B6F100C631C6 /* AnnouncementCreationIPhoneStrategy.m */,
-				492704BB1CF4B6F100C631C6 /* CBIAnnouncementsTabViewModel.h */,
-				492704BC1CF4B6F100C631C6 /* CBIAnnouncementsTabViewModel.m */,
-				492704BD1CF4B6F100C631C6 /* CBIAnnouncementViewModel.h */,
-				492704BE1CF4B6F100C631C6 /* CBIAnnouncementViewModel.m */,
-			);
-			path = Announcements;
 			sourceTree = "<group>";
 		};
 		492704C51CF4B70600C631C6 /* Assignments */ = {
@@ -2198,57 +2099,6 @@
 				492706061CF4B79B00C631C6 /* ProgressTableViewCell.m */,
 			);
 			path = "Custom Views and Cells";
-			sourceTree = "<group>";
-		};
-		492706181CF4B7A800C631C6 /* Discussions */ = {
-			isa = PBXGroup;
-			children = (
-				492706191CF4B7A800C631C6 /* CBIColorfulBadgeView.h */,
-				4927061A1CF4B7A800C631C6 /* CBIColorfulBadgeView.m */,
-				4927061B1CF4B7A800C631C6 /* CBIDiscussionsTabViewModel.h */,
-				4927061C1CF4B7A800C631C6 /* CBIDiscussionsTabViewModel.m */,
-				4927061D1CF4B7A800C631C6 /* CBIDiscussionTopicCell.h */,
-				4927061E1CF4B7A800C631C6 /* CBIDiscussionTopicCell.m */,
-				4927061F1CF4B7A800C631C6 /* CBIDiscussionTopicCell.xib */,
-				492706201CF4B7A800C631C6 /* CBIDiscussionTopicViewModel.h */,
-				492706211CF4B7A800C631C6 /* CBIDiscussionTopicViewModel.m */,
-				492706221CF4B7A800C631C6 /* CKIDiscussionTopic+LegacySupport.h */,
-				492706231CF4B7A800C631C6 /* CKIDiscussionTopic+LegacySupport.m */,
-				492706241CF4B7A800C631C6 /* CreateDiscussion.storyboard */,
-				492706251CF4B7A800C631C6 /* CreateDiscussionViewController.h */,
-				492706261CF4B7A800C631C6 /* CreateDiscussionViewController.m */,
-				492706271CF4B7A800C631C6 /* DiscussionChildCountIndicatorView.h */,
-				492706281CF4B7A800C631C6 /* DiscussionChildCountIndicatorView.m */,
-				492706291CF4B7A800C631C6 /* DiscussionCreationIPhoneStrategy.h */,
-				4927062A1CF4B7A800C631C6 /* DiscussionCreationIPhoneStrategy.m */,
-				4927062B1CF4B7A800C631C6 /* DiscussionCreationStrategy.h */,
-				4927062C1CF4B7A800C631C6 /* DiscussionEntryCell.h */,
-				4927062D1CF4B7A800C631C6 /* DiscussionEntryCell.m */,
-				4927062E1CF4B7A800C631C6 /* DiscussionEntryHeightCalculationOperation.h */,
-				4927062F1CF4B7A800C631C6 /* DiscussionEntryHeightCalculationOperation.m */,
-				492706301CF4B7A800C631C6 /* DiscussionEntryHeightCalculationQueue.h */,
-				492706311CF4B7A800C631C6 /* DiscussionEntryHeightCalculationQueue.m */,
-				492706321CF4B7A800C631C6 /* DiscussionPresentationStrategy.h */,
-				492706331CF4B7A800C631C6 /* DiscussionTemplateRenderer.h */,
-				492706341CF4B7A800C631C6 /* DiscussionTemplateRenderer.m */,
-				492706351CF4B7A800C631C6 /* HTML */,
-				492706381CF4B7A800C631C6 /* ThreadedDiscussion.storyboard */,
-				492706391CF4B7A800C631C6 /* ThreadedDiscussionViewController.h */,
-				4927063A1CF4B7A800C631C6 /* ThreadedDiscussionViewController.m */,
-				4927063B1CF4B7A800C631C6 /* ThreadedDiscussionViewControllerProtected.h */,
-				4927063C1CF4B7A800C631C6 /* WTFInsets.h */,
-				4927063D1CF4B7A800C631C6 /* WTFInsets.m */,
-			);
-			path = Discussions;
-			sourceTree = "<group>";
-		};
-		492706351CF4B7A800C631C6 /* HTML */ = {
-			isa = PBXGroup;
-			children = (
-				492706361CF4B7A800C631C6 /* ThreadedDiscussion.css */,
-				492706371CF4B7A800C631C6 /* ThreadedDiscussionEntry.html */,
-			);
-			path = HTML;
 			sourceTree = "<group>";
 		};
 		492706621CF4B7CF00C631C6 /* Dropbox */ = {
@@ -3300,17 +3150,13 @@
 				492705131CF4B70600C631C6 /* CBIAssignmentDetailViewController.h in Headers */,
 				49E1F9101F9517FF0003C91C /* MyLittleViewController.h in Headers */,
 				492706101CF4B79B00C631C6 /* MultiLineTextField.h in Headers */,
-				492706531CF4B7A800C631C6 /* DiscussionEntryHeightCalculationOperation.h in Headers */,
 				492705201CF4B70600C631C6 /* CBIAddSubmissionCommentCell.h in Headers */,
 				492706D31CF4BA7B00C631C6 /* ContentLockViewController.h in Headers */,
 				4927053F1CF4B70600C631C6 /* CBISubmissionViewModel.h in Headers */,
 				4927077C1CF4BB2100C631C6 /* CBIModuleProgressNotifications.h in Headers */,
-				492706451CF4B7A800C631C6 /* CBIDiscussionTopicViewModel.h in Headers */,
 				492705CA1CF4B73200C631C6 /* UITableView+in_updateInBlocks.h in Headers */,
 				492708591CF4C19B00C631C6 /* MKNumberBadgeView.h in Headers */,
-				4927065F1CF4B7A800C631C6 /* ThreadedDiscussionViewControllerProtected.h in Headers */,
 				492706951CF4B88600C631C6 /* FolderViewController.h in Headers */,
-				492706581CF4B7A800C631C6 /* DiscussionTemplateRenderer.h in Headers */,
 				4927054D1CF4B70600C631C6 /* SubmissionAttachmentsController.h in Headers */,
 				49A04E231CF5052A0051E1E7 /* CBIQuizzesTabViewModel.h in Headers */,
 				49AA2D2B1CF4DC540055862D /* CBIPeopleDetailViewController.h in Headers */,
@@ -3325,7 +3171,6 @@
 				492705171CF4B70600C631C6 /* CBIGradeDetailView.h in Headers */,
 				492705BC1CF4B73200C631C6 /* UIFont+Canvas.h in Headers */,
 				492705B61CF4B73200C631C6 /* NSCache+AvatarCache.h in Headers */,
-				4927064E1CF4B7A800C631C6 /* DiscussionCreationIPhoneStrategy.h in Headers */,
 				492705C81CF4B73200C631C6 /* UITableView+in_backgroundImage.h in Headers */,
 				492706C01CF4BA6700C631C6 /* LoadingDotsCell.h in Headers */,
 				4927060B1CF4B79B00C631C6 /* IconCell.h in Headers */,
@@ -3340,7 +3185,6 @@
 				494E139F1D355C690068279D /* MobileQuizInformationViewController.h in Headers */,
 				492705E01CF4B73300C631C6 /* UIWebView+SafeAPIURL.h in Headers */,
 				492705491CF4B70600C631C6 /* ReceivedFilesViewController.h in Headers */,
-				4927064A1CF4B7A800C631C6 /* CreateDiscussionViewController.h in Headers */,
 				492706CF1CF4BA7B00C631C6 /* CBIContentLockViewController.h in Headers */,
 				492706C51CF4BA7400C631C6 /* CBILocalNotificationHandler.h in Headers */,
 				492705101CF4B70600C631C6 /* AssignmentDetailsViewController.h in Headers */,
@@ -3353,13 +3197,9 @@
 				49642BC11CF4C44A00238B3F /* metamacros.h in Headers */,
 				492707C71CF4BBBA00C631C6 /* PagedTableViewControllerInternal.h in Headers */,
 				492705B41CF4B73200C631C6 /* NSArray_in_additions.h in Headers */,
-				4927064C1CF4B7A800C631C6 /* DiscussionChildCountIndicatorView.h in Headers */,
-				492706511CF4B7A800C631C6 /* DiscussionEntryCell.h in Headers */,
 				49CE97781F900B4700121A43 /* NSObject+RACCollectionChanges.h in Headers */,
-				492704C11CF4B6F100C631C6 /* CBIAnnouncementsTabViewModel.h in Headers */,
 				492706651CF4B7CF00C631C6 /* CBIDropbox.h in Headers */,
 				49CE97681F900B4700121A43 /* MLVCViewController.h in Headers */,
-				492704C31CF4B6F100C631C6 /* CBIAnnouncementViewModel.h in Headers */,
 				492706DF1CF4BA8400C631C6 /* CBILogger.h in Headers */,
 				492707C51CF4BBBA00C631C6 /* PagedTableViewController.h in Headers */,
 				492706971CF4B88600C631C6 /* NoPreviewAvailableController.h in Headers */,
@@ -3369,7 +3209,6 @@
 				4927068A1CF4B88600C631C6 /* CBIFilesTabViewModel.h in Headers */,
 				49CE976D1F900B4700121A43 /* metamacros.h in Headers */,
 				492706D11CF4BA7B00C631C6 /* CBILockableViewModel.h in Headers */,
-				492706571CF4B7A800C631C6 /* DiscussionPresentationStrategy.h in Headers */,
 				492705B21CF4B73200C631C6 /* NSURL+RemoveFragment.h in Headers */,
 				492706AB1CF4B98900C631C6 /* iCanvasErrorHandler.h in Headers */,
 				49AA2D2F1CF4DC540055862D /* CBIPeopleViewModel.h in Headers */,
@@ -3379,7 +3218,6 @@
 				492706DC1CF4BA8400C631C6 /* CBILog.h in Headers */,
 				4927084E1CF4BC3200C631C6 /* PopoverWrapperViewController.h in Headers */,
 				4927051A1CF4B70600C631C6 /* CKAttachmentManager.h in Headers */,
-				492706501CF4B7A800C631C6 /* DiscussionCreationStrategy.h in Headers */,
 				49CE97731F900B4700121A43 /* MLVCTableViewCellViewModel.h in Headers */,
 				492706B11CF4B99700C631C6 /* Router.h in Headers */,
 				4927068E1CF4B88600C631C6 /* CBIFileViewModel.h in Headers */,
@@ -3389,19 +3227,14 @@
 				492706A91CF4B98900C631C6 /* iCanvasConstants.h in Headers */,
 				49CE97661F900B4700121A43 /* UICollectionView+MyLittleViewController.h in Headers */,
 				4927052C1CF4B70600C631C6 /* CBISubmissionCell.h in Headers */,
-				4927063E1CF4B7A800C631C6 /* CBIColorfulBadgeView.h in Headers */,
 				49F9FA5A1CF8CDC400654758 /* UIImage+TechDebt.h in Headers */,
 				49642BC01CF4C44A00238B3F /* EXTScope.h in Headers */,
 				49AA2D321CF4DC540055862D /* ProfileViewController.h in Headers */,
 				492705D21CF4B73300C631C6 /* UIView+FloatingView.h in Headers */,
-				492704BF1CF4B6F100C631C6 /* AnnouncementCreationIPhoneStrategy.h in Headers */,
-				492706401CF4B7A800C631C6 /* CBIDiscussionsTabViewModel.h in Headers */,
 				49AA2D251CF4DC540055862D /* AboutViewController.h in Headers */,
 				4927084C1CF4BC3200C631C6 /* CBIURLParser.h in Headers */,
-				492706601CF4B7A800C631C6 /* WTFInsets.h in Headers */,
 				4927051E1CF4B70600C631C6 /* CKRichTextInputView.h in Headers */,
 				492706091CF4B79B00C631C6 /* CNVTableViewCell.h in Headers */,
-				492706471CF4B7A800C631C6 /* CKIDiscussionTopic+LegacySupport.h in Headers */,
 				492705AC1CF4B73200C631C6 /* MKNumberBadgeView+CanvasStyle.h in Headers */,
 				492705261CF4B70600C631C6 /* CBIStudentSubmissionViewController.h in Headers */,
 				492706DD1CF4BA8400C631C6 /* CBILogFormatter.h in Headers */,
@@ -3413,7 +3246,6 @@
 				4927083D1CF4BC3200C631C6 /* CBISyllabusDetailViewController.h in Headers */,
 				4927054F1CF4B70600C631C6 /* SubmissionWorkflowController.h in Headers */,
 				492705BA1CF4B73200C631C6 /* NSString_stripHTML.h in Headers */,
-				492706551CF4B7A800C631C6 /* DiscussionEntryHeightCalculationQueue.h in Headers */,
 				49AA2D341CF4DC540055862D /* RoundedButton.h in Headers */,
 				4927084A1CF4BC3200C631C6 /* UIViewController+Transitions.h in Headers */,
 				61F438E61DD667D900552D14 /* MLVCCollectionController+CBIRefresh.h in Headers */,
@@ -3429,8 +3261,6 @@
 				492705DA1CF4B73300C631C6 /* UIWebView+iCanvas.h in Headers */,
 				49CE976B1F900B4700121A43 /* MLVCCollectionViewController.h in Headers */,
 				492705C21CF4B73200C631C6 /* UIImage+ImageEffects.h in Headers */,
-				492706421CF4B7A800C631C6 /* CBIDiscussionTopicCell.h in Headers */,
-				4927065D1CF4B7A800C631C6 /* ThreadedDiscussionViewController.h in Headers */,
 				49CE976C1F900B4700121A43 /* MLVCViewModel.h in Headers */,
 				4927068C1CF4B88600C631C6 /* CBIFileViewController.h in Headers */,
 				492705A01CF4B73200C631C6 /* CBICalendarEventViewModel.h in Headers */,
@@ -3771,7 +3601,6 @@
 			files = (
 				4950687A1D414DC00030A9D5 /* unlock.png in Resources */,
 				492705331CF4B70600C631C6 /* CBISubmissionCommentCell-Theirs.xib in Resources */,
-				4927065B1CF4B7A800C631C6 /* ThreadedDiscussionEntry.html in Resources */,
 				4927083A1CF4BC3200C631C6 /* unfilled.png in Resources */,
 				492705511CF4B70600C631C6 /* URLSubmissionPreviewStoryboard.storyboard in Resources */,
 				492705461CF4B70600C631C6 /* jquery.json-2.2.min.js in Resources */,
@@ -3781,7 +3610,6 @@
 				B1CB84F01D076025004D2265 /* CKRichTextInputView.xib in Resources */,
 				492706D51CF4BA7B00C631C6 /* ContentLockViewController.storyboard in Resources */,
 				492705301CF4B70600C631C6 /* CBISubmissionCommentCell-MyAudio.xib in Resources */,
-				492706441CF4B7A800C631C6 /* CBIDiscussionTopicCell.xib in Resources */,
 				4950686F1D414DC00030A9D5 /* empty-checkbox-white.png in Resources */,
 				49F9FA471CF7B6F600654758 /* TechDebt.xcassets in Resources */,
 				492705F31CF4B76A00C631C6 /* CBIColorfulRightDetailCell.xib in Resources */,
@@ -3791,7 +3619,6 @@
 				492708551CF4BC3200C631C6 /* WebBrowserViewController.xib in Resources */,
 				492705441CF4B70600C631C6 /* discussion_submissions.js in Resources */,
 				49AA2D291CF4DC540055862D /* CBIPeopleAvatarCell.xib in Resources */,
-				4927065C1CF4B7A800C631C6 /* ThreadedDiscussion.storyboard in Resources */,
 				492705321CF4B70600C631C6 /* CBISubmissionCommentCell-TheirAudio.xib in Resources */,
 				492705251CF4B70600C631C6 /* CBIFloatingActionBar.xib in Resources */,
 				2C0CAD6A1DEF6C30008D90FA /* InfoPlist.strings in Resources */,
@@ -3823,7 +3650,6 @@
 				492705221CF4B70600C631C6 /* CBIAddSubmissionCommentCell.xib in Resources */,
 				492706BF1CF4BA6700C631C6 /* LoadingCell.xib in Resources */,
 				492707FA1CF4BC1000C631C6 /* UnsupportedView.storyboard in Resources */,
-				4927065A1CF4B7A800C631C6 /* ThreadedDiscussion.css in Resources */,
 				492705F41CF4B76A00C631C6 /* CBIColorfulSubtitleCell.xib in Resources */,
 				4950686C1D414DC00030A9D5 /* avatar-default-50.png in Resources */,
 				492705341CF4B70600C631C6 /* CBISubmissionCommentCell-TheirVideo.xib in Resources */,
@@ -3832,7 +3658,6 @@
 				49ADE0051FD84D3F0008E43C /* ReceivedFilesViewController.storyboard in Resources */,
 				4927069F1CF4B8AA00C631C6 /* ImagesLoaded.js in Resources */,
 				495068721D414DC00030A9D5 /* glossy-spinner@2x.gif in Resources */,
-				492706491CF4B7A800C631C6 /* CreateDiscussion.storyboard in Resources */,
 				4927083C1CF4BC3200C631C6 /* unfilled@3x.png in Resources */,
 				4927083B1CF4BC3200C631C6 /* unfilled@2x.png in Resources */,
 			);
@@ -4300,22 +4125,17 @@
 				492705AD1CF4B73200C631C6 /* MKNumberBadgeView+CanvasStyle.m in Sources */,
 				492706E51CF4BAB500C631C6 /* VideoRecorderController.m in Sources */,
 				492708401CF4BC3200C631C6 /* CBISyllabusTabViewModel.m in Sources */,
-				492706431CF4B7A800C631C6 /* CBIDiscussionTopicCell.m in Sources */,
-				4927064D1CF4B7A800C631C6 /* DiscussionChildCountIndicatorView.m in Sources */,
 				49AA2D351CF4DC540055862D /* RoundedButton.m in Sources */,
 				492705B71CF4B73200C631C6 /* NSCache+AvatarCache.m in Sources */,
 				492705501CF4B70600C631C6 /* SubmissionWorkflowController.m in Sources */,
 				492706661CF4B7CF00C631C6 /* CBIDropbox.m in Sources */,
 				492706AC1CF4B98900C631C6 /* iCanvasErrorHandler.m in Sources */,
-				492706521CF4B7A800C631C6 /* DiscussionEntryCell.m in Sources */,
 				492705F81CF4B76A00C631C6 /* CBIColorfulViewModel+CellViewModel.m in Sources */,
 				492705C91CF4B73200C631C6 /* UITableView+in_backgroundImage.m in Sources */,
 				492705A31CF4B73200C631C6 /* CKIUser+SwiftCompatibility.m in Sources */,
 				49A04E241CF5052A0051E1E7 /* CBIQuizzesTabViewModel.m in Sources */,
 				4927077D1CF4BB2100C631C6 /* CBIModuleProgressNotifications.m in Sources */,
 				49AA2D2E1CF4DC540055862D /* CBIPeopleTabViewModel.m in Sources */,
-				492704C21CF4B6F100C631C6 /* CBIAnnouncementsTabViewModel.m in Sources */,
-				4927064F1CF4B7A800C631C6 /* DiscussionCreationIPhoneStrategy.m in Sources */,
 				4927053B1CF4B70600C631C6 /* CBISubmissionInputView.m in Sources */,
 				492705D71CF4B73300C631C6 /* UIViewController+AnalyticsTracking.m in Sources */,
 				492706D21CF4BA7B00C631C6 /* CBILockableViewModel.m in Sources */,
@@ -4331,7 +4151,6 @@
 				4902E1261CF4C8890069E043 /* Analytics.m in Sources */,
 				49295B531F87F01D001DAB1F /* CBIResizableTextView.m in Sources */,
 				492705F61CF4B76A00C631C6 /* CBIColorfulViewModel.m in Sources */,
-				4927065E1CF4B7A800C631C6 /* ThreadedDiscussionViewController.m in Sources */,
 				492707F71CF4BC1000C631C6 /* RubricViewController.m in Sources */,
 				492705291CF4B70600C631C6 /* CBIStudentSubmissionViewModel.m in Sources */,
 				49DE1DA41F8808F30055D74A /* CBIConversationStarter.m in Sources */,
@@ -4339,7 +4158,6 @@
 				492705241CF4B70600C631C6 /* CBIAddSubmissionCommentViewModel.m in Sources */,
 				492705271CF4B70600C631C6 /* CBIStudentSubmissionViewController.m in Sources */,
 				492706131CF4B79B00C631C6 /* NonResponsiveTextField.m in Sources */,
-				4927063F1CF4B7A800C631C6 /* CBIColorfulBadgeView.m in Sources */,
 				49AA2D301CF4DC540055862D /* CBIPeopleViewModel.m in Sources */,
 				492705DB1CF4B73300C631C6 /* UIWebView+iCanvas.m in Sources */,
 				492705BB1CF4B73200C631C6 /* NSString_stripHTML.m in Sources */,
@@ -4349,26 +4167,21 @@
 				492705CB1CF4B73200C631C6 /* UITableView+in_updateInBlocks.m in Sources */,
 				492706111CF4B79B00C631C6 /* MultiLineTextField.m in Sources */,
 				4927054A1CF4B70600C631C6 /* ReceivedFilesViewController.m in Sources */,
-				492704C01CF4B6F100C631C6 /* AnnouncementCreationIPhoneStrategy.m in Sources */,
 				49CE97771F900B4700121A43 /* NSObject+RACCollectionChanges.m in Sources */,
 				492706BE1CF4BA6700C631C6 /* CBILoadingIndicator.m in Sources */,
-				492706461CF4B7A800C631C6 /* CBIDiscussionTopicViewModel.m in Sources */,
 				492707C41CF4BBBA00C631C6 /* PagedItemsViewController.m in Sources */,
 				49AA2D2C1CF4DC540055862D /* CBIPeopleDetailViewController.m in Sources */,
-				492706561CF4B7A800C631C6 /* DiscussionEntryHeightCalculationQueue.m in Sources */,
 				4927052D1CF4B70600C631C6 /* CBISubmissionCell.m in Sources */,
 				4927051B1CF4B70600C631C6 /* CKAttachmentManager.m in Sources */,
 				492705181CF4B70600C631C6 /* CBIGradeDetailView.m in Sources */,
 				61F438E71DD667D900552D14 /* MLVCCollectionController+CBIRefresh.m in Sources */,
 				4927083E1CF4BC3200C631C6 /* CBISyllabusDetailViewController.m in Sources */,
 				492705A11CF4B73200C631C6 /* CBICalendarEventViewModel.m in Sources */,
-				492706591CF4B7A800C631C6 /* DiscussionTemplateRenderer.m in Sources */,
 				492706D01CF4BA7B00C631C6 /* CBIContentLockViewController.m in Sources */,
 				492705361CF4B70600C631C6 /* CBISubmissionCommentCell.m in Sources */,
 				4927060F1CF4B79B00C631C6 /* InsetTableViewCell.m in Sources */,
 				49AA2D261CF4DC540055862D /* AboutViewController.m in Sources */,
 				492705531CF4B70600C631C6 /* URLSubmissionPreviewViewController.m in Sources */,
-				492706541CF4B7A800C631C6 /* DiscussionEntryHeightCalculationOperation.m in Sources */,
 				4927085A1CF4C19B00C631C6 /* MKNumberBadgeView.m in Sources */,
 				492706AA1CF4B98900C631C6 /* iCanvasConstants.m in Sources */,
 				492705CF1CF4B73300C631C6 /* UIView+Circular.m in Sources */,
@@ -4379,10 +4192,8 @@
 				492705111CF4B70600C631C6 /* AssignmentDetailsViewController.m in Sources */,
 				492705401CF4B70600C631C6 /* CBISubmissionViewModel.m in Sources */,
 				49CE97761F900B4700121A43 /* MLVCViewController.m in Sources */,
-				492704C41CF4B6F100C631C6 /* CBIAnnouncementViewModel.m in Sources */,
 				4927060C1CF4B79B00C631C6 /* IconCell.m in Sources */,
 				492705D31CF4B73300C631C6 /* UIView+FloatingView.m in Sources */,
-				492706611CF4B7A800C631C6 /* WTFInsets.m in Sources */,
 				494E13A01D355C690068279D /* MobileQuizInformationViewController.m in Sources */,
 				492708511CF4BC3200C631C6 /* ShortPressGestureRecognizer.m in Sources */,
 				492706E01CF4BA8400C631C6 /* CBILogger.m in Sources */,
@@ -4394,7 +4205,6 @@
 				492705141CF4B70600C631C6 /* CBIAssignmentDetailViewController.m in Sources */,
 				492708541CF4BC3200C631C6 /* WebBrowserViewController.m in Sources */,
 				2C7041AF203CDDB700745253 /* UIAlertController+TechDebt.m in Sources */,
-				492706411CF4B7A800C631C6 /* CBIDiscussionsTabViewModel.m in Sources */,
 				492706941CF4B88600C631C6 /* FileViewController.m in Sources */,
 				49CE97701F900B4700121A43 /* UICollectionView+MyLittleViewController.m in Sources */,
 				4927068D1CF4B88600C631C6 /* CBIFileViewController.m in Sources */,
@@ -4405,7 +4215,6 @@
 				492706961CF4B88600C631C6 /* FolderViewController.m in Sources */,
 				492705D51CF4B73300C631C6 /* UIView_render_IN.m in Sources */,
 				492707FC1CF4BC1000C631C6 /* UnsupportedViewController.m in Sources */,
-				492706481CF4B7A800C631C6 /* CKIDiscussionTopic+LegacySupport.m in Sources */,
 				492705B91CF4B73200C631C6 /* NSString+IN_Additions.m in Sources */,
 				49A04E221CF5052A0051E1E7 /* CBIQuizViewModel.m in Sources */,
 				492706D41CF4BA7B00C631C6 /* ContentLockViewController.m in Sources */,
@@ -4415,7 +4224,6 @@
 				4927084F1CF4BC3200C631C6 /* PopoverWrapperViewController.m in Sources */,
 				492706DE1CF4BA8400C631C6 /* CBILogFormatter.m in Sources */,
 				492705A71CF4B73200C631C6 /* CKIClient+CBIClient.m in Sources */,
-				4927064B1CF4B7A800C631C6 /* CreateDiscussionViewController.m in Sources */,
 				492705211CF4B70600C631C6 /* CBIAddSubmissionCommentCell.m in Sources */,
 				4927084D1CF4BC3200C631C6 /* CBIURLParser.m in Sources */,
 				49CE97671F900B4700121A43 /* MLVCTableViewController.m in Sources */,

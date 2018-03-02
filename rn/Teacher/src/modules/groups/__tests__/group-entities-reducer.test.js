@@ -92,6 +92,7 @@ test('captures entities with discussion', () => {
   expect(result1).toEqual({
     [group.id]: {
       group,
+      color: '',
       discussions: { pending: 0, refs: [], new: { pending: 1, id: null, error: null } },
       announcements: { pending: 0, refs: [] },
     },
@@ -100,6 +101,7 @@ test('captures entities with discussion', () => {
   expect(result2).toEqual({
     [group.id]: {
       group,
+      color: '',
       discussions: { pending: 0, refs: [], new: { pending: 0, id: announcement.id, error: null } },
       announcements: { pending: 0, refs: [announcement.id] },
     },
@@ -157,7 +159,7 @@ test('captures list of users resolved', () => {
         pending: 0,
         refs: [],
       },
-
+      color: '',
     },
   }
 
@@ -201,7 +203,7 @@ test('captures list of users pending', () => {
         pending: 0,
         refs: [],
       },
-
+      color: '',
     },
   }
 
@@ -246,7 +248,7 @@ test('captures list of users rejected', () => {
         pending: 0,
         refs: [],
       },
-
+      color: '',
     },
   }
 

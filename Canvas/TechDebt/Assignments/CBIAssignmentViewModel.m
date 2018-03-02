@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-    
-    
+
+
 
 #import "CBIAssignmentViewModel.h"
 #import "CBIColorfulViewModel+CellViewModel.h"
@@ -92,7 +92,7 @@
             NSString *imageName = [NSString stringWithFormat:@"icon_%@", [self specificImageNameForSubmissionTypes:submissionTypes]];
             return [[UIImage techDebtImageNamed:imageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         }];
-        
+
         RAC(self, subtitle) = [RACObserve(self, model.dueAt) map:^id(NSDate *unformattedDueDate) {
             if (!unformattedDueDate) {
                 return NSLocalizedString(@"No due date", @"String for when assignment has no due date");
@@ -107,7 +107,7 @@
             return [formatter stringFromDate:unformattedDueDate];
         }];
     }
-    
+
     return self;
 }
 
@@ -120,7 +120,7 @@
     RACSignal *isStudentSignal;
     CKICourse *courseContext = (CKICourse *)self.model.context;
     if (courseContext == nil || [courseContext isKindOfClass:[CKICourse class]]) {
-        
+
         // this will be true if context is nil as well
         if (courseContext.enrollments.count == 0) {
             CKIAssignment *theAssignment = self.model;
@@ -131,13 +131,13 @@
         } else {
             isStudentSignal = [RACSignal return:@(courseContext.currentUserEnrolledAsStudentOrObserver)];
         }
-        
+
     } else {
         // as of this coding, it's not possible to add teachers to course groups, and afaik
         // assignments live in a course so having one outside a course is infeasible
         isStudentSignal = [RACSignal return:@(YES)];
     }
-    
+
     CKIAssignment *assignment = self.model;
     CKIUser *currentUser = TheKeymaster.currentClient.currentUser;
     RACSignal *myTintColor = RACObserve(self, tintColor);
@@ -156,3 +156,4 @@
 }
 
 @end
+

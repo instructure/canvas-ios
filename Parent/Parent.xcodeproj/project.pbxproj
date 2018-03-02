@@ -909,6 +909,12 @@
 		9F454C0F1FBB75E700599F87 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		9F4FED911FBB756E008ECFF1 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9F4FED921FBB756E008ECFF1 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9F5A3D322048745B00F6EDCE /* DiscussionTopic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionTopic.swift; sourceTree = "<group>"; };
+		9F5A3D332048745B00F6EDCE /* DiscussionTopic+Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiscussionTopic+Network.swift"; sourceTree = "<group>"; };
+		9F5A3D342048745B00F6EDCE /* DiscussionTopic+Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiscussionTopic+Details.swift"; sourceTree = "<group>"; };
+		9F5A3D362048745B00F6EDCE /* DiscussionKit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DiscussionKit.xcdatamodel; sourceTree = "<group>"; };
+		9F5A3D392048745B00F6EDCE /* DiscussionTopicAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionTopicAPI.swift; sourceTree = "<group>"; };
+		9F5A3D3B2048745B00F6EDCE /* Session+DiscussionKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+DiscussionKit.swift"; sourceTree = "<group>"; };
 		9F62CA441FBB76170077DA3F /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9F62CA451FBB76170077DA3F /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9F724EDB1FBB757D0048BA3B /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1439,6 +1445,7 @@
 				5E4E204F1C927EB100E7D709 /* UserDefaults */,
 				619FCC5A1CAC5765003C97AA /* Browser */,
 				5E64422E1C3F1C2D003D7397 /* View */,
+				9F5A3D3C2048745B00F6EDCE /* Discussions */,
 				5E6442331C3F1C9C003D7397 /* Parent-Bridging-Header.h */,
 				5E6441961C3EE2E0003D7397 /* Info.plist */,
 				5E64418A1C3EE2E0003D7397 /* AppDelegate.swift */,
@@ -1580,6 +1587,43 @@
 				49912C02D05FC77D2B15BE0C /* ForgotPasswordPageTests_testForgotPasswordPage_submitButtonEnabled.swift */,
 			);
 			name = ForgotPasswordPageTests;
+			sourceTree = "<group>";
+		};
+		9F5A3D352048745B00F6EDCE /* DiscussionTopic */ = {
+			isa = PBXGroup;
+			children = (
+				9F5A3D322048745B00F6EDCE /* DiscussionTopic.swift */,
+				9F5A3D332048745B00F6EDCE /* DiscussionTopic+Network.swift */,
+				9F5A3D342048745B00F6EDCE /* DiscussionTopic+Details.swift */,
+			);
+			path = DiscussionTopic;
+			sourceTree = "<group>";
+		};
+		9F5A3D382048745B00F6EDCE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9F5A3D372048745B00F6EDCE /* DiscussionKit.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9F5A3D3A2048745B00F6EDCE /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				9F5A3D392048745B00F6EDCE /* DiscussionTopicAPI.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		9F5A3D3C2048745B00F6EDCE /* Discussions */ = {
+			isa = PBXGroup;
+			children = (
+				9F5A3D352048745B00F6EDCE /* DiscussionTopic */,
+				9F5A3D382048745B00F6EDCE /* Model */,
+				9F5A3D3A2048745B00F6EDCE /* Network */,
+				9F5A3D3B2048745B00F6EDCE /* Session+DiscussionKit.swift */,
+			);
+			path = Discussions;
 			sourceTree = "<group>";
 		};
 		D8F85D5CABC99F4D1CAA6C92 /* CreateAccountPageTests */ = {
@@ -3104,6 +3148,15 @@
 			path = Airwolf.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
+		};
+		9F5A3D372048745B00F6EDCE /* DiscussionKit.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9F5A3D362048745B00F6EDCE /* DiscussionKit.xcdatamodel */,
+			);
+			currentVersion = 9F5A3D362048745B00F6EDCE /* DiscussionKit.xcdatamodel */;
+			path = DiscussionKit.xcdatamodeld;
+			sourceTree = "<group>";
 		};
 /* End XCVersionGroup section */
 	};

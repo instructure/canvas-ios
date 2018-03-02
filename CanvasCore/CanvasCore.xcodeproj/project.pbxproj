@@ -478,9 +478,6 @@
 		49DD23951F8F9EAE004727F7 /* DiscussionTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491718401F8EE798008B4599 /* DiscussionTopic.swift */; };
 		49DD23961F8F9EAE004727F7 /* DiscussionTopic+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491718411F8EE798008B4599 /* DiscussionTopic+Network.swift */; };
 		49DD23971F8F9EAE004727F7 /* DiscussionTopic+Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491718421F8EE798008B4599 /* DiscussionTopic+Details.swift */; };
-		49DD23981F8F9EB3004727F7 /* DiscussionEntry+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4917183B1F8EE797008B4599 /* DiscussionEntry+Network.swift */; };
-		49DD23991F8F9EB3004727F7 /* DiscussionEntry+Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4917183C1F8EE797008B4599 /* DiscussionEntry+Collections.swift */; };
-		49DD239A1F8F9EB3004727F7 /* DiscussionEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4917183D1F8EE797008B4599 /* DiscussionEntry.swift */; };
 		49DD239B1F8F9EB8004727F7 /* DiscussionKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 491718461F8EE799008B4599 /* DiscussionKit.xcdatamodeld */; };
 		49DD239C1F8F9EBE004727F7 /* DiscussionTopicAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491718441F8EE798008B4599 /* DiscussionTopicAPI.swift */; };
 		49DD239D1F8F9EBE004727F7 /* Session+DiscussionKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4917183E1F8EE797008B4599 /* Session+DiscussionKit.swift */; };
@@ -561,9 +558,6 @@
 		3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISplitViewControllerExtensions.swift; sourceTree = "<group>"; };
 		4902ADBD1FB26E860004837D /* LTIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTIViewController.swift; sourceTree = "<group>"; };
 		490F91F01FB0F94A00A7DA38 /* CanvasWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasWebViewController.swift; sourceTree = "<group>"; };
-		4917183B1F8EE797008B4599 /* DiscussionEntry+Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiscussionEntry+Network.swift"; sourceTree = "<group>"; };
-		4917183C1F8EE797008B4599 /* DiscussionEntry+Collections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiscussionEntry+Collections.swift"; sourceTree = "<group>"; };
-		4917183D1F8EE797008B4599 /* DiscussionEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionEntry.swift; sourceTree = "<group>"; };
 		4917183E1F8EE797008B4599 /* Session+DiscussionKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+DiscussionKit.swift"; sourceTree = "<group>"; };
 		491718401F8EE798008B4599 /* DiscussionTopic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionTopic.swift; sourceTree = "<group>"; };
 		491718411F8EE798008B4599 /* DiscussionTopic+Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiscussionTopic+Network.swift"; sourceTree = "<group>"; };
@@ -1275,23 +1269,13 @@
 		4917182B1F8EE68D008B4599 /* Discussions */ = {
 			isa = PBXGroup;
 			children = (
-				4917183A1F8EE797008B4599 /* DiscussionEntry */,
 				4917183F1F8EE798008B4599 /* DiscussionTopic */,
 				491718451F8EE799008B4599 /* Model */,
 				491718431F8EE798008B4599 /* Network */,
 				4917183E1F8EE797008B4599 /* Session+DiscussionKit.swift */,
 			);
-			path = Discussions;
-			sourceTree = "<group>";
-		};
-		4917183A1F8EE797008B4599 /* DiscussionEntry */ = {
-			isa = PBXGroup;
-			children = (
-				4917183B1F8EE797008B4599 /* DiscussionEntry+Network.swift */,
-				4917183C1F8EE797008B4599 /* DiscussionEntry+Collections.swift */,
-				4917183D1F8EE797008B4599 /* DiscussionEntry.swift */,
-			);
-			path = DiscussionEntry;
+			name = Discussions;
+			path = ../../Parent/Parent/Discussions;
 			sourceTree = "<group>";
 		};
 		4917183F1F8EE798008B4599 /* DiscussionTopic */ = {
@@ -3220,7 +3204,6 @@
 				49CE96E01F8FFC4400121A43 /* ModuleItem+Network.swift in Sources */,
 				4930204A1F902364006BD777 /* Uncollect.swift in Sources */,
 				497CA7741F82D19600501613 /* HelmViewController.swift in Sources */,
-				49DD23981F8F9EB3004727F7 /* DiscussionEntry+Network.swift in Sources */,
 				49DD239B1F8F9EB8004727F7 /* DiscussionKit.xcdatamodeld in Sources */,
 				4961F67F1F8FB9620093EC86 /* FileNodeAPI.swift in Sources */,
 				4961F6851F8FB9620093EC86 /* FileKit.xcdatamodeld in Sources */,
@@ -3308,7 +3291,6 @@
 				49301FD11F9014C6006BD777 /* CalendarEvent+Collections.swift in Sources */,
 				2C7CBD2B1F79A42600E5EC02 /* CGRect+Core.swift in Sources */,
 				493020761F902462006BD777 /* NSDate+Marshal.swift in Sources */,
-				49DD23991F8F9EB3004727F7 /* DiscussionEntry+Collections.swift in Sources */,
 				49CE96E91F8FFC4400121A43 /* Module+Collections.swift in Sources */,
 				49CE96921F8FF41B00121A43 /* QuizSubmission.swift in Sources */,
 				49301FBD1F901260006BD777 /* Activity+Network.swift in Sources */,
@@ -3347,7 +3329,6 @@
 				49CE96EC1F8FFC4500121A43 /* Session+SoEdventurous.swift in Sources */,
 				493020521F902364006BD777 /* GCD+SoLazy.swift in Sources */,
 				4961F5DF1F8FB3EF0093EC86 /* ManagedObjectCountObserver.swift in Sources */,
-				49DD239A1F8F9EB3004727F7 /* DiscussionEntry.swift in Sources */,
 				4961F6881F8FB9620093EC86 /* File.swift in Sources */,
 				4961F6801F8FB9620093EC86 /* Session+FileNode.swift in Sources */,
 				49301FBE1F901260006BD777 /* Activity+Collections.swift in Sources */,
