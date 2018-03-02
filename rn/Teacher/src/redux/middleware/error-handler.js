@@ -73,15 +73,15 @@ const errorHandlerMiddleware: MiddlewareAPI = () => {
 export default errorHandlerMiddleware
 
 export function parseErrorMessage (error: any): string {
-  if (error instanceof Error) {
-    return error.message
-  }
+  if (error && error.response) error = error.response
 
   if (typeof error === 'string') {
     return error
   }
 
-  if (error && error.data && error.data.errors && error.data.errors.length > 0) {
+  if (error && error.data && error.data.message) {
+    return error.data.message
+  } else if (error && error.data && error.data.errors && error.data.errors.length > 0) {
     return error.data.errors
         .map(error => error.message)
         .map(message => message.replace(/\.+$/, ''))
@@ -89,14 +89,21 @@ export function parseErrorMessage (error: any): string {
   } else if (error && error.data && error.data.errors instanceof Object && Object.keys(error.data.errors).length > 0) {
     let data = error.data.errors
     let result = Object.keys(data)
-      .map((key, index) => data[key])
-      .map(obj => obj.length > 0 ? obj[0] : {})
-      .map(obj => `${obj.message || ''}`)
+      .map((key, index) => {
+        let err = data[key]
+        if (Array.isArray(err) && err.length > 0) err = err[0]
+        if (typeof err === 'string') return err
+        return err && err.message || ''
+      })
       .join('. ')
 
     if (result.trim()) {
       return result
     }
+  }
+
+  if (error instanceof Error) {
+    return error.message
   }
 
   return defaultErrorMessage()

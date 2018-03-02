@@ -24,6 +24,7 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 import Screen from '../../routing/Screen'
+import { parseErrorMessage } from '../../redux/middleware/error-handler'
 import i18n from 'format-message'
 import images from '../../images'
 import AttachmentRow from './AttachmentRow'
@@ -272,7 +273,7 @@ export class Attachments extends Component<Props, any> {
     } catch (e) {
       const error = isAbort(e)
         ? i18n('Upload cancelled by user')
-        : (e.message || i18n('Failed to upload attachment'))
+        : parseErrorMessage(e)
       this.setState({
         attachments: {
           ...this.state.attachments,

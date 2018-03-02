@@ -26,18 +26,14 @@ jest.mock('Alert', () => ({
 }))
 
 jest.mock('../../../common/login-verify.js', () => {
-  return () => {
-    return {
-      then: (resolve: Function) => {
-        resolve(false)
-      },
-    }
-  }
+  return () => ({
+    then: (resolve: Function) => resolve(false),
+  })
 })
 
 describe('error-handler-middleware', () => {
   beforeEach(() => {
-    jest.resetAllMocks()
+    jest.clearAllMocks()
     updateStatus('wifi')
   })
 
@@ -184,6 +180,15 @@ describe('error-handler-middleware', () => {
 
     expect(Alert.alert).not.toHaveBeenCalled()
   })
+
+  it('does nothing if action is not an error', () => {
+    let store = mockStore()
+    store.dispatch({
+      type: 'test',
+      payload: {},
+    })
+    expect(Alert.alert).not.toHaveBeenCalled()
+  })
 })
 
 describe('parse error message', () => {
@@ -270,10 +275,34 @@ describe('parse error message', () => {
     expect(result).toEqual(defaultErrorMessage())
   })
 
+  it('should parse string errors', () => {
+    const error = 'i am an error'
+    const expected = 'i am an error'
+    const result = parseErrorMessage(error)
+    expect(result).toEqual(expected)
+  })
+
   it('should parse Error types', () => {
     const error = new Error('i am an error')
     const expected = 'i am an error'
     const result = parseErrorMessage(error)
     expect(result).toEqual(expected)
+  })
+
+  it('should parse quota errors', () => {
+    const error = { response: { data: { message: 'file size exceeds quota' } } }
+    const expected = 'file size exceeds quota'
+    const result = parseErrorMessage(error)
+    expect(result).toEqual(expected)
+  })
+
+  it('should look for response errors', () => {
+    const error = new Error('i am an error')
+    // $FlowFixMe
+    error.response = {
+      data: { errors: { published: 'You do not have permission' } },
+    }
+    const result = parseErrorMessage(error)
+    expect(result).toBe('You do not have permission')
   })
 })

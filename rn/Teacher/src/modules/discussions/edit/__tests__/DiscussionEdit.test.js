@@ -452,7 +452,7 @@ describe('DiscussionEdit', () => {
         attachments: [props.attachment],
         maxAllowed: 1,
         storageOptions: {
-          upload: false,
+          uploadPath: null,
         },
         onComplete: expect.any(Function),
       },
@@ -692,4 +692,3 @@ describe('map state to props', () => {
     })
   })
 })
-

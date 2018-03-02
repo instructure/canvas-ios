@@ -51,7 +51,7 @@ import { default as AssignmentsActions } from '../../assignments/actions'
 import UnmetRequirementBanner from '../../../common/components/UnmetRequirementBanner'
 import RequiredFieldSubscript from '../../../common/components/RequiredFieldSubscript'
 import { extractDateFromString } from '../../../utils/dateUtils'
-import { isTeacher } from '../../app/index'
+import { isTeacher } from '../../app'
 
 const { NativeAccessibility } = NativeModules
 
@@ -501,7 +501,7 @@ export class DiscussionEdit extends Component<Props, any> {
     let params = {
       title: this.state.title || i18n('No Title'),
       message: this.state.message,
-      published: this.state.published || false,
+      published: !isTeacher() || this.state.published || false,
       discussion_type: this.state.discussion_type || 'side_comment',
       subscribed: this.state.subscribed || false,
       require_initial_post: this.state.require_initial_post || false,
@@ -510,8 +510,6 @@ export class DiscussionEdit extends Component<Props, any> {
       attachment: this.state.attachment,
     }
 
-    if (!isTeacher()) delete params.published
-
     if (this.props.discussionID) {
       // $FlowFixMe
       params.id = this.props.discussionID
@@ -519,6 +517,18 @@ export class DiscussionEdit extends Component<Props, any> {
     if (this.props.attachment && !this.state.attachment) {
       // $FlowFixMe
       params.remove_attachment = true
+    }
+
+    if (params.attachment && params.attachment.url) {
+      if (params.attachment.mime_class === 'image') {
+        params.message += `<img src='${params.attachment.url}' />`
+      } else {
+        params.message += `<p><a
+          class='instructure_inline_media_comment'
+          href='${params.attachment.url}'
+        >${i18n('Attachment')}</a></p>`
+      }
+      delete params.attachment
     }
 
     this.props.discussionID
@@ -533,7 +543,7 @@ export class DiscussionEdit extends Component<Props, any> {
       attachments: this.state.attachment ? [this.state.attachment] : [],
       maxAllowed: 1,
       storageOptions: {
-        upload: false,
+        uploadPath: isTeacher() ? null : 'users/self/files',
       },
       onComplete: this._valueChanged('attachment', (as) => as[0]),
     })

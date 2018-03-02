@@ -159,6 +159,8 @@ export default class AttachmentRow extends Component<Props, any> {
 
   onPressError = () => {
     ActionSheetIOS.showActionSheetWithOptions({
+      title: i18n('Failed to upload attachment'),
+      message: this.props.error,
       options: [
         i18n('Retry Upload'),
         i18n('Delete'),
