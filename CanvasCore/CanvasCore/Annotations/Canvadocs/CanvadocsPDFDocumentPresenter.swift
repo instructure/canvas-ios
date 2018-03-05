@@ -115,7 +115,6 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
         self.metadata = metadata
         self.service = service
         self.pdfDocument = PSPDFDocument(url: localPDFURL)
-        self.pdfDocument.autodetectTextLinkTypes = .all
         self.configuration = configuration
         super.init()
 
