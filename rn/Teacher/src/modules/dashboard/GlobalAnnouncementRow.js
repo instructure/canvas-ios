@@ -17,7 +17,7 @@ import {
   SubTitle,
 } from '../../common/text'
 import { LinkButton } from '../../common/buttons'
-import WebContainer from '../../common/components/WebContainer'
+import CanvasWebView from '../../common/components/CanvasWebView'
 import DashboardContent from './DashboardContent'
 
 const MESSAGE_STYLE = `
@@ -123,7 +123,7 @@ export default class GlobalAnnouncementRow extends React.Component<Props, State>
               <View ref={(node) => { this.content = node }}>
                 <Text style={styles.openTitle}>{subject}</Text>
               </View>
-              <WebContainer
+              <CanvasWebView
                 scrollEnabled={false}
                 style={styles.message}
                 html={MESSAGE_STYLE + message}

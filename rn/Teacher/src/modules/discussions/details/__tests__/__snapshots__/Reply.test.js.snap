@@ -117,14 +117,44 @@ exports[`DiscussionReplies edit action sheet calls cancel 1`] = `
         May 23 at 11:12 AM
       </Text>
       <View
-        onLayout={[Function]}
         style={
           Object {
             "flex": 1,
           }
         }
         testID="web-container.view"
-      />
+      >
+        <CanvasWebView
+          automaticallyAdjustContentInsets={undefined}
+          contentInset={undefined}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "isModal": false,
+              "launchExternalTool": [Function],
+              "pop": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+          onError={[Function]}
+          onFinishedLoading={[Function]}
+          onMessage={[Function]}
+          onNavigation={[Function]}
+          scrollEnabled={false}
+          source={
+            Object {
+              "html": "<p>1.0</p>",
+            }
+          }
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        />
+      </View>
       <View
         style={
           Object {
@@ -428,14 +458,44 @@ exports[`DiscussionReplies renders 1`] = `
         May 23 at 11:12 AM
       </Text>
       <View
-        onLayout={[Function]}
         style={
           Object {
             "flex": 1,
           }
         }
         testID="web-container.view"
-      />
+      >
+        <CanvasWebView
+          automaticallyAdjustContentInsets={undefined}
+          contentInset={undefined}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "isModal": false,
+              "launchExternalTool": [Function],
+              "pop": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+          onError={[Function]}
+          onFinishedLoading={[Function]}
+          onMessage={[Function]}
+          onNavigation={[Function]}
+          scrollEnabled={false}
+          source={
+            Object {
+              "html": "<p>1.0</p>",
+            }
+          }
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        />
+      </View>
       <View
         style={
           Object {
@@ -739,14 +799,44 @@ exports[`DiscussionReplies renders deleted 1`] = `
         May 23 at 11:12 AM
       </Text>
       <View
-        onLayout={[Function]}
         style={
           Object {
             "flex": 1,
           }
         }
         testID="web-container.view"
-      />
+      >
+        <CanvasWebView
+          automaticallyAdjustContentInsets={undefined}
+          contentInset={undefined}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "isModal": false,
+              "launchExternalTool": [Function],
+              "pop": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+          onError={[Function]}
+          onFinishedLoading={[Function]}
+          onMessage={[Function]}
+          onNavigation={[Function]}
+          scrollEnabled={false}
+          source={
+            Object {
+              "html": "<i style=\\"color:#8B969E\\">Deleted this reply.</i>",
+            }
+          }
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        />
+      </View>
       <View
         style={
           Object {
@@ -948,14 +1038,44 @@ exports[`DiscussionReplies renders more button with some deleted replies 1`] = `
         May 23 at 11:12 AM
       </Text>
       <View
-        onLayout={[Function]}
         style={
           Object {
             "flex": 1,
           }
         }
         testID="web-container.view"
-      />
+      >
+        <CanvasWebView
+          automaticallyAdjustContentInsets={undefined}
+          contentInset={undefined}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "isModal": false,
+              "launchExternalTool": [Function],
+              "pop": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+          onError={[Function]}
+          onFinishedLoading={[Function]}
+          onMessage={[Function]}
+          onNavigation={[Function]}
+          scrollEnabled={false}
+          source={
+            Object {
+              "html": "<p>1.0</p>",
+            }
+          }
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        />
+      </View>
       <View
         style={
           Object {
@@ -1259,14 +1379,44 @@ exports[`DiscussionReplies renders with closed discussion as student 1`] = `
         May 23 at 11:12 AM
       </Text>
       <View
-        onLayout={[Function]}
         style={
           Object {
             "flex": 1,
           }
         }
         testID="web-container.view"
-      />
+      >
+        <CanvasWebView
+          automaticallyAdjustContentInsets={undefined}
+          contentInset={undefined}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "isModal": false,
+              "launchExternalTool": [Function],
+              "pop": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+          onError={[Function]}
+          onFinishedLoading={[Function]}
+          onMessage={[Function]}
+          onNavigation={[Function]}
+          scrollEnabled={false}
+          source={
+            Object {
+              "html": "<p>1.0</p>",
+            }
+          }
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        />
+      </View>
       <View />
     </View>
   </View>
@@ -1390,14 +1540,44 @@ exports[`DiscussionReplies renders with no user 1`] = `
         May 23 at 11:12 AM
       </Text>
       <View
-        onLayout={[Function]}
         style={
           Object {
             "flex": 1,
           }
         }
         testID="web-container.view"
-      />
+      >
+        <CanvasWebView
+          automaticallyAdjustContentInsets={undefined}
+          contentInset={undefined}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "isModal": false,
+              "launchExternalTool": [Function],
+              "pop": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+          onError={[Function]}
+          onFinishedLoading={[Function]}
+          onMessage={[Function]}
+          onNavigation={[Function]}
+          scrollEnabled={false}
+          source={
+            Object {
+              "html": "<p>1.0</p>",
+            }
+          }
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        />
+      </View>
       <View
         style={
           Object {

@@ -5,7 +5,7 @@ import ActivityIndicatorView from '../../common/components/ActivityIndicatorView
 import { getTermsOfService } from '../../canvas-api/apis/account'
 import Screen from '../../routing/Screen'
 import i18n from 'format-message'
-import WebContainer from '../../common/components/WebContainer'
+import CanvasWebView from '../../common/components/CanvasWebView'
 import colors from '../../common/colors'
 
 type Props = {
@@ -58,10 +58,10 @@ export default class TermsOfUse extends Component<Props, State> {
           ? <ActivityIndicatorView />
           : this.state.termsError
             ? <View style={styles.container}>
-                <Text>{i18n('There was a problem retreiving the Terms Of Use')}</Text>
+                <Text>{i18n('There was a problem retrieving the Terms Of Use')}</Text>
               </View>
             : <View style={styles.container}>
-                <WebContainer
+                <CanvasWebView
                   html={this.state.termsContent}
                   style={{ flex: 1 }}
                   navigator={this.props.navigator}

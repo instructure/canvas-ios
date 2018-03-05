@@ -45,7 +45,9 @@ class ModuleItemViewModel: NSObject {
             if let content = content {
                 switch content {
                 case .externalURL(url: let url):
-                    return WebBrowserViewController(url: url, delegate: self)
+                    let webView = CanvasWebView()
+                    webView.load(source: .url(url))
+                    return CanvasWebViewController(webView: webView, showDoneButton: false)
                 case .externalTool(_, _):
                     if let url = url {
                         return LTIViewController(toolName: "", courseID: courseID, launchURL: url, in: self.session, fallbackURL: htmlURL.flatMap(URL.init))

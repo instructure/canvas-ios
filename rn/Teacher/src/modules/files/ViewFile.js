@@ -18,7 +18,6 @@
 import React, { Component } from 'react'
 import {
   View,
-  WebView,
   Image,
   StyleSheet,
   Text,
@@ -42,6 +41,7 @@ import Images from '../../images'
 import Navigator from '../../routing/Navigator'
 import Video from '../../common/components/Video'
 import { isTeacher } from '../app'
+import CanvasWebView from '../../common/components/CanvasWebView'
 
 type Props = {
   courseID?: string,
@@ -154,6 +154,7 @@ export default class ViewFile extends Component<Props, State> {
         error: i18n('There was an error loading the file.'),
         loadingDone: true,
       })
+      return
     }
 
     if (file) {
@@ -239,7 +240,12 @@ export default class ViewFile extends Component<Props, State> {
         )
       default:
         return (
-          <WebView source={{ uri: localPath }} style={styles.document} />
+          <CanvasWebView
+            source={{ uri: localPath }}
+            style={styles.document}
+            onError={this.handleError}
+            navigator={this.props.navigator}
+          />
         )
     }
   }

@@ -51,14 +51,44 @@ exports[`PageDetails renders 1`] = `
       Page 1
     </Text>
     <View
-      onLayout={[Function]}
       style={
         Object {
           "flex": 1,
         }
       }
       testID="web-container.view"
-    />
+    >
+      <CanvasWebView
+        automaticallyAdjustContentInsets={undefined}
+        contentInset={undefined}
+        navigator={
+          Object {
+            "dismiss": [Function],
+            "dismissAllModals": [Function],
+            "isModal": false,
+            "launchExternalTool": [Function],
+            "pop": [Function],
+            "show": [Function],
+            "traitCollection": [Function],
+          }
+        }
+        onError={[Function]}
+        onFinishedLoading={[Function]}
+        onMessage={[Function]}
+        onNavigation={[Function]}
+        scrollEnabled={true}
+        source={
+          Object {
+            "html": "<p>Hello, World!</p>",
+          }
+        }
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      />
+    </View>
   </View>
 </Screen>
 `;
@@ -114,14 +144,40 @@ exports[`PageDetails renders without page 1`] = `
       
     </Text>
     <View
-      onLayout={[Function]}
       style={
         Object {
           "flex": 1,
         }
       }
       testID="web-container.view"
-    />
+    >
+      <CanvasWebView
+        automaticallyAdjustContentInsets={undefined}
+        contentInset={undefined}
+        navigator={
+          Object {
+            "dismiss": [Function],
+            "dismissAllModals": [Function],
+            "isModal": false,
+            "launchExternalTool": [Function],
+            "pop": [Function],
+            "show": [Function],
+            "traitCollection": [Function],
+          }
+        }
+        onError={[Function]}
+        onFinishedLoading={[Function]}
+        onMessage={[Function]}
+        onNavigation={[Function]}
+        scrollEnabled={true}
+        source={undefined}
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      />
+    </View>
   </View>
 </Screen>
 `;

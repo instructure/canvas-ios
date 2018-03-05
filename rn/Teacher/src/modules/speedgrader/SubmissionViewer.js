@@ -26,7 +26,7 @@ import { Text, MEDIUM_FONT } from '../../common/text'
 import type {
   SubmissionDataProps,
 } from '../submissions/list/submission-prop-types'
-import WebContainer from '../../common/components/WebContainer'
+import CanvasWebView from '../../common/components/CanvasWebView'
 import Video from '../../common/components/Video'
 import AuthenticatedWebView from '../../common/components/AuthenticatedWebView'
 import URLSubmissionViewer from './submission-viewers/URLSubmissionViewer'
@@ -118,7 +118,7 @@ export default class SubmissionViewer extends Component<SubmissionViewerProps> {
           />
           break
         case 'online_text_entry':
-          body = <WebContainer
+          body = <CanvasWebView
             style={styles.webContainer}
             html={submission.body || ''}
             contentInset={{ bottom: this.props.drawerInset }}
@@ -133,6 +133,7 @@ export default class SubmissionViewer extends Component<SubmissionViewerProps> {
             style={styles.webContainer}
             source={{ uri: submission.preview_url }}
             contentInset={{ bottom: this.props.drawerInset }}
+            navigator={this.props.navigator}
           />
           break
         case 'media_recording':

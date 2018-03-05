@@ -781,14 +781,44 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "This is quiz 1",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
       <View
         style={
@@ -2168,14 +2198,44 @@ exports[`QuizDetails displays access code 1`] = `
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "This is quiz 1",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
       <View
         style={
@@ -3555,14 +3615,44 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "This is quiz 1",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
       <View
         style={
@@ -4826,14 +4916,44 @@ exports[`QuizDetails renders 1`] = `
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "This is quiz 1",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
       <View
         style={
@@ -6155,14 +6275,44 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "This is quiz 1",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
       <View
         style={
@@ -7542,14 +7692,44 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "This is quiz 1",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
       <View
         style={
@@ -8871,14 +9051,44 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "This is quiz 1",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
       <View
         style={
@@ -10200,14 +10410,44 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "This is quiz 1",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
       <View
         style={
@@ -11529,14 +11769,44 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "This is quiz 1",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
       <View
         style={
@@ -12858,14 +13128,44 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "This is quiz 1",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
       <View
         style={
@@ -14187,14 +14487,44 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "This is quiz 1",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
       <View
         style={
@@ -15458,14 +15788,44 @@ exports[`QuizDetails renders allowed attempts 1`] = `
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "This is quiz 1",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
       <View
         style={
@@ -16787,14 +17147,44 @@ exports[`QuizDetails renders allowed attempts 2`] = `
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "This is quiz 1",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
       <View
         style={
@@ -18148,14 +18538,44 @@ exports[`QuizDetails renders assignment due dates 1`] = `
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "This is quiz 1",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
       <View
         style={
@@ -19477,14 +19897,44 @@ exports[`QuizDetails renders assignment group 1`] = `
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "This is quiz 1",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
       <View
         style={
@@ -20864,14 +21314,44 @@ exports[`QuizDetails renders published state 1`] = `
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "This is quiz 1",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
       <View
         style={
@@ -22193,14 +22673,44 @@ exports[`QuizDetails renders published state 2`] = `
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "This is quiz 1",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
       <View
         style={
@@ -23522,14 +24032,44 @@ exports[`QuizDetails renders quiz type 1`] = `
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "This is quiz 1",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
       <View
         style={
@@ -24851,14 +25391,44 @@ exports[`QuizDetails renders quiz type 2`] = `
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "This is quiz 1",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
       <View
         style={
@@ -26180,14 +26750,44 @@ exports[`QuizDetails renders scoring policy 1`] = `
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "This is quiz 1",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
       <View
         style={
@@ -27509,14 +28109,44 @@ exports[`QuizDetails renders scoring policy 2`] = `
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "This is quiz 1",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
       <View
         style={
@@ -28838,14 +29468,44 @@ exports[`QuizDetails renders scoring policy 3`] = `
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "This is quiz 1",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
       <View
         style={
@@ -30167,14 +30827,44 @@ exports[`QuizDetails renders show correct answers 1`] = `
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "This is quiz 1",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
       <View
         style={
@@ -31496,14 +32186,44 @@ exports[`QuizDetails renders show correct answers 2`] = `
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "This is quiz 1",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
       <View
         style={
@@ -32825,14 +33545,44 @@ exports[`QuizDetails renders shuffle answers 1`] = `
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "This is quiz 1",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
       <View
         style={
@@ -34154,14 +34904,44 @@ exports[`QuizDetails renders shuffle answers 2`] = `
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "This is quiz 1",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
       <View
         style={
@@ -35483,14 +36263,44 @@ exports[`QuizDetails renders time limit 1`] = `
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "This is quiz 1",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
       <View
         style={
@@ -36812,14 +37622,44 @@ exports[`QuizDetails renders time limit 2`] = `
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "This is quiz 1",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
       <View
         style={
@@ -38141,14 +38981,44 @@ exports[`QuizDetails renders view responses 1`] = `
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "This is quiz 1",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
       <View
         style={
@@ -39470,14 +40340,44 @@ exports[`QuizDetails renders view responses 2`] = `
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "This is quiz 1",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
       <View
         style={
@@ -40741,14 +41641,44 @@ exports[`QuizDetails renders view responses 3`] = `
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "This is quiz 1",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
       <View
         style={

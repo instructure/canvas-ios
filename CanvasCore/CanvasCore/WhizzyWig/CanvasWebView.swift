@@ -25,30 +25,34 @@ public class CanvasWebView: WKWebView {
         case url(URL)
     }
     
+    fileprivate enum Message: String {
+        case dismiss
+        case canvas
+    }
+    
     fileprivate var source: Source?
     public var navigation = Navigation.internal
-
-    fileprivate lazy var userContentController: WKUserContentController = {
-        let content = WKUserContentController()
-        content.add(self, name: "dismiss")
-
-        if let jsPath = Bundle.core.url(forResource: "CanvasWebView", withExtension: "js"),
-            let js = try? String(contentsOf: jsPath, encoding: .utf8) {
-            let script = WKUserScript(source: js, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
-            content.addUserScript(script)
-        }
-        return content
-    }()
 
     @objc
     public var finishedLoading: (() -> Void)?
     
+    @objc
+    public var onMessage: (([String: Any]) -> Void)?
+    
+    @objc
+    public var onError: ((Error) -> Void)?
+
     @objc var requestClose: (() -> Void)?
     
     @objc
     public weak var presentingViewController: UIViewController?
 
     fileprivate var externalToolLaunchDisposable: Disposable?
+    
+    @objc
+    public func setNavigationHandler(routeToURL: @escaping (URL) -> Void) {
+        navigation = .external(routeToURL)
+    }
     
     @objc
     public func load(html: String, title: String?, baseURL: URL, routeToURL: @escaping (URL) -> Void) {
@@ -76,6 +80,10 @@ public class CanvasWebView: WKWebView {
             )
             loadHTMLString(fromTemplate, baseURL: baseURL)
         case let .url(url):
+            if url.isFileURL {
+                loadFileURL(url, allowingReadAccessTo: url)
+                return
+            }
             load(URLRequest(url: url))
         }
     }
@@ -93,7 +101,8 @@ public class CanvasWebView: WKWebView {
         config.processPool = sharedPool
         self.init(config: config)
 
-        config.userContentController.add(self, name: "dismiss")
+        config.userContentController.add(self, name: Message.dismiss.rawValue)
+        config.userContentController.add(self, name: Message.canvas.rawValue)
 
         if let jsPath = Bundle.core.url(forResource: "CanvasWebView", withExtension: "js"),
             let js = try? String(contentsOf: jsPath, encoding: .utf8) {
@@ -132,14 +141,14 @@ public class CanvasWebView: WKWebView {
         if case .some(.url) = source {
             return
         }
-        
+
         let width = Int(bounds.width)
         let js = "(function (width) {let metaViewport = document.querySelector('meta[name=viewport]');if (metaViewport) {metaViewport.content='width = ' + width + ', user-scalable = yes';} else {let meta = document.createElement('meta');meta.setAttribute( 'name', 'viewport' );meta.setAttribute( 'content', 'width = '+ width + ', user-scalable = yes' );document.getElementsByTagName('head')[0].appendChild(meta);}})(\(width))"
         evaluateJavaScript(js, completionHandler: nil)
     }
     
     public func htmlContentHeight(completionHandler: @escaping (CGFloat) -> Void) {
-        evaluateJavaScript("document.body.scrollHeight") { result, error in
+        evaluateJavaScript("document.getElementById('_end_').offsetTop") { result, error in
             guard let height = result as? NSNumber else { completionHandler(0.0); return }
             completionHandler(CGFloat(height))
         }
@@ -159,8 +168,12 @@ public class CanvasWebView: WKWebView {
             UIApplication.shared.open(url, options: [:], completionHandler: { success in
                 if success {
                     self.requestClose?()
+                } else {
+                    self.onError?(error)
                 }
             })
+        } else {
+            self.onError?(error)
         }
     }
 }
@@ -219,7 +232,6 @@ extension CanvasWebView: WKNavigationDelegate {
 
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if (!webView.isLoading) {
-            replaceHREFsWithAPISafeURLs()
             updateViewport()
         }
         finishedLoading?()
@@ -254,8 +266,13 @@ extension CanvasWebView: WKUIDelegate {
 
 extension CanvasWebView: WKScriptMessageHandler {
     public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        if message.name == "dismiss" {
+        switch Message(rawValue: message.name) {
+        case .some(.dismiss):
             requestClose?()
+        case .some(.canvas):
+            onMessage?(["body": message.body])
+        default:
+            break
         }
     }
 }

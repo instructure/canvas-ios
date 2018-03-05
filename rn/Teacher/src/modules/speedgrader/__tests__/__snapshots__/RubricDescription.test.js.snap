@@ -64,10 +64,40 @@ exports[`RubricDescription renders 1`] = `
         }
       >
         <View
-          onLayout={[Function]}
           style={undefined}
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "A satisfactory description",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </RCTScrollContentView>
     </RCTScrollView>
   </View>

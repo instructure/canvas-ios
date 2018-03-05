@@ -77,8 +77,6 @@ PODS:
     - React
   - react-native-mail (3.0.4):
     - React
-  - react-native-wkwebview (1.13.0):
-    - React
   - React/ART (0.51.0):
     - React/Core
   - React/BatchedBridge (0.51.0):
@@ -179,7 +177,6 @@ DEPENDENCIES:
   - react-native-document-picker (from `./rn/Teacher/node_modules/react-native-document-picker`)
   - react-native-image-picker (from `./rn/Teacher/node_modules/react-native-image-picker`)
   - react-native-mail (from `./rn/Teacher/node_modules/react-native-mail`)
-  - react-native-wkwebview (from `./rn/Teacher/node_modules/react-native-wkwebview-reborn`)
   - React/ART (from `./rn/Teacher/node_modules/react-native/`)
   - React/BatchedBridge (from `./rn/Teacher/node_modules/react-native/`)
   - React/Core (from `./rn/Teacher/node_modules/react-native/`)
@@ -240,8 +237,6 @@ EXTERNAL SOURCES:
     :path: ./rn/Teacher/node_modules/react-native-image-picker
   react-native-mail:
     :path: ./rn/Teacher/node_modules/react-native-mail
-  react-native-wkwebview:
-    :path: ./rn/Teacher/node_modules/react-native-wkwebview-reborn
   ReactNativeSearchBar:
     :path: ./rn/Teacher/node_modules/react-native-search-bar
   RNAudio:
@@ -299,7 +294,6 @@ SPEC CHECKSUMS:
   react-native-document-picker: e7934f6a3c898a1b62fa68b1f09371beef6ac51a
   react-native-image-picker: 42cfe2c8435d893414f8714a81e480313cb1412b
   react-native-mail: 7b48b14bd06d315fb86420f7b707f25b723e302f
-  react-native-wkwebview: 22bf06587df049b4a63ac42304c99cf1d2b0db5b
   ReactiveCocoa: b31e754d15937811ede648fc83cd68f5de70a3d4
   ReactiveObjC: ce79989e8684b9086b5f8d0c74bc7b81a8729c9e
   ReactiveObjCBridge: 8a8623e1d5b8f7bb14e5f6eaef94e4a1aa159d51
@@ -319,6 +313,6 @@ SPEC CHECKSUMS:
   TPKeyboardAvoiding: 0d6af20e95e2850f4c621841225b59ec7d8dd852
   yoga: 17521bbb0dd54a47c0b3ac43253e78cdac7488e0
 
-PODFILE CHECKSUM: 70aa465be6398802334377d6b5bf2f37638caa8f
+PODFILE CHECKSUM: b4564f5fd425fa89b724ad0384236570f7fc7cfe
 
 COCOAPODS: 1.4.0

@@ -34,7 +34,7 @@ import DetailActions from './actions'
 import EditActions from '../edit/actions'
 import AssignmentSection from '../../assignment-details/components/AssignmentSection'
 import AssignmentDates from '../../assignment-details/components/AssignmentDates'
-import WebContainer from '../../../common/components/WebContainer'
+import CanvasWebView from '../../../common/components/CanvasWebView'
 import Avatar from '../../../common/components/Avatar'
 import PublishedIcon from '../../assignment-details/components/PublishedIcon'
 import SubmissionBreakdownGraphSection from '../../assignment-details/components/SubmissionBreakdownGraphSection'
@@ -217,7 +217,7 @@ export class DiscussionDetails extends Component<Props, any> {
           { (Boolean(discussion.message) || Boolean(discussion.attachments)) &&
              <View style={style.message}>
                 { Boolean(discussion.message) &&
-                   <WebContainer style={{ flex: 1 }} scrollEnabled={false} html={discussion.message} navigator={this.props.navigator}/>
+                   <CanvasWebView style={{ flex: 1 }} scrollEnabled={false} html={discussion.message} navigator={this.props.navigator}/>
                 }
                 { Boolean(discussion.attachments) && discussion.attachments && discussion.attachments.length === 1 &&
                 // should only ever have 1, blocked by UI, but API returns array of 1 :facepalm:

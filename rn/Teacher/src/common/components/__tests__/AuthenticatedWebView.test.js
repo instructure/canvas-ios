@@ -24,7 +24,6 @@ import AuthenticatedWebView from '../AuthenticatedWebView'
 import renderer from 'react-test-renderer'
 
 jest.unmock('../AuthenticatedWebView.js')
-jest.mock('react-native-wkwebview-reborn', () => 'WKWebView')
 
 test('AuthenticatedWebView renders', async () => {
   jest.useFakeTimers()

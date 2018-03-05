@@ -27,7 +27,7 @@ import SubmissionType from './components/SubmissionType'
 import AssignmentSection from './components/AssignmentSection'
 import i18n from 'format-message'
 import { Heading1, Text } from '../../common/text'
-import WebContainer from '../../common/components/WebContainer'
+import CanvasWebView from '../../common/components/CanvasWebView'
 import DescriptionDefaultView from '../../common/components/DescriptionDefaultView'
 import PublishedIcon from './components/PublishedIcon'
 import AssignmentDates from './components/AssignmentDates'
@@ -216,9 +216,21 @@ export class AssignmentDetails extends Component<AssignmentDetailsProps, any> {
 
   checkAssignmentDescription (description: ?string) {
     if (description) {
-      return (<WebContainer style={{ flex: 1 }} html={description} testID='assignment-details.description-section-info-lbl' scrollEnabled={false} navigator={this.props.navigator}/>)
+      return (
+        <CanvasWebView
+          style={{ flex: 1 }}
+          html={description}
+          testID='assignment-details.description-section-info-lbl'
+          scrollEnabled={false}
+          navigator={this.props.navigator}
+        />
+      )
     } else {
-      return (<DescriptionDefaultView testID='assignment-details.description-default-view'/>)
+      return (
+        <DescriptionDefaultView
+          testID='assignment-details.description-default-view'
+        />
+      )
     }
   }
 

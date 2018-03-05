@@ -879,14 +879,44 @@ exports[`renders 1`] = `
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
     </View>
   </RCTScrollView>
@@ -1697,14 +1727,44 @@ exports[`renders as a designer 1`] = `
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
     </View>
   </RCTScrollView>
@@ -2513,14 +2573,44 @@ exports[`renders loading 1`] = `
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
     </View>
   </RCTScrollView>
@@ -3333,14 +3423,44 @@ exports[`renders with no submission types 1`] = `
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
     </View>
   </RCTScrollView>
@@ -4149,14 +4269,44 @@ exports[`renders with not_graded submission type 1`] = `
           Description
         </Text>
         <View
-          onLayout={[Function]}
           style={
             Object {
               "flex": 1,
             }
           }
           testID="web-container.view"
-        />
+        >
+          <CanvasWebView
+            automaticallyAdjustContentInsets={undefined}
+            contentInset={undefined}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "launchExternalTool": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
+            onError={[Function]}
+            onFinishedLoading={[Function]}
+            onMessage={[Function]}
+            onNavigation={[Function]}
+            scrollEnabled={false}
+            source={
+              Object {
+                "html": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+              }
+            }
+            style={
+              Object {
+                "flex": 1,
+              }
+            }
+          />
+        </View>
       </View>
     </View>
   </RCTScrollView>

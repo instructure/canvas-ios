@@ -22,7 +22,7 @@ import { connect } from 'react-redux'
 import i18n from 'format-message'
 import Navigator from '../../routing/Navigator'
 import Screen from '../../routing/Screen'
-import WebContainer from '../../common/components/WebContainer'
+import CanvasWebView from '../../common/components/CanvasWebView'
 
 export class RubricDescription extends Component<*> {
 
@@ -37,7 +37,7 @@ export class RubricDescription extends Component<*> {
     return (
       <View style={styles.container}>
         <ScrollView bounces={false}>
-          <WebContainer html={this.props.description} scrollEnabled={false} navigator={this.props.navigator}/>
+          <CanvasWebView html={this.props.description} scrollEnabled={false} navigator={this.props.navigator}/>
         </ScrollView>
       </View>
     )

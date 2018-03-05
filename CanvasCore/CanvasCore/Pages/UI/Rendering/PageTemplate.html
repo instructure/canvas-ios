@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>{$TITLE$}</title>
-  <meta name="viewport" content="width={$CONTENT_WIDTH$}, initial-scale = 1.0" />
+  <meta name="viewport" content="width={$CONTENT_WIDTH$}, initial-scale = 1.0, user-scalable = no" />
   <style>
     body {
       font: -apple-system-body;
@@ -10,10 +10,7 @@
       font-weight: 300;
       letter-spacing: 1px;
       height: auto;
-    }
-    #page {
-      margin: 12px;
-      overflow-x: scroll;
+      margin: 0;
     }
     a {
       color: #0081bd;
@@ -80,6 +77,7 @@
   <div id="page">
     {$TITLE$}
     {$PAGE_BODY$}
+    <div id="_end_"></div>
   </div>
   <script>
     // Replace all iframes with a button to launch in SFSafariViewController
@@ -113,37 +111,22 @@
     //   'x-canvas-' + <dataset.apiReturntype.toLowerCase()> [ + '-array' ]
     //
     // The rest of the URL is as in the data-api-endpoint attribute.
-    document.querySelectorAll('a[data-api-endpoint]').forEach(link => {
-      let endpoint = link.dataset.apiEndpoint
-      let datatype = (link.dataset.apiReturntype || '').toLowerCase()
-      if (datatype.startsWith('[') && datatype.endsWith(']')) {
-        datatype = `${datatype.slice(1, -1)}-array`
-      }
-
-      if (endpoint && datatype) {
-        let parts = endpoint.split('://')
-        parts[0] = `x-canvas-${datatype}`
-        link.href = parts.join('://')
-      }
-    })
 
     // handle math
     ;(() => {
-      // WKWebView + MathJax mess up VoiceOver, but some LaTeX math might be gross without it :(
-      //  so leave those as images for now, and don't load MathJax.
-      // let foundMath = !!document.querySelector('math')
+      let foundMath = !!document.querySelector('math')
       document.querySelectorAll('img.equation_image').forEach(img => {
-        if (!img.dataset.mathml/* && !img.dataset.equationContent*/) return
-        // foundMath = true
-        let div = document.createElement('div')
-        div.innerHTML = img.dataset.mathml // || `$$${img.dataset.equationContent}$$`
+        if (!img.dataset.mathml && !img.dataset.equationContent) return
+        foundMath = true
+        const div = document.createElement('div')
+        div.innerHTML = img.dataset.mathml || '$$' + img.dataset.equationContent + '$$'
         img.parentNode.replaceChild(div.firstChild, img)
       })
-      // if (foundMath) {
-      //   let script = document.createElement('script')
-      //   script.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
-      //   document.body.appendChild(script)
-      // }
+      if (foundMath) {
+        const script = document.createElement('script')
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
+        document.body.appendChild(script)
+      }
     })()
   </script>
 </body>

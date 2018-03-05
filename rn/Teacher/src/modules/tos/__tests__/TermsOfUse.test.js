@@ -60,7 +60,7 @@ describe('TermsOfUse', () => {
 
     await promise
     view.update()
-    let webView = view.find('WebContainer')
+    let webView = view.find('CanvasWebView')
     expect(webView.props().html).toEqual('TOS')
   })
 
@@ -88,7 +88,7 @@ describe('TermsOfUse', () => {
 
     await promise
     view.update()
-    let webView = view.find('WebContainer')
+    let webView = view.find('CanvasWebView')
     expect(webView.props().html).toEqual('Account has no Terms of Use')
   })
 

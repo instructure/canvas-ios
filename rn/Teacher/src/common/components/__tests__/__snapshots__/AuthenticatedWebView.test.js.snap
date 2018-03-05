@@ -1,21 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AuthenticatedWebView renders 1`] = `
-<WKWebView
-  source={
-    Object {
-      "uri": "http://fillmurray.com/100/100",
+<View
+  style={undefined}
+  testID="web-container.view"
+>
+  <CanvasWebView
+    automaticallyAdjustContentInsets={undefined}
+    contentInset={undefined}
+    navigator={undefined}
+    onError={[Function]}
+    onFinishedLoading={[Function]}
+    onMessage={[Function]}
+    onNavigation={[Function]}
+    scrollEnabled={true}
+    source={
+      Object {
+        "uri": "http://fillmurray.com/100/100",
+      }
     }
-  }
-/>
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  />
+</View>
 `;
 
 exports[`AuthenticatedWebView renders without uri 1`] = `
-<WKWebView
-  source={
-    Object {
-      "html": "html is the coolest",
+<View
+  style={undefined}
+  testID="web-container.view"
+>
+  <CanvasWebView
+    automaticallyAdjustContentInsets={undefined}
+    contentInset={undefined}
+    navigator={undefined}
+    onError={[Function]}
+    onFinishedLoading={[Function]}
+    onMessage={[Function]}
+    onNavigation={[Function]}
+    scrollEnabled={true}
+    source={
+      Object {
+        "html": "html is the coolest",
+      }
     }
-  }
-/>
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  />
+</View>
 `;

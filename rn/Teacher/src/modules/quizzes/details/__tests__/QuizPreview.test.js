@@ -22,8 +22,6 @@ import renderer from 'react-test-renderer'
 
 import { QuizPreview, mapStateToProps } from '../QuizPreview'
 
-jest.mock('react-native-wkwebview-reborn', () => 'WKWebView')
-
 const template = {
   ...require('../../../../__templates__/helm'),
   ...require('../../../../__templates__/quiz'),

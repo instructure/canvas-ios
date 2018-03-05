@@ -139,6 +139,7 @@ class ModuleItemDetailViewController: UIViewController {
 
             viewModel.moduleItemBecameActive()
             updateNavigationBarButtonItems(vc)
+            toolbarItems = vc.toolbarItems
         }
     }
 

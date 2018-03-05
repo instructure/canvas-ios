@@ -29,7 +29,7 @@ import { LinkButton, Button } from '../../../common/buttons'
 import colors from '../../../common/colors'
 import Images from '../../../images'
 import Avatar from '../../../common/components/Avatar'
-import WebContainer from '../../../common/components/WebContainer'
+import CanvasWebView from '../../../common/components/CanvasWebView'
 import i18n from 'format-message'
 import Navigator from '../../../routing/Navigator'
 import ThreadedLinesView from '../../../common/components/ThreadedLinesView'
@@ -125,7 +125,7 @@ export default class Reply extends Component<Props> {
               </Text>
             }
             <Text style={style.date}>{i18n("{ date, date, 'MMM d' } at { date, time, short }", { date: new Date(reply.updated_at) })}</Text>
-            <WebContainer scrollEnabled={false} style={{ flex: 1 }} html={message} navigator={this.props.navigator}/>
+            <CanvasWebView scrollEnabled={false} style={{ flex: 1 }} html={message} navigator={this.props.navigator}/>
 
             {reply.attachment &&
               <TouchableHighlight testID={`discussion-reply.${reply.id}.attachment`} onPress={this.showAttachment}>

@@ -49,7 +49,7 @@ exports[`QuizPreview renders 1`] = `
       <AuthenticatedWebView
         automaticallyAdjustContentInsets={false}
         onError={[Function]}
-        onLoadEnd={[Function]}
+        onFinishedLoading={[Function]}
         onMessage={[Function]}
         source={
           Object {
@@ -119,7 +119,7 @@ exports[`QuizPreview renders error if needed 1`] = `
       <AuthenticatedWebView
         automaticallyAdjustContentInsets={false}
         onError={[Function]}
-        onLoadEnd={[Function]}
+        onFinishedLoading={[Function]}
         onMessage={[Function]}
         source={
           Object {
@@ -267,7 +267,7 @@ exports[`QuizPreview renders on finish 1`] = `
       <AuthenticatedWebView
         automaticallyAdjustContentInsets={false}
         onError={[Function]}
-        onLoadEnd={[Function]}
+        onFinishedLoading={[Function]}
         onMessage={[Function]}
         source={
           Object {
@@ -361,7 +361,7 @@ exports[`QuizPreview renders on timeout without actually timing out 1`] = `
       <AuthenticatedWebView
         automaticallyAdjustContentInsets={false}
         onError={[Function]}
-        onLoadEnd={[Function]}
+        onFinishedLoading={[Function]}
         onMessage={[Function]}
         source={
           Object {

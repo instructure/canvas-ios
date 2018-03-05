@@ -111,6 +111,10 @@ NativeModules.TabBarBadgeCounts = {
   updateTodoListCount: jest.fn(),
 }
 
+NativeModules.CanvasWebViewManager = {
+  evaluateJavaScript: jest.fn(() => Promise.resolve()),
+}
+
 jest.mock('NativeEventEmitter')
 
 jest.mock('NetInfo', () => ({

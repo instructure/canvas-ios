@@ -44,7 +44,6 @@ abstract_target 'defaults' do
   pod 'RCTSFSafariViewController', :path => nm_path + 'react-native-sfsafariviewcontroller'
   pod 'RNSound', :path => nm_path + 'react-native-sound'
   pod 'react-native-camera', :path => nm_path + 'react-native-camera'
-  pod 'react-native-wkwebview', :path => nm_path + 'react-native-wkwebview-reborn'
   pod 'BugsnagReactNative', :path => nm_path + 'bugsnag-react-native'
 
   pod 'SDWebImage', '~> 4.1'

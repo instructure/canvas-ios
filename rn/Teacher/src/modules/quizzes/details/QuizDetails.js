@@ -30,7 +30,7 @@ import AssignmentSection from '../../assignment-details/components/AssignmentSec
 import AssignmentDates from '../../assignment-details/components/AssignmentDates'
 import PublishedIcon from '../../assignment-details/components/PublishedIcon'
 import { RefreshableScrollView } from '../../../common/components/RefreshableList'
-import WebContainer from '../../../common/components/WebContainer'
+import CanvasWebView from '../../../common/components/CanvasWebView'
 import DescriptionDefaultView from '../../../common/components/DescriptionDefaultView'
 import {
   Heading1,
@@ -232,7 +232,7 @@ export class QuizDetails extends Component<Props, any> {
 
   checkAssignmentDescription (description: ?string) {
     if (description) {
-      return (<WebContainer style={{ flex: 1 }} html={description} scrollEnabled={false} navigator={this.props.navigator}/>)
+      return (<CanvasWebView style={{ flex: 1 }} html={description} scrollEnabled={false} navigator={this.props.navigator}/>)
     } else {
       // $FlowFixMe
       return (<DescriptionDefaultView />)

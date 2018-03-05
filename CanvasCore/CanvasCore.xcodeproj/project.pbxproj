@@ -489,6 +489,9 @@
 		B1CA05071FE448F300B7D5AA /* NativeNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = B1CA05051FE448F300B7D5AA /* NativeNotificationCenter.m */; };
 		B1CE74412020CE92003F2366 /* ExternalToolManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CE74402020CE92003F2366 /* ExternalToolManager.swift */; };
 		B1D59802202A607200855C95 /* CanvasWebView.js in Resources */ = {isa = PBXBuildFile; fileRef = B1D59801202A607200855C95 /* CanvasWebView.js */; };
+		B1ED11942040CD5F00C3C580 /* CanvasWebViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B1ED11932040CD5F00C3C580 /* CanvasWebViewManager.m */; };
+		B1ED11972044803400C3C580 /* CanvasWebViewContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = B1ED11952044803400C3C580 /* CanvasWebViewContainer.h */; };
+		B1ED11982044803400C3C580 /* CanvasWebViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = B1ED11962044803400C3C580 /* CanvasWebViewContainer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1085,6 +1088,9 @@
 		B1CA05051FE448F300B7D5AA /* NativeNotificationCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NativeNotificationCenter.m; path = "CanvasCore/React Native Modules/NativeNotificationCenter/NativeNotificationCenter.m"; sourceTree = SOURCE_ROOT; };
 		B1CE74402020CE92003F2366 /* ExternalToolManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalToolManager.swift; sourceTree = "<group>"; };
 		B1D59801202A607200855C95 /* CanvasWebView.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = CanvasWebView.js; sourceTree = "<group>"; };
+		B1ED11932040CD5F00C3C580 /* CanvasWebViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanvasWebViewManager.m; sourceTree = "<group>"; };
+		B1ED11952044803400C3C580 /* CanvasWebViewContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanvasWebViewContainer.h; sourceTree = "<group>"; };
+		B1ED11962044803400C3C580 /* CanvasWebViewContainer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanvasWebViewContainer.m; sourceTree = "<group>"; };
 		B6F5EAC7A3F6A1CB04CF9E40 /* Pods-defaults-CanvasCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasCore.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasCore/Pods-defaults-CanvasCore.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1644,6 +1650,9 @@
 				494AE0961F843A03001A8F31 /* WebViewHacker.m */,
 				2CD20D741FA125EC00F339F7 /* DropViewManager.h */,
 				2CD20D751FA125EC00F339F7 /* DropViewManager.m */,
+				B1ED11932040CD5F00C3C580 /* CanvasWebViewManager.m */,
+				B1ED11952044803400C3C580 /* CanvasWebViewContainer.h */,
+				B1ED11962044803400C3C580 /* CanvasWebViewContainer.m */,
 			);
 			path = "React Native Modules";
 			sourceTree = "<group>";
@@ -2743,6 +2752,7 @@
 				2CD20D761FA125EC00F339F7 /* DropViewManager.h in Headers */,
 				2CD6B5701FD20A9800C7DE15 /* WindowTraitsManager.h in Headers */,
 				494AE09B1F843A09001A8F31 /* HapticFeedback.h in Headers */,
+				B1ED11972044803400C3C580 /* CanvasWebViewContainer.h in Headers */,
 				494AE0991F843A09001A8F31 /* DrawerHandleViewManager.h in Headers */,
 				2CAF1B251F72AEDB007225DF /* CanvasCore.h in Headers */,
 				494AE09F1F843A09001A8F31 /* PushNotifications.h in Headers */,
@@ -3106,6 +3116,7 @@
 				4961F5E91F8FB4030093EC86 /* SyncOperation.swift in Sources */,
 				4961F5DA1F8FB3EF0093EC86 /* NSManagedObject+SoPersistent.swift in Sources */,
 				4961F55C1F8FAF310093EC86 /* RecordButton.swift in Sources */,
+				B1ED11942040CD5F00C3C580 /* CanvasWebViewManager.m in Sources */,
 				4961F66D1F8FB9620093EC86 /* Session+FileUploads.swift in Sources */,
 				49CE974E1F8FFEA600121A43 /* RubricCriterionRating.swift in Sources */,
 				4961F6381F8FB7110093EC86 /* Group+Collections.swift in Sources */,
@@ -3152,6 +3163,7 @@
 				49301FEF1F901854006BD777 /* NotificationPreferencesTableViewCell.swift in Sources */,
 				49CE96DA1F8FFC4400121A43 /* ModuleItem+Edits.swift in Sources */,
 				4961F5E81F8FB3FF0093EC86 /* SoRefreshing.xcdatamodeld in Sources */,
+				B1ED11982044803400C3C580 /* CanvasWebViewContainer.m in Sources */,
 				4961F5D61F8FB3EB0093EC86 /* FetchedCollection.swift in Sources */,
 				4961F6341F8FB70D0093EC86 /* GradingPeriod+Network.swift in Sources */,
 				4961F63E1F8FB71B0093EC86 /* Tab+Collections.swift in Sources */,

@@ -27,7 +27,7 @@ import {
 import Actions from './actions'
 import { alertError } from '../../../redux/middleware/error-handler'
 import { getPage, deletePage } from '../../../canvas-api'
-import WebContainer from '../../../common/components/WebContainer'
+import CanvasWebView from '../../../common/components/CanvasWebView'
 import Screen from '../../../routing/Screen'
 import i18n from 'format-message'
 import Images from '../../../images'
@@ -102,7 +102,7 @@ export class PageDetails extends Component<Props, any> {
       >
         <View style={styles.container}>
           <Heading1 style={styles.header}>{page ? page.title : ''}</Heading1>
-          <WebContainer
+          <CanvasWebView
             style={{ flex: 1 }}
             html={page ? page.body : ''}
             navigator={this.props.navigator}
