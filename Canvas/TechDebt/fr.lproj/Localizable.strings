@@ -67,7 +67,7 @@
 /* Message for unsupported tab */
 "%@ is not currently supported." = "%@ n'est pas actuellement supporté.";
 
-/* Description for how many times a specific discussion has been liked by other users */
+/* (No Comment) */
 "%@ likes" = "%@ 'j'aime'";
 
 /* (No Comment) */
@@ -97,10 +97,10 @@
 /* In the context 'Joe, Fred, ((25 more))' */
 "%d more" = "%d de plus";
 
-/* Something like '5 replies' */
+/* (No Comment) */
 "%d replies" = "%d réponses";
 
-/* Something like '3 unread'. Refers to unread replies in a discsusion. */
+/* (No Comment) */
 "%d unread" = "%d non-lus";
 
 /* (No Comment) */
@@ -157,7 +157,7 @@
 /* Number of files/folders inside a folder. (Only used when there is exactly 1 item. */
 "1 item" = "1 élément";
 
-/* Description for a post that has been liked once */
+/* (No Comment) */
 "1 like" = "1 'j'aime'";
 
 /* (No Comment) */
@@ -208,7 +208,7 @@
 /* Button title for adding a folder to a folder */
 "Add folder" = "Ajouter un dossier";
 
-/* Title on the add-inline-media sheet */
+/* (No Comment) */
 "Add inline media" = "Ajouter du média imbriqué";
 
 /* (No Comment) */
@@ -220,10 +220,10 @@
 /* (No Comment) */
 "An unknown error occurred" = "Un erreur inconnue s'est produite";
 
-/* Title of the new announcement view */
+/* (No Comment) */
 "Announcement" = "Annonce";
 
-/* Title for the announcements view controller */
+/* (No Comment) */
 "Announcements" = "Annonces";
 
 /* Assignment submission type for selecting an Arc video */
@@ -295,7 +295,8 @@
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "Soumission du média impossible";
 
-/* Cancel button title
+/* Button to cancel deleting folders
+   Cancel button title
    Cancel button title to cancel submitting an Arc video as an assignment submission */
 "Cancel" = "Annuler";
 
@@ -347,7 +348,7 @@
 /* Close the window */
 "Close" = "Fermer";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Closed for Comments" = "N'accepte plus de commentaires";
 
 /* Title for Collaborations tab */
@@ -362,7 +363,7 @@
 /* (No Comment) */
 "Comments" = "Commentaires";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Comments are disabled" = "Les commentaires sont désactivés";
 
 /* (No Comment) */
@@ -383,7 +384,7 @@
 /* Confirm an arc video submission for an assignment */
 "Confirm Submission" = "Confirmer la soumission";
 
-/* Alert title */
+/* (No Comment) */
 "Confirm deletion" = "Confirmer la suppression";
 
 /* Button title for selecting to continue on to quiz. The will appear in the alert view notfifying the user of mobile quiz limitations. */
@@ -426,7 +427,7 @@
 /* Button for deleting files or folders. %d will be the number of selected items */
 "Delete (%d)" = "Supprimer (%d)";
 
-/* Alert message */
+/* (No Comment) */
 "Delete this reply?" = "Supprimer cette réponse ? ";
 
 /* delete file confirmation alert */
@@ -438,7 +439,7 @@
 /* No comment provided by engineer. */
 "Detail" = "Détail";
 
-/* Placeholder text for discussion details field */
+/* (No Comment) */
 "Details" = "Détails";
 
 /* (No Comment) */
@@ -447,16 +448,16 @@
 /* (No Comment) */
 "Discard this entry?" = "Abandonner cette saisie ?";
 
-/* Title of the new discussion view */
+/* (No Comment) */
 "Discussion" = "Discussion";
 
 /* Title for discussion entry submission */
 "Discussion Entry" = "Saisie de discussion";
 
-/* Title for Discussion Topics view controller */
+/* (No Comment) */
 "Discussion Topics" = "Sujets de discussion";
 
-/* Title for Discussions view controller */
+/* (No Comment) */
 "Discussions" = "Discussions";
 
 /* Dismiss button title
@@ -496,7 +497,7 @@
 /* Link to the End User License Agreement document */
 "EULA" = "CGU";
 
-/* Button to edit a discussion entry */
+/* (No Comment) */
 "Edit" = "Modifier";
 
 /* (No Comment) */
@@ -511,9 +512,6 @@
 /* (No Comment) */
 "Editing reply by %1$@, %2$@" = "Modifier la réponse avant %1$@, %2$@";
 
-/* Header when editing a discussion entry with name and timestamp */
-"Editing reply by %@, %@" = "Modifier la réponse avant %1$@, %2$@";
-
 /* the users email */
 "Email" = "Courriel";
 
@@ -526,7 +524,7 @@
 /* Submission input view placeholder text */
 "Enter submission" = "Saisir la soumission";
 
-/* Confirmation message after posting a discussion entry */
+/* (No Comment) */
 "Entry posted" = "Saisie publiée";
 
 /* Title for an error popup */
@@ -625,10 +623,10 @@
 /* (No Comment) */
 "Graded Discussion" = "Discussion notée";
 
-/* Lets user know discussion is graded */
+/* (No Comment) */
 "Graded discussion." = "Discussion notée.";
 
-/* Graded discussion. 25 points possible */
+/* (No Comment) */
 "Graded discussion. %g points possible." = "Discussion notée. %g points possibles.";
 
 /* (No Comment) */
@@ -670,7 +668,7 @@
 /* (No Comment) */
 "Individual messages" = "Messages individuels";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Invalid URL" = "URL invalide";
 
 /* (No Comment) */
@@ -817,7 +815,7 @@
 /* No comment provided by engineer. */
 "Next item" = "Élément suivant";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "No" = "Non";
 
 /* No comment provided by engineer. */
@@ -860,7 +858,7 @@
 /* (No Comment) */
 "Not Complete" = "Pas terminé";
 
-/* Accessibility label for points out of points possible label when points are not availiable. */
+/* No comment provided by engineer. */
 "Not available" = "Pas disponible";
 
 /* (No Comment) */
@@ -887,7 +885,7 @@
 /* (No Comment) */
 "Notifications" = "Notifications";
 
-/* OK Button Title */
+/* No comment provided by engineer. */
 "OK" = "D'accord";
 
 /* No comment provided by engineer. */
@@ -917,7 +915,7 @@
 /* No comment provided by engineer. */
 "Other" = "Autre";
 
-/* A message indicating that the user cannot see other people's replies until the user has first posted a reply of their own. Only one line of text, so as concise as possible. */
+/* (No Comment) */
 "Other replies hidden until you reply" = "Les autres réponses sont masquées jusqu'à ce que vous répondiez";
 
 /* Title for Outcomes tab */
@@ -932,7 +930,7 @@
 /* Title for the people view */
 "People" = "Personnes";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Pinned Discussions" = "Discussions épinglées";
 
 /* (No Comment) */
@@ -941,7 +939,7 @@
 /* Network error message */
 "Please check your network connection and try again." = "Veuillez vérifier votre connexion au réseau et réessayer.";
 
-/* Button to post new discussion topic */
+/* No comment provided by engineer. */
 "Post" = "Publier";
 
 /* (No Comment) */
@@ -950,7 +948,7 @@
 /* No comment provided by engineer. */
 "Post comment" = "Publier un commentaire";
 
-/* Message shown while posting a discussion entry */
+/* (No Comment) */
 "Posting…" = "Publication en cours...";
 
 /* (No Comment) */
@@ -1028,7 +1026,7 @@
 /* (No Comment) */
 "Rubric" = "Rubrique";
 
-/* No comment provided by engineer. */
+/* Title for button confirming showing a file */
 "Save" = "Sauvegarder";
 
 /* Title for Assignment Notifications Sheet */
@@ -1238,7 +1236,7 @@
 /* Error message for refresh failing with an unauthorized code */
 "This can happen if your course hasn't started yet or you don't have permission to access this page." = "Cela peut se produire si votre cours n'a pas encore commencé, ou si vous n’êtes pas autorisé à accéder à cette page.";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "This entry has been deleted" = "Cette saisie a été supprimée";
 
 /* Text indicating a file cannot be previewed */
@@ -1255,12 +1253,6 @@
 
 /* (No Comment) */
 "This would be a great time to do some extra credit." = "C'est un moment opportun pour effectuer des travaux optionnels.";
-
-/* Threaded switch label to to make discussion threaded */
-"Threaded" = "Fileté";
-
-/* Discussion title placeholder */
-"Title" = "Titre";
 
 /* (No Comment) */
 "To Do" = "À faire";
@@ -1295,14 +1287,8 @@
 /* Error title */
 "Unable to load" = "Chargement impossible";
 
-/* Error message without retry */
-"Unable to post." = "Publication impossible.";
-
 /* (No Comment) */
 "Unable to post. Please try again later" = "Publication impossible. Veuillez réessayer plus tard";
-
-/* Error message */
-"Unable to post. Please try again later." = "Publication impossible. Veuillez réessayer plus tard.";
 
 /* message saying that avatar couldn't be loaded to server */
 "Unable to upload to server" = "Téléchargement sur le serveur impossible";
@@ -1322,7 +1308,7 @@
 /* (No Comment) */
 "Unread" = "Non lu";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Unsaved Reply" = "Réponse non sauvegardée";
 
 /* Button title for uploading a file */
@@ -1382,7 +1368,7 @@
 /* Error Title */
 "Whoops!" = "Oups !";
 
-/* unlock date for discussion/announcement */
+/* (No Comment) */
 "Will unlock %@." = "Déverrouillera %@.";
 
 /* (No Comment) */
@@ -1394,7 +1380,7 @@
 /* (No Comment) */
 "Would you mind letting us know the problems you have been having with the app?" = "Pourriez-vous nous faire connaitre les problèmes que vous auriez rencontré avec l'application ?";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Yes" = "Oui";
 
 /* (No Comment) */
@@ -1409,13 +1395,13 @@
 /* (No Comment) */
 "You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "Vous n'avez pas accès à ce contenu. Le cours, ou groupe, n'a peut-être pas encore commencé, ou est peut-être déjà terminé.";
 
-/* Error message */
+/* (No Comment) */
 "You do not have permission to delete this reply" = "Vous n'avez pas la permission de supprimer cette réponse";
 
 /* Masquerade error message */
 "You don't have permission to masquerade as this user or there is no user with that ID" = "Vous n'avez pas la permission de vous faire passer pour cet utilisateur, ou il n'existe aucun utilisateur avec cet identifiant";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "You have an unsaved reply. Would you like to discard that reply?" = "Vous avez une réponse non sauvegardée. Désirez-vous abandonner cette réponse ?";
 
 /* An explanation of how to transfer files to the Canvas app. */
@@ -1424,7 +1410,7 @@
 /* (No Comment) */
 "You must first complete:" = "Vous devez d'abord remplir :";
 
-/* Error message */
+/* (No Comment) */
 "You need a title and a description to post" = "Vous avez besoin d'un titre et d'une description pour pouvoir publier";
 
 /* (No Comment) */
@@ -1442,7 +1428,7 @@
 /* (No Comment) */
 "moments ago" = "Il y a juste un moment";
 
-/* Accessibility label modifier for point out of point possible */
+/* No comment provided by engineer. */
 "out of" = "sur";
 
 /* (No Comment) */

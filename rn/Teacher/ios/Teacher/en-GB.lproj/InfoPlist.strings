@@ -1,4 +1,10 @@
 /* (No Comment) */
+"CFBundleDisplayName" = "Teacher";
+
+/* (No Comment) */
+"CFBundleName" = "$(PRODUCT_NAME)";
+
+/* (No Comment) */
 "NSCameraUsageDescription" = "Attach photos and videos to submission comments.";
 
 /* (No Comment) */

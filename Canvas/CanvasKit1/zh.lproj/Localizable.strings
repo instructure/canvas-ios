@@ -85,9 +85,6 @@
 /* No comment provided by engineer. */
 "Note: Media files are not immediately available for playback while they are processed on the server." = "注意：服务器正在处理的媒体文件不会立即回播。";
 
-/* No comment provided by engineer. */
-"OK" = "OK";
-
 /* Short name for observer enrollment */
 "Observer" = "观察员";
 
@@ -150,9 +147,6 @@
 
 /* Media type is video */
 "Video" = "视频";
-
-/* No comment provided by engineer. */
-"Video error" = "视频错误";
 
 /* No comment provided by engineer. */
 "Warning" = "警告";

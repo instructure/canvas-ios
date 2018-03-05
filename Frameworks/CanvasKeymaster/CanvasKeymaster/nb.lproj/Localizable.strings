@@ -28,29 +28,17 @@
 /* No comment provided by engineer. */
 "Emergency" = "Nødstilfelle";
 
-/* Text field to enter school domain that user would like the search in Domain Picker View */
-"Enter school domain." = "Skriv inn skolens domene.";
-
 /* Text view to enter the description of the ticket */
 "Enter ticket description" = "Skriv inn beskrivelse av billett";
 
 /* Text field to enter subject of the ticket */
 "Enter ticket subject" = "Skriv inn emne for billett";
 
-/* Subtitle help text describing how to find a school. */
-"Enter your school's domain or tap for help." = "Skriv inn skolens domene eller trykk for hjelp.";
-
 /* No comment provided by engineer. */
 "Extremely critical emergency" = "Ekstremt kritisk nødsituasjon";
 
-/* No comment provided by engineer. */
-"Find School Domain" = "Finn skolens domene";
-
 /* Help View Controller Title */
 "Help" = "Hjelp";
-
-/* No comment provided by engineer. */
-"Help Menu" = "Hjelpemeny";
 
 /* No comment provided by engineer. */
 "I am stuck and can't get things done" = "Jeg står fast og kommer ikke videre";
@@ -76,9 +64,6 @@
 /* No comment provided by engineer. */
 "OK" = "OK";
 
-/* Placeholder for help icon (question mark) on Domain Picker View */
-"Open help menu" = "Åpne hjelpemeny";
-
 /* No comment provided by engineer. */
 "Report a Problem" = "Rapporter et problem";
 
@@ -87,12 +72,6 @@
 
 /* No comment provided by engineer. */
 "Request a Feature" = "Be om en funksjon";
-
-/* No comment provided by engineer. */
-"Right Behind You" = "Rett bak deg";
-
-/* Placeholder for search button on Domain Picker View */
-"Search for domain." = "Søk etter domene.";
 
 /* Button to select the severity of the ticket */
 "Select ticket impact level" = "Velg innvirkningsnivå";
@@ -108,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Success!" = "Vellykket!";
+
+/* Subtitle help text describing how to find a school. */
+"Tap here for help." = "Trykk her for hjelp.";
 
 /* No comment provided by engineer. */
 "Thanks, your request was received!" = "Takk, forespørselen din ble mottatt!";

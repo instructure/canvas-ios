@@ -67,7 +67,7 @@
 /* Message for unsupported tab */
 "%@ is not currently supported." = "%@ 目前不受支持。";
 
-/* Description for how many times a specific discussion has been liked by other users */
+/* (No Comment) */
 "%@ likes" = "%@ 喜欢";
 
 /* (No Comment) */
@@ -97,10 +97,10 @@
 /* In the context 'Joe, Fred, ((25 more))' */
 "%d more" = "%d 更多";
 
-/* Something like '5 replies' */
+/* (No Comment) */
 "%d replies" = "%d 回复";
 
-/* Something like '3 unread'. Refers to unread replies in a discsusion. */
+/* (No Comment) */
 "%d unread" = "%d 未读";
 
 /* (No Comment) */
@@ -157,7 +157,7 @@
 /* Number of files/folders inside a folder. (Only used when there is exactly 1 item. */
 "1 item" = "1 个项目";
 
-/* Description for a post that has been liked once */
+/* (No Comment) */
 "1 like" = "1 个喜欢";
 
 /* (No Comment) */
@@ -208,7 +208,7 @@
 /* Button title for adding a folder to a folder */
 "Add folder" = "添加文件夹";
 
-/* Title on the add-inline-media sheet */
+/* (No Comment) */
 "Add inline media" = "添加在线媒体";
 
 /* (No Comment) */
@@ -220,10 +220,10 @@
 /* (No Comment) */
 "An unknown error occurred" = "未知错误出现";
 
-/* Title of the new announcement view */
+/* (No Comment) */
 "Announcement" = "通告";
 
-/* Title for the announcements view controller */
+/* (No Comment) */
 "Announcements" = "通告";
 
 /* Assignment submission type for selecting an Arc video */
@@ -295,7 +295,8 @@
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "不能提交媒体";
 
-/* Cancel button title
+/* Button to cancel deleting folders
+   Cancel button title
    Cancel button title to cancel submitting an Arc video as an assignment submission */
 "Cancel" = "取消";
 
@@ -347,7 +348,7 @@
 /* Close the window */
 "Close" = "关闭";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Closed for Comments" = "关闭评论";
 
 /* Title for Collaborations tab */
@@ -362,7 +363,7 @@
 /* (No Comment) */
 "Comments" = "评论";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Comments are disabled" = "评论被关闭";
 
 /* (No Comment) */
@@ -383,7 +384,7 @@
 /* Confirm an arc video submission for an assignment */
 "Confirm Submission" = "确认提交";
 
-/* Alert title */
+/* (No Comment) */
 "Confirm deletion" = "确认删除";
 
 /* Button title for selecting to continue on to quiz. The will appear in the alert view notfifying the user of mobile quiz limitations. */
@@ -426,7 +427,7 @@
 /* Button for deleting files or folders. %d will be the number of selected items */
 "Delete (%d)" = "删除 (%d)";
 
-/* Alert message */
+/* (No Comment) */
 "Delete this reply?" = "删除此回复？";
 
 /* delete file confirmation alert */
@@ -438,7 +439,7 @@
 /* No comment provided by engineer. */
 "Detail" = "细节";
 
-/* Placeholder text for discussion details field */
+/* (No Comment) */
 "Details" = "细节";
 
 /* (No Comment) */
@@ -447,16 +448,16 @@
 /* (No Comment) */
 "Discard this entry?" = "丢弃此条目吗？";
 
-/* Title of the new discussion view */
+/* (No Comment) */
 "Discussion" = "讨论";
 
 /* Title for discussion entry submission */
 "Discussion Entry" = "讨论输入";
 
-/* Title for Discussion Topics view controller */
+/* (No Comment) */
 "Discussion Topics" = "讨论主题";
 
-/* Title for Discussions view controller */
+/* (No Comment) */
 "Discussions" = "讨论";
 
 /* Dismiss button title
@@ -496,7 +497,7 @@
 /* Link to the End User License Agreement document */
 "EULA" = "最终用户许可协议";
 
-/* Button to edit a discussion entry */
+/* (No Comment) */
 "Edit" = "编辑";
 
 /* (No Comment) */
@@ -511,9 +512,6 @@
 /* (No Comment) */
 "Editing reply by %1$@, %2$@" = "通过 %1$@, %2$@ 编辑回复";
 
-/* Header when editing a discussion entry with name and timestamp */
-"Editing reply by %@, %@" = "通过 %1$@, %2$@ 编辑回复";
-
 /* the users email */
 "Email" = "电子邮件";
 
@@ -526,7 +524,7 @@
 /* Submission input view placeholder text */
 "Enter submission" = "输入提交";
 
-/* Confirmation message after posting a discussion entry */
+/* (No Comment) */
 "Entry posted" = "发布条目";
 
 /* Title for an error popup */
@@ -625,10 +623,10 @@
 /* (No Comment) */
 "Graded Discussion" = "评分讨论";
 
-/* Lets user know discussion is graded */
+/* (No Comment) */
 "Graded discussion." = "评分讨论";
 
-/* Graded discussion. 25 points possible */
+/* (No Comment) */
 "Graded discussion. %g points possible." = "评分讨论。 %g 可能分值。";
 
 /* (No Comment) */
@@ -670,7 +668,7 @@
 /* (No Comment) */
 "Individual messages" = "个别信息";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Invalid URL" = "无效 URL";
 
 /* (No Comment) */
@@ -817,7 +815,7 @@
 /* No comment provided by engineer. */
 "Next item" = "下一个项目";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "No" = "不、非";
 
 /* No comment provided by engineer. */
@@ -860,7 +858,7 @@
 /* (No Comment) */
 "Not Complete" = "未完成";
 
-/* Accessibility label for points out of points possible label when points are not availiable. */
+/* No comment provided by engineer. */
 "Not available" = "不可用";
 
 /* (No Comment) */
@@ -887,7 +885,7 @@
 /* (No Comment) */
 "Notifications" = "通知";
 
-/* OK Button Title */
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -917,7 +915,7 @@
 /* No comment provided by engineer. */
 "Other" = "其他、别的";
 
-/* A message indicating that the user cannot see other people's replies until the user has first posted a reply of their own. Only one line of text, so as concise as possible. */
+/* (No Comment) */
 "Other replies hidden until you reply" = "隐藏其他答复，直到您回复";
 
 /* Title for Outcomes tab */
@@ -932,7 +930,7 @@
 /* Title for the people view */
 "People" = "人员、人们";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Pinned Discussions" = "既定讨论";
 
 /* (No Comment) */
@@ -941,7 +939,7 @@
 /* Network error message */
 "Please check your network connection and try again." = "请检查您的网络连接并再次尝试。";
 
-/* Button to post new discussion topic */
+/* No comment provided by engineer. */
 "Post" = "发布";
 
 /* (No Comment) */
@@ -950,7 +948,7 @@
 /* No comment provided by engineer. */
 "Post comment" = "发布评论";
 
-/* Message shown while posting a discussion entry */
+/* (No Comment) */
 "Posting…" = "正在发布...";
 
 /* (No Comment) */
@@ -1028,7 +1026,7 @@
 /* (No Comment) */
 "Rubric" = "评分细则";
 
-/* No comment provided by engineer. */
+/* Title for button confirming showing a file */
 "Save" = "保存";
 
 /* Title for Assignment Notifications Sheet */
@@ -1238,7 +1236,7 @@
 /* Error message for refresh failing with an unauthorized code */
 "This can happen if your course hasn't started yet or you don't have permission to access this page." = "如果您的课程尚未开始或您没有权限访问此页面，就可能会出现这种情况。";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "This entry has been deleted" = "此输入已被删除";
 
 /* Text indicating a file cannot be previewed */
@@ -1255,12 +1253,6 @@
 
 /* (No Comment) */
 "This would be a great time to do some extra credit." = "此为获取额外学分的好时机。";
-
-/* Threaded switch label to to make discussion threaded */
-"Threaded" = "线索";
-
-/* Discussion title placeholder */
-"Title" = "标题";
 
 /* (No Comment) */
 "To Do" = "待办事项";
@@ -1295,14 +1287,8 @@
 /* Error title */
 "Unable to load" = "无法加载";
 
-/* Error message without retry */
-"Unable to post." = "无法发布。";
-
 /* (No Comment) */
 "Unable to post. Please try again later" = "无法发布。请稍候再试";
-
-/* Error message */
-"Unable to post. Please try again later." = "无法发布。请稍后再试。";
 
 /* message saying that avatar couldn't be loaded to server */
 "Unable to upload to server" = "无法上传到服务器";
@@ -1322,7 +1308,7 @@
 /* (No Comment) */
 "Unread" = "未读";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Unsaved Reply" = "未保存回复";
 
 /* Button title for uploading a file */
@@ -1382,7 +1368,7 @@
 /* Error Title */
 "Whoops!" = "糟糕！";
 
-/* unlock date for discussion/announcement */
+/* (No Comment) */
 "Will unlock %@." = "将解锁 %@。";
 
 /* (No Comment) */
@@ -1394,7 +1380,7 @@
 /* (No Comment) */
 "Would you mind letting us know the problems you have been having with the app?" = "您介意让我们知道您已遇到的应用程序问题吗？";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Yes" = "是";
 
 /* (No Comment) */
@@ -1409,13 +1395,13 @@
 /* (No Comment) */
 "You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "您无法访问此内容。 课程或小组可能还未开始或可能已经结束。";
 
-/* Error message */
+/* (No Comment) */
 "You do not have permission to delete this reply" = "您没有删除此回复的权限";
 
 /* Masquerade error message */
 "You don't have permission to masquerade as this user or there is no user with that ID" = "您没有冒充为此用户的权限或没有那个用户 ID";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "You have an unsaved reply. Would you like to discard that reply?" = "您有一个未保存的回复。 您想丢弃回复吗？";
 
 /* An explanation of how to transfer files to the Canvas app. */
@@ -1424,7 +1410,7 @@
 /* (No Comment) */
 "You must first complete:" = "您必须首先完成：";
 
-/* Error message */
+/* (No Comment) */
 "You need a title and a description to post" = "要发布，您需要一个标题与描述";
 
 /* (No Comment) */
@@ -1442,7 +1428,7 @@
 /* (No Comment) */
 "moments ago" = "刚才";
 
-/* Accessibility label modifier for point out of point possible */
+/* No comment provided by engineer. */
 "out of" = "在......之外";
 
 /* (No Comment) */

@@ -1,4 +1,10 @@
 /* (No Comment) */
+"CFBundleDisplayName" = "Profesor";
+
+/* (No Comment) */
+"CFBundleName" = "$(PRODUCT_NAME)";
+
+/* (No Comment) */
 "NSCameraUsageDescription" = "Adjuntar fotografías y videos a comentarios de presentación.";
 
 /* (No Comment) */

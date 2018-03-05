@@ -23,9 +23,6 @@
   "access_code_74f4864f": {
     "message": "Code d’accès"
   },
-  "show_grades_8680e38e": {
-    "message": "Afficher les notes"
-  },
   "account_group_cb00ca73": {
     "message": "Groupe de comptes"
   },
@@ -533,8 +530,8 @@
   "error_98e81528": {
     "message": "Erreur"
   },
-  "error_saving_grade_ef8d2ddc": {
-    "message": "Une erreur est survenue lors de l'enregistrement de la notation"
+  "error_saving_grade_367dd920": {
+    "message": "Erreur lors de l'enregistrement des notes"
   },
   "everyone_854554dd": {
     "message": "Tous"
@@ -1031,9 +1028,6 @@
   "previewing_this_file_type_is_not_supported_7df9231": {
     "message": "La prévisualisation de ce type de fichier n''est pas prise en charge"
   },
-  "profile_6bd2baed": {
-    "message": "Profil"
-  },
   "profile_menu_a688027e": {
     "message": "Menu Profil"
   },
@@ -1316,9 +1310,6 @@
   "the_value_of_possible_points_must_be_zero_or_great_374e175a": {
     "message": "La valeur de points possibles doit être supérieure ou égale à zéro"
   },
-  "the_was_a_problem_saving_the_grade_please_try_agai_2aefe6a8": {
-    "message": "Un problème est survenu lors de l’enregistrement de la notation. Veuillez réessayer."
-  },
   "there_are_no_announcements_to_display_a91880": {
     "message": "Il n'existe aucune annonce à afficher."
   },
@@ -1366,6 +1357,9 @@
   },
   "there_was_a_problem_retreiving_the_terms_of_use_3a5fa00c": {
     "message": "Un problème est survenu lors de la récupération des conditions d'utilisation"
+  },
+  "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
+    "message": "Un problème est survenu lors de la sauvegarde des notes. Veuillez réessayer."
   },
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "Une erreur est survenue lors du chargement de la pièce jointe."

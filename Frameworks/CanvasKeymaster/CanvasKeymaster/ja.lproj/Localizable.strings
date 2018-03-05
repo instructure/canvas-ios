@@ -28,29 +28,17 @@
 /* No comment provided by engineer. */
 "Emergency" = "緊急";
 
-/* Text field to enter school domain that user would like the search in Domain Picker View */
-"Enter school domain." = "学校のドメインを入力する。";
-
 /* Text view to enter the description of the ticket */
 "Enter ticket description" = "チケットの説明を入力";
 
 /* Text field to enter subject of the ticket */
 "Enter ticket subject" = "チケットの件名を入力";
 
-/* Subtitle help text describing how to find a school. */
-"Enter your school's domain or tap for help." = "学校のドメインを入力するか、ヘルプを表示する。";
-
 /* No comment provided by engineer. */
 "Extremely critical emergency" = "非常に深刻な緊急事態";
 
-/* No comment provided by engineer. */
-"Find School Domain" = "学校のドメインを見つける";
-
 /* Help View Controller Title */
 "Help" = "ヘルプ";
-
-/* No comment provided by engineer. */
-"Help Menu" = "ヘルプメニュー";
 
 /* No comment provided by engineer. */
 "I am stuck and can't get things done" = "私はスタックしており、物事を完了することができません";
@@ -76,9 +64,6 @@
 /* No comment provided by engineer. */
 "OK" = "OK";
 
-/* Placeholder for help icon (question mark) on Domain Picker View */
-"Open help menu" = "ヘルプメニューを開く";
-
 /* No comment provided by engineer. */
 "Report a Problem" = "問題を報告する";
 
@@ -87,12 +72,6 @@
 
 /* No comment provided by engineer. */
 "Request a Feature" = "機能をリクエストする";
-
-/* No comment provided by engineer. */
-"Right Behind You" = "あなたのすぐ後ろに";
-
-/* Placeholder for search button on Domain Picker View */
-"Search for domain." = "ドメインを検索する。";
 
 /* Button to select the severity of the ticket */
 "Select ticket impact level" = "チケットの影響レベルを選択する";
@@ -108,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Success!" = "成功です！";
+
+/* Subtitle help text describing how to find a school. */
+"Tap here for help." = "ここをタップしてヘルプを表示します。";
 
 /* No comment provided by engineer. */
 "Thanks, your request was received!" = "リクエストが受理されました！";

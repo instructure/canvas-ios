@@ -28,29 +28,17 @@
 /* No comment provided by engineer. */
 "Emergency" = "Чрезвычайная ситуация";
 
-/* Text field to enter school domain that user would like the search in Domain Picker View */
-"Enter school domain." = "Введите домен учебного заведения.";
-
 /* Text view to enter the description of the ticket */
 "Enter ticket description" = "Введите описание обращения";
 
 /* Text field to enter subject of the ticket */
 "Enter ticket subject" = "Введите тему обращения";
 
-/* Subtitle help text describing how to find a school. */
-"Enter your school's domain or tap for help." = "Введите домен вашего учебного заведения или нажмите для получения справки.";
-
 /* No comment provided by engineer. */
 "Extremely critical emergency" = "Крайне критическая ситуация";
 
-/* No comment provided by engineer. */
-"Find School Domain" = "Введите домен учебного заведения";
-
 /* Help View Controller Title */
 "Help" = "Справка";
-
-/* No comment provided by engineer. */
-"Help Menu" = "Меню Справка";
 
 /* No comment provided by engineer. */
 "I am stuck and can't get things done" = "Я зашел в тупик и не могу завершить начатое";
@@ -76,9 +64,6 @@
 /* No comment provided by engineer. */
 "OK" = "OK";
 
-/* Placeholder for help icon (question mark) on Domain Picker View */
-"Open help menu" = "Открыть меню Справка";
-
 /* No comment provided by engineer. */
 "Report a Problem" = "Сообщить о проблеме";
 
@@ -87,12 +72,6 @@
 
 /* No comment provided by engineer. */
 "Request a Feature" = "Запросить функцию";
-
-/* No comment provided by engineer. */
-"Right Behind You" = "Прямо позади вас";
-
-/* Placeholder for search button on Domain Picker View */
-"Search for domain." = "Выполните поиск домена.";
 
 /* Button to select the severity of the ticket */
 "Select ticket impact level" = "Выберите уровень воздействия обращения";
@@ -108,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Success!" = "Успешно!";
+
+/* Subtitle help text describing how to find a school. */
+"Tap here for help." = "Прикоснитесь здесь для получения помощи.";
 
 /* No comment provided by engineer. */
 "Thanks, your request was received!" = "Спасибо, ваш запрос был получен!";

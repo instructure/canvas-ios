@@ -67,7 +67,7 @@
 /* Message for unsupported tab */
 "%@ is not currently supported." = "%@ pa gen sipò pou kounye a.";
 
-/* Description for how many times a specific discussion has been liked by other users */
+/* (No Comment) */
 "%@ likes" = "%@ jèm";
 
 /* (No Comment) */
@@ -97,10 +97,10 @@
 /* In the context 'Joe, Fred, ((25 more))' */
 "%d more" = "%d plis";
 
-/* Something like '5 replies' */
+/* (No Comment) */
 "%d replies" = "%d repons";
 
-/* Something like '3 unread'. Refers to unread replies in a discsusion. */
+/* (No Comment) */
 "%d unread" = "%d san li";
 
 /* (No Comment) */
@@ -157,7 +157,7 @@
 /* Number of files/folders inside a folder. (Only used when there is exactly 1 item. */
 "1 item" = "1 atik";
 
-/* Description for a post that has been liked once */
+/* (No Comment) */
 "1 like" = "1 jèm";
 
 /* (No Comment) */
@@ -208,7 +208,7 @@
 /* Button title for adding a folder to a folder */
 "Add folder" = "Ajoute dosye";
 
-/* Title on the add-inline-media sheet */
+/* (No Comment) */
 "Add inline media" = "Ajoute medya an liy";
 
 /* (No Comment) */
@@ -220,10 +220,10 @@
 /* (No Comment) */
 "An unknown error occurred" = "Gen yon erè enkoni ki fèt";
 
-/* Title of the new announcement view */
+/* (No Comment) */
 "Announcement" = "Anons";
 
-/* Title for the announcements view controller */
+/* (No Comment) */
 "Announcements" = "Anons";
 
 /* Assignment submission type for selecting an Arc video */
@@ -295,7 +295,8 @@
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "Enposib pou soumèt medya";
 
-/* Cancel button title
+/* Button to cancel deleting folders
+   Cancel button title
    Cancel button title to cancel submitting an Arc video as an assignment submission */
 "Cancel" = "Anile";
 
@@ -347,7 +348,7 @@
 /* Close the window */
 "Close" = "Fèmen";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Closed for Comments" = "Fèmen pou Kòmantè";
 
 /* Title for Collaborations tab */
@@ -362,7 +363,7 @@
 /* (No Comment) */
 "Comments" = "Komantè";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Comments are disabled" = "Kòmantè yo dezaktive";
 
 /* (No Comment) */
@@ -383,7 +384,7 @@
 /* Confirm an arc video submission for an assignment */
 "Confirm Submission" = "Konfime Soumisyon";
 
-/* Alert title */
+/* (No Comment) */
 "Confirm deletion" = "Konfime sipresyon";
 
 /* Button title for selecting to continue on to quiz. The will appear in the alert view notfifying the user of mobile quiz limitations. */
@@ -426,7 +427,7 @@
 /* Button for deleting files or folders. %d will be the number of selected items */
 "Delete (%d)" = "Efase (%d)";
 
-/* Alert message */
+/* (No Comment) */
 "Delete this reply?" = "Efase repons sa a?";
 
 /* delete file confirmation alert */
@@ -438,7 +439,7 @@
 /* No comment provided by engineer. */
 "Detail" = "Detay";
 
-/* Placeholder text for discussion details field */
+/* (No Comment) */
 "Details" = "Detay";
 
 /* (No Comment) */
@@ -447,16 +448,16 @@
 /* (No Comment) */
 "Discard this entry?" = "Abandone antre sa a?";
 
-/* Title of the new discussion view */
+/* (No Comment) */
 "Discussion" = "Diskisyon";
 
 /* Title for discussion entry submission */
 "Discussion Entry" = "Diskisyon";
 
-/* Title for Discussion Topics view controller */
+/* (No Comment) */
 "Discussion Topics" = "Sijè Diskisyon";
 
-/* Title for Discussions view controller */
+/* (No Comment) */
 "Discussions" = "Diskisyon";
 
 /* Dismiss button title
@@ -496,7 +497,7 @@
 /* Link to the End User License Agreement document */
 "EULA" = "EULA";
 
-/* Button to edit a discussion entry */
+/* (No Comment) */
 "Edit" = "Modifye";
 
 /* (No Comment) */
@@ -511,9 +512,6 @@
 /* (No Comment) */
 "Editing reply by %1$@, %2$@" = "Modifye repons pa %1$@, %2$@";
 
-/* Header when editing a discussion entry with name and timestamp */
-"Editing reply by %@, %@" = "Modifye repons pa %1$@, %2$@";
-
 /* the users email */
 "Email" = "Imèl";
 
@@ -526,7 +524,7 @@
 /* Submission input view placeholder text */
 "Enter submission" = "Antre soumisyon";
 
-/* Confirmation message after posting a discussion entry */
+/* (No Comment) */
 "Entry posted" = "Antre poste";
 
 /* Title for an error popup */
@@ -625,10 +623,10 @@
 /* (No Comment) */
 "Graded Discussion" = "Diskisyon Klase";
 
-/* Lets user know discussion is graded */
+/* (No Comment) */
 "Graded discussion." = "Diskisyon klase.";
 
-/* Graded discussion. 25 points possible */
+/* (No Comment) */
 "Graded discussion. %g points possible." = "Diskisyon klase. %g pwen posib";
 
 /* (No Comment) */
@@ -670,7 +668,7 @@
 /* (No Comment) */
 "Individual messages" = "Mesaj pèsonèl";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Invalid URL" = "URL envalid";
 
 /* (No Comment) */
@@ -817,7 +815,7 @@
 /* No comment provided by engineer. */
 "Next item" = "Pwochen atik";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "No" = "Non";
 
 /* No comment provided by engineer. */
@@ -860,7 +858,7 @@
 /* (No Comment) */
 "Not Complete" = "Pa Konplè";
 
-/* Accessibility label for points out of points possible label when points are not availiable. */
+/* No comment provided by engineer. */
 "Not available" = "Pa disponib";
 
 /* (No Comment) */
@@ -887,7 +885,7 @@
 /* (No Comment) */
 "Notifications" = "Notifikasyon";
 
-/* OK Button Title */
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -917,7 +915,7 @@
 /* No comment provided by engineer. */
 "Other" = "Lòt";
 
-/* A message indicating that the user cannot see other people's replies until the user has first posted a reply of their own. Only one line of text, so as concise as possible. */
+/* (No Comment) */
 "Other replies hidden until you reply" = "Lòt repons kache jiskaske w reponn";
 
 /* Title for Outcomes tab */
@@ -932,7 +930,7 @@
 /* Title for the people view */
 "People" = "Moun";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Pinned Discussions" = "Diskisyon Epengle";
 
 /* (No Comment) */
@@ -941,7 +939,7 @@
 /* Network error message */
 "Please check your network connection and try again." = "Tanpri verifye koneksyon entènèt ou a epi eseye ankò.";
 
-/* Button to post new discussion topic */
+/* No comment provided by engineer. */
 "Post" = "Poste";
 
 /* (No Comment) */
@@ -950,7 +948,7 @@
 /* No comment provided by engineer. */
 "Post comment" = "Poste kòmantè";
 
-/* Message shown while posting a discussion entry */
+/* (No Comment) */
 "Posting…" = "Poste";
 
 /* (No Comment) */
@@ -1028,7 +1026,7 @@
 /* (No Comment) */
 "Rubric" = "Ribrik";
 
-/* No comment provided by engineer. */
+/* Title for button confirming showing a file */
 "Save" = "Anrejiste";
 
 /* Title for Assignment Notifications Sheet */
@@ -1238,7 +1236,7 @@
 /* Error message for refresh failing with an unauthorized code */
 "This can happen if your course hasn't started yet or you don't have permission to access this page." = "Sa kapab rive si kou w la poko kòmanse oswa si w pa gen pèmisyon pou w ale sou paj sa a.";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "This entry has been deleted" = "Antre sa a te efase";
 
 /* Text indicating a file cannot be previewed */
@@ -1255,12 +1253,6 @@
 
 /* (No Comment) */
 "This would be a great time to do some extra credit." = "Sa ta dwe pi bon moman pou fè kèk kredi siplemantè.";
-
-/* Threaded switch label to to make discussion threaded */
-"Threaded" = "Filete";
-
-/* Discussion title placeholder */
-"Title" = "Tit";
 
 /* (No Comment) */
 "To Do" = "Pou Fè";
@@ -1295,14 +1287,8 @@
 /* Error title */
 "Unable to load" = "Pa kapab chaje";
 
-/* Error message without retry */
-"Unable to post." = "Paka poste.";
-
 /* (No Comment) */
 "Unable to post. Please try again later" = "Pa kapab poste. Tanpri eseye ankò pita";
-
-/* Error message */
-"Unable to post. Please try again later." = "Paka poste. Tanpri eseye ankò.";
 
 /* message saying that avatar couldn't be loaded to server */
 "Unable to upload to server" = "Enposib pou transfere sou sèvè a";
@@ -1322,7 +1308,7 @@
 /* (No Comment) */
 "Unread" = "San li";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Unsaved Reply" = "Repons san Anrejistre";
 
 /* Button title for uploading a file */
@@ -1382,7 +1368,7 @@
 /* Error Title */
 "Whoops!" = "Whoops!";
 
-/* unlock date for discussion/announcement */
+/* (No Comment) */
 "Will unlock %@." = "Ap debloke %@.";
 
 /* (No Comment) */
@@ -1394,7 +1380,7 @@
 /* (No Comment) */
 "Would you mind letting us know the problems you have been having with the app?" = "Sa pa p deranje w pou fè nou konnen ki pwoblèm ou genyen ak app sa a?";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Yes" = "Wi";
 
 /* (No Comment) */
@@ -1409,13 +1395,13 @@
 /* (No Comment) */
 "You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "Ou pa gen aksè a kontni sa a. Kou oswa Gwoup la gendwa poko kòmanse, oswa li fini deja.";
 
-/* Error message */
+/* (No Comment) */
 "You do not have permission to delete this reply" = "Ou pa gen pèmisyon pou efase repons sa a";
 
 /* Masquerade error message */
 "You don't have permission to masquerade as this user or there is no user with that ID" = "Ou pa gen pèmisyon pou parèt tankou itilizatè sa a oswa pa gen itilizatè ki gen idantifikasyon sa a";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "You have an unsaved reply. Would you like to discard that reply?" = "Ou gen yon repons ki pa anrejistre. Èske ou ta renmen abandone repons sa a?";
 
 /* An explanation of how to transfer files to the Canvas app. */
@@ -1424,7 +1410,7 @@
 /* (No Comment) */
 "You must first complete:" = "Ou dwe toudabò ranpli:";
 
-/* Error message */
+/* (No Comment) */
 "You need a title and a description to post" = "Ou bezwen yon tit ak yon deskripsyon pou poste";
 
 /* (No Comment) */
@@ -1442,7 +1428,7 @@
 /* (No Comment) */
 "moments ago" = "yon ti moman de sa";
 
-/* Accessibility label modifier for point out of point possible */
+/* No comment provided by engineer. */
 "out of" = "sou";
 
 /* (No Comment) */

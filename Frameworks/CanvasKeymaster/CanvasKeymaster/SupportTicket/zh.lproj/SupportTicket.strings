@@ -35,7 +35,7 @@
 "noj-Yi-xpa.text" = "某东西坏了，但我可以修复它";
 
 /* Class = "UINavigationItem"; title = "Report a Problem"; ObjectID = "vMz-Cg-DUM"; */
-"vMz-Cg-DUM.title" = "报告一个问题";
+"vMz-Cg-DUM.title" = "报告问题";
 
 /* Class = "UILabel"; text = "Extremely critical emergency"; ObjectID = "wHQ-Tn-kQn"; */
 "wHQ-Tn-kQn.text" = "十万火急的紧急事件";

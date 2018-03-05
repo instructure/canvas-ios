@@ -1,5 +1,3 @@
-"Inbox" = "インボックス";
-
 /* Error message component with the report id */
 " Error report ID: (reportID)" = " エラーレポート ID(reportID)";
 
@@ -46,8 +44,14 @@
 /* all pages segmented control title */
 "All Pages" = "すべてのページ";
 
-/* Title for push notification pre-authorization alert */
-"Allow Push Notifications?" = "プッシュ通知を許可しますか？";
+/* No comment provided by engineer. */
+"All notifications are currently disabled." = "すべての通知は、現在無効です。";
+
+/* No comment provided by engineer. */
+"All notifications are currently enabled." = "すべての通知は、現在有効です。";
+
+/* No comment provided by engineer. */
+"Allow Notifications in Settings" = "通知の設定を許可";
 
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "試行許可数";
@@ -210,9 +214,6 @@
 /* Data encoding error title */
 "Encoding Error" = "エンコードエラー";
 
-/* No comment provided by engineer. */
-"End Act as User" = "ユーザーとして行動することを止める";
-
 /* Text submission option */
 "Enter Text" = "テキストを入力する";
 
@@ -349,9 +350,6 @@
 
 /* Next button for advancing a quiz */
 "Next" = "次";
-
-/* Title for no button for push notification pre-authorization alert */
-"No" = "いいえ";
 
 /* Alert title when unable to load communication channels */
 "No Communication Channels Found" = "コミュニケーションチャンネルが見つかりません";
@@ -561,9 +559,6 @@
 /* stop recording button a11y label */
 "Stop" = "停止";
 
-/* No comment provided by engineer. */
-"Stop acting as..." = "以下として行動することを止める";
-
 /* File upload was stopped */
 "Stopped" = "停止";
 
@@ -726,7 +721,7 @@
 "Unable to display any notification preferences returned from the server at this time." = "只今、サーバーから返信されたすべての通知設定を表示することができません。";
 
 /* Alert message when unable to load communication channels */
-"Unable to load any Communication Channels at this time.  Error: (result.error?.localizedDescription)" = "現時点では通信チャネルを読み込めません。エラー:(result.error?.localizedDescription)";
+"Unable to load any Communication Channels at this time." = "現時点では通信チャネルを読み込めません。";
 
 /* Alert message when unable to load notification preferences */
 "Unable to load any notification preferences at this time.  Error: (result.error?.localizedDescription)" = "現時点では通知設定を読み込めません。エラー:(result.error?.localizedDescription)";
@@ -779,14 +774,8 @@
 /* Error message for being unable to update a push notification preference */
 "We were not able to update this value with the server" = "サーバーでこの値をアップデートすることができませんでした";
 
-/* Message for push notification pre-authorization alert */
-"Would you like to allow Canvas to send you important notifications about announcements, course, assignments, etc?" = "アナウンスメント、コースや課題についての重要な通知をCanvasがあなたに送信することを許可しますか？";
-
 /* Yellow course color button */
 "Yellow" = "イエロー";
-
-/* Title for yes button for push notification pre-authorization alert */
-"Yes" = "はい";
 
 /* Description for Yo communication channel */
 "Yo" = "やあ";
@@ -799,12 +788,6 @@
 
 /* permission was rejected */
 "You must grant (appName) Microphone access in the Settings app in order to record audio." = "音声を録音するには、設定アプリ内で (appName) マイクのアクセスを取得しなければなりません。";
-
-/* No comment provided by engineer. */
-"You will stop acting as %@ and return to your account." = "%@行動することを止め、自分のアカウントに戻る";
-
-/* No comment provided by engineer. */
-"You will stop acting as this user and return to your account." = "このユーザーとして行動することを止め、自分のアカウントに戻る";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "デバイスのストレージスペースが不足しています。スペースを作ってもう一度お試しください。";

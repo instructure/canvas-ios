@@ -28,29 +28,17 @@
 /* No comment provided by engineer. */
 "Emergency" = "Emergencia";
 
-/* Text field to enter school domain that user would like the search in Domain Picker View */
-"Enter school domain." = "Ingrese el dominio del colegio.";
-
 /* Text view to enter the description of the ticket */
 "Enter ticket description" = "Ingrese la descripción del boleto";
 
 /* Text field to enter subject of the ticket */
 "Enter ticket subject" = "Ingrese el asunto del boleto";
 
-/* Subtitle help text describing how to find a school. */
-"Enter your school's domain or tap for help." = "Ingrese el dominio de su colegio o toque para obtener ayuda.";
-
 /* No comment provided by engineer. */
 "Extremely critical emergency" = "Emergencia extremadamente crítica";
 
-/* No comment provided by engineer. */
-"Find School Domain" = "Encontrar el dominio del colegio.";
-
 /* Help View Controller Title */
 "Help" = "Ayuda";
-
-/* No comment provided by engineer. */
-"Help Menu" = "Menú de ayuda";
 
 /* No comment provided by engineer. */
 "I am stuck and can't get things done" = "Estoy bloqueado y no puedo terminar mis tareas";
@@ -76,23 +64,14 @@
 /* No comment provided by engineer. */
 "OK" = "Aceptar";
 
-/* Placeholder for help icon (question mark) on Domain Picker View */
-"Open help menu" = "Abrir el menú de ayuda";
-
 /* No comment provided by engineer. */
-"Report a Problem" = "Reportar un problema";
+"Report a Problem" = "Informe de un problema";
 
 /* No comment provided by engineer. */
 "Request Failed!" = "¡La solicitud ha fallado!";
 
 /* No comment provided by engineer. */
 "Request a Feature" = "Solicitar una función";
-
-/* No comment provided by engineer. */
-"Right Behind You" = "Justo detrás de usted";
-
-/* Placeholder for search button on Domain Picker View */
-"Search for domain." = "Buscar un dominio.";
 
 /* Button to select the severity of the ticket */
 "Select ticket impact level" = "Seleccionar nivel de impacto de boleto";
@@ -108,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Success!" = "¡Éxito!";
+
+/* Subtitle help text describing how to find a school. */
+"Tap here for help." = "Presione aquí para obtener ayuda.";
 
 /* No comment provided by engineer. */
 "Thanks, your request was received!" = "¡Gracias, tu solicitud ha sido recibida!";

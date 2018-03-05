@@ -85,9 +85,6 @@
 /* No comment provided by engineer. */
 "Note: Media files are not immediately available for playback while they are processed on the server." = "注意： メディアファイルはサーバー上で処理されるため、すぐに再生することはできません。";
 
-/* No comment provided by engineer. */
-"OK" = "OK";
-
 /* Short name for observer enrollment */
 "Observer" = "評者";
 
@@ -150,9 +147,6 @@
 
 /* Media type is video */
 "Video" = "動画";
-
-/* No comment provided by engineer. */
-"Video error" = "動画のエラー";
 
 /* No comment provided by engineer. */
 "Warning" = "警告";

@@ -205,9 +205,6 @@
 /* (No Comment) */
 "All members" = "全体成员";
 
-/* Allow Notifications in Settings */
-"Allow Notifications in Settings" = "允许设置通知";
-
 /* (No Comment) */
 "An unknown error occurred" = "未知错误出现";
 
@@ -501,7 +498,7 @@
 /* (No Comment) */
 "Email" = "电子邮件";
 
-/* Prompt asking user to enable push notifications */
+/* (No Comment) */
 "Enable Push Notifications" = "启用推送通知";
 
 /* (No Comment) */
@@ -675,7 +672,7 @@
 /* (No Comment) */
 "Large file" = "大文件";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Later" = "稍后";
 
 /* (No Comment) */
@@ -870,7 +867,7 @@
 /* Nothing to see here. */
 "Nothing to see here." = "这里没有东西看。";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Notification" = "通知";
 
 /* Settings entry title for Notification Preferences */
@@ -1382,7 +1379,7 @@
 /* (No Comment) */
 "Video error" = "视频错误";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "View" = "查看";
 
 /* (No Comment) */

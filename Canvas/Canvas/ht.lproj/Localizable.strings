@@ -205,9 +205,6 @@
 /* (No Comment) */
 "All members" = "Tout manm";
 
-/* Allow Notifications in Settings */
-"Allow Notifications in Settings" = "Pèmèt Notifikasyon nan Reglaj";
-
 /* (No Comment) */
 "An unknown error occurred" = "Gen yon erè enkoni ki fèt";
 
@@ -501,7 +498,7 @@
 /* (No Comment) */
 "Email" = "Imèl";
 
-/* Prompt asking user to enable push notifications */
+/* (No Comment) */
 "Enable Push Notifications" = "Aktive Notifikasyon Push";
 
 /* (No Comment) */
@@ -675,7 +672,7 @@
 /* (No Comment) */
 "Large file" = "Gwo fichye";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Later" = "Pita";
 
 /* (No Comment) */
@@ -870,7 +867,7 @@
 /* Nothing to see here. */
 "Nothing to see here." = "Pa gen anyen pou w wè la a.";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Notification" = "Notifikasyon";
 
 /* Settings entry title for Notification Preferences */
@@ -1382,7 +1379,7 @@
 /* (No Comment) */
 "Video error" = "Erè Videyo";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "View" = "Gade";
 
 /* (No Comment) */

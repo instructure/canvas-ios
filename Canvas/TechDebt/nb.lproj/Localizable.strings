@@ -67,7 +67,7 @@
 /* Message for unsupported tab */
 "%@ is not currently supported." = "%@ støttes foreløpig ikke.";
 
-/* Description for how many times a specific discussion has been liked by other users */
+/* (No Comment) */
 "%@ likes" = "%@ liker";
 
 /* (No Comment) */
@@ -97,10 +97,10 @@
 /* In the context 'Joe, Fred, ((25 more))' */
 "%d more" = "%d mer";
 
-/* Something like '5 replies' */
+/* (No Comment) */
 "%d replies" = "%d svar";
 
-/* Something like '3 unread'. Refers to unread replies in a discsusion. */
+/* (No Comment) */
 "%d unread" = "%d ulest";
 
 /* (No Comment) */
@@ -157,7 +157,7 @@
 /* Number of files/folders inside a folder. (Only used when there is exactly 1 item. */
 "1 item" = "1 objekt";
 
-/* Description for a post that has been liked once */
+/* (No Comment) */
 "1 like" = "1 liker";
 
 /* (No Comment) */
@@ -208,7 +208,7 @@
 /* Button title for adding a folder to a folder */
 "Add folder" = "Legg til mappe";
 
-/* Title on the add-inline-media sheet */
+/* (No Comment) */
 "Add inline media" = "Legg til integrert media";
 
 /* (No Comment) */
@@ -220,10 +220,10 @@
 /* (No Comment) */
 "An unknown error occurred" = "Det oppsto en ukjent feil";
 
-/* Title of the new announcement view */
+/* (No Comment) */
 "Announcement" = "Kunngjøring";
 
-/* Title for the announcements view controller */
+/* (No Comment) */
 "Announcements" = "Kunngjøringer";
 
 /* Assignment submission type for selecting an Arc video */
@@ -295,7 +295,8 @@
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "Kan ikke sende inn media";
 
-/* Cancel button title
+/* Button to cancel deleting folders
+   Cancel button title
    Cancel button title to cancel submitting an Arc video as an assignment submission */
 "Cancel" = "Avbryt";
 
@@ -347,7 +348,7 @@
 /* Close the window */
 "Close" = "Lukk";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Closed for Comments" = "Stengt for kommentarer";
 
 /* Title for Collaborations tab */
@@ -362,7 +363,7 @@
 /* (No Comment) */
 "Comments" = "Kommentarer";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Comments are disabled" = "Kommentarer er deaktivert";
 
 /* (No Comment) */
@@ -383,7 +384,7 @@
 /* Confirm an arc video submission for an assignment */
 "Confirm Submission" = "Bekreft innlevering";
 
-/* Alert title */
+/* (No Comment) */
 "Confirm deletion" = "Bekreft sletting";
 
 /* Button title for selecting to continue on to quiz. The will appear in the alert view notfifying the user of mobile quiz limitations. */
@@ -426,7 +427,7 @@
 /* Button for deleting files or folders. %d will be the number of selected items */
 "Delete (%d)" = "Slett (%d)";
 
-/* Alert message */
+/* (No Comment) */
 "Delete this reply?" = "Slette dette svaret?";
 
 /* delete file confirmation alert */
@@ -438,7 +439,7 @@
 /* No comment provided by engineer. */
 "Detail" = "Detalj";
 
-/* Placeholder text for discussion details field */
+/* (No Comment) */
 "Details" = "Detaljer";
 
 /* (No Comment) */
@@ -447,16 +448,16 @@
 /* (No Comment) */
 "Discard this entry?" = "Forkaste denne oppføringen?";
 
-/* Title of the new discussion view */
+/* (No Comment) */
 "Discussion" = "Diskusjon";
 
 /* Title for discussion entry submission */
 "Discussion Entry" = "Diskusjonsoppføring";
 
-/* Title for Discussion Topics view controller */
+/* (No Comment) */
 "Discussion Topics" = "Diskusjonsemner";
 
-/* Title for Discussions view controller */
+/* (No Comment) */
 "Discussions" = "Diskusjoner";
 
 /* Dismiss button title
@@ -496,7 +497,7 @@
 /* Link to the End User License Agreement document */
 "EULA" = "EULA";
 
-/* Button to edit a discussion entry */
+/* (No Comment) */
 "Edit" = "Rediger";
 
 /* (No Comment) */
@@ -511,9 +512,6 @@
 /* (No Comment) */
 "Editing reply by %1$@, %2$@" = "Redigere svar innen %1$@, %2$@";
 
-/* Header when editing a discussion entry with name and timestamp */
-"Editing reply by %@, %@" = "Redigere svar innen %1$@, %2$@";
-
 /* the users email */
 "Email" = "E-post";
 
@@ -526,7 +524,7 @@
 /* Submission input view placeholder text */
 "Enter submission" = "Skriv innsending";
 
-/* Confirmation message after posting a discussion entry */
+/* (No Comment) */
 "Entry posted" = "Innlegg postet";
 
 /* Title for an error popup */
@@ -625,10 +623,10 @@
 /* (No Comment) */
 "Graded Discussion" = "Vurdert diskusjon";
 
-/* Lets user know discussion is graded */
+/* (No Comment) */
 "Graded discussion." = "Vurdert diskusjon.";
 
-/* Graded discussion. 25 points possible */
+/* (No Comment) */
 "Graded discussion. %g points possible." = "Vurdert diskusjon. %g mulige poeng.";
 
 /* (No Comment) */
@@ -670,7 +668,7 @@
 /* (No Comment) */
 "Individual messages" = "Individuelle meldinger";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Invalid URL" = "Ugyldig URL";
 
 /* (No Comment) */
@@ -817,7 +815,7 @@
 /* No comment provided by engineer. */
 "Next item" = "Neste objekt";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "No" = "Nei";
 
 /* No comment provided by engineer. */
@@ -860,7 +858,7 @@
 /* (No Comment) */
 "Not Complete" = "Ikke fullført";
 
-/* Accessibility label for points out of points possible label when points are not availiable. */
+/* No comment provided by engineer. */
 "Not available" = "Ikke tilgjengelig";
 
 /* (No Comment) */
@@ -887,7 +885,7 @@
 /* (No Comment) */
 "Notifications" = "Varslinger";
 
-/* OK Button Title */
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -917,7 +915,7 @@
 /* No comment provided by engineer. */
 "Other" = "Andre";
 
-/* A message indicating that the user cannot see other people's replies until the user has first posted a reply of their own. Only one line of text, so as concise as possible. */
+/* (No Comment) */
 "Other replies hidden until you reply" = "Andre svar skjules inntil du svarer";
 
 /* Title for Outcomes tab */
@@ -932,7 +930,7 @@
 /* Title for the people view */
 "People" = "Personer";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Pinned Discussions" = "Merkede diskusjoner";
 
 /* (No Comment) */
@@ -941,7 +939,7 @@
 /* Network error message */
 "Please check your network connection and try again." = "Sjekk nettverkstilkoblingen din og forsøk igjen.";
 
-/* Button to post new discussion topic */
+/* No comment provided by engineer. */
 "Post" = "Post";
 
 /* (No Comment) */
@@ -950,7 +948,7 @@
 /* No comment provided by engineer. */
 "Post comment" = "Poste kommentar";
 
-/* Message shown while posting a discussion entry */
+/* (No Comment) */
 "Posting…" = "Poster ...";
 
 /* (No Comment) */
@@ -1028,7 +1026,7 @@
 /* (No Comment) */
 "Rubric" = "Rubrikk";
 
-/* No comment provided by engineer. */
+/* Title for button confirming showing a file */
 "Save" = "Lagre";
 
 /* Title for Assignment Notifications Sheet */
@@ -1238,7 +1236,7 @@
 /* Error message for refresh failing with an unauthorized code */
 "This can happen if your course hasn't started yet or you don't have permission to access this page." = "Dette kan skje hvis emnet ditt ikke har startet ennå, eller du ikke har tillatelse til å få tilgang til denne siden.";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "This entry has been deleted" = "Dette innlegget har blitt slettet";
 
 /* Text indicating a file cannot be previewed */
@@ -1255,12 +1253,6 @@
 
 /* (No Comment) */
 "This would be a great time to do some extra credit." = "Dette bør være et flott tidspunkt for å få gjort unna litt ekstra kreditt.";
-
-/* Threaded switch label to to make discussion threaded */
-"Threaded" = "Gjenget";
-
-/* Discussion title placeholder */
-"Title" = "Tittel";
 
 /* (No Comment) */
 "To Do" = "Gjøremål";
@@ -1295,14 +1287,8 @@
 /* Error title */
 "Unable to load" = "Kunne ikke laste";
 
-/* Error message without retry */
-"Unable to post." = "Kunne ikke poste.";
-
 /* (No Comment) */
 "Unable to post. Please try again later" = "Kunne ikke poste. Forsøk igjen senere";
-
-/* Error message */
-"Unable to post. Please try again later." = "Kunne ikke poste. Forsøk igjen senere.";
 
 /* message saying that avatar couldn't be loaded to server */
 "Unable to upload to server" = "Kunne ikke laste opp til server";
@@ -1322,7 +1308,7 @@
 /* (No Comment) */
 "Unread" = "Ulest";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Unsaved Reply" = "Svaret er ikke lagret";
 
 /* Button title for uploading a file */
@@ -1382,7 +1368,7 @@
 /* Error Title */
 "Whoops!" = "Oisann!";
 
-/* unlock date for discussion/announcement */
+/* (No Comment) */
 "Will unlock %@." = "Vil låses opp %@.";
 
 /* (No Comment) */
@@ -1394,7 +1380,7 @@
 /* (No Comment) */
 "Would you mind letting us know the problems you have been having with the app?" = "Fint om du kunne si ifra til oss om problemer du har med appen";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Yes" = "Ja";
 
 /* (No Comment) */
@@ -1409,13 +1395,13 @@
 /* (No Comment) */
 "You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "Du har ikke tilgang til dette innholdet. Emnet eller gruppen har kanskje ikke startet, eller kanskje det er avsluttet.";
 
-/* Error message */
+/* (No Comment) */
 "You do not have permission to delete this reply" = "Du har ikke tillatelse til å slette dette svaret";
 
 /* Masquerade error message */
 "You don't have permission to masquerade as this user or there is no user with that ID" = "Du har ikke tillatelse til å forkle deg som denne brukeren, eller det er ingen bruker med den IDen";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "You have an unsaved reply. Would you like to discard that reply?" = "Du har et svar som ikke er lagret. Ønsker du å slette det svaret?";
 
 /* An explanation of how to transfer files to the Canvas app. */
@@ -1424,7 +1410,7 @@
 /* (No Comment) */
 "You must first complete:" = "Du må først fullføre:";
 
-/* Error message */
+/* (No Comment) */
 "You need a title and a description to post" = "Du trenger en tittel og en beskrivelse å poste";
 
 /* (No Comment) */
@@ -1442,7 +1428,7 @@
 /* (No Comment) */
 "moments ago" = "øyeblikk siden";
 
-/* Accessibility label modifier for point out of point possible */
+/* No comment provided by engineer. */
 "out of" = "ut av";
 
 /* (No Comment) */

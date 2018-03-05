@@ -85,9 +85,6 @@
 /* No comment provided by engineer. */
 "Note: Media files are not immediately available for playback while they are processed on the server." = "Anmerkung: Mediendateien stehen nicht zur unmittelbaren Playback-Verfügung, während Sie auf dem Server verarbeitet werden.";
 
-/* No comment provided by engineer. */
-"OK" = "OK";
-
 /* Short name for observer enrollment */
 "Observer" = "Beobachter";
 
@@ -150,9 +147,6 @@
 
 /* Media type is video */
 "Video" = "Video";
-
-/* No comment provided by engineer. */
-"Video error" = "Videofehler";
 
 /* No comment provided by engineer. */
 "Warning" = "Warnung";

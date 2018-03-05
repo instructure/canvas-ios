@@ -205,9 +205,6 @@
 /* (No Comment) */
 "All members" = "All members";
 
-/* Allow Notifications in Settings */
-"Allow Notifications in Settings" = "Allow Notifications in Settings";
-
 /* (No Comment) */
 "An unknown error occurred" = "An unknown error occurred.";
 
@@ -501,7 +498,7 @@
 /* (No Comment) */
 "Email" = "Email";
 
-/* Prompt asking user to enable push notifications */
+/* (No Comment) */
 "Enable Push Notifications" = "Enable Push Notifications";
 
 /* (No Comment) */
@@ -675,7 +672,7 @@
 /* (No Comment) */
 "Large file" = "Large file";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Later" = "Later";
 
 /* (No Comment) */
@@ -870,7 +867,7 @@
 /* Nothing to see here. */
 "Nothing to see here." = "There's nothing to see here.";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Notification" = "Notification";
 
 /* Settings entry title for Notification Preferences */
@@ -1382,7 +1379,7 @@
 /* (No Comment) */
 "Video error" = "Video error";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "View" = "View";
 
 /* (No Comment) */

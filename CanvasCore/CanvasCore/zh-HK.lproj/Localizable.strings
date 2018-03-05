@@ -1,5 +1,3 @@
-"Inbox" = "收件夾";
-
 /* Error message component with the report id */
 " Error report ID: (reportID)" = " 報告 ID 錯誤：(reportID)";
 
@@ -46,8 +44,14 @@
 /* all pages segmented control title */
 "All Pages" = "所有頁面";
 
-/* Title for push notification pre-authorization alert */
-"Allow Push Notifications?" = "允許推送通知？";
+/* No comment provided by engineer. */
+"All notifications are currently disabled." = "所有通知目前都已禁用。";
+
+/* No comment provided by engineer. */
+"All notifications are currently enabled." = "所有通知目前都已啟用。";
+
+/* No comment provided by engineer. */
+"Allow Notifications in Settings" = "在設定中允許通知消息";
 
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "允許的嘗試";
@@ -210,9 +214,6 @@
 /* Data encoding error title */
 "Encoding Error" = "編碼錯誤";
 
-/* No comment provided by engineer. */
-"End Act as User" = "結束作為使用者";
-
 /* Text submission option */
 "Enter Text" = "輸入文字";
 
@@ -349,9 +350,6 @@
 
 /* Next button for advancing a quiz */
 "Next" = "下一個";
-
-/* Title for no button for push notification pre-authorization alert */
-"No" = "不是";
 
 /* Alert title when unable to load communication channels */
 "No Communication Channels Found" = "無法找到通訊頻道";
@@ -561,9 +559,6 @@
 /* stop recording button a11y label */
 "Stop" = "停止";
 
-/* No comment provided by engineer. */
-"Stop acting as..." = "停止作為...";
-
 /* File upload was stopped */
 "Stopped" = "已停止";
 
@@ -726,7 +721,7 @@
 "Unable to display any notification preferences returned from the server at this time." = "目前無法顯示來自此伺服器的任何通知偏好設定。";
 
 /* Alert message when unable to load communication channels */
-"Unable to load any Communication Channels at this time.  Error: (result.error?.localizedDescription)" = "目前無法載入任何通訊頻道。錯誤：（結果.錯誤？.localizedDescription）";
+"Unable to load any Communication Channels at this time." = "目前無法載入任何通訊頻道。";
 
 /* Alert message when unable to load notification preferences */
 "Unable to load any notification preferences at this time.  Error: (result.error?.localizedDescription)" = "目前無法載入任何通知偏好設定。錯誤：（結果.錯誤？.localizedDescription）";
@@ -779,14 +774,8 @@
 /* Error message for being unable to update a push notification preference */
 "We were not able to update this value with the server" = "無法在伺服器上更新這個數值";
 
-/* Message for push notification pre-authorization alert */
-"Would you like to allow Canvas to send you important notifications about announcements, course, assignments, etc?" = "您是否允許 Canvas 給您發送關於通告、課程和作業列表等內容的重要通知？";
-
 /* Yellow course color button */
 "Yellow" = "黃色";
-
-/* Title for yes button for push notification pre-authorization alert */
-"Yes" = "是";
 
 /* Description for Yo communication channel */
 "Yo" = "Yo";
@@ -799,12 +788,6 @@
 
 /* permission was rejected */
 "You must grant (appName) Microphone access in the Settings app in order to record audio." = "您必須在設定程式中批准 (appName) 使用麥克風的權限，以便錄製音頻。";
-
-/* No comment provided by engineer. */
-"You will stop acting as %@ and return to your account." = "您將會停止作為 %@ 並返回到您的帳戶。";
-
-/* No comment provided by engineer. */
-"You will stop acting as this user and return to your account." = "您將會停止作為此使用者並返回到您的帳戶。";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "您的設備沒有儲存空間了。請釋放空間，然後重試。";

@@ -32,9 +32,6 @@
   "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
     "message": "\"Act as\" loggar huvudsakligen in som den här användaren utan lösenord.Du kommer att kunna vidta åtgärder som om du var den här användaren, och från andra användares synpunkter som om den här användaren utförde dem.I historik-loggar registreras dock att du var den som utförde åtgärderna på den här användarens vägnar."
   },
-  "show_grades_8680e38e": {
-    "message": "Visa betyg"
-  },
   "act_as_user_d7ef0e48": {
     "message": "Agera som användare"
   },
@@ -533,8 +530,8 @@
   "error_98e81528": {
     "message": "Fel"
   },
-  "error_saving_grade_ef8d2ddc": {
-    "message": "Fel vid sparande av betyg"
+  "error_saving_grade_367dd920": {
+    "message": "Misslyckades att spara betyg"
   },
   "everyone_854554dd": {
     "message": "Alla"
@@ -1031,9 +1028,6 @@
   "previewing_this_file_type_is_not_supported_7df9231": {
     "message": "Förhandsgranskning av denna filtyp stöds inte"
   },
-  "profile_6bd2baed": {
-    "message": "Profil"
-  },
   "profile_menu_a688027e": {
     "message": "Profilmeny"
   },
@@ -1316,9 +1310,6 @@
   "the_value_of_possible_points_must_be_zero_or_great_374e175a": {
     "message": "Värdet av möjliga poäng måste vara noll eller större"
   },
-  "the_was_a_problem_saving_the_grade_please_try_agai_2aefe6a8": {
-    "message": "Ett problem uppstod vid sparande av betyg.  Vänligen försök igen."
-  },
   "there_are_no_announcements_to_display_a91880": {
     "message": "Det finns inga meddelanden att visa."
   },
@@ -1366,6 +1357,9 @@
   },
   "there_was_a_problem_retreiving_the_terms_of_use_3a5fa00c": {
     "message": "Det gick inte att återställa användarvillkoren"
+  },
+  "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
+    "message": "Det gick inte att spara betyget. Vänligen försök igen."
   },
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "Ett fel uppstod vid laddning av bilagan."

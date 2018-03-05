@@ -1,18 +1,39 @@
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "0bi-h7-8TR"; */
+"0bi-h7-8TR.text" = "Untertitel";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "7VQ-qv-Wtk"; */
+"7VQ-qv-Wtk.text" = "Titel";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "7tl-s1-0wg"; */
 "7tl-s1-0wg.text" = "Label";
 
-/* Class = "UILabel"; text = "Canvas Login On"; ObjectID = "BD1-jZ-xPz"; */
-"BD1-jZ-xPz.text" = "Anmeldung bei Canvas";
+/* Class = "UILabel"; text = "Canvas Login"; ObjectID = "7yY-o5-DSG"; */
+"7yY-o5-DSG.text" = "Anmeldung bei Canvas";
+
+/* Class = "UILabel"; text = "Previous Logins"; ObjectID = "Kpj-4f-cdc"; */
+"Kpj-4f-cdc.text" = "Frühere Anmeldungen";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "UqJ-Ob-4nT"; */
 "UqJ-Ob-4nT.text" = "Label";
 
-/* Class = "UITextField"; placeholder = "Find your school or district"; ObjectID = "W9p-nq-GlV"; */
-"W9p-nq-GlV.placeholder" = "Finde deine Schule oder deinen Bezirk";
+/* Class = "UIButton"; accessibilityLabel = "cancel"; ObjectID = "aHi-ya-AL9"; */
+"aHi-ya-AL9.accessibilityLabel" = "abbrechen";
+
+/* Class = "UIButton"; normalTitle = "Canvas Network"; ObjectID = "eln-Wg-hVk"; */
+"eln-Wg-hVk.normalTitle" = "Canvas Network";
+
+/* Class = "UILabel"; text = "What's your school's name?"; ObjectID = "hXv-Vt-Lud"; */
+"hXv-Vt-Lud.text" = "Wie heißt Ihre Schule?";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "jsr-jq-3y0"; */
 "jsr-jq-3y0.text" = "Titel";
 
 /* Class = "UILabel"; text = "Subtitle"; ObjectID = "nTZ-ii-mqn"; */
 "nTZ-ii-mqn.text" = "Untertitel";
+
+/* Class = "UITextField"; placeholder = "school.instructure.com"; ObjectID = "xzj-lX-iaI"; */
+"xzj-lX-iaI.placeholder" = "school.instructure.com";
+
+/* Class = "UIButton"; normalTitle = "Find my school"; ObjectID = "zQQ-hy-gpK"; */
+"zQQ-hy-gpK.normalTitle" = "Meine Schule suchen";
 

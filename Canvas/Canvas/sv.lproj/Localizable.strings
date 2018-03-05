@@ -205,9 +205,6 @@
 /* (No Comment) */
 "All members" = "Alla medlemmar";
 
-/* Allow Notifications in Settings */
-"Allow Notifications in Settings" = "Tillåt aviseringar i inställningar";
-
 /* (No Comment) */
 "An unknown error occurred" = "Ett okänt fel har inträffat.";
 
@@ -501,7 +498,7 @@
 /* (No Comment) */
 "Email" = "E-post";
 
-/* Prompt asking user to enable push notifications */
+/* (No Comment) */
 "Enable Push Notifications" = "Aktivera pushmeddelanden";
 
 /* (No Comment) */
@@ -675,7 +672,7 @@
 /* (No Comment) */
 "Large file" = "Stor fil";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Later" = "Senare";
 
 /* (No Comment) */
@@ -870,7 +867,7 @@
 /* Nothing to see here. */
 "Nothing to see here." = "Finns inget att se här.";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Notification" = "Avisering";
 
 /* Settings entry title for Notification Preferences */
@@ -1382,7 +1379,7 @@
 /* (No Comment) */
 "Video error" = "Video-fel";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "View" = "Visa";
 
 /* (No Comment) */

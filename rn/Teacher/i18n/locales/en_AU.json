@@ -530,8 +530,8 @@
   "error_98e81528": {
     "message": "Error"
   },
-  "error_saving_grade_ef8d2ddc": {
-    "message": "Error saving grade"
+  "error_saving_grade_367dd920": {
+    "message": "Error Saving Grade"
   },
   "everyone_854554dd": {
     "message": "Everyone"
@@ -1028,9 +1028,6 @@
   "previewing_this_file_type_is_not_supported_7df9231": {
     "message": "Previewing this file type is not supported"
   },
-  "profile_6bd2baed": {
-    "message": "Profile"
-  },
   "profile_menu_a688027e": {
     "message": "Profile Menu"
   },
@@ -1138,9 +1135,6 @@
   },
   "schedule_student_availability_332154a": {
     "message": "Schedule student availability"
-  },
-  "show_grades_8680e38e": {
-    "message": "Show Grades"
   },
   "score_number_pointspossible_number_fd8705b8": {
     "message": "{ score, number }/{ pointsPossible, number }"
@@ -1316,9 +1310,6 @@
   "the_value_of_possible_points_must_be_zero_or_great_374e175a": {
     "message": "The value of possible points must be zero or greater"
   },
-  "the_was_a_problem_saving_the_grade_please_try_agai_2aefe6a8": {
-    "message": "The was a problem saving the grade. Please try again."
-  },
   "there_are_no_announcements_to_display_a91880": {
     "message": "There are no announcements to display."
   },
@@ -1366,6 +1357,9 @@
   },
   "there_was_a_problem_retreiving_the_terms_of_use_3a5fa00c": {
     "message": "There was a problem retrieving the Terms Of Use"
+  },
+  "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
+    "message": "There was a problem saving the grade. Please try again."
   },
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "There was an error loading the attachment."

@@ -1,5 +1,3 @@
-"Inbox" = "Innboks";
-
 /* Error message component with the report id */
 " Error report ID: (reportID)" = " Feilrapporterings-ID (reportID)";
 
@@ -46,8 +44,14 @@
 /* all pages segmented control title */
 "All Pages" = "Alle sider";
 
-/* Title for push notification pre-authorization alert */
-"Allow Push Notifications?" = "Tillate push-varsler?";
+/* No comment provided by engineer. */
+"All notifications are currently disabled." = "Alle varslinger er deaktivert.";
+
+/* No comment provided by engineer. */
+"All notifications are currently enabled." = "Alle varslinger er aktivert.";
+
+/* No comment provided by engineer. */
+"Allow Notifications in Settings" = "Tillat varslinger i innstillinger";
 
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Tillatte forsøk";
@@ -210,9 +214,6 @@
 /* Data encoding error title */
 "Encoding Error" = "Kodefeil";
 
-/* No comment provided by engineer. */
-"End Act as User" = "Avlustt opptre som bruker";
-
 /* Text submission option */
 "Enter Text" = "Skriv inn tekst";
 
@@ -349,9 +350,6 @@
 
 /* Next button for advancing a quiz */
 "Next" = "Neste";
-
-/* Title for no button for push notification pre-authorization alert */
-"No" = "Nei";
 
 /* Alert title when unable to load communication channels */
 "No Communication Channels Found" = "Ingen kommunikasjonskanaler funnet";
@@ -561,9 +559,6 @@
 /* stop recording button a11y label */
 "Stop" = "Stopp";
 
-/* No comment provided by engineer. */
-"Stop acting as..." = "Slutt å opptre som...";
-
 /* File upload was stopped */
 "Stopped" = "Stoppet";
 
@@ -726,7 +721,7 @@
 "Unable to display any notification preferences returned from the server at this time." = "Ikke i stand til å vise noen varslingspreferanser returnert fra serveren på dette tidspunktet.";
 
 /* Alert message when unable to load communication channels */
-"Unable to load any Communication Channels at this time.  Error: (result.error?.localizedDescription)" = "Kan ikke laste inn noen kommunikasjonskanaler for øyeblikket.  Avvik: (resultat.avvik?.localizedDescription)";
+"Unable to load any Communication Channels at this time." = "Kan ikke laste inn noen kommunikasjonskanaler for øyeblikket.";
 
 /* Alert message when unable to load notification preferences */
 "Unable to load any notification preferences at this time.  Error: (result.error?.localizedDescription)" = "Kan ikke laste inn noen varslingsinnstillinger på dette tidspunktet.  Avvik: (resultat.avvik?.localizedDescription)";
@@ -779,14 +774,8 @@
 /* Error message for being unable to update a push notification preference */
 "We were not able to update this value with the server" = "Vi var ikke i stand til å oppdatere denne verdien med serveren";
 
-/* Message for push notification pre-authorization alert */
-"Would you like to allow Canvas to send you important notifications about announcements, course, assignments, etc?" = "Ønsker du å tillate at Canvas sender deg viktige varslinger om kunngjøringer, emne, oppgaver osv?";
-
 /* Yellow course color button */
 "Yellow" = "Gul";
-
-/* Title for yes button for push notification pre-authorization alert */
-"Yes" = "Ja";
 
 /* Description for Yo communication channel */
 "Yo" = "Yo";
@@ -799,12 +788,6 @@
 
 /* permission was rejected */
 "You must grant (appName) Microphone access in the Settings app in order to record audio." = "Du må gi (appName) mikrofontilgang i Innstillinger-appen for å gjøre opptak av lyd.";
-
-/* No comment provided by engineer. */
-"You will stop acting as %@ and return to your account." = "Du vil slutte å opptre som %@ og gå tilbake til din egen konto.";
-
-/* No comment provided by engineer. */
-"You will stop acting as this user and return to your account." = "Du vil slutte å opptre som denne brukeren og gå tilbake til din egen konto.";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "Enheten din har gått tom for lagringsplass. Frigjør plass og prøv igjen.";

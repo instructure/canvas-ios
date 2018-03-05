@@ -530,7 +530,7 @@
   "error_98e81528": {
     "message": "خطأ"
   },
-  "error_saving_grade_ef8d2ddc": {
+  "error_saving_grade_367dd920": {
     "message": "خطأ أثناء حفظ الدرجة"
   },
   "everyone_854554dd": {
@@ -604,9 +604,6 @@
   },
   "filter_submissions_81bc50de": {
     "message": "تصفية الإرسالات"
-  },
-  "show_grades_8680e38e": {
-    "message": "عرض الدرجات"
   },
   "final_grade_4d7f6545": {
     "message": "الدرجة النهائية"
@@ -1031,9 +1028,6 @@
   "previewing_this_file_type_is_not_supported_7df9231": {
     "message": "معاينة نوع الملف هذا غير مدعومة"
   },
-  "profile_6bd2baed": {
-    "message": "ملف التعريف"
-  },
   "profile_menu_a688027e": {
     "message": "قائمة ملف التعريف"
   },
@@ -1316,9 +1310,6 @@
   "the_value_of_possible_points_must_be_zero_or_great_374e175a": {
     "message": "يجب أن تكون قيمة النقاط الممكنة صفر أو أكثر."
   },
-  "the_was_a_problem_saving_the_grade_please_try_agai_2aefe6a8": {
-    "message": "حدثت مشكلة أثناء حفظ الدرجة. يرجى إعادة المحاولة."
-  },
   "there_are_no_announcements_to_display_a91880": {
     "message": "لا توجد أي إعلانات للعرض."
   },
@@ -1366,6 +1357,9 @@
   },
   "there_was_a_problem_retreiving_the_terms_of_use_3a5fa00c": {
     "message": "حدثت مشكلة أثناء استرداد شروط الاستخدام"
+  },
+  "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
+    "message": "حدثت مشكلة أثناء حفظ الدرجة. يرجى إعادة المحاولة."
   },
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "حدث خطأ أثناء تحميل المرفق."

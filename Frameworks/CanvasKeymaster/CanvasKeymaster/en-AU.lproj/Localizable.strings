@@ -28,29 +28,17 @@
 /* No comment provided by engineer. */
 "Emergency" = "Emergency";
 
-/* Text field to enter school domain that user would like the search in Domain Picker View */
-"Enter school domain." = "Enter school domain.";
-
 /* Text view to enter the description of the ticket */
 "Enter ticket description" = "Enter ticket description";
 
 /* Text field to enter subject of the ticket */
 "Enter ticket subject" = "Enter ticket subject";
 
-/* Subtitle help text describing how to find a school. */
-"Enter your school's domain or tap for help." = "Enter your school's domain or tap for help.";
-
 /* No comment provided by engineer. */
 "Extremely critical emergency" = "Extremely critical emergency";
 
-/* No comment provided by engineer. */
-"Find School Domain" = "Find School Domain";
-
 /* Help View Controller Title */
 "Help" = "Help";
-
-/* No comment provided by engineer. */
-"Help Menu" = "Help Menu";
 
 /* No comment provided by engineer. */
 "I am stuck and can't get things done" = "I am stuck and can't get things done";
@@ -76,9 +64,6 @@
 /* No comment provided by engineer. */
 "OK" = "OK";
 
-/* Placeholder for help icon (question mark) on Domain Picker View */
-"Open help menu" = "Open help menu";
-
 /* No comment provided by engineer. */
 "Report a Problem" = "Report a Problem";
 
@@ -87,12 +72,6 @@
 
 /* No comment provided by engineer. */
 "Request a Feature" = "Request a Feature";
-
-/* No comment provided by engineer. */
-"Right Behind You" = "Right Behind You";
-
-/* Placeholder for search button on Domain Picker View */
-"Search for domain." = "Search for domain.";
 
 /* Button to select the severity of the ticket */
 "Select ticket impact level" = "Select ticket impact level";
@@ -108,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Success!" = "Success!";
+
+/* Subtitle help text describing how to find a school. */
+"Tap here for help." = "Tap here for help.";
 
 /* No comment provided by engineer. */
 "Thanks, your request was received!" = "Thanks, your request was received!";

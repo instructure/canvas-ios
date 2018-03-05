@@ -28,29 +28,17 @@
 /* No comment provided by engineer. */
 "Emergency" = "الطوارئ";
 
-/* Text field to enter school domain that user would like the search in Domain Picker View */
-"Enter school domain." = "أدخل مجال المدرسة.";
-
 /* Text view to enter the description of the ticket */
 "Enter ticket description" = "أدخل وصف التذكرة";
 
 /* Text field to enter subject of the ticket */
 "Enter ticket subject" = "أدخل مادة التذكرة";
 
-/* Subtitle help text describing how to find a school. */
-"Enter your school's domain or tap for help." = "أدخل مجال المدرسة الخاص بك أو انقر هنا لطلب المساعدة.";
-
 /* No comment provided by engineer. */
 "Extremely critical emergency" = "حالة طارئة حرجة للغاية";
 
-/* No comment provided by engineer. */
-"Find School Domain" = "العثور على مجال المدرسة";
-
 /* Help View Controller Title */
 "Help" = "مساعدة";
-
-/* No comment provided by engineer. */
-"Help Menu" = "قائمة المساعدة";
 
 /* No comment provided by engineer. */
 "I am stuck and can't get things done" = "أنا عالق وليس بمقدوري أن أنجز المطلوب";
@@ -76,23 +64,14 @@
 /* No comment provided by engineer. */
 "OK" = "موافق";
 
-/* Placeholder for help icon (question mark) on Domain Picker View */
-"Open help menu" = "فتح قائمة المساعدة";
-
 /* No comment provided by engineer. */
-"Report a Problem" = "الإبلاغ عن مشكلة";
+"Report a Problem" = "إبلاغ عن مشكلة";
 
 /* No comment provided by engineer. */
 "Request Failed!" = "فشل الطلب!";
 
 /* No comment provided by engineer. */
 "Request a Feature" = "طلب ميزة";
-
-/* No comment provided by engineer. */
-"Right Behind You" = "خلفك تمامًا";
-
-/* Placeholder for search button on Domain Picker View */
-"Search for domain." = "البحث عن مجال.";
 
 /* Button to select the severity of the ticket */
 "Select ticket impact level" = "تحديد مستوى تأثير التذكرة";
@@ -108,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Success!" = "نجاح!";
+
+/* Subtitle help text describing how to find a school. */
+"Tap here for help." = "اضغط هنا للحصول على المساعدة.";
 
 /* No comment provided by engineer. */
 "Thanks, your request was received!" = "شكراً، تم استلام طلبك!";

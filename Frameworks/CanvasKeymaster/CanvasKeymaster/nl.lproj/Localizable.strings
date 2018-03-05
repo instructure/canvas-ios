@@ -28,29 +28,17 @@
 /* No comment provided by engineer. */
 "Emergency" = "Noodgeval";
 
-/* Text field to enter school domain that user would like the search in Domain Picker View */
-"Enter school domain." = "Voer schooldomein in.";
-
 /* Text view to enter the description of the ticket */
 "Enter ticket description" = "Voer ticketbeschrijving in";
 
 /* Text field to enter subject of the ticket */
 "Enter ticket subject" = "Voer ticketonderwerp in";
 
-/* Subtitle help text describing how to find a school. */
-"Enter your school's domain or tap for help." = "Voer het domein van je school in of tik voor Help.";
-
 /* No comment provided by engineer. */
 "Extremely critical emergency" = "Extreem noodgeval";
 
-/* No comment provided by engineer. */
-"Find School Domain" = "Schooldomein zoeken";
-
 /* Help View Controller Title */
 "Help" = "Help";
-
-/* No comment provided by engineer. */
-"Help Menu" = "Help-menu";
 
 /* No comment provided by engineer. */
 "I am stuck and can't get things done" = "Ik zit vast en kom niet verder";
@@ -76,9 +64,6 @@
 /* No comment provided by engineer. */
 "OK" = "OK";
 
-/* Placeholder for help icon (question mark) on Domain Picker View */
-"Open help menu" = "Help-menu openen";
-
 /* No comment provided by engineer. */
 "Report a Problem" = "Een probleem melden";
 
@@ -87,12 +72,6 @@
 
 /* No comment provided by engineer. */
 "Request a Feature" = "Een functie aanvragen";
-
-/* No comment provided by engineer. */
-"Right Behind You" = "Vlak achter je";
-
-/* Placeholder for search button on Domain Picker View */
-"Search for domain." = "Zoek naar domein.";
 
 /* Button to select the severity of the ticket */
 "Select ticket impact level" = "Selecteer impactniveau van ticket";
@@ -108,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Success!" = "Succes!";
+
+/* Subtitle help text describing how to find a school. */
+"Tap here for help." = "Tik hier voor hulp.";
 
 /* No comment provided by engineer. */
 "Thanks, your request was received!" = "Dank je, je verzoek is ontvangen!";

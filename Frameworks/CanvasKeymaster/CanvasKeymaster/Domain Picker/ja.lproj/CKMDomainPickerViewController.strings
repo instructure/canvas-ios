@@ -1,18 +1,39 @@
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "0bi-h7-8TR"; */
+"0bi-h7-8TR.text" = "サブタイトル";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "7VQ-qv-Wtk"; */
+"7VQ-qv-Wtk.text" = "タイトル";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "7tl-s1-0wg"; */
 "7tl-s1-0wg.text" = "ラベル";
 
-/* Class = "UILabel"; text = "Canvas Login On"; ObjectID = "BD1-jZ-xPz"; */
-"BD1-jZ-xPz.text" = "キャンバスログイン";
+/* Class = "UILabel"; text = "Canvas Login"; ObjectID = "7yY-o5-DSG"; */
+"7yY-o5-DSG.text" = "キャンバスログイン";
+
+/* Class = "UILabel"; text = "Previous Logins"; ObjectID = "Kpj-4f-cdc"; */
+"Kpj-4f-cdc.text" = "以前のログイン";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "UqJ-Ob-4nT"; */
 "UqJ-Ob-4nT.text" = "ラベル";
 
-/* Class = "UITextField"; placeholder = "Find your school or district"; ObjectID = "W9p-nq-GlV"; */
-"W9p-nq-GlV.placeholder" = "学校または学区を探す";
+/* Class = "UIButton"; accessibilityLabel = "cancel"; ObjectID = "aHi-ya-AL9"; */
+"aHi-ya-AL9.accessibilityLabel" = "キャンセル";
+
+/* Class = "UIButton"; normalTitle = "Canvas Network"; ObjectID = "eln-Wg-hVk"; */
+"eln-Wg-hVk.normalTitle" = "Canvas Network";
+
+/* Class = "UILabel"; text = "What's your school's name?"; ObjectID = "hXv-Vt-Lud"; */
+"hXv-Vt-Lud.text" = "学校の名前は？";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "jsr-jq-3y0"; */
 "jsr-jq-3y0.text" = "タイトル";
 
 /* Class = "UILabel"; text = "Subtitle"; ObjectID = "nTZ-ii-mqn"; */
 "nTZ-ii-mqn.text" = "サブタイトル";
+
+/* Class = "UITextField"; placeholder = "school.instructure.com"; ObjectID = "xzj-lX-iaI"; */
+"xzj-lX-iaI.placeholder" = "school.instructure.com";
+
+/* Class = "UIButton"; normalTitle = "Find my school"; ObjectID = "zQQ-hy-gpK"; */
+"zQQ-hy-gpK.normalTitle" = "私の学校を探す";
 

@@ -1,18 +1,39 @@
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "0bi-h7-8TR"; */
+"0bi-h7-8TR.text" = "Taitararoto";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "7VQ-qv-Wtk"; */
+"7VQ-qv-Wtk.text" = "taitara";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "7tl-s1-0wg"; */
 "7tl-s1-0wg.text" = "tapanga";
 
-/* Class = "UILabel"; text = "Canvas Login On"; ObjectID = "BD1-jZ-xPz"; */
-"BD1-jZ-xPz.text" = "Canvas Takiuru Urunga";
+/* Class = "UILabel"; text = "Canvas Login"; ObjectID = "7yY-o5-DSG"; */
+"7yY-o5-DSG.text" = "Canvas Takiuru";
+
+/* Class = "UILabel"; text = "Previous Logins"; ObjectID = "Kpj-4f-cdc"; */
+"Kpj-4f-cdc.text" = "Ngā takiurunga o mua";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "UqJ-Ob-4nT"; */
 "UqJ-Ob-4nT.text" = "tapanga";
 
-/* Class = "UITextField"; placeholder = "Find your school or district"; ObjectID = "W9p-nq-GlV"; */
-"W9p-nq-GlV.placeholder" = "Kimihia koutou kura takiwa ranei";
+/* Class = "UIButton"; accessibilityLabel = "cancel"; ObjectID = "aHi-ya-AL9"; */
+"aHi-ya-AL9.accessibilityLabel" = "whakakore";
+
+/* Class = "UIButton"; normalTitle = "Canvas Network"; ObjectID = "eln-Wg-hVk"; */
+"eln-Wg-hVk.normalTitle" = "Canvas Network";
+
+/* Class = "UILabel"; text = "What's your school's name?"; ObjectID = "hXv-Vt-Lud"; */
+"hXv-Vt-Lud.text" = "He aha te ingoa ō tō kura?";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "jsr-jq-3y0"; */
 "jsr-jq-3y0.text" = "taitara";
 
 /* Class = "UILabel"; text = "Subtitle"; ObjectID = "nTZ-ii-mqn"; */
 "nTZ-ii-mqn.text" = "Taitararoto";
+
+/* Class = "UITextField"; placeholder = "school.instructure.com"; ObjectID = "xzj-lX-iaI"; */
+"xzj-lX-iaI.placeholder" = "school.instructure.com";
+
+/* Class = "UIButton"; normalTitle = "Find my school"; ObjectID = "zQQ-hy-gpK"; */
+"zQQ-hy-gpK.normalTitle" = "Kimihia taku kura";
 

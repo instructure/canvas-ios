@@ -85,9 +85,6 @@
 /* No comment provided by engineer. */
 "Note: Media files are not immediately available for playback while they are processed on the server." = "Fichye medya yo pa disponib pou jwe nan moman y ap transfere sou sèvè a.";
 
-/* No comment provided by engineer. */
-"OK" = "OK";
-
 /* Short name for observer enrollment */
 "Observer" = "Obsèvatè";
 
@@ -150,9 +147,6 @@
 
 /* Media type is video */
 "Video" = "Videyo";
-
-/* No comment provided by engineer. */
-"Video error" = "Erè Videyo";
 
 /* No comment provided by engineer. */
 "Warning" = "Avètisman";

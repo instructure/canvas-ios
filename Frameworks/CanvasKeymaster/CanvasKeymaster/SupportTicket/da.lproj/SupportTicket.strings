@@ -35,7 +35,7 @@
 "noj-Yi-xpa.text" = "Noget virker ikke, men jeg kan klare mig";
 
 /* Class = "UINavigationItem"; title = "Report a Problem"; ObjectID = "vMz-Cg-DUM"; */
-"vMz-Cg-DUM.title" = "Rapporter et problem";
+"vMz-Cg-DUM.title" = "Indberet et problem";
 
 /* Class = "UILabel"; text = "Extremely critical emergency"; ObjectID = "wHQ-Tn-kQn"; */
 "wHQ-Tn-kQn.text" = "Ekstrem kritisk nødsituation";

@@ -28,29 +28,17 @@
 /* No comment provided by engineer. */
 "Emergency" = "Urgence";
 
-/* Text field to enter school domain that user would like the search in Domain Picker View */
-"Enter school domain." = "Saisir le domaine scolaire.";
-
 /* Text view to enter the description of the ticket */
 "Enter ticket description" = "Saisir la description du ticket";
 
 /* Text field to enter subject of the ticket */
 "Enter ticket subject" = "Saisir l'objet du ticket";
 
-/* Subtitle help text describing how to find a school. */
-"Enter your school's domain or tap for help." = "Saisir le domaine de votre école ou appuyez pour obtenir de l'aide.";
-
 /* No comment provided by engineer. */
 "Extremely critical emergency" = "État d'urgence extrêmement critique";
 
-/* No comment provided by engineer. */
-"Find School Domain" = "Trouver le domaine scolaire.";
-
 /* Help View Controller Title */
 "Help" = "Aide";
-
-/* No comment provided by engineer. */
-"Help Menu" = "Menu d'aide";
 
 /* No comment provided by engineer. */
 "I am stuck and can't get things done" = "Je suis bloqué et ne peux pas faire avancer les choses";
@@ -76,9 +64,6 @@
 /* No comment provided by engineer. */
 "OK" = "OK";
 
-/* Placeholder for help icon (question mark) on Domain Picker View */
-"Open help menu" = "Ouvrir le menu d'aide";
-
 /* No comment provided by engineer. */
 "Report a Problem" = "Signaler un problème";
 
@@ -87,12 +72,6 @@
 
 /* No comment provided by engineer. */
 "Request a Feature" = "Demander une fonctionnalité";
-
-/* No comment provided by engineer. */
-"Right Behind You" = "Juste derrière vous";
-
-/* Placeholder for search button on Domain Picker View */
-"Search for domain." = "Recherche de domaine.";
 
 /* Button to select the severity of the ticket */
 "Select ticket impact level" = "Sélectionner le niveau d'impact du ticket";
@@ -108,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Success!" = "Succès !";
+
+/* Subtitle help text describing how to find a school. */
+"Tap here for help." = "Appuyez ici pour obtenir de l’aide.";
 
 /* No comment provided by engineer. */
 "Thanks, your request was received!" = "Merci, votre requête a bien été reçue !";

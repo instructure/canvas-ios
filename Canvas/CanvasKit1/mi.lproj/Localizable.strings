@@ -85,9 +85,6 @@
 /* No comment provided by engineer. */
 "Note: Media files are not immediately available for playback while they are processed on the server." = "Mōhio: e kore e tonu e wātea ana ngā kōnae pāpāho mō te purei ia e tukatuka ratou i runga i te tūmau.";
 
-/* No comment provided by engineer. */
-"OK" = "OK";
-
 /* Short name for observer enrollment */
 "Observer" = "Kaimātakitaki";
 
@@ -150,9 +147,6 @@
 
 /* Media type is video */
 "Video" = "Ataata";
-
-/* No comment provided by engineer. */
-"Video error" = "hapa ataata";
 
 /* No comment provided by engineer. */
 "Warning" = "Whakatūpato";

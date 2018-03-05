@@ -28,29 +28,17 @@
 /* No comment provided by engineer. */
 "Emergency" = "Ijans";
 
-/* Text field to enter school domain that user would like the search in Domain Picker View */
-"Enter school domain." = "Antre domèn lekòl la.";
-
 /* Text view to enter the description of the ticket */
 "Enter ticket description" = "Antre deskripsyon tikè";
 
 /* Text field to enter subject of the ticket */
 "Enter ticket subject" = "Antre sijè tikè";
 
-/* Subtitle help text describing how to find a school. */
-"Enter your school's domain or tap for help." = "Antre domèn lekòl ou a oswa tape pou jwenn èd.";
-
 /* No comment provided by engineer. */
 "Extremely critical emergency" = "Ijans Trè Kritik";
 
-/* No comment provided by engineer. */
-"Find School Domain" = "Jwenn Domèn Lekòl";
-
 /* Help View Controller Title */
 "Help" = "Èd";
-
-/* No comment provided by engineer. */
-"Help Menu" = "Meni Èd";
 
 /* No comment provided by engineer. */
 "I am stuck and can't get things done" = "Mwen kolo e mwen paka fè bagay yo";
@@ -76,9 +64,6 @@
 /* No comment provided by engineer. */
 "OK" = "DAKO";
 
-/* Placeholder for help icon (question mark) on Domain Picker View */
-"Open help menu" = "Ouvri meni èd";
-
 /* No comment provided by engineer. */
 "Report a Problem" = "Rapòte yon Pwoblèm";
 
@@ -87,12 +72,6 @@
 
 /* No comment provided by engineer. */
 "Request a Feature" = "Mande yon Fonksyon";
-
-/* No comment provided by engineer. */
-"Right Behind You" = "Devan w Lan La a";
-
-/* Placeholder for search button on Domain Picker View */
-"Search for domain." = "Chèche domèn.";
 
 /* Button to select the severity of the ticket */
 "Select ticket impact level" = "Seleksyone nivo enpak tikè";
@@ -108,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Success!" = "Reyisi!";
+
+/* Subtitle help text describing how to find a school. */
+"Tap here for help." = "Tape la pou èd.";
 
 /* No comment provided by engineer. */
 "Thanks, your request was received!" = "Mèsi, nou resevwa demann ou an!";

@@ -205,9 +205,6 @@
 /* (No Comment) */
 "All members" = "すべてのメンバー";
 
-/* Allow Notifications in Settings */
-"Allow Notifications in Settings" = "通知の設定を許可";
-
 /* (No Comment) */
 "An unknown error occurred" = "不明なエラーが発生しました";
 
@@ -501,7 +498,7 @@
 /* (No Comment) */
 "Email" = "Eメール";
 
-/* Prompt asking user to enable push notifications */
+/* (No Comment) */
 "Enable Push Notifications" = "プッシュ通知を有効にする";
 
 /* (No Comment) */
@@ -675,7 +672,7 @@
 /* (No Comment) */
 "Large file" = "大きなファイル";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Later" = "後で";
 
 /* (No Comment) */
@@ -870,7 +867,7 @@
 /* Nothing to see here. */
 "Nothing to see here." = "ここには見るものが何もありません。";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Notification" = "通知";
 
 /* Settings entry title for Notification Preferences */
@@ -1382,7 +1379,7 @@
 /* (No Comment) */
 "Video error" = "動画のエラー";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "View" = "表示";
 
 /* (No Comment) */

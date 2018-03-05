@@ -67,7 +67,7 @@
 /* Message for unsupported tab */
 "%@ is not currently supported." = "%@ غير مدعوم حالياً.";
 
-/* Description for how many times a specific discussion has been liked by other users */
+/* (No Comment) */
 "%@ likes" = "%@ إعجاب/إعجابات";
 
 /* (No Comment) */
@@ -97,10 +97,10 @@
 /* In the context 'Joe, Fred, ((25 more))' */
 "%d more" = "%d أكثر";
 
-/* Something like '5 replies' */
+/* (No Comment) */
 "%d replies" = "%d رد/ردود";
 
-/* Something like '3 unread'. Refers to unread replies in a discsusion. */
+/* (No Comment) */
 "%d unread" = "%d غير مقروءة";
 
 /* (No Comment) */
@@ -157,7 +157,7 @@
 /* Number of files/folders inside a folder. (Only used when there is exactly 1 item. */
 "1 item" = "عنصر واحد";
 
-/* Description for a post that has been liked once */
+/* (No Comment) */
 "1 like" = "إعجاب واحد";
 
 /* (No Comment) */
@@ -208,7 +208,7 @@
 /* Button title for adding a folder to a folder */
 "Add folder" = "إضافة مجلد";
 
-/* Title on the add-inline-media sheet */
+/* (No Comment) */
 "Add inline media" = "إضافة وسط مضمن";
 
 /* (No Comment) */
@@ -220,10 +220,10 @@
 /* (No Comment) */
 "An unknown error occurred" = "حدث خطأ غير معروف";
 
-/* Title of the new announcement view */
+/* (No Comment) */
 "Announcement" = "إعلان";
 
-/* Title for the announcements view controller */
+/* (No Comment) */
 "Announcements" = "إعلانات";
 
 /* Assignment submission type for selecting an Arc video */
@@ -295,7 +295,8 @@
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "لا يمكن إرسال الوسط";
 
-/* Cancel button title
+/* Button to cancel deleting folders
+   Cancel button title
    Cancel button title to cancel submitting an Arc video as an assignment submission */
 "Cancel" = "إلغاء";
 
@@ -347,7 +348,7 @@
 /* Close the window */
 "Close" = "إغلاق";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Closed for Comments" = "التعليقات مغلقة";
 
 /* Title for Collaborations tab */
@@ -362,7 +363,7 @@
 /* (No Comment) */
 "Comments" = "التعليقات";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Comments are disabled" = "التعليقات معطلة";
 
 /* (No Comment) */
@@ -383,7 +384,7 @@
 /* Confirm an arc video submission for an assignment */
 "Confirm Submission" = "تأكيد الإرسال";
 
-/* Alert title */
+/* (No Comment) */
 "Confirm deletion" = "تأكيد الحذف";
 
 /* Button title for selecting to continue on to quiz. The will appear in the alert view notfifying the user of mobile quiz limitations. */
@@ -426,7 +427,7 @@
 /* Button for deleting files or folders. %d will be the number of selected items */
 "Delete (%d)" = "حذف (%d)";
 
-/* Alert message */
+/* (No Comment) */
 "Delete this reply?" = "حذف هذه الإجابة؟";
 
 /* delete file confirmation alert */
@@ -438,7 +439,7 @@
 /* No comment provided by engineer. */
 "Detail" = "تفصيل";
 
-/* Placeholder text for discussion details field */
+/* (No Comment) */
 "Details" = "التفاصيل";
 
 /* (No Comment) */
@@ -447,16 +448,16 @@
 /* (No Comment) */
 "Discard this entry?" = "تجاهل هذا الإدخال؟";
 
-/* Title of the new discussion view */
+/* (No Comment) */
 "Discussion" = "مناقشة";
 
 /* Title for discussion entry submission */
 "Discussion Entry" = "إدخال المناقشة";
 
-/* Title for Discussion Topics view controller */
+/* (No Comment) */
 "Discussion Topics" = "مواضيع المناقشة";
 
-/* Title for Discussions view controller */
+/* (No Comment) */
 "Discussions" = "مناقشات";
 
 /* Dismiss button title
@@ -496,7 +497,7 @@
 /* Link to the End User License Agreement document */
 "EULA" = "اتفاقية ترخيص المستخدم";
 
-/* Button to edit a discussion entry */
+/* (No Comment) */
 "Edit" = "تحرير";
 
 /* (No Comment) */
@@ -511,9 +512,6 @@
 /* (No Comment) */
 "Editing reply by %1$@, %2$@" = "تحرير الأجوبة حسب %1$@ و%2$@";
 
-/* Header when editing a discussion entry with name and timestamp */
-"Editing reply by %@, %@" = "تحرير الأجوبة حسب %1$@ و%2$@";
-
 /* the users email */
 "Email" = "البريد الإلكتروني";
 
@@ -526,7 +524,7 @@
 /* Submission input view placeholder text */
 "Enter submission" = "إدخال الإرسال";
 
-/* Confirmation message after posting a discussion entry */
+/* (No Comment) */
 "Entry posted" = "تم نشر الإدخال";
 
 /* Title for an error popup */
@@ -625,10 +623,10 @@
 /* (No Comment) */
 "Graded Discussion" = "مناقشة مقيمة";
 
-/* Lets user know discussion is graded */
+/* (No Comment) */
 "Graded discussion." = "مناقشة مقيمة.";
 
-/* Graded discussion. 25 points possible */
+/* (No Comment) */
 "Graded discussion. %g points possible." = "مناقشة مقيمة. %g نقطة ممكنة.";
 
 /* (No Comment) */
@@ -670,7 +668,7 @@
 /* (No Comment) */
 "Individual messages" = "رسائل فردية";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Invalid URL" = "عنوان URL غير صالح";
 
 /* (No Comment) */
@@ -817,7 +815,7 @@
 /* No comment provided by engineer. */
 "Next item" = "العنصر التالي";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "No" = "لا";
 
 /* No comment provided by engineer. */
@@ -860,7 +858,7 @@
 /* (No Comment) */
 "Not Complete" = "غير مكتمل";
 
-/* Accessibility label for points out of points possible label when points are not availiable. */
+/* No comment provided by engineer. */
 "Not available" = "غير متوفر";
 
 /* (No Comment) */
@@ -887,7 +885,7 @@
 /* (No Comment) */
 "Notifications" = "الإخطارات";
 
-/* OK Button Title */
+/* No comment provided by engineer. */
 "OK" = "موافق";
 
 /* No comment provided by engineer. */
@@ -917,7 +915,7 @@
 /* No comment provided by engineer. */
 "Other" = "أخرى";
 
-/* A message indicating that the user cannot see other people's replies until the user has first posted a reply of their own. Only one line of text, so as concise as possible. */
+/* (No Comment) */
 "Other replies hidden until you reply" = "إخفاء الأجوبة الأخرى حتى تجيب";
 
 /* Title for Outcomes tab */
@@ -932,7 +930,7 @@
 /* Title for the people view */
 "People" = "الأشخاص";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Pinned Discussions" = "مناقشات مثبّتة";
 
 /* (No Comment) */
@@ -941,7 +939,7 @@
 /* Network error message */
 "Please check your network connection and try again." = "يرجى التحقق من اتصال الشبكة وإعادة المحاولة.";
 
-/* Button to post new discussion topic */
+/* No comment provided by engineer. */
 "Post" = "نشر";
 
 /* (No Comment) */
@@ -950,7 +948,7 @@
 /* No comment provided by engineer. */
 "Post comment" = "نشر تعليق";
 
-/* Message shown while posting a discussion entry */
+/* (No Comment) */
 "Posting…" = "جارٍ النشر...";
 
 /* (No Comment) */
@@ -1028,7 +1026,7 @@
 /* (No Comment) */
 "Rubric" = "جدول الدرجات";
 
-/* No comment provided by engineer. */
+/* Title for button confirming showing a file */
 "Save" = "حفظ";
 
 /* Title for Assignment Notifications Sheet */
@@ -1238,7 +1236,7 @@
 /* Error message for refresh failing with an unauthorized code */
 "This can happen if your course hasn't started yet or you don't have permission to access this page." = "يمكن حدوث هذا إذا لم يكن مساقك قد بدأ بعد أو كنت لا تمتلك إذن الوصول إلى هذه الصفحة.";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "This entry has been deleted" = "تم حذف هذا الإدخال";
 
 /* Text indicating a file cannot be previewed */
@@ -1255,12 +1253,6 @@
 
 /* (No Comment) */
 "This would be a great time to do some extra credit." = "قد يكون الوقت مناسبًا للقيام بأعمال إضافية.";
-
-/* Threaded switch label to to make discussion threaded */
-"Threaded" = "مرتبطة";
-
-/* Discussion title placeholder */
-"Title" = "العنوان";
 
 /* (No Comment) */
 "To Do" = "ما يجب القيام به";
@@ -1295,14 +1287,8 @@
 /* Error title */
 "Unable to load" = "التحميل غير ممكن";
 
-/* Error message without retry */
-"Unable to post." = "النشر غير ممكن.";
-
 /* (No Comment) */
 "Unable to post. Please try again later" = "النشر غير ممكن. يرجى إعادة المحاولة لاحقاً";
-
-/* Error message */
-"Unable to post. Please try again later." = "النشر غير ممكن. الرجاء إعادة المحاولة لاحقًا.";
 
 /* message saying that avatar couldn't be loaded to server */
 "Unable to upload to server" = "التحميل على الخادم غير ممكن";
@@ -1322,7 +1308,7 @@
 /* (No Comment) */
 "Unread" = "غير مقروء";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Unsaved Reply" = "جواب غير محفوظ";
 
 /* Button title for uploading a file */
@@ -1382,7 +1368,7 @@
 /* Error Title */
 "Whoops!" = "أوبس!";
 
-/* unlock date for discussion/announcement */
+/* (No Comment) */
 "Will unlock %@." = "تاريخ إلغاء التأمين %@.";
 
 /* (No Comment) */
@@ -1394,7 +1380,7 @@
 /* (No Comment) */
 "Would you mind letting us know the problems you have been having with the app?" = "هل يمكنك إخبارنا بالمشاكل التي واجهتها مع التطبيق؟";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Yes" = "نعم";
 
 /* (No Comment) */
@@ -1409,13 +1395,13 @@
 /* (No Comment) */
 "You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "لا يمكنك الوصول إلى هذا المحتوى. من الممكن أن هذا المساق أو المجموعة لم يبدأ بعد أو انتهى. ";
 
-/* Error message */
+/* (No Comment) */
 "You do not have permission to delete this reply" = "غير مسموح لك بحذف هذا الملف";
 
 /* Masquerade error message */
 "You don't have permission to masquerade as this user or there is no user with that ID" = "التخفي بصفة هذا المستخدم غير مسموح لك أو لا يوجد مستخدم بهذا المعرف";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "You have an unsaved reply. Would you like to discard that reply?" = "لديك جواب غير محفوظ. هل تريد تجاهل هذا الجواب؟";
 
 /* An explanation of how to transfer files to the Canvas app. */
@@ -1424,7 +1410,7 @@
 /* (No Comment) */
 "You must first complete:" = "يجب أن تكمل أولاً:";
 
-/* Error message */
+/* (No Comment) */
 "You need a title and a description to post" = "تحتاج لعنوان ووصف للنشر";
 
 /* (No Comment) */
@@ -1442,7 +1428,7 @@
 /* (No Comment) */
 "moments ago" = "منذ لحظة";
 
-/* Accessibility label modifier for point out of point possible */
+/* No comment provided by engineer. */
 "out of" = "من بين";
 
 /* (No Comment) */

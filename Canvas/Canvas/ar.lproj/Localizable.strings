@@ -205,9 +205,6 @@
 /* (No Comment) */
 "All members" = "كل الأعضاء";
 
-/* Allow Notifications in Settings */
-"Allow Notifications in Settings" = "السماح بالإخطارات في الإعدادات";
-
 /* (No Comment) */
 "An unknown error occurred" = "حدث خطأ غير معروف";
 
@@ -501,7 +498,7 @@
 /* (No Comment) */
 "Email" = "البريد الإلكتروني";
 
-/* Prompt asking user to enable push notifications */
+/* (No Comment) */
 "Enable Push Notifications" = "تمكين إرسال الإخطارات";
 
 /* (No Comment) */
@@ -675,7 +672,7 @@
 /* (No Comment) */
 "Large file" = "ملف كبير الحجم";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Later" = "فيما بعد";
 
 /* (No Comment) */
@@ -870,7 +867,7 @@
 /* Nothing to see here. */
 "Nothing to see here." = "لا شيء لرؤيته هنا.";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Notification" = "الإخطار";
 
 /* Settings entry title for Notification Preferences */
@@ -1382,7 +1379,7 @@
 /* (No Comment) */
 "Video error" = "خطأ في الفيديو";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "View" = "عرض";
 
 /* (No Comment) */

@@ -530,8 +530,8 @@
   "error_98e81528": {
     "message": "Fejl"
   },
-  "error_saving_grade_ef8d2ddc": {
-    "message": "Fejl ved gemning af karakter"
+  "error_saving_grade_367dd920": {
+    "message": "Fejl ved lagring af karakter"
   },
   "everyone_854554dd": {
     "message": "Alle"
@@ -604,9 +604,6 @@
   },
   "filter_submissions_81bc50de": {
     "message": "Filtrer afleveringer"
-  },
-  "show_grades_8680e38e": {
-    "message": "Vis karakterer"
   },
   "final_grade_4d7f6545": {
     "message": "Endelig karakter"
@@ -1031,9 +1028,6 @@
   "previewing_this_file_type_is_not_supported_7df9231": {
     "message": "Forhåndsvisning af denne filtype understøttes ikke"
   },
-  "profile_6bd2baed": {
-    "message": "Profil"
-  },
   "profile_menu_a688027e": {
     "message": "Profilmenu"
   },
@@ -1316,9 +1310,6 @@
   "the_value_of_possible_points_must_be_zero_or_great_374e175a": {
     "message": "Værdien af ​​mulige point skal være nul eller større"
   },
-  "the_was_a_problem_saving_the_grade_please_try_agai_2aefe6a8": {
-    "message": "Der opstod et problem ved lagring af karakteren Prøv igen."
-  },
   "there_are_no_announcements_to_display_a91880": {
     "message": "Der er ikke nogen beskeder at vise."
   },
@@ -1366,6 +1357,9 @@
   },
   "there_was_a_problem_retreiving_the_terms_of_use_3a5fa00c": {
     "message": "Der opstod et problem ved hentning af Betingelser for brug"
+  },
+  "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
+    "message": "Der opstod et problem ved lagring af karakteren. Prøv igen."
   },
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "Der opstod en fejl under indlæsning af den vedhæftede fil."

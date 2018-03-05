@@ -530,8 +530,8 @@
   "error_98e81528": {
     "message": "Erè"
   },
-  "error_saving_grade_ef8d2ddc": {
-    "message": "Erè nan sovgad nòt"
+  "error_saving_grade_367dd920": {
+    "message": "Erè Anrejistreman Nòt"
   },
   "everyone_854554dd": {
     "message": "Tout Moun"
@@ -610,9 +610,6 @@
   },
   "for_974cbb84": {
     "message": "Pou"
-  },
-  "show_grades_8680e38e": {
-    "message": "Afiche Klas"
   },
   "for_e3490d05": {
     "message": "Pou:"
@@ -1031,9 +1028,6 @@
   "previewing_this_file_type_is_not_supported_7df9231": {
     "message": "Apèsi fichye sa a pa sipòte"
   },
-  "profile_6bd2baed": {
-    "message": "Pwofil"
-  },
   "profile_menu_a688027e": {
     "message": "Meni Pwofil"
   },
@@ -1316,9 +1310,6 @@
   "the_value_of_possible_points_must_be_zero_or_great_374e175a": {
     "message": "Valè pwen posib yo dwe siperyè ou egal a zewo"
   },
-  "the_was_a_problem_saving_the_grade_please_try_agai_2aefe6a8": {
-    "message": "Te gen erè nan sovgad nòt la. Tanpri eseye ankò."
-  },
   "there_are_no_announcements_to_display_a91880": {
     "message": "Pa gen anons pou afiche."
   },
@@ -1366,6 +1357,9 @@
   },
   "there_was_a_problem_retreiving_the_terms_of_use_3a5fa00c": {
     "message": "Te gen yon pwoblèm pou jwenn Kondisyon Itilizasyon yo"
+  },
+  "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
+    "message": "Te gen yon pwoblèm pou anrejistre nòt la. Tanpri eseye ankò."
   },
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "Te gen erè nan chajman atachman an."

@@ -205,9 +205,6 @@
 /* (No Comment) */
 "All members" = "Tous les membres";
 
-/* Allow Notifications in Settings */
-"Allow Notifications in Settings" = "Autoriser les notifications dans les paramètres";
-
 /* (No Comment) */
 "An unknown error occurred" = "Un erreur inconnue s'est produite";
 
@@ -501,7 +498,7 @@
 /* (No Comment) */
 "Email" = "Courriel";
 
-/* Prompt asking user to enable push notifications */
+/* (No Comment) */
 "Enable Push Notifications" = "Activer les notifications Push";
 
 /* (No Comment) */
@@ -675,7 +672,7 @@
 /* (No Comment) */
 "Large file" = "Fichier volumineux";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Later" = "Plus tard";
 
 /* (No Comment) */
@@ -870,7 +867,7 @@
 /* Nothing to see here. */
 "Nothing to see here." = "Rien à voir ici.";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Notification" = "Notification";
 
 /* Settings entry title for Notification Preferences */
@@ -1382,7 +1379,7 @@
 /* (No Comment) */
 "Video error" = "Erreur du fichier vidéo";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "View" = "Voir";
 
 /* (No Comment) */

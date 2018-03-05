@@ -28,29 +28,17 @@
 /* No comment provided by engineer. */
 "Emergency" = "Emergência";
 
-/* Text field to enter school domain that user would like the search in Domain Picker View */
-"Enter school domain." = "Insira o domínio da escola.";
-
 /* Text view to enter the description of the ticket */
 "Enter ticket description" = "Insira a descrição do bilhete";
 
 /* Text field to enter subject of the ticket */
 "Enter ticket subject" = "Insira o assunto do bilhete";
 
-/* Subtitle help text describing how to find a school. */
-"Enter your school's domain or tap for help." = "Insira o domínio da sua escola ou toque para obter ajuda.";
-
 /* No comment provided by engineer. */
 "Extremely critical emergency" = "Emergência extremamente crítica";
 
-/* No comment provided by engineer. */
-"Find School Domain" = "Encontre o domínio da escola";
-
 /* Help View Controller Title */
 "Help" = "Ajuda";
-
-/* No comment provided by engineer. */
-"Help Menu" = "Menu de Ajuda";
 
 /* No comment provided by engineer. */
 "I am stuck and can't get things done" = "Estou preso e não consigo fazer as coisas";
@@ -76,23 +64,14 @@
 /* No comment provided by engineer. */
 "OK" = "OK";
 
-/* Placeholder for help icon (question mark) on Domain Picker View */
-"Open help menu" = "Abrir menu de ajuda";
-
 /* No comment provided by engineer. */
-"Report a Problem" = "Denunciar um problema";
+"Report a Problem" = "Reportar um problema";
 
 /* No comment provided by engineer. */
 "Request Failed!" = "A solicitação falhou!";
 
 /* No comment provided by engineer. */
 "Request a Feature" = "Solicite um recurso";
-
-/* No comment provided by engineer. */
-"Right Behind You" = "Bem atrás de si";
-
-/* Placeholder for search button on Domain Picker View */
-"Search for domain." = "Pesquise por domínio.";
 
 /* Button to select the severity of the ticket */
 "Select ticket impact level" = "Selecione nível de impacto do bilhete";
@@ -108,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Success!" = "Sucesso!";
+
+/* Subtitle help text describing how to find a school. */
+"Tap here for help." = "Toque aqui para ajuda.";
 
 /* No comment provided by engineer. */
 "Thanks, your request was received!" = "Obrigado, o seu pedido foi recebido!";

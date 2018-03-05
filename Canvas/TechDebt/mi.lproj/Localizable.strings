@@ -67,7 +67,7 @@
 /* Message for unsupported tab */
 "%@ is not currently supported." = "e kore te tautoko %@ tēnei wā.";
 
-/* Description for how many times a specific discussion has been liked by other users */
+/* (No Comment) */
 "%@ likes" = "momo %@";
 
 /* (No Comment) */
@@ -97,10 +97,10 @@
 /* In the context 'Joe, Fred, ((25 more))' */
 "%d more" = "%d atu";
 
-/* Something like '5 replies' */
+/* (No Comment) */
 "%d replies" = "%d whakautu";
 
-/* Something like '3 unread'. Refers to unread replies in a discsusion. */
+/* (No Comment) */
 "%d unread" = "%d pānuihia";
 
 /* (No Comment) */
@@ -157,7 +157,7 @@
 /* Number of files/folders inside a folder. (Only used when there is exactly 1 item. */
 "1 item" = "1 tūemi";
 
-/* Description for a post that has been liked once */
+/* (No Comment) */
 "1 like" = "1 rite";
 
 /* (No Comment) */
@@ -208,7 +208,7 @@
 /* Button title for adding a folder to a folder */
 "Add folder" = "Tāpiri kōpaki";
 
-/* Title on the add-inline-media sheet */
+/* (No Comment) */
 "Add inline media" = "Tāpiri pāpāho rōraina";
 
 /* (No Comment) */
@@ -220,10 +220,10 @@
 /* (No Comment) */
 "An unknown error occurred" = "He hapa tē mōhiotia puta";
 
-/* Title of the new announcement view */
+/* (No Comment) */
 "Announcement" = "Pānuitanga";
 
-/* Title for the announcements view controller */
+/* (No Comment) */
 "Announcements" = "Fanongonongó";
 
 /* Assignment submission type for selecting an Arc video */
@@ -295,7 +295,8 @@
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "Kāore e taea te tuku pāpāho";
 
-/* Cancel button title
+/* Button to cancel deleting folders
+   Cancel button title
    Cancel button title to cancel submitting an Arc video as an assignment submission */
 "Cancel" = "Whakakore";
 
@@ -347,7 +348,7 @@
 /* Close the window */
 "Close" = "Katia";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Closed for Comments" = "Katia hoki Tākupu";
 
 /* Title for Collaborations tab */
@@ -362,7 +363,7 @@
 /* (No Comment) */
 "Comments" = "Tākupu";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Comments are disabled" = "He monokia Tākupu";
 
 /* (No Comment) */
@@ -383,7 +384,7 @@
 /* Confirm an arc video submission for an assignment */
 "Confirm Submission" = "Whakatau Tukunga";
 
-/* Alert title */
+/* (No Comment) */
 "Confirm deletion" = "Whakaūngia te mukunga";
 
 /* Button title for selecting to continue on to quiz. The will appear in the alert view notfifying the user of mobile quiz limitations. */
@@ -426,7 +427,7 @@
 /* Button for deleting files or folders. %d will be the number of selected items */
 "Delete (%d)" = "Mukua (%d)";
 
-/* Alert message */
+/* (No Comment) */
 "Delete this reply?" = "Mukua tenei whakautu?";
 
 /* delete file confirmation alert */
@@ -438,7 +439,7 @@
 /* No comment provided by engineer. */
 "Detail" = "Taipitopito";
 
-/* Placeholder text for discussion details field */
+/* (No Comment) */
 "Details" = "Taipitopito";
 
 /* (No Comment) */
@@ -447,16 +448,16 @@
 /* (No Comment) */
 "Discard this entry?" = "Tūraki tenei tāurunga?";
 
-/* Title of the new discussion view */
+/* (No Comment) */
 "Discussion" = "Aparauraa";
 
 /* Title for discussion entry submission */
 "Discussion Entry" = "Tāurunga Aparauraa";
 
-/* Title for Discussion Topics view controller */
+/* (No Comment) */
 "Discussion Topics" = "kaupapa Aparauraa";
 
-/* Title for Discussions view controller */
+/* (No Comment) */
 "Discussions" = "Kōrero";
 
 /* Dismiss button title
@@ -496,7 +497,7 @@
 /* Link to the End User License Agreement document */
 "EULA" = "EULA";
 
-/* Button to edit a discussion entry */
+/* (No Comment) */
 "Edit" = "Whakatika";
 
 /* (No Comment) */
@@ -511,9 +512,6 @@
 /* (No Comment) */
 "Editing reply by %1$@, %2$@" = "Whakarerekē whakautu e %1$@, %2$@";
 
-/* Header when editing a discussion entry with name and timestamp */
-"Editing reply by %@, %@" = "Whakarerekē whakautu e %1$@, %2$@";
-
 /* the users email */
 "Email" = "Īmēra";
 
@@ -526,7 +524,7 @@
 /* Submission input view placeholder text */
 "Enter submission" = "Tomo tukunga";
 
-/* Confirmation message after posting a discussion entry */
+/* (No Comment) */
 "Entry posted" = "whakairi tāurunga";
 
 /* Title for an error popup */
@@ -625,10 +623,10 @@
 /* (No Comment) */
 "Graded Discussion" = "Aparauraa Mākahia";
 
-/* Lets user know discussion is graded */
+/* (No Comment) */
 "Graded discussion." = "kōrero Mākahia.";
 
-/* Graded discussion. 25 points possible */
+/* (No Comment) */
 "Graded discussion. %g points possible." = "kōrero Mākahia. tohu taea %g.";
 
 /* (No Comment) */
@@ -670,7 +668,7 @@
 /* (No Comment) */
 "Individual messages" = "karere takitahi";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Invalid URL" = "URL Muhu";
 
 /* (No Comment) */
@@ -817,7 +815,7 @@
 /* No comment provided by engineer. */
 "Next item" = "tūemi muri";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "No" = "Kahore";
 
 /* No comment provided by engineer. */
@@ -860,7 +858,7 @@
 /* (No Comment) */
 "Not Complete" = "Kāore i te oti";
 
-/* Accessibility label for points out of points possible label when points are not availiable. */
+/* No comment provided by engineer. */
 "Not available" = "Kāore i te wātea";
 
 /* (No Comment) */
@@ -887,7 +885,7 @@
 /* (No Comment) */
 "Notifications" = "Whakamōhiotanga";
 
-/* OK Button Title */
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -917,7 +915,7 @@
 /* No comment provided by engineer. */
 "Other" = "Ētahi atu";
 
-/* A message indicating that the user cannot see other people's replies until the user has first posted a reply of their own. Only one line of text, so as concise as possible. */
+/* (No Comment) */
 "Other replies hidden until you reply" = "Ētahi atu whakautu huna noa whakautu koe";
 
 /* Title for Outcomes tab */
@@ -932,7 +930,7 @@
 /* Title for the people view */
 "People" = "Iwi";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Pinned Discussions" = "Matapaki Pinea";
 
 /* (No Comment) */
@@ -941,7 +939,7 @@
 /* Network error message */
 "Please check your network connection and try again." = "tirohia koa koutou hononga whatunga, me te ngana anō.";
 
-/* Button to post new discussion topic */
+/* No comment provided by engineer. */
 "Post" = "Pou";
 
 /* (No Comment) */
@@ -950,7 +948,7 @@
 /* No comment provided by engineer. */
 "Post comment" = "Pou Tākupu";
 
-/* Message shown while posting a discussion entry */
+/* (No Comment) */
 "Posting…" = "Posting ...";
 
 /* (No Comment) */
@@ -1028,7 +1026,7 @@
 /* (No Comment) */
 "Rubric" = "Rubric";
 
-/* No comment provided by engineer. */
+/* Title for button confirming showing a file */
 "Save" = "Tiaki";
 
 /* Title for Assignment Notifications Sheet */
@@ -1238,7 +1236,7 @@
 /* Error message for refresh failing with an unauthorized code */
 "This can happen if your course hasn't started yet or you don't have permission to access this page." = "Ka taea tēnei ki te mea kaore ano i timata to akoranga mehemea kaore koe i te whakaaetanga kia uru atu ki tēnei wāhanga.";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "This entry has been deleted" = "Kua tēnei tāurunga kua mukua";
 
 /* Text indicating a file cannot be previewed */
@@ -1255,12 +1253,6 @@
 
 /* (No Comment) */
 "This would be a great time to do some extra credit." = "e riro i te wa nui ki te mahi i te tahi mau nama anō tēnei.";
-
-/* Threaded switch label to to make discussion threaded */
-"Threaded" = "Whakairinga";
-
-/* Discussion title placeholder */
-"Title" = "taitara";
 
 /* (No Comment) */
 "To Do" = "ki te E";
@@ -1295,14 +1287,8 @@
 /* Error title */
 "Unable to load" = "Kāore e taea te ki te uta";
 
-/* Error message without retry */
-"Unable to post." = "Kaore e taea te tuhi..";
-
 /* (No Comment) */
 "Unable to post. Please try again later" = "Kāore e taea te ki pou. Koa ngana anō i muri mai";
-
-/* Error message */
-"Unable to post. Please try again later." = "Kaore e taea te tuhi. Tēnā koa ngana anō i muri mai.";
 
 /* message saying that avatar couldn't be loaded to server */
 "Unable to upload to server" = "Kāore e taea te tukuatu ki tūmau";
@@ -1322,7 +1308,7 @@
 /* (No Comment) */
 "Unread" = "Pānuihia";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Unsaved Reply" = "Whakautu Tiaki";
 
 /* Button title for uploading a file */
@@ -1382,7 +1368,7 @@
 /* Error Title */
 "Whoops!" = "Whoops!";
 
-/* unlock date for discussion/announcement */
+/* (No Comment) */
 "Will unlock %@." = "E iriti %@.";
 
 /* (No Comment) */
@@ -1394,7 +1380,7 @@
 /* (No Comment) */
 "Would you mind letting us know the problems you have been having with the app?" = "E whakaaro koutou tuku matou e mohio ki te mau fifi i koe he ki te taupānga?";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Yes" = "Ae";
 
 /* (No Comment) */
@@ -1409,13 +1395,13 @@
 /* (No Comment) */
 "You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "e kore koe e whai wāhi ki tenei ihirangi. kore ai i tīmata te Akoranga Rōpū ranei, kua mutu ai ranei.";
 
-/* Error message */
+/* (No Comment) */
 "You do not have permission to delete this reply" = "e kore koe e whai whakaaetanga ki te muku i tēnei whakautu";
 
 /* Masquerade error message */
 "You don't have permission to masquerade as this user or there is no user with that ID" = "e kore koe e whai whakaaetanga ki te whakaahua ke ano tenei kaiwhakamahi ranei kahore he kaiwhakamahi ki taua ID";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "You have an unsaved reply. Would you like to discard that reply?" = "E koe te whakautu i tiakina. E rite koe ki te tūraki i te whakautu?";
 
 /* An explanation of how to transfer files to the Canvas app. */
@@ -1424,7 +1410,7 @@
 /* (No Comment) */
 "You must first complete:" = "Me whakaoti koe i te tuatahi:";
 
-/* Error message */
+/* (No Comment) */
 "You need a title and a description to post" = "Me koe te taitara me te whakamārama ki te tuku";
 
 /* (No Comment) */
@@ -1442,7 +1428,7 @@
 /* (No Comment) */
 "moments ago" = "taime i ma'iri a'e";
 
-/* Accessibility label modifier for point out of point possible */
+/* No comment provided by engineer. */
 "out of" = "i roto i te";
 
 /* (No Comment) */

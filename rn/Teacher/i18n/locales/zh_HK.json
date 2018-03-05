@@ -29,9 +29,6 @@
   "account_has_no_terms_of_use_1048a785": {
     "message": "帳戶未有使用條款"
   },
-  "show_grades_8680e38e": {
-    "message": "顯示等級"
-  },
   "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
     "message": "”作為”本質上是以此使用者身份登錄，沒有密碼。您將能夠進行任何操作，就好像您就是此使用者一樣，並且，其他使用者也會認為是此使用者執行了操作。然而，審計日誌會記錄事實，即您是代表此使用者執行操作的人。"
   },
@@ -533,7 +530,7 @@
   "error_98e81528": {
     "message": "錯誤"
   },
-  "error_saving_grade_ef8d2ddc": {
+  "error_saving_grade_367dd920": {
     "message": "保存評分時出現錯誤"
   },
   "everyone_854554dd": {
@@ -1031,9 +1028,6 @@
   "previewing_this_file_type_is_not_supported_7df9231": {
     "message": "未支援預覽本文檔類型"
   },
-  "profile_6bd2baed": {
-    "message": "個人檔案"
-  },
   "profile_menu_a688027e": {
     "message": "個人檔案選單"
   },
@@ -1316,9 +1310,6 @@
   "the_value_of_possible_points_must_be_zero_or_great_374e175a": {
     "message": "可分配得分必須為零或大於零。"
   },
-  "the_was_a_problem_saving_the_grade_please_try_agai_2aefe6a8": {
-    "message": "在保存評分時發生了一個問題。請重試。"
-  },
   "there_are_no_announcements_to_display_a91880": {
     "message": "沒有可顯示的通告。"
   },
@@ -1366,6 +1357,9 @@
   },
   "there_was_a_problem_retreiving_the_terms_of_use_3a5fa00c": {
     "message": "取得使用條款時出現問題。"
+  },
+  "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
+    "message": "保存評分時出現問題。請重試。"
   },
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "載入附件時出現錯誤。"

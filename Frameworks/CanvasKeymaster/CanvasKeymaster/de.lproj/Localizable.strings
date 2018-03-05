@@ -28,29 +28,17 @@
 /* No comment provided by engineer. */
 "Emergency" = "Notfall";
 
-/* Text field to enter school domain that user would like the search in Domain Picker View */
-"Enter school domain." = "Gib die Schuldomäne ein.";
-
 /* Text view to enter the description of the ticket */
 "Enter ticket description" = "Gib die Ticketbeschreibung ein.";
 
 /* Text field to enter subject of the ticket */
 "Enter ticket subject" = "Gib das Ticketthema ein.";
 
-/* Subtitle help text describing how to find a school. */
-"Enter your school's domain or tap for help." = "Gib die Domäne deiner Schule ein oder tippe auf Hilfe.";
-
 /* No comment provided by engineer. */
 "Extremely critical emergency" = "Sehr kritischer Notfall";
 
-/* No comment provided by engineer. */
-"Find School Domain" = "Suche die Schuldomäne.";
-
 /* Help View Controller Title */
 "Help" = "Hilfe";
-
-/* No comment provided by engineer. */
-"Help Menu" = "Hilfe-Menü";
 
 /* No comment provided by engineer. */
 "I am stuck and can't get things done" = "Ich bin stecken geblieben und komme nicht weiter.";
@@ -76,9 +64,6 @@
 /* No comment provided by engineer. */
 "OK" = "OK";
 
-/* Placeholder for help icon (question mark) on Domain Picker View */
-"Open help menu" = "Hilfe-Menü öffnen";
-
 /* No comment provided by engineer. */
 "Report a Problem" = "Ein Problem melden";
 
@@ -87,12 +72,6 @@
 
 /* No comment provided by engineer. */
 "Request a Feature" = "Ein Feature anfordern";
-
-/* No comment provided by engineer. */
-"Right Behind You" = "Direkt hinter dir";
-
-/* Placeholder for search button on Domain Picker View */
-"Search for domain." = "Suche die Domäne.";
 
 /* Button to select the severity of the ticket */
 "Select ticket impact level" = "Wähle die Ticketauswirkungsstufe.";
@@ -108,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Success!" = "Erfolg!";
+
+/* Subtitle help text describing how to find a school. */
+"Tap here for help." = "Tippen Sie hier, um Hilfe zu erhalten.";
 
 /* No comment provided by engineer. */
 "Thanks, your request was received!" = "Danke sehr. Wir haben Ihre Anfrage erhalten.";

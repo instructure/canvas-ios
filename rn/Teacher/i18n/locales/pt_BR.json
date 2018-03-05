@@ -29,9 +29,6 @@
   "account_has_no_terms_of_use_1048a785": {
     "message": "A conta não tem Termos de Uso"
   },
-  "show_grades_8680e38e": {
-    "message": "Mostrar Notas"
-  },
   "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
     "message": "\"Agir como\" é essencialmente fazer logon como este usuário sem uma senha. Você poderá realizar qualquer ação como se você fosse esse usuário, e será como se esse usuário estivesse agindo para os outros usuários. Contudo, logs de auditoria registram o fato de que você era a pessoa que realizou as ações em nome desse usuário."
   },
@@ -533,8 +530,8 @@
   "error_98e81528": {
     "message": "Erro"
   },
-  "error_saving_grade_ef8d2ddc": {
-    "message": "Erro ao salvar a nota"
+  "error_saving_grade_367dd920": {
+    "message": "Erro ao salvar nota"
   },
   "everyone_854554dd": {
     "message": "Todo mundo"
@@ -1031,9 +1028,6 @@
   "previewing_this_file_type_is_not_supported_7df9231": {
     "message": "Pré-visualizar este tipo de arquivo não é suportado"
   },
-  "profile_6bd2baed": {
-    "message": "Perfil"
-  },
   "profile_menu_a688027e": {
     "message": "Menu do perfil"
   },
@@ -1316,9 +1310,6 @@
   "the_value_of_possible_points_must_be_zero_or_great_374e175a": {
     "message": "O valor de pontos possíveis deve ser zero ou maior"
   },
-  "the_was_a_problem_saving_the_grade_please_try_agai_2aefe6a8": {
-    "message": "Houve um problema ao salvar a nota. Por favor, tente novamente."
-  },
   "there_are_no_announcements_to_display_a91880": {
     "message": "Não há anúncios para mostrar."
   },
@@ -1366,6 +1357,9 @@
   },
   "there_was_a_problem_retreiving_the_terms_of_use_3a5fa00c": {
     "message": "Houve um problema ao recuperar os Termos de Uso"
+  },
+  "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
+    "message": "Houve um problema ao salvar a nota. Por favor, tente novamente."
   },
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "Houve um erro ao carregar o anexo."

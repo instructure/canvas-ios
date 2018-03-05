@@ -205,9 +205,6 @@
 /* (No Comment) */
 "All members" = "te mau melo katoa";
 
-/* Allow Notifications in Settings */
-"Allow Notifications in Settings" = "Tukua Whakamōhiotanga i roto i Tautuhinga";
-
 /* (No Comment) */
 "An unknown error occurred" = "He hapa tē mōhiotia puta";
 
@@ -501,7 +498,7 @@
 /* (No Comment) */
 "Email" = "Īmēra";
 
-/* Prompt asking user to enable push notifications */
+/* (No Comment) */
 "Enable Push Notifications" = "Whakahohea Whakamōhiotanga Pana";
 
 /* (No Comment) */
@@ -675,7 +672,7 @@
 /* (No Comment) */
 "Large file" = "kōnae nui";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Later" = "i muri mai";
 
 /* (No Comment) */
@@ -870,7 +867,7 @@
 /* Nothing to see here. */
 "Nothing to see here." = "Kahore ki te kite i konei.";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Notification" = "Whakamōhiotanga";
 
 /* Settings entry title for Notification Preferences */
@@ -1382,7 +1379,7 @@
 /* (No Comment) */
 "Video error" = "hapa ataata";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "View" = "Tirohia";
 
 /* (No Comment) */

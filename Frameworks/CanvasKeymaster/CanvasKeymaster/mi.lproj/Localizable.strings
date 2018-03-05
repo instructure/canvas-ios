@@ -28,29 +28,17 @@
 /* No comment provided by engineer. */
 "Emergency" = "Whawhati tata";
 
-/* Text field to enter school domain that user would like the search in Domain Picker View */
-"Enter school domain." = "Uru atu ki roto i te rohe kura";
-
 /* Text view to enter the description of the ticket */
 "Enter ticket description" = "Whakauru te āhuatanga o te tīkiti";
 
 /* Text field to enter subject of the ticket */
 "Enter ticket subject" = "Whakauru te kaupapa o te tīkiti";
 
-/* Subtitle help text describing how to find a school. */
-"Enter your school's domain or tap for help." = "Whakauru te rohe o tō kura ā pāto mo te awhina rānei.";
-
 /* No comment provided by engineer. */
 "Extremely critical emergency" = "whawhati tata tino nui";
 
-/* No comment provided by engineer. */
-"Find School Domain" = "Kimihia te Rohe Kura";
-
 /* Help View Controller Title */
 "Help" = "Āwhina";
-
-/* No comment provided by engineer. */
-"Help Menu" = "Tahua Āwhina";
 
 /* No comment provided by engineer. */
 "I am stuck and can't get things done" = "Kei te raru ahau a kaore e taea ki te whakaoti mahi";
@@ -76,23 +64,14 @@
 /* No comment provided by engineer. */
 "OK" = "Ae";
 
-/* Placeholder for help icon (question mark) on Domain Picker View */
-"Open help menu" = "Huaki tahua āwhina";
-
 /* No comment provided by engineer. */
-"Report a Problem" = "Pūrongo i te Raruraru";
+"Report a Problem" = "Rīpoatatia te Raruraru";
 
 /* No comment provided by engineer. */
 "Request Failed!" = "I rāhua te tono!";
 
 /* No comment provided by engineer. */
 "Request a Feature" = "Tono te Āhuatanga";
-
-/* No comment provided by engineer. */
-"Right Behind You" = "Tika ki muri ia koe";
-
-/* Placeholder for search button on Domain Picker View */
-"Search for domain." = "Rapua te rohe";
 
 /* Button to select the severity of the ticket */
 "Select ticket impact level" = "Tīpako te tīkiti pānga taumata ";
@@ -108,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Success!" = "Angitu!";
+
+/* Subtitle help text describing how to find a school. */
+"Tap here for help." = "Pātō ki kōnei mo te awhina";
 
 /* No comment provided by engineer. */
 "Thanks, your request was received!" = "Mihi, ka riro koutou tono!";

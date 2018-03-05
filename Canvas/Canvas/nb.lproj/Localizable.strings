@@ -205,9 +205,6 @@
 /* (No Comment) */
 "All members" = "Alle medlemmer";
 
-/* Allow Notifications in Settings */
-"Allow Notifications in Settings" = "Tillat varslinger i innstillinger";
-
 /* (No Comment) */
 "An unknown error occurred" = "Det oppsto en ukjent feil";
 
@@ -501,7 +498,7 @@
 /* (No Comment) */
 "Email" = "E-post";
 
-/* Prompt asking user to enable push notifications */
+/* (No Comment) */
 "Enable Push Notifications" = "Aktivere push-varsler";
 
 /* (No Comment) */
@@ -675,7 +672,7 @@
 /* (No Comment) */
 "Large file" = "Stor fil";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Later" = "Senere";
 
 /* (No Comment) */
@@ -870,7 +867,7 @@
 /* Nothing to see here. */
 "Nothing to see here." = "Ingenting å se her.";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Notification" = "Varsel";
 
 /* Settings entry title for Notification Preferences */
@@ -1382,7 +1379,7 @@
 /* (No Comment) */
 "Video error" = "Videofeil";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "View" = "Vis";
 
 /* (No Comment) */

@@ -20,9 +20,6 @@
   "access_9a94f04e": {
     "message": "Tilgang"
   },
-  "show_grades_8680e38e": {
-    "message": "Vis vurderinger"
-  },
   "access_code_74f4864f": {
     "message": "Tilgangskode"
   },
@@ -533,8 +530,8 @@
   "error_98e81528": {
     "message": "Feil"
   },
-  "error_saving_grade_ef8d2ddc": {
-    "message": "Avvik ved lagring av karakter"
+  "error_saving_grade_367dd920": {
+    "message": "Feil under lagring av karakter"
   },
   "everyone_854554dd": {
     "message": "Alle"
@@ -1031,9 +1028,6 @@
   "previewing_this_file_type_is_not_supported_7df9231": {
     "message": "Forhåndsvisning av denne filtypen støttes ikke"
   },
-  "profile_6bd2baed": {
-    "message": "Profil"
-  },
   "profile_menu_a688027e": {
     "message": "Profil meny"
   },
@@ -1316,9 +1310,6 @@
   "the_value_of_possible_points_must_be_zero_or_great_374e175a": {
     "message": "Verdien av mulige poeng må være null eller større"
   },
-  "the_was_a_problem_saving_the_grade_please_try_agai_2aefe6a8": {
-    "message": "Det var et problem med å lagre karakteren. Vennligst prøv igjen."
-  },
   "there_are_no_announcements_to_display_a91880": {
     "message": "Det er ingen kunngjøringer å vise."
   },
@@ -1366,6 +1357,9 @@
   },
   "there_was_a_problem_retreiving_the_terms_of_use_3a5fa00c": {
     "message": "Kunne ikke hente brukervilkår"
+  },
+  "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
+    "message": "Kunne ikke lagre karakter Vennligst prøv igjen."
   },
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "Det oppstod et avvik under henting av vedlegget."

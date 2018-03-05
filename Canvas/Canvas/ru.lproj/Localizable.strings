@@ -205,9 +205,6 @@
 /* (No Comment) */
 "All members" = "Все члены";
 
-/* Allow Notifications in Settings */
-"Allow Notifications in Settings" = "Разрешить уведомления в настройках";
-
 /* (No Comment) */
 "An unknown error occurred" = "Произошла неизвестная ошибка";
 
@@ -501,7 +498,7 @@
 /* (No Comment) */
 "Email" = "Email";
 
-/* Prompt asking user to enable push notifications */
+/* (No Comment) */
 "Enable Push Notifications" = "Включить Push-уведомления";
 
 /* (No Comment) */
@@ -675,7 +672,7 @@
 /* (No Comment) */
 "Large file" = "Большой файл";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Later" = "Позже";
 
 /* (No Comment) */
@@ -870,7 +867,7 @@
 /* Nothing to see here. */
 "Nothing to see here." = "Здесь нечего смотреть.";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Notification" = "Уведомление";
 
 /* Settings entry title for Notification Preferences */
@@ -1382,7 +1379,7 @@
 /* (No Comment) */
 "Video error" = "Ошибка видео";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "View" = "Просмотр";
 
 /* (No Comment) */

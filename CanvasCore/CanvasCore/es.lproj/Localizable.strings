@@ -1,5 +1,3 @@
-"Inbox" = "Bandeja de entrada";
-
 /* Error message component with the report id */
 " Error report ID: (reportID)" = " ID del informe del error: (reportID)";
 
@@ -46,8 +44,14 @@
 /* all pages segmented control title */
 "All Pages" = "Todas las páginas";
 
-/* Title for push notification pre-authorization alert */
-"Allow Push Notifications?" = "¿Permitir las notificaciones automáticas?";
+/* No comment provided by engineer. */
+"All notifications are currently disabled." = "Todas las notificaciones están actualmente deshabilitadas.";
+
+/* No comment provided by engineer. */
+"All notifications are currently enabled." = "Todas las notificaciones están actualmente habilitadas.";
+
+/* No comment provided by engineer. */
+"Allow Notifications in Settings" = "Permitir notificaciones en Configuraciones";
 
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Intentos permitidos";
@@ -210,9 +214,6 @@
 /* Data encoding error title */
 "Encoding Error" = "Error de codificación";
 
-/* No comment provided by engineer. */
-"End Act as User" = "Dejar de actuar en nombre de Usuario";
-
 /* Text submission option */
 "Enter Text" = "Ingresar texto";
 
@@ -349,9 +350,6 @@
 
 /* Next button for advancing a quiz */
 "Next" = "Siguiente";
-
-/* Title for no button for push notification pre-authorization alert */
-"No" = "No";
 
 /* Alert title when unable to load communication channels */
 "No Communication Channels Found" = "No se encontraron canales de comunicación";
@@ -561,9 +559,6 @@
 /* stop recording button a11y label */
 "Stop" = "Detener";
 
-/* No comment provided by engineer. */
-"Stop acting as..." = "Dejar de actuar en nombre de...";
-
 /* File upload was stopped */
 "Stopped" = "Detenido.";
 
@@ -726,7 +721,7 @@
 "Unable to display any notification preferences returned from the server at this time." = "No se puede mostrar ninguna de las preferencias de notificación devueltas desde el servidor en este momento.";
 
 /* Alert message when unable to load communication channels */
-"Unable to load any Communication Channels at this time.  Error: (result.error?.localizedDescription)" = "No se puede cargar ningún Canal de Comunicaciones en este momento.  Error: (¿resultado.error?.localizedDescription)";
+"Unable to load any Communication Channels at this time." = "No se puede cargar ningún Canal de Comunicaciones en este momento.";
 
 /* Alert message when unable to load notification preferences */
 "Unable to load any notification preferences at this time.  Error: (result.error?.localizedDescription)" = "No se puede cargar ninguna preferencia de notificaciones en este momento.  Error: (¿resultado.error?.localizedDescription)";
@@ -779,14 +774,8 @@
 /* Error message for being unable to update a push notification preference */
 "We were not able to update this value with the server" = "No hemos podido actualizar este valor con el servidor";
 
-/* Message for push notification pre-authorization alert */
-"Would you like to allow Canvas to send you important notifications about announcements, course, assignments, etc?" = "¿Le gustaría permitir que Canvas le envíe notificaciones importantes acerca de los anuncios, cursos, tareas, etc?";
-
 /* Yellow course color button */
 "Yellow" = "Amarillo";
-
-/* Title for yes button for push notification pre-authorization alert */
-"Yes" = "Sí";
 
 /* Description for Yo communication channel */
 "Yo" = "Yo";
@@ -799,12 +788,6 @@
 
 /* permission was rejected */
 "You must grant (appName) Microphone access in the Settings app in order to record audio." = "Debe otorgar a (appName) acceso al micrófono en la aplicación de Configuraciones para grabar audio.";
-
-/* No comment provided by engineer. */
-"You will stop acting as %@ and return to your account." = "Dejarás de actuar en nombre de %@ y volverás a tu cuenta.";
-
-/* No comment provided by engineer. */
-"You will stop acting as this user and return to your account." = "Dejarás de actuar en nombre de este usuario y volverás a tu cuenta.";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "Su dispositivo no tiene más espacio de almacenamiento. Por favor libere espacio y vuelva a intentarlo.";

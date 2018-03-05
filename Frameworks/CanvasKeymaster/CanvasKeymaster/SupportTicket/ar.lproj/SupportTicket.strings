@@ -35,7 +35,7 @@
 "noj-Yi-xpa.text" = "شيء ما معطل لكن أستطيع تدبير أموري";
 
 /* Class = "UINavigationItem"; title = "Report a Problem"; ObjectID = "vMz-Cg-DUM"; */
-"vMz-Cg-DUM.title" = "الإبلاغ عن مشكلة";
+"vMz-Cg-DUM.title" = "إبلاغ عن مشكلة";
 
 /* Class = "UILabel"; text = "Extremely critical emergency"; ObjectID = "wHQ-Tn-kQn"; */
 "wHQ-Tn-kQn.text" = "حالة طارئة حرجة للغاية";

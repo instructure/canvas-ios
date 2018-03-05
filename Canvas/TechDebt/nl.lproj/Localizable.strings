@@ -67,7 +67,7 @@
 /* Message for unsupported tab */
 "%@ is not currently supported." = "%@ wordt momenteel niet ondersteund.";
 
-/* Description for how many times a specific discussion has been liked by other users */
+/* (No Comment) */
 "%@ likes" = "%@ likes";
 
 /* (No Comment) */
@@ -97,10 +97,10 @@
 /* In the context 'Joe, Fred, ((25 more))' */
 "%d more" = "%d meer";
 
-/* Something like '5 replies' */
+/* (No Comment) */
 "%d replies" = "%d antwoorden";
 
-/* Something like '3 unread'. Refers to unread replies in a discsusion. */
+/* (No Comment) */
 "%d unread" = "%d ongelezen";
 
 /* (No Comment) */
@@ -157,7 +157,7 @@
 /* Number of files/folders inside a folder. (Only used when there is exactly 1 item. */
 "1 item" = "1 item";
 
-/* Description for a post that has been liked once */
+/* (No Comment) */
 "1 like" = "1 like";
 
 /* (No Comment) */
@@ -208,7 +208,7 @@
 /* Button title for adding a folder to a folder */
 "Add folder" = "Map toevoegen";
 
-/* Title on the add-inline-media sheet */
+/* (No Comment) */
 "Add inline media" = "Inline media toevoegen";
 
 /* (No Comment) */
@@ -220,10 +220,10 @@
 /* (No Comment) */
 "An unknown error occurred" = "An unknown error occurred";
 
-/* Title of the new announcement view */
+/* (No Comment) */
 "Announcement" = "Aankondiging";
 
-/* Title for the announcements view controller */
+/* (No Comment) */
 "Announcements" = "Aankondigingen";
 
 /* Assignment submission type for selecting an Arc video */
@@ -295,7 +295,8 @@
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "Kan media niet indienen";
 
-/* Cancel button title
+/* Button to cancel deleting folders
+   Cancel button title
    Cancel button title to cancel submitting an Arc video as an assignment submission */
 "Cancel" = "Annuleren";
 
@@ -347,7 +348,7 @@
 /* Close the window */
 "Close" = "Sluiten";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Closed for Comments" = "Gesloten voor commentaar";
 
 /* Title for Collaborations tab */
@@ -362,7 +363,7 @@
 /* (No Comment) */
 "Comments" = "Opmerkingen";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Comments are disabled" = "Opmerkingen zijn uitgeschakeld";
 
 /* (No Comment) */
@@ -383,7 +384,7 @@
 /* Confirm an arc video submission for an assignment */
 "Confirm Submission" = "Inlevering bevestigen";
 
-/* Alert title */
+/* (No Comment) */
 "Confirm deletion" = "Verwijdering bevestigen";
 
 /* Button title for selecting to continue on to quiz. The will appear in the alert view notfifying the user of mobile quiz limitations. */
@@ -426,7 +427,7 @@
 /* Button for deleting files or folders. %d will be the number of selected items */
 "Delete (%d)" = "Verwijderd (%d)";
 
-/* Alert message */
+/* (No Comment) */
 "Delete this reply?" = "Dit antwoord verwijderen?";
 
 /* delete file confirmation alert */
@@ -438,7 +439,7 @@
 /* No comment provided by engineer. */
 "Detail" = "Detail";
 
-/* Placeholder text for discussion details field */
+/* (No Comment) */
 "Details" = "Details";
 
 /* (No Comment) */
@@ -447,16 +448,16 @@
 /* (No Comment) */
 "Discard this entry?" = "Deze invoering negeren?";
 
-/* Title of the new discussion view */
+/* (No Comment) */
 "Discussion" = "Discussie";
 
 /* Title for discussion entry submission */
 "Discussion Entry" = "Discussie invoering";
 
-/* Title for Discussion Topics view controller */
+/* (No Comment) */
 "Discussion Topics" = "Discussie-onderwerpen";
 
-/* Title for Discussions view controller */
+/* (No Comment) */
 "Discussions" = "Discussies";
 
 /* Dismiss button title
@@ -496,7 +497,7 @@
 /* Link to the End User License Agreement document */
 "EULA" = "EULA";
 
-/* Button to edit a discussion entry */
+/* (No Comment) */
 "Edit" = "Bewerken";
 
 /* (No Comment) */
@@ -511,9 +512,6 @@
 /* (No Comment) */
 "Editing reply by %1$@, %2$@" = "Antwoord bewerken voor %1$@, %2$@";
 
-/* Header when editing a discussion entry with name and timestamp */
-"Editing reply by %@, %@" = "Antwoord bewerken voor %1$@, %2$@";
-
 /* the users email */
 "Email" = "E-mail";
 
@@ -526,7 +524,7 @@
 /* Submission input view placeholder text */
 "Enter submission" = "Indiening invoeren";
 
-/* Confirmation message after posting a discussion entry */
+/* (No Comment) */
 "Entry posted" = "Invoer geplaatst";
 
 /* Title for an error popup */
@@ -625,10 +623,10 @@
 /* (No Comment) */
 "Graded Discussion" = "Beoordeelde discussie";
 
-/* Lets user know discussion is graded */
+/* (No Comment) */
 "Graded discussion." = "Beoordeelde discussie.";
 
-/* Graded discussion. 25 points possible */
+/* (No Comment) */
 "Graded discussion. %g points possible." = "Beoordeelde discussie. %g punten mogelijk.";
 
 /* (No Comment) */
@@ -670,7 +668,7 @@
 /* (No Comment) */
 "Individual messages" = "Individuele berichten";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Invalid URL" = "Ongeldig URL";
 
 /* (No Comment) */
@@ -817,7 +815,7 @@
 /* No comment provided by engineer. */
 "Next item" = "Volgende item";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "No" = "Nee";
 
 /* No comment provided by engineer. */
@@ -860,7 +858,7 @@
 /* (No Comment) */
 "Not Complete" = "Niet volledig";
 
-/* Accessibility label for points out of points possible label when points are not availiable. */
+/* No comment provided by engineer. */
 "Not available" = "Niet beschikbaar";
 
 /* (No Comment) */
@@ -887,7 +885,7 @@
 /* (No Comment) */
 "Notifications" = "Berichtgevingen";
 
-/* OK Button Title */
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -917,7 +915,7 @@
 /* No comment provided by engineer. */
 "Other" = "Overig";
 
-/* A message indicating that the user cannot see other people's replies until the user has first posted a reply of their own. Only one line of text, so as concise as possible. */
+/* (No Comment) */
 "Other replies hidden until you reply" = "Andere antwoorden verborgen totdat je antwoordt";
 
 /* Title for Outcomes tab */
@@ -932,7 +930,7 @@
 /* Title for the people view */
 "People" = "Mensen";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Pinned Discussions" = "Gepinde discussies";
 
 /* (No Comment) */
@@ -941,7 +939,7 @@
 /* Network error message */
 "Please check your network connection and try again." = "Controleer je netwerkverbinding en probeer nogmaals.";
 
-/* Button to post new discussion topic */
+/* No comment provided by engineer. */
 "Post" = "Plaatsen";
 
 /* (No Comment) */
@@ -950,7 +948,7 @@
 /* No comment provided by engineer. */
 "Post comment" = "Opmerking plaatsen";
 
-/* Message shown while posting a discussion entry */
+/* (No Comment) */
 "Posting…" = "Aan het plaatsen...";
 
 /* (No Comment) */
@@ -1028,7 +1026,7 @@
 /* (No Comment) */
 "Rubric" = "Rubriek";
 
-/* No comment provided by engineer. */
+/* Title for button confirming showing a file */
 "Save" = "Opslaan";
 
 /* Title for Assignment Notifications Sheet */
@@ -1238,7 +1236,7 @@
 /* Error message for refresh failing with an unauthorized code */
 "This can happen if your course hasn't started yet or you don't have permission to access this page." = "Dit kan gebeuren als je cursus nog niet is begonnen of als je geen toestemming hebt om deze pagina te openen.";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "This entry has been deleted" = "Deze invoer is verwijderd";
 
 /* Text indicating a file cannot be previewed */
@@ -1255,12 +1253,6 @@
 
 /* (No Comment) */
 "This would be a great time to do some extra credit." = "Dit is een goede tijd voor wat extra punten.";
-
-/* Threaded switch label to to make discussion threaded */
-"Threaded" = "Hiërarchisch";
-
-/* Discussion title placeholder */
-"Title" = "Titel";
 
 /* (No Comment) */
 "To Do" = "Te doen";
@@ -1295,14 +1287,8 @@
 /* Error title */
 "Unable to load" = "Kan niet laden";
 
-/* Error message without retry */
-"Unable to post." = "Kan niet worden gepost.";
-
 /* (No Comment) */
 "Unable to post. Please try again later" = "Kan niet plaatsen. Probeer het later nogmaals.";
-
-/* Error message */
-"Unable to post. Please try again later." = "Kan niet worden gepost. Probeer het later opnieuw.";
 
 /* message saying that avatar couldn't be loaded to server */
 "Unable to upload to server" = "Kan niet naar server uploaden";
@@ -1322,7 +1308,7 @@
 /* (No Comment) */
 "Unread" = "Ongelezen";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Unsaved Reply" = "Niet opgeslagen antwoord";
 
 /* Button title for uploading a file */
@@ -1382,7 +1368,7 @@
 /* Error Title */
 "Whoops!" = "Oeps!";
 
-/* unlock date for discussion/announcement */
+/* (No Comment) */
 "Will unlock %@." = "Zal %@ ontgrendelen.";
 
 /* (No Comment) */
@@ -1394,7 +1380,7 @@
 /* (No Comment) */
 "Would you mind letting us know the problems you have been having with the app?" = "Wil je ons op de hoogte stellen van de problemen die je met de app hebt?";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Yes" = "Ja";
 
 /* (No Comment) */
@@ -1409,13 +1395,13 @@
 /* (No Comment) */
 "You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "Je hebt geen toegang tot deze inhoud. De cursus of groep is misschien nog niet begonnen, of misschien al afgelopen.";
 
-/* Error message */
+/* (No Comment) */
 "You do not have permission to delete this reply" = "Je hebt geen toestemming om dit antwoord te verwijderen";
 
 /* Masquerade error message */
 "You don't have permission to masquerade as this user or there is no user with that ID" = "Je hebt geen toestemming om masker toe te passen als deze gebruiker of er is geen gebruiker met die id";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "You have an unsaved reply. Would you like to discard that reply?" = "Je hebt een niet opgeslagen antwoord. Wil je dat antwoord negeren?";
 
 /* An explanation of how to transfer files to the Canvas app. */
@@ -1424,7 +1410,7 @@
 /* (No Comment) */
 "You must first complete:" = "Je moet eerst voltooien:";
 
-/* Error message */
+/* (No Comment) */
 "You need a title and a description to post" = "Je hebt een titel en een beschrijving nodig om te plaatsen";
 
 /* (No Comment) */
@@ -1442,7 +1428,7 @@
 /* (No Comment) */
 "moments ago" = "zojuist";
 
-/* Accessibility label modifier for point out of point possible */
+/* No comment provided by engineer. */
 "out of" = "van";
 
 /* (No Comment) */

@@ -85,9 +85,6 @@
 /* No comment provided by engineer. */
 "Note: Media files are not immediately available for playback while they are processed on the server." = "注意：媒體資料夾當前正在伺服器端進行處理中，暫時無法提供播放。";
 
-/* No comment provided by engineer. */
-"OK" = "是";
-
 /* Short name for observer enrollment */
 "Observer" = "觀察者";
 
@@ -150,9 +147,6 @@
 
 /* Media type is video */
 "Video" = "視頻";
-
-/* No comment provided by engineer. */
-"Video error" = "視頻錯誤";
 
 /* No comment provided by engineer. */
 "Warning" = "警告";

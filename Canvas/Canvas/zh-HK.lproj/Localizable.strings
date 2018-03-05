@@ -205,9 +205,6 @@
 /* (No Comment) */
 "All members" = "所有成員";
 
-/* Allow Notifications in Settings */
-"Allow Notifications in Settings" = "在設定中允許通知消息";
-
 /* (No Comment) */
 "An unknown error occurred" = "出現未知錯誤";
 
@@ -406,7 +403,7 @@
 "Customize" = "自定義";
 
 /* dashboard page title */
-"Dashboard" = "儀表板";
+"Dashboard" = "控制面板";
 
 /* (No Comment) */
 "Delete" = "刪除";
@@ -501,7 +498,7 @@
 /* (No Comment) */
 "Email" = "電子郵件";
 
-/* Prompt asking user to enable push notifications */
+/* (No Comment) */
 "Enable Push Notifications" = "啟用推送通知";
 
 /* (No Comment) */
@@ -675,7 +672,7 @@
 /* (No Comment) */
 "Large file" = "大資料夾";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Later" = "以後再說";
 
 /* (No Comment) */
@@ -870,7 +867,7 @@
 /* Nothing to see here. */
 "Nothing to see here." = "這裡沒有內容供瀏覽。";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Notification" = "通知";
 
 /* Settings entry title for Notification Preferences */
@@ -1382,7 +1379,7 @@
 /* (No Comment) */
 "Video error" = "視頻錯誤";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "View" = "檢視";
 
 /* (No Comment) */

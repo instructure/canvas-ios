@@ -67,7 +67,7 @@
 /* Message for unsupported tab */
 "%@ is not currently supported." = "%@ 目前不被支持。";
 
-/* Description for how many times a specific discussion has been liked by other users */
+/* (No Comment) */
 "%@ likes" = "%@ 個讚";
 
 /* (No Comment) */
@@ -97,10 +97,10 @@
 /* In the context 'Joe, Fred, ((25 more))' */
 "%d more" = "%d 更多";
 
-/* Something like '5 replies' */
+/* (No Comment) */
 "%d replies" = "%d 個回覆";
 
-/* Something like '3 unread'. Refers to unread replies in a discsusion. */
+/* (No Comment) */
 "%d unread" = "%d 未讀";
 
 /* (No Comment) */
@@ -157,7 +157,7 @@
 /* Number of files/folders inside a folder. (Only used when there is exactly 1 item. */
 "1 item" = "1 項目";
 
-/* Description for a post that has been liked once */
+/* (No Comment) */
 "1 like" = "1 個讚";
 
 /* (No Comment) */
@@ -208,7 +208,7 @@
 /* Button title for adding a folder to a folder */
 "Add folder" = "添加資料夾";
 
-/* Title on the add-inline-media sheet */
+/* (No Comment) */
 "Add inline media" = "添加線上媒體";
 
 /* (No Comment) */
@@ -220,10 +220,10 @@
 /* (No Comment) */
 "An unknown error occurred" = "出現未知錯誤";
 
-/* Title of the new announcement view */
+/* (No Comment) */
 "Announcement" = "宣告";
 
-/* Title for the announcements view controller */
+/* (No Comment) */
 "Announcements" = "宣告";
 
 /* Assignment submission type for selecting an Arc video */
@@ -295,7 +295,8 @@
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "無法提交媒體";
 
-/* Cancel button title
+/* Button to cancel deleting folders
+   Cancel button title
    Cancel button title to cancel submitting an Arc video as an assignment submission */
 "Cancel" = "取消";
 
@@ -347,7 +348,7 @@
 /* Close the window */
 "Close" = "關閉";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Closed for Comments" = "已關閉評論";
 
 /* Title for Collaborations tab */
@@ -362,7 +363,7 @@
 /* (No Comment) */
 "Comments" = "評論";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Comments are disabled" = "評論功能已禁用";
 
 /* (No Comment) */
@@ -383,7 +384,7 @@
 /* Confirm an arc video submission for an assignment */
 "Confirm Submission" = "確定提交";
 
-/* Alert title */
+/* (No Comment) */
 "Confirm deletion" = "確認刪除";
 
 /* Button title for selecting to continue on to quiz. The will appear in the alert view notfifying the user of mobile quiz limitations. */
@@ -426,7 +427,7 @@
 /* Button for deleting files or folders. %d will be the number of selected items */
 "Delete (%d)" = "刪除 (%d)";
 
-/* Alert message */
+/* (No Comment) */
 "Delete this reply?" = "確定刪除這個回覆？";
 
 /* delete file confirmation alert */
@@ -438,7 +439,7 @@
 /* No comment provided by engineer. */
 "Detail" = "詳情";
 
-/* Placeholder text for discussion details field */
+/* (No Comment) */
 "Details" = "詳情";
 
 /* (No Comment) */
@@ -447,16 +448,16 @@
 /* (No Comment) */
 "Discard this entry?" = "丟棄這條輸入？";
 
-/* Title of the new discussion view */
+/* (No Comment) */
 "Discussion" = "討論";
 
 /* Title for discussion entry submission */
 "Discussion Entry" = "討論條目";
 
-/* Title for Discussion Topics view controller */
+/* (No Comment) */
 "Discussion Topics" = "討論話題";
 
-/* Title for Discussions view controller */
+/* (No Comment) */
 "Discussions" = "討論";
 
 /* Dismiss button title
@@ -496,7 +497,7 @@
 /* Link to the End User License Agreement document */
 "EULA" = "EULA";
 
-/* Button to edit a discussion entry */
+/* (No Comment) */
 "Edit" = "編輯";
 
 /* (No Comment) */
@@ -511,9 +512,6 @@
 /* (No Comment) */
 "Editing reply by %1$@, %2$@" = "編輯回覆，依照順序 %1$@, %2$@";
 
-/* Header when editing a discussion entry with name and timestamp */
-"Editing reply by %@, %@" = "編輯回覆，依照順序 %1$@, %2$@";
-
 /* the users email */
 "Email" = "電子郵件";
 
@@ -526,7 +524,7 @@
 /* Submission input view placeholder text */
 "Enter submission" = "鍵入提交件";
 
-/* Confirmation message after posting a discussion entry */
+/* (No Comment) */
 "Entry posted" = "條目已發布";
 
 /* Title for an error popup */
@@ -625,10 +623,10 @@
 /* (No Comment) */
 "Graded Discussion" = "已評分的討論";
 
-/* Lets user know discussion is graded */
+/* (No Comment) */
 "Graded discussion." = "已評分的討論。";
 
-/* Graded discussion. 25 points possible */
+/* (No Comment) */
 "Graded discussion. %g points possible." = "已評分的討論。可得點為 %g。";
 
 /* (No Comment) */
@@ -670,7 +668,7 @@
 /* (No Comment) */
 "Individual messages" = "單個郵件";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Invalid URL" = "無效 URL";
 
 /* (No Comment) */
@@ -817,7 +815,7 @@
 /* No comment provided by engineer. */
 "Next item" = "下一個項目";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "No" = "否";
 
 /* No comment provided by engineer. */
@@ -860,7 +858,7 @@
 /* (No Comment) */
 "Not Complete" = "未完成";
 
-/* Accessibility label for points out of points possible label when points are not availiable. */
+/* No comment provided by engineer. */
 "Not available" = "不可用";
 
 /* (No Comment) */
@@ -887,7 +885,7 @@
 /* (No Comment) */
 "Notifications" = "通知";
 
-/* OK Button Title */
+/* No comment provided by engineer. */
 "OK" = "是";
 
 /* No comment provided by engineer. */
@@ -917,7 +915,7 @@
 /* No comment provided by engineer. */
 "Other" = "其他";
 
-/* A message indicating that the user cannot see other people's replies until the user has first posted a reply of their own. Only one line of text, so as concise as possible. */
+/* (No Comment) */
 "Other replies hidden until you reply" = "在你回覆前，其他回覆不可見";
 
 /* Title for Outcomes tab */
@@ -932,7 +930,7 @@
 /* Title for the people view */
 "People" = "人";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Pinned Discussions" = "固定的討論";
 
 /* (No Comment) */
@@ -941,7 +939,7 @@
 /* Network error message */
 "Please check your network connection and try again." = "請檢查您的網路連接然後重試。";
 
-/* Button to post new discussion topic */
+/* No comment provided by engineer. */
 "Post" = "發布";
 
 /* (No Comment) */
@@ -950,7 +948,7 @@
 /* No comment provided by engineer. */
 "Post comment" = "發布評論";
 
-/* Message shown while posting a discussion entry */
+/* (No Comment) */
 "Posting…" = "正在發布...";
 
 /* (No Comment) */
@@ -1028,7 +1026,7 @@
 /* (No Comment) */
 "Rubric" = "專欄";
 
-/* No comment provided by engineer. */
+/* Title for button confirming showing a file */
 "Save" = "保存";
 
 /* Title for Assignment Notifications Sheet */
@@ -1238,7 +1236,7 @@
 /* Error message for refresh failing with an unauthorized code */
 "This can happen if your course hasn't started yet or you don't have permission to access this page." = "如果您的課程尚未開始，或者您無權限訪問此內容頁，就可能會發生這種情況。";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "This entry has been deleted" = "此條目已經被刪除";
 
 /* Text indicating a file cannot be previewed */
@@ -1255,12 +1253,6 @@
 
 /* (No Comment) */
 "This would be a great time to do some extra credit." = "現在很適合再修幾個學分。";
-
-/* Threaded switch label to to make discussion threaded */
-"Threaded" = "執行緒";
-
-/* Discussion title placeholder */
-"Title" = "標題";
 
 /* (No Comment) */
 "To Do" = "待辦";
@@ -1295,14 +1287,8 @@
 /* Error title */
 "Unable to load" = "無法載入";
 
-/* Error message without retry */
-"Unable to post." = "無法發布。";
-
 /* (No Comment) */
 "Unable to post. Please try again later" = "無法發布。請稍後重試";
-
-/* Error message */
-"Unable to post. Please try again later." = "無法發布。請稍後重試。";
 
 /* message saying that avatar couldn't be loaded to server */
 "Unable to upload to server" = "無法上載至伺服器";
@@ -1322,7 +1308,7 @@
 /* (No Comment) */
 "Unread" = "未讀";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Unsaved Reply" = "未保存的回覆";
 
 /* Button title for uploading a file */
@@ -1382,7 +1368,7 @@
 /* Error Title */
 "Whoops!" = "抱歉！";
 
-/* unlock date for discussion/announcement */
+/* (No Comment) */
 "Will unlock %@." = "即將解鎖 %@.";
 
 /* (No Comment) */
@@ -1394,7 +1380,7 @@
 /* (No Comment) */
 "Would you mind letting us know the problems you have been having with the app?" = "您是否能告訴我們您在使用 app 時遇到的問題？";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Yes" = "是";
 
 /* (No Comment) */
@@ -1409,13 +1395,13 @@
 /* (No Comment) */
 "You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "您無權存取此內容。此課程或群組或許尚未開始，或已經結束。";
 
-/* Error message */
+/* (No Comment) */
 "You do not have permission to delete this reply" = "您沒有獲得刪除這條回覆的許可。";
 
 /* Masquerade error message */
 "You don't have permission to masquerade as this user or there is no user with that ID" = "您沒有獲得偽裝為這名使用者的權限，或者沒有使用此 ID 的使用者";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "You have an unsaved reply. Would you like to discard that reply?" = "您有一封未保存的回覆。您是否希望刪除它？";
 
 /* An explanation of how to transfer files to the Canvas app. */
@@ -1424,7 +1410,7 @@
 /* (No Comment) */
 "You must first complete:" = "您必須首先完成：";
 
-/* Error message */
+/* (No Comment) */
 "You need a title and a description to post" = "您需要給發布的內容起一個標題並描述";
 
 /* (No Comment) */
@@ -1442,7 +1428,7 @@
 /* (No Comment) */
 "moments ago" = "不久前";
 
-/* Accessibility label modifier for point out of point possible */
+/* No comment provided by engineer. */
 "out of" = "出自";
 
 /* (No Comment) */
