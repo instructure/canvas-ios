@@ -761,9 +761,9 @@ static const NSString *ItemStatusContext;
 
 - (void)populateCaptureDevices
 {
-    NSArray *devices = [AVCaptureDevice devices];
+    AVCaptureDeviceDiscoverySession *session = [AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:@[AVCaptureDeviceTypeBuiltInWideAngleCamera] mediaType:AVMediaTypeVideo position:AVCaptureDevicePositionUnspecified];
     
-    for (AVCaptureDevice *device in devices) {
+    for (AVCaptureDevice *device in session.devices) {
         if ([device hasMediaType:AVMediaTypeVideo]) {
             if ([device position] == AVCaptureDevicePositionFront) {
                 self.frontCamera = device;

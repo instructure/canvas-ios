@@ -549,7 +549,7 @@ UIColor *CKPostButtonDisabledColor() {
             superView = button.superview;
         }
         if (!self.attachmentManager.presentFromViewController && [self.delegate isKindOfClass:[UIViewController class]]) {
-            [self.attachmentManager setPresentFromViewController:self.delegate];
+            [self.attachmentManager setPresentFromViewController:(UIViewController *)self.delegate];
         }
         [self.attachmentManager showAttachmentPickerFromRect:button.frame
                                                       inView:superView

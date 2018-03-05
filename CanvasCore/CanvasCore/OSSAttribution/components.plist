@@ -170,11 +170,5 @@
 		<key>url</key>
 		<string>https://github.com/jspahrsummers/libextobjc</string>
 	</dict>
-	<dict>
-		<key>name</key>
-		<string>MKNumberBadgeView</string>
-		<key>url</key>
-		<string>https://github.com/erichoracek/MKNumberBadgeView</string>
-	</dict>
 </array>
 </plist>

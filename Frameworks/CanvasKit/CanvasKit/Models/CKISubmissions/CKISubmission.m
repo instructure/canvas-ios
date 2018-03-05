@@ -154,7 +154,7 @@ NSString * const CKISubmissionTypeLTILaunch = @"basic_lti_launch";
         type = CKISubmissionEnumTypeExternalTool;
     }
     else if ([submissionType isEqual:CKISubmissionTypePaper]) {
-        type = CKISubmissionTypePaper;
+        type = CKISubmissionEnumTypePaper;
     }
     return type;
 }

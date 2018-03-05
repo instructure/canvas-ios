@@ -94,9 +94,9 @@ export class Profile extends Component<Object, State> {
     NativeModules.NativeLogin.logout()
   }
 
-  async launchExternalTool (tool: ExternalToolLaunchDefinitionGlobalNavigationItem) {
+  async launchExternalTool (url: string) {
     await this.props.navigator.dismiss()
-    this.props.navigator.launchExternalTool(tool.url)
+    this.props.navigator.launchExternalTool(url)
   }
 
   switchUser = () => {
@@ -185,7 +185,7 @@ export class Profile extends Component<Object, State> {
     let session = getSession()
     let externalTools = (this.props.externalTools || [])
 
-    const buildRow = (title: string, onPress: ?Function, switchProps?: Object, testIDProps?: Object = {}) => {
+    const buildRow = (title: string, onPress: ?Function, switchProps?: ?Object, testIDProps?: Object = {}) => {
       return (<View>
                 { onPress && <Row title={title} titleStyles={titleStyles} onPress={onPress} {...testIDProps} />}
                 { switchProps && Object.keys(switchProps).length > 0 && <RowWithSwitch title={title} titleStyles={titleStyles} {...switchProps} />}
@@ -195,9 +195,18 @@ export class Profile extends Component<Object, State> {
 
     const masquerading = !!session.actAsUserID
     const masqueradeTitle = masquerading ? i18n('Stop Act as User') : i18n('Act as User')
+    let tools
+    if (externalTools.length > 0) {
+      tools = externalTools.map((tool) => {
+        if (!tool.placements || !tool.placements.global_navigation) return null
+        const { title, url } = tool.placements.global_navigation
+        const onPress = () => { this.launchExternalTool(url) }
+        return buildRow(title, onPress, null, { testID: `row-lti-${tool.domain}` })
+      }).filter(Boolean)
+    }
     return (<View>
               { isStudent && buildRow(i18n('Files'), this.userFiles) }
-              { externalTools.length > 0 && externalTools.map((externalTool) => buildRow(externalTool.placements.global_navigation.title, () => { this.launchExternalTool(externalTool) }, {}, { testID: `row-lti-${externalTool.domain}` })) }
+              { tools }
               { (this.props.canMasquerade || masquerading) && buildRow(masqueradeTitle, this.toggleMasquerade) }
               { isStudent && buildRow(i18n('Show Grades'), null, { onValueChange: this.toggleShowGrades, value: this.props.showsGradesOnCourseCards }) }
               { buildRow(i18n('Help'), this.showHelpMenu) }

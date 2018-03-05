@@ -45,25 +45,31 @@ RCT_EXPORT_MODULE()
 }
 
 - (void)commonInit {
-    UIDragInteraction *drop = [[UIDropInteraction alloc] initWithDelegate:self];
-    [self addInteraction:drop];
+    if (@available(iOS 11.0, *)) {
+        UIDropInteraction *drop = [[UIDropInteraction alloc] initWithDelegate:self];
+        [self addInteraction:drop];
+    } else {}
 }
 
-- (void)dropInteraction:(UIDropInteraction *)interaction performDrop:(id<UIDropSession>)session {
+- (void)dropInteraction:(UIDropInteraction *)interaction performDrop:(id<UIDropSession>)session API_AVAILABLE(ios(11.0)) {
     NSLog(@"%@", session);
     
-    NSProgress *progess = [session loadObjectsOfClass:[UIImage class] completion:^(NSArray<__kindof id<NSItemProviderReading>> * _Nonnull objects) {
-        NSLog(@"%@", objects);
-    }];
+//    NSProgress *progess = [session loadObjectsOfClass:[UIImage class] completion:^(NSArray<__kindof id<NSItemProviderReading>> * _Nonnull objects) {
+//        NSLog(@"%@", objects);
+//    }];
 }
 
-- (UIDropProposal *)dropInteraction:(UIDropInteraction *)interaction sessionDidUpdate:(id<UIDropSession>)session {
+- (UIDropProposal *)dropInteraction:(UIDropInteraction *)interaction sessionDidUpdate:(id<UIDropSession>)session API_AVAILABLE(ios(11.0)) {
     NSLog(@"%@", session);
-    UIDropProposal *proposal = [[UIDropProposal alloc] initWithDropOperation:UIDropOperationCopy];
-    return proposal;
+    if (@available(iOS 11.0, *)) {
+        UIDropProposal *proposal = [[UIDropProposal alloc] initWithDropOperation:UIDropOperationCopy];
+        return proposal;
+    } else {
+        return nil;
+    }
 }
 
-- (BOOL)dropInteraction:(UIDropInteraction *)interaction canHandleSession:(id<UIDropSession>)session {
+- (BOOL)dropInteraction:(UIDropInteraction *)interaction canHandleSession:(id<UIDropSession>)session API_AVAILABLE(ios(11.0)) {
     return NO;
     //return [session canLoadObjectsOfClass:[UIImage class]];
 }

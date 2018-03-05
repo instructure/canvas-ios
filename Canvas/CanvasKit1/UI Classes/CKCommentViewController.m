@@ -190,7 +190,11 @@ static void * MediaCommentFrameContext = &MediaCommentFrameContext;
 
 - (void)noteDidRotateFromInterfaceOrientation:(NSNotification *)note {
     NSNumber *from = [note userInfo][UIApplicationStatusBarOrientationUserInfoKey];
+    
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     [self didRotateFromInterfaceOrientation:[from intValue]];
+#pragma GCC diagnostic pop
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {

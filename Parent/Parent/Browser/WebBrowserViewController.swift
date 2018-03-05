@@ -167,7 +167,7 @@ class WebBrowserViewController: UIViewController {
         let actionSheet = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
         if let fullURLString = fullURLString, let url = URL(string: fullURLString), request?.url?.isFileURL == false {
             actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Open in Safari", comment: "Open a url in the application Safari"), style: .default) { action in
-                UIApplication.shared.openURL(url)
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
             })
         }
 

@@ -358,7 +358,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
     }];
 }
 
-- (void)logoutWithCompletionBlock:(void (^)())completionBlock
+- (void)logoutWithCompletionBlock:(void (^)(void))completionBlock
 {
     if (!self.currentClient) {
         if (completionBlock) {

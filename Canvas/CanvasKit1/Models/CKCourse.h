@@ -76,8 +76,6 @@ typedef NS_ENUM(NSInteger, CKCourseHomepage) {
 - (BOOL)userId:(uint64_t)userId hasEnrollmentOfType:(CKEnrollmentType)type;
 - (BOOL)loggedInUserHasEnrollmentOfType:(CKEnrollmentType)type;
 
-- (NSArray *)studentsSortedByGradeOnAssignment:(CKAssignment *)assignment;
-
 - (NSURL *)modulesURL;
 
 @end

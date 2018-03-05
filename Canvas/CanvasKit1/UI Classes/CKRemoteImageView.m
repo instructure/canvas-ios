@@ -78,17 +78,14 @@
     if (![data beginContentAccess]) {
         // Request it!
         NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
-        [NSURLConnection sendAsynchronousRequest:request
-                                           queue:loadingQueue
-                               completionHandler:
-         ^(NSURLResponse *response, NSData *data, NSError *error) {
-             if (data) {
-                 NSPurgeableData *purgeableData = [[NSPurgeableData alloc] initWithData:data];
-                 [_imageCache setObject:purgeableData forKey:url];
-                 [noteCenter postNotificationName:CKLoadedImageNotification object:url];
-                 [purgeableData endContentAccess];
-             }
-         }];
+        [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            if (data) {
+                NSPurgeableData *purgeableData = [[NSPurgeableData alloc] initWithData:data];
+                [_imageCache setObject:purgeableData forKey:url];
+                [noteCenter postNotificationName:CKLoadedImageNotification object:url];
+                [purgeableData endContentAccess];
+            }
+        }] resume];
         data = [NSPurgeableData new];
         [_imageCache setObject:data forKey:url];
     }

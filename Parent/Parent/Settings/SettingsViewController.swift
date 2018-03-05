@@ -221,7 +221,7 @@ class SettingsViewController: UIViewController {
 
         let shareLoveAction = UIAlertAction(title: NSLocalizedString("Share Some Love", comment: "Share Some Love Button"), style: .default) { _ in
             let appURL = URL(string: "itms://itunes.apple.com/us/app/apple-store/id1097996698?mt=8")!
-            UIApplication.shared.openURL(appURL)
+            UIApplication.shared.open(appURL, options: [:], completionHandler: nil)
         }
         alertController.addAction(shareLoveAction)
 

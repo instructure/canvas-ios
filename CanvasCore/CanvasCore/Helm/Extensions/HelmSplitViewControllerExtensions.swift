@@ -64,5 +64,4 @@ public extension HelmSplitViewController {
             return "displayMode: \(self.displayMode) master: \(masterTopHelmViewController?.moduleName ?? "N/A") detail: \(detailTopHelmViewController?.moduleName ?? "N/A") masterVC: \( masterNavigationController != nil ? String(describing: masterNavigationController.self) : "N/A") detailVC: \( detailNavigationController != nil ? String(describing: detailNavigationController.self) : "N/A")"
         }
     }
-
 }

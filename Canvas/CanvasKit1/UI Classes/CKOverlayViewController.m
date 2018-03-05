@@ -213,7 +213,10 @@ static CGRect CGRectWithMinY(CGRect input, CGFloat minY) {;
     UIView *overlayView = overlay.view;
     overlayView.alpha = 0.0;
     
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     BOOL mustCallAppearance = !([self shouldAutomaticallyForwardAppearanceMethods] && [self shouldAutomaticallyForwardRotationMethods]);
+#pragma GCC diagnostic pop
     
     if ([self respondsToSelector:@selector(shouldAutomaticallyForwardAppearanceMethods)]) {
         mustCallAppearance = [self shouldAutomaticallyForwardAppearanceMethods];

@@ -60,6 +60,8 @@ static NSUInteger const CBIAssignmentDetailNumMinutesInDay = 60 * 24;
 
 @implementation CBIAssignmentDetailViewController
 
+@dynamic viewModel;
+
 - (id)init
 {
     return [[UIStoryboard storyboardWithName:@"CBIAssignmentDetail" bundle:[NSBundle bundleForClass:[self class]]] instantiateInitialViewController];
@@ -119,51 +121,10 @@ static NSUInteger const CBIAssignmentDetailNumMinutesInDay = 60 * 24;
     self.extendedLayoutIncludesOpaqueBars = YES;
 }
 
--(void) openInSpeedGrader {
-
-    NSString *currentURL = [NSString stringWithFormat:@"%@%@",[[[CKIClient currentClient] baseURL] host], self.viewModel.model.path];
-
-    NSURL* speedgraderLink = [NSURL URLWithString:[NSString stringWithFormat:@"canvas-speedgrader://%@",currentURL]];
-    
-    if ([[UIApplication sharedApplication] canOpenURL:speedgraderLink]) {
-        [[UIApplication sharedApplication] openURL:speedgraderLink];
-    } else {
-        NSNumber *speedGraderAppID = [NSNumber numberWithInt:418441195];
-        
-        SKStoreProductViewController *storeProductViewController = [[SKStoreProductViewController alloc]
-                                                                    init];
-        
-        [storeProductViewController setDelegate:self];
-        [storeProductViewController loadProductWithParameters: @{SKStoreProductParameterITunesItemIdentifier : speedGraderAppID}
-                                    completionBlock:^(BOOL result, NSError *error) {
-                                        if (error) {
-                                            DDLogVerbose(@"Failed to load app store and link to SpeedGrader");
-                                        } else {
-                                            DDLogVerbose(@"Successfully displayed App Store page for SpeedGrader");
-                                        }
-                                    }
-         ];
-        
-        [self presentViewController:storeProductViewController animated:YES completion:nil];
-    }
-    
-}
-
 - (void)setupRightBarButtonItems {
     CKIAssignment *assignment = self.viewModel.model;
     if ([assignment.dueAt compare:[NSDate date]] == NSOrderedDescending) {
         [self setAlarmButton:[self.localNotificationHandler localNotificationExists:assignment.id]];
-    }
-    
-    if ([assignment.context isKindOfClass:[CKICourse class]]) {
-        [[(CKICourse *)self.viewModel.model.context enrollments] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            if ([[obj role] isEqualToString:@"TeacherEnrollment"] && UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-                UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Open in SpeedGrader",@"Link to open assignment in SpeedGrader") style:UIBarButtonItemStylePlain target:self action:@selector(openInSpeedGrader)];
-                self.navigationItem.rightBarButtonItem = rightButton;
-                *stop = YES;
-                return;
-            }
-        }];
     }
 }
 

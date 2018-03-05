@@ -19,7 +19,7 @@
 import Foundation
 
 public extension UIViewController {
-    open func insertTriangleBackgroundView() -> TriangleBackgroundGradientView {
+    public func insertTriangleBackgroundView() -> TriangleBackgroundGradientView {
         let backgroundView = TriangleBackgroundGradientView(frame: CGRect.zero)
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         self.view.insertSubview(backgroundView, at: 0)

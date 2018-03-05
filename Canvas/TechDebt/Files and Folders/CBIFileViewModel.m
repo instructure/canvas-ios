@@ -21,7 +21,7 @@
 #import "EXTScope.h"
 @import CanvasKeymaster;
 #import "UIImage+TechDebt.h"
-
+#import "UIAlertController+TechDebt.h"
 #import "FileViewController.h"
 
 @import CanvasCore;
@@ -99,8 +99,8 @@
         @strongify(self);
         [self.toastManager endToast];
         [tableViewController.viewModel.collectionController insertObjects:@[self]];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Error deleting file \"%@\"", @"Error deleting file alert view title"), self.name] message:error.localizedDescription delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-        [alert show];
+        NSString *title = [NSString stringWithFormat:NSLocalizedString(@"Error deleting file \"%@\"", @"Error deleting file alert view title"), self.name];
+        [UIAlertController showAlertWithTitle:title message:error.localizedDescription];
     }];
 }
 

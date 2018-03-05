@@ -126,7 +126,7 @@ class SubmissionConfirmationViewController: UIViewController {
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", tableName: "Localizable", bundle: .core, value: "", comment: ""), style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
         } else if let resultsURL = resultsURL {
-            UIApplication.shared.openURL(resultsURL)
+            UIApplication.shared.open(resultsURL, options: [:], completionHandler: nil)
         }
     }
 }

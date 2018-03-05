@@ -33,7 +33,7 @@
 @import CanvasKeymaster;
 @import CanvasCore;
 
-@interface SubmissionWorkflowController () <CKRichTextInputViewDelegate, UIAlertViewDelegate>
+@interface SubmissionWorkflowController () <CKRichTextInputViewDelegate>
 @property (weak, nonatomic) UIViewController *viewController;
 @property CKAudioCommentRecorderView *audioRecorder;
 @property (copy, nonatomic, nullable) NSString *arcLTIToolID;
@@ -53,22 +53,6 @@
     return self;
 }
 
-- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 0 && self.cancelAction) {
-        self.cancelAction();
-    }
-}
-
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 1 && self.continueToQuizAction) {
-        self.continueToQuizAction();
-    } else if (buttonIndex == 2) {
-        [MobileQuizInformationViewController presentFromViewController:self.viewController];
-    }
-}
-
 - (void)present {
     if (self.legacyAssignment.type == CKAssignmentTypeQuiz) {
         
@@ -86,9 +70,22 @@
         NSString *moreInfoButtonText = NSLocalizedString(@"More Info", @"Button title for selecting to view more info about the limitations of mobile quizzes");
         NSString *continueButtonText = NSLocalizedString(@"Continue", @"Button title for selecting to continue on to quiz. The will appear in the alert view notfifying the user of mobile quiz limitations.");
         NSString *cancelButtonText = NSLocalizedString(@"Cancel", @"Cancel button title");
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertTitle message:message delegate:self cancelButtonTitle:cancelButtonText otherButtonTitles:continueButtonText, moreInfoButtonText, nil];
         
-        [alert show];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:alertTitle message:message preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:moreInfoButtonText style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [MobileQuizInformationViewController presentFromViewController:self.viewController];
+        }]];
+        [alert addAction:[UIAlertAction actionWithTitle:continueButtonText style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            if (self.continueToQuizAction) {
+                self.continueToQuizAction();
+            }
+        }]];
+        [alert addAction:[UIAlertAction actionWithTitle:cancelButtonText style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            self.cancelAction();
+        }]];
+        
+        [self.viewController presentViewController:alert animated:YES completion:nil];
+        
         return;
     } else if (self.legacyAssignment.type == CKAssignmentTypeDiscussion) {
         NSURL *url = [TheKeymaster.currentClient.baseURL URLByAppendingPathComponent:[NSString stringWithFormat:@"api/v1/courses/%@/discussion_topics/%@", @(self.legacyAssignment.courseIdent), @([self.assignment.discussionTopic.id integerValue])]];
@@ -221,9 +218,10 @@ static void showErrorForAssignment(NSError *error, NSString *assignmentName) {
     NSString *template = NSLocalizedString(@"Upload to assignment \"%@\" failed", @"Error message");
     NSString *message = [NSString stringWithFormat:template, assignmentName];
     if (application.applicationState == UIApplicationStateBackground) {
-        UILocalNotification *note = [UILocalNotification new];
-        note.alertBody = message;
-        [application presentLocalNotificationNow:note];
+        UNMutableNotificationContent *content = [UNMutableNotificationContent new];
+        content.body = message;
+        UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"assignment-upload-failure" content:content trigger:nil];
+        [UNUserNotificationCenter.currentNotificationCenter addNotificationRequest:request withCompletionHandler:nil];
     }
     else {
         [UIAlertController showAlertWithTitle:[error localizedDescription] message:message];

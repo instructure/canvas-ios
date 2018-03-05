@@ -116,7 +116,7 @@ func makeRequest<T>(_ request: Request<T>, completed: @escaping (Result<Response
             } else {
                 DispatchQueue.main.async {
                     let fallbackError = NSError(domain: "com.instructure", code: 0, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("There was no data!", tableName: "Localizable", bundle: .core, value: "", comment: "")])
-                    let error = (error as? NSError) ?? fallbackError
+                    let error = (error as NSError?) ?? fallbackError
                     completed(Result<ResponsePage<T>, NSError>(error: error))
                 }
             }

@@ -286,7 +286,7 @@
         NSURL *theURL = [NSURL URLWithString:self.fullURL]; // Copy to a local variable to avoid a retain cycle
         if (self.request.canOpenInSafari) {
             [optionsActionSheet addButtonWithTitle:NSLocalizedString(@"Open in Safari", @"Open a document in the application Safari") handler:^{
-                [[UIApplication sharedApplication] openURL:theURL];
+                [[UIApplication sharedApplication] openURL:theURL options:@{} completionHandler:nil];
             }];
             addedAtLeastOneButton = YES;
         }

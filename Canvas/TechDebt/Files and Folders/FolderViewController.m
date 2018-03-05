@@ -36,6 +36,8 @@
 #import "CBILog.h"
 #import "UIImage+TechDebt.h"
 
+#import <UserNotifications/UserNotifications.h>
+
 #define IPAD     UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
 
 @interface FolderSelectionTracker : NSObject
@@ -800,16 +802,13 @@ static void showErrorForFolder(NSError *error, CKFolder *folder) {
     NSString *template = NSLocalizedString(@"Upload to folder \"%@\" failed", @"Error message");
     NSString *message = [NSString stringWithFormat:template, folder.name];
     if (application.applicationState == UIApplicationStateBackground) {
-        UILocalNotification *note = [UILocalNotification new];
-        note.alertBody = message;
-        [application presentLocalNotificationNow:note];
+        UNMutableNotificationContent *content = [UNMutableNotificationContent new];
+        content.body = message;
+        UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"assignment-upload-failure" content:content trigger:nil];
+        [UNUserNotificationCenter.currentNotificationCenter addNotificationRequest:request withCompletionHandler:nil];
     }
     else {
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[error localizedDescription]
-                                                        message:message
-                                                       delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-        [alert show];
+        [UIAlertController showAlertWithTitle:[error localizedDescription] message:message];
     }
 }
 
@@ -873,10 +872,7 @@ static void showErrorForFolder(NSError *error, CKFolder *folder) {
         if (error) {
             NSString *title = NSLocalizedString(@"Unable to load", @"Error title");
             NSString *message = NSLocalizedString(@"Your files could not be found", @"Error content");
-            NSString *ok = NSLocalizedString(@"OK", nil);
-            
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:ok otherButtonTitles:nil];
-            [alert show];
+            [UIAlertController showAlertWithTitle:title message:message];
         }
         else if (!hasSetFolder) {
             // The user's root folder is very unlikely to change, so we're fine just taking

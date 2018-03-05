@@ -110,7 +110,7 @@ NSString *CKDiscussionAttemptFilename = @"SGDiscussionAttemptFilename-v3";
         else {
 
             NSString *filename = NSLocalizedString(@"Text Submission", @"Generic name for a submission entered online.");
-            CKAttachment *attachment = [[CKFakeAttachment alloc] initWithDisplayName:filename atIndex:[attachments count] andSubmissionAttempt:self];
+            CKAttachment *attachment = [[CKFakeAttachment alloc] initWithDisplayName:filename atIndex:(int)[attachments count] andSubmissionAttempt:self];
             [attachments addObject:attachment];
             
             NSURL *cacheURL = [attachment cacheURL];

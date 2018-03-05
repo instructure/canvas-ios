@@ -20,6 +20,8 @@
 
 @implementation CBIQuizViewModel
 
+@dynamic model;
+
 - (instancetype)init
 {
     self = [super init];

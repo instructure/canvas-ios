@@ -91,7 +91,7 @@
     if (!_isAnimating || !_isVisible || isAnimatingCurrentFrame) {
         return;
     }
-    int nextFrame = (_currentFrame + 1) % (self.animationImages.count);
+    int nextFrame = (_currentFrame + 1) % ((int)self.animationImages.count);
     
     _frontImageView.image = (self.animationImages)[_currentFrame];
     _backImageView.image = (self.animationImages)[nextFrame];

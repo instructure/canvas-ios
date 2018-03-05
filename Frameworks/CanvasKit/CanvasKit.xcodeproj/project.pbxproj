@@ -166,8 +166,6 @@
 		499D1A131C8644A3005A86D2 /* CKIClient+CKICalendarEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 499D19391C8644A3005A86D2 /* CKIClient+CKICalendarEvent.m */; };
 		499D1A141C8644A3005A86D2 /* CKIClient+CKIConversation.h in Headers */ = {isa = PBXBuildFile; fileRef = 499D193A1C8644A3005A86D2 /* CKIClient+CKIConversation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		499D1A151C8644A3005A86D2 /* CKIClient+CKIConversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 499D193B1C8644A3005A86D2 /* CKIClient+CKIConversation.m */; };
-		499D1A161C8644A3005A86D2 /* CKIClient+CKIConversationRecipient.h in Headers */ = {isa = PBXBuildFile; fileRef = 499D193C1C8644A3005A86D2 /* CKIClient+CKIConversationRecipient.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		499D1A171C8644A3005A86D2 /* CKIClient+CKIConversationRecipient.m in Sources */ = {isa = PBXBuildFile; fileRef = 499D193D1C8644A3005A86D2 /* CKIClient+CKIConversationRecipient.m */; };
 		499D1A181C8644A3005A86D2 /* CKIClient+CKICourse.h in Headers */ = {isa = PBXBuildFile; fileRef = 499D193E1C8644A3005A86D2 /* CKIClient+CKICourse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		499D1A191C8644A3005A86D2 /* CKIClient+CKICourse.m in Sources */ = {isa = PBXBuildFile; fileRef = 499D193F1C8644A3005A86D2 /* CKIClient+CKICourse.m */; };
 		499D1A1A1C8644A3005A86D2 /* CKIClient+CKIDiscussionTopic.h in Headers */ = {isa = PBXBuildFile; fileRef = 499D19401C8644A3005A86D2 /* CKIClient+CKIDiscussionTopic.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -588,8 +586,6 @@
 		499D19391C8644A3005A86D2 /* CKIClient+CKICalendarEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CKIClient+CKICalendarEvent.m"; sourceTree = "<group>"; };
 		499D193A1C8644A3005A86D2 /* CKIClient+CKIConversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CKIClient+CKIConversation.h"; sourceTree = "<group>"; };
 		499D193B1C8644A3005A86D2 /* CKIClient+CKIConversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CKIClient+CKIConversation.m"; sourceTree = "<group>"; };
-		499D193C1C8644A3005A86D2 /* CKIClient+CKIConversationRecipient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CKIClient+CKIConversationRecipient.h"; sourceTree = "<group>"; };
-		499D193D1C8644A3005A86D2 /* CKIClient+CKIConversationRecipient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CKIClient+CKIConversationRecipient.m"; sourceTree = "<group>"; };
 		499D193E1C8644A3005A86D2 /* CKIClient+CKICourse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CKIClient+CKICourse.h"; sourceTree = "<group>"; };
 		499D193F1C8644A3005A86D2 /* CKIClient+CKICourse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CKIClient+CKICourse.m"; sourceTree = "<group>"; };
 		499D19401C8644A3005A86D2 /* CKIClient+CKIDiscussionTopic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CKIClient+CKIDiscussionTopic.h"; sourceTree = "<group>"; };
@@ -1211,8 +1207,6 @@
 				499D19391C8644A3005A86D2 /* CKIClient+CKICalendarEvent.m */,
 				499D193A1C8644A3005A86D2 /* CKIClient+CKIConversation.h */,
 				499D193B1C8644A3005A86D2 /* CKIClient+CKIConversation.m */,
-				499D193C1C8644A3005A86D2 /* CKIClient+CKIConversationRecipient.h */,
-				499D193D1C8644A3005A86D2 /* CKIClient+CKIConversationRecipient.m */,
 				499D193E1C8644A3005A86D2 /* CKIClient+CKICourse.h */,
 				499D193F1C8644A3005A86D2 /* CKIClient+CKICourse.m */,
 				499D19401C8644A3005A86D2 /* CKIClient+CKIDiscussionTopic.h */,
@@ -1637,7 +1631,6 @@
 				499D1A461C8644A3005A86D2 /* CKIClient+CKISubmissionRecord.h in Headers */,
 				499D1A541C8644A3005A86D2 /* CKIClient+CKILiveAssessment.h in Headers */,
 				499D1A041C8644A3005A86D2 /* CKIRubric.h in Headers */,
-				499D1A161C8644A3005A86D2 /* CKIClient+CKIConversationRecipient.h in Headers */,
 				499D19991C8644A3005A86D2 /* CKIActivityStreamDiscussionTopicItem.h in Headers */,
 				499D19931C8644A3005A86D2 /* CKIActivityStreamCollaborationItem.h in Headers */,
 				499D19FE1C8644A3005A86D2 /* CKIUser.h in Headers */,
@@ -1900,7 +1893,6 @@
 				499D19CB1C8644A3005A86D2 /* CKIModel.m in Sources */,
 				499D19B71C8644A3005A86D2 /* CKIDiscussionTopic.m in Sources */,
 				499D19C71C8644A3005A86D2 /* CKILockableModel.m in Sources */,
-				499D1A171C8644A3005A86D2 /* CKIClient+CKIConversationRecipient.m in Sources */,
 				499D1A2D1C8644A3005A86D2 /* CKIClient+CKIModuleItem.m in Sources */,
 				499D1A451C8644A3005A86D2 /* CKIClient+CKISubmissionComment.m in Sources */,
 				499D19901C8644A3005A86D2 /* CKIAccountDomain.m in Sources */,

@@ -68,7 +68,7 @@ import UIKit
         let component = components[indexPath.row]
         if let stringURL = component.url,
             let url = URL(string: stringURL) {
-            UIApplication.shared.openURL(url)
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
 }

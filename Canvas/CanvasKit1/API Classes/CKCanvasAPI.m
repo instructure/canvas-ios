@@ -20,7 +20,6 @@
 #import "CKCanvasAPIResponse.h"
 #import "CKCanvasURLConnection.h"
 #import "CKDiscussionTopic.h"
-#import "NSData+CKAdditions.h"
 #import "NSString+CKAdditions.h"
 #import "TouchXML.h"
 #import "NSDictionary+CKAdditions.h"

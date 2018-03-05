@@ -20,7 +20,7 @@
 
 @interface CKRemoteImageView : UIImageView
 
-@property (weak) NSCache *imageCache; // required!
+@property (nonatomic, weak) NSCache *imageCache; // required!
 @property (nonatomic, copy) NSURL *imageURL;
 @property (copy) void (^afterLoadingBlock) (void);
 

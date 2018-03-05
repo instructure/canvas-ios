@@ -198,24 +198,6 @@
     return false;
 }
 
-- (NSArray *)studentsSortedByGradeOnAssignment:(CKAssignment *)assignment {
-    NSMutableArray *unsortedSubmissions = [NSMutableArray array];
-    for (CKStudent *student in self.students) {
-        CKSubmission *submission = [assignment submissionForStudent:student];
-        [unsortedSubmissions addObject:submission];
-    }
-    
-    // This places needsGrading submissions first in the list
-    NSArray *sortedSubmissions = [unsortedSubmissions sortedArrayUsingSelector:@selector(compareGrade:)];
-    
-    NSMutableArray *sortedStudents = [NSMutableArray array];
-    for (CKSubmission *submission in sortedSubmissions) {
-        [sortedStudents addObject:submission.student];
-    }
-    
-    return sortedStudents;
-}
-
 + (NSArray *)propertiesToExcludeFromEqualityComparison {
     return @[ @"students", @"assignments", @"assignmentGroups", @"calendarEvents", @"loggedInUserEnrollments", @"currentScore", @"finalScore", @"finalGrade", @"syllabusBody", @"enrollments"];
 }

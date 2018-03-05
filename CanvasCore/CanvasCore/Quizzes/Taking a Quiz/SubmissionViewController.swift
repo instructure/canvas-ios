@@ -376,7 +376,6 @@ extension SubmissionViewController: UIPickerViewDelegate, UIPickerViewDataSource
             }
             let popover = DropdownPopoverPickerViewController(toolbar: dropdownToolbar, picker: dropdownsPicker)
             popover.modalPresentationStyle = .popover
-            let sourceSize: CGFloat = 10
             popover.popoverPresentationController?.sourceView = dropdownButton.topArrow
             popover.popoverPresentationController?.permittedArrowDirections = [.left]
             popover.preferredContentSize = CGSize(width: 350, height: DropdownPickerHeight + dropdownToolbar.frame.size.height)
@@ -460,7 +459,7 @@ extension SubmissionViewController: UIPickerViewDelegate, UIPickerViewDataSource
     }
 
     func dropdownToolbarDoneAction() {
-        guard let indexPath = currentDropdownIndexPath else {
+        guard let _ = currentDropdownIndexPath else {
             return
         }
 
@@ -469,7 +468,7 @@ extension SubmissionViewController: UIPickerViewDelegate, UIPickerViewDataSource
         if let indexPath = currentDropdownIndexPath, let questionIndex = Index(indexPath: indexPath).questionIndex, let blank = dropdownBlank(at: indexPath) {
             let question = questions[questionIndex]
             var answerHash: [String: String]
-            if case var .idsHash(hash) = question.answer {
+            if case let .idsHash(hash) = question.answer {
                 answerHash = hash
             } else {
                 answerHash = [:]

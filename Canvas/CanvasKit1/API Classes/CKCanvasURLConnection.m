@@ -55,7 +55,11 @@ static NSOperationQueue *writingQueue = nil;
 
 - (id)initWithRequest:(NSURLRequest *)request progressObject:(id)anObject filehandle:(NSFileHandle *)aFileHandle shouldCache:(BOOL)cacheValue callback:(CKHTTPURLConnectionDoneCB)block
 {
+    // Silencing this because we'll most likely never update this class to use NSURLSession, it'll be removed before that
+    #pragma GCC diagnostic push
+    #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     self = [super initWithRequest:request delegate:self];
+    #pragma GCC diagnostic pop
     if (self) {
         originalRequest = request;
         

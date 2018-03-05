@@ -22,7 +22,7 @@ import UIKit
 import ReactiveSwift
 
 @objc
-public protocol CollectionViewDataSource: NSObjectProtocol, UICollectionViewDataSource {
+public protocol CollectionViewDataSource: UICollectionViewDataSource {
     func viewDidLoad(_ controller: UICollectionViewController)
     
     var layout: UICollectionViewLayout { get }

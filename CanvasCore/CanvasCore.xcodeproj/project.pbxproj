@@ -444,7 +444,6 @@
 		49CE97441F8FFEA600121A43 /* ScheduleItemDetails.js in Resources */ = {isa = PBXBuildFile; fileRef = 49CE97131F8FFEA300121A43 /* ScheduleItemDetails.js */; };
 		49CE97451F8FFEA600121A43 /* AssignmentGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE97151F8FFEA300121A43 /* AssignmentGroup.swift */; };
 		49CE97461F8FFEA600121A43 /* AssignmentGroup+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE97161F8FFEA300121A43 /* AssignmentGroup+Network.swift */; };
-		49CE97471F8FFEA600121A43 /* LocalNotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE97181F8FFEA300121A43 /* LocalNotificationHandler.swift */; };
 		49CE97481F8FFEA600121A43 /* DueDateOverride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE971A1F8FFEA400121A43 /* DueDateOverride.swift */; };
 		49CE97491F8FFEA600121A43 /* Assignment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49CE971B1F8FFEA400121A43 /* Assignment.storyboard */; };
 		49CE974A1F8FFEA600121A43 /* ScheduleItemDetails.css in Resources */ = {isa = PBXBuildFile; fileRef = 49CE971C1F8FFEA400121A43 /* ScheduleItemDetails.css */; };
@@ -988,7 +987,6 @@
 		49CE97131F8FFEA300121A43 /* ScheduleItemDetails.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ScheduleItemDetails.js; sourceTree = "<group>"; };
 		49CE97151F8FFEA300121A43 /* AssignmentGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentGroup.swift; sourceTree = "<group>"; };
 		49CE97161F8FFEA300121A43 /* AssignmentGroup+Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AssignmentGroup+Network.swift"; sourceTree = "<group>"; };
-		49CE97181F8FFEA300121A43 /* LocalNotificationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNotificationHandler.swift; sourceTree = "<group>"; };
 		49CE971A1F8FFEA400121A43 /* DueDateOverride.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DueDateOverride.swift; sourceTree = "<group>"; };
 		49CE971B1F8FFEA400121A43 /* Assignment.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Assignment.storyboard; sourceTree = "<group>"; };
 		49CE971C1F8FFEA400121A43 /* ScheduleItemDetails.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = ScheduleItemDetails.css; sourceTree = "<group>"; };
@@ -2519,7 +2517,6 @@
 				49CE96F41F8FFEA200121A43 /* Assignment */,
 				49CE97141F8FFEA300121A43 /* Assignment Group */,
 				49CE971B1F8FFEA400121A43 /* Assignment.storyboard */,
-				49CE97171F8FFEA300121A43 /* LocalNotifications */,
 				49CE971D1F8FFEA400121A43 /* Model */,
 				49CE96EE1F8FFEA200121A43 /* Network */,
 				49CE97191F8FFEA400121A43 /* Overrides */,
@@ -2610,14 +2607,6 @@
 				49CE97161F8FFEA300121A43 /* AssignmentGroup+Network.swift */,
 			);
 			path = "Assignment Group";
-			sourceTree = "<group>";
-		};
-		49CE97171F8FFEA300121A43 /* LocalNotifications */ = {
-			isa = PBXGroup;
-			children = (
-				49CE97181F8FFEA300121A43 /* LocalNotificationHandler.swift */,
-			);
-			path = LocalNotifications;
 			sourceTree = "<group>";
 		};
 		49CE97191F8FFEA400121A43 /* Overrides */ = {
@@ -3195,7 +3184,6 @@
 				49CE97A91F900D0000121A43 /* Peeps.xcdatamodeld in Sources */,
 				49CE965E1F8FF41B00121A43 /* QuizDetailCell.swift in Sources */,
 				4961F59F1F8FB2970093EC86 /* UIColor+RGB.swift in Sources */,
-				49CE97471F8FFEA600121A43 /* LocalNotificationHandler.swift in Sources */,
 				49DD239C1F8F9EBE004727F7 /* DiscussionTopicAPI.swift in Sources */,
 				4961F6861F8FB9620093EC86 /* FileUpload.swift in Sources */,
 				2C3283B42009651B00810C1B /* MasqueradableWindow.swift in Sources */,

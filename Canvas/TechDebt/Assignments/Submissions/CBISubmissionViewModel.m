@@ -27,6 +27,7 @@
 #import "CBISubmissionAnnotationPreviewHelper.h"
 #import "UIImage+TechDebt.h"
 #import "CKIClient+CBIClient.h"
+#import <AVKit/AVKit.h>
 @import CanvasKeymaster;
 @import PSPDFKit;
 @import CanvasKit;
@@ -53,6 +54,8 @@ static UIImage *(^iconForSubmissionType)(NSString *) = ^(NSString *submissionTyp
 };
 
 @implementation CBISubmissionViewModel
+
+@dynamic model;
 
 - (instancetype)init
 {
@@ -142,8 +145,9 @@ static UIImage *(^iconForSubmissionType)(NSString *) = ^(NSString *submissionTyp
 }
 
 - (void)playMediaAtURL:(NSURL *)url fromViewController:(UIViewController *)submissionViewController {
-    MPMoviePlayerViewController *player = [[MPMoviePlayerViewController alloc] initWithContentURL:url];
-    [submissionViewController presentMoviePlayerViewControllerAnimated:player];
+    AVPlayerViewController *playerViewController = [AVPlayerViewController new];
+    playerViewController.player = [[AVPlayer alloc] initWithURL:url];
+    [submissionViewController presentViewController:playerViewController animated:YES completion:nil];
 }
 
 - (void)tableViewController:(MLVCTableViewController *)controller didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

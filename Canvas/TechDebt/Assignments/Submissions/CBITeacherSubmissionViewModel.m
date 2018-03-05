@@ -22,6 +22,8 @@
 
 @implementation CBITeacherSubmissionViewModel
 
+@dynamic model;
+
 - (instancetype)init
 {
     self = [super init];

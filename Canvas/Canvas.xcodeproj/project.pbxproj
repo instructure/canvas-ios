@@ -108,8 +108,6 @@
 		492705A31CF4B73200C631C6 /* CKIUser+SwiftCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927055E1CF4B73200C631C6 /* CKIUser+SwiftCompatibility.m */; };
 		492705A61CF4B73200C631C6 /* CKIClient+CBIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705611CF4B73200C631C6 /* CKIClient+CBIClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		492705A71CF4B73200C631C6 /* CKIClient+CBIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705621CF4B73200C631C6 /* CKIClient+CBIClient.m */; };
-		492705AC1CF4B73200C631C6 /* MKNumberBadgeView+CanvasStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705681CF4B73200C631C6 /* MKNumberBadgeView+CanvasStyle.h */; };
-		492705AD1CF4B73200C631C6 /* MKNumberBadgeView+CanvasStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705691CF4B73200C631C6 /* MKNumberBadgeView+CanvasStyle.m */; };
 		492705B21CF4B73200C631C6 /* NSURL+RemoveFragment.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705701CF4B73200C631C6 /* NSURL+RemoveFragment.h */; };
 		492705B31CF4B73200C631C6 /* NSURL+RemoveFragment.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705711CF4B73200C631C6 /* NSURL+RemoveFragment.m */; };
 		492705B41CF4B73200C631C6 /* NSArray_in_additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705721CF4B73200C631C6 /* NSArray_in_additions.h */; };
@@ -249,8 +247,6 @@
 		492708531CF4BC3200C631C6 /* WebBrowserViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4927082E1CF4BC3200C631C6 /* WebBrowserViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		492708541CF4BC3200C631C6 /* WebBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927082F1CF4BC3200C631C6 /* WebBrowserViewController.m */; };
 		492708551CF4BC3200C631C6 /* WebBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 492708301CF4BC3200C631C6 /* WebBrowserViewController.xib */; };
-		492708591CF4C19B00C631C6 /* MKNumberBadgeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 492708571CF4C19B00C631C6 /* MKNumberBadgeView.h */; };
-		4927085A1CF4C19B00C631C6 /* MKNumberBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 492708581CF4C19B00C631C6 /* MKNumberBadgeView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		49295B531F87F01D001DAB1F /* CBIResizableTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49295B511F87F01B001DAB1F /* CBIResizableTextView.m */; };
 		49383CE21F848353009C8F8E /* Session+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49383CE11F84834A009C8F8E /* Session+Login.swift */; };
 		49383CE81F84887A009C8F8E /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049621F72BB6900252BC5 /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -284,17 +280,6 @@
 		496D31261CF752C600A3B11E /* LegacyModuleProgressShim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496D31251CF752C600A3B11E /* LegacyModuleProgressShim.swift */; };
 		496D312A1CF7550A00A3B11E /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496D31291CF7550A00A3B11E /* NetworkMonitor.swift */; };
 		4976C2001FBB84B900160EE4 /* CalendarEventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4976C1FF1FBB84B900160EE4 /* CalendarEventDetailViewController.swift */; };
-		49A04A711CF4F5B00051E1E7 /* JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 49A047261CF4F5AD0051E1E7 /* JSON.h */; };
-		49A04A721CF4F5B00051E1E7 /* NSObject+SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 49A047271CF4F5AD0051E1E7 /* NSObject+SBJSON.h */; };
-		49A04A731CF4F5B00051E1E7 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A047281CF4F5AD0051E1E7 /* NSObject+SBJSON.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		49A04A741CF4F5B00051E1E7 /* NSString+SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 49A047291CF4F5AD0051E1E7 /* NSString+SBJSON.h */; };
-		49A04A751CF4F5B00051E1E7 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A0472A1CF4F5AD0051E1E7 /* NSString+SBJSON.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		49A04A761CF4F5B00051E1E7 /* SBJsonBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 49A0472B1CF4F5AD0051E1E7 /* SBJsonBase.h */; };
-		49A04A771CF4F5B00051E1E7 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A0472C1CF4F5AD0051E1E7 /* SBJsonBase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		49A04A781CF4F5B00051E1E7 /* SBJsonParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 49A0472D1CF4F5AD0051E1E7 /* SBJsonParser.h */; };
-		49A04A791CF4F5B00051E1E7 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A0472E1CF4F5AD0051E1E7 /* SBJsonParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		49A04A7A1CF4F5B00051E1E7 /* SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 49A0472F1CF4F5AD0051E1E7 /* SBJsonWriter.h */; };
-		49A04A7B1CF4F5B00051E1E7 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A047301CF4F5AD0051E1E7 /* SBJsonWriter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		49A04DA81CF4F5E40051E1E7 /* ISO8601DateFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 49A04DA41CF4F5E40051E1E7 /* ISO8601DateFormatter.h */; };
 		49A04DA91CF4F5E40051E1E7 /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A04DA51CF4F5E40051E1E7 /* ISO8601DateFormatter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		49A04DAD1CF4F65D0051E1E7 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A04DAC1CF4F65D0051E1E7 /* libxml2.tbd */; };
@@ -372,8 +357,6 @@
 		49AA2BAB1CF4D51B0055862D /* ISO8601DateFormatter+CKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2ADE1CF4D51B0055862D /* ISO8601DateFormatter+CKAdditions.m */; };
 		49AA2BAC1CF4D51B0055862D /* NSArray+CKAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2ADF1CF4D51B0055862D /* NSArray+CKAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49AA2BAD1CF4D51B0055862D /* NSArray+CKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2AE01CF4D51B0055862D /* NSArray+CKAdditions.m */; };
-		49AA2BAE1CF4D51B0055862D /* NSData+CKAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2AE11CF4D51B0055862D /* NSData+CKAdditions.h */; };
-		49AA2BAF1CF4D51B0055862D /* NSData+CKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2AE21CF4D51B0055862D /* NSData+CKAdditions.m */; };
 		49AA2BB01CF4D51B0055862D /* NSDictionary+CKAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2AE31CF4D51B0055862D /* NSDictionary+CKAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49AA2BB11CF4D51B0055862D /* NSDictionary+CKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2AE41CF4D51B0055862D /* NSDictionary+CKAdditions.m */; };
 		49AA2BB21CF4D51B0055862D /* NSFileManager+CKAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2AE51CF4D51B0055862D /* NSFileManager+CKAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -866,8 +849,6 @@
 		4927055E1CF4B73200C631C6 /* CKIUser+SwiftCompatibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CKIUser+SwiftCompatibility.m"; sourceTree = "<group>"; };
 		492705611CF4B73200C631C6 /* CKIClient+CBIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CKIClient+CBIClient.h"; sourceTree = "<group>"; };
 		492705621CF4B73200C631C6 /* CKIClient+CBIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CKIClient+CBIClient.m"; sourceTree = "<group>"; };
-		492705681CF4B73200C631C6 /* MKNumberBadgeView+CanvasStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKNumberBadgeView+CanvasStyle.h"; sourceTree = "<group>"; };
-		492705691CF4B73200C631C6 /* MKNumberBadgeView+CanvasStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKNumberBadgeView+CanvasStyle.m"; sourceTree = "<group>"; };
 		492705701CF4B73200C631C6 /* NSURL+RemoveFragment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+RemoveFragment.h"; sourceTree = "<group>"; };
 		492705711CF4B73200C631C6 /* NSURL+RemoveFragment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+RemoveFragment.m"; sourceTree = "<group>"; };
 		492705721CF4B73200C631C6 /* NSArray_in_additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSArray_in_additions.h; sourceTree = "<group>"; };
@@ -1007,8 +988,6 @@
 		4927082E1CF4BC3200C631C6 /* WebBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebBrowserViewController.h; sourceTree = "<group>"; };
 		4927082F1CF4BC3200C631C6 /* WebBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebBrowserViewController.m; sourceTree = "<group>"; };
 		492708301CF4BC3200C631C6 /* WebBrowserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebBrowserViewController.xib; sourceTree = "<group>"; };
-		492708571CF4C19B00C631C6 /* MKNumberBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKNumberBadgeView.h; sourceTree = "<group>"; };
-		492708581CF4C19B00C631C6 /* MKNumberBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKNumberBadgeView.m; sourceTree = "<group>"; };
 		49295B511F87F01B001DAB1F /* CBIResizableTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBIResizableTextView.m; sourceTree = "<group>"; };
 		49295B521F87F01C001DAB1F /* CBIResizableTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBIResizableTextView.h; sourceTree = "<group>"; };
 		49383CE11F84834A009C8F8E /* Session+Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+Login.swift"; sourceTree = "<group>"; };
@@ -1039,17 +1018,6 @@
 		496D31251CF752C600A3B11E /* LegacyModuleProgressShim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegacyModuleProgressShim.swift; sourceTree = "<group>"; };
 		496D31291CF7550A00A3B11E /* NetworkMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		4976C1FF1FBB84B900160EE4 /* CalendarEventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventDetailViewController.swift; sourceTree = "<group>"; };
-		49A047261CF4F5AD0051E1E7 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSON.h; path = Classes/JSON.h; sourceTree = "<group>"; };
-		49A047271CF4F5AD0051E1E7 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+SBJSON.h"; path = "Classes/NSObject+SBJSON.h"; sourceTree = "<group>"; };
-		49A047281CF4F5AD0051E1E7 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+SBJSON.m"; path = "Classes/NSObject+SBJSON.m"; sourceTree = "<group>"; };
-		49A047291CF4F5AD0051E1E7 /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+SBJSON.h"; path = "Classes/NSString+SBJSON.h"; sourceTree = "<group>"; };
-		49A0472A1CF4F5AD0051E1E7 /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+SBJSON.m"; path = "Classes/NSString+SBJSON.m"; sourceTree = "<group>"; };
-		49A0472B1CF4F5AD0051E1E7 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonBase.h; path = Classes/SBJsonBase.h; sourceTree = "<group>"; };
-		49A0472C1CF4F5AD0051E1E7 /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonBase.m; path = Classes/SBJsonBase.m; sourceTree = "<group>"; };
-		49A0472D1CF4F5AD0051E1E7 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonParser.h; path = Classes/SBJsonParser.h; sourceTree = "<group>"; };
-		49A0472E1CF4F5AD0051E1E7 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonParser.m; path = Classes/SBJsonParser.m; sourceTree = "<group>"; };
-		49A0472F1CF4F5AD0051E1E7 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonWriter.h; path = Classes/SBJsonWriter.h; sourceTree = "<group>"; };
-		49A047301CF4F5AD0051E1E7 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonWriter.m; path = Classes/SBJsonWriter.m; sourceTree = "<group>"; };
 		49A04DA41CF4F5E40051E1E7 /* ISO8601DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISO8601DateFormatter.h; sourceTree = "<group>"; };
 		49A04DA51CF4F5E40051E1E7 /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISO8601DateFormatter.m; sourceTree = "<group>"; };
 		49A04DAC1CF4F65D0051E1E7 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
@@ -1126,8 +1094,6 @@
 		49AA2ADE1CF4D51B0055862D /* ISO8601DateFormatter+CKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ISO8601DateFormatter+CKAdditions.m"; sourceTree = "<group>"; };
 		49AA2ADF1CF4D51B0055862D /* NSArray+CKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CKAdditions.h"; sourceTree = "<group>"; };
 		49AA2AE01CF4D51B0055862D /* NSArray+CKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CKAdditions.m"; sourceTree = "<group>"; };
-		49AA2AE11CF4D51B0055862D /* NSData+CKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+CKAdditions.h"; sourceTree = "<group>"; };
-		49AA2AE21CF4D51B0055862D /* NSData+CKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CKAdditions.m"; sourceTree = "<group>"; };
 		49AA2AE31CF4D51B0055862D /* NSDictionary+CKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+CKAdditions.h"; sourceTree = "<group>"; };
 		49AA2AE41CF4D51B0055862D /* NSDictionary+CKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+CKAdditions.m"; sourceTree = "<group>"; };
 		49AA2AE51CF4D51B0055862D /* NSFileManager+CKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+CKAdditions.h"; sourceTree = "<group>"; };
@@ -1873,7 +1839,6 @@
 				492706C71CF4BA7B00C631C6 /* Locked */,
 				492706D61CF4BA8400C631C6 /* Logging */,
 				492706E11CF4BAB500C631C6 /* Media Recording */,
-				492708561CF4C17500C631C6 /* MKNumberBadgeView */,
 				4927075D1CF4BB2100C631C6 /* Modules */,
 				492707BD1CF4BBBA00C631C6 /* Pagination */,
 				49AA2D121CF4DC3F0055862D /* People */,
@@ -1996,8 +1961,6 @@
 				4927055C1CF4B73200C631C6 /* CanvasKit */,
 				492705611CF4B73200C631C6 /* CKIClient+CBIClient.h */,
 				492705621CF4B73200C631C6 /* CKIClient+CBIClient.m */,
-				492705681CF4B73200C631C6 /* MKNumberBadgeView+CanvasStyle.h */,
-				492705691CF4B73200C631C6 /* MKNumberBadgeView+CanvasStyle.m */,
 				4927056A1CF4B73200C631C6 /* MLVC */,
 				4927056F1CF4B73200C631C6 /* NS */,
 				492705721CF4B73200C631C6 /* NSArray_in_additions.h */,
@@ -2322,15 +2285,6 @@
 			path = "Web Browser";
 			sourceTree = "<group>";
 		};
-		492708561CF4C17500C631C6 /* MKNumberBadgeView */ = {
-			isa = PBXGroup;
-			children = (
-				492708571CF4C19B00C631C6 /* MKNumberBadgeView.h */,
-				492708581CF4C19B00C631C6 /* MKNumberBadgeView.m */,
-			);
-			path = MKNumberBadgeView;
-			sourceTree = "<group>";
-		};
 		4927085D1CF4C33700C631C6 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
@@ -2404,27 +2358,8 @@
 			children = (
 				49A04DE21CF4F84A0051E1E7 /* CXML */,
 				49A04DA31CF4F5E30051E1E7 /* ISO8601DateFormatter */,
-				49A047211CF4F5AD0051E1E7 /* json-framework */,
 			);
 			path = "External Sources";
-			sourceTree = "<group>";
-		};
-		49A047211CF4F5AD0051E1E7 /* json-framework */ = {
-			isa = PBXGroup;
-			children = (
-				49A047261CF4F5AD0051E1E7 /* JSON.h */,
-				49A047271CF4F5AD0051E1E7 /* NSObject+SBJSON.h */,
-				49A047281CF4F5AD0051E1E7 /* NSObject+SBJSON.m */,
-				49A047291CF4F5AD0051E1E7 /* NSString+SBJSON.h */,
-				49A0472A1CF4F5AD0051E1E7 /* NSString+SBJSON.m */,
-				49A0472B1CF4F5AD0051E1E7 /* SBJsonBase.h */,
-				49A0472C1CF4F5AD0051E1E7 /* SBJsonBase.m */,
-				49A0472D1CF4F5AD0051E1E7 /* SBJsonParser.h */,
-				49A0472E1CF4F5AD0051E1E7 /* SBJsonParser.m */,
-				49A0472F1CF4F5AD0051E1E7 /* SBJsonWriter.h */,
-				49A047301CF4F5AD0051E1E7 /* SBJsonWriter.m */,
-			);
-			path = "json-framework";
 			sourceTree = "<group>";
 		};
 		49A04DA31CF4F5E30051E1E7 /* ISO8601DateFormatter */ = {
@@ -2649,8 +2584,6 @@
 				49AA2ADE1CF4D51B0055862D /* ISO8601DateFormatter+CKAdditions.m */,
 				49AA2ADF1CF4D51B0055862D /* NSArray+CKAdditions.h */,
 				49AA2AE01CF4D51B0055862D /* NSArray+CKAdditions.m */,
-				49AA2AE11CF4D51B0055862D /* NSData+CKAdditions.h */,
-				49AA2AE21CF4D51B0055862D /* NSData+CKAdditions.m */,
 				49AA2AE31CF4D51B0055862D /* NSDictionary+CKAdditions.h */,
 				49AA2AE41CF4D51B0055862D /* NSDictionary+CKAdditions.m */,
 				49AA2AE51CF4D51B0055862D /* NSFileManager+CKAdditions.h */,
@@ -3155,7 +3088,6 @@
 				4927053F1CF4B70600C631C6 /* CBISubmissionViewModel.h in Headers */,
 				4927077C1CF4BB2100C631C6 /* CBIModuleProgressNotifications.h in Headers */,
 				492705CA1CF4B73200C631C6 /* UITableView+in_updateInBlocks.h in Headers */,
-				492708591CF4C19B00C631C6 /* MKNumberBadgeView.h in Headers */,
 				492706951CF4B88600C631C6 /* FolderViewController.h in Headers */,
 				4927054D1CF4B70600C631C6 /* SubmissionAttachmentsController.h in Headers */,
 				49A04E231CF5052A0051E1E7 /* CBIQuizzesTabViewModel.h in Headers */,
@@ -3235,7 +3167,6 @@
 				4927084C1CF4BC3200C631C6 /* CBIURLParser.h in Headers */,
 				4927051E1CF4B70600C631C6 /* CKRichTextInputView.h in Headers */,
 				492706091CF4B79B00C631C6 /* CNVTableViewCell.h in Headers */,
-				492705AC1CF4B73200C631C6 /* MKNumberBadgeView+CanvasStyle.h in Headers */,
 				492705261CF4B70600C631C6 /* CBIStudentSubmissionViewController.h in Headers */,
 				492706DD1CF4BA8400C631C6 /* CBILogFormatter.h in Headers */,
 				49A04E271CF506810051E1E7 /* CKCanvasAPI+CurrentAPI.h in Headers */,
@@ -3280,7 +3211,6 @@
 				49AA2BAA1CF4D51B0055862D /* ISO8601DateFormatter+CKAdditions.h in Headers */,
 				49AA2BA21CF4D51B0055862D /* CKPaginationInfo.h in Headers */,
 				49AA2C1E1CF4D51B0055862D /* CKSubmission.h in Headers */,
-				49A04A761CF4F5B00051E1E7 /* SBJsonBase.h in Headers */,
 				49AA2C081CF4D51B0055862D /* CKRubric.h in Headers */,
 				49AA2C351CF4D51B0055862D /* CKCommentViewController.h in Headers */,
 				49A04E001CF4F8620051E1E7 /* CXMLDocument_CreationExtensions.h in Headers */,
@@ -3297,7 +3227,6 @@
 				49AA2C2A1CF4D51B0055862D /* CKUser.h in Headers */,
 				49AA2C0C1CF4D51B0055862D /* CKRubricCriterion.h in Headers */,
 				49AA2BD61CF4D51B0055862D /* CKContentLock.h in Headers */,
-				49AA2BAE1CF4D51B0055862D /* NSData+CKAdditions.h in Headers */,
 				49AA2BCE1CF4D51B0055862D /* CKCalendarItem.h in Headers */,
 				49A04E081CF4F8620051E1E7 /* CXMLDocument.h in Headers */,
 				49AA2C341CF4D51B0055862D /* CKAudioCommentRecorderViewInternal.h in Headers */,
@@ -3321,7 +3250,6 @@
 				49AA2BE41CF4D51B0055862D /* CKCourse.h in Headers */,
 				49AA2BEA1CF4D51B0055862D /* CKEmbeddedMediaAttachment.h in Headers */,
 				49AA2C321CF4D51B0055862D /* CKAudioCommentRecorderView.h in Headers */,
-				49A04A741CF4F5B00051E1E7 /* NSString+SBJSON.h in Headers */,
 				49AA2BA01CF4D51B0055862D /* CKCanvasURLConnection.h in Headers */,
 				49AA2BE81CF4D51B0055862D /* CKDiscussionTopic.h in Headers */,
 				49AA2C371CF4D51B0055862D /* CKCrossfadingImageView.h in Headers */,
@@ -3331,7 +3259,6 @@
 				49AA2BA61CF4D51B0055862D /* CKURLRouter.h in Headers */,
 				49A04DA81CF4F5E40051E1E7 /* ISO8601DateFormatter.h in Headers */,
 				49AA2B8D1CF4D51B0055862D /* CKAPICredentials.h in Headers */,
-				49A04A7A1CF4F5B00051E1E7 /* SBJsonWriter.h in Headers */,
 				49AA2C481CF4D51B0055862D /* CKStylingButton.h in Headers */,
 				49A04E021CF4F8620051E1E7 /* CXMLNode_CreationExtensions.h in Headers */,
 				49A04E121CF4F8620051E1E7 /* CXMLNode_PrivateExtensions.h in Headers */,
@@ -3346,21 +3273,18 @@
 				49AA2B911CF4D51B0055862D /* CKCanvasAPI+Conversations.h in Headers */,
 				49AA2BB81CF4D51B0055862D /* UIImage+Alpha.h in Headers */,
 				49AA2C241CF4D51B0055862D /* CKSubmissionType.h in Headers */,
-				49A04A781CF4F5B00051E1E7 /* SBJsonParser.h in Headers */,
 				49A04E141CF4F8620051E1E7 /* CXMLNode_XPathExtensions.h in Headers */,
 				49AA2BB41CF4D51B0055862D /* NSHTTPURLResponse+CKAdditions.h in Headers */,
 				49AA2BD81CF4D51B0055862D /* CKContextInfo.h in Headers */,
 				49AA2C0A1CF4D51B0055862D /* CKRubricAssessment.h in Headers */,
 				49AA2B971CF4D51B0055862D /* CKCanvasAPI+Private.h in Headers */,
 				49A04E161CF4F8620051E1E7 /* CXMLNode.h in Headers */,
-				49A04A721CF4F5B00051E1E7 /* NSObject+SBJSON.h in Headers */,
 				49AA2BD41CF4D51B0055862D /* CKCommentAttachment.h in Headers */,
 				49AA2BB61CF4D51B0055862D /* NSString+CKAdditions.h in Headers */,
 				49AA2BCC1CF4D51B0055862D /* CKAttachment.h in Headers */,
 				49A04E0C1CF4F8620051E1E7 /* CXMLElement_ElementTreeExtensions.h in Headers */,
 				49AA2BA41CF4D51B0055862D /* CKTerm.h in Headers */,
 				49A04E0E1CF4F8620051E1E7 /* CXMLElement.h in Headers */,
-				49A04A711CF4F5B00051E1E7 /* JSON.h in Headers */,
 				49AA2C501CF4D51B0055862D /* INAVPlayerView.h in Headers */,
 				49AA2C401CF4D51B0055862D /* CKOverlayViewController.h in Headers */,
 				49AA2BF81CF4D51B0055862D /* CKMediaComment.h in Headers */,
@@ -4122,7 +4046,6 @@
 				492705B31CF4B73200C631C6 /* NSURL+RemoveFragment.m in Sources */,
 				492706911CF4B88600C631C6 /* CBIFolderViewModel.m in Sources */,
 				4927068F1CF4B88600C631C6 /* CBIFileViewModel.m in Sources */,
-				492705AD1CF4B73200C631C6 /* MKNumberBadgeView+CanvasStyle.m in Sources */,
 				492706E51CF4BAB500C631C6 /* VideoRecorderController.m in Sources */,
 				492708401CF4BC3200C631C6 /* CBISyllabusTabViewModel.m in Sources */,
 				49AA2D351CF4DC540055862D /* RoundedButton.m in Sources */,
@@ -4182,7 +4105,6 @@
 				4927060F1CF4B79B00C631C6 /* InsetTableViewCell.m in Sources */,
 				49AA2D261CF4DC540055862D /* AboutViewController.m in Sources */,
 				492705531CF4B70600C631C6 /* URLSubmissionPreviewViewController.m in Sources */,
-				4927085A1CF4C19B00C631C6 /* MKNumberBadgeView.m in Sources */,
 				492706AA1CF4B98900C631C6 /* iCanvasConstants.m in Sources */,
 				492705CF1CF4B73300C631C6 /* UIView+Circular.m in Sources */,
 				4927060A1CF4B79B00C631C6 /* CNVTableViewCell.m in Sources */,
@@ -4247,9 +4169,7 @@
 				49AA2C0F1CF4D51B0055862D /* CKRubricCriterionRating.m in Sources */,
 				49AA2BA51CF4D51B0055862D /* CKTerm.m in Sources */,
 				49AA2C0B1CF4D51B0055862D /* CKRubricAssessment.m in Sources */,
-				49A04A7B1CF4F5B00051E1E7 /* SBJsonWriter.m in Sources */,
 				49AA2C531CF4D51B0055862D /* CKByteCountFormatter.m in Sources */,
-				49A04A731CF4F5B00051E1E7 /* NSObject+SBJSON.m in Sources */,
 				49AA2C211CF4D51B0055862D /* CKSubmissionAttempt.m in Sources */,
 				49AA2BBF1CF4D51B0055862D /* UITableView+in_fix10550644.m in Sources */,
 				49AA2BA91CF4D51B0055862D /* CKCommonTypes.m in Sources */,
@@ -4265,8 +4185,6 @@
 				49A04E191CF4F8620051E1E7 /* CTidy.m in Sources */,
 				49AA2C4D1CF4D51B0055862D /* CKUploadProgressToolbar.m in Sources */,
 				49AA2C431CF4D51B0055862D /* CKRemoteImageButton.m in Sources */,
-				49A04A751CF4F5B00051E1E7 /* NSString+SBJSON.m in Sources */,
-				49AA2BAF1CF4D51B0055862D /* NSData+CKAdditions.m in Sources */,
 				49AA2C1F1CF4D51B0055862D /* CKSubmission.m in Sources */,
 				49AA2C251CF4D51B0055862D /* CKSubmissionType.m in Sources */,
 				49AA2B9D1CF4D51B0055862D /* CKCanvasAPI.m in Sources */,
@@ -4304,7 +4222,6 @@
 				49A04E031CF4F8620051E1E7 /* CXMLNode_CreationExtensions.m in Sources */,
 				49AA2BB91CF4D51B0055862D /* UIImage+Alpha.m in Sources */,
 				49AA2C091CF4D51B0055862D /* CKRubric.m in Sources */,
-				49A04A771CF4F5B00051E1E7 /* SBJsonBase.m in Sources */,
 				49AA2BED1CF4D51B0055862D /* CKEnrollment.m in Sources */,
 				49AA2B9F1CF4D51B0055862D /* CKCanvasAPIResponse.m in Sources */,
 				49AA2BFB1CF4D51B0055862D /* CKMediaServer.m in Sources */,
@@ -4315,7 +4232,6 @@
 				49AA2BB31CF4D51B0055862D /* NSFileManager+CKAdditions.m in Sources */,
 				49AA2BC71CF4D51B0055862D /* CKAssignment.m in Sources */,
 				49AA2C1D1CF4D51B0055862D /* CKStudent.m in Sources */,
-				49A04A791CF4F5B00051E1E7 /* SBJsonParser.m in Sources */,
 				49AA2BC91CF4D51B0055862D /* CKAssignmentGroup.m in Sources */,
 				49AA2BA11CF4D51B0055862D /* CKCanvasURLConnection.m in Sources */,
 				49A04E111CF4F8620051E1E7 /* CXMLNamespaceNode.m in Sources */,
@@ -4977,11 +4893,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/CanvasKit1/External",
-					Sources/OCMock,
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CanvasKit1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -5010,11 +4922,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/CanvasKit1/External",
-					Sources/OCMock,
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CanvasKit1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

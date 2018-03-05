@@ -33,6 +33,7 @@
 #import "CBILog.h"
 #import "CKIClient+CBIClient.h"
 #import "CBIAssignmentDetailViewController.h"
+#import "UIAlertController+TechDebt.h"
 
 @import PSPDFKit;
 @import PSPDFKitUI;
@@ -81,7 +82,7 @@
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     if (error.code != NSURLErrorCancelled) {
         NSString *errorMessage = [NSString stringWithFormat:NSLocalizedString(@"There was a problem accessing the requested file.\n\nError: %@", "Error message when fetching a file fails"), error.localizedDescription];
-        [[[UIAlertView alloc] initWithTitle:nil message:errorMessage delegate:nil cancelButtonTitle:NSLocalizedString(@"Dismiss", @"Dismiss button title") otherButtonTitles:nil] show];
+        [UIAlertController showAlertWithTitle:nil message:errorMessage];
     }
 }
 
@@ -218,7 +219,7 @@
 
             if (error.code != NSURLErrorCancelled) {
                 NSString *errorMessage = [NSString stringWithFormat:NSLocalizedString(@"There was a problem accessing the requested file.\n\nError: %@", "Error message when fetching a file fails"), error.localizedDescription];
-                [[[UIAlertView alloc] initWithTitle:nil message:errorMessage delegate:nil cancelButtonTitle:NSLocalizedString(@"Dismiss", @"Dismiss button title") otherButtonTitles:nil] show];
+                [UIAlertController showAlertWithTitle:nil message:errorMessage];
             }
             return;
         }
@@ -451,11 +452,7 @@
     BOOL presented = [interactionController presentOptionsMenuFromBarButtonItem:actionButton animated:YES];
     if (!presented) {
         NSString *title = NSLocalizedString(@"No actions available for this file", @"Text of alert when attempting to select a file that can't be printed or passed to any other app");
-        UIActionSheet *noActionsAvailableSheet = [[UIActionSheet alloc] initWithTitle:title
-                                                                             delegate:nil
-                                                                    cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                                               destructiveButtonTitle:nil otherButtonTitles:nil];
-        [noActionsAvailableSheet showFromBarButtonItem:actionButton animated:YES];
+        [UIAlertController showAlertWithTitle:title message:nil];
     }
     if (printController) {
         [printController dismissAnimated:NO];

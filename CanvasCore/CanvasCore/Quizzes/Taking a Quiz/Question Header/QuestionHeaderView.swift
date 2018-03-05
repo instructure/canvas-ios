@@ -105,21 +105,25 @@ extension QuestionHeaderView {
     }
     
     func updateAccessibilityLabel() {
-        let question = NSLocalizedString("Question", tableName: "Localizable", bundle: .core, value: "", comment: "accessibility label for a quiz question")
-        var label = question + " \(questionNumber)."
+        var label = ""
+        if let number = questionNumber {
+            let question = NSLocalizedString("Question", tableName: "Localizable", bundle: .core, value: "", comment: "accessibility label for a quiz question")
+            label = question + " \(number)."
+        }
         
         if flagged {
             label += " " + NSLocalizedString("Flagged", tableName: "Localizable", bundle: .core, value: "", comment: "State of the flagged question")
         }
-        accessibilityLabel = label
+        accessibilityLabel = label.trimmingCharacters(in: .whitespaces)
     }
     
     func postFlagChangedA11yNotification() {
+        guard let number = questionNumber else { return }
         let notification: String
         if flagged {
-            notification = NSLocalizedString("Question \(questionNumber) Flagged", tableName: "Localizable", bundle: .core, value: "", comment: "state for a question that has been flagged")
+            notification = NSLocalizedString("Question \(number) Flagged", tableName: "Localizable", bundle: .core, value: "", comment: "state for a question that has been flagged")
         } else {
-            notification = NSLocalizedString("Question \(questionNumber) Unflagged", tableName: "Localizable", bundle: .core, value: "", comment: "state for unflagged question")
+            notification = NSLocalizedString("Question \(number) Unflagged", tableName: "Localizable", bundle: .core, value: "", comment: "state for unflagged question")
         }
         
         UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, notification)

@@ -100,7 +100,7 @@ NSString * const CKIModuleItemCompletionRequirementMustMarkDone = @"must_mark_do
 
 - (NSString *)itemID
 {
-    return self.contentID ?: self.pageID;
+    return self.contentID ?: [self.pageID absoluteString];
 }
 
 - (NSString *)path

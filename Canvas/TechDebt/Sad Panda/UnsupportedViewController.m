@@ -54,7 +54,7 @@
 {
     DDLogVerbose(@"openInSafarButtonTouched : %@", self.tabName);
     if ([[UIApplication sharedApplication] canOpenURL:self.canvasURL]) {
-        [[UIApplication sharedApplication] openURL:self.canvasURL];
+        [[UIApplication sharedApplication] openURL:self.canvasURL options:@{} completionHandler:nil];
     } else {
         [UIAlertController showAlertWithTitle:NSLocalizedString(@"Whoops!", "Error Title") message:NSLocalizedString(@"There was a problem launching Safari", nil)];
     }

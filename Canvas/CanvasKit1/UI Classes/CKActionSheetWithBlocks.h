@@ -20,7 +20,11 @@
 
 extern NSString * const CKActionSheetDidShowNotification;
 
+// TODO: Remove this silly action sheet thing
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 @interface CKActionSheetWithBlocks : UIActionSheet
+#pragma GCC diagnostic pop
 
 - (id)initWithTitle:(NSString *)title;
 - (void)addButtonWithTitle:(NSString *)title handler:(void (^)(void))handler;

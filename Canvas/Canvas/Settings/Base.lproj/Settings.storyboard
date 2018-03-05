@@ -108,12 +108,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="11y-3x-iEQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1562" y="34.000000000000007"/>
+            <point key="canvasLocation" x="1852" y="34"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="5F3-Yn-4It">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TB8-VV-Ui0" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SettingsNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="TB8-VV-Ui0" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="MTE-zb-XPL">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

@@ -152,21 +152,22 @@
 - (IBAction)cancelButtonTouched:(id)sender
 {
     if (self.bodyTextView.text.length > 20) {
-        UIActionSheet *verifyActionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Continue Editing" destructiveButtonTitle:@"Cancel Request" otherButtonTitles:nil];
-        if (self.tabBarController) {
-            [verifyActionSheet showFromTabBar:self.tabBarController.tabBar];
-        } else {
-            [verifyActionSheet showFromBarButtonItem:_cancelButton animated:true];
-        }
+        
+        NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+        NSString *cancelButton = NSLocalizedStringFromTableInBundle(@"Continue Editing", nil, bundle, @"");
+        NSString *destructiveButton = NSLocalizedStringFromTableInBundle(@"Cancel Request", nil, bundle, @"");
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:cancelButton style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *destroy = [UIAlertAction actionWithTitle:destructiveButton style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }];
+        
+        [alert addAction:cancel];
+        [alert addAction:destroy];
+        alert.popoverPresentationController.barButtonItem = _cancelButton;
+        [self presentViewController:alert animated:YES completion:nil];
         
     } else {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == actionSheet.destructiveButtonIndex) {
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 }

@@ -24,11 +24,12 @@
 
 #import "ReceivedFilesViewController.h"
 #import "UIImage+TechDebt.h"
+#import "UIAlertController+TechDebt.h"
 
 @import CanvasCore;
 @import CanvasKeymaster;
 
-@interface CBIFolderViewModel () <UIAlertViewDelegate, UIActionSheetDelegate>
+@interface CBIFolderViewModel ()
 @property (nonatomic, strong) UIBarButtonItem *addItem;
 @property (nonatomic, strong) ToastManager *toastManager;
 @property (nonatomic, weak) UIViewController *viewController;
@@ -98,63 +99,78 @@
     }
 }
 
-- (void)addButtonTouched:(UIBarButtonItem *)button
-{
-    self.addItem.enabled = NO;
-    UIActionSheet *addActionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", "Cancel button title") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Add a folder", nil), NSLocalizedString(@"Upload a file", nil), nil];
-    [addActionSheet showFromBarButtonItem:button animated:YES];
+- (void)addButtonTouched:(UIBarButtonItem *)button {
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    actionSheet.popoverPresentationController.barButtonItem = button;
+    [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Add a folder", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self addFolder];
+    }]];
+    [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Upload a file", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self addFile];
+    }]];
+    [actionSheet addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", "Cancel button title") style:UIAlertActionStyleCancel handler:nil]];
+    [self.viewController presentViewController:actionSheet animated:YES completion:nil];
 }
 
-#pragma mark - action sheet delegate
+- (void)addFolder {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"New Folder", nil) message:NSLocalizedString(@"Choose a name for the new folder", nil) preferredStyle:UIAlertControllerStyleAlert];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = NSLocalizedString(@"Enter folder name", nil);
+    }];
+    [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Create Folder", "Cancel button title") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        CKIFolder *folder = [CKIFolder new];
+        folder.name = alert.textFields.firstObject.text;
+        [[[CKIClient currentClient] createFolder:folder InFolder:self.model] subscribeNext:^(CKIFolder *newFolder) {
+            CBIFolderViewModel *folderViewModel = [[CBIFolderViewModel alloc] init];
+            folderViewModel.model = newFolder;
+            folderViewModel.index = 0;
+            folderViewModel.tintColor = self.tintColor;
+            [self.collectionController insertObjects:@[folderViewModel]];
+        }];
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", "Cancel button title") style:UIAlertActionStyleCancel handler:nil]];
+    [self.viewController presentViewController:alert animated:YES completion:nil];
+}
 
-- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    self.addItem.enabled = YES;
-    if (buttonIndex == 0) {
-        UIAlertView *createAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"New Folder", nil) message:NSLocalizedString(@"Choose a name for the new folder", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", "Cancel button title") otherButtonTitles:@"Create Folder", nil];
-        createAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-        [createAlertView show];
-    } else if (buttonIndex == 1) {
-        
-        ReceivedFilesViewController *filesController = [ReceivedFilesViewController presentReceivedFilesViewControllerFrom:self.viewController];
-        @weakify(filesController);
-        filesController.submitButtonTitle = NSLocalizedString(@"Upload", @"Button title for uploading a file");
-        filesController.onSubmitBlock = ^(NSArray *urls) {
-            @strongify(filesController);
-            [filesController dismissViewControllerAnimated:YES completion:^{
-                if (urls.count == 0) {
-                    return;
-                }
+- (void)addFile {
+    ReceivedFilesViewController *filesController = [ReceivedFilesViewController presentReceivedFilesViewControllerFrom:self.viewController];
+    @weakify(filesController);
+    filesController.submitButtonTitle = NSLocalizedString(@"Upload", @"Button title for uploading a file");
+    filesController.onSubmitBlock = ^(NSArray *urls) {
+        @strongify(filesController);
+        [filesController dismissViewControllerAnimated:YES completion:^{
+            if (urls.count == 0) {
+                return;
+            }
+            
+            NSMutableArray *signalsArray = [NSMutableArray array];
+            
+            [self.toastManager beginToastInfo:[NSString stringWithFormat:@"Uploading File%@...", urls.count > 1 ? @"s" : @""]];
+            [urls enumerateObjectsUsingBlock:^(NSURL *fileURL, NSUInteger idx, BOOL *stop) {
+                NSString *extension = [[fileURL absoluteString] pathExtension];
+                NSData *fileData = [NSData dataWithContentsOfURL:fileURL options:NSDataReadingMappedIfSafe error:NULL];
                 
-                NSMutableArray *signalsArray = [NSMutableArray array];
-                
-                [self.toastManager beginToastInfo:[NSString stringWithFormat:@"Uploading File%@...", urls.count > 1 ? @"s" : @""]];
-                [urls enumerateObjectsUsingBlock:^(NSURL *fileURL, NSUInteger idx, BOOL *stop) {
-                    NSString *extension = [[fileURL absoluteString] pathExtension];
-                    NSData *fileData = [NSData dataWithContentsOfURL:fileURL options:NSDataReadingMappedIfSafe error:NULL];
-                    
-                    RACSignal *uploadSignal = [[CKIClient currentClient] uploadFile:fileData ofType:extension withName:[fileURL lastPathComponent] inFolder:self.model];
-                    [signalsArray addObject:uploadSignal];
-                }];
-                
-                @weakify(self);
-                [[RACSignal merge:signalsArray] subscribeNext:^(CKIFile *newFile) {
-                    @strongify(self);
-                    CBIFileViewModel *fileViewModel = [[CBIFileViewModel alloc] init];
-                    fileViewModel.model = newFile;
-                    fileViewModel.index = 1;
-                    fileViewModel.tintColor = self.tintColor;
-                    [self.collectionController insertObjects:@[fileViewModel]];
-                } error:^(NSError *error) {
-                    @strongify(self);
-                    [self.toastManager endToast];
-                } completed:^{
-                    @strongify(self);
-                    [self.toastManager endToast];
-                }];
+                RACSignal *uploadSignal = [[CKIClient currentClient] uploadFile:fileData ofType:extension withName:[fileURL lastPathComponent] inFolder:self.model];
+                [signalsArray addObject:uploadSignal];
             }];
-        };
-    }
+            
+            @weakify(self);
+            [[RACSignal merge:signalsArray] subscribeNext:^(CKIFile *newFile) {
+                @strongify(self);
+                CBIFileViewModel *fileViewModel = [[CBIFileViewModel alloc] init];
+                fileViewModel.model = newFile;
+                fileViewModel.index = 1;
+                fileViewModel.tintColor = self.tintColor;
+                [self.collectionController insertObjects:@[fileViewModel]];
+            } error:^(NSError *error) {
+                @strongify(self);
+                [self.toastManager endToast];
+            } completed:^{
+                @strongify(self);
+                [self.toastManager endToast];
+            }];
+        }];
+    };
 }
 
 #pragma mark - tableview delegate
@@ -179,8 +195,7 @@
     [deleteSignal subscribeError:^(NSError *error) {
         @strongify(self);
         [tableViewController.viewModel.collectionController insertObjects:@[self]];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error deleting folder", @"Error deleting folder alert view title") message:error.localizedDescription delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-        [alert show];
+        [UIAlertController showAlertWithTitle:NSLocalizedString(@"Error deleting folder", @"Error deleting folder alert view title") message:error.localizedDescription];
     }];
 }
 

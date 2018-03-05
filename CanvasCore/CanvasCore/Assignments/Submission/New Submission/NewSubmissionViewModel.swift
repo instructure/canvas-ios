@@ -217,8 +217,8 @@ private func insertBatch(in session: Session, fileTypes: [String], apiPath: Stri
     var batch: FileUploadBatch!
     context.performAndWait {
         batch = FileUploadBatch(session: session, fileTypes: fileTypes, apiPath: apiPath)
-        FileUpload(inContext: context, uploadable: uploadable, path: apiPath, batch: batch)
+        _ = FileUpload(inContext: context, uploadable: uploadable, path: apiPath, batch: batch)
     }
-    context.saveOrRollback()
+    _ = context.saveOrRollback()
     return batch
 }

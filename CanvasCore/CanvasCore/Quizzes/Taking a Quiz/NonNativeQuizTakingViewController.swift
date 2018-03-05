@@ -177,7 +177,7 @@ extension NonNativeQuizTakingViewController: UIWebViewDelegate {
         } else if navigationType == .linkClicked {
             // TODO: maybe open a native in app browser?
             if let URL = request.url {
-                UIApplication.shared.openURL(URL)
+                UIApplication.shared.open(URL, options: [:], completionHandler: nil)
             }
             return false
         }

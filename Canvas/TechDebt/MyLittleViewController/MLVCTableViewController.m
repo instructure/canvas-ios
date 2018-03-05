@@ -354,7 +354,7 @@ CGFloat tableViewHeightForRowAtIndexPath(MLVCTableViewController *self, SEL _cmd
 
 #pragma mark - Error Handling
 - (void)refreshFailed:(NSError *)error {
-    NSInteger *unauthorizedCode = -1011;
+    NSInteger unauthorizedCode = -1011;
     NSString *title = NSLocalizedString(@"Failed to load", @"Error title for refresh failing on an MLVC tableview controller");
     NSString *message = error.localizedDescription;
     

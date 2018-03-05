@@ -57,6 +57,8 @@ NSString * const CKActionSheetDidShowNotification = @"CKAlertViewDidShowNotifica
     self.cancelButtonIndex = buttonIndex;
 }
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     void (^handler)(void) = blocks[@(buttonIndex)];
@@ -69,5 +71,7 @@ NSString * const CKActionSheetDidShowNotification = @"CKAlertViewDidShowNotifica
         dismissalBlock();
     }
 }
+
+#pragma GCC diagnostic pop
 
 @end

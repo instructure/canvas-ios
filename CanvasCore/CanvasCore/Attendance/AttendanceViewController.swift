@@ -400,7 +400,7 @@ extension AttendanceViewController: UITableViewDataSource, UITableViewDelegate {
         let sc = statii[indexPath.row]
         
         let newStatus: (Attendance?) -> ((UITableViewRowAction, IndexPath) -> Void) = { newStatus in
-            return { [weak self] action, path in
+            return { action, path in
                 sc.update(attendance: newStatus)
             }
         }

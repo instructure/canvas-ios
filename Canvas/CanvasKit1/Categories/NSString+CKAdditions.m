@@ -50,12 +50,8 @@
 }
 
 - (NSString *)realURLEncodedString {
-    NSString *str = (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(NULL,
-                                                                        (__bridge CFStringRef)self,
-                                                                        NULL,
-                                                                        (CFStringRef)@"!*'();:@&=+$,/?%#[]",
-                                                                        kCFStringEncodingUTF8);
-    return str;
+    NSCharacterSet *allowed = [NSCharacterSet characterSetWithCharactersInString:@"!*'();:@&=+$,/?%#[]"];
+    return [self stringByAddingPercentEncodingWithAllowedCharacters:allowed];
 }
 
 - (NSString *)ck_stringByMatching:(NSString *)regexStr capture:(NSUInteger)captureGroup {

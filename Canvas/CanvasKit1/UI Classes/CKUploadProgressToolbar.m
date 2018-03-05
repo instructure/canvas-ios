@@ -119,7 +119,7 @@
     return label;
 }
 
-- (void)setCancelBlock:(void (^)())cancelBlock {
+- (void)setCancelBlock:(void (^)(void))cancelBlock {
     _cancelBlock = cancelBlock;
     [self setNeedsLayout];
 }

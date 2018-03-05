@@ -233,7 +233,7 @@ extension ModuleItem: SynchronizedModel {
 
     func updateMasteryPaths(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
         // We don't care to remember the details about what selection they made, so we don't store that. In the future, we can remove this requirement and filter any with a selectedSetID from the collections predicate, if we want to have this information
-        if let masteryPaths: JSONObject = try json <| "mastery_paths", let selectedSetID: String? = try masteryPaths.stringID("selected_set_id"), selectedSetID == nil {
+        if let masteryPaths: JSONObject = try json <| "mastery_paths", let selectedSetID: String = try masteryPaths.stringID("selected_set_id"), selectedSetID == nil {
             let masteryPathsItem: MasteryPathsItem = (try context.findOne(withPredicate: MasteryPathsItem.predicateForMasteryPathsItem(inModule: moduleID, fromItemWithMasteryPaths: id)) ?? MasteryPathsItem(inContext: context))
             masteryPathsItem.id = UUID().uuidString
             masteryPathsItem.moduleID = moduleID

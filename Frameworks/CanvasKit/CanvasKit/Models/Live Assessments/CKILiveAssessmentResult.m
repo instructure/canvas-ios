@@ -21,6 +21,8 @@
 
 @implementation CKILiveAssessmentResult
 
+@dynamic context;
+
 + (NSString *)keyForJSONAPIContent
 {
     return @"results";

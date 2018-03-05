@@ -23,6 +23,8 @@
 
 @implementation CKISubmissionRecord
 
+@dynamic context;
+
 + (NSDictionary *)JSONKeyPathsByPropertyKey
 {
     NSDictionary *keyPaths = @{
