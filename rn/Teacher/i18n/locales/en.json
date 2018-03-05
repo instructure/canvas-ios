@@ -339,16 +339,19 @@
     "message": "{ count, plural,\n    one {# Needs Grading}\n  other {# Need Grading}\n}"
   },
   "count_plural_one_pt_other_pts_c5a3bced": {
-    "message": "{ count, plural,\n    one {# pt}\n  other {# pts}\n}"
+    "message": "{ count, plural,\n    one {# pt}\n  other {# pts}\n}",
+    "description": "Number of points possible"
   },
   "count_plural_one_question_other_questions_309aafa": {
     "message": "{ count, plural,\n    one {# Question}\n  other {# Questions}\n}"
   },
   "count_plural_one_reply_other_replies_dbf1832a": {
-    "message": "{ count, plural,\n    one {# Reply}\n  other {# Replies}\n}"
+    "message": "{ count, plural,\n    one {# Reply}\n  other {# Replies}\n}",
+    "description": "Number of replies"
   },
   "count_plural_one_there_is_assignee_without_a_grade_15facb89": {
-    "message": "{ count, plural,\n    one {There is # assignee without a grade.}\n  other {There are # assignees without grades.}\n}"
+    "message": "{ count, plural,\n    one {There is # assignee without a grade.}\n  other {There are # assignees without grades.}\n}",
+    "description": "Number of assignees without grades."
   },
   "count_students_4ae780ca": {
     "message": "{ count } students"
@@ -599,8 +602,8 @@
   "filter_inbox_dae0ff8f": {
     "message": "Filter Inbox"
   },
-  "filter_numselected_f4793ab8": {
-    "message": "Filter ({ numSelected })"
+  "filter_numselected_number_2e4c17e3": {
+    "message": "Filter ({ numSelected, number })"
   },
   "filter_people_b34b567b": {
     "message": "Filter People"
@@ -962,11 +965,8 @@
   "ordered_list_5fb1ce41": {
     "message": "Ordered List"
   },
-  "out_of_points_c40a0475": {
-    "message": "Out of { points }"
-  },
-  "out_of_score_c17b26bb": {
-    "message": "Out of { score }"
+  "out_of_points_number_42209979": {
+    "message": "Out of { points, number }"
   },
   "page_details_847e35e6": {
     "message": "Page Details"
@@ -1388,6 +1388,9 @@
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "There was an problem loading your messages."
   },
+  "there_was_an_unexepected_error_fd6f2bf": {
+    "message": "There was an unexepected error."
+  },
   "there_was_an_unexpected_error_please_try_again_5e08774e": {
     "message": "There was an unexpected error. Please try again."
   },
@@ -1492,6 +1495,10 @@
   },
   "unread_e9c1b19c": {
     "message": "Unread"
+  },
+  "unread_plural_one_unread_other_unread_5d48c74f": {
+    "message": "{ unread, plural,\n    one {# Unread}\n  other {# Unread}\n}",
+    "description": "Number of unread discussion posts"
   },
   "until_date_f3b9f367": {
     "message": "Until { date }"
