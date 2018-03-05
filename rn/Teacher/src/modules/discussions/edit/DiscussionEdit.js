@@ -219,8 +219,13 @@ export class DiscussionEdit extends Component<Props, any> {
               border='both'
               onChangeText={this._valueChanged('title')}
               identifier='discussions.edit.titleInput'
-              placeholder={i18n('Add title')}
+              placeholder={i18n('Add title (required)')}
               onFocus={this._scrollToInput}
+            />
+            <RequiredFieldSubscript
+              title={this.state.errors.title}
+              visible={Boolean(this.state.errors.title)}
+              testID='discussions.edit.title.validation-error'
             />
 
             <Heading1 style={style.heading}>{i18n('Description')}</Heading1>
@@ -234,15 +239,10 @@ export class DiscussionEdit extends Component<Props, any> {
                 keyboardAware={false}
                 scrollEnabled={true}
                 contentHeight={150}
-                placeholder={i18n('Add description (required)')}
+                placeholder={i18n('Add description')}
                 navigator={this.props.navigator}
               />
             </View>
-            <RequiredFieldSubscript
-              title={this.state.errors.message}
-              visible={Boolean(this.state.errors.message)}
-              testID='discussions.edit.message.validation-error'
-            />
 
             <Heading1 style={style.heading}>{i18n('Options')}</Heading1>
             { this.state.can_unpublish && isTeacher() &&
@@ -470,8 +470,8 @@ export class DiscussionEdit extends Component<Props, any> {
       errors.dates = true
     }
 
-    if (!this.state.message) {
-      errors.message = i18n('A message is required')
+    if (!this.state.title) {
+      errors.title = i18n('A title is required')
     }
 
     if (this.state.assignment) {

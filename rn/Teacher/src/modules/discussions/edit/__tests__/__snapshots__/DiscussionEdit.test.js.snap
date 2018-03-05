@@ -3,6 +3,7 @@
 exports[`DiscussionEdit renders 1`] = `
 <Screen
   dismissButtonTitle="Cancel"
+  navBarStyle="light"
   rightBarButtons={
     Array [
       Object {
@@ -22,6 +23,8 @@ exports[`DiscussionEdit renders 1`] = `
       },
     ]
   }
+  showDismissButton={true}
+  statusBarStyle="default"
   title="Edit Discussion"
 >
   <View
@@ -31,124 +34,23 @@ exports[`DiscussionEdit renders 1`] = `
       }
     }
   >
-    <Modal
+    <ModalActivityIndicator
+      activityIndicatorColor="#fff"
       animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
+      backgroundColor="rgba(0,0,0,0.8)"
+      height={170}
+      text="Saving"
       transparent={true}
       visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
+      width={170}
+    />
     <UnmetRequirementBanner
+      backgroundColor="#EE0612"
       testID="discussions.edit.unmet-requirement-banner"
       text="Invalid field"
       visible={false}
     />
-    <RCTScrollView
-      automaticallyAdjustContentInsets={false}
-      contentContainerStyle={undefined}
-      contentInset={
-        Object {
-          "bottom": 0,
-        }
-      }
+    <KeyboardAwareScrollView
       enableAutoAutomaticScroll={false}
       enableResetScrollToCoords={true}
       extraHeight={75}
@@ -156,9 +58,6 @@ exports[`DiscussionEdit renders 1`] = `
       keyboardDismissMode="on-drag"
       keyboardOpeningTime={250}
       keyboardShouldPersistTaps="handled"
-      onScroll={[Function]}
-      scrollEventThrottle={0}
-      showsVerticalScrollIndicator={true}
       style={
         Object {
           "backgroundColor": "#F5F5F5",
@@ -166,903 +65,152 @@ exports[`DiscussionEdit renders 1`] = `
         }
       }
     >
-      <View>
-        <Text
-          accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
+      <Heading1
+        style={
+          Object {
+            "color": "#2D3B45",
+            "marginBottom": 8,
+            "marginLeft": 16,
+            "marginTop": 16,
           }
-        >
-          Title
-        </Text>
-        <TouchableHighlight
-          accessibilityLabel={undefined}
-          accessibilityTraits={Array []}
-          onPress={[Function]}
-          style={
-            Array [
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
-              },
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-            ]
+        }
+      >
+        Title
+      </Heading1>
+      <RowWithTextInput
+        border="both"
+        defaultValue="Cursed Hollow"
+        identifier="discussions.edit.titleInput"
+        onChangeText={[Function]}
+        onFocus={[Function]}
+        placeholder="Add title (required)"
+        title=""
+      />
+      <RequiredFieldSubscript
+        testID="discussions.edit.title.validation-error"
+        visible={false}
+      />
+      <Heading1
+        style={
+          Object {
+            "color": "#2D3B45",
+            "marginBottom": 8,
+            "marginLeft": 16,
+            "marginTop": 16,
           }
-          testID={undefined}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "minHeight": 54,
-                  "paddingBottom": 12,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 12,
-                },
-                Object {
-                  "backgroundColor": "white",
-                },
-              ]
+        }
+      >
+        Description
+      </Heading1>
+      <View
+        style={
+          Object {
+            "backgroundColor": "white",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "height": 200,
+          }
+        }
+      >
+        <RichTextEditor
+          contentHeight={150}
+          defaultValue="Gather tribute or face my curse."
+          keyboardAware={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "isModal": false,
+              "launchExternalTool": [Function],
+              "pop": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
             }
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "flex": 1,
-                    "flexDirection": "column",
-                    "justifyContent": "center",
-                  },
-                  Object {
-                    "marginLeft": 0,
-                  },
-                ]
-              }
-            >
-              <TextInput
-                allowFontScaling={true}
-                defaultValue="Cursed Hollow"
-                keyboardType={undefined}
-                onChangeText={[Function]}
-                onFocus={[Function]}
-                placeholder="Add title"
-                style={
-                  Array [
-                    Object {
-                      "flex": 1,
-                    },
-                    undefined,
-                  ]
-                }
-                testID="discussions.edit.titleInput"
-                value={undefined}
-              />
-            </View>
-          </View>
-        </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
           }
-        >
-          Description
-        </Text>
-        <View
+          onChangeValue={[Function]}
+          placeholder="Add description"
+          scrollEnabled={true}
+          showToolbar="always"
+        />
+      </View>
+      <Heading1
+        style={
+          Object {
+            "color": "#2D3B45",
+            "marginBottom": 8,
+            "marginLeft": 16,
+            "marginTop": 16,
+          }
+        }
+      >
+        Options
+      </Heading1>
+      <RowWithSwitch
+        border="both"
+        onValueChange={[Function]}
+        testID="discussions.edit.published.switch"
+        title="Publish"
+        value={false}
+      />
+      <RowWithSwitch
+        border="bottom"
+        identifier="discussions.edit.discussion_type.switch"
+        onValueChange={[Function]}
+        title="Allow threaded replies"
+        value={false}
+      />
+      <RowWithSwitch
+        border="bottom"
+        identifier="discussions.edit.subscribed.switch"
+        onValueChange={[Function]}
+        title="Subscribe"
+        value={false}
+      />
+      <RowWithSwitch
+        border="bottom"
+        onValueChange={[Function]}
+        title="Users must post before seeing replies"
+        value={false}
+      />
+      <View>
+        <Heading1
           style={
             Object {
-              "backgroundColor": "white",
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-              "height": 200,
+              "color": "#2D3B45",
+              "marginBottom": 8,
+              "marginLeft": 16,
+              "marginTop": 16,
             }
           }
         >
-          <RichTextEditor
-            contentHeight={150}
-            defaultValue="Gather tribute or face my curse."
-            keyboardAware={false}
-            navigator={
-              Object {
-                "dismiss": [Function],
-                "dismissAllModals": [Function],
-                "isModal": false,
-                "launchExternalTool": [Function],
-                "pop": [Function],
-                "show": [Function],
-                "traitCollection": [Function],
-              }
-            }
-            onChangeValue={[Function]}
-            placeholder="Add description (required)"
-            scrollEnabled={true}
-            showToolbar="always"
-          />
-        </View>
-        <RequiredFieldSubscript
-          testID="discussions.edit.message.validation-error"
-          title={undefined}
-          visible={false}
+          Availability
+        </Heading1>
+        <RowWithDateInput
+          border="bottom"
+          date={null}
+          onPress={[Function]}
+          onRemoveDatePress={[Function]}
+          removeButtonTestID="discussions.edit.clear-delayed-post-at.button"
+          selected={false}
+          showRemoveButton={false}
+          testID="discussions.edit.delayed_post_at.row"
+          title="Available From"
         />
-        <Text
-          accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
-          }
-        >
-          Options
-        </Text>
-        <TouchableHighlight
-          accessibilityLabel="Publish, Off"
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
+        <RowWithDateInput
+          border="bottom"
+          date={null}
           onPress={[Function]}
-          style={
-            Array [
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
-              },
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-            ]
-          }
-          testID="discussions.edit.published.switch"
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "minHeight": 54,
-                  "paddingBottom": 12,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 12,
-                },
-                Object {
-                  "backgroundColor": "white",
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "flex": 1,
-                    "flexDirection": "column",
-                    "justifyContent": "center",
-                  },
-                  Object {
-                    "marginLeft": 0,
-                  },
-                ]
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={0}
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "fontWeight": "600",
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                Publish
-              </Text>
-            </View>
-            <View
-              style={
-                Object {
-                  "flex": 0,
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "flex": 1,
-                    "flexDirection": "row",
-                    "justifyContent": "flex-end",
-                  }
-                }
-              >
-                <Switch
-                  border="both"
-                  onTintColor="#374A59"
-                  onValueChange={[Function]}
-                  testID={undefined}
-                  tintColor={null}
-                  title="Publish"
-                  value={false}
-                />
-              </View>
-            </View>
-          </View>
-        </TouchableHighlight>
-        <TouchableHighlight
-          accessibilityLabel="Allow threaded replies, Off"
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
-          onPress={[Function]}
-          style={
-            Array [
-              undefined,
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-            ]
-          }
-          testID={undefined}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "minHeight": 54,
-                  "paddingBottom": 12,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 12,
-                },
-                Object {
-                  "backgroundColor": "white",
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "flex": 1,
-                    "flexDirection": "column",
-                    "justifyContent": "center",
-                  },
-                  Object {
-                    "marginLeft": 0,
-                  },
-                ]
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={0}
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "fontWeight": "600",
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                Allow threaded replies
-              </Text>
-            </View>
-            <View
-              style={
-                Object {
-                  "flex": 0,
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "flex": 1,
-                    "flexDirection": "row",
-                    "justifyContent": "flex-end",
-                  }
-                }
-              >
-                <Switch
-                  border="bottom"
-                  identifier="discussions.edit.discussion_type.switch"
-                  onTintColor="#374A59"
-                  onValueChange={[Function]}
-                  testID="discussions.edit.discussion_type.switch"
-                  tintColor={null}
-                  title="Allow threaded replies"
-                  value={false}
-                />
-              </View>
-            </View>
-          </View>
-        </TouchableHighlight>
-        <TouchableHighlight
-          accessibilityLabel="Subscribe, Off"
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
-          onPress={[Function]}
-          style={
-            Array [
-              undefined,
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-            ]
-          }
-          testID={undefined}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "minHeight": 54,
-                  "paddingBottom": 12,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 12,
-                },
-                Object {
-                  "backgroundColor": "white",
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "flex": 1,
-                    "flexDirection": "column",
-                    "justifyContent": "center",
-                  },
-                  Object {
-                    "marginLeft": 0,
-                  },
-                ]
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={0}
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "fontWeight": "600",
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                Subscribe
-              </Text>
-            </View>
-            <View
-              style={
-                Object {
-                  "flex": 0,
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "flex": 1,
-                    "flexDirection": "row",
-                    "justifyContent": "flex-end",
-                  }
-                }
-              >
-                <Switch
-                  border="bottom"
-                  identifier="discussions.edit.subscribed.switch"
-                  onTintColor="#374A59"
-                  onValueChange={[Function]}
-                  testID="discussions.edit.subscribed.switch"
-                  tintColor={null}
-                  title="Subscribe"
-                  value={false}
-                />
-              </View>
-            </View>
-          </View>
-        </TouchableHighlight>
-        <TouchableHighlight
-          accessibilityLabel="Users must post before seeing replies, Off"
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
-          onPress={[Function]}
-          style={
-            Array [
-              undefined,
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-            ]
-          }
-          testID={undefined}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "minHeight": 54,
-                  "paddingBottom": 12,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 12,
-                },
-                Object {
-                  "backgroundColor": "white",
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "flex": 1,
-                    "flexDirection": "column",
-                    "justifyContent": "center",
-                  },
-                  Object {
-                    "marginLeft": 0,
-                  },
-                ]
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={0}
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "fontWeight": "600",
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                Users must post before seeing replies
-              </Text>
-            </View>
-            <View
-              style={
-                Object {
-                  "flex": 0,
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "flex": 1,
-                    "flexDirection": "row",
-                    "justifyContent": "flex-end",
-                  }
-                }
-              >
-                <Switch
-                  border="bottom"
-                  onTintColor="#374A59"
-                  onValueChange={[Function]}
-                  testID={undefined}
-                  tintColor={null}
-                  title="Users must post before seeing replies"
-                  value={false}
-                />
-              </View>
-            </View>
-          </View>
-        </TouchableHighlight>
-        <View>
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "marginBottom": 8,
-                  "marginLeft": 16,
-                  "marginTop": 16,
-                },
-              ]
-            }
-          >
-            Availability
-          </Text>
-          <View
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "white",
-                  "borderBottomColor": "#C7CDD1",
-                  "borderBottomWidth": 0.5,
-                  "minHeight": 54,
-                  "paddingVertical": 8,
-                },
-                Object {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                  "minWidth": 90,
-                },
-              ]
-            }
-          >
-            <TouchableHighlight
-              onPress={[Function]}
-              style={
-                Object {
-                  "flex": 1,
-                }
-              }
-              testID="discussions.edit.delayed_post_at.row"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "white",
-                      "flex": 1,
-                      "flexDirection": "row",
-                      "justifyContent": "space-between",
-                      "paddingLeft": 16,
-                    },
-                    Object {
-                      "paddingRight": 16,
-                    },
-                  ]
-                }
-              >
-                <View
-                  style={
-                    Object {
-                      "paddingRight": 32,
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "fontWeight": "600",
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
-                      ]
-                    }
-                  >
-                    Available From
-                  </Text>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "alignItems": "center",
-                      "flexDirection": "row",
-                      "justifyContent": "flex-end",
-                      "minWidth": 90,
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {},
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                      ]
-                    }
-                    testID={undefined}
-                  >
-                    --
-                  </Text>
-                </View>
-              </View>
-            </TouchableHighlight>
-          </View>
-          <View
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "white",
-                  "borderBottomColor": "#C7CDD1",
-                  "borderBottomWidth": 0.5,
-                  "minHeight": 54,
-                  "paddingVertical": 8,
-                },
-                Object {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                  "minWidth": 90,
-                },
-              ]
-            }
-          >
-            <TouchableHighlight
-              onPress={[Function]}
-              style={
-                Object {
-                  "flex": 1,
-                }
-              }
-              testID="discussions.edit.lock_at.row"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "white",
-                      "flex": 1,
-                      "flexDirection": "row",
-                      "justifyContent": "space-between",
-                      "paddingLeft": 16,
-                    },
-                    Object {
-                      "paddingRight": 16,
-                    },
-                  ]
-                }
-              >
-                <View
-                  style={
-                    Object {
-                      "paddingRight": 32,
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "fontWeight": "600",
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
-                      ]
-                    }
-                  >
-                    Available Until
-                  </Text>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "alignItems": "center",
-                      "flexDirection": "row",
-                      "justifyContent": "flex-end",
-                      "minWidth": 90,
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {},
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                      ]
-                    }
-                    testID={undefined}
-                  >
-                    --
-                  </Text>
-                </View>
-              </View>
-            </TouchableHighlight>
-          </View>
-        </View>
+          onRemoveDatePress={[Function]}
+          removeButtonTestID="discussions.edit.clear-lock-at.button"
+          selected={false}
+          showRemoveButton={false}
+          testID="discussions.edit.lock_at.row"
+          title="Available Until"
+        />
       </View>
-    </RCTScrollView>
+    </KeyboardAwareScrollView>
   </View>
 </Screen>
 `;
@@ -1070,1896 +218,7 @@ exports[`DiscussionEdit renders 1`] = `
 exports[`DiscussionEdit renders new form 1`] = `
 <Screen
   dismissButtonTitle="Cancel"
-  rightBarButtons={
-    Array [
-      Object {
-        "action": [Function],
-        "style": "done",
-        "testID": "discussions.edit.doneButton",
-        "title": "Done",
-      },
-      Object {
-        "accessibilityLabel": "Edit attachment (none)",
-        "action": [Function],
-        "badge": undefined,
-        "image": Object {
-          "testUri": "../../../src/images/attachment-large.png",
-        },
-        "testID": "discussions.edit.attachment-btn",
-      },
-    ]
-  }
-  title="New Discussion"
->
-  <View
-    style={
-      Object {
-        "flex": 1,
-      }
-    }
-  >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <UnmetRequirementBanner
-      testID="discussions.edit.unmet-requirement-banner"
-      text="Invalid field"
-      visible={false}
-    />
-    <RCTScrollView
-      automaticallyAdjustContentInsets={false}
-      contentContainerStyle={undefined}
-      contentInset={
-        Object {
-          "bottom": 0,
-        }
-      }
-      enableAutoAutomaticScroll={false}
-      enableResetScrollToCoords={true}
-      extraHeight={75}
-      extraScrollHeight={0}
-      keyboardDismissMode="on-drag"
-      keyboardOpeningTime={250}
-      keyboardShouldPersistTaps="handled"
-      onScroll={[Function]}
-      scrollEventThrottle={0}
-      showsVerticalScrollIndicator={true}
-      style={
-        Object {
-          "backgroundColor": "#F5F5F5",
-          "flex": 1,
-        }
-      }
-    >
-      <View>
-        <Text
-          accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
-          }
-        >
-          Title
-        </Text>
-        <TouchableHighlight
-          accessibilityLabel={undefined}
-          accessibilityTraits={Array []}
-          onPress={[Function]}
-          style={
-            Array [
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
-              },
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-            ]
-          }
-          testID={undefined}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "minHeight": 54,
-                  "paddingBottom": 12,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 12,
-                },
-                Object {
-                  "backgroundColor": "white",
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "flex": 1,
-                    "flexDirection": "column",
-                    "justifyContent": "center",
-                  },
-                  Object {
-                    "marginLeft": 0,
-                  },
-                ]
-              }
-            >
-              <TextInput
-                allowFontScaling={true}
-                defaultValue={undefined}
-                keyboardType={undefined}
-                onChangeText={[Function]}
-                onFocus={[Function]}
-                placeholder="Add title"
-                style={
-                  Array [
-                    Object {
-                      "flex": 1,
-                    },
-                    undefined,
-                  ]
-                }
-                testID="discussions.edit.titleInput"
-                value={undefined}
-              />
-            </View>
-          </View>
-        </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
-          }
-        >
-          Description
-        </Text>
-        <View
-          style={
-            Object {
-              "backgroundColor": "white",
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-              "height": 200,
-            }
-          }
-        >
-          <RichTextEditor
-            contentHeight={150}
-            defaultValue={undefined}
-            keyboardAware={false}
-            navigator={undefined}
-            onChangeValue={[Function]}
-            placeholder="Add description (required)"
-            scrollEnabled={true}
-            showToolbar="always"
-          />
-        </View>
-        <RequiredFieldSubscript
-          testID="discussions.edit.message.validation-error"
-          title={undefined}
-          visible={false}
-        />
-        <Text
-          accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
-          }
-        >
-          Options
-        </Text>
-        <TouchableHighlight
-          accessibilityLabel="Publish, Off"
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
-          onPress={[Function]}
-          style={
-            Array [
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
-              },
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-            ]
-          }
-          testID="discussions.edit.published.switch"
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "minHeight": 54,
-                  "paddingBottom": 12,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 12,
-                },
-                Object {
-                  "backgroundColor": "white",
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "flex": 1,
-                    "flexDirection": "column",
-                    "justifyContent": "center",
-                  },
-                  Object {
-                    "marginLeft": 0,
-                  },
-                ]
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={0}
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "fontWeight": "600",
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                Publish
-              </Text>
-            </View>
-            <View
-              style={
-                Object {
-                  "flex": 0,
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "flex": 1,
-                    "flexDirection": "row",
-                    "justifyContent": "flex-end",
-                  }
-                }
-              >
-                <Switch
-                  border="both"
-                  onTintColor="#374A59"
-                  onValueChange={[Function]}
-                  testID={undefined}
-                  tintColor={null}
-                  title="Publish"
-                  value={undefined}
-                />
-              </View>
-            </View>
-          </View>
-        </TouchableHighlight>
-        <TouchableHighlight
-          accessibilityLabel="Allow threaded replies, Off"
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
-          onPress={[Function]}
-          style={
-            Array [
-              undefined,
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-            ]
-          }
-          testID={undefined}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "minHeight": 54,
-                  "paddingBottom": 12,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 12,
-                },
-                Object {
-                  "backgroundColor": "white",
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "flex": 1,
-                    "flexDirection": "column",
-                    "justifyContent": "center",
-                  },
-                  Object {
-                    "marginLeft": 0,
-                  },
-                ]
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={0}
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "fontWeight": "600",
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                Allow threaded replies
-              </Text>
-            </View>
-            <View
-              style={
-                Object {
-                  "flex": 0,
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "flex": 1,
-                    "flexDirection": "row",
-                    "justifyContent": "flex-end",
-                  }
-                }
-              >
-                <Switch
-                  border="bottom"
-                  identifier="discussions.edit.discussion_type.switch"
-                  onTintColor="#374A59"
-                  onValueChange={[Function]}
-                  testID="discussions.edit.discussion_type.switch"
-                  tintColor={null}
-                  title="Allow threaded replies"
-                  value={false}
-                />
-              </View>
-            </View>
-          </View>
-        </TouchableHighlight>
-        <TouchableHighlight
-          accessibilityLabel="Users must post before seeing replies, Off"
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
-          onPress={[Function]}
-          style={
-            Array [
-              undefined,
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-            ]
-          }
-          testID={undefined}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "minHeight": 54,
-                  "paddingBottom": 12,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 12,
-                },
-                Object {
-                  "backgroundColor": "white",
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "flex": 1,
-                    "flexDirection": "column",
-                    "justifyContent": "center",
-                  },
-                  Object {
-                    "marginLeft": 0,
-                  },
-                ]
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={0}
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "fontWeight": "600",
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                Users must post before seeing replies
-              </Text>
-            </View>
-            <View
-              style={
-                Object {
-                  "flex": 0,
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "flex": 1,
-                    "flexDirection": "row",
-                    "justifyContent": "flex-end",
-                  }
-                }
-              >
-                <Switch
-                  border="bottom"
-                  onTintColor="#374A59"
-                  onValueChange={[Function]}
-                  testID={undefined}
-                  tintColor={null}
-                  title="Users must post before seeing replies"
-                  value={undefined}
-                />
-              </View>
-            </View>
-          </View>
-        </TouchableHighlight>
-        <View>
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "marginBottom": 8,
-                  "marginLeft": 16,
-                  "marginTop": 16,
-                },
-              ]
-            }
-          >
-            Availability
-          </Text>
-          <View
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "white",
-                  "borderBottomColor": "#C7CDD1",
-                  "borderBottomWidth": 0.5,
-                  "minHeight": 54,
-                  "paddingVertical": 8,
-                },
-                Object {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                  "minWidth": 90,
-                },
-              ]
-            }
-          >
-            <TouchableHighlight
-              onPress={[Function]}
-              style={
-                Object {
-                  "flex": 1,
-                }
-              }
-              testID="discussions.edit.delayed_post_at.row"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "white",
-                      "flex": 1,
-                      "flexDirection": "row",
-                      "justifyContent": "space-between",
-                      "paddingLeft": 16,
-                    },
-                    Object {
-                      "paddingRight": 16,
-                    },
-                  ]
-                }
-              >
-                <View
-                  style={
-                    Object {
-                      "paddingRight": 32,
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "fontWeight": "600",
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
-                      ]
-                    }
-                  >
-                    Available From
-                  </Text>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "alignItems": "center",
-                      "flexDirection": "row",
-                      "justifyContent": "flex-end",
-                      "minWidth": 90,
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {},
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                      ]
-                    }
-                    testID={undefined}
-                  >
-                    --
-                  </Text>
-                </View>
-              </View>
-            </TouchableHighlight>
-          </View>
-          <View
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "white",
-                  "borderBottomColor": "#C7CDD1",
-                  "borderBottomWidth": 0.5,
-                  "minHeight": 54,
-                  "paddingVertical": 8,
-                },
-                Object {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                  "minWidth": 90,
-                },
-              ]
-            }
-          >
-            <TouchableHighlight
-              onPress={[Function]}
-              style={
-                Object {
-                  "flex": 1,
-                }
-              }
-              testID="discussions.edit.lock_at.row"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "white",
-                      "flex": 1,
-                      "flexDirection": "row",
-                      "justifyContent": "space-between",
-                      "paddingLeft": 16,
-                    },
-                    Object {
-                      "paddingRight": 16,
-                    },
-                  ]
-                }
-              >
-                <View
-                  style={
-                    Object {
-                      "paddingRight": 32,
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "fontWeight": "600",
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
-                      ]
-                    }
-                  >
-                    Available Until
-                  </Text>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "alignItems": "center",
-                      "flexDirection": "row",
-                      "justifyContent": "flex-end",
-                      "minWidth": 90,
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {},
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                      ]
-                    }
-                    testID={undefined}
-                  >
-                    --
-                  </Text>
-                </View>
-              </View>
-            </TouchableHighlight>
-          </View>
-        </View>
-      </View>
-    </RCTScrollView>
-  </View>
-</Screen>
-`;
-
-exports[`DiscussionEdit updates from props 1`] = `
-<Screen
-  dismissButtonTitle="Cancel"
-  rightBarButtons={
-    Array [
-      Object {
-        "action": [Function],
-        "style": "done",
-        "testID": "discussions.edit.doneButton",
-        "title": "Done",
-      },
-      Object {
-        "accessibilityLabel": "Edit attachment (none)",
-        "action": [Function],
-        "badge": undefined,
-        "image": Object {
-          "testUri": "../../../src/images/attachment-large.png",
-        },
-        "testID": "discussions.edit.attachment-btn",
-      },
-    ]
-  }
-  title="New Discussion"
->
-  <View
-    style={
-      Object {
-        "flex": 1,
-      }
-    }
-  >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <UnmetRequirementBanner
-      testID="discussions.edit.unmet-requirement-banner"
-      text="Invalid field"
-      visible={false}
-    />
-    <RCTScrollView
-      automaticallyAdjustContentInsets={false}
-      contentContainerStyle={undefined}
-      contentInset={
-        Object {
-          "bottom": 0,
-        }
-      }
-      enableAutoAutomaticScroll={false}
-      enableResetScrollToCoords={true}
-      extraHeight={75}
-      extraScrollHeight={0}
-      keyboardDismissMode="on-drag"
-      keyboardOpeningTime={250}
-      keyboardShouldPersistTaps="handled"
-      onScroll={[Function]}
-      scrollEventThrottle={0}
-      showsVerticalScrollIndicator={true}
-      style={
-        Object {
-          "backgroundColor": "#F5F5F5",
-          "flex": 1,
-        }
-      }
-    >
-      <View>
-        <Text
-          accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
-          }
-        >
-          Title
-        </Text>
-        <TouchableHighlight
-          accessibilityLabel={undefined}
-          accessibilityTraits={Array []}
-          onPress={[Function]}
-          style={
-            Array [
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
-              },
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-            ]
-          }
-          testID={undefined}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "minHeight": 54,
-                  "paddingBottom": 12,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 12,
-                },
-                Object {
-                  "backgroundColor": "white",
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "flex": 1,
-                    "flexDirection": "column",
-                    "justifyContent": "center",
-                  },
-                  Object {
-                    "marginLeft": 0,
-                  },
-                ]
-              }
-            >
-              <TextInput
-                allowFontScaling={true}
-                defaultValue={undefined}
-                keyboardType={undefined}
-                onChangeText={[Function]}
-                onFocus={[Function]}
-                placeholder="Add title"
-                style={
-                  Array [
-                    Object {
-                      "flex": 1,
-                    },
-                    undefined,
-                  ]
-                }
-                testID="discussions.edit.titleInput"
-                value={undefined}
-              />
-            </View>
-          </View>
-        </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
-          }
-        >
-          Description
-        </Text>
-        <View
-          style={
-            Object {
-              "backgroundColor": "white",
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-              "height": 200,
-            }
-          }
-        >
-          <RichTextEditor
-            contentHeight={150}
-            defaultValue={undefined}
-            keyboardAware={false}
-            navigator={undefined}
-            onChangeValue={[Function]}
-            placeholder="Add description (required)"
-            scrollEnabled={true}
-            showToolbar="always"
-          />
-        </View>
-        <RequiredFieldSubscript
-          testID="discussions.edit.message.validation-error"
-          title={undefined}
-          visible={false}
-        />
-        <Text
-          accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
-          }
-        >
-          Options
-        </Text>
-        <TouchableHighlight
-          accessibilityLabel="Publish, Off"
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
-          onPress={[Function]}
-          style={
-            Array [
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
-              },
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-            ]
-          }
-          testID="discussions.edit.published.switch"
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "minHeight": 54,
-                  "paddingBottom": 12,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 12,
-                },
-                Object {
-                  "backgroundColor": "white",
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "flex": 1,
-                    "flexDirection": "column",
-                    "justifyContent": "center",
-                  },
-                  Object {
-                    "marginLeft": 0,
-                  },
-                ]
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={0}
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "fontWeight": "600",
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                Publish
-              </Text>
-            </View>
-            <View
-              style={
-                Object {
-                  "flex": 0,
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "flex": 1,
-                    "flexDirection": "row",
-                    "justifyContent": "flex-end",
-                  }
-                }
-              >
-                <Switch
-                  border="both"
-                  onTintColor="#374A59"
-                  onValueChange={[Function]}
-                  testID={undefined}
-                  tintColor={null}
-                  title="Publish"
-                  value={undefined}
-                />
-              </View>
-            </View>
-          </View>
-        </TouchableHighlight>
-        <TouchableHighlight
-          accessibilityLabel="Allow threaded replies, Off"
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
-          onPress={[Function]}
-          style={
-            Array [
-              undefined,
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-            ]
-          }
-          testID={undefined}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "minHeight": 54,
-                  "paddingBottom": 12,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 12,
-                },
-                Object {
-                  "backgroundColor": "white",
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "flex": 1,
-                    "flexDirection": "column",
-                    "justifyContent": "center",
-                  },
-                  Object {
-                    "marginLeft": 0,
-                  },
-                ]
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={0}
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "fontWeight": "600",
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                Allow threaded replies
-              </Text>
-            </View>
-            <View
-              style={
-                Object {
-                  "flex": 0,
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "flex": 1,
-                    "flexDirection": "row",
-                    "justifyContent": "flex-end",
-                  }
-                }
-              >
-                <Switch
-                  border="bottom"
-                  identifier="discussions.edit.discussion_type.switch"
-                  onTintColor="#374A59"
-                  onValueChange={[Function]}
-                  testID="discussions.edit.discussion_type.switch"
-                  tintColor={null}
-                  title="Allow threaded replies"
-                  value={false}
-                />
-              </View>
-            </View>
-          </View>
-        </TouchableHighlight>
-        <TouchableHighlight
-          accessibilityLabel="Users must post before seeing replies, Off"
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
-          onPress={[Function]}
-          style={
-            Array [
-              undefined,
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-            ]
-          }
-          testID={undefined}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "minHeight": 54,
-                  "paddingBottom": 12,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 12,
-                },
-                Object {
-                  "backgroundColor": "white",
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "flex": 1,
-                    "flexDirection": "column",
-                    "justifyContent": "center",
-                  },
-                  Object {
-                    "marginLeft": 0,
-                  },
-                ]
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={0}
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "fontWeight": "600",
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                Users must post before seeing replies
-              </Text>
-            </View>
-            <View
-              style={
-                Object {
-                  "flex": 0,
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "flex": 1,
-                    "flexDirection": "row",
-                    "justifyContent": "flex-end",
-                  }
-                }
-              >
-                <Switch
-                  border="bottom"
-                  onTintColor="#374A59"
-                  onValueChange={[Function]}
-                  testID={undefined}
-                  tintColor={null}
-                  title="Users must post before seeing replies"
-                  value={undefined}
-                />
-              </View>
-            </View>
-          </View>
-        </TouchableHighlight>
-        <View>
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "marginBottom": 8,
-                  "marginLeft": 16,
-                  "marginTop": 16,
-                },
-              ]
-            }
-          >
-            Availability
-          </Text>
-          <View
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "white",
-                  "borderBottomColor": "#C7CDD1",
-                  "borderBottomWidth": 0.5,
-                  "minHeight": 54,
-                  "paddingVertical": 8,
-                },
-                Object {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                  "minWidth": 90,
-                },
-              ]
-            }
-          >
-            <TouchableHighlight
-              onPress={[Function]}
-              style={
-                Object {
-                  "flex": 1,
-                }
-              }
-              testID="discussions.edit.delayed_post_at.row"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "white",
-                      "flex": 1,
-                      "flexDirection": "row",
-                      "justifyContent": "space-between",
-                      "paddingLeft": 16,
-                    },
-                    Object {
-                      "paddingRight": 16,
-                    },
-                  ]
-                }
-              >
-                <View
-                  style={
-                    Object {
-                      "paddingRight": 32,
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "fontWeight": "600",
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
-                      ]
-                    }
-                  >
-                    Available From
-                  </Text>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "alignItems": "center",
-                      "flexDirection": "row",
-                      "justifyContent": "flex-end",
-                      "minWidth": 90,
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {},
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                      ]
-                    }
-                    testID={undefined}
-                  >
-                    --
-                  </Text>
-                </View>
-              </View>
-            </TouchableHighlight>
-          </View>
-          <View
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "white",
-                  "borderBottomColor": "#C7CDD1",
-                  "borderBottomWidth": 0.5,
-                  "minHeight": 54,
-                  "paddingVertical": 8,
-                },
-                Object {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                  "minWidth": 90,
-                },
-              ]
-            }
-          >
-            <TouchableHighlight
-              onPress={[Function]}
-              style={
-                Object {
-                  "flex": 1,
-                }
-              }
-              testID="discussions.edit.lock_at.row"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "white",
-                      "flex": 1,
-                      "flexDirection": "row",
-                      "justifyContent": "space-between",
-                      "paddingLeft": 16,
-                    },
-                    Object {
-                      "paddingRight": 16,
-                    },
-                  ]
-                }
-              >
-                <View
-                  style={
-                    Object {
-                      "paddingRight": 32,
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "fontWeight": "600",
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
-                      ]
-                    }
-                  >
-                    Available Until
-                  </Text>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "alignItems": "center",
-                      "flexDirection": "row",
-                      "justifyContent": "flex-end",
-                      "minWidth": 90,
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {},
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                      ]
-                    }
-                    testID={undefined}
-                  >
-                    --
-                  </Text>
-                </View>
-              </View>
-            </TouchableHighlight>
-          </View>
-        </View>
-      </View>
-    </RCTScrollView>
-  </View>
-</Screen>
-`;
-
-exports[`DiscussionEdit updates with new props 1`] = `
-<Screen
-  dismissButtonTitle="Cancel"
+  navBarStyle="light"
   rightBarButtons={
     Array [
       Object {
@@ -2979,6 +238,216 @@ exports[`DiscussionEdit updates with new props 1`] = `
       },
     ]
   }
+  showDismissButton={true}
+  statusBarStyle="default"
+  title="New Discussion"
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <ModalActivityIndicator
+      activityIndicatorColor="#fff"
+      animationType="fade"
+      backgroundColor="rgba(0,0,0,0.8)"
+      height={170}
+      text="Saving"
+      transparent={true}
+      visible={false}
+      width={170}
+    />
+    <UnmetRequirementBanner
+      backgroundColor="#EE0612"
+      testID="discussions.edit.unmet-requirement-banner"
+      text="Invalid field"
+      visible={false}
+    />
+    <KeyboardAwareScrollView
+      enableAutoAutomaticScroll={false}
+      enableResetScrollToCoords={true}
+      extraHeight={75}
+      extraScrollHeight={0}
+      keyboardDismissMode="on-drag"
+      keyboardOpeningTime={250}
+      keyboardShouldPersistTaps="handled"
+      style={
+        Object {
+          "backgroundColor": "#F5F5F5",
+          "flex": 1,
+        }
+      }
+    >
+      <Heading1
+        style={
+          Object {
+            "color": "#2D3B45",
+            "marginBottom": 8,
+            "marginLeft": 16,
+            "marginTop": 16,
+          }
+        }
+      >
+        Title
+      </Heading1>
+      <RowWithTextInput
+        border="both"
+        defaultValue={null}
+        identifier="discussions.edit.titleInput"
+        onChangeText={[Function]}
+        onFocus={[Function]}
+        placeholder="Add title (required)"
+        title=""
+      />
+      <RequiredFieldSubscript
+        testID="discussions.edit.title.validation-error"
+        visible={false}
+      />
+      <Heading1
+        style={
+          Object {
+            "color": "#2D3B45",
+            "marginBottom": 8,
+            "marginLeft": 16,
+            "marginTop": 16,
+          }
+        }
+      >
+        Description
+      </Heading1>
+      <View
+        style={
+          Object {
+            "backgroundColor": "white",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "height": 200,
+          }
+        }
+      >
+        <RichTextEditor
+          contentHeight={150}
+          defaultValue={null}
+          keyboardAware={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "isModal": false,
+              "launchExternalTool": [Function],
+              "pop": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+          onChangeValue={[Function]}
+          placeholder="Add description"
+          scrollEnabled={true}
+          showToolbar="always"
+        />
+      </View>
+      <Heading1
+        style={
+          Object {
+            "color": "#2D3B45",
+            "marginBottom": 8,
+            "marginLeft": 16,
+            "marginTop": 16,
+          }
+        }
+      >
+        Options
+      </Heading1>
+      <RowWithSwitch
+        border="both"
+        onValueChange={[Function]}
+        testID="discussions.edit.published.switch"
+        title="Publish"
+        value={null}
+      />
+      <RowWithSwitch
+        border="bottom"
+        identifier="discussions.edit.discussion_type.switch"
+        onValueChange={[Function]}
+        title="Allow threaded replies"
+        value={false}
+      />
+      <RowWithSwitch
+        border="bottom"
+        onValueChange={[Function]}
+        title="Users must post before seeing replies"
+        value={null}
+      />
+      <View>
+        <Heading1
+          style={
+            Object {
+              "color": "#2D3B45",
+              "marginBottom": 8,
+              "marginLeft": 16,
+              "marginTop": 16,
+            }
+          }
+        >
+          Availability
+        </Heading1>
+        <RowWithDateInput
+          border="bottom"
+          date={null}
+          onPress={[Function]}
+          onRemoveDatePress={[Function]}
+          removeButtonTestID="discussions.edit.clear-delayed-post-at.button"
+          selected={false}
+          showRemoveButton={false}
+          testID="discussions.edit.delayed_post_at.row"
+          title="Available From"
+        />
+        <RowWithDateInput
+          border="bottom"
+          date={null}
+          onPress={[Function]}
+          onRemoveDatePress={[Function]}
+          removeButtonTestID="discussions.edit.clear-lock-at.button"
+          selected={false}
+          showRemoveButton={false}
+          testID="discussions.edit.lock_at.row"
+          title="Available Until"
+        />
+      </View>
+    </KeyboardAwareScrollView>
+  </View>
+</Screen>
+`;
+
+exports[`DiscussionEdit updates from props 1`] = `
+<Screen
+  dismissButtonTitle="Cancel"
+  navBarStyle="light"
+  rightBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "style": "done",
+        "testID": "discussions.edit.doneButton",
+        "title": "Done",
+      },
+      Object {
+        "accessibilityLabel": "Edit attachment (none)",
+        "action": [Function],
+        "badge": null,
+        "image": Object {
+          "testUri": "../../../src/images/attachment-large.png",
+        },
+        "testID": "discussions.edit.attachment-btn",
+      },
+    ]
+  }
+  showDismissButton={true}
+  statusBarStyle="default"
   title="Edit Discussion"
 >
   <View
@@ -2988,124 +457,23 @@ exports[`DiscussionEdit updates with new props 1`] = `
       }
     }
   >
-    <Modal
+    <ModalActivityIndicator
+      activityIndicatorColor="#fff"
       animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
+      backgroundColor="rgba(0,0,0,0.8)"
+      height={170}
+      text="Saving"
       transparent={true}
-      visible={true}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
+      visible={false}
+      width={170}
+    />
     <UnmetRequirementBanner
+      backgroundColor="#EE0612"
       testID="discussions.edit.unmet-requirement-banner"
       text="Invalid field"
       visible={false}
     />
-    <RCTScrollView
-      automaticallyAdjustContentInsets={false}
-      contentContainerStyle={undefined}
-      contentInset={
-        Object {
-          "bottom": 0,
-        }
-      }
+    <KeyboardAwareScrollView
       enableAutoAutomaticScroll={false}
       enableResetScrollToCoords={true}
       extraHeight={75}
@@ -3113,9 +481,6 @@ exports[`DiscussionEdit updates with new props 1`] = `
       keyboardDismissMode="on-drag"
       keyboardOpeningTime={250}
       keyboardShouldPersistTaps="handled"
-      onScroll={[Function]}
-      scrollEventThrottle={0}
-      showsVerticalScrollIndicator={true}
       style={
         Object {
           "backgroundColor": "#F5F5F5",
@@ -3123,903 +488,367 @@ exports[`DiscussionEdit updates with new props 1`] = `
         }
       }
     >
-      <View>
-        <Text
-          accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
+      <Heading1
+        style={
+          Object {
+            "color": "#2D3B45",
+            "marginBottom": 8,
+            "marginLeft": 16,
+            "marginTop": 16,
           }
-        >
-          Title
-        </Text>
-        <TouchableHighlight
-          accessibilityLabel={undefined}
-          accessibilityTraits={Array []}
-          onPress={[Function]}
-          style={
-            Array [
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
-              },
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-            ]
+        }
+      >
+        Title
+      </Heading1>
+      <RowWithTextInput
+        border="both"
+        defaultValue="Cursed Hollow"
+        identifier="discussions.edit.titleInput"
+        onChangeText={[Function]}
+        onFocus={[Function]}
+        placeholder="Add title (required)"
+        title=""
+      />
+      <RequiredFieldSubscript
+        testID="discussions.edit.title.validation-error"
+        visible={false}
+      />
+      <Heading1
+        style={
+          Object {
+            "color": "#2D3B45",
+            "marginBottom": 8,
+            "marginLeft": 16,
+            "marginTop": 16,
           }
-          testID={undefined}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "minHeight": 54,
-                  "paddingBottom": 12,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 12,
-                },
-                Object {
-                  "backgroundColor": "white",
-                },
-              ]
+        }
+      >
+        Description
+      </Heading1>
+      <View
+        style={
+          Object {
+            "backgroundColor": "white",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "height": 200,
+          }
+        }
+      >
+        <RichTextEditor
+          contentHeight={150}
+          defaultValue="Gather tribute or face my curse."
+          keyboardAware={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "isModal": false,
+              "launchExternalTool": [Function],
+              "pop": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
             }
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "flex": 1,
-                    "flexDirection": "column",
-                    "justifyContent": "center",
-                  },
-                  Object {
-                    "marginLeft": 0,
-                  },
-                ]
-              }
-            >
-              <TextInput
-                allowFontScaling={true}
-                defaultValue="Cursed Hollow"
-                keyboardType={undefined}
-                onChangeText={[Function]}
-                onFocus={[Function]}
-                placeholder="Add title"
-                style={
-                  Array [
-                    Object {
-                      "flex": 1,
-                    },
-                    undefined,
-                  ]
-                }
-                testID="discussions.edit.titleInput"
-                value={undefined}
-              />
-            </View>
-          </View>
-        </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
           }
-        >
-          Description
-        </Text>
-        <View
+          onChangeValue={[Function]}
+          placeholder="Add description"
+          scrollEnabled={true}
+          showToolbar="always"
+        />
+      </View>
+      <Heading1
+        style={
+          Object {
+            "color": "#2D3B45",
+            "marginBottom": 8,
+            "marginLeft": 16,
+            "marginTop": 16,
+          }
+        }
+      >
+        Options
+      </Heading1>
+      <RowWithSwitch
+        border="both"
+        onValueChange={[Function]}
+        testID="discussions.edit.published.switch"
+        title="Publish"
+        value={false}
+      />
+      <RowWithSwitch
+        border="bottom"
+        identifier="discussions.edit.discussion_type.switch"
+        onValueChange={[Function]}
+        title="Allow threaded replies"
+        value={false}
+      />
+      <RowWithSwitch
+        border="bottom"
+        identifier="discussions.edit.subscribed.switch"
+        onValueChange={[Function]}
+        title="Subscribe"
+        value={false}
+      />
+      <RowWithSwitch
+        border="bottom"
+        onValueChange={[Function]}
+        title="Users must post before seeing replies"
+        value={false}
+      />
+      <View>
+        <Heading1
           style={
             Object {
-              "backgroundColor": "white",
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-              "height": 200,
+              "color": "#2D3B45",
+              "marginBottom": 8,
+              "marginLeft": 16,
+              "marginTop": 16,
             }
           }
         >
-          <RichTextEditor
-            contentHeight={150}
-            defaultValue="Gather tribute or face my curse."
-            keyboardAware={false}
-            navigator={
-              Object {
-                "dismiss": [Function],
-                "dismissAllModals": [Function],
-                "isModal": false,
-                "launchExternalTool": [Function],
-                "pop": [Function],
-                "show": [Function],
-                "traitCollection": [Function],
-              }
-            }
-            onChangeValue={[Function]}
-            placeholder="Add description (required)"
-            scrollEnabled={true}
-            showToolbar="always"
-          />
-        </View>
-        <RequiredFieldSubscript
-          testID="discussions.edit.message.validation-error"
-          title={undefined}
-          visible={false}
+          Availability
+        </Heading1>
+        <RowWithDateInput
+          border="bottom"
+          date={null}
+          onPress={[Function]}
+          onRemoveDatePress={[Function]}
+          removeButtonTestID="discussions.edit.clear-delayed-post-at.button"
+          selected={false}
+          showRemoveButton={false}
+          testID="discussions.edit.delayed_post_at.row"
+          title="Available From"
         />
-        <Text
-          accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
-          }
-        >
-          Options
-        </Text>
-        <TouchableHighlight
-          accessibilityLabel="Publish, Off"
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
+        <RowWithDateInput
+          border="bottom"
+          date={null}
           onPress={[Function]}
-          style={
-            Array [
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
-              },
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-            ]
-          }
-          testID="discussions.edit.published.switch"
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "minHeight": 54,
-                  "paddingBottom": 12,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 12,
-                },
-                Object {
-                  "backgroundColor": "white",
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "flex": 1,
-                    "flexDirection": "column",
-                    "justifyContent": "center",
-                  },
-                  Object {
-                    "marginLeft": 0,
-                  },
-                ]
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={0}
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "fontWeight": "600",
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                Publish
-              </Text>
-            </View>
-            <View
-              style={
-                Object {
-                  "flex": 0,
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "flex": 1,
-                    "flexDirection": "row",
-                    "justifyContent": "flex-end",
-                  }
-                }
-              >
-                <Switch
-                  border="both"
-                  onTintColor="#374A59"
-                  onValueChange={[Function]}
-                  testID={undefined}
-                  tintColor={null}
-                  title="Publish"
-                  value={false}
-                />
-              </View>
-            </View>
-          </View>
-        </TouchableHighlight>
-        <TouchableHighlight
-          accessibilityLabel="Allow threaded replies, Off"
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
-          onPress={[Function]}
-          style={
-            Array [
-              undefined,
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-            ]
-          }
-          testID={undefined}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "minHeight": 54,
-                  "paddingBottom": 12,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 12,
-                },
-                Object {
-                  "backgroundColor": "white",
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "flex": 1,
-                    "flexDirection": "column",
-                    "justifyContent": "center",
-                  },
-                  Object {
-                    "marginLeft": 0,
-                  },
-                ]
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={0}
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "fontWeight": "600",
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                Allow threaded replies
-              </Text>
-            </View>
-            <View
-              style={
-                Object {
-                  "flex": 0,
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "flex": 1,
-                    "flexDirection": "row",
-                    "justifyContent": "flex-end",
-                  }
-                }
-              >
-                <Switch
-                  border="bottom"
-                  identifier="discussions.edit.discussion_type.switch"
-                  onTintColor="#374A59"
-                  onValueChange={[Function]}
-                  testID="discussions.edit.discussion_type.switch"
-                  tintColor={null}
-                  title="Allow threaded replies"
-                  value={false}
-                />
-              </View>
-            </View>
-          </View>
-        </TouchableHighlight>
-        <TouchableHighlight
-          accessibilityLabel="Subscribe, Off"
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
-          onPress={[Function]}
-          style={
-            Array [
-              undefined,
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-            ]
-          }
-          testID={undefined}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "minHeight": 54,
-                  "paddingBottom": 12,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 12,
-                },
-                Object {
-                  "backgroundColor": "white",
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "flex": 1,
-                    "flexDirection": "column",
-                    "justifyContent": "center",
-                  },
-                  Object {
-                    "marginLeft": 0,
-                  },
-                ]
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={0}
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "fontWeight": "600",
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                Subscribe
-              </Text>
-            </View>
-            <View
-              style={
-                Object {
-                  "flex": 0,
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "flex": 1,
-                    "flexDirection": "row",
-                    "justifyContent": "flex-end",
-                  }
-                }
-              >
-                <Switch
-                  border="bottom"
-                  identifier="discussions.edit.subscribed.switch"
-                  onTintColor="#374A59"
-                  onValueChange={[Function]}
-                  testID="discussions.edit.subscribed.switch"
-                  tintColor={null}
-                  title="Subscribe"
-                  value={false}
-                />
-              </View>
-            </View>
-          </View>
-        </TouchableHighlight>
-        <TouchableHighlight
-          accessibilityLabel="Users must post before seeing replies, Off"
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
-          onPress={[Function]}
-          style={
-            Array [
-              undefined,
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-              },
-            ]
-          }
-          testID={undefined}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "minHeight": 54,
-                  "paddingBottom": 12,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 12,
-                },
-                Object {
-                  "backgroundColor": "white",
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "flex": 1,
-                    "flexDirection": "column",
-                    "justifyContent": "center",
-                  },
-                  Object {
-                    "marginLeft": 0,
-                  },
-                ]
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={0}
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "fontWeight": "600",
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                Users must post before seeing replies
-              </Text>
-            </View>
-            <View
-              style={
-                Object {
-                  "flex": 0,
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "flex": 1,
-                    "flexDirection": "row",
-                    "justifyContent": "flex-end",
-                  }
-                }
-              >
-                <Switch
-                  border="bottom"
-                  onTintColor="#374A59"
-                  onValueChange={[Function]}
-                  testID={undefined}
-                  tintColor={null}
-                  title="Users must post before seeing replies"
-                  value={false}
-                />
-              </View>
-            </View>
-          </View>
-        </TouchableHighlight>
-        <View>
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "marginBottom": 8,
-                  "marginLeft": 16,
-                  "marginTop": 16,
-                },
-              ]
-            }
-          >
-            Availability
-          </Text>
-          <View
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "white",
-                  "borderBottomColor": "#C7CDD1",
-                  "borderBottomWidth": 0.5,
-                  "minHeight": 54,
-                  "paddingVertical": 8,
-                },
-                Object {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                  "minWidth": 90,
-                },
-              ]
-            }
-          >
-            <TouchableHighlight
-              onPress={[Function]}
-              style={
-                Object {
-                  "flex": 1,
-                }
-              }
-              testID="discussions.edit.delayed_post_at.row"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "white",
-                      "flex": 1,
-                      "flexDirection": "row",
-                      "justifyContent": "space-between",
-                      "paddingLeft": 16,
-                    },
-                    Object {
-                      "paddingRight": 16,
-                    },
-                  ]
-                }
-              >
-                <View
-                  style={
-                    Object {
-                      "paddingRight": 32,
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "fontWeight": "600",
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
-                      ]
-                    }
-                  >
-                    Available From
-                  </Text>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "alignItems": "center",
-                      "flexDirection": "row",
-                      "justifyContent": "flex-end",
-                      "minWidth": 90,
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {},
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                      ]
-                    }
-                    testID={undefined}
-                  >
-                    --
-                  </Text>
-                </View>
-              </View>
-            </TouchableHighlight>
-          </View>
-          <View
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "white",
-                  "borderBottomColor": "#C7CDD1",
-                  "borderBottomWidth": 0.5,
-                  "minHeight": 54,
-                  "paddingVertical": 8,
-                },
-                Object {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                  "minWidth": 90,
-                },
-              ]
-            }
-          >
-            <TouchableHighlight
-              onPress={[Function]}
-              style={
-                Object {
-                  "flex": 1,
-                }
-              }
-              testID="discussions.edit.lock_at.row"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "white",
-                      "flex": 1,
-                      "flexDirection": "row",
-                      "justifyContent": "space-between",
-                      "paddingLeft": 16,
-                    },
-                    Object {
-                      "paddingRight": 16,
-                    },
-                  ]
-                }
-              >
-                <View
-                  style={
-                    Object {
-                      "paddingRight": 32,
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "fontWeight": "600",
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
-                      ]
-                    }
-                  >
-                    Available Until
-                  </Text>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "alignItems": "center",
-                      "flexDirection": "row",
-                      "justifyContent": "flex-end",
-                      "minWidth": 90,
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {},
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                      ]
-                    }
-                    testID={undefined}
-                  >
-                    --
-                  </Text>
-                </View>
-              </View>
-            </TouchableHighlight>
-          </View>
-        </View>
+          onRemoveDatePress={[Function]}
+          removeButtonTestID="discussions.edit.clear-lock-at.button"
+          selected={false}
+          showRemoveButton={false}
+          testID="discussions.edit.lock_at.row"
+          title="Available Until"
+        />
       </View>
-    </RCTScrollView>
+    </KeyboardAwareScrollView>
+  </View>
+</Screen>
+`;
+
+exports[`DiscussionEdit updates with new props 1`] = `
+<Screen
+  dismissButtonTitle="Cancel"
+  navBarStyle="light"
+  rightBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "style": "done",
+        "testID": "discussions.edit.doneButton",
+        "title": "Done",
+      },
+      Object {
+        "accessibilityLabel": "Edit attachment (none)",
+        "action": [Function],
+        "badge": null,
+        "image": Object {
+          "testUri": "../../../src/images/attachment-large.png",
+        },
+        "testID": "discussions.edit.attachment-btn",
+      },
+    ]
+  }
+  showDismissButton={true}
+  statusBarStyle="default"
+  title="Edit Discussion"
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <ModalActivityIndicator
+      activityIndicatorColor="#fff"
+      animationType="fade"
+      backgroundColor="rgba(0,0,0,0.8)"
+      height={170}
+      text="Saving"
+      transparent={true}
+      visible={true}
+      width={170}
+    />
+    <UnmetRequirementBanner
+      backgroundColor="#EE0612"
+      testID="discussions.edit.unmet-requirement-banner"
+      text="Invalid field"
+      visible={false}
+    />
+    <KeyboardAwareScrollView
+      enableAutoAutomaticScroll={false}
+      enableResetScrollToCoords={true}
+      extraHeight={75}
+      extraScrollHeight={0}
+      keyboardDismissMode="on-drag"
+      keyboardOpeningTime={250}
+      keyboardShouldPersistTaps="handled"
+      style={
+        Object {
+          "backgroundColor": "#F5F5F5",
+          "flex": 1,
+        }
+      }
+    >
+      <Heading1
+        style={
+          Object {
+            "color": "#2D3B45",
+            "marginBottom": 8,
+            "marginLeft": 16,
+            "marginTop": 16,
+          }
+        }
+      >
+        Title
+      </Heading1>
+      <RowWithTextInput
+        border="both"
+        defaultValue="Cursed Hollow"
+        identifier="discussions.edit.titleInput"
+        onChangeText={[Function]}
+        onFocus={[Function]}
+        placeholder="Add title (required)"
+        title=""
+      />
+      <RequiredFieldSubscript
+        testID="discussions.edit.title.validation-error"
+        visible={false}
+      />
+      <Heading1
+        style={
+          Object {
+            "color": "#2D3B45",
+            "marginBottom": 8,
+            "marginLeft": 16,
+            "marginTop": 16,
+          }
+        }
+      >
+        Description
+      </Heading1>
+      <View
+        style={
+          Object {
+            "backgroundColor": "white",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "height": 200,
+          }
+        }
+      >
+        <RichTextEditor
+          contentHeight={150}
+          defaultValue="Gather tribute or face my curse."
+          keyboardAware={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "isModal": false,
+              "launchExternalTool": [Function],
+              "pop": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+          onChangeValue={[Function]}
+          placeholder="Add description"
+          scrollEnabled={true}
+          showToolbar="always"
+        />
+      </View>
+      <Heading1
+        style={
+          Object {
+            "color": "#2D3B45",
+            "marginBottom": 8,
+            "marginLeft": 16,
+            "marginTop": 16,
+          }
+        }
+      >
+        Options
+      </Heading1>
+      <RowWithSwitch
+        border="both"
+        onValueChange={[Function]}
+        testID="discussions.edit.published.switch"
+        title="Publish"
+        value={false}
+      />
+      <RowWithSwitch
+        border="bottom"
+        identifier="discussions.edit.discussion_type.switch"
+        onValueChange={[Function]}
+        title="Allow threaded replies"
+        value={false}
+      />
+      <RowWithSwitch
+        border="bottom"
+        identifier="discussions.edit.subscribed.switch"
+        onValueChange={[Function]}
+        title="Subscribe"
+        value={false}
+      />
+      <RowWithSwitch
+        border="bottom"
+        onValueChange={[Function]}
+        title="Users must post before seeing replies"
+        value={false}
+      />
+      <View>
+        <Heading1
+          style={
+            Object {
+              "color": "#2D3B45",
+              "marginBottom": 8,
+              "marginLeft": 16,
+              "marginTop": 16,
+            }
+          }
+        >
+          Availability
+        </Heading1>
+        <RowWithDateInput
+          border="bottom"
+          date={null}
+          onPress={[Function]}
+          onRemoveDatePress={[Function]}
+          removeButtonTestID="discussions.edit.clear-delayed-post-at.button"
+          selected={false}
+          showRemoveButton={false}
+          testID="discussions.edit.delayed_post_at.row"
+          title="Available From"
+        />
+        <RowWithDateInput
+          border="bottom"
+          date={null}
+          onPress={[Function]}
+          onRemoveDatePress={[Function]}
+          removeButtonTestID="discussions.edit.clear-lock-at.button"
+          selected={false}
+          showRemoveButton={false}
+          testID="discussions.edit.lock_at.row"
+          title="Available Until"
+        />
+      </View>
+    </KeyboardAwareScrollView>
   </View>
 </Screen>
 `;

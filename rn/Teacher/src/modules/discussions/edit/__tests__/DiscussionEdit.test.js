@@ -16,24 +16,19 @@
 
 /* @flow */
 
+import { shallow, type ShallowWrapper } from 'enzyme'
 import React from 'react'
 import {
   Alert,
   NativeModules,
 } from 'react-native'
-import renderer from 'react-test-renderer'
 
 import { DiscussionEdit, mapStateToProps, type Props } from '../DiscussionEdit'
-import explore from '../../../../../test/helpers/explore'
-import setProps from '../../../../../test/helpers/setProps'
 import { defaultErrorTitle } from '../../../../redux/middleware/error-handler'
 
+jest.useFakeTimers()
+
 jest
-  .mock('Button', () => 'Button')
-  .mock('TouchableHighlight', () => 'TouchableHighlight')
-  .mock('TouchableOpacity', () => 'TouchableOpacity')
-  .mock('../../../../routing/Screen')
-  .mock('DatePickerIOS', () => 'DatePickerIOS')
   .mock('LayoutAnimation', () => ({
     easeInEaseOut: jest.fn(),
     Types: {
@@ -44,14 +39,9 @@ jest
       opacity: 1,
     },
   }))
-  .mock('../../../../common/components/rich-text-editor/RichTextEditor', () => 'RichTextEditor')
   .mock('Alert', () => ({
     alert: jest.fn(),
   }))
-  .mock('../../../../common/components/UnmetRequirementBanner', () => 'UnmetRequirementBanner')
-  .mock('../../../../common/components/RequiredFieldSubscript', () => 'RequiredFieldSubscript')
-  .mock('Switch', () => 'Switch')
-  .mock('../../../assignment-details/components/AssignmentDatesEditor', () => 'AssignmentDatesEditor')
 
 const template = {
   ...require('../../../../__templates__/discussion'),
@@ -101,7 +91,7 @@ describe('DiscussionEdit', () => {
   })
 
   it('renders', () => {
-    testRender(props)
+    expect(shallow(<DiscussionEdit {...props} />)).toMatchSnapshot()
   })
 
   it('renders new form', () => {
@@ -112,25 +102,26 @@ describe('DiscussionEdit', () => {
     props.discussion_type = null
     props.subscribed = null
     props.require_initial_post = null
-    const component = render(props)
-    const title = getTitle(component)
-    expect(title).toEqual('New Discussion')
-    testRender(component)
+    const tree = shallow(<DiscussionEdit {...props} />)
+    expect(tree.find('Screen').prop('title')).toBe('New Discussion')
+    expect(tree).toMatchSnapshot()
   })
 
   it('renders edit form', () => {
     props.discussionID = '1'
-    const title = getTitle(render(props))
-    expect(title).toEqual('Edit Discussion')
+    props.defaultDate = null
+    const tree = shallow(<DiscussionEdit {...props} />)
+    expect(tree.find('Screen').prop('title')).toBe('Edit Discussion')
   })
 
-  it('uses title from input', () => {
+  it('uses title from input', async () => {
     props.discussionID = null
     props.title = 'Hanamura'
     props.createDiscussion = jest.fn()
-    const component = render(props)
-    changeTitle(component, 'Haunted Mines')
-    tapDone(component)
+    const tree = shallow(<DiscussionEdit {...props} />)
+    tree.find('[identifier="discussions.edit.titleInput"]')
+      .simulate('ChangeText', 'Haunted Mines')
+    await tapDone(tree)
     expect(props.createDiscussion).toHaveBeenCalledWith(
       props.context,
       props.contextID,
@@ -138,94 +129,92 @@ describe('DiscussionEdit', () => {
     )
   })
 
-  it('shows modal when saving', () => {
-    const component = render(props)
-    tapDone(component)
-    const modal: any = explore(component.toJSON()).query(({ type }) => type === 'Modal')[0]
-    expect(modal.props.visible).toBeTruthy()
+  it('shows modal when saving', async () => {
+    const tree = shallow(<DiscussionEdit {...props} />)
+    await tapDone(tree)
+    expect(tree.find('ModalActivityIndicator').prop('visible')).toBeTruthy()
   })
 
-  it('alerts save errors', () => {
+  it('alerts save errors', async () => {
     props.discussionID = null
-    jest.useFakeTimers()
     // $FlowFixMe
     Alert.alert = jest.fn()
-    const component = render(props)
-    const createDiscussion = jest.fn(() => {
-      setProps(component, { error: 'ERROR WAS ALERTED' })
+    let tree
+    props.createDiscussion = jest.fn(() => {
+      tree.setProps({ error: 'ERROR WAS ALERTED' })
     })
-    component.update(<DiscussionEdit {...props} createDiscussion={createDiscussion} />)
-    tapDone(component)
+    tree = shallow(<DiscussionEdit {...props} />)
+    await tapDone(tree)
     jest.runAllTimers()
     expect(Alert.alert).toHaveBeenCalledWith(defaultErrorTitle(), 'ERROR WAS ALERTED')
   })
 
-  it('dismisses on successful save', () => {
+  it('dismisses on successful save', async () => {
     props.discussionID = null
     props.navigator.dismissAllModals = jest.fn()
-    const component = render(props)
-    const createDiscussion = jest.fn(() => {
-      setProps(component, { pending: 0 })
+    let tree
+    props.createDiscussion = jest.fn(() => {
+      tree.setProps({ pending: 0 })
     })
-    component.update(<DiscussionEdit {...props} createDiscussion={createDiscussion} />)
-    tapDone(component)
+    tree = shallow(<DiscussionEdit {...props} />)
+    await tapDone(tree)
     expect(props.navigator.dismissAllModals).toHaveBeenCalled()
   })
 
-  it('updates with new props', () => {
-    const component = render(props)
+  it('updates with new props', async () => {
+    const tree = shallow(<DiscussionEdit {...props} />)
     const updateDiscussion = jest.fn(() => {
-      setProps(component, { title: 'component will receive this title prop' })
+      tree.setProps({ title: 'component will receive this title prop' })
     })
-    component.update(<DiscussionEdit {...props} updateDiscussion={updateDiscussion} />)
-    tapDone(component)
-    expect(component.toJSON()).toMatchSnapshot()
+    tree.setProps({ updateDiscussion })
+    await tapDone(tree)
+    expect(tree).toMatchSnapshot()
   })
 
   it('deletes pending new discussion on unmount', () => {
     props.deletePendingNewDiscussion = jest.fn()
-    render(props).getInstance().componentWillUnmount()
+    shallow(<DiscussionEdit {...props} />).unmount()
     expect(props.deletePendingNewDiscussion).toHaveBeenCalledWith(props.context, props.contextID)
   })
 
   it('refreshes discussion on unmount', () => {
     props.refreshDiscussionEntries = jest.fn()
-    render(props).getInstance().componentWillUnmount()
+    shallow(<DiscussionEdit {...props} />).unmount()
     expect(props.refreshDiscussionEntries).toHaveBeenCalled()
   })
 
   it('does not refresh discussion when creating new', () => {
     props.refreshDiscussionEntries = jest.fn()
-    const newProps = {
-      ...props,
-      discussionID: null,
-    }
-    render(newProps).getInstance().componentWillUnmount()
-    expect(newProps.refreshDiscussionEntries).not.toHaveBeenCalled()
+    props.discussionID = null
+    shallow(<DiscussionEdit {...props} />).unmount()
+    expect(props.refreshDiscussionEntries).not.toHaveBeenCalled()
   })
 
   it('sets message placeholder', () => {
-    expect(getMessageEditor(render(props)).props.placeholder).toEqual('Add description (required)')
+    const tree = shallow(<DiscussionEdit {...props} />)
+    expect(tree.find('RichTextEditor').prop('placeholder'))
+      .toBe('Add description')
   })
 
-  it('focus unmetRequirementBanner after it shows', () => {
-    jest.useFakeTimers()
-    props.message = null
-    const component = render(props)
-    expect(getUnmetRequirementBanner(component).props.visible).toBeFalsy()
-    tapDone(component)
-    expect(getUnmetRequirementBanner(component).props.visible).toBeTruthy()
+  it('focus unmetRequirementBanner after it shows', async () => {
+    props.title = null
+    const tree = shallow(<DiscussionEdit {...props} />)
+    expect(tree.find('UnmetRequirementBanner').prop('visible')).toBeFalsy()
+    await tapDone(tree)
+    expect(tree.find('UnmetRequirementBanner').prop('visible')).toBeTruthy()
     jest.runAllTimers()
-    expect(NativeModules.NativeAccessibility.focusElement).toHaveBeenCalledWith(`discussions.edit.unmet-requirement-banner`)
+    expect(NativeModules.NativeAccessibility.focusElement)
+      .toHaveBeenCalledWith('discussions.edit.unmet-requirement-banner')
   })
 
-  it('calls updateDiscussion on done', () => {
+  it('calls updateDiscussion on done', async () => {
     props.updateDiscussion = jest.fn()
     props.contextID = '1'
     props.discussionID = '2'
-    const component = render(props)
-    changeTitle(component, 'UPDATED TITLE')
-    tapDone(component)
+    const tree = shallow(<DiscussionEdit {...props} />)
+    tree.find('[identifier="discussions.edit.titleInput"]')
+      .simulate('ChangeText', 'UPDATED TITLE')
+    await tapDone(tree)
     expect(props.updateDiscussion).toHaveBeenCalledWith(
       'courses',
       '1',
@@ -233,30 +222,28 @@ describe('DiscussionEdit', () => {
     )
   })
 
-  it('calls updateAssignment on done', () => {
+  it('calls updateAssignment on done', async () => {
     const assignment = template.assignment()
-    const createNodeMock = ({ type }) => {
-      if (type === 'AssignmentDatesEditor') {
-        return {
-          validate: jest.fn(() => true),
-          updateAssignment: jest.fn(a => a),
-        }
-      }
-    }
     props.assignment = assignment
     props.contextID = '1'
     props.updateAssignment = jest.fn()
-    tapDone(render(props, { createNodeMock }))
+    const tree = shallow(<DiscussionEdit {...props} />)
+    tree.instance().datesEditor = {
+      validate: jest.fn(() => true),
+      updateAssignment: jest.fn(a => a),
+    }
+    await tapDone(tree)
     expect(props.updateAssignment).toHaveBeenCalledWith('1', assignment, assignment)
   })
 
-  it('transforms thread switch into threaded discussion type', () => {
+  it('transforms thread switch into threaded discussion type', async () => {
     props.discussionID = '1'
     props.discussion_type = 'side_comment'
     props.updateDiscussion = jest.fn()
-    const component = render(props)
-    toggleThreadedReplies(component, true)
-    tapDone(component)
+    const tree = shallow(<DiscussionEdit {...props} />)
+    tree.find('[identifier="discussions.edit.discussion_type.switch"]')
+      .simulate('ValueChange', true)
+    await tapDone(tree)
     expect(props.updateDiscussion).toHaveBeenCalledWith(props.context, props.contextID, {
       title: expect.anything(),
       message: expect.anything(),
@@ -271,13 +258,14 @@ describe('DiscussionEdit', () => {
     })
   })
 
-  it('transforms thread switch into side_comment discussion type', () => {
+  it('transforms thread switch into side_comment discussion type', async () => {
     props.discussionID = '1'
     props.discussion_type = 'threaded'
     props.updateDiscussion = jest.fn()
-    const component = render(props)
-    toggleThreadedReplies(component, false)
-    tapDone(component)
+    const tree = shallow(<DiscussionEdit {...props} />)
+    tree.find('[identifier="discussions.edit.discussion_type.switch"]')
+      .simulate('ValueChange', false)
+    await tapDone(tree)
     expect(props.updateDiscussion).toHaveBeenCalledWith(props.context, props.contextID, {
       title: expect.anything(),
       message: expect.anything(),
@@ -294,88 +282,95 @@ describe('DiscussionEdit', () => {
 
   it('toggles grading type picker', () => {
     props.assignment = template.assignment()
-    const component = render(props)
-    expect(getGradingTypePicker(component)).toBeNull()
-    tapGradingTypeRow(component)
-    expect(getGradingTypePicker(component)).not.toBeNull()
+    const tree = shallow(<DiscussionEdit {...props} />)
+    expect(tree.find('[testID="discussions.edit.grading_type.picker"]').exists()).toBe(false)
+    tree.find('[testID="discussions.edit.grading_type.row"]').simulate('Press')
+    expect(tree.find('[testID="discussions.edit.grading_type.picker"]').exists()).toBe(true)
   })
 
   it('renders assignment dates editor', () => {
     props.assignment = template.assignment()
-    expect(getAssignmentDatesEditor(render(props))).toBeDefined()
+    const tree = shallow(<DiscussionEdit {...props} />)
+    expect(tree.find('AssignmentDatesEditor').exists()).toBe(true)
   })
 
-  it('shows unmet requirement banner if dates are invalid', () => {
+  it('shows unmet requirement banner if dates are invalid', async () => {
     const assignment = template.assignment()
-    const createNodeMock = ({ type }) => {
-      if (type === 'AssignmentDatesEditor') {
-        return {
-          validate: jest.fn(() => false),
-          updateAssignment: jest.fn(a => a),
-        }
-      }
-    }
     props.assignment = assignment
-    const component = render(props, { createNodeMock })
-    expect(getUnmetRequirementBanner(component).props.visible).toBeFalsy()
-    tapDone(component)
-    expect(getUnmetRequirementBanner(component).props.visible).toBeTruthy()
-  })
-
-  it('shows validation errors if message is blank', () => {
-    props.message = null
-    const component = render(props)
-    tapDone(component)
-    expect(getUnmetRequirementBanner(component).props.visible).toBeTruthy()
-    expect(getMessageRequiredFieldSubscript(component).props.visible).toBeTruthy()
-    changeMessage(component, 'not blank')
-    tapDone(component)
-    expect(getUnmetRequirementBanner(component).props.visible).toBeFalsy()
-    expect(getMessageRequiredFieldSubscript(component).props.visible).toBeFalsy()
-    changeMessage(component, '')
-    tapDone(component)
-    expect(getUnmetRequirementBanner(component).props.visible).toBeTruthy()
-    expect(getMessageRequiredFieldSubscript(component).props.visible).toBeTruthy()
-  })
-
-  it('shows validation errors if points is invalid', () => {
-    const createNodeMock = ({ type }) => {
-      if (type === 'AssignmentDatesEditor') {
-        return {
-          validate: jest.fn(() => true),
-          updateAssignment: jest.fn(a => a),
-        }
-      }
+    const tree = shallow(<DiscussionEdit {...props} />)
+    tree.instance().datesEditor = {
+      validate: jest.fn(() => false),
+      updateAssignment: jest.fn(a => a),
     }
+    expect(tree.find('UnmetRequirementBanner').prop('visible')).toBeFalsy()
+    await tapDone(tree)
+    expect(tree.find('UnmetRequirementBanner').prop('visible')).toBeTruthy()
+  })
+
+  it('shows validation errors if title is blank', async () => {
+    props.title = null
+    const tree = shallow(<DiscussionEdit {...props} />)
+    await tapDone(tree)
+    expect(tree.find('UnmetRequirementBanner').prop('visible')).toBeTruthy()
+    expect(tree.find('[testID="discussions.edit.title.validation-error"]').prop('visible')).toBeTruthy()
+    tree.find('[identifier="discussions.edit.titleInput"]').simulate('ChangeText', 'not blank')
+    await tapDone(tree)
+    expect(tree.find('UnmetRequirementBanner').prop('visible')).toBeFalsy()
+    expect(tree.find('[testID="discussions.edit.title.validation-error"]').prop('visible')).toBeFalsy()
+    tree.find('[identifier="discussions.edit.titleInput"]').simulate('ChangeText', '')
+    await tapDone(tree)
+    expect(tree.find('UnmetRequirementBanner').prop('visible')).toBeTruthy()
+    expect(tree.find('[testID="discussions.edit.title.validation-error"]').prop('visible')).toBeTruthy()
+  })
+
+  it('shows validation errors if points is invalid', async () => {
     props.assignment = template.assignment({ points_possible: null })
-    const component = render(props, { createNodeMock })
-    tapDone(component)
-    expect(getUnmetRequirementBanner(component).props.visible).toBeTruthy()
-    expect(getPointsPossibleRequiredFieldSubscript(component).props.visible).toBeTruthy()
+    const tree = shallow(<DiscussionEdit {...props} />)
+    tree.instance().datesEditor = {
+      validate: jest.fn(() => true),
+      updateAssignment: jest.fn(a => a),
+    }
+    await tapDone(tree)
+    expect(tree.find('UnmetRequirementBanner').prop('visible')).toBeTruthy()
+    expect(tree.find('[testID="discussions.edit.points_possible.validation-error"]').prop('visible')).toBeTruthy()
 
-    changePoints(component, 'D')
-    tapDone(component)
-    expect(getUnmetRequirementBanner(component).props.visible).toBeTruthy()
-    expect(getPointsPossibleRequiredFieldSubscript(component).props.visible).toBeTruthy()
+    tree.find('[identifier="discussions.edit.points_possible.input"]')
+      .simulate('ChangeText', 'D')
+    await tapDone(tree)
+    expect(tree.find('UnmetRequirementBanner').prop('visible')).toBeTruthy()
+    expect(tree.find('[testID="discussions.edit.points_possible.validation-error"]').prop('visible')).toBeTruthy()
 
-    changePoints(component, '1')
-    tapDone(component)
-    expect(getUnmetRequirementBanner(component).props.visible).toBeFalsy()
-    expect(getPointsPossibleRequiredFieldSubscript(component).props.visible).toBeFalsy()
+    tree.find('[identifier="discussions.edit.points_possible.input"]')
+      .simulate('ChangeText', '1')
+    await tapDone(tree)
+    expect(tree.find('UnmetRequirementBanner').prop('visible')).toBeFalsy()
+    expect(tree.find('[testID="discussions.edit.points_possible.validation-error"]').prop('visible')).toBeFalsy()
 
-    changePoints(component, '-1')
-    tapDone(component)
-    expect(getUnmetRequirementBanner(component).props.visible).toBeTruthy()
-    expect(getPointsPossibleRequiredFieldSubscript(component).props.visible).toBeTruthy()
+    tree.find('[identifier="discussions.edit.points_possible.input"]')
+      .simulate('ChangeText', '-1')
+    await tapDone(tree)
+    expect(tree.find('UnmetRequirementBanner').prop('visible')).toBeTruthy()
+    expect(tree.find('[testID="discussions.edit.points_possible.validation-error"]').prop('visible')).toBeTruthy()
 
-    changePoints(component, '')
-    tapDone(component)
-    expect(getUnmetRequirementBanner(component).props.visible).toBeTruthy()
-    expect(getPointsPossibleRequiredFieldSubscript(component).props.visible).toBeTruthy()
+    tree.find('[identifier="discussions.edit.points_possible.input"]')
+      .simulate('ChangeText', '')
+    await tapDone(tree)
+    expect(tree.find('UnmetRequirementBanner').prop('visible')).toBeTruthy()
+    expect(tree.find('[testID="discussions.edit.points_possible.validation-error"]').prop('visible')).toBeTruthy()
   })
 
   it('updates from props', () => {
-    testRender(setProps(render(props), { discussion_type: null }))
+    const tree = shallow(<DiscussionEdit {...props} />)
+    tree.setProps({ discussion_type: null })
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('does not update state from props while pending', async () => {
+    const tree = shallow(<DiscussionEdit {...props} />)
+    await new Promise(resolve => tree.setState({ pending: true }, resolve))
+    const state = tree.state()
+    tree.setProps({ title: 'new title', pending: true })
+    expect(tree.state()).toEqual(state)
   })
 
   it('subscribes when subscribe switch toggled on', () => {
@@ -383,7 +378,9 @@ describe('DiscussionEdit', () => {
     props.discussionID = '2'
     props.subscribeDiscussion = jest.fn()
     props.subscribed = false
-    toggleSubscribed(render(props), true)
+    const tree = shallow(<DiscussionEdit {...props} />)
+    tree.find('[identifier="discussions.edit.subscribed.switch"]')
+      .simulate('ValueChange', true)
     expect(props.subscribeDiscussion).toHaveBeenCalledWith('courses', '1', '2', true)
   })
 
@@ -392,59 +389,67 @@ describe('DiscussionEdit', () => {
     props.discussionID = '2'
     props.subscribeDiscussion = jest.fn()
     props.subscribed = true
-    toggleSubscribed(render(props), false)
+    const tree = shallow(<DiscussionEdit {...props} />)
+    tree.find('[identifier="discussions.edit.subscribed.switch"]')
+      .simulate('ValueChange', false)
     expect(props.subscribeDiscussion).toHaveBeenCalledWith('courses', '1', '2', false)
   })
 
   it('toggles available from date picker', () => {
     props.assignment = null
-    const component = render(props)
-    expect(getAvailableFromDatePicker(component)).toBeNull()
-    tapAvailableFrom(component)
-    expect(getAvailableFromDatePicker(component)).not.toBeNull()
+    const tree = shallow(<DiscussionEdit {...props} />)
+    expect(tree.find('[testID="discussions.edit.delayed_post_at.picker"]').exists()).toBe(false)
+    tree.find('[testID="discussions.edit.delayed_post_at.row"]').simulate('Press')
+    expect(tree.find('[testID="discussions.edit.delayed_post_at.picker"]').exists()).toBe(true)
   })
 
   it('toggles available until date picker', () => {
     props.assignment = null
-    const component = render(props)
-    expect(getAvailableUntilDatePicker(component)).toBeNull()
-    tapAvailableUntil(component)
-    expect(getAvailableUntilDatePicker(component)).not.toBeNull()
+    const tree = shallow(<DiscussionEdit {...props} />)
+    expect(tree.find('[testID="discussions.edit.lock_at.picker"]').exists()).toBe(false)
+    tree.find('[testID="discussions.edit.lock_at.row"]')
+      .simulate('Press')
+    expect(tree.find('[testID="discussions.edit.lock_at.picker"]').exists()).toBe(true)
   })
 
   it('should clear dates', () => {
     props.assignment = null
-    const component = render(props)
-    tapAvailableFrom(component)
-    let datePicker = getAvailableFromDatePicker(component)
-    datePicker.props.onDateChange(new Date(1000))
-    const delayedBtn: any = explore(component.toJSON()).selectByID('discussions.edit.clear-delayed-post-at.button')
-    delayedBtn.props.onPress()
-    expect(getAvailableFromDatePicker(component)).toBeNull()
+    const tree = shallow(<DiscussionEdit {...props} />)
+    tree.find('[testID="discussions.edit.delayed_post_at.row"]')
+      .simulate('Press')
+    tree.find('[testID="discussions.edit.delayed_post_at.picker"]')
+      .simulate('DateChange', new Date(1000))
+    tree.find('[testID="discussions.edit.delayed_post_at.row"]')
+      .simulate('RemoveDatePress')
+    expect(tree.find('[testID="discussions.edit.delayed_post_at.picker"]').exists()).toBe(false)
 
-    tapAvailableUntil(component)
-    datePicker = getAvailableUntilDatePicker(component)
-    datePicker.props.onDateChange(new Date(1000))
-    const lockBtn: any = explore(component.toJSON()).selectByID('discussions.edit.clear-lock-at.button')
-    lockBtn.props.onPress()
-    expect(getAvailableUntilDatePicker(component)).toBeNull()
+    tree.find('[testID="discussions.edit.lock_at.row"]')
+      .simulate('Press')
+    tree.find('[testID="discussions.edit.lock_at.picker"]')
+      .simulate('DateChange', new Date(1000))
+    tree.find('[testID="discussions.edit.lock_at.row"]')
+      .simulate('RemoveDatePress')
+    expect(tree.find('[testID="discussions.edit.lock_at.picker"]').exists()).toBe(false)
   })
 
   it('hides publish switch if cant unpublish', () => {
     props.published = true
     props.can_unpublish = false
-    expect(getPublishToggle(render(props))).toBeNull()
+    const tree = shallow(<DiscussionEdit {...props} />)
+    expect(tree.find('[testID="discussions.edit.published.switch"]').exists()).toBe(false)
 
-    props.can_unpublish = true
-    expect(getPublishToggle(render(props))).not.toBeNull()
+    tree.setProps({ can_unpublish: true })
+    expect(tree.find('[testID="discussions.edit.published.switch"]').exists()).toBe(true)
   })
 
   it('shows attachments', () => {
     const spy = jest.fn()
     props.navigator.show = spy
     props.attachment = template.attachment()
-    const btn: any = explore(render(props).toJSON()).selectRightBarButton('discussions.edit.attachment-btn')
-    btn.action()
+    const tree = shallow(<DiscussionEdit {...props} />)
+    tree.find('Screen').prop('rightBarButtons')
+      .find(({ testID }) => testID === 'discussions.edit.attachment-btn')
+      .action()
     expect(spy).toHaveBeenCalledWith(
       '/attachments',
       { modal: true },
@@ -459,108 +464,11 @@ describe('DiscussionEdit', () => {
     )
   })
 
-  function testRender (props: Props, options: Object = {}) {
-    expect(render(props, options)).toMatchSnapshot()
-  }
-
-  function render (props: Props, options: Object = {}) {
-    return renderer.create(<DiscussionEdit {...props} />, options)
-  }
-
-  function tapDone (component: any): any {
-    getDoneButton(component).action()
-    return component
-  }
-
-  function changeTitle (component: any, value: string) {
-    const input: any = explore(component.toJSON()).selectByID('discussions.edit.titleInput')
-    input.props.onChangeText(value)
-  }
-
-  function changeMessage (component: any, value: string) {
-    getMessageEditor(component).props.onChangeValue(value)
-  }
-
-  function changePoints (component: any, value: string) {
-    getPointsInput(component).props.onChangeText(value)
-  }
-
-  function getTitle (component: any): string {
-    return explore(component.toJSON()).query(({ type }) => type === 'Screen')[0].props.title
-  }
-
-  function getMessageEditor (component: any): any {
-    return explore(component.toJSON()).query(({ type }) => type === 'RichTextEditor')[0]
-  }
-
-  function getPointsInput (component: any): any {
-    return explore(component.toJSON()).selectByID('discussions.edit.points_possible.input')
-  }
-
-  function getDoneButton (component: any): any {
-    return explore(component.toJSON()).selectRightBarButton('discussions.edit.doneButton')
-  }
-
-  function toggleThreadedReplies (component: any, enabled: boolean): any {
-    const toggle: any = explore(component.toJSON()).selectByID('discussions.edit.discussion_type.switch')
-    toggle.props.onValueChange(enabled)
-    return component
-  }
-
-  function tapGradingTypeRow (component: any): any {
-    const row: any = explore(component.toJSON()).selectByID('discussions.edit.grading_type.row')
-    row.props.onPress()
-    return component
-  }
-
-  function getGradingTypePicker (component: any): any {
-    return explore(component.toJSON()).selectByID('discussions.edit.grading_type.picker')
-  }
-
-  function getAssignmentDatesEditor (component: any): any {
-    return explore(component.toJSON()).selectByType('AssignmentDatesEditor')
-  }
-
-  function getUnmetRequirementBanner (component: any): any {
-    return explore(component.toJSON()).selectByID('discussions.edit.unmet-requirement-banner')
-  }
-
-  function getMessageRequiredFieldSubscript (component: any): any {
-    return explore(component.toJSON()).selectByID('discussions.edit.message.validation-error')
-  }
-
-  function getPointsPossibleRequiredFieldSubscript (component: any): any {
-    return explore(component.toJSON()).selectByID('discussions.edit.points_possible.validation-error')
-  }
-
-  function toggleSubscribed (component: any, subscribed: boolean): any {
-    const toggle: any = explore(component.toJSON()).selectByID('discussions.edit.subscribed.switch')
-    toggle.props.onValueChange(subscribed)
-    return component
-  }
-
-  function tapAvailableFrom (component: any): any {
-    const row: any = explore(component.toJSON()).selectByID('discussions.edit.delayed_post_at.row')
-    row.props.onPress()
-    return component
-  }
-
-  function tapAvailableUntil (component: any): any {
-    const row: any = explore(component.toJSON()).selectByID('discussions.edit.lock_at.row')
-    row.props.onPress()
-    return component
-  }
-
-  function getAvailableFromDatePicker (component: any): any {
-    return explore(component.toJSON()).selectByID('discussions.edit.delayed_post_at.picker')
-  }
-
-  function getAvailableUntilDatePicker (component: any): any {
-    return explore(component.toJSON()).selectByID('discussions.edit.lock_at.picker')
-  }
-
-  function getPublishToggle (component: any): any {
-    return explore(component.toJSON()).selectByID('discussions.edit.published.switch')
+  function tapDone (tree: ShallowWrapper) {
+    tree.find('Screen').prop('rightBarButtons')
+      .find(({ testID }) => testID === 'discussions.edit.doneButton')
+      .action()
+    return new Promise(resolve => tree.setState({}, resolve))
   }
 })
 
