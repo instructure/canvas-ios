@@ -195,6 +195,7 @@ public final class HelmViewController: UIViewController, HelmScreen {
         
         HelmManager.shared.register(screen: self)
         setupSensibleDefaults()
+        
     }
     
     required public init?(coder aDecoder: NSCoder) {

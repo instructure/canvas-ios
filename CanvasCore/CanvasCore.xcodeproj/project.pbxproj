@@ -38,9 +38,12 @@
 		2CFAFBD11FD21B3800F22C7F /* WindowTraits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFAFBD01FD21B3800F22C7F /* WindowTraits.swift */; };
 		3BA0F9B620069CEB00E64448 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA0F9B520069CEB00E64448 /* UIView+AutoLayout.swift */; };
 		3BA8BE9B1FE2ED85003EC4FD /* SubmissionConfirmationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BA8BE9D1FE2ED85003EC4FD /* SubmissionConfirmationViewController.xib */; };
+		3BBEAA4920472704004D334C /* PageViewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBEAA4820472704004D334C /* PageViewEvent.swift */; };
+		3BBEAA4B20472984004D334C /* Persistency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBEAA4A20472984004D334C /* Persistency.swift */; };
 		3BC7CEC620113F5B001DFF8C /* CKIClient+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC7CEC520113F5B001DFF8C /* CKIClient+Extensions.swift */; };
 		3BD43DE91FD20597001A6B34 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD43DE81FD20597001A6B34 /* EmptyViewController.swift */; };
 		3BDE87761FD76BE600912CB3 /* UISplitViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */; };
+		3BF2B3D020475DBA00B5E5E5 /* PageViewEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2B3CF20475DBA00B5E5E5 /* PageViewEventController.swift */; };
 		4902ADBE1FB26E860004837D /* LTIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4902ADBD1FB26E860004837D /* LTIViewController.swift */; };
 		490F91F11FB0F94A00A7DA38 /* CanvasWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490F91F01FB0F94A00A7DA38 /* CanvasWebViewController.swift */; };
 		49295B501F86D3B2001DAB1F /* HelmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49295B4F1F86D3B2001DAB1F /* HelmTests.swift */; };
@@ -555,9 +558,12 @@
 		3BA8BEBF1FE2EDFE003EC4FD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
 		3BA8BEC11FE2EE03003EC4FD /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
 		3BA8BEC31FE2EE09003EC4FD /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
+		3BBEAA4820472704004D334C /* PageViewEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewEvent.swift; sourceTree = "<group>"; };
+		3BBEAA4A20472984004D334C /* Persistency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistency.swift; sourceTree = "<group>"; };
 		3BC7CEC520113F5B001DFF8C /* CKIClient+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CKIClient+Extensions.swift"; sourceTree = "<group>"; };
 		3BD43DE81FD20597001A6B34 /* EmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
 		3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISplitViewControllerExtensions.swift; sourceTree = "<group>"; };
+		3BF2B3CF20475DBA00B5E5E5 /* PageViewEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewEventController.swift; sourceTree = "<group>"; };
 		4902ADBD1FB26E860004837D /* LTIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTIViewController.swift; sourceTree = "<group>"; };
 		490F91F01FB0F94A00A7DA38 /* CanvasWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasWebViewController.swift; sourceTree = "<group>"; };
 		4917183E1F8EE797008B4599 /* Session+DiscussionKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+DiscussionKit.swift"; sourceTree = "<group>"; };
@@ -1182,6 +1188,7 @@
 		2CAF1B161F72AEDB007225DF /* CanvasCore */ = {
 			isa = PBXGroup;
 			children = (
+				3BBEAA47204726E4004D334C /* Page View Analytics */,
 				49301FB51F901235006BD777 /* Activity Stream */,
 				49301FF41F901CA0006BD777 /* Annotations */,
 				49CE96ED1F8FFE4A00121A43 /* Assignments */,
@@ -1268,6 +1275,16 @@
 				2CB68A341FED6E0600468313 /* StartupManager.swift */,
 			);
 			path = "Startup Manager";
+			sourceTree = "<group>";
+		};
+		3BBEAA47204726E4004D334C /* Page View Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				3BBEAA4820472704004D334C /* PageViewEvent.swift */,
+				3BBEAA4A20472984004D334C /* Persistency.swift */,
+				3BF2B3CF20475DBA00B5E5E5 /* PageViewEventController.swift */,
+			);
+			path = "Page View Analytics";
 			sourceTree = "<group>";
 		};
 		4917182B1F8EE68D008B4599 /* Discussions */ = {
@@ -3130,6 +3147,7 @@
 				4930204C1F902364006BD777 /* Accumulate.swift in Sources */,
 				4961F5A81F8FB2A90093EC86 /* SmallModalNavigationController.swift in Sources */,
 				49CE96E51F8FFC4400121A43 /* MasteryPathAssignment+Details.swift in Sources */,
+				3BF2B3D020475DBA00B5E5E5 /* PageViewEventController.swift in Sources */,
 				4961F6291F8FB7050093EC86 /* Course.swift in Sources */,
 				49CE97411F8FFEA600121A43 /* Scratch.xcdatamodeld in Sources */,
 				49CE96711F8FF41B00121A43 /* LoadingQuestionsView.swift in Sources */,
@@ -3186,6 +3204,7 @@
 				49CE96861F8FF41B00121A43 /* SubmissionController.swift in Sources */,
 				49CE96651F8FF41B00121A43 /* CanvasQuizService.swift in Sources */,
 				4961F6331F8FB70D0093EC86 /* GradingPeriod.swift in Sources */,
+				3BBEAA4920472704004D334C /* PageViewEvent.swift in Sources */,
 				4961F6811F8FB9620093EC86 /* Upload+Details.swift in Sources */,
 				4961F62C1F8FB7070093EC86 /* Enrollment+Network.swift in Sources */,
 				2C195F52201948DB003B0D7D /* HelmScreenConfig.swift in Sources */,
@@ -3370,6 +3389,7 @@
 				494AE0A21F843A09001A8F31 /* ScrollViewDisablerManager.m in Sources */,
 				49CE96991F8FF41B00121A43 /* NSError+QuizKit.swift in Sources */,
 				49CE967E1F8FF41B00121A43 /* SelectableAnswerCellProtocol.swift in Sources */,
+				3BBEAA4B20472984004D334C /* Persistency.swift in Sources */,
 				4961F61F1F8FB6E40093EC86 /* UIColor+EnrollmentKit.swift in Sources */,
 				4961F63B1F8FB7180093EC86 /* GradeAPI.swift in Sources */,
 				4961F62A1F8FB7050093EC86 /* Course+Network.swift in Sources */,
