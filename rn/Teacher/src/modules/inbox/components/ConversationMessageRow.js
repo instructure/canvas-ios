@@ -37,6 +37,7 @@ import i18n from 'format-message'
 import find from 'lodash/find'
 import Images from '../../../images'
 import { LinkButton } from '../../../common/buttons'
+import Hyperlink from 'react-native-hyperlink'
 
 export type ConversationMessageProps = {
   conversation: Conversation,
@@ -74,6 +75,10 @@ export default class ConversationMessageRow extends Component<ConversationMessag
       `/courses/${courseID}/users/${this.props.message.author_id}`,
       { modal: true, modalPresentationStyle: 'currentContext' }
     )
+  }
+
+  handleLink = (link: string) => {
+    this.props.navigator.show(link, { deepLink: true })
   }
 
   _showAttachment = (attachment: Attachment) => {
@@ -167,7 +172,9 @@ export default class ConversationMessageRow extends Component<ConversationMessag
           { this._renderHeader() }
           <TouchableWithoutFeedback onPress={this._toggleExpanded}>
             <View style={styles.body}>
-              <Text style={styles.bodyText} numberOfLines={this.state.expanded ? 0 : 2}>{message.body}</Text>
+              <Hyperlink linkStyle={ { color: '#2980b9' } } onPress={this.handleLink}>
+                <Text style={styles.bodyText} numberOfLines={this.state.expanded ? 0 : 2}>{message.body}</Text>
+              </Hyperlink>
             </View>
           </TouchableWithoutFeedback>
           { this.props.message.attachments &&

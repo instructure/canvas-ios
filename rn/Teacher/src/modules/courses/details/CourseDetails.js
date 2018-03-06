@@ -101,7 +101,7 @@ export class CourseDetails extends Component<CourseDetailsProps, any> {
   showHome () {
     if (this.homeDidShow) return
     if (this.props.tabs.length) {
-      if (this.state.windowTraits.horizontal !== 'compact') {
+      if (this.state.windowTraits.horizontal !== 'compact' && !this.props.navigator.isModal) {
         const home = this.props.tabs.find(({ id }) => id === 'home')
         if (home) {
           this.homeDidShow = true

@@ -48,6 +48,7 @@
     "react-native-device-info": "^0.10.1",
     "react-native-document-picker": "Elyx0/react-native-document-picker",
     "react-native-fs": "^2.3.2",
+    "react-native-hyperlink": "obipawan/react-native-hyperlink",
     "react-native-image-picker": "^0.26.3",
     "react-native-interactable": "derrh/react-native-interactable",
     "react-native-keyboard-aware-scroll-view": "^0.3.0",

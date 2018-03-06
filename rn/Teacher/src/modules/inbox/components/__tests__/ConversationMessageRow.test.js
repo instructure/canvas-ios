@@ -162,3 +162,18 @@ it('navigates to context card when the avatar is pressed', () => {
     { modal: true, modalPresentationStyle: 'currentContext' },
   )
 })
+
+it('navigates to a link when pressed', () => {
+  const convo = template.conversation({})
+  const message = template.conversationMessage()
+  const navigator = template.navigator()
+
+  let instance = renderer.create(
+    <ConversationMessage navigator={navigator} conversation={convo} message={message} />
+  ).getInstance()
+
+  const link = 'http://www.google.com'
+  instance.handleLink(link)
+
+  expect(navigator.show).toHaveBeenCalledWith(link, { deepLink: true })
+})
