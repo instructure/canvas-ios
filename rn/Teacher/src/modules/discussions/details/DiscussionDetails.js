@@ -212,6 +212,17 @@ export class DiscussionDetails extends Component<Props, any> {
               { user && user.display_name && <Text style={style.authorName}>{user.display_name}</Text> }
                 <Text style={style.authorDate} testID='discussion.details.post-date-lbl'>{i18n("{ date, date, 'MMM d'} at { date, time, short }", { date })}</Text>
             </View>
+
+            <View>
+              <TouchableHighlight
+                underlayColor='transparent'
+                onPress={this._onPressReply}
+                testID='discussion.details-reply'
+                accessibilityLabel={i18n('Reply')}
+              >
+                <Image source={Images.rce.undo} style={{ width: 18, height: 18, tintColor: colors.secondaryButton }} />
+              </TouchableHighlight>
+            </View>
           </View>
 
           { (Boolean(discussion.message) || Boolean(discussion.attachments)) &&
@@ -240,8 +251,9 @@ export class DiscussionDetails extends Component<Props, any> {
               testID='discussion-reply'
               accessibilityTraits='button'
             >
-                <View style={{ flex: 1, backgroundColor: 'white' }}>
-                  <Text style={style.link}>{i18n('Reply')}</Text>
+                <View style={[{ backgroundColor: colors.primaryButtonColor }, style.replyButtonWrapper]}>
+                  <Image source={Images.rce.undo} style={{ width: 18, height: 18, tintColor: colors.primaryButtonTextColor }} />
+                  <Text style={[{ color: colors.primaryButtonTextColor }, style.reply]}>{i18n('Reply')}</Text>
                 </View>
             </TouchableHighlight>
           </View>}
@@ -598,8 +610,20 @@ const style = StyleSheet.create({
     color: colors.grey4,
     marginRight: 14,
   },
-  link: {
-    color: colors.link,
+  reply: {
+    color: 'white',
+    fontSize: 14,
+    marginLeft: 4,
+    fontWeight: '500',
+  },
+  replyButtonWrapper: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 4,
   },
   submission: {
     marginRight: 40,

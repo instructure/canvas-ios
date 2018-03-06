@@ -1024,6 +1024,29 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                     Nov 10 at 9:03 PM
                   </Text>
                 </View>
+                <View>
+                  <TouchableHighlight
+                    accessibilityLabel="Reply"
+                    onPress={[Function]}
+                    testID="discussion.details-reply"
+                    underlayColor="transparent"
+                  >
+                    <Image
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/rce/undo.png",
+                        }
+                      }
+                      style={
+                        Object {
+                          "height": 18,
+                          "tintColor": "#73818C",
+                          "width": 18,
+                        }
+                      }
+                    />
+                  </TouchableHighlight>
+                </View>
               </View>
               <View
                 style={
@@ -1090,12 +1113,36 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                 >
                   <View
                     style={
-                      Object {
-                        "backgroundColor": "white",
-                        "flex": 1,
-                      }
+                      Array [
+                        Object {
+                          "backgroundColor": "#374A59",
+                        },
+                        Object {
+                          "alignItems": "center",
+                          "borderRadius": 4,
+                          "flexDirection": "row",
+                          "flexWrap": "wrap",
+                          "justifyContent": "center",
+                          "paddingHorizontal": 16,
+                          "paddingVertical": 10,
+                        },
+                      ]
                     }
                   >
+                    <Image
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/rce/undo.png",
+                        }
+                      }
+                      style={
+                        Object {
+                          "height": 18,
+                          "tintColor": "white",
+                          "width": 18,
+                        }
+                      }
+                    />
                     <Text
                       accessible={true}
                       allowFontScaling={true}
@@ -1109,11 +1156,19 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
+                          Array [
+                            Object {
+                              "color": "white",
+                            },
+                            Object {
+                              "color": "white",
+                              "fontSize": 14,
+                              "fontWeight": "500",
+                              "marginLeft": 4,
+                            },
+                          ],
                           Object {
-                            "color": "#008EE2",
-                          },
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
+                            "fontFamily": ".SFUIDisplay-medium",
                           },
                         ]
                       }
@@ -2126,6 +2181,29 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                     Nov 10 at 9:03 PM
                   </Text>
                 </View>
+                <View>
+                  <TouchableHighlight
+                    accessibilityLabel="Reply"
+                    onPress={[Function]}
+                    testID="discussion.details-reply"
+                    underlayColor="transparent"
+                  >
+                    <Image
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/rce/undo.png",
+                        }
+                      }
+                      style={
+                        Object {
+                          "height": 18,
+                          "tintColor": "#73818C",
+                          "width": 18,
+                        }
+                      }
+                    />
+                  </TouchableHighlight>
+                </View>
               </View>
               <View
                 style={
@@ -2996,6 +3074,29 @@ exports[`DiscussionDetails renders in student app 1`] = `
                     Nov 10 at 9:03 PM
                   </Text>
                 </View>
+                <View>
+                  <TouchableHighlight
+                    accessibilityLabel="Reply"
+                    onPress={[Function]}
+                    testID="discussion.details-reply"
+                    underlayColor="transparent"
+                  >
+                    <Image
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/rce/undo.png",
+                        }
+                      }
+                      style={
+                        Object {
+                          "height": 18,
+                          "tintColor": "#73818C",
+                          "width": 18,
+                        }
+                      }
+                    />
+                  </TouchableHighlight>
+                </View>
               </View>
               <View
                 style={
@@ -3062,12 +3163,36 @@ exports[`DiscussionDetails renders in student app 1`] = `
                 >
                   <View
                     style={
-                      Object {
-                        "backgroundColor": "white",
-                        "flex": 1,
-                      }
+                      Array [
+                        Object {
+                          "backgroundColor": "#374A59",
+                        },
+                        Object {
+                          "alignItems": "center",
+                          "borderRadius": 4,
+                          "flexDirection": "row",
+                          "flexWrap": "wrap",
+                          "justifyContent": "center",
+                          "paddingHorizontal": 16,
+                          "paddingVertical": 10,
+                        },
+                      ]
                     }
                   >
+                    <Image
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/rce/undo.png",
+                        }
+                      }
+                      style={
+                        Object {
+                          "height": 18,
+                          "tintColor": "white",
+                          "width": 18,
+                        }
+                      }
+                    />
                     <Text
                       accessible={true}
                       allowFontScaling={true}
@@ -3081,11 +3206,19 @@ exports[`DiscussionDetails renders in student app 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
+                          Array [
+                            Object {
+                              "color": "white",
+                            },
+                            Object {
+                              "color": "white",
+                              "fontSize": 14,
+                              "fontWeight": "500",
+                              "marginLeft": 4,
+                            },
+                          ],
                           Object {
-                            "color": "#008EE2",
-                          },
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
+                            "fontFamily": ".SFUIDisplay-medium",
                           },
                         ]
                       }
@@ -4475,6 +4608,29 @@ exports[`DiscussionDetails renders no replies 1`] = `
                     Nov 10 at 9:03 PM
                   </Text>
                 </View>
+                <View>
+                  <TouchableHighlight
+                    accessibilityLabel="Reply"
+                    onPress={[Function]}
+                    testID="discussion.details-reply"
+                    underlayColor="transparent"
+                  >
+                    <Image
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/rce/undo.png",
+                        }
+                      }
+                      style={
+                        Object {
+                          "height": 18,
+                          "tintColor": "#73818C",
+                          "width": 18,
+                        }
+                      }
+                    />
+                  </TouchableHighlight>
+                </View>
               </View>
               <View
                 style={
@@ -4541,12 +4697,36 @@ exports[`DiscussionDetails renders no replies 1`] = `
                 >
                   <View
                     style={
-                      Object {
-                        "backgroundColor": "white",
-                        "flex": 1,
-                      }
+                      Array [
+                        Object {
+                          "backgroundColor": "#374A59",
+                        },
+                        Object {
+                          "alignItems": "center",
+                          "borderRadius": 4,
+                          "flexDirection": "row",
+                          "flexWrap": "wrap",
+                          "justifyContent": "center",
+                          "paddingHorizontal": 16,
+                          "paddingVertical": 10,
+                        },
+                      ]
                     }
                   >
+                    <Image
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/rce/undo.png",
+                        }
+                      }
+                      style={
+                        Object {
+                          "height": 18,
+                          "tintColor": "white",
+                          "width": 18,
+                        }
+                      }
+                    />
                     <Text
                       accessible={true}
                       allowFontScaling={true}
@@ -4560,11 +4740,19 @@ exports[`DiscussionDetails renders no replies 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
+                          Array [
+                            Object {
+                              "color": "white",
+                            },
+                            Object {
+                              "color": "white",
+                              "fontSize": 14,
+                              "fontWeight": "500",
+                              "marginLeft": 4,
+                            },
+                          ],
                           Object {
-                            "color": "#008EE2",
-                          },
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
+                            "fontFamily": ".SFUIDisplay-medium",
                           },
                         ]
                       }
@@ -5859,6 +6047,29 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     Nov 10 at 9:03 PM
                   </Text>
                 </View>
+                <View>
+                  <TouchableHighlight
+                    accessibilityLabel="Reply"
+                    onPress={[Function]}
+                    testID="discussion.details-reply"
+                    underlayColor="transparent"
+                  >
+                    <Image
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/rce/undo.png",
+                        }
+                      }
+                      style={
+                        Object {
+                          "height": 18,
+                          "tintColor": "#73818C",
+                          "width": 18,
+                        }
+                      }
+                    />
+                  </TouchableHighlight>
+                </View>
               </View>
               <View
                 style={
@@ -5925,12 +6136,36 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                 >
                   <View
                     style={
-                      Object {
-                        "backgroundColor": "white",
-                        "flex": 1,
-                      }
+                      Array [
+                        Object {
+                          "backgroundColor": "#374A59",
+                        },
+                        Object {
+                          "alignItems": "center",
+                          "borderRadius": 4,
+                          "flexDirection": "row",
+                          "flexWrap": "wrap",
+                          "justifyContent": "center",
+                          "paddingHorizontal": 16,
+                          "paddingVertical": 10,
+                        },
+                      ]
                     }
                   >
+                    <Image
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/rce/undo.png",
+                        }
+                      }
+                      style={
+                        Object {
+                          "height": 18,
+                          "tintColor": "white",
+                          "width": 18,
+                        }
+                      }
+                    />
                     <Text
                       accessible={true}
                       allowFontScaling={true}
@@ -5944,11 +6179,19 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
+                          Array [
+                            Object {
+                              "color": "white",
+                            },
+                            Object {
+                              "color": "white",
+                              "fontSize": 14,
+                              "fontWeight": "500",
+                              "marginLeft": 4,
+                            },
+                          ],
                           Object {
-                            "color": "#008EE2",
-                          },
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
+                            "fontFamily": ".SFUIDisplay-medium",
                           },
                         ]
                       }
@@ -8014,6 +8257,29 @@ exports[`DiscussionDetails renders with replies 1`] = `
                     Nov 10 at 9:03 PM
                   </Text>
                 </View>
+                <View>
+                  <TouchableHighlight
+                    accessibilityLabel="Reply"
+                    onPress={[Function]}
+                    testID="discussion.details-reply"
+                    underlayColor="transparent"
+                  >
+                    <Image
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/rce/undo.png",
+                        }
+                      }
+                      style={
+                        Object {
+                          "height": 18,
+                          "tintColor": "#73818C",
+                          "width": 18,
+                        }
+                      }
+                    />
+                  </TouchableHighlight>
+                </View>
               </View>
               <View
                 style={
@@ -8080,12 +8346,36 @@ exports[`DiscussionDetails renders with replies 1`] = `
                 >
                   <View
                     style={
-                      Object {
-                        "backgroundColor": "white",
-                        "flex": 1,
-                      }
+                      Array [
+                        Object {
+                          "backgroundColor": "#374A59",
+                        },
+                        Object {
+                          "alignItems": "center",
+                          "borderRadius": 4,
+                          "flexDirection": "row",
+                          "flexWrap": "wrap",
+                          "justifyContent": "center",
+                          "paddingHorizontal": 16,
+                          "paddingVertical": 10,
+                        },
+                      ]
                     }
                   >
+                    <Image
+                      source={
+                        Object {
+                          "testUri": "../../../src/images/rce/undo.png",
+                        }
+                      }
+                      style={
+                        Object {
+                          "height": 18,
+                          "tintColor": "white",
+                          "width": 18,
+                        }
+                      }
+                    />
                     <Text
                       accessible={true}
                       allowFontScaling={true}
@@ -8099,11 +8389,19 @@ exports[`DiscussionDetails renders with replies 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
+                          Array [
+                            Object {
+                              "color": "white",
+                            },
+                            Object {
+                              "color": "white",
+                              "fontSize": 14,
+                              "fontWeight": "500",
+                              "marginLeft": 4,
+                            },
+                          ],
                           Object {
-                            "color": "#008EE2",
-                          },
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
+                            "fontFamily": ".SFUIDisplay-medium",
                           },
                         ]
                       }

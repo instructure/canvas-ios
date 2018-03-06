@@ -201,6 +201,19 @@ describe('DiscussionDetails', () => {
     })
   })
 
+  it('touches reply in top level author info', () => {
+    const navigator = template.navigator({
+      show: jest.fn(),
+    })
+    let tree = shallow(new DiscussionDetails({ ...props, navigator }).renderDetails({ item: props.discussion, index: 0 }))
+    let button = tree.find('[testID="discussion.details-reply"]')
+    button.simulate('press')
+    expect(navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/1/reply', { modal: true }, {
+      indexPath: [],
+      lastReplyAt: props.discussion && props.discussion.last_reply_at,
+    })
+  })
+
   it('shows publish information', () => {
     expect(
       explore(render(props).toJSON()).selectByType('PublishedIcon')
