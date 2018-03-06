@@ -1,5 +1,192 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`SpeedGrader defaults current page to 0 if userID is not in submissions 1`] = `
+<Screen
+  navBarHidden={true}
+  navBarStyle="light"
+  noRotationInVerticallyCompact={true}
+  showDismissButton={true}
+  statusBarHidden={true}
+  statusBarStyle="default"
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "center",
+        }
+      }
+    >
+      <ActivityIndicator
+        animating={true}
+        color="#999999"
+        hidesWhenStopped={true}
+        size="small"
+      />
+    </View>
+    <Tutorial
+      tutorials={
+        Array [
+          Object {
+            "id": "swipe-tutorial",
+            "image": Object {
+              "testUri": "../../../src/images/speedgrader/Swipe.png",
+            },
+            "text": "Swipe left or right to view other student submissions",
+          },
+        ]
+      }
+    />
+  </View>
+</Screen>
+`;
+
+exports[`SpeedGrader defaults current page to 0 without studentIndex 1`] = `
+<Screen
+  navBarHidden={true}
+  navBarStyle="light"
+  noRotationInVerticallyCompact={true}
+  showDismissButton={true}
+  statusBarHidden={true}
+  statusBarStyle="default"
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "center",
+        }
+      }
+    >
+      <ActivityIndicator
+        animating={true}
+        color="#999999"
+        hidesWhenStopped={true}
+        size="small"
+      />
+    </View>
+    <Tutorial
+      tutorials={
+        Array [
+          Object {
+            "id": "swipe-tutorial",
+            "image": Object {
+              "testUri": "../../../src/images/speedgrader/Swipe.png",
+            },
+            "text": "Swipe left or right to view other student submissions",
+          },
+        ]
+      }
+    />
+  </View>
+</Screen>
+`;
+
+exports[`SpeedGrader only sets submissions once 1`] = `
+<Screen
+  navBarHidden={true}
+  navBarStyle="light"
+  noRotationInVerticallyCompact={true}
+  showDismissButton={true}
+  statusBarHidden={true}
+  statusBarStyle="default"
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <FlatList
+      contentOffset={
+        Object {
+          "x": 0,
+        }
+      }
+      data={
+        Array [
+          Object {
+            "key": "55",
+            "submission": Object {
+              "avatarURL": "http://www.fillmurray.com/100/100",
+              "grade": "B-",
+              "name": "Donald Trump",
+              "sectionID": "1",
+              "status": "submitted",
+              "userID": "55",
+            },
+          },
+          Object {
+            "key": "55",
+            "submission": Object {
+              "avatarURL": "http://www.fillmurray.com/100/100",
+              "grade": "B-",
+              "name": "Donald Trump",
+              "sectionID": "1",
+              "status": "submitted",
+              "userID": "55",
+            },
+          },
+        ]
+      }
+      disableVirtualization={false}
+      getItemLayout={[Function]}
+      horizontal={true}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      keyboardShouldPersistTaps="handled"
+      maxToRenderPerBatch={10}
+      numColumns={1}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      pagingEnabled={true}
+      renderItem={[Function]}
+      scrollEventThrottle={50}
+      showsHorizontalScrollIndicator={false}
+      style={
+        Object {
+          "marginLeft": -10,
+          "marginRight": -10,
+        }
+      }
+      updateCellsBatchingPeriod={50}
+      windowSize={5}
+    />
+    <Tutorial
+      tutorials={
+        Array [
+          Object {
+            "id": "swipe-tutorial",
+            "image": Object {
+              "testUri": "../../../src/images/speedgrader/Swipe.png",
+            },
+            "text": "Swipe left or right to view other student submissions",
+          },
+        ]
+      }
+    />
+  </View>
+</Screen>
+`;
+
 exports[`SpeedGrader renders 1`] = `
 <RCTSafeAreaView
   style={

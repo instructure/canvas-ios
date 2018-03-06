@@ -109,15 +109,22 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
   }
 
   setSubmissions (props: SpeedGraderProps) {
+    // We can only set submissions once because of filters.
+    if (this.state.submissions.length) return
+
     const submissions = props.filter
       ? props.filter(props.submissions)
       : props.submissions
-    const currentPageIndex = submissions.findIndex(s => {
-      return s.userID === props.userID
-    })
+    let currentPageIndex = this.state.currentPageIndex
+    if (currentPageIndex == null || currentPageIndex < 0) {
+      const index = submissions.findIndex(s => {
+        return s.userID === props.userID
+      })
+      currentPageIndex = Math.max(0, index)
+    }
     this.setState({
       submissions,
-      currentPageIndex: this.state.currentPageIndex || currentPageIndex >= 0 ? currentPageIndex : null,
+      currentPageIndex,
     })
   }
 

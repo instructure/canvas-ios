@@ -16,6 +16,7 @@
 
 // @flow
 
+import { shallow } from 'enzyme'
 import React from 'react'
 import {
   SpeedGrader,
@@ -153,6 +154,26 @@ describe('SpeedGrader', () => {
     )
     view.getInstance().componentWillUnmount()
     expect(spy).toHaveBeenCalledWith(defaultProps.courseID, defaultProps.assignmentID)
+  })
+
+  it('defaults current page to 0 without studentIndex', () => {
+    const tree = shallow(<SpeedGrader {...defaultProps} studentIndex={null} />)
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('defaults current page to 0 if userID is not in submissions', () => {
+    const tree = shallow(<SpeedGrader {...defaultProps} studentIndex={200} />)
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('only sets submissions once', () => {
+    let submissions = [
+      templates.submissionProps(),
+      templates.submissionProps(),
+    ]
+    const tree = shallow(<SpeedGrader {...defaultProps} submissions={submissions} />)
+    tree.setProps({ submissions: [] })
+    expect(tree).toMatchSnapshot()
   })
 })
 
