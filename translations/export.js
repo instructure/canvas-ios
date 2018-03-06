@@ -9,7 +9,7 @@ const projects = require('./projects.json')
 program
   .version(require('./package.json').version)
   .option('-s, --skipPush', 'Skip pushing to S3')
-  .option('-p, --project [name]', 'Import only a specific project')
+  .option('-p, --project [name]', 'Export only a specific project')
 
 program.on('--help', () => {
   console.log(`
@@ -30,7 +30,7 @@ if (
 }
 
 exportTranslations().catch(err => {
-  console.error(err)
+  console.error('Export translations failed: ', err)
   process.exit(2)
 })
 
