@@ -148,6 +148,7 @@ export default class CommentInput extends Component<CommentInputProps, State> {
                 accessibilityLabel={send}
                 accessibilityTraits={['button']}
                 activeOpacity={disableSend ? 1 : 0.2}
+                hitSlop={{ top: 10, right: 10, bottom: 10, left: 10 }}
               >
                 <Image
                   style={styles.sendButtonArrow}
