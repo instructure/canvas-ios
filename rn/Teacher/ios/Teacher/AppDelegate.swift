@@ -139,9 +139,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 
                 guard let navController = navigationController, let helmVC = navController.viewControllers.first as? HelmViewController else { break }
                 if helmVC.moduleName == url.path {
-                    navController.dismiss(animated: true, completion: nil)
                     rootView.selectedIndex = index
-                    navController.popToRootViewController(animated: true)
+                    rootView.resetSelectedViewController()
                     return
                 }
             }

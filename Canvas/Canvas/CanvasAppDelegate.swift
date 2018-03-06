@@ -236,17 +236,8 @@ extension AppDelegate {
             if path.count == 0 { path = "/" }
             if let index = tabRoutes.index(of: path) {
                 guard let tabBarController = UIApplication.shared.keyWindow?.rootViewController as? UITabBarController else { return }
-                let vc = HelmManager.shared.topMostViewController()
-                var navigationController: UINavigationController?
-                if let navController = vc as? UINavigationController {
-                    navigationController = navController
-                } else if let splitViewController = vc as? UISplitViewController {
-                    navigationController = splitViewController.viewControllers.first as? UINavigationController
-                }
-                
-                vc?.dismiss(animated: true, completion: nil)
                 tabBarController.selectedIndex = index
-                navigationController?.popToRootViewController(animated: true)
+                tabBarController.resetSelectedViewController()
             } else {
                 
                 if handleDropboxOpenURL(url) {

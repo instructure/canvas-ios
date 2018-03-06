@@ -110,14 +110,7 @@ extension RootTabBarController: UITabBarControllerDelegate {
     }
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        if (tabBarController.selectedViewController == viewController) {
-            if let navigationController = viewController as? UINavigationController {
-                navigationController.popToRootViewController(animated: true)
-            } else if let splitViewController = viewController as? UISplitViewController,
-                       let navigationController = splitViewController.viewControllers.first as? UINavigationController {
-                navigationController.popToRootViewController(animated: true)
-            }
-        }
+        tabBarController.resetViewControllerIfSelected(viewController)
         return true
     }
 }

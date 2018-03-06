@@ -104,8 +104,8 @@ class RecordButton: UIButton {
             path = UIBezierPath()
             path.move(to: CGPoint(x: 0, y: -25))
             
-            let x = CGFloat(25.0 * abs(cos(M_PI/6.0)))
-            let y = CGFloat(25.0 * abs(sin(M_PI/6.0)))
+            let x = CGFloat(25.0 * abs(cos(.pi/6.0)))
+            let y = CGFloat(25.0 * abs(sin(.pi/6.0)))
 
             path.addLine(to: CGPoint(x: x, y: y))
             path.addLine(to: CGPoint(x: -x, y: y))
