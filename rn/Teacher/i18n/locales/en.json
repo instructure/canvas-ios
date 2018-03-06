@@ -8,9 +8,6 @@
   "a_description_is_required_54b5f1f6": {
     "message": "A description is required"
   },
-  "a_message_is_required_129e1814": {
-    "message": "A message is required"
-  },
   "a_title_is_required_71222850": {
     "message": "A title is required"
   },
@@ -76,6 +73,9 @@
   },
   "add_title_4f788d37": {
     "message": "Add title"
+  },
+  "add_title_required_8d9bdeaa": {
+    "message": "Add title (required)"
   },
   "after_date_e5d9b0e1": {
     "message": "After { date }"
@@ -1361,8 +1361,8 @@
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
     "message": "There was a problem loading the quizzes."
   },
-  "there_was_a_problem_retreiving_the_terms_of_use_3a5fa00c": {
-    "message": "There was a problem retreiving the Terms Of Use"
+  "there_was_a_problem_retrieving_the_terms_of_use_df58f7b9": {
+    "message": "There was a problem retrieving the Terms Of Use"
   },
   "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
     "message": "There was a problem saving the grade. Please try again."
