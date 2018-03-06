@@ -117,7 +117,7 @@ class CalendarEventDetailViewController: UIViewController {
         }
         
         if let description = event?.htmlDescription {
-            details.loadHTMLString(description, baseURL: nil)
+            details.load(source: .html(title: event?.title, body: description, baseURL: nil))
         }
     }
     

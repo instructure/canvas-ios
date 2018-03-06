@@ -21,7 +21,7 @@ public class CanvasWebView: WKWebView {
     
     public enum Source {
         case error(String)
-        case html(title: String?, body: String, baseURL: URL)
+        case html(title: String?, body: String, baseURL: URL?)
         case url(URL)
     }
     
