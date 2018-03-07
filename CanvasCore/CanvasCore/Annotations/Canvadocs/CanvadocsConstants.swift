@@ -73,7 +73,8 @@ func applySharedAppConfiguration(to builder: PSPDFConfigurationBuilder) {
     builder.shouldAskForAnnotationUsername = false
     builder.pageTransition = PSPDFPageTransition.scrollContinuous
     builder.scrollDirection = PSPDFScrollDirection.vertical
-    builder.spreadFitting = .fit
+    builder.spreadFitting = .fill
+    builder.additionalScrollViewFrameInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     builder.pageMode = .single
     builder.isRenderAnimationEnabled = true
     builder.shouldHideNavigationBarWithUserInterface = false
@@ -106,8 +107,7 @@ public let canvasAppConfiguration: PSPDFConfiguration = {
 public func teacherAppConfiguration(bottomInset: CGFloat) -> PSPDFConfiguration {
     return PSPDFConfiguration { (builder) -> Void in
         applySharedAppConfiguration(to: builder)
-        // 33 = height of toolbar... it's being weird
-        builder.additionalScrollViewFrameInsets = UIEdgeInsets(top: 33, left: 0, bottom: bottomInset, right: 0)
+        builder.additionalScrollViewFrameInsets.bottom = bottomInset
         builder.backgroundColor = UIColor(red: 165.0/255.0, green: 175.0/255.0, blue: 181.0/255.0, alpha: 1.0)
         builder.userInterfaceViewMode = .never
     }

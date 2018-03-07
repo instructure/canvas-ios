@@ -43,7 +43,8 @@ open class PreSubmissionPDFDocumentPresenter: NSObject {
             builder.pageTransition = PSPDFPageTransition.scrollContinuous
             builder.scrollDirection = PSPDFScrollDirection.vertical
             builder.thumbnailBarMode = PSPDFThumbnailBarMode.none
-            builder.spreadFitting = .fit
+            builder.spreadFitting = .fill
+            builder.additionalScrollViewFrameInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
             builder.pageMode = .single
             builder.documentLabelEnabled = .NO
             builder.isRenderAnimationEnabled = false
