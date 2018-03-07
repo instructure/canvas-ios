@@ -25,6 +25,7 @@ import Route from 'route-parser'
 import { AppRegistry } from 'react-native'
 import Navigator from './Navigator'
 import { getSession } from '../canvas-api/session'
+import ErrorScreen from './ErrorScreen'
 
 import { ApolloProvider } from 'react-apollo'
 import { ApolloClient } from 'apollo-client'
@@ -68,12 +69,22 @@ export function wrapComponentInProviders (moduleName: string, generator: () => a
     class extends React.Component<any, any> {
       static displayName = `Scene(${moduleName})`
 
+      state = { hasError: false }
+
       static propTypes = {
         screenInstanceID: PropTypes.string,
       }
 
       static childContextTypes = {
         screenInstanceID: PropTypes.string,
+      }
+
+      componentDidCatch (error, info) {
+        global.crashReporter.notify(error, (report) => {
+          report.addMetaData('screen', 'url', moduleName)
+          report.addMetaData('screen', 'error', true)
+        })
+        this.setState({ hasError: true })
       }
 
       getChildContext () {
@@ -88,6 +99,11 @@ export function wrapComponentInProviders (moduleName: string, generator: () => a
           ...props
          } = this.props
         const navigator = new Navigator(moduleName, navigatorOptions)
+
+        if (this.state.hasError) {
+          return <ErrorScreen {...props} navigator={navigator} />
+        }
+
         const ScreenComponent = generator()
         const session = getSession()
         // $FlowFixMe

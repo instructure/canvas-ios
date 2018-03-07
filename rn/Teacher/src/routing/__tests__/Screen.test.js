@@ -19,6 +19,12 @@ jest.mock('react-native', () => ({
     },
   },
   SafeAreaView: () => 'SafeAreaView',
+
+  // needed by files imported by Screen and other routing files
+  Text: {
+    propTypes: {},
+  },
+  StyleSheet: { create: jest.fn() },
 }))
 
 describe('Screen component', () => {

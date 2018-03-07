@@ -48,6 +48,18 @@ test('renders wrapped screen with store correctly', () => {
   expect(tree.toJSON()).toMatchSnapshot()
 })
 
+test('renders wrapped screen and shows the error screen when there is an error', () => {
+  global.crashReporter = { notify: jest.fn() }
+  // $FlowFixMe - need to trigger an error
+  const generator = () => () => <View>{undefined.asdf}</View>
+  const wrappedGenerator = wrapComponentInProviders('TestScreen', generator, {})
+  const Wrapped = wrappedGenerator()
+
+  let tree = renderer.create(<Wrapped />)
+  expect(global.crashReporter.notify).toHaveBeenCalled()
+  expect(tree.toJSON()).toMatchSnapshot()
+})
+
 test('route to something that does not exist', () => {
   try {
     route('garbage')
