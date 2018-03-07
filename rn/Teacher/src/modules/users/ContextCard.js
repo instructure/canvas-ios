@@ -123,30 +123,31 @@ export class ContextCard extends Component< ContextCardProps, any> {
   }
 
   render () {
+    const screenProps = {
+      rightBarButtons: [{
+        action: this._emailContact,
+        image: Images.smallMail,
+        testID: 'context-card.email-contact',
+        accessibilityLabel: i18n('Email Contact'),
+      }],
+      navBarStyle: this.props.navigator.isModal ? undefined : 'dark',
+    }
+
     if (this.props.loading && !this.props.course) {
-      return <Screen><ActivityIndicatorView /></Screen>
+      return <Screen {...screenProps }><ActivityIndicatorView /></Screen>
     }
 
     if (this.props.error) {
-      return <Screen><ErrorView error={this.props.error} /></Screen>
+      return <Screen {...screenProps }><ErrorView error={this.props.error} /></Screen>
     }
 
     const { course, user, submissions, isStudent, canViewGrades } = this.props
-
-    let rightBarButtons = [{
-      action: this._emailContact,
-      image: Images.smallMail,
-      testID: 'context-card.email-contact',
-      accessibilityLabel: i18n('Email Contact'),
-    }]
 
     return (
       <Screen
         title={user.name}
         subtitle={course.name}
-        navBarColor={this.props.courseColor}
-        navBarStyle='dark'
-        rightBarButtons={rightBarButtons}
+        {...screenProps }
       >
         <FlatList
           ListHeaderComponent={this.renderHeader()}

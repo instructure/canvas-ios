@@ -173,6 +173,7 @@ export class CommentsTab extends Component<CommentsTabProps, any> {
       deletePendingComment={this.deletePendingComment}
       switchFile={this.switchFile}
       localID={item.key}
+      onAvatarPress={this.navigateToContextCard}
     />
 
   statusComplete = () => {
@@ -285,6 +286,7 @@ function extractComments (submissionComments: SubmissionComment[]): Array<Commen
       name: comment.author_name,
       date: new Date(comment.created_at),
       avatarURL: comment.author.avatar_image_url,
+      userID: comment.author.id,
       from: comment.author.id === myUserID ? 'me' : 'them',
       contents: comment.media_comment ? contentForMediaComment(comment.media_comment) : { type: 'text', message: comment.comment },
       pending: 0,
@@ -383,6 +385,7 @@ function rowForSubmission (user: User, attempt: Submission, assignment: Assignme
     key: `submission-${attemptNumber}`,
     name: user.name,
     avatarURL: user.avatar_url,
+    userID: user.id,
     from: 'them',
     date: new Date(submittedAt),
     contents: {
@@ -415,6 +418,7 @@ function extractPendingComments (assignments: ?AssignmentContentState, userID): 
     from: 'me',
     name: session.user.name,
     avatarURL: session.user.avatar_url,
+    userID: session.user.id,
     contents: pending.mediaComment ? { ...pending.comment, url: pending.mediaComment.url } : pending.comment,
     pending: pending.pending,
     error: pending.error || undefined, // this fixes flow even though error could already be undefined...
