@@ -27,7 +27,7 @@
     "bugsnag-sourcemaps": "^1.0.1",
     "create-react-class": "15.6.2",
     "flux-standard-action": "^1.2.0",
-    "format-message": "^5.1.1",
+    "format-message": "^5.2.3",
     "global": "^4.3.2",
     "graphql": "^0.13.1",
     "graphql-tag": "^2.7.3",
@@ -74,6 +74,7 @@
   "devDependencies": {
     "babel-eslint": "^7.2.3",
     "babel-jest": "^20.0.3",
+    "babel-plugin-transform-format-message": "^5.2.3",
     "babel-preset-react-native": "2.1.0",
     "danger": "^1.2.0",
     "enzyme": "^3.2.0",
@@ -88,8 +89,7 @@
     "eslint-plugin-standard": "^2.0.1",
     "eslint-watch": "^3.0.0",
     "flow-bin": "^0.63.0",
-    "format-message-cli": "^5.1.1",
-    "format-message-generate-id": "^5.1.0",
+    "format-message-cli": "^5.2.3",
     "jest": "^20.0.4",
     "jest-fetch-mock": "^1.4.1",
     "react-dom": "^16.1.1",
@@ -98,8 +98,7 @@
     "redux-freeze": "^0.1.5",
     "redux-logger": "^3.0.6",
     "redux-mock-store": "^1.2.3",
-    "timezone-mock": "^0.0.4",
-    "xhr2": "^0.1.4"
+    "timezone-mock": "^0.0.4"
   },
   "jest": {
     "preset": "react-native",

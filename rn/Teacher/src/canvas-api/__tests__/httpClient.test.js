@@ -15,7 +15,7 @@
 //
 
 // @flow
-/* global XMLHttpRequest:true, FormData:true, Blob:true */
+/* global FormData:true, Blob:true */
 
 import httpClient, { isAbort } from '../httpClient'
 import { setSession } from '../session'
@@ -25,7 +25,7 @@ const templates = {
 }
 
 describe('httpClient', () => {
-  const originalXHR = XMLHttpRequest
+  const originalXHR = global.XMLHttpRequest
 
   let request
   beforeEach(() => {
@@ -42,13 +42,13 @@ describe('httpClient', () => {
       status: 200,
       getAllResponseHeaders: jest.fn(),
     }
-    XMLHttpRequest = function () { return request }
+    global.XMLHttpRequest = function () { return request }
     Blob = function Blob () {}
     FormData = function FormData () {}
   })
 
   afterEach(() => {
-    XMLHttpRequest = originalXHR
+    global.XMLHttpRequest = originalXHR
   })
 
   it('has blank defaults if no session is set', () => {

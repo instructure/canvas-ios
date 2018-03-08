@@ -17,7 +17,6 @@
 /* @flow */
 
 import i18n from 'format-message'
-import generateId from 'format-message-generate-id/underscored_crc32'
 import translations from './locales/index'
 
 // Some crashing happening because a locale is not returned, so I've made this an optional
@@ -37,8 +36,8 @@ export function sanitizeLocale (locale: ?string): string {
 export default function (locale: ?string): void {
   const sanitizedLocale = sanitizeLocale(locale)
   i18n.setup({
+    // generateId underscored_crc32 done via babel transform
     locale: sanitizedLocale,
-    generateId,
     translations,
     missingTranslation: 'ignore',
     formats: {

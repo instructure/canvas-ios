@@ -346,7 +346,7 @@ babel-code-frame@^6.16.0, babel-code-frame@^6.22.0, babel-code-frame@^6.26.0:
     esutils "^2.0.2"
     js-tokens "^3.0.2"
 
-babel-core@^6.0.0, babel-core@^6.1.2, babel-core@^6.24.1, babel-core@^6.26.0, babel-core@^6.7.2:
+babel-core@^6.0.0, babel-core@^6.24.1, babel-core@^6.26.0, babel-core@^6.7.2:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-core/-/babel-core-6.26.0.tgz#af32f78b31a6fcef119c87b0fd8d9753f03a0bb8"
   dependencies:
@@ -527,12 +527,12 @@ babel-plugin-external-helpers@^6.18.0:
   dependencies:
     babel-runtime "^6.22.0"
 
-babel-plugin-extract-format-message@^5.1.3:
-  version "5.1.3"
-  resolved "https://registry.yarnpkg.com/babel-plugin-extract-format-message/-/babel-plugin-extract-format-message-5.1.3.tgz#b56f708268e6f6e00c8b43a1d543380d47932b9d"
+babel-plugin-extract-format-message@^5.2.3:
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/babel-plugin-extract-format-message/-/babel-plugin-extract-format-message-5.2.3.tgz#22898945fa688c918eb6585273cddc3cddd002cb"
   dependencies:
-    format-message-estree-util "^5.1.3"
-    format-message-generate-id "^5.1.2"
+    format-message-estree-util "^5.2.3"
+    format-message-generate-id "^5.2.1"
     format-message-parse "^5.1.2"
     format-message-print "^5.1.2"
 
@@ -560,27 +560,27 @@ babel-plugin-react-transform@^3.0.0:
   dependencies:
     lodash "^4.6.1"
 
-babel-plugin-syntax-async-functions@^6.0.14, babel-plugin-syntax-async-functions@^6.5.0, babel-plugin-syntax-async-functions@^6.8.0:
+babel-plugin-syntax-async-functions@^6.13.0, babel-plugin-syntax-async-functions@^6.5.0, babel-plugin-syntax-async-functions@^6.8.0:
   version "6.13.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-async-functions/-/babel-plugin-syntax-async-functions-6.13.0.tgz#cad9cad1191b5ad634bf30ae0872391e0647be95"
 
-babel-plugin-syntax-async-generators@^6.0.15:
+babel-plugin-syntax-async-generators@^6.13.0:
   version "6.13.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-async-generators/-/babel-plugin-syntax-async-generators-6.13.0.tgz#6bc963ebb16eccbae6b92b596eb7f35c342a8b9a"
 
-babel-plugin-syntax-class-constructor-call@^6.0.15:
+babel-plugin-syntax-class-constructor-call@^6.18.0:
   version "6.18.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-class-constructor-call/-/babel-plugin-syntax-class-constructor-call-6.18.0.tgz#9cb9d39fe43c8600bec8146456ddcbd4e1a76416"
 
-babel-plugin-syntax-class-properties@^6.0.14, babel-plugin-syntax-class-properties@^6.5.0, babel-plugin-syntax-class-properties@^6.8.0:
+babel-plugin-syntax-class-properties@^6.13.0, babel-plugin-syntax-class-properties@^6.5.0, babel-plugin-syntax-class-properties@^6.8.0:
   version "6.13.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-class-properties/-/babel-plugin-syntax-class-properties-6.13.0.tgz#d7eb23b79a317f8543962c505b827c7d6cac27de"
 
-babel-plugin-syntax-decorators@^6.0.14:
+babel-plugin-syntax-decorators@^6.13.0:
   version "6.13.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-decorators/-/babel-plugin-syntax-decorators-6.13.0.tgz#312563b4dbde3cc806cee3e416cceeaddd11ac0b"
 
-babel-plugin-syntax-do-expressions@^6.0.14:
+babel-plugin-syntax-do-expressions@^6.13.0:
   version "6.13.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-do-expressions/-/babel-plugin-syntax-do-expressions-6.13.0.tgz#5747756139aa26d390d09410b03744ba07e4796d"
 
@@ -588,31 +588,31 @@ babel-plugin-syntax-dynamic-import@^6.18.0:
   version "6.18.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-dynamic-import/-/babel-plugin-syntax-dynamic-import-6.18.0.tgz#8d6a26229c83745a9982a441051572caa179b1da"
 
-babel-plugin-syntax-exponentiation-operator@^6.0.14, babel-plugin-syntax-exponentiation-operator@^6.8.0:
+babel-plugin-syntax-exponentiation-operator@^6.13.0, babel-plugin-syntax-exponentiation-operator@^6.8.0:
   version "6.13.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-exponentiation-operator/-/babel-plugin-syntax-exponentiation-operator-6.13.0.tgz#9ee7e8337290da95288201a6a57f4170317830de"
 
-babel-plugin-syntax-export-extensions@^6.0.14:
+babel-plugin-syntax-export-extensions@^6.13.0:
   version "6.13.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-export-extensions/-/babel-plugin-syntax-export-extensions-6.13.0.tgz#70a1484f0f9089a4e84ad44bac353c95b9b12721"
 
-babel-plugin-syntax-flow@^6.0.14, babel-plugin-syntax-flow@^6.18.0, babel-plugin-syntax-flow@^6.5.0, babel-plugin-syntax-flow@^6.8.0:
+babel-plugin-syntax-flow@^6.18.0, babel-plugin-syntax-flow@^6.5.0, babel-plugin-syntax-flow@^6.8.0:
   version "6.18.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-flow/-/babel-plugin-syntax-flow-6.18.0.tgz#4c3ab20a2af26aa20cd25995c398c4eb70310c8d"
 
-babel-plugin-syntax-function-bind@^6.0.14:
+babel-plugin-syntax-function-bind@^6.13.0:
   version "6.13.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-function-bind/-/babel-plugin-syntax-function-bind-6.13.0.tgz#48c495f177bdf31a981e732f55adc0bdd2601f46"
 
-babel-plugin-syntax-jsx@^6.0.14, babel-plugin-syntax-jsx@^6.5.0, babel-plugin-syntax-jsx@^6.8.0:
+babel-plugin-syntax-jsx@^6.18.0, babel-plugin-syntax-jsx@^6.5.0, babel-plugin-syntax-jsx@^6.8.0:
   version "6.18.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-jsx/-/babel-plugin-syntax-jsx-6.18.0.tgz#0af32a9a6e13ca7a3fd5069e62d7b0f58d0d8946"
 
-babel-plugin-syntax-object-rest-spread@^6.0.14, babel-plugin-syntax-object-rest-spread@^6.8.0:
+babel-plugin-syntax-object-rest-spread@^6.13.0, babel-plugin-syntax-object-rest-spread@^6.8.0:
   version "6.13.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-object-rest-spread/-/babel-plugin-syntax-object-rest-spread-6.13.0.tgz#fd6536f2bce13836ffa3a5458c4903a597bb3bf5"
 
-babel-plugin-syntax-trailing-function-commas@^6.0.14, babel-plugin-syntax-trailing-function-commas@^6.20.0, babel-plugin-syntax-trailing-function-commas@^6.5.0, babel-plugin-syntax-trailing-function-commas@^6.8.0:
+babel-plugin-syntax-trailing-function-commas@^6.20.0, babel-plugin-syntax-trailing-function-commas@^6.22.0, babel-plugin-syntax-trailing-function-commas@^6.5.0, babel-plugin-syntax-trailing-function-commas@^6.8.0:
   version "6.22.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-trailing-function-commas/-/babel-plugin-syntax-trailing-function-commas-6.22.0.tgz#ba0360937f8d06e40180a43fe0d5616fff532cf3"
 
@@ -791,19 +791,19 @@ babel-plugin-transform-flow-strip-types@^6.21.0, babel-plugin-transform-flow-str
     babel-plugin-syntax-flow "^6.18.0"
     babel-runtime "^6.22.0"
 
-babel-plugin-transform-format-message@^5.2.0:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-transform-format-message/-/babel-plugin-transform-format-message-5.2.0.tgz#3ce9d54c4a9b3a14e786c2b872f7abd8c08310af"
+babel-plugin-transform-format-message@^5.2.3:
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-format-message/-/babel-plugin-transform-format-message-5.2.3.tgz#98feafe45bb85b9e5455afa0dfa2149e0d507eb8"
   dependencies:
-    babel-core "^6.1.2"
-    babylon "^6.0.0"
-    format-message "^5.2.0"
-    format-message-estree-util "^5.1.3"
+    babel-core "^6.26.0"
+    babylon "^6.18.0"
+    format-message "^5.2.3"
+    format-message-estree-util "^5.2.3"
     format-message-formats "^5.1.0"
-    format-message-generate-id "^5.1.2"
+    format-message-generate-id "^5.2.1"
     format-message-parse "^5.1.2"
     lookup-closest-locale "^5.1.0"
-    source-map "^0.5.3"
+    source-map "^0.5.7"
 
 babel-plugin-transform-object-assign@^6.5.0:
   version "6.22.0"
@@ -1035,7 +1035,7 @@ babel-types@^6.18.0, babel-types@^6.19.0, babel-types@^6.23.0, babel-types@^6.24
     lodash "^4.17.4"
     to-fast-properties "^1.0.3"
 
-babylon@^6.0.0, babylon@^6.17.0, babylon@^6.18.0:
+babylon@^6.17.0, babylon@^6.18.0:
   version "6.18.0"
   resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.18.0.tgz#af2f3b88fa6f5c1e4c634d1a0f8eac4f55b395e3"
 
@@ -1398,7 +1398,11 @@ combined-stream@^1.0.5, combined-stream@~1.0.5:
   dependencies:
     delayed-stream "~1.0.0"
 
-commander@^2.8.1, commander@^2.9.0, commander@~2.11.0:
+commander@^2.11.0:
+  version "2.14.1"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.14.1.tgz#2235123e37af8ca3c65df45b026dbd357b01b9aa"
+
+commander@^2.9.0, commander@~2.11.0:
   version "2.11.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.11.0.tgz#157152fd1e7a6c8d98a5b715cf376df928004563"
 
@@ -2039,13 +2043,13 @@ eslint-plugin-flowtype@^2.39.1:
   dependencies:
     lodash "^4.15.0"
 
-eslint-plugin-format-message@^5.2.0:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-format-message/-/eslint-plugin-format-message-5.2.0.tgz#1b53f6127cb6224fd342486117a1f760e9e9d791"
+eslint-plugin-format-message@^5.2.3:
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-format-message/-/eslint-plugin-format-message-5.2.3.tgz#0a67275ef6be3a9917c7b2198d24ee488fe4f0b3"
   dependencies:
-    format-message "^5.2.0"
-    format-message-estree-util "^5.1.3"
-    format-message-generate-id "^5.1.2"
+    format-message "^5.2.3"
+    format-message-estree-util "^5.2.3"
+    format-message-generate-id "^5.2.1"
     format-message-parse "^5.1.2"
 
 eslint-plugin-import@^2.2.0:
@@ -2098,7 +2102,7 @@ eslint-watch@^3.0.0:
     text-table "^0.2.0"
     unicons "0.0.3"
 
-eslint@^3.16.0, eslint@^3.5.0:
+eslint@^3.16.0, eslint@^3.19.0:
   version "3.19.0"
   resolved "https://registry.yarnpkg.com/eslint/-/eslint-3.19.0.tgz#c8fc6201c7f40dd08941b87c085767386a679acc"
   dependencies:
@@ -2434,54 +2438,54 @@ form-data@~2.3.1:
     combined-stream "^1.0.5"
     mime-types "^2.1.12"
 
-format-message-cli@^5.1.1:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/format-message-cli/-/format-message-cli-5.2.0.tgz#5fec91c0f9b1693eeae036bcfc6e3afa2e77a94c"
+format-message-cli@^5.2.3:
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/format-message-cli/-/format-message-cli-5.2.3.tgz#22016d8ad2251cdc58ce1495a5cec548811d9f70"
   dependencies:
-    babel-core "^6.0.0"
-    babel-plugin-extract-format-message "^5.1.3"
-    babel-plugin-syntax-async-functions "^6.0.14"
-    babel-plugin-syntax-async-generators "^6.0.15"
-    babel-plugin-syntax-class-constructor-call "^6.0.15"
-    babel-plugin-syntax-class-properties "^6.0.14"
-    babel-plugin-syntax-decorators "^6.0.14"
-    babel-plugin-syntax-do-expressions "^6.0.14"
-    babel-plugin-syntax-exponentiation-operator "^6.0.14"
-    babel-plugin-syntax-export-extensions "^6.0.14"
-    babel-plugin-syntax-flow "^6.0.14"
-    babel-plugin-syntax-function-bind "^6.0.14"
-    babel-plugin-syntax-jsx "^6.0.14"
-    babel-plugin-syntax-object-rest-spread "^6.0.14"
-    babel-plugin-syntax-trailing-function-commas "^6.0.14"
-    babel-plugin-transform-format-message "^5.2.0"
-    commander "^2.8.1"
-    eslint "^3.5.0"
-    eslint-plugin-format-message "^5.2.0"
-    glob "^5.0.2"
-    js-yaml "^3.4.3"
+    babel-core "^6.26.0"
+    babel-plugin-extract-format-message "^5.2.3"
+    babel-plugin-syntax-async-functions "^6.13.0"
+    babel-plugin-syntax-async-generators "^6.13.0"
+    babel-plugin-syntax-class-constructor-call "^6.18.0"
+    babel-plugin-syntax-class-properties "^6.13.0"
+    babel-plugin-syntax-decorators "^6.13.0"
+    babel-plugin-syntax-do-expressions "^6.13.0"
+    babel-plugin-syntax-exponentiation-operator "^6.13.0"
+    babel-plugin-syntax-export-extensions "^6.13.0"
+    babel-plugin-syntax-flow "^6.18.0"
+    babel-plugin-syntax-function-bind "^6.13.0"
+    babel-plugin-syntax-jsx "^6.18.0"
+    babel-plugin-syntax-object-rest-spread "^6.13.0"
+    babel-plugin-syntax-trailing-function-commas "^6.22.0"
+    babel-plugin-transform-format-message "^5.2.3"
+    commander "^2.11.0"
+    eslint "^3.19.0"
+    eslint-plugin-format-message "^5.2.3"
+    glob "^5.0.15"
+    js-yaml "^3.10.0"
     mkdirp "^0.5.1"
-    safe-buffer "^5.0.1"
-    source-map "^0.5.3"
+    safe-buffer "^5.1.1"
+    source-map "^0.5.7"
 
-format-message-estree-util@^5.1.3:
-  version "5.1.3"
-  resolved "https://registry.yarnpkg.com/format-message-estree-util/-/format-message-estree-util-5.1.3.tgz#5507819cfee44b7e946064f32d38a12f2626e9cd"
+format-message-estree-util@^5.2.3:
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/format-message-estree-util/-/format-message-estree-util-5.2.3.tgz#d362f72d5c124b68a240ad2513966b0d724fab75"
 
 format-message-formats@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/format-message-formats/-/format-message-formats-5.1.0.tgz#c9c49334a0891bf74dd9d4bbb3f626ab2de30b1d"
 
-format-message-generate-id@^5.1.0, format-message-generate-id@^5.1.2:
-  version "5.1.2"
-  resolved "https://registry.yarnpkg.com/format-message-generate-id/-/format-message-generate-id-5.1.2.tgz#0b54cac67e89aa065d3955120439282035d30325"
+format-message-generate-id@^5.2.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/format-message-generate-id/-/format-message-generate-id-5.2.1.tgz#d317091c69b6f1e8e9b088604cfea4bd9f4cb214"
   dependencies:
     crc32 "^0.2.2"
     format-message-parse "^5.1.2"
     format-message-print "^5.1.2"
 
-format-message-interpret@^5.1.2:
-  version "5.1.2"
-  resolved "https://registry.yarnpkg.com/format-message-interpret/-/format-message-interpret-5.1.2.tgz#183471d6b8cf048d18d76606fa96a1f2b40e7938"
+format-message-interpret@^5.2.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/format-message-interpret/-/format-message-interpret-5.2.1.tgz#7c533c1f6ce01e75a443750994bc8c2f74162e3d"
   dependencies:
     format-message-formats "^5.1.0"
     lookup-closest-locale "^5.1.0"
@@ -2494,15 +2498,15 @@ format-message-print@^5.1.2:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/format-message-print/-/format-message-print-5.1.2.tgz#eb8621ff53764b9b5aaae2f077582a8d9a3e2527"
 
-format-message@^5.1.1, format-message@^5.2.0:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/format-message/-/format-message-5.2.0.tgz#9329710082d992d048fd53f72d1e35249697e90f"
+format-message@^5.2.3:
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/format-message/-/format-message-5.2.3.tgz#c860db0e0e7ea1e8194db71d4744c8c26309c1d3"
   dependencies:
     format-message-formats "^5.1.0"
-    format-message-interpret "^5.1.2"
+    format-message-interpret "^5.2.1"
     format-message-parse "^5.1.2"
     lookup-closest-locale "^5.1.0"
-    object-assign "^4.0.1"
+    object-assign "^4.1.1"
 
 fresh@0.3.0:
   version "0.3.0"
@@ -2629,7 +2633,7 @@ glob-parent@^2.0.0:
   dependencies:
     is-glob "^2.0.0"
 
-glob@^5.0.2:
+glob@^5.0.15:
   version "5.0.15"
   resolved "https://registry.yarnpkg.com/glob/-/glob-5.0.15.tgz#1bc936b9e02f4a603fcc222ecf7633d30b8b93b1"
   dependencies:
@@ -3481,7 +3485,7 @@ js-tokens@^3.0.0, js-tokens@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
 
-js-yaml@^3.4.3, js-yaml@^3.5.1, js-yaml@^3.7.0:
+js-yaml@^3.10.0, js-yaml@^3.5.1, js-yaml@^3.7.0:
   version "3.10.0"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.10.0.tgz#2e78441646bd4682e963f22b6e92823c309c62dc"
   dependencies:
@@ -5535,7 +5539,7 @@ source-map@^0.4.4:
   dependencies:
     amdefine ">=0.0.4"
 
-source-map@^0.5.3, source-map@^0.5.6, source-map@~0.5.1, source-map@~0.5.6:
+source-map@^0.5.3, source-map@^0.5.6, source-map@^0.5.7, source-map@~0.5.1, source-map@~0.5.6:
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.5.7.tgz#8a039d2d1021d22d1ea14c80d8ea468ba2ef3fcc"
 
@@ -6148,10 +6152,6 @@ xcode@^0.9.1:
     pegjs "^0.10.0"
     simple-plist "^0.2.1"
     uuid "3.0.1"
-
-xhr2@^0.1.4:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/xhr2/-/xhr2-0.1.4.tgz#7f87658847716db5026323812f818cadab387a5f"
 
 xml-name-validator@^2.0.1:
   version "2.0.1"

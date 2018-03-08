@@ -1,4 +1,10 @@
 {
   "presets": ["react-native"],
+  "plugins": [
+    [ "transform-format-message", {
+      "generateId": "underscored_crc32",
+      "inline": false
+    } ]
+  ],
   "sourceMaps": true
 }
