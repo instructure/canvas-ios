@@ -1223,6 +1223,9 @@
   "similarity_score_f4b5c343": {
     "message": "Similarity Score"
   },
+  "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
+    "message": "Something went wrong on our end. Don''t worry, we''ve recorded this and will be taking care of it shortly."
+  },
   "star_messages_by_tapping_the_star_in_the_message_1c3e8a80": {
     "message": "Star messages by tapping the star in the message."
   },
@@ -1574,6 +1577,9 @@
   },
   "welcome_73d18b4d": {
     "message": "Welcome!"
+  },
+  "whoops_de2cf9fc": {
+    "message": "Whoops!"
   },
   "yes_dde87d5": {
     "message": "Yes"
