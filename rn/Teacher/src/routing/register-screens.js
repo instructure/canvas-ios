@@ -73,6 +73,7 @@ import Dashboard from '../modules/dashboard/Dashboard'
 import TermsOfUse from '../modules/tos/TermsOfUse'
 import PushNotifications from '../modules/staging/PushNotifications'
 import SectionSelector from '../modules/announcements/edit/SectionSelector'
+import FeatureFlags from '../modules/staging/FeatureFlags'
 
 import { Store } from 'redux'
 import { registerScreen } from './'
@@ -162,6 +163,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/tabs/:tabID')
   registerScreen('/ui', wrap(UI), store)
   registerScreen('/push-notifications', wrap(PushNotifications), store)
+  registerScreen('/feature-flags', wrap(FeatureFlags), store)
 
   if (isTeacher()) {
     registerScreen('/files/:fileID/download', wrap(ViewFile), store, { deepLink: true })

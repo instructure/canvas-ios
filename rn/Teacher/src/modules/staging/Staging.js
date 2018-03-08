@@ -99,6 +99,10 @@ export default class Staging extends Component<StagingProps, any> {
     this.props.navigator.show('/push-notifications')
   }
 
+  viewFeatureFlags = () => {
+    this.props.navigator.show('/feature-flags')
+  }
+
   render () {
     const path = this.state && this.state.path || ''
     return (
@@ -168,6 +172,11 @@ export default class Staging extends Component<StagingProps, any> {
           <View style={styles.purge}>
             <Button onPress={ this.viewPushNotifications }>
               View Push Notifications
+            </Button>
+          </View>
+          <View style={styles.purge}>
+            <Button onPress={this.viewFeatureFlags}>
+              View Feature Flags
             </Button>
           </View>
         </View>
