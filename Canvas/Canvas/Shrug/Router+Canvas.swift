@@ -78,9 +78,18 @@ extension Router {
                 props: ["courseID": contextID.id]
             )
         }
-        addContextRoute([.course, .group], subPath: "pages", handler: pagesListFactory)
-        addContextRoute([.course, .group], subPath: "wiki", handler: pagesListFactory)
+        
+        let oldPagesListFactory: (ContextID, [String: Any]) throws -> UIViewController? = { contextID, _ in
+            let controller = try Page.TableViewController(session: currentSession, contextID: contextID, viewModelFactory: pagesListViewModelFactory, route: route)
+            return controller
+        }
+        
+        addContextRoute([.course], subPath: "pages", handler: pagesListFactory)
+        addContextRoute([.course], subPath: "wiki", handler: pagesListFactory)
 
+        addContextRoute([.group], subPath: "pages", handler: oldPagesListFactory)
+        addContextRoute([.group], subPath: "wiki", handler: oldPagesListFactory)
+        
         let fileListFactory = { (contextID: ContextID) -> UIViewController in
             return HelmViewController(
                 moduleName: "/courses/:courseID/files",
