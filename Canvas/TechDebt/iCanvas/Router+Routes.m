@@ -352,6 +352,20 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
     [self addRoutesWithDictionary:@{
         @"/groups/:groupIdent/files/:fileIdent" : [FileViewController class],
         @"/files" : [FileViewController class],
+        @"/courses/:courseIdent/files/:fileIdent/download" : [FileViewController class],
+        @"/files/:fileIdent/download" : ^(NSDictionary *params, id viewModel) {
+            NSURL *downloadURL = params[@"downloadURL"];
+        
+            if (downloadURL.absoluteString.length) {
+                WebBrowserViewController *browserController = [[WebBrowserViewController alloc] initWithNibName:@"WebBrowserViewController" bundle:[NSBundle bundleForClass:[self class]]];
+                [browserController setUrl:downloadURL];
+                return (UIViewController *)browserController;
+            }
+        
+            FileViewController *fileVC = [[FileViewController alloc] init];
+            [fileVC applyRoutingParameters:params];
+            return (UIViewController *)fileVC;
+        },
     }];
     
     [WhizzyWigView setOpenURLHandler:^(NSURL *url) {

@@ -63,7 +63,6 @@ global.crashReporter = new Client(configuration)
 // such as, when demoing
 console.disableYellowBox = true
 setupI18n(NativeModules.SettingsManager.settings.AppleLocale)
-registerScreens(store)
 
 const {
   NativeLogin,
@@ -138,6 +137,7 @@ const loginHandler = async ({
     } else {
       store.dispatch(hydrate())
     }
+    registerScreens(store)
     Helm.loginComplete()
     loginVerify()
     beginUpdatingBadgeCounts()

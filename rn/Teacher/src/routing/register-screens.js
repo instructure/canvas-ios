@@ -76,6 +76,7 @@ import SectionSelector from '../modules/announcements/edit/SectionSelector'
 
 import { Store } from 'redux'
 import { registerScreen } from './'
+import { isTeacher } from '../modules/app'
 
 export function wrap (name: any): Function {
   return () => name
@@ -156,10 +157,14 @@ export function registerScreens (store: Store): void {
   registerScreen('/terms-of-use', wrap(TermsOfUse), store)
   registerScreen('/users/self/files')
   registerScreen('/files/:fileID', wrap(ViewFile), store, { deepLink: true })
-  registerScreen('/files/:fileID/download', wrap(ViewFile), store, { deepLink: true })
   registerScreen('/profile/settings')
   registerScreen('/support/:type')
   registerScreen('/courses/:courseID/tabs/:tabID')
   registerScreen('/ui', wrap(UI), store)
   registerScreen('/push-notifications', wrap(PushNotifications), store)
+
+  if (isTeacher()) {
+    registerScreen('/files/:fileID/download', wrap(ViewFile), store, { deepLink: true })
+    registerScreen('/courses/:courseID/files/:fileID/download', wrap(ViewFile), store, { deepLink: true })
+  }
 }
