@@ -49,7 +49,7 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
         var localPDFURL: URL? = nil
         var canvadocsAnnotations: [CanvadocsAnnotation]? = nil
 
-        let loadGroup = DispatchGroup();
+        let loadGroup = DispatchGroup()
         let canvadocsAnnotationService = CanvadocsAnnotationService(sessionURL: sessionURL)
 
         var errors: [NSError] = []

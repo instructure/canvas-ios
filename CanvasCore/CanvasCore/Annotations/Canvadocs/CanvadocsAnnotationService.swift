@@ -93,60 +93,75 @@ class CanvadocsAnnotationService: NSObject {
     }
     
     fileprivate func removeLeadingSlash(_ path: String) -> String {
-        if path.substring(to: path.characters.index(path.startIndex, offsetBy: 1)) == "/" {
-            return path.substring(from: path.characters.index(path.startIndex, offsetBy: 1))
+        if path.first == "/" {
+            return String(path.dropFirst())
         }
         return path
     }
     
+    fileprivate func sessionBasedPDFFilename() -> String {
+        let url = self.sessionURL.absoluteString
+        let endIndex = url.index(url.endIndex, offsetBy: -12)
+        let prefix = self.sessionURL.absoluteString.substring(from: endIndex)
+        return "\(prefix)_doc.pdf"
+    }
+    
+    fileprivate func genericError() -> NSError {
+        let description = NSLocalizedString("An unexpected error has occurred.", tableName: nil, bundle: .core, value: "An unexpected error has occurred.", comment: "")
+        return NSError(domain: "com.instructure.annotations", code: -1, userInfo: [NSLocalizedDescriptionKey: description])
+    }
+    
     func getMetadata(_ completed: @escaping (MetadataResult)->()) {
         let request = URLRequest(url: sessionURL)
+        let genericError = self.genericError()
         let completion: (Data?, URLResponse?, Error?) -> Void = { (data, response, error) in
             if let error = error {
-                completed(.failure(error as NSError))
-                return
-            } else {
-                if let data = data {
-                    do {
-                        let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions())
-                        if let json = json as? [String: AnyObject], let urls = json["urls"] as? [String: AnyObject] {
-                            var annotationMetadata: CanvadocsAnnotationMetadata?
-                            if let annotationSettings = json["annotations"] as? [String: AnyObject] {
-                                let enabled = annotationSettings["enabled"] as? Bool ?? false
-                                let userName = annotationSettings["user_name"] as? String
-                                
-                                var permissions: CanvadocsAnnotationMetadata.Permissions = .Read
-                                if let permissionsStr = annotationSettings["permissions"] as? String, let annotationPermissions = CanvadocsAnnotationMetadata.Permissions(rawValue: permissionsStr) {
-                                    permissions = annotationPermissions
-                                }
-                                
-                                annotationMetadata = CanvadocsAnnotationMetadata(enabled: enabled, userName: userName, permissions: permissions)
-                            } else {
-                                annotationMetadata = CanvadocsAnnotationMetadata(enabled: false, userName: nil, permissions: nil)
-                            }
-                            
-                            var pandaPushMetadata: PandaPushMetadata?
-                            if let pandaPush = json["panda_push"] as? [String: AnyObject] {
-                                if let host = pandaPush["host"] as? String,
-                                    let annotationsChannel = pandaPush["annotations_channel"] as? String,
-                                    let annotationsToken = pandaPush["annotations_token"] as? String {
-                                    pandaPushMetadata = PandaPushMetadata(host: host, annotationsChannel: annotationsChannel, annotationsToken: annotationsToken)
-                                }
-                            }
-                            
-                            if let pdfDownloadURLStr = urls["pdf_download"] as? String, let pdfDownloadURL = URL(string: (self.baseURLString+self.removeLeadingSlash(pdfDownloadURLStr))), let annotationMetadata = annotationMetadata {
-                                let metadata = CanvadocsFileMetadata(pdfDownloadURL: pdfDownloadURL, annotationMetadata: annotationMetadata, pandaPush: pandaPushMetadata)
-                                completed(.success(metadata))
-                            } else {
-                                completed(.failure(NSError(domain: "com.instructure.ios-annotations", code: -1, userInfo: nil)))
-                            }
-                        } else {
-                            completed(.failure(NSError(domain: "com.instructure.ios-annotations", code: -1, userInfo: nil)))
-                        }
-                    } catch let error as NSError {
-                        completed(.failure(error))
+                return completed(.failure(error as NSError))
+            }
+            
+            guard let data = data else {
+                return completed(.failure(genericError))
+            }
+            
+            do {
+                let response = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions())
+                guard let json = response as? [String: AnyObject], let urls = json["urls"] as? [String: AnyObject] else {
+                    return completed(.failure(genericError))
+                }
+                
+                var annotationMetadata: CanvadocsAnnotationMetadata?
+                if let annotationSettings = json["annotations"] as? [String: AnyObject] {
+                    let enabled = annotationSettings["enabled"] as? Bool ?? false
+                    let userName = annotationSettings["user_name"] as? String
+                    
+                    var permissions: CanvadocsAnnotationMetadata.Permissions = .Read
+                    if let permissionsStr = annotationSettings["permissions"] as? String, let annotationPermissions = CanvadocsAnnotationMetadata.Permissions(rawValue: permissionsStr) {
+                        permissions = annotationPermissions
+                    }
+                    
+                    annotationMetadata = CanvadocsAnnotationMetadata(enabled: enabled, userName: userName, permissions: permissions)
+                } else {
+                    annotationMetadata = CanvadocsAnnotationMetadata(enabled: false, userName: nil, permissions: nil)
+                }
+                
+                var pandaPushMetadata: PandaPushMetadata?
+                if let pandaPush = json["panda_push"] as? [String: AnyObject] {
+                    if let host = pandaPush["host"] as? String,
+                        let annotationsChannel = pandaPush["annotations_channel"] as? String,
+                        let annotationsToken = pandaPush["annotations_token"] as? String {
+                        pandaPushMetadata = PandaPushMetadata(host: host, annotationsChannel: annotationsChannel, annotationsToken: annotationsToken)
                     }
                 }
+                
+                if let pdfDownloadURLStr = urls["pdf_download"] as? String, let pdfDownloadURL = URL(string: (self.baseURLString+self.removeLeadingSlash(pdfDownloadURLStr))), let annotationMetadata = annotationMetadata {
+                    let metadata = CanvadocsFileMetadata(pdfDownloadURL: pdfDownloadURL, annotationMetadata: annotationMetadata, pandaPush: pandaPushMetadata)
+                    completed(.success(metadata))
+                } else {
+                    completed(.failure(genericError))
+                }
+                
+            } catch let error as NSError {
+                completed(.failure(error))
             }
         }
         let dataTask = URLSession.shared.dataTask(with: request, completionHandler: completion)
@@ -154,45 +169,44 @@ class CanvadocsAnnotationService: NSObject {
     }
     
     func getDocument(_ completed: @escaping (DocumentResult)->()) {
-        if let metadata = metadata {
-            let downloadTask = URLSession.shared.downloadTask(with: metadata.pdfDownloadURL, completionHandler: { (temporaryURL, response, error) in
-                if let error = error {
-                    print("SO SAD - failed downloading pdf: \(error)")
-                    completed(Result.failure(error as NSError))
-                    return
-                } else {
-                    print("YAY - downloaed pdf doc")
-                    // Move the doc to a permanent location
-                    let fileManager = FileManager.default
-                    let directoryURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-                    // TODO: unify the places we do this sorta thing
-                    let filename = "\(self.sessionURL.absoluteString.substring(from: self.sessionURL.absoluteString.characters.index(self.sessionURL.absoluteString.endIndex, offsetBy: -12)))_doc.pdf"
-                    let copyURL = directoryURL.appendingPathComponent(filename)
-                    
-                    if fileManager.fileExists(atPath: copyURL.path) {
-                        do {
-                            try fileManager.removeItem(at: copyURL)
-                        } catch let error {
-                            print("Couldn't remove old doc: \(error)")
-                        }
-                    }
-                    
-                    do {
-                        if let temporaryURL = temporaryURL {
-                            try fileManager.copyItem(at: temporaryURL, to: copyURL)
-                        }
-                    } catch let error {
-                        print("Couldn't copy new doc file: \(error)")
-                    }
-                    
-                    completed(.success(copyURL))
-                }
-            }) 
-            downloadTask.resume()
+        let genericError = self.genericError()
+        guard let metadata = metadata else {
+            completed(Result.failure(genericError))
+            return
         }
+        let filename = sessionBasedPDFFilename()
+        let downloadTask = URLSession.shared.downloadTask(with: metadata.pdfDownloadURL, completionHandler: { (temporaryURL, response, error) in
+            if let error = error {
+                return completed(Result.failure(error as NSError))
+            }
+            
+            guard let tempURL = temporaryURL else {
+                return completed(Result.failure(genericError))
+            }
+            
+            // Move the doc to a permanent location
+            let fileManager = FileManager.default
+            let directoryURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let copyURL = directoryURL.appendingPathComponent(filename)
+            
+            if fileManager.fileExists(atPath: copyURL.path) {
+                do {
+                    try fileManager.removeItem(at: copyURL)
+                } catch let error {
+                    return completed(Result.failure(error as NSError))
+                }
+            }
+            
+            do {
+                try fileManager.copyItem(at: tempURL, to: copyURL)
+            } catch let error {
+                return completed(Result.failure(error as NSError))
+            }
+            
+            completed(.success(copyURL))
+        })
+        downloadTask.resume()
     }
-    
-    
     
     func getAnnotations(_ completed: @escaping (AnnotationsResult)->()) {
         let url = sessionURL.appendingPathComponent("annotations")
@@ -209,7 +223,8 @@ class CanvadocsAnnotationService: NSObject {
                         decoder.dateDecodingStrategy = .custom { decoder in
                             let dateStr = try decoder.singleValueContainer().decode(String.self)
                             guard let date = CanvadocsAnnotationService.ISO8601MillisecondFormatter.date(from: dateStr) else {
-                                throw NSError(domain: "com.instructure.annotations", code: -1, userInfo: [NSLocalizedFailureReasonErrorKey: "Invalid date received from API"])
+                                let description = NSLocalizedString("Invalid date received from API.", tableName: nil, bundle: .core, value: "Invalid date received from API.", comment: "")
+                                throw NSError(domain: "com.instructure.annotations", code: -1, userInfo: [NSLocalizedDescriptionKey: description])
                             }
                             return date
                         }

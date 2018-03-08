@@ -206,11 +206,19 @@ public class CanvadocView: UIView {
             return request
         }
         
-        client.get(previewPath, parameters: nil, progress: nil, success: { (task, response) in
+        var params = Dictionary<String, String>()
+        if let actAsUser = client.actAsUserID {
+            params["as_user_id"] = actAsUser
+        }
+        client.get(previewPath, parameters: params, progress: nil, success: { (task, response) in
             // successful load doesn't actually mean anything except the redirect happened
         }) { (task, error) in
-            if let response = task?.response as? HTTPURLResponse, response.statusCode != 302 {
-                // show an error of some sort
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
+                let dismiss = NSLocalizedString("Dismiss", tableName: nil, bundle: .core, value: "Dismiss", comment: "")
+                alert.addAction(UIAlertAction(title: dismiss, style: .default, handler: nil))
+                UIApplication.shared.delegate?.topViewController?.present(alert, animated: true, completion: nil)
             }
         }
     }
