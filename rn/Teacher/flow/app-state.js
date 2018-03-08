@@ -147,6 +147,7 @@ export type DiscussionState = AsyncState & {
     edit?: AsyncState,
   },
   unread_entries: string[],
+  entry_ratings: { [string]: number },
 }
 
 export type PendingDiscussionReply = {

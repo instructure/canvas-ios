@@ -92,6 +92,11 @@ export function markAllAsRead (context: Context, contextID: string, discussionID
   return httpClient().put(url)
 }
 
+export function rateEntry (context: Context, contextID: string, discussionID: string, entryID: string, rating: number): ApiPromise<null> {
+  const url = `${context}/${contextID}/discussion_topics/${discussionID}/entries/${entryID}/rating`
+  return httpClient().post(url, { rating })
+}
+
 function discussionFormData (parameters: CreateDiscussionParameters | UpdateDiscussionParameters): FormData {
   const formdata = new FormData()
   Object.keys(parameters)

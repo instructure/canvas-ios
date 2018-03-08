@@ -588,10 +588,15 @@ describe('refreshSingleDiscussion', () => {
 })
 
 describe('refreshDiscussionEntries', () => {
-  it('handles resolved with existing disucssion', () => {
+  it('handles resolved with existing discussion', () => {
     let participantA = template.userDisplay({ id: '1', display_name: 'A' })
     let participantB = template.userDisplay({ id: '2', display_name: 'B' })
-    let view = template.discussionView({ participants: [participantA, participantB] })
+    let view = template.discussionView({
+      participants: [participantA, participantB],
+      entry_ratings: {
+        '4': 1,
+      },
+    })
     let stateDiscussion = template.discussion({})
     let expected = template.discussion({})
 
@@ -614,11 +619,20 @@ describe('refreshDiscussionEntries', () => {
     expected.participants = { [participantA.id]: participantA, [participantB.id]: participantB }
     expected.replies = view.view
 
-    expect(discussions({ [stateDiscussion.id]: { data: stateDiscussion, unread_entries: template.discussionView().unread_entries } }, resolved)).toEqual({
+    const initialState = {
+      [stateDiscussion.id]: {
+        data: stateDiscussion,
+        unread_entries: template.discussionView().unread_entries,
+        entry_ratings: {},
+      },
+    }
+
+    expect(discussions(initialState, resolved)).toEqual({
       '1': {
         data: expected,
         pendingReplies: {},
         unread_entries: template.discussionView().unread_entries,
+        entry_ratings: { '4': 1 },
         pending: 0,
         error: null,
       },
@@ -663,6 +677,7 @@ describe('refreshDiscussionEntries', () => {
         error: null,
         pendingReplies: pending,
         unread_entries: template.discussionView().unread_entries,
+        entry_ratings: template.discussionView().entry_ratings,
       },
     })
   })
@@ -705,6 +720,7 @@ describe('refreshDiscussionEntries', () => {
         error: null,
         pendingReplies: {},
         unread_entries: template.discussionView().unread_entries,
+        entry_ratings: template.discussionView().entry_ratings,
       },
     })
   })
@@ -744,6 +760,7 @@ describe('refreshDiscussionEntries', () => {
         data: expected,
         pendingReplies: {},
         unread_entries: template.discussionView().unread_entries,
+        entry_ratings: template.discussionView().entry_ratings,
         pending: 0,
         error: null,
       },
@@ -788,6 +805,7 @@ describe('refreshDiscussionEntries', () => {
         error: null,
         pendingReplies: pending,
         unread_entries: template.discussionView().unread_entries,
+        entry_ratings: template.discussionView().entry_ratings,
       },
     })
   })
@@ -827,6 +845,7 @@ describe('refreshDiscussionEntries', () => {
         data: expected,
         pendingReplies: {},
         unread_entries: template.discussionView().unread_entries,
+        entry_ratings: template.discussionView().entry_ratings,
         pending: 0,
         error: null,
       },

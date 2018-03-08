@@ -16,6 +16,7 @@
 
 /* @flow */
 
+import { shallow } from 'enzyme'
 import React from 'react'
 import { ActionSheetIOS } from 'react-native'
 import renderer from 'react-test-renderer'
@@ -37,7 +38,7 @@ jest.mock('WebView', () => 'WebView')
   .mock('../../../../common/components/Avatar', () => 'Avatar')
 
 describe('DiscussionReplies', () => {
-  let props
+  let props: Props
   beforeEach(() => {
     let reply = template.discussionReply({ id: '1' })
     reply.replies = [template.discussionReply({ id: 2 })]
@@ -58,6 +59,10 @@ describe('DiscussionReplies', () => {
       onPressMoreReplies: jest.fn(),
       maxReplyNodeDepth: 2,
       discussionLockedForUser: false,
+      rating: null,
+      showRating: false,
+      canRate: false,
+      rateEntry: jest.fn(),
     }
   })
 
@@ -132,6 +137,53 @@ describe('DiscussionReplies', () => {
     let reply = render(props).getInstance()
     reply._actionReply()
     expect(props.replyToEntry).toHaveBeenCalledWith('1', [0])
+  })
+
+  describe('ratings', () => {
+    beforeEach(() => {
+      props.reply = template.discussionReply({ id: '1', rating_sum: 2 })
+    })
+
+    it('renders rating', () => {
+      props.showRating = true
+      props.canRate = true
+      testRender(props)
+    })
+
+    it('renders user rating', () => {
+      props.showRating = true
+      props.canRate = true
+      props.rating = 1
+      testRender(props)
+    })
+
+    it('renders rating when user cant rate', () => {
+      props.showRating = true
+      props.canRate = false
+      testRender(props)
+    })
+
+    it('renders rating after user rates for first time', () => {
+      props.showRating = true
+      props.canRate = true
+      props.rating = null
+      const view = shallow(<Reply {...props }/>)
+      const rateBtn = view.find('[testID="discussion.reply.rate-btn"]')
+      rateBtn.simulate('Press')
+      view.update()
+      expect(view).toMatchSnapshot()
+    })
+
+    it('renders rating after user updates rating', () => {
+      props.showRating = true
+      props.canRate = true
+      props.rating = 1
+      const view = shallow(<Reply {...props }/>)
+      const rateBtn = view.find('[testID="discussion.reply.rate-btn"]')
+      rateBtn.simulate('Press')
+      view.update()
+      expect(view).toMatchSnapshot()
+    })
   })
 
   function testEditActionSheet (buttonIndex: number) {

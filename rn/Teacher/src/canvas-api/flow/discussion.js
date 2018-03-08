@@ -28,6 +28,7 @@ export type DiscussionView = {
   participants: UserDisplay[],
   view: DiscussionReply[],
   new_entries: string[],
+  entry_ratings: { [string]: number },
 }
 
 export type DiscussionReply = {

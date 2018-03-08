@@ -30,7 +30,16 @@ import composeReducers from '../../redux/compose-reducers'
 import { parseErrorMessage } from '../../redux/middleware/error-handler'
 
 const { refreshDiscussions } = ListActions
-const { refreshDiscussionEntries, refreshSingleDiscussion, createEntry, editEntry, deleteDiscussionEntry, deletePendingReplies, markAllAsRead, markEntryAsRead } = DetailsActions
+const {
+  refreshDiscussionEntries,
+  refreshSingleDiscussion,
+  createEntry,
+  editEntry,
+  deleteDiscussionEntry,
+  deletePendingReplies,
+  markAllAsRead,
+  markEntryAsRead,
+} = DetailsActions
 const { refreshAnnouncements } = AnnouncementListActions
 const {
   createDiscussion,
@@ -202,6 +211,7 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
       let participantsAsMap = discussionView.data.participants.reduce((map, p) => ({ ...map, [p.id]: p }), {})
       let replies = discussionView.data.view
       let unreadEntries = discussionView.data.unread_entries || []
+      let entryRatings = discussionView.data.entry_ratings || {}
       let newEntries = discussionView.data.new_entries || []
       let pendingReplies = { ...(entity.pendingReplies || {}) }
 
@@ -233,6 +243,7 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
           pending: state[discussionID] && state[discussionID].pending ? state[discussionID].pending - 1 : 0,
           error: null,
           unread_entries: unreadEntries,
+          entry_ratings: entryRatings,
         },
       }
     },

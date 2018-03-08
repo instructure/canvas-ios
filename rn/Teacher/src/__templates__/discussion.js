@@ -87,6 +87,7 @@ export const discussionView: Template<DiscussionView> = template({
     '25458826',
     '25458830',
   ],
+  entry_ratings: {},
   participants: [userDisplay()],
   'view': [
     discussionReply({
@@ -109,6 +110,9 @@ export const discussionViewLarge: Template<DiscussionView> = template({
     '25458826',
     '25458830',
   ],
+  'entry_ratings': {
+    '4': 1,
+  },
   participants: [userDisplay()],
   'view': [
     discussionReply({

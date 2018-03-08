@@ -113,6 +113,10 @@ const images = {
     redPanda: require('./masquerade/red-panda.png'),
     whitePanda: require('./masquerade/white-panda.png'),
   },
+  discussions: {
+    rate: require('./discussions/Like.png'),
+    rated: require('./discussions/Liked.png'),
+  },
   canvasLogo: require('./canvas-logo.png'),
   feedback: require('./feedback.png'),
   kabob: require('./kabob.png'),

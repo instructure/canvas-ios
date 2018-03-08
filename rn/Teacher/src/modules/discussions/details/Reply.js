@@ -23,6 +23,7 @@ import {
   StyleSheet,
   ActionSheetIOS,
   TouchableHighlight,
+  TouchableOpacity,
 } from 'react-native'
 import { Text, BOLD_FONT } from '../../../common/text'
 import { LinkButton, Button } from '../../../common/buttons'
@@ -34,6 +35,7 @@ import i18n from 'format-message'
 import Navigator from '../../../routing/Navigator'
 import ThreadedLinesView from '../../../common/components/ThreadedLinesView'
 import { isTeacher } from '../../app'
+import canvas from '../../../canvas-api'
 
 type ReadState = 'read' | 'unread'
 
@@ -41,6 +43,9 @@ export type Props = {
   reply: DiscussionReply,
   depth: number,
   readState: ReadState,
+  rating: ?number,
+  showRating: boolean, // true if discussion allows rating
+  canRate: boolean, // true if current user can rate
   participants: { [key: string]: UserDisplay },
   context: Context,
   contextID: string,
@@ -53,9 +58,28 @@ export type Props = {
   maxReplyNodeDepth: number,
   isRootReply?: boolean,
   discussionLockedForUser?: boolean,
+  rateEntry: Function,
 }
 
-export default class Reply extends Component<Props> {
+type State = {
+  rating: ?number, // used to track rating changes
+}
+
+export default class Reply extends Component<Props, State> {
+  static defaultProps = {
+    rateEntry: canvas.rateEntry,
+  }
+
+  state: State = {
+    rating: null,
+  }
+
+  componentWillReceiveProps (nextProps: Props) {
+    if (this.props.rating !== nextProps.rating || this.props.reply.rating_sum !== nextProps.reply.rating_sum) {
+      // rating was refreshed so reset state's rating
+      this.setState({ rating: null })
+    }
+  }
 
   showAttachment = () => {
     if (this.props.reply.attachment) {
@@ -163,17 +187,102 @@ export default class Reply extends Component<Props> {
   }
 
   _renderButtons = () => {
+    const buttonTextAttributes = {
+      fontWeight: '500',
+      color: colors.grey4,
+      fontSize: 16,
+    }
     return (
-      <View style={style.footerContainer}>
-       <LinkButton style={style.footer} textAttributes={{ fontWeight: '500', color: colors.grey4 }} onPress={this._actionReply} testID='discussion.reply-btn'>
+      <View style={style.footerButtonsContainer}>
+        <View style={style.footerActionsContainer}>
+          <LinkButton style={style.footer} textAttributes={buttonTextAttributes} onPress={this._actionReply} testID='discussion.reply-btn'>
             {i18n('Reply')}
-        </LinkButton>
-      {this._canEdit() && <Text style={[style.footer, { color: colors.grey2, textAlign: 'center', alignSelf: 'center', paddingLeft: 10, paddingRight: 10 }]} accessible={false}>|</Text>}
-      {this._canEdit() && <LinkButton style={style.footer} textAttributes={{ fontWeight: '500', color: colors.grey4 }} onPress={this._actionEdit} testID='discussion.edit-btn'>
-          {i18n('Edit')}
-      </LinkButton>}
+          </LinkButton>
+          { this._canEdit() &&
+            <Text style={[style.footer, { color: colors.grey2, textAlign: 'center', alignSelf: 'center', paddingLeft: 10, paddingRight: 10 }]} accessible={false}>|</Text>
+          }
+          { this._canEdit() &&
+            <LinkButton style={style.footer} textAttributes={buttonTextAttributes} onPress={this._actionEdit} testID='discussion.edit-btn'>
+              {i18n('Edit')}
+            </LinkButton>
+          }
+        </View>
+        { this.props.showRating &&
+          <View style={style.footerRatingContainer}>
+            { this.ratingCount() > 0 &&
+              <Text
+                style={[
+                  buttonTextAttributes,
+                  {
+                    marginRight: 6,
+                    color: this.hasRated() ? colors.primaryBrandColor : buttonTextAttributes.color,
+                  },
+                ]}
+                testID='discussion.reply.rating-count'
+              >
+                ({this.formattedRatingCount()})
+              </Text>
+            }
+            { this.props.canRate &&
+              <TouchableOpacity testID='discussion.reply.rate-btn' onPress={this._actionRate}>
+                <Image
+                  source={this.hasRated() ? Images.discussions.rated : Images.discussions.rate}
+                  style={[
+                    style.ratingIcon,
+                    { tintColor: this.hasRated() ? colors.primaryBrandColor : buttonTextAttributes.color },
+                  ]}
+                />
+              </TouchableOpacity>
+            }
+          </View>
+        }
       </View>
     )
+  }
+
+  hasRated (): boolean {
+    if (this.state.rating == null) {
+      // User hasn't rated since refresh
+      return Boolean(this.props.rating && this.props.rating > 0)
+    }
+
+    // User has tapped to rate
+    return this.state.rating > 0
+  }
+
+  ratingCount (): number {
+    let count = this.props.reply.rating_sum || 0
+
+    if (this.state.rating != null) {
+      // User has tapped to rate so we have to do some fancy footwork
+      // to calculate the new rating count to avoid looping over every entry.
+
+      if (!this.props.rating) {
+        // This ones easy. We hadn't rated yet so we just add the local changes.
+        count += this.state.rating
+      } else {
+        // We had rated before the local changes so we subtract the old ratings
+        // and add back the changes.
+        count = count - this.props.rating + this.state.rating
+      }
+    }
+
+    return count
+  }
+
+  formattedRatingCount (): string {
+    const count = this.ratingCount()
+
+    if (!this.props.canRate) {
+      // If the user can't rate we show the rating count with the word 'like'
+      return i18n(`{
+        count, plural,
+          one {# like}
+          other {# likes}
+      }`, { count })
+    }
+
+    return `${count}`
   }
 
   _renderUnreadDot (reply: DiscussionReply, state: ReadState) {
@@ -206,6 +315,18 @@ export default class Reply extends Component<Props> {
         return
       }
     })
+  }
+
+  _actionRate = async () => {
+    const rating = this.hasRated() ? 0 : 1
+    this.setState({ rating })
+    const { context, contextID, discussionID } = this.props
+    try {
+      await this.props.rateEntry(context, contextID, discussionID, this.props.reply.id, rating)
+    } catch (e) {
+      const reverted = rating === 0 ? 1 : 0
+      this.setState({ rating: reverted })
+    }
   }
 
   _canEdit = () => {
@@ -276,10 +397,24 @@ const style = StyleSheet.create({
     paddingRight: 2,
     alignSelf: 'flex-end',
   },
-  footerContainer: {
+  footerButtonsContainer: {
     marginTop: global.style.defaultPadding,
     flexDirection: 'row',
+    flex: 1,
+  },
+  footerActionsContainer: {
+    flexDirection: 'row',
     justifyContent: 'flex-start',
+    flex: 1,
+  },
+  footerRatingContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  ratingIcon: {
+    tintColor: colors.grey4,
   },
   moreContainer: {
     marginTop: global.style.defaultPadding,

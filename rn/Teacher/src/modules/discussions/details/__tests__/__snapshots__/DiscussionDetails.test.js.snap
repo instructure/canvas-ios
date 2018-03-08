@@ -113,6 +113,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                   0,
                 ],
                 "parent_id": null,
+                "rating": undefined,
                 "rating_count": null,
                 "rating_sum": null,
                 "readState": "read",
@@ -127,7 +128,12 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
         ]
       }
       disableVirtualization={false}
-      extraData={Array []}
+      extraData={
+        Object {
+          "entry_ratings": Object {},
+          "unread_entries": Array [],
+        }
+      }
       getItem={[Function]}
       getItemCount={[Function]}
       horizontal={false}
@@ -237,6 +243,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                   0,
                 ],
                 "parent_id": null,
+                "rating": undefined,
                 "rating_count": null,
                 "rating_sum": null,
                 "readState": "read",
@@ -1441,182 +1448,196 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                   <View
                     style={
                       Object {
+                        "flex": 1,
                         "flexDirection": "row",
-                        "justifyContent": "flex-start",
                         "marginTop": 16,
                       }
                     }
                   >
-                    <TouchableOpacity
-                      accessibilityTraits="button"
-                      hitSlop={
-                        Object {
-                          "bottom": 15,
-                          "left": 15,
-                          "right": 15,
-                          "top": 15,
-                        }
-                      }
-                      onPress={[Function]}
+                    <View
                       style={
                         Object {
-                          "alignSelf": "flex-end",
-                          "paddingBottom": 2,
-                          "paddingRight": 2,
-                          "paddingTop": 2,
-                        }
-                      }
-                      testID="discussion.reply-btn"
-                      textAttributes={
-                        Object {
-                          "color": "#8B969E",
-                          "fontWeight": "500",
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "justifyContent": "flex-start",
                         }
                       }
                     >
-                      <View>
-                        <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          ellipsizeMode="tail"
-                          style={
-                            Array [
-                              Object {
-                                "fontFamily": ".SFUIDisplay",
-                              },
-                              Object {
-                                "color": "#2D3B45",
-                                "fontSize": 16,
-                              },
+                      <TouchableOpacity
+                        accessibilityTraits="button"
+                        hitSlop={
+                          Object {
+                            "bottom": 15,
+                            "left": 15,
+                            "right": 15,
+                            "top": 15,
+                          }
+                        }
+                        onPress={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": "flex-end",
+                            "paddingBottom": 2,
+                            "paddingRight": 2,
+                            "paddingTop": 2,
+                          }
+                        }
+                        testID="discussion.reply-btn"
+                        textAttributes={
+                          Object {
+                            "color": "#8B969E",
+                            "fontSize": 16,
+                            "fontWeight": "500",
+                          }
+                        }
+                      >
+                        <View>
+                          <Text
+                            accessible={true}
+                            allowFontScaling={true}
+                            ellipsizeMode="tail"
+                            style={
                               Array [
                                 Object {
-                                  "color": "#374A59",
-                                  "fontSize": 14,
+                                  "fontFamily": ".SFUIDisplay",
                                 },
                                 Object {
-                                  "fontFamily": ".SFUIDisplay-bold",
+                                  "color": "#2D3B45",
+                                  "fontSize": 16,
                                 },
+                                Array [
+                                  Object {
+                                    "color": "#374A59",
+                                    "fontSize": 14,
+                                  },
+                                  Object {
+                                    "fontFamily": ".SFUIDisplay-bold",
+                                  },
+                                  Object {
+                                    "color": "#374A59",
+                                  },
+                                  Object {
+                                    "color": "#8B969E",
+                                    "fontSize": 16,
+                                    "fontWeight": "500",
+                                  },
+                                ],
                                 Object {
-                                  "color": "#374A59",
+                                  "fontFamily": ".SFUIDisplay-medium",
                                 },
-                                Object {
-                                  "color": "#8B969E",
-                                  "fontWeight": "500",
-                                },
-                              ],
-                              Object {
-                                "fontFamily": ".SFUIDisplay-medium",
-                              },
-                            ]
-                          }
-                        >
-                          Reply
-                        </Text>
-                      </View>
-                    </TouchableOpacity>
-                    <Text
-                      accessible={false}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
-                      style={
-                        Array [
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                          Object {
-                            "color": "#2D3B45",
-                            "fontSize": 16,
-                          },
+                              ]
+                            }
+                          >
+                            Reply
+                          </Text>
+                        </View>
+                      </TouchableOpacity>
+                      <Text
+                        accessible={false}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        style={
                           Array [
                             Object {
-                              "alignSelf": "flex-end",
-                              "paddingBottom": 2,
-                              "paddingRight": 2,
-                              "paddingTop": 2,
+                              "fontFamily": ".SFUIDisplay",
                             },
                             Object {
-                              "alignSelf": "center",
-                              "color": "#C7CDD1",
-                              "paddingLeft": 10,
-                              "paddingRight": 10,
-                              "textAlign": "center",
+                              "color": "#2D3B45",
+                              "fontSize": 16,
                             },
-                          ],
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                        ]
-                      }
-                    >
-                      |
-                    </Text>
-                    <TouchableOpacity
-                      accessibilityTraits="button"
-                      hitSlop={
-                        Object {
-                          "bottom": 15,
-                          "left": 15,
-                          "right": 15,
-                          "top": 15,
-                        }
-                      }
-                      onPress={[Function]}
-                      style={
-                        Object {
-                          "alignSelf": "flex-end",
-                          "paddingBottom": 2,
-                          "paddingRight": 2,
-                          "paddingTop": 2,
-                        }
-                      }
-                      testID="discussion.edit-btn"
-                      textAttributes={
-                        Object {
-                          "color": "#8B969E",
-                          "fontWeight": "500",
-                        }
-                      }
-                    >
-                      <View>
-                        <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          ellipsizeMode="tail"
-                          style={
                             Array [
                               Object {
-                                "fontFamily": ".SFUIDisplay",
+                                "alignSelf": "flex-end",
+                                "paddingBottom": 2,
+                                "paddingRight": 2,
+                                "paddingTop": 2,
                               },
                               Object {
-                                "color": "#2D3B45",
-                                "fontSize": 16,
+                                "alignSelf": "center",
+                                "color": "#C7CDD1",
+                                "paddingLeft": 10,
+                                "paddingRight": 10,
+                                "textAlign": "center",
                               },
+                            ],
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
+                      >
+                        |
+                      </Text>
+                      <TouchableOpacity
+                        accessibilityTraits="button"
+                        hitSlop={
+                          Object {
+                            "bottom": 15,
+                            "left": 15,
+                            "right": 15,
+                            "top": 15,
+                          }
+                        }
+                        onPress={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": "flex-end",
+                            "paddingBottom": 2,
+                            "paddingRight": 2,
+                            "paddingTop": 2,
+                          }
+                        }
+                        testID="discussion.edit-btn"
+                        textAttributes={
+                          Object {
+                            "color": "#8B969E",
+                            "fontSize": 16,
+                            "fontWeight": "500",
+                          }
+                        }
+                      >
+                        <View>
+                          <Text
+                            accessible={true}
+                            allowFontScaling={true}
+                            ellipsizeMode="tail"
+                            style={
                               Array [
                                 Object {
-                                  "color": "#374A59",
-                                  "fontSize": 14,
+                                  "fontFamily": ".SFUIDisplay",
                                 },
                                 Object {
-                                  "fontFamily": ".SFUIDisplay-bold",
+                                  "color": "#2D3B45",
+                                  "fontSize": 16,
                                 },
+                                Array [
+                                  Object {
+                                    "color": "#374A59",
+                                    "fontSize": 14,
+                                  },
+                                  Object {
+                                    "fontFamily": ".SFUIDisplay-bold",
+                                  },
+                                  Object {
+                                    "color": "#374A59",
+                                  },
+                                  Object {
+                                    "color": "#8B969E",
+                                    "fontSize": 16,
+                                    "fontWeight": "500",
+                                  },
+                                ],
                                 Object {
-                                  "color": "#374A59",
+                                  "fontFamily": ".SFUIDisplay-medium",
                                 },
-                                Object {
-                                  "color": "#8B969E",
-                                  "fontWeight": "500",
-                                },
-                              ],
-                              Object {
-                                "fontFamily": ".SFUIDisplay-medium",
-                              },
-                            ]
-                          }
-                        >
-                          Edit
-                        </Text>
-                      </View>
-                    </TouchableOpacity>
+                              ]
+                            }
+                          >
+                            Edit
+                          </Text>
+                        </View>
+                      </TouchableOpacity>
+                    </View>
                   </View>
                   <View />
                 </View>
@@ -1771,6 +1792,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                   0,
                 ],
                 "parent_id": null,
+                "rating": undefined,
                 "rating_count": null,
                 "rating_sum": null,
                 "readState": "read",
@@ -1785,7 +1807,12 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
         ]
       }
       disableVirtualization={false}
-      extraData={Array []}
+      extraData={
+        Object {
+          "entry_ratings": Object {},
+          "unread_entries": Array [],
+        }
+      }
       getItem={[Function]}
       getItemCount={[Function]}
       horizontal={false}
@@ -1930,6 +1957,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                   0,
                 ],
                 "parent_id": null,
+                "rating": undefined,
                 "rating_count": null,
                 "rating_sum": null,
                 "readState": "read",
@@ -2665,6 +2693,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                   0,
                 ],
                 "parent_id": null,
+                "rating": undefined,
                 "rating_count": null,
                 "rating_sum": null,
                 "readState": "read",
@@ -2679,7 +2708,12 @@ exports[`DiscussionDetails renders in student app 1`] = `
         ]
       }
       disableVirtualization={false}
-      extraData={Array []}
+      extraData={
+        Object {
+          "entry_ratings": Object {},
+          "unread_entries": Array [],
+        }
+      }
       getItem={[Function]}
       getItemCount={[Function]}
       horizontal={false}
@@ -2823,6 +2857,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                   0,
                 ],
                 "parent_id": null,
+                "rating": undefined,
                 "rating_count": null,
                 "rating_sum": null,
                 "readState": "read",
@@ -3491,79 +3526,91 @@ exports[`DiscussionDetails renders in student app 1`] = `
                   <View
                     style={
                       Object {
+                        "flex": 1,
                         "flexDirection": "row",
-                        "justifyContent": "flex-start",
                         "marginTop": 16,
                       }
                     }
                   >
-                    <TouchableOpacity
-                      accessibilityTraits="button"
-                      hitSlop={
-                        Object {
-                          "bottom": 15,
-                          "left": 15,
-                          "right": 15,
-                          "top": 15,
-                        }
-                      }
-                      onPress={[Function]}
+                    <View
                       style={
                         Object {
-                          "alignSelf": "flex-end",
-                          "paddingBottom": 2,
-                          "paddingRight": 2,
-                          "paddingTop": 2,
-                        }
-                      }
-                      testID="discussion.reply-btn"
-                      textAttributes={
-                        Object {
-                          "color": "#8B969E",
-                          "fontWeight": "500",
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "justifyContent": "flex-start",
                         }
                       }
                     >
-                      <View>
-                        <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          ellipsizeMode="tail"
-                          style={
-                            Array [
-                              Object {
-                                "fontFamily": ".SFUIDisplay",
-                              },
-                              Object {
-                                "color": "#2D3B45",
-                                "fontSize": 16,
-                              },
+                      <TouchableOpacity
+                        accessibilityTraits="button"
+                        hitSlop={
+                          Object {
+                            "bottom": 15,
+                            "left": 15,
+                            "right": 15,
+                            "top": 15,
+                          }
+                        }
+                        onPress={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": "flex-end",
+                            "paddingBottom": 2,
+                            "paddingRight": 2,
+                            "paddingTop": 2,
+                          }
+                        }
+                        testID="discussion.reply-btn"
+                        textAttributes={
+                          Object {
+                            "color": "#8B969E",
+                            "fontSize": 16,
+                            "fontWeight": "500",
+                          }
+                        }
+                      >
+                        <View>
+                          <Text
+                            accessible={true}
+                            allowFontScaling={true}
+                            ellipsizeMode="tail"
+                            style={
                               Array [
                                 Object {
-                                  "color": "#374A59",
-                                  "fontSize": 14,
+                                  "fontFamily": ".SFUIDisplay",
                                 },
                                 Object {
-                                  "fontFamily": ".SFUIDisplay-bold",
+                                  "color": "#2D3B45",
+                                  "fontSize": 16,
                                 },
+                                Array [
+                                  Object {
+                                    "color": "#374A59",
+                                    "fontSize": 14,
+                                  },
+                                  Object {
+                                    "fontFamily": ".SFUIDisplay-bold",
+                                  },
+                                  Object {
+                                    "color": "#374A59",
+                                  },
+                                  Object {
+                                    "color": "#8B969E",
+                                    "fontSize": 16,
+                                    "fontWeight": "500",
+                                  },
+                                ],
                                 Object {
-                                  "color": "#374A59",
+                                  "fontFamily": ".SFUIDisplay-medium",
                                 },
-                                Object {
-                                  "color": "#8B969E",
-                                  "fontWeight": "500",
-                                },
-                              ],
-                              Object {
-                                "fontFamily": ".SFUIDisplay-medium",
-                              },
-                            ]
-                          }
-                        >
-                          Reply
-                        </Text>
-                      </View>
-                    </TouchableOpacity>
+                              ]
+                            }
+                          >
+                            Reply
+                          </Text>
+                        </View>
+                      </TouchableOpacity>
+                    </View>
                   </View>
                   <View />
                 </View>
@@ -3697,7 +3744,12 @@ exports[`DiscussionDetails renders no replies 1`] = `
         ]
       }
       disableVirtualization={false}
-      extraData={Array []}
+      extraData={
+        Object {
+          "entry_ratings": Object {},
+          "unread_entries": Array [],
+        }
+      }
       getItem={[Function]}
       getItemCount={[Function]}
       horizontal={false}
@@ -4970,6 +5022,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                   0,
                 ],
                 "parent_id": null,
+                "rating": undefined,
                 "rating_count": null,
                 "rating_sum": null,
                 "readState": "read",
@@ -4999,6 +5052,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                   0,
                 ],
                 "parent_id": null,
+                "rating": undefined,
                 "rating_count": null,
                 "rating_sum": null,
                 "readState": "read",
@@ -5013,7 +5067,12 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
         ]
       }
       disableVirtualization={false}
-      extraData={Array []}
+      extraData={
+        Object {
+          "entry_ratings": Object {},
+          "unread_entries": Array [],
+        }
+      }
       getItem={[Function]}
       getItemCount={[Function]}
       horizontal={false}
@@ -5205,6 +5264,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                   0,
                 ],
                 "parent_id": null,
+                "rating": undefined,
                 "rating_count": null,
                 "rating_sum": null,
                 "readState": "read",
@@ -5234,6 +5294,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                   0,
                 ],
                 "parent_id": null,
+                "rating": undefined,
                 "rating_count": null,
                 "rating_sum": null,
                 "readState": "read",
@@ -6503,182 +6564,196 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                   <View
                     style={
                       Object {
+                        "flex": 1,
                         "flexDirection": "row",
-                        "justifyContent": "flex-start",
                         "marginTop": 16,
                       }
                     }
                   >
-                    <TouchableOpacity
-                      accessibilityTraits="button"
-                      hitSlop={
-                        Object {
-                          "bottom": 15,
-                          "left": 15,
-                          "right": 15,
-                          "top": 15,
-                        }
-                      }
-                      onPress={[Function]}
+                    <View
                       style={
                         Object {
-                          "alignSelf": "flex-end",
-                          "paddingBottom": 2,
-                          "paddingRight": 2,
-                          "paddingTop": 2,
-                        }
-                      }
-                      testID="discussion.reply-btn"
-                      textAttributes={
-                        Object {
-                          "color": "#8B969E",
-                          "fontWeight": "500",
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "justifyContent": "flex-start",
                         }
                       }
                     >
-                      <View>
-                        <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          ellipsizeMode="tail"
-                          style={
-                            Array [
-                              Object {
-                                "fontFamily": ".SFUIDisplay",
-                              },
-                              Object {
-                                "color": "#2D3B45",
-                                "fontSize": 16,
-                              },
+                      <TouchableOpacity
+                        accessibilityTraits="button"
+                        hitSlop={
+                          Object {
+                            "bottom": 15,
+                            "left": 15,
+                            "right": 15,
+                            "top": 15,
+                          }
+                        }
+                        onPress={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": "flex-end",
+                            "paddingBottom": 2,
+                            "paddingRight": 2,
+                            "paddingTop": 2,
+                          }
+                        }
+                        testID="discussion.reply-btn"
+                        textAttributes={
+                          Object {
+                            "color": "#8B969E",
+                            "fontSize": 16,
+                            "fontWeight": "500",
+                          }
+                        }
+                      >
+                        <View>
+                          <Text
+                            accessible={true}
+                            allowFontScaling={true}
+                            ellipsizeMode="tail"
+                            style={
                               Array [
                                 Object {
-                                  "color": "#374A59",
-                                  "fontSize": 14,
+                                  "fontFamily": ".SFUIDisplay",
                                 },
                                 Object {
-                                  "fontFamily": ".SFUIDisplay-bold",
+                                  "color": "#2D3B45",
+                                  "fontSize": 16,
                                 },
+                                Array [
+                                  Object {
+                                    "color": "#374A59",
+                                    "fontSize": 14,
+                                  },
+                                  Object {
+                                    "fontFamily": ".SFUIDisplay-bold",
+                                  },
+                                  Object {
+                                    "color": "#374A59",
+                                  },
+                                  Object {
+                                    "color": "#8B969E",
+                                    "fontSize": 16,
+                                    "fontWeight": "500",
+                                  },
+                                ],
                                 Object {
-                                  "color": "#374A59",
+                                  "fontFamily": ".SFUIDisplay-medium",
                                 },
-                                Object {
-                                  "color": "#8B969E",
-                                  "fontWeight": "500",
-                                },
-                              ],
-                              Object {
-                                "fontFamily": ".SFUIDisplay-medium",
-                              },
-                            ]
-                          }
-                        >
-                          Reply
-                        </Text>
-                      </View>
-                    </TouchableOpacity>
-                    <Text
-                      accessible={false}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
-                      style={
-                        Array [
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                          Object {
-                            "color": "#2D3B45",
-                            "fontSize": 16,
-                          },
+                              ]
+                            }
+                          >
+                            Reply
+                          </Text>
+                        </View>
+                      </TouchableOpacity>
+                      <Text
+                        accessible={false}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        style={
                           Array [
                             Object {
-                              "alignSelf": "flex-end",
-                              "paddingBottom": 2,
-                              "paddingRight": 2,
-                              "paddingTop": 2,
+                              "fontFamily": ".SFUIDisplay",
                             },
                             Object {
-                              "alignSelf": "center",
-                              "color": "#C7CDD1",
-                              "paddingLeft": 10,
-                              "paddingRight": 10,
-                              "textAlign": "center",
+                              "color": "#2D3B45",
+                              "fontSize": 16,
                             },
-                          ],
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                        ]
-                      }
-                    >
-                      |
-                    </Text>
-                    <TouchableOpacity
-                      accessibilityTraits="button"
-                      hitSlop={
-                        Object {
-                          "bottom": 15,
-                          "left": 15,
-                          "right": 15,
-                          "top": 15,
-                        }
-                      }
-                      onPress={[Function]}
-                      style={
-                        Object {
-                          "alignSelf": "flex-end",
-                          "paddingBottom": 2,
-                          "paddingRight": 2,
-                          "paddingTop": 2,
-                        }
-                      }
-                      testID="discussion.edit-btn"
-                      textAttributes={
-                        Object {
-                          "color": "#8B969E",
-                          "fontWeight": "500",
-                        }
-                      }
-                    >
-                      <View>
-                        <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          ellipsizeMode="tail"
-                          style={
                             Array [
                               Object {
-                                "fontFamily": ".SFUIDisplay",
+                                "alignSelf": "flex-end",
+                                "paddingBottom": 2,
+                                "paddingRight": 2,
+                                "paddingTop": 2,
                               },
                               Object {
-                                "color": "#2D3B45",
-                                "fontSize": 16,
+                                "alignSelf": "center",
+                                "color": "#C7CDD1",
+                                "paddingLeft": 10,
+                                "paddingRight": 10,
+                                "textAlign": "center",
                               },
+                            ],
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
+                      >
+                        |
+                      </Text>
+                      <TouchableOpacity
+                        accessibilityTraits="button"
+                        hitSlop={
+                          Object {
+                            "bottom": 15,
+                            "left": 15,
+                            "right": 15,
+                            "top": 15,
+                          }
+                        }
+                        onPress={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": "flex-end",
+                            "paddingBottom": 2,
+                            "paddingRight": 2,
+                            "paddingTop": 2,
+                          }
+                        }
+                        testID="discussion.edit-btn"
+                        textAttributes={
+                          Object {
+                            "color": "#8B969E",
+                            "fontSize": 16,
+                            "fontWeight": "500",
+                          }
+                        }
+                      >
+                        <View>
+                          <Text
+                            accessible={true}
+                            allowFontScaling={true}
+                            ellipsizeMode="tail"
+                            style={
                               Array [
                                 Object {
-                                  "color": "#374A59",
-                                  "fontSize": 14,
+                                  "fontFamily": ".SFUIDisplay",
                                 },
                                 Object {
-                                  "fontFamily": ".SFUIDisplay-bold",
+                                  "color": "#2D3B45",
+                                  "fontSize": 16,
                                 },
+                                Array [
+                                  Object {
+                                    "color": "#374A59",
+                                    "fontSize": 14,
+                                  },
+                                  Object {
+                                    "fontFamily": ".SFUIDisplay-bold",
+                                  },
+                                  Object {
+                                    "color": "#374A59",
+                                  },
+                                  Object {
+                                    "color": "#8B969E",
+                                    "fontSize": 16,
+                                    "fontWeight": "500",
+                                  },
+                                ],
                                 Object {
-                                  "color": "#374A59",
+                                  "fontFamily": ".SFUIDisplay-medium",
                                 },
-                                Object {
-                                  "color": "#8B969E",
-                                  "fontWeight": "500",
-                                },
-                              ],
-                              Object {
-                                "fontFamily": ".SFUIDisplay-medium",
-                              },
-                            ]
-                          }
-                        >
-                          Edit
-                        </Text>
-                      </View>
-                    </TouchableOpacity>
+                              ]
+                            }
+                          >
+                            Edit
+                          </Text>
+                        </View>
+                      </TouchableOpacity>
+                    </View>
                   </View>
                   <View />
                 </View>
@@ -6876,182 +6951,196 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                   <View
                     style={
                       Object {
+                        "flex": 1,
                         "flexDirection": "row",
-                        "justifyContent": "flex-start",
                         "marginTop": 16,
                       }
                     }
                   >
-                    <TouchableOpacity
-                      accessibilityTraits="button"
-                      hitSlop={
-                        Object {
-                          "bottom": 15,
-                          "left": 15,
-                          "right": 15,
-                          "top": 15,
-                        }
-                      }
-                      onPress={[Function]}
+                    <View
                       style={
                         Object {
-                          "alignSelf": "flex-end",
-                          "paddingBottom": 2,
-                          "paddingRight": 2,
-                          "paddingTop": 2,
-                        }
-                      }
-                      testID="discussion.reply-btn"
-                      textAttributes={
-                        Object {
-                          "color": "#8B969E",
-                          "fontWeight": "500",
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "justifyContent": "flex-start",
                         }
                       }
                     >
-                      <View>
-                        <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          ellipsizeMode="tail"
-                          style={
-                            Array [
-                              Object {
-                                "fontFamily": ".SFUIDisplay",
-                              },
-                              Object {
-                                "color": "#2D3B45",
-                                "fontSize": 16,
-                              },
+                      <TouchableOpacity
+                        accessibilityTraits="button"
+                        hitSlop={
+                          Object {
+                            "bottom": 15,
+                            "left": 15,
+                            "right": 15,
+                            "top": 15,
+                          }
+                        }
+                        onPress={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": "flex-end",
+                            "paddingBottom": 2,
+                            "paddingRight": 2,
+                            "paddingTop": 2,
+                          }
+                        }
+                        testID="discussion.reply-btn"
+                        textAttributes={
+                          Object {
+                            "color": "#8B969E",
+                            "fontSize": 16,
+                            "fontWeight": "500",
+                          }
+                        }
+                      >
+                        <View>
+                          <Text
+                            accessible={true}
+                            allowFontScaling={true}
+                            ellipsizeMode="tail"
+                            style={
                               Array [
                                 Object {
-                                  "color": "#374A59",
-                                  "fontSize": 14,
+                                  "fontFamily": ".SFUIDisplay",
                                 },
                                 Object {
-                                  "fontFamily": ".SFUIDisplay-bold",
+                                  "color": "#2D3B45",
+                                  "fontSize": 16,
                                 },
+                                Array [
+                                  Object {
+                                    "color": "#374A59",
+                                    "fontSize": 14,
+                                  },
+                                  Object {
+                                    "fontFamily": ".SFUIDisplay-bold",
+                                  },
+                                  Object {
+                                    "color": "#374A59",
+                                  },
+                                  Object {
+                                    "color": "#8B969E",
+                                    "fontSize": 16,
+                                    "fontWeight": "500",
+                                  },
+                                ],
                                 Object {
-                                  "color": "#374A59",
+                                  "fontFamily": ".SFUIDisplay-medium",
                                 },
-                                Object {
-                                  "color": "#8B969E",
-                                  "fontWeight": "500",
-                                },
-                              ],
-                              Object {
-                                "fontFamily": ".SFUIDisplay-medium",
-                              },
-                            ]
-                          }
-                        >
-                          Reply
-                        </Text>
-                      </View>
-                    </TouchableOpacity>
-                    <Text
-                      accessible={false}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
-                      style={
-                        Array [
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                          Object {
-                            "color": "#2D3B45",
-                            "fontSize": 16,
-                          },
+                              ]
+                            }
+                          >
+                            Reply
+                          </Text>
+                        </View>
+                      </TouchableOpacity>
+                      <Text
+                        accessible={false}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        style={
                           Array [
                             Object {
-                              "alignSelf": "flex-end",
-                              "paddingBottom": 2,
-                              "paddingRight": 2,
-                              "paddingTop": 2,
+                              "fontFamily": ".SFUIDisplay",
                             },
                             Object {
-                              "alignSelf": "center",
-                              "color": "#C7CDD1",
-                              "paddingLeft": 10,
-                              "paddingRight": 10,
-                              "textAlign": "center",
+                              "color": "#2D3B45",
+                              "fontSize": 16,
                             },
-                          ],
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                        ]
-                      }
-                    >
-                      |
-                    </Text>
-                    <TouchableOpacity
-                      accessibilityTraits="button"
-                      hitSlop={
-                        Object {
-                          "bottom": 15,
-                          "left": 15,
-                          "right": 15,
-                          "top": 15,
-                        }
-                      }
-                      onPress={[Function]}
-                      style={
-                        Object {
-                          "alignSelf": "flex-end",
-                          "paddingBottom": 2,
-                          "paddingRight": 2,
-                          "paddingTop": 2,
-                        }
-                      }
-                      testID="discussion.edit-btn"
-                      textAttributes={
-                        Object {
-                          "color": "#8B969E",
-                          "fontWeight": "500",
-                        }
-                      }
-                    >
-                      <View>
-                        <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          ellipsizeMode="tail"
-                          style={
                             Array [
                               Object {
-                                "fontFamily": ".SFUIDisplay",
+                                "alignSelf": "flex-end",
+                                "paddingBottom": 2,
+                                "paddingRight": 2,
+                                "paddingTop": 2,
                               },
                               Object {
-                                "color": "#2D3B45",
-                                "fontSize": 16,
+                                "alignSelf": "center",
+                                "color": "#C7CDD1",
+                                "paddingLeft": 10,
+                                "paddingRight": 10,
+                                "textAlign": "center",
                               },
+                            ],
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
+                      >
+                        |
+                      </Text>
+                      <TouchableOpacity
+                        accessibilityTraits="button"
+                        hitSlop={
+                          Object {
+                            "bottom": 15,
+                            "left": 15,
+                            "right": 15,
+                            "top": 15,
+                          }
+                        }
+                        onPress={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": "flex-end",
+                            "paddingBottom": 2,
+                            "paddingRight": 2,
+                            "paddingTop": 2,
+                          }
+                        }
+                        testID="discussion.edit-btn"
+                        textAttributes={
+                          Object {
+                            "color": "#8B969E",
+                            "fontSize": 16,
+                            "fontWeight": "500",
+                          }
+                        }
+                      >
+                        <View>
+                          <Text
+                            accessible={true}
+                            allowFontScaling={true}
+                            ellipsizeMode="tail"
+                            style={
                               Array [
                                 Object {
-                                  "color": "#374A59",
-                                  "fontSize": 14,
+                                  "fontFamily": ".SFUIDisplay",
                                 },
                                 Object {
-                                  "fontFamily": ".SFUIDisplay-bold",
+                                  "color": "#2D3B45",
+                                  "fontSize": 16,
                                 },
+                                Array [
+                                  Object {
+                                    "color": "#374A59",
+                                    "fontSize": 14,
+                                  },
+                                  Object {
+                                    "fontFamily": ".SFUIDisplay-bold",
+                                  },
+                                  Object {
+                                    "color": "#374A59",
+                                  },
+                                  Object {
+                                    "color": "#8B969E",
+                                    "fontSize": 16,
+                                    "fontWeight": "500",
+                                  },
+                                ],
                                 Object {
-                                  "color": "#374A59",
+                                  "fontFamily": ".SFUIDisplay-medium",
                                 },
-                                Object {
-                                  "color": "#8B969E",
-                                  "fontWeight": "500",
-                                },
-                              ],
-                              Object {
-                                "fontFamily": ".SFUIDisplay-medium",
-                              },
-                            ]
-                          }
-                        >
-                          Edit
-                        </Text>
-                      </View>
-                    </TouchableOpacity>
+                              ]
+                            }
+                          >
+                            Edit
+                          </Text>
+                        </View>
+                      </TouchableOpacity>
+                    </View>
                   </View>
                   <View />
                 </View>
@@ -7100,7 +7189,12 @@ exports[`DiscussionDetails renders with no discussion 1`] = `
       ItemSeparatorComponent={undefined}
       data={Array []}
       disableVirtualization={false}
-      extraData={Array []}
+      extraData={
+        Object {
+          "entry_ratings": Object {},
+          "unread_entries": Array [],
+        }
+      }
       getItem={[Function]}
       getItemCount={[Function]}
       horizontal={false}
@@ -7286,6 +7380,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                   0,
                 ],
                 "parent_id": null,
+                "rating": undefined,
                 "rating_count": null,
                 "rating_sum": null,
                 "readState": "read",
@@ -7300,7 +7395,12 @@ exports[`DiscussionDetails renders with replies 1`] = `
         ]
       }
       disableVirtualization={false}
-      extraData={Array []}
+      extraData={
+        Object {
+          "entry_ratings": Object {},
+          "unread_entries": Array [],
+        }
+      }
       getItem={[Function]}
       getItemCount={[Function]}
       horizontal={false}
@@ -7444,6 +7544,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                   0,
                 ],
                 "parent_id": null,
+                "rating": undefined,
                 "rating_count": null,
                 "rating_sum": null,
                 "readState": "read",
@@ -8674,182 +8775,196 @@ exports[`DiscussionDetails renders with replies 1`] = `
                   <View
                     style={
                       Object {
+                        "flex": 1,
                         "flexDirection": "row",
-                        "justifyContent": "flex-start",
                         "marginTop": 16,
                       }
                     }
                   >
-                    <TouchableOpacity
-                      accessibilityTraits="button"
-                      hitSlop={
-                        Object {
-                          "bottom": 15,
-                          "left": 15,
-                          "right": 15,
-                          "top": 15,
-                        }
-                      }
-                      onPress={[Function]}
+                    <View
                       style={
                         Object {
-                          "alignSelf": "flex-end",
-                          "paddingBottom": 2,
-                          "paddingRight": 2,
-                          "paddingTop": 2,
-                        }
-                      }
-                      testID="discussion.reply-btn"
-                      textAttributes={
-                        Object {
-                          "color": "#8B969E",
-                          "fontWeight": "500",
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "justifyContent": "flex-start",
                         }
                       }
                     >
-                      <View>
-                        <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          ellipsizeMode="tail"
-                          style={
-                            Array [
-                              Object {
-                                "fontFamily": ".SFUIDisplay",
-                              },
-                              Object {
-                                "color": "#2D3B45",
-                                "fontSize": 16,
-                              },
+                      <TouchableOpacity
+                        accessibilityTraits="button"
+                        hitSlop={
+                          Object {
+                            "bottom": 15,
+                            "left": 15,
+                            "right": 15,
+                            "top": 15,
+                          }
+                        }
+                        onPress={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": "flex-end",
+                            "paddingBottom": 2,
+                            "paddingRight": 2,
+                            "paddingTop": 2,
+                          }
+                        }
+                        testID="discussion.reply-btn"
+                        textAttributes={
+                          Object {
+                            "color": "#8B969E",
+                            "fontSize": 16,
+                            "fontWeight": "500",
+                          }
+                        }
+                      >
+                        <View>
+                          <Text
+                            accessible={true}
+                            allowFontScaling={true}
+                            ellipsizeMode="tail"
+                            style={
                               Array [
                                 Object {
-                                  "color": "#374A59",
-                                  "fontSize": 14,
+                                  "fontFamily": ".SFUIDisplay",
                                 },
                                 Object {
-                                  "fontFamily": ".SFUIDisplay-bold",
+                                  "color": "#2D3B45",
+                                  "fontSize": 16,
                                 },
+                                Array [
+                                  Object {
+                                    "color": "#374A59",
+                                    "fontSize": 14,
+                                  },
+                                  Object {
+                                    "fontFamily": ".SFUIDisplay-bold",
+                                  },
+                                  Object {
+                                    "color": "#374A59",
+                                  },
+                                  Object {
+                                    "color": "#8B969E",
+                                    "fontSize": 16,
+                                    "fontWeight": "500",
+                                  },
+                                ],
                                 Object {
-                                  "color": "#374A59",
+                                  "fontFamily": ".SFUIDisplay-medium",
                                 },
-                                Object {
-                                  "color": "#8B969E",
-                                  "fontWeight": "500",
-                                },
-                              ],
-                              Object {
-                                "fontFamily": ".SFUIDisplay-medium",
-                              },
-                            ]
-                          }
-                        >
-                          Reply
-                        </Text>
-                      </View>
-                    </TouchableOpacity>
-                    <Text
-                      accessible={false}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
-                      style={
-                        Array [
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                          Object {
-                            "color": "#2D3B45",
-                            "fontSize": 16,
-                          },
+                              ]
+                            }
+                          >
+                            Reply
+                          </Text>
+                        </View>
+                      </TouchableOpacity>
+                      <Text
+                        accessible={false}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        style={
                           Array [
                             Object {
-                              "alignSelf": "flex-end",
-                              "paddingBottom": 2,
-                              "paddingRight": 2,
-                              "paddingTop": 2,
+                              "fontFamily": ".SFUIDisplay",
                             },
                             Object {
-                              "alignSelf": "center",
-                              "color": "#C7CDD1",
-                              "paddingLeft": 10,
-                              "paddingRight": 10,
-                              "textAlign": "center",
+                              "color": "#2D3B45",
+                              "fontSize": 16,
                             },
-                          ],
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                        ]
-                      }
-                    >
-                      |
-                    </Text>
-                    <TouchableOpacity
-                      accessibilityTraits="button"
-                      hitSlop={
-                        Object {
-                          "bottom": 15,
-                          "left": 15,
-                          "right": 15,
-                          "top": 15,
-                        }
-                      }
-                      onPress={[Function]}
-                      style={
-                        Object {
-                          "alignSelf": "flex-end",
-                          "paddingBottom": 2,
-                          "paddingRight": 2,
-                          "paddingTop": 2,
-                        }
-                      }
-                      testID="discussion.edit-btn"
-                      textAttributes={
-                        Object {
-                          "color": "#8B969E",
-                          "fontWeight": "500",
-                        }
-                      }
-                    >
-                      <View>
-                        <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          ellipsizeMode="tail"
-                          style={
                             Array [
                               Object {
-                                "fontFamily": ".SFUIDisplay",
+                                "alignSelf": "flex-end",
+                                "paddingBottom": 2,
+                                "paddingRight": 2,
+                                "paddingTop": 2,
                               },
                               Object {
-                                "color": "#2D3B45",
-                                "fontSize": 16,
+                                "alignSelf": "center",
+                                "color": "#C7CDD1",
+                                "paddingLeft": 10,
+                                "paddingRight": 10,
+                                "textAlign": "center",
                               },
+                            ],
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
+                      >
+                        |
+                      </Text>
+                      <TouchableOpacity
+                        accessibilityTraits="button"
+                        hitSlop={
+                          Object {
+                            "bottom": 15,
+                            "left": 15,
+                            "right": 15,
+                            "top": 15,
+                          }
+                        }
+                        onPress={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": "flex-end",
+                            "paddingBottom": 2,
+                            "paddingRight": 2,
+                            "paddingTop": 2,
+                          }
+                        }
+                        testID="discussion.edit-btn"
+                        textAttributes={
+                          Object {
+                            "color": "#8B969E",
+                            "fontSize": 16,
+                            "fontWeight": "500",
+                          }
+                        }
+                      >
+                        <View>
+                          <Text
+                            accessible={true}
+                            allowFontScaling={true}
+                            ellipsizeMode="tail"
+                            style={
                               Array [
                                 Object {
-                                  "color": "#374A59",
-                                  "fontSize": 14,
+                                  "fontFamily": ".SFUIDisplay",
                                 },
                                 Object {
-                                  "fontFamily": ".SFUIDisplay-bold",
+                                  "color": "#2D3B45",
+                                  "fontSize": 16,
                                 },
+                                Array [
+                                  Object {
+                                    "color": "#374A59",
+                                    "fontSize": 14,
+                                  },
+                                  Object {
+                                    "fontFamily": ".SFUIDisplay-bold",
+                                  },
+                                  Object {
+                                    "color": "#374A59",
+                                  },
+                                  Object {
+                                    "color": "#8B969E",
+                                    "fontSize": 16,
+                                    "fontWeight": "500",
+                                  },
+                                ],
                                 Object {
-                                  "color": "#374A59",
+                                  "fontFamily": ".SFUIDisplay-medium",
                                 },
-                                Object {
-                                  "color": "#8B969E",
-                                  "fontWeight": "500",
-                                },
-                              ],
-                              Object {
-                                "fontFamily": ".SFUIDisplay-medium",
-                              },
-                            ]
-                          }
-                        >
-                          Edit
-                        </Text>
-                      </View>
-                    </TouchableOpacity>
+                              ]
+                            }
+                          >
+                            Edit
+                          </Text>
+                        </View>
+                      </TouchableOpacity>
+                    </View>
                   </View>
                   <View />
                 </View>
@@ -8898,7 +9013,12 @@ exports[`DiscussionDetails renders without a discussion 1`] = `
       ItemSeparatorComponent={undefined}
       data={Array []}
       disableVirtualization={false}
-      extraData={Array []}
+      extraData={
+        Object {
+          "entry_ratings": Object {},
+          "unread_entries": Array [],
+        }
+      }
       getItem={[Function]}
       getItemCount={[Function]}
       horizontal={false}

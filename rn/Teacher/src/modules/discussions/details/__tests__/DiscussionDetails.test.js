@@ -23,7 +23,7 @@ import {
 } from 'react-native'
 import renderer from 'react-test-renderer'
 
-import { DiscussionDetails, mapStateToProps, type Props } from '../DiscussionDetails'
+import { DiscussionDetails, mapStateToProps, shouldRefresh, type Props } from '../DiscussionDetails'
 import explore from '../../../../../test/helpers/explore'
 import setProps from '../../../../../test/helpers/setProps'
 import app from '../../../app'
@@ -146,7 +146,13 @@ describe('DiscussionDetails', () => {
     const instance = tree.getInstance()
     instance._onPressMoreReplies([0, 0, 0, 0])
     expect(tree.toJSON()).toMatchSnapshot()
-    expect(instance.state).toEqual({ deletePending: false, rootNodePath: [0, 0, 0, 0], maxReplyNodeDepth: 2, unread_entries: [] })
+    expect(instance.state).toEqual({
+      deletePending: false,
+      rootNodePath: [0, 0, 0, 0],
+      maxReplyNodeDepth: 2,
+      unread_entries: [],
+      entry_ratings: {},
+    })
 
     let rootNodes = instance.rootRepliesData()
     let expected = [{
@@ -154,11 +160,13 @@ describe('DiscussionDetails', () => {
       depth: 0,
       readState: 'read',
       myPath: [0],
+      rating: undefined,
     }, {
       ...aaaaa,
       depth: 1,
       readState: 'read',
       myPath: [0, 0],
+      rating: undefined,
     },
     ]
     expect(rootNodes).toEqual(expected)
@@ -457,13 +465,13 @@ describe('DiscussionDetails', () => {
     const instance = tree.getInstance()
     instance._onPressMoreReplies([0, 0, 0, 0])
     instance._onPressMoreReplies([0, 0, 0, 0, 0, 0, 0])
-    expect(instance.state).toEqual({ deletePending: false, rootNodePath: [0, 0, 0, 0, 0, 0, 0], maxReplyNodeDepth: 2, unread_entries: [] })
+    expect(instance.state).toMatchObject({ deletePending: false, rootNodePath: [0, 0, 0, 0, 0, 0, 0], maxReplyNodeDepth: 2, unread_entries: [] })
     instance._onPopReplyRootPath()
-    expect(instance.state).toEqual({ deletePending: false, rootNodePath: [0, 0, 0, 0, 0], maxReplyNodeDepth: 2, unread_entries: [] })
+    expect(instance.state).toMatchObject({ deletePending: false, rootNodePath: [0, 0, 0, 0, 0], maxReplyNodeDepth: 2, unread_entries: [] })
     instance._onPopReplyRootPath()
-    expect(instance.state).toEqual({ deletePending: false, rootNodePath: [0, 0, 0], maxReplyNodeDepth: 2, unread_entries: [] })
+    expect(instance.state).toMatchObject({ deletePending: false, rootNodePath: [0, 0, 0], maxReplyNodeDepth: 2, unread_entries: [] })
     instance._onPopReplyRootPath()
-    expect(instance.state).toEqual({ deletePending: false, rootNodePath: [], maxReplyNodeDepth: 2, unread_entries: [] })
+    expect(instance.state).toMatchObject({ deletePending: false, rootNodePath: [], maxReplyNodeDepth: 2, unread_entries: [] })
   })
 
   it('deletes discussion', () => {
@@ -660,6 +668,7 @@ describe('mapStateToProps', () => {
             data: discussion,
             pending: 1,
             error: null,
+            entry_ratings: { '4': 1 },
           },
         },
         courses: {
@@ -689,6 +698,7 @@ describe('mapStateToProps', () => {
       courseColor: '#fff',
       assignment,
       isAnnouncement: false,
+      entryRatings: { '4': 1 },
     })
   })
 
@@ -767,5 +777,24 @@ describe('mapStateToProps', () => {
       discussionID: '1',
       isAnnouncement: true,
     })
+  })
+})
+
+describe('shouldRefresh', () => {
+  it('should refresh if discussion allows ratings', () => {
+    const props = {
+      discussion: template.discussion({
+        replies: [template.discussionReply()],
+        assignment_id: null,
+        unread_count: 0,
+      }),
+      unreadEntries: null,
+    }
+
+    props.allow_rating = false
+    expect(shouldRefresh(props)).toBeFalsy()
+
+    props.discussion.allow_rating = true
+    expect(shouldRefresh(props)).toBeTruthy()
   })
 })

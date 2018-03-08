@@ -67,9 +67,11 @@ type State = {
   courseColor: ?string,
   courseName: string,
   unreadEntries: ?string[],
+  entryRatings: { [string]: number },
   context: Context,
   contextID: string,
   courseName: string,
+  canRate: boolean,
 }
 
 type ViewableReply = {
@@ -79,7 +81,13 @@ type ViewableReply = {
   item: DiscussionReply,
 }
 
-const { refreshDiscussionEntries, refreshSingleDiscussion, deleteDiscussionEntry, markAllAsRead, markEntryAsRead } = DetailActions
+const {
+  refreshDiscussionEntries,
+  refreshSingleDiscussion,
+  deleteDiscussionEntry,
+  markAllAsRead,
+  markEntryAsRead,
+} = DetailActions
 const { NativeAccessibility } = NativeModules
 const { deleteDiscussion } = EditActions
 
@@ -110,7 +118,8 @@ export class DiscussionDetails extends Component<Props, any> {
       rootNodePath: [],
       deletePending: false,
       maxReplyNodeDepth: 2,
-      unread_entries: this.props.unreadEntries || [],
+      unread_entries: props.unreadEntries || [],
+      entry_ratings: props.entryRatings || {},
     }
   }
 
@@ -126,11 +135,18 @@ export class DiscussionDetails extends Component<Props, any> {
 
   componentWillReceiveProps (nextProps: Props) {
     if (this.state.deletePending && !nextProps.pending && !nextProps.error && !nextProps.discussion) {
-      this.setState({ deletePending: false, unread_entries: nextProps.unreadEntries })
+      this.setState({
+        deletePending: false,
+        unread_entries: nextProps.unreadEntries,
+        entry_ratings: nextProps.entryRatings || {},
+      })
       this.props.navigator.pop()
       return
     }
-    this.setState({ unread_entries: nextProps.unreadEntries })
+    this.setState({
+      unread_entries: nextProps.unreadEntries,
+      entry_ratings: nextProps.entryRatings || {},
+    })
   }
 
   onTraitCollectionChange () {
@@ -316,6 +332,9 @@ export class DiscussionDetails extends Component<Props, any> {
           onPressMoreReplies={this._onPressMoreReplies}
           isRootReply
           discussionLockedForUser={discussionLockedForUser}
+          rating={reply.rating}
+          canRate={this.props.canRate}
+          showRating={discussion.allow_rating}
         />
       </View>
     )
@@ -345,6 +364,7 @@ export class DiscussionDetails extends Component<Props, any> {
         depth: depth,
         myPath: [...indexPath, i],
         readState: readState,
+        rating: this.state.entry_ratings[replies[i].id],
       }
       flatList.push(reply)
       flatList = this.flattenRepliesData(flatList, depth + 1, replies[i].replies, reply.myPath)
@@ -385,7 +405,10 @@ export class DiscussionDetails extends Component<Props, any> {
             sections={data}
             onViewableItemsChanged={this._markViewableAsRead}
             initialNumToRender={10}
-            extraData={this.state.unread_entries}
+            extraData={{
+              unread_entries: this.state.unread_entries,
+              entry_ratings: this.state.entry_ratings,
+            }}
             keyExtractor={this.keyExtractor}
           />
         </View>
@@ -687,11 +710,15 @@ export function mapStateToProps ({ entities }: AppState, ownProps: OwnProps): St
   let courseColor
   let courseName = ''
   let unreadEntries = []
+  let entryRatings = {}
+  let course: ?Course
 
   if (entities && entities.discussions) {
-    if (context === 'courses') {
-      courseColor = entities.courses[contextID].color
-      courseName = entities.courses[contextID].course.name
+    if (context === 'courses' && entities.courses[contextID]) {
+      const entity = entities.courses[contextID]
+      course = entities.courses[contextID].course
+      courseColor = entity.color
+      courseName = course.name
     } else if (entities.groups[contextID]) {
       let group = entities.groups[contextID]
       courseName = group.group.name
@@ -705,6 +732,7 @@ export function mapStateToProps ({ entities }: AppState, ownProps: OwnProps): St
     const state = entities.discussions[discussionID]
     discussion = state.data
     unreadEntries = state.unread_entries || []
+    entryRatings = state.entry_ratings || {}
     pending = state.pending
     error = state.error
   }
@@ -715,9 +743,22 @@ export function mapStateToProps ({ entities }: AppState, ownProps: OwnProps): St
     assignment = entity ? entity.data : null
   }
 
+  let canRate = false
+  if (discussion) {
+    if (discussion.allow_rating) {
+      if (discussion.only_graders_can_rate) {
+        const graders = ['teacher', 'teacherenrollment', 'ta']
+        canRate = Boolean(course && course.enrollments && course.enrollments.some(e => graders.includes(e.type.toLowerCase())))
+      } else {
+        canRate = true
+      }
+    }
+  }
+
   return {
     discussion,
     unreadEntries,
+    entryRatings,
     pending,
     error,
     context,
@@ -727,6 +768,7 @@ export function mapStateToProps ({ entities }: AppState, ownProps: OwnProps): St
     courseColor,
     assignment,
     isAnnouncement,
+    canRate,
   }
 }
 
@@ -734,7 +776,8 @@ export function shouldRefresh (props: Props): boolean {
   return !props.discussion ||
          !props.discussion.replies ||
          (props.discussion.assignment_id && !props.assignment) ||
-         (!props.unreadEntries && props.discussion.unread_count > 0)
+         (!props.unreadEntries && props.discussion.unread_count > 0) ||
+         props.discussion.allow_rating
 }
 
 export function refreshData (props: Props): void {
