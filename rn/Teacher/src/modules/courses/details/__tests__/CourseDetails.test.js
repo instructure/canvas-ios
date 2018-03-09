@@ -20,6 +20,7 @@ import { shallow } from 'enzyme'
 import React from 'react'
 import { CourseDetails, Refreshed } from '../CourseDetails'
 import App from '../../../app'
+import * as LTITools from '../../../../common/LTITools'
 
 const template = {
   ...require('../../../../__templates__/course'),
@@ -29,6 +30,9 @@ const template = {
 
 jest
   .mock('../../../../routing')
+  .mock('../../../../common/LTITools.js', () => ({
+    launchExternalTool: jest.fn(),
+  }))
 
 const course = template.course()
 
@@ -145,9 +149,7 @@ describe('CourseDetails', () => {
     const props = {
       ...defaultProps,
       tabs: [tab],
-      navigator: template.navigator({
-        launchExternalTool: jest.fn(),
-      }),
+      navigator: template.navigator(),
     }
 
     const tree = shallow(<CourseDetails {...props} />)
@@ -155,7 +157,7 @@ describe('CourseDetails', () => {
       .find('OnLayout').first().dive()
       .find('[testID="courses-details.tab.external_tool_4"]')
       .simulate('Press', tab)
-    expect(props.navigator.launchExternalTool).toHaveBeenCalledWith(url)
+    expect(LTITools.launchExternalTool).toHaveBeenCalledWith(url)
 
     App.setCurrentApp(currentApp.appId)
   })

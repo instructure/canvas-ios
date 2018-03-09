@@ -221,14 +221,6 @@ open class HelmManager: NSObject {
         nav?.popViewController(animated: true)
         callback?()
     }
-
-    public func launchExternalTool(_ launchURL: String, callback: (() -> Void)? = nil) {
-        guard let current = topMostViewController(), let url = URL(string: launchURL) else {
-            callback?()
-            return
-        }
-        ExternalToolManager.shared.launch(url, in: CanvasKeymaster.the().currentClient.authSession, from: current, completionHandler: callback)
-    }
     
     public func present(_ module: ModuleName, withProps props: [String: Any], options: [String: Any], callback: (() -> Void)? = nil) {
         guard let current = topMostViewController() else {

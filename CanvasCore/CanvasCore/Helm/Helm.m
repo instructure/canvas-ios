@@ -75,10 +75,4 @@ RCT_EXPORT_METHOD(loginComplete) {
     [[HelmManager shared] loginComplete];
 }
 
-RCT_REMAP_METHOD(launchExternalTool, launchExternalTool:(NSString *)url resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
-    [[HelmManager shared] launchExternalTool:url callback:^() {
-        resolve(nil);
-    }];
-}
-
 @end

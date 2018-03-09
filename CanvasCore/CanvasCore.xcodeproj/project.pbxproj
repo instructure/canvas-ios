@@ -490,6 +490,7 @@
 		9F2E36382050918500A2B031 /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2E36372050918500A2B031 /* FeatureFlags.swift */; };
 		9F544E051FBB766E00BB2D84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F544E071FBB766E00BB2D84 /* InfoPlist.strings */; };
 		9F544E0A1FBB766E00BB2D84 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F544E0C1FBB766E00BB2D84 /* Localizable.strings */; };
+		9FD18B6B2052DE6800119927 /* LTITools.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD18B6A2052DE6800119927 /* LTITools.m */; };
 		B1411D5A1FE825ED00CD4967 /* AsyncActionNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1411D591FE825ED00CD4967 /* AsyncActionNotification.swift */; };
 		B1CA05061FE448F300B7D5AA /* NativeNotificationCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = B1CA05041FE448F300B7D5AA /* NativeNotificationCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1CA05071FE448F300B7D5AA /* NativeNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = B1CA05051FE448F300B7D5AA /* NativeNotificationCenter.m */; };
@@ -1079,6 +1080,7 @@
 		9FCE57151FBB767900971B28 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		9FCE57161FBB767900971B28 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		9FCE57171FBB767900971B28 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/TimedQuizViewController.strings"; sourceTree = "<group>"; };
+		9FD18B6A2052DE6800119927 /* LTITools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTITools.m; sourceTree = "<group>"; };
 		9FD7859B1FBB767C00A91987 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9FD7859C1FBB767C00A91987 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9FD7859D1FBB767C00A91987 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/TimedQuizViewController.strings; sourceTree = "<group>"; };
@@ -1678,6 +1680,7 @@
 				B1ED11932040CD5F00C3C580 /* CanvasWebViewManager.m */,
 				B1ED11952044803400C3C580 /* CanvasWebViewContainer.h */,
 				B1ED11962044803400C3C580 /* CanvasWebViewContainer.m */,
+				9FD18B6A2052DE6800119927 /* LTITools.m */,
 			);
 			path = "React Native Modules";
 			sourceTree = "<group>";
@@ -3384,6 +3387,7 @@
 				493020111F901CF5006BD777 /* CommentTableViewCell.swift in Sources */,
 				49CE96BE1F8FF94B00121A43 /* Page+Detail.swift in Sources */,
 				4930201C1F901CF5006BD777 /* CanvadocsAnnotation.swift in Sources */,
+				9FD18B6B2052DE6800119927 /* LTITools.m in Sources */,
 				2CE40C9C1F87D37100ECEACB /* PSPDFView.swift in Sources */,
 				2C4EBB3B204DFC820085D00E /* UITabBarController+Core.swift in Sources */,
 				4961F6391F8FB7110093EC86 /* Group.swift in Sources */,

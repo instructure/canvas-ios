@@ -45,6 +45,7 @@ import ActivityIndicatorView from '../../../common/components/ActivityIndicatorV
 import OnLayout from 'react-native-on-layout'
 import currentWindowTraits from '../../../utils/windowTraits'
 import { isTeacher, isStudent } from '../../app'
+import * as LTITools from '../../../common/LTITools'
 
 export class CourseDetails extends Component<CourseDetailsProps, any> {
   state = {
@@ -77,7 +78,7 @@ export class CourseDetails extends Component<CourseDetailsProps, any> {
         this.props.navigator.show(tab.html_url)
       } else {
         if (tab.type === 'external' && tab.url) {
-          this.props.navigator.launchExternalTool(tab.url)
+          LTITools.launchExternalTool(tab.url)
         } else {
           const url = `/courses/${this.props.courseID}/tabs/${tab.id}`
           this.props.navigator.show(url)

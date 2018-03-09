@@ -44,6 +44,7 @@ import canvas, { getSession } from '../../canvas-api'
 import { connect } from 'react-redux'
 import Actions from '../userInfo/actions'
 import StatusBar from '../../common/components/StatusBar'
+import * as LTITools from '../../common/LTITools'
 
 type State = {
   avatarURL: string,
@@ -96,7 +97,7 @@ export class Profile extends Component<Object, State> {
 
   async launchExternalTool (url: string) {
     await this.props.navigator.dismiss()
-    this.props.navigator.launchExternalTool(url)
+    LTITools.launchExternalTool(url)
   }
 
   switchUser = () => {

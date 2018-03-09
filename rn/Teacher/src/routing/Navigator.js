@@ -123,8 +123,4 @@ export default class Navigator {
       })
     }
   }
-
-  launchExternalTool (url: string) {
-    NativeModules.Helm.launchExternalTool(url)
-  }
 }
