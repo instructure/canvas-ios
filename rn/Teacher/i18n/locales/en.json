@@ -332,6 +332,9 @@
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
     "message": "{ count, plural,\n     =0 {0 students}\n    one {# student}\n  other {# students}\n}"
   },
+  "count_plural_one_like_other_likes_338617e5": {
+    "message": "{ count, plural,\n    one {# like}\n  other {# likes}\n}"
+  },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
     "message": "{ count, plural,\n    one {Needs Grading}\n  other {Need Grading}\n}"
   },
