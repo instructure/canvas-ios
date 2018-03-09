@@ -23,7 +23,7 @@ export default class FeatureFlags extends Component<any, any> {
             return (
               <Row
                 title={flagName}
-                subtitle={`On for: \n${featureFlags[flagName].institutions.join('\n')}`}
+                subtitle={`On for: \n${featureFlags[flagName].exempt.join('\n')}`}
                 border='bottom'
                 accessories={<Text>{featureFlagEnabled(flagName) ? 'On' : 'Off'}</Text>}
               />

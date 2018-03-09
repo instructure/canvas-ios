@@ -55,7 +55,13 @@ extension Router {
         }
         
         addContextRoute([.course], subPath: "assignments") { contextID, _ in
-            return try AssignmentsTableViewController(session: currentSession, courseID: contextID.id, route: route)
+            guard FeatureFlags.featureFlagEnabled(.newAssignmentsList) else {
+                return try AssignmentsTableViewController(session: currentSession, courseID: contextID.id, route: route)
+            }
+            return HelmViewController(
+                moduleName: "/courses/:courseID/assignments",
+                props: ["courseID": contextID.id]
+            )
         }
         
         addContextRoute([.course], subPath: "grades") { contextID, _ in

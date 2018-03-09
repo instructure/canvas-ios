@@ -4,7 +4,7 @@ import { getSession } from '../canvas-api/session'
 import { NativeModules } from 'react-native'
 
 type FeatureFlag = {
-  institutions: string[],
+  exempt: string[],
 }
 
 const { FeatureFlagsManager } = NativeModules
@@ -15,7 +15,7 @@ const { FeatureFlagsManager } = NativeModules
 // from here and see where flow tells us we are still trying to use it
 // This should be an enum so when adding more feature flags it should look like
 // type FeatureFlagName = 'someFeatureFlag' | 'otherFeatureFlag'
-type FeatureFlagName = 'userFilesFeatureFlag'
+type FeatureFlagName = 'userFilesFeatureFlag' | 'newAssignmentsList'
 
 // if a feature is listed here it will be turned off
 // unless in development, the current user is on a domain
@@ -23,14 +23,17 @@ type FeatureFlagName = 'userFilesFeatureFlag'
 // or the domain has been added as an exceptions
 export const featureFlags: { [FeatureFlagName]: FeatureFlag } = {
   userFilesFeatureFlag: {
-    institutions: [
-      'https://msessions.instructure.com',
+    exempt: [
+      'https://msessions.instructure.com/',
     ],
   },
+  newAssignmentsList: { exempt: [] },
 }
 
 export const exemptDomains = [
-  'https://mobiledev.instructure.com',
+  'https://mobiledev.instructure.com/',
+  'https://twilson.instructure.com/',
+  'https://lmoseley.instructure.com/',
 ]
 
 // if you ever have to change the logic here you must also update
@@ -53,7 +56,7 @@ export function featureFlagEnabled (flagName: FeatureFlagName): boolean {
     return true
   }
 
-  if (flag.institutions.includes(session.baseURL)) {
+  if (flag.exempt.includes(session.baseURL)) {
     return true
   }
 

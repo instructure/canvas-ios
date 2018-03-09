@@ -12,7 +12,7 @@ const templates = {
 describe('Feature Flags', () => {
   beforeAll(() => {
     featureFlags['aNewFlag'] = {
-      institutions: ['https://www.google.com'],
+      exempt: ['https://www.google.com/'],
     }
   })
 
@@ -31,17 +31,17 @@ describe('Feature Flags', () => {
   })
 
   it('returns true when there is no feature flag', () => {
-    setSession(templates.session({ baseURL: 'https://mobileqa.instructure.com' }))
+    setSession(templates.session({ baseURL: 'https://mobileqa.instructure.com/' }))
     expect(featureFlagEnabled('someOtherFlag')).toEqual(true)
   })
 
   it('returns true when the user is on an exempted domain', () => {
-    setSession(templates.session({ baseURL: 'https://www.google.com' }))
+    setSession(templates.session({ baseURL: 'https://www.google.com/' }))
     expect(featureFlagEnabled('aNewFlag')).toEqual(true)
   })
 
   it('returns false if the flag is defined and the user is not from an exempted domain', () => {
-    setSession(templates.session({ baseURL: 'https://mobileqa.instructure.com' }))
+    setSession(templates.session({ baseURL: 'https://mobileqa.instructure.com/' }))
     expect(featureFlagEnabled('aNewFlag')).toEqual(false)
   })
 })

@@ -314,9 +314,10 @@ extension AppDelegate: RCTBridgeDelegate {
             return controller
         })
         
-        HelmManager.shared.registerNativeViewController(for: "/courses/:courseID/tabs", factory: { props in
+        HelmManager.shared.registerNativeViewController(for: "/courses/:courseID/assignments/:assignmentID", factory: { props in
             guard let courseID = props["courseID"] as? String else { return nil }
-            let url = URL(string: "api/v1/courses/\(courseID)/tabs")
+            guard let assignmentID = props["assignmentID"] as? String else { return nil }
+            let url = URL(string: "api/v1/courses/\(courseID)/assignments/\(assignmentID)")
             return Router.shared().controller(forHandling: url)
         })
         
