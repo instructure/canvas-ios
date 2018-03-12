@@ -1,5 +1,34 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`CourseDetailsTab can be pressed 1`] = `
+<SafeAreaView>
+  <Row
+    border="bottom"
+    disclosureIndicator={true}
+    image={
+      Object {
+        "testUri": "../../../src/images/course/Assignment.png",
+      }
+    }
+    imageSize={
+      Object {
+        "height": 24,
+        "width": 24,
+      }
+    }
+    imageTint="white"
+    onPress={[Function]}
+    testID="courses-details.assignments-cell"
+    title="Home"
+    titleStyles={
+      Object {
+        "fontWeight": "500",
+      }
+    }
+  />
+</SafeAreaView>
+`;
+
 exports[`CourseDetailsTab can be selected 1`] = `
 <SafeAreaView>
   <Row

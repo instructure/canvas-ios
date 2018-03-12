@@ -20,10 +20,11 @@ import 'react-native'
 import React from 'react'
 import * as courseTemplate from '../../../../__templates__/course'
 import * as navigationTemplate from '../../../../__templates__/helm'
-import { FavoritesList } from '../EditFavorites'
+import { Refreshed, FavoritesList } from '../EditFavorites'
 import setProps from '../../../../../test/helpers/setProps'
 
 import renderer from 'react-test-renderer'
+import { shallow } from 'enzyme/build/index'
 
 let courses = [
   courseTemplate.course(),
@@ -46,6 +47,48 @@ test('renders correctly', () => {
   ).toJSON()
 
   expect(tree).toMatchSnapshot()
+})
+
+it('refresh courses when empty', () => {
+  const refreshCourses = jest.fn()
+  const refreshProps = {
+    courses: [],
+    refreshCourses,
+  }
+
+  const tree = shallow(<Refreshed {...refreshProps} />)
+  expect(tree).toMatchSnapshot()
+  expect(refreshCourses).toHaveBeenCalled()
+})
+
+it('no refresh when at least one course exists', () => {
+  const refreshCourses = jest.fn()
+  const refreshProps = {
+    courses: [],
+    refreshCourses,
+  }
+
+  const tree = shallow(<Refreshed {...refreshProps} />)
+  expect(tree).toMatchSnapshot()
+  expect(refreshCourses).toHaveBeenCalledTimes(1)
+  expect(tree.refreshing).toBeFalsy()
+  refreshProps.courses[0] = courses[0]
+  tree.setProps(refreshProps)
+  expect(refreshCourses).toHaveBeenCalledTimes(1)
+})
+
+it('refreshes with new props', () => {
+  const refreshCourses = jest.fn()
+  const refreshProps = {
+    courses: [],
+    refreshCourses,
+  }
+
+  let tree = shallow(<Refreshed {...refreshProps} />)
+  expect(tree).toMatchSnapshot()
+  tree.instance().refresh()
+  tree.setProps(refreshProps)
+  expect(refreshCourses).toHaveBeenCalledTimes(2)
 })
 
 it('updates when courses prop changes', () => {

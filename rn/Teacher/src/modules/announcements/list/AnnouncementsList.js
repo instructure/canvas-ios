@@ -173,7 +173,7 @@ export function mapStateToProps ({ entities }: AppState, { context, contextID }:
   }
 }
 
-const Refreshed = refresh(
+export const Refreshed = refresh(
   props => {
     props.refreshAnnouncements(props.context, props.contextID)
     if (props.context === 'courses') {

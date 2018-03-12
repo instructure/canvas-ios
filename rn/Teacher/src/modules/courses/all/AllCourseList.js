@@ -21,7 +21,7 @@ import CoursesActions from '../actions'
 import refresh from '../../../utils/refresh'
 import { Dashboard, mapStateToProps } from '../../dashboard/Dashboard'
 
-let Refreshed = refresh(
+export let Refreshed: any = refresh(
   props => props.refreshCourses(),
   props => props.courses.length === 0,
   props => Boolean(props.pending)

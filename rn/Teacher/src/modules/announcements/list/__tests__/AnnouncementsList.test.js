@@ -20,9 +20,10 @@ import React from 'react'
 import 'react-native'
 import renderer from 'react-test-renderer'
 
-import { AnnouncementsList, type Props, mapStateToProps } from '../AnnouncementsList'
+import { Refreshed, AnnouncementsList, type Props, mapStateToProps } from '../AnnouncementsList'
 import explore from '../../../../../test/helpers/explore'
 import app from '../../../app'
+import { shallow } from 'enzyme/build/index'
 
 const template = {
   ...require('../../../../__templates__/discussion'),
@@ -67,6 +68,59 @@ describe('AnnouncementsList', () => {
       courseColor: 'blue',
       permissions: template.discussionPermissions(),
     }
+  })
+
+  it('refreshes when there are no announcements', () => {
+    const refreshAnnouncements = jest.fn()
+    const refreshCourse = jest.fn()
+    const refreshProps = {
+      announcements: [],
+      refreshAnnouncements,
+      refreshCourse,
+    }
+
+    let tree = shallow(<Refreshed {...refreshProps} />)
+    expect(tree).toMatchSnapshot()
+    expect(refreshAnnouncements).toHaveBeenCalled()
+    expect(refreshCourse).toHaveBeenCalledTimes(0)
+
+    // $FlowFixMe
+    refreshProps.context = 'courses'
+    tree = shallow(<Refreshed {...refreshProps} />)
+    expect(tree).toMatchSnapshot()
+    expect(refreshCourse).toHaveBeenCalledTimes(1)
+  })
+
+  it('refreshes when there are no permissions', () => {
+    const refreshAnnouncements = jest.fn()
+    const refreshProps = {
+      announcements: [template.discussion({
+        id: '1',
+        title: 'Untitled',
+        posted_at: '2013-11-14T16:55:00-07:00',
+      })],
+      permissions: {},
+      refreshAnnouncements,
+    }
+
+    let tree = shallow(<Refreshed {...refreshProps} />)
+    expect(tree).toMatchSnapshot()
+    expect(refreshAnnouncements).toHaveBeenCalled()
+  })
+
+  it('refreshes with new props', () => {
+    const refreshAnnouncements = jest.fn()
+    const refreshProps = {
+      announcements: [],
+      permissions: {},
+      refreshAnnouncements,
+    }
+
+    let tree = shallow(<Refreshed {...refreshProps} />)
+    expect(tree).toMatchSnapshot()
+    tree.instance().refresh()
+    tree.setProps(refreshProps)
+    expect(refreshAnnouncements).toHaveBeenCalledTimes(2)
   })
 
   it('renders', () => {

@@ -50,6 +50,19 @@ describe('CourseDetailsTab', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  it('can be pressed', () => {
+    const onPressed = jest.fn()
+    const props = {
+      ...defaultProps,
+      onPress: onPressed,
+    }
+
+    const tree = shallow(<CourseDetailsTab {...props} />)
+    expect(tree).toMatchSnapshot()
+    tree.find('Row').simulate('press')
+    expect(onPressed).toHaveBeenCalledTimes(1)
+  })
+
   it('uses attendance tab image', () => {
     const props = {
       ...defaultProps,

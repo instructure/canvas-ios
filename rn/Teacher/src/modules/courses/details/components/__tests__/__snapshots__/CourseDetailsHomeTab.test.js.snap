@@ -1,5 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`CourseDetailsHomeTab can be pressed 1`] = `
+<FeatureRow
+  disclosureIndicator={true}
+  onPress={[Function]}
+  subtitle="Assignments"
+  testID="courses-details.assignments-cell"
+  title="Home"
+/>
+`;
+
 exports[`CourseDetailsHomeTab can be selected 1`] = `
 <FeatureRow
   disclosureIndicator={true}

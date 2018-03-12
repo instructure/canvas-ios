@@ -91,6 +91,7 @@
     "flow-bin": "^0.63.0",
     "format-message-cli": "^5.2.3",
     "jest": "^20.0.4",
+    "jest-cli": "^20.0.4",
     "jest-fetch-mock": "^1.4.1",
     "react-dom": "^16.1.1",
     "react-native-kill-packager": "^1.0.0",

@@ -51,4 +51,17 @@ describe('CourseDetailsHomeTab', () => {
     const tree = shallow(<CourseDetailsHomeTab {...defaultProps} selected />)
     expect(tree).toMatchSnapshot()
   })
+
+  it('can be pressed', () => {
+    const onPressed = jest.fn()
+    const props = {
+      ...defaultProps,
+      onPress: onPressed,
+    }
+
+    const tree = shallow(<CourseDetailsHomeTab {...props} />)
+    expect(tree).toMatchSnapshot()
+    tree.find('FeatureRow').simulate('press')
+    expect(onPressed).toHaveBeenCalledTimes(1)
+  })
 })

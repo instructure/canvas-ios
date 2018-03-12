@@ -95,7 +95,7 @@ export class FavoritesList extends Component<Props, State> {
   }
 }
 
-let Refreshed = refresh(
+export let Refreshed = refresh(
   props => props.refreshCourses(),
   props => props.courses.length === 0,
   props => Boolean(props.pending)
