@@ -50,7 +50,7 @@ public class ExternalToolManager: NSObject {
                 if error.code == 401, let fallbackURL = fallbackURL {
                     // There's a bug with the API that is causing 401 errors which "should" never happen.
                     // So if it does, load the Canvas Web version.
-                    me.showFallbackURL(fallbackURL, in: session, from: vc, completionHandler: completionHandler)
+                    me.showAuthenticatedURL(fallbackURL, in: session, from: vc, completionHandler: completionHandler)
                     return
                 }
                 me.fail(error, from: vc)
@@ -90,14 +90,14 @@ public class ExternalToolManager: NSObject {
         }
     }
 
-    private func showFallbackURL(_ url: URL, in session: Session, from viewController: UIViewController, completionHandler: (() -> Void)? = nil) {
+    public func showAuthenticatedURL(_ url: URL, in session: Session, from viewController: UIViewController, completionHandler: (() -> Void)? = nil) {
         getAuthenticatedFallbackURL(forURL: url, in: session) { [weak self, weak viewController] result in
             guard let me = self, let vc = viewController else { return }
             switch result {
-            case .success(let url):
+            case .success(let newURL):
+                me.present(newURL, from: vc, completionHandler: completionHandler)
+            case .failure(_):
                 me.present(url, from: vc, completionHandler: completionHandler)
-            case .failure(let error):
-                me.fail(error, from: vc)
             }
         }
     }

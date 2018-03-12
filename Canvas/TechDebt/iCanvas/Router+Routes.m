@@ -51,6 +51,7 @@
 
 #import <CanvasKit/CanvasKit.h>
 #import "CKCanvasAPI+CurrentAPI.h"
+#import <SafariServices/SafariServices.h>
 
 @import CanvasCore;
 @import CanvasKeymaster;
@@ -185,19 +186,14 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
 #pragma mark - Routes
 - (void)addRoutes
 {
-    @weakify(self);
-    
     self.fallbackHandler = ^(NSURL *url, UIViewController *sender) {
-        @strongify(self);
         if ([url.scheme isEqualToString:@"canvas-courses"]) {
             return;
         }
-        
-        UINavigationController *controller = (UINavigationController *)[[UIStoryboard storyboardWithName:@"Storyboard-WebBrowser" bundle:[NSBundle bundleForClass:[self class]]] instantiateInitialViewController];
-        WebBrowserViewController *browser = controller.viewControllers[0];
-        [browser setUrl:url];
-        [controller setModalPresentationStyle:UIModalPresentationFullScreen];
-        [sender presentViewController:controller animated:YES completion:nil];
+
+        Session *session = TheKeymaster.currentClient.authSession;
+        if (!session) { return; }
+        [[ExternalToolManager shared] showAuthenticatedURL:url in:session from:sender completionHandler:nil];
     };
     
     UIViewController *(^syllabusListViewControllerBlock)(NSDictionary *params, id viewModel) = ^(NSDictionary *params, id viewModel) {

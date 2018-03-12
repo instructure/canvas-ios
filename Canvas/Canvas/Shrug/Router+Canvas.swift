@@ -158,6 +158,19 @@ extension Router {
             )
         }
         
+        addContextRoute([.user], subPath: "/files") { contextID, params in
+            guard let folderController = FolderViewController(interfaceStyle: FolderInterfaceStyleLight) else { return nil }
+            guard let canvasAPI = CKCanvasAPI.current() else { return nil }
+            guard contextID.id.toInt64() == canvasAPI.user.ident else { return nil }
+            folderController.canvasAPI = canvasAPI
+            folderController.title = NSLocalizedString("Files", comment: "")
+            let context = CKContextInfo(from: canvasAPI.user)
+            folderController.loadRootFolder(forContext: context)
+            let navigation = UINavigationController(rootViewController: folderController)
+            navigation.modalPresentationStyle = .formSheet
+            return navigation
+        }
+        
         addRoute("/courses/:courseID") { parameters, _ in
             guard let params = parameters, let courseID = (try? params.stringID("courseID")) else { return nil }
             return HelmViewController(moduleName: "/courses/:courseID", props: ["courseID": courseID, "navigatorOptions": ["modal": true]])
@@ -259,7 +272,7 @@ extension Router {
             guard
                 let params = parameters,
                 let eventID = try? params.stringID("calendarEventID"),
-                let eventVC = try? CalendarEventDetailViewController(forEventWithID: eventID, in: currentSession)
+                let eventVC = try? CalendarEventDetailViewController(forEventWithID: eventID, in: currentSession, route: route)
             else {
                 fatalError("How did this path match if there is no calendarEventID?")
             }

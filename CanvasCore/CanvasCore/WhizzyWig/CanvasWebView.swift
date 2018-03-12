@@ -55,7 +55,7 @@ public class CanvasWebView: WKWebView {
     }
     
     @objc
-    public func load(html: String, title: String?, baseURL: URL, routeToURL: @escaping (URL) -> Void) {
+    public func load(html: String, title: String?, baseURL: URL?, routeToURL: @escaping (URL) -> Void) {
         navigation = .external(routeToURL)
         load(source: .html(title: title, body: html, baseURL: baseURL))
     }

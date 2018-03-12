@@ -43,7 +43,11 @@
             [self.splitViewController showDetailViewController:nav sender:nil];
         }
     } else {
-        [self.navigationController pushViewController:destinationViewController animated:animated];
+        if ([destinationViewController isKindOfClass:[UINavigationController class]]) {
+            [self presentViewController:destinationViewController animated:YES completion:nil];
+        } else {
+            [self.navigationController pushViewController:destinationViewController animated:animated];
+        }
     }
 }
 @end

@@ -322,7 +322,7 @@
                 params[paramKey] = [remaining componentsJoinedByString:@"/"];
                 break;
             }
-            else if (![urlComponents[i] isEqualToString:routeComponents[i]]) {
+            else if (i >= urlComponents.count || ![urlComponents[i] isEqualToString:routeComponents[i]]) {
                 return; // not a match, continue to next key
             }
         }

@@ -76,10 +76,13 @@ class CalendarEventDetailViewController: UIViewController {
         return f
     }()
     
-    init(forEventWithID eventID: String, in session: Session) throws {
+    let route: (UIViewController, URL) -> Void
+    
+    init(forEventWithID eventID: String, in session: Session, route: @escaping (UIViewController, URL) -> Void) throws {
         self.observer = try CalendarEvent.observer(session, calendarEventID: eventID)
         self.refresher = try CalendarEvent.refresher(session, calendarEventID: eventID)
         self.enrollments = session.enrollmentsDataSource
+        self.route = route
         
         super.init(nibName: nil, bundle: nil)
 
@@ -117,7 +120,10 @@ class CalendarEventDetailViewController: UIViewController {
         }
         
         if let description = event?.htmlDescription {
-            details.load(source: .html(title: event?.title, body: description, baseURL: nil))
+            details.load(html: description, title: event?.title, baseURL: nil) { [weak self] url in
+                guard let me = self else { return }
+                me.route(me, url)
+            }
         }
     }
     

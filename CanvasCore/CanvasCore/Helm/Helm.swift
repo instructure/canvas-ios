@@ -187,13 +187,16 @@ open class HelmManager: NSObject {
                     pushOntoNav(nav)
                     callback?()
                 }
+                
+                return
             }
-        } else if let navigationController = topViewController.navigationController {
+        }
+        
+        if let navigationController = topViewController.navigationController {
             pushOntoNav(navigationController)
             callback?()
         } else {
             assertionFailure("\(#function) invalid controller: \(topViewController)")
-            return
         }
     }
 
@@ -357,10 +360,10 @@ open class HelmManager: NSObject {
 }
 
 extension HelmManager {
-    func navigationControllerForSplitViewControllerPush(splitViewController: HelmSplitViewController?, sourceModule: ModuleName, destinationModule: ModuleName, props: [String: Any], options: [String: Any]) -> HelmNavigationController? {
+    func navigationControllerForSplitViewControllerPush(splitViewController: HelmSplitViewController?, sourceModule: ModuleName, destinationModule: ModuleName, props: [String: Any], options: [String: Any]) -> UINavigationController? {
 
         if let detailViewController = splitViewController?.detailTopHelmViewController, detailViewController.moduleName == sourceModule {
-            return splitViewController?.detailHelmNavigationController
+            return splitViewController?.detailHelmNavigationController ?? splitViewController?.detailNavigationController
         } else {
             let canBecomeMaster = options["canBecomeMaster"] as? Bool ?? false
 
@@ -372,7 +375,7 @@ extension HelmManager {
                 splitViewController?.primeEmptyDetailNavigationController()
             }
             
-            return splitViewController?.detailHelmNavigationController
+            return splitViewController?.detailHelmNavigationController ?? splitViewController?.detailNavigationController
         }
     }
 }

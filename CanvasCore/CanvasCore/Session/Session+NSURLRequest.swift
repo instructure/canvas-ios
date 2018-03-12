@@ -63,11 +63,8 @@ extension URLRequest {
 
 extension Session {
     fileprivate func pathByRemovingDuplicateSlash(_ path: String) -> String {
-        if path.hasPrefix("/") {
-            return path.replacingCharacters(in: path.startIndex..<path.characters.index(path.startIndex, offsetBy: 1), with: "")
-        } else {
-            return path
-        }
+        if path.hasPrefix("/") { return String(path.dropFirst()) }
+        return path
     }
 
     public func GET(_ path: String, parameters: [String: Any] = [:], encoding: ParameterEncoding = .urlEncodedInURL, authorized: Bool = true) throws -> URLRequest {
