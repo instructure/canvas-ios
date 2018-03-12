@@ -405,7 +405,7 @@
 /* (No Comment) */
 "Courses" = "Kou";
 
-/* cancel folder creation */
+/* Cancel button title */
 "Create Folder" = "Kreye Dosye";
 
 /* Header for a section showing submitted filenames */
@@ -906,7 +906,7 @@
 /* Open a document in the application Safari */
 "Open in Safari" = "Ouvri nan Safari";
 
-/* Link to open assignment in SpeedGrader */
+/* (No Comment) */
 "Open in SpeedGrader" = "Ouvri nan SpeedGrader";
 
 /* Open file in another application */

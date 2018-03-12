@@ -457,12 +457,6 @@
 /* Shows question position */
 "Question %@" = "Kesyon %@";
 
-/* state for a question that has been flagged */
-"Question (questionNumber) Flagged" = "Kesyon (questionNumber) Siyale";
-
-/* state for unflagged question */
-"Question (questionNumber) Unflagged" = "Kesyon (questionNumber) Pa siyale";
-
 /* label for the number of questions */
 "Questions" = "Kesyon";
 

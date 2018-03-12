@@ -457,12 +457,6 @@
 /* Shows question position */
 "Question %@" = "質問%@";
 
-/* state for a question that has been flagged */
-"Question (questionNumber) Flagged" = "質問 (questionNumber) がフラグ付けされました";
-
-/* state for unflagged question */
-"Question (questionNumber) Unflagged" = "質問 (questionNumber) のフラグが解除されました";
-
 /* label for the number of questions */
 "Questions" = "質問";
 

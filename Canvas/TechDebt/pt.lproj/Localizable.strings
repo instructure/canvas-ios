@@ -405,7 +405,7 @@
 /* (No Comment) */
 "Courses" = "Disciplinas";
 
-/* cancel folder creation */
+/* Cancel button title */
 "Create Folder" = "Criar Pasta";
 
 /* Header for a section showing submitted filenames */
@@ -906,7 +906,7 @@
 /* Open a document in the application Safari */
 "Open in Safari" = "Abri no Safari";
 
-/* Link to open assignment in SpeedGrader */
+/* (No Comment) */
 "Open in SpeedGrader" = "Abrir no SpeedGrader";
 
 /* Open file in another application */

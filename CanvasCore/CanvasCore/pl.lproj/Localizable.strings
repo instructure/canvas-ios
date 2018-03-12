@@ -457,12 +457,6 @@
 /* Shows question position */
 "Question %@" = "Pytanie %@";
 
-/* state for a question that has been flagged */
-"Question (questionNumber) Flagged" = "Pytanie (questionNumber) oflagowane";
-
-/* state for unflagged question */
-"Question (questionNumber) Unflagged" = "Pytanie (questionNumber) bez flagi";
-
 /* label for the number of questions */
 "Questions" = "Pytania";
 

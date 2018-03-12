@@ -405,7 +405,7 @@
 /* (No Comment) */
 "Courses" = "Emne";
 
-/* cancel folder creation */
+/* Cancel button title */
 "Create Folder" = "Lag mappe";
 
 /* Header for a section showing submitted filenames */
@@ -906,7 +906,7 @@
 /* Open a document in the application Safari */
 "Open in Safari" = "Åpne i Safari";
 
-/* Link to open assignment in SpeedGrader */
+/* (No Comment) */
 "Open in SpeedGrader" = "Åpne i SpeedGrader";
 
 /* Open file in another application */

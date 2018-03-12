@@ -405,7 +405,7 @@
 /* (No Comment) */
 "Courses" = "課程";
 
-/* cancel folder creation */
+/* Cancel button title */
 "Create Folder" = "創建資料夾";
 
 /* Header for a section showing submitted filenames */
@@ -906,7 +906,7 @@
 /* Open a document in the application Safari */
 "Open in Safari" = "在 Safari 中打開";
 
-/* Link to open assignment in SpeedGrader */
+/* (No Comment) */
 "Open in SpeedGrader" = "在 SpeedGrader 中打開";
 
 /* Open file in another application */

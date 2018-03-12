@@ -457,12 +457,6 @@
 /* Shows question position */
 "Question %@" = "問題%@";
 
-/* state for a question that has been flagged */
-"Question (questionNumber) Flagged" = "問題 (questionNumber) 已標註";
-
-/* state for unflagged question */
-"Question (questionNumber) Unflagged" = "問題 (questionNumber) 已取消標註";
-
 /* label for the number of questions */
 "Questions" = "問題";
 

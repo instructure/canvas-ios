@@ -405,7 +405,7 @@
 /* (No Comment) */
 "Courses" = "Kurse";
 
-/* cancel folder creation */
+/* Cancel button title */
 "Create Folder" = "Ordner anlegen";
 
 /* Header for a section showing submitted filenames */
@@ -906,7 +906,7 @@
 /* Open a document in the application Safari */
 "Open in Safari" = "In Safari öffnen";
 
-/* Link to open assignment in SpeedGrader */
+/* (No Comment) */
 "Open in SpeedGrader" = "Im SpeedGrader benoten";
 
 /* Open file in another application */

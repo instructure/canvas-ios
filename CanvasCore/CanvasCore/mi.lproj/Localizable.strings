@@ -457,12 +457,6 @@
 /* Shows question position */
 "Question %@" = "Pātai %@";
 
-/* state for a question that has been flagged */
-"Question (questionNumber) Flagged" = "Pātai (questionNumber) Kua tohua";
-
-/* state for unflagged question */
-"Question (questionNumber) Unflagged" = "Pātai (questionNumber) Kaore i tohua";
-
 /* label for the number of questions */
 "Questions" = "Ngā pātai";
 
