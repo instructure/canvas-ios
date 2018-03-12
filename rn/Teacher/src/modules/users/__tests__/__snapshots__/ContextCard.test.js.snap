@@ -118,78 +118,100 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
               }
             }
           >
-            <Text
-              style={
-                Object {
-                  "color": "#2D3B45",
-                  "flex": 1,
-                  "fontSize": 28,
-                  "fontWeight": "700",
-                }
-              }
-              testID="context-card.grade"
-            >
-              100
-            </Text>
-            <Text
-              style={
-                Object {
-                  "color": "#2D3B45",
-                  "flex": 1,
-                  "fontSize": 28,
-                  "fontWeight": "700",
-                }
-              }
-            >
-              10
-            </Text>
-            <Text
-              style={
-                Object {
-                  "color": "#2D3B45",
-                  "flex": 1,
-                  "fontSize": 28,
-                  "fontWeight": "700",
-                }
-              }
-            >
-              20
-            </Text>
-          </View>
-          <View
-            style={
-              Object {
-                "flexDirection": "row",
-              }
-            }
-          >
-            <Text
+            <View
+              accessibilityLabel="Grade 100"
+              accessible={true}
               style={
                 Object {
                   "flex": 1,
                 }
               }
             >
-              Grade
-            </Text>
-            <Text
+              <Text
+                style={
+                  Object {
+                    "color": "#2D3B45",
+                    "flex": 1,
+                    "fontSize": 28,
+                    "fontWeight": "700",
+                  }
+                }
+                testID="context-card.grade"
+              >
+                100
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              >
+                Grade
+              </Text>
+            </View>
+            <View
+              accessibilityLabel="Late Submissions 10"
+              accessible={true}
               style={
                 Object {
                   "flex": 1,
                 }
               }
             >
-              Late
-            </Text>
-            <Text
+              <Text
+                style={
+                  Object {
+                    "color": "#2D3B45",
+                    "flex": 1,
+                    "fontSize": 28,
+                    "fontWeight": "700",
+                  }
+                }
+              >
+                10
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              >
+                Late
+              </Text>
+            </View>
+            <View
+              accessibilityLabel="Missing Submissions 20"
+              accessible={true}
               style={
                 Object {
                   "flex": 1,
                 }
               }
             >
-              Missing
-            </Text>
+              <Text
+                style={
+                  Object {
+                    "color": "#2D3B45",
+                    "flex": 1,
+                    "fontSize": 28,
+                    "fontWeight": "700",
+                  }
+                }
+              >
+                20
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              >
+                Missing
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -488,168 +510,190 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
                 }
               }
             >
-              <Text
+              <View
+                accessibilityLabel="Grade 100"
                 accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "flex": 1,
-                      "fontSize": 28,
-                      "fontWeight": "700",
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-bold",
-                    },
-                  ]
-                }
-                testID="context-card.grade"
-              >
-                100
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "flex": 1,
-                      "fontSize": 28,
-                      "fontWeight": "700",
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-bold",
-                    },
-                  ]
+                  Object {
+                    "flex": 1,
+                  }
                 }
               >
-                10
-              </Text>
-              <Text
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "flex": 1,
+                        "fontSize": 28,
+                        "fontWeight": "700",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-bold",
+                      },
+                    ]
+                  }
+                  testID="context-card.grade"
+                >
+                  100
+                </Text>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "flex": 1,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                    ]
+                  }
+                >
+                  Grade
+                </Text>
+              </View>
+              <View
+                accessibilityLabel="Late Submissions 10"
                 accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "flex": 1,
-                      "fontSize": 28,
-                      "fontWeight": "700",
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-bold",
-                    },
-                  ]
+                  Object {
+                    "flex": 1,
+                  }
                 }
               >
-                20
-              </Text>
-            </View>
-            <View
-              style={
-                Object {
-                  "flexDirection": "row",
-                }
-              }
-            >
-              <Text
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "flex": 1,
+                        "fontSize": 28,
+                        "fontWeight": "700",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-bold",
+                      },
+                    ]
+                  }
+                >
+                  10
+                </Text>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "flex": 1,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                    ]
+                  }
+                >
+                  Late
+                </Text>
+              </View>
+              <View
+                accessibilityLabel="Missing Submissions 20"
                 accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "flex": 1,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                  ]
+                  Object {
+                    "flex": 1,
+                  }
                 }
               >
-                Grade
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "flex": 1,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                  ]
-                }
-              >
-                Late
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "flex": 1,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                  ]
-                }
-              >
-                Missing
-              </Text>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "flex": 1,
+                        "fontSize": 28,
+                        "fontWeight": "700",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-bold",
+                      },
+                    ]
+                  }
+                >
+                  20
+                </Text>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "flex": 1,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                    ]
+                  }
+                >
+                  Missing
+                </Text>
+              </View>
             </View>
           </View>
         </View>
@@ -977,78 +1021,100 @@ exports[`ContextCard renders 1`] = `
               }
             }
           >
-            <Text
-              style={
-                Object {
-                  "color": "#2D3B45",
-                  "flex": 1,
-                  "fontSize": 28,
-                  "fontWeight": "700",
-                }
-              }
-              testID="context-card.grade"
-            >
-              A
-            </Text>
-            <Text
-              style={
-                Object {
-                  "color": "#2D3B45",
-                  "flex": 1,
-                  "fontSize": 28,
-                  "fontWeight": "700",
-                }
-              }
-            >
-              10
-            </Text>
-            <Text
-              style={
-                Object {
-                  "color": "#2D3B45",
-                  "flex": 1,
-                  "fontSize": 28,
-                  "fontWeight": "700",
-                }
-              }
-            >
-              20
-            </Text>
-          </View>
-          <View
-            style={
-              Object {
-                "flexDirection": "row",
-              }
-            }
-          >
-            <Text
+            <View
+              accessibilityLabel="Grade A"
+              accessible={true}
               style={
                 Object {
                   "flex": 1,
                 }
               }
             >
-              Grade
-            </Text>
-            <Text
+              <Text
+                style={
+                  Object {
+                    "color": "#2D3B45",
+                    "flex": 1,
+                    "fontSize": 28,
+                    "fontWeight": "700",
+                  }
+                }
+                testID="context-card.grade"
+              >
+                A
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              >
+                Grade
+              </Text>
+            </View>
+            <View
+              accessibilityLabel="Late Submissions 10"
+              accessible={true}
               style={
                 Object {
                   "flex": 1,
                 }
               }
             >
-              Late
-            </Text>
-            <Text
+              <Text
+                style={
+                  Object {
+                    "color": "#2D3B45",
+                    "flex": 1,
+                    "fontSize": 28,
+                    "fontWeight": "700",
+                  }
+                }
+              >
+                10
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              >
+                Late
+              </Text>
+            </View>
+            <View
+              accessibilityLabel="Missing Submissions 20"
+              accessible={true}
               style={
                 Object {
                   "flex": 1,
                 }
               }
             >
-              Missing
-            </Text>
+              <Text
+                style={
+                  Object {
+                    "color": "#2D3B45",
+                    "flex": 1,
+                    "fontSize": 28,
+                    "fontWeight": "700",
+                  }
+                }
+              >
+                20
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              >
+                Missing
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -1347,168 +1413,190 @@ exports[`ContextCard renders 1`] = `
                 }
               }
             >
-              <Text
+              <View
+                accessibilityLabel="Grade A"
                 accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "flex": 1,
-                      "fontSize": 28,
-                      "fontWeight": "700",
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-bold",
-                    },
-                  ]
-                }
-                testID="context-card.grade"
-              >
-                A
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "flex": 1,
-                      "fontSize": 28,
-                      "fontWeight": "700",
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-bold",
-                    },
-                  ]
+                  Object {
+                    "flex": 1,
+                  }
                 }
               >
-                10
-              </Text>
-              <Text
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "flex": 1,
+                        "fontSize": 28,
+                        "fontWeight": "700",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-bold",
+                      },
+                    ]
+                  }
+                  testID="context-card.grade"
+                >
+                  A
+                </Text>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "flex": 1,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                    ]
+                  }
+                >
+                  Grade
+                </Text>
+              </View>
+              <View
+                accessibilityLabel="Late Submissions 10"
                 accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "flex": 1,
-                      "fontSize": 28,
-                      "fontWeight": "700",
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-bold",
-                    },
-                  ]
+                  Object {
+                    "flex": 1,
+                  }
                 }
               >
-                20
-              </Text>
-            </View>
-            <View
-              style={
-                Object {
-                  "flexDirection": "row",
-                }
-              }
-            >
-              <Text
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "flex": 1,
+                        "fontSize": 28,
+                        "fontWeight": "700",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-bold",
+                      },
+                    ]
+                  }
+                >
+                  10
+                </Text>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "flex": 1,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                    ]
+                  }
+                >
+                  Late
+                </Text>
+              </View>
+              <View
+                accessibilityLabel="Missing Submissions 20"
                 accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "flex": 1,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                  ]
+                  Object {
+                    "flex": 1,
+                  }
                 }
               >
-                Grade
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "flex": 1,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                  ]
-                }
-              >
-                Late
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "flex": 1,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                  ]
-                }
-              >
-                Missing
-              </Text>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "flex": 1,
+                        "fontSize": 28,
+                        "fontWeight": "700",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-bold",
+                      },
+                    ]
+                  }
+                >
+                  20
+                </Text>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "flex": 1,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                    ]
+                  }
+                >
+                  Missing
+                </Text>
+              </View>
             </View>
           </View>
         </View>
@@ -3482,78 +3570,100 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
               }
             }
           >
-            <Text
-              style={
-                Object {
-                  "color": "#2D3B45",
-                  "flex": 1,
-                  "fontSize": 28,
-                  "fontWeight": "700",
-                }
-              }
-              testID="context-card.grade"
-            >
-              100%
-            </Text>
-            <Text
-              style={
-                Object {
-                  "color": "#2D3B45",
-                  "flex": 1,
-                  "fontSize": 28,
-                  "fontWeight": "700",
-                }
-              }
-            >
-              10
-            </Text>
-            <Text
-              style={
-                Object {
-                  "color": "#2D3B45",
-                  "flex": 1,
-                  "fontSize": 28,
-                  "fontWeight": "700",
-                }
-              }
-            >
-              20
-            </Text>
-          </View>
-          <View
-            style={
-              Object {
-                "flexDirection": "row",
-              }
-            }
-          >
-            <Text
+            <View
+              accessibilityLabel="Grade 100%"
+              accessible={true}
               style={
                 Object {
                   "flex": 1,
                 }
               }
             >
-              Grade
-            </Text>
-            <Text
+              <Text
+                style={
+                  Object {
+                    "color": "#2D3B45",
+                    "flex": 1,
+                    "fontSize": 28,
+                    "fontWeight": "700",
+                  }
+                }
+                testID="context-card.grade"
+              >
+                100%
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              >
+                Grade
+              </Text>
+            </View>
+            <View
+              accessibilityLabel="Late Submissions 10"
+              accessible={true}
               style={
                 Object {
                   "flex": 1,
                 }
               }
             >
-              Late
-            </Text>
-            <Text
+              <Text
+                style={
+                  Object {
+                    "color": "#2D3B45",
+                    "flex": 1,
+                    "fontSize": 28,
+                    "fontWeight": "700",
+                  }
+                }
+              >
+                10
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              >
+                Late
+              </Text>
+            </View>
+            <View
+              accessibilityLabel="Missing Submissions 20"
+              accessible={true}
               style={
                 Object {
                   "flex": 1,
                 }
               }
             >
-              Missing
-            </Text>
+              <Text
+                style={
+                  Object {
+                    "color": "#2D3B45",
+                    "flex": 1,
+                    "fontSize": 28,
+                    "fontWeight": "700",
+                  }
+                }
+              >
+                20
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              >
+                Missing
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -3852,168 +3962,190 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
                 }
               }
             >
-              <Text
+              <View
+                accessibilityLabel="Grade 100%"
                 accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "flex": 1,
-                      "fontSize": 28,
-                      "fontWeight": "700",
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-bold",
-                    },
-                  ]
-                }
-                testID="context-card.grade"
-              >
-                100%
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "flex": 1,
-                      "fontSize": 28,
-                      "fontWeight": "700",
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-bold",
-                    },
-                  ]
+                  Object {
+                    "flex": 1,
+                  }
                 }
               >
-                10
-              </Text>
-              <Text
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "flex": 1,
+                        "fontSize": 28,
+                        "fontWeight": "700",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-bold",
+                      },
+                    ]
+                  }
+                  testID="context-card.grade"
+                >
+                  100%
+                </Text>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "flex": 1,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                    ]
+                  }
+                >
+                  Grade
+                </Text>
+              </View>
+              <View
+                accessibilityLabel="Late Submissions 10"
                 accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "flex": 1,
-                      "fontSize": 28,
-                      "fontWeight": "700",
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-bold",
-                    },
-                  ]
+                  Object {
+                    "flex": 1,
+                  }
                 }
               >
-                20
-              </Text>
-            </View>
-            <View
-              style={
-                Object {
-                  "flexDirection": "row",
-                }
-              }
-            >
-              <Text
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "flex": 1,
+                        "fontSize": 28,
+                        "fontWeight": "700",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-bold",
+                      },
+                    ]
+                  }
+                >
+                  10
+                </Text>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "flex": 1,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                    ]
+                  }
+                >
+                  Late
+                </Text>
+              </View>
+              <View
+                accessibilityLabel="Missing Submissions 20"
                 accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "flex": 1,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                  ]
+                  Object {
+                    "flex": 1,
+                  }
                 }
               >
-                Grade
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "flex": 1,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                  ]
-                }
-              >
-                Late
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "flex": 1,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                  ]
-                }
-              >
-                Missing
-              </Text>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "flex": 1,
+                        "fontSize": 28,
+                        "fontWeight": "700",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-bold",
+                      },
+                    ]
+                  }
+                >
+                  20
+                </Text>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "flex": 1,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                    ]
+                  }
+                >
+                  Missing
+                </Text>
+              </View>
             </View>
           </View>
         </View>

@@ -64,10 +64,12 @@ export class ContextCard extends Component< ContextCardProps, any> {
         sectionName = section.name
       }
     }
-    let grade
+
+    let grade: ?string
     if (enrollment && enrollment.grades && enrollment.grades.current_grade) {
       grade = enrollment.grades.current_grade
     }
+
     return (
       <View style={styles.header}>
         <View style={styles.headerSection}>
@@ -95,14 +97,37 @@ export class ContextCard extends Component< ContextCardProps, any> {
           <View style={styles.headerSection}>
             <Heading1 style={{ marginBottom: 16 }}>{i18n('Submissions')}</Heading1>
             <View style={styles.line}>
-              <Text testID='context-card.grade' style={styles.largeText}>{grade || i18n.number(enrollment.grades.current_score / 100, 'percent')}</Text>
-              <Text style={styles.largeText}>{i18n.number(user.analytics.tardinessBreakdown.late)}</Text>
-              <Text style={styles.largeText}>{i18n.number(user.analytics.tardinessBreakdown.missing)}</Text>
-            </View>
-            <View style={styles.line}>
-              <Text style={styles.label}>{i18n('Grade')}</Text>
-              <Text style={styles.label}>{i18n('Late')}</Text>
-              <Text style={styles.label}>{i18n('Missing')}</Text>
+              <View
+                accessible={true}
+                style={styles.analyticsGroup}
+                accessibilityLabel={grade
+                  ? i18n('Grade {grade}', { grade })
+                  : i18n('Grade {grade, number, percent}', { grade: enrollment.grades.current_score / 100 })
+                }
+              >
+                <Text testID='context-card.grade' style={styles.largeText}>{grade || i18n.number(enrollment.grades.current_score / 100, 'percent')}</Text>
+                <Text style={styles.label}>{i18n('Grade')}</Text>
+              </View>
+              <View
+                accessible={true}
+                style={styles.analyticsGroup}
+                accessibilityLabel={i18n('Late Submissions {late, number}', {
+                  late: user.analytics.tardinessBreakdown.late,
+                })}
+              >
+                <Text style={styles.largeText}>{i18n.number(user.analytics.tardinessBreakdown.late)}</Text>
+                <Text style={styles.label}>{i18n('Late')}</Text>
+              </View>
+              <View
+                accessible={true}
+                style={styles.analyticsGroup}
+                accessibilityLabel={i18n('Missing Submissions {missing, number}', {
+                  missing: user.analytics.tardinessBreakdown.missing,
+                })}
+              >
+                <Text style={styles.largeText}>{i18n.number(user.analytics.tardinessBreakdown.missing)}</Text>
+                <Text style={styles.label}>{i18n('Missing')}</Text>
+              </View>
             </View>
           </View>
         }
@@ -229,6 +254,9 @@ const styles = StyleSheet.create({
     color: colors.lightText,
     top: -3,
     fontWeight: '600',
+  },
+  analyticsGroup: {
+    flex: 1,
   },
 })
 
