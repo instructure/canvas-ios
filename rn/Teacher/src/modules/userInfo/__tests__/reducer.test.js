@@ -54,16 +54,33 @@ describe('userInfo', () => {
     const app5 = template.launchDefinition({
       placements: { global_navigation: gauge5 },
     })
+    const app6 = template.launchDefinition({ domain: 'arc.instructure.com',
+      name: 'Arc',
+      description: 'Video',
+      placements: { global_navigation: template.launchDefinitionGlobalNavigationItem({ title: 'Arc' }) },
+    })
+    const app7 = template.launchDefinition({ domain: null,
+      name: 'Arc',
+      description: 'Video',
+      placements: { global_navigation: template.launchDefinitionGlobalNavigationItem({ title: 'Arc', url: 'https://usu.arc-iad-prod.instructure.com/lti/launch' }) },
+    })
+    const app8 = template.launchDefinition({ domain: 'commons.instructure.com',
+      name: 'Commons',
+      description: 'commons description',
+      placements: { global_navigation: template.launchDefinitionGlobalNavigationItem({ title: 'Commons' }) },
+    })
     const resolved = {
       type: refreshAccountExternalTools.toString(),
-      payload: { result: { data: [ app1, app2, app3, app4, app5 ] } },
+      payload: { result: { data: [ app1, app2, app3, app4, app5, app6, app7, app8 ] } },
     }
 
-    expect(userInfo({ }, resolved)).toMatchObject({
+    expect(userInfo({ }, resolved)).toEqual({
       externalTools: [
         app1,
         app2,
         app5,
+        app6,
+        app7,
       ],
     })
   })
