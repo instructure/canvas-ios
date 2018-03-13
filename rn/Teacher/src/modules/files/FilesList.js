@@ -47,21 +47,21 @@ import uuid from 'uuid/v1'
 import { wait } from '../../utils/async-wait'
 import { isTeacher } from '../app'
 
-type CourseFilesListProps = {
+type FilesListProps = {
   data: any[], // The folders and files that are currently being shown
   folder: Folder, // The folder that is currently being displayed
   courseColor: ?string, // Color of the course in this files list
 }
 
-type CourseFileListNavProps = {
+type FileListNavProps = {
   contextID: string,
   context: 'courses' | 'groups' | 'users',
   subFolder?: ?string,
 }
 
 type Props =
-  CourseFilesListProps &
-  CourseFileListNavProps &
+  FilesListProps &
+  FileListNavProps &
   NavigationProps & {
     updateFile: Function,
     uploadFile: Function,
@@ -81,7 +81,7 @@ type State = {
   uploadMessage: ?string,
 }
 
-export class CourseFilesList extends Component<Props, State> {
+export class FilesList extends Component<Props, State> {
   static defaultProps = {
     getContextFolder: canvas.getContextFolder,
     getFolderFolders: canvas.getFolderFolders,
@@ -311,7 +311,7 @@ export class CourseFilesList extends Component<Props, State> {
                   identifier={index}
                   onPress={this.onSelectRow}
                   disclosureIndicator
-                  testID={`course-file-list.course-file-list-row.cell-${item.key}`} />
+                  testID={`file-list.file-list-row.cell-${item.key}`} />
               </View>
               {(item.hidden || item.lock_at || item.unlock_at) ? (
                 <View style={styles.restrictedIndicatorLine} />
@@ -331,7 +331,7 @@ export class CourseFilesList extends Component<Props, State> {
     if (!this.state.uploadPending && isTeacher()) {
       rightBarButtons.push({
         image: images.add,
-        testID: 'course-files.add.button',
+        testID: 'files.add.button',
         action: this.addItem,
         accessibilityLabel: i18n('Add Item'),
       })
@@ -340,7 +340,7 @@ export class CourseFilesList extends Component<Props, State> {
         this.props.subFolder &&
         isTeacher()) {
       rightBarButtons.push({
-        testID: 'course-files.edit-folder.button',
+        testID: 'files.edit-folder.button',
         title: i18n('Edit'),
         action: this.handleEditFolder,
       })
@@ -373,7 +373,7 @@ export class CourseFilesList extends Component<Props, State> {
   }
 }
 
-export function mapStateToProps (state: Object, props: CourseFileListNavProps) {
+export function mapStateToProps (state: Object, props: FileListNavProps) {
   let parentFolder
   const key = `${props.context}-${props.contextID}`
   const contextFolders = state.folders[key] || {}
@@ -436,5 +436,5 @@ const styles = StyleSheet.create({
   },
 })
 
-let Connected = connect(mapStateToProps, Actions)(CourseFilesList)
+let Connected = connect(mapStateToProps, Actions)(FilesList)
 export default (Connected: Component<any, any>)

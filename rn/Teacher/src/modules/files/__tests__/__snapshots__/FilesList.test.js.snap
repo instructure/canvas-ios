@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CourseFileList progress function should update the UI correctly 1`] = `
+exports[`FilesList progress function should update the UI correctly 1`] = `
 <Screen
   navBarColor={undefined}
   navBarStyle="dark"
@@ -12,7 +12,7 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
         "image": Object {
           "testUri": "../../../src/images/Add.png",
         },
-        "testID": "course-files.add.button",
+        "testID": "files.add.button",
       },
     ]
   }
@@ -186,7 +186,7 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                     ],
                   ]
                 }
-                testID="course-file-list.course-file-list-row.cell-folder-1"
+                testID="file-list.file-list-row.cell-folder-1"
                 tvParallaxProperties={undefined}
               >
                 <View
@@ -337,7 +337,7 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                           },
                         ]
                       }
-                      testID="course-file-list.course-file-list-row.cell-folder-1-subtitle-lbl"
+                      testID="file-list.file-list-row.cell-folder-1-subtitle-lbl"
                     >
                       2 files
                     </Text>
@@ -445,7 +445,7 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                     ],
                   ]
                 }
-                testID="course-file-list.course-file-list-row.cell-file-1"
+                testID="file-list.file-list-row.cell-file-1"
                 tvParallaxProperties={undefined}
               >
                 <View
@@ -596,7 +596,7 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                           },
                         ]
                       }
-                      testID="course-file-list.course-file-list-row.cell-file-1-subtitle-lbl"
+                      testID="file-list.file-list-row.cell-file-1-subtitle-lbl"
                     >
                       476.77 KB
                     </Text>
@@ -704,7 +704,7 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                     ],
                   ]
                 }
-                testID="course-file-list.course-file-list-row.cell-file-2"
+                testID="file-list.file-list-row.cell-file-2"
                 tvParallaxProperties={undefined}
               >
                 <View
@@ -855,7 +855,7 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
                           },
                         ]
                       }
-                      testID="course-file-list.course-file-list-row.cell-file-2-subtitle-lbl"
+                      testID="file-list.file-list-row.cell-file-2-subtitle-lbl"
                     >
                       476.77 KB
                     </Text>
@@ -936,7 +936,7 @@ exports[`CourseFileList progress function should update the UI correctly 1`] = `
 </Screen>
 `;
 
-exports[`CourseFileList progress function should update the UI correctly 2`] = `
+exports[`FilesList progress function should update the UI correctly 2`] = `
 <Screen
   navBarColor={undefined}
   navBarStyle="dark"
@@ -948,7 +948,7 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
         "image": Object {
           "testUri": "../../../src/images/Add.png",
         },
-        "testID": "course-files.add.button",
+        "testID": "files.add.button",
       },
     ]
   }
@@ -1122,7 +1122,7 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                     ],
                   ]
                 }
-                testID="course-file-list.course-file-list-row.cell-folder-1"
+                testID="file-list.file-list-row.cell-folder-1"
                 tvParallaxProperties={undefined}
               >
                 <View
@@ -1273,7 +1273,7 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                           },
                         ]
                       }
-                      testID="course-file-list.course-file-list-row.cell-folder-1-subtitle-lbl"
+                      testID="file-list.file-list-row.cell-folder-1-subtitle-lbl"
                     >
                       2 files
                     </Text>
@@ -1381,7 +1381,7 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                     ],
                   ]
                 }
-                testID="course-file-list.course-file-list-row.cell-file-1"
+                testID="file-list.file-list-row.cell-file-1"
                 tvParallaxProperties={undefined}
               >
                 <View
@@ -1532,7 +1532,7 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                           },
                         ]
                       }
-                      testID="course-file-list.course-file-list-row.cell-file-1-subtitle-lbl"
+                      testID="file-list.file-list-row.cell-file-1-subtitle-lbl"
                     >
                       476.77 KB
                     </Text>
@@ -1640,7 +1640,7 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                     ],
                   ]
                 }
-                testID="course-file-list.course-file-list-row.cell-file-2"
+                testID="file-list.file-list-row.cell-file-2"
                 tvParallaxProperties={undefined}
               >
                 <View
@@ -1791,7 +1791,7 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
                           },
                         ]
                       }
-                      testID="course-file-list.course-file-list-row.cell-file-2-subtitle-lbl"
+                      testID="file-list.file-list-row.cell-file-2-subtitle-lbl"
                     >
                       476.77 KB
                     </Text>
@@ -1872,7 +1872,7 @@ exports[`CourseFileList progress function should update the UI correctly 2`] = `
 </Screen>
 `;
 
-exports[`CourseFileList progress function should update the UI correctly 3`] = `
+exports[`FilesList progress function should update the UI correctly 3`] = `
 <Screen
   navBarColor={undefined}
   navBarStyle="dark"
@@ -1884,7 +1884,7 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
         "image": Object {
           "testUri": "../../../src/images/Add.png",
         },
-        "testID": "course-files.add.button",
+        "testID": "files.add.button",
       },
     ]
   }
@@ -2058,7 +2058,7 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                     ],
                   ]
                 }
-                testID="course-file-list.course-file-list-row.cell-folder-1"
+                testID="file-list.file-list-row.cell-folder-1"
                 tvParallaxProperties={undefined}
               >
                 <View
@@ -2209,7 +2209,7 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                           },
                         ]
                       }
-                      testID="course-file-list.course-file-list-row.cell-folder-1-subtitle-lbl"
+                      testID="file-list.file-list-row.cell-folder-1-subtitle-lbl"
                     >
                       2 files
                     </Text>
@@ -2317,7 +2317,7 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                     ],
                   ]
                 }
-                testID="course-file-list.course-file-list-row.cell-file-1"
+                testID="file-list.file-list-row.cell-file-1"
                 tvParallaxProperties={undefined}
               >
                 <View
@@ -2468,7 +2468,7 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                           },
                         ]
                       }
-                      testID="course-file-list.course-file-list-row.cell-file-1-subtitle-lbl"
+                      testID="file-list.file-list-row.cell-file-1-subtitle-lbl"
                     >
                       476.77 KB
                     </Text>
@@ -2576,7 +2576,7 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                     ],
                   ]
                 }
-                testID="course-file-list.course-file-list-row.cell-file-2"
+                testID="file-list.file-list-row.cell-file-2"
                 tvParallaxProperties={undefined}
               >
                 <View
@@ -2727,7 +2727,7 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
                           },
                         ]
                       }
-                      testID="course-file-list.course-file-list-row.cell-file-2-subtitle-lbl"
+                      testID="file-list.file-list-row.cell-file-2-subtitle-lbl"
                     >
                       476.77 KB
                     </Text>
@@ -2808,7 +2808,7 @@ exports[`CourseFileList progress function should update the UI correctly 3`] = `
 </Screen>
 `;
 
-exports[`CourseFileList sending weird data into the progress update function should not break all the things 1`] = `
+exports[`FilesList sending weird data into the progress update function should not break all the things 1`] = `
 <Screen
   navBarColor={undefined}
   navBarStyle="dark"
@@ -2820,7 +2820,7 @@ exports[`CourseFileList sending weird data into the progress update function sho
         "image": Object {
           "testUri": "../../../src/images/Add.png",
         },
-        "testID": "course-files.add.button",
+        "testID": "files.add.button",
       },
     ]
   }
@@ -2994,7 +2994,7 @@ exports[`CourseFileList sending weird data into the progress update function sho
                     ],
                   ]
                 }
-                testID="course-file-list.course-file-list-row.cell-folder-1"
+                testID="file-list.file-list-row.cell-folder-1"
                 tvParallaxProperties={undefined}
               >
                 <View
@@ -3145,7 +3145,7 @@ exports[`CourseFileList sending weird data into the progress update function sho
                           },
                         ]
                       }
-                      testID="course-file-list.course-file-list-row.cell-folder-1-subtitle-lbl"
+                      testID="file-list.file-list-row.cell-folder-1-subtitle-lbl"
                     >
                       2 files
                     </Text>
@@ -3253,7 +3253,7 @@ exports[`CourseFileList sending weird data into the progress update function sho
                     ],
                   ]
                 }
-                testID="course-file-list.course-file-list-row.cell-file-1"
+                testID="file-list.file-list-row.cell-file-1"
                 tvParallaxProperties={undefined}
               >
                 <View
@@ -3404,7 +3404,7 @@ exports[`CourseFileList sending weird data into the progress update function sho
                           },
                         ]
                       }
-                      testID="course-file-list.course-file-list-row.cell-file-1-subtitle-lbl"
+                      testID="file-list.file-list-row.cell-file-1-subtitle-lbl"
                     >
                       476.77 KB
                     </Text>
@@ -3512,7 +3512,7 @@ exports[`CourseFileList sending weird data into the progress update function sho
                     ],
                   ]
                 }
-                testID="course-file-list.course-file-list-row.cell-file-2"
+                testID="file-list.file-list-row.cell-file-2"
                 tvParallaxProperties={undefined}
               >
                 <View
@@ -3663,7 +3663,7 @@ exports[`CourseFileList sending weird data into the progress update function sho
                           },
                         ]
                       }
-                      testID="course-file-list.course-file-list-row.cell-file-2-subtitle-lbl"
+                      testID="file-list.file-list-row.cell-file-2-subtitle-lbl"
                     >
                       476.77 KB
                     </Text>
@@ -3744,7 +3744,7 @@ exports[`CourseFileList sending weird data into the progress update function sho
 </Screen>
 `;
 
-exports[`CourseFileList should render 1`] = `
+exports[`FilesList should render 1`] = `
 <Screen
   navBarColor={undefined}
   navBarStyle="dark"
@@ -3756,7 +3756,7 @@ exports[`CourseFileList should render 1`] = `
         "image": Object {
           "testUri": "../../../src/images/Add.png",
         },
-        "testID": "course-files.add.button",
+        "testID": "files.add.button",
       },
     ]
   }
@@ -3930,7 +3930,7 @@ exports[`CourseFileList should render 1`] = `
                     ],
                   ]
                 }
-                testID="course-file-list.course-file-list-row.cell-folder-1"
+                testID="file-list.file-list-row.cell-folder-1"
                 tvParallaxProperties={undefined}
               >
                 <View
@@ -4081,7 +4081,7 @@ exports[`CourseFileList should render 1`] = `
                           },
                         ]
                       }
-                      testID="course-file-list.course-file-list-row.cell-folder-1-subtitle-lbl"
+                      testID="file-list.file-list-row.cell-folder-1-subtitle-lbl"
                     >
                       2 files
                     </Text>
@@ -4189,7 +4189,7 @@ exports[`CourseFileList should render 1`] = `
                     ],
                   ]
                 }
-                testID="course-file-list.course-file-list-row.cell-file-1"
+                testID="file-list.file-list-row.cell-file-1"
                 tvParallaxProperties={undefined}
               >
                 <View
@@ -4340,7 +4340,7 @@ exports[`CourseFileList should render 1`] = `
                           },
                         ]
                       }
-                      testID="course-file-list.course-file-list-row.cell-file-1-subtitle-lbl"
+                      testID="file-list.file-list-row.cell-file-1-subtitle-lbl"
                     >
                       476.77 KB
                     </Text>
@@ -4448,7 +4448,7 @@ exports[`CourseFileList should render 1`] = `
                     ],
                   ]
                 }
-                testID="course-file-list.course-file-list-row.cell-file-2"
+                testID="file-list.file-list-row.cell-file-2"
                 tvParallaxProperties={undefined}
               >
                 <View
@@ -4599,7 +4599,7 @@ exports[`CourseFileList should render 1`] = `
                           },
                         ]
                       }
-                      testID="course-file-list.course-file-list-row.cell-file-2-subtitle-lbl"
+                      testID="file-list.file-list-row.cell-file-2-subtitle-lbl"
                     >
                       476.77 KB
                     </Text>
@@ -4680,7 +4680,7 @@ exports[`CourseFileList should render 1`] = `
 </Screen>
 `;
 
-exports[`CourseFileList should render with folders 1`] = `
+exports[`FilesList should render with folders 1`] = `
 <Screen
   navBarColor={undefined}
   navBarStyle="dark"
@@ -4692,7 +4692,7 @@ exports[`CourseFileList should render with folders 1`] = `
         "image": Object {
           "testUri": "../../../src/images/Add.png",
         },
-        "testID": "course-files.add.button",
+        "testID": "files.add.button",
       },
     ]
   }
@@ -4866,7 +4866,7 @@ exports[`CourseFileList should render with folders 1`] = `
                     ],
                   ]
                 }
-                testID="course-file-list.course-file-list-row.cell-folder-1"
+                testID="file-list.file-list-row.cell-folder-1"
                 tvParallaxProperties={undefined}
               >
                 <View
@@ -5017,7 +5017,7 @@ exports[`CourseFileList should render with folders 1`] = `
                           },
                         ]
                       }
-                      testID="course-file-list.course-file-list-row.cell-folder-1-subtitle-lbl"
+                      testID="file-list.file-list-row.cell-folder-1-subtitle-lbl"
                     >
                       2 files
                     </Text>
@@ -5125,7 +5125,7 @@ exports[`CourseFileList should render with folders 1`] = `
                     ],
                   ]
                 }
-                testID="course-file-list.course-file-list-row.cell-file-1"
+                testID="file-list.file-list-row.cell-file-1"
                 tvParallaxProperties={undefined}
               >
                 <View
@@ -5276,7 +5276,7 @@ exports[`CourseFileList should render with folders 1`] = `
                           },
                         ]
                       }
-                      testID="course-file-list.course-file-list-row.cell-file-1-subtitle-lbl"
+                      testID="file-list.file-list-row.cell-file-1-subtitle-lbl"
                     >
                       476.77 KB
                     </Text>
@@ -5384,7 +5384,7 @@ exports[`CourseFileList should render with folders 1`] = `
                     ],
                   ]
                 }
-                testID="course-file-list.course-file-list-row.cell-file-2"
+                testID="file-list.file-list-row.cell-file-2"
                 tvParallaxProperties={undefined}
               >
                 <View
@@ -5535,7 +5535,7 @@ exports[`CourseFileList should render with folders 1`] = `
                           },
                         ]
                       }
-                      testID="course-file-list.course-file-list-row.cell-file-2-subtitle-lbl"
+                      testID="file-list.file-list-row.cell-file-2-subtitle-lbl"
                     >
                       476.77 KB
                     </Text>
@@ -5616,7 +5616,7 @@ exports[`CourseFileList should render with folders 1`] = `
 </Screen>
 `;
 
-exports[`CourseFileList should render with no data at all 1`] = `
+exports[`FilesList should render with no data at all 1`] = `
 <Screen
   navBarColor={undefined}
   navBarStyle="dark"
@@ -5628,7 +5628,7 @@ exports[`CourseFileList should render with no data at all 1`] = `
         "image": Object {
           "testUri": "../../../src/images/Add.png",
         },
-        "testID": "course-files.add.button",
+        "testID": "files.add.button",
       },
     ]
   }

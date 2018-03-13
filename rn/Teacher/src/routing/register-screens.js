@@ -60,7 +60,7 @@ import ContextCard from '../modules/users/ContextCard'
 import PeopleList from '../modules/people/PeopleList'
 import Filter from '../modules/filter/Filter'
 import ToDoList from '../modules/to-do/list/ToDoList'
-import CourseFilesList from '../modules/files/CourseFilesList'
+import FilesList from '../modules/files/FilesList'
 import EditFile from '../modules/files/EditFile'
 import EditFolder from '../modules/files/EditFolder'
 import ViewFile from '../modules/files/ViewFile'
@@ -117,9 +117,9 @@ export function registerScreens (store: Store): void {
   registerScreen('/:context/:contextID/discussion_topics/:discussionID/entries/:entryID/replies', wrap(EditReply), store, { deepLink: true })
   registerScreen('/courses/:courseID/users', wrap(PeopleList), store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/courses/:courseID/address-book', wrap(AddressBook), store)
-  registerScreen('/:context/:contextID/files', wrap(CourseFilesList), store, { deepLink: true })
-  registerScreen('/:context/:contextID/files/folder/*subFolder', wrap(CourseFilesList), store, { deepLink: true })
-  registerScreen('/:context/:contextID/folders/*subFolder', wrap(CourseFilesList), store, { deepLink: true })
+  registerScreen('/:context/:contextID/files', wrap(FilesList), store, { deepLink: true })
+  registerScreen('/:context/:contextID/files/folder/*subFolder', wrap(FilesList), store, { deepLink: true })
+  registerScreen('/:context/:contextID/folders/*subFolder', wrap(FilesList), store, { deepLink: true })
   registerScreen('/:context/:contextID/file/:fileID', wrap(ViewFile), store, { deepLink: true })
   registerScreen('/:context/:contextID/file/:fileID/edit', wrap(EditFile), store)
   registerScreen('/folders/:folderID/edit', wrap(EditFolder), store)

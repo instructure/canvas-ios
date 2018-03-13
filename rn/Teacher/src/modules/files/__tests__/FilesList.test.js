@@ -19,7 +19,7 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import { ActionSheetIOS, AlertIOS, Alert } from 'react-native'
 
-import { CourseFilesList, mapStateToProps } from '../CourseFilesList'
+import { FilesList, mapStateToProps } from '../FilesList'
 
 const template = {
   ...require('../../../__templates__/file'),
@@ -39,10 +39,10 @@ jest
   .mock('../../attachments/AttachmentPicker', () => 'AttachmentPicker')
   .mock('../../../routing/Screen')
 
-describe('CourseFileList', () => {
+describe('FilesList', () => {
   it('should render', () => {
     const tree = renderer.create(
-      <CourseFilesList data={data} navigator={template.navigator()}/>
+      <FilesList data={data} navigator={template.navigator()}/>
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -50,7 +50,7 @@ describe('CourseFileList', () => {
 
   it('should render with folders', () => {
     let tree = renderer.create(
-      <CourseFilesList data={data} folders={'course files/some_folder'} navigator={template.navigator()}/>
+      <FilesList data={data} folders={'course files/some_folder'} navigator={template.navigator()}/>
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -58,7 +58,7 @@ describe('CourseFileList', () => {
 
   it('should render with no data at all', () => {
     let tree = renderer.create(
-      <CourseFilesList data={[]} navigator={template.navigator()}/>
+      <FilesList data={[]} navigator={template.navigator()}/>
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -73,7 +73,7 @@ describe('CourseFileList', () => {
     const foldersUpdated = jest.fn()
 
     let tree = renderer.create(
-      <CourseFilesList
+      <FilesList
         contextID={courseID}
         context={'courses'}
         data={[]}
@@ -94,7 +94,7 @@ describe('CourseFileList', () => {
     const courseID = '1'
     const navigator = template.navigator({ show: jest.fn() })
     let instance = renderer.create(
-      <CourseFilesList data={data} navigator={navigator} contextID={courseID} context={'courses'}/>
+      <FilesList data={data} navigator={navigator} contextID={courseID} context={'courses'}/>
     ).getInstance()
 
     instance.onSelectRow(0)
@@ -105,7 +105,7 @@ describe('CourseFileList', () => {
     const courseID = '1'
     const navigator = template.navigator({ show: jest.fn() })
     let instance = renderer.create(
-      <CourseFilesList data={data} navigator={navigator} contextID={courseID} context={'courses'} subFolder={'something/somewhere/over/the/rainbow'}/>
+      <FilesList data={data} navigator={navigator} contextID={courseID} context={'courses'} subFolder={'something/somewhere/over/the/rainbow'}/>
     ).getInstance()
 
     instance.onSelectRow(0)
@@ -116,7 +116,7 @@ describe('CourseFileList', () => {
     const courseID = '1'
     const navigator = template.navigator({ show: jest.fn() })
     let instance = renderer.create(
-      <CourseFilesList data={data} navigator={navigator} contextID={courseID} context={'courses'}/>
+      <FilesList data={data} navigator={navigator} contextID={courseID} context={'courses'}/>
     ).getInstance()
 
     instance.onSelectRow(1)
@@ -131,7 +131,7 @@ describe('CourseFileList', () => {
     const courseID = '1'
     const navigator = template.navigator({ show: jest.fn() })
     let instance = renderer.create(
-      <CourseFilesList data={data} navigator={navigator} contextID={courseID} context={'courses'}/>
+      <FilesList data={data} navigator={navigator} contextID={courseID} context={'courses'}/>
     ).getInstance()
 
     ActionSheetIOS.showActionSheetWithOptions = jest.fn()
@@ -143,7 +143,7 @@ describe('CourseFileList', () => {
     const courseID = '1'
     const navigator = template.navigator({ show: jest.fn() })
     let instance = renderer.create(
-      <CourseFilesList data={data} navigator={navigator} contextID={courseID} context={'courses'}/>
+      <FilesList data={data} navigator={navigator} contextID={courseID} context={'courses'}/>
     ).getInstance()
 
     AlertIOS.prompt = jest.fn()
@@ -155,7 +155,7 @@ describe('CourseFileList', () => {
     const courseID = '1'
     const navigator = template.navigator({ show: jest.fn() })
     let instance = renderer.create(
-      <CourseFilesList data={data} navigator={navigator} contextID={courseID} context={'courses'}/>
+      <FilesList data={data} navigator={navigator} contextID={courseID} context={'courses'}/>
     ).getInstance()
 
     instance.attachmentPicker = {}
@@ -171,7 +171,7 @@ describe('CourseFileList', () => {
     const createFolder = jest.fn(() => Promise.resolve())
     const folder = template.folder()
     let instance = renderer.create(
-      <CourseFilesList data={data} navigator={navigator} contextID={courseID} context={context} createFolder={createFolder} folder={folder} />
+      <FilesList data={data} navigator={navigator} contextID={courseID} context={context} createFolder={createFolder} folder={folder} />
     ).getInstance()
 
     await instance.createNewFolder('folder name')
@@ -184,7 +184,7 @@ describe('CourseFileList', () => {
     const createFolder = jest.fn(() => Promise.reject(new Error('this is messed up')))
     const folder = template.folder()
     let instance = renderer.create(
-      <CourseFilesList data={data} navigator={navigator} contextID={courseID} context={'courses'} createFolder={createFolder} folder={folder} />
+      <FilesList data={data} navigator={navigator} contextID={courseID} context={'courses'} createFolder={createFolder} folder={folder} />
     ).getInstance()
 
     Alert.alert = jest.fn()
@@ -201,7 +201,7 @@ describe('CourseFileList', () => {
     const filesUpdated = jest.fn()
     const folder = template.folder()
     let instance = renderer.create(
-      <CourseFilesList data={data}
+      <FilesList data={data}
                        navigator={navigator}
                        contextID={courseID}
                        context={'courses'}
@@ -224,7 +224,7 @@ describe('CourseFileList', () => {
     const uploadFile = jest.fn(() => Promise.reject(new Error('this is messed up')))
     const folder = template.folder()
     let instance = renderer.create(
-      <CourseFilesList data={data}
+      <FilesList data={data}
                        navigator={navigator}
                        contextID={courseID}
                        context={'courses'}
@@ -243,7 +243,7 @@ describe('CourseFileList', () => {
     const navigator = template.navigator({ show: jest.fn() })
     const folder = template.folder()
     let tree = renderer.create(
-      <CourseFilesList data={data}
+      <FilesList data={data}
                        navigator={navigator}
                        contextID={courseID}
                        context={'courses'}
@@ -263,7 +263,7 @@ describe('CourseFileList', () => {
     const navigator = template.navigator({ show: jest.fn() })
     const folder = template.folder()
     let tree = renderer.create(
-      <CourseFilesList data={data}
+      <FilesList data={data}
                        navigator={navigator}
                        contextID={courseID}
                        context={'courses'}
