@@ -647,6 +647,12 @@
   "grade_9c6f076d": {
     "message": "Grade"
   },
+  "grade_grade_990eb477": {
+    "message": "Grade { grade }"
+  },
+  "grade_grade_number_percent_cda06b4d": {
+    "message": "Grade { grade, number, percent }"
+  },
   "graded_25cd3fcd": {
     "message": "Graded"
   },
@@ -734,6 +740,9 @@
   "late_2be42b88": {
     "message": "Late"
   },
+  "late_submissions_late_number_baedf6cf": {
+    "message": "Late Submissions { late, number }"
+  },
   "latest_f604a75": {
     "message": "Latest"
   },
@@ -796,6 +805,9 @@
   },
   "missing_1a256b3b": {
     "message": "Missing"
+  },
+  "missing_submissions_missing_number_ea40423d": {
+    "message": "Missing Submissions { missing, number }"
   },
   "moderated_grading_unsupported_e3a2bba3": {
     "message": "Moderated Grading Unsupported"
