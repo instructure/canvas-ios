@@ -37,8 +37,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return true
         }
 
-        BuddyBuildSDK.setup()
-        configureBugSnag()
+        if (uiTesting) {
+            BuddyBuildSDK.setup()
+        } else {
+            configureBugSnag()
+            setupCrashlytics()
+        }
         NotificationKitController.setupForPushNotifications(delegate: self)
         TheKeymaster?.fetchesBranding = true
         TheKeymaster?.delegate = loginConfig
@@ -135,7 +139,6 @@ extension AppDelegate {
     
     func postLaunchSetup() {
         PSPDFKit.license()
-        setupCrashlytics()
         prepareReactNative()
         Analytics.prepare()
         NetworkMonitor.engage()

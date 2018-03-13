@@ -19,3 +19,7 @@
 public var unitTesting: Bool {
     return ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
 }
+
+public var uiTesting: Bool {
+    return NSClassFromString("EarlGreyImpl") != nil
+}

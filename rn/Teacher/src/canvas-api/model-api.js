@@ -88,7 +88,7 @@ export class API {
     })
   }
 
-  getPages (context: Context, contextID: string): PageModel[] {
+  getPages (context: CanvasContext, contextID: string): PageModel[] {
     return this.get(`${context}/${contextID}/pages`, {
       params: {
         per_page: 99,
@@ -102,25 +102,25 @@ export class API {
     }) || emptyArray
   }
 
-  createPage (context: Context, contextID: string, parameters: PageParameters): ApiPromise<PageModel> {
+  createPage (context: CanvasContext, contextID: string, parameters: PageParameters): ApiPromise<PageModel> {
     return this.post(`${context}/${contextID}/pages`, { wiki_page: parameters }, {
       transform: (page: Page) => new PageModel(page),
     })
   }
 
-  getPage (context: Context, contextID: string, url: string): ?PageModel {
+  getPage (context: CanvasContext, contextID: string, url: string): ?PageModel {
     return this.get(`${context}/${contextID}/pages/${url}`, {
       transform: (page: Page) => new PageModel(page),
     })
   }
 
-  updatePage (context: Context, contextID: string, url: string, parameters: PageParameters): ApiPromise<PageModel> {
+  updatePage (context: CanvasContext, contextID: string, url: string, parameters: PageParameters): ApiPromise<PageModel> {
     return this.put(`${context}/${contextID}/pages/${url}`, { wiki_page: parameters }, {
       transform: (page: Page) => new PageModel(page),
     })
   }
 
-  deletePage (context: Context, contextID: string, url: string): ApiPromise<null> {
+  deletePage (context: CanvasContext, contextID: string, url: string): ApiPromise<null> {
     return this.delete(`${context}/${contextID}/pages/${url}`)
   }
 }

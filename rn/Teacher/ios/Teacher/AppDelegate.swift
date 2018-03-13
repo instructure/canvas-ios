@@ -25,8 +25,6 @@ import CanvasCore
 import React
 import BugsnagReactNative
 
-public let EarlGreyExists = NSClassFromString("EarlGreyImpl") != nil;
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
@@ -44,9 +42,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        //BuddyBuildSDK.setup()
-        BugsnagReactNative.start()
-        Fabric.with([Crashlytics.self, Answers.self])
+        if (uiTesting) {
+            BuddyBuildSDK.setup()
+        } else {
+            BugsnagReactNative.start()
+            Fabric.with([Crashlytics.self, Answers.self])
+        }
         setupForPushNotifications()
         preparePSPDFKit()
         window = MasqueradableWindow(frame: UIScreen.main.bounds)
@@ -122,7 +123,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        if (!EarlGreyExists) {
+        if (!uiTesting) {
             AppStoreReview.requestReview()
         }
     }
