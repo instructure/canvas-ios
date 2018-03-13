@@ -9,7 +9,7 @@ exports[`AllCourseList no refresh when at least one course exists 1`] = `
 />
 `;
 
-exports[`AllCourseList refresh courses when empty 1`] = `
+exports[`AllCourseList refreshes courses when empty 1`] = `
 <Dashboard
   courses={Array []}
   refresh={[Function]}
