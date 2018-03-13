@@ -92,11 +92,11 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
       hasSetInitialDrawerPosition: false,
       submissions: [],
     }
-    SpeedGrader.drawerState.registerDrawer(this)
   }
 
   componentDidMount () {
     this.setSubmissions(this.props)
+    SpeedGrader.drawerState.registerDrawer(this)
   }
 
   componentWillReceiveProps (nextProps: SpeedGraderProps) {
@@ -116,12 +116,16 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
       ? props.filter(props.submissions)
       : props.submissions
     let currentPageIndex = this.state.currentPageIndex
-    if (currentPageIndex == null || currentPageIndex < 0) {
+    // when enrollments came back before submissions this would get set and then
+    // not set again because of the if/return statements above
+    // don't set this unless we have submissions
+    if (submissions.length && currentPageIndex == null || currentPageIndex < 0) {
       const index = submissions.findIndex(s => {
         return s.userID === props.userID
       })
       currentPageIndex = Math.max(0, index)
     }
+
     this.setState({
       submissions,
       currentPageIndex,
@@ -166,7 +170,7 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
     this._flatList = list
   }
 
-  renderItem = ({ item, index }: { item: SubmissionItem }) => {
+  renderItem = ({ item, index }: { item: SubmissionItem, index: number }) => {
     const submissionEntity = item.submission.submissionID != null
       ? this.props.submissionEntities[item.submission.submissionID]
       : null
@@ -249,6 +253,7 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
         data={items}
         renderItem={this.renderItem}
         windowSize={5}
+        initialNumToRender={null}
         horizontal
         pagingEnabled
         getItemLayout={this.getItemLayout}

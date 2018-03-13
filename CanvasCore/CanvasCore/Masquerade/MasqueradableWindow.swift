@@ -57,11 +57,11 @@ public class MasqueradableWindow: UIWindow {
         }
     }
     private func registerObservers() {
-        NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: "MasqeuradeDidStart"), object: nil, queue: nil) { [weak self] (_) in
+        NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: "MasqueradeDidStart"), object: nil, queue: nil) { [weak self] (_) in
             self?.masquerading = true
             self?.overlay.beginMasquerade()
         }
-        NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: "MasqeuradeDidEnd"), object: nil, queue: nil) { [weak self] (_) in
+        NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: "MasqueradeDidEnd"), object: nil, queue: nil) { [weak self] (_) in
             self?.masquerading = false
         }
     }

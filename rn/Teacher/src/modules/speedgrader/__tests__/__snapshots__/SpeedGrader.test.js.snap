@@ -149,7 +149,7 @@ exports[`SpeedGrader only sets submissions once 1`] = `
       disableVirtualization={false}
       getItemLayout={[Function]}
       horizontal={true}
-      initialNumToRender={10}
+      initialNumToRender={null}
       keyExtractor={[Function]}
       keyboardShouldPersistTaps="handled"
       maxToRenderPerBatch={10}
@@ -188,12 +188,13 @@ exports[`SpeedGrader only sets submissions once 1`] = `
 `;
 
 exports[`SpeedGrader renders 1`] = `
-<RCTSafeAreaView
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
+<Screen
+  navBarHidden={true}
+  navBarStyle="light"
+  noRotationInVerticallyCompact={true}
+  showDismissButton={true}
+  statusBarHidden={true}
+  statusBarStyle="default"
 >
   <View
     style={
@@ -218,582 +219,1221 @@ exports[`SpeedGrader renders 1`] = `
         size="small"
       />
     </View>
+    <Tutorial
+      tutorials={
+        Array [
+          Object {
+            "id": "swipe-tutorial",
+            "image": Object {
+              "testUri": "../../../src/images/speedgrader/Swipe.png",
+            },
+            "text": "Swipe left or right to view other student submissions",
+          },
+        ]
+      }
+    />
   </View>
-</RCTSafeAreaView>
+</Screen>
 `;
 
 exports[`SpeedGrader renders submissions if there are some 1`] = `
-<RCTSafeAreaView
+<_class
   style={
-    Object {
-      "flex": 1,
-    }
+    Array [
+      Object {
+        "overflow": "hidden",
+        "paddingLeft": 10,
+        "paddingRight": 10,
+      },
+      Object {
+        "height": 1334,
+        "width": 770,
+      },
+    ]
   }
 >
-  <View
-    style={
-      Object {
-        "flex": 1,
-      }
+  <SubmissionGrader
+    assignmentID="1"
+    assignmentSubmissionTypes={
+      Array [
+        "none",
+      ]
     }
-  >
-    <RCTScrollView
-      contentOffset={
-        Object {
-          "x": 0,
-        }
-      }
-      data={
-        Array [
-          Object {
-            "key": "55",
-            "submission": Object {
-              "avatarURL": "http://www.fillmurray.com/100/100",
-              "grade": "B-",
-              "name": "Donald Trump",
-              "sectionID": "1",
-              "status": "submitted",
-              "userID": "55",
+    closeModal={[Function]}
+    courseID="1"
+    drawerInset={62}
+    drawerState={
+      DrawerState {
+        "commentProgress": Object {},
+        "currentSnap": 0,
+        "deltaY": 0,
+        "dragBegan": [Function],
+        "drawerDidSnap": [Function],
+        "drawers": Array [
+          SpeedGrader {
+            "_captureFlatList": [Function],
+            "context": Object {},
+            "dismiss": [Function],
+            "getInitialTabIndex": [Function],
+            "getItemLayout": [Function],
+            "onLayout": [Function],
+            "props": Object {
+              "assignmentID": "1",
+              "assignmentSubmissionTypes": Array [
+                "none",
+              ],
+              "courseID": "1",
+              "drawerPosition": 0,
+              "getCourseEnabledFeatures": [Function],
+              "gradeSubmissionWithRubric": [Function],
+              "navigator": Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              },
+              "onDismiss": [Function],
+              "pending": false,
+              "refresh": [Function],
+              "refreshSubmissionSummary": [Function],
+              "refreshSubmissions": [Function],
+              "refreshing": false,
+              "resetDrawer": [Function],
+              "submissionEntities": Object {},
+              "submissions": Array [],
+              "userID": "1",
+            },
+            "refs": Object {},
+            "renderBody": [Function],
+            "renderItem": [Function],
+            "scrollEnded": [Function],
+            "snapTo": [Function],
+            "state": Object {
+              "currentPageIndex": undefined,
+              "currentStudentID": "1",
+              "drawerInset": 62,
+              "hasScrolledToInitialSubmission": false,
+              "hasSetInitialDrawerPosition": false,
+              "size": Object {
+                "height": 1334,
+                "width": 770,
+              },
+              "submissions": Array [],
+            },
+            "updater": Updater {
+              "_renderer": ReactShallowRenderer {
+                "_context": Object {},
+                "_element": <SpeedGrader
+                  assignmentID="1"
+                  assignmentSubmissionTypes={
+                              Array [
+                                          "none",
+                                        ]
+                  }
+                  courseID="1"
+                  drawerPosition={0}
+                  getCourseEnabledFeatures={[Function]}
+                  gradeSubmissionWithRubric={[Function]}
+                  navigator={
+                              Object {
+                                          "dismiss": [Function],
+                                          "dismissAllModals": [Function],
+                                          "isModal": false,
+                                          "pop": [Function],
+                                          "show": [Function],
+                                          "traitCollection": [Function],
+                                        }
+                  }
+                  onDismiss={[Function]}
+                  pending={false}
+                  refresh={[Function]}
+                  refreshSubmissionSummary={[Function]}
+                  refreshSubmissions={[Function]}
+                  refreshing={false}
+                  resetDrawer={[Function]}
+                  submissionEntities={Object {}}
+                  submissions={Array []}
+                  userID="1"
+      />,
+                "_forcedUpdate": false,
+                "_instance": [Circular],
+                "_newState": Object {
+                  "currentPageIndex": undefined,
+                  "currentStudentID": "1",
+                  "drawerInset": 62,
+                  "hasScrolledToInitialSubmission": false,
+                  "hasSetInitialDrawerPosition": false,
+                  "size": Object {
+                    "height": 1334,
+                    "width": 770,
+                  },
+                  "submissions": Array [],
+                },
+                "_rendered": <Screen
+                  navBarHidden={true}
+                  navBarStyle="light"
+                  noRotationInVerticallyCompact={true}
+                  showDismissButton={true}
+                  statusBarHidden={true}
+                  statusBarStyle="default"
+      >
+                  <View
+                              style={
+                                          Object {
+                                                      "flex": 1,
+                                                    }
+                              }
+                  >
+                              <View
+                                          style={
+                                                      Object {
+                                                                  "alignItems": "center",
+                                                                  "flex": 1,
+                                                                  "justifyContent": "center",
+                                                                }
+                                          }
+                              >
+                                          <ActivityIndicator
+                                                      animating={true}
+                                                      color="#999999"
+                                                      hidesWhenStopped={true}
+                                                      size="small"
+                                          />
+                              </View>
+                              <Tutorial
+                                          tutorials={
+                                                      Array [
+                                                                  Object {
+                                                                    "id": "swipe-tutorial",
+                                                                    "image": Object {
+                                                                      "testUri": "../../../src/images/speedgrader/Swipe.png",
+                                                                    },
+                                                                    "text": "Swipe left or right to view other student submissions",
+                                                                  },
+                                                                ]
+                                          }
+                              />
+                  </View>
+      </Screen>,
+                "_rendering": false,
+                "_updater": [Circular],
+              },
             },
           },
-        ]
-      }
-      disableVirtualization={false}
-      getItem={[Function]}
-      getItemCount={[Function]}
-      getItemLayout={[Function]}
-      horizontal={true}
-      initialNumToRender={10}
-      keyExtractor={[Function]}
-      keyboardShouldPersistTaps="handled"
-      maxToRenderPerBatch={10}
-      numColumns={1}
-      onContentSizeChange={[Function]}
-      onEndReachedThreshold={2}
-      onLayout={[Function]}
-      onMomentumScrollEnd={[Function]}
-      onScroll={[Function]}
-      onScrollBeginDrag={[Function]}
-      onScrollEndDrag={[Function]}
-      pagingEnabled={true}
-      renderItem={[Function]}
-      scrollEventThrottle={50}
-      showsHorizontalScrollIndicator={false}
-      stickyHeaderIndices={Array []}
-      style={
-        Object {
-          "marginLeft": -10,
-          "marginRight": -10,
-        }
-      }
-      updateCellsBatchingPeriod={50}
-      viewabilityConfigCallbackPairs={Array []}
-      windowSize={5}
-    >
-      <View>
-        <View
-          onLayout={undefined}
-          style={
-            Array [
-              Object {
-                "flexDirection": "row",
+          SpeedGrader {
+            "_captureFlatList": [Function],
+            "context": Object {},
+            "dismiss": [Function],
+            "getInitialTabIndex": [Function],
+            "getItemLayout": [Function],
+            "onLayout": [Function],
+            "props": Object {
+              "assignmentID": "1",
+              "assignmentSubmissionTypes": Array [
+                "none",
+              ],
+              "courseID": "1",
+              "drawerPosition": 0,
+              "filter": [Function],
+              "getCourseEnabledFeatures": [Function],
+              "gradeSubmissionWithRubric": [Function],
+              "navigator": Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
               },
-              null,
-            ]
-          }
-        >
-          <A11yGroup
-            style={
-              Array [
+              "onDismiss": [Function],
+              "pending": false,
+              "refresh": [Function],
+              "refreshSubmissionSummary": [Function],
+              "refreshSubmissions": [Function],
+              "refreshing": false,
+              "resetDrawer": [Function],
+              "submissionEntities": Object {},
+              "submissions": Array [
                 Object {
-                  "overflow": "hidden",
-                  "paddingLeft": 10,
-                  "paddingRight": 10,
+                  "avatarURL": "http://www.fillmurray.com/100/100",
+                  "grade": "B-",
+                  "name": "Donald Trump",
+                  "sectionID": "1",
+                  "status": "submitted",
+                  "userID": "55",
                 },
                 Object {
-                  "height": 1334,
-                  "width": 770,
+                  "avatarURL": "http://www.fillmurray.com/100/100",
+                  "grade": "B-",
+                  "name": "Donald Trump",
+                  "sectionID": "1",
+                  "status": "missing",
+                  "userID": "55",
                 },
-              ]
-            }
-          >
-            <A11yGroup
-              onLayout={[Function]}
-              style={
+              ],
+              "userID": "1",
+            },
+            "refs": Object {},
+            "renderBody": [Function],
+            "renderItem": [Function],
+            "scrollEnded": [Function],
+            "snapTo": [Function],
+            "state": Object {
+              "currentPageIndex": 0,
+              "currentStudentID": "1",
+              "drawerInset": 62,
+              "hasScrolledToInitialSubmission": false,
+              "hasSetInitialDrawerPosition": false,
+              "size": Object {
+                "height": 1334,
+                "width": 770,
+              },
+              "submissions": Array [
                 Object {
-                  "flex": 1,
-                }
-              }
-            >
-              <Header
-                assignmentID="1"
-                closeModal={[Function]}
-                courseID="1"
-                navigator={
-                  Object {
-                    "dismiss": [Function],
-                    "dismissAllModals": [Function],
-                    "isModal": false,
-                    "pop": [Function],
-                    "show": [Function],
-                    "traitCollection": [Function],
+                  "avatarURL": "http://www.fillmurray.com/100/100",
+                  "grade": "B-",
+                  "name": "Donald Trump",
+                  "sectionID": "1",
+                  "status": "missing",
+                  "userID": "55",
+                },
+              ],
+            },
+            "updater": Updater {
+              "_renderer": ReactShallowRenderer {
+                "_context": Object {},
+                "_element": <SpeedGrader
+                  assignmentID="1"
+                  assignmentSubmissionTypes={
+                              Array [
+                                          "none",
+                                        ]
                   }
-                }
-                submissionID={undefined}
-                submissionProps={
-                  Object {
-                    "avatarURL": "http://www.fillmurray.com/100/100",
-                    "grade": "B-",
-                    "name": "Donald Trump",
-                    "sectionID": "1",
-                    "status": "submitted",
-                    "userID": "55",
+                  courseID="1"
+                  drawerPosition={0}
+                  filter={[Function]}
+                  getCourseEnabledFeatures={[Function]}
+                  gradeSubmissionWithRubric={[Function]}
+                  navigator={
+                              Object {
+                                          "dismiss": [Function],
+                                          "dismissAllModals": [Function],
+                                          "isModal": false,
+                                          "pop": [Function],
+                                          "show": [Function],
+                                          "traitCollection": [Function],
+                                        }
                   }
-                }
-                userID="55"
-              />
-              <SimilarityScore
-                submissionID={undefined}
-              />
-              <View
-                style={
-                  Object {
-                    "backgroundColor": "white",
-                    "flex": 1,
-                    "paddingLeft": 16,
-                    "paddingRight": 16,
-                    "paddingTop": 16,
+                  onDismiss={[Function]}
+                  pending={false}
+                  refresh={[Function]}
+                  refreshSubmissionSummary={[Function]}
+                  refreshSubmissions={[Function]}
+                  refreshing={false}
+                  resetDrawer={[Function]}
+                  submissionEntities={Object {}}
+                  submissions={
+                              Array [
+                                          Object {
+                                            "avatarURL": "http://www.fillmurray.com/100/100",
+                                            "grade": "B-",
+                                            "name": "Donald Trump",
+                                            "sectionID": "1",
+                                            "status": "submitted",
+                                            "userID": "55",
+                                          },
+                                          Object {
+                                            "avatarURL": "http://www.fillmurray.com/100/100",
+                                            "grade": "B-",
+                                            "name": "Donald Trump",
+                                            "sectionID": "1",
+                                            "status": "missing",
+                                            "userID": "55",
+                                          },
+                                        ]
                   }
-                }
-              >
-                <View
-                  style={
+                  userID="1"
+      />,
+                "_forcedUpdate": false,
+                "_instance": [Circular],
+                "_newState": Object {
+                  "currentPageIndex": 0,
+                  "currentStudentID": "1",
+                  "drawerInset": 62,
+                  "hasScrolledToInitialSubmission": false,
+                  "hasSetInitialDrawerPosition": false,
+                  "size": Object {
+                    "height": 1334,
+                    "width": 770,
+                  },
+                  "submissions": Array [
                     Object {
-                      "alignItems": "center",
-                      "flex": 0,
-                      "height": 200,
-                      "justifyContent": "center",
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-medium",
-                          "textAlign": "center",
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                      ]
-                    }
+                      "avatarURL": "http://www.fillmurray.com/100/100",
+                      "grade": "B-",
+                      "name": "Donald Trump",
+                      "sectionID": "1",
+                      "status": "missing",
+                      "userID": "55",
+                    },
+                  ],
+                },
+                "_rendered": <Screen
+                  navBarHidden={true}
+                  navBarStyle="light"
+                  noRotationInVerticallyCompact={true}
+                  showDismissButton={true}
+                  statusBarHidden={true}
+                  statusBarStyle="default"
+      >
+                  <View
+                              style={
+                                          Object {
+                                                      "flex": 1,
+                                                    }
+                              }
                   >
-                    This assignment does not allow submissions.
-                  </Text>
-                </View>
-              </View>
-            </A11yGroup>
-          </A11yGroup>
-        </View>
-      </View>
-    </RCTScrollView>
-  </View>
-</RCTSafeAreaView>
-`;
-
-exports[`SpeedGrader renders with a filter 1`] = `
-<RCTSafeAreaView
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
->
-  <View
-    style={
-      Object {
-        "flex": 1,
-      }
-    }
-  >
-    <RCTScrollView
-      contentOffset={
-        Object {
-          "x": 0,
-        }
-      }
-      data={
-        Array [
-          Object {
-            "key": "55",
-            "submission": Object {
-              "avatarURL": "http://www.fillmurray.com/100/100",
-              "grade": "B-",
-              "name": "Donald Trump",
-              "sectionID": "1",
-              "status": "submitted",
-              "userID": "55",
+                              <FlatList
+                                          contentOffset={
+                                                      Object {
+                                                                  "x": 0,
+                                                                }
+                                          }
+                                          data={
+                                                      Array [
+                                                                  Object {
+                                                                    "key": "55",
+                                                                    "submission": Object {
+                                                                      "avatarURL": "http://www.fillmurray.com/100/100",
+                                                                      "grade": "B-",
+                                                                      "name": "Donald Trump",
+                                                                      "sectionID": "1",
+                                                                      "status": "missing",
+                                                                      "userID": "55",
+                                                                    },
+                                                                  },
+                                                                ]
+                                          }
+                                          disableVirtualization={false}
+                                          getItemLayout={[Function]}
+                                          horizontal={true}
+                                          initialNumToRender={null}
+                                          keyExtractor={[Function]}
+                                          keyboardShouldPersistTaps="handled"
+                                          maxToRenderPerBatch={10}
+                                          numColumns={1}
+                                          onEndReachedThreshold={2}
+                                          onLayout={[Function]}
+                                          onMomentumScrollEnd={[Function]}
+                                          pagingEnabled={true}
+                                          renderItem={[Function]}
+                                          scrollEventThrottle={50}
+                                          showsHorizontalScrollIndicator={false}
+                                          style={
+                                                      Object {
+                                                                  "marginLeft": -10,
+                                                                  "marginRight": -10,
+                                                                }
+                                          }
+                                          updateCellsBatchingPeriod={50}
+                                          windowSize={5}
+                              />
+                              <Tutorial
+                                          tutorials={
+                                                      Array [
+                                                                  Object {
+                                                                    "id": "swipe-tutorial",
+                                                                    "image": Object {
+                                                                      "testUri": "../../../src/images/speedgrader/Swipe.png",
+                                                                    },
+                                                                    "text": "Swipe left or right to view other student submissions",
+                                                                  },
+                                                                ]
+                                          }
+                              />
+                  </View>
+      </Screen>,
+                "_rendering": false,
+                "_updater": [Circular],
+              },
             },
           },
-          Object {
-            "key": "55",
-            "submission": Object {
-              "avatarURL": "http://www.fillmurray.com/100/100",
-              "grade": "B-",
-              "name": "Donald Trump",
-              "sectionID": "1",
-              "status": "missing",
-              "userID": "55",
+          SpeedGrader {
+            "_captureFlatList": [Function],
+            "componentWillReceiveProps": [Function],
+            "context": Object {},
+            "dismiss": [Function],
+            "getInitialTabIndex": [Function],
+            "getItemLayout": [Function],
+            "onLayout": [Function],
+            "props": Object {
+              "assignmentID": "1",
+              "assignmentSubmissionTypes": Array [
+                "none",
+              ],
+              "courseID": "1",
+              "drawerPosition": 0,
+              "getCourseEnabledFeatures": [Function],
+              "gradeSubmissionWithRubric": [Function],
+              "navigator": Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              },
+              "onDismiss": [Function],
+              "pending": false,
+              "refresh": [Function],
+              "refreshSubmissionSummary": [Function],
+              "refreshSubmissions": [Function],
+              "refreshing": false,
+              "resetDrawer": [Function],
+              "submissionEntities": Object {},
+              "submissions": Array [
+                Object {
+                  "avatarURL": "http://www.fillmurray.com/100/100",
+                  "grade": "B-",
+                  "name": "Donald Trump",
+                  "sectionID": "1",
+                  "status": "submitted",
+                  "userID": "55",
+                },
+              ],
+              "userID": "1",
+            },
+            "refs": Object {},
+            "renderBody": [Function],
+            "renderItem": [Function],
+            "scrollEnded": [Function],
+            "snapTo": [Function],
+            "state": Object {
+              "currentPageIndex": 0,
+              "currentStudentID": "1",
+              "drawerInset": 62,
+              "hasScrolledToInitialSubmission": false,
+              "hasSetInitialDrawerPosition": false,
+              "size": Object {
+                "height": 1334,
+                "width": 770,
+              },
+              "submissions": Array [
+                Object {
+                  "avatarURL": "http://www.fillmurray.com/100/100",
+                  "grade": "B-",
+                  "name": "Donald Trump",
+                  "sectionID": "1",
+                  "status": "submitted",
+                  "userID": "55",
+                },
+              ],
+            },
+            "updater": Updater {
+              "_renderer": ReactShallowRenderer {
+                "_context": Object {},
+                "_element": <SpeedGrader
+                  assignmentID="1"
+                  assignmentSubmissionTypes={
+                              Array [
+                                          "none",
+                                        ]
+                  }
+                  courseID="1"
+                  drawerPosition={0}
+                  getCourseEnabledFeatures={[Function]}
+                  gradeSubmissionWithRubric={[Function]}
+                  navigator={
+                              Object {
+                                          "dismiss": [Function],
+                                          "dismissAllModals": [Function],
+                                          "isModal": false,
+                                          "pop": [Function],
+                                          "show": [Function],
+                                          "traitCollection": [Function],
+                                        }
+                  }
+                  onDismiss={[Function]}
+                  pending={false}
+                  refresh={[Function]}
+                  refreshSubmissionSummary={[Function]}
+                  refreshSubmissions={[Function]}
+                  refreshing={false}
+                  resetDrawer={[Function]}
+                  submissionEntities={Object {}}
+                  submissions={
+                              Array [
+                                          Object {
+                                            "avatarURL": "http://www.fillmurray.com/100/100",
+                                            "grade": "B-",
+                                            "name": "Donald Trump",
+                                            "sectionID": "1",
+                                            "status": "submitted",
+                                            "userID": "55",
+                                          },
+                                        ]
+                  }
+                  userID="1"
+      />,
+                "_forcedUpdate": false,
+                "_instance": [Circular],
+                "_newState": Object {
+                  "currentPageIndex": 0,
+                  "currentStudentID": "1",
+                  "drawerInset": 62,
+                  "hasScrolledToInitialSubmission": false,
+                  "hasSetInitialDrawerPosition": false,
+                  "size": Object {
+                    "height": 1334,
+                    "width": 770,
+                  },
+                  "submissions": Array [
+                    Object {
+                      "avatarURL": "http://www.fillmurray.com/100/100",
+                      "grade": "B-",
+                      "name": "Donald Trump",
+                      "sectionID": "1",
+                      "status": "submitted",
+                      "userID": "55",
+                    },
+                  ],
+                },
+                "_rendered": <Screen
+                  navBarHidden={true}
+                  navBarStyle="light"
+                  noRotationInVerticallyCompact={true}
+                  showDismissButton={true}
+                  statusBarHidden={true}
+                  statusBarStyle="default"
+      >
+                  <View
+                              style={
+                                          Object {
+                                                      "flex": 1,
+                                                    }
+                              }
+                  >
+                              <FlatList
+                                          contentOffset={
+                                                      Object {
+                                                                  "x": 0,
+                                                                }
+                                          }
+                                          data={
+                                                      Array [
+                                                                  Object {
+                                                                    "key": "55",
+                                                                    "submission": Object {
+                                                                      "avatarURL": "http://www.fillmurray.com/100/100",
+                                                                      "grade": "B-",
+                                                                      "name": "Donald Trump",
+                                                                      "sectionID": "1",
+                                                                      "status": "submitted",
+                                                                      "userID": "55",
+                                                                    },
+                                                                  },
+                                                                ]
+                                          }
+                                          disableVirtualization={false}
+                                          getItemLayout={[Function]}
+                                          horizontal={true}
+                                          initialNumToRender={null}
+                                          keyExtractor={[Function]}
+                                          keyboardShouldPersistTaps="handled"
+                                          maxToRenderPerBatch={10}
+                                          numColumns={1}
+                                          onEndReachedThreshold={2}
+                                          onLayout={[Function]}
+                                          onMomentumScrollEnd={[Function]}
+                                          pagingEnabled={true}
+                                          renderItem={[Function]}
+                                          scrollEventThrottle={50}
+                                          showsHorizontalScrollIndicator={false}
+                                          style={
+                                                      Object {
+                                                                  "marginLeft": -10,
+                                                                  "marginRight": -10,
+                                                                }
+                                          }
+                                          updateCellsBatchingPeriod={50}
+                                          windowSize={5}
+                              />
+                              <Tutorial
+                                          tutorials={
+                                                      Array [
+                                                                  Object {
+                                                                    "id": "swipe-tutorial",
+                                                                    "image": Object {
+                                                                      "testUri": "../../../src/images/speedgrader/Swipe.png",
+                                                                    },
+                                                                    "text": "Swipe left or right to view other student submissions",
+                                                                  },
+                                                                ]
+                                          }
+                              />
+                  </View>
+      </Screen>,
+                "_rendering": false,
+                "_updater": [Circular],
+              },
             },
           },
-        ]
-      }
-      disableVirtualization={false}
-      getItem={[Function]}
-      getItemCount={[Function]}
-      getItemLayout={[Function]}
-      horizontal={true}
-      initialNumToRender={10}
-      keyExtractor={[Function]}
-      keyboardShouldPersistTaps="handled"
-      maxToRenderPerBatch={10}
-      numColumns={1}
-      onContentSizeChange={[Function]}
-      onEndReachedThreshold={2}
-      onLayout={[Function]}
-      onMomentumScrollEnd={[Function]}
-      onScroll={[Function]}
-      onScrollBeginDrag={[Function]}
-      onScrollEndDrag={[Function]}
-      pagingEnabled={true}
-      renderItem={[Function]}
-      scrollEventThrottle={50}
-      showsHorizontalScrollIndicator={false}
-      stickyHeaderIndices={Array []}
-      style={
-        Object {
-          "marginLeft": -10,
-          "marginRight": -10,
-        }
-      }
-      updateCellsBatchingPeriod={50}
-      viewabilityConfigCallbackPairs={Array []}
-      windowSize={5}
-    >
-      <View>
-        <View
-          onLayout={undefined}
-          style={
-            Array [
-              Object {
-                "flexDirection": "row",
+          SpeedGrader {
+            "_captureFlatList": [Function],
+            "context": Object {},
+            "dismiss": [Function],
+            "getInitialTabIndex": [Function],
+            "getItemLayout": [Function],
+            "onLayout": [Function],
+            "props": Object {
+              "assignmentID": "1",
+              "assignmentSubmissionTypes": Array [
+                "none",
+              ],
+              "courseID": "1",
+              "drawerPosition": 0,
+              "getCourseEnabledFeatures": [Function],
+              "gradeSubmissionWithRubric": [Function],
+              "navigator": Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
               },
-              null,
-            ]
-          }
-        >
-          <A11yGroup
-            style={
-              Array [
-                Object {
-                  "overflow": "hidden",
-                  "paddingLeft": 10,
-                  "paddingRight": 10,
-                },
-                Object {
-                  "height": 1334,
-                  "width": 770,
-                },
-              ]
-            }
-          >
-            <A11yGroup
-              onLayout={[Function]}
-              style={
-                Object {
-                  "flex": 1,
-                }
-              }
-            >
-              <Header
-                assignmentID="1"
-                closeModal={[Function]}
-                courseID="1"
-                navigator={
-                  Object {
-                    "dismiss": [Function],
-                    "dismissAllModals": [Function],
-                    "isModal": false,
-                    "pop": [Function],
-                    "show": [Function],
-                    "traitCollection": [Function],
-                  }
-                }
-                submissionID={undefined}
-                submissionProps={
-                  Object {
-                    "avatarURL": "http://www.fillmurray.com/100/100",
-                    "grade": "B-",
-                    "name": "Donald Trump",
-                    "sectionID": "1",
-                    "status": "submitted",
-                    "userID": "55",
-                  }
-                }
-                userID="55"
-              />
-              <SimilarityScore
-                submissionID={undefined}
-              />
-              <View
-                style={
-                  Object {
-                    "backgroundColor": "white",
-                    "flex": 1,
-                    "paddingLeft": 16,
-                    "paddingRight": 16,
-                    "paddingTop": 16,
-                  }
-                }
-              >
-                <View
-                  style={
-                    Object {
-                      "alignItems": "center",
-                      "flex": 0,
-                      "height": 200,
-                      "justifyContent": "center",
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-medium",
-                          "textAlign": "center",
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                      ]
-                    }
-                  >
-                    This assignment does not allow submissions.
-                  </Text>
-                </View>
-              </View>
-            </A11yGroup>
-          </A11yGroup>
-        </View>
-        <View
-          onLayout={undefined}
-          style={
-            Array [
-              Object {
-                "flexDirection": "row",
+              "onDismiss": [Function],
+              "pending": false,
+              "refresh": [Function],
+              "refreshSubmissionSummary": [Function],
+              "refreshSubmissions": [Function],
+              "refreshing": false,
+              "resetDrawer": [Function],
+              "submissionEntities": Object {},
+              "submissions": Array [],
+              "userID": "1",
+            },
+            "refs": Object {},
+            "renderBody": [Function],
+            "renderItem": [Function],
+            "scrollEnded": [Function],
+            "snapTo": [Function],
+            "state": Object {
+              "currentPageIndex": undefined,
+              "currentStudentID": "1",
+              "drawerInset": 62,
+              "hasScrolledToInitialSubmission": false,
+              "hasSetInitialDrawerPosition": false,
+              "size": Object {
+                "height": 1334,
+                "width": 770,
               },
-              null,
-            ]
-          }
-        >
-          <A11yGroup
-            style={
-              Array [
-                Object {
-                  "overflow": "hidden",
-                  "paddingLeft": 10,
-                  "paddingRight": 10,
+              "submissions": Array [],
+            },
+            "updater": Updater {
+              "_renderer": ReactShallowRenderer {
+                "_context": Object {},
+                "_element": <SpeedGrader
+                  assignmentID="1"
+                  assignmentSubmissionTypes={
+                              Array [
+                                          "none",
+                                        ]
+                  }
+                  courseID="1"
+                  drawerPosition={0}
+                  getCourseEnabledFeatures={[Function]}
+                  gradeSubmissionWithRubric={[Function]}
+                  navigator={
+                              Object {
+                                          "dismiss": [Function],
+                                          "dismissAllModals": [Function],
+                                          "isModal": false,
+                                          "pop": [Function],
+                                          "show": [Function],
+                                          "traitCollection": [Function],
+                                        }
+                  }
+                  onDismiss={[Function]}
+                  pending={false}
+                  refresh={[Function]}
+                  refreshSubmissionSummary={[Function]}
+                  refreshSubmissions={[Function]}
+                  refreshing={false}
+                  resetDrawer={[Function]}
+                  submissionEntities={Object {}}
+                  submissions={Array []}
+                  userID="1"
+      />,
+                "_forcedUpdate": false,
+                "_instance": [Circular],
+                "_newState": Object {
+                  "currentPageIndex": undefined,
+                  "currentStudentID": "1",
+                  "drawerInset": 62,
+                  "hasScrolledToInitialSubmission": false,
+                  "hasSetInitialDrawerPosition": false,
+                  "size": Object {
+                    "height": 1334,
+                    "width": 770,
+                  },
+                  "submissions": Array [],
                 },
-                Object {
-                  "height": 1334,
-                  "width": 770,
-                },
-              ]
-            }
-          >
-            <A11yGroup
-              onLayout={[Function]}
-              style={
-                Object {
-                  "flex": 1,
-                }
-              }
-            >
-              <Header
-                assignmentID="1"
-                closeModal={[Function]}
-                courseID="1"
-                navigator={
-                  Object {
-                    "dismiss": [Function],
-                    "dismissAllModals": [Function],
-                    "isModal": false,
-                    "pop": [Function],
-                    "show": [Function],
-                    "traitCollection": [Function],
-                  }
-                }
-                submissionID={undefined}
-                submissionProps={
-                  Object {
-                    "avatarURL": "http://www.fillmurray.com/100/100",
-                    "grade": "B-",
-                    "name": "Donald Trump",
-                    "sectionID": "1",
-                    "status": "missing",
-                    "userID": "55",
-                  }
-                }
-                userID="55"
-              />
-              <SimilarityScore
-                submissionID={undefined}
-              />
-              <View
-                style={
-                  Object {
-                    "backgroundColor": "white",
-                    "flex": 1,
-                    "paddingLeft": 16,
-                    "paddingRight": 16,
-                    "paddingTop": 16,
-                  }
-                }
-              >
-                <View
-                  style={
-                    Object {
-                      "alignItems": "center",
-                      "flex": 0,
-                      "height": 200,
-                      "justifyContent": "center",
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-medium",
-                          "textAlign": "center",
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                      ]
-                    }
+                "_rendered": <Screen
+                  navBarHidden={true}
+                  navBarStyle="light"
+                  noRotationInVerticallyCompact={true}
+                  showDismissButton={true}
+                  statusBarHidden={true}
+                  statusBarStyle="default"
+      >
+                  <View
+                              style={
+                                          Object {
+                                                      "flex": 1,
+                                                    }
+                              }
                   >
-                    This assignment does not allow submissions.
-                  </Text>
-                </View>
-              </View>
-            </A11yGroup>
-          </A11yGroup>
-        </View>
-      </View>
-    </RCTScrollView>
-  </View>
-</RCTSafeAreaView>
-`;
-
-exports[`SpeedGrader shows the loading spinner when pending and not refreshing 1`] = `
-<RCTSafeAreaView
-  style={
-    Object {
-      "flex": 1,
+                              <View
+                                          style={
+                                                      Object {
+                                                                  "alignItems": "center",
+                                                                  "flex": 1,
+                                                                  "justifyContent": "center",
+                                                                }
+                                          }
+                              >
+                                          <ActivityIndicator
+                                                      animating={true}
+                                                      color="#999999"
+                                                      hidesWhenStopped={true}
+                                                      size="small"
+                                          />
+                              </View>
+                              <Tutorial
+                                          tutorials={
+                                                      Array [
+                                                                  Object {
+                                                                    "id": "swipe-tutorial",
+                                                                    "image": Object {
+                                                                      "testUri": "../../../src/images/speedgrader/Swipe.png",
+                                                                    },
+                                                                    "text": "Swipe left or right to view other student submissions",
+                                                                  },
+                                                                ]
+                                          }
+                              />
+                  </View>
+      </Screen>,
+                "_rendering": false,
+                "_updater": [Circular],
+              },
+            },
+          },
+          SpeedGrader {
+            "_captureFlatList": [Function],
+            "context": Object {},
+            "dismiss": [Function],
+            "getInitialTabIndex": [Function],
+            "getItemLayout": [Function],
+            "onLayout": [Function],
+            "props": Object {
+              "assignmentID": "1",
+              "assignmentSubmissionTypes": Array [
+                "none",
+              ],
+              "courseID": "1",
+              "drawerPosition": 0,
+              "getCourseEnabledFeatures": [Function],
+              "gradeSubmissionWithRubric": [Function],
+              "navigator": Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              },
+              "onDismiss": [Function],
+              "pending": true,
+              "refresh": [Function],
+              "refreshSubmissionSummary": [Function],
+              "refreshSubmissions": [Function],
+              "refreshing": false,
+              "resetDrawer": [Function],
+              "submissionEntities": Object {},
+              "submissions": Array [],
+              "userID": "1",
+            },
+            "refs": Object {},
+            "renderBody": [Function],
+            "renderItem": [Function],
+            "scrollEnded": [Function],
+            "snapTo": [Function],
+            "state": Object {
+              "currentPageIndex": undefined,
+              "currentStudentID": "1",
+              "drawerInset": 62,
+              "hasScrolledToInitialSubmission": false,
+              "hasSetInitialDrawerPosition": false,
+              "size": Object {
+                "height": 1334,
+                "width": 770,
+              },
+              "submissions": Array [],
+            },
+            "updater": Updater {
+              "_renderer": ReactShallowRenderer {
+                "_context": Object {},
+                "_element": <SpeedGrader
+                  assignmentID="1"
+                  assignmentSubmissionTypes={
+                              Array [
+                                          "none",
+                                        ]
+                  }
+                  courseID="1"
+                  drawerPosition={0}
+                  getCourseEnabledFeatures={[Function]}
+                  gradeSubmissionWithRubric={[Function]}
+                  navigator={
+                              Object {
+                                          "dismiss": [Function],
+                                          "dismissAllModals": [Function],
+                                          "isModal": false,
+                                          "pop": [Function],
+                                          "show": [Function],
+                                          "traitCollection": [Function],
+                                        }
+                  }
+                  onDismiss={[Function]}
+                  pending={true}
+                  refresh={[Function]}
+                  refreshSubmissionSummary={[Function]}
+                  refreshSubmissions={[Function]}
+                  refreshing={false}
+                  resetDrawer={[Function]}
+                  submissionEntities={Object {}}
+                  submissions={Array []}
+                  userID="1"
+      />,
+                "_forcedUpdate": false,
+                "_instance": [Circular],
+                "_newState": Object {
+                  "currentPageIndex": undefined,
+                  "currentStudentID": "1",
+                  "drawerInset": 62,
+                  "hasScrolledToInitialSubmission": false,
+                  "hasSetInitialDrawerPosition": false,
+                  "size": Object {
+                    "height": 1334,
+                    "width": 770,
+                  },
+                  "submissions": Array [],
+                },
+                "_rendered": <Screen
+                  navBarHidden={true}
+                  navBarStyle="light"
+                  noRotationInVerticallyCompact={true}
+                  showDismissButton={true}
+                  statusBarHidden={true}
+                  statusBarStyle="default"
+      >
+                  <View
+                              style={
+                                          Object {
+                                                      "flex": 1,
+                                                    }
+                              }
+                  >
+                              <View
+                                          style={
+                                                      Object {
+                                                                  "alignItems": "center",
+                                                                  "flex": 1,
+                                                                  "justifyContent": "center",
+                                                                }
+                                          }
+                              >
+                                          <ActivityIndicator
+                                                      animating={true}
+                                                      color="#999999"
+                                                      hidesWhenStopped={true}
+                                                      size="small"
+                                          />
+                              </View>
+                              <Tutorial
+                                          tutorials={
+                                                      Array [
+                                                                  Object {
+                                                                    "id": "swipe-tutorial",
+                                                                    "image": Object {
+                                                                      "testUri": "../../../src/images/speedgrader/Swipe.png",
+                                                                    },
+                                                                    "text": "Swipe left or right to view other student submissions",
+                                                                  },
+                                                                ]
+                                          }
+                              />
+                  </View>
+      </Screen>,
+                "_rendering": false,
+                "_updater": [Circular],
+              },
+            },
+          },
+          SpeedGrader {
+            "_captureFlatList": [Function],
+            "context": Object {},
+            "dismiss": [Function],
+            "getInitialTabIndex": [Function],
+            "getItemLayout": [Function],
+            "onLayout": [Function],
+            "props": Object {
+              "assignmentID": "1",
+              "assignmentSubmissionTypes": Array [
+                "none",
+              ],
+              "courseID": "1",
+              "drawerPosition": 0,
+              "getCourseEnabledFeatures": [Function],
+              "gradeSubmissionWithRubric": [Function],
+              "navigator": Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              },
+              "onDismiss": [Function],
+              "pending": false,
+              "refresh": [Function],
+              "refreshSubmissionSummary": [Function],
+              "refreshSubmissions": [Function],
+              "refreshing": false,
+              "resetDrawer": [Function],
+              "submissionEntities": Object {},
+              "submissions": Array [
+                Object {
+                  "avatarURL": "http://www.fillmurray.com/100/100",
+                  "grade": "B-",
+                  "name": "Donald Trump",
+                  "sectionID": "1",
+                  "status": "submitted",
+                  "userID": "55",
+                },
+              ],
+              "userID": "1",
+            },
+            "refs": Object {},
+            "renderBody": [Function],
+            "renderItem": [Function],
+            "scrollEnded": [Function],
+            "snapTo": [Function],
+            "state": Object {
+              "currentPageIndex": 0,
+              "currentStudentID": "1",
+              "drawerInset": 62,
+              "hasScrolledToInitialSubmission": false,
+              "hasSetInitialDrawerPosition": false,
+              "size": Object {
+                "height": 1334,
+                "width": 770,
+              },
+              "submissions": Array [
+                Object {
+                  "avatarURL": "http://www.fillmurray.com/100/100",
+                  "grade": "B-",
+                  "name": "Donald Trump",
+                  "sectionID": "1",
+                  "status": "submitted",
+                  "userID": "55",
+                },
+              ],
+            },
+            "updater": Updater {
+              "_renderer": ReactShallowRenderer {
+                "_context": Object {},
+                "_element": <SpeedGrader
+                  assignmentID="1"
+                  assignmentSubmissionTypes={
+                              Array [
+                                          "none",
+                                        ]
+                  }
+                  courseID="1"
+                  drawerPosition={0}
+                  getCourseEnabledFeatures={[Function]}
+                  gradeSubmissionWithRubric={[Function]}
+                  navigator={
+                              Object {
+                                          "dismiss": [Function],
+                                          "dismissAllModals": [Function],
+                                          "isModal": false,
+                                          "pop": [Function],
+                                          "show": [Function],
+                                          "traitCollection": [Function],
+                                        }
+                  }
+                  onDismiss={[Function]}
+                  pending={false}
+                  refresh={[Function]}
+                  refreshSubmissionSummary={[Function]}
+                  refreshSubmissions={[Function]}
+                  refreshing={false}
+                  resetDrawer={[Function]}
+                  submissionEntities={Object {}}
+                  submissions={
+                              Array [
+                                          Object {
+                                            "avatarURL": "http://www.fillmurray.com/100/100",
+                                            "grade": "B-",
+                                            "name": "Donald Trump",
+                                            "sectionID": "1",
+                                            "status": "submitted",
+                                            "userID": "55",
+                                          },
+                                        ]
+                  }
+                  userID="1"
+      />,
+                "_forcedUpdate": false,
+                "_instance": [Circular],
+                "_newState": Object {
+                  "currentPageIndex": 0,
+                  "currentStudentID": "1",
+                  "drawerInset": 62,
+                  "hasScrolledToInitialSubmission": false,
+                  "hasSetInitialDrawerPosition": false,
+                  "size": Object {
+                    "height": 1334,
+                    "width": 770,
+                  },
+                  "submissions": Array [
+                    Object {
+                      "avatarURL": "http://www.fillmurray.com/100/100",
+                      "grade": "B-",
+                      "name": "Donald Trump",
+                      "sectionID": "1",
+                      "status": "submitted",
+                      "userID": "55",
+                    },
+                  ],
+                },
+                "_rendered": <Screen
+                  navBarHidden={true}
+                  navBarStyle="light"
+                  noRotationInVerticallyCompact={true}
+                  showDismissButton={true}
+                  statusBarHidden={true}
+                  statusBarStyle="default"
+      >
+                  <View
+                              style={
+                                          Object {
+                                                      "flex": 1,
+                                                    }
+                              }
+                  >
+                              <FlatList
+                                          contentOffset={
+                                                      Object {
+                                                                  "x": 0,
+                                                                }
+                                          }
+                                          data={
+                                                      Array [
+                                                                  Object {
+                                                                    "key": "55",
+                                                                    "submission": Object {
+                                                                      "avatarURL": "http://www.fillmurray.com/100/100",
+                                                                      "grade": "B-",
+                                                                      "name": "Donald Trump",
+                                                                      "sectionID": "1",
+                                                                      "status": "submitted",
+                                                                      "userID": "55",
+                                                                    },
+                                                                  },
+                                                                ]
+                                          }
+                                          disableVirtualization={false}
+                                          getItemLayout={[Function]}
+                                          horizontal={true}
+                                          initialNumToRender={null}
+                                          keyExtractor={[Function]}
+                                          keyboardShouldPersistTaps="handled"
+                                          maxToRenderPerBatch={10}
+                                          numColumns={1}
+                                          onEndReachedThreshold={2}
+                                          onLayout={[Function]}
+                                          onMomentumScrollEnd={[Function]}
+                                          pagingEnabled={true}
+                                          renderItem={[Function]}
+                                          scrollEventThrottle={50}
+                                          showsHorizontalScrollIndicator={false}
+                                          style={
+                                                      Object {
+                                                                  "marginLeft": -10,
+                                                                  "marginRight": -10,
+                                                                }
+                                          }
+                                          updateCellsBatchingPeriod={50}
+                                          windowSize={5}
+                              />
+                              <Tutorial
+                                          tutorials={
+                                                      Array [
+                                                                  Object {
+                                                                    "id": "swipe-tutorial",
+                                                                    "image": Object {
+                                                                      "testUri": "../../../src/images/speedgrader/Swipe.png",
+                                                                    },
+                                                                    "text": "Swipe left or right to view other student submissions",
+                                                                  },
+                                                                ]
+                                          }
+                              />
+                  </View>
+      </Screen>,
+                "_rendering": false,
+                "_updater": [Circular],
+              },
+            },
+          },
+        ],
+        "registerCommentProgress": [Function],
+        "snapTo": [Function],
+        "unregisterCommentProgress": [Function],
+      }
     }
-  }
->
-  <View
-    style={
+    gradeSubmissionWithRubric={[Function]}
+    isCurrentStudent={false}
+    navigator={
       Object {
-        "flex": 1,
+        "dismiss": [Function],
+        "dismissAllModals": [Function],
+        "isModal": false,
+        "pop": [Function],
+        "show": [Function],
+        "traitCollection": [Function],
       }
     }
-  >
-    <View
-      style={
-        Object {
-          "alignItems": "center",
-          "flex": 1,
-          "justifyContent": "center",
-        }
-      }
-    >
-      <ActivityIndicator
-        animating={true}
-        color="#999999"
-        hidesWhenStopped={true}
-        size="small"
-      />
-    </View>
-  </View>
-</RCTSafeAreaView>
-`;
-
-exports[`SpeedGrader shows the loading spinner when there are no submissions 1`] = `
-<RCTSafeAreaView
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
->
-  <View
-    style={
+    selectedAttachmentIndex={null}
+    selectedIndex={null}
+    selectedTabIndex={-1}
+    submissionProps={
       Object {
-        "flex": 1,
+        "avatarURL": "http://www.fillmurray.com/100/100",
+        "grade": "B-",
+        "name": "Donald Trump",
+        "sectionID": "1",
+        "status": "submitted",
+        "userID": "55",
       }
     }
-  >
-    <View
-      style={
-        Object {
-          "alignItems": "center",
-          "flex": 1,
-          "justifyContent": "center",
-        }
-      }
-    >
-      <ActivityIndicator
-        animating={true}
-        color="#999999"
-        hidesWhenStopped={true}
-        size="small"
-      />
-    </View>
-  </View>
-</RCTSafeAreaView>
+    userID="55"
+  />
+</_class>
 `;

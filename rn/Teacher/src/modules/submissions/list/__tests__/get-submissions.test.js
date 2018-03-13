@@ -173,6 +173,42 @@ test('submissions', () => {
   })
 })
 
+test('doesnt return submissions if we have enrollments but no submissions yet', () => {
+  const enrollments: EnrollmentsState = {
+    '1': t.enrollment({ id: '1', user_id: '1', user: t.user({ id: '1', name: 'S1', sortable_name: 'S1' }) }),
+  }
+
+  const submissions: SubmissionsState = {}
+
+  const enrRefs = { pending: 0,
+    refs: ['1'],
+  }
+
+  const courses = {
+    '100': { enrollments: enrRefs },
+  }
+
+  const subRefs = { pending: 0, refs: [] }
+  const assignments = {
+    '1000': { submissions: subRefs },
+  }
+
+  const template = t.appState()
+  const state = t.appState({
+    entities: {
+      ...template.entities,
+      enrollments,
+      submissions,
+      courses,
+      assignments,
+    },
+  })
+  expect(getSubmissionsProps(state.entities, '100', '1000')).toMatchObject({
+    submissions: [],
+    pending: false,
+  })
+})
+
 test('due date with normal due date', () => {
   const assignment = t.assignment({
     due_at: 'normal',

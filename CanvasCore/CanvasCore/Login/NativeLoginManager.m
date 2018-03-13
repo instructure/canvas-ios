@@ -83,14 +83,14 @@ RCT_EXPORT_METHOD(logout)
 {
     [[NativeLoginManager shared] setShouldCleanupOnNextLogoutEvent:YES];
     [TheKeymaster logout];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"MasqeuradeDidEnd" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"MasqueradeDidEnd" object:nil];
 }
 
 RCT_EXPORT_METHOD(switchUser)
 {
     [[NativeLoginManager shared] setShouldCleanupOnNextLogoutEvent:YES];
     [TheKeymaster switchUser];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"MasqeuradeDidEnd" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"MasqueradeDidEnd" object:nil];
 }
 
 RCT_EXPORT_METHOD(masquerade:(NSString *)userID domain:(NSString *)domain resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
@@ -99,7 +99,7 @@ RCT_EXPORT_METHOD(masquerade:(NSString *)userID domain:(NSString *)domain resolv
     [[TheKeymaster masqueradeAsUserWithID:userID domain:domain] subscribeNext:^(CKIUser *user) {
         dispatch_async(dispatch_get_main_queue(), ^{
             resolve(user.JSONDictionary);
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"MasqeuradeDidStart" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"MasqueradeDidStart" object:nil];
         });
     } error:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -113,7 +113,7 @@ RCT_EXPORT_METHOD(stopMasquerade)
 {
     [[NativeLoginManager shared] setShouldCleanupOnNextLogoutEvent:YES];
     [TheKeymaster stopMasquerading];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"MasqeuradeDidEnd" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"MasqueradeDidEnd" object:nil];
 }
 
 RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(loginInformation)

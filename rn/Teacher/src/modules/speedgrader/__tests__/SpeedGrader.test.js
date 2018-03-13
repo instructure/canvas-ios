@@ -25,7 +25,6 @@ import {
   shouldRefresh,
   isRefreshing,
 } from '../SpeedGrader'
-import renderer from 'react-test-renderer'
 import shuffle from 'knuth-shuffle-seeded'
 
 jest.mock('../components/GradePicker')
@@ -84,9 +83,9 @@ let defaultProps = {
 
 describe('SpeedGrader', () => {
   it('renders', () => {
-    let tree = renderer.create(
+    let tree = shallow(
       <SpeedGrader {...defaultProps} />
-    ).toJSON()
+    )
 
     expect(tree).toMatchSnapshot()
   })
@@ -95,52 +94,79 @@ describe('SpeedGrader', () => {
     let props = {
       ...defaultProps,
       submissions: [templates.submissionProps(), templates.submissionProps({ status: 'missing' })],
-      selectedFilter: {
-        filter: {
-          type: 'notsubmitted',
-          title: 'Who Cares?',
-          filterFunc: subs => subs.filter(sub => sub.status === 'missing'),
-        },
-      },
+      filter: subs => subs.filter(sub => sub.status === 'missing'),
     }
-    let tree = renderer.create(
+    let tree = shallow(
       <SpeedGrader {...props} />
-    ).toJSON()
+    )
+    let list = tree.find('FlatList')
+    expect(list.props().data.length).toEqual(1)
+  })
 
-    expect(tree).toMatchSnapshot()
+  it('doesnt set index until there are some submissions', () => {
+    let props = {
+      ...defaultProps,
+      submissions: [],
+    }
+
+    let tree = shallow(
+      <SpeedGrader {...props} />
+    )
+    expect(tree.state()).toMatchObject({
+      submissions: [],
+      currentPageIndex: undefined,
+    })
+
+    tree.setProps({ submissions: [] })
+    expect(tree.state()).toMatchObject({
+      submissions: [],
+      currentPageIndex: undefined,
+    })
+
+    tree.setProps({ submissions: [templates.submissionProps()] })
+    expect(tree.state()).toMatchObject({
+      submissions: [templates.submissionProps()],
+      currentPageIndex: 0,
+    })
   })
 
   it('shows the loading spinner when there are no submissions', () => {
-    let tree = renderer.create(
+    let tree = shallow(
       <SpeedGrader {...defaultProps} />
-    ).toJSON()
-
-    expect(tree).toMatchSnapshot()
+    )
+    expect(tree.find('ActivityIndicator').length).toEqual(1)
   })
 
   it('shows the loading spinner when pending and not refreshing', () => {
-    let tree = renderer.create(
+    let tree = shallow(
       <SpeedGrader {...defaultProps} pending={true} />
-    ).toJSON()
+    )
 
-    expect(tree).toMatchSnapshot()
+    expect(tree.find('ActivityIndicator').length).toEqual(1)
   })
 
   it('renders submissions if there are some', () => {
     const submissions = [templates.submissionProps()]
     const props = { ...defaultProps, submissions }
-    let tree = renderer.create(
+    let tree = shallow(
       <SpeedGrader {...props} />
-    ).toJSON()
-
-    expect(tree).toMatchSnapshot()
+    )
+    let itemTree = shallow(
+      tree.instance().renderItem({ item: {
+        key: submissions[0].userID,
+        submission: submissions[0],
+      },
+        index: 0,
+      })
+    )
+    expect(itemTree).toMatchSnapshot()
   })
 
   it('supplies getItemLayout', () => {
-    let view = renderer.create(
+    let view = shallow(
       <SpeedGrader {...defaultProps} />
     )
-    expect(view.getInstance().getItemLayout(null, 2)).toEqual({
+    expect(view.instance().getItemLayout(null, 2)).toEqual({
       length: 770,
       offset: 770 * 2,
       index: 2,
@@ -149,10 +175,10 @@ describe('SpeedGrader', () => {
 
   it('refreshes assignment on unmount', () => {
     const spy = jest.fn()
-    let view = renderer.create(
+    let view = shallow(
       <SpeedGrader {...defaultProps} refreshAssignment={spy} />
     )
-    view.getInstance().componentWillUnmount()
+    view.unmount()
     expect(spy).toHaveBeenCalledWith(defaultProps.courseID, defaultProps.assignmentID)
   })
 

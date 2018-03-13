@@ -101,6 +101,7 @@ export default class Masquerade extends Component<*, any> {
   submit = async () => {
     try {
       await NativeModules.NativeLogin.masquerade(this.state.userId, this.state.domain)
+      await this.props.navigator.dismiss()
     } catch (e) {
       Alert.alert(i18n('Error'), i18n('There was an error with Act as User. Please try again later.'))
     }

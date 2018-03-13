@@ -83,8 +83,10 @@ export default class SubmissionGrader extends Component<SubmissionGraderProps, S
       selectedTabIndex: props.selectedTabIndex || -1,
       unsavedChanges: null,
     }
+  }
 
-    props.drawerState.registerDrawer(this)
+  componentDidMount () {
+    this.props.drawerState.registerDrawer(this)
   }
 
   componentWillUnmount () {
