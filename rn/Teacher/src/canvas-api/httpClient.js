@@ -17,10 +17,18 @@
 // @flow
 /* global XMLHttpRequest, Blob */
 
-import { getSessionUnsafe } from './session'
+import { AsyncStorage } from 'react-native'
+import { getSession } from './session'
+import * as models from './model'
 
 type Method = 'GET' | 'POST' | 'PUT' | 'DELETE'
 type Body = null | void | string | Object | FormData | Blob | ArrayBuffer
+
+export function resolveUrl (url: string, config: ApiConfig) {
+  const baseURL = (config.baseURL || getSession().baseURL || '').replace(/\/?$/, '')
+  const version = config.excludeVersion ? '/' : '/api/v1/'
+  return /^\w+:/.test(url) ? url : `${baseURL}${version}${url.replace(/^\//, '')}`
+}
 
 export function serializeParams (params: { [string]: any }) {
   const clean = encodeURIComponent
@@ -55,16 +63,14 @@ function xhr (method: Method, url: string, data: Body, config: ApiConfig = {}) {
   const promise: ApiPromise<*> = new Promise((resolve, reject) => {
     const {
       actAsUserID,
-      authToken = '',
-      baseURL = '',
-    } = getSessionUnsafe() || {}
+      authToken,
+    } = getSession()
 
     const params = { ...config.params }
     if (actAsUserID) params.as_user_id = actAsUserID
     const query = serializeParams(params)
 
-    let fullUrl = /^\w+:/.test(url) ? url
-        : `${baseURL.replace(/\/?$/, '')}${config.excludeVersion ? '/' : '/api/v1/'}${url.replace(/^\//, '')}`
+    let fullUrl = resolveUrl(url, config)
     if (query) fullUrl += (fullUrl.includes('?') ? '&' : '?') + query
 
     request.open(method, fullUrl, true)
@@ -110,6 +116,10 @@ function xhr (method: Method, url: string, data: Body, config: ApiConfig = {}) {
             if (request.status >= 400) {
               throw new TypeError('Network request failed')
             }
+            if (config.transform) {
+              response.data = config.transform(response.data)
+            }
+            httpCache.handle(method, url, response.data, config, promise)
             resolve(response)
             break
           case 'error':
@@ -151,3 +161,110 @@ const client = {
 }
 
 export default function httpClient () { return client }
+
+/*
+ * Assumptions:
+ * urls are restful, so
+ *   POST /pages invalidates /pages, since it added a list item
+ *   DELETE|PUT /pages/1 invalidates /pages, since it changed a list item
+ * no two GET requests will differ only by headers, params, transform, etc
+ *   so resolved url is sufficient
+ */
+type CacheEntry = {
+ value: any,
+ expiresAt: number,
+}
+const cache: Map<string, CacheEntry> = new Map()
+const listeners: Set<(?ApiPromise<any>) => void> = new Set()
+export const httpCache = {
+  CACHE_VERSION: 1,
+  notFound: {
+    value: null,
+    expiresAt: 0,
+  },
+  get storageKey () {
+    const { user } = getSession()
+    return `http.cache.${user.id}.${httpCache.CACHE_VERSION}`
+  },
+  clear () {
+    cache.clear()
+    httpCache.notify()
+  },
+  cleanup () {
+    for (const [ key, entry ] of cache) {
+      if (entry.expiresAt < Date.now()) cache.delete(key)
+    }
+    httpCache.notify()
+  },
+  key (url: string, config?: ApiConfig = {}) {
+    return config.cacheKey || resolveUrl(url, config)
+  },
+  get (url: string, config?: ApiConfig = {}) {
+    return cache.get(httpCache.key(url, config)) || httpCache.notFound
+  },
+  handle (method: Method, url: string, value: any, config?: ApiConfig = {}, promise?: ApiPromise<any>) {
+    const key = httpCache.key(url, config)
+    if (method === 'GET') {
+      cache.set(key, {
+        value,
+        expiresAt: Date.now() + (config.ttl || 60 * 60 * 1000), // 1 hour default
+      })
+    } else { // if 'DELETE' | 'POST' | 'PUT'
+      cache.delete(key)
+    }
+    if (method === 'DELETE' || method === 'PUT') {
+      cache.delete(key.replace(/\/[^/]+$/, ''))
+    }
+    httpCache.notify(promise)
+  },
+  subscribe (fn: (?ApiPromise<any>) => void) {
+    listeners.add(fn)
+    return () => { listeners.delete(fn) }
+  },
+  notify (promise: ?ApiPromise<any>) {
+    for (const fn of listeners) fn(promise)
+    return AsyncStorage.setItem(
+      httpCache.storageKey,
+      JSON.stringify([ ...cache ], modelReplacer)
+    )
+  },
+  async hydrate () {
+    const state = await AsyncStorage.getItem(httpCache.storageKey)
+    if (state) {
+      try {
+        for (const [ key, entry ] of JSON.parse(state, modelReviver)) {
+          if (entry.expiresAt > Date.now()) cache.set(key, entry)
+        }
+      } catch (err) {}
+    } else {
+      const prefix = httpCache.storageKey.replace(/\.\d+$/, '')
+      await AsyncStorage.multiRemove(
+        (await AsyncStorage.getAllKeys()).filter(k => k.startsWith(prefix))
+      )
+    }
+    httpCache.notify()
+  },
+}
+
+const modelReplacer = (key: string, value: any) => {
+  if (value instanceof models.Model) {
+    for (const name of Object.keys(models)) {
+      if (name === 'Model') continue
+      if (value instanceof models[name]) {
+        return {
+          ...value.raw,
+          modelConstructor: name,
+        }
+      }
+    }
+  }
+  return value
+}
+
+const modelReviver = (key: string, value: any) => {
+  if (value && value.modelConstructor && models[value.modelConstructor]) {
+    const { modelConstructor, ...raw } = value
+    return new models[modelConstructor](raw)
+  }
+  return value
+}

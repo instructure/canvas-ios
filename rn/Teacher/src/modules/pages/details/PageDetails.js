@@ -16,81 +16,53 @@
 
 // @flow
 
+import i18n from 'format-message'
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import {
   View,
   StyleSheet,
   ActionSheetIOS,
   Alert,
 } from 'react-native'
-import Actions from './actions'
 import { alertError } from '../../../redux/middleware/error-handler'
-import { getPage, deletePage } from '../../../canvas-api'
+import {
+  API,
+  fetchPropsFor,
+  PageModel,
+  CourseModel,
+} from '../../../canvas-api/model-api'
 import CanvasWebView from '../../../common/components/CanvasWebView'
 import Screen from '../../../routing/Screen'
-import i18n from 'format-message'
 import Images from '../../../images'
 import { Heading1 } from '../../../common/text'
 import { isTeacher } from '../../app'
 
-type StateProps = {
-  pages: { [string]: Page },
-  courseName: string,
-  courseColor: ?string,
-}
-
-type OwnProps = {
+type Props = {
   courseID: string,
   url: string,
+  navigator: Navigator,
+  page: ?PageModel,
+  course: ?CourseModel,
+  courseColor: string,
+  api: API,
+  isLoading: boolean,
+  loadError: ?Error,
+  refresh: () => void,
 }
 
-type State = {
-  page: ?Page,
-  page_id: ?string,
-}
-
-export type Props = OwnProps & StateProps & NavigationProps & typeof Actions & {
-  getPage: typeof getPage,
-  deletePage: typeof deletePage,
-}
-
-export class PageDetails extends Component<Props, any> {
-  state: State
-
-  static defaultProps = {
-    getPage,
-    deletePage,
-  }
-
-  constructor (props: Props) {
-    super(props)
-
-    this.state = {
-      page: null,
-      page_id: null,
-    }
-  }
-
-  // $FlowFixMe
-  async componentWillMount () {
-    await this.refresh()
-  }
-
-  componentWillReceiveProps (nextProps: Props) {
-    if (this.state.page_id) {
-      this.setState({ page: nextProps.pages[this.state.page_id] })
-    }
+export class PageDetails extends Component<Props> {
+  componentWillReceiveProps ({ loadError }: Props) {
+    if (loadError && loadError !== this.props.loadError) alertError(loadError)
   }
 
   render () {
-    const { page } = this.state
+    const { course, courseColor, page } = this.props
     return (
       <Screen
-        navBarColor={this.props.courseColor}
+        navBarColor={courseColor}
         navBarStyle='dark'
         title={i18n('Page Details')}
-        subtitle={this.props.courseName}
+        subtitle={course && course.name || undefined}
         rightBarButtons={isTeacher() && [
           {
             image: Images.kabob,
@@ -112,29 +84,28 @@ export class PageDetails extends Component<Props, any> {
     )
   }
 
-  refresh = async () => {
-    // We can only refresh once (on mount)
-    // because the url may have changed from Edit.
-    if (this.state.page_id) return
+  edit = () => {
+    const { courseID, page } = this.props
+    if (!page) return
+    const route = `/courses/${courseID}/pages/${page.url}/edit`
+    this.props.navigator.show(route, {
+      modal: true,
+      modalPresentationStyle: 'formsheet',
+    }, {
+      onChange: this.handleChanged,
+    })
+  }
 
-    try {
-      const { data } = await this.props.getPage(this.props.courseID, this.props.url)
-      this.setState({ page_id: data.page_id })
-      this.props.refreshedPage(data, this.props.courseID)
-    } catch (error) {
-      alertError(error)
+  handleChanged = (changed: PageModel) => {
+    const { courseID, navigator, page } = this.props
+    if (!page || (page.url !== changed.url)) {
+      navigator.replace(`/courses/${courseID}/pages/${changed.url}`)
     }
   }
 
-  edit = () => {
-    if (!this.state.page) return
-    const route = `/courses/${this.props.courseID}/pages/${this.state.page.url}/edit`
-    this.props.navigator.show(route, { modal: true, modalPresentationStyle: 'formsheet' })
-  }
-
   showEditActionSheet = () => {
-    if (!this.state.page) return
-    const canDelete = !this.state.page.front_page
+    if (!this.props.page) return
+    const canDelete = !this.props.page.isFrontPage
     ActionSheetIOS.showActionSheetWithOptions(
       {
         options: [i18n('Edit'), canDelete ? i18n('Delete') : null, i18n('Cancel')].filter(o => o),
@@ -146,8 +117,8 @@ export class PageDetails extends Component<Props, any> {
   }
 
   _editActionSheetSelected = (index: number) => {
-    if (!this.state.page) return
-    const canDelete = !this.state.page.front_page
+    if (!this.props.page) return
+    const canDelete = !this.props.page.isFrontPage
     switch (index) {
       case 0:
         this.edit()
@@ -171,10 +142,10 @@ export class PageDetails extends Component<Props, any> {
   }
 
   delete = async () => {
-    if (!this.state.page) return
+    const { api, courseID, page } = this.props
+    if (!page) return
     try {
-      await this.props.deletePage(this.props.courseID, this.state.page.url)
-      this.props.deletedPage(this.state.page, this.props.courseID)
+      await api.deletePage('courses', courseID, page.url)
       this.props.navigator.pop()
     } catch (error) {
       alertError(error)
@@ -192,31 +163,10 @@ const styles = StyleSheet.create({
   },
 })
 
-export function mapStateToProps ({ entities }: AppState, { courseID, url }: OwnProps): StateProps {
-  let pages = {}
-  let courseName = ''
-  let courseColor = null
-  if (entities &&
-    entities.courses &&
-    entities.courses[courseID]) {
-    const course = entities.courses[courseID]
-    courseName = course.course && course.course.name
-    courseColor = course.color
-    if (course.pages && course.pages.refs) {
-      pages = course.pages.refs
-        .reduce((memo, ref) => ({
-          ...memo,
-          [ref]: entities.pages[ref].data,
-        }), {})
-    }
-  }
-
+export default fetchPropsFor(PageDetails, ({ courseID, url }, api) => {
   return {
-    pages,
-    courseName,
-    courseColor,
+    courseColor: api.getCourseColor(courseID),
+    course: api.getCourse(courseID),
+    page: api.getPage('courses', courseID, url),
   }
-}
-
-const Connected = connect(mapStateToProps, Actions)(PageDetails)
-export default (Connected: Component<Props, any>)
+})

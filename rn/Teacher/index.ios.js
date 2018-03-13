@@ -30,7 +30,7 @@ import {
 } from 'react-native'
 import store from './src/redux/store'
 import setupI18n from './i18n/setup'
-import { setSession, compareSessions, getSessionUnsafe } from './src/canvas-api'
+import { setSession, compareSessions, getSessionUnsafe, httpCache } from './src/canvas-api'
 import { registerScreens } from './src/routing/register-screens'
 import { setupBrandingFromNativeBrandingInfo } from './src/common/branding'
 import logout from './src/redux/logout-action'
@@ -135,6 +135,7 @@ const loginHandler = async ({
     setSession(session)
     if (!skipHydrate) {
       await hydrateStoreFromPersistedState(store)
+      await httpCache.hydrate()
     } else {
       store.dispatch(hydrate())
     }

@@ -16,6 +16,8 @@ exports[`PageDetails renders 1`] = `
       },
     ]
   }
+  showDismissButton={true}
+  statusBarStyle="default"
   subtitle="Course 1"
   title="Page Details"
 >
@@ -27,72 +29,39 @@ exports[`PageDetails renders 1`] = `
       }
     }
   >
-    <Text
-      accessibilityTraits="header"
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
+    <Heading1
       style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontFamily": ".SFUIDisplay-semibold",
-            "fontSize": 20,
-          },
-          Object {
-            "paddingBottom": 17,
-          },
-        ]
+        Object {
+          "paddingBottom": 17,
+        }
       }
     >
       Page 1
-    </Text>
-    <View
+    </Heading1>
+    <CanvasWebView
+      html="<p>Hello, World!</p>"
+      navigator={
+        Object {
+          "dismiss": [Function],
+          "dismissAllModals": [Function],
+          "isModal": false,
+          "pop": [Function],
+          "show": [Function],
+          "traitCollection": [Function],
+        }
+      }
+      scrollEnabled={true}
       style={
         Object {
           "flex": 1,
         }
       }
-      testID="web-container.view"
-    >
-      <CanvasWebView
-        automaticallyAdjustContentInsets={undefined}
-        contentInset={undefined}
-        navigator={
-          Object {
-            "dismiss": [Function],
-            "dismissAllModals": [Function],
-            "isModal": false,
-            "pop": [Function],
-            "show": [Function],
-            "traitCollection": [Function],
-          }
-        }
-        onError={[Function]}
-        onFinishedLoading={[Function]}
-        onMessage={[Function]}
-        onNavigation={[Function]}
-        scrollEnabled={true}
-        source={
-          Object {
-            "html": "<p>Hello, World!</p>",
-          }
-        }
-        style={
-          Object {
-            "flex": 1,
-          }
-        }
-      />
-    </View>
+    />
   </View>
 </Screen>
 `;
 
-exports[`PageDetails renders without page 1`] = `
+exports[`PageDetails renders while loading 1`] = `
 <Screen
   navBarColor="#fff"
   navBarStyle="dark"
@@ -108,7 +77,8 @@ exports[`PageDetails renders without page 1`] = `
       },
     ]
   }
-  subtitle="Course 1"
+  showDismissButton={true}
+  statusBarStyle="default"
   title="Page Details"
 >
   <View
@@ -119,63 +89,32 @@ exports[`PageDetails renders without page 1`] = `
       }
     }
   >
-    <Text
-      accessibilityTraits="header"
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
+    <Heading1
       style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontFamily": ".SFUIDisplay-semibold",
-            "fontSize": 20,
-          },
-          Object {
-            "paddingBottom": 17,
-          },
-        ]
+        Object {
+          "paddingBottom": 17,
+        }
       }
-    >
-      
-    </Text>
-    <View
+    />
+    <CanvasWebView
+      html=""
+      navigator={
+        Object {
+          "dismiss": [Function],
+          "dismissAllModals": [Function],
+          "isModal": false,
+          "pop": [Function],
+          "show": [Function],
+          "traitCollection": [Function],
+        }
+      }
+      scrollEnabled={true}
       style={
         Object {
           "flex": 1,
         }
       }
-      testID="web-container.view"
-    >
-      <CanvasWebView
-        automaticallyAdjustContentInsets={undefined}
-        contentInset={undefined}
-        navigator={
-          Object {
-            "dismiss": [Function],
-            "dismissAllModals": [Function],
-            "isModal": false,
-            "pop": [Function],
-            "show": [Function],
-            "traitCollection": [Function],
-          }
-        }
-        onError={[Function]}
-        onFinishedLoading={[Function]}
-        onMessage={[Function]}
-        onNavigation={[Function]}
-        scrollEnabled={true}
-        source={undefined}
-        style={
-          Object {
-            "flex": 1,
-          }
-        }
-      />
-    </View>
+    />
   </View>
 </Screen>
 `;

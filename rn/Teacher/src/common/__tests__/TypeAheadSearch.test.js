@@ -22,6 +22,8 @@ import { shallow } from 'enzyme'
 import TypeAheadSearch, { type Props } from '../TypeAheadSearch'
 import { httpClient } from '../../canvas-api'
 
+jest.mock('../../canvas-api/httpClient')
+
 describe('TypeAheadSearch', () => {
   let props: Props = {
     endpoint: '/',
@@ -31,7 +33,7 @@ describe('TypeAheadSearch', () => {
     onNextRequestFinished: jest.fn(),
   }
   beforeEach(() => {
-    jest.resetAllMocks()
+    jest.clearAllMocks()
   })
 
   it('renders a search bar', () => {

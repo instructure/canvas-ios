@@ -39,4 +39,4 @@ export * from './apis/accounts'
 
 export * from './session'
 
-export { default as httpClient, isAbort } from './httpClient'
+export { default as httpClient, isAbort, httpCache } from './httpClient'

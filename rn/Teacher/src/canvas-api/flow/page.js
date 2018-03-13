@@ -28,3 +28,11 @@ export type Page = {
   front_page: boolean,
   page_id: string,
 }
+
+export type PageParameters = {
+  title: ?string,
+  body: ?string,
+  editing_roles: ?string,
+  published: boolean,
+  front_page: boolean,
+}

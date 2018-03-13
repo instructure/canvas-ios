@@ -1,7 +1,7 @@
 // @flow
 
+import i18n from 'format-message'
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import {
   View,
   StyleSheet,
@@ -17,40 +17,37 @@ import RowWithSwitch from '../../../common/components/rows/RowWithSwitch'
 import RowWithDetail from '../../../common/components/rows/RowWithDetail'
 import SavingBanner from '../../../common/components/SavingBanner'
 import RichTextEditor from '../../../common/components/rich-text-editor/RichTextEditor'
-import i18n from 'format-message'
 import colors from '../../../common/colors'
-import { createPage, updatePage } from '../../../canvas-api'
-import Actions from '../details/actions'
+import {
+  fetchPropsFor,
+  PageModel,
+  API,
+} from '../../../canvas-api/model-api'
 import { alertError } from '../../../redux/middleware/error-handler'
 
 const PickerItem = PickerIOS.Item
 
-type OwnProps = {
-  url: ?string,
+type Props = {
   courseID: string,
-}
-
-type StateProps = {
-  title: ?string,
-  body: ?string,
-  editing_roles: string,
-  published: boolean,
-  front_page: boolean,
-}
-
-export type Props = OwnProps & StateProps & NavigationProps & typeof Actions & {
-  createPage: typeof createPage,
-  updatePage: typeof updatePage,
+  url: ?string,
+  navigator: Navigator,
+  page: ?PageModel,
+  onChange?: PageModel => void,
+  api: API,
+  isLoading: boolean,
+  isSaving: boolean,
+  loadError: ?Error,
+  saveError: ?Error,
+  refresh: () => void,
 }
 
 type State = {
   title: ?string,
   body: ?string,
-  editing_roles: string,
+  editingRoles: string[],
   published: boolean,
-  front_page: boolean,
+  isFrontPage: boolean,
   editingRolesPickerShown: boolean,
-  pending: boolean,
 }
 
 function editingRoles () {
@@ -61,36 +58,31 @@ function editingRoles () {
   }
 }
 
-function convertEditingRolesFromAPI (editingRoles: string) {
-  const array = editingRoles.split(',').map(r => r.trim())
-  if (array.includes('public')) return 'public'
-  if (array.includes('students')) return 'students,teachers'
-  return 'teachers'
-}
-
 export class PageEdit extends Component<Props, State> {
   scrollView: ?KeyboardAwareScrollView
 
-  static defaultProps = {
-    createPage,
-    updatePage,
+  state: State = {
+    ...(this.props.page || PageModel.newPage),
+    editingRolesPickerShown: false,
   }
 
-  state: State = {
-    title: this.props.title,
-    body: this.props.body,
-    editing_roles: this.props.editing_roles,
-    published: this.props.published,
-    front_page: this.props.front_page,
-    editingRolesPickerShown: false,
-    pending: false,
+  componentWillReceiveProps ({ page, loadError }: Props) {
+    if (loadError && loadError !== this.props.loadError) alertError(loadError)
+    if (this.props.page == null && page != null) {
+      this.setState(page) // page finally loaded, reset form
+    }
   }
 
   render () {
-    const title = this.isEdit() ? i18n('Edit') : i18n('New')
+    const { page } = this.props
+    const title = this.isEdit() ? i18n('Edit Page') : i18n('New Page')
+    let editingRole = 'public'
+    if (this.state.editingRoles.includes('teachers')) editingRole = 'teachers'
+    if (this.state.editingRoles.includes('students')) editingRole = 'students,teachers'
+
     return (
       <Screen
-        title={i18n('{title} Page', { title })}
+        title={title}
         rightBarButtons={[
           {
             title: i18n('Done'),
@@ -102,19 +94,19 @@ export class PageEdit extends Component<Props, State> {
         dismissButtonTitle={i18n('Cancel')}
       >
         <View style={{ flex: 1 }}>
-          { this.state.pending && <SavingBanner /> }
+          { this.props.isSaving && <SavingBanner /> }
           <KeyboardAwareScrollView
             style={style.container}
             keyboardShouldPersistTaps='handled'
             enableAutoAutomaticScroll={false}
             ref={(r) => { this.scrollView = r }}
-            keyboardDismissMode={'on-drag'}
+            keyboardDismissMode='on-drag'
           >
             <Heading1 style={style.heading}>{i18n('Title')}</Heading1>
             <RowWithTextInput
               defaultValue={this.state.title}
               border='both'
-              onChangeText={this.updateValue('title')}
+              onChangeText={this.handleTitleChange}
               identifier='pages.edit.titleInput'
               placeholder={i18n('Add title')}
               onFocus={this._scrollToInput}
@@ -125,11 +117,11 @@ export class PageEdit extends Component<Props, State> {
               style={style.description}
             >
               <RichTextEditor
-                onChangeValue={this.updateValue('body')}
-                defaultValue={this.props.body}
+                onChangeValue={this.handleBodyChange}
+                defaultValue={this.state.body}
                 showToolbar='always'
                 keyboardAware={false}
-                scrollEnabled={true}
+                scrollEnabled
                 contentHeight={150}
                 placeholder={i18n('Add description')}
                 navigator={this.props.navigator}
@@ -137,22 +129,22 @@ export class PageEdit extends Component<Props, State> {
             </View>
 
             <Heading1 style={style.heading}>{i18n('Details')}</Heading1>
-            { !this.state.front_page &&
+            { !this.state.isFrontPage &&
               <RowWithSwitch
                 title={i18n('Publish')}
                 border='bottom'
                 value={this.state.published}
-                onValueChange={this.updateValue('published')}
+                onValueChange={this.handlePublishedChange}
                 testID='pages.edit.published.row'
                 identifier='pages.edit.published.switch'
               />
             }
-            { !this.props.front_page && this.state.published &&
+            { !(page && page.isFrontPage) && this.state.published &&
               <RowWithSwitch
                 title={i18n('Set as Front Page')}
                 border='both'
-                value={this.state.front_page}
-                onValueChange={this.updateValue('front_page')}
+                value={this.state.isFrontPage}
+                onValueChange={this.handleIsFrontPageChange}
                 testID='pages.edit.front_page.row'
                 identifier='pages.edit.front_page.switch'
               />
@@ -160,16 +152,16 @@ export class PageEdit extends Component<Props, State> {
             <RowWithDetail
               title={i18n('Can Edit')}
               detailSelected={this.state.editingRolesPickerShown}
-              detail={editingRoles()[this.state.editing_roles]}
-              disclosureIndicator={true}
+              detail={editingRoles()[editingRole]}
+              disclosureIndicator
               border='bottom'
               onPress={this.toggleEditingRoles}
               testID='pages.edit.editing_roles.row'
             />
             { this.state.editingRolesPickerShown &&
               <PickerIOS
-                selectedValue={this.state.editing_roles}
-                onValueChange={this.updateValue('editing_roles')}
+                selectedValue={editingRole}
+                onValueChange={this.handleEditingRolesChange}
                 testID='pages.edit.editing_roles.picker'
               >
                 {Object.keys(editingRoles()).map(key => (
@@ -188,46 +180,49 @@ export class PageEdit extends Component<Props, State> {
   }
 
   done = async () => {
-    const {
-      title,
-      body,
-      editing_roles,
-      published,
-      front_page: frontPage,
-    } = this.state
     const parameters = {
-      title,
-      body,
-      editing_roles,
-      published: frontPage || published,
-      front_page: frontPage,
+      title: this.state.title,
+      body: this.state.body,
+      editing_roles: this.state.editingRoles.join(','),
+      published: this.state.isFrontPage || this.state.published,
+      front_page: this.state.isFrontPage,
     }
-    this.setState({ pending: true })
     try {
-      let result
-      if (this.props.url) {
-        result = await this.props.updatePage(this.props.courseID, this.props.url, parameters)
-      } else {
-        result = await this.props.createPage(this.props.courseID, parameters)
-      }
-      this.props.refreshedPage(result.data, this.props.courseID)
-      this.setState({ pending: false })
-      this.props.navigator.dismiss()
+      const { api, courseID, url } = this.props
+      const request = url
+        ? api.updatePage('courses', courseID, url, parameters)
+        : api.createPage('courses', courseID, parameters)
+      const response = await request
+      await this.props.navigator.dismiss()
+      this.props.onChange && this.props.onChange(response.data)
     } catch (error) {
-      this.setState({ pending: false })
       alertError(error)
     }
   }
 
-  updateValue (property: string): Function {
-    return (value) => {
-      this.updateValues({ [property]: value })
-    }
+  handleTitleChange = (title: string) => {
+    LayoutAnimation.easeInEaseOut()
+    this.setState({ title })
   }
 
-  updateValues (values: Object) {
+  handleBodyChange = (body: string) => {
     LayoutAnimation.easeInEaseOut()
-    this.setState({ ...values })
+    this.setState({ body })
+  }
+
+  handlePublishedChange = (published: boolean) => {
+    LayoutAnimation.easeInEaseOut()
+    this.setState({ published })
+  }
+
+  handleIsFrontPageChange = (isFrontPage: boolean) => {
+    LayoutAnimation.easeInEaseOut()
+    this.setState({ isFrontPage })
+  }
+
+  handleEditingRolesChange = (roles: string) => {
+    LayoutAnimation.easeInEaseOut()
+    this.setState({ editingRoles: roles.split(',') })
   }
 
   isEdit = () => this.props.url != null
@@ -273,33 +268,6 @@ const style = StyleSheet.create({
   },
 })
 
-export function mapStateToProps ({ entities }: AppState, { courseID, url }: OwnProps): StateProps {
-  let page
-  if (entities &&
-    entities.courses &&
-    entities.courses[courseID]) {
-    const course = entities.courses[courseID]
-    page = course.pages.refs
-      .map(r => entities.pages[r])
-      .filter(p => p)
-      .map(p => p.data)
-      .find(p => p.url === url)
-  }
-  const {
-    title,
-    body,
-    editing_roles: editingRoles,
-    published,
-    front_page,
-  } = (page || {})
-  return {
-    title,
-    body,
-    editing_roles: convertEditingRolesFromAPI(editingRoles || 'teachers'),
-    published: Boolean(published),
-    front_page: Boolean(front_page),
-  }
-}
-
-let Connected = connect(mapStateToProps, Actions)(PageEdit)
-export default (Connected: *)
+export default fetchPropsFor(PageEdit, ({ courseID, url }, api) => ({
+  page: !url ? PageModel.newPage : api.getPage('courses', courseID, url),
+}))

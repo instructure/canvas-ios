@@ -16,19 +16,26 @@
 
 // @flow
 
-import Actions from '../actions'
+import * as template from '../../__templates__'
+import {
+  CourseModel,
+  PageModel,
+} from '../model'
 
-const template = {
-  ...require('../../../../__templates__/page'),
-}
+describe('CourseModel', () => {
+  describe('keyExtractor', () => {
+    it('returns course id', () => {
+      const course = template.courseModel()
+      expect(CourseModel.keyExtractor(course)).toBe(course.id)
+    })
+  })
+})
 
-describe('refreshedPage', () => {
-  it('should send page and course id', () => {
-    const page = template.page({ url: 'page-1' })
-    const courseID = '1'
-    const action = Actions.refreshedPage(page, courseID)
-    expect(action).toMatchObject({
-      payload: { page, courseID },
+describe('PageModel', () => {
+  describe('keyExtractor', () => {
+    it('returns page id', () => {
+      const page = template.pageModel()
+      expect(PageModel.keyExtractor(page)).toBe(page.url)
     })
   })
 })

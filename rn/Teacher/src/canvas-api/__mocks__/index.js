@@ -18,11 +18,12 @@
 
 import api from '../apis/index'
 import { getSession, setSession, getSessionUnsafe } from '../session'
-import { default as httpClient, isAbort } from './httpClient'
+import { default as httpClient, isAbort, httpCache } from './httpClient'
 
 const moduleExports = {
   default: api,
   httpClient,
+  httpCache,
   isAbort,
   getSession,
   setSession,

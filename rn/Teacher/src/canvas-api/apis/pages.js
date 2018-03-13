@@ -19,14 +19,6 @@
 import { paginate, exhaust } from '../utils/pagination'
 import httpClient from '../httpClient'
 
-export type PageParameters = {
-  title: ?string,
-  body: ?string,
-  editing_roles: ?string,
-  published: boolean,
-  front_page: boolean,
-}
-
 export function getPages (courseID: string): ApiPromise<Page[]> {
   const url = `courses/${courseID}/pages`
   const options = {

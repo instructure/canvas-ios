@@ -41,7 +41,9 @@ export function processConfig (config: Object, id: string, configureCallback: (e
       if (id) {
         obj[key] = configureCallback(id, config[key])
       } else {
-        console.warn('Configuring callback with potentially non unique event id')
+        if (!config.statusBarStyle) {
+          console.warn(`Configuring callback "${key}" with potentially non unique event id`)
+        }
         obj[key] = configureCallback(key, config[key])
       }
     } else if (isColorKey(key)) {

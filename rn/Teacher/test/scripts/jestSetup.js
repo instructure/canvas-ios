@@ -21,9 +21,7 @@ import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 Enzyme.configure({ adapter: new Adapter() })
 
-const template = {
-  ...require('../../src/__templates__/session'),
-}
+import * as template from '../../src/__templates__'
 
 import setupI18n from '../../i18n/setup'
 import { shouldTrackAsyncActions } from '../../src/redux/middleware/redux-promise'

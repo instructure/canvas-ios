@@ -14,10 +14,9 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-/* @flow */
+// @flow
 
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React from 'react'
 import {
   View,
   StyleSheet,
@@ -28,59 +27,109 @@ import i18n from 'format-message'
 import Screen from '../../../routing/Screen'
 import Row from '../../../common/components/rows/Row'
 import FeatureRow from '../../../common/components/rows/FeatureRow'
-import Actions from './actions'
 import Images from '../../../images'
-import { getPages } from '../../../canvas-api'
+import {
+  fetchPropsFor,
+  PageModel,
+  CourseModel,
+} from '../../../canvas-api/model-api'
 import { alertError } from '../../../redux/middleware/error-handler'
 import AccessIcon from '../../../common/components/AccessIcon'
-import localeSort from '../../../utils/locale-sort'
 import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
 import { isTeacher } from '../../app'
-import currentWindowTraits from '../../../utils/windowTraits'
+import currentWindowTraits, { type WindowTraits } from '../../../utils/windowTraits'
 
-type StateProps = AsyncState & {
-  pages: Page[],
-  courseName: string,
-  courseColor: ?string,
-  course: ?Course,
-}
-
-type OwnProps = {
+type Props = {
   courseID: string,
-  pending: boolean,
-  refreshing: boolean,
+  navigator: Navigator,
+  courseColor: string,
+  course: ?CourseModel,
+  pages: PageModel[],
+  isLoading: boolean,
+  loadError: ?Error,
+  refresh: () => void,
 }
 
-export type Props = OwnProps & StateProps & typeof Actions & NavigationProps
+type State = {
+  selectedPageURL: ?string,
+  windowTraits: WindowTraits,
+}
 
-export class PagesList extends Component<Props, any> {
-  static defaultProps = {
-    getPages,
-  }
-
+export class PagesList extends React.Component<Props, State> {
   frontPageDidShow: boolean = false
   state = {
-    windowTraits: currentWindowTraits(),
     selectedPageURL: null,
-    pending: false,
+    windowTraits: currentWindowTraits(),
   }
 
   componentWillMount () {
-    this.refresh()
-    this.props.navigator.traitCollection((traits) => {
+    this.handleTraitChange()
+  }
+
+  componentWillReceiveProps ({ loadError }: Props) {
+    if (loadError && loadError !== this.props.loadError) alertError(loadError)
+  }
+
+  handleTraitChange = () => {
+    this.props.navigator.traitCollection(traits => {
+      if ( // switched to split screen, re-evaluate showing front page
+        this.state.windowTraits.horizontal === 'compact' &&
+        traits.window.horizontal !== 'compact'
+      ) {
+        this.frontPageDidShow = false
+      }
       this.setState({ windowTraits: traits.window })
     })
   }
 
+  select = (url: string) => {
+    const route = `/courses/${this.props.courseID}/pages/${url}`
+    this.props.navigator.show(route, { modal: false })
+    if (this.state.windowTraits.horizontal !== 'compact') {
+      this.setState({ selectedPageURL: url })
+    }
+  }
+
+  addPage = () => {
+    const { courseID, navigator } = this.props
+    navigator.show(`/courses/${courseID}/pages/new`, {
+      modal: true,
+      modalPresentationStyle: 'formsheet',
+    })
+  }
+
+  showFrontPage () {
+    const { course, courseColor, courseID, pages, navigator } = this.props
+    const { windowTraits } = this.state
+    if (
+      !this.frontPageDidShow &&
+      windowTraits.horizontal !== 'compact' &&
+      course != null &&
+      pages.length > 0
+    ) {
+      this.frontPageDidShow = true
+      const frontPage = pages.find(page => page.isFrontPage)
+      if (frontPage) {
+        this.select(frontPage.url)
+      } else {
+        navigator.show(`/courses/${courseID}/placeholder`, {}, {
+          courseColor,
+          course: course.raw,
+        })
+      }
+    }
+  }
+
   render () {
     this.showFrontPage()
+    const { course, courseColor, isLoading, pages, refresh } = this.props
     return (
       <Screen
-        navBarColor={this.props.courseColor}
+        navBarColor={courseColor}
         navBarStyle='dark'
         title={i18n('Pages')}
-        subtitle={this.props.courseName}
-        onTraitCollectionChange={this.onTraitCollectionChange}
+        subtitle={course && course.name || undefined}
+        onTraitCollectionChange={this.handleTraitChange}
         rightBarButtons={isTeacher() && [
           {
             image: Images.add,
@@ -92,40 +141,46 @@ export class PagesList extends Component<Props, any> {
       >
         <View style={styles.container}>
           <FlatList
-            data={this.props.pages}
+            data={pages}
+            extraData={this.state}
             renderItem={this.renderRow}
-            keyExtractor={(item, index) => item.url}
+            keyExtractor={PageModel.keyExtractor}
             testID='pages.list.list'
-            refreshing={this.state.pending}
-            onRefresh={this.refresh}
-            ListEmptyComponent={
-              this.state.pending && !this.props.refreshing ? null
-              : <ListEmptyComponent title={i18n('There are no pages to display.')} />
-            }
+            refreshing={isLoading}
+            onRefresh={refresh}
+            ListEmptyComponent={isLoading ? null : (
+              <ListEmptyComponent
+                title={i18n('There are no pages to display.')}
+              />
+            )}
           />
         </View>
       </Screen>
     )
   }
 
-  renderRow = ({ item, index }: { item: Page, index: number }) => {
-    if (item.front_page) {
+  renderRow = ({ item: page, index }: { item: PageModel, index: number }) => {
+    if (page.isFrontPage) {
       return (
         <FeatureRow
           title={i18n('Front Page')}
-          subtitle={item.title}
+          subtitle={page.title}
           testID='pages.list.front-page-row'
-          onPress={this.selectPage(item)}
+          identifier={page.url}
+          onPress={this.select}
           disclosureIndicator
         />
       )
     }
 
-    let icon = (
+    const { courseColor } = this.props
+    const { selectedPageURL } = this.state
+
+    const icon = (
       <View style={styles.rowIcon}>
         <AccessIcon
-          entry={item}
-          tintColor={this.props.courseColor}
+          entry={page.raw}
+          tintColor={courseColor}
           image={Images.course.pages}
           showAccessIcon={isTeacher()}
         />
@@ -133,68 +188,20 @@ export class PagesList extends Component<Props, any> {
     )
     return (
       <Row
-        title={item.title}
-        subtitle={i18n("{ date, date, 'MMM d'} at { date, time, short }", { date: new Date(item.created_at) })}
+        title={page.title}
+        subtitle={i18n("{ date, date, 'MMM d'} at { date, time, short }", {
+          date: page.createdAt,
+        })}
         border='bottom'
         height='auto'
-        disclosureIndicator={true}
+        disclosureIndicator
         testID={`pages.list.page.row-${index}`}
-        onPress={this.selectPage(item)}
+        identifier={page.url}
+        onPress={this.select}
         renderImage={() => icon}
-        selected={this.state.selectedPageURL === item.url}
+        selected={selectedPageURL === page.url}
       />
     )
-  }
-
-  selectPage (page: Page) {
-    const route = `/courses/${this.props.courseID}/pages/${page.url}`
-    return () => {
-      this.props.navigator.show(route, { modal: false })
-      if (this.state.windowTraits.horizontal !== 'compact') {
-        this.setState({ selectedPageURL: page.url })
-      }
-    }
-  }
-
-  refresh = async () => {
-    this.setState({ pending: true })
-    try {
-      // $FlowFixMe
-      const { data } = await this.props.getPages(this.props.courseID)
-      this.props.refreshedPages(data, this.props.courseID)
-    } catch (error) {
-      alertError(error)
-    }
-    this.setState({ pending: false })
-  }
-
-  addPage = () => {
-    this.props.navigator.show(`/courses/${this.props.courseID}/pages/new`, { modal: true, modalPresentationStyle: 'formsheet' })
-  }
-
-  onTraitCollectionChange = () => {
-    this.props.navigator.traitCollection((traits) => {
-      if (
-        this.state.windowTraits.horizontal === 'compact' &&
-        traits.window.horizontal !== 'compact'
-      ) {
-        this.frontPageDidShow = false
-      }
-      this.setState({ windowTraits: traits.window })
-    })
-  }
-
-  showFrontPage () {
-    if (this.frontPageDidShow || !this.props.course || !this.props.pages.length) return
-    this.frontPageDidShow = true
-    if (this.state.windowTraits.horizontal !== 'compact') {
-      const frontPage = this.props.pages.find(({ front_page: frontPage }) => frontPage)
-      if (frontPage) {
-        Promise.resolve().then(() => this.selectPage(frontPage)())
-      } else {
-        this.props.navigator.show(`/courses/${this.props.courseID}/placeholder`, {}, { courseColor: this.props.courseColor, course: this.props.course })
-      }
-    }
   }
 }
 
@@ -217,32 +224,8 @@ const styles = StyleSheet.create({
   },
 })
 
-export function mapStateToProps ({ entities }: AppState, { courseID }: OwnProps) {
-  let pages = []
-  let courseName = ''
-  let courseColor = null
-  let course = null
-  if (entities &&
-    entities.courses &&
-    entities.courses[courseID] &&
-    entities.courses[courseID].pages) {
-    const courseEntity = entities.courses[courseID]
-    course = courseEntity.course
-    courseName = course && course.name
-    courseColor = courseEntity.color
-    const refs = courseEntity.pages.refs
-    pages = refs
-      .map(ref => entities.pages[ref].data)
-      .sort((a, b) => localeSort(a.title, b.title))
-      .sort((a, b) => b.front_page - a.front_page)
-  }
-  return {
-    pages,
-    courseName,
-    courseColor,
-    course,
-  }
-}
-
-const Connected = connect(mapStateToProps, Actions)(PagesList)
-export default Connected
+export default fetchPropsFor(PagesList, ({ courseID }, api) => ({
+  courseColor: api.getCourseColor(courseID),
+  course: api.getCourse(courseID),
+  pages: api.getPages('courses', courseID),
+}))

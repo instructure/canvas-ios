@@ -17,19 +17,24 @@
 // @flow
 /* global FormData:true, Blob:true */
 
-import httpClient, { isAbort } from '../httpClient'
+import { AsyncStorage } from 'react-native'
+import httpClient, { isAbort, httpCache } from '../httpClient'
 import { setSession } from '../session'
+import * as templates from '../../__templates__'
 
-const templates = {
-  ...require('../../__templates__/session'),
-}
+jest.mock('AsyncStorage', () => ({
+  getItem: jest.fn(),
+  setItem: jest.fn(),
+  getAllKeys: jest.fn(),
+  multiRemove: jest.fn(),
+}))
 
 describe('httpClient', () => {
   const originalXHR = global.XMLHttpRequest
 
   let request
   beforeEach(() => {
-    setSession(null)
+    setSession(templates.session({ baseURL: '' }))
     request = {
       abort: jest.fn(),
       open: jest.fn(),
@@ -49,9 +54,11 @@ describe('httpClient', () => {
 
   afterEach(() => {
     global.XMLHttpRequest = originalXHR
+    setSession(templates.session())
   })
 
   it('has blank defaults if no session is set', () => {
+    setSession(null)
     httpClient().get('')
     expect(request.open).toHaveBeenCalledWith('GET', '/api/v1/', true)
     expect(request.setRequestHeader).toHaveBeenCalledWith(
@@ -238,6 +245,16 @@ describe('httpClient', () => {
     expect(response.data).toBe(request.response)
   })
 
+  it('can transform the response data', async () => {
+    const fetching = httpClient().get('', { transform: () => 'transformed' })
+    request.response = {}
+    expect(request.addEventListener).toHaveBeenCalledWith('load', expect.any(Object))
+    const handler = request.addEventListener.mock.calls[0][1]
+    handler.handleEvent({ type: 'load' })
+    const response = await fetching
+    expect(response.data).toBe('transformed')
+  })
+
   it('considers status >= 400 an error', async () => {
     const fetching = httpClient().get('')
     request.response = { error: [] }
@@ -249,5 +266,148 @@ describe('httpClient', () => {
     expect(isAbort(error)).toBe(false)
     expect(error.message).toBe('Network request failed')
     expect(error.response.data).toBe(request.response)
+  })
+})
+
+describe('httpCache', () => {
+  const now = Date.now
+  beforeEach(() => {
+    // $FlowFixMe
+    Date.now = jest.fn(() => 1000000000000)
+    setSession(templates.session({ baseURL: '' }))
+  })
+  afterEach(() => {
+    // $FlowFixMe
+    Date.now = now
+    httpCache.clear()
+    setSession(templates.session())
+  })
+
+  it('exposes key generation', () => {
+    expect(httpCache.key('/nowhere')).toBe('/api/v1/nowhere')
+  })
+
+  it('returns not found entry on cache misses', () => {
+    expect(httpCache.get('/nowhere')).toBe(httpCache.notFound)
+    expect(httpCache.notFound).toEqual({
+      value: null,
+      expiresAt: 0,
+    })
+  })
+
+  it('saves get requests', () => {
+    httpCache.handle('GET', '/nowhere', 'test')
+    expect(httpCache.get('/nowhere')).toEqual({
+      value: 'test',
+      expiresAt: 1000003600000,
+    })
+  })
+
+  it('will use cacheKey if present', () => {
+    httpCache.handle('GET', '/anywhere', 'test', { cacheKey: 'abc' })
+    expect(httpCache.get('/nowhere', { cacheKey: 'abc' })).toEqual({
+      value: 'test',
+      expiresAt: 1000003600000,
+    })
+  })
+
+  it('will use ttl if present', () => {
+    httpCache.handle('GET', '/nowhere', 'test', { ttl: 1 })
+    expect(httpCache.get('/nowhere')).toEqual({
+      value: 'test',
+      expiresAt: 1000000000001,
+    })
+  })
+
+  it('can clear the whole cache', () => {
+    httpCache.handle('GET', '/nowhere', 'test')
+    httpCache.clear()
+    expect(httpCache.get('/nowhere')).toBe(httpCache.notFound)
+  })
+
+  it('can clear all expired entries', () => {
+    // $FlowFixMe
+    Date.now = jest.fn(() => 1000)
+    httpCache.handle('GET', '/a', 'a', { ttl: 10 })
+    httpCache.handle('GET', '/b', 'b', { ttl: 100 })
+    // $FlowFixMe
+    Date.now = jest.fn(() => 1080)
+    httpCache.cleanup()
+    expect(httpCache.get('/a')).toBe(httpCache.notFound)
+    expect(httpCache.get('/b')).toEqual({
+      value: 'b',
+      expiresAt: 1100,
+    })
+  })
+
+  it('clears the entry and parent entry on put', () => {
+    httpCache.handle('GET', '/dwarfs', [ 'pluto', 'ceres', 'eris' ])
+    httpCache.handle('GET', '/dwarfs/eris', { name: 'Eris' })
+    expect(httpCache.get('/dwarfs').value).toEqual([ 'pluto', 'ceres', 'eris' ])
+    expect(httpCache.get('/dwarfs/eris').value).toEqual({ name: 'Eris' })
+    httpCache.handle('PUT', '/dwarfs/eris', { name: 'Eris' })
+    expect(httpCache.get('/dwarfs')).toBe(httpCache.notFound)
+    expect(httpCache.get('/dwarfs/eris')).toBe(httpCache.notFound)
+  })
+
+  it('clears the entry and parent entry on delete', () => {
+    httpCache.handle('GET', '/dwarfs', [ 'pluto', 'ceres', 'eris' ])
+    httpCache.handle('GET', '/dwarfs/eris', { name: 'Eris' })
+    expect(httpCache.get('/dwarfs').value).toEqual([ 'pluto', 'ceres', 'eris' ])
+    expect(httpCache.get('/dwarfs/eris').value).toEqual({ name: 'Eris' })
+    httpCache.handle('DELETE', '/dwarfs/eris', null)
+    expect(httpCache.get('/dwarfs')).toBe(httpCache.notFound)
+    expect(httpCache.get('/dwarfs/eris')).toBe(httpCache.notFound)
+  })
+
+  it('clears the entry on POST', () => {
+    httpCache.handle('GET', '/dwarfs', [ 'pluto', 'ceres', 'eris' ])
+    expect(httpCache.get('/dwarfs').value).toEqual([ 'pluto', 'ceres', 'eris' ])
+    httpCache.handle('POST', '/dwarfs', { name: 'Makemake' })
+    expect(httpCache.get('/dwarfs')).toBe(httpCache.notFound)
+  })
+
+  it('can have subscribers', () => {
+    const listener = jest.fn()
+    const unsub = httpCache.subscribe(listener)
+    const promise = Promise.resolve()
+    httpCache.handle('GET', '/dwarfs', [ 'pluto', 'ceres', 'eris' ], {}, promise)
+    expect(listener).toHaveBeenCalledWith(promise)
+    unsub()
+    listener.mockClear()
+    httpCache.handle('GET', '/dwarfs', [ 'pluto', 'ceres', 'eris' ])
+    expect(listener).not.toHaveBeenCalled()
+  })
+
+  it('persists to async storage', async () => {
+    const page = templates.pageModel()
+    httpCache.handle('GET', '/pages', [ page ])
+    httpCache.handle('GET', 'expired', null, { ttl: -1 })
+    expect(AsyncStorage.setItem).toHaveBeenCalledWith(
+      'http.cache.1.1',
+      expect.stringContaining('"modelConstructor":"PageModel"'),
+    )
+    const item = AsyncStorage.setItem.mock.calls.slice(-1)[0][1]
+    AsyncStorage.getItem.mockImplementationOnce(() => Promise.resolve(item))
+    httpCache.clear()
+    await httpCache.hydrate()
+    expect(httpCache.get('/pages')).toEqual({
+      value: [ page ],
+      expiresAt: 1000003600000,
+    })
+    expect(httpCache.get('expired')).toEqual(httpCache.notFound)
+  })
+
+  it('clears stale items from async storage when no item is found', async () => {
+    AsyncStorage.getAllKeys.mockImplementationOnce(() => [
+      'http.cache.1.1',
+      'http.cache.1.2',
+      'redux.stuff',
+    ])
+    await httpCache.hydrate()
+    expect(AsyncStorage.multiRemove).toHaveBeenCalledWith([
+      'http.cache.1.1',
+      'http.cache.1.2',
+    ])
   })
 })

@@ -14,123 +14,137 @@
 // limitations under the License.
 //
 
-/* eslint-disable flowtype/require-valid-file-annotation */
+// @flow
 
 import { shallow } from 'enzyme'
 import React from 'react'
-import 'react-native'
-import renderer from 'react-test-renderer'
-import { PagesList, mapStateToProps, type Props } from '../PagesList'
-import explore from '../../../../../test/helpers/explore'
+import { alertError } from '../../../../redux/middleware/error-handler'
+import { httpCache } from '../../../../canvas-api/model-api'
+import * as template from '../../../../__templates__'
 import app from '../../../app'
+import ConnectedPagesList, { PagesList } from '../PagesList'
 
-jest
-  .mock('Button', () => 'Button')
-  .mock('TouchableHighlight', () => 'TouchableHighlight')
-  .mock('TouchableOpacity', () => 'TouchableOpacity')
-  .mock('../../../../routing/Screen')
+jest.mock('../../../../redux/middleware/error-handler', () => {
+  return { alertError: jest.fn() }
+})
 
-const template = {
-  ...require('../../../../__templates__/page'),
-  ...require('../../../../__templates__/helm'),
-  ...require('../../../../__templates__/course'),
-  ...require('../../../../redux/__templates__/app-state'),
-}
+const diveList = (list: any) =>
+  shallow(
+    <list>
+      {list.prop('data').map((item, index) =>
+        list.prop('renderItem')({ item, index })
+      )}
+    </list>
+  )
 
 describe('PagesList', () => {
-  let props: Props
+  let props
   beforeEach(() => {
+    httpCache.clear()
     props = {
-      pages: [template.page()],
       courseID: '1',
-      getPages: jest.fn(() => Promise.resolve({ data: [template.page()] })),
-      refreshedPages: jest.fn(),
       navigator: template.navigator(),
-      course: template.course({ id: '1' }),
+      courseColor: 'green',
+      course: template.courseModel({ id: '1' }),
+      pages: [template.pageModel()],
+      isLoading: false,
+      loadError: null,
+      refresh: jest.fn(),
     }
   })
 
-  it('renders', () => {
-    expect(render(props).toJSON()).toMatchSnapshot()
+  it('gets courseColor, course, and pages from the model api', () => {
+    const courseColor = 'green'
+    const course = [ template.courseModel() ]
+    const pages = [ template.pageModel() ]
+    httpCache.handle('GET', 'users/self/colors', { custom_colors: { course_1: courseColor } })
+    httpCache.handle('GET', 'courses/1', course)
+    httpCache.handle('GET', 'courses/1/pages', pages)
+    const tree = shallow(<ConnectedPagesList courseID='1' />)
+    expect(tree.find(PagesList).props()).toMatchObject({
+      courseColor,
+      course,
+      pages,
+    })
   })
 
   it('renders empty', () => {
     props.pages = []
-    expect(render(props)).toMatchSnapshot()
+    const tree = shallow(<PagesList {...props} />)
+    expect(tree).toMatchSnapshot()
   })
 
-  it('refreshes on mount', () => {
-    const spy = jest.fn(() => Promise.resolve({ data: [template.page()] }))
-    props.getPages = spy
-    const view = render(props)
-    view.getInstance().componentWillMount()
-    expect(spy).toHaveBeenCalledWith(props.courseID)
-  })
-
-  it('dispatches refreshedPages action on refresh', async () => {
-    const pages = [template.page()]
-    props.getPages = jest.fn(() => Promise.resolve({ data: pages }))
-    const spy = jest.fn()
-    props.refreshedPages = spy
-    const view = render(props)
-    const list: any = explore(view.toJSON()).selectByType('RCTScrollView')
-    await list.props.onRefresh()
-    expect(spy).toHaveBeenCalledWith(pages, props.courseID)
+  it('renders loading', () => {
+    props.course = null
+    props.pages = []
+    props.isLoading = true
+    const tree = shallow(<PagesList {...props} />)
+    expect(tree).toMatchSnapshot()
   })
 
   it('renders front page row', () => {
-    props.pages = [template.page({ front_page: true, title: 'Page 1' })]
+    props.pages = [template.pageModel({ isFrontPage: true, title: 'Page 1' })]
     const tree = shallow(<PagesList {...props} />)
-    const list = tree.find('FlatList')
-    const data = list.props().data
-    const row = shallow(list.props().renderItem({ item: data[0], index: 0 })).find('Row')
-    expect(row.props().title).toEqual('Front Page')
-    expect(row.props().subtitle).toEqual('Page 1')
+    const row = diveList(tree.find('FlatList')).find('FeatureRow').first()
+    expect(row.prop('title')).toBe('Front Page')
+    expect(row.prop('subtitle')).toBe('Page 1')
+  })
+
+  it('shows access icon for teachers', () => {
+    app.setCurrentApp('teacher')
+    const tree = shallow(<PagesList {...props} />)
+    const row = diveList(tree.find('FlatList')).find('Row').first()
+    expect(row.prop('renderImage')()).toMatchSnapshot()
+  })
+
+  it('alerts on new loadError', () => {
+    const tree = shallow(<PagesList {...props} />)
+    tree.setProps({ loadError: null })
+    expect(alertError).not.toHaveBeenCalled()
+    const loadError = new Error()
+    tree.setProps({ loadError })
+    expect(alertError).toHaveBeenCalledWith(loadError)
   })
 
   it('navigates to page details', () => {
-    const spy = jest.fn()
-    props.navigator = template.navigator({
-      show: spy,
-    })
-    props.pages = [template.page({ url: 'abc' })]
-    props.courseID = '1'
-    const view = render(props)
-    const row: any = explore(view.toJSON()).selectByID('pages.list.page.row-0')
-    row.props.onPress()
-    expect(spy).toHaveBeenCalledWith('/courses/1/pages/abc', { modal: false })
+    props.navigator = template.navigator({ show: jest.fn() })
+    props.pages = [template.pageModel({ url: 'abc' })]
+    const tree = shallow(<PagesList {...props} />)
+    diveList(tree.find('FlatList')).find('Row').first()
+      .simulate('Press', 'abc')
+    expect(props.navigator.show).toHaveBeenCalledWith(
+      '/courses/1/pages/abc',
+      { modal: false }
+    )
   })
 
   it('navigates to new page', () => {
-    const spy = jest.fn()
-    props.navigator = template.navigator({
-      show: spy,
-    })
-    props.courseID = '1'
-    const view = render(props)
-    const done: any = explore(view.toJSON()).selectRightBarButton('pages.list.add.button')
-    done.action()
-    expect(spy).toHaveBeenCalledWith('/courses/1/pages/new', {
-      modal: true,
-      modalPresentationStyle: 'formsheet',
-    })
+    props.navigator = template.navigator({ show: jest.fn() })
+    const tree = shallow(<PagesList {...props} />)
+    tree.find('Screen').prop('rightBarButtons')
+      .find(({ testID }) => testID === 'pages.list.add.button')
+      .action()
+    expect(props.navigator.show).toHaveBeenCalledWith(
+      '/courses/1/pages/new',
+      { modal: true, modalPresentationStyle: 'formsheet' }
+    )
   })
 
   it('shows add button if permitted', () => {
     app.setCurrentApp('teacher')
     const tree = shallow(<PagesList {...props} />)
     expect(
-      tree.props().rightBarButtons.find(b => b.testID === 'pages.list.add.button')
+      tree.prop('rightBarButtons').find(({ testID }) => testID === 'pages.list.add.button')
     ).toBeTruthy()
   })
 
   it('hides add button if not permitted', () => {
     app.setCurrentApp('student')
     const tree = shallow(<PagesList {...props} />)
-    expect(tree.props().rightBarButtons).toBeFalsy()
+    expect(tree.prop('rightBarButtons')).toBeFalsy()
   })
 
-  it('shows front page', async () => {
+  it('shows front page', () => {
     props.navigator = template.navigator({
       traitCollection: (callback) => {
         callback({
@@ -143,9 +157,8 @@ describe('PagesList', () => {
         })
       },
     })
-    props.pages = [template.page({ url: 'front-page', front_page: true })]
+    props.pages = [template.pageModel({ url: 'front-page', isFrontPage: true })]
     shallow(<PagesList {...props} />)
-    await Promise.resolve() // wait for next run loop
     expect(props.navigator.show).toHaveBeenLastCalledWith(
       '/courses/1/pages/front-page',
       { modal: false },
@@ -165,121 +178,36 @@ describe('PagesList', () => {
         })
       },
     })
-    props.pages = [template.page({ front_page: false })]
-    props.course = template.course()
+    props.pages = [template.pageModel({ isFrontPage: false })]
+    const course = props.course = template.courseModel({ id: '1' })
     shallow(<PagesList {...props} />)
     expect(props.navigator.show).toHaveBeenLastCalledWith(
       '/courses/1/placeholder',
       {},
-      { course: props.course },
+      { courseColor: 'green', course: course.raw },
     )
   })
 
-  function render (props: Props, options: any = {}): any {
-    return renderer.create(<PagesList {...props} />, options)
-  }
-})
-
-describe('mapStateToProps', () => {
-  it('maps state to props', () => {
-    const one = template.page({ url: 'page-1', title: 'A' })
-    const two = template.page({ url: 'page-2', title: 'B' })
-    const three = template.page({ url: 'page-3', title: 'C' })
-    const course = template.course({ name: 'Course 1' })
-    const state = template.appState({
-      entities: {
-        courses: {
-          '1': {
-            color: '#fff',
-            course,
-            pages: {
-              pending: 0,
-              refs: ['page-1', 'page-3'],
-            },
-          },
-        },
-        pages: {
-          'page-1': { data: one },
-          'page-2': { data: two },
-          'page-3': { data: three },
-        },
-      },
+  it('shows front page or placeholder when switching to split screen', () => {
+    let traits = {
+      screen: { horizontal: 'compact' },
+      window: { horizontal: 'compact' },
+    }
+    props.navigator = template.navigator({
+      traitCollection: (callback) => { callback(traits) },
     })
-    expect(mapStateToProps(state, { courseID: '1' })).toEqual({
-      pages: [one, three],
-      courseName: 'Course 1',
-      courseColor: '#fff',
-      course: course,
-    })
-  })
-
-  it('maps empty state to props', () => {
-    const state = template.appState()
-    expect(mapStateToProps(state, { courseID: '1' })).toEqual({
-      pages: [],
-      courseName: '',
-      courseColor: null,
-      course: null,
-    })
-  })
-
-  it('sorts pages alphabetically by title', () => {
-    const A = template.page({ url: 'A', title: 'A' })
-    const b = template.page({ url: 'b', title: 'b' })
-    const C = template.page({ url: 'C', title: 'C' })
-    const state = template.appState({
-      entities: {
-        courses: {
-          '1': {
-            color: '#fff',
-            course: {
-              name: 'Course 1',
-            },
-            pages: {
-              pending: 0,
-              refs: ['A', 'b', 'C'],
-            },
-          },
-        },
-        pages: {
-          'A': { data: A },
-          'b': { data: b },
-          'C': { data: C },
-        },
-      },
-    })
-    expect(mapStateToProps(state, { courseID: '1' })).toMatchObject({
-      pages: [A, b, C],
-    })
-  })
-
-  it('sorts front page to the front', () => {
-    const one = template.page({ url: 'A', title: 'A', front_page: false })
-    const two = template.page({ url: 'B', title: 'b', front_page: false })
-    const front = template.page({ url: 'C', title: 'C', front_page: true })
-    const state = template.appState({
-      entities: {
-        courses: {
-          '1': {
-            color: '#fff',
-            course: {
-              name: 'Course 1',
-            },
-            pages: {
-              pending: 0,
-              refs: ['A', 'b', 'C'],
-            },
-          },
-        },
-        pages: {
-          'A': { data: one },
-          'b': { data: two },
-          'C': { data: front },
-        },
-      },
-    })
-    expect(mapStateToProps(state, { courseID: '1' })).toMatchObject({
-      pages: [front, one, two],
-    })
+    props.pages = [template.pageModel({ isFrontPage: false })]
+    const course = props.course = template.courseModel({ id: '1' })
+    const tree = shallow(<PagesList {...props} />)
+    traits = {
+      screen: { horizontal: 'regular' },
+      window: { horizontal: 'regular' },
+    }
+    tree.find('Screen').simulate('TraitCollectionChange')
+    expect(props.navigator.show).toHaveBeenLastCalledWith(
+      '/courses/1/placeholder',
+      {},
+      { courseColor: 'green', course: course.raw },
+    )
   })
 })

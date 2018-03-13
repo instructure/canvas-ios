@@ -39,7 +39,6 @@ import { groups } from '../modules/groups/group-entities-reducer'
 import { asyncActions } from './actions/async-tracker'
 import toDo from '../modules/to-do/reducer'
 import { filesData as files, foldersData as folders } from '../modules/files/reducer'
-import { entities as pages, frontPage } from '../modules/pages/reducer'
 import { userInfo } from '../modules/userInfo/reducer'
 
 const entities = combineReducers({
@@ -57,7 +56,6 @@ const entities = combineReducers({
   quizSubmissions,
   discussions,
   courseDetailsTabSelectedRow,
-  pages,
 })
 
 const actualRootReducer: Reducer<AppState, Action> = combineReducers({
@@ -65,7 +63,7 @@ const actualRootReducer: Reducer<AppState, Action> = combineReducers({
   inbox,
   files,
   folders,
-  entities: composeReducers(entities, frontPage),
+  entities,
   asyncActions,
   toDo,
   userInfo,

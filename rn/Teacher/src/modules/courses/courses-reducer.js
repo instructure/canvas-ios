@@ -33,7 +33,6 @@ import { refs as discussions } from '../discussions/reducer'
 import { refs as announcements } from '../announcements/reducer'
 import attendanceTool from '../external-tools/attendance-tool-reducer'
 import groups from '../groups/group-refs-reducer'
-import { refs as pages } from '../pages/reducer'
 import { refs as gradingPeriods } from '../assignments/grading-periods-reducer'
 
 // dummy's to appease combineReducers
@@ -58,7 +57,6 @@ const courseContents: Reducer<CourseState, Action> = combineReducers({
   announcements,
   groups,
   attendanceTool,
-  pages,
   enabledFeatures,
   gradingPeriods,
   permissions,
