@@ -52,7 +52,7 @@ const Actions = {
 }
 
 type OwnProps = {
-  context: Context,
+  context: CanvasContext,
   contextID: string,
 }
 

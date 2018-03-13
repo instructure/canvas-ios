@@ -64,7 +64,7 @@ const Actions = {
 
 type OwnProps = {
   announcementID: ?string,
-  context: Context,
+  context: CanvasContext,
   contextID: string,
 }
 

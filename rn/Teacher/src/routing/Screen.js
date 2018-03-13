@@ -65,7 +65,7 @@ type State = {
   hasRendered: boolean,
 }
 
-type Context = {
+type ScreenContext = {
   screenInstanceID: string,
 }
 
@@ -82,7 +82,7 @@ export default class Screen extends React.Component<ScreenProps, State> {
     screenInstanceID: PropTypes.string,
   }
 
-  constructor (props: Object, context: Context) {
+  constructor (props: Object, context: ScreenContext) {
     super(props, context)
     this.state = { hasRendered: false }
     this.handleProps(props, context.screenInstanceID, false)
@@ -93,7 +93,7 @@ export default class Screen extends React.Component<ScreenProps, State> {
     this.setState({ hasRendered: true })
   }
 
-  componentWillReceiveProps (nextProps: Object, nextContext: Context) {
+  componentWillReceiveProps (nextProps: Object, nextContext: ScreenContext) {
     this.handleProps(nextProps, nextContext.screenInstanceID, this.state.hasRendered)
   }
 

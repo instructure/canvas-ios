@@ -19,7 +19,7 @@
 import httpClient from '../httpClient'
 import { paginate, exhaust } from '../utils/pagination'
 
-export function getDiscussions (context: Context, contextID: string, parameters: GetDiscussionsParameters = {}): ApiPromise<Discussion[]> {
+export function getDiscussions (context: CanvasContext, contextID: string, parameters: GetDiscussionsParameters = {}): ApiPromise<Discussion[]> {
   const url = `${context}/${contextID}/discussion_topics`
   const options = {
     params: {
@@ -32,7 +32,7 @@ export function getDiscussions (context: Context, contextID: string, parameters:
   return exhaust(discussions)
 }
 
-export function getAllDiscussionEntries (context: Context, contextID: string, discussionID: string, includeNewEntries: boolean = true): ApiPromise<DiscussionView> {
+export function getAllDiscussionEntries (context: CanvasContext, contextID: string, discussionID: string, includeNewEntries: boolean = true): ApiPromise<DiscussionView> {
   const options = {
     params: { include_new_entries: includeNewEntries ? 1 : 0 },
   }
@@ -40,59 +40,59 @@ export function getAllDiscussionEntries (context: Context, contextID: string, di
   return httpClient().get(url, options)
 }
 
-export function getDiscussion (context: Context, contextID: string, discussionID: string): ApiPromise<Discussion> {
+export function getDiscussion (context: CanvasContext, contextID: string, discussionID: string): ApiPromise<Discussion> {
   const url = `${context}/${contextID}/discussion_topics/${discussionID}?include[]=sections`
   return httpClient().get(url)
 }
 
-export function createDiscussion (context: Context, contextID: string, parameters: CreateDiscussionParameters): ApiPromise<Discussion> {
+export function createDiscussion (context: CanvasContext, contextID: string, parameters: CreateDiscussionParameters): ApiPromise<Discussion> {
   const url = `${context}/${contextID}/discussion_topics`
   const formdata = discussionFormData(parameters)
   return httpClient().post(url, formdata)
 }
 
-export function createEntry (context: Context, contextID: string, discussionID: string, entryID: string = '', parameters: CreateEntryParameters): ApiPromise<Discussion> {
+export function createEntry (context: CanvasContext, contextID: string, discussionID: string, entryID: string = '', parameters: CreateEntryParameters): ApiPromise<Discussion> {
   const url = entryID ? `${context}/${contextID}/discussion_topics/${discussionID}/entries/${entryID}/replies` : `${context}/${contextID}/discussion_topics/${discussionID}/entries`
   return httpClient().post(url, parameters)
 }
 
-export function editEntry (context: Context, contextID: string, discussionID: string, entryID: string, parameters: CreateEntryParameters): ApiPromise<Discussion> {
+export function editEntry (context: CanvasContext, contextID: string, discussionID: string, entryID: string, parameters: CreateEntryParameters): ApiPromise<Discussion> {
   const url = `${context}/${contextID}/discussion_topics/${discussionID}/entries/${entryID}`
   return httpClient().put(url, parameters)
 }
 
-export function updateDiscussion (context: Context, contextID: string, parameters: UpdateDiscussionParameters): ApiPromise<Discussion> {
+export function updateDiscussion (context: CanvasContext, contextID: string, parameters: UpdateDiscussionParameters): ApiPromise<Discussion> {
   const url = `${context}/${contextID}/discussion_topics/${parameters.id}`
   const formdata = discussionFormData(parameters)
   return httpClient().put(url, formdata)
 }
 
-export function deleteDiscussionEntry (context: Context, contextID: string, discussionID: string, entryID: string): ApiPromise<Discussion> {
+export function deleteDiscussionEntry (context: CanvasContext, contextID: string, discussionID: string, entryID: string): ApiPromise<Discussion> {
   const url = `${context}/${contextID}/discussion_topics/${discussionID}/entries/${entryID}`
   return httpClient().delete(url, {})
 }
 
-export function deleteDiscussion (context: Context, contextID: string, discussionID: string): ApiPromise<Discussion> {
+export function deleteDiscussion (context: CanvasContext, contextID: string, discussionID: string): ApiPromise<Discussion> {
   const url = `${context}/${contextID}/discussion_topics/${discussionID}`
   return httpClient().delete(url)
 }
 
-export function subscribeDiscussion (context: Context, contextID: string, discussionID: string, subscribed: boolean): ApiPromise<Discussion> {
+export function subscribeDiscussion (context: CanvasContext, contextID: string, discussionID: string, subscribed: boolean): ApiPromise<Discussion> {
   const url = `${context}/${contextID}/discussion_topics/${discussionID}/subscribed`
   return httpClient()[subscribed ? 'put' : 'delete'](url)
 }
 
-export function markEntryAsRead (context: Context, contextID: string, discussionID: string, entryID: string): ApiPromise<null> {
+export function markEntryAsRead (context: CanvasContext, contextID: string, discussionID: string, entryID: string): ApiPromise<null> {
   const url = `${context}/${contextID}/discussion_topics/${discussionID}/entries/${entryID}/read`
   return httpClient().put(url)
 }
 
-export function markAllAsRead (context: Context, contextID: string, discussionID: string): ApiPromise<null> {
+export function markAllAsRead (context: CanvasContext, contextID: string, discussionID: string): ApiPromise<null> {
   const url = `${context}/${contextID}/discussion_topics/${discussionID}/read_all`
   return httpClient().put(url)
 }
 
-export function rateEntry (context: Context, contextID: string, discussionID: string, entryID: string, rating: number): ApiPromise<null> {
+export function rateEntry (context: CanvasContext, contextID: string, discussionID: string, entryID: string, rating: number): ApiPromise<null> {
   const url = `${context}/${contextID}/discussion_topics/${discussionID}/entries/${entryID}/rating`
   return httpClient().post(url, { rating })
 }

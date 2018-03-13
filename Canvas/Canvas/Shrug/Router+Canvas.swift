@@ -98,15 +98,15 @@ extension Router {
         
         let fileListFactory = { (contextID: ContextID) -> UIViewController in
             return HelmViewController(
-                moduleName: "/courses/:courseID/files",
-                props: ["courseID": contextID.id]
+                moduleName: "/:context/:contextID/files",
+                props: ["context": "courses", "contextID": contextID.id]
             )
         }
         
         let fileFactory = { (contextID: ContextID, fileID: String) -> UIViewController in
             return HelmViewController(
-                moduleName: "/courses/:courseID/file/:fileID",
-                props: ["courseID": contextID.id, "fileID": fileID, "navigatorOptions": ["modal": true]]
+                moduleName: "/:context/:contextID/file/:fileID",
+                props: ["context": "courses", "contextID": contextID.id, "fileID": fileID, "navigatorOptions": ["modal": true]]
             )
         }
         
@@ -127,8 +127,8 @@ extension Router {
             
             if let subFolder = params["subFolder"] as? String {
                 return HelmViewController(
-                    moduleName: "/courses/:courseID/files/folder/*subFolder",
-                    props: ["courseID": contextID.id, "subFolder": subFolder]
+                    moduleName: "/:context/:contextID/files/folder/*subFolder",
+                    props: ["context": "courses", "contextID": contextID.id, "subFolder": subFolder]
                 )
             }
             

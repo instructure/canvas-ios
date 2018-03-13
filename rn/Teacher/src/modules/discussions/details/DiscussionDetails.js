@@ -57,7 +57,7 @@ import { isTeacher } from '../../app'
 type OwnProps = {
   announcementID: string,
   discussionID: string,
-  context: Context,
+  context: CanvasContext,
   contextID: string,
 }
 
@@ -68,7 +68,7 @@ type State = {
   courseName: string,
   unreadEntries: ?string[],
   entryRatings: { [string]: number },
-  context: Context,
+  context: CanvasContext,
   contextID: string,
   courseName: string,
   canRate: boolean,

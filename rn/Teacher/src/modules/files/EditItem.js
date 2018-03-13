@@ -39,7 +39,8 @@ import { alertError } from '../../redux/middleware/error-handler'
 import EditUsageRights from './EditUsageRights'
 
 type Props = {
-  courseID?: string,
+  contextID?: string,
+  context?: CanvasContext,
   delete: (string, force?: boolean) => Promise<any>,
   item: Object,
   itemID: string,
@@ -99,12 +100,12 @@ export default class EditItem extends Component<Props, State> {
   }
 
   async loadCourseLicenses () {
-    const { courseID, getCourseLicenses, getCourseEnabledFeatures } = this.props
-    if (!courseID || !this.isFile()) return
+    const { contextID, context, getCourseLicenses, getCourseEnabledFeatures } = this.props
+    if (!contextID || !this.isFile() || context !== 'courses') return
     try {
       const [ { data: licenses }, { data: features } ] = await Promise.all([
-        getCourseLicenses(courseID),
-        getCourseEnabledFeatures(courseID),
+        getCourseLicenses(contextID),
+        getCourseEnabledFeatures(contextID),
       ])
       this.setState({ licenses, features })
     } catch (e) {}

@@ -320,7 +320,8 @@ describe('EditItem file', () => {
   let props
   beforeEach(() => {
     props = {
-      courseID: '1',
+      contextID: '1',
+      context: 'courses',
       itemID: '123',
       item: template.file({ id: '123', display_name: 'passwords.txt' }),
       navigator: {

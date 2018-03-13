@@ -20,7 +20,7 @@ import { createAction } from 'redux-actions'
 import canvas from '../../../canvas-api'
 
 export let Actions = (api: CanvasApi): * => ({
-  createDiscussion: createAction('discussions.edit.create', (context: Context, contextID: string, params: CreateDiscussionParameters) => {
+  createDiscussion: createAction('discussions.edit.create', (context: CanvasContext, contextID: string, params: CreateDiscussionParameters) => {
     return {
       promise: api.createDiscussion(context, contextID, params),
       params,
@@ -29,7 +29,7 @@ export let Actions = (api: CanvasApi): * => ({
       contextID,
     }
   }),
-  updateDiscussion: createAction('discussions.edit.update', (context: Context, contextID: string, params: UpdateDiscussionParameters) => {
+  updateDiscussion: createAction('discussions.edit.update', (context: CanvasContext, contextID: string, params: UpdateDiscussionParameters) => {
     return {
       promise: api.updateDiscussion(context, contextID, params),
       params,
@@ -38,7 +38,7 @@ export let Actions = (api: CanvasApi): * => ({
       contextID,
     }
   }),
-  deleteDiscussion: createAction('discussions.edit.delete', (context: Context, contextID: string, discussionID: string) => {
+  deleteDiscussion: createAction('discussions.edit.delete', (context: CanvasContext, contextID: string, discussionID: string) => {
     return {
       promise: api.deleteDiscussion(context, contextID, discussionID),
       discussionID,
@@ -46,7 +46,7 @@ export let Actions = (api: CanvasApi): * => ({
       contextID,
     }
   }),
-  subscribeDiscussion: createAction('discussions.edit.subscribe', (context: Context, contextID: string, discussionID: string, subscribed: boolean) => {
+  subscribeDiscussion: createAction('discussions.edit.subscribe', (context: CanvasContext, contextID: string, discussionID: string, subscribed: boolean) => {
     return {
       promise: api.subscribeDiscussion(context, contextID, discussionID, subscribed),
       discussionID,
@@ -55,7 +55,7 @@ export let Actions = (api: CanvasApi): * => ({
       subscribed,
     }
   }),
-  deletePendingNewDiscussion: createAction('discussions.edit.deletePendingNew', (context: Context, contextID: string) => ({
+  deletePendingNewDiscussion: createAction('discussions.edit.deletePendingNew', (context: CanvasContext, contextID: string) => ({
     context,
     contextID,
   })),

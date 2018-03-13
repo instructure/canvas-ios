@@ -79,7 +79,7 @@ const PickerItem = PickerIOS.Item
 
 type OwnProps = {
   discussionID: ?string,
-  context: Context,
+  context: CanvasContext,
   contextID: string,
 }
 

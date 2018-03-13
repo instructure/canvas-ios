@@ -54,7 +54,8 @@ type CourseFilesListProps = {
 }
 
 type CourseFileListNavProps = {
-  courseID: string,
+  contextID: string,
+  context: 'courses' | 'groups' | 'users',
   subFolder?: ?string,
 }
 
@@ -68,7 +69,7 @@ type Props =
     folderUpdated: Function,
     foldersUpdated: Function,
     filesUpdated: Function,
-    getCourseFolder: Function,
+    getContextFolder: Function,
     getFolderFolders: Function,
     getFolderFiles: Function,
     getFolder: Function,
@@ -82,7 +83,7 @@ type State = {
 
 export class CourseFilesList extends Component<Props, State> {
   static defaultProps = {
-    getCourseFolder: canvas.getCourseFolder,
+    getContextFolder: canvas.getContextFolder,
     getFolderFolders: canvas.getFolderFolders,
     getFolderFiles: canvas.getFolderFiles,
     getFolder: canvas.getFolder,
@@ -106,18 +107,17 @@ export class CourseFilesList extends Component<Props, State> {
   update = async () => {
     this.setState({ pending: true })
     try {
-      const courseID = this.props.courseID
-      let folder = this.props.folder
+      let { contextID, context, folder } = this.props
       if (!folder) {
-        folder = (await this.props.getCourseFolder(courseID, 'root')).data
-        this.props.foldersUpdated([folder], 'root', courseID, 'Course')
+        folder = (await this.props.getContextFolder(context, contextID, 'root')).data
+        this.props.foldersUpdated([folder], 'root', contextID, context)
       }
       const foldersPromise = this.props.getFolderFolders(folder.id)
       const filesPromise = this.props.getFolderFiles(folder.id)
       const folderPromise = this.props.getFolder(folder.id)
-      this.props.foldersUpdated((await foldersPromise).data, folder.full_name, courseID, 'Course')
-      this.props.filesUpdated((await filesPromise).data, folder.full_name, courseID, 'Course')
-      this.props.folderUpdated((await folderPromise).data, courseID, 'Course')
+      this.props.foldersUpdated((await foldersPromise).data, folder.full_name, contextID, context)
+      this.props.filesUpdated((await filesPromise).data, folder.full_name, contextID, context)
+      this.props.folderUpdated((await folderPromise).data, contextID, context)
     } catch (error) {
       alertError(error)
     }
@@ -126,18 +126,19 @@ export class CourseFilesList extends Component<Props, State> {
 
   onSelectRow = (index: number) => {
     const item = this.props.data[index]
+    const { contextID, context } = this.props
 
     if (item.type === 'file') {
-      this.props.navigator.show(`/courses/${this.props.courseID}/file/${item.id}`, { modal: true }, {
+      this.props.navigator.show(`/${context}/${contextID}/file/${item.id}`, { modal: true }, {
         file: item,
         onChange: this.update,
       })
     } else {
       let route
       if (this.props.subFolder) {
-        route = `/courses/${this.props.courseID}/files/folder/${this.props.subFolder}/${item.name}`
+        route = `/${context}/${contextID}/files/folder/${this.props.subFolder}/${item.name}`
       } else {
-        route = `/courses/${this.props.courseID}/files/folder/${item.name}`
+        route = `/${context}/${contextID}/files/folder/${item.name}`
       }
       this.props.navigator.show(route)
     }
@@ -153,13 +154,13 @@ export class CourseFilesList extends Component<Props, State> {
   }
 
   handleChangeFolder = async (updated: Folder) => {
-    const { folder, courseID, subFolder } = this.props
+    const { folder, contextID, context, subFolder } = this.props
     if (folder.name !== updated.name) {
       let prefix = (subFolder || '').split('/').slice(0, -1).join('/')
       if (prefix) prefix += '/'
       await this.update() // make sure the new folder name is loaded before routing to it
       this.props.navigator.replace(
-        `/courses/${courseID}/files/folder/${prefix}${updated.name}`
+        `/${context}/${contextID}/files/folder/${prefix}${updated.name}`
       )
     } else {
       this.update()
@@ -214,7 +215,7 @@ export class CourseFilesList extends Component<Props, State> {
         parent_folder_id: this.props.folder.id,
         locked: true,
       }
-      await this.props.createFolder(this.props.courseID, folder)
+      await this.props.createFolder(this.props.context, this.props.contextID, folder)
       await this.update()
     } catch (error) {
       alertError(error)
@@ -374,18 +375,18 @@ export class CourseFilesList extends Component<Props, State> {
 
 export function mapStateToProps (state: Object, props: CourseFileListNavProps) {
   let parentFolder
-  const key = `Course-${props.courseID}`
-  const courseFolders = state.folders[key] || {}
-  const courseFiles = state.files[key] || {}
-  const courseColor = (state.entities.courses[props.courseID] || {}).color
-  if (!courseFolders['root'] || !courseFolders['root'][0]) {
+  const key = `${props.context}-${props.contextID}`
+  const contextFolders = state.folders[key] || {}
+  const contextFiles = state.files[key] || {}
+  const courseColor = (state.entities.courses[props.contextID] || {}).color
+  if (!contextFolders['root'] || !contextFolders['root'][0]) {
     return { data: [], courseColor }
   }
-  const rootFolder = courseFolders['root'][0]
+  const rootFolder = contextFolders['root'][0]
   if (props.subFolder) {
     const fullPath = `${rootFolder.name}/${props.subFolder}`
     const parentPath = fullPath.substring(0, fullPath.lastIndexOf('/'))
-    const possibleParents = courseFolders[parentPath]
+    const possibleParents = contextFolders[parentPath]
     parentFolder = find(possibleParents, { full_name: fullPath })
   } else {
     parentFolder = rootFolder
@@ -399,8 +400,8 @@ export function mapStateToProps (state: Object, props: CourseFileListNavProps) {
     return { ...item, type, key: `${type}-${item.id}` }
   }
 
-  const folders = (courseFolders[parentFolder.full_name] || []).map(mapper('folder'))
-  const files = (courseFiles[parentFolder.full_name] || []).map(mapper('file'))
+  const folders = (contextFolders[parentFolder.full_name] || []).map(mapper('folder'))
+  const files = (contextFiles[parentFolder.full_name] || []).map(mapper('file'))
   const data = [...folders, ...files].sort((a, b) => localeSort(a.name || a.display_name, b.name || b.display_name))
 
   return { data, folder: parentFolder, courseColor }

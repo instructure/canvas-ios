@@ -55,7 +55,8 @@ describe('ViewFile', () => {
   let props
   beforeEach(() => {
     props = {
-      courseID: '1',
+      contextID: '1',
+      context: 'courses',
       fileID: '24',
       file: template.file({
         id: '24',
@@ -85,7 +86,7 @@ describe('ViewFile', () => {
   })
 
   it('ignores loading course if no courseID', async () => {
-    props.courseID = null
+    props.contextID = null
     const tree = shallow(<ViewFile {...props} />)
     expect(props.getCourse).not.toHaveBeenCalled()
     expect(tree.find('Screen').prop('subtitle')).toBeUndefined()

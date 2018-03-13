@@ -32,7 +32,7 @@ import {
 
 type OwnProps = {
   discussionID: string,
-  context: Context,
+  context: CanvasContext,
   contextID: string,
   indexPath?: number[],
   entryID?: ?string,

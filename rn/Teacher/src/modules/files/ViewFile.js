@@ -44,7 +44,8 @@ import { isTeacher } from '../app'
 import CanvasWebView from '../../common/components/CanvasWebView'
 
 type Props = {
-  courseID?: string,
+  context?: CanvasContext,
+  contextID?: string,
   fileID: string,
   file: ?File,
   navigator: Navigator,
@@ -130,9 +131,11 @@ export default class ViewFile extends Component<Props, State> {
   }
 
   fetchCourse = async () => {
-    if (!this.props.courseID) return
+    const { context, contextID } = this.props
+    if (!context || !contextID) return
+    if (context !== 'courses') return
     try {
-      const course = (await this.props.getCourse(this.props.courseID)).data
+      const course = (await this.props.getCourse(contextID)).data
       this.setState({ course })
     } catch (e) {
       // just don't show the course title
@@ -175,8 +178,10 @@ export default class ViewFile extends Component<Props, State> {
   }
 
   handleEdit = () => {
-    this.props.navigator.show(`/courses/${this.props.courseID || ''}/file/${this.props.fileID}/edit`, { modal: true }, {
-      courseID: this.props.courseID,
+    const { context, contextID } = this.props
+    if (!context || !contextID) return
+    this.props.navigator.show(`/${context}/${contextID}/file/${this.props.fileID}/edit`, { modal: true }, {
+      courseID: contextID,
       file: this.state.file,
       onChange: this.handleChange,
       onDelete: this.handleDelete,

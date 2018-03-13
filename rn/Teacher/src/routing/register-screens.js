@@ -117,11 +117,11 @@ export function registerScreens (store: Store): void {
   registerScreen('/:context/:contextID/discussion_topics/:discussionID/entries/:entryID/replies', wrap(EditReply), store, { deepLink: true })
   registerScreen('/courses/:courseID/users', wrap(PeopleList), store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/courses/:courseID/address-book', wrap(AddressBook), store)
-  registerScreen('/courses/:courseID/files', wrap(CourseFilesList), store, { deepLink: true })
-  registerScreen('/courses/:courseID/files/folder/*subFolder', wrap(CourseFilesList), store, { deepLink: true })
-  registerScreen('/courses/:courseID/folders/*subFolder', wrap(CourseFilesList), store, { deepLink: true })
-  registerScreen('/courses/:courseID/file/:fileID', wrap(ViewFile), store, { deepLink: true })
-  registerScreen('/courses/:courseID/file/:fileID/edit', wrap(EditFile), store)
+  registerScreen('/:context/:contextID/files', wrap(CourseFilesList), store, { deepLink: true })
+  registerScreen('/:context/:contextID/files/folder/*subFolder', wrap(CourseFilesList), store, { deepLink: true })
+  registerScreen('/:context/:contextID/folders/*subFolder', wrap(CourseFilesList), store, { deepLink: true })
+  registerScreen('/:context/:contextID/file/:fileID', wrap(ViewFile), store, { deepLink: true })
+  registerScreen('/:context/:contextID/file/:fileID/edit', wrap(EditFile), store)
   registerScreen('/folders/:folderID/edit', wrap(EditFolder), store)
   registerScreen('/picker', wrap(PickerPage), store)
   registerScreen('/groups/:groupID/users', wrap(GroupList), store)
@@ -167,6 +167,6 @@ export function registerScreens (store: Store): void {
 
   if (isTeacher()) {
     registerScreen('/files/:fileID/download', wrap(ViewFile), store, { deepLink: true })
-    registerScreen('/courses/:courseID/files/:fileID/download', wrap(ViewFile), store, { deepLink: true })
+    registerScreen('/:context/:courseID/files/:fileID/download', wrap(ViewFile), store, { deepLink: true })
   }
 }

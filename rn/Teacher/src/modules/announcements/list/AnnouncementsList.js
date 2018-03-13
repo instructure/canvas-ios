@@ -51,7 +51,7 @@ type State = AsyncState & {
 }
 
 type OwnProps = {
-  context: Context,
+  context: CanvasContext,
   contextID: string,
 }
 

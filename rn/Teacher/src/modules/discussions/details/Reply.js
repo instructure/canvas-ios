@@ -47,7 +47,7 @@ export type Props = {
   showRating: boolean, // true if discussion allows rating
   canRate: boolean, // true if current user can rate
   participants: { [key: string]: UserDisplay },
-  context: Context,
+  context: CanvasContext,
   contextID: string,
   discussionID: string,
   deleteDiscussionEntry: Function,

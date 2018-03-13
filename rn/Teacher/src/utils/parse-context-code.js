@@ -16,12 +16,12 @@
 
 // @flow
 
-type Context = {
+type ContextCode = {
   type: string,
   id: string,
 }
 
-export default function parseContextCode (contextCode: string): Context {
+export default function parseContextCode (contextCode: string): ContextCode {
   let split = contextCode.split('_')
   return {
     type: split[0],

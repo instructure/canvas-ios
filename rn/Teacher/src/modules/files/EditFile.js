@@ -19,7 +19,8 @@ import api from '../../canvas-api'
 import EditItem from './EditItem'
 
 export default ({
-  courseID,
+  contextID,
+  context,
   deleteFile = api.deleteFile,
   file,
   fileID,
@@ -29,7 +30,8 @@ export default ({
   updateCourseFileUsageRights = api.updateCourseFileUsageRights,
   updateFile = api.updateFile,
 }: {
-  courseID?: string,
+  contextID?: string,
+  context?: CanvasContext,
   deleteFile: typeof api.deleteFile,
   file: File,
   fileID: string,
@@ -40,7 +42,8 @@ export default ({
   updateFile: typeof api.updateFile,
 }) =>
   <EditItem
-    courseID={courseID}
+    contextID={contextID}
+    context={context}
     delete={deleteFile}
     item={file}
     itemID={fileID}
@@ -48,5 +51,5 @@ export default ({
     onChange={onChange}
     onDelete={onDelete}
     update={updateFile}
-    updateUsageRights={updateCourseFileUsageRights.bind(null, courseID || '', fileID)}
+    updateUsageRights={updateCourseFileUsageRights.bind(null, contextID || '', fileID)}
   />
