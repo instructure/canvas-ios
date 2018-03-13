@@ -238,6 +238,7 @@ extension ModuleItem: SynchronizedModel {
             masteryPathsItem.id = UUID().uuidString
             masteryPathsItem.moduleID = moduleID
             masteryPathsItem.moduleItemID = id
+            
             masteryPathsItem.courseID = courseID
             masteryPathsItem.position = position + 0.5 // hurray for hacks! This gets it to show in the list where it should
             masteryPathsItem.title = ""

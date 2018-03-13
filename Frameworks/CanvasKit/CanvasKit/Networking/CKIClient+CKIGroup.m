@@ -96,7 +96,7 @@
 {
     NSString *path = [[[group.context.path stringByAppendingPathComponent:@"groups"] stringByAppendingPathComponent:group.id] stringByAppendingPathComponent:@"invite"];
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        NSURLSessionDataTask *task = [self POST:path parameters:@{@"invitees": @[userEmail]} success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSURLSessionDataTask *task = [self POST:path parameters:@{@"invitees": @[userEmail]} progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             [subscriber sendNext:responseObject];
             [subscriber sendCompleted];
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -114,7 +114,7 @@
 {
     NSString *path = [[[group.context.path stringByAppendingPathComponent:@"groups"] stringByAppendingPathComponent:group.id] stringByAppendingPathComponent:@"memberships"];
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        NSURLSessionDataTask *task = [self POST:path parameters:@{@"user_id": userID} success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSURLSessionDataTask *task = [self POST:path parameters:@{@"user_id": userID} progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             [subscriber sendNext:responseObject];
             [subscriber sendCompleted];
         } failure:^(NSURLSessionDataTask *task, NSError *error) {

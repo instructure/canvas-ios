@@ -18,7 +18,6 @@
 #import "CKICourse.h"
 #import "CKIDiscussionTopic.h"
 @import ReactiveObjC;
-#import "EXTScope.h"
 
 @implementation CKIClient (CKIDiscussionTopic)
 

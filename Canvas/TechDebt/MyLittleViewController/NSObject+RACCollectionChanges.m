@@ -21,6 +21,8 @@
 
 @implementation NSObject (RACCollectionChanges)
 - (RACSignal *)rac_filteredIndexSetsForChangeType:(NSKeyValueChange)type forCollectionForKeyPath:(NSString *)collectionKeyPath {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnonnull"
     return [[[[self rac_valuesAndChangesForKeyPath:collectionKeyPath options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld observer:nil] map:^id(RACTuple *value) {
         NSAssert([value.second isKindOfClass:[NSDictionary class]], @"Expecting a dictionary of changes");
         return value.second;
@@ -29,5 +31,6 @@
     }] map:^id(id value) {
         return value[NSKeyValueChangeIndexesKey];
     }];
+#pragma clang diagnostic pop
 }
 @end

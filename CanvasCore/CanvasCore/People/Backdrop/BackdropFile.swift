@@ -144,8 +144,8 @@ struct BackdropFile: Hashable, Equatable {
     
     //! Inverse of BackdropFile.name
     fileprivate static func fromName(_ name: String) -> BackdropFile? {
-        let start: String.Index = name.characters.index(name.endIndex, offsetBy: -6)
-        let end: String.Index = name.characters.index(name.endIndex, offsetBy: -4)
+        let start: String.Index = name.index(name.endIndex, offsetBy: -6)
+        let end: String.Index = name.index(name.endIndex, offsetBy: -4)
         if start >= name.startIndex && end >= start && name.endIndex >= end {
             if let n = Int(name.substring(with: start..<end)) {
                 if let _ = name.range(of: shapeRoot) {

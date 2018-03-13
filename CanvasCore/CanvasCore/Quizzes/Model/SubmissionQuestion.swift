@@ -94,7 +94,7 @@ extension SubmissionQuestion: JSONDecodable {
                         if let answers = answerJSON as? [String: Any] {
                             var answerMap: [String: String] = [:]
                             for obj in answers {
-                                if let id = idString(obj.value) {
+                                if idString(obj.value) != nil {
                                     answerMap[obj.key] = idString(obj.value)
                                 }
                             }

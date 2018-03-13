@@ -25,7 +25,6 @@
 #import "CKDiscussionTopic.h"
 #import "ISO8601DateFormatter.h"
 #import "NSDictionary+CKAdditions.h"
-#import "CKDiscussionEntry.h"
 #import "CKSubmissionType.h"
 #import "NSDictionary+CKAdditions.h"
 #import "NSString+CKAdditions.h"

@@ -126,7 +126,7 @@
 - (void)getMediaSessionWithSuccess:(void(^)(NSString *sessionID))success failure:(void(^)(NSError *error))failure {
     NSString *urlString = @"api/v1/services/kaltura_session";
     
-    [self POST:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [self POST:urlString parameters:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *ks = [responseObject valueForKey:@"ks"];
         if (success) {
             success(ks);
@@ -142,7 +142,7 @@
     NSURL *url = [self.mediaServer apiURLAdd];
     NSDictionary *parameters = @{@"ks": sessionID};
     
-    [[self xmlReauestManager] POST:url.absoluteString parameters:parameters success:^(NSURLSessionDataTask *operation, id responseObject) {
+    [[self xmlReauestManager] POST:url.absoluteString parameters:parameters progress:nil success:^(NSURLSessionDataTask *operation, id responseObject) {
         // Handle failure to parse
         // Get the token id from the XML
         CKIMediaFileUploadTokenParser *parser = [[CKIMediaFileUploadTokenParser alloc] initWithXMLParser:responseObject];
@@ -188,7 +188,7 @@
     NSString *mediaTypeString = ([mediaType isEqualToString:CKIMediaCommentMediaTypeVideo] ? @"1" : @"5");
     NSDictionary *parameters = @{@"mediaEntry:name": @"Media Comment", @"mediaEntry:mediaType": mediaTypeString};
     
-    [[self xmlReauestManager] POST:urlString parameters:parameters success:^(NSURLSessionDataTask *operation, id responseObject) {
+    [[self xmlReauestManager] POST:urlString parameters:parameters progress:nil success:^(NSURLSessionDataTask *operation, id responseObject) {
         CKIMediaFileUploadTokenParser *parser = [[CKIMediaFileUploadTokenParser alloc] initWithXMLParser:responseObject];
         [parser parseWithSuccess:^(NSString *uploadID) {
             if (success) {
@@ -229,7 +229,7 @@
     }
     
     NSString *urlString = @"api/v1/services/kaltura.json";
-    [self GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [self GET:urlString parameters:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         self.mediaServer = [[CKIMediaServer alloc] initWithInfo:responseObject];
         if (success) {
             success();

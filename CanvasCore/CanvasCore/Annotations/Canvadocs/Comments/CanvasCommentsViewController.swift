@@ -180,7 +180,7 @@ extension CanvadocsCommentsViewController {
     func showingKeyboard(_ notification: Notification) {
         let info = notification.userInfo as! [String: AnyObject]
         let keyboardFrame = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        let animationCurve = UIViewAnimationOptions(rawValue: (info[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber) as UInt)
+        let animationCurve = UIViewAnimationOptions(rawValue: (info[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber).uintValue)
         let animationDuration: TimeInterval = (info[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
         let keyboardHeight = keyboardFrame.height
         
@@ -201,7 +201,7 @@ extension CanvadocsCommentsViewController {
     
     func hidingKeyboard(_ notification: Notification) {
         let info = notification.userInfo as! [String: AnyObject]
-        let animationCurve = UIViewAnimationOptions(rawValue: (info[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber) as UInt)
+        let animationCurve = UIViewAnimationOptions(rawValue: (info[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber).uintValue)
         let animationDuration: TimeInterval = (info[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
         
         self.replyToolbarBottom?.constant = 0.0

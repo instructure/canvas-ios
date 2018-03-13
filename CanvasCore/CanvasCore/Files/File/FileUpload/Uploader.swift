@@ -45,7 +45,7 @@ public final class Uploader {
             .filter { $0.hasCompleted }
             .map { $0.file! }
             .take(first: 1)
-            .observeValues { [weak self] file in
+            .observeValues { file in
                 completed(Result(value: file))
             }
 
@@ -53,7 +53,7 @@ public final class Uploader {
             .map { $0.errorMessage }
             .skipNil()
             .take(first: 1)
-            .observeValues { [weak self] errorMessage in
+            .observeValues { errorMessage in
                 let error = NSError(subdomain: "FileKit", description: errorMessage)
                 completed(Result(error: error))
             }

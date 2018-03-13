@@ -138,7 +138,7 @@ NSString *const CKIClientAccessTokenExpiredNotification = @"CKIClientAccessToken
     };
 
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        NSURLSessionDataTask *task = [self POST:@"/login/oauth2/token" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSURLSessionDataTask *task = [self POST:@"/login/oauth2/token" parameters:params progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             [subscriber sendNext:responseObject];
             [subscriber sendCompleted];
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -304,7 +304,7 @@ NSString *const CKIClientAccessTokenExpiredNotification = @"CKIClientAccessToken
         if ([self.actAsUserID length]) {
             finalParameters = [@{@"as_user_id": self.actAsUserID} dictionaryByAddingObjectsFromDictionary:finalParameters];
         }
-        NSURLSessionDataTask *task = [self GET:path parameters:finalParameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSURLSessionDataTask *task = [self GET:path parameters:finalParameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             NSHTTPURLResponse *response = (NSHTTPURLResponse *) task.response;
             
             // check for pagination in the headers
@@ -416,7 +416,7 @@ NSString *const CKIClientAccessTokenExpiredNotification = @"CKIClientAccessToken
             return [RACDisposable disposableWithBlock:^{}];
         }
         
-        NSURLSessionDataTask *task = [self POST:path parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSURLSessionDataTask *task = [self POST:path parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             
             NSString *jsonContentKey = [modelClass keyForJSONAPIContent];
             NSLog(@"created a model %@", responseObject);

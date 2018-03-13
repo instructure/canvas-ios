@@ -29,7 +29,7 @@ public extension String {
 
     public func isValidEmail() -> Bool {
         
-        let range = NSRange(location: 0, length: self.characters.count)
+        let range = NSRange(location: 0, length: self.count)
         if let detector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue),
             let match = detector.firstMatch(in: self, options: NSRegularExpression.MatchingOptions.anchored, range: range),
             let scheme = match.url?.scheme {

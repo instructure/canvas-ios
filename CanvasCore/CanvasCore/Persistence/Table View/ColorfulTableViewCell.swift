@@ -309,7 +309,7 @@ public class ColorfulTableViewCell: UITableViewCell {
                 .map { $0 == "" ? " " : $0 }
             disposable += subContainer.rac_hidden <~ vm
                 .flatMap(.latest) { $0.subtitle.producer }
-                .map { $0.characters.count == 0 }
+                .map { $0.count == 0 }
         }
         
         if features.contains(.token) {

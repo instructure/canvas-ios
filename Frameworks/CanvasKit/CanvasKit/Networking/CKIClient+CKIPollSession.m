@@ -57,7 +57,7 @@
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         
         NSString *path = [session.path stringByAppendingPathComponent:@"open"];
-        NSURLSessionDataTask *task = [self GET:path parameters:0 success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSURLSessionDataTask *task = [self GET:path parameters:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             responseObject = responseObject[@"poll_sessions"];
             [subscriber sendNext:[responseObject firstObject]];
             [subscriber sendCompleted];
@@ -76,7 +76,7 @@
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         
         NSString *path = [session.path stringByAppendingPathComponent:@"close"];
-        NSURLSessionDataTask *task = [self GET:path parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSURLSessionDataTask *task = [self GET:path parameters:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             responseObject = responseObject[@"poll_sessions"];
             [subscriber sendNext:responseObject];
             [subscriber sendCompleted];

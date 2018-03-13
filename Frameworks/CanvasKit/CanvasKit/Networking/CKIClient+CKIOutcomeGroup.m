@@ -17,7 +17,6 @@
 #import "CKIClient+CKIOutcomeGroup.h"
 
 @import ReactiveObjC;
-#import "EXTScope.h"
 #import "CKIOutcomeGroup.h"
 #import "CKICourse.h"
 

@@ -63,10 +63,10 @@ open class NotificationPreferencesViewController: UITableViewController {
     func refreshDataSource(_ sender: AnyObject) {
         self.dataController.getNotificationPreferences(channel, completion: { (result) -> () in
             
-            if let _ = result.error {
+            if let error = result.error {
                 
                 let title = NSLocalizedString("Could not load notification preferences", tableName: "Localizable", bundle: .core, value: "", comment: "Alert title when unable to load notification preferences")
-                let message = NSLocalizedString("Unable to load any notification preferences at this time.  Error: \(result.error?.localizedDescription)", tableName: "Localizable", bundle: .core, value: "", comment: "Alert message when unable to load notification preferences")
+                let message = NSLocalizedString("Unable to load any notification preferences at this time.  Error: \(error.localizedDescription)", tableName: "Localizable", bundle: .core, value: "", comment: "Alert message when unable to load notification preferences")
                 let actionText = NSLocalizedString("OK", tableName: "Localizable", bundle: .core, value: "", comment: "OK Button Title")
                 
                 self.showSimpleAlert(title, message: message, actionText: actionText)

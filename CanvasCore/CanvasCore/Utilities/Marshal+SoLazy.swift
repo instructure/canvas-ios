@@ -70,7 +70,7 @@ extension Dictionary where Key: KeyType {
     public func stringIDs(_ key: Key) throws -> [String] {
         let a = try any(for: key) as? [AnyObject]
         guard let ids = try a.flatMap({ try $0.map(convertIDString(key)) }) else {
-            throw idTypeMismatchError(key, a)
+            throw idTypeMismatchError(key, a as Any)
         }
         return ids
     }

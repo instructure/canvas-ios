@@ -115,7 +115,7 @@ class NonNativeQuizTakingViewController: UIViewController {
     
     fileprivate func dispatchHeadlessVersionOfRequest(_ request: URLRequest) {
         if let queryString = request.url?.query {
-            if let urlAsAString = request.url?.absoluteString.appendingFormat("%@%@", queryString.characters.count > 0 ? "&" : "?", "persist_headless=1") {
+            if let urlAsAString = request.url?.absoluteString.appendingFormat("%@%@", queryString.count > 0 ? "&" : "?", "persist_headless=1") {
                 let updatedRequest = (request as NSURLRequest).mutableCopy() as! NSMutableURLRequest
                 if let newURL =  URL(string: urlAsAString) {
                     updatedRequest.url = newURL
@@ -132,7 +132,7 @@ extension NonNativeQuizTakingViewController: UIWebViewDelegate {
         
         if !webView.isLoading {
             if let currentUserID = webView.stringByEvaluatingJavaScript(from: "ENV.current_user_id") {
-                let isValidUserID = currentUserID.characters.count > 0 && (currentUserID as NSString).longLongValue > 0
+                let isValidUserID = currentUserID.count > 0 && (currentUserID as NSString).longLongValue > 0
                 
                 if loggingIn {
                     if isValidUserID {
@@ -145,7 +145,7 @@ extension NonNativeQuizTakingViewController: UIWebViewDelegate {
                     }
                 } else {
                     if let query = webView.request?.url?.query {
-                        if !isValidUserID && (query.characters.count == 0 || query.range(of: "cross_domain_login") == nil) {
+                        if !isValidUserID && (query.count == 0 || query.range(of: "cross_domain_login") == nil) {
                             beginLoggingIn()
                             return
                         }

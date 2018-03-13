@@ -254,8 +254,10 @@ static CGRect CGRectWithMinY(CGRect input, CGFloat minY) {;
     }
     UIView *overlayView = overlay.view;
     
-
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     BOOL mustCallAppearance = !([self shouldAutomaticallyForwardAppearanceMethods] && [self shouldAutomaticallyForwardRotationMethods]);
+#pragma clang diagnostic pop
     
     [overlay willMoveToParentViewController:nil];
     if (mustCallAppearance) {
