@@ -1053,6 +1053,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                       }
                     />
                   </TouchableHighlight>
+                  }
                 </View>
               </View>
               <View
@@ -2207,29 +2208,6 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                     Nov 10 at 9:03 PM
                   </Text>
                 </View>
-                <View>
-                  <TouchableHighlight
-                    accessibilityLabel="Reply"
-                    onPress={[Function]}
-                    testID="discussion.details-reply"
-                    underlayColor="transparent"
-                  >
-                    <Image
-                      source={
-                        Object {
-                          "testUri": "../../../src/images/rce/undo.png",
-                        }
-                      }
-                      style={
-                        Object {
-                          "height": 18,
-                          "tintColor": "#73818C",
-                          "width": 18,
-                        }
-                      }
-                    />
-                  </TouchableHighlight>
-                </View>
               </View>
               <View
                 style={
@@ -3127,6 +3105,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                       }
                     />
                   </TouchableHighlight>
+                  }
                 </View>
               </View>
               <View
@@ -4676,6 +4655,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                       }
                     />
                   </TouchableHighlight>
+                  }
                 </View>
               </View>
               <View
@@ -6123,6 +6103,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       }
                     />
                   </TouchableHighlight>
+                  }
                 </View>
               </View>
               <View
@@ -8370,6 +8351,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                       }
                     />
                   </TouchableHighlight>
+                  }
                 </View>
               </View>
               <View

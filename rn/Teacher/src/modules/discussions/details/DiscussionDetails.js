@@ -229,16 +229,19 @@ export class DiscussionDetails extends Component<Props, any> {
                 <Text style={style.authorDate} testID='discussion.details.post-date-lbl'>{i18n("{ date, date, 'MMM d'} at { date, time, short }", { date })}</Text>
             </View>
 
-            <View>
-              <TouchableHighlight
-                underlayColor='transparent'
-                onPress={this._onPressReply}
-                testID='discussion.details-reply'
-                accessibilityLabel={i18n('Reply')}
-              >
-                <Image source={Images.rce.undo} style={{ width: 18, height: 18, tintColor: colors.secondaryButton }} />
-              </TouchableHighlight>
-            </View>
+            {!discussion.locked_for_user &&
+              <View>
+                <TouchableHighlight
+                  underlayColor='transparent'
+                  onPress={this._onPressReply}
+                  testID='discussion.details-reply'
+                  accessibilityLabel={i18n('Reply')}
+                >
+                  <Image source={Images.rce.undo} style={{ width: 18, height: 18, tintColor: colors.secondaryButton }} />
+                </TouchableHighlight>
+                }
+              </View>
+            }
           </View>
 
           { (Boolean(discussion.message) || Boolean(discussion.attachments)) &&
