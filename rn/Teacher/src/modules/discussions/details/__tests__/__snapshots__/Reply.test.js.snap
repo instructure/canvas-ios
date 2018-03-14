@@ -125,8 +125,7 @@ exports[`DiscussionReplies edit action sheet calls cancel 1`] = `
         testID="web-container.view"
       >
         <CanvasWebView
-          automaticallyAdjustContentInsets={undefined}
-          contentInset={undefined}
+          html="<p>1.0</p>"
           navigator={
             Object {
               "dismiss": [Function],
@@ -144,6 +143,7 @@ exports[`DiscussionReplies edit action sheet calls cancel 1`] = `
           scrollEnabled={false}
           source={
             Object {
+              "baseURL": "http://mobiledev.instructure.com/",
               "html": "<p>1.0</p>",
             }
           }
@@ -479,8 +479,7 @@ exports[`DiscussionReplies ratings renders rating 1`] = `
         testID="web-container.view"
       >
         <CanvasWebView
-          automaticallyAdjustContentInsets={undefined}
-          contentInset={undefined}
+          html="<p>1.0</p>"
           navigator={
             Object {
               "dismiss": [Function],
@@ -498,6 +497,7 @@ exports[`DiscussionReplies ratings renders rating 1`] = `
           scrollEnabled={false}
           source={
             Object {
+              "baseURL": "http://mobiledev.instructure.com/",
               "html": "<p>1.0</p>",
             }
           }
@@ -1433,8 +1433,7 @@ exports[`DiscussionReplies ratings renders rating when user cant rate 1`] = `
         testID="web-container.view"
       >
         <CanvasWebView
-          automaticallyAdjustContentInsets={undefined}
-          contentInset={undefined}
+          html="<p>1.0</p>"
           navigator={
             Object {
               "dismiss": [Function],
@@ -1452,6 +1451,7 @@ exports[`DiscussionReplies ratings renders rating when user cant rate 1`] = `
           scrollEnabled={false}
           source={
             Object {
+              "baseURL": "http://mobiledev.instructure.com/",
               "html": "<p>1.0</p>",
             }
           }
@@ -1833,8 +1833,7 @@ exports[`DiscussionReplies ratings renders user rating 1`] = `
         testID="web-container.view"
       >
         <CanvasWebView
-          automaticallyAdjustContentInsets={undefined}
-          contentInset={undefined}
+          html="<p>1.0</p>"
           navigator={
             Object {
               "dismiss": [Function],
@@ -1852,6 +1851,7 @@ exports[`DiscussionReplies ratings renders user rating 1`] = `
           scrollEnabled={false}
           source={
             Object {
+              "baseURL": "http://mobiledev.instructure.com/",
               "html": "<p>1.0</p>",
             }
           }
@@ -2255,8 +2255,7 @@ exports[`DiscussionReplies renders 1`] = `
         testID="web-container.view"
       >
         <CanvasWebView
-          automaticallyAdjustContentInsets={undefined}
-          contentInset={undefined}
+          html="<p>1.0</p>"
           navigator={
             Object {
               "dismiss": [Function],
@@ -2274,6 +2273,7 @@ exports[`DiscussionReplies renders 1`] = `
           scrollEnabled={false}
           source={
             Object {
+              "baseURL": "http://mobiledev.instructure.com/",
               "html": "<p>1.0</p>",
             }
           }
@@ -2609,8 +2609,7 @@ exports[`DiscussionReplies renders deleted 1`] = `
         testID="web-container.view"
       >
         <CanvasWebView
-          automaticallyAdjustContentInsets={undefined}
-          contentInset={undefined}
+          html="<i style=\\"color:#8B969E\\">Deleted this reply.</i>"
           navigator={
             Object {
               "dismiss": [Function],
@@ -2628,6 +2627,7 @@ exports[`DiscussionReplies renders deleted 1`] = `
           scrollEnabled={false}
           source={
             Object {
+              "baseURL": "http://mobiledev.instructure.com/",
               "html": "<i style=\\"color:#8B969E\\">Deleted this reply.</i>",
             }
           }
@@ -2847,8 +2847,7 @@ exports[`DiscussionReplies renders more button with some deleted replies 1`] = `
         testID="web-container.view"
       >
         <CanvasWebView
-          automaticallyAdjustContentInsets={undefined}
-          contentInset={undefined}
+          html="<p>1.0</p>"
           navigator={
             Object {
               "dismiss": [Function],
@@ -2866,6 +2865,7 @@ exports[`DiscussionReplies renders more button with some deleted replies 1`] = `
           scrollEnabled={false}
           source={
             Object {
+              "baseURL": "http://mobiledev.instructure.com/",
               "html": "<p>1.0</p>",
             }
           }
@@ -3201,8 +3201,7 @@ exports[`DiscussionReplies renders with closed discussion as student 1`] = `
         testID="web-container.view"
       >
         <CanvasWebView
-          automaticallyAdjustContentInsets={undefined}
-          contentInset={undefined}
+          html="<p>1.0</p>"
           navigator={
             Object {
               "dismiss": [Function],
@@ -3220,6 +3219,7 @@ exports[`DiscussionReplies renders with closed discussion as student 1`] = `
           scrollEnabled={false}
           source={
             Object {
+              "baseURL": "http://mobiledev.instructure.com/",
               "html": "<p>1.0</p>",
             }
           }
@@ -3361,8 +3361,7 @@ exports[`DiscussionReplies renders with no user 1`] = `
         testID="web-container.view"
       >
         <CanvasWebView
-          automaticallyAdjustContentInsets={undefined}
-          contentInset={undefined}
+          html="<p>1.0</p>"
           navigator={
             Object {
               "dismiss": [Function],
@@ -3380,6 +3379,7 @@ exports[`DiscussionReplies renders with no user 1`] = `
           scrollEnabled={false}
           source={
             Object {
+              "baseURL": "http://mobiledev.instructure.com/",
               "html": "<p>1.0</p>",
             }
           }

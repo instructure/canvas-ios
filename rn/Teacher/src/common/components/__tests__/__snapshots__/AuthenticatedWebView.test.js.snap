@@ -6,9 +6,6 @@ exports[`AuthenticatedWebView renders 1`] = `
   testID="web-container.view"
 >
   <CanvasWebView
-    automaticallyAdjustContentInsets={undefined}
-    contentInset={undefined}
-    navigator={undefined}
     onError={[Function]}
     onFinishedLoading={[Function]}
     onMessage={[Function]}
@@ -34,9 +31,6 @@ exports[`AuthenticatedWebView renders without uri 1`] = `
   testID="web-container.view"
 >
   <CanvasWebView
-    automaticallyAdjustContentInsets={undefined}
-    contentInset={undefined}
-    navigator={undefined}
     onError={[Function]}
     onFinishedLoading={[Function]}
     onMessage={[Function]}

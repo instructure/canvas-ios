@@ -175,12 +175,12 @@ export default class AttachmentView extends Component<Props, State> {
         }]}
       >
         <View style={styles.container}>
-          { (this.state.jobID !== null) &&
+          { (this.state.jobID != null) &&
             <View style={styles.centeredContainer}>
               <ActivityIndicator />
             </View>
           }
-          { this.state.jobID === null && this.renderBody() }
+          { this.state.jobID == null && this.renderBody() }
         </View>
       </Screen>
     )

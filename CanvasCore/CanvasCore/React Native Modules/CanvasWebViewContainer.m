@@ -13,6 +13,18 @@
 #import <UIKit/UIKit.h>
 #import <CanvasCore/CanvasCore-Swift.h>
 
+#import <objc/runtime.h>
+
+// runtime trick to remove WKWebView keyboard default toolbar
+// see: http://stackoverflow.com/questions/19033292/ios-7-uiwebview-keyboard-issue/19042279#19042279
+@interface _SwizzleHelperWK : NSObject @end
+@implementation _SwizzleHelperWK
+-(id)inputAccessoryView
+{
+  return nil;
+}
+@end
+
 @interface CanvasWebViewContainer () <RCTAutoInsetsProtocol>
 
 @property (nonatomic, copy) RCTDirectEventBlock onNavigation;
@@ -101,7 +113,7 @@
         // Check for a static html source first
         NSString *html = [RCTConvert NSString:source[@"html"]];
         if (html) {
-            NSURL *baseURL = [RCTConvert NSURL:source[@"baseUrl"]];
+            NSURL *baseURL = [RCTConvert NSURL:source[@"baseURL"]];
             if (!baseURL) {
                 baseURL = [NSURL URLWithString:@"about:blank"];
             }
@@ -126,6 +138,13 @@
             [_webView loadFileURL:request.URL allowingReadAccessToURL:request.URL];
             return;
         }
+        
+        if ([[request.URL lastPathComponent] isEqualToString:@"zss-rich-text-editor.html"]) {
+            NSString *html = [NSString stringWithContentsOfURL:request.URL encoding:NSUTF8StringEncoding error:nil];
+            NSURL *baseURL = [[NSBundle mainBundle] bundleURL];
+            [_webView loadHTMLString:html baseURL:baseURL];
+            return;
+        }
 
         [_webView loadRequest:request];
     }
@@ -134,6 +153,37 @@
 - (void)evaluateJavaScript:(NSString *)javaScriptString completionHandler:(void (^)(id, NSError *error))completionHandler
 {
     [_webView evaluateJavaScript:javaScriptString completionHandler:completionHandler];
+}
+
+-(void)setHideKeyboardAccessoryView:(BOOL)hideKeyboardAccessoryView
+{
+  if (!hideKeyboardAccessoryView) {
+    return;
+  }
+  
+  UIView *subview;
+  for (UIView* view in _webView.scrollView.subviews) {
+    if ([[view.class description] hasPrefix:@"WKContent"])
+      subview = view;
+  }
+  
+  if (subview == nil) return;
+  
+  NSString *name = [NSString stringWithFormat:@"%@_SwizzleHelperWK", subview.class.superclass];
+  Class newClass = NSClassFromString(name);
+  
+  if(newClass == nil)
+  {
+    newClass = objc_allocateClassPair(subview.class, [name cStringUsingEncoding:NSASCIIStringEncoding], 0);
+    if(!newClass) return;
+    
+    Method method = class_getInstanceMethod([_SwizzleHelperWK class], @selector(inputAccessoryView));
+    class_addMethod(newClass, @selector(inputAccessoryView), method_getImplementation(method), method_getTypeEncoding(method));
+    
+    objc_registerClassPair(newClass);
+  }
+  
+  object_setClass(subview, newClass);
 }
 
 @end

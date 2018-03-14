@@ -6,9 +6,12 @@ import {
   requireNativeComponent,
   NativeModules,
   View,
+  Image,
 } from 'react-native'
+import { getSession } from '../../canvas-api/session'
 
 const { CanvasWebViewManager } = NativeModules
+const { resolveAssetSource } = Image
 
 const WebView = requireNativeComponent('CanvasWebView', null)
 
@@ -19,7 +22,7 @@ export type Message = { body: any }
 
 export type Props = {
   html?: ?string,
-  source?: ?{ html?: ?string, uri?: ?string },
+  source?: ?{ html?: ?string, uri?: ?string } | ?number,
   style?: any,
   scrollEnabled: boolean,
   navigator: Navigator,
@@ -28,6 +31,7 @@ export type Props = {
   onMessage?: (message: Message) => void,
   onError?: (error: any) => void,
   automaticallyAdjustContentInsets?: boolean,
+  baseURL?: ?string,
 }
 
 export default class CanvasWebView extends Component<Props, any> {
@@ -61,24 +65,26 @@ export default class CanvasWebView extends Component<Props, any> {
   }
 
   render () {
-    const { html, source, style } = this.props
-    const src = html ? { html } : source
+    const { html, source, style, baseURL } = this.props
+    let src
+    if (html) {
+      src = { html, baseURL: baseURL || getSession().baseURL }
+    } else {
+      src = source
+    }
     const { webViewHeight } = this.state
     const webViewStyle = webViewHeight ? { height: webViewHeight } : { flex: 1 }
     return (
       <View style={style} testID='web-container.view'>
         <WebView
+          {...this.props}
           ref={this.captureWebView}
           style={webViewStyle}
-          source={src}
-          scrollEnabled={this.props.scrollEnabled}
-          navigator={this.props.navigator}
+          source={resolveAssetSource(src)}
           onMessage={this.onMessage}
           onFinishedLoading={this.onFinishedLoading}
           onNavigation={this.onNavigation}
           onError={this.onError}
-          automaticallyAdjustContentInsets={this.props.automaticallyAdjustContentInsets}
-          contentInset={this.props.contentInset}
         />
       </View>
     )

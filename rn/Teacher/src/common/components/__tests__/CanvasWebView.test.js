@@ -4,9 +4,11 @@ import React from 'react'
 import { NativeModules } from 'react-native'
 import { shallow } from 'enzyme'
 import CanvasWebView, { type Props } from '../CanvasWebView'
+import { setSession } from '../../../canvas-api/session'
 
 const template = {
   ...require('../../../__templates__/helm'),
+  ...require('../../../__templates__/session'),
 }
 
 describe('CanvasWebView', () => {
@@ -23,9 +25,11 @@ describe('CanvasWebView', () => {
 
   it('renders html', () => {
     const html = '<div>Hello, World!</div>'
+    const baseURL = 'https://narmstrong.instructure.com'
+    setSession(template.session({ baseURL }))
     const tree = shallow(<CanvasWebView {...props} html={html} />)
     const webView = tree.find('WebView')
-    expect(webView.props().source).toEqual({ html })
+    expect(webView.props().source).toEqual({ html, baseURL })
   })
 
   it('renders uri', () => {

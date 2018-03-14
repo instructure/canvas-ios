@@ -58,6 +58,10 @@ zss_editor.contentHeight = 244;
 // Sets to true when extra footer gap shows and requires to hide
 zss_editor.updateScrollOffset = false;
 
+function postMessage (message) {
+  window.webkit.messageHandlers.canvas.postMessage(message);
+}
+
 /**
  * The initializer function that must be called onLoad
  */
@@ -258,7 +262,12 @@ zss_editor.calculateEditorHeightWithCaretPosition = function() {
 
 zss_editor.backuprange = function(){
     var selection = window.getSelection();
-    var range = selection.getRangeAt(0);
+    var range;
+    if (selection.getRangeAt && selection.rangeCount > 0) {
+      range = selection.getRangeAt(0);
+    } else {
+      range = document.createRange();
+    }
     zss_editor.currentSelection = {"startContainer": range.startContainer, "startOffset":range.startOffset,"endContainer":range.endContainer, "endOffset":range.endOffset};
 }
 
@@ -568,8 +577,22 @@ zss_editor.prepareInsert = function() {
 
 zss_editor.insertImage = function(url, alt) {
     zss_editor.restorerange();
-    var html = '<img src="'+url+'" alt="'+alt+'" />';
+    var html = '<img src="'+url+'" />';
     zss_editor.insertHTML(html);
+    zss_editor.enabledEditingItems();
+}
+
+zss_editor.insertVideoComment = function(uri, mediaID) {
+    zss_editor.restorerange();
+
+    var html = [
+      '<p><div><br></div></p>',
+      '<video class="zss_postprocess_remove" src="'+uri+'#t=0.5" controls preload="metadata"></video>',
+      '<p class="zss_final_video_comment"><a id="media_comment_'+mediaID+'" class="instructure_inline_media_comment video_comment" href="/media_objects/'+mediaID+'">this is a media comment</a></p>',
+      '<p><div><br></div></p>',
+    ].join('')
+
+    zss_editor.insertHTML(html)
     zss_editor.enabledEditingItems();
 }
 
@@ -632,6 +655,14 @@ zss_editor.getHTML = function() {
     h = h.replace(/\brgb\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/g, function(s, r, g, b) {
         return "#" + ((1 << 24) + (Number(r) << 16) + (Number(g) << 8) + Number(b)).toString(16).slice(1);
     });
+
+    var html = '<div id="zss_content">'+h+'</div>';
+    var parser = new DOMParser();
+    var doc = parser.parseFromString(html, 'text/html');
+    $(doc).find('.zss_postprocess_remove').remove();
+    $(doc).find('p.zss_final_video_comment').removeClass('zss_final_video_comment');
+
+    h = doc.getElementById('zss_content').innerHTML;
 
     return h;
 }
@@ -702,18 +733,18 @@ zss_editor.enabledEditingItems = function(e) {
 
     // Background Color
     var bgColor = t.css('backgroundColor');
-    if (bgColor.length != 0 && bgColor != 'rgba(0, 0, 0, 0)' && bgColor != 'rgb(0, 0, 0)' && bgColor != 'transparent') {
+    if (bgColor && bgColor.length != 0 && bgColor != 'rgba(0, 0, 0, 0)' && bgColor != 'rgb(0, 0, 0)' && bgColor != 'transparent') {
         items.push('backgroundColor');
     }
     // Text Color
     var textColor = (document.queryCommandEnabled('foreColor') && document.queryCommandValue('foreColor')) || t.css('color');
-    if (textColor.length != 0 && textColor != 'transparent') {
+    if (textColor && textColor.length != 0 && textColor != 'transparent') {
         items.push('textColor:'+textColor);
     }
 
     //Fonts
     var font = t.css('font-family');
-    if (font.length != 0 && font != 'Arial, Helvetica, sans-serif') {
+    if (font && font.length != 0 && font != 'Arial, Helvetica, sans-serif') {
         items.push('fonts');
     }
 
@@ -815,6 +846,15 @@ body {
     padding: 0.8em 1em;
 }
 
+img, video {
+    display: block;
+    max-width: 100% !important;
+    height: auto !important;
+    margin: 0 auto 0 auto;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+}
+
 img.zs_active {
     border: 2px dashed #000;
 }
@@ -833,6 +873,10 @@ div.zs_editor_content {
 [placeholder]:empty:before {
     content: attr(placeholder);
     color: #CBCBD0;
+}
+
+p.zss_final_video_comment {
+  display: none;
 }
 
 </style>

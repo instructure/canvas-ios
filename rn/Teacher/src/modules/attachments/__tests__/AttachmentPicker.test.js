@@ -54,7 +54,8 @@ describe('AttachmentPicker', () => {
 
   let picker
   beforeEach(() => {
-    picker = new AttachmentPicker({})
+    const mediaTypes = ['camera', 'audio', 'photo_library', 'file']
+    picker = new AttachmentPicker({ mediaTypes })
   })
 
   it('shows an action sheet with attachment options', () => {

@@ -115,6 +115,7 @@ exports[`DiscussionEdit renders 1`] = `
         }
       >
         <RichTextEditor
+          attachmentUploadPath={null}
           contentHeight={150}
           defaultValue="Gather tribute or face my curse."
           keyboardAware={false}
@@ -329,6 +330,7 @@ exports[`DiscussionEdit renders new form 1`] = `
         }
       >
         <RichTextEditor
+          attachmentUploadPath={null}
           contentHeight={150}
           defaultValue={null}
           keyboardAware={false}
@@ -536,6 +538,7 @@ exports[`DiscussionEdit updates from props 1`] = `
         }
       >
         <RichTextEditor
+          attachmentUploadPath={null}
           contentHeight={150}
           defaultValue="Gather tribute or face my curse."
           keyboardAware={false}
@@ -750,6 +753,7 @@ exports[`DiscussionEdit updates with new props 1`] = `
         }
       >
         <RichTextEditor
+          attachmentUploadPath={null}
           contentHeight={150}
           defaultValue="Gather tribute or face my curse."
           keyboardAware={false}

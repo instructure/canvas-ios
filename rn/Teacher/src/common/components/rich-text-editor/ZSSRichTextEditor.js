@@ -18,9 +18,9 @@
 
 import React, { Component } from 'react'
 import {
-  WebView,
   StyleSheet,
 } from 'react-native'
+import CanvasWebView from '../CanvasWebView'
 
 import isEqual from 'lodash/isEqual'
 
@@ -29,7 +29,6 @@ const source = require('../../../../lib/zss-rich-text-editor.html')
 type Props = {
   onInputChange?: (value: string) => void,
   onHeightChange?: (height: number) => void,
-  html?: ?string,
   onLoad?: () => void,
   onFocus?: () => void,
   onBlur?: () => void,
@@ -41,37 +40,31 @@ type Props = {
 type State = {
   linkModalVisible: boolean,
   lastHeightUpdate: number,
-  setHTML: boolean,
   items: string[],
 }
 
 export default class ZSSRichTextEditor extends Component<Props, State> {
-  webView: WebView
+  webView: ?CanvasWebView
   showingLinkModal: boolean
 
   state: State = {
     linkModalVisible: false,
     lastHeightUpdate: 0,
-    setHTML: false,
     items: [],
-  }
-
-  componentWillReceiveProps (newProps: Props) {
-    if (newProps.html && !this.state.setHTML) {
-      this.updateHTML(newProps.html)
-    }
   }
 
   render () {
     return (
-      <WebView
+      <CanvasWebView
         source={source}
         ref={webView => { this.webView = webView }}
         onMessage={this._onMessage}
-        onLoad={this._onLoad}
+        onFinishedLoading={this._onLoad}
         scalesPageToFit={true}
         scrollEnabled={this.props.scrollEnabled === undefined || this.props.scrollEnabled}
         style={styles.editor}
+        hideKeyboardAccessoryView={true}
+        navigator={this.props.navigator}
       />
     )
   }
@@ -89,27 +82,22 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
   insertLink = () => {
     this.trigger(`
       var selection = getSelection().toString();
-      postMessage(JSON.stringify({type: 'INSERT_LINK', data: selection}));
-    `)
+      window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({type: 'INSERT_LINK', data: selection}));
+    `, true)
   }
 
   prepareInsert = () => {
     this.trigger('zss_editor.prepareInsert();')
   }
 
-  updateHTML = (html: string) => {
-    const cleanHTML = this._escapeJSONString(html)
+  updateHTML = (html: ?string) => {
+    const cleanHTML = this._escapeJSONString(html || '')
     this.trigger(`zss_editor.setHTML("${cleanHTML}");`, true)
-    this.setState({ setHTML: true })
   }
 
   setCustomCSS = (css?: string) => {
     if (!css) { css = '' }
-    const images = 'img { max-width: 100%; }'
-
-    const styles = [images, css].join(' ')
-
-    this.trigger(`zss_editor.setCustomCSS('${styles}');`, true)
+    this.trigger(`zss_editor.setCustomCSS('${css}');`, true)
   }
 
   setUnorderedList = () => {
@@ -138,17 +126,17 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
   }
 
   undo = () => {
-    this.trigger('zss_editor.undo();')
+    this.trigger('zss_editor.undo();', true)
   }
 
   redo = () => {
-    this.trigger('zss_editor.redo();')
+    this.trigger('zss_editor.redo();', true)
   }
 
   setNeedsHeightUpdate = () => {
     this.trigger(`
       var height = $('#zss_editor_content').height();
-      postMessage(JSON.stringify({type: 'HEIGHT_UPDATE', data: height}));
+      window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({type: 'HEIGHT_UPDATE', data: height}));
     `)
   }
 
@@ -164,17 +152,30 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
     }
   }
 
-  trigger = (js: string, inputChanged?: boolean) => {
-    this.webView.injectJavaScript(js)
-    if (inputChanged) {
-      setTimeout(this.getHTML, 100)
+  insertImage = (url: string) => {
+    this.trigger(`zss_editor.insertImage('${url}');`, true)
+  }
+
+  insertVideoComment = (uri: string, mediaID: string) => {
+    this.trigger(`zss_editor.insertVideoComment('${uri}', '${mediaID}');`, true)
+  }
+
+  trigger = async (js: string, inputChanged?: boolean) => {
+    if (!this.webView) return
+    try {
+      await this.webView.evaluateJavaScript(js)
+      if (inputChanged) {
+        setTimeout(this.getHTML, 100)
+      }
+    } catch (error) {
+      // dont crash
     }
   }
 
   // PRIVATE
 
   _onMessage = (event) => {
-    const message = JSON.parse(event.nativeEvent.data)
+    const message = JSON.parse(event.body)
     switch (message.type) {
       case 'CALLBACK':
         this._handleItemsCallback(message.data)
@@ -270,17 +271,12 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
   }
 
   _onZSSLoaded = () => {
-    if (this.props.html) {
-      this.updateHTML(this.props.html)
-    }
+    this.setCustomCSS()
+    this.props.onLoad && this.props.onLoad()
   }
 
   _onLoad = () => {
     this._zssInit()
-    this.setCustomCSS()
-    if (this.props.onLoad) {
-      this.props.onLoad()
-    }
   }
 
   _zssInit () {

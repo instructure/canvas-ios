@@ -1073,8 +1073,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                   testID="web-container.view"
                 >
                   <CanvasWebView
-                    automaticallyAdjustContentInsets={undefined}
-                    contentInset={undefined}
+                    html="<p>And why?</p>"
                     navigator={
                       Object {
                         "dismiss": [Function],
@@ -1092,6 +1091,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                     scrollEnabled={false}
                     source={
                       Object {
+                        "baseURL": "http://mobiledev.instructure.com/",
                         "html": "<p>And why?</p>",
                       }
                     }
@@ -1415,8 +1415,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                     testID="web-container.view"
                   >
                     <CanvasWebView
-                      automaticallyAdjustContentInsets={undefined}
-                      contentInset={undefined}
+                      html="<p>1.0</p>"
                       navigator={
                         Object {
                           "dismiss": [Function],
@@ -1434,6 +1433,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                       scrollEnabled={false}
                       source={
                         Object {
+                          "baseURL": "http://mobiledev.instructure.com/",
                           "html": "<p>1.0</p>",
                         }
                       }
@@ -2226,8 +2226,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                   testID="web-container.view"
                 >
                   <CanvasWebView
-                    automaticallyAdjustContentInsets={undefined}
-                    contentInset={undefined}
+                    html="<p>And why?</p>"
                     navigator={
                       Object {
                         "dismiss": [Function],
@@ -2245,6 +2244,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                     scrollEnabled={false}
                     source={
                       Object {
+                        "baseURL": "http://mobiledev.instructure.com/",
                         "html": "<p>And why?</p>",
                       }
                     }
@@ -2486,8 +2486,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                     testID="web-container.view"
                   >
                     <CanvasWebView
-                      automaticallyAdjustContentInsets={undefined}
-                      contentInset={undefined}
+                      html="<p>1.0</p>"
                       navigator={
                         Object {
                           "dismiss": [Function],
@@ -2505,6 +2504,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                       scrollEnabled={false}
                       source={
                         Object {
+                          "baseURL": "http://mobiledev.instructure.com/",
                           "html": "<p>1.0</p>",
                         }
                       }
@@ -3125,8 +3125,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                   testID="web-container.view"
                 >
                   <CanvasWebView
-                    automaticallyAdjustContentInsets={undefined}
-                    contentInset={undefined}
+                    html="<p>And why?</p>"
                     navigator={
                       Object {
                         "dismiss": [Function],
@@ -3144,6 +3143,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                     scrollEnabled={false}
                     source={
                       Object {
+                        "baseURL": "http://mobiledev.instructure.com/",
                         "html": "<p>And why?</p>",
                       }
                     }
@@ -3467,8 +3467,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                     testID="web-container.view"
                   >
                     <CanvasWebView
-                      automaticallyAdjustContentInsets={undefined}
-                      contentInset={undefined}
+                      html="<p>1.0</p>"
                       navigator={
                         Object {
                           "dismiss": [Function],
@@ -3486,6 +3485,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                       scrollEnabled={false}
                       source={
                         Object {
+                          "baseURL": "http://mobiledev.instructure.com/",
                           "html": "<p>1.0</p>",
                         }
                       }
@@ -4675,8 +4675,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                   testID="web-container.view"
                 >
                   <CanvasWebView
-                    automaticallyAdjustContentInsets={undefined}
-                    contentInset={undefined}
+                    html="<p>And why?</p>"
                     navigator={
                       Object {
                         "dismiss": [Function],
@@ -4694,6 +4693,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                     scrollEnabled={false}
                     source={
                       Object {
+                        "baseURL": "http://mobiledev.instructure.com/",
                         "html": "<p>And why?</p>",
                       }
                     }
@@ -6123,8 +6123,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                   testID="web-container.view"
                 >
                   <CanvasWebView
-                    automaticallyAdjustContentInsets={undefined}
-                    contentInset={undefined}
+                    html="<p>And why?</p>"
                     navigator={
                       Object {
                         "dismiss": [Function],
@@ -6142,6 +6141,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     scrollEnabled={false}
                     source={
                       Object {
+                        "baseURL": "http://mobiledev.instructure.com/",
                         "html": "<p>And why?</p>",
                       }
                     }
@@ -6504,8 +6504,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     testID="web-container.view"
                   >
                     <CanvasWebView
-                      automaticallyAdjustContentInsets={undefined}
-                      contentInset={undefined}
+                      html="<p>1.0</p>"
                       navigator={
                         Object {
                           "dismiss": [Function],
@@ -6523,6 +6522,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       scrollEnabled={false}
                       source={
                         Object {
+                          "baseURL": "http://mobiledev.instructure.com/",
                           "html": "<p>1.0</p>",
                         }
                       }
@@ -6890,8 +6890,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     testID="web-container.view"
                   >
                     <CanvasWebView
-                      automaticallyAdjustContentInsets={undefined}
-                      contentInset={undefined}
+                      html="<p>1.0</p>"
                       navigator={
                         Object {
                           "dismiss": [Function],
@@ -6909,6 +6908,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       scrollEnabled={false}
                       source={
                         Object {
+                          "baseURL": "http://mobiledev.instructure.com/",
                           "html": "<p>1.0</p>",
                         }
                       }
@@ -8371,8 +8371,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                   testID="web-container.view"
                 >
                   <CanvasWebView
-                    automaticallyAdjustContentInsets={undefined}
-                    contentInset={undefined}
+                    html="<p>And why?</p>"
                     navigator={
                       Object {
                         "dismiss": [Function],
@@ -8390,6 +8389,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                     scrollEnabled={false}
                     source={
                       Object {
+                        "baseURL": "http://mobiledev.instructure.com/",
                         "html": "<p>And why?</p>",
                       }
                     }
@@ -8713,8 +8713,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                     testID="web-container.view"
                   >
                     <CanvasWebView
-                      automaticallyAdjustContentInsets={undefined}
-                      contentInset={undefined}
+                      html="<p>1.0</p>"
                       navigator={
                         Object {
                           "dismiss": [Function],
@@ -8732,6 +8731,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                       scrollEnabled={false}
                       source={
                         Object {
+                          "baseURL": "http://mobiledev.instructure.com/",
                           "html": "<p>1.0</p>",
                         }
                       }

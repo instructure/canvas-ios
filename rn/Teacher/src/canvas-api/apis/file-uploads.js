@@ -17,6 +17,7 @@
 // @flow
 
 import httpClient from '../httpClient'
+import { getFile } from './files'
 
 type UploadTarget = {
   upload_url: string,
@@ -38,7 +39,11 @@ export type Progress = {
 
 export async function uploadAttachment (attachment: Attachment, options: UploadOptions): Promise<File> {
   const target = await requestUploadTarget(attachment, options)
-  return await postFile(attachment.uri, target, options)
+  const file = await postFile(attachment.uri, target, options)
+
+  // GET the file because we need the url to contain the verifier token
+  const response = await getFile(file.id)
+  return response.data
 }
 
 // Helpers
@@ -46,6 +51,7 @@ export async function uploadAttachment (attachment: Attachment, options: UploadO
 async function requestUploadTarget (attachment: Attachment, options: UploadOptions): Promise<UploadTarget> {
   const params: any = {
     name: attachment.filename || attachment.display_name,
+    on_duplicate: 'rename',
   }
   if (attachment.size) params.size = attachment.size
   if (options.parentFolderID) params.parent_folder_id = options.parentFolderID

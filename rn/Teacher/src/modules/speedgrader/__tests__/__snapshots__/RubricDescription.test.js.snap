@@ -68,8 +68,7 @@ exports[`RubricDescription renders 1`] = `
           testID="web-container.view"
         >
           <CanvasWebView
-            automaticallyAdjustContentInsets={undefined}
-            contentInset={undefined}
+            html="A satisfactory description"
             navigator={
               Object {
                 "dismiss": [Function],
@@ -87,6 +86,7 @@ exports[`RubricDescription renders 1`] = `
             scrollEnabled={false}
             source={
               Object {
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "A satisfactory description",
               }
             }

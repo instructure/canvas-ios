@@ -23,7 +23,6 @@ import KeyboardSpacer from 'react-native-keyboard-spacer'
 import {
   StyleSheet,
   View,
-  NativeModules,
   Dimensions,
 } from 'react-native'
 
@@ -38,12 +37,14 @@ export type Props = {
   placeholder?: string,
   focusOnLoad?: boolean,
   navigator: Navigator,
+  attachmentUploadPath?: ?string,
 }
 
 type State = {
   activeEditorItems: string[],
   editorFocused: boolean,
   topKeyboardSpace: number,
+  editorLoaded: boolean,
 }
 
 export default class RichTextEditor extends Component<Props, State> {
@@ -54,6 +55,7 @@ export default class RichTextEditor extends Component<Props, State> {
     activeEditorItems: [],
     editorFocused: false,
     topKeyboardSpace: 0,
+    editorLoaded: false,
   }
 
   onLayout = () => {
@@ -62,6 +64,12 @@ export default class RichTextEditor extends Component<Props, State> {
 
   onKeyboardSpaceToggle = () => {
     this._setKeyboardSpace()
+  }
+
+  componentWillReceiveProps (newProps: Props) {
+    if (newProps.defaultValue !== this.props.defaultValue) {
+      this.editor.updateHTML(newProps.defaultValue)
+    }
   }
 
   render () {
@@ -73,7 +81,6 @@ export default class RichTextEditor extends Component<Props, State> {
       >
         <ZSSRichTextEditor
           ref={(editor: any) => { this.editor = editor }}
-          html={this.props.defaultValue}
           onLoad={this._onLoad}
           onFocus={this._onFocus}
           onBlur={this._onBlur}
@@ -95,6 +102,7 @@ export default class RichTextEditor extends Component<Props, State> {
             undo={this._undo}
             redo={this._redo}
             onColorPickerShown={this._handleColorPickerShown}
+            insertImage={this.props.attachmentUploadPath ? this._insertImage : null}
           />
         }
         { (this.props.keyboardAware === undefined || this.props.keyboardAware) &&
@@ -120,8 +128,6 @@ export default class RichTextEditor extends Component<Props, State> {
   // EDITOR EVENTS
 
   _onLoad = () => {
-    NativeModules.WebViewHacker.removeInputAccessoryView()
-    NativeModules.WebViewHacker.setKeyboardDisplayRequiresUserAction(false)
     if (this.props.contentHeight) {
       this.editor.setContentHeight(this.props.contentHeight)
     }
@@ -131,6 +137,11 @@ export default class RichTextEditor extends Component<Props, State> {
     if (this.props.focusOnLoad) {
       this.editor.focusEditor()
     }
+    if (this.props.defaultValue) {
+      this.editor.updateHTML(this.props.defaultValue)
+    }
+
+    this.setState({ editorLoaded: true })
   }
 
   _onEditorItemsChanged = (activeEditorItems: string[]) => {
@@ -171,8 +182,35 @@ export default class RichTextEditor extends Component<Props, State> {
   _setTextColor = (color: string) => { this.editor.setTextColor(color) }
   _undo = () => { this.editor.undo() }
   _redo = () => { this.editor.redo() }
+  _insertImage = () => {
+    this.editor.prepareInsert()
+    this.props.navigator.show('/attachments', { modal: true }, {
+      storageOptions: {
+        uploadPath: this.props.attachmentUploadPath,
+        mediaServer: true,
+      },
+      onComplete: this.insertAttachments,
+      mediaTypes: ['camera', 'photo_library'],
+    })
+  }
+
+  insertAttachments = (attachments: [Attachment]) => {
+    // images
+    const images = attachments.filter(a => a.mime_class === 'image')
+    images.forEach(a => this.editor.insertImage(a.url))
+
+    // videos
+    const videos = attachments.filter(a => a.mime_class === 'video')
+    videos
+      .filter(a => a.uri && a.mediaID)
+      .forEach(a => this.editor.insertVideoComment(a.uri, a.mediaID))
+  }
 
   toolbarShown (): boolean {
+    if (!this.state.editorLoaded) {
+      return false
+    }
+
     switch (this.props.showToolbar) {
       case 'always':
         return true

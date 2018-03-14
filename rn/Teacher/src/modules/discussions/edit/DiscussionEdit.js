@@ -185,7 +185,7 @@ export class DiscussionEdit extends Component<Props, any> {
             style: 'done',
             action: this._donePressed,
           },
-          {
+          isTeacher() && {
             image: Images.attachmentLarge,
             testID: 'discussions.edit.attachment-btn',
             action: this.addAttachment,
@@ -241,6 +241,7 @@ export class DiscussionEdit extends Component<Props, any> {
                 contentHeight={150}
                 placeholder={i18n('Add description')}
                 navigator={this.props.navigator}
+                attachmentUploadPath={isTeacher() ? null : '/users/self/files'}
               />
             </View>
 

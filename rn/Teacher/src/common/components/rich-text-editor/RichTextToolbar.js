@@ -40,7 +40,7 @@ type Props = {
   setUnorderedList?: () => void,
   setOrderedList?: () => void,
   insertLink?: () => void,
-  insertImage?: () => void,
+  insertImage?: ?(() => void),
   onTappedDone?: () => void,
   onColorPickerShown?: (shown: boolean) => void,
 }
@@ -133,8 +133,9 @@ export default class RichTextToolbar extends Component<Props, State> {
         return <View style={[styles.textColor, style]} />
       default:
         const isActive = (this.props.active || []).includes(image) && images.rce.active[image]
-        const icon = (isActive ? images.rce.active : images.rce)[image]
-        return <Image source={icon} />
+        const icon = images.rce[image]
+        const tintColor = isActive ? colors.primaryBrandColor : colors.secondaryButton
+        return <Image source={icon} style={{ tintColor }} />
     }
   }
 

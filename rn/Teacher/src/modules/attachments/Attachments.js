@@ -22,21 +22,27 @@ import {
   FlatList,
   StyleSheet,
 } from 'react-native'
-import { connect } from 'react-redux'
 import Screen from '../../routing/Screen'
 import { parseErrorMessage } from '../../redux/middleware/error-handler'
 import i18n from 'format-message'
 import images from '../../images'
 import AttachmentRow from './AttachmentRow'
-import AttachmentPicker from './AttachmentPicker'
+import AttachmentPicker, { type MediaType } from './AttachmentPicker'
 import EmptyAttachments from './EmptyAttachments'
 import uuid from 'uuid/v1'
-import { uploadAttachment, isAbort, type Progress } from '../../canvas-api'
+import { uploadAttachment, isAbort, uploadMedia, type Progress } from '../../canvas-api'
 import RowSeparator from '../../common/components/rows/RowSeparator'
 
 type StorageOptions = {
-  uploadPath?: string, // if not provided the attachments will not be uploaded
+  // If not provided the attachments will not be uploaded
+  uploadPath?: string,
+
+  // E.g. 'My Files', 'Course Files', etc
   targetFolderPath?: ?string,
+
+  // If true, audio and video attachments will be uploaded as media comments
+  // and have a mediaCommentID
+  mediaServer?: boolean,
 }
 
 type AttachmentState = {
@@ -57,15 +63,20 @@ export type Props = NavigationProps & {
   maxAllowed?: number,
   onComplete: (Array<Attachment>) => void,
   uploadAttachment: typeof uploadAttachment,
+  uploadMedia: typeof uploadMedia,
+  mediaTypes?: Array<MediaType>,
 }
 
-export class Attachments extends Component<Props, any> {
+export default class Attachments extends Component<Props, any> {
   state: State
   attachmentPicker: AttachmentPicker
   progress: { [string]: number }
 
   static defaultProps = {
+    attachments: [],
     storageOptions: {},
+    uploadAttachment,
+    uploadMedia,
   }
 
   constructor (props: Props) {
@@ -130,6 +141,7 @@ export class Attachments extends Component<Props, any> {
           <AttachmentPicker
             style={styles.attachmentPicker}
             ref={this.captureAttachmentPicker}
+            mediaTypes={this.props.mediaTypes}
           />
         </View>
       </Screen>
@@ -173,7 +185,8 @@ export class Attachments extends Component<Props, any> {
           },
         },
       })
-      this.props.storageOptions.uploadPath && await this.uploadAttachment(attachment, this.props.storageOptions.uploadPath)
+
+      await this.uploadAttachment(attachment)
     }
   }
 
@@ -218,7 +231,7 @@ export class Attachments extends Component<Props, any> {
       },
     })
 
-    this.props.storageOptions.uploadPath && await this.uploadAttachment(attachment, this.props.storageOptions.uploadPath)
+    await this.uploadAttachment(attachment)
   }
 
   removeAttachment = (attachment: Attachment) => () => {
@@ -249,15 +262,18 @@ export class Attachments extends Component<Props, any> {
     }
   }
 
-  async uploadAttachment (attachment: Attachment, path: string) {
+  async uploadAttachment (attachment: Attachment) {
     this.progress[attachment.id] = 0
     try {
-      const file = await this.props.uploadAttachment(attachment, {
-        path,
-        cancelUpload: this.captureCancel(attachment),
-        parentFolderPath: this.props.storageOptions.targetFolderPath,
-        onProgress: this.updateProgress(attachment.id),
-      })
+      let upload
+      if (this.uploadAsMediaComment(attachment)) {
+        upload = this.uploadMedia(attachment)
+      } else {
+        upload = this.uploadFile(attachment)
+      }
+
+      const file = await upload
+
       this.setState({
         attachments: {
           ...this.state.attachments,
@@ -271,21 +287,52 @@ export class Attachments extends Component<Props, any> {
         },
       })
     } catch (e) {
-      const error = isAbort(e)
-        ? i18n('Upload cancelled by user')
-        : parseErrorMessage(e)
-      this.setState({
-        attachments: {
-          ...this.state.attachments,
-          [attachment.id]: {
-            ...this.state.attachments[attachment.id],
-            error,
-            cancel: null,
-            fileID: null,
-          },
-        },
-      })
+      this.handleUploadError(e, attachment)
     }
+  }
+
+  uploadFile = async (attachment: Attachment): Attachment => {
+    let path = this.props.storageOptions.uploadPath
+    if (!path) return
+
+    const file = await this.props.uploadAttachment(attachment, {
+      path,
+      cancelUpload: this.captureCancel(attachment),
+      parentFolderPath: this.props.storageOptions.targetFolderPath,
+      onProgress: this.updateProgress(attachment.id),
+    })
+
+    // it's very important to preserve the `attachment` uri for previews
+    return { ...attachment, ...file }
+  }
+
+  uploadMedia = async (attachment: Attachment): Attachment => {
+    const mediaID = await this.props.uploadMedia(attachment.uri, attachment.mime_class, {
+      onProgress: this.updateProgress(attachment.id),
+      cancelUpload: this.captureCancel(attachment),
+    })
+    return { ...attachment, id: mediaID, mediaID }
+  }
+
+  uploadAsMediaComment = (attachment: Attachment): boolean => {
+    return Boolean(this.props.storageOptions.mediaServer && ['video', 'audio'].includes(attachment.mime_class))
+  }
+
+  handleUploadError = (error: any, attachment: Attachment) => {
+    const e = isAbort(error)
+      ? i18n('Upload cancelled by user')
+      : parseErrorMessage(error)
+    this.setState({
+      attachments: {
+        ...this.state.attachments,
+        [attachment.id]: {
+          ...this.state.attachments[attachment.id],
+          error: e,
+          cancel: null,
+          fileID: null,
+        },
+      },
+    })
   }
 
   updateProgress (id: string) {
@@ -321,18 +368,3 @@ const styles = StyleSheet.create({
     left: 0,
   },
 })
-
-const mergeProps = (stateProps, dispatchProps, ownProps) => ({
-  ...stateProps,
-  ...dispatchProps,
-  ...ownProps,
-  uploadAttachment,
-})
-
-const Connected = connect(
-  null,
-  null,
-  mergeProps,
-)(Attachments)
-
-export default (Connected: any)

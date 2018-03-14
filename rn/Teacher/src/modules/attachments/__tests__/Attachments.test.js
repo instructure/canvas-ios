@@ -19,11 +19,10 @@
 import { shallow } from 'enzyme'
 import React from 'react'
 import {
-  ActionSheetIOS,
   AlertIOS,
   FlatList,
 } from 'react-native'
-import { Attachments } from '../Attachments'
+import Attachments from '../Attachments'
 
 jest.mock('FlatList', () => {
   return ({
@@ -194,6 +193,30 @@ describe('Attachments', () => {
     resolvePromise(template.file())
   })
 
+  it('renders media uploading state', async () => {
+    let resolvePromise = jest.fn()
+    props.uploadMedia = jest.fn((attachment, mimeClass, options) => {
+      options.onProgress({ loaded: 400, total: 1024 })
+      return new Promise((resolve, reject) => { resolvePromise = resolve })
+    })
+    props.storageOptions = {
+      uploadPath: '/my files/conversation attachments',
+      mediaServer: true,
+    }
+    props.attachments = []
+    const tree = shallow(<Attachments {...props} />)
+    tree.instance().captureAttachmentPicker({
+      show: jest.fn((options, callback) => callback(template.attachment({ mime_class: 'video' }))),
+    })
+    tree.find('Screen').prop('rightBarButtons')
+      .find(({ testID }) => testID === 'attachments.add-btn')
+      .action()
+    await new Promise(resolve => tree.setState({}, resolve))
+    const row = tree.find(FlatList).dive().find('[testID="attachments.attachment-row.0"]')
+    expect(row.prop('progress')).toEqual({ loaded: 400, total: 1024 })
+    resolvePromise(template.file())
+  })
+
   it('renders error state', async () => {
     const rejection = Promise.reject(new Error('Whoa, file big'))
     props.uploadAttachment = jest.fn(() => rejection)
@@ -210,6 +233,7 @@ describe('Attachments', () => {
       .action()
     await rejection.catch(() => {})
     await new Promise(resolve => tree.setState({}, resolve))
+    await tree.update()
     const row = tree.find(FlatList).dive().find('[testID="attachments.attachment-row.0"]')
     expect(row.prop('error')).not.toBeNull()
   })
@@ -241,38 +265,5 @@ describe('Attachments', () => {
     await new Promise(resolve => tree.setState({}, resolve))
     const row = tree.find(FlatList).dive().find('[testID="attachments.attachment-row.0"]')
     expect(row.prop('error')).toBeNull()
-  })
-
-  it('retries attachment', async () => {
-    let retry = false
-    let actions = jest.fn()
-    // $FlowFixMe
-    ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => { actions = callback })
-    props.uploadAttachment = jest.fn((attachment, options) => {
-      if (!retry) return Promise.reject(new Error('Whoa, file big'))
-      options.onProgress({ loaded: 1024, total: 1024 })
-      return Promise.resolve(template.file())
-    })
-    props.storageOptions = {
-      uploadPath: '/my files/conversation attachments',
-    }
-    props.attachments = []
-    const tree = shallow(<Attachments {...props} />)
-    tree.instance().captureAttachmentPicker({
-      show: jest.fn((options, callback) => callback(template.attachment())),
-    })
-    tree.find('Screen').prop('rightBarButtons')
-      .find(({ testID }) => testID === 'attachments.add-btn')
-      .action()
-    await new Promise(resolve => tree.setState({}, resolve))
-    retry = true
-    tree.find(FlatList).dive()
-      .find('[testID="attachments.attachment-row.0"]')
-      .simulate('Retry')
-    await actions(0)
-    await new Promise(resolve => tree.setState({}, resolve))
-    const row = tree.find(FlatList).dive()
-      .find('[testID="attachments.attachment-row.0"]')
-    expect(row.prop('completed')).toBe(true)
   })
 })

@@ -20,7 +20,6 @@ exports[`RichTextEditor hides toolbar when editor blurs 1`] = `
   <ZSSRichTextEditor
     _setMock={[Function]}
     editorItemsChanged={[Function]}
-    html=""
     navigator={
       Navigator {
         "isModal": undefined,
@@ -54,7 +53,6 @@ exports[`RichTextEditor renders 1`] = `
   <ZSSRichTextEditor
     _setMock={[Function]}
     editorItemsChanged={[Function]}
-    html=""
     navigator={
       Navigator {
         "isModal": undefined,
@@ -88,7 +86,6 @@ exports[`RichTextEditor renders toolbar when editor focused 1`] = `
   <ZSSRichTextEditor
     _setMock={[Function]}
     editorItemsChanged={[Function]}
-    html=""
     navigator={
       Navigator {
         "isModal": undefined,
@@ -104,6 +101,7 @@ exports[`RichTextEditor renders toolbar when editor focused 1`] = `
   />
   <RichTextToolbar
     active={Array []}
+    insertImage={null}
     insertLink={[Function]}
     onColorPickerShown={[Function]}
     redo={[Function]}
@@ -134,7 +132,6 @@ exports[`RichTextEditor should update active editor items in toolbar 1`] = `
   <ZSSRichTextEditor
     _setMock={[Function]}
     editorItemsChanged={[Function]}
-    html=""
     navigator={
       Navigator {
         "isModal": undefined,
@@ -154,6 +151,7 @@ exports[`RichTextEditor should update active editor items in toolbar 1`] = `
         "italic",
       ]
     }
+    insertImage={null}
     insertLink={[Function]}
     onColorPickerShown={[Function]}
     redo={[Function]}
@@ -184,7 +182,6 @@ exports[`RichTextEditor should update active editor items in toolbar 2`] = `
   <ZSSRichTextEditor
     _setMock={[Function]}
     editorItemsChanged={[Function]}
-    html=""
     navigator={
       Navigator {
         "isModal": undefined,
@@ -204,6 +201,7 @@ exports[`RichTextEditor should update active editor items in toolbar 2`] = `
         "bold",
       ]
     }
+    insertImage={null}
     insertLink={[Function]}
     onColorPickerShown={[Function]}
     redo={[Function]}

@@ -106,6 +106,14 @@ exports[`Attachments renders attachments 1`] = `
       testID="attachments.list.list"
     />
     <AttachmentPicker
+      mediaTypes={
+        Array [
+          "camera",
+          "audio",
+          "photo_library",
+          "file",
+        ]
+      }
       style={
         Object {
           "bottom": 0,
@@ -167,6 +175,14 @@ exports[`Attachments renders empty state 1`] = `
       testID="attachments.list.list"
     />
     <AttachmentPicker
+      mediaTypes={
+        Array [
+          "camera",
+          "audio",
+          "photo_library",
+          "file",
+        ]
+      }
       style={
         Object {
           "bottom": 0,

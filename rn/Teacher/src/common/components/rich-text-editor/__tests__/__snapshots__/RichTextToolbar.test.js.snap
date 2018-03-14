@@ -76,7 +76,12 @@ exports[`RichTextToolbar renders active items 1`] = `
           <Image
             source={
               Object {
-                "testUri": "../../../src/images/rce/bold-active.png",
+                "testUri": "../../../src/images/rce/bold.png",
+              }
+            }
+            style={
+              Object {
+                "tintColor": "#374A59",
               }
             }
           />

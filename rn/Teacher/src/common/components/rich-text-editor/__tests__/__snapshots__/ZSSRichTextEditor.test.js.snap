@@ -5,7 +5,7 @@ Array [
   Array [
     "
       var selection = getSelection().toString();
-      postMessage(JSON.stringify({type: 'INSERT_LINK', data: selection}));
+      window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({type: 'INSERT_LINK', data: selection}));
     ",
   ],
   Array [
@@ -25,7 +25,7 @@ Array [
   Array [
     "
       var selection = getSelection().toString();
-      postMessage(JSON.stringify({type: 'INSERT_LINK', data: selection}));
+      window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({type: 'INSERT_LINK', data: selection}));
     ",
   ],
   Array [
@@ -43,8 +43,10 @@ Array [
 exports[`ZSSRichTextEditor notifies when editor focused 1`] = `Array []`;
 
 exports[`ZSSRichTextEditor renders 1`] = `
-<WebView
-  onLoad={[Function]}
+<CanvasWebView
+  hideKeyboardAccessoryView={true}
+  navigator={undefined}
+  onFinishedLoading={[Function]}
   onMessage={[Function]}
   scalesPageToFit={true}
   scrollEnabled={true}
@@ -59,14 +61,20 @@ exports[`ZSSRichTextEditor renders 1`] = `
 />
 `;
 
-exports[`ZSSRichTextEditor responds when zss editor loads 1`] = `Array []`;
+exports[`ZSSRichTextEditor responds when zss editor loads 1`] = `
+Array [
+  Array [
+    "zss_editor.setCustomCSS('');",
+  ],
+]
+`;
 
 exports[`ZSSRichTextEditor sends input changes 1`] = `
 Array [
   Array [
     "
       var height = $('#zss_editor_content').height();
-      postMessage(JSON.stringify({type: 'HEIGHT_UPDATE', data: height}));
+      window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({type: 'HEIGHT_UPDATE', data: height}));
     ",
   ],
 ]
@@ -76,9 +84,6 @@ exports[`ZSSRichTextEditor sets custom css on web view loaded 1`] = `
 Array [
   Array [
     "zss_editor.init();",
-  ],
-  Array [
-    "zss_editor.setCustomCSS('img { max-width: 100%; } ');",
   ],
 ]
 `;
@@ -103,6 +108,22 @@ exports[`ZSSRichTextEditor triggers focus 1`] = `
 Array [
   Array [
     "zss_editor.focusEditor();",
+  ],
+]
+`;
+
+exports[`ZSSRichTextEditor triggers insertImage 1`] = `
+Array [
+  Array [
+    "zss_editor.insertImage('https://canvas.instructure.com/files/1/download');",
+  ],
+]
+`;
+
+exports[`ZSSRichTextEditor triggers insertVideoComment 1`] = `
+Array [
+  Array [
+    "zss_editor.insertVideoComment('file:///path/to/video.mov', '1');",
   ],
 ]
 `;
@@ -177,10 +198,21 @@ Array [
 ]
 `;
 
-exports[`ZSSRichTextEditor updates html if not provided initially 1`] = `
+exports[`ZSSRichTextEditor updates html 1`] = `
 Array [
   Array [
-    "zss_editor.setHTML(\\"here it is\\");",
+    "zss_editor.setHTML(\\"<div>Hi<\\\\/div>\\");",
+  ],
+]
+`;
+
+exports[`ZSSRichTextEditor updates html 2`] = `
+Array [
+  Array [
+    "zss_editor.setHTML(\\"<div>Hi<\\\\/div>\\");",
+  ],
+  Array [
+    "zss_editor.setHTML(\\"\\");",
   ],
 ]
 `;

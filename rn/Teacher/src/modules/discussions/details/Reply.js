@@ -149,7 +149,7 @@ export default class Reply extends Component<Props, State> {
               </Text>
             }
             <Text style={style.date}>{i18n("{ date, date, 'MMM d' } at { date, time, short }", { date: new Date(reply.updated_at) })}</Text>
-            <CanvasWebView scrollEnabled={false} style={{ flex: 1 }} html={message} navigator={this.props.navigator}/>
+            <CanvasWebView scrollEnabled={false} style={{ flex: 1 }} html={message} navigator={this.props.navigator} />
 
             {reply.attachment &&
               <TouchableHighlight testID={`discussion-reply.${reply.id}.attachment`} onPress={this.showAttachment}>

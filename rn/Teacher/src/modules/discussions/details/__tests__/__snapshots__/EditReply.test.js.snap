@@ -130,6 +130,7 @@ exports[`EditReply dismisses modal activity upon save error 1`] = `
       </View>
     </Modal>
     <RichTextEditor
+      attachmentUploadPath={null}
       defaultValue=""
       focusOnLoad={true}
       navigator={
@@ -281,6 +282,7 @@ exports[`EditReply renders 1`] = `
       </View>
     </Modal>
     <RichTextEditor
+      attachmentUploadPath={null}
       defaultValue=""
       focusOnLoad={true}
       navigator={

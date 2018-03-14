@@ -16,24 +16,24 @@
 
 /* eslint-disable flowtype/require-valid-file-annotation */
 
+import { shallow } from 'enzyme'
 import 'react-native'
 import React from 'react'
 import renderer from 'react-test-renderer'
 
 import ZSSRichTextEditor from '../ZSSRichTextEditor'
 import explore from '../../../../../test/helpers/explore'
-import setProps from '../../../../../test/helpers/setProps'
 
 const template = {
   ...require('../../../../__templates__/helm'),
 }
 
 jest
-  .mock('WebView', () => 'WebView')
   .mock('ScrollView', () => 'ScrollView')
   .mock('TouchableHighlight', () => 'TouchableHighlight')
   .mock('Button', () => 'Button')
   .mock('../LinkModal', () => 'LinkModal')
+  .mock('../../CanvasWebView', () => 'CanvasWebView')
 
 describe('ZSSRichTextEditor', () => {
   let js
@@ -43,16 +43,16 @@ describe('ZSSRichTextEditor', () => {
 
   const options = {
     createNodeMock: (element) => {
-      if (element.type === 'WebView') {
+      if (element.type === 'CanvasWebView') {
         return {
-          injectJavaScript: js,
+          evaluateJavaScript: js,
         }
       }
     },
   }
 
   const webView = (component) => {
-    return explore(component.toJSON()).query(({ type }) => type === 'WebView')[0]
+    return explore(component.toJSON()).query(({ type }) => type === 'CanvasWebView')[0]
   }
 
   it('renders', () => {
@@ -133,6 +133,14 @@ describe('ZSSRichTextEditor', () => {
   it('triggers setPlaceholder', () => {
     testTrigger((editor) => editor.setPlaceholder('Add text'))
     testTrigger((editor) => editor.setPlaceholder(null))
+  })
+
+  it('triggers insertImage', () => {
+    testTrigger((editor) => editor.insertImage('https://canvas.instructure.com/files/1/download'))
+  })
+
+  it('triggers insertVideoComment', () => {
+    testTrigger((editor) => editor.insertVideoComment('file:///path/to/video.mov', '1'))
   })
 
   it('shows link modal', () => {
@@ -273,7 +281,7 @@ describe('ZSSRichTextEditor', () => {
       <ZSSRichTextEditor />, options
     )
     const web = webView(component)
-    web.props.onLoad()
+    web.props.onFinishedLoading()
     expect(js.mock.calls).toMatchSnapshot()
   })
 
@@ -282,9 +290,9 @@ describe('ZSSRichTextEditor', () => {
     const component = renderer.create(
       <ZSSRichTextEditor onLoad={onLoad} />, options
     )
-    const web = webView(component)
     expect(onLoad).not.toHaveBeenCalled()
-    web.props.onLoad()
+    const web = webView(component)
+    postMessage(web, 'ZSS_LOADED')
     expect(onLoad).toHaveBeenCalled()
   })
 
@@ -298,27 +306,21 @@ describe('ZSSRichTextEditor', () => {
     expect(onBlur).toHaveBeenCalled()
   })
 
-  it('updates html if not provided initially', () => {
-    const component = renderer.create(
-      <ZSSRichTextEditor html={null} />, options
-    )
-    expect(js).not.toHaveBeenCalled()
-    setProps(component, { html: 'here it is' })
-    expect(js.mock.calls).toMatchSnapshot()
+  it('updates html', () => {
+    testTrigger((editor) => editor.updateHTML('<div>Hi</div>'))
+    testTrigger((editor) => editor.updateHTML(null))
   })
 
-  function testTrigger (trigger: (editor: any) => void): any {
-    const component = renderer.create(
-      <ZSSRichTextEditor />, options
-    )
-    trigger(component.getInstance())
+  function testTrigger (trigger: (editor: any) => void) {
+    const screen = shallow(<ZSSRichTextEditor />)
+    screen.find('CanvasWebView').getElement().ref({ evaluateJavaScript: js })
+    trigger(screen.instance())
     expect(js.mock.calls).toMatchSnapshot()
-    return component
   }
 
   function postMessage (webView: any, type: string, data: any) {
-    const message = { type: type, data: data }
-    const event = { nativeEvent: { data: JSON.stringify(message) } }
+    const message = { type, data }
+    const event = { body: JSON.stringify(message) }
     webView.props.onMessage(event)
   }
 })

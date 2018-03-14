@@ -30,13 +30,15 @@ import AudioRecorder from '../../common/components/AudioRecorder'
 import i18n from 'format-message'
 import Permissions from '../../common/permissions'
 
-type MediaType = 'camera' | 'audio' | 'photo_library' | 'file'
+export type MediaType = 'camera' | 'audio' | 'photo_library' | 'file'
 type Callback = (Attachment, MediaType) => *
 
 type Options = {
   imagePicker: any, // options passed to react-native-image-picker
 }
-type Props = {}
+type Props = {
+  mediaTypes: Array<MediaType>,
+}
 
 const IMAGE_PICKER_PERMISSION_ERRORS = {
   'Camera permissions not granted': 'camera',
@@ -50,6 +52,10 @@ export const DEFAULT_OPTIONS: Options = {
 }
 
 export default class AttachmentPicker extends Component<Props, any> {
+  static defaultProps = {
+    mediaTypes: ['camera', 'audio', 'photo_library', 'file'],
+  }
+
   constructor (props: Props) {
     super(props)
     this.state = {
@@ -61,15 +67,15 @@ export default class AttachmentPicker extends Component<Props, any> {
   }
 
   show (options: ?Options, callback: Callback) {
+    const labels: { [MediaType]: string } = {
+      camera: i18n('Use Camera'),
+      audio: i18n('Record Audio'),
+      photo_library: i18n('Choose From Library'),
+      file: i18n('Upload File'),
+    }
     ActionSheetIOS.showActionSheetWithOptions({
-      options: [
-        i18n('Use Camera'),
-        i18n('Record Audio'),
-        i18n('Choose From Library'),
-        i18n('Upload File'),
-        i18n('Cancel'),
-      ],
-      cancelButtonIndex: 4,
+      options: [...this.props.mediaTypes.map(t => labels[t]), i18n('Cancel')],
+      cancelButtonIndex: this.props.mediaTypes.length,
     }, this._chooseUploadOption(options, callback))
   }
 
@@ -140,12 +146,14 @@ export default class AttachmentPicker extends Component<Props, any> {
 
   _chooseUploadOption (options: ?Options, callback: Callback) {
     return (index: number) => {
-      switch (index) {
-        case 0: return this.useCamera(options, callback)
-        case 1: return this.recordAudio(options, callback)
-        case 2: return this.useLibrary(options, callback)
-        case 3: return this.pickDocument(options, callback)
-        case 4: return this.cancel()
+      if (index >= this.props.mediaTypes.length) {
+        return this.cancel()
+      }
+      switch (this.props.mediaTypes[index]) {
+        case 'camera': return this.useCamera(options, callback)
+        case 'audio': return this.recordAudio(options, callback)
+        case 'photo_library': return this.useLibrary(options, callback)
+        case 'file': return this.pickDocument(options, callback)
       }
     }
   }

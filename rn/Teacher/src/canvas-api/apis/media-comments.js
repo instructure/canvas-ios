@@ -17,12 +17,18 @@
 // @flow
 
 import httpClient from '../httpClient'
+import { type Progress } from './file-uploads'
 
-export async function uploadMedia (uri: string, type: string): Promise<string> {
+type MediaUploadOptions = {
+  onProgress?: (Progress) => void,
+  cancelUpload?: (() => void) => void,
+}
+
+export async function uploadMedia (uri: string, type: string, options: MediaUploadOptions = {}): Promise<string> {
   const domain = await getMediaServerDomain()
   const session = await getMediaSession()
   const token = await getUploadToken(domain, session)
-  await postUpload(uri, domain, session, token, type)
+  await postUpload(uri, domain, session, token, type, options)
   return getMediaID(domain, session, token, type)
 }
 
@@ -50,7 +56,7 @@ async function getUploadToken (domain: string, session: string): Promise<string>
   return response.data.match(/<id>([^<]+)<\/id>/)[1]
 }
 
-async function postUpload (uri: string, domain: string, session: string, token: string, type: string): Promise<string> {
+async function postUpload (uri: string, domain: string, session: string, token: string, type: string, options: MediaUploadOptions): Promise<string> {
   const url = `${uploadURL(domain, 'uploadtoken', 'upload')}&uploadTokenId=${token}&ks=${session}`
   const formdata = new FormData()
   // $FlowFixMe
@@ -59,13 +65,23 @@ async function postUpload (uri: string, domain: string, session: string, token: 
     name: type === 'video' ? 'videocomment.mp4' : 'audiocomment.wav',
     type: 'multipart/form-data',
   })
-  const response = await httpClient().post(url, formdata, {
+
+  const uploading = httpClient().post(url, formdata, {
     responseType: 'text',
     headers: { // remove default auth & accept
       'Authorization': null,
       'Accept': null,
     },
   })
+  const request = uploading.request
+  if (request) {
+    request.upload.addEventListener('progress', ({ loaded, total }) => {
+      options.onProgress && options.onProgress({ loaded, total })
+    })
+    options.cancelUpload && options.cancelUpload(() => request.abort())
+  }
+  const response = await uploading
+
   return response.data
 }
 
