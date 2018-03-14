@@ -524,6 +524,9 @@
   "edit_folder_f12b1b3c": {
     "message": "Edit Folder"
   },
+  "edit_page_5df5916a": {
+    "message": "Edit Page"
+  },
   "edit_quiz_details_72cd055": {
     "message": "Edit Quiz Details"
   },
@@ -1462,9 +1465,6 @@
   },
   "title_ee03d132": {
     "message": "Title"
-  },
-  "title_page_1284a2b9": {
-    "message": "{ title } Page"
   },
   "to_51406be9": {
     "message": "To"
