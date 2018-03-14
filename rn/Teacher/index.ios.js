@@ -41,7 +41,7 @@ import { beginUpdatingBadgeCounts, stopUpdatingBadgeCounts, updateBadgeCounts } 
 import App, { type AppId } from './src/modules/app'
 import device from 'react-native-device-info'
 import Navigator from './src/routing/Navigator'
-import { syncFeatureFlags } from './src/common/feature-flags'
+import { featureFlagSetup } from './src/common/feature-flags'
 
 import { Client, Configuration } from 'bugsnag-react-native'
 let shouldLogUserInfo = false
@@ -139,7 +139,7 @@ const loginHandler = async ({
     } else {
       store.dispatch(hydrate())
     }
-    await syncFeatureFlags()
+    await featureFlagSetup()
     registerScreens(store)
     Helm.loginComplete()
     loginVerify()

@@ -1,11 +1,13 @@
 // @flow
 
 import { getSession } from '../canvas-api/session'
-import { NativeModules } from 'react-native'
+import { NativeModules, AsyncStorage } from 'react-native'
 
 type FeatureFlag = {
   exempt: string[],
 }
+
+export const featureFlagKey = 'teacher.developermenu.featureflagkey'
 
 const { FeatureFlagsManager } = NativeModules
 
@@ -32,16 +34,16 @@ export const featureFlags: { [FeatureFlagName]: FeatureFlag } = {
 
 export const exemptDomains = [
   'https://mobiledev.instructure.com/',
-  'https://twilson.instructure.com/',
   'https://lmoseley.instructure.com/',
 ]
+
+var enableAllFeatureFlags = false
 
 // if you ever have to change the logic here you must also update
 // CanvasCore/CanvasCore/FeatureFlags/FeatureFlags.swift as the logic
 // is duplicated there for native
 export function featureFlagEnabled (flagName: FeatureFlagName): boolean {
-  // All features on in development
-  if (global.__DEV__) {
+  if (global.__DEV__ || enableAllFeatureFlags) {
     return true
   }
 
@@ -63,6 +65,11 @@ export function featureFlagEnabled (flagName: FeatureFlagName): boolean {
   return false
 }
 
-export function syncFeatureFlags (): Promise<*> {
+export async function featureFlagSetup (): Promise<*> {
+  enableAllFeatureFlags = Boolean(await AsyncStorage.getItem(featureFlagKey))
+  if (enableAllFeatureFlags) {
+    return FeatureFlagsManager.syncFeatureFlags({}, [])
+  }
+
   return FeatureFlagsManager.syncFeatureFlags(featureFlags, exemptDomains)
 }

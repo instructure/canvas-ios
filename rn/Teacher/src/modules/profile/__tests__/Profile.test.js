@@ -16,7 +16,7 @@
 
 /* eslint-disable flowtype/require-valid-file-annotation */
 import { shallow } from 'enzyme'
-import { NativeModules, ActionSheetIOS, Linking } from 'react-native'
+import { NativeModules, ActionSheetIOS, Linking, AsyncStorage } from 'react-native'
 import React from 'react'
 import { Profile, mapStateToProps } from '../Profile'
 import app from '../../app'
@@ -239,6 +239,7 @@ describe('Profile Tests', () => {
   })
 
   it('secret tap!', async () => {
+    AsyncStorage.setItem = jest.fn()
     const instance = renderer.create(
       <Profile { ...defaultProps } />
     ).getInstance()
@@ -246,7 +247,7 @@ describe('Profile Tests', () => {
     for (var i = 0; i < times; i++) {
       await instance.secretTap()
     }
-    expect(defaultProps.navigator.show).toHaveBeenCalled()
+    expect(AsyncStorage.setItem).toHaveBeenCalled()
   })
 
   it('refreshes avatar url on mount', async () => {

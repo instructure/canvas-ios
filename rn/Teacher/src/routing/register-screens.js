@@ -31,7 +31,7 @@ import CourseSelect from '../modules/inbox/CourseSelect'
 import ConversationDetails from '../modules/inbox/detail/ConversationDetails'
 import Profile from '../modules/profile/Profile'
 import Masquerade from '../modules/profile/Masquerade'
-import Staging from '../modules/staging/Staging'
+import DeveloperMenu from '../modules/developer-menu/DeveloperMenu'
 import SubmissionList from '../modules/submissions/list/SubmissionList'
 import SubmissionSettings from '../modules/submissions/list/SubmissionSettings'
 import AssigneePicker from '../modules/assignee-picker/AssigneePicker'
@@ -71,9 +71,9 @@ import UI from '../common/UI'
 import PickerPage from '../common/components/PickerPage'
 import Dashboard from '../modules/dashboard/Dashboard'
 import TermsOfUse from '../modules/tos/TermsOfUse'
-import PushNotifications from '../modules/staging/PushNotifications'
+import PushNotifications from '../modules/developer-menu/PushNotifications'
 import SectionSelector from '../modules/announcements/edit/SectionSelector'
-import FeatureFlags from '../modules/staging/FeatureFlags'
+import FeatureFlags from '../modules/developer-menu/FeatureFlags'
 
 import { Store } from 'redux'
 import { registerScreen } from './'
@@ -133,7 +133,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/address-book', wrap(AddressBook), store)
   registerScreen('/profile', wrap(Profile), store)
   registerScreen('/masquerade', wrap(Masquerade), store)
-  registerScreen('/staging', wrap(Staging), store)
+  registerScreen('/dev-menu', wrap(DeveloperMenu), store)
   registerScreen('/rich-text-editor', wrap(RichTextEditor), store)
   registerScreen('/rich-text-editor/link', wrap(LinkModal), store)
   registerScreen('/attachment', wrap(AttachmentView), store)

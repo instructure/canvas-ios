@@ -449,6 +449,105 @@ exports[`Profile Tests renders correctly 1`] = `
                       ]
                     }
                   >
+                    Developer Menu
+                  </Text>
+                </View>
+              </View>
+            </TouchableHighlight>
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "#C7CDD1",
+                    "height": 0.5,
+                  },
+                  Object {
+                    "marginLeft": 16,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View>
+            <TouchableHighlight
+              accessibilityLabel={undefined}
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              onPress={[Function]}
+              style={
+                Array [
+                  undefined,
+                  undefined,
+                ]
+              }
+              testID={undefined}
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "white",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "minHeight": 54,
+                      "paddingBottom": 12,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 12,
+                    },
+                    Object {
+                      "backgroundColor": "white",
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "marginLeft": 0,
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    numberOfLines={0}
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Array [
+                          Object {
+                            "fontWeight": "600",
+                          },
+                          Object {
+                            "fontSize": 20,
+                            "fontWeight": "300",
+                          },
+                        ],
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
                     Change User
                   </Text>
                 </View>
@@ -1217,6 +1316,105 @@ exports[`Profile Tests renders correctly for students 1`] = `
                     }
                   >
                     Help
+                  </Text>
+                </View>
+              </View>
+            </TouchableHighlight>
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "#C7CDD1",
+                    "height": 0.5,
+                  },
+                  Object {
+                    "marginLeft": 16,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View>
+            <TouchableHighlight
+              accessibilityLabel={undefined}
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              onPress={[Function]}
+              style={
+                Array [
+                  undefined,
+                  undefined,
+                ]
+              }
+              testID={undefined}
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "white",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "minHeight": 54,
+                      "paddingBottom": 12,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 12,
+                    },
+                    Object {
+                      "backgroundColor": "white",
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "marginLeft": 0,
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    numberOfLines={0}
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Array [
+                          Object {
+                            "fontWeight": "600",
+                          },
+                          Object {
+                            "fontSize": 20,
+                            "fontWeight": "300",
+                          },
+                        ],
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
+                    Developer Menu
                   </Text>
                 </View>
               </View>
@@ -2280,6 +2478,105 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                       ]
                     }
                   >
+                    Developer Menu
+                  </Text>
+                </View>
+              </View>
+            </TouchableHighlight>
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "#C7CDD1",
+                    "height": 0.5,
+                  },
+                  Object {
+                    "marginLeft": 16,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View>
+            <TouchableHighlight
+              accessibilityLabel={undefined}
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              onPress={[Function]}
+              style={
+                Array [
+                  undefined,
+                  undefined,
+                ]
+              }
+              testID={undefined}
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "white",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "minHeight": 54,
+                      "paddingBottom": 12,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 12,
+                    },
+                    Object {
+                      "backgroundColor": "white",
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "marginLeft": 0,
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    numberOfLines={0}
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Array [
+                          Object {
+                            "fontWeight": "600",
+                          },
+                          Object {
+                            "fontSize": 20,
+                            "fontWeight": "300",
+                          },
+                        ],
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
                     Change User
                   </Text>
                 </View>
@@ -3146,6 +3443,105 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                       ]
                     }
                   >
+                    Developer Menu
+                  </Text>
+                </View>
+              </View>
+            </TouchableHighlight>
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "#C7CDD1",
+                    "height": 0.5,
+                  },
+                  Object {
+                    "marginLeft": 16,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View>
+            <TouchableHighlight
+              accessibilityLabel={undefined}
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              onPress={[Function]}
+              style={
+                Array [
+                  undefined,
+                  undefined,
+                ]
+              }
+              testID={undefined}
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "white",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "minHeight": 54,
+                      "paddingBottom": 12,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 12,
+                    },
+                    Object {
+                      "backgroundColor": "white",
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "marginLeft": 0,
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    numberOfLines={0}
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Array [
+                          Object {
+                            "fontWeight": "600",
+                          },
+                          Object {
+                            "fontSize": 20,
+                            "fontWeight": "300",
+                          },
+                        ],
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
                     Change User
                   </Text>
                 </View>
@@ -3768,6 +4164,105 @@ exports[`Profile Tests renders correctly with no session 1`] = `
                       ]
                     }
                   >
+                    Developer Menu
+                  </Text>
+                </View>
+              </View>
+            </TouchableHighlight>
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "#C7CDD1",
+                    "height": 0.5,
+                  },
+                  Object {
+                    "marginLeft": 16,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View>
+            <TouchableHighlight
+              accessibilityLabel={undefined}
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              onPress={[Function]}
+              style={
+                Array [
+                  undefined,
+                  undefined,
+                ]
+              }
+              testID={undefined}
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "white",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "minHeight": 54,
+                      "paddingBottom": 12,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 12,
+                    },
+                    Object {
+                      "backgroundColor": "white",
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "marginLeft": 0,
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    numberOfLines={0}
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Array [
+                          Object {
+                            "fontWeight": "600",
+                          },
+                          Object {
+                            "fontSize": 20,
+                            "fontWeight": "300",
+                          },
+                        ],
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
                     Change User
                   </Text>
                 </View>
@@ -4193,6 +4688,105 @@ exports[`Profile Tests renders correctly without masquerade 1`] = `
                     }
                   >
                     Help
+                  </Text>
+                </View>
+              </View>
+            </TouchableHighlight>
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "#C7CDD1",
+                    "height": 0.5,
+                  },
+                  Object {
+                    "marginLeft": 16,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View>
+            <TouchableHighlight
+              accessibilityLabel={undefined}
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              onPress={[Function]}
+              style={
+                Array [
+                  undefined,
+                  undefined,
+                ]
+              }
+              testID={undefined}
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "white",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "minHeight": 54,
+                      "paddingBottom": 12,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 12,
+                    },
+                    Object {
+                      "backgroundColor": "white",
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "marginLeft": 0,
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    numberOfLines={0}
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Array [
+                          Object {
+                            "fontWeight": "600",
+                          },
+                          Object {
+                            "fontSize": 20,
+                            "fontWeight": "300",
+                          },
+                        ],
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
+                    Developer Menu
                   </Text>
                 </View>
               </View>

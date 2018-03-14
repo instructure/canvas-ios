@@ -14,7 +14,7 @@ export default class FeatureFlags extends Component<any, any> {
   render () {
     return (
       <Screen
-        title='Push Notifications'
+        title='Feature Flags'
       >
         <ScrollView style={{ flex: 1, padding: 16 }}>
           <Heading1>Always on for:</Heading1>
@@ -23,6 +23,7 @@ export default class FeatureFlags extends Component<any, any> {
             return (
               <Row
                 title={flagName}
+                key={flagName}
                 subtitle={`On for: \n${featureFlags[flagName].exempt.join('\n')}`}
                 border='bottom'
                 accessories={<Text>{featureFlagEnabled(flagName) ? 'On' : 'Off'}</Text>}

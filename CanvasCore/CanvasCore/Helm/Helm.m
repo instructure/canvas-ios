@@ -75,4 +75,8 @@ RCT_EXPORT_METHOD(loginComplete) {
     [[HelmManager shared] loginComplete];
 }
 
+RCT_EXPORT_METHOD(reload) {
+    [[HelmManager shared] reload];
+}
+
 @end

@@ -57,6 +57,10 @@ open class HelmManager: NSObject {
         NotificationCenter.default.addObserver(self, selector: #selector(reactWillReload), name: Notification.Name("RCTJavaScriptWillStartLoadingNotification"), object: nil)
     }
 
+    open func reload() {
+        bridge.reload()
+    }
+    
     open func reactWillReload() {
         self.cleanup()
         onReactReload()

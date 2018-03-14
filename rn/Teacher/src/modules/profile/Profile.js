@@ -28,6 +28,8 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity,
   SafeAreaView,
+  AsyncStorage,
+  LayoutAnimation,
 } from 'react-native'
 import i18n from 'format-message'
 import { Text, Paragraph, Heavy } from '../../common/text'
@@ -48,6 +50,7 @@ import * as LTITools from '../../common/LTITools'
 
 type State = {
   avatarURL: string,
+  showsDeveloperMenu: boolean,
 }
 
 export class Profile extends Component<Object, State> {
@@ -72,9 +75,11 @@ export class Profile extends Component<Object, State> {
     settingsActions.push({ title: i18n('Cancel'), id: 'cancel' })
     this.settingsActions = settingsActions
 
+    let showsDeveloperMenu = global.__DEV__
     let session = getSession()
     this.state = {
       avatarURL: session.user.avatar_url || '',
+      showsDeveloperMenu,
     }
   }
 
@@ -82,6 +87,12 @@ export class Profile extends Component<Object, State> {
     this.props.refreshCanMasquerade()
     this.props.refreshAccountExternalTools()
     this.refreshAvatarURL()
+    if (!global.__DEV__) {
+      let showsDeveloperMenu = AsyncStorage.getItem('teacher.profile.developermenu')
+      this.setState({
+        showsDeveloperMenu,
+      })
+    }
   }
 
   refreshAvatarURL = async () => {
@@ -118,9 +129,17 @@ export class Profile extends Component<Object, State> {
     this.secretTapCount++
     if (this.secretTapCount > 10) {
       this.secretTapCount = 0
-      await this.props.navigator.dismiss()
-      this.props.navigator.show('/staging', { modal: true })
+      LayoutAnimation.easeInEaseOut()
+      this.setState({
+        showsDeveloperMenu: true,
+      })
+      AsyncStorage.setItem('teacher.profile.developermenu', 'enabled')
     }
+  }
+
+  showDeveloperMenu = async () => {
+    await this.props.navigator.dismiss()
+    this.props.navigator.show('/dev-menu', { modal: true })
   }
 
   settings = async () => {
@@ -211,6 +230,7 @@ export class Profile extends Component<Object, State> {
               { (this.props.canMasquerade || masquerading) && buildRow(masqueradeTitle, this.toggleMasquerade) }
               { isStudent && buildRow(i18n('Show Grades'), null, { onValueChange: this.toggleShowGrades, value: this.props.showsGradesOnCourseCards }) }
               { buildRow(i18n('Help'), this.showHelpMenu) }
+              { this.state.showsDeveloperMenu && buildRow(i18n('Developer Menu'), this.showDeveloperMenu) }
               { !masquerading && buildRow(i18n('Change User'), this.switchUser) }
               { !masquerading && buildRow(i18n('Log Out'), this.logout) }
             </View>)
