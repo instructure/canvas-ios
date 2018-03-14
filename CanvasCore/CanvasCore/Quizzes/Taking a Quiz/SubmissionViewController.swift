@@ -331,6 +331,7 @@ extension SubmissionViewController: UIPickerViewDelegate, UIPickerViewDataSource
     }
 
     struct DropdownBlank {
+        let number: String
         let key: String
         let color: UIColor
     }
@@ -341,7 +342,7 @@ extension SubmissionViewController: UIPickerViewDelegate, UIPickerViewDataSource
         }
 
         return colorsForMultipleDropdownQuestion(question).reduce(html) { coloredHTML, colors in
-            return coloredHTML.replacingOccurrences(of: "[\(colors.key)]", with: "<span style=\"color: \(colors.color.hex)\">[ \(colors.key) ]</span>")
+            return coloredHTML.replacingOccurrences(of: "[\(colors.key)]", with: "<span style=\"color: \(colors.color.hex)\">[ \(colors.number) ]</span>")
         }
     }
 
@@ -350,7 +351,7 @@ extension SubmissionViewController: UIPickerViewDelegate, UIPickerViewDataSource
         return multipleDropdownBlanks(question: question)
             .enumerated()
             .map { index, key in
-                DropdownBlank(key: key, color: colors[index % colors.count])
+                DropdownBlank(number: NumberFormatter.localizedString(from: NSNumber(value: index + 1), number: .none), key: key, color: colors[index % colors.count])
             }
     }
 
@@ -1100,7 +1101,7 @@ extension SubmissionViewController {
                     let answerIndex = indexPath.row - 1
                     let blanks = colorsForMultipleDropdownQuestion(question.question)
                     let blank = blanks[answerIndex]
-                    cell.dropdownLabel.text = blank.key
+                    cell.dropdownLabel.text = blank.number
                     cell.dropdownLabel.textColor = blank.color
                     switch question.answer {
                     case .idsHash(let hash):
