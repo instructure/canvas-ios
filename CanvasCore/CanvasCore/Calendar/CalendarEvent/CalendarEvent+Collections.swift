@@ -32,7 +32,7 @@ extension CalendarEvent {
         let personalCalendarPredicate = NSPredicate(format: "%K CONTAINS %@ OR %K CONTAINS %@", "effectiveContextCode", "user_", "contextCode", "user_")
         let contextsPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [contextCodesPredicate, personalCalendarPredicate])
 
-        let datesPredicate = NSPredicate(format: "%K < %@ AND %@ < %K", "startAt", endDate as CVarArg, startDate as CVarArg, "endAt")
+        let datesPredicate = NSPredicate(format: "%K < %@ AND %@ <= %K", "startAt", endDate as CVarArg, startDate as CVarArg, "endAt")
         let hiddenPredicate = NSPredicate(format: "%K != %@", "hidden", NSNumber(value: true as Bool))
 
         return NSCompoundPredicate(andPredicateWithSubpredicates: [contextsPredicate, datesPredicate, hiddenPredicate])

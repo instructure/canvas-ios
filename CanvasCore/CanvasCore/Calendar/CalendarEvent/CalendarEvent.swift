@@ -260,7 +260,7 @@ extension CalendarEvent: SynchronizedModel {
         htmlURL = try json <| "html_url"
         allDay = (try json <| "all_day") ?? false
 
-        if let allDayDate: String = try json <| "all_day_date" {
+        if allDay, let allDayDate: String = try json <| "all_day_date" {
             self.allDayDate = allDayDate
             let date = CalendarEvent.dayDateFormatter.date(from: allDayDate)
             startAt = date
