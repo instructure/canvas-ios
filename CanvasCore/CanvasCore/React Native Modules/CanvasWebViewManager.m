@@ -45,7 +45,7 @@ RCT_EXPORT_METHOD(evaluateJavaScript:(nonnull NSNumber *)reactTag
     } else {
       [view evaluateJavaScript:js completionHandler:^(id result, NSError *error) {
         if (error) {
-          reject(@"js_error", @"Error occurred while evaluating Javascript", error);
+          reject(@"js_error", error.localizedDescription, nil);
         } else {
           resolve(result);
         }
