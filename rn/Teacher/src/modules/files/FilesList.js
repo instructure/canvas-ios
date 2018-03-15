@@ -46,6 +46,7 @@ import AttachmentPicker from '../attachments/AttachmentPicker'
 import uuid from 'uuid/v1'
 import { wait } from '../../utils/async-wait'
 import { isTeacher } from '../app'
+import color from '../../common/colors'
 
 type FilesListProps = {
   data: any[], // The folders and files that are currently being shown
@@ -122,6 +123,22 @@ export class FilesList extends Component<Props, State> {
       alertError(error)
     }
     this.setState({ pending: false })
+  }
+
+  canEdit = (): boolean => {
+    // Root folders cannot be edited
+    if (!this.props.subFolder) return false
+    // If we were unable to find the folder, it can't be edited
+    if (!this.props.folder) return false
+    // Users are always allow to edit their files
+    if (this.props.context === 'users') return true
+    return isTeacher()
+  }
+
+  canAdd = (): boolean => {
+    if (this.state.uploadPending) return false
+    if (this.props.context === 'users') return true
+    return isTeacher()
   }
 
   onSelectRow = (index: number) => {
@@ -247,7 +264,9 @@ export class FilesList extends Component<Props, State> {
         path,
         onProgress: this.updateUploadProgress,
       })
-      await this.props.updateFile(file.id, { locked: true })
+      if (this.props.context !== 'users') {
+        await this.props.updateFile(file.id, { locked: true })
+      }
       await this.update()
     } catch (error) {
       alertError(error)
@@ -280,7 +299,7 @@ export class FilesList extends Component<Props, State> {
     let name
     let icon
     let subtitle
-    let tintColor
+    let tintColor = color.grey5
     let statusOffset = {}
     if (item.type === 'file') {
       name = item.display_name
@@ -294,7 +313,9 @@ export class FilesList extends Component<Props, State> {
           one {# file}
           other {# files}
       }`, { file_count: item.files_count })
-      tintColor = this.props.courseColor
+      if (this.props.courseColor) {
+        tintColor = this.props.courseColor
+      }
     }
     const renderImage = () => {
       return <View style={styles.icon}>
@@ -328,7 +349,7 @@ export class FilesList extends Component<Props, State> {
     const empty = <ListEmptyComponent title={i18n('This folder is empty.')} />
 
     const rightBarButtons = []
-    if (!this.state.uploadPending && isTeacher()) {
+    if (this.canAdd()) {
       rightBarButtons.push({
         image: images.add,
         testID: 'files.add.button',
@@ -336,20 +357,19 @@ export class FilesList extends Component<Props, State> {
         accessibilityLabel: i18n('Add Item'),
       })
     }
-    if (this.props.folder &&
-        this.props.subFolder &&
-        isTeacher()) {
+    if (this.canEdit()) {
       rightBarButtons.push({
         testID: 'files.edit-folder.button',
         title: i18n('Edit'),
         action: this.handleEditFolder,
       })
     }
+
     return (
       <Screen
         title={title}
         navBarColor={this.props.courseColor}
-        navBarStyle='dark'
+        navBarStyle={this.props.courseColor ? 'dark' : 'light'}
         rightBarButtons={rightBarButtons}
       >
         <DropView style={{ flex: 1 }}>

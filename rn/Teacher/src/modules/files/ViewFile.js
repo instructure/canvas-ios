@@ -177,6 +177,11 @@ export default class ViewFile extends Component<Props, State> {
     }
   }
 
+  canEdit = (): boolean => {
+    if (this.props.context === 'users') return true
+    return isTeacher()
+  }
+
   handleEdit = () => {
     const { context, contextID } = this.props
     if (!context || !contextID) return
@@ -260,7 +265,7 @@ export default class ViewFile extends Component<Props, State> {
     // $FlowFixMe
     const name: string = file ? file.name || file.display_name : ''
     const leftBarButtons = []
-    if (isTeacher()) {
+    if (this.canEdit()) {
       leftBarButtons.push({
         testID: 'view-file.edit-btn',
         title: i18n('Edit'),

@@ -31,6 +31,7 @@ const colors = {
   grey2: '#C7CDD1',   //  tiara
   grey3: '#A5AFB5',   //  heather
   grey4: '#8B969E',   //  ash
+  grey5: '#73818C', // some dark grey color
   primaryButton: '#368BD8',
   primaryButtonText: '#fff',
   secondaryButton: '#73818C',

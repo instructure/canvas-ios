@@ -48,6 +48,22 @@ describe('FilesList', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  it('should render for course files', () => {
+    const tree = renderer.create(
+      <FilesList data={data} navigator={template.navigator()} context={'courses'} contextID={'1'} courseColor={'red'} />
+    ).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('should render for user files', () => {
+    const tree = renderer.create(
+      <FilesList data={data} navigator={template.navigator()} context={'users'} contextID={'self'} />
+    ).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
   it('should render with folders', () => {
     let tree = renderer.create(
       <FilesList data={data} folders={'course files/some_folder'} navigator={template.navigator()}/>

@@ -41,7 +41,7 @@ import device from 'react-native-device-info'
 import Row from '../../common/components/rows/Row'
 import RowWithSwitch from '../../common/components/rows/RowWithSwitch'
 import RowSeparator from '../../common/components/rows/RowSeparator'
-import App from '../app'
+import { isStudent } from '../app'
 import canvas, { getSession } from '../../canvas-api'
 import { connect } from 'react-redux'
 import Actions from '../userInfo/actions'
@@ -143,8 +143,7 @@ export class Profile extends Component<Object, State> {
   }
 
   settings = async () => {
-    let app = App.current()
-    if (app.appId === 'student') {
+    if (isStudent()) {
       await this.props.navigator.dismiss()
       this.props.navigator.show('/profile/settings', { modal: true })
     } else {
@@ -199,8 +198,6 @@ export class Profile extends Component<Object, State> {
   }
 
   renderList = () => {
-    let app = App.current()
-    let isStudent = app.appId === 'student'
     let titleStyles = { fontSize: 20, fontWeight: '300' }
     let session = getSession()
     let externalTools = (this.props.externalTools || [])
@@ -225,10 +222,10 @@ export class Profile extends Component<Object, State> {
       }).filter(Boolean)
     }
     return (<View>
-              { isStudent && buildRow(i18n('Files'), this.userFiles) }
+              { buildRow(i18n('Files'), this.userFiles) }
               { tools }
               { (this.props.canMasquerade || masquerading) && buildRow(masqueradeTitle, this.toggleMasquerade) }
-              { isStudent && buildRow(i18n('Show Grades'), null, { onValueChange: this.toggleShowGrades, value: this.props.showsGradesOnCourseCards }) }
+              { isStudent() && buildRow(i18n('Show Grades'), null, { onValueChange: this.toggleShowGrades, value: this.props.showsGradesOnCourseCards }) }
               { buildRow(i18n('Help'), this.showHelpMenu) }
               { this.state.showsDeveloperMenu && buildRow(i18n('Developer Menu'), this.showDeveloperMenu) }
               { !masquerading && buildRow(i18n('Change User'), this.switchUser) }
