@@ -1053,7 +1053,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                       }
                     />
                   </TouchableHighlight>
-                  }
                 </View>
               </View>
               <View
@@ -3105,7 +3104,6 @@ exports[`DiscussionDetails renders in student app 1`] = `
                       }
                     />
                   </TouchableHighlight>
-                  }
                 </View>
               </View>
               <View
@@ -4655,7 +4653,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                       }
                     />
                   </TouchableHighlight>
-                  }
                 </View>
               </View>
               <View
@@ -6103,7 +6100,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       }
                     />
                   </TouchableHighlight>
-                  }
                 </View>
               </View>
               <View
@@ -8351,7 +8347,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                       }
                     />
                   </TouchableHighlight>
-                  }
                 </View>
               </View>
               <View

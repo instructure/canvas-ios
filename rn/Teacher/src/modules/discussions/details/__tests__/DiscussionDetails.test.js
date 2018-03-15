@@ -28,6 +28,7 @@ import explore from '../../../../../test/helpers/explore'
 import setProps from '../../../../../test/helpers/setProps'
 import app from '../../../app'
 import { shallow } from 'enzyme'
+import { alertError } from '../../../../redux/middleware/error-handler'
 
 jest
   .mock('Button', () => 'Button')
@@ -45,6 +46,9 @@ jest
   .mock('../../../app', () => ({
     isTeacher: jest.fn(),
   }))
+  .mock('../../../../redux/middleware/error-handler', () => {
+    return { alertError: jest.fn() }
+  })
 
 const template = {
   ...require('../../../../__templates__/discussion'),
@@ -146,7 +150,7 @@ describe('DiscussionDetails', () => {
     const instance = tree.getInstance()
     instance._onPressMoreReplies([0, 0, 0, 0])
     expect(tree.toJSON()).toMatchSnapshot()
-    expect(instance.state).toEqual({
+    expect(instance.state).toMatchObject({
       deletePending: false,
       rootNodePath: [0, 0, 0, 0],
       maxReplyNodeDepth: 2,
@@ -642,6 +646,29 @@ describe('DiscussionDetails', () => {
       `/courses/1/users/1`,
       { modal: true },
     )
+  })
+
+  it('does not show require_initial_post message on render', () => {
+    const screen = shallow(<DiscussionDetails {...props} />)
+    const { data: [discussion], renderItem } = screen.find('SectionList').prop('sections')[0]
+    const details = shallow(renderItem({ item: discussion, index: 0 }))
+    expect(details.find('[testID="discussions.details.require_initial_post.message"]')).toHaveLength(0)
+  })
+
+  it('shows require_initial_post message', async () => {
+    props.discussion = template.discussion({ require_initial_post: true })
+    const screen = shallow(<DiscussionDetails {...props} />)
+    screen.setProps({ error: 'require_initial_post' })
+    await screen.update()
+    const { data: [discussion], renderItem } = screen.find('SectionList').prop('sections')[0]
+    const details = shallow(renderItem({ item: discussion, index: 0 }))
+    expect(details.find('[testID="discussions.details.require_initial_post.message"]')).toHaveLength(1)
+  })
+
+  it('alerts error', () => {
+    const screen = shallow(<DiscussionDetails {...props} />)
+    screen.setProps({ error: 'ERROR!' })
+    expect(alertError).toHaveBeenCalledWith('ERROR!')
   })
 
   function testRender (props: any) {

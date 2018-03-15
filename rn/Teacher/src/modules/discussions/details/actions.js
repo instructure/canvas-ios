@@ -38,6 +38,7 @@ export let Actions = (api: CanvasApi): * => ({
       context,
       contextID,
       discussionID,
+      handlesError: true,
     }
   }),
   refreshSingleDiscussion: createAction('discussions.details.refreshSingle', (context: string, contextID: string, discussionID: string) => {

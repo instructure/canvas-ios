@@ -53,6 +53,7 @@ import { replyFromLocalIndexPath } from '../reducer'
 import { type TraitCollection } from '../../../routing/Navigator'
 import { isRegularDisplayMode } from '../../../routing/utils'
 import { isTeacher } from '../../app'
+import { alertError } from '../../../redux/middleware/error-handler'
 
 type OwnProps = {
   announcementID: string,
@@ -120,6 +121,7 @@ export class DiscussionDetails extends Component<Props, any> {
       maxReplyNodeDepth: 2,
       unread_entries: props.unreadEntries || [],
       entry_ratings: props.entryRatings || {},
+      initialPostRequired: false,
     }
   }
 
@@ -134,6 +136,19 @@ export class DiscussionDetails extends Component<Props, any> {
   }
 
   componentWillReceiveProps (nextProps: Props) {
+    if (nextProps.error && nextProps.error !== this.props.error) {
+      const { error, discussion } = nextProps
+
+      if (error === 'require_initial_post' && discussion && discussion.require_initial_post) {
+        this.setState({ initialPostRequired: true })
+      } else {
+        this.setState({ initialPostRequired: false })
+        alertError(nextProps.error)
+      }
+    } else {
+      this.setState({ initialPostRequired: false })
+    }
+
     if (this.state.deletePending && !nextProps.pending && !nextProps.error && !nextProps.discussion) {
       this.setState({
         deletePending: false,
@@ -239,7 +254,6 @@ export class DiscussionDetails extends Component<Props, any> {
                 >
                   <Image source={Images.rce.undo} style={{ width: 18, height: 18, tintColor: colors.secondaryButton }} />
                 </TouchableHighlight>
-                }
               </View>
             }
           </View>
@@ -285,6 +299,14 @@ export class DiscussionDetails extends Component<Props, any> {
         }
 
         { showReplies && this.renderPopReplyStackButton() }
+
+        { this.state.initialPostRequired &&
+          <AssignmentSection>
+            <Text testID='discussions.details.require_initial_post.message'>
+              {i18n('Replies are only visible to those who have posted at least one reply.')}
+            </Text>
+          </AssignmentSection>
+        }
 
       </View>
     )

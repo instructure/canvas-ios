@@ -26,7 +26,6 @@ import { default as AnnouncementListActions } from '../announcements/list/action
 import { default as EditActions } from './edit/actions'
 import i18n from 'format-message'
 import composeReducers from '../../redux/compose-reducers'
-
 import { parseErrorMessage } from '../../redux/middleware/error-handler'
 
 const { refreshDiscussions } = ListActions
@@ -244,6 +243,19 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
           error: null,
           unread_entries: unreadEntries,
           entry_ratings: entryRatings,
+        },
+      }
+    },
+    rejected: (state, { error, discussionID }) => {
+      let message = parseErrorMessage(error)
+      if (error.response && error.response.status === 403) {
+        message = 'require_initial_post'
+      }
+      return {
+        ...state,
+        [discussionID]: {
+          ...state[discussionID],
+          error: message,
         },
       }
     },
