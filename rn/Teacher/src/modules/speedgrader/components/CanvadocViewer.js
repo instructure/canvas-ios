@@ -22,22 +22,29 @@ import { requireNativeComponent } from 'react-native'
 
 type Props = {
   config: {
-    previewPath: string,
     drawerInset: number,
+    previewPath: string,
   },
   style?: any,
 }
 
-export default class CanvadocViewer extends Component<Props, any> {
+export default class CanvadocViewer extends Component<Props> {
+  shouldComponentUpdate (newProps: Props) {
+    return (
+      this.props.style !== newProps.style ||
+      this.props.config.drawerInset !== newProps.config.drawerInset ||
+      this.props.config.previewPath !== newProps.config.previewPath
+    )
+  }
   render () {
-    return <CanvadocView style={this.props.style} {...this.props} />
+    return <CanvadocView {...this.props} />
   }
 }
 
 CanvadocViewer.propTypes = {
   config: PropTypes.shape({
-    previewPath: PropTypes.string.isRequired,
     drawerInset: PropTypes.number.isRequired,
+    previewPath: PropTypes.string.isRequired,
   }).isRequired,
 }
 

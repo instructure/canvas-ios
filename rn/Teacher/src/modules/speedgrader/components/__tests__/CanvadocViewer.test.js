@@ -16,20 +16,32 @@
 
 // @flow
 
-import 'react-native'
+import { shallow } from 'enzyme'
 import React from 'react'
+import * as template from '../../../../__templates__'
 import CanvadocViewer from '../CanvadocViewer'
-import renderer from 'react-test-renderer'
 
-const templates = {
-  ...require('../../../../__templates__/attachment'),
-}
+describe('Canvadoc viewer', () => {
+  it('renders the native component', () => {
+    const config = {
+      drawerInset: 0,
+      previewPath: template.attachment().preview_url,
+    }
+    const tree = shallow(<CanvadocViewer config={config} />)
+    expect(tree).toMatchSnapshot()
+  })
 
-test('Canvadoc viewer renders', () => {
-  let tree = renderer.create(
-    <CanvadocViewer
-      config={{ drawerInset: 0, previewPath: templates.attachment().preview_url }}
-    />
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
+  it('should not update when props have not changed', () => {
+    const config = {
+      drawerInset: 0,
+      previewPath: template.attachment().preview_url,
+    }
+    const tree = shallow(<CanvadocViewer config={config} />)
+    expect(tree.instance().shouldComponentUpdate({
+      config: { ...config },
+    })).toBe(false)
+    expect(tree.instance().shouldComponentUpdate({
+      config: { ...config, drawerInset: 62 },
+    })).toBe(true)
+  })
 })

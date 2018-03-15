@@ -99,7 +99,7 @@ export default class SubmissionViewer extends Component<SubmissionViewerProps> {
             filename: attachment.filename,
             drawerInset: this.props.drawerInset,
           }}
-          style={[styles.container, { backgroundColor: '#A3ADB3' }]}
+          style={styles.pdfContainer}
         />
       }
     }
@@ -187,6 +187,13 @@ const styles = StyleSheet.create({
   },
   webContainer: {
     flex: 1,
+  },
+  pdfContainer: {
+    paddingTop: 16,
+    paddingLeft: 16,
+    paddingRight: 16,
+    flex: 1,
+    backgroundColor: '#A3ADB3',
   },
   centeredText: {
     height: 200,
