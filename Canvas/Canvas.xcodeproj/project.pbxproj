@@ -642,6 +642,7 @@
 		7DC912EB1FE1CC9200A76B14 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7DC912ED1FE1CC9200A76B14 /* InfoPlist.strings */; };
 		8F363586CEA2A05378002836 /* Pods_GradesWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 651295DCB22A2B02F381D94B /* Pods_GradesWidget.framework */; };
 		9C50D612DA6414266300170B /* Pods_defaults_CanvasKit1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2AB6A9FA96CE49682022ACB /* Pods_defaults_CanvasKit1.framework */; };
+		9F61B52C205985A5009C0B13 /* CanvasAppDelegate+Helm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F61B52B205985A5009C0B13 /* CanvasAppDelegate+Helm.swift */; };
 		ACC968801D245768006AEAB1 /* Page+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC9687F1D245768006AEAB1 /* Page+ViewModel.swift */; };
 		B15738001D94C38C00ADBB85 /* ModuleItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15737FF1D94C38C00ADBB85 /* ModuleItemDetailViewController.swift */; };
 		B177E6FD1E2EC8BA00D7477D /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B177E6FF1E2EC8BA00D7477D /* Settings.storyboard */; };
@@ -1443,6 +1444,7 @@
 		873A063BCDC8884CD0C89EAD /* Pods-CanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-CanvasTests/Pods-CanvasTests.release.xcconfig"; sourceTree = "<group>"; };
 		962C895A87C658B3F80897FF /* Pods-TechDebt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TechDebt.release.xcconfig"; path = "../Pods/Target Support Files/Pods-TechDebt/Pods-TechDebt.release.xcconfig"; sourceTree = "<group>"; };
 		99747510483FA8853301B9F5 /* Pods-defaults-CanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasTests/Pods-defaults-CanvasTests.release.xcconfig"; sourceTree = "<group>"; };
+		9F61B52B205985A5009C0B13 /* CanvasAppDelegate+Helm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CanvasAppDelegate+Helm.swift"; sourceTree = "<group>"; };
 		A025F6634B44F7120D41717E /* Pods_defaults_common_tests_CanvasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_common_tests_CanvasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A65BB020C68267C1318E51E7 /* Pods-defaults-Canvas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Canvas.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-Canvas/Pods-defaults-Canvas.debug.xcconfig"; sourceTree = "<group>"; };
 		ACC9687F1D245768006AEAB1 /* Page+ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Page+ViewModel.swift"; sourceTree = "<group>"; };
@@ -1784,6 +1786,7 @@
 				2C0CAD771DEF6C33008D90FA /* InfoPlist.strings */,
 				B5E212D51D88856B009D8C07 /* Localizable.strings */,
 				492704761CF4AF7100C631C6 /* CanvasAppDelegate.swift */,
+				9F61B52B205985A5009C0B13 /* CanvasAppDelegate+Helm.swift */,
 				492706A01CF4B93F00C631C6 /* RootViewController.swift */,
 				492704821CF4AF7100C631C6 /* Info.plist */,
 				495D8BBB1CFE17D700D41098 /* LaunchScreen.storyboard */,
@@ -4018,6 +4021,7 @@
 				49A04E7B1CF650EE0051E1E7 /* UserPreferences.swift in Sources */,
 				5EB46E041D21A75C00C859A4 /* CalendarMonthViewController.swift in Sources */,
 				5EB46DFD1D21A75C00C859A4 /* NoResultsView.swift in Sources */,
+				9F61B52C205985A5009C0B13 /* CanvasAppDelegate+Helm.swift in Sources */,
 				49A04E741CF64ED90051E1E7 /* CalendarTabViewController.swift in Sources */,
 				61592F791DA83C4900552B44 /* ModuleDetailsViewController.swift in Sources */,
 				61A6747E1DB589A3008A27FD /* ModuleViewModel.swift in Sources */,

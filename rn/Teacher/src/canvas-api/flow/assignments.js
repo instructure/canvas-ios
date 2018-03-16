@@ -87,8 +87,9 @@ export type Assignment = {
   group_category_id: ?string,
   grade_group_students_individually: boolean,
   quiz_id?: string,
-  discussion_topic?: Disussion,
+  discussion_topic?: Discussion,
   external_tool_tag_attributes?: { url: ?string },
+  submission?: Submission,
 }
 
 export type AssignmentDate = {

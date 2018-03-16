@@ -93,7 +93,7 @@ function submissionProps (enrollment: Enrollment, submission: ?SubmissionWithHis
   return { userID: id, avatarURL, name, status, grade, submissionID, submission, score, sectionID, allSectionIDs }
 }
 
-export function dueDate (assignment: Assignment, user: ?User): ?string {
+export function dueDate (assignment: Assignment, user: ?User | SessionUser): ?string {
   if (!assignment) {
     return null
   }

@@ -76,7 +76,7 @@ class Row extends Component<RowProps, any> {
   }
 }
 
-const Grade = ({ grade, gradingType }: {grade: ?GradeProp, gradingType: GradingType}) => {
+export const Grade = ({ grade, gradingType }: {grade: ?GradeProp, gradingType: GradingType}) => {
   if (!grade || grade === 'not_submitted' || grade === 'ungraded' || gradingType === 'not_graded') {
     return null
   }

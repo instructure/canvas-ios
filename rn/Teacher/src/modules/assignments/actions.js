@@ -21,8 +21,11 @@ import canvas from '../../canvas-api'
 import { UPDATE_COURSE_DETAILS_SELECTED_TAB_SELECTED_ROW_ACTION } from '../courses/actions'
 
 export let AssignmentListActions = (api: CanvasApi): * => ({
-  refreshAssignmentList: createAction('assignmentList.refresh', (courseID: string, gradingPeriodID?: string) => {
+  refreshAssignmentList: createAction('assignmentList.refresh', (courseID: string, gradingPeriodID?: string, includeSubmissions?: boolean = false) => {
     const include = ['assignments', 'all_dates', 'overrides', 'discussion_topic']
+    if (includeSubmissions) {
+      include.push('submission')
+    }
     return {
       promise: api.getAssignmentGroups(courseID, gradingPeriodID, include),
       courseID,

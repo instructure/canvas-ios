@@ -27,6 +27,7 @@ import {
   ActionSheetIOS,
   SectionList,
   NativeModules,
+  ActivityIndicator,
 } from 'react-native'
 import i18n from 'format-message'
 
@@ -38,12 +39,13 @@ import refresh from '../../utils/refresh'
 import SectionHeader from '../../common/components/rows/SectionHeader'
 import AssignmentListRowView from './components/AssignmentListRow'
 import { LinkButton } from '../../common/buttons'
-import { Heading1 } from '../../common/text'
+import { Heading1, Heading2, Text } from '../../common/text'
 import Screen from '../../routing/Screen'
 import { type TraitCollection } from '../../routing/Navigator'
 import { isRegularDisplayMode } from '../../routing/utils'
 import ActivityIndicatorView from '../../common/components/ActivityIndicatorView'
 import ListEmptyComponent from '../../common/components/ListEmptyComponent'
+import { getGradesForGradingPeriod } from '../../canvas-api'
 
 type State = {
   currentFilter: {
@@ -51,6 +53,9 @@ type State = {
     title: string,
   },
   filterApplied: boolean,
+  currentScore: ?number,
+  loadingGrade: boolean,
+  gradeError: boolean,
 }
 
 const { NativeAccessibility } = NativeModules
@@ -61,18 +66,25 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
   data: any = []
   didSelectFirstItem = false
 
-  constructor (props: AssignmentListProps) {
-    super(props)
+  static defaultProps = {
+    ListRow: AssignmentListRowView,
+  }
 
-    this.state = {
-      currentFilter: { title: i18n('All Grading Periods') },
-      filterApplied: false,
-    }
+  state = {
+    currentFilter: { title: i18n('All Grading Periods') },
+    filterApplied: false,
+    currentScore: this.props.currentScore,
+    loadingGrade: false,
+    gradeError: false,
   }
 
   componentWillReceiveProps (nextProps: AssignmentListProps) {
     if (nextProps.assignmentGroups.length && nextProps.gradingPeriods.length) {
       NativeAccessibility.refresh()
+    }
+
+    if (nextProps.currentScore !== this.props.currentScore) {
+      this.setState({ currentScore: nextProps.currentScore })
     }
   }
 
@@ -125,7 +137,18 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
 
   renderRow = ({ item, index }: { item: Assignment, index: number }) => {
     let selected = this.isRegularScreenDisplayMode && this.props.selectedRowID === item.id
-    return <AssignmentListRowView assignment={item} tintColor={this.props.courseColor} onPress={this.selectedAssignment} key={index} selected={selected } />
+    let ListRow = this.props.ListRow
+    return (
+      // $FlowFixMe - for some reason flow doesn't like the default prop
+      <ListRow
+        assignment={item}
+        tintColor={this.props.courseColor}
+        onPress={this.selectedAssignment}
+        key={index}
+        selected={selected}
+        user={this.props.user}
+      />
+    )
   }
 
   renderSectionHeader = ({ section }: any) => {
@@ -144,10 +167,22 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
     }
   }
 
+  updateGradeForGradingPeriod = async (gradingPeriod: GradingPeriod) => {
+    try {
+      this.setState({ loadingGrade: true, gradeError: false })
+      let grades = await getGradesForGradingPeriod(this.props.courseID, 'self', gradingPeriod.id)
+      this.setState({ loadingGrade: false, currentScore: grades.current_score })
+    } catch (err) {
+      console.error('Error loading grade', err)
+      this.setState({ loadingGrade: false, gradeError: true })
+    }
+  }
+
   clearFilter = () => {
     this.setState({
       currentFilter: { title: i18n('All Grading Periods') },
       filterApplied: false,
+      currentScore: this.props.currentScore,
     })
   }
 
@@ -167,6 +202,11 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
     // get assignment info for grading period only if we don't have it yet
     if (this.props.gradingPeriods[index].assignmentRefs.length === 0) {
       this.props.refreshAssignmentList(this.props.courseID, this.props.gradingPeriods[index].id)
+    }
+
+    // get the grade for the current grading period
+    if (this.props.showTotalScore) {
+      this.updateGradeForGradingPeriod(this.props.gradingPeriods[index])
     }
 
     this.setState({
@@ -199,7 +239,7 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
 
     return (
       <Screen
-        title={i18n('Assignments')}
+        title={this.props.screenTitle}
         onTraitCollectionChange={this.onTraitCollectionChange.bind(this)}
         subtitle={this.props.courseName}
         navBarColor={this.props.courseColor}
@@ -207,14 +247,27 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
         testID='assignment-list'
       >
         <View style={styles.container} testID='assignment-list.container-view'>
-          <View style={styles.header} testID='assignment-list.filter-header-view'>
-            <Heading1 style={styles.headerTitle} testID='assignment-list.filter-title-lbl'>{this.state.currentFilter.title}</Heading1>
-            {this.props.gradingPeriods.length > 0 &&
-              <LinkButton testID='assignment-list.filter' onPress={this.toggleFilter} style={styles.filterButton}>
-                {this.state.filterApplied
-                  ? i18n('Clear filter')
-                  : i18n('Filter')}
-              </LinkButton>
+          <View style={styles.header}>
+            <View style={styles.gradingPeriodHeader} testID='assignment-list.filter-header-view'>
+              <Heading1 style={styles.headerTitle} testID='assignment-list.filter-title-lbl'>{this.state.currentFilter.title}</Heading1>
+              {this.props.gradingPeriods.length > 0 &&
+                <LinkButton testID='assignment-list.filter' onPress={this.toggleFilter} style={styles.filterButton}>
+                  {this.state.filterApplied
+                    ? i18n('Clear filter')
+                    : i18n('Filter')}
+                </LinkButton>
+              }
+            </View>
+            {this.props.showTotalScore &&
+              <View style={styles.gradeHeader} testID='assignment-list.total-grade'>
+                <Heading2>{i18n('Total Grade:')}</Heading2>
+                {this.state.loadingGrade
+                  ? <ActivityIndicator />
+                  : this.state.currentScore
+                      ? <Text>{i18n.number(this.state.currentScore / 100, 'percent')}</Text>
+                      : <Text>{i18n('N/A')}</Text>
+                }
+              </View>
             }
           </View>
           <SectionList
@@ -242,12 +295,15 @@ const styles = StyleSheet.create({
   header: {
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: 'lightgrey',
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    justifyContent: 'space-between',
     paddingTop: 16,
     paddingBottom: 8,
     paddingHorizontal: 16,
+  },
+  gradingPeriodHeader: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'space-between',
+    marginBottom: 8,
   },
   headerTitle: {
     fontSize: 20,
@@ -257,6 +313,11 @@ const styles = StyleSheet.create({
   },
   filterButton: {
     marginBottom: 1,
+  },
+  gradeHeader: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'space-between',
   },
 })
 

@@ -39,6 +39,16 @@ export function getUserEnrollments (userID: string): ApiPromise<Enrollment[]> {
   return exhaust(enrollments)
 }
 
+export async function getGradesForGradingPeriod (courseID: string, userID: string, gradingPeriodID: string): ApiPromise<Grades> {
+  const { data: [ enrollment ] } = await httpClient().get(`courses/${courseID}/enrollments`, {
+    params: {
+      user_id: userID,
+      grading_period_id: gradingPeriodID,
+    },
+  })
+  return enrollment.grades
+}
+
 export function enrollUser (courseID: string, enrollment: CreateEnrollment): ApiPromise<Enrollment> {
   return httpClient().post(`courses/${courseID}/enrollments`, { enrollment })
 }

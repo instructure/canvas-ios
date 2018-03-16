@@ -16,17 +16,20 @@
 
 /* @flow */
 
-import { mapStateToProps } from '../map-state-to-props'
+import { mapStateToProps } from '../GradesList'
 import * as templates from '../../../__templates__/index'
+import { setSession } from '../../../canvas-api'
+import GradesListRow from '../GradesListRow'
 
-describe('AssignmentList mapStateToProps', () => {
+describe('mapStateToProps', () => {
   let course = templates.course()
   let assignmentGroup = templates.assignmentGroup()
   let assignment = templates.assignment()
   let gradingPeriod = templates.gradingPeriod({ id: 1 })
   let gradingPeriodTwo = templates.gradingPeriod({ id: 2 })
+  let enrollment = templates.enrollment({ course_id: course.id, user_id: '10' })
 
-  let defaultState = templates.appState({
+  const defaultState = templates.appState({
     entities: {
       courses: {
         [course.id]: {
@@ -53,14 +56,23 @@ describe('AssignmentList mapStateToProps', () => {
         },
       },
       courseDetailsTabSelectedRow: { rowID: '' },
+      enrollments: {
+        '1': enrollment,
+      },
     },
     favoriteCourses: [],
   })
 
-  let defaultProps = {
+  const defaultProps = {
     navigator: templates.navigator(),
-    courseID: course.id,
+    courseID: '1',
   }
+
+  beforeEach(() => {
+    let session = templates.session()
+    session.user.id = '10'
+    setSession(session)
+  })
 
   it('map state to props should work', async () => {
     const result = mapStateToProps(defaultState, defaultProps)
@@ -113,16 +125,19 @@ describe('AssignmentList mapStateToProps', () => {
     })
   })
 
-  it('returns static props for AssignmentList', () => {
-    let state = templates.appState()
-    expect(mapStateToProps(state, defaultProps)).toMatchObject({
-      screenTitle: 'Assignments',
-      showTotalScore: false,
-    })
+  it('returns the user from the session', () => {
+    expect(mapStateToProps(defaultState, defaultProps).user).toMatchObject({ id: '10' })
+  })
 
+  it('returns the current_score from the enrollment', () => {
+    expect(mapStateToProps(defaultState, defaultProps).currentScore).toEqual(enrollment.grades.current_score)
+  })
+
+  it('returns the static props for AssignmentList', () => {
     expect(mapStateToProps(defaultState, defaultProps)).toMatchObject({
-      screenTitle: 'Assignments',
-      showTotalScore: false,
+      screenTitle: 'Grades',
+      showTotalScore: true,
+      ListRow: GradesListRow,
     })
   })
 })

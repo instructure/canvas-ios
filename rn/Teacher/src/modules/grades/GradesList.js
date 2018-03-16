@@ -1,53 +1,26 @@
-//
-// Copyright (C) 2016-present Instructure, Inc.
-//
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, version 3 of the License.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//
-
 // @flow
-import { Component } from 'react'
+
+import { connect } from 'react-redux'
+import refresh from '../../utils/refresh'
+import { AssignmentList } from '../assignments/AssignmentList'
 import localeSort from '../../utils/locale-sort'
-import Navigator from '../../routing/Navigator'
-import AssignmentListActions from './actions'
+import AssignmentListActions from '../assignments/actions'
+import CourseActions from '../courses/actions'
+import EnrollmentActions from '../enrollments/actions'
+import { type RoutingProps, type AssignmentListDataProps } from '../assignments/map-state-to-props'
 import i18n from 'format-message'
-
-export type AssignmentListDataProps = {
-  pending: number,
-  error?: ?string,
-  courseColor: string,
-  courseName: string,
-  assignmentGroups: AssignmentGroup[],
-  gradingPeriods: Array<GradingPeriod & { assignmentRefs: [string] }>,
-  selectedRowID: string,
-  screenTitle: string,
-  ListRow?: Class<Component<*, *>>,
-  user?: SessionUser,
-  currentScore?: number,
-  showTotalScore: boolean,
-}
-
-export type AssignmentListProps = AssignmentListDataProps
-  & RoutingProps
-  & typeof AssignmentListActions
-  & RefreshProps
-
-export type RoutingProps = {
-  courseID: string,
-  navigator: Navigator,
-}
+import GradesListRow from './GradesListRow'
+import { getSession } from '../../canvas-api'
 
 export function mapStateToProps ({ entities }: AppState, { courseID, navigator }: RoutingProps): AssignmentListDataProps {
   const course = entities.courses[courseID]
+  let { user } = getSession()
+
+  // $FlowFixMe
+  const enrollment = Object.keys(entities.enrollments)
+    .map(id => entities.enrollments[id])
+    .find(e => e.course_id === courseID && e.user_id === user.id)
+  const currentScore = enrollment ? enrollment.grades.current_score : undefined
 
   if (!course) {
     return {
@@ -57,8 +30,11 @@ export function mapStateToProps ({ entities }: AppState, { courseID, navigator }
       courseColor: '',
       courseName: '',
       selectedRowID: '',
-      screenTitle: i18n('Assignments'),
-      showTotalScore: false,
+      screenTitle: i18n('Grades'),
+      ListRow: GradesListRow,
+      user,
+      currentScore,
+      showTotalScore: true,
     }
   }
 
@@ -97,7 +73,22 @@ export function mapStateToProps ({ entities }: AppState, { courseID, navigator }
     courseColor,
     courseName,
     selectedRowID,
-    screenTitle: i18n('Assignments'),
-    showTotalScore: false,
+    screenTitle: i18n('Grades'),
+    ListRow: GradesListRow,
+    user,
+    currentScore,
+    showTotalScore: true,
   }
 }
+
+const Refreshed = refresh(
+  props => {
+    props.refreshAssignmentList(props.courseID, undefined, true)
+    props.refreshGradingPeriods(props.courseID)
+    props.refreshUserEnrollments()
+  },
+  props => props.assignmentGroups.length === 0 || props.gradingPeriods.length === 0 || !props.currentScore,
+  props => Boolean(props.pending),
+)(AssignmentList)
+const Connected = connect(mapStateToProps, { ...AssignmentListActions, ...CourseActions, ...EnrollmentActions })(Refreshed)
+export default Connected

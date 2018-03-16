@@ -74,10 +74,12 @@ import TermsOfUse from '../modules/tos/TermsOfUse'
 import PushNotifications from '../modules/developer-menu/PushNotifications'
 import SectionSelector from '../modules/announcements/edit/SectionSelector'
 import FeatureFlags from '../modules/developer-menu/FeatureFlags'
+import GradesList from '../modules/grades/GradesList'
 
 import { Store } from 'redux'
 import { registerScreen } from './'
 import { isTeacher } from '../modules/app'
+import { featureFlagEnabled } from '../common/feature-flags'
 
 export function wrap (name: any): Function {
   return () => name
@@ -164,6 +166,10 @@ export function registerScreens (store: Store): void {
   registerScreen('/ui', wrap(UI), store)
   registerScreen('/push-notifications', wrap(PushNotifications), store)
   registerScreen('/feature-flags', wrap(FeatureFlags), store)
+
+  if (featureFlagEnabled('newGradesList')) {
+    registerScreen('/courses/:courseID/grades', wrap(GradesList), store, { canBecomeMaster: true, deepLink: true })
+  }
 
   if (isTeacher()) {
     registerScreen('/files/:fileID/download', wrap(ViewFile), store, { deepLink: true })

@@ -94,7 +94,7 @@ test('renders correctly with selected props', () => {
   let assignment = template.assignment({ due_at: null })
   assignment.needs_grading_count = 0
   let tree = renderer.create(
-    <AssignmentListRow assignment={assignment} tintColor='#fff' underlayColor='#eee' selectedColor='#f00'/>
+    <AssignmentListRow assignment={assignment} tintColor='#fff' underlayColor='#eee' selected />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })

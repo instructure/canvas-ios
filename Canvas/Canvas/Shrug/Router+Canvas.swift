@@ -65,7 +65,13 @@ extension Router {
         }
         
         addContextRoute([.course], subPath: "grades") { contextID, _ in
-            return try GradesTableViewController(session: currentSession, courseID: contextID.id, route: route)
+            guard FeatureFlags.featureFlagEnabled(.newGradesList) else {
+                return try GradesTableViewController(session: currentSession, courseID: contextID.id, route: route)
+            }
+            return HelmViewController(
+                moduleName: "/courses/:courseID/grades",
+                props: ["courseID": contextID.id]
+            )
         }
 
         // Activity Stream

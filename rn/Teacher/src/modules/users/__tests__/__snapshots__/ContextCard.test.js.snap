@@ -3014,6 +3014,127 @@ exports[`ContextCard renders if there is no section in the enrollment 1`] = `
             </SubTitle>
           </View>
         </View>
+        <View
+          style={
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+              "padding": 16,
+            }
+          }
+        >
+          <Heading1
+            style={
+              Object {
+                "marginBottom": 16,
+              }
+            }
+          >
+            Submissions
+          </Heading1>
+          <View
+            style={
+              Object {
+                "flexDirection": "row",
+              }
+            }
+          >
+            <View
+              accessibilityLabel="Grade 99%"
+              accessible={true}
+              style={
+                Object {
+                  "flex": 1,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#2D3B45",
+                    "flex": 1,
+                    "fontSize": 28,
+                    "fontWeight": "700",
+                  }
+                }
+                testID="context-card.grade"
+              >
+                99%
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              >
+                Grade
+              </Text>
+            </View>
+            <View
+              accessibilityLabel="Late Submissions 10"
+              accessible={true}
+              style={
+                Object {
+                  "flex": 1,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#2D3B45",
+                    "flex": 1,
+                    "fontSize": 28,
+                    "fontWeight": "700",
+                  }
+                }
+              >
+                10
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              >
+                Late
+              </Text>
+            </View>
+            <View
+              accessibilityLabel="Missing Submissions 20"
+              accessible={true}
+              style={
+                Object {
+                  "flex": 1,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#2D3B45",
+                    "flex": 1,
+                    "fontSize": 28,
+                    "fontWeight": "700",
+                  }
+                }
+              >
+                20
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              >
+                Missing
+              </Text>
+            </View>
+          </View>
+        </View>
       </View>
     }
     data={
@@ -3243,6 +3364,231 @@ exports[`ContextCard renders if there is no section in the enrollment 1`] = `
               >
                 Last activity on April 5 at 9:12 AM
               </Text>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+                "padding": 16,
+              }
+            }
+          >
+            <Text
+              accessibilityTraits="header"
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 20,
+                  },
+                  Object {
+                    "marginBottom": 16,
+                  },
+                ]
+              }
+            >
+              Submissions
+            </Text>
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <View
+                accessibilityLabel="Grade 99%"
+                accessible={true}
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "flex": 1,
+                        "fontSize": 28,
+                        "fontWeight": "700",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-bold",
+                      },
+                    ]
+                  }
+                  testID="context-card.grade"
+                >
+                  99%
+                </Text>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "flex": 1,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                    ]
+                  }
+                >
+                  Grade
+                </Text>
+              </View>
+              <View
+                accessibilityLabel="Late Submissions 10"
+                accessible={true}
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "flex": 1,
+                        "fontSize": 28,
+                        "fontWeight": "700",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-bold",
+                      },
+                    ]
+                  }
+                >
+                  10
+                </Text>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "flex": 1,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                    ]
+                  }
+                >
+                  Late
+                </Text>
+              </View>
+              <View
+                accessibilityLabel="Missing Submissions 20"
+                accessible={true}
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "flex": 1,
+                        "fontSize": 28,
+                        "fontWeight": "700",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-bold",
+                      },
+                    ]
+                  }
+                >
+                  20
+                </Text>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "flex": 1,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                    ]
+                  }
+                >
+                  Missing
+                </Text>
+              </View>
             </View>
           </View>
         </View>

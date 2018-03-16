@@ -16,6 +16,7 @@ import CanvasKeymaster
 public enum FeatureFlagName: String {
     case userFilesFeatureFlag
     case newAssignmentsList
+    case newGradesList
 }
 
 @objc(FeatureFlags)

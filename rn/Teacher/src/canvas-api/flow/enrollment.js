@@ -44,6 +44,15 @@ export type Enrollment = {
   current_period_computed_current_score?: string,
   current_period_computed_final_grade?: string,
   current_period_computed_final_score?: string,
+  grades: Grades,
+}
+
+export type Grades = {
+  html_url: string,
+  current_score: ?number,
+  final_score: ?number,
+  current_grade: ?string,
+  final_grade: ?string,
 }
 
 export type Invite = {

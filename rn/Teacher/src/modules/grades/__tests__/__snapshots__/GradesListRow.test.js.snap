@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View>
+  <View>
+    <Row
+      border="bottom"
+      disclosureIndicator={true}
+      height="auto"
+      onPress={[Function]}
+      renderImage={[Function]}
+      testID="grades-list.grades-list-row.cell-123456789"
+      title="learn to write code"
+      titleProps={
+        Object {
+          "ellipsizeMode": "tail",
+          "numberOfLines": 2,
+        }
+      }
+    >
+      <SubmissionStatusLabel
+        status="none"
+      />
+    </Row>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#00AC18",
+        "bottom": 4,
+        "left": 0,
+        "position": "absolute",
+        "top": 4,
+        "width": 3,
+      }
+    }
+    testID="grades-list-row.published"
+  />
+</View>
+`;
