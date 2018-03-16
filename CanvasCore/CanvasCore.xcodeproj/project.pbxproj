@@ -490,6 +490,7 @@
 		9F2E36382050918500A2B031 /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2E36372050918500A2B031 /* FeatureFlags.swift */; };
 		9F544E051FBB766E00BB2D84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F544E071FBB766E00BB2D84 /* InfoPlist.strings */; };
 		9F544E0A1FBB766E00BB2D84 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F544E0C1FBB766E00BB2D84 /* Localizable.strings */; };
+		9FCA1A11205AC2FC00ECB5E9 /* AlertControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA1A10205AC2FC00ECB5E9 /* AlertControls.m */; };
 		9FD18B6B2052DE6800119927 /* LTITools.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD18B6A2052DE6800119927 /* LTITools.m */; };
 		B1411D5A1FE825ED00CD4967 /* AsyncActionNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1411D591FE825ED00CD4967 /* AsyncActionNotification.swift */; };
 		B1CA05061FE448F300B7D5AA /* NativeNotificationCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = B1CA05041FE448F300B7D5AA /* NativeNotificationCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1077,6 +1078,7 @@
 		9FC5F3571FBB7676007F4B9D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9FC5F3581FBB7676007F4B9D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9FC5F3591FBB7676007F4B9D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/TimedQuizViewController.strings; sourceTree = "<group>"; };
+		9FCA1A10205AC2FC00ECB5E9 /* AlertControls.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlertControls.m; sourceTree = "<group>"; };
 		9FCE57151FBB767900971B28 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		9FCE57161FBB767900971B28 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		9FCE57171FBB767900971B28 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/TimedQuizViewController.strings"; sourceTree = "<group>"; };
@@ -1681,6 +1683,7 @@
 				B1ED11952044803400C3C580 /* CanvasWebViewContainer.h */,
 				B1ED11962044803400C3C580 /* CanvasWebViewContainer.m */,
 				9FD18B6A2052DE6800119927 /* LTITools.m */,
+				9FCA1A10205AC2FC00ECB5E9 /* AlertControls.m */,
 			);
 			path = "React Native Modules";
 			sourceTree = "<group>";
@@ -3051,6 +3054,7 @@
 				49301FEB1F901854006BD777 /* SimpleAlertExtension.swift in Sources */,
 				4961F5531F8FAF280093EC86 /* AudioRecorder.swift in Sources */,
 				4961F5E61F8FB3FC0093EC86 /* Refresher.swift in Sources */,
+				9FCA1A11205AC2FC00ECB5E9 /* AlertControls.m in Sources */,
 				49CE96911F8FF41B00121A43 /* ResponsePage.swift in Sources */,
 				49CE96581F8FF41B00121A43 /* UIButton+QuizKit.swift in Sources */,
 				49CE96DD1F8FFC4400121A43 /* ModuleItem+Collections.swift in Sources */,

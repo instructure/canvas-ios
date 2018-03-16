@@ -18,11 +18,12 @@
 
 import { shallow } from 'enzyme'
 import React from 'react'
-import { AlertIOS, Animated } from 'react-native'
+import { AlertIOS, Animated, NativeModules } from 'react-native'
 import { GradePicker, mapStateToProps } from '../GradePicker'
 import renderer from 'react-test-renderer'
 import explore from '../../../../../test/helpers/explore'
 import setProps from '../../../../../test/helpers/setProps'
+import * as templates from '../../../../__templates__/index'
 
 jest
   .mock('TouchableOpacity', () => 'TouchableOpacity')
@@ -35,11 +36,8 @@ jest
     View: 'Animated.View',
     Value: jest.fn(),
   }))
-
-const templates = {
-  ...require('../../../../__templates__/submissions'),
-  ...require('../../../../__templates__/assignments'),
-  ...require('../../../../redux/__templates__/app-state'),
+NativeModules.AlertControls = {
+  onSubmitEditing: jest.fn(),
 }
 
 let ownProps = {
@@ -50,6 +48,7 @@ let ownProps = {
   isModeratedGrading: false,
   useRubricForGrading: false,
   rubricScore: '',
+  navigator: templates.navigator(),
 }
 
 let defaultProps = {
@@ -209,6 +208,24 @@ describe('GradePicker', () => {
     button.props.onPress()
 
     expect(AlertIOS.prompt.mock.calls[0][4]).toEqual('80%')
+  })
+
+  it('submits when onSumitEditing is called', () => {
+    NativeModules.AlertControls = {
+      onSubmitEditing: jest.fn((cb: Function) => cb('prompt')),
+    }
+    let tree = shallow(<GradePicker {...defaultProps} />)
+    let button = tree.find('[testID="grade-picker.button"]')
+    button.simulate('press')
+
+    expect(defaultProps.gradeSubmission).toHaveBeenCalledWith(
+      defaultProps.courseID,
+      defaultProps.assignmentID,
+      defaultProps.userID,
+      defaultProps.submissionID,
+      'prompt'
+    )
+    expect(defaultProps.navigator.dismiss).toHaveBeenCalled()
   })
 
   it('renders the picker for pass fail assignments', () => {

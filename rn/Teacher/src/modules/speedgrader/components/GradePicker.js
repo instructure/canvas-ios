@@ -26,6 +26,7 @@ import {
   PickerIOS,
   Animated,
   TouchableOpacity,
+  NativeModules,
 } from 'react-native'
 import i18n from 'format-message'
 import { Heading1, Text } from '../../../common/text'
@@ -73,18 +74,20 @@ export class GradePicker extends Component<GradePickerProps, GradePickerState> {
     }
   }
 
+  newCustomGrade = (promptValue: string) => {
+    if (this.props.gradingType === 'percent') {
+      let hasPercentage = promptValue[-1] === '%'
+      promptValue = hasPercentage ? promptValue : promptValue + '%'
+    }
+    this.setState({ useCustomGrade: true, originalRubricScore: this.props.rubricScore, promptValue })
+    this.props.gradeSubmission(this.props.courseID, this.props.assignmentID, this.props.userID, this.props.submissionID, promptValue)
+  }
+
   openPrompt = () => {
     let buttons = [
       {
         text: i18n('OK'),
-        onPress: (promptValue) => {
-          if (this.props.gradingType === 'percent') {
-            let hasPercentage = promptValue[-1] === '%'
-            promptValue = hasPercentage ? promptValue : promptValue + '%'
-          }
-          this.setState({ useCustomGrade: true, originalRubricScore: this.props.rubricScore, promptValue })
-          this.props.gradeSubmission(this.props.courseID, this.props.assignmentID, this.props.userID, this.props.submissionID, promptValue)
-        },
+        onPress: this.newCustomGrade,
       },
       {
         text: i18n('Cancel'),
@@ -121,6 +124,11 @@ export class GradePicker extends Component<GradePickerProps, GradePickerState> {
       'plain-text',
       this.props.excused ? i18n('Excused') : grade
     )
+
+    NativeModules.AlertControls.onSubmitEditing((promptValue) => {
+      this.newCustomGrade(promptValue)
+      this.props.navigator.dismiss()
+    })
   }
 
   togglePicker = () => {
@@ -379,6 +387,7 @@ type GradePickerOwnProps = {
   isModeratedGrading: boolean,
   rubricScore: string,
   useRubricForGrading: boolean,
+  navigator: Navigator,
 }
 
 type GradePickerDataProps = {
