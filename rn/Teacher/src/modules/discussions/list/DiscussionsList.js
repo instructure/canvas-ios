@@ -176,7 +176,6 @@ export class DiscussionsList extends Component<Props, any> {
     if (this.props.pending && !this.props.refreshing) {
       return <ActivityIndicatorView />
     }
-    console.log(this.props.permissions)
     return (
       <Screen
         navBarColor={this.props.courseColor}

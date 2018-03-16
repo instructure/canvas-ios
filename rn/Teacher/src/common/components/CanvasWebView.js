@@ -34,11 +34,14 @@ export type Props = {
   onError?: (error: any) => void,
   automaticallyAdjustContentInsets?: boolean,
   baseURL?: ?string,
+  heightCacheKey?: any,
 }
 
 export type State = {
   webViewHeight: ?number,
 }
+
+export const heightCache: Map<any, number> = new Map()
 
 export default class CanvasWebView extends Component<Props, State> {
   webView: any
@@ -48,7 +51,7 @@ export default class CanvasWebView extends Component<Props, State> {
   }
 
   state = {
-    webViewHeight: null,
+    webViewHeight: this.props.heightCacheKey ? heightCache.get(this.props.heightCacheKey) : null,
   }
 
   onFinishedLoading = async () => {
@@ -120,6 +123,9 @@ export default class CanvasWebView extends Component<Props, State> {
   updateHeight = async () => {
     try {
       const height = await this.getHeight()
+      if (this.props.heightCacheKey) {
+        heightCache.set(this.props.heightCacheKey, height)
+      }
       this.setState({ webViewHeight: height })
     } catch (error) {
       this.props.onError && this.props.onError(error)

@@ -14,7 +14,8 @@
   "globals": {
     "fetch": true,
     "fail": true,
-    "FormData": true
+    "FormData": true,
+    "requestIdleCallback": true,
   },
   "rules": {
     "react/jsx-uses-vars": [2],

@@ -125,6 +125,7 @@ exports[`DiscussionReplies edit action sheet calls cancel 1`] = `
         testID="web-container.view"
       >
         <CanvasWebView
+          heightCacheKey="1"
           html="<p>1.0</p>"
           navigator={
             Object {
@@ -479,6 +480,7 @@ exports[`DiscussionReplies ratings renders rating 1`] = `
         testID="web-container.view"
       >
         <CanvasWebView
+          heightCacheKey="1"
           html="<p>1.0</p>"
           navigator={
             Object {
@@ -881,6 +883,7 @@ exports[`DiscussionReplies ratings renders rating after user rates for first tim
         May 23 at 11:12 AM
       </Text>
       <CanvasWebView
+        heightCacheKey="1"
         html="<p>1.0</p>"
         navigator={
           Object {
@@ -1147,6 +1150,7 @@ exports[`DiscussionReplies ratings renders rating after user updates rating 1`] 
         May 23 at 11:12 AM
       </Text>
       <CanvasWebView
+        heightCacheKey="1"
         html="<p>1.0</p>"
         navigator={
           Object {
@@ -1433,6 +1437,7 @@ exports[`DiscussionReplies ratings renders rating when user cant rate 1`] = `
         testID="web-container.view"
       >
         <CanvasWebView
+          heightCacheKey="1"
           html="<p>1.0</p>"
           navigator={
             Object {
@@ -1833,6 +1838,7 @@ exports[`DiscussionReplies ratings renders user rating 1`] = `
         testID="web-container.view"
       >
         <CanvasWebView
+          heightCacheKey="1"
           html="<p>1.0</p>"
           navigator={
             Object {
@@ -2255,6 +2261,7 @@ exports[`DiscussionReplies renders 1`] = `
         testID="web-container.view"
       >
         <CanvasWebView
+          heightCacheKey="1"
           html="<p>1.0</p>"
           navigator={
             Object {
@@ -2609,6 +2616,7 @@ exports[`DiscussionReplies renders deleted 1`] = `
         testID="web-container.view"
       >
         <CanvasWebView
+          heightCacheKey="1"
           html="<i style=\\"color:#8B969E\\">Deleted this reply.</i>"
           navigator={
             Object {
@@ -2847,6 +2855,7 @@ exports[`DiscussionReplies renders more button with some deleted replies 1`] = `
         testID="web-container.view"
       >
         <CanvasWebView
+          heightCacheKey="1"
           html="<p>1.0</p>"
           navigator={
             Object {
@@ -3201,6 +3210,7 @@ exports[`DiscussionReplies renders with closed discussion as student 1`] = `
         testID="web-container.view"
       >
         <CanvasWebView
+          heightCacheKey="1"
           html="<p>1.0</p>"
           navigator={
             Object {
@@ -3361,6 +3371,7 @@ exports[`DiscussionReplies renders with no user 1`] = `
         testID="web-container.view"
       >
         <CanvasWebView
+          heightCacheKey="1"
           html="<p>1.0</p>"
           navigator={
             Object {

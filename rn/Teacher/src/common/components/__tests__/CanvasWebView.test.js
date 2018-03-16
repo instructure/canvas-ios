@@ -3,7 +3,7 @@
 import React from 'react'
 import { NativeModules } from 'react-native'
 import { shallow } from 'enzyme'
-import CanvasWebView, { type Props } from '../CanvasWebView'
+import CanvasWebView, { type Props, heightCache } from '../CanvasWebView'
 import { setSession } from '../../../canvas-api/session'
 
 const template = {
@@ -92,6 +92,22 @@ describe('CanvasWebView', () => {
     await webView.simulate('FinishedLoading')
     tree.update()
     expect(tree.find('WebView').props().style.height).toEqual(42)
+  })
+
+  it('caches the height if a heightCacheKey is provided', async () => {
+    const evaluateJavaScript = jest.fn(() => Promise.resolve(42))
+    NativeModules.CanvasWebViewManager.evaluateJavaScript = evaluateJavaScript
+    const tree = shallow(<CanvasWebView {...props} scrollEnabled={false} heightCacheKey='1' />)
+    const webView = tree.find('WebView')
+    await webView.simulate('FinishedLoading')
+    tree.update()
+    expect(heightCache.get('1')).toEqual(42)
+  })
+
+  it('sets the height if the height cache already has the height', () => {
+    heightCache.set('2', 52)
+    const tree = shallow(<CanvasWebView {...props} scrollEnabled={false} heightCacheKey='2' />)
+    expect(tree.find('WebView').props().style.height).toEqual(52)
   })
 
   it('handles error when getting height', async () => {

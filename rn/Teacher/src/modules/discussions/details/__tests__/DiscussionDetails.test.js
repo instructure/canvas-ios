@@ -339,7 +339,6 @@ describe('DiscussionDetails', () => {
   })
 
   it('marks unread entry as read when viewable', () => {
-    jest.useFakeTimers()
     let a = template.discussionReply({ id: '0', readState: 'unread' })
     let discussion = { ...props.discussion, replies: [a] }
     const tree = render({ ...props, discussion })
@@ -364,7 +363,6 @@ describe('DiscussionDetails', () => {
   })
 
   it('does not marks unread entry as read when not in view', () => {
-    jest.useFakeTimers()
     let a = template.discussionReply({ id: '0', readState: 'unread' })
     let discussion = { ...props.discussion, replies: [a] }
     const tree = render({ ...props, discussion })
@@ -389,7 +387,6 @@ describe('DiscussionDetails', () => {
   })
 
   it('does not call markEntryAsRead action if it has already been read', () => {
-    jest.useFakeTimers()
     let a = template.discussionReply({ id: '0', readState: 'read' })
     let discussion = { ...props.discussion, replies: [a] }
     const tree = render({ ...props, discussion })
@@ -414,7 +411,6 @@ describe('DiscussionDetails', () => {
   })
 
   it('catches the discussion details section when on screen so it doesnt try to mark as read', () => {
-    jest.useFakeTimers()
     let a = template.discussionReply({ id: '1', readState: 'unread' })
     let discussion = { ...props.discussion, replies: [a] }
     const tree = render({ ...props, discussion })

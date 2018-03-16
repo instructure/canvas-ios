@@ -1414,6 +1414,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                     testID="web-container.view"
                   >
                     <CanvasWebView
+                      heightCacheKey="25472827"
                       html="<p>1.0</p>"
                       navigator={
                         Object {
@@ -2485,6 +2486,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                     testID="web-container.view"
                   >
                     <CanvasWebView
+                      heightCacheKey="25472827"
                       html="<p>1.0</p>"
                       navigator={
                         Object {
@@ -3465,6 +3467,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                     testID="web-container.view"
                   >
                     <CanvasWebView
+                      heightCacheKey="25472827"
                       html="<p>1.0</p>"
                       navigator={
                         Object {
@@ -6500,6 +6503,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     testID="web-container.view"
                   >
                     <CanvasWebView
+                      heightCacheKey="4"
                       html="<p>1.0</p>"
                       navigator={
                         Object {
@@ -6886,6 +6890,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     testID="web-container.view"
                   >
                     <CanvasWebView
+                      heightCacheKey="5"
                       html="<p>1.0</p>"
                       navigator={
                         Object {
@@ -8708,6 +8713,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                     testID="web-container.view"
                   >
                     <CanvasWebView
+                      heightCacheKey="25472827"
                       html="<p>1.0</p>"
                       navigator={
                         Object {

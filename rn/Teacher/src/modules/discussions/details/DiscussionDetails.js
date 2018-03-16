@@ -426,7 +426,6 @@ export class DiscussionDetails extends Component<Props, any> {
           <SectionList
             refreshing={this.props.refreshing}
             onRefresh={this.props.refresh}
-            renderItem={({ item }) => <View/>}
             sections={data}
             onViewableItemsChanged={this._markViewableAsRead}
             initialNumToRender={10}
@@ -593,7 +592,7 @@ export class DiscussionDetails extends Component<Props, any> {
   }
 
   _markViewableAsRead = (info: { viewableItems: Array<ViewableReply>, changed: Array<ViewableReply>}) => {
-    setTimeout(() => {
+    requestIdleCallback(() => {
       let dID = this.props.discussionID
       let inView = info.viewableItems
       let unread = [...this.state.unread_entries] || []
@@ -613,7 +612,7 @@ export class DiscussionDetails extends Component<Props, any> {
         }
       }
       if (update) this.setState({ unread_entries: unread })
-    }, 1000)
+    })
   }
 }
 

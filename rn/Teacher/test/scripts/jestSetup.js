@@ -44,6 +44,8 @@ require.requireActual('TouchableOpacity').displayName = 'TouchableOpacity'
 jest.mock('../../src/canvas-api')
 global.fetch = require('jest-fetch-mock')
 
+global.requestIdleCallback = jest.fn(cb => cb())
+
 NativeModules.NativeAccessibility = {
   focusElement: jest.fn(),
 }
