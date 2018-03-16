@@ -142,7 +142,7 @@ export class DiscussionsList extends Component<Props, any> {
     let sortedSectionData = Object.keys(sections).map((key) => {
       return {
         key,
-        data: this._sortSection(sections[key]),
+        data: this._sortSection(sections[key], key),
       }
     }).sort((a, b) => {
       return a.key < b.key ? 1 : -1
@@ -151,13 +151,15 @@ export class DiscussionsList extends Component<Props, any> {
     return sortedSectionData
   }
 
-  _sortSection (section: Discussion[]): Array<Discussion> {
+  _sortSection (section: Discussion[], key: string): Array<Discussion> {
     const sortBy = 'last_reply_at'
     return section.sort((a, b) => {
-      const tieBreaker = a.title.toLowerCase() < b.title.toLowerCase() ? -1 : 1
+      if (key === 'C_pinned') {
+        return a.position - b.position
+      }
 
       if (!a[sortBy] && !b[sortBy]) {
-        return tieBreaker
+        return 0 // preserve api order
       }
       if (!a[sortBy]) {
         return -1
@@ -166,7 +168,7 @@ export class DiscussionsList extends Component<Props, any> {
         return 1
       }
 
-      return new Date(a[sortBy]) < new Date(b[sortBy]) ? 1 : -1
+      return Date.parse(b[sortBy]) - Date.parse(a[sortBy])
     })
   }
 
