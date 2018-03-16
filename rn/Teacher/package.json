@@ -76,6 +76,7 @@
     "babel-jest": "^20.0.3",
     "babel-plugin-transform-format-message": "^5.2.3",
     "babel-preset-react-native": "2.1.0",
+    "clarify": "^2.1.0",
     "danger": "^1.2.0",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.0",
@@ -99,7 +100,8 @@
     "redux-freeze": "^0.1.5",
     "redux-logger": "^3.0.6",
     "redux-mock-store": "^1.2.3",
-    "timezone-mock": "^0.0.4"
+    "timezone-mock": "^0.0.4",
+    "trace": "^3.1.0"
   },
   "jest": {
     "preset": "react-native",

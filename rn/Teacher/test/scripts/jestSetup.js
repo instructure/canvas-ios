@@ -15,6 +15,9 @@
 //
 
 /* @flow */
+import 'trace' // long async stack traces
+import 'clarify' // remove node noise from stack traces
+
 // import 'react-native-mock/mock'
 import { setSession } from '../../src/canvas-api/session'
 import Enzyme from 'enzyme'
