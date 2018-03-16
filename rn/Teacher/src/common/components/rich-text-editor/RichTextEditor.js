@@ -24,6 +24,7 @@ import {
   StyleSheet,
   View,
   Dimensions,
+  NativeModules,
 } from 'react-native'
 
 export type Props = {
@@ -128,6 +129,8 @@ export default class RichTextEditor extends Component<Props, State> {
   // EDITOR EVENTS
 
   _onLoad = () => {
+    NativeModules.WebViewHacker.removeInputAccessoryView()
+    NativeModules.WebViewHacker.setKeyboardDisplayRequiresUserAction(false)
     if (this.props.contentHeight) {
       this.editor.setContentHeight(this.props.contentHeight)
     }

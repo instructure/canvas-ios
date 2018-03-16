@@ -116,6 +116,11 @@ NativeModules.CanvasWebViewManager = {
   evaluateJavaScript: jest.fn(() => Promise.resolve()),
 }
 
+NativeModules.WebViewHacker = {
+  removeInputAccessoryView: jest.fn(),
+  setKeyboardDisplayRequiresUserAction: jest.fn(),
+}
+
 jest.mock('NativeEventEmitter')
 
 jest.mock('NetInfo', () => ({

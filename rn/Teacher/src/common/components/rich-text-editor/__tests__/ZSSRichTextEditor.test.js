@@ -33,7 +33,7 @@ jest
   .mock('TouchableHighlight', () => 'TouchableHighlight')
   .mock('Button', () => 'Button')
   .mock('../LinkModal', () => 'LinkModal')
-  .mock('../../CanvasWebView', () => 'CanvasWebView')
+  .mock('WebView', () => 'WebView')
 
 describe('ZSSRichTextEditor', () => {
   let js
@@ -43,16 +43,16 @@ describe('ZSSRichTextEditor', () => {
 
   const options = {
     createNodeMock: (element) => {
-      if (element.type === 'CanvasWebView') {
+      if (element.type === 'WebView') {
         return {
-          evaluateJavaScript: js,
+          injectJavaScript: js,
         }
       }
     },
   }
 
   const webView = (component) => {
-    return explore(component.toJSON()).query(({ type }) => type === 'CanvasWebView')[0]
+    return explore(component.toJSON()).query(({ type }) => type === 'WebView')[0]
   }
 
   it('renders', () => {
@@ -281,7 +281,7 @@ describe('ZSSRichTextEditor', () => {
       <ZSSRichTextEditor />, options
     )
     const web = webView(component)
-    web.props.onFinishedLoading()
+    web.props.onLoad()
     expect(js.mock.calls).toMatchSnapshot()
   })
 
@@ -313,14 +313,14 @@ describe('ZSSRichTextEditor', () => {
 
   function testTrigger (trigger: (editor: any) => void) {
     const screen = shallow(<ZSSRichTextEditor />)
-    screen.find('CanvasWebView').getElement().ref({ evaluateJavaScript: js })
+    screen.find('WebView').getElement().ref({ injectJavaScript: js })
     trigger(screen.instance())
     expect(js.mock.calls).toMatchSnapshot()
   }
 
   function postMessage (webView: any, type: string, data: any) {
     const message = { type, data }
-    const event = { body: JSON.stringify(message) }
+    const event = { nativeEvent: { data: JSON.stringify(message) } }
     webView.props.onMessage(event)
   }
 })

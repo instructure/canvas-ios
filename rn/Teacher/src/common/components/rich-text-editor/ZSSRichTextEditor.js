@@ -19,8 +19,8 @@
 import React, { Component } from 'react'
 import {
   StyleSheet,
+  WebView,
 } from 'react-native'
-import CanvasWebView from '../CanvasWebView'
 
 import isEqual from 'lodash/isEqual'
 
@@ -44,7 +44,7 @@ type State = {
 }
 
 export default class ZSSRichTextEditor extends Component<Props, State> {
-  webView: ?CanvasWebView
+  webView: ?WebView
   showingLinkModal: boolean
 
   state: State = {
@@ -55,16 +55,15 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
 
   render () {
     return (
-      <CanvasWebView
+      <WebView
         source={source}
         ref={webView => { this.webView = webView }}
         onMessage={this._onMessage}
-        onFinishedLoading={this._onLoad}
+        onLoad={this._onLoad}
         scalesPageToFit={true}
         scrollEnabled={this.props.scrollEnabled === undefined || this.props.scrollEnabled}
         style={styles.editor}
         hideKeyboardAccessoryView={true}
-        navigator={this.props.navigator}
       />
     )
   }
@@ -82,7 +81,7 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
   insertLink = () => {
     this.trigger(`
       var selection = getSelection().toString();
-      window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({type: 'INSERT_LINK', data: selection}));
+      postMessage(JSON.stringify({type: 'INSERT_LINK', data: selection}));
     `, true)
   }
 
@@ -136,7 +135,7 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
   setNeedsHeightUpdate = () => {
     this.trigger(`
       var height = $('#zss_editor_content').height();
-      window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({type: 'HEIGHT_UPDATE', data: height}));
+      postMessage(JSON.stringify({type: 'HEIGHT_UPDATE', data: height}));
     `)
   }
 
@@ -163,7 +162,7 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
   trigger = async (js: string, inputChanged?: boolean) => {
     if (!this.webView) return
     try {
-      await this.webView.evaluateJavaScript(js)
+      await this.webView.injectJavaScript(js)
       if (inputChanged) {
         setTimeout(this.getHTML, 100)
       }
@@ -175,7 +174,7 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
   // PRIVATE
 
   _onMessage = (event) => {
-    const message = JSON.parse(event.body)
+    const message = JSON.parse(event.nativeEvent.data)
     switch (message.type) {
       case 'CALLBACK':
         this._handleItemsCallback(message.data)

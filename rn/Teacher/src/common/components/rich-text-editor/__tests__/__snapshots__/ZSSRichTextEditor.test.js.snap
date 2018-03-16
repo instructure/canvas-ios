@@ -5,7 +5,7 @@ Array [
   Array [
     "
       var selection = getSelection().toString();
-      window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({type: 'INSERT_LINK', data: selection}));
+      postMessage(JSON.stringify({type: 'INSERT_LINK', data: selection}));
     ",
   ],
   Array [
@@ -25,7 +25,7 @@ Array [
   Array [
     "
       var selection = getSelection().toString();
-      window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({type: 'INSERT_LINK', data: selection}));
+      postMessage(JSON.stringify({type: 'INSERT_LINK', data: selection}));
     ",
   ],
   Array [
@@ -43,10 +43,9 @@ Array [
 exports[`ZSSRichTextEditor notifies when editor focused 1`] = `Array []`;
 
 exports[`ZSSRichTextEditor renders 1`] = `
-<CanvasWebView
+<WebView
   hideKeyboardAccessoryView={true}
-  navigator={undefined}
-  onFinishedLoading={[Function]}
+  onLoad={[Function]}
   onMessage={[Function]}
   scalesPageToFit={true}
   scrollEnabled={true}
@@ -74,7 +73,7 @@ Array [
   Array [
     "
       var height = $('#zss_editor_content').height();
-      window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({type: 'HEIGHT_UPDATE', data: height}));
+      postMessage(JSON.stringify({type: 'HEIGHT_UPDATE', data: height}));
     ",
   ],
 ]
