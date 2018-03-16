@@ -17,6 +17,7 @@
 /* @flow */
 
 import mapStateToProps from '../map-state-to-props'
+import App from '../../../app'
 
 const template = {
   ...require('../../../../__templates__/course'),
@@ -24,88 +25,131 @@ const template = {
   ...require('../../../../redux/__templates__/app-state'),
 }
 
-test('mapStateToProps returns the correct props', () => {
-  const course = template.course({ id: 1 })
-  const tabs = { tabs: [template.tab()], pending: 0 }
-  const attendanceTool = { pending: 0 }
-  const state = template.appState({
-    entities: {
-      courses: {
-        '1': {
-          course,
-          color: '#fff',
-          tabs,
-          attendanceTool,
+describe('mapStateToProps', () => {
+  beforeEach(() => {
+    App.setCurrentApp('teacher')
+  })
+
+  it('returns the correct props', () => {
+    const course = template.course({ id: 1 })
+    const tabs = { tabs: [template.tab()], pending: 0 }
+    const attendanceTool = { pending: 0 }
+    const state = template.appState({
+      entities: {
+        courses: {
+          '1': {
+            course,
+            color: '#fff',
+            tabs,
+            attendanceTool,
+          },
         },
       },
-    },
-    favoriteCourses: {
+      favoriteCourses: {
+        pending: 0,
+        courseRefs: ['1'],
+      },
+    })
+    const expected = {
+      course,
+      tabs: tabs.tabs,
+      color: '#fff',
       pending: 0,
-      courseRefs: ['1'],
-    },
+      error: undefined,
+    }
+
+    const props = mapStateToProps(state, { courseID: '1' })
+
+    expect(props).toEqual(expected)
   })
-  const expected = {
-    course,
-    tabs: tabs.tabs,
-    color: '#fff',
-    pending: 0,
-    error: undefined,
-  }
 
-  const props = mapStateToProps(state, { courseID: '1' })
+  it('returns basic props without course', () => {
+    const state: { [string]: any } = {
+      entities: {
+        courses: {},
+      },
+      favoriteCourses: {},
+    }
 
-  expect(props).toEqual(expected)
-})
-
-test('mapStateToProps returns basic props without course', () => {
-  const state: { [string]: any } = {
-    entities: {
-      courses: {},
-    },
-    favoriteCourses: {},
-  }
-
-  expect(
-    mapStateToProps(state, { courseID: '1' })
-  ).toEqual({
-    pending: 0,
-    tabs: [],
-    course: null,
-    color: '',
-    attendanceTabID: null,
+    expect(
+      mapStateToProps(state, { courseID: '1' })
+    ).toEqual({
+      pending: 0,
+      tabs: [],
+      course: null,
+      color: '',
+      attendanceTabID: null,
+    })
   })
-})
 
-test('mapStateToProps hides attendance tab if it is hidden', () => {
-  const course = template.course({ id: '1' })
-  const tabs = { tabs: [template.tab({ id: '1', hidden: true })], pending: 0 }
-  const attendanceTool = { tabID: '1', pending: 0 }
-  const state = template.appState({
-    entities: {
-      courses: {
-        '1': {
-          course,
-          color: '#fff',
-          tabs,
-          attendanceTool,
+  it('hides attendance tab if it is hidden', () => {
+    const course = template.course({ id: '1' })
+    const tabs = { tabs: [template.tab({ id: '1', hidden: true })], pending: 0 }
+    const attendanceTool = { tabID: '1', pending: 0 }
+    const state = template.appState({
+      entities: {
+        courses: {
+          '1': {
+            course,
+            color: '#fff',
+            tabs,
+            attendanceTool,
+          },
         },
       },
-    },
-    favoriteCourses: {
+      favoriteCourses: {
+        pending: 0,
+        courseRefs: ['1'],
+      },
+    })
+    const expected = {
+      course,
+      tabs: [],
+      color: '#fff',
       pending: 0,
-      courseRefs: ['1'],
-    },
+      error: undefined,
+      attendanceTabID: '1',
+    }
+
+    const props = mapStateToProps(state, { courseID: '1' })
+
+    expect(props).toEqual(expected)
   })
-  const expected = {
-    course,
-    tabs: [],
-    color: '#fff',
-    pending: 0,
-    error: undefined,
-    attendanceTabID: '1',
-  }
 
-  const props = mapStateToProps(state, { courseID: '1' })
+  describe('external tools', () => {
+    function assertExternalToolTabs () {
+      const course = template.course({ id: 1 })
+      const tabs = { tabs: [template.tab({ id: 'context_external_tool_1234' })], pending: 0 }
+      const state = template.appState({
+        entities: {
+          courses: {
+            '1': {
+              course,
+              color: '#fff',
+              tabs,
+              attendanceTool: { pending: 0 },
+            },
+          },
+        },
+        favoriteCourses: {
+          pending: 0,
+          courseRefs: ['1'],
+        },
+      })
 
-  expect(props).toEqual(expected)
+      const props = mapStateToProps(state, { courseID: '1' })
+
+      expect(props).toMatchObject({ tabs: tabs.tabs })
+    }
+
+    it('includes them in student', () => {
+      App.setCurrentApp('student')
+      assertExternalToolTabs()
+    })
+
+    it('includes them in teacher', () => {
+      App.setCurrentApp('teacher')
+      assertExternalToolTabs()
+    })
+  })
 })

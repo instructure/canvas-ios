@@ -74,11 +74,11 @@ export class CourseDetails extends Component<CourseDetailsProps, any> {
         courseColor: processColor(this.props.color),
       })
     } else {
-      if (isTeacher()) {
-        this.props.navigator.show(tab.html_url)
+      if (tab.type === 'external' && tab.url) {
+        LTITools.launchExternalTool(tab.url)
       } else {
-        if (tab.type === 'external' && tab.url) {
-          LTITools.launchExternalTool(tab.url)
+        if (isTeacher()) {
+          this.props.navigator.show(tab.html_url)
         } else {
           const url = `/courses/${this.props.courseID}/tabs/${tab.id}`
           this.props.navigator.show(url)

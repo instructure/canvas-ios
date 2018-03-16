@@ -136,30 +136,41 @@ describe('CourseDetails', () => {
     expect(props.navigator.show).toHaveBeenCalledWith('/courses/12/assignments')
   })
 
-  it('launches external tool tab', () => {
-    const currentApp = App.current()
-    App.setCurrentApp('student')
+  describe('lti launch', () => {
+    function assertLTILaunch () {
+      let url = 'https://canvas.instructure.com/courses/1/sessionless_launch?url=blah'
+      const tab = template.tab({
+        id: 'external_tool_4',
+        type: 'external',
+        url,
+      })
+      const props = {
+        ...defaultProps,
+        tabs: [tab],
+        navigator: template.navigator(),
+      }
 
-    let url = 'https://canvas.instructure.com/courses/1/sessionless_launch?url=blah'
-    const tab = template.tab({
-      id: 'external_tool_4',
-      type: 'external',
-      url,
-    })
-    const props = {
-      ...defaultProps,
-      tabs: [tab],
-      navigator: template.navigator(),
+      const tree = shallow(<CourseDetails {...props} />)
+      tree
+        .find('OnLayout').first().dive()
+        .find('[testID="courses-details.tab.external_tool_4"]')
+        .simulate('Press', tab)
+      expect(LTITools.launchExternalTool).toHaveBeenCalledWith(url)
     }
 
-    const tree = shallow(<CourseDetails {...props} />)
-    tree
-      .find('OnLayout').first().dive()
-      .find('[testID="courses-details.tab.external_tool_4"]')
-      .simulate('Press', tab)
-    expect(LTITools.launchExternalTool).toHaveBeenCalledWith(url)
+    it('launches from student', () => {
+      const currentApp = App.current()
+      App.setCurrentApp('student')
+      assertLTILaunch()
+      App.setCurrentApp(currentApp.appId)
+    })
 
-    App.setCurrentApp(currentApp.appId)
+    it('launches from teacher', () => {
+      const currentApp = App.current()
+      App.setCurrentApp('teacher')
+      assertLTILaunch()
+      App.setCurrentApp(currentApp.appId)
+    })
   })
 
   it('can edit course', () => {

@@ -39,9 +39,7 @@ import AssignmentActions from '../assignments/actions'
 import CourseActions from '../courses/actions'
 import Images from '../../images'
 import Screen from '../../routing/Screen'
-import RCTSFSafariViewController from 'react-native-sfsafariviewcontroller'
-import { alertError } from '../../redux/middleware/error-handler'
-import { getSessionlessLaunchURL } from '../../canvas-api'
+import * as LTITools from '../../common/LTITools'
 
 import {
   View,
@@ -234,15 +232,8 @@ export class AssignmentDetails extends Component<AssignmentDetailsProps, any> {
     }
   }
 
-  launchExternalTool = async () => {
-    try {
-      const url = await this.props.getSessionlessLaunchURL(this.props.courseID, {
-        assignment: this.props.assignmentDetails,
-      })
-      url && RCTSFSafariViewController.open(url)
-    } catch (e) {
-      alertError(e)
-    }
+  launchExternalTool = () => {
+    LTITools.launchExternalTool(this.props.assignmentDetails.url)
   }
 }
 
@@ -347,13 +338,6 @@ AssignmentDetails.propTypes = {
   error: PropTypes.string,
 }
 
-const mergeProps = (stateProps, dispatchProps, ownProps) => ({
-  ...stateProps,
-  ...dispatchProps,
-  ...ownProps,
-  getSessionlessLaunchURL,
-})
-
 let Refreshed = refresh(
   props => {
     props.refreshAssignmentList(props.courseID)
@@ -366,5 +350,5 @@ let Refreshed = refresh(
 let Connected = connect(mapStateToProps, {
   ...AssignmentActions,
   ...CourseActions,
-}, mergeProps)(Refreshed)
+})(Refreshed)
 export default (Connected: Component<AssignmentDetailsProps, any>)
