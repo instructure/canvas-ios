@@ -10,6 +10,8 @@ import {
 } from 'react-native'
 import { getSession } from '../../canvas-api/session'
 
+import isEqual from 'lodash/isEqual'
+
 const { CanvasWebViewManager } = NativeModules
 const { resolveAssetSource } = Image
 
@@ -34,7 +36,11 @@ export type Props = {
   baseURL?: ?string,
 }
 
-export default class CanvasWebView extends Component<Props, any> {
+export type State = {
+  webViewHeight: ?number,
+}
+
+export default class CanvasWebView extends Component<Props, State> {
   webView: any
 
   static defaultProps = {
@@ -62,6 +68,13 @@ export default class CanvasWebView extends Component<Props, any> {
 
   onError = (error: any) => {
     this.props.onError && this.props.onError(error)
+  }
+
+  shouldComponentUpdate (newProps: Props, newState: State) {
+    return (
+      this.state.webViewHeight !== newState.webViewHeight ||
+      !isEqual(newProps, this.props)
+    )
   }
 
   render () {

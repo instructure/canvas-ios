@@ -25,11 +25,26 @@ public class CanvasWebView: WKWebView {
         case url(URL)
     }
     
-    fileprivate enum Message: String {
-        case dismiss
-        case canvas
+    fileprivate class MessageHandler: NSObject, WKScriptMessageHandler {
+        weak var webView: CanvasWebView?
+
+        init(webView: CanvasWebView) {
+            self.webView = webView
+            super.init()
+        }
+
+        func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+            switch message.name {
+            case "dismiss":
+                webView?.requestClose?()
+            case "canvas":
+                webView?.onMessage?(["body": message.body])
+            default:
+                break
+            }
+        }
     }
-    
+
     fileprivate var source: Source?
     public var navigation = Navigation.internal
 
@@ -101,8 +116,8 @@ public class CanvasWebView: WKWebView {
         config.processPool = sharedPool
         self.init(config: config)
 
-        config.userContentController.add(self, name: Message.dismiss.rawValue)
-        config.userContentController.add(self, name: Message.canvas.rawValue)
+        config.userContentController.add(MessageHandler(webView: self), name: "dismiss")
+        config.userContentController.add(MessageHandler(webView: self), name: "canvas")
 
         if let jsPath = Bundle.core.url(forResource: "CanvasWebView", withExtension: "js"),
             let js = try? String(contentsOf: jsPath, encoding: .utf8) {
@@ -261,18 +276,5 @@ extension CanvasWebView: WKUIDelegate {
     
     public func webViewDidClose(_ webView: WKWebView) {
         requestClose?()
-    }
-}
-
-extension CanvasWebView: WKScriptMessageHandler {
-    public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        switch Message(rawValue: message.name) {
-        case .some(.dismiss):
-            requestClose?()
-        case .some(.canvas):
-            onMessage?(["body": message.body])
-        default:
-            break
-        }
     }
 }

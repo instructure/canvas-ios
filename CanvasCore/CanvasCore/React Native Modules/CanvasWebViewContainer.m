@@ -117,9 +117,11 @@
             if (!baseURL) {
                 baseURL = [NSURL URLWithString:@"about:blank"];
             }
+            @weakify(self);
             [_webView loadWithHtml:html title:nil baseURL:baseURL routeToURL:^(NSURL * _Nonnull url) {
-                if (_onNavigation) {
-                    _onNavigation(@{@"url": url.absoluteString});
+                @strongify(self);
+                if (self.onNavigation) {
+                    self.onNavigation(@{@"url": url.absoluteString});
                 }
             }];
             return;

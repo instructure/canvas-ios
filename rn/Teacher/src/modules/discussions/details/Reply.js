@@ -81,6 +81,21 @@ export default class Reply extends Component<Props, State> {
     }
   }
 
+  shouldComponentUpdate (newProps: Props, newState: State) {
+    return (
+      this.props.reply.id !== newProps.reply.id ||
+      this.props.depth !== newProps.depth ||
+      this.props.readState !== newProps.readState ||
+      this.props.showRating !== newProps.showRating ||
+      this.props.canRate !== newProps.canRate ||
+      this.props.maxReplyNodeDepth !== newProps.maxReplyNodeDepth ||
+      this.props.isRootReply !== newProps.isRootReply ||
+      this.props.discussionLockedForUser !== newProps.discussionLockedForUser ||
+      this.props.myPath.length !== newProps.myPath.length ||
+      this.state.rating !== newState.rating
+    )
+  }
+
   showAttachment = () => {
     if (this.props.reply.attachment) {
       this.props.navigator.show('/attachment', { modal: true }, {
