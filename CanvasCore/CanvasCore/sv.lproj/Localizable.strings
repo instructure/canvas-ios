@@ -717,9 +717,6 @@
 /* Alert message when unable to load communication channels */
 "Unable to load any Communication Channels at this time." = "Det gick inte att ladda några kommunikationskanaler just nu.";
 
-/* Alert message when unable to load notification preferences */
-"Unable to load any notification preferences at this time.  Error: (result.error?.localizedDescription)" = "Det går inte att läsa in några meddelande-preferenser just nu.  Fel: (result.fel?.localizedDescription)";
-
 /* Error message when parsing communication preferences */
 "Unable to parse JSON for communication channels" = "Kan inte analysera JSON för kommunikationskanaler";
 

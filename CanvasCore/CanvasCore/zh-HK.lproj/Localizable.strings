@@ -717,9 +717,6 @@
 /* Alert message when unable to load communication channels */
 "Unable to load any Communication Channels at this time." = "目前無法載入任何通訊頻道。";
 
-/* Alert message when unable to load notification preferences */
-"Unable to load any notification preferences at this time.  Error: (result.error?.localizedDescription)" = "目前無法載入任何通知偏好設定。錯誤：（結果.錯誤？.localizedDescription）";
-
 /* Error message when parsing communication preferences */
 "Unable to parse JSON for communication channels" = "未能解析通信頻道的 JSON";
 
