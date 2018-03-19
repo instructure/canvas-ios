@@ -84,6 +84,7 @@ export default class Reply extends Component<Props, State> {
   shouldComponentUpdate (newProps: Props, newState: State) {
     return (
       this.props.reply.id !== newProps.reply.id ||
+      this.props.reply.message !== newProps.reply.message ||
       this.props.depth !== newProps.depth ||
       this.props.readState !== newProps.readState ||
       this.props.showRating !== newProps.showRating ||
@@ -140,29 +141,25 @@ export default class Reply extends Component<Props, State> {
         <ThreadedLinesView reply={reply} depth={depth} avatarSize={AVATAR_SIZE} marginRight={AVATAR_MARGIN_RIGHT}/>
         <View style={style.colA}>
           { unreadDot }
-          {user &&
-            <Avatar
-              testID='reply.avatar'
-              height={AVATAR_SIZE}
-              key={user.id}
-              avatarURL={user.avatar_image_url}
-              userName={user.id === '0' ? i18n('?') : user.display_name} style={style.avatar}
-              onPress={this.navigateToContextCard}
-            />
-          }
+          <Avatar
+            testID='reply.avatar'
+            height={AVATAR_SIZE}
+            key={user.id}
+            avatarURL={user.avatar_image_url}
+            userName={user.id === '0' ? i18n('?') : user.display_name} style={style.avatar}
+            onPress={this.navigateToContextCard}
+          />
           <View style={style.threadLine}/>
         </View>
 
         <View style={style.colB}>
           <View style={style.rowA}>
-            {user &&
-              <Text
-                style={style.userName}
-                accessibilityTraits={this.props.isRootReply ? 'header' : 'none'}
-              >
-                {user.display_name}
-              </Text>
-            }
+            <Text
+              style={style.userName}
+              accessibilityTraits={this.props.isRootReply ? 'header' : 'none'}
+            >
+              {user.display_name}
+            </Text>
             <Text style={style.date}>{i18n("{ date, date, 'MMM d' } at { date, time, short }", { date: new Date(reply.updated_at) })}</Text>
             <CanvasWebView
               scrollEnabled={false}
