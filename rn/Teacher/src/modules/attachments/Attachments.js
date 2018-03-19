@@ -248,8 +248,8 @@ export default class Attachments extends Component<Props, any> {
     }
   }
 
-  captureCancel (attachment: Attachment): Function {
-    return (cancel) => {
+  captureCancel (attachment: Attachment) {
+    return (cancel: Function) => {
       this.setState({
         attachments: {
           ...this.state.attachments,
@@ -273,6 +273,7 @@ export default class Attachments extends Component<Props, any> {
       }
 
       const file = await upload
+      if (!file) return // options said not to uplaod
 
       this.setState({
         attachments: {
@@ -291,7 +292,7 @@ export default class Attachments extends Component<Props, any> {
     }
   }
 
-  uploadFile = async (attachment: Attachment): Attachment => {
+  uploadFile = async (attachment: Attachment) => {
     let path = this.props.storageOptions.uploadPath
     if (!path) return
 
@@ -306,7 +307,7 @@ export default class Attachments extends Component<Props, any> {
     return { ...attachment, ...file }
   }
 
-  uploadMedia = async (attachment: Attachment): Attachment => {
+  uploadMedia = async (attachment: Attachment) => {
     const mediaID = await this.props.uploadMedia(attachment.uri, attachment.mime_class, {
       onProgress: this.updateProgress(attachment.id),
       cancelUpload: this.captureCancel(attachment),
@@ -314,7 +315,7 @@ export default class Attachments extends Component<Props, any> {
     return { ...attachment, id: mediaID, mediaID }
   }
 
-  uploadAsMediaComment = (attachment: Attachment): boolean => {
+  uploadAsMediaComment = (attachment: Attachment) => {
     return Boolean(this.props.storageOptions.mediaServer && ['video', 'audio'].includes(attachment.mime_class))
   }
 

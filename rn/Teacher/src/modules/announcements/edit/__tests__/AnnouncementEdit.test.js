@@ -284,7 +284,7 @@ describe('AnnouncementEdit', () => {
         attachments: [props.attachment],
         maxAllowed: 1,
         storageOptions: {
-          upload: false,
+          uploadPath: undefined,
         },
         onComplete: expect.any(Function),
       },

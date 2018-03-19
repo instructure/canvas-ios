@@ -349,7 +349,7 @@ export class AnnouncementEdit extends Component<Props, any> {
       attachments: this.state.attachment ? [this.state.attachment] : [],
       maxAllowed: 1,
       storageOptions: {
-        upload: false,
+        uploadPath: undefined,
       },
       onComplete: this._valueChanged('attachment', (as) => as[0]),
     })
