@@ -121,7 +121,7 @@ export class DiscussionsList extends Component<Props, any> {
       if (button === 0) { updatedDiscussion.pinned = !updatedDiscussion.pinned; updatedDiscussion.locked = false }
       if (button === 1) { updatedDiscussion.locked = !updatedDiscussion.locked; updatedDiscussion.pinned = false }
 
-      this.props.updateDiscussion(this.props.contextID, updatedDiscussion)
+      this.props.updateDiscussion(this.props.context, this.props.contextID, updatedDiscussion)
     })
   }
 

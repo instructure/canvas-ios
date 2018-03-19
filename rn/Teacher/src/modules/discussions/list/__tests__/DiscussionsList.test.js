@@ -212,7 +212,7 @@ describe('DiscussionsList', () => {
     ActionSheetIOS.showActionSheetWithOptions.mock.calls[0][1](buttonIndex)
     expect(ActionSheetIOS.showActionSheetWithOptions).toHaveBeenCalled()
     if (expectToCallUpdateDiscussion) {
-      expect(props.updateDiscussion).toHaveBeenCalledWith('1', expectedDiscussion)
+      expect(props.updateDiscussion).toHaveBeenCalledWith('courses', '1', expectedDiscussion)
     }
   }
 
