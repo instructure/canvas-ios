@@ -49,7 +49,12 @@ exports[`ZSSRichTextEditor renders 1`] = `
   onMessage={[Function]}
   scalesPageToFit={true}
   scrollEnabled={true}
-  source={Object {}}
+  source={
+    Object {
+      "baseUrl": "file:///mainBundle",
+      "html": "",
+    }
+  }
   style={
     Object {
       "backgroundColor": "transparent",

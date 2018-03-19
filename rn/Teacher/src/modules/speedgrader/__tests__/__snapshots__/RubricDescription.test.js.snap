@@ -86,7 +86,7 @@ exports[`RubricDescription renders 1`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseURL": "http://mobiledev.instructure.com/",
+                "baseUrl": "http://mobiledev.instructure.com/",
                 "html": "A satisfactory description",
               }
             }

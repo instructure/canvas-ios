@@ -23,8 +23,7 @@ import {
 } from 'react-native'
 
 import isEqual from 'lodash/isEqual'
-
-const source = require('../../../../lib/zss-rich-text-editor.html')
+import RNFS from 'react-native-fs'
 
 type Props = {
   onInputChange?: (value: string) => void,
@@ -38,6 +37,7 @@ type Props = {
 }
 
 type State = {
+  source: ?string,
   linkModalVisible: boolean,
   lastHeightUpdate: number,
   items: string[],
@@ -51,12 +51,19 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
     linkModalVisible: false,
     lastHeightUpdate: 0,
     items: [],
+    source: null,
+  }
+
+  async componentDidMount () {
+    const path = `${RNFS.MainBundlePath}/zss-rich-text-editor.html`
+    const source = await RNFS.readFile(path)
+    this.setState({ source })
   }
 
   render () {
     return (
       <WebView
-        source={source}
+        source={{ html: this.state.source || '', baseUrl: RNFS.MainBundlePath }}
         ref={webView => { this.webView = webView }}
         onMessage={this._onMessage}
         onLoad={this._onLoad}

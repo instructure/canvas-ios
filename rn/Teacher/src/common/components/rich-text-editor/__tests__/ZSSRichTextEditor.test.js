@@ -20,6 +20,7 @@ import { shallow } from 'enzyme'
 import 'react-native'
 import React from 'react'
 import renderer from 'react-test-renderer'
+import RNFS from 'react-native-fs'
 
 import ZSSRichTextEditor from '../ZSSRichTextEditor'
 import explore from '../../../../../test/helpers/explore'
@@ -34,6 +35,10 @@ jest
   .mock('Button', () => 'Button')
   .mock('../LinkModal', () => 'LinkModal')
   .mock('WebView', () => 'WebView')
+  .mock('react-native-fs', () => ({
+    MainBundlePath: 'file:///mainBundle',
+    readFile: jest.fn(() => Promise.resolve('<html></html>')),
+  }))
 
 describe('ZSSRichTextEditor', () => {
   let js
@@ -61,6 +66,15 @@ describe('ZSSRichTextEditor', () => {
         <ZSSRichTextEditor />
       )
     ).toMatchSnapshot()
+  })
+
+  it('uses source from rich text html in main bundle', async () => {
+    const promise = RNFS.readFile()
+    const view = shallow(<ZSSRichTextEditor />)
+    const html = await promise
+    view.update()
+    expect(view.prop('source').html).toEqual(html)
+    expect(view.prop('source').baseUrl).toEqual(RNFS.MainBundlePath)
   })
 
   it('provides unique active editor items', () => {
