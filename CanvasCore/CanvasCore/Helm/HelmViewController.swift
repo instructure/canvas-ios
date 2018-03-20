@@ -502,14 +502,7 @@ public final class HelmViewController: UIViewController, HelmScreen {
         // show the dismiss button when view controller is shown modally
         if let navigatorOptions = props[PropKeys.navigatorOptions] as? [String: Any], navigatorOptions["modal"] as? Bool == true && screenConfig[PropKeys.showDismissButton] as? Bool == true {
             let dismissTitle = screenConfig[PropKeys.dismissButtonTitle] as? String ?? NSLocalizedString("Done", comment: "")
-            let button = UIBarButtonItem(title: dismissTitle, style: .plain, target: self, action:#selector(dismissTapped(_:)))
-            button.accessibilityIdentifier = "screen.dismiss"
-            if rightBarButtons.count == 0 {
-                button.style = .done
-                navigationItem.rightBarButtonItem = button
-            } else {
-                navigationItem.leftBarButtonItem = button
-            }
+            addModalDismissButton(buttonTitle: dismissTitle)
         }
         
         // Status bar props
@@ -657,4 +650,25 @@ public final class HelmViewController: UIViewController, HelmScreen {
 
 fileprivate struct Associated {
     static var barButtonAction = "barButtonAction"
+}
+
+extension UIViewController {
+    func addModalDismissButton(buttonTitle: String? , animated: Bool = true ) {
+        var dismissTitle = NSLocalizedString("Done", comment: "")
+        if let buttonTitle = buttonTitle {
+            dismissTitle = buttonTitle
+        }
+        let button = UIBarButtonItem(title: dismissTitle, style: .plain, target: self, action:#selector(dismissModal))
+        button.accessibilityIdentifier = "screen.dismiss"
+        if navigationItem.rightBarButtonItems?.count ?? 0 == 0 {
+            button.style = .done
+            navigationItem.rightBarButtonItem = button
+        } else {
+            navigationItem.leftBarButtonItem = button
+        }
+    }
+    
+    func dismissModal(animated: Bool) {
+        dismiss(animated: animated, completion: nil)
+    }
 }

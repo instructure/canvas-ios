@@ -286,7 +286,8 @@ open class HelmManager: NSObject {
                 customPresentation(current, viewController)
                 callback?()
             } else {
-                current.present(viewController, animated: options["animated"] as? Bool ?? true, completion: callback)
+                viewController.addModalDismissButton(buttonTitle: nil)
+                current.present(toPresent, animated: options["animated"] as? Bool ?? true, completion: callback)
             }
         } else {
             var toPresent: UIViewController
