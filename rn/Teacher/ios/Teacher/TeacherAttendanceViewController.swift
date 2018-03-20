@@ -22,9 +22,10 @@ class TeacherAttendanceViewController: AttendanceViewController {
     
     let courseColor: UIColor
     
-    init(courseName: String, courseColor: UIColor, launchURL: URL, courseID: String, date: Date) {
+    init(courseName: String, courseColor: UIColor, launchURL: URL, courseID: String, date: Date) throws {
         self.courseColor = courseColor
-        super.init(client: CanvasKeymaster.the().currentClient, launchURL: launchURL, courseID: courseID, date: Date())
+        guard let client = CanvasKeymaster.the().currentClient else { throw NSError(subdomain: "com.instructure.Teacher", description: "Keymaster client is nil") }
+        super.init(client: client, launchURL: launchURL, courseID: courseID, date: Date())
     }
     
     override func viewWillAppear(_ animated: Bool) {

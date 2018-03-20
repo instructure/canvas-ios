@@ -22,8 +22,8 @@ import CanvasCore
 import Marshal
 import CanvasKeymaster
 
-var currentSession: Session {
-    return CanvasKeymaster.the().currentClient.authSession
+var currentSession: Session? {
+    return CanvasKeymaster.the().currentClient?.authSession
 }
 
 extension Router {
@@ -51,10 +51,12 @@ extension Router {
         
 
         addContextRoute([.course, .group], subPath: "tabs") { contextID, _ in
+            guard let currentSession = currentSession else { return nil }
             return try TabsTableViewController(session: currentSession, contextID: contextID, route: route)
         }
         
         addContextRoute([.course], subPath: "assignments") { contextID, _ in
+            guard let currentSession = currentSession else { return nil }
             guard FeatureFlags.featureFlagEnabled(.newAssignmentsList) else {
                 return try AssignmentsTableViewController(session: currentSession, courseID: contextID.id, route: route)
             }
@@ -65,6 +67,7 @@ extension Router {
         }
         
         addContextRoute([.course], subPath: "grades") { contextID, _ in
+            guard let currentSession = currentSession else { return nil }
             guard FeatureFlags.featureFlagEnabled(.newGradesList) else {
                 return try GradesTableViewController(session: currentSession, courseID: contextID.id, route: route)
             }
@@ -76,6 +79,7 @@ extension Router {
 
         // Activity Stream
         addContextRoute([.course, .group], subPath: "activity_stream") { contextID, _ in
+            guard let currentSession = currentSession else { return nil }
             return try ActivityStreamTableViewController(session: currentSession, context: contextID, route: route)
         }
 
@@ -92,6 +96,7 @@ extension Router {
         }
         
         let oldPagesListFactory: (ContextID, [String: Any]) throws -> UIViewController? = { contextID, _ in
+            guard let currentSession = currentSession else { return nil }
             let controller = try Page.TableViewController(session: currentSession, contextID: contextID, viewModelFactory: pagesListViewModelFactory, route: route)
             return controller
         }
@@ -183,7 +188,7 @@ extension Router {
         }
         
         let moduleItemDetailFactory: (ContextID, [String: Any]) throws -> UIViewController? = { contextID, params in
-            guard let query = params["query"] as? [String: Any], let moduleItemID = query["module_item_id"] as? CustomStringConvertible else {
+            guard let query = params["query"] as? [String: Any], let moduleItemID = query["module_item_id"] as? CustomStringConvertible, let currentSession = currentSession else {
                 return nil
             }
             return try ModuleItemDetailViewController(session: currentSession, courseID: contextID.id, moduleItemID: moduleItemID.description, route: route)
@@ -194,18 +199,21 @@ extension Router {
             if let moduleItemDetail = try moduleItemDetailFactory(contextID, params) {
                 return moduleItemDetail
             }
+            guard let currentSession = currentSession else { return nil }
             return try Page.DetailViewController(session: currentSession, contextID: contextID, url: url, route: route)
         }
         addContextRoute([.course, .group], subPath: "pages/:url", handler: pageDetailFactory)
         addContextRoute([.course, .group], subPath: "wiki/:url", handler: pageDetailFactory)
         addContextRoute([.course, .group], subPath: "front_page") { contextID, _ in
+            guard let currentSession = currentSession else { return nil }
             return try Page.FrontPageDetailViewController(session: currentSession, contextID: contextID, route: route)
         }
         addContextRoute([.course, .group], subPath: "pages_home") { contextID, _ in
+            guard let currentSession = currentSession else { return nil }
             return try PagesHomeViewController(session: currentSession, contextID: contextID, listViewModelFactory: pagesListViewModelFactory, route: route)
         }
         addContextRoute([.course], subPath: "external_tools/:toolID") { contextID, params in
-            guard let url = params["url"] as? URL else {
+            guard let url = params["url"] as? URL, let currentSession = currentSession else {
                 fatalError("Router passes URL as parameter to route handlers.")
             }
             return LTIViewController(toolName: "", courseID: contextID.id, launchURL: url, in: currentSession)
@@ -242,6 +250,7 @@ extension Router {
         // Modules
         addContextRoute([.course], subPath: "modules") { contextID, _ in
             // Restrict access to Modules tab if it's hidden (unless it is the home tab)
+            guard let currentSession = currentSession else { return nil }
             let modulesTab = try Tab.modulesTab(for: contextID, in: currentSession)
             let homeTab = try Tab.homeTab(for: contextID, in: currentSession)
             let modulesAreHome = homeTab != nil && homeTab!.routingURL(currentSession).flatMap { $0.path.contains("/modules") } ?? false
@@ -256,16 +265,19 @@ extension Router {
         }
         addContextRoute([.course], subPath: "modules/:id") { contextID, parameters in
             let id = (parameters["id"] as! CustomStringConvertible).description
+            guard let currentSession = currentSession else { return nil }
             let controller = try ModuleDetailsViewController(session: currentSession, courseID: contextID.id, moduleID: id, route: route)
             return controller
         }
         addContextRoute([.course], subPath: "modules/:id/items/:itemID") { contextID, parameters in
             let itemID: String = try parameters.stringID("itemID")
+            guard let currentSession = currentSession else { return nil }
             return try ModuleItemDetailViewController(session: currentSession, courseID: contextID.id, moduleItemID: itemID, route: route)
         }
         // Commonly used in Router+Routes.m in Tech Debt when manually building url from module_item_id query param
         addContextRoute([.course], subPath: "modules/items/:itemID") { contextID, parameters in
             let itemID: String = try parameters.stringID("itemID")
+            guard let currentSession = currentSession else { return nil }
             return try ModuleItemDetailViewController(session: currentSession, courseID: contextID.id, moduleItemID: itemID, route: route)
         }
         addRoute("/conversations/:conversationID") { parameters, _ in
@@ -278,6 +290,7 @@ extension Router {
             guard
                 let params = parameters,
                 let eventID = try? params.stringID("calendarEventID"),
+                let currentSession = currentSession,
                 let eventVC = try? CalendarEventDetailViewController(forEventWithID: eventID, in: currentSession, route: route)
             else {
                 fatalError("How did this path match if there is no calendarEventID?")
@@ -288,6 +301,7 @@ extension Router {
         CBIConversationStarter.setConversationStarter { recipients, context in
             guard
                 let contextID = ContextID(canvasContext: context),
+                let currentSession = currentSession,
                 let enrollment = currentSession.enrollmentsDataSource[contextID] else {
                     return
             }

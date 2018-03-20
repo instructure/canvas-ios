@@ -178,10 +178,10 @@ public class CanvadocView: UIView {
         
         guard previewPath != "" else { downloadFallback(); return }
         
-        let client = CanvasKeymaster.the().currentClient.copy() as! CKIClient
+        guard let client = CanvasKeymaster.the().currentClient?.copy() as? CKIClient, let accessToken = CanvasKeymaster.the().currentClient?.accessToken else { return }
         client.requestSerializer = AFHTTPRequestSerializer()
         client.responseSerializer = AFHTTPResponseSerializer()
-        client.requestSerializer.setValue("Bearer \(CanvasKeymaster.the().currentClient.accessToken!)", forHTTPHeaderField: "Authorization")
+        client.requestSerializer.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         client.setTaskWillPerformHTTPRedirectionBlock { (session, task, response, request) in
             
             guard let requestURL = request.url else {

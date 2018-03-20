@@ -75,7 +75,7 @@ FOUNDATION_EXPORT const unsigned char CanvasKeymasterVersionString[];
  `signalForCurrentClient`) or nil if not logged
  in
  */
-@property (nonatomic, readonly) CKIClient *currentClient;
+@property (nonatomic, readonly, nullable) CKIClient *currentClient;
 
 
 @property (nonatomic, readonly) NSString *logFilePath;

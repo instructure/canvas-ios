@@ -109,8 +109,9 @@ extension SettingsViewController {
     
     fileprivate func data() -> [SettingsRow] {
         let profile = TextSettingsRow(title: NSLocalizedString("Profile", comment: "")) { () -> () in
-            let session = CanvasKeymaster.the().currentClient.authSession
-            self.navigationController?.pushViewController(profileController(session), animated: true)
+            if let session = CanvasKeymaster.the().currentClient?.authSession {
+                self.navigationController?.pushViewController(profileController(session), animated: true)
+            }
         }
 
         let about = TextSettingsRow(title: NSLocalizedString("About", comment: "Settings entry title for About")) { () -> () in
@@ -120,18 +121,19 @@ extension SettingsViewController {
         }
         
         let landingPage = TextSettingsRow(title: NSLocalizedString("Landing Page", comment: "Settings entry title for Choosing a Landing Page"), action: {
-            let currentUserID = CanvasKeymaster.the().currentClient.currentUser.id
+            let currentUserID = CanvasKeymaster.the().currentClient?.currentUser.id
             
             let viewController = LandingPageViewController(currentUserID: currentUserID!)
             self.navigationController?.pushViewController(viewController, animated: true)
         })
         
         let notificationPreferences = TextSettingsRow(title: NSLocalizedString("Notification Preferences", comment: "Settings entry title for Notification Preferences")) { () -> () in
-            let session = CanvasKeymaster.the().currentClient.authSession
-            let notificationDataController = NotificationKitController(session: session)
-            
-            let viewController = CommunicationChannelsViewController.new(notificationDataController)
-            self.navigationController?.pushViewController(viewController, animated: true)
+            if let session = CanvasKeymaster.the().currentClient?.authSession {
+                let notificationDataController = NotificationKitController(session: session)
+                
+                let viewController = CommunicationChannelsViewController.new(notificationDataController)
+                self.navigationController?.pushViewController(viewController, animated: true)
+            }
         }
         
         let dataSource: [SettingsRow] = [profile, about, landingPage, notificationPreferences]

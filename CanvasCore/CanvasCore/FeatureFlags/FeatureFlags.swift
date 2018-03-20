@@ -31,7 +31,7 @@ open class FeatureFlags: NSObject {
         #if DEBUG
         return true
         #else
-        guard let baseURL = CanvasKeymaster.the().currentClient.baseURL?.absoluteString else { return false }
+        guard let baseURL = CanvasKeymaster.the().currentClient?.baseURL?.absoluteString else { return false }
         // return true if the domain is in the list of always on domains
         if exemptDomains.contains(baseURL) {
             return true

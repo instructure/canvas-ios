@@ -32,7 +32,7 @@ extension AppDelegate: RCTBridgeDelegate {
             guard let tabID = props["tabID"] as? String else { return nil }
             guard let courseID = props["courseID"] as? String else { return nil }
             
-            let session = CanvasKeymaster.the().currentClient.authSession
+            guard let session = CanvasKeymaster.the().currentClient?.authSession else { return nil }
             let contextID = ContextID.course(withID: courseID)
             
             guard let tabs = try? Tab.collection(session, contextID: contextID) else { return nil }

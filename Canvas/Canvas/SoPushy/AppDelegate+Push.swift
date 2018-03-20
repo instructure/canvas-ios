@@ -30,7 +30,7 @@ extension AppDelegate {
     }
     
     fileprivate func swappedPushBetaURLString(_ urlString: String) -> String? {
-        if let baseURLString = CanvasKeymaster.the().currentClient.baseURL?.absoluteString {
+        if let baseURLString = CanvasKeymaster.the().currentClient?.baseURL?.absoluteString {
             if baseURLString.range(of: "beta") != nil { // if we are currently in beta, the payload's url doesn't have it (a known issue) so we need to swap it out
                 let nonBetaBaseURLString = baseURLString.replacingOccurrences(of: ".beta", with: "")
                 // Get each host, compare. If they are the same then we are good to add in the .beta to the url

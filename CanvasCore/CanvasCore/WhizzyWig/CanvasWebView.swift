@@ -201,8 +201,7 @@ extension CanvasWebView: WKNavigationDelegate {
         }
 
         if let url = request.url, url.path.contains("/external_tools/retrieve"), action.navigationType == .linkActivated {
-            let session = CanvasKeymaster.the().currentClient.authSession
-            if let presentingViewController = presentingViewController {
+            if let presentingViewController = presentingViewController, let session = CanvasKeymaster.the().currentClient?.authSession {
                 ExternalToolManager.shared.launch(url, in: session, from: presentingViewController)
             }
             return decisionHandler(.cancel)

@@ -118,7 +118,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
     [self logout];
 }
 
-- (CKIClient *)currentClient
+- (nullable CKIClient *)currentClient
 {
     return _currentClient;
 }
