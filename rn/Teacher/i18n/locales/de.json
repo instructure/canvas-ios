@@ -605,6 +605,9 @@
   "filter_submissions_81bc50de": {
     "message": "Abgaben filtern"
   },
+  "show_grades_8680e38e": {
+    "message": "Noten zeigen"
+  },
   "final_grade_4d7f6545": {
     "message": "Gesamtnote"
   },

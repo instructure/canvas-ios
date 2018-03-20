@@ -1364,6 +1364,9 @@
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "Se produjo un error al cargar este archivo adjunto."
   },
+  "show_grades_8680e38e": {
+    "message": "Mostrar calificaciones"
+  },
   "there_was_an_error_loading_the_file_19deb988": {
     "message": "Hubo un error al cargar el archivo"
   },

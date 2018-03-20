@@ -32,6 +32,9 @@
   "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
     "message": "\"Act as\" loggar huvudsakligen in som den här användaren utan lösenord.Du kommer att kunna vidta åtgärder som om du var den här användaren, och från andra användares synpunkter som om den här användaren utförde dem.I historik-loggar registreras dock att du var den som utförde åtgärderna på den här användarens vägnar."
   },
+  "show_grades_8680e38e": {
+    "message": "Visa betyg"
+  },
   "act_as_user_d7ef0e48": {
     "message": "Agera som användare"
   },

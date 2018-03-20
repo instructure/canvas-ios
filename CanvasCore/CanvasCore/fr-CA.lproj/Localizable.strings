@@ -1,3 +1,5 @@
+"Inbox" = "Boîte de réception";
+
 /* Error message component with the report id */
 " Error report ID: (reportID)" = " ID du rapport d'erreur : (reportID)";
 

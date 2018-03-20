@@ -1,3 +1,5 @@
+"Inbox" = "收件箱";
+
 /* Error message component with the report id */
 " Error report ID: (reportID)" = " 报告 ID 出错：(reportID)";
 
