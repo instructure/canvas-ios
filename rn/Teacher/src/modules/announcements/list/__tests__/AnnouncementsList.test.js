@@ -177,8 +177,9 @@ describe('AnnouncementsList', () => {
       posted_at: '2017-10-27T14:16:00-07:00',
     })
     props.announcements = [announcement]
-    const subtitle: any = explore(render(props).toJSON()).selectByID('announcements.list.announcement.row-0-subtitle-lbl')
-    expect(subtitle.children).toEqual(['Oct 28 at 3:16 PM'])
+    const subtitle: any = explore(render(props).toJSON()).selectByID(`announcements.list.announcement.row-0.subtitle.custom-container`)
+    expect(subtitle.children[0].children).toEqual(['Delayed until: '])
+    expect(subtitle.children[1].children).toEqual(['Oct 28 at 3:16 PM'])
   })
 
   function testRender (props: any) {

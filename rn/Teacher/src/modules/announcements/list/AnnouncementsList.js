@@ -34,6 +34,7 @@ import Images from '../../../images'
 import RowSeparator from '../../../common/components/rows/RowSeparator'
 import ActivityIndicatorView from '../../../common/components/ActivityIndicatorView'
 import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
+import { Text } from '../../../common/text'
 
 const { refreshCourse } = CourseActions
 const { refreshAnnouncements } = ListActions
@@ -97,16 +98,22 @@ export class AnnouncementsList extends Component<Props, any> {
   }
 
   renderRow = ({ item, index }: { item: Discussion, index: number }) => {
+    let subtitle = i18n("{ date, date, 'MMM d'} at { date, time, short }", { date: new Date(item.delayed_post_at || item.posted_at) })
+    const showDelayedText = item.delayed_post_at && new Date(item.delayed_post_at) > new Date()
     return (
       <Row
         title={item.title || i18n('No Title')}
-        subtitle={i18n("{ date, date, 'MMM d'} at { date, time, short }", { date: new Date(item.delayed_post_at || item.posted_at) })}
         border='bottom'
         height='auto'
         disclosureIndicator={true}
         testID={`announcements.list.announcement.row-${index}`}
         onPress={this.selectAnnouncement(item)}
-      />
+      >
+        <View style={style.subtitleContainer} testID={`announcements.list.announcement.row-${index}.subtitle.custom-container`}>
+          {showDelayedText && <Text style={[style.subtitle, style.delay]}>{i18n('Delayed until: ')}</Text>}
+          <Text style={style.subtitle}>{subtitle}</Text>
+        </View>
+      </Row>
     )
   }
 
@@ -185,3 +192,19 @@ export const Refreshed = refresh(
 )(AnnouncementsList)
 const Connected = connect(mapStateToProps, Actions)(Refreshed)
 export default (Connected: Component<Props, any>)
+
+const style = StyleSheet.create({
+  subtitleContainer: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  subtitle: {
+    color: '#8B969E',
+    fontSize: 14,
+    marginTop: 2,
+  },
+
+  delay: {
+    fontWeight: '600',
+  },
+})
