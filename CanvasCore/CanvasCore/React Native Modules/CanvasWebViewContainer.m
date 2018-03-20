@@ -15,6 +15,8 @@
 
 #import <objc/runtime.h>
 
+static NSString *WebViewKeyPath = @"webView.scrollView.contentSize";
+
 // runtime trick to remove WKWebView keyboard default toolbar
 // see: http://stackoverflow.com/questions/19033292/ios-7-uiwebview-keyboard-issue/19042279#19042279
 @interface _SwizzleHelperWK : NSObject @end
@@ -31,6 +33,9 @@
 @property (nonatomic, copy) RCTDirectEventBlock onFinishedLoading;
 @property (nonatomic, copy) RCTDirectEventBlock onMessage;
 @property (nonatomic, copy) RCTDirectEventBlock onError;
+@property (nonatomic, copy) RCTDirectEventBlock onHeightChange;
+
+@property (nonatomic, assign) CGSize contentSize;
 
 @end
 
@@ -47,7 +52,8 @@
         _contentInset = UIEdgeInsetsZero;
         _webView = [CanvasWebView new];
         _webView.frame = self.bounds;
-
+        self.contentSize = CGSizeZero;
+        
         @weakify(self);
         _webView.finishedLoading = ^{
             @strongify(self);
@@ -70,6 +76,8 @@
             }
         };
 
+        [self addObserver:self forKeyPath:WebViewKeyPath options:NSKeyValueObservingOptionNew context:nil];
+        
         // Needs a presenting view controller
         dispatch_async(dispatch_get_main_queue(), ^{
             UIViewController *rootViewController = [[[UIApplication sharedApplication] delegate] window].rootViewController;
@@ -82,6 +90,23 @@
         [self addSubview:_webView];
     }
     return self;
+}
+
+- (void)dealloc {
+    [self removeObserver:self forKeyPath:WebViewKeyPath];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    if ([keyPath isEqualToString:WebViewKeyPath]) {
+        NSValue *value = change[NSKeyValueChangeNewKey];
+        CGSize newSize = [value CGSizeValue];
+        if (!CGSizeEqualToSize(newSize, self.contentSize) && self.onHeightChange) {
+            self.contentSize = newSize;
+            self.onHeightChange(@{ @"height": @(newSize.height) });
+        }
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
 }
 
 - (void)layoutSubviews

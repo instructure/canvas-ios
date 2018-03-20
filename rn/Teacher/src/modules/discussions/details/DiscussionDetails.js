@@ -26,7 +26,6 @@ import {
   SectionList,
   ActionSheetIOS,
   AlertIOS,
-  LayoutAnimation,
   NativeModules,
 } from 'react-native'
 import i18n from 'format-message'
@@ -123,10 +122,6 @@ export class DiscussionDetails extends Component<Props, any> {
       entry_ratings: props.entryRatings || {},
       initialPostRequired: false,
     }
-  }
-
-  componentWillUpdate () {
-    LayoutAnimation.easeInEaseOut()
   }
 
   componentWillUnmount () {

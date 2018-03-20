@@ -81,6 +81,7 @@ exports[`RubricDescription renders 1`] = `
             }
             onError={[Function]}
             onFinishedLoading={[Function]}
+            onHeightChange={[Function]}
             onMessage={[Function]}
             onNavigation={[Function]}
             scrollEnabled={false}

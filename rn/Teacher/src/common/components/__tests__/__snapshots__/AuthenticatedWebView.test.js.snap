@@ -8,6 +8,7 @@ exports[`AuthenticatedWebView renders 1`] = `
   <CanvasWebView
     onError={[Function]}
     onFinishedLoading={[Function]}
+    onHeightChange={[Function]}
     onMessage={[Function]}
     onNavigation={[Function]}
     scrollEnabled={true}
@@ -33,6 +34,7 @@ exports[`AuthenticatedWebView renders without uri 1`] = `
   <CanvasWebView
     onError={[Function]}
     onFinishedLoading={[Function]}
+    onHeightChange={[Function]}
     onMessage={[Function]}
     onNavigation={[Function]}
     scrollEnabled={true}

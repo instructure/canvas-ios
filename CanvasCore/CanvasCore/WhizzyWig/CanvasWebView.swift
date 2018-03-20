@@ -11,7 +11,6 @@ import CanvasKeymaster
 import CanvasKit
 import ReactiveSwift
 
-let sharedPool = WKProcessPool()
 public class CanvasWebView: WKWebView {
     
     public enum Navigation {
@@ -113,7 +112,6 @@ public class CanvasWebView: WKWebView {
     public convenience init() {
         let config = WKWebViewConfiguration()
         config.allowsInlineMediaPlayback = true
-        config.processPool = sharedPool
         self.init(config: config)
 
         config.userContentController.add(MessageHandler(webView: self), name: "dismiss")

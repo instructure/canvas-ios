@@ -55,7 +55,6 @@ export default class CanvasWebView extends Component<Props, State> {
   }
 
   onFinishedLoading = async () => {
-    !this.props.scrollEnabled && this.updateHeight()
     this.props.onFinishedLoading && this.props.onFinishedLoading()
   }
 
@@ -71,6 +70,27 @@ export default class CanvasWebView extends Component<Props, State> {
 
   onError = (error: any) => {
     this.props.onError && this.props.onError(error)
+  }
+
+  onHeightChange = (event: { nativeEvent: { height: number } }) => {
+    if (this.props.scrollEnabled) return
+    const height = event.nativeEvent.height
+    this.setHeight(height)
+  }
+
+  setHeight = (webViewHeight: ?number) => {
+    if (this.props.heightCacheKey) {
+      if (webViewHeight) {
+        heightCache.set(this.props.heightCacheKey, webViewHeight)
+      } else {
+        heightCache.delete(this.props.heightCacheKey)
+      }
+    }
+    this.setState({ webViewHeight })
+  }
+
+  componentWillReceiveProps (newProps: Props) {
+    this.setHeight(null)
   }
 
   shouldComponentUpdate (newProps: Props, newState: State) {
@@ -101,6 +121,7 @@ export default class CanvasWebView extends Component<Props, State> {
           onFinishedLoading={this.onFinishedLoading}
           onNavigation={this.onNavigation}
           onError={this.onError}
+          onHeightChange={this.onHeightChange}
         />
       </View>
     )
@@ -113,22 +134,4 @@ export default class CanvasWebView extends Component<Props, State> {
   }
 
   getWebViewHandle = () => findNodeHandle(this.webView)
-
-  getHeight = (): Promise<any> => {
-    return this.evaluateJavaScript(`
-      document.getElementById('_end_').offsetTop;
-    `)
-  }
-
-  updateHeight = async () => {
-    try {
-      const height = await this.getHeight()
-      if (this.props.heightCacheKey) {
-        heightCache.set(this.props.heightCacheKey, height)
-      }
-      this.setState({ webViewHeight: height })
-    } catch (error) {
-      this.props.onError && this.props.onError(error)
-    }
-  }
 }

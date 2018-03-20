@@ -85,21 +85,28 @@ describe('CanvasWebView', () => {
   })
 
   it('updates height to fit content if scroll disabled', async () => {
-    const evaluateJavaScript = jest.fn(() => Promise.resolve(42))
-    NativeModules.CanvasWebViewManager.evaluateJavaScript = evaluateJavaScript
+    const height = 42
     const tree = shallow(<CanvasWebView {...props} scrollEnabled={false} />)
     const webView = tree.find('WebView')
-    await webView.simulate('FinishedLoading')
+    webView.simulate('HeightChange', { nativeEvent: { height } })
     tree.update()
     expect(tree.find('WebView').props().style.height).toEqual(42)
   })
 
+  it('does not update height to fit content if scroll disabled', async () => {
+    const height = 42
+    const tree = shallow(<CanvasWebView {...props} scrollEnabled={true} />)
+    const webView = tree.find('WebView')
+    webView.simulate('HeightChange', { nativeEvent: { height } })
+    tree.update()
+    expect(tree.find('WebView').props().style.height).not.toEqual(42)
+  })
+
   it('caches the height if a heightCacheKey is provided', async () => {
-    const evaluateJavaScript = jest.fn(() => Promise.resolve(42))
-    NativeModules.CanvasWebViewManager.evaluateJavaScript = evaluateJavaScript
+    const height = 42
     const tree = shallow(<CanvasWebView {...props} scrollEnabled={false} heightCacheKey='1' />)
     const webView = tree.find('WebView')
-    await webView.simulate('FinishedLoading')
+    webView.simulate('HeightChange', { nativeEvent: { height } })
     tree.update()
     expect(heightCache.get('1')).toEqual(42)
   })
@@ -108,15 +115,5 @@ describe('CanvasWebView', () => {
     heightCache.set('2', 52)
     const tree = shallow(<CanvasWebView {...props} scrollEnabled={false} heightCacheKey='2' />)
     expect(tree.find('WebView').props().style.height).toEqual(52)
-  })
-
-  it('handles error when getting height', async () => {
-    const onError = jest.fn()
-    const evaluateJavaScript = jest.fn(() => Promise.reject('error'))
-    NativeModules.CanvasWebViewManager.evaluateJavaScript = evaluateJavaScript
-    const tree = shallow(<CanvasWebView {...props} scrollEnabled={false} onError={onError} />)
-    const webView = tree.find('WebView')
-    await webView.simulate('FinishedLoading')
-    expect(onError).toHaveBeenCalledWith('error')
   })
 })

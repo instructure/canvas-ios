@@ -900,6 +900,7 @@ exports[`renders 1`] = `
             }
             onError={[Function]}
             onFinishedLoading={[Function]}
+            onHeightChange={[Function]}
             onMessage={[Function]}
             onNavigation={[Function]}
             scrollEnabled={false}
@@ -1748,6 +1749,7 @@ exports[`renders as a designer 1`] = `
             }
             onError={[Function]}
             onFinishedLoading={[Function]}
+            onHeightChange={[Function]}
             onMessage={[Function]}
             onNavigation={[Function]}
             scrollEnabled={false}
@@ -2594,6 +2596,7 @@ exports[`renders loading 1`] = `
             }
             onError={[Function]}
             onFinishedLoading={[Function]}
+            onHeightChange={[Function]}
             onMessage={[Function]}
             onNavigation={[Function]}
             scrollEnabled={false}
@@ -3444,6 +3447,7 @@ exports[`renders with no submission types 1`] = `
             }
             onError={[Function]}
             onFinishedLoading={[Function]}
+            onHeightChange={[Function]}
             onMessage={[Function]}
             onNavigation={[Function]}
             scrollEnabled={false}
@@ -4290,6 +4294,7 @@ exports[`renders with not_graded submission type 1`] = `
             }
             onError={[Function]}
             onFinishedLoading={[Function]}
+            onHeightChange={[Function]}
             onMessage={[Function]}
             onNavigation={[Function]}
             scrollEnabled={false}
