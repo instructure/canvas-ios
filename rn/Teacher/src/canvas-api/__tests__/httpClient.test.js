@@ -22,6 +22,7 @@ import httpClient, { isAbort, httpCache } from '../httpClient'
 import { setSession } from '../session'
 import * as templates from '../../__templates__'
 
+jest.unmock('../httpClient')
 jest.mock('AsyncStorage', () => ({
   getItem: jest.fn(),
   setItem: jest.fn(),

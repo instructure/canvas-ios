@@ -51,6 +51,8 @@ jest
     return { alertError: jest.fn() }
   })
 
+jest.useFakeTimers()
+
 describe('DiscussionDetails', () => {
   let props: Props
   beforeEach(() => {
