@@ -42,7 +42,6 @@ export type CourseContentState = {
   announcements: AsyncRefs,
   groups: AsyncRefs,
   attendanceTool: AttendanceToolState,
-  pages: AsyncRefs,
   gradingPeriods: AsyncRefs,
   permissions: ?{ [string]: boolean },
   enabledFeatures: string[],
@@ -132,10 +131,6 @@ export type QuizState = AsyncState & {
   submissions: AsyncRefs,
 }
 
-export type PageState = {
-  data: Page,
-}
-
 export type QuizSubmissionState = AsyncState & {
   data: QuizSubmission,
 }
@@ -174,7 +169,6 @@ export type SubmissionsState = { [string]: SubmissionState }
 export type QuizzesState = { [string]: QuizState }
 export type QuizSubmissionsState = { [string]: QuizSubmissionState }
 export type DiscussionsState = { [string]: DiscussionState & PendingDiscussionReplyState }
-export type PagesState = { [string]: PageState }
 
 export type Entities = {
   accountNotifications: AccountNotificationState,
@@ -191,7 +185,6 @@ export type Entities = {
   quizSubmissions: QuizSubmissionsState,
   discussions: DiscussionsState,
   courseDetailsTabSelectedRow: CourseDetailsTabSelectedRowState,
-  pages: PagesState,
 }
 
 export type FavoriteCoursesState = AsyncState

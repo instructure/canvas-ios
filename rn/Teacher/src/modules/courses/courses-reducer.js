@@ -75,7 +75,6 @@ const emptyCourseState: CourseContentState = {
   announcements: { pending: 0, refs: [] },
   groups: { pending: 0, refs: [] },
   attendanceTool: { pending: 0 },
-  pages: { pending: 0, refs: [] },
   enabledFeatures: [],
   gradingPeriods: { pending: 0, refs: [] },
   permissions: null,

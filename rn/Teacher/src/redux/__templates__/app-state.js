@@ -43,7 +43,6 @@ export const entities: Template<Entities> = template({
   discussions: {},
   announcements: {},
   courseDetailsTabSelectedRow: { rowID: '' },
-  pages: {},
 })
 
 export const appState: Template<AppState> = template({

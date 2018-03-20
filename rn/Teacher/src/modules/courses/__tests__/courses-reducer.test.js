@@ -76,10 +76,6 @@ describe('courses refresher', () => {
         pending: 0,
         refs: [],
       },
-      pages: {
-        pending: 0,
-        refs: [],
-      },
       enabledFeatures: [],
       gradingPeriods: {
         pending: 0,
@@ -544,7 +540,6 @@ describe('refresh single course', () => {
         'gradingPeriods': { 'pending': 0, 'refs': [] },
         'groups': { 'pending': 0, 'refs': [] },
         'oldColor': '#FFFFFF00',
-        'pages': {},
         'pending': 0,
         'permissions': {},
         'quizzes': { 'pending': 0, 'refs': [] },
@@ -568,7 +563,6 @@ describe('refresh single course', () => {
           'gradingPeriods': { 'pending': 0, 'refs': [] },
           'groups': { 'pending': 0, 'refs': [] },
           'oldColor': '#FFFFFF00',
-          'pages': {},
           'pending': 0,
           'permissions': {},
           'quizzes': { 'pending': 0, 'refs': [] },

@@ -67,10 +67,6 @@ Array [
         "pending": 0,
         "refs": Array [],
       },
-      "pages": Object {
-        "pending": 0,
-        "refs": Array [],
-      },
       "pending": 0,
       "permissions": null,
       "quizzes": Object {
@@ -134,10 +130,6 @@ Array [
         "refs": Array [],
       },
       "groups": Object {
-        "pending": 0,
-        "refs": Array [],
-      },
-      "pages": Object {
         "pending": 0,
         "refs": Array [],
       },
