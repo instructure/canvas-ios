@@ -61,9 +61,10 @@ export class EditReply extends React.Component<Props, any> {
 
   render () {
     let message = this.props.message || ''
+    const { isEdit } = this.props
     return (
       <Screen
-        title={i18n('Reply')}
+        title={isEdit ? i18n('Edit') : i18n('Reply')}
         navBarTitleColor={color.darkText}
         navBarButtonColor={color.link}
         rightBarButtons={[

@@ -76,6 +76,15 @@ describe('EditReply', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  it('renders title correctly when editing', () => {
+    defaultProps.isEdit = true
+    let tree = renderer.create(
+      <EditReply {...defaultProps} />
+    ).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
   it('presents error alert', () => {
     jest.useFakeTimers()
     let component = renderer.create(
