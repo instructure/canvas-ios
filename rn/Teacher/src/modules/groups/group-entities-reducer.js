@@ -41,6 +41,9 @@ const groupContents: Reducer<GroupsState, Action> = combineReducers({
   color,
   discussions,
   announcements,
+  // dummys to appease combineReducers
+  pending: state => state || 0,
+  error: state => state || null,
 })
 
 const groupsEntityReducer = handleAsync({

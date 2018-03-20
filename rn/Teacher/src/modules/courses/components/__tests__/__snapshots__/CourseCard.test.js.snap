@@ -9,15 +9,7 @@ exports[`renders 1`] = `
     style={
       Array [
         Object {
-          "backgroundColor": "#ffffff01",
           "height": 160,
-          "shadowColor": "#000",
-          "shadowOffset": Object {
-            "height": 1,
-            "width": 0,
-          },
-          "shadowOpacity": 0.2,
-          "shadowRadius": 1,
         },
         Object {
           "height": 100,
@@ -35,7 +27,13 @@ exports[`renders 1`] = `
           "borderRadius": 4,
           "borderWidth": 0.5,
           "flex": 1,
-          "overflow": "hidden",
+          "shadowColor": "#000",
+          "shadowOffset": Object {
+            "height": 1,
+            "width": 0,
+          },
+          "shadowOpacity": 0.2,
+          "shadowRadius": 1,
         }
       }
     >
@@ -65,6 +63,8 @@ exports[`renders 1`] = `
           style={
             Object {
               "backgroundColor": "#333",
+              "borderTopLeftRadius": 4,
+              "borderTopRightRadius": 4,
               "bottom": 0,
               "left": 0,
               "opacity": 0.8,
@@ -188,15 +188,7 @@ exports[`renders with a grade 1`] = `
     style={
       Array [
         Object {
-          "backgroundColor": "#ffffff01",
           "height": 160,
-          "shadowColor": "#000",
-          "shadowOffset": Object {
-            "height": 1,
-            "width": 0,
-          },
-          "shadowOpacity": 0.2,
-          "shadowRadius": 1,
         },
         Object {
           "height": 100,
@@ -214,7 +206,13 @@ exports[`renders with a grade 1`] = `
           "borderRadius": 4,
           "borderWidth": 0.5,
           "flex": 1,
-          "overflow": "hidden",
+          "shadowColor": "#000",
+          "shadowOffset": Object {
+            "height": 1,
+            "width": 0,
+          },
+          "shadowOpacity": 0.2,
+          "shadowRadius": 1,
         }
       }
     >
@@ -244,6 +242,8 @@ exports[`renders with a grade 1`] = `
           style={
             Object {
               "backgroundColor": "#333",
+              "borderTopLeftRadius": 4,
+              "borderTopRightRadius": 4,
               "bottom": 0,
               "left": 0,
               "opacity": 0.8,
@@ -412,15 +412,7 @@ exports[`renders with a grade even if the grade does not exist 1`] = `
     style={
       Array [
         Object {
-          "backgroundColor": "#ffffff01",
           "height": 160,
-          "shadowColor": "#000",
-          "shadowOffset": Object {
-            "height": 1,
-            "width": 0,
-          },
-          "shadowOpacity": 0.2,
-          "shadowRadius": 1,
         },
         Object {
           "height": 100,
@@ -438,7 +430,13 @@ exports[`renders with a grade even if the grade does not exist 1`] = `
           "borderRadius": 4,
           "borderWidth": 0.5,
           "flex": 1,
-          "overflow": "hidden",
+          "shadowColor": "#000",
+          "shadowOffset": Object {
+            "height": 1,
+            "width": 0,
+          },
+          "shadowOpacity": 0.2,
+          "shadowRadius": 1,
         }
       }
     >
@@ -468,6 +466,8 @@ exports[`renders with a grade even if the grade does not exist 1`] = `
           style={
             Object {
               "backgroundColor": "#333",
+              "borderTopLeftRadius": 4,
+              "borderTopRightRadius": 4,
               "bottom": 0,
               "left": 0,
               "opacity": 0.8,
@@ -636,15 +636,7 @@ exports[`renders with empty image url 1`] = `
     style={
       Array [
         Object {
-          "backgroundColor": "#ffffff01",
           "height": 160,
-          "shadowColor": "#000",
-          "shadowOffset": Object {
-            "height": 1,
-            "width": 0,
-          },
-          "shadowOpacity": 0.2,
-          "shadowRadius": 1,
         },
         Object {
           "height": 100,
@@ -662,7 +654,13 @@ exports[`renders with empty image url 1`] = `
           "borderRadius": 4,
           "borderWidth": 0.5,
           "flex": 1,
-          "overflow": "hidden",
+          "shadowColor": "#000",
+          "shadowOffset": Object {
+            "height": 1,
+            "width": 0,
+          },
+          "shadowOpacity": 0.2,
+          "shadowRadius": 1,
         }
       }
     >
@@ -680,6 +678,8 @@ exports[`renders with empty image url 1`] = `
           style={
             Object {
               "backgroundColor": "#333",
+              "borderTopLeftRadius": 4,
+              "borderTopRightRadius": 4,
               "bottom": 0,
               "left": 0,
               "opacity": 1,
@@ -803,15 +803,7 @@ exports[`renders with image url 1`] = `
     style={
       Array [
         Object {
-          "backgroundColor": "#ffffff01",
           "height": 160,
-          "shadowColor": "#000",
-          "shadowOffset": Object {
-            "height": 1,
-            "width": 0,
-          },
-          "shadowOpacity": 0.2,
-          "shadowRadius": 1,
         },
         Object {
           "height": 100,
@@ -829,7 +821,13 @@ exports[`renders with image url 1`] = `
           "borderRadius": 4,
           "borderWidth": 0.5,
           "flex": 1,
-          "overflow": "hidden",
+          "shadowColor": "#000",
+          "shadowOffset": Object {
+            "height": 1,
+            "width": 0,
+          },
+          "shadowOpacity": 0.2,
+          "shadowRadius": 1,
         }
       }
     >
@@ -859,6 +857,8 @@ exports[`renders with image url 1`] = `
           style={
             Object {
               "backgroundColor": "#333",
+              "borderTopLeftRadius": 4,
+              "borderTopRightRadius": 4,
               "bottom": 0,
               "left": 0,
               "opacity": 0.8,
@@ -982,15 +982,7 @@ exports[`renders without image url 1`] = `
     style={
       Array [
         Object {
-          "backgroundColor": "#ffffff01",
           "height": 160,
-          "shadowColor": "#000",
-          "shadowOffset": Object {
-            "height": 1,
-            "width": 0,
-          },
-          "shadowOpacity": 0.2,
-          "shadowRadius": 1,
         },
         Object {
           "height": 100,
@@ -1008,7 +1000,13 @@ exports[`renders without image url 1`] = `
           "borderRadius": 4,
           "borderWidth": 0.5,
           "flex": 1,
-          "overflow": "hidden",
+          "shadowColor": "#000",
+          "shadowOffset": Object {
+            "height": 1,
+            "width": 0,
+          },
+          "shadowOpacity": 0.2,
+          "shadowRadius": 1,
         }
       }
     >
@@ -1026,6 +1024,8 @@ exports[`renders without image url 1`] = `
           style={
             Object {
               "backgroundColor": "#333",
+              "borderTopLeftRadius": 4,
+              "borderTopRightRadius": 4,
               "bottom": 0,
               "left": 0,
               "opacity": 1,

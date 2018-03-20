@@ -206,6 +206,10 @@ export class PeopleList extends Component<Props, any> {
     return [...values].join()
   }
 
+  keyExtractor (item: AddressBookResult) {
+    return item.id
+  }
+
   _renderRow = ({ item, index }) => {
     let border = 'bottom'
     if (index === 0) {
@@ -319,6 +323,7 @@ export class PeopleList extends Component<Props, any> {
                 refreshing={this.state.pending}
                 onEndReached={() => this.typeAhead.next()}
                 ItemSeparatorComponent={RowSeparator}
+                keyExtractor={this.keyExtractor}
               />
             </View>)
   }

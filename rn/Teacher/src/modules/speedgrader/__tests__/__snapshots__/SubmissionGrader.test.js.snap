@@ -42,7 +42,7 @@ exports[`SubmissionGrader renders 1`] = `
     submissionID="1"
     submissionProps={Object {}}
   />
-  <Connect(SubmissionPicker)
+  <SubmissionPicker
     submissionID="1"
     submissionProps={Object {}}
   />
@@ -120,7 +120,7 @@ exports[`SubmissionGrader renders 1`] = `
                               submissionProps={Object {}}
                               userID={undefined}
                   />
-                  <Connect(SubmissionPicker)
+                  <SubmissionPicker
                               submissionID="1"
                               submissionProps={Object {}}
                   />
@@ -252,7 +252,7 @@ exports[`SubmissionGrader renders 1`] = `
                               submissionProps={Object {}}
                               userID={undefined}
                   />
-                  <Connect(SubmissionPicker)
+                  <SubmissionPicker
                               submissionID="1"
                               submissionProps={Object {}}
                   />
@@ -375,7 +375,7 @@ exports[`SubmissionGrader renders 1`] = `
                                 submissionProps={Object {}}
                                 userID={undefined}
                     />
-                    <Connect(SubmissionPicker)
+                    <SubmissionPicker
                                 submissionID="1"
                                 submissionProps={Object {}}
                     />
@@ -471,7 +471,7 @@ exports[`SubmissionGrader renders wide 1`] = `
         }
       }
     >
-      <Connect(SubmissionPicker)
+      <SubmissionPicker
         submissionID="1"
         submissionProps={Object {}}
       />
@@ -550,7 +550,7 @@ exports[`SubmissionGrader renders wide 1`] = `
                                   submissionProps={Object {}}
                                   userID={undefined}
                       />
-                      <Connect(SubmissionPicker)
+                      <SubmissionPicker
                                   submissionID="1"
                                   submissionProps={Object {}}
                       />
@@ -676,7 +676,7 @@ exports[`SubmissionGrader renders wide 1`] = `
                                                                     }
                                               }
                                   >
-                                              <Connect(SubmissionPicker)
+                                              <SubmissionPicker
                                                           submissionID="1"
                                                           submissionProps={Object {}}
                                               />
@@ -874,7 +874,7 @@ exports[`SubmissionGrader renders wide 1`] = `
                                   submissionProps={Object {}}
                                   userID={undefined}
                       />
-                      <Connect(SubmissionPicker)
+                      <SubmissionPicker
                                   submissionID="1"
                                   submissionProps={Object {}}
                       />
@@ -1000,7 +1000,7 @@ exports[`SubmissionGrader renders wide 1`] = `
                                                                     }
                                               }
                                   >
-                                              <Connect(SubmissionPicker)
+                                              <SubmissionPicker
                                                           submissionID="1"
                                                           submissionProps={Object {}}
                                               />

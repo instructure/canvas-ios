@@ -65,6 +65,9 @@ export class GradePicker extends Component<GradePickerProps, GradePickerState> {
   }
 
   componentWillReceiveProps (nextProps: GradePickerProps) {
+    if (this.state.originalRubricScore !== nextProps.rubricScore) {
+      this.setState({ useCustomGrade: false, originalRubricScore: nextProps.rubricScore })
+    }
     if (this.state.promptValue && this.props.pending && !nextProps.pending && !nextProps.grade) {
       this.setState({ promptValue: null })
       AlertIOS.alert(
@@ -154,11 +157,11 @@ export class GradePicker extends Component<GradePickerProps, GradePickerState> {
       description: 'Number of points deducted.',
     }, { count: pointsDeducted })
     return [
-      <View style={styles.gradeCellMiddle}>
+      <View key='middle' style={styles.gradeCellMiddle}>
         <Text style={styles.orangeText}>{i18n('Late')}</Text>
         <Text style={styles.orangeText}>-{latePointsLabel}</Text>
       </View>,
-      <View style={styles.gradeCellBottom}>
+      <View key='bottom' style={styles.gradeCellBottom}>
         <Heading1>{i18n('Final Grade')}</Heading1>
         { this.renderGrade() }
       </View>,
@@ -166,10 +169,6 @@ export class GradePicker extends Component<GradePickerProps, GradePickerState> {
   }
 
   renderGrade = (latePolicy: boolean = false) => {
-    if (this.state.originalRubricScore !== this.props.rubricScore) {
-      this.setState({ useCustomGrade: false, originalRubricScore: this.props.rubricScore })
-    }
-
     let gradeToUse = latePolicy ? this.props.enteredGrade : this.props.grade
     let scoreToUse = latePolicy ? this.props.enteredScore : this.props.score
 

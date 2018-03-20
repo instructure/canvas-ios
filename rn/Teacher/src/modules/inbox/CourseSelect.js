@@ -74,6 +74,10 @@ export class CourseSelect extends PureComponent<CourseSelectProps> {
               border={section.key === 0 ? 'top' : 'none'} />
   }
 
+  keyExtractor (item: Course) {
+    return item.id
+  }
+
   render () {
     return (
       <Screen
@@ -84,6 +88,7 @@ export class CourseSelect extends PureComponent<CourseSelectProps> {
           sections={this.props.sections}
           renderItem={this.renderItem}
           renderSectionHeader={this.renderSectionHeader}
+          keyExtractor={this.keyExtractor}
         />
       </Screen>
     )

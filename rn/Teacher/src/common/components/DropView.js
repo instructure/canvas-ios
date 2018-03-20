@@ -27,30 +27,20 @@ type BaseProps = {
 type DataProps = { dragItem?: string } | { dragItems?: string[] }
 export type Props = BaseProps & DataProps
 
-export default class DragView extends Component<Props, any> {
+export default class DragView extends Component<Props> {
   render () {
-    let { children, ...rest } = this.props
-
     // Ensure that we are on iOS 11+
-    let validPlatform = false
-    if (Platform.OS === 'ios') {
-      const majorVersionIOS = parseInt(Platform.Version, 10)
-      if (majorVersionIOS >= 11) {
-        validPlatform = true
-      }
-    }
+    const validPlatform = (
+      Platform.OS === 'ios' &&
+      parseInt(Platform.Version, 10) >= 11
+    )
+
     if (!validPlatform) {
       console.warn('DropView can only be used on iOS 11+')
-      return <View {...rest}>
-              { children }
-             </View>
+      return <View {...this.props} />
     }
 
     // Finally, return the view with the child inside it
-    return (
-      <DropViewNative {...rest}>
-        { children }
-      </DropViewNative>
-    )
+    return <DropViewNative {...this.props} />
   }
 }

@@ -29,6 +29,7 @@ import setProps from '../../../../../test/helpers/setProps'
 import app from '../../../app'
 import { shallow } from 'enzyme'
 import { alertError } from '../../../../redux/middleware/error-handler'
+import * as template from '../../../../__templates__'
 
 jest
   .mock('Button', () => 'Button')
@@ -38,7 +39,7 @@ jest
   .mock('../../../../common/components/Avatar', () => 'Avatar')
   .mock('../../../../routing')
   .mock('../../../../routing/Screen')
-  .mock('../../../assignment-details/components/SubmissionBreakdownGraphSection')
+  .mock('../../../assignment-details/components/SubmissionBreakdownGraphSection', () => 'SubmissionBreakdownGraphSection')
   .mock('../../../assignment-details/components/PublishedIcon', () => 'PublishedIcon')
   .mock('LayoutAnimation', () => ({
     easeInEaseOut: jest.fn(),
@@ -49,17 +50,6 @@ jest
   .mock('../../../../redux/middleware/error-handler', () => {
     return { alertError: jest.fn() }
   })
-
-const template = {
-  ...require('../../../../__templates__/discussion'),
-  ...require('../../../../__templates__/assignments'),
-  ...require('../../../../__templates__/course'),
-  ...require('../../../../__templates__/section'),
-  ...require('../../../../__templates__/users'),
-  ...require('../../../../redux/__templates__/app-state'),
-  ...require('../../../../__templates__/helm'),
-  ...require('../../../../__templates__/session'),
-}
 
 describe('DiscussionDetails', () => {
   let props: Props

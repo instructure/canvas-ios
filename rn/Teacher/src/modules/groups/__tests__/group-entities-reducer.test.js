@@ -25,11 +25,7 @@ const { refreshGroupsForCourse, refreshGroup, listUsersForGroup } = Actions
 const { refreshCourses } = CoursesActions
 const { createDiscussion } = DiscussionEditActions
 
-const template = {
-  ...require('../../../__templates__/group'),
-  ...require('../../../__templates__/discussion'),
-  ...require('../../../__templates__/error'),
-}
+import * as template from '../../../__templates__'
 
 test('igornes pending', () => {
   expect(groups({}, {
@@ -95,6 +91,8 @@ test('captures entities with discussion', () => {
       color: '',
       discussions: { pending: 0, refs: [], new: { pending: 1, id: null, error: null } },
       announcements: { pending: 0, refs: [] },
+      pending: 0,
+      error: null,
     },
   })
 
@@ -104,6 +102,8 @@ test('captures entities with discussion', () => {
       color: '',
       discussions: { pending: 0, refs: [], new: { pending: 0, id: announcement.id, error: null } },
       announcements: { pending: 0, refs: [announcement.id] },
+      pending: 0,
+      error: null,
     },
   })
 })

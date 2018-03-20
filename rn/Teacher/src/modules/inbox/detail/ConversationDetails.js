@@ -84,6 +84,11 @@ export class ConversationDetails extends Component <ConversationDetailsProps, an
       this.props.navigator.pop()
     }
   }
+
+  keyExtractor (item: ConversationMessage) {
+    return item.id
+  }
+
   _renderItem = ({ item, index }) => {
     if (!this.props.conversation) return <View />
     return <ConversationMessageRow
@@ -140,6 +145,7 @@ export class ConversationDetails extends Component <ConversationDetailsProps, an
           refreshing={this.props.refreshing}
           onRefresh={this.props.refresh}
           ItemSeparatorComponent={RowSeparator}
+          keyExtractor={this.keyExtractor}
         />
       </View>
     )

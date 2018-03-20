@@ -22,6 +22,7 @@ import renderer from 'react-test-renderer'
 import DrawerState from '../utils/drawer-state'
 import explore from '../../../../test/helpers/explore'
 import { shallow } from 'enzyme'
+import * as template from '../../../__templates__'
 
 jest
   .mock('TouchableOpacity', () => 'TouchableOpacity')
@@ -30,15 +31,11 @@ jest
   .mock('../GradeTab')
   .mock('../components/GradePicker')
   .mock('../components/Header')
-  .mock('../components/SubmissionPicker')
+  .mock('../components/SubmissionPicker', () => 'SubmissionPicker')
   .mock('../components/FilesTab')
   .mock('../components/SimilarityScore')
   .mock('../comments/CommentsTab')
   .mock('../SubmissionViewer', () => 'SubmissionViewer')
-
-let template = {
-  ...require('../../../__templates__/submissions'),
-}
 
 let defaultProps = {
   submissionID: '1',

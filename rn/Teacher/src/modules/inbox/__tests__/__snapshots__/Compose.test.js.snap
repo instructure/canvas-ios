@@ -155,8 +155,6 @@ exports[`Compose renders 1`] = `
         style={
           Array [
             Object {
-              "fontSize": 16,
-              "lineHeight": 19,
               "paddingBottom": 12.8,
               "paddingLeft": 16,
               "paddingRight": 16,
@@ -347,8 +345,6 @@ exports[`Compose renders after picking a course 1`] = `
         style={
           Array [
             Object {
-              "fontSize": 16,
-              "lineHeight": 19,
               "paddingBottom": 12.8,
               "paddingLeft": 16,
               "paddingRight": 16,
@@ -618,8 +614,6 @@ exports[`Compose renders reply 1`] = `
         style={
           Array [
             Object {
-              "fontSize": 16,
-              "lineHeight": 19,
               "paddingBottom": 12.8,
               "paddingLeft": 16,
               "paddingRight": 16,
@@ -810,8 +804,6 @@ exports[`Compose renders with passed in recipients 1`] = `
         style={
           Array [
             Object {
-              "fontSize": 16,
-              "lineHeight": 19,
               "paddingBottom": 12.8,
               "paddingLeft": 16,
               "paddingRight": 16,

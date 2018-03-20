@@ -68,6 +68,10 @@ export class GroupList extends Component<GroupListProps, any> {
     )
   }
 
+  keyExtractor (item: Group) {
+    return item.id
+  }
+
   _renderRow = ({ item, index }) => {
     let border = index === 0 ? 'both' : 'bottom'
 
@@ -101,6 +105,7 @@ export class GroupList extends Component<GroupListProps, any> {
           ListEmptyComponent={this.state.pending ? null : empty}
           refreshing={this.state.pending}
           ItemSeparatorComponent={RowSeparator}
+          keyExtractor={this.keyExtractor}
         />
       </View>)
   }

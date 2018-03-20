@@ -22,17 +22,13 @@ import { EnrollmentsActions } from '../../enrollments/actions'
 import { courses as coursesReducer } from '../courses-reducer'
 import { apiResponse, apiError } from '../../../../test/helpers/apiMock'
 import { testAsyncReducer } from '../../../../test/helpers/async'
-import * as courseTemplate from '../../../__templates__/course'
-
-let templates = {
-  ...require('../../../__templates__/enrollments'),
-}
+import * as templates from '../../../__templates__'
 
 describe('courses refresher', () => {
   it('should capture courses from response', async () => {
-    const course = courseTemplate.course()
+    const course = templates.course()
     const courses = [course]
-    const customColors = courseTemplate.customColors()
+    const customColors = templates.customColors()
 
     let action = CoursesActions({
       getCourses: apiResponse(courses),
@@ -89,10 +85,10 @@ describe('courses refresher', () => {
   })
 
   it('puts in all courses', async () => {
-    const course = courseTemplate.course()
-    const nonTeacherCourse = { ...courseTemplate.course({ id: 991 }), enrollments: [] }
+    const course = templates.course()
+    const nonTeacherCourse = { ...templates.course({ id: 991 }), enrollments: [] }
     const courses = [course, nonTeacherCourse]
-    const customColors = courseTemplate.customColors()
+    const customColors = templates.customColors()
 
     let action = CoursesActions({
       getCourses: apiResponse(courses),
@@ -174,7 +170,7 @@ describe('update course', () => {
   let defaultState
 
   beforeEach(() => {
-    course = courseTemplate.course({
+    course = templates.course({
       id: '1',
       name: 'Old Name',
       default_view: 'wiki',
@@ -327,7 +323,7 @@ describe('update course nickname', () => {
   let defaultState
 
   beforeEach(() => {
-    course = courseTemplate.course({
+    course = templates.course({
       id: '1',
       name: 'Old Name',
       default_view: 'wiki',

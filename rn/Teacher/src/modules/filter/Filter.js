@@ -43,11 +43,8 @@ type FilterState = {
 }
 
 export default class Filter extends Component<FilterProps, FilterState> {
-  constructor (props: FilterProps) {
-    super(props)
-    this.state = {
-      filterOptions: this.props.filterOptions,
-    }
+  state = {
+    filterOptions: this.props.filterOptions,
   }
 
   resetAllFilters = () => {
@@ -76,6 +73,10 @@ export default class Filter extends Component<FilterProps, FilterState> {
     } else {
       this.updateFilterSelection(selectedOption.type)
     }
+  }
+
+  keyExtractor (item: SubmissionFilterOption) {
+    return item.type
   }
 
   renderRow = ({ item }: { item: SubmissionFilterOption }) => {
@@ -118,7 +119,7 @@ export default class Filter extends Component<FilterProps, FilterState> {
         <FlatList
           data={this.state.filterOptions}
           renderItem={this.renderRow}
-          extraData
+          keyExtractor={this.keyExtractor}
         />
       </Screen>
     )

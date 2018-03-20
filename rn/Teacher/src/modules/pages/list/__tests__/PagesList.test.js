@@ -32,7 +32,9 @@ const diveList = (list: any) =>
   shallow(
     <list>
       {list.prop('data').map((item, index) =>
-        list.prop('renderItem')({ item, index })
+        <item key={list.prop('keyExtractor')(item)}>
+          {list.prop('renderItem')({ item, index })}
+        </item>
       )}
     </list>
   )

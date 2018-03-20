@@ -70,8 +70,8 @@ const ColorStyles = () => (
   <StyleRow
     title='Colors'
     contentStyle={styles.colorContent}>{
-    Object.keys(colors).map(key => (
-      <ColorStyle name={key} color={colors[key]} />
+    Object.keys(colors).filter(key => key !== 'statusBarStyle').map(key => (
+      <ColorStyle key={key} name={key} color={colors[key]} />
     ))
   }</StyleRow>
 )

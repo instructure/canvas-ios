@@ -18,7 +18,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
   }
   title="Files"
 >
-  <View
+  <DropView
     style={
       Object {
         "flex": 1,
@@ -932,7 +932,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
         }
       }
     />
-  </View>
+  </DropView>
 </Screen>
 `;
 
@@ -954,7 +954,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
   }
   title="Files"
 >
-  <View
+  <DropView
     style={
       Object {
         "flex": 1,
@@ -1868,7 +1868,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
         }
       }
     />
-  </View>
+  </DropView>
 </Screen>
 `;
 
@@ -1890,7 +1890,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
   }
   title="Files"
 >
-  <View
+  <DropView
     style={
       Object {
         "flex": 1,
@@ -2804,7 +2804,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
         }
       }
     />
-  </View>
+  </DropView>
 </Screen>
 `;
 
@@ -2826,7 +2826,7 @@ exports[`FilesList sending weird data into the progress update function should n
   }
   title="Files"
 >
-  <View
+  <DropView
     style={
       Object {
         "flex": 1,
@@ -3740,7 +3740,7 @@ exports[`FilesList sending weird data into the progress update function should n
         }
       }
     />
-  </View>
+  </DropView>
 </Screen>
 `;
 
@@ -3762,7 +3762,7 @@ exports[`FilesList should render 1`] = `
   }
   title="Files"
 >
-  <View
+  <DropView
     style={
       Object {
         "flex": 1,
@@ -4676,7 +4676,7 @@ exports[`FilesList should render 1`] = `
         }
       }
     />
-  </View>
+  </DropView>
 </Screen>
 `;
 
@@ -4698,7 +4698,7 @@ exports[`FilesList should render for course files 1`] = `
   }
   title="Files"
 >
-  <View
+  <DropView
     style={
       Object {
         "flex": 1,
@@ -5612,7 +5612,7 @@ exports[`FilesList should render for course files 1`] = `
         }
       }
     />
-  </View>
+  </DropView>
 </Screen>
 `;
 
@@ -5634,7 +5634,7 @@ exports[`FilesList should render for user files 1`] = `
   }
   title="Files"
 >
-  <View
+  <DropView
     style={
       Object {
         "flex": 1,
@@ -6548,7 +6548,7 @@ exports[`FilesList should render for user files 1`] = `
         }
       }
     />
-  </View>
+  </DropView>
 </Screen>
 `;
 
@@ -6570,7 +6570,7 @@ exports[`FilesList should render with folders 1`] = `
   }
   title="Files"
 >
-  <View
+  <DropView
     style={
       Object {
         "flex": 1,
@@ -7484,7 +7484,7 @@ exports[`FilesList should render with folders 1`] = `
         }
       }
     />
-  </View>
+  </DropView>
 </Screen>
 `;
 
@@ -7506,7 +7506,7 @@ exports[`FilesList should render with no data at all 1`] = `
   }
   title="Files"
 >
-  <View
+  <DropView
     style={
       Object {
         "flex": 1,
@@ -7564,6 +7564,6 @@ exports[`FilesList should render with no data at all 1`] = `
         }
       }
     />
-  </View>
+  </DropView>
 </Screen>
 `;

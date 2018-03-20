@@ -16,54 +16,52 @@
 
 /* @flow */
 
-import { View, Text } from 'react-native'
+import { shallow } from 'enzyme'
 import React from 'react'
+import { View, Text } from 'react-native'
+import { createStore } from 'redux'
 import { wrapComponentInProviders, route } from '../'
 import { setSession } from '../../canvas-api/session.js'
-const template = {
-  ...require('../../__templates__/session'),
-}
+import * as template from '../../__templates__'
 
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer'
+describe('wrapComponentInProviders', () => {
+  const store = createStore(() => ({}))
 
-class TestScreen extends React.Component<{}> {
-  render () {
-    return (<View>
-              <Text>Test Screen</Text>
-            </View>)
-  }
-}
+  it('renders wrapped screen with store correctly', () => {
+    const session = template.session({ actAsUserID: 2 })
+    setSession(session)
+    const generator = () => () =>
+      <View>
+        <Text>Test Screen</Text>
+      </View>
+    const wrappedGenerator = wrapComponentInProviders('TestScreen', generator, store)
+    const Wrapped = wrappedGenerator()
 
-test('renders wrapped screen with store correctly', () => {
-  const session = template.session({ actAsUserID: 2 })
-  setSession(session)
-  const generator = () => TestScreen
-  const wrappedGenerator = wrapComponentInProviders('TestScreen', generator, {})
-  const Wrapped = wrappedGenerator()
+    let tree = shallow(<Wrapped />)
+    expect(tree).toMatchSnapshot()
+  })
 
-  let tree = renderer.create(
-    <Wrapped />
-  )
-  expect(tree.toJSON()).toMatchSnapshot()
+  it('renders wrapped screen and shows the error screen when there is an error', () => {
+    global.crashReporter = { notify: jest.fn() }
+    const ErrorThrower = () => { throw new Error() }
+    const generator = () => ErrorThrower
+    const wrappedGenerator = wrapComponentInProviders('TestScreen', generator, store)
+    const Wrapped = wrappedGenerator()
+
+    let tree = shallow(<Wrapped />)
+    try { // https://github.com/airbnb/enzyme/issues/1255
+      tree.find(ErrorThrower).dive()
+    } catch (err) {
+      tree.instance().componentDidCatch(err)
+      tree.update()
+    }
+    expect(global.crashReporter.notify).toHaveBeenCalled()
+    expect(tree).toMatchSnapshot()
+  })
 })
 
-test('renders wrapped screen and shows the error screen when there is an error', () => {
-  global.crashReporter = { notify: jest.fn() }
-  // $FlowFixMe - need to trigger an error
-  const generator = () => () => <View>{undefined.asdf}</View>
-  const wrappedGenerator = wrapComponentInProviders('TestScreen', generator, {})
-  const Wrapped = wrappedGenerator()
-
-  let tree = renderer.create(<Wrapped />)
-  expect(global.crashReporter.notify).toHaveBeenCalled()
-  expect(tree.toJSON()).toMatchSnapshot()
-})
-
-test('route to something that does not exist', () => {
-  try {
-    route('garbage')
-  } catch (error) {
-    expect(error).toBeDefined()
-  }
+describe('route', () => {
+  it('throws on routes not found', () => {
+    expect(() => route('garbage')).toThrow()
+  })
 })

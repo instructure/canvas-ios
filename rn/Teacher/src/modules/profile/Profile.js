@@ -203,7 +203,7 @@ export class Profile extends Component<Object, State> {
     let externalTools = (this.props.externalTools || [])
 
     const buildRow = (title: string, onPress: ?Function, switchProps?: ?Object, testIDProps?: Object = {}) => {
-      return (<View>
+      return (<View key={testIDProps.testID || title}>
                 { onPress && <Row title={title} titleStyles={titleStyles} onPress={onPress} {...testIDProps} />}
                 { switchProps && Object.keys(switchProps).length > 0 && <RowWithSwitch title={title} titleStyles={titleStyles} {...switchProps} />}
                 <RowSeparator style={styles.separator} />

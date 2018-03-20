@@ -42,6 +42,7 @@ import Navigator from '../../routing/Navigator'
 import Video from '../../common/components/Video'
 import { isTeacher } from '../app'
 import CanvasWebView from '../../common/components/CanvasWebView'
+import { alertError } from '../../redux/middleware/error-handler'
 
 type Props = {
   context?: CanvasContext,
@@ -205,9 +206,8 @@ export default class ViewFile extends Component<Props, State> {
   handleShare = () => {
     if (this.state.localPath) {
       ActionSheetIOS.showShareActionSheetWithOptions({ url: this.state.localPath }, (error: Error) => {
-        console.log('Failed showing share sheet', error)
+        alertError(error)
       }, (success: boolean, method: string) => {
-        console.log('Successfully shared file', method)
       })
     }
   }

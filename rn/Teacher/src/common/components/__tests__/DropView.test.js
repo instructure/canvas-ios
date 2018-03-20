@@ -16,13 +16,39 @@
 
 // @flow
 
+import { shallow } from 'enzyme'
 import React from 'react'
-import renderer from 'react-test-renderer'
+import { Platform, View } from 'react-native'
 import DropView from '../DropView'
 
-test('renders', () => {
-  let tree = renderer.create(
-    <DropView />
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
+jest.mock('Platform', () => ({
+  OS: 'ios',
+  Version: '11.2',
+}))
+
+describe('DropView', () => {
+  const warn = console.warn
+  beforeEach(() => {
+    console.warn = jest.fn()
+  })
+  afterEach(() => {
+    console.warn = warn
+  })
+
+  it('renders a native dropview on ios 11 and above', () => {
+    // $FlowFixMe
+    Platform.Version = '11.2.1'
+    const tree = shallow(<DropView><View /></DropView>)
+    expect(tree).toMatchSnapshot()
+    expect(console.warn).not.toHaveBeenCalled()
+  })
+
+  it('warns and renders a normal view on other versions', () => {
+    // $FlowFixMe
+    Platform.Version = '10.3.1'
+    const tree = shallow(<DropView />)
+    expect(tree).toMatchSnapshot()
+    expect(tree.type()).toBe(View)
+    expect(console.warn).toHaveBeenCalledWith('DropView can only be used on iOS 11+')
+  })
 })

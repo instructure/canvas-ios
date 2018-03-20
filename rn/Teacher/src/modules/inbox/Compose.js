@@ -357,8 +357,6 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
   },
   message: {
-    fontSize: 16,
-    lineHeight: 19,
     paddingTop: global.style.defaultPadding / 1.25,
     paddingBottom: global.style.defaultPadding / 1.25,
     paddingLeft: global.style.defaultPadding,

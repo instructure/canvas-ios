@@ -11,3 +11,7 @@ sed -i '' -e 's/MAX(-contentInset.left, MIN(contentSize.height/MAX(-contentInset
 
 # https://github.com/facebook/react-native/issues/16039
 sed -i '' 's#<fishhook/fishhook.h>#\"fishhook.h\"#g' ./node_modules/react-native/Libraries/WebSocket/RCTReconnectingWebSocket.m
+
+# https://github.com/facebook/react-native/issues/18079
+# set the warning condition true. (it warns if false)
+sed -i '' -e "s/flatStyles == null || flatStyles.flexWrap !== 'wrap'/true/g" ./node_modules/react-native/Libraries/Lists/VirtualizedList.js

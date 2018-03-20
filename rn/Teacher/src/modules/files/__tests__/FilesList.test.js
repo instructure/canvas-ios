@@ -21,13 +21,7 @@ import { ActionSheetIOS, AlertIOS, Alert } from 'react-native'
 
 import { FilesList, mapStateToProps } from '../FilesList'
 
-const template = {
-  ...require('../../../__templates__/file'),
-  ...require('../../../__templates__/folder'),
-  ...require('../../../__templates__/attachment'),
-  ...require('../../../redux/__templates__/app-state'),
-  ...require('../../../__templates__/helm'),
-}
+import * as template from '../../../__templates__'
 
 const data = [
   template.folder({ type: 'folder', key: 'folder-1' }),
@@ -38,6 +32,10 @@ const data = [
 jest
   .mock('../../attachments/AttachmentPicker', () => 'AttachmentPicker')
   .mock('../../../routing/Screen')
+  .mock('Platform', () => ({
+    OS: 'ios',
+    Version: '11.2',
+  }))
 
 describe('FilesList', () => {
   it('should render', () => {

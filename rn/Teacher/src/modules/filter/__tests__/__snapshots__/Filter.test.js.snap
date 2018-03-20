@@ -87,7 +87,6 @@ exports[`Filter renders the filter options 1`] = `
       ]
     }
     disableVirtualization={false}
-    extraData={true}
     getItem={[Function]}
     getItemCount={[Function]}
     horizontal={false}
@@ -875,7 +874,6 @@ exports[`Filter renders with preselected options 1`] = `
       ]
     }
     disableVirtualization={false}
-    extraData={true}
     getItem={[Function]}
     getItemCount={[Function]}
     horizontal={false}
@@ -1719,7 +1717,6 @@ exports[`Filter updates the selection when pressed for non prompt filter options
       ]
     }
     disableVirtualization={false}
-    extraData={true}
     getItem={[Function]}
     getItemCount={[Function]}
     horizontal={false}

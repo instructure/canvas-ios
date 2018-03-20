@@ -31,6 +31,7 @@ jest.mock('AsyncStorage', () => ({
 
 describe('httpClient', () => {
   const originalXHR = global.XMLHttpRequest
+  const warn = console.warn
 
   let request
   beforeEach(() => {
@@ -48,12 +49,14 @@ describe('httpClient', () => {
       getAllResponseHeaders: jest.fn(),
     }
     global.XMLHttpRequest = function () { return request }
+    console.warn = jest.fn()
     Blob = function Blob () {}
     FormData = function FormData () {}
   })
 
   afterEach(() => {
     global.XMLHttpRequest = originalXHR
+    console.warn = warn
     setSession(templates.session())
   })
 

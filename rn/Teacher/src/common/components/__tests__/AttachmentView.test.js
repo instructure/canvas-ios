@@ -22,9 +22,7 @@ import AttachmentView from '../AttachmentView'
 import renderer from 'react-test-renderer'
 import md5 from 'md5'
 
-const templates = {
-  ...require('../../../__templates__/helm'),
-}
+import * as templates from '../../../__templates__'
 
 jest.mock('ActionSheetIOS', () => ({
   showShareActionSheetWithOptions: jest.fn(),

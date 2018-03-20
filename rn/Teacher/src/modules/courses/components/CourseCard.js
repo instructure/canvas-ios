@@ -103,45 +103,45 @@ export default class CourseCard extends Component<Props, State> {
           underlayColor='transparent'
         >
           <View style={styles.cardContainer}>
-              <View style={styles.imageWrapper}>
-                {Boolean(course.image_download_url) &&
-                  <Image source={{ uri: course.image_download_url }} style={styles.image} />
-                }
-                <View style={this.createImageStyles()}
-                  accessible={true}
-                  accessibilityTraits='button'
-                  accessibilityLabel={`${course.name} ${gradeDisplay || ''}`}
-                />
-                { showGrade &&
-                  <View style={styles.gradePill}>
-                    <Heading1
-                      numberOfLines={2}
-                      style={[styles.gradeText, { color: this.props.color }]}>
-                      { gradeDisplay }
-                    </Heading1>
-                  </View>
-                }
-                <TouchableHighlight
-                  style={styles.kabobButton}
-                  onPress={this.onCoursePreferencesPressed}
-                  accessibilityTraits='button'
-                  accessible={true}
-                  accessibilityLabel={i18n('Open {courseName} user preferences', { courseName: course.name })}
-                  underlayColor='#ffffff00'
-                  testID={`course-card.kabob-${course.id}`}
-                >
-                  <Image style={styles.kabob} source={Images.kabob} />
-                </TouchableHighlight>
-              </View>
-              <View style={styles.titleWrapper} accessible={false}>
-                <Text numberOfLines={2} style={this.createTitleStyles()} accessible={false}>
-                  {course.name}
-                </Text>
-                <Text numberOfLines={1} style={styles.code} accessible={false}>{course.course_code}</Text>
-              </View>
+            <View style={styles.imageWrapper}>
+              {Boolean(course.image_download_url) &&
+                <Image source={{ uri: course.image_download_url }} style={styles.image} />
+              }
+              <View style={this.createImageStyles()}
+                accessible={true}
+                accessibilityTraits='button'
+                accessibilityLabel={`${course.name} ${gradeDisplay || ''}`}
+              />
+              { showGrade &&
+                <View style={styles.gradePill}>
+                  <Heading1
+                    numberOfLines={2}
+                    style={[styles.gradeText, { color: this.props.color }]}>
+                    { gradeDisplay }
+                  </Heading1>
+                </View>
+              }
+              <TouchableHighlight
+                style={styles.kabobButton}
+                onPress={this.onCoursePreferencesPressed}
+                accessibilityTraits='button'
+                accessible={true}
+                accessibilityLabel={i18n('Open {courseName} user preferences', { courseName: course.name })}
+                underlayColor='#ffffff00'
+                testID={`course-card.kabob-${course.id}`}
+              >
+                <Image style={styles.kabob} source={Images.kabob} />
+              </TouchableHighlight>
             </View>
-          </TouchableHighlight>
-        </A11yGroup>
+            <View style={styles.titleWrapper} accessible={false}>
+              <Text numberOfLines={2} style={this.createTitleStyles()} accessible={false}>
+                {course.name}
+              </Text>
+              <Text numberOfLines={1} style={styles.code} accessible={false}>{course.course_code}</Text>
+            </View>
+          </View>
+        </TouchableHighlight>
+      </A11yGroup>
     )
   }
 }
@@ -149,6 +149,11 @@ export default class CourseCard extends Component<Props, State> {
 const styles = StyleSheet.create({
   card: {
     height: 160,
+  },
+  cardContainer: {
+    borderColor: '#e3e3e3',
+    borderWidth: StyleSheet.hairlineWidth,
+    borderRadius: 4,
     shadowColor: '#000',
     shadowRadius: 1,
     shadowOpacity: 0.2,
@@ -156,13 +161,6 @@ const styles = StyleSheet.create({
       width: 0,
       height: 1,
     },
-    backgroundColor: '#ffffff01',
-  },
-  cardContainer: {
-    borderColor: '#e3e3e3',
-    borderWidth: StyleSheet.hairlineWidth,
-    borderRadius: 4,
-    overflow: 'hidden',
     flex: 1,
     backgroundColor: 'white',
   },
@@ -173,6 +171,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   imageColor: {
+    borderTopLeftRadius: 4,
+    borderTopRightRadius: 4,
     position: 'absolute',
     top: 0,
     bottom: 0,

@@ -26,6 +26,14 @@ import * as utils from '../utils'
 
 describe('routing utils', () => {
   describe('processConfig', () => {
+    const warn = console.warn
+    beforeEach(() => {
+      console.warn = jest.fn()
+    })
+    afterEach(() => {
+      console.warn = warn
+    })
+
     it('processes config', () => {
       const id = 'test'
       const testID = 'testID'
@@ -72,6 +80,7 @@ describe('routing utils', () => {
       const result = utils.processConfig(config, '', configure)
       const expected = {}
       expect(result).toMatchObject(expected)
+      expect(console.warn).toHaveBeenCalled()
     })
   })
 

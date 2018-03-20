@@ -1,85 +1,152 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders wrapped screen and shows the error screen when there is an error 1`] = `
-<RCTSafeAreaView
-  style={
-    Object {
-      "flex": 1,
+exports[`wrapComponentInProviders renders wrapped screen and shows the error screen when there is an error 1`] = `
+<ErrorScreen
+  navigator={
+    Navigator {
+      "isModal": undefined,
+      "moduleName": "TestScreen",
+    }
+  }
+/>
+`;
+
+exports[`wrapComponentInProviders renders wrapped screen with store correctly 1`] = `
+<ApolloProvider
+  client={
+    ApolloClient {
+      "cache": InMemoryCache {
+        "addTypename": true,
+        "config": Object {
+          "addTypename": true,
+          "dataIdFromObject": [Function],
+          "fragmentMatcher": HeuristicFragmentMatcher {},
+          "storeFactory": [Function],
+        },
+        "data": ObjectCache {
+          "data": Object {},
+        },
+        "optimistic": Array [],
+        "silenceBroadcast": false,
+        "watches": Array [],
+      },
+      "defaultOptions": Object {},
+      "disableNetworkFetches": false,
+      "link": ApolloLink {
+        "request": [Function],
+      },
+      "mutate": [Function],
+      "query": [Function],
+      "queryDeduplication": true,
+      "reFetchObservableQueries": [Function],
+      "resetStore": [Function],
+      "resetStoreCallbacks": Array [],
+      "ssrMode": false,
+      "store": DataStore {
+        "cache": InMemoryCache {
+          "addTypename": true,
+          "config": Object {
+            "addTypename": true,
+            "dataIdFromObject": [Function],
+            "fragmentMatcher": HeuristicFragmentMatcher {},
+            "storeFactory": [Function],
+          },
+          "data": ObjectCache {
+            "data": Object {},
+          },
+          "optimistic": Array [],
+          "silenceBroadcast": false,
+          "watches": Array [],
+        },
+      },
+      "version": "2.2.2",
+      "watchQuery": [Function],
     }
   }
 >
-  <View
-    style={
+  <Provider
+    store={
       Object {
-        "alignItems": "center",
-        "flex": 1,
-        "justifyContent": "center",
-        "padding": 24,
+        "dispatch": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+        Symbol(observable): [Function],
       }
     }
   >
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
+    <Component
+      apollo={
+        ApolloClient {
+          "cache": InMemoryCache {
+            "addTypename": true,
+            "config": Object {
+              "addTypename": true,
+              "dataIdFromObject": [Function],
+              "fragmentMatcher": HeuristicFragmentMatcher {},
+              "storeFactory": [Function],
+            },
+            "data": ObjectCache {
+              "data": Object {},
+            },
+            "optimistic": Array [],
+            "silenceBroadcast": false,
+            "watches": Array [],
           },
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
+          "defaultOptions": Object {},
+          "disableNetworkFetches": false,
+          "link": ApolloLink {
+            "request": [Function],
           },
-          Object {
-            "fontSize": 32,
-            "fontWeight": "300",
-            "margin": 8,
+          "mutate": [Function],
+          "query": [Function],
+          "queryDeduplication": true,
+          "reFetchObservableQueries": [Function],
+          "resetStore": [Function],
+          "resetStoreCallbacks": Array [],
+          "ssrMode": false,
+          "store": DataStore {
+            "cache": InMemoryCache {
+              "addTypename": true,
+              "config": Object {
+                "addTypename": true,
+                "dataIdFromObject": [Function],
+                "fragmentMatcher": HeuristicFragmentMatcher {},
+                "storeFactory": [Function],
+              },
+              "data": ObjectCache {
+                "data": Object {},
+              },
+              "optimistic": Array [],
+              "silenceBroadcast": false,
+              "watches": Array [],
+            },
           },
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-        ]
+          "version": "2.2.2",
+          "watchQuery": [Function],
+        }
       }
-    >
-      Whoops!
-    </Text>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-          },
-          Object {
-            "textAlign": "center",
-          },
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-        ]
+      navigator={
+        Navigator {
+          "isModal": undefined,
+          "moduleName": "TestScreen",
+        }
       }
-    >
-      Something went wrong on our end. Don't worry, we've recorded this and will be taking care of it shortly.
-    </Text>
-  </View>
-</RCTSafeAreaView>
-`;
-
-exports[`renders wrapped screen with store correctly 1`] = `
-<View>
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-  >
-    Test Screen
-  </Text>
-</View>
+      session={
+        Object {
+          "actAsUserID": 2,
+          "authToken": "iamanauthtoken",
+          "baseURL": "http://mobiledev.instructure.com/",
+          "user": Object {
+            "avatar_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+            "id": "1",
+            "name": "Key and Peele",
+            "primary_email": "keyandpeele@instructure.com",
+          },
+        }
+      }
+      testID="TestScreen"
+    />
+  </Provider>
+</ApolloProvider>
 `;

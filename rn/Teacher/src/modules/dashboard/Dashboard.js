@@ -322,7 +322,6 @@ export class Dashboard extends React.Component<Props, State> {
         onRefresh={this.props.refresh}
         stickySectionHeadersEnabled={false}
         renderSectionHeader={this.renderHeader}
-        onLayout={this.onLayout}
         contentContainerStyle={styles.gridish}
         onLayout={this.onLayout}
         sections={sections}

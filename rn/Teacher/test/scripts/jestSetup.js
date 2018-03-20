@@ -236,3 +236,7 @@ jest.mock('react-native-device-info', () => {
     },
   }
 })
+
+global.XMLHttpRequest = function () {
+  throw new Error('Please mock httpClient, so you do not make real requests on accident')
+}

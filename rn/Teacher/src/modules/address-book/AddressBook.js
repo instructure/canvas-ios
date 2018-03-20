@@ -133,6 +133,10 @@ export class AddressBook extends Component<AddressBookProps, State> {
     this.props.navigator.dismiss()
   }
 
+  keyExtractor (item: AddressBookResult) {
+    return item.id
+  }
+
   _renderRow = ({ item, index }) => {
     let border = 'bottom'
     if (index === 0) {
@@ -176,6 +180,7 @@ export class AddressBook extends Component<AddressBookProps, State> {
                 refreshing={this.state.pending}
                 onEndReached={() => this.typeAhead && this.typeAhead.next()}
                 ItemSeparatorComponent={RowSeparator}
+                keyExtractor={this.keyExtractor}
               />
             </View>)
   }

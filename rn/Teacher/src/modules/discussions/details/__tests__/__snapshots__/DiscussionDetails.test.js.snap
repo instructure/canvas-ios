@@ -893,6 +893,17 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                         Submissions
                       </Text>
                     </View>
+                    <SubmissionBreakdownGraphSection
+                      assignmentID="123456789"
+                      courseID="1"
+                      onPress={[Function]}
+                      style={
+                        Object {
+                          "marginRight": 40,
+                          "marginTop": 8,
+                        }
+                      }
+                    />
                   </View>
                   <View
                     style={
@@ -4502,6 +4513,17 @@ exports[`DiscussionDetails renders no replies 1`] = `
                         Submissions
                       </Text>
                     </View>
+                    <SubmissionBreakdownGraphSection
+                      assignmentID="123456789"
+                      courseID="1"
+                      onPress={[Function]}
+                      style={
+                        Object {
+                          "marginRight": 40,
+                          "marginTop": 8,
+                        }
+                      }
+                    />
                   </View>
                   <View
                     style={
@@ -5950,6 +5972,17 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                         Submissions
                       </Text>
                     </View>
+                    <SubmissionBreakdownGraphSection
+                      assignmentID="123456789"
+                      courseID="1"
+                      onPress={[Function]}
+                      style={
+                        Object {
+                          "marginRight": 40,
+                          "marginTop": 8,
+                        }
+                      }
+                    />
                   </View>
                   <View
                     style={
@@ -8202,6 +8235,17 @@ exports[`DiscussionDetails renders with replies 1`] = `
                         Submissions
                       </Text>
                     </View>
+                    <SubmissionBreakdownGraphSection
+                      assignmentID="123456789"
+                      courseID="1"
+                      onPress={[Function]}
+                      style={
+                        Object {
+                          "marginRight": 40,
+                          "marginTop": 8,
+                        }
+                      }
+                    />
                   </View>
                   <View
                     style={

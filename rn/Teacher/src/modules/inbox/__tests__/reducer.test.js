@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-/* eslint-disable flowtype/require-valid-file-annotation */
+// @flow
 
 import inbox, { conversations } from '../reducer'
 import { InboxActions } from '../actions'
@@ -22,9 +22,7 @@ import { apiResponse, apiError } from '../../../../test/helpers/apiMock'
 import { testAsyncReducer } from '../../../../test/helpers/async'
 
 const { refreshInboxAll, updateInboxSelectedScope, markAsRead, deleteConversationMessage } = InboxActions()
-const templates = {
-  ...require('../../../__templates__/conversations'),
-}
+import * as templates from '../../../__templates__'
 
 test('it handles the data', () => {
   const data = [
@@ -71,7 +69,7 @@ test('handles updating scope', () => {
     type: updateInboxSelectedScope.toString(),
     payload: 'unread',
   }
-  const result = inbox('all', action)
+  const result = inbox({}, action)
   expect(result).toMatchObject({
     selectedScope: 'unread',
   })
@@ -202,7 +200,7 @@ describe('deleteConversation', () => {
 })
 
 describe('deleteConversationMessage', () => {
-  let defaultState
+  let defaultState: $ReturnOf<typeof conversations>
   beforeEach(() => {
     defaultState = {
       '1': {
