@@ -14,24 +14,17 @@
 // limitations under the License.
 //
 
-/* @flow */
-
+// @flow
+import { shallow } from 'enzyme'
 import React from 'react'
-import 'react-native'
-import renderer from 'react-test-renderer'
-
-import DiscussionsRow, { type Props } from '../DiscussionsRow'
-import explore from '../../../../../test/helpers/explore'
-
-jest.mock('Button', () => 'Button').mock('TouchableHighlight', () => 'TouchableHighlight').mock('TouchableOpacity', () => 'TouchableOpacity')
-
-const template = {
-  ...require('../../../../__templates__/discussion'),
-}
+import * as template from '../../../../__templates__'
+import app from '../../../app'
+import DiscussionsRow from '../DiscussionsRow'
 
 describe('DiscussionsRow', () => {
   let props
   beforeEach(() => {
+    app.setCurrentApp('teacher')
     props = {
       discussion: template.discussion(),
       onPress: jest.fn(),
@@ -42,23 +35,25 @@ describe('DiscussionsRow', () => {
   })
 
   it('renders', () => {
-    testRender(props)
+    const tree = shallow(<DiscussionsRow {...props} />)
+    expect(tree).toMatchSnapshot()
   })
 
   it('renders published', () => {
     props.discussion.published = true
-    testRender(props)
+    const tree = shallow(<DiscussionsRow {...props} />)
+    expect(tree).toMatchSnapshot()
   })
 
   it('renders unpublished', () => {
     props.discussion.published = false
-    testRender(props)
+    const tree = shallow(<DiscussionsRow {...props} />)
+    expect(tree).toMatchSnapshot()
   })
 
   it('sends onPress', () => {
-    const tree = render(props).toJSON()
-    const row : any = explore(tree).selectByID('discussion-row-0')
-    row.props.onPress()
+    const tree = shallow(<DiscussionsRow {...props} />)
+    tree.find('[testID="discussion-row-0"]').simulate('Press')
     expect(props.onPress).toHaveBeenCalledWith(props.discussion)
   })
 
@@ -66,31 +61,38 @@ describe('DiscussionsRow', () => {
     if (props.discussion.assignment) {
       props.discussion.assignment.points_possible = null
     }
-    testRender(props)
+    const tree = shallow(<DiscussionsRow {...props} />)
+    expect(tree).toMatchSnapshot()
   })
 
   it('renders with points possible', () => {
     if (props.discussion.assignment) {
       props.discussion.assignment.points_possible = 12
     }
-    testRender(props)
+    const tree = shallow(<DiscussionsRow {...props} />)
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('shows multiple due dates for teacher when assignment has overrides', () => {
+    app.setCurrentApp('teacher')
+    if (props.discussion.assignment) {
+      props.discussion.assignment.has_overrides = true
+    }
+    const tree = shallow(<DiscussionsRow {...props} />)
+    expect(tree.find('DotSeparated').first().prop('separated')).toEqual([
+      'Multiple Due Dates',
+    ])
   })
 
   it('renders with no unread count', () => {
     props.discussion.unread_count = 0
-    testRender(props)
+    const tree = shallow(<DiscussionsRow {...props} />)
+    expect(tree).toMatchSnapshot()
   })
 
   it('renders with no assignment', () => {
     props.discussion.assignment = null
-    testRender(props)
+    const tree = shallow(<DiscussionsRow {...props} />)
+    expect(tree).toMatchSnapshot()
   })
-
-  function testRender (props: Props) {
-    expect(render(props).toJSON()).toMatchSnapshot()
-  }
-
-  function render (props: Props): any {
-    return renderer.create(<DiscussionsRow {...props}/>)
-  }
 })

@@ -44,26 +44,26 @@ export type Props = {
 export default class DiscussionsRow extends PureComponent<Props> {
   render () {
     const discussion = this.props.discussion
-    const points = this._points(discussion)
-    const discussionDetails = this._discussionDetails(discussion)
-    const unreadDot = this._renderUnreadDot(discussion)
+    const points = this.points(discussion)
+    const discussionDetails = this.discussionDetails(discussion)
+    const unreadDot = this.renderUnreadDot(discussion)
     return (
       <View accessible={false}>
         <View accessible={false}>
           <Row accessible={false}
             accessibilityLabel={`${discussion.title}`}
-            renderImage={this._renderIcon}
-            title={discussion.title || i18n('No Title')}
+            renderImage={this.renderIcon}
+            title={discussion.title}
             titleProps={{ ellipsizeMode: 'tail', numberOfLines: 2 }}
             border='bottom'
             disclosureIndicator={false}
             testID={`discussion-row-${this.props.index}`}
-            onPress={this._onPress}
+            onPress={this.onPress}
             height='auto'
           >
             <View style={style.rowContent}>
               <View style={style.mainContentColumn} accessible={false}>
-                <DotSeparated style={style.subtitle} separated={this._dueDate(discussion)}/>
+                <DotSeparated style={style.subtitle} separated={this.dueDate(discussion)}/>
 
                 {points &&
                 <View style={style.details}>
@@ -77,7 +77,7 @@ export default class DiscussionsRow extends PureComponent<Props> {
                 </View>
                 }
               </View>
-              { isTeacher() && this._renderKabob() }
+              { isTeacher() && this.renderKabob() }
             </View>
           </Row>
 
@@ -88,12 +88,12 @@ export default class DiscussionsRow extends PureComponent<Props> {
     )
   }
 
-  _renderKabob = () => {
+  renderKabob = () => {
     const discussion = this.props.discussion
     return (
       <TouchableHighlight
         style={style.kabobButton}
-        onPress={this._onToggleDiscussionGrouping}
+        onPress={this.onToggleDiscussionGrouping}
         accessibilityTraits='button'
         accessible={true}
         accessibilityLabel={i18n('Change {discussionTitle} to different grouping', { discussionTitle: discussion.title })}
@@ -105,16 +105,16 @@ export default class DiscussionsRow extends PureComponent<Props> {
     )
   }
 
-  _onPress = () => {
+  onPress = () => {
     this.props.onPress(this.props.discussion)
   }
 
-  _onToggleDiscussionGrouping = () => {
+  onToggleDiscussionGrouping = () => {
     this.props.onToggleDiscussionGrouping(this.props.discussion)
   }
 
-  _dueDate = (discussion: Discussion) => {
-    const { due_at, lock_at } = (discussion.assignment || {})
+  dueDate = (discussion: Discussion) => {
+    const { due_at, lock_at, has_overrides: multiple } = (discussion.assignment || {})
     const { last_reply_at } = discussion
     const dueAt = extractDateFromString(due_at)
     const lockAt = extractDateFromString(lock_at)
@@ -124,10 +124,13 @@ export default class DiscussionsRow extends PureComponent<Props> {
       let lastPostAt = i18n('Last post {lastReplyDateStr}', { lastReplyDateStr })
       return [lastPostAt]
     }
+    if (isTeacher() && dueAt && multiple) {
+      return [i18n('Multiple Due Dates')]
+    }
     return formattedDueDateWithStatus(dueAt, lockAt)
   }
 
-  _renderUnreadDot = (discussion: Discussion) => {
+  renderUnreadDot = (discussion: Discussion) => {
     if (discussion.unread_count > 0) {
       return (<View style={style.unreadDot}/>)
     } else {
@@ -135,7 +138,7 @@ export default class DiscussionsRow extends PureComponent<Props> {
     }
   }
 
-  _renderIcon = () => {
+  renderIcon = () => {
     const { discussion } = this.props
     return (
       <View style={style.icon}>
@@ -148,7 +151,7 @@ export default class DiscussionsRow extends PureComponent<Props> {
     )
   }
 
-  _discussionDetails (discussion: Discussion) {
+  discussionDetails (discussion: Discussion) {
     const replies = i18n({
       default: `{
         count, plural,
@@ -169,7 +172,7 @@ export default class DiscussionsRow extends PureComponent<Props> {
     return <DotSeparated style={style.discussionDetails} separated={[replies, unread].filter(v => v)}/>
   }
 
-  _points = (discussion: Discussion) => {
+  points = (discussion: Discussion) => {
     if (discussion.assignment) {
       const pointsPossible = Boolean(discussion.assignment.points_possible) && i18n({
         default: `{
