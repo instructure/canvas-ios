@@ -238,16 +238,40 @@ describe('Profile Tests', () => {
     expect(defaultProps.navigator.show).not.toHaveBeenCalled()
   })
 
-  it('secret tap!', async () => {
+  it('secret tap! enables developer menu', async () => {
+    AsyncStorage.getItem = jest.fn()
     AsyncStorage.setItem = jest.fn()
+    AsyncStorage.removeItem = jest.fn()
     const instance = renderer.create(
       <Profile { ...defaultProps } />
     ).getInstance()
+    const spy = jest.spyOn(instance, 'enableDeveloperMenu')
     var times = 12
     for (var i = 0; i < times; i++) {
       await instance.secretTap()
     }
+    expect(AsyncStorage.getItem).toHaveBeenCalled()
     expect(AsyncStorage.setItem).toHaveBeenCalled()
+    expect(AsyncStorage.removeItem).not.toHaveBeenCalled()
+    expect(spy).toHaveBeenCalled()
+  })
+
+  it('secret tap! disables developer menu', async () => {
+    AsyncStorage.getItem = jest.fn(() => true)
+    AsyncStorage.setItem = jest.fn()
+    AsyncStorage.removeItem = jest.fn()
+    const instance = renderer.create(
+      <Profile { ...defaultProps } />
+    ).getInstance()
+    const spy = jest.spyOn(instance, 'enableDeveloperMenu')
+    var times = 12
+    for (var i = 0; i < times; i++) {
+      await instance.secretTap()
+    }
+    expect(AsyncStorage.getItem).toHaveBeenCalled()
+    expect(AsyncStorage.setItem).not.toHaveBeenCalled()
+    expect(AsyncStorage.removeItem).toHaveBeenCalled()
+    expect(spy).toHaveBeenCalled()
   })
 
   it('refreshes avatar url on mount', async () => {

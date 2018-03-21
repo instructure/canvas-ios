@@ -48,6 +48,8 @@ import Actions from '../userInfo/actions'
 import StatusBar from '../../common/components/StatusBar'
 import * as LTITools from '../../common/LTITools'
 
+const developerMenuStorageKey = 'teacher.profile.developermenu'
+
 type State = {
   avatarURL: string,
   showsDeveloperMenu: boolean,
@@ -75,11 +77,10 @@ export class Profile extends Component<Object, State> {
     settingsActions.push({ title: i18n('Cancel'), id: 'cancel' })
     this.settingsActions = settingsActions
 
-    let showsDeveloperMenu = global.__DEV__
     let session = getSession()
     this.state = {
       avatarURL: session.user.avatar_url || '',
-      showsDeveloperMenu,
+      showsDeveloperMenu: false,
     }
   }
 
@@ -87,12 +88,7 @@ export class Profile extends Component<Object, State> {
     this.props.refreshCanMasquerade()
     this.props.refreshAccountExternalTools()
     this.refreshAvatarURL()
-    if (!global.__DEV__) {
-      let showsDeveloperMenu = AsyncStorage.getItem('teacher.profile.developermenu')
-      this.setState({
-        showsDeveloperMenu,
-      })
-    }
+    this.enableDeveloperMenu()
   }
 
   refreshAvatarURL = async () => {
@@ -130,10 +126,27 @@ export class Profile extends Component<Object, State> {
     if (this.secretTapCount > 10) {
       this.secretTapCount = 0
       LayoutAnimation.easeInEaseOut()
+
+      let enabled = await AsyncStorage.getItem(developerMenuStorageKey)
+      if (enabled) {
+        AsyncStorage.removeItem(developerMenuStorageKey)
+      } else {
+        AsyncStorage.setItem(developerMenuStorageKey, 'enabled')
+      }
+      this.enableDeveloperMenu()
+    }
+  }
+
+  enableDeveloperMenu = async () => {
+    if (global.__DEV__) {
       this.setState({
         showsDeveloperMenu: true,
       })
-      AsyncStorage.setItem('teacher.profile.developermenu', 'enabled')
+    } else {
+      let enabled = await AsyncStorage.getItem(developerMenuStorageKey)
+      this.setState({
+        showsDeveloperMenu: enabled,
+      })
     }
   }
 
