@@ -124,7 +124,7 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
         pdfDocument.didCreateDocumentProviderBlock = { documentProvider in
             let canvadocsAnnotationProvider = CanvadocsAnnotationProvider(documentProvider: documentProvider, annotations: annotations, service: service)
             canvadocsAnnotationProvider.limitDelegate = self
-            documentProvider.annotationManager.annotationProviders = [canvadocsAnnotationProvider]
+            documentProvider.annotationManager.annotationProviders.append(canvadocsAnnotationProvider)
             self.annotationProvider = canvadocsAnnotationProvider
         }
     }
