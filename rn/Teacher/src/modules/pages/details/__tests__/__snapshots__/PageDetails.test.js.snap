@@ -39,7 +39,6 @@ exports[`PageDetails renders 1`] = `
       Page 1
     </Heading1>
     <CanvasWebView
-      html="<p>Hello, World!</p>"
       navigator={
         Object {
           "dismiss": [Function],
@@ -51,6 +50,12 @@ exports[`PageDetails renders 1`] = `
         }
       }
       scrollEnabled={true}
+      source={
+        Object {
+          "baseURL": "/pages/page-1#jumpto",
+          "html": "<p>Hello, World!</p>",
+        }
+      }
       style={
         Object {
           "flex": 1,
@@ -97,7 +102,6 @@ exports[`PageDetails renders while loading 1`] = `
       }
     />
     <CanvasWebView
-      html=""
       navigator={
         Object {
           "dismiss": [Function],
@@ -109,6 +113,12 @@ exports[`PageDetails renders while loading 1`] = `
         }
       }
       scrollEnabled={true}
+      source={
+        Object {
+          "baseURL": "",
+          "html": "",
+        }
+      }
       style={
         Object {
           "flex": 1,

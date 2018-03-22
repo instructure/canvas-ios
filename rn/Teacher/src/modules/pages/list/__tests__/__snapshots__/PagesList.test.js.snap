@@ -139,6 +139,7 @@ exports[`PagesList shows access icon for teachers 1`] = `
         "editing_roles": "teachers",
         "front_page": false,
         "hide_from_students": false,
+        "html_url": "/pages/page-1",
         "page_id": "1",
         "published": true,
         "title": "Page 1",

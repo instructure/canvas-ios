@@ -38,6 +38,7 @@ import { Heading1 } from '../../../common/text'
 import { isTeacher } from '../../app'
 
 type Props = {
+  location: URL,
   courseID: string,
   url: string,
   navigator: Navigator,
@@ -56,7 +57,7 @@ export class PageDetails extends Component<Props> {
   }
 
   render () {
-    const { course, courseColor, page } = this.props
+    const { course, courseColor, page, location } = this.props
     return (
       <Screen
         navBarColor={courseColor}
@@ -76,7 +77,10 @@ export class PageDetails extends Component<Props> {
           <Heading1 style={styles.header}>{page ? page.title : ''}</Heading1>
           <CanvasWebView
             style={{ flex: 1 }}
-            html={page ? page.body : ''}
+            source={{
+              html: page ? page.body : '',
+              baseURL: page ? page.htmlUrl + location.hash : '',
+            }}
             navigator={this.props.navigator}
           />
         </View>

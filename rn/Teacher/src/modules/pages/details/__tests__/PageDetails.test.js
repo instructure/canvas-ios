@@ -19,6 +19,7 @@
 import { shallow } from 'enzyme'
 import React from 'react'
 import { Alert, ActionSheetIOS } from 'react-native'
+import URL from 'url-parse'
 import { alertError } from '../../../../redux/middleware/error-handler'
 import { API, httpCache } from '../../../../canvas-api/model-api'
 import * as template from '../../../../__templates__'
@@ -36,6 +37,7 @@ describe('PageDetails', () => {
     httpCache.clear()
     app.setCurrentApp('teacher')
     props = {
+      location: new URL('/pages/page-1#jumpto'),
       courseID: '1',
       url: 'page-1',
       navigator: template.navigator(),

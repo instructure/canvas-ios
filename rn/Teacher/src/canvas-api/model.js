@@ -37,6 +37,7 @@ export class PageModel extends Model<Page> {
   static newPage = Object.freeze(new PageModel({
     page_id: '',
     url: '',
+    html_url: '',
     title: '',
     created_at: new Date().toJSON(),
     updated_at: new Date().toJSON(),
@@ -49,6 +50,7 @@ export class PageModel extends Model<Page> {
 
   id = this.raw.page_id
   url = this.raw.url
+  htmlUrl = this.raw.html_url
   title = this.raw.title
   createdAt = new Date(this.raw.created_at)
   updatedAt = new Date(this.raw.updated_at)

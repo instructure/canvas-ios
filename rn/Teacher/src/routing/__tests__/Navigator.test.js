@@ -65,7 +65,7 @@ describe('Navigator', () => {
     expect(NativeModules.Helm.pushFrom).toHaveBeenCalledWith(
       'push',
       '/courses/:courseID',
-      { courseID: '1', screenInstanceID: expect.any(String) },
+      { courseID: '1', screenInstanceID: expect.any(String), location: expect.any(Object) },
       { canBecomeMaster: true, deepLink: true }
     )
   })
@@ -80,7 +80,7 @@ describe('Navigator', () => {
     expect(NativeModules.Helm.pushFrom).toHaveBeenCalledWith(
       'replace',
       '/courses/:courseID',
-      { courseID: '2', screenInstanceID: expect.any(String) },
+      { courseID: '2', screenInstanceID: expect.any(String), location: expect.any(Object) },
       { canBecomeMaster: true, replace: true, deepLink: true },
     )
   })
@@ -89,7 +89,7 @@ describe('Navigator', () => {
     new Navigator('present').show('/courses/1', { modal: true })
     expect(NativeModules.Helm.present).toHaveBeenCalledWith(
       '/courses/:courseID',
-      { courseID: '1', screenInstanceID: expect.any(String) },
+      { courseID: '1', screenInstanceID: expect.any(String), location: expect.any(Object) },
       { canBecomeMaster: true, embedInNavigationController: true, modal: true, modalPresentationStyle: 'formsheet' }
     )
   })
@@ -132,6 +132,7 @@ describe('Navigator', () => {
             html_url: '/courses/1/assignments/2/submissions/3',
           },
         },
+        location: expect.any(Object),
       },
       {
         embedInNavigationController: true,
@@ -163,7 +164,7 @@ describe('Navigator', () => {
 
     expect(NativeModules.Helm.present).toHaveBeenCalledWith(
       '/:context/:contextID/announcements/:announcementID',
-      { context: 'courses', contextID: '1', announcementID: '3', screenInstanceID: expect.any(String) },
+      { context: 'courses', contextID: '1', announcementID: '3', screenInstanceID: expect.any(String), location: expect.any(Object) },
       { canBecomeMaster: false, embedInNavigationController: true, modal: true, modalPresentationStyle: 'formsheet' }
     )
   })

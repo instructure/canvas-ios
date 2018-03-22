@@ -138,18 +138,20 @@ export function wrapComponentInProviders (moduleName: string, generator: () => a
 }
 
 export function route (url: string, additionalProps: Object = {}): ?RouteOptions {
-  let baseURL = getSession().baseURL
-  if (new RegExp('://').test(url) && new URL(baseURL).hostname !== new URL(url).hostname) {
+  const baseURL = getSession().baseURL
+  const location = new URL(url, baseURL)
+  if (url.includes('://') && new URL(baseURL).hostname !== location.hostname) {
     return
   }
 
-  const path = new URL(url).pathname
+  const path = location.pathname
   for (let r of routes.keys()) {
     let params = r.match(path)
     if (additionalProps && typeof params === 'object') {
       params = Object.assign(params, additionalProps)
     }
     if (params) {
+      params.location = location
       params.screenInstanceID = Math.random().toString(36).slice(2)
       routeProps.set(params.screenInstanceID, params)
       return {

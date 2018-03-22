@@ -135,8 +135,15 @@ public class CanvasWebView: WKWebView {
         fatalError("Not implemented")
     }
     
-    fileprivate func scroll(to fragment: String?, elseDo failBlock: @escaping () -> Void) {
-        guard let f = fragment else {
+    fileprivate func isSamePage(_ url: URL) -> Bool {
+        guard let origin = self.url else { return false }
+        let base = origin.absoluteString.split(separator: "#").first
+        let to = url.absoluteString.split(separator: "#").first
+        return base == to
+    }
+    
+    fileprivate func scroll(to url: URL, elseDo failBlock: @escaping () -> Void) {
+        guard let f = url.fragment, isSamePage(url) else {
             failBlock()
             return
         }
@@ -237,7 +244,7 @@ extension CanvasWebView: WKNavigationDelegate {
             }
             
             // let's see if it's an #fragment first
-            scroll(to: url.fragment, elseDo: {
+            scroll(to: url, elseDo: {
                 if url.scheme != "http" && url.scheme != "https" && UIApplication.shared.canOpenURL(url) {
                     UIApplication.shared.open(url)
                 } else {
