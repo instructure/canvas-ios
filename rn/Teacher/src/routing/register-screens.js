@@ -78,7 +78,7 @@ import GradesList from '../modules/grades/GradesList'
 
 import { Store } from 'redux'
 import { registerScreen } from './'
-import { isTeacher } from '../modules/app'
+import { isTeacher, isStudent } from '../modules/app'
 import { featureFlagEnabled } from '../common/feature-flags'
 
 export function wrap (name: any): Function {
@@ -106,11 +106,6 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/assignments/:assignmentID/submissions/:userID', wrap(SpeedGrader), store, { deepLink: true })
   registerScreen('/courses/:courseID/gradebook/speed_grader', wrap(SpeedGrader), store, { deepLink: true })
   registerScreen('/courses/:courseID/assignments/:assignmentID/rubrics/:rubricID/description', wrap(RubricDescription), store)
-  registerScreen('/courses/:courseID/quizzes', wrap(QuizzesList), store, { canBecomeMaster: true, deepLink: true })
-  registerScreen('/courses/:courseID/quizzes/:quizID', wrap(QuizDetails), store, { deepLink: true })
-  registerScreen('/courses/:courseID/quizzes/:quizID/preview', wrap(QuizPreview), store)
-  registerScreen('/courses/:courseID/quizzes/:quizID/edit', wrap(QuizEdit), store)
-  registerScreen('/courses/:courseID/quizzes/:quizID/submissions', wrap(QuizSubmissions), store, { deepLink: true })
   registerScreen('/:context/:contextID/discussion_topics', wrap(DiscussionsList), store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/:context/:contextID/discussion_topics/new', wrap(DiscussionEdit), store)
   registerScreen('/:context/:contextID/discussion_topics/:discussionID', wrap(DiscussionDetails), store, { deepLink: true })
@@ -174,5 +169,15 @@ export function registerScreens (store: Store): void {
   if (isTeacher()) {
     registerScreen('/files/:fileID/download', wrap(ViewFile), store, { deepLink: true })
     registerScreen('/:context/:courseID/files/:fileID/download', wrap(ViewFile), store, { deepLink: true })
+    registerScreen('/courses/:courseID/quizzes', wrap(QuizzesList), store, { canBecomeMaster: true, deepLink: true })
+    registerScreen('/courses/:courseID/quizzes/:quizID', wrap(QuizDetails), store, { deepLink: true })
+    registerScreen('/courses/:courseID/quizzes/:quizID/preview', wrap(QuizPreview), store)
+    registerScreen('/courses/:courseID/quizzes/:quizID/edit', wrap(QuizEdit), store)
+    registerScreen('/courses/:courseID/quizzes/:quizID/submissions', wrap(QuizSubmissions), store, { deepLink: true })
+  }
+
+  if (isStudent()) {
+    registerScreen('/courses/:courseID/quizzes/:quizID', null, store, { deepLink: true })
+    registerScreen('/courses/:courseID/quizzes', null, store, { deepLink: true })
   }
 }

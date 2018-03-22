@@ -61,6 +61,19 @@ extension AppDelegate: RCTBridgeDelegate {
             let url = URL(string: "api/v1/courses/\(courseID)/assignments/\(assignmentID)")
             return Router.shared().controller(forHandling: url)
         })
+        
+        HelmManager.shared.registerNativeViewController(for: "/courses/:courseID/quizzes/:quizID", factory: { props in
+            guard let courseID = props["courseID"] as? String else { return nil }
+            guard let quizID = props["quizID"] as? String else { return nil }
+            let url = URL(string: "api/v1/courses/\(courseID)/quizzes/\(quizID)")
+            return Router.shared().controller(forHandling: url)
+        })
+
+        HelmManager.shared.registerNativeViewController(for: "/courses/:courseID/quizzes", factory: { props in
+            guard let courseID = props["courseID"] as? String else { return nil }
+            let url = URL(string: "api/v1/courses/\(courseID)/quizzes")
+            return Router.shared().controller(forHandling: url)
+        })
 
         HelmManager.shared.registerNativeViewController(for: "/users/self/files", factory: { props in
             guard let folderController = FolderViewController(interfaceStyle: FolderInterfaceStyleLight) else { return nil }

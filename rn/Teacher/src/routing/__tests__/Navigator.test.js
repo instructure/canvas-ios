@@ -155,7 +155,7 @@ describe('Navigator', () => {
     }).not.toThrow()
   })
 
-  it('shows as a modal if deepLink is turned on for the route', () => {
+  it('shows as a modal if modal config is true', () => {
     new Navigator('deepLink').show('/courses/1/announcements/3', {
       modal: true,
       embedInNavigationController: true,
