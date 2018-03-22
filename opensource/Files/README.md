@@ -1,3 +1,5 @@
+![Bitrise Build Status](https://www.bitrise.io/app/e1c9ac2d7363ba93.svg?token=-s_DiLFS7LZ8H5HEs0mSog)
+
 # Instructure iOS
 
 ### Please Note:
