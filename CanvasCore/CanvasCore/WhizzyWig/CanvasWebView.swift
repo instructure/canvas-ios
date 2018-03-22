@@ -38,6 +38,9 @@ public class CanvasWebView: WKWebView {
                 webView?.requestClose?()
             case "canvas":
                 webView?.onMessage?(["body": message.body])
+            case "height":
+                guard let height = message.body as? [String: Any] else { return }
+                webView?.onHeightChange?(height)
             default:
                 break
             }
@@ -52,6 +55,9 @@ public class CanvasWebView: WKWebView {
     
     @objc
     public var onMessage: (([String: Any]) -> Void)?
+    
+    @objc
+    public var onHeightChange: (([String: Any]) -> Void)?
     
     @objc
     public var onError: ((Error) -> Void)?
@@ -116,6 +122,7 @@ public class CanvasWebView: WKWebView {
 
         config.userContentController.add(MessageHandler(webView: self), name: "dismiss")
         config.userContentController.add(MessageHandler(webView: self), name: "canvas")
+        config.userContentController.add(MessageHandler(webView: self), name: "height")
 
         if let jsPath = Bundle.core.url(forResource: "CanvasWebView", withExtension: "js"),
             let js = try? String(contentsOf: jsPath, encoding: .utf8) {

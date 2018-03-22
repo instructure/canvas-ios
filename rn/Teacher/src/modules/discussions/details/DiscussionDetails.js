@@ -429,6 +429,7 @@ export class DiscussionDetails extends Component<Props, any> {
               entry_ratings: this.state.entry_ratings,
             }}
             keyExtractor={this.keyExtractor}
+            windowSize={5}
           />
         </View>
       </Screen>

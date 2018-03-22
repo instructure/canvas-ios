@@ -26,6 +26,7 @@ import ConnectedPageEdit, { PageEdit } from '../PageEdit'
 jest.mock('../../../../redux/middleware/error-handler', () => {
   return { alertError: jest.fn() }
 })
+jest.useFakeTimers()
 
 describe('PageEdit', () => {
   let props: Object

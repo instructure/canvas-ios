@@ -69,14 +69,19 @@ static NSString *WebViewKeyPath = @"webView.scrollView.contentSize";
             }
         };
         
+        _webView.onHeightChange = ^(NSDictionary<NSString *,id> * _Nonnull message) {
+            @strongify(self);
+            if (self.onHeightChange) {
+                self.onHeightChange(message);
+            }
+        };
+        
         _webView.onError = ^(NSError * _Nonnull error) {
             @strongify(self);
             if (self.onError) {
                 self.onError(@{@"error": error.localizedDescription});
             }
         };
-
-        [self addObserver:self forKeyPath:WebViewKeyPath options:NSKeyValueObservingOptionNew context:nil];
         
         // Needs a presenting view controller
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -90,23 +95,6 @@ static NSString *WebViewKeyPath = @"webView.scrollView.contentSize";
         [self addSubview:_webView];
     }
     return self;
-}
-
-- (void)dealloc {
-    [self removeObserver:self forKeyPath:WebViewKeyPath];
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
-    if ([keyPath isEqualToString:WebViewKeyPath]) {
-        NSValue *value = change[NSKeyValueChangeNewKey];
-        CGSize newSize = [value CGSizeValue];
-        if (!CGSizeEqualToSize(newSize, self.contentSize) && self.onHeightChange) {
-            self.contentSize = newSize;
-            self.onHeightChange(@{ @"height": @(newSize.height) });
-        }
-    } else {
-        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-    }
 }
 
 - (void)layoutSubviews

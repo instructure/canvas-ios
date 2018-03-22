@@ -27,6 +27,7 @@ import ConnectedPagesList, { PagesList } from '../PagesList'
 jest.mock('../../../../redux/middleware/error-handler', () => {
   return { alertError: jest.fn() }
 })
+jest.useFakeTimers()
 
 const diveList = (list: any) =>
   shallow(

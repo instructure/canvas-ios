@@ -90,7 +90,10 @@ export default class CanvasWebView extends Component<Props, State> {
   }
 
   componentWillReceiveProps (newProps: Props) {
-    this.setHeight(null)
+    if (newProps.html !== this.props.html ||
+        !isEqual(newProps.source, this.props.source)) {
+      this.setHeight(null)
+    }
   }
 
   shouldComponentUpdate (newProps: Props, newState: State) {
@@ -110,6 +113,7 @@ export default class CanvasWebView extends Component<Props, State> {
     }
     const { webViewHeight } = this.state
     const webViewStyle = webViewHeight ? { height: webViewHeight } : { flex: 1 }
+
     return (
       <View style={style} testID='web-container.view'>
         <WebView

@@ -28,6 +28,7 @@ import ConnectedPageDetails, { PageDetails } from '../PageDetails'
 jest.mock('../../../../redux/middleware/error-handler', () => {
   return { alertError: jest.fn() }
 })
+jest.useFakeTimers()
 
 describe('PageDetails', () => {
   let props

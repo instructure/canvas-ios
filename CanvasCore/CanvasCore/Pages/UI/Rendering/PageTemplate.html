@@ -129,5 +129,10 @@
       }
     })()
   </script>
+  <script>
+    window.addEventListener('load', () => {
+      window.webkit.messageHandlers.height.postMessage({ height: document.getElementById('_end_').offsetTop })
+    })
+  </script>
 </body>
 </html>
