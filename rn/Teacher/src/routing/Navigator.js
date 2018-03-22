@@ -46,25 +46,24 @@ export default class Navigator {
   }
 
   show (url: string, options: Object = { modal: false, modalPresentationStyle: 'formsheet', deepLink: false }, additionalProps: Object = {}) {
-    try {
-      const r = route(url, additionalProps)
-      if (r.config.showInWebView || (options.deepLink && !r.config.deepLink)) {
-        return this.showWebView(url)
-      }
-
-      let canBecomeMaster = false
-      if (r.config && r.config.canBecomeMaster) {
-        canBecomeMaster = r.config.canBecomeMaster
-      }
-      if (options.modal || options.deepLink) {
-        options.modal = true
-        const embedInNavigationController = options.embedInNavigationController == null || options.embedInNavigationController
-        return this.present(r, { modal: options.modal, modalPresentationStyle: options.modalPresentationStyle || 'formsheet', embedInNavigationController, canBecomeMaster: canBecomeMaster, modalTransitionStyle: options.modalTransitionStyle })
-      } else {
-        return this.push(r)
-      }
-    } catch (err) {
+    const r = route(url, additionalProps)
+    if (!r) {
       return this.showWebView(url)
+    }
+    if (r.config.showInWebView || (options.deepLink && !r.config.deepLink)) {
+      return this.showWebView(url)
+    }
+
+    let canBecomeMaster = false
+    if (r.config && r.config.canBecomeMaster) {
+      canBecomeMaster = r.config.canBecomeMaster
+    }
+    if (options.modal || options.deepLink) {
+      options.modal = true
+      const embedInNavigationController = options.embedInNavigationController == null || options.embedInNavigationController
+      return this.present(r, { modal: options.modal, modalPresentationStyle: options.modalPresentationStyle || 'formsheet', embedInNavigationController, canBecomeMaster: canBecomeMaster, modalTransitionStyle: options.modalTransitionStyle })
+    } else {
+      return this.push(r)
     }
   }
 
@@ -79,7 +78,7 @@ export default class Navigator {
 
   replace (url: string, options: Object = { modal: false, modalPresentationStyle: 'formsheet' }, additionalProps: Object = {}) {
     const r = route(url, additionalProps)
-    return NativeModules.Helm.pushFrom(this.moduleName, r.screen, r.passProps, { ...r.config, replace: true })
+    if (r) NativeModules.Helm.pushFrom(this.moduleName, r.screen, r.passProps, { ...r.config, replace: true })
   }
 
   push (route: RouteOptions) {

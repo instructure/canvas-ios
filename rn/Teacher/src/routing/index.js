@@ -41,9 +41,9 @@ export type RouteConfig = {
   showInWebView?: boolean,
 }
 export type RouteOptions = {
-    screen: string,
-    passProps: Object,
-    config: RouteConfig,
+  screen: string,
+  passProps: Object,
+  config: RouteConfig,
 }
 
 export function screenID (path: string): string {
@@ -137,10 +137,10 @@ export function wrapComponentInProviders (moduleName: string, generator: () => a
   return generatorWrapper
 }
 
-export function route (url: string, additionalProps: Object = {}): RouteOptions {
+export function route (url: string, additionalProps: Object = {}): ?RouteOptions {
   let baseURL = getSession().baseURL
   if (new RegExp('://').test(url) && new URL(baseURL).hostname !== new URL(url).hostname) {
-    throw new URIError('Cannot route to ' + url)
+    return
   }
 
   const path = new URL(url).pathname
@@ -160,5 +160,5 @@ export function route (url: string, additionalProps: Object = {}): RouteOptions 
     }
   }
 
-  throw new URIError('Cannot route to ' + url)
+  return
 }

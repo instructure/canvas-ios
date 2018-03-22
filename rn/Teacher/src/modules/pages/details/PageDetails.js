@@ -164,9 +164,15 @@ const styles = StyleSheet.create({
 })
 
 export default fetchPropsFor(PageDetails, ({ courseID, url }, api) => {
+  let pageApi
+  if (url === 'front_page') {
+    pageApi = api.getFrontPage(courseID)
+  } else {
+    pageApi = api.getPage('courses', courseID, url)
+  }
   return {
     courseColor: api.getCourseColor(courseID),
     course: api.getCourse(courseID),
-    page: api.getPage('courses', courseID, url),
+    page: pageApi,
   }
 })

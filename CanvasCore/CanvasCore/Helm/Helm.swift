@@ -33,7 +33,7 @@ open class HelmManager: NSObject {
     public var bridge: RCTBridge!
     public var onReactLoginComplete: () -> Void = {}
     public var onReactReload: () -> Void = {}
-    
+
     @objc
     public func loginComplete() {
         onReactLoginComplete()
@@ -43,7 +43,7 @@ open class HelmManager: NSObject {
     private(set) var defaultScreenConfiguration: [ModuleName: [String: Any]] = [:]
     fileprivate(set) var masterModules = Set<ModuleName>()
     private var nativeViewControllerFactories: [ModuleName: (factory: ([String: Any])->UIViewController?, customPresentation: ((_ current: UIViewController, _ new: UIViewController)->())?)] = [:]
-    
+
     fileprivate var pushTransitioningDelegate = PushTransitioningDelegate()
 
     //  MARK: - Init
@@ -60,22 +60,22 @@ open class HelmManager: NSObject {
     open func reload() {
         bridge.reload()
     }
-    
+
     open func reactWillReload() {
         self.cleanup()
         onReactReload()
     }
 
     //  MARK: - Screen Configuration
-    
+
     open func registerNativeViewController(for moduleName: ModuleName, factory: @escaping ([String: Any]) -> UIViewController?, withCustomPresentation presentation: ((_ current: UIViewController, _ new: UIViewController)->())? = nil) {
         nativeViewControllerFactories[moduleName] = (factory, presentation)
     }
-    
+
     open func registerSharedNativeViewControllers() {
         HelmManager.shared.registerNativeViewController(for: "/support/:type", factory: { props in
             guard let type = props["type"] as? String else { return nil }
-            
+
             let storyboard = UIStoryboard(name: "SupportTicket", bundle: Bundle(for: SupportTicketViewController.self))
             let controller = storyboard.instantiateInitialViewController()!.childViewControllers[0] as! SupportTicketViewController
             if type == "feature" {
@@ -90,42 +90,42 @@ open class HelmManager: NSObject {
     func register<T: HelmViewController>(screen: T) {
         viewControllers.setObject(screen, forKey: screen.screenInstanceID as NSString)
     }
-    
+
     open func setScreenConfig(_ config: [String: Any], forScreenWithID screenInstanceID: String, hasRendered: Bool) {
         if let vc = viewControllers.object(forKey: screenInstanceID as NSString) {
             vc.screenConfig = HelmScreenConfig(config: config)
             vc.screenConfigRendered = hasRendered
-            
+
             // Only handle the styles if the view is visible, so it doesn't happen a bunch of times
             if (vc.isVisible) {
                 vc.handleStyles()
             }
         }
     }
-    
+
     open func setDefaultScreenConfig(_ config: [String: Any], forModule module: ModuleName) {
         defaultScreenConfiguration[module] = config
     }
 
     //  MARK: - Navigation
-    
+
     public func pushFrom(_ sourceModule: ModuleName, destinationModule: ModuleName, withProps props: [String: Any], options: [String: Any], callback: (() -> Void)? = nil) {
         guard let topViewController = topMostViewController() else { return }
-        
+
         let viewController: UIViewController
         let pushOntoNav: (UINavigationController) -> Void
         let replaceInNav: (UINavigationController) -> Void
         let pushToReplace = options["replace"] as? Bool ?? false
-        
+
         // The views need to know when they are shown modaly and potentially other options
         // Doing it here instead of in JS so that native routing will also work
         var propsFRD = props
         propsFRD[PropKeys.navigatorOptions] = options
-        
+
         if let factory = nativeViewControllerFactories[destinationModule]?.factory {
             guard let vc = factory(propsFRD) else { return }
             viewController = vc
-            
+
             if pushToReplace {
                 pushOntoNav = { nav in
                     var stack = nav.viewControllers
@@ -147,7 +147,7 @@ open class HelmManager: NSObject {
             let helmViewController = HelmViewController(moduleName: destinationModule, props: propsFRD)
             viewController = helmViewController
             viewController.edgesForExtendedLayout = [.left, .right]
-            
+
             pushOntoNav = { nav in
                 helmViewController.loadViewIfNeeded()
                 if pushToReplace {
@@ -163,7 +163,7 @@ open class HelmManager: NSObject {
                     }
                 }
             }
-            
+
             replaceInNav = { nav in
                 helmViewController.loadViewIfNeeded()
                 helmViewController.onReadyToPresent = { [weak nav, helmViewController] in
@@ -171,16 +171,16 @@ open class HelmManager: NSObject {
                 }
             }
         }
-        
+
         if let splitViewController = topViewController as? HelmSplitViewController {
             let canBecomeMaster = options["canBecomeMaster"] as? Bool ?? false
             if canBecomeMaster {
                 masterModules.insert(destinationModule)
             }
-            
+
             let sourceViewController = splitViewController.sourceController(moduleName: sourceModule)
             let resetDetailNavStackIfClickedFromMaster = splitViewController.masterTopViewController == sourceViewController
-            
+
             if let nav = navigationControllerForSplitViewControllerPush(splitViewController: splitViewController, sourceModule: sourceModule, destinationModule: destinationModule, props: propsFRD, options: options) {
                 if (resetDetailNavStackIfClickedFromMaster && !canBecomeMaster && splitViewController.viewControllers.count > 1) {
                     viewController.navigationItem.leftBarButtonItem = splitViewController.prettyDisplayModeButtonItem
@@ -191,11 +191,11 @@ open class HelmManager: NSObject {
                     pushOntoNav(nav)
                     callback?()
                 }
-                
+
                 return
             }
         }
-        
+
         if let navigationController = topViewController.navigationController {
             pushOntoNav(navigationController)
             callback?()
@@ -209,7 +209,7 @@ open class HelmManager: NSObject {
             callback?()
             return
         }
-        
+
         var nav: UINavigationController? = nil
         if let splitViewController = topViewController as? HelmSplitViewController {
             let sourceViewController = splitViewController.sourceController(moduleName: sourceModule)
@@ -228,13 +228,13 @@ open class HelmManager: NSObject {
         nav?.popViewController(animated: true)
         callback?()
     }
-    
+
     public func present(_ module: ModuleName, withProps props: [String: Any], options: [String: Any], callback: (() -> Void)? = nil) {
         guard let current = topMostViewController() else {
             callback?()
             return
         }
-        
+
         func configureModalProps(for viewController: UIViewController) {
             if let modalPresentationStyle = options[PropKeys.modalPresentationStyle] as? String {
                 switch modalPresentationStyle {
@@ -248,7 +248,7 @@ open class HelmManager: NSObject {
                 default: viewController.modalPresentationStyle = .fullScreen
                 }
             }
-            
+
             if let modalTransitionStyle = options[PropKeys.modalPresentationStyle] as? String {
                 switch modalTransitionStyle {
                 case "flip": viewController.modalTransitionStyle = .flipHorizontal
@@ -258,19 +258,19 @@ open class HelmManager: NSObject {
                 }
             }
         }
-        
+
         // The views need to know when they are shown modaly and potentially other options
         // Doing it here instead of in JS so that native routing will also work
         var propsFRD = props
         propsFRD[PropKeys.navigatorOptions] = options
-        
+
         if let stuff = nativeViewControllerFactories[module] {
             let factory = stuff.factory
             guard let viewController = factory(propsFRD) else {
                 callback?()
                 return
             }
-            
+
             var toPresent: UIViewController = viewController
             let nav = toPresent as? UINavigationController
             if let embedInNavigationController = options["embedInNavigationController"] as? Bool,
@@ -279,9 +279,9 @@ open class HelmManager: NSObject {
                 nav == nil {
                 toPresent = HelmNavigationController(rootViewController: viewController)
             }
-            
+
             configureModalProps(for: toPresent)
-            
+
             if let customPresentation = stuff.customPresentation {
                 customPresentation(current, viewController)
                 callback?()
@@ -292,16 +292,16 @@ open class HelmManager: NSObject {
         } else {
             var toPresent: UIViewController
             var helmVC: HelmViewController
-            
+
             let vc = HelmViewController(moduleName: module, props: propsFRD)
             toPresent = vc
             helmVC = vc
             if let embedInNavigationController: Bool = options["embedInNavigationController"] as? Bool, embedInNavigationController {
                 toPresent = HelmNavigationController(rootViewController: vc)
             }
-            
+
             configureModalProps(for: toPresent)
-            
+
             helmVC.loadViewIfNeeded()
             helmVC.onReadyToPresent = { [weak current, toPresent] in
                 current?.present(toPresent, animated: options["animated"] as? Bool ?? true, completion: callback)
@@ -315,7 +315,7 @@ open class HelmManager: NSObject {
         let animated = options["animated"] as? Bool ?? true
         vc.dismiss(animated: animated, completion: callback)
     }
-    
+
     open func dismissAllModals(_ options: [String: Any], callback: (() -> Void)? = nil) {
         // TODO: maybe not always dismiss the top - UIKit allows dismissing things not the top, dismisses all above
         guard let vc = topMostViewController() else {
@@ -327,17 +327,17 @@ open class HelmManager: NSObject {
             self.dismiss(options, callback: callback)
         }
     }
-    
+
     public func traitCollection(_ moduleName: String, callback: @escaping RCTResponseSenderBlock) {
         var top = topMostViewController()
         //  FIXME: - fix sourceController method, something named more appropriate
         if let svc = top as? HelmSplitViewController, let sourceController = svc.sourceController(moduleName: moduleName) {
             top = sourceController
         }
-        
+
         let screenSizeClassInfo = top?.sizeClassInfoForJavascriptConsumption()
         let windowSizeClassInfo = UIApplication.shared.keyWindow?.sizeClassInfoForJavascriptConsumption()
-        
+
         var result: [String: [String: String]] = [:]
         if let screenSizeClassInfo = screenSizeClassInfo {
             result["screen"] = screenSizeClassInfo
@@ -345,12 +345,12 @@ open class HelmManager: NSObject {
         if let windowSizeClassInfo = windowSizeClassInfo {
             result["window"] = windowSizeClassInfo
         }
-        
+
         callback([result])
     }
-    
+
     public func cleanup() {
-        
+
         // Cleanup is mainly used in rn reload situations or in ui testing
         // There is a bug where the view controllers are sometimes leaked, and I cannot for the life of me figure out why
         // This prevents weird rn behavior in cases where those leaks occur
@@ -375,11 +375,11 @@ extension HelmManager {
             if canBecomeMaster || (splitViewController?.traitCollection.horizontalSizeClass ?? .compact) == .compact {
                 return splitViewController?.masterHelmNavigationController as? HelmNavigationController
             }
-            
+
             if (splitViewController?.detailHelmNavigationController == nil) {
                 splitViewController?.primeEmptyDetailNavigationController()
             }
-            
+
             return splitViewController?.detailHelmNavigationController ?? splitViewController?.detailNavigationController
         }
     }
@@ -414,7 +414,7 @@ extension UIViewController {
 }
 
 extension HelmManager {
-    
+
     static func narBarTitleViewFromImagePath(_ imagePath: Any) -> UIView? {
         var titleView: UIView? = nil
         switch (imagePath) {
@@ -437,14 +437,14 @@ extension HelmManager {
             break
         default: break
         }
-        
+
         guard let view = titleView else { return nil }
-        
+
         view.contentMode = .scaleAspectFit
         let container = UIView(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
         view.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
         container.addSubview(view)
-        
+
         return container
     }
 }

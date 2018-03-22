@@ -48,7 +48,7 @@ registerScreens({})
 
 describe('Navigator', () => {
   beforeEach(() => {
-    jest.resetAllMocks()
+    jest.clearAllMocks()
 
     NativeModules.Helm = {
       pushFrom: jest.fn(() => Promise.resolve()),

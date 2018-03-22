@@ -114,7 +114,7 @@ export class AssignmentDetails extends Component<AssignmentDetailsProps, any> {
           <AssignmentSection
            title={sectionTitleSubmissionTypes}
            testID='assignment-details.assignment-section.submission-type'
-           onPress={isExternalTool && this.launchExternalTool}
+           onPress={isExternalTool ? this.launchExternalTool : null}
            showDisclosureIndicator={isExternalTool}
           >
             <SubmissionType data={assignment.submission_types} />
@@ -319,7 +319,7 @@ const style = StyleSheet.create({
 
 const assignementDetailsShape = PropTypes.shape({
   id: PropTypes.string,
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
   description: PropTypes.string,
   created_at: PropTypes.string,
   updated_at: PropTypes.string,

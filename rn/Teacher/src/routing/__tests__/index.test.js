@@ -60,8 +60,6 @@ describe('wrapComponentInProviders', () => {
   })
 })
 
-describe('route', () => {
-  it('throws on routes not found', () => {
-    expect(() => route('garbage')).toThrow()
-  })
+test('route to something that does not exist', () => {
+  expect(route('garbage')).toBeUndefined()
 })

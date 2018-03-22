@@ -79,7 +79,7 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
 
 - (UIViewController *)moduleItemControllerForParams:(NSDictionary *)params forClass:(Class)type
 {
-    NSString *contextID = [params[@"contextID"] description];
+    NSString *contextID = [params[@"contextID"] description] ?: [params[@"courseID"] description];
     NSDictionary *query = params[@"query"];
     NSString *moduleItemID = query[@"module_item_id"];
 

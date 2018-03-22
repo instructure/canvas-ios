@@ -246,6 +246,18 @@ describe('model api', () => {
       )
     })
 
+    it('can getFrontPage', () => {
+      api.getFrontPage('1')
+      expect(httpClient().get).toHaveBeenCalledWith(
+        'courses/1/front_page',
+        { transform: expect.any(Function) }
+      )
+      const { transform } = mock(httpClient().get).mock.calls[0][1]
+      expect(transform(template.page())).toEqual(
+        new PageModel(template.page())
+      )
+    })
+
     it('can updatePage', () => {
       const page = {
         title: 'Page 1',

@@ -114,6 +114,12 @@ export class API {
     })
   }
 
+  getFrontPage (contextID: string): ?PageModel {
+    return this.get(`courses/${contextID}/front_page`, {
+      transform: (page: Page) => new PageModel(page),
+    })
+  }
+
   updatePage (context: CanvasContext, contextID: string, url: string, parameters: PageParameters): ApiPromise<PageModel> {
     return this.put(`${context}/${contextID}/pages/${url}`, { wiki_page: parameters }, {
       transform: (page: Page) => new PageModel(page),

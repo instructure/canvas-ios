@@ -74,6 +74,7 @@ export default function mapStateToProps (state: AppState, { courseID }: RoutingP
     })
     .sort((t1, t2) => (t1.position - t2.position))
   const error = state.favoriteCourses.error || courseState.tabs.error
+
   return {
     course,
     color,

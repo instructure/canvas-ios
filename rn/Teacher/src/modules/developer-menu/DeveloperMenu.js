@@ -63,7 +63,7 @@ export default class DeveloperMenu extends Component<DeveloperMenuProps, any> {
     let path = this.state && this.state.path || ''
     try {
       let r = route(path)
-      nav(r)
+      if (r) nav(r)
       AsyncStorage.setItem(stagingKey, path)
     } catch (e) {
       Alert.alert(

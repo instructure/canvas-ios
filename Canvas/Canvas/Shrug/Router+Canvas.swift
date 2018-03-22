@@ -94,16 +94,18 @@ extension Router {
                 props: ["courseID": contextID.id]
             )
         }
-        
+
         let oldPagesListFactory: (ContextID, [String: Any]) throws -> UIViewController? = { contextID, _ in
             guard let currentSession = currentSession else { return nil }
             let controller = try Page.TableViewController(session: currentSession, contextID: contextID, viewModelFactory: pagesListViewModelFactory, route: route)
             return controller
         }
-        
+
+        addContextRoute([.course], subPath: "front_page", handler: oldPagesListFactory)
         addContextRoute([.course], subPath: "pages", handler: pagesListFactory)
         addContextRoute([.course], subPath: "wiki", handler: pagesListFactory)
 
+        addContextRoute([.group], subPath: "front_page", handler: oldPagesListFactory)
         addContextRoute([.group], subPath: "pages", handler: oldPagesListFactory)
         addContextRoute([.group], subPath: "wiki", handler: oldPagesListFactory)
         

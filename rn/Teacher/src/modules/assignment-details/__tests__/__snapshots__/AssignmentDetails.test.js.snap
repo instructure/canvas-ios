@@ -642,7 +642,7 @@ exports[`renders 1`] = `
         </View>
       </TouchableHighlight>
       <TouchableHighlight
-        onPress={false}
+        onPress={null}
         testID="assignment-details.assignment-section.submission-type"
       >
         <View
@@ -1566,7 +1566,7 @@ exports[`renders as a designer 1`] = `
         </View>
       </TouchableHighlight>
       <TouchableHighlight
-        onPress={false}
+        onPress={null}
         testID="assignment-details.assignment-section.submission-type"
       >
         <View
@@ -2415,7 +2415,7 @@ exports[`renders loading 1`] = `
         </View>
       </TouchableHighlight>
       <TouchableHighlight
-        onPress={false}
+        onPress={null}
         testID="assignment-details.assignment-section.submission-type"
       >
         <View
@@ -3264,7 +3264,7 @@ exports[`renders with no submission types 1`] = `
         </View>
       </TouchableHighlight>
       <TouchableHighlight
-        onPress={false}
+        onPress={null}
         testID="assignment-details.assignment-section.submission-type"
       >
         <View
@@ -4113,7 +4113,7 @@ exports[`renders with not_graded submission type 1`] = `
         </View>
       </TouchableHighlight>
       <TouchableHighlight
-        onPress={false}
+        onPress={null}
         testID="assignment-details.assignment-section.submission-type"
       >
         <View
@@ -4960,7 +4960,7 @@ exports[`renders without description 1`] = `
         </View>
       </TouchableHighlight>
       <TouchableHighlight
-        onPress={false}
+        onPress={null}
         testID="assignment-details.assignment-section.submission-type"
       >
         <View

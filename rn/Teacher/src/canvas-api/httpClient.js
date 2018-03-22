@@ -72,7 +72,6 @@ function xhr (method: Method, url: string, data: Body, config: ApiConfig = {}) {
 
     let fullUrl = resolveUrl(url, config)
     if (query) fullUrl += (fullUrl.includes('?') ? '&' : '?') + query
-
     request.open(method, fullUrl, true)
     request.responseType = config.responseType || 'json'
     request.timeout = config.timeout || 0

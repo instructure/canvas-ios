@@ -253,4 +253,31 @@ describe('CourseDetails', () => {
       { course },
     )
   })
+
+  it('navigates to wiki home page', async () => {
+    const currentApp = App.current()
+    App.setCurrentApp('student')
+    const navigator = template.navigator({
+      traitCollection: (callback) => {
+        callback({
+          screen: {
+            horizontal: 'regular',
+          },
+          window: {
+            horizontal: 'regular',
+          },
+        })
+      },
+    })
+    const props = {
+      ...defaultProps,
+      course: template.course({ default_view: 'wiki' }),
+      tabs: [template.tab({ id: 'home' })],
+      navigator,
+    }
+    shallow(<CourseDetails {...props} />)
+    await Promise.resolve() // wait for next run loop
+    expect(navigator.show).toHaveBeenLastCalledWith(`/courses/${props.course.id}/pages/front_page`)
+    App.setCurrentApp(currentApp.appId)
+  })
 })
