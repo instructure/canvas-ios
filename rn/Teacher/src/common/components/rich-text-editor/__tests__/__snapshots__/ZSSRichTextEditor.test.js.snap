@@ -127,7 +127,7 @@ Array [
 exports[`ZSSRichTextEditor triggers insertVideoComment 1`] = `
 Array [
   Array [
-    "zss_editor.insertVideoComment('file:///path/to/video.mov', '1');",
+    "zss_editor.insertVideoComment('1');",
   ],
 ]
 `;

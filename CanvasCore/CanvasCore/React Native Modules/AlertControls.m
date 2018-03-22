@@ -28,7 +28,7 @@ RCTResponseSenderBlock _textFieldCallback;
 RCT_REMAP_METHOD(onSubmitEditing, callback:(RCTResponseSenderBlock)callback) {
     UIViewController *view = [[HelmManager shared] topMostViewController];
     if ([view isKindOfClass:[UIAlertController class]]) {
-        UIAlertController *alert = view;
+        UIAlertController *alert = (UIAlertController *)view;
         
         if (alert.textFields.count > 0) {
             UITextField *prompt = alert.textFields[0];

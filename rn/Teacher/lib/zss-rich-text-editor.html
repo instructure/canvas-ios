@@ -588,17 +588,25 @@ zss_editor.insertImage = function(url, alt) {
     zss_editor.enabledEditingItems();
 }
 
-zss_editor.insertVideoComment = function(uri, mediaID) {
-    zss_editor.restorerange();
-
+function videoPreviewHTML (mediaID) {
     var html = [
-      '<p><div><br></div></p>',
-      '<video class="zss_postprocess_remove" src="'+uri+'#t=0.5" controls preload="metadata"></video>',
-      '<p class="zss_final_video_comment"><a id="media_comment_'+mediaID+'" class="instructure_inline_media_comment video_comment" href="/media_objects/'+mediaID+'">this is a media comment</a></p>',
-      '<p><div><br></div></p>',
-    ].join('')
+      `<img class="zss_postprocess_remove video-preview" src="${zss_editor.videoPreviewImagePath}" width="192px"></img>`,
+    ]
 
-    zss_editor.insertHTML(html)
+    if (mediaID) {
+      html.push(
+        `<p class="zss_final_video_comment"><a id="media_comment_${mediaID}" class="instructure_inline_media_comment video_comment" href="/media_objects/${mediaID}">this is a media comment</a></p>`,
+      )
+    }
+
+    html = html.join('')
+
+    return html
+}
+
+zss_editor.insertVideoComment = function(mediaID) {
+    zss_editor.restorerange();
+    zss_editor.insertHTML(videoPreviewHTML(mediaID))
     zss_editor.enabledEditingItems();
 }
 
@@ -612,6 +620,12 @@ zss_editor.insertImageBase64String = function(imageBase64String, alt) {
 zss_editor.setHTML = function(html) {
     var editor = $('#zss_editor_content');
     editor.html(html);
+
+    // replace <video> with preview <img>
+    var videos = document.querySelectorAll('video')
+    Array.from(videos).forEach((video) => {
+      $(video).replaceWith(videoPreviewHTML(video.dataset.media_comment_id))
+    })
 }
 
 zss_editor.insertHTML = function(html) {
@@ -861,6 +875,12 @@ img, video {
     margin: 0 auto 0 auto;
     -webkit-margin-before: 1em;
     -webkit-margin-after: 1em;
+}
+
+img.video-preview {
+  margin: 0 !important;
+  -webkit-margin-after: 1em;
+  -webkit-margin-before: 1em;
 }
 
 img.zs_active {

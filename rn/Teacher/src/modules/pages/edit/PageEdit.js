@@ -118,13 +118,14 @@ export class PageEdit extends Component<Props, State> {
             >
               <RichTextEditor
                 onChangeValue={this.handleBodyChange}
-                defaultValue={this.state.body}
+                defaultValue={this.props.page ? this.props.page.body : null}
                 showToolbar='always'
                 keyboardAware={false}
                 scrollEnabled
                 contentHeight={150}
                 placeholder={i18n('Add description')}
                 navigator={this.props.navigator}
+                attachmentUploadPath={`/courses/${this.props.courseID}/files`}
               />
             </View>
 

@@ -160,7 +160,7 @@ describe('RichTextEditor', () => {
       })
       const toolbar = tree.find('RichTextToolbar')
       toolbar.props().insertImage()
-      expect(mock).toHaveBeenCalledWith(video.uri, video.mediaID)
+      expect(mock).toHaveBeenCalledWith(video.mediaID)
     })
   })
 

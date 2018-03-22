@@ -182,6 +182,7 @@ export class AnnouncementEdit extends Component<Props, any> {
                 contentHeight={150}
                 placeholder={i18n('Add description (required)')}
                 navigator={this.props.navigator}
+                attachmentUploadPath={`/${this.props.context}/${this.props.contextID}/files`}
               />
             </View>
             <RequiredFieldSubscript title={i18n('A description is required')} visible={!this.state.isValid} />

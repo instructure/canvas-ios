@@ -38,7 +38,7 @@ export type Props = {
   placeholder?: string,
   focusOnLoad?: boolean,
   navigator: Navigator,
-  attachmentUploadPath?: ?string,
+  attachmentUploadPath: ?string,
 }
 
 type State = {
@@ -206,7 +206,7 @@ export default class RichTextEditor extends Component<Props, State> {
     const videos = attachments.filter(a => a.mime_class === 'video')
     videos
       .filter(a => a.uri && a.mediaID)
-      .forEach(a => this.editor.insertVideoComment(a.uri, a.mediaID))
+      .forEach(a => this.editor.insertVideoComment(a.mediaID))
   }
 
   toolbarShown (): boolean {

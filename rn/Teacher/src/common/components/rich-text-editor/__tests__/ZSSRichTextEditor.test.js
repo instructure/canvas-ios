@@ -17,7 +17,7 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import { shallow } from 'enzyme'
-import 'react-native'
+import { NativeModules } from 'react-native'
 import React from 'react'
 import renderer from 'react-test-renderer'
 import RNFS from 'react-native-fs'
@@ -43,6 +43,8 @@ jest
 describe('ZSSRichTextEditor', () => {
   let js
   beforeEach(() => {
+    jest.clearAllMocks()
+
     js = jest.fn()
   })
 
@@ -69,9 +71,11 @@ describe('ZSSRichTextEditor', () => {
   })
 
   it('uses source from rich text html in main bundle', async () => {
-    const promise = RNFS.readFile()
+    const pathPromise = Promise.resolve('file:///editor.html')
+    NativeModules.NativeFileSystem.pathForResource = jest.fn(() => pathPromise)
     const view = shallow(<ZSSRichTextEditor />)
-    const html = await promise
+    await pathPromise
+    const html = await RNFS.readFile()
     view.update()
     expect(view.prop('source').html).toEqual(html)
     expect(view.prop('source').baseUrl).toEqual(RNFS.MainBundlePath)
@@ -154,7 +158,7 @@ describe('ZSSRichTextEditor', () => {
   })
 
   it('triggers insertVideoComment', () => {
-    testTrigger((editor) => editor.insertVideoComment('file:///path/to/video.mov', '1'))
+    testTrigger((editor) => editor.insertVideoComment('1'))
   })
 
   it('shows link modal', () => {
@@ -299,14 +303,19 @@ describe('ZSSRichTextEditor', () => {
     expect(js.mock.calls).toMatchSnapshot()
   })
 
-  it('notifies when editor loaded', () => {
+  it('notifies when editor loaded', async () => {
+    const pathPromise = Promise.resolve('/editor-loaded')
+    NativeModules.NativeFileSystem.pathForResource = jest.fn(() => pathPromise)
     const onLoad = jest.fn()
-    const component = renderer.create(
-      <ZSSRichTextEditor onLoad={onLoad} />, options
-    )
+    const screen = shallow(<ZSSRichTextEditor onLoad={onLoad} />)
+    await pathPromise
+    const webView = screen.find('WebView')
+
+    const jsPromise = Promise.resolve()
+    webView.getElement().ref({ injectJavaScript: jest.fn(() => jsPromise) })
     expect(onLoad).not.toHaveBeenCalled()
-    const web = webView(component)
-    postMessage(web, 'ZSS_LOADED')
+    webView.simulate('Message', { nativeEvent: { data: JSON.stringify({ type: 'ZSS_LOADED' }) } })
+    await new Promise((resolve, reject) => process.nextTick(resolve))
     expect(onLoad).toHaveBeenCalled()
   })
 

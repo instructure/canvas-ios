@@ -226,6 +226,10 @@ NativeModules.CameraManager = {
   BarCodeType: [],
 }
 
+NativeModules.NativeFileSystem = {
+  pathForResource: jest.fn(() => Promise.resolve('/')),
+}
+
 import './../../src/common/global-style'
 
 jest.mock('../../src/common/components/AuthenticatedWebView.js', () => 'AuthenticatedWebView')

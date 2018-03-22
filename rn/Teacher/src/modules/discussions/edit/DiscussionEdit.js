@@ -241,7 +241,7 @@ export class DiscussionEdit extends Component<Props, any> {
                 contentHeight={150}
                 placeholder={i18n('Add description')}
                 navigator={this.props.navigator}
-                attachmentUploadPath={isTeacher() ? null : '/users/self/files'}
+                attachmentUploadPath={isTeacher() ? `/${this.props.context}/${this.props.contextID}/files` : '/users/self/files'}
               />
             </View>
 

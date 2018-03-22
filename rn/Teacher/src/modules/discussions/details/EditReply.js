@@ -25,7 +25,7 @@ import RichTextEditor from '../../../common/components/rich-text-editor/RichText
 import Actions from './actions'
 import { alertError } from '../../../redux/middleware/error-handler'
 import ModalActivityIndicator from '../../../common/components/ModalActivityIndicator'
-import { isStudent } from '../../app'
+import { isTeacher } from '../../app'
 import {
   View,
   LayoutAnimation,
@@ -87,7 +87,7 @@ export class EditReply extends React.Component<Props, any> {
             placeholder={i18n('Message')}
             focusOnLoad={true}
             navigator={this.props.navigator}
-            attachmentUploadPath={isStudent() ? '/users/self/files' : null}
+            attachmentUploadPath={isTeacher() ? `/${this.props.context}/${this.props.contextID}/files` : '/users/self/files'}
           />
         </View>
       </Screen>

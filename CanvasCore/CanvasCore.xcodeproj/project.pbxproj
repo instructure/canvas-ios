@@ -500,6 +500,9 @@
 		B1ED11942040CD5F00C3C580 /* CanvasWebViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B1ED11932040CD5F00C3C580 /* CanvasWebViewManager.m */; };
 		B1ED11972044803400C3C580 /* CanvasWebViewContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = B1ED11952044803400C3C580 /* CanvasWebViewContainer.h */; };
 		B1ED11982044803400C3C580 /* CanvasWebViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = B1ED11962044803400C3C580 /* CanvasWebViewContainer.m */; };
+		B1F4E8CC206179CC0056074A /* NativeFileSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F4E8CB206179CC0056074A /* NativeFileSystem.m */; };
+		B1F4E8CF206189010056074A /* video-preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B1F4E8CE206189010056074A /* video-preview.png */; };
+		B1F4E8D12061950C0056074A /* zss-rich-text-editor.html in Resources */ = {isa = PBXBuildFile; fileRef = B1F4E8D02061950C0056074A /* zss-rich-text-editor.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1107,6 +1110,9 @@
 		B1ED11932040CD5F00C3C580 /* CanvasWebViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanvasWebViewManager.m; sourceTree = "<group>"; };
 		B1ED11952044803400C3C580 /* CanvasWebViewContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanvasWebViewContainer.h; sourceTree = "<group>"; };
 		B1ED11962044803400C3C580 /* CanvasWebViewContainer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanvasWebViewContainer.m; sourceTree = "<group>"; };
+		B1F4E8CB206179CC0056074A /* NativeFileSystem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeFileSystem.m; sourceTree = "<group>"; };
+		B1F4E8CE206189010056074A /* video-preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video-preview.png"; sourceTree = "<group>"; };
+		B1F4E8D02061950C0056074A /* zss-rich-text-editor.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "zss-rich-text-editor.html"; path = "../../../rn/Teacher/lib/zss-rich-text-editor.html"; sourceTree = "<group>"; };
 		B6F5EAC7A3F6A1CB04CF9E40 /* Pods-defaults-CanvasCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasCore.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasCore/Pods-defaults-CanvasCore.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1198,6 +1204,7 @@
 		2CAF1B161F72AEDB007225DF /* CanvasCore */ = {
 			isa = PBXGroup;
 			children = (
+				B1F4E8CD206188DC0056074A /* RCE */,
 				9F2E363320507F0B00A2B031 /* FeatureFlags */,
 				3BBEAA47204726E4004D334C /* Page View Analytics */,
 				49301FB51F901235006BD777 /* Activity Stream */,
@@ -1684,6 +1691,7 @@
 				B1ED11962044803400C3C580 /* CanvasWebViewContainer.m */,
 				9FD18B6A2052DE6800119927 /* LTITools.m */,
 				9FCA1A10205AC2FC00ECB5E9 /* AlertControls.m */,
+				B1F4E8CB206179CC0056074A /* NativeFileSystem.m */,
 			);
 			path = "React Native Modules";
 			sourceTree = "<group>";
@@ -2772,6 +2780,15 @@
 			path = NativeNotificationCenter;
 			sourceTree = "<group>";
 		};
+		B1F4E8CD206188DC0056074A /* RCE */ = {
+			isa = PBXGroup;
+			children = (
+				B1F4E8CE206189010056074A /* video-preview.png */,
+				B1F4E8D02061950C0056074A /* zss-rich-text-editor.html */,
+			);
+			path = RCE;
+			sourceTree = "<group>";
+		};
 		BC05497B6B1077BCF72B5B87 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -2920,6 +2937,7 @@
 				49CE96591F8FF41B00121A43 /* TimedQuizViewController.strings in Resources */,
 				49CE96751F8FF41B00121A43 /* ShortAnswerCell.xib in Resources */,
 				9F544E0A1FBB766E00BB2D84 /* Localizable.strings in Resources */,
+				B1F4E8D12061950C0056074A /* zss-rich-text-editor.html in Resources */,
 				49CE96811F8FF41B00121A43 /* LoadingQuestionsView.xib in Resources */,
 				2C44846F1F72FD83000D1778 /* feature_toggles.plist in Resources */,
 				4961F5551F8FAF280093EC86 /* AudioRecorderViewController.storyboard in Resources */,
@@ -2936,6 +2954,7 @@
 				49CE974A1F8FFEA600121A43 /* ScheduleItemDetails.css in Resources */,
 				49CE965D1F8FF41B00121A43 /* TimedQuizViewController.xib in Resources */,
 				493020131F901CF5006BD777 /* CommentTableViewCell.xib in Resources */,
+				B1F4E8CF206189010056074A /* video-preview.png in Resources */,
 				4961F51B1F8FAC440093EC86 /* Icons.xcassets in Resources */,
 				494BC6041F953D0D00C77257 /* SubmitAnnotatedAssignmentViewController.storyboard in Resources */,
 				4961F59C1F8FB2920093EC86 /* PrettyImages.xcassets in Resources */,
@@ -3258,6 +3277,7 @@
 				4961F67D1F8FB9620093EC86 /* File+Details.swift in Sources */,
 				49CE969A1F8FF41B00121A43 /* UIWebView+Quizzes.swift in Sources */,
 				49CE97A11F900D0000121A43 /* PandatarBuilderViewController.swift in Sources */,
+				B1F4E8CC206179CC0056074A /* NativeFileSystem.m in Sources */,
 				4961F53C1F8FAD9A0093EC86 /* WhizzyTextInputCell.swift in Sources */,
 				49301FD31F9014C6006BD777 /* CalendarEvent+Details.swift in Sources */,
 				4961F63F1F8FB71B0093EC86 /* Tab+Network.swift in Sources */,

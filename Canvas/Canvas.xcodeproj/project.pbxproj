@@ -653,7 +653,6 @@
 		B1CB84F11D076025004D2265 /* ExpandingComment.css in Resources */ = {isa = PBXBuildFile; fileRef = B1CB84ED1D076025004D2265 /* ExpandingComment.css */; };
 		B1CB84F21D076025004D2265 /* ExpandingComment.html in Resources */ = {isa = PBXBuildFile; fileRef = B1CB84EE1D076025004D2265 /* ExpandingComment.html */; };
 		B1CB84F31D076026004D2265 /* ExpandingComment.js in Resources */ = {isa = PBXBuildFile; fileRef = B1CB84EF1D076025004D2265 /* ExpandingComment.js */; };
-		B1F4E8CA206065870056074A /* zss-rich-text-editor.html in Resources */ = {isa = PBXBuildFile; fileRef = B1F4E8C9206065870056074A /* zss-rich-text-editor.html */; };
 		B1FAE07220056CDA00CDA09C /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FAE07120056CDA00CDA09C /* Course.swift */; };
 		B1FAE07420056CE600CDA09C /* Courses.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FAE07320056CE600CDA09C /* Courses.swift */; };
 		B1FAE07620056CEE00CDA09C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FAE07520056CEE00CDA09C /* Colors.swift */; };
@@ -1585,7 +1584,6 @@
 		B1CB84EE1D076025004D2265 /* ExpandingComment.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ExpandingComment.html; sourceTree = "<group>"; };
 		B1CB84EF1D076025004D2265 /* ExpandingComment.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ExpandingComment.js; sourceTree = "<group>"; };
 		B1E3D6E01D8305D900B4AC11 /* ModulesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ModulesTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		B1F4E8C9206065870056074A /* zss-rich-text-editor.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "zss-rich-text-editor.html"; path = "../../rn/Teacher/lib/zss-rich-text-editor.html"; sourceTree = "<group>"; };
 		B1FAE07120056CDA00CDA09C /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		B1FAE07320056CE600CDA09C /* Courses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Courses.swift; sourceTree = "<group>"; };
 		B1FAE07520056CEE00CDA09C /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -1794,7 +1792,6 @@
 				495D8BBB1CFE17D700D41098 /* LaunchScreen.storyboard */,
 				49642BCA1CF4C66200238B3F /* Canvas.entitlements */,
 				49F9FA4A1CF7B73100654758 /* Canvas.xcassets */,
-				B1F4E8C9206065870056074A /* zss-rich-text-editor.html */,
 				496D31221CF7528500A3B11E /* Shrug */,
 				49F9FA4E1CF8CA8300654758 /* Assignments */,
 				49A04E721CF64ED90051E1E7 /* Calendar */,
@@ -3514,7 +3511,6 @@
 				49A04E6C1CF64D130051E1E7 /* GroupCardCell.xib in Resources */,
 				5EB46DEF1D21A75C00C859A4 /* Images.xcassets in Resources */,
 				495D8BB91CFE17D700D41098 /* LaunchScreen.storyboard in Resources */,
-				B1F4E8CA206065870056074A /* zss-rich-text-editor.html in Resources */,
 				B5F122C91D8C4D6C0045063A /* Canvas.entitlements in Resources */,
 				5EB46DF51D21A75C00C859A4 /* CalendarDayListCell.xib in Resources */,
 				5EB46DFE1D21A75C00C859A4 /* NoResultsView.xib in Resources */,

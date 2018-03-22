@@ -86,6 +86,7 @@ exports[`PageEdit renders 1`] = `
         }
       >
         <RichTextEditor
+          attachmentUploadPath="/courses/1/files"
           contentHeight={150}
           defaultValue=""
           keyboardAware={false}

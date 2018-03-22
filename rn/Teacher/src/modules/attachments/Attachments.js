@@ -46,6 +46,7 @@ type StorageOptions = {
 }
 
 type AttachmentState = {
+  id: string,
   fileID: ?string,
   progress: Progress,
   error: null,
@@ -87,6 +88,7 @@ export default class Attachments extends Component<Props, any> {
       attachments: props.attachments.reduce((current, attachment) => ({
         ...current,
         [attachment.id]: {
+          id: attachment.id,
           progress: { loaded: 0, total: 0 },
           error: null,
           data: attachment,
@@ -156,16 +158,16 @@ export default class Attachments extends Component<Props, any> {
         error={item.error}
         progress={item.progress}
         fileID={item.fileID}
-        onRemovePressed={this.removeAttachment(item.data)}
+        onRemovePressed={this.removeAttachment(item)}
         onPress={this.showAttachment(item.data)}
         testID={`attachments.attachment-row.${index}`}
-        onCancel={this.cancelAttachment(item.data)}
-        onRetry={this.retryAttachment(item.data)}
+        onCancel={this.cancelAttachment(item)}
+        onRetry={this.retryAttachment(item)}
       />
     )
   }
 
-  cancelAttachment (attachment: Attachment) {
+  cancelAttachment (attachment: AttachmentState) {
     return () => {
       this.state.attachments[attachment.id] &&
         this.state.attachments[attachment.id].cancel &&
@@ -173,7 +175,7 @@ export default class Attachments extends Component<Props, any> {
     }
   }
 
-  retryAttachment (attachment: Attachment) {
+  retryAttachment (attachment: AttachmentState) {
     return async () => {
       this.setState({
         attachments: {
@@ -186,7 +188,7 @@ export default class Attachments extends Component<Props, any> {
         },
       })
 
-      await this.uploadAttachment(attachment)
+      await this.uploadAttachment(attachment.data)
     }
   }
 
@@ -223,6 +225,7 @@ export default class Attachments extends Component<Props, any> {
       attachments: {
         ...this.state.attachments,
         [attachment.id]: {
+          id: attachment.id,
           progress: shouldUpload ? { loaded: 0.1, total: 1 } : { loaded: 0, total: 0 },
           error: null,
           data: attachment,
@@ -234,7 +237,7 @@ export default class Attachments extends Component<Props, any> {
     await this.uploadAttachment(attachment)
   }
 
-  removeAttachment = (attachment: Attachment) => () => {
+  removeAttachment = (attachment: AttachmentState) => () => {
     const attachments = { ...this.state.attachments }
     delete attachments[attachment.id]
     this.setState({ attachments })

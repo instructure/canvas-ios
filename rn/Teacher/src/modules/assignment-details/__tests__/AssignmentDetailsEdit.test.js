@@ -212,6 +212,7 @@ test('edit description', () => {
     onChangeValue: expect.any(Function),
     showToolbar: 'always',
     placeholder: 'Description',
+    attachmentUploadPath: '/courses/1/files',
   })
 })
 

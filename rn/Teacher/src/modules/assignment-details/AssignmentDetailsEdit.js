@@ -257,6 +257,7 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
       defaultValue: this.state.assignment.description,
       placeholder: i18n('Description'),
       showToolbar: 'always',
+      attachmentUploadPath: `/courses/${this.props.courseID}/files`,
     })
   }
 

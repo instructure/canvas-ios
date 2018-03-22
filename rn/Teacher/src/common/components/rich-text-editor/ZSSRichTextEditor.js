@@ -20,10 +20,13 @@ import React, { Component } from 'react'
 import {
   StyleSheet,
   WebView,
+  NativeModules,
 } from 'react-native'
 
 import isEqual from 'lodash/isEqual'
 import RNFS from 'react-native-fs'
+
+const { NativeFileSystem } = NativeModules
 
 type Props = {
   onInputChange?: (value: string) => void,
@@ -55,8 +58,8 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
   }
 
   async componentDidMount () {
-    const path = `${RNFS.MainBundlePath}/zss-rich-text-editor.html`
-    const source = await RNFS.readFile(path)
+    const path = await NativeFileSystem.pathForResource('zss-rich-text-editor', 'html')
+    const source = await RNFS.readFile(`file://${path}`)
     this.setState({ source })
   }
 
@@ -103,7 +106,7 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
 
   setCustomCSS = (css?: string) => {
     if (!css) { css = '' }
-    this.trigger(`zss_editor.setCustomCSS('${css}');`, true)
+    this.trigger(`zss_editor.setCustomCSS('${css}');`, false)
   }
 
   setUnorderedList = () => {
@@ -162,8 +165,8 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
     this.trigger(`zss_editor.insertImage('${url}');`, true)
   }
 
-  insertVideoComment = (uri: string, mediaID: string) => {
-    this.trigger(`zss_editor.insertVideoComment('${uri}', '${mediaID}');`, true)
+  insertVideoComment = (mediaID: string) => {
+    this.trigger(`zss_editor.insertVideoComment('${mediaID}');`, true)
   }
 
   trigger = async (js: string, inputChanged?: boolean) => {
@@ -276,8 +279,9 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
     this.showingLinkModal = false
   }
 
-  _onZSSLoaded = () => {
+  _onZSSLoaded = async () => {
     this.setCustomCSS()
+    await this._setVideoPreviewImagePath()
     this.props.onLoad && this.props.onLoad()
   }
 
@@ -307,6 +311,11 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
       // $FlowFixMe
       this.props.onHeightChange(height)
     }
+  }
+
+  _setVideoPreviewImagePath = async () => {
+    const path = await NativeFileSystem.pathForResource('video-preview', 'png')
+    await this.trigger(`zss_editor.videoPreviewImagePath = '${path}';`)
   }
 
   // UTILITIES

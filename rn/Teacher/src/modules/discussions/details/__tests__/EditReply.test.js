@@ -16,6 +16,7 @@
 
 /* eslint-disable flowtype/require-valid-file-annotation */
 
+import { shallow } from 'enzyme'
 import React from 'react'
 import { EditReply, mapStateToProps } from '../EditReply'
 import explore from '../../../../../test/helpers/explore'
@@ -23,6 +24,7 @@ import setProps from '../../../../../test/helpers/setProps'
 import { Alert } from 'react-native'
 import { defaultErrorTitle } from '../../../../redux/middleware/error-handler'
 import renderer from 'react-test-renderer'
+import app from '../../../app'
 
 jest
   .mock('Alert', () => ({
@@ -66,6 +68,7 @@ describe('EditReply', () => {
       deletePendingReplies: jest.fn(),
       lastReplyAt: (new Date()).toISOString(),
     }
+    app.setCurrentApp('teacher')
   })
 
   it('renders', () => {
@@ -182,6 +185,20 @@ describe('EditReply', () => {
     doneButton.action()
     expect(editReply).toBeCalledWith(defaultProps.context, defaultProps.contextID, editProps.discussionID, editProps.entryID, { message }, [])
     expect(defaultProps.navigator.dismissAllModals).toHaveBeenCalled()
+  })
+
+  it('uses course files for rce media embeds in teacher', () => {
+    app.setCurrentApp('teacher')
+    defaultProps.context = 'courses'
+    defaultProps.contextID = '1'
+    const screen = shallow(<EditReply {...defaultProps} />)
+    expect(screen.find('RichTextEditor').prop('attachmentUploadPath')).toEqual('/courses/1/files')
+  })
+
+  it('uses user files for rce media embeds in student', () => {
+    app.setCurrentApp('student')
+    const screen = shallow(<EditReply {...defaultProps} />)
+    expect(screen.find('RichTextEditor').prop('attachmentUploadPath')).toEqual('/users/self/files')
   })
 })
 
