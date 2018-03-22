@@ -410,6 +410,9 @@
   "delay_posting_f45eed7d": {
     "message": "Delay Posting"
   },
+  "delayed_until_8f9c2bb1": {
+    "message": "Delayed until: "
+  },
   "delete_a6efa79d": {
     "message": "Delete"
   },
@@ -1118,6 +1121,9 @@
   "replies_4a8577c8": {
     "message": "Replies"
   },
+  "replies_are_only_visible_to_those_who_have_posted__30e58953": {
+    "message": "Replies are only visible to those who have posted at least one reply."
+  },
   "reply_389d6fb9": {
     "message": "Reply"
   },
@@ -1480,6 +1486,9 @@
   },
   "to_name_bb3e415e": {
     "message": "to { name }"
+  },
+  "total_grade_568e719f": {
+    "message": "Total Grade:"
   },
   "try_logging_in_again_7a66111a": {
     "message": "Try logging in again"
