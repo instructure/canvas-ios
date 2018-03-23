@@ -27,6 +27,7 @@ import i18n from 'format-message'
 
 import Row from '../../../common/components/rows/Row'
 import AccessIcon from '../../../common/components/AccessIcon'
+import AccessLine from '../../../common/components/AccessLine'
 import { formattedDueDateWithStatus, formattedDueDate } from '../../../common/formatters'
 import { extractDateFromString } from '../../../utils/dateUtils'
 import Images from '../../../images/'
@@ -82,7 +83,7 @@ export default class DiscussionsRow extends PureComponent<Props> {
           </Row>
 
         </View>
-        {discussion.published ? <View style={style.publishedIndicatorLine}/> : <View />}
+        <AccessLine visible={discussion.published} />
         { unreadDot }
       </View>
     )
@@ -198,14 +199,6 @@ const style = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
-  },
-  publishedIndicatorLine: {
-    backgroundColor: '#00AC18',
-    position: 'absolute',
-    top: 4,
-    bottom: 4,
-    left: 0,
-    width: 3,
   },
   details: {
     flexDirection: 'row',

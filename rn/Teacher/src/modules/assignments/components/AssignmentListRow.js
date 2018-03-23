@@ -27,6 +27,7 @@ import {
 import i18n from 'format-message'
 import { formattedDueDateWithStatus } from '../../../common/formatters'
 import AccessIcon from '../../../common/components/AccessIcon'
+import AccessLine from '../../../common/components/AccessLine'
 import AssignmentDates from '../../../common/AssignmentDates'
 import { Text } from '../../../common/text'
 import Row from '../../../common/components/rows/Row'
@@ -94,7 +95,7 @@ export default class AssignmentListRow extends PureComponent<Props> {
             {this.ungradedBubble(assignment)}
           </Row>
         </View>
-        {this.props.assignment.published ? <View style={styles.publishedIndicatorLine} /> : <View />}
+        <AccessLine visible={assignment.published} />
       </View>
     )
   }
@@ -136,14 +137,6 @@ const styles = StyleSheet.create({
     paddingRight: 6,
     marginTop: 4,
     overflow: 'hidden',
-  },
-  publishedIndicatorLine: {
-    backgroundColor: '#00AC18',
-    position: 'absolute',
-    top: 4,
-    bottom: 4,
-    left: 0,
-    width: 3,
   },
   icon: {
     alignSelf: 'flex-start',

@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AccessLine shows published when not locked or hidden 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#00AC18",
+      "bottom": 4,
+      "left": 0,
+      "position": "absolute",
+      "top": 4,
+      "width": 3,
+    }
+  }
+/>
+`;

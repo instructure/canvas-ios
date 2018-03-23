@@ -26,6 +26,7 @@ import {
 } from 'react-native'
 
 import AccessIcon from '../../common/components/AccessIcon'
+import AccessLine from '../../common/components/AccessLine'
 import { Text } from '../../common/text'
 import Row from '../../common/components/rows/Row'
 import Images from '../../images'
@@ -111,7 +112,7 @@ export default class UserSubmissionRow extends Component<Props, any> {
             }
           </Row>
         </View>
-        {assignment.published ? <View style={styles.publishedIndicatorLine} /> : <View />}
+        <AccessLine visible={assignment.published} />
       </View>
     )
   }
@@ -154,14 +155,6 @@ const styles = StyleSheet.create({
     paddingRight: 6,
     marginTop: 4,
     overflow: 'hidden',
-  },
-  publishedIndicatorLine: {
-    backgroundColor: '#00AC18',
-    position: 'absolute',
-    top: 4,
-    bottom: 4,
-    left: 0,
-    width: 3,
   },
   icon: {
     alignSelf: 'flex-start',

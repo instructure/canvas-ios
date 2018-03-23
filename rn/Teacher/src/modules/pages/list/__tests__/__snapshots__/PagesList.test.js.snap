@@ -132,6 +132,7 @@ exports[`PagesList shows access icon for teachers 1`] = `
   }
 >
   <AccessIcon
+    disableAppSpecificChecks={false}
     entry={
       Object {
         "body": "<p>Hello, World!</p>",

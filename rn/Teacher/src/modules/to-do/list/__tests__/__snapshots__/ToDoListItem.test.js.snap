@@ -1827,5 +1827,6 @@ exports[`ToDoListItem renders unpublished assignment 1`] = `
       </View>
     </TouchableHighlight>
   </View>
+  <View />
 </View>
 `;

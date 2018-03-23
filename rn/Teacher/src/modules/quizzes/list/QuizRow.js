@@ -25,6 +25,7 @@ import i18n from 'format-message'
 
 import Row from '../../../common/components/rows/Row'
 import AccessIcon from '../../../common/components/AccessIcon'
+import AccessLine from '../../../common/components/AccessLine'
 import { formattedDueDateWithStatus } from '../../../common/formatters'
 import { extractDateFromString } from '../../../utils/dateUtils'
 import Images from '../../../images/'
@@ -61,7 +62,7 @@ export default class QuizRow extends Component<Props, any> {
             </View>
           </Row>
         </View>
-        {quiz.published ? <View style={style.publishedIndicatorLine} /> : <View />}
+        <AccessLine visible={quiz.published} />
       </View>
     )
   }
@@ -105,14 +106,6 @@ export default class QuizRow extends Component<Props, any> {
 }
 
 const style = StyleSheet.create({
-  publishedIndicatorLine: {
-    backgroundColor: '#00AC18',
-    position: 'absolute',
-    top: 4,
-    bottom: 4,
-    left: 0,
-    width: 3,
-  },
   details: {
     flexDirection: 'row',
   },

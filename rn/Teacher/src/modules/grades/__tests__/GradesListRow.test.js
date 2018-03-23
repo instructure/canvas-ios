@@ -56,22 +56,6 @@ test('renders the submission status label', () => {
   expect(tree.find('SubmissionStatusLabel').length).toEqual(1)
 })
 
-test('renders correctly published icon', () => {
-  let assignment = templates.assignment({ published: true })
-  let tree = shallow(
-    <GradesListRow assignment={assignment}/>
-  )
-  expect(tree.find('[testID="grades-list-row.published"]').length).toEqual(1)
-})
-
-test('renders correctly not published icon', () => {
-  let assignment = templates.assignment({ published: false })
-  let tree = shallow(
-    <GradesListRow assignment={assignment}/>
-  )
-  expect(tree.find('[testID="grades-list-row.unpublished"]').length).toEqual(1)
-})
-
 test('renders correctly assignment icon', () => {
   let assignment = templates.assignment({ submission_types: ['on_paper'] })
   let tree = shallow(new GradesListRow({ assignment })._renderIcon())

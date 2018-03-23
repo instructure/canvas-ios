@@ -27,6 +27,7 @@ import {
 
 import Images from '../../images'
 import i18n from 'format-message'
+import { isTeacher } from '../../modules/app'
 
 export type Props = {
   entry: Object, /* {
@@ -39,12 +40,14 @@ export type Props = {
   tintColor: ?string,
   image: any,
   showAccessIcon: boolean,
+  disableAppSpecificChecks?: boolean,
 }
 
 export default class AccessIcon extends React.Component<Props> {
   static defaultProps = {
     entry: {},
     showAccessIcon: true,
+    disableAppSpecificChecks: false,
   }
 
   render () {
@@ -52,6 +55,10 @@ export default class AccessIcon extends React.Component<Props> {
     let icon = Images.published
     let iconStyle = styles.publishedIcon
     let accessibilityLabel = i18n('Published')
+    let showAccessIcon = this.props.showAccessIcon
+    if (!this.props.disableAppSpecificChecks) {
+      showAccessIcon = isTeacher()
+    }
     if (published == null && (hidden || lock_at || unlock_at)) { // eslint-disable-line camelcase
       icon = Images.restricted
       iconStyle = styles.restrictedIcon
@@ -68,7 +75,7 @@ export default class AccessIcon extends React.Component<Props> {
           style={{ tintColor: this.props.tintColor }}
           testID='access-icon-image'
         />
-        { this.props.showAccessIcon &&
+        { showAccessIcon &&
           <View style={styles.publishedIconContainer}>
             <Image source={icon} style={iconStyle} testID='access-icon-icon' />
           </View>

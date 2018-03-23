@@ -25,6 +25,7 @@ import {
 import Row from '../../../common/components/rows/Row'
 import { Text } from '../../../common/text'
 import AccessIcon from '../../../common/components/AccessIcon'
+import AccessLine from '../../../common/components/AccessLine'
 import colors from '../../../common/colors'
 import i18n from 'format-message'
 import images from '../../../images/'
@@ -133,9 +134,7 @@ export class ToDoListItem extends Component<Props, any> {
             </View>
           </Row>
         </View>
-        { entry.published &&
-          <View style={styles.publishedIndicator} />
-        }
+        <AccessLine visible={entry.published} />
       </View>
     )
   }

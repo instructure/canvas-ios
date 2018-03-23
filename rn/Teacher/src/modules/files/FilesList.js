@@ -37,6 +37,7 @@ import RowSeparator from '../../common/components/rows/RowSeparator'
 import find from 'lodash/find'
 import localeSort from '../../utils/locale-sort'
 import AccessIcon from '../../common/components/AccessIcon'
+import AccessLine from '../../common/components/AccessLine'
 import ListEmptyComponent from '../../common/components/ListEmptyComponent'
 import images from '../../images'
 import bytes, { unitFor } from '../../utils/locale-bytes'
@@ -319,7 +320,7 @@ export class FilesList extends Component<Props, State> {
     }
     const renderImage = () => {
       return <View style={styles.icon}>
-               <AccessIcon entry={item} image={icon} tintColor={tintColor} statusOffset={statusOffset} />
+               <AccessIcon entry={item} image={icon} tintColor={tintColor} statusOffset={statusOffset} disableAppSpecificChecks={this.props.context === 'users'} />
              </View>
     }
 
@@ -337,7 +338,7 @@ export class FilesList extends Component<Props, State> {
               {(item.hidden || item.lock_at || item.unlock_at) ? (
                 <View style={styles.restrictedIndicatorLine} />
               ) : (
-                !item.locked && <View style={styles.publishedIndicatorLine} />
+                <AccessLine visible={!item.locked} disableAppSpecificChecks={this.props.context === 'users'} />
               )}
             </View>)
   }
@@ -430,14 +431,6 @@ export function mapStateToProps (state: Object, props: FileListNavProps) {
 const styles = StyleSheet.create({
   icon: {
     alignSelf: 'flex-start',
-  },
-  publishedIndicatorLine: {
-    backgroundColor: '#00AC18',
-    position: 'absolute',
-    top: 4,
-    bottom: 4,
-    left: 0,
-    width: 3,
   },
   restrictedIndicatorLine: {
     backgroundColor: '#FF0000',

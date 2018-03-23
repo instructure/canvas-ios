@@ -20,6 +20,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import AccessIcon, { type Props } from '../AccessIcon'
 import Images from '../../../images'
+import app from '../../../modules/app'
 
 describe('AccessIcon', () => {
   let props: Props
@@ -29,6 +30,7 @@ describe('AccessIcon', () => {
       tintColor: '#fff',
       image: Images.kabob,
       showAccessIcon: true,
+      disableAppSpecificChecks: true,
     }
   })
 
@@ -92,5 +94,13 @@ describe('AccessIcon', () => {
     props.showAccessIcon = true
     tree = shallow(<AccessIcon {...props} />)
     expect(tree.find('[testID="access-icon-icon"]')).toHaveLength(1)
+  })
+
+  it('turns off access icon for student app', () => {
+    app.setCurrentApp('student')
+    props.disableAppSpecificChecks = false
+    props.showAccessIcon = true
+    let tree = shallow(<AccessIcon {...props} />)
+    expect(tree.find('[testID="access-icon-icon"]')).toHaveLength(0)
   })
 })
