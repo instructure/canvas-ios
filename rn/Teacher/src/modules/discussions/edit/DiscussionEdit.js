@@ -104,6 +104,7 @@ export type Props = State & OwnProps & AsyncState & NavigationProps & typeof Act
 export class DiscussionEdit extends Component<Props, any> {
   scrollView: KeyboardAwareScrollView
   datesEditor: ?AssignmentDatesEditor
+  editor: ?RichTextEditor
 
   constructor (props: Props) {
     super(props)
@@ -233,7 +234,7 @@ export class DiscussionEdit extends Component<Props, any> {
               style={style.description}
             >
               <RichTextEditor
-                onChangeValue={this._valueChanged('message')}
+                ref={(r) => { this.editor = r }}
                 defaultValue={this.props.message}
                 showToolbar='always'
                 keyboardAware={false}
@@ -498,10 +499,11 @@ export class DiscussionEdit extends Component<Props, any> {
     }
   }
 
-  updateDiscussion () {
+  async updateDiscussion () {
+    const message = this.editor ? await this.editor.getHTML() : ''
     let params = {
       title: this.state.title || i18n('No Title'),
-      message: this.state.message,
+      message: message,
       published: !isTeacher() || this.state.published || false,
       discussion_type: this.state.discussion_type || 'side_comment',
       subscribed: this.state.subscribed || false,

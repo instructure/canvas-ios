@@ -146,44 +146,39 @@ describe('EditReply', () => {
     expect(textEditor.props.placeholder).toEqual('Message')
   })
 
-  it('enteres text and posts reply', () => {
-    let component = renderer.create(
-      <EditReply {...defaultProps} />
-    )
+  it('enters text and posts reply', async () => {
+    let component = shallow(<EditReply {...defaultProps} refreshDiscussionEntries={jest.fn()} />)
     let postReply = jest.fn(() => {
-      setProps(component, { pending: 0 })
+      component.setProps({ pending: 0 })
     })
-    let textEditor = explore(component.toJSON()).query(({ type }) => type === 'RichTextEditor')[0]
+    component.setProps({ createEntry: postReply })
+    let textEditor = component.find('RichTextEditor')
     let message = 'not empty'
-    textEditor.props.onChangeValue(message)
-    let refresh = jest.fn()
-    component.update(<EditReply {...defaultProps} createEntry={postReply} refreshDiscussionEntries={refresh} />)
-    const doneButton: any = explore(component.toJSON()).selectRightBarButton('edit-discussion-reply.done-btn')
-    doneButton.action()
+    textEditor.getElement().ref({ getHTML: jest.fn(() => Promise.resolve(message)) })
+    const doneButton = component.prop('rightBarButtons')[0]
+    await doneButton.action()
     expect(postReply).toBeCalledWith(defaultProps.context, defaultProps.contextID, defaultProps.discussionID, defaultProps.entryID, { message }, [], defaultProps.lastReplyAt)
     expect(defaultProps.navigator.dismissAllModals).toHaveBeenCalled()
   })
 
-  it('edits an existing reply', () => {
+  it('edits an existing reply', async () => {
     let editProps = {
       ...defaultProps,
       message: 'default message',
       isEdit: true,
+      refreshDiscussionEntries: jest.fn(),
     }
-    let component = renderer.create(
-      <EditReply {...editProps} />
-    )
-    let editReply = jest.fn(() => {
-      setProps(component, { pending: 0 })
+    let component = shallow(<EditReply {...editProps} />)
+    let editEntry = jest.fn(() => {
+      component.setProps({ pending: 0 })
     })
-    let textEditor = explore(component.toJSON()).query(({ type }) => type === 'RichTextEditor')[0]
+    component.setProps({ editEntry })
+    let textEditor = component.find('RichTextEditor')
     let message = 'edited message'
-    textEditor.props.onChangeValue(message)
-    let refresh = jest.fn()
-    component.update(<EditReply {...editProps} editEntry={editReply} refreshDiscussionEntries={refresh} />)
-    const doneButton: any = explore(component.toJSON()).selectRightBarButton('edit-discussion-reply.done-btn')
-    doneButton.action()
-    expect(editReply).toBeCalledWith(defaultProps.context, defaultProps.contextID, editProps.discussionID, editProps.entryID, { message }, [])
+    textEditor.getElement().ref({ getHTML: jest.fn(() => Promise.resolve(message)) })
+    const doneButton = component.prop('rightBarButtons')[0]
+    await doneButton.action()
+    expect(editEntry).toBeCalledWith(defaultProps.context, defaultProps.contextID, editProps.discussionID, editProps.entryID, { message }, [])
     expect(defaultProps.navigator.dismissAllModals).toHaveBeenCalled()
   })
 

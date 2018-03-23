@@ -129,7 +129,6 @@ exports[`DiscussionEdit renders 1`] = `
               "traitCollection": [Function],
             }
           }
-          onChangeValue={[Function]}
           placeholder="Add description"
           scrollEnabled={true}
           showToolbar="always"
@@ -344,7 +343,6 @@ exports[`DiscussionEdit renders new form 1`] = `
               "traitCollection": [Function],
             }
           }
-          onChangeValue={[Function]}
           placeholder="Add description"
           scrollEnabled={true}
           showToolbar="always"
@@ -552,7 +550,6 @@ exports[`DiscussionEdit updates from props 1`] = `
               "traitCollection": [Function],
             }
           }
-          onChangeValue={[Function]}
           placeholder="Add description"
           scrollEnabled={true}
           showToolbar="always"
@@ -767,7 +764,6 @@ exports[`DiscussionEdit updates with new props 1`] = `
               "traitCollection": [Function],
             }
           }
-          onChangeValue={[Function]}
           placeholder="Add description"
           scrollEnabled={true}
           showToolbar="always"

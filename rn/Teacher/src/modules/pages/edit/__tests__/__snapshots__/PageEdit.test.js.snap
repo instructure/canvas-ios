@@ -100,7 +100,6 @@ exports[`PageEdit renders 1`] = `
               "traitCollection": [Function],
             }
           }
-          onChangeValue={[Function]}
           placeholder="Add description"
           scrollEnabled={true}
           showToolbar="always"

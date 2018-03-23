@@ -18,21 +18,36 @@
 
 import React from 'react'
 import 'react-native'
-import renderer from 'react-test-renderer'
-
+import { shallow } from 'enzyme'
 import RichTextEditor from '../RichTextEditor'
-
-jest
-  .mock('Button', () => 'Button')
-  .mock('TouchableHighlight', () => 'TouchableHighlight')
-  .mock('TouchableOpacity', () => 'TouchableOpacity')
-  .mock('../../../common/components/rich-text-editor/RichTextEditor')
-  .mock('../../../routing/Screen')
+import * as template from '../../../__templates__/'
 
 describe('RichTextEditor', () => {
-  it('renders RichTextEditor in a Screen', () => {
-    expect(
-      renderer.create(<RichTextEditor />).toJSON()
-    ).toMatchSnapshot()
+  let props
+  beforeEach(() => {
+    props = {
+      navigator: template.navigator(),
+    }
+  })
+
+  it('renders', () => {
+    expect(shallow(<RichTextEditor {...props} />)).toMatchSnapshot()
+  })
+
+  it('passes back html on done pressed', async () => {
+    props.onChangeValue = jest.fn()
+    const view = shallow(<RichTextEditor {...props} />)
+    const html = '<div>HTML ON DONE</div>'
+    view.find('RichTextEditor').getElement().ref({ getHTML: jest.fn(() => Promise.resolve(html)) })
+    await view.prop('leftBarButtons')[0].action()
+    expect(props.onChangeValue).toHaveBeenCalledWith(html)
+  })
+
+  it('dismisses on done pressed', async () => {
+    props.navigator = template.navigator({ dismiss: jest.fn() })
+    const view = shallow(<RichTextEditor {...props} />)
+    view.find('RichTextEditor').getElement().ref({ getHTML: jest.fn(() => Promise.resolve('')) })
+    await view.prop('leftBarButtons')[0].action()
+    expect(props.navigator.dismiss).toHaveBeenCalled()
   })
 })

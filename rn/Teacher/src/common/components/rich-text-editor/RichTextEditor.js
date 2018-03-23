@@ -28,8 +28,6 @@ import {
 } from 'react-native'
 
 export type Props = {
-  onChangeValue?: (value: string) => void,
-  onChangeHeight?: (height: number) => void,
   defaultValue?: ?string,
   showToolbar?: 'never' | 'always' | 'onFocus',
   keyboardAware?: boolean,
@@ -59,6 +57,10 @@ export default class RichTextEditor extends Component<Props, State> {
     editorLoaded: false,
   }
 
+  getHTML = async () => {
+    return this.editor.getHTML()
+  }
+
   onLayout = () => {
     this._setKeyboardSpace()
   }
@@ -86,8 +88,6 @@ export default class RichTextEditor extends Component<Props, State> {
           onFocus={this._onFocus}
           onBlur={this._onBlur}
           editorItemsChanged={this._onEditorItemsChanged}
-          onInputChange={this.props.onChangeValue}
-          onHeightChange={this.props.onChangeHeight}
           scrollEnabled={this.props.scrollEnabled === undefined || this.props.scrollEnabled}
           navigator={this.props.navigator}
         />

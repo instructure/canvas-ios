@@ -602,11 +602,12 @@ export class QuizEdit extends Component<Props, any> {
   }
 
   _editDescription = () => {
-    this.props.navigator.show('/rich-text-editor', { modal: false }, {
+    this.props.navigator.show('/rich-text-editor', { modal: true, modalPresentationStyle: 'fullscreen' }, {
       defaultValue: this.state.quiz.description,
       onChangeValue: this._updateQuiz('description'),
       showToolbar: 'always',
       placeholder: i18n('Description'),
+      attachmentUploadPath: `/courses/${this.props.courseID}/files`,
     })
   }
 }

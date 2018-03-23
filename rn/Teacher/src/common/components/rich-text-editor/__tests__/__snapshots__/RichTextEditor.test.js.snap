@@ -24,7 +24,6 @@ exports[`RichTextEditor can be keyboard aware 1`] = `
     }
     onBlur={[Function]}
     onFocus={[Function]}
-    onInputChange={[Function]}
     onLoad={[Function]}
     scrollEnabled={true}
   />
@@ -66,7 +65,6 @@ exports[`RichTextEditor hides toolbar when editor blurs 1`] = `
     }
     onBlur={[Function]}
     onFocus={[Function]}
-    onInputChange={[Function]}
     onLoad={[Function]}
     scrollEnabled={true}
   />
@@ -101,7 +99,6 @@ exports[`RichTextEditor hides toolbar when showToolbar is false 1`] = `
     }
     onBlur={[Function]}
     onFocus={[Function]}
-    onInputChange={[Function]}
     onLoad={[Function]}
     scrollEnabled={true}
   />
@@ -136,7 +133,6 @@ exports[`RichTextEditor renders 1`] = `
     }
     onBlur={[Function]}
     onFocus={[Function]}
-    onInputChange={[Function]}
     onLoad={[Function]}
     scrollEnabled={true}
   />
@@ -171,7 +167,6 @@ exports[`RichTextEditor renders toolbar when editor focused 1`] = `
     }
     onBlur={[Function]}
     onFocus={[Function]}
-    onInputChange={[Function]}
     onLoad={[Function]}
     scrollEnabled={true}
   />
@@ -219,7 +214,6 @@ exports[`RichTextEditor should update active editor items in toolbar 1`] = `
     }
     onBlur={[Function]}
     onFocus={[Function]}
-    onInputChange={[Function]}
     onLoad={[Function]}
     scrollEnabled={true}
   />
@@ -267,7 +261,6 @@ exports[`RichTextEditor should update active editor items in toolbar 2`] = `
     }
     onBlur={[Function]}
     onFocus={[Function]}
-    onInputChange={[Function]}
     onLoad={[Function]}
     scrollEnabled={true}
   />

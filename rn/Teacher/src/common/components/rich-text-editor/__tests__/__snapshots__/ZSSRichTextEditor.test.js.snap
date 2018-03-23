@@ -73,17 +73,6 @@ Array [
 ]
 `;
 
-exports[`ZSSRichTextEditor sends input changes 1`] = `
-Array [
-  Array [
-    "
-      var height = $('#zss_editor_content').height();
-      postMessage(JSON.stringify({type: 'HEIGHT_UPDATE', data: height}));
-    ",
-  ],
-]
-`;
-
 exports[`ZSSRichTextEditor sets custom css on web view loaded 1`] = `
 Array [
   Array [

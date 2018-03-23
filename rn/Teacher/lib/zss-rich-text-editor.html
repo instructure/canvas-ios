@@ -140,24 +140,18 @@ zss_editor.init = function() {
             if (callNow) func.apply(context, args);
         };
     };
-    var onInput = function() {
-        zss_editor.postInput()
-    };
-    $('#zss_editor_content').keyup(debounce(onInput, 400));
-    $('#zss_editor_content').on('paste', debounce(onInput, 100));
-    $('#zss_editor_content').on('cut', debounce(onInput, 100));
-
 
 }//end
 
-zss_editor.postInput = function() {
+zss_editor.postHTML = function() {
+    var html = this.getHTML();
+
     // backspaces leave behind empty line breaks
-    if (['<br>', '<div><br></div>'].includes(this.getHTML())) {
-      zss_editor.setHTML('');
+    if (['<br>', '<div><br></div>'].includes(html)) {
+      html = '';
     }
 
-    var html = this.getHTML();
-    postMessage(JSON.stringify({type: 'EDITOR_INPUT', data: html}));
+    postMessage(JSON.stringify({type: 'EDITOR_HTML', data: html}));
 }
 
 zss_editor.updateOffset = function() {

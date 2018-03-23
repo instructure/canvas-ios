@@ -29,8 +29,6 @@ import RNFS from 'react-native-fs'
 const { NativeFileSystem } = NativeModules
 
 type Props = {
-  onInputChange?: (value: string) => void,
-  onHeightChange?: (height: number) => void,
   onLoad?: () => void,
   onFocus?: () => void,
   onBlur?: () => void,
@@ -42,17 +40,16 @@ type Props = {
 type State = {
   source: ?string,
   linkModalVisible: boolean,
-  lastHeightUpdate: number,
   items: string[],
 }
 
 export default class ZSSRichTextEditor extends Component<Props, State> {
   webView: ?WebView
   showingLinkModal: boolean
+  onHTML: ?((string) => void)
 
   state: State = {
     linkModalVisible: false,
-    lastHeightUpdate: 0,
     items: [],
     source: null,
   }
@@ -81,18 +78,18 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
   // PUBLIC ACTIONS
 
   setBold = () => {
-    this.trigger('zss_editor.setBold();', true)
+    this.trigger('zss_editor.setBold();')
   }
 
   setItalic = () => {
-    this.trigger('zss_editor.setItalic();', true)
+    this.trigger('zss_editor.setItalic();')
   }
 
   insertLink = () => {
     this.trigger(`
       var selection = getSelection().toString();
       postMessage(JSON.stringify({type: 'INSERT_LINK', data: selection}));
-    `, true)
+    `)
   }
 
   prepareInsert = () => {
@@ -101,25 +98,25 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
 
   updateHTML = (html: ?string) => {
     const cleanHTML = this._escapeJSONString(html || '')
-    this.trigger(`zss_editor.setHTML("${cleanHTML}");`, true)
+    this.trigger(`zss_editor.setHTML("${cleanHTML}");`)
   }
 
   setCustomCSS = (css?: string) => {
     if (!css) { css = '' }
-    this.trigger(`zss_editor.setCustomCSS('${css}');`, false)
+    this.trigger(`zss_editor.setCustomCSS('${css}');`)
   }
 
   setUnorderedList = () => {
-    this.trigger(`zss_editor.setUnorderedList();`, true)
+    this.trigger(`zss_editor.setUnorderedList();`)
   }
 
   setOrderedList = () => {
-    this.trigger(`zss_editor.setOrderedList();`, true)
+    this.trigger(`zss_editor.setOrderedList();`)
   }
 
   setTextColor = (color: string) => {
     this.prepareInsert()
-    this.trigger(`zss_editor.setTextColor('${color}');`, true)
+    this.trigger(`zss_editor.setTextColor('${color}');`)
   }
 
   focusEditor = () => {
@@ -130,23 +127,20 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
     this.trigger('zss_editor.blurEditor();')
   }
 
-  getHTML = () => {
-    this.trigger(`setTimeout(function() { zss_editor.postInput() }, 1);`)
+  getHTML = async () => {
+    const promise = new Promise((resolve, reject) => {
+      this.onHTML = resolve
+    })
+    this.trigger(`zss_editor.postHTML();`)
+    return promise
   }
 
   undo = () => {
-    this.trigger('zss_editor.undo();', true)
+    this.trigger('zss_editor.undo();')
   }
 
   redo = () => {
-    this.trigger('zss_editor.redo();', true)
-  }
-
-  setNeedsHeightUpdate = () => {
-    this.trigger(`
-      var height = $('#zss_editor_content').height();
-      postMessage(JSON.stringify({type: 'HEIGHT_UPDATE', data: height}));
-    `)
+    this.trigger('zss_editor.redo();')
   }
 
   setContentHeight = (height: number) => {
@@ -162,23 +156,18 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
   }
 
   insertImage = (url: string) => {
-    this.trigger(`zss_editor.insertImage('${url}');`, true)
+    this.trigger(`zss_editor.insertImage('${url}');`)
   }
 
   insertVideoComment = (mediaID: string) => {
-    this.trigger(`zss_editor.insertVideoComment('${mediaID}');`, true)
+    this.trigger(`zss_editor.insertVideoComment('${mediaID}');`)
   }
 
-  trigger = async (js: string, inputChanged?: boolean) => {
+  trigger = async (js: string) => {
     if (!this.webView) return
     try {
       await this.webView.injectJavaScript(js)
-      if (inputChanged) {
-        setTimeout(this.getHTML, 100)
-      }
-    } catch (error) {
-      // dont crash
-    }
+    } catch (e) {}
   }
 
   // PRIVATE
@@ -204,11 +193,8 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
       case 'EDITOR_BLURRED':
         this._handleBlur()
         break
-      case 'EDITOR_INPUT':
-        this._handleInput(message.data)
-        break
-      case 'HEIGHT_UPDATE':
-        this._handleHeight(message.data)
+      case 'EDITOR_HTML':
+        this._handleHTML(message.data)
         break
     }
   }
@@ -235,20 +221,17 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
     this._showLinkModal(null, selection)
   }
 
-  _handleInput = (value) => {
-    if (this.props.onInputChange) {
-      this.props.onInputChange(value)
-    }
-    this.setNeedsHeightUpdate()
+  _handleHTML = (value) => {
+    this.onHTML && this.onHTML(value)
   }
 
   _insertLink = (url, title) => {
-    this.trigger(`zss_editor.insertLink("${url}", "${title}");`, true)
+    this.trigger(`zss_editor.insertLink("${url}", "${title}");`)
     this._hideLinkModal()
   }
 
   _updateLink = (url, title) => {
-    this.trigger(`zss_editor.updateLink("${url}", "${title}");`, true)
+    this.trigger(`zss_editor.updateLink("${url}", "${title}");`)
     this._hideLinkModal()
   }
 
@@ -302,14 +285,6 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
   _handleBlur () {
     if (this.props.onBlur) {
       this.props.onBlur()
-    }
-  }
-
-  _handleHeight (height: number) {
-    if (this.props.onHeightChange && height !== this.state.lastHeightUpdate) {
-      this.setState({ lastHeightUpdate: height })
-      // $FlowFixMe
-      this.props.onHeightChange(height)
     }
   }
 

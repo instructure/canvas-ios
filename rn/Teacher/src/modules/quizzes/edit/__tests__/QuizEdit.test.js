@@ -332,12 +332,14 @@ describe('QuizEdit', () => {
     const row: any = explore(component.toJSON()).selectByID('quizzes.edit.description-row')
     row.props.onPress()
     expect(props.navigator.show).toHaveBeenCalledWith('/rich-text-editor', {
-      modal: false,
+      modal: true,
+      modalPresentationStyle: 'fullscreen',
     }, {
       defaultValue: 'i am a description',
       onChangeValue: expect.any(Function),
       showToolbar: 'always',
       placeholder: 'Description',
+      attachmentUploadPath: '/courses/1/files',
     })
   })
 

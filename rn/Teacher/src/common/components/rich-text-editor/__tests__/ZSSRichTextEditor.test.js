@@ -95,17 +95,14 @@ describe('ZSSRichTextEditor', () => {
     expect(items).toHaveBeenCalledTimes(1)
   })
 
-  it('sends input changes', () => {
-    const input = jest.fn()
-    const component = renderer.create(
-      <ZSSRichTextEditor onInputChange={input} />, options
-    )
-
-    const web = webView(component)
-    postMessage(web, 'EDITOR_INPUT', '<p>sends input changes</p>')
-
-    expect(input).toHaveBeenCalledWith('<p>sends input changes</p>')
-    expect(js.mock.calls).toMatchSnapshot()
+  it('gets html', async () => {
+    const html = '<p>some html</p>'
+    const view = shallow(<ZSSRichTextEditor />)
+    const webView = view.find('WebView')
+    const getHTML = view.instance().getHTML()
+    webView.simulate('Message', { nativeEvent: { data: JSON.stringify({ type: 'EDITOR_HTML', data: html }) } })
+    const result = await getHTML
+    expect(result).toEqual(html)
   })
 
   it('notifies when editor focused', () => {

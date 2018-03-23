@@ -207,7 +207,7 @@ test('edit description', () => {
   ).toJSON()
   const editDescription: any = explore(tree).selectByID('edit-description')
   editDescription.props.onPress()
-  expect(navigator.show).toHaveBeenCalledWith('/rich-text-editor', { modal: false }, {
+  expect(navigator.show).toHaveBeenCalledWith('/rich-text-editor', { modal: true, modalPresentationStyle: 'fullscreen' }, {
     defaultValue: 'i am a description',
     onChangeValue: expect.any(Function),
     showToolbar: 'always',

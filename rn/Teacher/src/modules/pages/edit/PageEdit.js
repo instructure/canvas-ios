@@ -60,6 +60,7 @@ function editingRoles () {
 
 export class PageEdit extends Component<Props, State> {
   scrollView: ?KeyboardAwareScrollView
+  editor: ?RichTextEditor
 
   state: State = {
     ...(this.props.page || PageModel.newPage),
@@ -117,7 +118,7 @@ export class PageEdit extends Component<Props, State> {
               style={style.description}
             >
               <RichTextEditor
-                onChangeValue={this.handleBodyChange}
+                ref={(r) => { this.editor = r }}
                 defaultValue={this.props.page ? this.props.page.body : null}
                 showToolbar='always'
                 keyboardAware={false}
@@ -181,9 +182,10 @@ export class PageEdit extends Component<Props, State> {
   }
 
   done = async () => {
+    const body = this.editor && await this.editor.getHTML()
     const parameters = {
       title: this.state.title,
-      body: this.state.body,
+      body,
       editing_roles: this.state.editingRoles.join(','),
       published: this.state.isFrontPage || this.state.published,
       front_page: this.state.isFrontPage,
@@ -204,11 +206,6 @@ export class PageEdit extends Component<Props, State> {
   handleTitleChange = (title: string) => {
     LayoutAnimation.easeInEaseOut()
     this.setState({ title })
-  }
-
-  handleBodyChange = (body: string) => {
-    LayoutAnimation.easeInEaseOut()
-    this.setState({ body })
   }
 
   handlePublishedChange = (published: boolean) => {

@@ -25,7 +25,6 @@ describe('RichTextEditor', () => {
   let props: Props
   beforeEach(() => {
     props = {
-      onChangeValue: jest.fn(),
       defaultValue: '',
       navigator: template.navigator(),
       attachmentUploadPath: null,
@@ -66,11 +65,13 @@ describe('RichTextEditor', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('notifies when editor value changes', () => {
-    props.onChangeValue = jest.fn()
+  it('gets html', async () => {
     const tree = shallow(<RichTextEditor {...props} />)
-    tree.find('ZSSRichTextEditor').simulate('InputChange', 'text!')
-    expect(props.onChangeValue).toHaveBeenCalledWith('text!')
+    tree.find('ZSSRichTextEditor').getElement().ref({
+      getHTML: jest.fn(() => Promise.resolve('<p>Hi there!</p>')),
+    })
+    const result = await tree.instance().getHTML()
+    expect(result).toEqual('<p>Hi there!</p>')
   })
 
   describe('toolbar actions', () => {

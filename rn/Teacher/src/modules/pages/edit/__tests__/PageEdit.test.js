@@ -121,8 +121,9 @@ describe('PageEdit', () => {
     const tree = shallow(<PageEdit {...props} />)
     tree.find('[identifier="pages.edit.titleInput"]')
       .simulate('ChangeText', 'Page 1')
-    tree.find('RichTextEditor')
-      .simulate('ChangeValue', 'This is the body')
+    tree.find('RichTextEditor').getElement().ref({
+      getHTML: jest.fn(() => Promise.resolve('This is the body')),
+    })
     tree.find('[testID="pages.edit.editing_roles.row"]')
       .simulate('Press')
     tree.find('[testID="pages.edit.editing_roles.picker"]')
@@ -149,6 +150,9 @@ describe('PageEdit', () => {
     const tree = shallow(<PageEdit {...props} />)
     tree.find('[identifier="pages.edit.titleInput"]')
       .simulate('ChangeText', 'Page 1 (Edited)')
+    tree.find('RichTextEditor').getElement().ref({
+      getHTML: jest.fn(() => Promise.resolve(props.page.body)),
+    })
     await tapDone(tree)
 
     expect(props.api.updatePage).toHaveBeenCalledWith('courses', '1', 'page-1', {
@@ -169,6 +173,9 @@ describe('PageEdit', () => {
       url: 'page-1',
     })
     const tree = shallow(<PageEdit {...props} />)
+    tree.find('RichTextEditor').getElement().ref({
+      getHTML: jest.fn(() => Promise.resolve(props.page.body)),
+    })
     await tapDone(tree)
 
     expect(props.api.updatePage).toHaveBeenCalledWith('courses', '1', 'page-1', {

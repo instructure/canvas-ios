@@ -51,6 +51,7 @@ type Props = OwnProps & typeof Actions & NavigationProps & State
 
 export class EditReply extends React.Component<Props, any> {
   props: Props
+  editor: ?RichTextEditor
 
   constructor (props: Props) {
     super(props)
@@ -80,6 +81,7 @@ export class EditReply extends React.Component<Props, any> {
         <View style={{ flex: 1 }}>
           <ModalActivityIndicator text={i18n('Saving')} visible={this.state.pending} />
           <RichTextEditor
+            ref={(r) => { this.editor = r }}
             onChangeValue={this._valueChanged('message')}
             defaultValue={message}
             showToolbar='always'
@@ -111,10 +113,9 @@ export class EditReply extends React.Component<Props, any> {
     this.props.deletePendingReplies(this.props.discussionID)
   }
 
-  _actionDonePressed = () => {
-    const params = {
-      message: this.state.message,
-    }
+  _actionDonePressed = async () => {
+    const message = this.editor && await this.editor.getHTML()
+    const params = { message }
     this.setState({ pending: true })
     if (this.props.isEdit) {
       this.props.editEntry(this.props.context, this.props.contextID, this.props.discussionID, this.props.entryID, params, this.props.indexPath)

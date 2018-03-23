@@ -84,6 +84,8 @@ export type Props = DataProps & OwnProps & AsyncState & NavigationProps & typeof
 
 export class AnnouncementEdit extends Component<Props, any> {
   scrollView: KeyboardAwareScrollView
+  editor: ?RichTextEditor
+
   state = {
     title: this.props.title,
     message: this.props.message,
@@ -174,7 +176,7 @@ export class AnnouncementEdit extends Component<Props, any> {
               style={style.description}
             >
               <RichTextEditor
-                onChangeValue={this._valueChanged('message')}
+                ref={(r) => { this.editor = r }}
                 defaultValue={this.props.message}
                 showToolbar='always'
                 keyboardAware={false}
@@ -294,8 +296,9 @@ export class AnnouncementEdit extends Component<Props, any> {
     })
   }
 
-  _donePressed = () => {
-    if (!this.state.message) {
+  _donePressed = async () => {
+    const message = this.editor && await this.editor.getHTML()
+    if (!message) {
       this.setState({ isValid: false })
       setTimeout(function () { NativeAccessibility.focusElement('announcement.edit.unmet-requirement-banner') }, 500)
       return
@@ -303,7 +306,7 @@ export class AnnouncementEdit extends Component<Props, any> {
 
     const params: CreateDiscussionParameters | UpdateDiscussionParameters = {
       title: this.state.title || i18n('No Title'),
-      message: this.state.message,
+      message: message,
       require_initial_post: this.state.require_initial_post || false,
       delayed_post_at: this.state.delayed_post_at,
       is_announcement: true,

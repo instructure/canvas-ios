@@ -252,7 +252,7 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
   }
 
   _editDescription = () => {
-    this.props.navigator.show('/rich-text-editor', { modal: false }, {
+    this.props.navigator.show('/rich-text-editor', { modal: true, modalPresentationStyle: 'fullscreen' }, {
       onChangeValue: (value) => { this.updateFromInput('description', value) },
       defaultValue: this.state.assignment.description,
       placeholder: i18n('Description'),

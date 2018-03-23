@@ -121,6 +121,9 @@ describe('DiscussionEdit', () => {
     const tree = shallow(<DiscussionEdit {...props} />)
     tree.find('[identifier="discussions.edit.titleInput"]')
       .simulate('ChangeText', 'Haunted Mines')
+    tree.find('RichTextEditor')
+      .getElement()
+      .ref({ getHTML: jest.fn(() => Promise.resolve('Gather tribute or face my curse.')) })
     await tapDone(tree)
     expect(props.createDiscussion).toHaveBeenCalledWith(
       props.context,
@@ -214,6 +217,9 @@ describe('DiscussionEdit', () => {
     const tree = shallow(<DiscussionEdit {...props} />)
     tree.find('[identifier="discussions.edit.titleInput"]')
       .simulate('ChangeText', 'UPDATED TITLE')
+    tree.find('RichTextEditor')
+      .getElement()
+      .ref({ getHTML: jest.fn(() => Promise.resolve('Gather tribute or face my curse.')) })
     await tapDone(tree)
     expect(props.updateDiscussion).toHaveBeenCalledWith(
       'courses',
