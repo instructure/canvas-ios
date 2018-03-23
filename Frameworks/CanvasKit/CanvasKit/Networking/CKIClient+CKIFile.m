@@ -46,7 +46,7 @@
 - (RACSignal *)fileUploadTokenSignalForPath:(NSString *)path file:(NSData *)fileData fileName:(NSString *)fileName folder:(CKIFolder *)folder
 {
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        NSURLSessionDataTask *task = [self POST:path parameters:@{@"name": fileName, @"size": @(fileData.length), @"parent_folder_id": folder.id, @"on_duplicate": @"rename"} success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSURLSessionDataTask *task = [self POST:path parameters:@{@"name": fileName, @"size": @(fileData.length), @"parent_folder_id": folder.id, @"on_duplicate": @"rename"} progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             [subscriber sendNext:responseObject];
             [subscriber sendCompleted];
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -68,7 +68,7 @@
         uploadOperationManager.responseSerializer = [AFJSONResponseSerializer serializer];
         NSURLSessionDataTask *uploadOperation = [uploadOperationManager POST:@"" parameters:uploadInfo[@"upload_params"] constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
             [formData appendPartWithFileData:fileData name:@"file" fileName:fileName mimeType:@"application/octet-stream"];
-        } success:^(NSURLSessionDataTask *operation, id responseObject) {
+        } progress:nil success:^(NSURLSessionDataTask *operation, id responseObject) {
             
             CKIFile *newFile = (CKIFile *) [self parseModel:[NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[CKIFile class]] fromJSON:responseObject context:folder.context];
             [subscriber sendNext:newFile];

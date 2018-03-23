@@ -35,13 +35,13 @@ public class LoginConfiguration: NSObject, CanvasKeymasterDelegate {
   public let logoForDomainPicker: UIImage
   public let fullLogoForDomainPicker: UIImage
     
-  public var backgroundViewForDomainPicker: UIView! {
+  public var backgroundViewForDomainPicker: UIView {
     let view = UIView()
     view.backgroundColor = UIColor(white: 1.0, alpha: 1)
     return view
   }
 
-  public var logFilePath: String! {
+  public var logFilePath: String? {
     return logFileManager.sortedLogFilePaths.first
   }
 }

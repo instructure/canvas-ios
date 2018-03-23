@@ -142,7 +142,7 @@
     NSURL *url = [self.mediaServer apiURLAdd];
     NSDictionary *parameters = @{@"ks": sessionID};
     
-    [[self xmlReauestManager] POST:url.absoluteString parameters:parameters progress:nil success:^(NSURLSessionDataTask *operation, id responseObject) {
+    [[self xmlRequestManager] POST:url.absoluteString parameters:parameters progress:nil success:^(NSURLSessionDataTask *operation, id responseObject) {
         // Handle failure to parse
         // Get the token id from the XML
         CKIMediaFileUploadTokenParser *parser = [[CKIMediaFileUploadTokenParser alloc] initWithXMLParser:responseObject];
@@ -167,11 +167,11 @@
 - (void)uploadFileAtPath:(NSString *)path ofMediaType:(NSString *)mediaType withToken:(NSString *)token sessionID:(NSString *)sessionID success:(void(^)(void))success failure:(void(^)(NSError *error))failure {
     NSString *urlString = [NSString stringWithFormat:@"%@&uploadTokenId=%@&ks=%@", [self.mediaServer apiURLUpload], token, sessionID];
 
-    [[self xmlReauestManager] POST:urlString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [[self xmlRequestManager] POST:urlString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         NSString *fileName = mediaType == CKIMediaCommentMediaTypeVideo ? @"videocomment.mp4" : @"audiocomment.wav";
         NSString *mimeType = mediaType == CKIMediaCommentMediaTypeVideo ? @"video/mp4" : @"audio/x-aiff";
         [formData appendPartWithFileURL:[NSURL URLWithString:path] name:@"fileData" fileName:fileName mimeType:mimeType error:nil];
-    } success:^(NSURLSessionDataTask *operation, id responseObject) {
+    } progress:nil success:^(NSURLSessionDataTask *operation, id responseObject) {
         // Should get some XML back here. Might want to check it.
         if (success) {
             success();
@@ -188,7 +188,7 @@
     NSString *mediaTypeString = ([mediaType isEqualToString:CKIMediaCommentMediaTypeVideo] ? @"1" : @"5");
     NSDictionary *parameters = @{@"mediaEntry:name": @"Media Comment", @"mediaEntry:mediaType": mediaTypeString};
     
-    [[self xmlReauestManager] POST:urlString parameters:parameters progress:nil success:^(NSURLSessionDataTask *operation, id responseObject) {
+    [[self xmlRequestManager] POST:urlString parameters:parameters progress:nil success:^(NSURLSessionDataTask *operation, id responseObject) {
         CKIMediaFileUploadTokenParser *parser = [[CKIMediaFileUploadTokenParser alloc] initWithXMLParser:responseObject];
         [parser parseWithSuccess:^(NSString *uploadID) {
             if (success) {
@@ -209,7 +209,7 @@
 
 #pragma mark - XML Operation Manager
 
-- (AFHTTPSessionManager *)xmlReauestManager {
+- (AFHTTPSessionManager *)xmlRequestManager {
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:self.baseURL];
     manager.responseSerializer = [AFXMLParserResponseSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];

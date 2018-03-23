@@ -14,6 +14,7 @@
 // limitations under the License.
 //
 
+
 #import <Foundation/Foundation.h>
 
 //! Project version number for CanvasKeymaster
@@ -26,6 +27,8 @@ FOUNDATION_EXPORT const unsigned char CanvasKeymasterVersionString[];
 
 #import <CanvasKeymaster/CKMDomainPickerViewController.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @import CanvasKit;
 
 @class CanvasKeymaster;
@@ -35,7 +38,7 @@ FOUNDATION_EXPORT const unsigned char CanvasKeymasterVersionString[];
 @property (nonatomic, readonly) UIView *backgroundViewForDomainPicker;
 @property (nonatomic, readonly) UIImage *logoForDomainPicker;
 @property (nonatomic, readonly) UIImage *fullLogoForDomainPicker;
-@property (nonatomic, readonly) NSString *logFilePath;
+@property (nonatomic, readonly, nullable) NSString *logFilePath;
 @end
 
 @protocol CKMAnalyticsProvider
@@ -115,9 +118,9 @@ FOUNDATION_EXPORT const unsigned char CanvasKeymasterVersionString[];
 + (instancetype)currentClient;
 @end
 
+NS_ASSUME_NONNULL_END
 
 #define TheKeymaster ([CanvasKeymaster theKeymaster])
-
 
 #import <CanvasKeymaster/CKMMultiUserTableViewController.h>
 #import <CanvasKeymaster/CKMDomainPickerViewController.h>

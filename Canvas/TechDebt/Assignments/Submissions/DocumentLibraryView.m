@@ -29,7 +29,7 @@
 #define FLT_EPSILON __FLT_EPSILON__
 #endif
 
-@interface CALayer (IN_implicitAnimations)
+@interface CALayer (IN_implicitAnimations) <CALayerDelegate>
 - (void)enableImplicitAnimationsInBlock:(void(^)(void))block;
 @end
 

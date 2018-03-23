@@ -44,8 +44,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             setupCrashlytics()
         }
         NotificationKitController.setupForPushNotifications(delegate: self)
-        TheKeymaster?.fetchesBranding = true
-        TheKeymaster?.delegate = loginConfig
+        TheKeymaster.fetchesBranding = true
+        TheKeymaster.delegate = loginConfig
         
         window = MasqueradableWindow(frame: UIScreen.main.bounds)
         showLoadingState()
