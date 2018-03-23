@@ -29,7 +29,7 @@ describe('CanvasWebView', () => {
     setSession(template.session({ baseURL }))
     const tree = shallow(<CanvasWebView {...props} html={html} />)
     const webView = tree.find('WebView')
-    expect(webView.props().source).toEqual({ html, baseUrl: baseURL })
+    expect(webView.props().source).toEqual({ html, baseURL })
   })
 
   it('renders uri', () => {

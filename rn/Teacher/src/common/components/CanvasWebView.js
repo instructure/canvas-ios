@@ -107,7 +107,7 @@ export default class CanvasWebView extends Component<Props, State> {
     const { html, source, style, baseURL } = this.props
     let src
     if (html) {
-      src = { html, baseUrl: baseURL || getSession().baseURL }
+      src = { html, baseURL: baseURL || getSession().baseURL }
     } else {
       src = source
     }

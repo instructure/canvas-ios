@@ -1102,7 +1102,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                     scrollEnabled={false}
                     source={
                       Object {
-                        "baseUrl": "http://mobiledev.instructure.com/",
+                        "baseURL": "http://mobiledev.instructure.com/",
                         "html": "<p>And why?</p>",
                       }
                     }
@@ -1446,7 +1446,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                       scrollEnabled={false}
                       source={
                         Object {
-                          "baseUrl": "http://mobiledev.instructure.com/",
+                          "baseURL": "http://mobiledev.instructure.com/",
                           "html": "<p>1.0</p>",
                         }
                       }
@@ -2258,7 +2258,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                     scrollEnabled={false}
                     source={
                       Object {
-                        "baseUrl": "http://mobiledev.instructure.com/",
+                        "baseURL": "http://mobiledev.instructure.com/",
                         "html": "<p>And why?</p>",
                       }
                     }
@@ -2520,7 +2520,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                       scrollEnabled={false}
                       source={
                         Object {
-                          "baseUrl": "http://mobiledev.instructure.com/",
+                          "baseURL": "http://mobiledev.instructure.com/",
                           "html": "<p>1.0</p>",
                         }
                       }
@@ -3159,7 +3159,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                     scrollEnabled={false}
                     source={
                       Object {
-                        "baseUrl": "http://mobiledev.instructure.com/",
+                        "baseURL": "http://mobiledev.instructure.com/",
                         "html": "<p>And why?</p>",
                       }
                     }
@@ -3503,7 +3503,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                       scrollEnabled={false}
                       source={
                         Object {
-                          "baseUrl": "http://mobiledev.instructure.com/",
+                          "baseURL": "http://mobiledev.instructure.com/",
                           "html": "<p>1.0</p>",
                         }
                       }
@@ -4722,7 +4722,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                     scrollEnabled={false}
                     source={
                       Object {
-                        "baseUrl": "http://mobiledev.instructure.com/",
+                        "baseURL": "http://mobiledev.instructure.com/",
                         "html": "<p>And why?</p>",
                       }
                     }
@@ -6181,7 +6181,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     scrollEnabled={false}
                     source={
                       Object {
-                        "baseUrl": "http://mobiledev.instructure.com/",
+                        "baseURL": "http://mobiledev.instructure.com/",
                         "html": "<p>And why?</p>",
                       }
                     }
@@ -6564,7 +6564,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       scrollEnabled={false}
                       source={
                         Object {
-                          "baseUrl": "http://mobiledev.instructure.com/",
+                          "baseURL": "http://mobiledev.instructure.com/",
                           "html": "<p>1.0</p>",
                         }
                       }
@@ -6952,7 +6952,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       scrollEnabled={false}
                       source={
                         Object {
-                          "baseUrl": "http://mobiledev.instructure.com/",
+                          "baseURL": "http://mobiledev.instructure.com/",
                           "html": "<p>1.0</p>",
                         }
                       }
@@ -8444,7 +8444,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                     scrollEnabled={false}
                     source={
                       Object {
-                        "baseUrl": "http://mobiledev.instructure.com/",
+                        "baseURL": "http://mobiledev.instructure.com/",
                         "html": "<p>And why?</p>",
                       }
                     }
@@ -8788,7 +8788,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                       scrollEnabled={false}
                       source={
                         Object {
-                          "baseUrl": "http://mobiledev.instructure.com/",
+                          "baseURL": "http://mobiledev.instructure.com/",
                           "html": "<p>1.0</p>",
                         }
                       }

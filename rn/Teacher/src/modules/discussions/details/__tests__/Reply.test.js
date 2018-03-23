@@ -20,6 +20,7 @@ import { shallow } from 'enzyme'
 import React from 'react'
 import { ActionSheetIOS } from 'react-native'
 import Reply, { type Props } from '../Reply'
+import httpClient from '../../../../canvas-api/httpClient'
 
 jest.mock('Button', () => 'Button').mock('TouchableHighlight', () => 'TouchableHighlight').mock('TouchableOpacity', () => 'TouchableOpacity')
 
@@ -28,6 +29,7 @@ const template = {
   ...require('../../../../__templates__/users'),
   ...require('../../../../__templates__/helm'),
   ...require('../../../../__templates__/session'),
+  ...require('../../../../__templates__/file'),
 }
 jest.mock('WebView', () => 'WebView')
   .mock('ActionSheetIOS', () => ({
@@ -62,7 +64,7 @@ describe('DiscussionReplies', () => {
       canRate: false,
       rateEntry: jest.fn(),
     }
-    jest.resetAllMocks()
+    jest.clearAllMocks()
   })
 
   it('renders', () => {
@@ -223,6 +225,28 @@ describe('DiscussionReplies', () => {
       rateBtn.simulate('Press')
       view.update()
       expect(view).toMatchSnapshot()
+    })
+
+    it('fixes unverified urls', async () => {
+      const evaluateJavaScript = jest.fn()
+      const url = 'https://canvas.instructure.com/files/1/preview?verifier=1234'
+      const promise = Promise.resolve({ data: template.file({ url }) })
+      httpClient().get = jest.fn(() => promise)
+      const screen = shallow(<Reply {...props} />)
+      const webView = screen.find('CanvasWebView')
+      webView.getElement().ref({ evaluateJavaScript })
+
+      webView.prop('onFinishedLoading')()
+      expect(evaluateJavaScript).toHaveBeenCalled()
+      expect(evaluateJavaScript.mock.calls).toMatchSnapshot()
+
+      evaluateJavaScript.mockClear()
+
+      const message = { type: 'BROKEN_IMAGES', data: ['api-url'] }
+      webView.prop('onMessage')({ body: JSON.stringify(message) })
+      await promise
+      expect(evaluateJavaScript).toHaveBeenCalled()
+      expect(evaluateJavaScript.mock.calls).toMatchSnapshot()
     })
   })
 })

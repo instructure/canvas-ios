@@ -30,12 +30,13 @@ import { LinkButton, Button } from '../../../common/buttons'
 import colors from '../../../common/colors'
 import Images from '../../../images'
 import Avatar from '../../../common/components/Avatar'
-import CanvasWebView from '../../../common/components/CanvasWebView'
+import CanvasWebView, { type Message } from '../../../common/components/CanvasWebView'
 import i18n from 'format-message'
 import Navigator from '../../../routing/Navigator'
 import ThreadedLinesView from '../../../common/components/ThreadedLinesView'
 import { isTeacher } from '../../app'
 import canvas from '../../../canvas-api'
+import httpClient from '../../../canvas-api/httpClient'
 import isEqual from 'lodash/isEqual'
 
 type ReadState = 'read' | 'unread'
@@ -69,7 +70,10 @@ type State = {
 export default class Reply extends Component<Props, State> {
   static defaultProps = {
     rateEntry: canvas.rateEntry,
+    httpClient,
   }
+
+  webView: ?CanvasWebView
 
   state: State = {
     rating: null,
@@ -166,6 +170,9 @@ export default class Reply extends Component<Props, State> {
               style={{ flex: 1 }}
               html={message}
               navigator={this.props.navigator}
+              ref={(ref) => { this.webView = ref }}
+              onFinishedLoading={this.onLoad}
+              onMessage={this.onMessage}
               heightCacheKey={reply.id}
             />
 
@@ -188,6 +195,37 @@ export default class Reply extends Component<Props, State> {
         </View>
       </View>
     )
+  }
+
+  onLoad = () => {
+    // Get unverified images so that we can fix the urls
+    this.webView && this.webView.evaluateJavaScript(`;(() => {
+      let imageFiles = Array.from(document.querySelectorAll('img[data-api-returntype="File"]'))
+      let unverified = imageFiles.filter(img => !(/verifier=/.test(img.src))).map(img => img.dataset.apiEndpoint)
+      window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({ type: 'BROKEN_IMAGES', data: unverified }))
+    })()`)
+  }
+
+  onMessage = (message: Message) => {
+    const body = JSON.parse(message.body)
+    if (body && body.type === 'BROKEN_IMAGES') {
+      this.fixBrokenImages(body.data)
+    }
+  }
+
+  // Canvas does not add verifier tokens to images in cached replies :(
+  fixBrokenImages = (urls: Array<string>) => {
+    urls.forEach(async (url) => {
+      try {
+        const { data } = await httpClient().get(url)
+        if (data && data.url && this.webView) {
+          this.webView.evaluateJavaScript(`;(() => {
+            let image = document.querySelector('img[data-api-endpoint="${url}"]')
+            if (image) image.src = '${data.url}'
+          })()`)
+        }
+      } catch (error) {}
+    })
   }
 
   _renderMoreRepliesButton = (depth: number, reply: DiscussionReply, maxReplyNodeDepth: number) => {

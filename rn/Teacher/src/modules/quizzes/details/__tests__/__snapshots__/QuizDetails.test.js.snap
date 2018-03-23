@@ -808,7 +808,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "This is quiz 1",
               }
             }
@@ -2225,7 +2225,7 @@ exports[`QuizDetails displays access code 1`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "This is quiz 1",
               }
             }
@@ -3642,7 +3642,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "This is quiz 1",
               }
             }
@@ -4943,7 +4943,7 @@ exports[`QuizDetails renders 1`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "This is quiz 1",
               }
             }
@@ -6302,7 +6302,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "This is quiz 1",
               }
             }
@@ -7719,7 +7719,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "This is quiz 1",
               }
             }
@@ -9078,7 +9078,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "This is quiz 1",
               }
             }
@@ -10437,7 +10437,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "This is quiz 1",
               }
             }
@@ -11796,7 +11796,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "This is quiz 1",
               }
             }
@@ -13155,7 +13155,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "This is quiz 1",
               }
             }
@@ -14514,7 +14514,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "This is quiz 1",
               }
             }
@@ -15815,7 +15815,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "This is quiz 1",
               }
             }
@@ -17174,7 +17174,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "This is quiz 1",
               }
             }
@@ -18565,7 +18565,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "This is quiz 1",
               }
             }
@@ -19924,7 +19924,7 @@ exports[`QuizDetails renders assignment group 1`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "This is quiz 1",
               }
             }
@@ -21341,7 +21341,7 @@ exports[`QuizDetails renders published state 1`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "This is quiz 1",
               }
             }
@@ -22700,7 +22700,7 @@ exports[`QuizDetails renders published state 2`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "This is quiz 1",
               }
             }
@@ -24059,7 +24059,7 @@ exports[`QuizDetails renders quiz type 1`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "This is quiz 1",
               }
             }
@@ -25418,7 +25418,7 @@ exports[`QuizDetails renders quiz type 2`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "This is quiz 1",
               }
             }
@@ -26777,7 +26777,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "This is quiz 1",
               }
             }
@@ -28136,7 +28136,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "This is quiz 1",
               }
             }
@@ -29495,7 +29495,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "This is quiz 1",
               }
             }
@@ -30854,7 +30854,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "This is quiz 1",
               }
             }
@@ -32213,7 +32213,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "This is quiz 1",
               }
             }
@@ -33572,7 +33572,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "This is quiz 1",
               }
             }
@@ -34931,7 +34931,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "This is quiz 1",
               }
             }
@@ -36290,7 +36290,7 @@ exports[`QuizDetails renders time limit 1`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "This is quiz 1",
               }
             }
@@ -37649,7 +37649,7 @@ exports[`QuizDetails renders time limit 2`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "This is quiz 1",
               }
             }
@@ -39008,7 +39008,7 @@ exports[`QuizDetails renders view responses 1`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "This is quiz 1",
               }
             }
@@ -40367,7 +40367,7 @@ exports[`QuizDetails renders view responses 2`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "This is quiz 1",
               }
             }
@@ -41668,7 +41668,7 @@ exports[`QuizDetails renders view responses 3`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "This is quiz 1",
               }
             }

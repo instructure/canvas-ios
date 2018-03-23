@@ -1,5 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`DiscussionReplies ratings fixes unverified urls 1`] = `
+Array [
+  Array [
+    ";(() => {
+      let imageFiles = Array.from(document.querySelectorAll('img[data-api-returntype=\\"File\\"]'))
+      let unverified = imageFiles.filter(img => !(/verifier=/.test(img.src))).map(img => img.dataset.apiEndpoint)
+      window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({ type: 'BROKEN_IMAGES', data: unverified }))
+    })()",
+  ],
+]
+`;
+
+exports[`DiscussionReplies ratings fixes unverified urls 2`] = `
+Array [
+  Array [
+    ";(() => {
+            let image = document.querySelector('img[data-api-endpoint=\\"api-url\\"]')
+            if (image) image.src = 'https://canvas.instructure.com/files/1/preview?verifier=1234'
+          })()",
+  ],
+]
+`;
+
 exports[`DiscussionReplies ratings renders rating after user rates for first time 1`] = `
 <View
   style={
@@ -117,6 +140,8 @@ exports[`DiscussionReplies ratings renders rating after user rates for first tim
             "traitCollection": [Function],
           }
         }
+        onFinishedLoading={[Function]}
+        onMessage={[Function]}
         scrollEnabled={false}
         style={
           Object {
@@ -384,6 +409,8 @@ exports[`DiscussionReplies ratings renders rating after user updates rating 1`] 
             "traitCollection": [Function],
           }
         }
+        onFinishedLoading={[Function]}
+        onMessage={[Function]}
         scrollEnabled={false}
         style={
           Object {
@@ -663,6 +690,8 @@ exports[`DiscussionReplies renders 1`] = `
             "traitCollection": [Function],
           }
         }
+        onFinishedLoading={[Function]}
+        onMessage={[Function]}
         scrollEnabled={false}
         style={
           Object {

@@ -906,7 +906,7 @@ exports[`renders 1`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
               }
             }
@@ -1755,7 +1755,7 @@ exports[`renders as a designer 1`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
               }
             }
@@ -2602,7 +2602,7 @@ exports[`renders loading 1`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
               }
             }
@@ -3453,7 +3453,7 @@ exports[`renders with no submission types 1`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
               }
             }
@@ -4300,7 +4300,7 @@ exports[`renders with not_graded submission type 1`] = `
             scrollEnabled={false}
             source={
               Object {
-                "baseUrl": "http://mobiledev.instructure.com/",
+                "baseURL": "http://mobiledev.instructure.com/",
                 "html": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
               }
             }
