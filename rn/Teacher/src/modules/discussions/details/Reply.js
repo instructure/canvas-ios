@@ -36,6 +36,7 @@ import Navigator from '../../../routing/Navigator'
 import ThreadedLinesView from '../../../common/components/ThreadedLinesView'
 import { isTeacher } from '../../app'
 import canvas from '../../../canvas-api'
+import isEqual from 'lodash/isEqual'
 
 type ReadState = 'read' | 'unread'
 
@@ -83,8 +84,7 @@ export default class Reply extends Component<Props, State> {
 
   shouldComponentUpdate (newProps: Props, newState: State) {
     return (
-      this.props.reply.id !== newProps.reply.id ||
-      this.props.reply.message !== newProps.reply.message ||
+      !isEqual(this.props.reply, newProps.reply) ||
       this.props.depth !== newProps.depth ||
       this.props.readState !== newProps.readState ||
       this.props.showRating !== newProps.showRating ||
