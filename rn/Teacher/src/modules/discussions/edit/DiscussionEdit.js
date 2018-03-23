@@ -186,7 +186,7 @@ export class DiscussionEdit extends Component<Props, any> {
             style: 'done',
             action: this._donePressed,
           },
-          isTeacher() && {
+          {
             image: Images.attachmentLarge,
             testID: 'discussions.edit.attachment-btn',
             action: this.addAttachment,
@@ -520,18 +520,6 @@ export class DiscussionEdit extends Component<Props, any> {
     if (this.props.attachment && !this.state.attachment) {
       // $FlowFixMe
       params.remove_attachment = true
-    }
-
-    if (params.attachment && params.attachment.url) {
-      if (params.attachment.mime_class === 'image') {
-        params.message += `<img src='${params.attachment.url}' />`
-      } else {
-        params.message += `<p><a
-          class='instructure_inline_media_comment'
-          href='${params.attachment.url}'
-        >${i18n('Attachment')}</a></p>`
-      }
-      delete params.attachment
     }
 
     this.props.discussionID

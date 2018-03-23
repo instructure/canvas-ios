@@ -557,12 +557,14 @@ export class DiscussionDetails extends Component<Props, any> {
 
   _onPressReply = () => {
     let lastReplyAt = this.props.discussion && this.props.discussion.last_reply_at
-    this.props.navigator.show(`/${this.props.context}/${this.props.contextID}/discussion_topics/${this.props.discussionID}/reply`, { modal: true }, { indexPath: [], lastReplyAt })
+    let permissions = this.props.discussion && this.props.discussion.permissions
+    this.props.navigator.show(`/${this.props.context}/${this.props.contextID}/discussion_topics/${this.props.discussionID}/reply`, { modal: true }, { indexPath: [], lastReplyAt, permissions })
   }
 
   _onPressReplyToEntry = (entryID: string, indexPath: number[]) => {
     let lastReplyAt = this.props.discussion && this.props.discussion.last_reply_at
-    this.props.navigator.show(`/${this.props.context}/${this.props.contextID}/discussion_topics/${this.props.discussionID}/entries/${entryID}/replies`, { modal: true }, { indexPath: indexPath, entryID, lastReplyAt })
+    let permissions = this.props.discussion && this.props.discussion.permissions
+    this.props.navigator.show(`/${this.props.context}/${this.props.contextID}/discussion_topics/${this.props.discussionID}/entries/${entryID}/replies`, { modal: true }, { indexPath: indexPath, entryID, lastReplyAt, permissions })
   }
 
   _editDiscussion = () => {

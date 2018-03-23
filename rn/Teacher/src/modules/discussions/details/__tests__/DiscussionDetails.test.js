@@ -202,6 +202,7 @@ describe('DiscussionDetails', () => {
     expect(navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/1/reply', { modal: true }, {
       indexPath: [],
       lastReplyAt: props.discussion && props.discussion.last_reply_at,
+      permissions: props.discussion && props.discussion.permissions,
     })
   })
 
@@ -215,6 +216,7 @@ describe('DiscussionDetails', () => {
     expect(navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/1/reply', { modal: true }, {
       indexPath: [],
       lastReplyAt: props.discussion && props.discussion.last_reply_at,
+      permissions: props.discussion && props.discussion.permissions,
     })
   })
 
@@ -505,6 +507,7 @@ describe('DiscussionDetails', () => {
       'entryID': '3',
       'indexPath': [1, 0],
       lastReplyAt: props.discussion && props.discussion.last_reply_at,
+      permissions: props.discussion && props.discussion.permissions,
     })
   })
 

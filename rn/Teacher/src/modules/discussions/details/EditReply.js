@@ -26,9 +26,11 @@ import Actions from './actions'
 import { alertError } from '../../../redux/middleware/error-handler'
 import ModalActivityIndicator from '../../../common/components/ModalActivityIndicator'
 import { isTeacher } from '../../app'
+import Images from '../../../images'
 import {
   View,
   LayoutAnimation,
+  processColor,
 } from 'react-native'
 
 type OwnProps = {
@@ -39,6 +41,7 @@ type OwnProps = {
   entryID?: ?string,
   lastReplyAt: string,
   message: string,
+  permissions: DiscussionPermissions,
   isEdit?: boolean,
 }
 
@@ -50,17 +53,14 @@ type State = {
 type Props = OwnProps & typeof Actions & NavigationProps & State
 
 export class EditReply extends React.Component<Props, any> {
-  props: Props
+  state: any = {
+    pending: false,
+    attachment: null,
+  }
   editor: ?RichTextEditor
 
-  constructor (props: Props) {
-    super(props)
-    this.state = {
-      pending: false,
-    }
-  }
-
   render () {
+    const permissions = this.props.permissions
     let message = this.props.message || ''
     const { isEdit } = this.props
     return (
@@ -74,6 +74,17 @@ export class EditReply extends React.Component<Props, any> {
             style: 'done',
             testID: 'edit-discussion-reply.done-btn',
             action: this._actionDonePressed,
+          },
+          permissions && permissions.attach && {
+            image: Images.attachmentLarge,
+            testID: 'edit-discussion-reply.attachment-btn',
+            action: this.addAttachment,
+            accessibilityLabel: i18n('Edit attachment ({count})', { count: this.state.attachment ? '1' : i18n('none') }),
+            badge: this.state.attachment && {
+              text: '1',
+              backgroundColor: processColor('#008EE2'),
+              textColor: processColor('white'),
+            },
           },
         ]}
         dismissButtonTitle={i18n('Cancel')}
@@ -115,7 +126,10 @@ export class EditReply extends React.Component<Props, any> {
 
   _actionDonePressed = async () => {
     const message = this.editor && await this.editor.getHTML()
-    const params = { message }
+    const params = {
+      message,
+      attachment: this.state.attachment,
+    }
     this.setState({ pending: true })
     if (this.props.isEdit) {
       this.props.editEntry(this.props.context, this.props.contextID, this.props.discussionID, this.props.entryID, params, this.props.indexPath)
@@ -142,6 +156,17 @@ export class EditReply extends React.Component<Props, any> {
     setTimeout(() => {
       alertError(error)
     }, 1000)
+  }
+
+  addAttachment = () => {
+    this.props.navigator.show('/attachments', { modal: true }, {
+      attachments: this.state.attachment ? [this.state.attachment] : [],
+      maxAllowed: 1,
+      storageOptions: {
+        uploadPath: null,
+      },
+      onComplete: this._valueChanged('attachment', (as) => as[0]),
+    })
   }
 }
 

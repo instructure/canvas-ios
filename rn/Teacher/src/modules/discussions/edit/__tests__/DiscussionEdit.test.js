@@ -23,6 +23,7 @@ import {
   NativeModules,
 } from 'react-native'
 
+import * as template from '../../../../__templates__'
 import { DiscussionEdit, mapStateToProps, type Props } from '../DiscussionEdit'
 import { defaultErrorTitle } from '../../../../redux/middleware/error-handler'
 
@@ -42,15 +43,6 @@ jest
   .mock('Alert', () => ({
     alert: jest.fn(),
   }))
-
-const template = {
-  ...require('../../../../__templates__/discussion'),
-  ...require('../../../../__templates__/attachment'),
-  ...require('../../../../__templates__/assignments'),
-  ...require('../../../../__templates__/error'),
-  ...require('../../../../__templates__/helm'),
-  ...require('../../../../redux/__templates__/app-state'),
-}
 
 describe('DiscussionEdit', () => {
   let props: Props

@@ -25,6 +25,7 @@ import { Alert } from 'react-native'
 import { defaultErrorTitle } from '../../../../redux/middleware/error-handler'
 import renderer from 'react-test-renderer'
 import app from '../../../app'
+import * as template from '../../../../__templates__'
 
 jest
   .mock('Alert', () => ({
@@ -44,14 +45,6 @@ jest
     },
   }))
 
-const template = {
-  ...require('../../../../__templates__/discussion'),
-  ...require('../../../../__templates__/course'),
-  ...require('../../../../__templates__/users'),
-  ...require('../../../../__templates__/helm'),
-  ...require('../../../../redux/__templates__/app-state'),
-}
-
 describe('EditReply', () => {
   let defaultProps
   beforeEach(() => {
@@ -67,6 +60,12 @@ describe('EditReply', () => {
       indexPath: [],
       deletePendingReplies: jest.fn(),
       lastReplyAt: (new Date()).toISOString(),
+      permissions: {
+        attach: true,
+        delete: true,
+        reply: true,
+        update: true,
+      },
     }
     app.setCurrentApp('teacher')
   })
@@ -157,7 +156,7 @@ describe('EditReply', () => {
     textEditor.getElement().ref({ getHTML: jest.fn(() => Promise.resolve(message)) })
     const doneButton = component.prop('rightBarButtons')[0]
     await doneButton.action()
-    expect(postReply).toBeCalledWith(defaultProps.context, defaultProps.contextID, defaultProps.discussionID, defaultProps.entryID, { message }, [], defaultProps.lastReplyAt)
+    expect(postReply).toBeCalledWith(defaultProps.context, defaultProps.contextID, defaultProps.discussionID, defaultProps.entryID, { attachment: null, message }, [], defaultProps.lastReplyAt)
     expect(defaultProps.navigator.dismissAllModals).toHaveBeenCalled()
   })
 
@@ -178,8 +177,41 @@ describe('EditReply', () => {
     textEditor.getElement().ref({ getHTML: jest.fn(() => Promise.resolve(message)) })
     const doneButton = component.prop('rightBarButtons')[0]
     await doneButton.action()
-    expect(editEntry).toBeCalledWith(defaultProps.context, defaultProps.contextID, editProps.discussionID, editProps.entryID, { message }, [])
+    expect(editEntry).toBeCalledWith(defaultProps.context, defaultProps.contextID, editProps.discussionID, editProps.entryID, { attachment: null, message }, [])
     expect(defaultProps.navigator.dismissAllModals).toHaveBeenCalled()
+  })
+
+  it('cannot add an attachment if it does not have permission', () => {
+    defaultProps.permissions.attach = false
+    const tree = shallow(<EditReply {...defaultProps} />)
+    const attach = tree.find('Screen').prop('rightBarButtons')
+      .find(({ testID }) => testID === 'edit-discussion-reply.attachment-btn')
+    expect(attach).toBeUndefined()
+  })
+
+  it('can add an attachment if it has permission', () => {
+    defaultProps.navigator = template.navigator({ show: jest.fn() })
+    defaultProps.permissions.attach = true
+    const tree = shallow(<EditReply {...defaultProps} />)
+    const attach = tree.find('Screen').prop('rightBarButtons')
+      .find(({ testID }) => testID === 'edit-discussion-reply.attachment-btn')
+    expect(attach).toBeDefined()
+    attach.action()
+    expect(defaultProps.navigator.show).toHaveBeenCalledWith(
+      '/attachments',
+      { modal: true },
+      {
+        attachments: [],
+        maxAllowed: 1,
+        storageOptions: {
+          uploadPath: null,
+        },
+        onComplete: expect.any(Function),
+      }
+    )
+    const attachment = template.attachment()
+    defaultProps.navigator.show.mock.calls[0][2].onComplete([ attachment ])
+    expect(tree.state('attachment')).toBe(attachment)
   })
 
   it('uses course files for rce media embeds in teacher', () => {

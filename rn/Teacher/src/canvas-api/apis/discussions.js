@@ -53,12 +53,14 @@ export function createDiscussion (context: CanvasContext, contextID: string, par
 
 export function createEntry (context: CanvasContext, contextID: string, discussionID: string, entryID: string = '', parameters: CreateEntryParameters): ApiPromise<Discussion> {
   const url = entryID ? `${context}/${contextID}/discussion_topics/${discussionID}/entries/${entryID}/replies` : `${context}/${contextID}/discussion_topics/${discussionID}/entries`
-  return httpClient().post(url, parameters)
+  const formdata = discussionFormData(parameters)
+  return httpClient().post(url, formdata)
 }
 
 export function editEntry (context: CanvasContext, contextID: string, discussionID: string, entryID: string, parameters: CreateEntryParameters): ApiPromise<Discussion> {
   const url = `${context}/${contextID}/discussion_topics/${discussionID}/entries/${entryID}`
-  return httpClient().put(url, parameters)
+  const formdata = discussionFormData(parameters)
+  return httpClient().put(url, formdata)
 }
 
 export function updateDiscussion (context: CanvasContext, contextID: string, parameters: UpdateDiscussionParameters): ApiPromise<Discussion> {
@@ -97,7 +99,7 @@ export function rateEntry (context: CanvasContext, contextID: string, discussion
   return httpClient().post(url, { rating })
 }
 
-function discussionFormData (parameters: CreateDiscussionParameters | UpdateDiscussionParameters): FormData {
+function discussionFormData (parameters: CreateDiscussionParameters | UpdateDiscussionParameters | CreateEntryParameters): FormData {
   const formdata = new FormData()
   Object.keys(parameters)
     .filter(k => k !== 'attachment')

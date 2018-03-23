@@ -118,7 +118,7 @@ export type UpdateDiscussionParameters = CreateDiscussionParameters & {
 
 export type CreateEntryParameters = {
   message: string,
-  attachment?: string,
+  attachment?: ?Attachement,
 }
 
 export type DiscussionOriginEntity = CourseState | GroupState
