@@ -28,4 +28,19 @@ RCT_REMAP_METHOD(pathForResource, named:(NSString *)name ofType:(NSString *)type
     resolve(path);
 }
 
+RCT_REMAP_METHOD(convertToJPEG, path:(NSString *)path resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+    NSURL *inputURL = [NSURL URLWithString:path];
+    UIImage *image = [UIImage imageWithContentsOfFile:inputURL.path];
+    if (!image) { reject(@"0", NSLocalizedString(@"Failed to find image at path", comment: nil), nil); }
+    NSData *data = UIImageJPEGRepresentation(image, 0.8);
+    NSURL *tmp = [NSURL fileURLWithPath:NSTemporaryDirectory()];
+    NSURL *url = [[tmp URLByAppendingPathComponent:[inputURL URLByDeletingPathExtension].lastPathComponent] URLByAppendingPathExtension:@"jpg"];
+    BOOL success = [data writeToURL:url atomically:YES];
+    if (success) {
+        resolve(url.absoluteString);
+    } else {
+        reject(@"1", NSLocalizedString(@"Failed to write image", comment: nil), nil);
+    }
+}
+
 @end

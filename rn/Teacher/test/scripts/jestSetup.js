@@ -228,6 +228,7 @@ NativeModules.CameraManager = {
 
 NativeModules.NativeFileSystem = {
   pathForResource: jest.fn(() => Promise.resolve('/')),
+  convertToJPEG: jest.fn(() => Promise.resolve('/image.jpg')),
 }
 
 import './../../src/common/global-style'

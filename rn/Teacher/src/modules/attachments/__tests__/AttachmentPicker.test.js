@@ -20,6 +20,7 @@ import React from 'react'
 import {
   ActionSheetIOS,
   AlertIOS,
+  NativeModules,
 } from 'react-native'
 import renderer from 'react-test-renderer'
 import AttachmentPicker from '../AttachmentPicker'
@@ -92,15 +93,17 @@ describe('AttachmentPicker', () => {
     expect(ImagePicker.launchCamera).toHaveBeenCalledWith(options.imagePicker, expect.any(Function))
   })
 
-  it('returns attachment from ImagePicker image', () => {
+  it('returns attachment from ImagePicker image', async () => {
+    NativeModules.NativeFileSystem.convertToJPEG = jest.fn(() => Promise.resolve('/tmp/image.jpg'))
     const spy = jest.fn()
     const response = {
       uri: 'file://somewhere/on/disk.jpg',
     }
     ImagePicker.launchCamera = jest.fn((options, callback) => callback(response))
     picker.useCamera(null, spy)
+    await new Promise((resolve, reject) => process.nextTick(resolve))
     expect(spy).toHaveBeenCalledWith({
-      uri: response.uri,
+      uri: '/tmp/image.jpg',
       display_name: expect.stringMatching(/.jpg$/),
       size: undefined,
       mime_class: 'image',
@@ -110,13 +113,13 @@ describe('AttachmentPicker', () => {
   it('returns attachment from ImagePicker video', () => {
     const spy = jest.fn()
     const response = {
-      uri: 'file://somewhere/on/disk.MOV',
+      uri: 'file://somewhere/on/disk.mov',
     }
     ImagePicker.launchImageLibrary = jest.fn((options, callback) => callback(response))
     picker.useLibrary(null, spy)
     expect(spy).toHaveBeenCalledWith({
       uri: response.uri,
-      display_name: expect.stringMatching(/.MOV$/),
+      display_name: expect.stringMatching(/.mov/),
       size: undefined,
       mime_class: 'video',
     }, 'photo_library')
@@ -252,5 +255,22 @@ describe('AttachmentPicker', () => {
     ImagePicker.launchImageLibrary = jest.fn((options, callback) => callback(response))
     picker.useLibrary(null, jest.fn())
     expect(spy).toHaveBeenCalledWith('Error', 'FAIL', expect.any(Array))
+  })
+
+  it('converts heic to jpg', async () => {
+    NativeModules.NativeFileSystem.convertToJPEG = jest.fn(() => Promise.resolve('/tmp/image.jpg'))
+    const spy = jest.fn()
+    const response = {
+      uri: 'file://somewhere/on/disk.heic',
+    }
+    ImagePicker.launchCamera = jest.fn((options, callback) => callback(response))
+    picker.useCamera(null, spy)
+    await new Promise((resolve, reject) => process.nextTick(resolve))
+    expect(spy).toHaveBeenCalledWith({
+      uri: '/tmp/image.jpg',
+      display_name: expect.stringMatching(/.jpg$/),
+      size: undefined,
+      mime_class: 'image',
+    }, 'camera')
   })
 })

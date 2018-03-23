@@ -23,6 +23,7 @@ import {
   AlertIOS,
   StyleSheet,
   Modal,
+  NativeModules,
 } from 'react-native'
 import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker'
 import ImagePicker from 'react-native-image-picker'
@@ -159,7 +160,7 @@ export default class AttachmentPicker extends Component<Props, any> {
   }
 
   _handleImagePickerResponse (callback: Callback, type: MediaType) {
-    return (response: any) => {
+    return async (response: any) => {
       if (response.error) {
         if (IMAGE_PICKER_PERMISSION_ERRORS[response.error]) {
           Permissions.alert(IMAGE_PICKER_PERMISSION_ERRORS[response.error])
@@ -174,15 +175,29 @@ export default class AttachmentPicker extends Component<Props, any> {
       if (response.didCancel || !response.uri) {
         return
       }
-      const { uri, fileSize, fileName } = response
-      const extension = uri.substring(uri.lastIndexOf('.'))
+      let { uri, fileSize, fileName } = response
+      const extension = uri.substring(uri.lastIndexOf('.')).toLowerCase()
       const timestamp = (new Date()).toISOString()
       let name = fileName || `${timestamp}${extension}`
+      const isVideo = extension === '.mov'
+      if (!isVideo) {
+        try {
+          uri = await NativeModules.NativeFileSystem.convertToJPEG(uri)
+          name = `${timestamp}.jpg`
+        } catch (e) {
+          AlertIOS.alert(
+            i18n('Error'),
+            i18n('Unrecognized file format'),
+            [{ text: i18n('OK'), onPress: null, style: 'cancel' }],
+          )
+          return
+        }
+      }
       const attachment = {
         uri,
         size: fileSize,
         display_name: name,
-        mime_class: extension.toLowerCase() === '.mov' ? 'video' : 'image',
+        mime_class: isVideo ? 'video' : 'image',
       }
       callback(attachment, type)
     }
