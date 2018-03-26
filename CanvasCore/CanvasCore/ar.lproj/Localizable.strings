@@ -307,8 +307,6 @@
 /* Hides the question list */
 "Hide Question List" = "إخفاء قائمة الأسئلة";
 
-"Inbox" = "صندوق الوارد";
-
 /* Indigo course color button */
 "Indigo" = "نيلي";
 
@@ -458,6 +456,12 @@
 
 /* Shows question position */
 "Question %@" = "السؤال %@";
+
+/* state for a question that has been flagged */
+"Question (number) Flagged" = "تم وضع علامة على السؤال (رقم)";
+
+/* state for unflagged question */
+"Question (number) Unflagged" = "تم إزالة العلامة من السؤال (رقم)";
 
 /* label for the number of questions */
 "Questions" = "الأسئلة";

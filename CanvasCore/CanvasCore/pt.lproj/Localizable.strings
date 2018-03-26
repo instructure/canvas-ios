@@ -1,5 +1,3 @@
-"Inbox" = "Caixa de Entrada";
-
 /* Error message component with the report id */
 " Error report ID: (reportID)" = " ID do relatório de erro: (reportID)";
 
@@ -458,6 +456,12 @@
 
 /* Shows question position */
 "Question %@" = "Pergunta %@";
+
+/* state for a question that has been flagged */
+"Question (number) Flagged" = "Pergunta (número) marcada";
+
+/* state for unflagged question */
+"Question (number) Unflagged" = "Pergunta (número) não marcada";
 
 /* label for the number of questions */
 "Questions" = "Perguntas";

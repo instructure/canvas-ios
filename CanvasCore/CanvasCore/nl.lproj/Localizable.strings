@@ -1,5 +1,3 @@
-"Inbox" = "Postbus";
-
 /* Error message component with the report id */
 " Error report ID: (reportID)" = " Foutrapport-ID: (reportID)";
 
@@ -458,6 +456,12 @@
 
 /* Shows question position */
 "Question %@" = "Vraag %@";
+
+/* state for a question that has been flagged */
+"Question (number) Flagged" = "Vraag (nummer) gemarkeerd";
+
+/* state for unflagged question */
+"Question (number) Unflagged" = "Vraag (nummer) ongemarkeerd";
 
 /* label for the number of questions */
 "Questions" = "Vragen";

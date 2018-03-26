@@ -521,6 +521,9 @@
 /* (No Comment) */
 "Enter User ID and Domain." = "Skriv inn bruker-ID og domene.";
 
+/* No comment provided by engineer. */
+"Enter folder name" = "Skriv inn mappenavn";
+
 /* Submission input view placeholder text */
 "Enter submission" = "Skriv innsending";
 

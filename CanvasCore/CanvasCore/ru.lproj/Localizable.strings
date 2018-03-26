@@ -1,5 +1,3 @@
-"Inbox" = "Входящие";
-
 /* Error message component with the report id */
 " Error report ID: (reportID)" = " Идентификатор отчета об ошибках: (reportID)";
 
@@ -458,6 +456,12 @@
 
 /* Shows question position */
 "Question %@" = "Вопрос %@";
+
+/* state for a question that has been flagged */
+"Question (number) Flagged" = "Вопрос (номер) с флажком";
+
+/* state for unflagged question */
+"Question (number) Unflagged" = "Вопрос (номер) без флажка";
 
 /* label for the number of questions */
 "Questions" = "Вопросы";

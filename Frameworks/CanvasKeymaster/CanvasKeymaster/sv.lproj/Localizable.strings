@@ -7,6 +7,9 @@
 /* No comment provided by engineer. */
 "Cancel" = "Avbryt";
 
+/* No comment provided by engineer. */
+"Cancel Request" = "Avbryt begäran";
+
 /* Label displayed when forcing canvas login */
 "Canvas Login" = "Canvas lnloggning";
 
@@ -18,6 +21,9 @@
 
 /* No comment provided by engineer. */
 "Choose One" = "Välj en";
+
+/* No comment provided by engineer. */
+"Continue Editing" = "Fortsätt redigera";
 
 /* No comment provided by engineer. */
 "Describe the feature here" = "Beskriv funktionen här";

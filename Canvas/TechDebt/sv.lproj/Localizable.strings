@@ -521,6 +521,9 @@
 /* (No Comment) */
 "Enter User ID and Domain." = "Fyll i användar-ID och domän";
 
+/* No comment provided by engineer. */
+"Enter folder name" = "Ange katalognamn";
+
 /* Submission input view placeholder text */
 "Enter submission" = "Fyll i inlämning";
 

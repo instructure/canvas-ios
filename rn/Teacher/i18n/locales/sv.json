@@ -8,9 +8,6 @@
   "a_description_is_required_54b5f1f6": {
     "message": "En beskrivning krävs"
   },
-  "a_message_is_required_129e1814": {
-    "message": "Det krävs ett meddelande"
-  },
   "a_title_is_required_71222850": {
     "message": "En rubrik krävs"
   },
@@ -31,9 +28,6 @@
   },
   "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
     "message": "\"Act as\" loggar huvudsakligen in som den här användaren utan lösenord.Du kommer att kunna vidta åtgärder som om du var den här användaren, och från andra användares synpunkter som om den här användaren utförde dem.I historik-loggar registreras dock att du var den som utförde åtgärderna på den här användarens vägnar."
-  },
-  "show_grades_8680e38e": {
-    "message": "Visa betyg"
   },
   "act_as_user_d7ef0e48": {
     "message": "Agera som användare"
@@ -79,6 +73,9 @@
   },
   "add_title_4f788d37": {
     "message": "Lägg till rubrik"
+  },
+  "add_title_required_8d9bdeaa": {
+    "message": "Lägg till rubrik (krävs)"
   },
   "after_date_e5d9b0e1": {
     "message": "Efter { date }"
@@ -368,6 +365,9 @@
   "course_settings_f6d0bbf8": {
     "message": "Kursinställningar"
   },
+  "coursename_sections_faeee6fc": {
+    "message": "{ courseName } Sektioner"
+  },
   "courses_43204aae": {
     "message": "Kurser"
   },
@@ -599,8 +599,8 @@
   "filter_inbox_dae0ff8f": {
     "message": "Filter-inbox"
   },
-  "filter_numselected_f4793ab8": {
-    "message": "Filtrera ({ numSelected })"
+  "filter_numselected_number_2e4c17e3": {
+    "message": "Filtrera ({ numSelected, number })"
   },
   "filter_people_b34b567b": {
     "message": "Filtrera människor"
@@ -962,11 +962,8 @@
   "ordered_list_5fb1ce41": {
     "message": "Ordnad lista"
   },
-  "out_of_points_c40a0475": {
-    "message": "Av { points }"
-  },
-  "out_of_score_c17b26bb": {
-    "message": "Av { score }"
+  "out_of_points_number_42209979": {
+    "message": "Av { points, number }"
   },
   "page_details_847e35e6": {
     "message": "Sidodetaljer"
@@ -1006,9 +1003,6 @@
   },
   "points_number_out_of_totalpoints_number_291efb47": {
     "message": "{ points, number } av { totalPoints, number }"
-  },
-  "points_number_pts_cc4a4a59": {
-    "message": "{ points, number }poäng"
   },
   "points_possible_must_be_a_number_4a592dc6": {
     "message": "Möjliga poäng måste vara ett nummer"
@@ -1166,6 +1160,12 @@
   "section_sectionname_a455be11": {
     "message": "Sektion: { sectionName }"
   },
+  "sections_94731e51": {
+    "message": "Sektioner"
+  },
+  "sections_sections_70d64496": {
+    "message": "Sektioner: { sections }"
+  },
   "see_all_ffa422ef": {
     "message": "Se alla"
   },
@@ -1205,6 +1205,9 @@
   "show_correct_answers_at_a5475aa3": {
     "message": "Visa rätt svar kl."
   },
+  "show_grades_8680e38e": {
+    "message": "Visa betyg"
+  },
   "show_one_question_at_a_time_52f5b1a0": {
     "message": "Visa en fråga åt gången"
   },
@@ -1216,6 +1219,9 @@
   },
   "similarity_score_f4b5c343": {
     "message": "Likhetspoäng"
+  },
+  "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
+    "message": "Något gick fel i slutet. Oroa dig inte, vi har spelat in det här och kommer att ta hand om det inom kort."
   },
   "star_messages_by_tapping_the_star_in_the_message_1c3e8a80": {
     "message": "Stjärnmärk meddelanden genom att trycka på stjärnan i meddelandet."
@@ -1331,9 +1337,6 @@
   "there_currently_is_no_long_description_for_this_it_ea943d61": {
     "message": "Det finns för närvarande ingen lång beskrivning för denna artikel."
   },
-  "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
-    "message": "Det uppstod ett fel vid laddning av listan för inskrivningar"
-  },
   "there_was_a_problem_dismissing_the_announcement_9c5fb4c": {
     "message": "Det uppstod ett problem med att avvisa meddelandet."
   },
@@ -1358,7 +1361,7 @@
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
     "message": "Det uppstod ett problem vid laddning av quizzes."
   },
-  "there_was_a_problem_retreiving_the_terms_of_use_3a5fa00c": {
+  "there_was_a_problem_retrieving_the_terms_of_use_df58f7b9": {
     "message": "Det gick inte att återställa användarvillkoren"
   },
   "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
@@ -1367,11 +1370,11 @@
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "Ett fel uppstod vid laddning av bilagan."
   },
-  "there_was_an_error_loading_the_file_19deb988": {
-    "message": "Det uppstod ett fel då filen laddas"
-  },
   "there_was_an_error_loading_the_file_a046378e": {
     "message": "Ett fel uppstod vid laddning av filen."
+  },
+  "there_was_an_error_loading_the_list_of_enrollments_7dc8bafe": {
+    "message": "Det gick inte att läsa in listan över registreringar"
   },
   "there_was_an_error_loading_the_quiz_preview_3f3c8104": {
     "message": "Det uppstod ett fel när du läste in förhandsgranskningen av quiz."
@@ -1384,6 +1387,9 @@
   },
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "Ett problem uppstod vid laddning av dina meddelanden."
+  },
+  "there_was_an_unexepected_error_fd6f2bf": {
+    "message": "Det uppstod ett oväntat fel."
   },
   "there_was_an_unexpected_error_please_try_again_5e08774e": {
     "message": "Det uppstod ett oväntat fel Vänligen försök igen."
@@ -1490,6 +1496,10 @@
   "unread_e9c1b19c": {
     "message": "Oläst"
   },
+  "unread_plural_one_unread_other_unread_5d48c74f": {
+    "message": "{ unread, plural,\n    one {# Oläst}\n  other {# Oläst}\n}",
+    "description": "Number of unread discussion posts"
+  },
   "until_date_f3b9f367": {
     "message": "Tills { date }"
   },
@@ -1564,6 +1574,9 @@
   },
   "welcome_73d18b4d": {
     "message": "Välkommen!"
+  },
+  "whoops_de2cf9fc": {
+    "message": "Oooj!"
   },
   "yes_dde87d5": {
     "message": "Ja"

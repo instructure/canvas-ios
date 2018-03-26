@@ -7,6 +7,9 @@
 /* No comment provided by engineer. */
 "Cancel" = "Anile";
 
+/* No comment provided by engineer. */
+"Cancel Request" = "Anile Demann";
+
 /* Label displayed when forcing canvas login */
 "Canvas Login" = "Koneksyon Canvas";
 
@@ -18,6 +21,9 @@
 
 /* No comment provided by engineer. */
 "Choose One" = "Chwazi Yonn";
+
+/* No comment provided by engineer. */
+"Continue Editing" = "Kontinye Edisyon";
 
 /* No comment provided by engineer. */
 "Describe the feature here" = "Dekri fonksyon an la";

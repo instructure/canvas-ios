@@ -521,6 +521,9 @@
 /* (No Comment) */
 "Enter User ID and Domain." = "ユーザーIDとドメインを入力する。";
 
+/* No comment provided by engineer. */
+"Enter folder name" = "フォルダ名を入力する";
+
 /* Submission input view placeholder text */
 "Enter submission" = "提出を入力する";
 

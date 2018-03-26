@@ -8,9 +8,6 @@
   "a_description_is_required_54b5f1f6": {
     "message": "描述必填"
   },
-  "a_message_is_required_129e1814": {
-    "message": "消息必填"
-  },
   "a_title_is_required_71222850": {
     "message": "标题必填"
   },
@@ -28,9 +25,6 @@
   },
   "account_has_no_terms_of_use_1048a785": {
     "message": "账户没有使用条款"
-  },
-  "show_grades_8680e38e": {
-    "message": "显示评分"
   },
   "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
     "message": "\"Act as\"实际上已经登录，因为该用户没有密码。您将能够使用该用户的身份执行任何操作，从其他用户的立场来看，这些操作仿佛是该用户执行的。但是，审计日志记录您是代表该用户执行操作的人。"
@@ -79,6 +73,9 @@
   },
   "add_title_4f788d37": {
     "message": "添加标题"
+  },
+  "add_title_required_8d9bdeaa": {
+    "message": "添加标题（必填）"
   },
   "after_date_e5d9b0e1": {
     "message": "之后{ date }"
@@ -368,6 +365,9 @@
   "course_settings_f6d0bbf8": {
     "message": "课程设置"
   },
+  "coursename_sections_faeee6fc": {
+    "message": "{ courseName }分组"
+  },
   "courses_43204aae": {
     "message": "课程"
   },
@@ -599,8 +599,8 @@
   "filter_inbox_dae0ff8f": {
     "message": "筛选收件箱"
   },
-  "filter_numselected_f4793ab8": {
-    "message": "筛选器（{ numSelected }）"
+  "filter_numselected_number_2e4c17e3": {
+    "message": "筛选器（{ numSelected, number }）"
   },
   "filter_people_b34b567b": {
     "message": "筛选人员"
@@ -962,11 +962,8 @@
   "ordered_list_5fb1ce41": {
     "message": "有序列表"
   },
-  "out_of_points_c40a0475": {
-    "message": "共{ points }"
-  },
-  "out_of_score_c17b26bb": {
-    "message": "共{ score }"
+  "out_of_points_number_42209979": {
+    "message": "共 { points, number }"
   },
   "page_details_847e35e6": {
     "message": "页面详细信息"
@@ -1006,9 +1003,6 @@
   },
   "points_number_out_of_totalpoints_number_291efb47": {
     "message": "{ points, number } 共{ totalPoints, number }"
-  },
-  "points_number_pts_cc4a4a59": {
-    "message": "{ points, number }分"
   },
   "points_possible_must_be_a_number_4a592dc6": {
     "message": "满分必须为数字"
@@ -1166,6 +1160,12 @@
   "section_sectionname_a455be11": {
     "message": "分组：{ sectionName }"
   },
+  "sections_94731e51": {
+    "message": "会话"
+  },
+  "sections_sections_70d64496": {
+    "message": "班级：{ sections }"
+  },
   "see_all_ffa422ef": {
     "message": "查看全部"
   },
@@ -1205,6 +1205,9 @@
   "show_correct_answers_at_a5475aa3": {
     "message": "显示正确答案在"
   },
+  "show_grades_8680e38e": {
+    "message": "显示评分"
+  },
   "show_one_question_at_a_time_52f5b1a0": {
     "message": "一次显示一个问题"
   },
@@ -1216,6 +1219,9 @@
   },
   "similarity_score_f4b5c343": {
     "message": "相似度得分"
+  },
+  "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
+    "message": "我们这边出现了一些问题。别担心，我们进行了记录，并将尽快处理。"
   },
   "star_messages_by_tapping_the_star_in_the_message_1c3e8a80": {
     "message": "单击消息中的星号可对消息标记星号。"
@@ -1331,9 +1337,6 @@
   "there_currently_is_no_long_description_for_this_it_ea943d61": {
     "message": "当前没有对此项目的详细说明。"
   },
-  "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
-    "message": "上传注册学员列表时出现错误"
-  },
   "there_was_a_problem_dismissing_the_announcement_9c5fb4c": {
     "message": "撤销公告时发生问题。"
   },
@@ -1358,7 +1361,7 @@
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
     "message": "加载测验时出现问题。"
   },
-  "there_was_a_problem_retreiving_the_terms_of_use_3a5fa00c": {
+  "there_was_a_problem_retrieving_the_terms_of_use_df58f7b9": {
     "message": "检索使用条款时出现问题"
   },
   "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
@@ -1367,11 +1370,11 @@
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "加载附件时出错。"
   },
-  "there_was_an_error_loading_the_file_19deb988": {
-    "message": "加载文件时出错"
-  },
   "there_was_an_error_loading_the_file_a046378e": {
     "message": "加载文件时出错。"
+  },
+  "there_was_an_error_loading_the_list_of_enrollments_7dc8bafe": {
+    "message": "加载注册学员名单时出错"
   },
   "there_was_an_error_loading_the_quiz_preview_3f3c8104": {
     "message": "加载测验预览时出错。"
@@ -1384,6 +1387,9 @@
   },
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "加载您的消息时出现问题。"
+  },
+  "there_was_an_unexepected_error_fd6f2bf": {
+    "message": "发生意外错误。"
   },
   "there_was_an_unexpected_error_please_try_again_5e08774e": {
     "message": "出现意外错误。请重试。"
@@ -1490,6 +1496,10 @@
   "unread_e9c1b19c": {
     "message": "未读"
   },
+  "unread_plural_one_unread_other_unread_5d48c74f": {
+    "message": "{ unread, plural,\n    one {# 未读}\n  other {# 未读}\n}",
+    "description": "Number of unread discussion posts"
+  },
   "until_date_f3b9f367": {
     "message": "直至{ date }"
   },
@@ -1564,6 +1574,9 @@
   },
   "welcome_73d18b4d": {
     "message": "欢迎！"
+  },
+  "whoops_de2cf9fc": {
+    "message": "糟糕！"
   },
   "yes_dde87d5": {
     "message": "是"

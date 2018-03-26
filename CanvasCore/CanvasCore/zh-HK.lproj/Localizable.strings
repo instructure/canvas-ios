@@ -1,5 +1,3 @@
-"Inbox" = "收件夾";
-
 /* Error message component with the report id */
 " Error report ID: (reportID)" = " 報告 ID 錯誤：(reportID)";
 
@@ -458,6 +456,12 @@
 
 /* Shows question position */
 "Question %@" = "問題%@";
+
+/* state for a question that has been flagged */
+"Question (number) Flagged" = "問題 (number) 已標註";
+
+/* state for unflagged question */
+"Question (number) Unflagged" = "問題 (number) 已取消標註";
 
 /* label for the number of questions */
 "Questions" = "問題";

@@ -8,9 +8,6 @@
   "a_description_is_required_54b5f1f6": {
     "message": "描述為必填"
   },
-  "a_message_is_required_129e1814": {
-    "message": "訊息為必填"
-  },
   "a_title_is_required_71222850": {
     "message": "標題為必填"
   },
@@ -28,9 +25,6 @@
   },
   "account_has_no_terms_of_use_1048a785": {
     "message": "帳戶未有使用條款"
-  },
-  "show_grades_8680e38e": {
-    "message": "顯示等級"
   },
   "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
     "message": "”作為”本質上是以此使用者身份登錄，沒有密碼。您將能夠進行任何操作，就好像您就是此使用者一樣，並且，其他使用者也會認為是此使用者執行了操作。然而，審計日誌會記錄事實，即您是代表此使用者執行操作的人。"
@@ -79,6 +73,9 @@
   },
   "add_title_4f788d37": {
     "message": "添加標題"
+  },
+  "add_title_required_8d9bdeaa": {
+    "message": "添加標題（必填項目）"
   },
   "after_date_e5d9b0e1": {
     "message": "之後{ date }"
@@ -368,6 +365,9 @@
   "course_settings_f6d0bbf8": {
     "message": "課程設置"
   },
+  "coursename_sections_faeee6fc": {
+    "message": "{ courseName } 分班"
+  },
   "courses_43204aae": {
     "message": "課程"
   },
@@ -599,8 +599,8 @@
   "filter_inbox_dae0ff8f": {
     "message": "篩選器收件匣"
   },
-  "filter_numselected_f4793ab8": {
-    "message": "篩選器 ({ numSelected })"
+  "filter_numselected_number_2e4c17e3": {
+    "message": "篩選器 ({ numSelected, number })"
   },
   "filter_people_b34b567b": {
     "message": "篩選成員"
@@ -962,11 +962,8 @@
   "ordered_list_5fb1ce41": {
     "message": "有序列表"
   },
-  "out_of_points_c40a0475": {
-    "message": "總分{ points }"
-  },
-  "out_of_score_c17b26bb": {
-    "message": "總分{ score }"
+  "out_of_points_number_42209979": {
+    "message": "滿分為 { points, number }"
   },
   "page_details_847e35e6": {
     "message": "頁面詳情"
@@ -1006,9 +1003,6 @@
   },
   "points_number_out_of_totalpoints_number_291efb47": {
     "message": "{ points, number } 總分{ totalPoints, number }"
-  },
-  "points_number_pts_cc4a4a59": {
-    "message": "{ points, number } 分"
   },
   "points_possible_must_be_a_number_4a592dc6": {
     "message": "可能的分數必須是數字"
@@ -1166,6 +1160,12 @@
   "section_sectionname_a455be11": {
     "message": "分班：{ sectionName }"
   },
+  "sections_94731e51": {
+    "message": "分班"
+  },
+  "sections_sections_70d64496": {
+    "message": "分班：{ sections }"
+  },
   "see_all_ffa422ef": {
     "message": "檢視所有"
   },
@@ -1205,6 +1205,9 @@
   "show_correct_answers_at_a5475aa3": {
     "message": "將正確答案顯示在"
   },
+  "show_grades_8680e38e": {
+    "message": "顯示成績"
+  },
   "show_one_question_at_a_time_52f5b1a0": {
     "message": "每次顯示一個問題"
   },
@@ -1216,6 +1219,9 @@
   },
   "similarity_score_f4b5c343": {
     "message": "相似性分數"
+  },
+  "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
+    "message": "結束時出現問題。別擔心，我們已經記錄了這種情況，並會很快處理。"
   },
   "star_messages_by_tapping_the_star_in_the_message_1c3e8a80": {
     "message": "點按星號標記訊息"
@@ -1331,9 +1337,6 @@
   "there_currently_is_no_long_description_for_this_it_ea943d61": {
     "message": "該項目目前沒有完整描述。"
   },
-  "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
-    "message": "載入註冊清單時出現錯誤"
-  },
   "there_was_a_problem_dismissing_the_announcement_9c5fb4c": {
     "message": "解除通告時發生問題。"
   },
@@ -1358,7 +1361,7 @@
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
     "message": "載入測驗時發生問題。"
   },
-  "there_was_a_problem_retreiving_the_terms_of_use_3a5fa00c": {
+  "there_was_a_problem_retrieving_the_terms_of_use_df58f7b9": {
     "message": "取得使用條款時出現問題。"
   },
   "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
@@ -1367,11 +1370,11 @@
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "載入附件時出現錯誤。"
   },
-  "there_was_an_error_loading_the_file_19deb988": {
-    "message": "載入檔案時出現錯誤"
-  },
   "there_was_an_error_loading_the_file_a046378e": {
     "message": "載入檔案時出現錯誤。"
+  },
+  "there_was_an_error_loading_the_list_of_enrollments_7dc8bafe": {
+    "message": "載入註冊清單時出現錯誤"
   },
   "there_was_an_error_loading_the_quiz_preview_3f3c8104": {
     "message": "載入測驗預覽時出現錯誤。"
@@ -1384,6 +1387,9 @@
   },
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "載入訊息時發生問題。"
+  },
+  "there_was_an_unexepected_error_fd6f2bf": {
+    "message": "發生意外錯誤。"
   },
   "there_was_an_unexpected_error_please_try_again_5e08774e": {
     "message": "發生意外錯誤。請重試。"
@@ -1490,6 +1496,10 @@
   "unread_e9c1b19c": {
     "message": "未讀"
   },
+  "unread_plural_one_unread_other_unread_5d48c74f": {
+    "message": "{ unread, plural,\n    one {# 未讀}\n  other {# 未讀}\n}",
+    "description": "Number of unread discussion posts"
+  },
   "until_date_f3b9f367": {
     "message": "直到{ date }"
   },
@@ -1564,6 +1574,9 @@
   },
   "welcome_73d18b4d": {
     "message": "歡迎！"
+  },
+  "whoops_de2cf9fc": {
+    "message": "抱歉！"
   },
   "yes_dde87d5": {
     "message": "是"

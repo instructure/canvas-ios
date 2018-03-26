@@ -521,6 +521,9 @@
 /* (No Comment) */
 "Enter User ID and Domain." = "輸入使用者ID和網域名";
 
+/* No comment provided by engineer. */
+"Enter folder name" = "輸入資料夾名字";
+
 /* Submission input view placeholder text */
 "Enter submission" = "鍵入提交件";
 

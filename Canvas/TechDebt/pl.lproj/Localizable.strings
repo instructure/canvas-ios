@@ -521,6 +521,9 @@
 /* (No Comment) */
 "Enter User ID and Domain." = "Wpisz identyfikator użytkownika i domenę.";
 
+/* No comment provided by engineer. */
+"Enter folder name" = "Wpisz nazwę folderu";
+
 /* Submission input view placeholder text */
 "Enter submission" = "Wpisz złożenie";
 

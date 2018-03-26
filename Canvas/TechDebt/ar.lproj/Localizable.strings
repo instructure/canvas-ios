@@ -521,6 +521,9 @@
 /* (No Comment) */
 "Enter User ID and Domain." = "إدخال معرف المستخدم والمجال.";
 
+/* No comment provided by engineer. */
+"Enter folder name" = "أدخل اسم المجلد";
+
 /* Submission input view placeholder text */
 "Enter submission" = "إدخال الإرسال";
 

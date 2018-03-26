@@ -521,6 +521,9 @@
 /* (No Comment) */
 "Enter User ID and Domain." = "Saisir l'identifiant utilisateur et le domaine.";
 
+/* No comment provided by engineer. */
+"Enter folder name" = "Saisir le nom du dossier";
+
 /* Submission input view placeholder text */
 "Enter submission" = "Saisir l'envoi";
 

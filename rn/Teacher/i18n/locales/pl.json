@@ -8,9 +8,6 @@
   "a_description_is_required_54b5f1f6": {
     "message": "Wymagany jest opis"
   },
-  "a_message_is_required_129e1814": {
-    "message": "Wymagana jest wiadomość"
-  },
   "a_title_is_required_71222850": {
     "message": "Wymagany jest tytuł"
   },
@@ -25,9 +22,6 @@
   },
   "account_group_cb00ca73": {
     "message": "Grupa kont"
-  },
-  "show_grades_8680e38e": {
-    "message": "Pokaż oceny"
   },
   "account_has_no_terms_of_use_1048a785": {
     "message": "Konto nie posiada Warunków korzystania"
@@ -79,6 +73,9 @@
   },
   "add_title_4f788d37": {
     "message": "Dodaj tytuł"
+  },
+  "add_title_required_8d9bdeaa": {
+    "message": "Dodaj tytuł (wymagany)"
   },
   "after_date_e5d9b0e1": {
     "message": "Po { date }"
@@ -368,6 +365,9 @@
   "course_settings_f6d0bbf8": {
     "message": "Ustawienia kursu"
   },
+  "coursename_sections_faeee6fc": {
+    "message": "Sekcje { courseName }"
+  },
   "courses_43204aae": {
     "message": "Kursy"
   },
@@ -599,8 +599,8 @@
   "filter_inbox_dae0ff8f": {
     "message": "Filtruj skrzynkę odbiorczą"
   },
-  "filter_numselected_f4793ab8": {
-    "message": "Filtruj ({ numSelected })"
+  "filter_numselected_number_2e4c17e3": {
+    "message": "Filtruj ({ numSelected, number })"
   },
   "filter_people_b34b567b": {
     "message": "Filtruj osoby"
@@ -962,11 +962,8 @@
   "ordered_list_5fb1ce41": {
     "message": "Uporządkowana lista"
   },
-  "out_of_points_c40a0475": {
-    "message": "Z { points }"
-  },
-  "out_of_score_c17b26bb": {
-    "message": "Z { score }"
+  "out_of_points_number_42209979": {
+    "message": "Z { points, number }"
   },
   "page_details_847e35e6": {
     "message": "Szczegóły strony"
@@ -1006,9 +1003,6 @@
   },
   "points_number_out_of_totalpoints_number_291efb47": {
     "message": "{ points, number } z { totalPoints, number }"
-  },
-  "points_number_pts_cc4a4a59": {
-    "message": "{ points, number }pkt"
   },
   "points_possible_must_be_a_number_4a592dc6": {
     "message": "Możliwe punkty do zdobycia muszą być wartością liczbową"
@@ -1166,6 +1160,12 @@
   "section_sectionname_a455be11": {
     "message": "Sekcja: { sectionName }"
   },
+  "sections_94731e51": {
+    "message": "Sekcje"
+  },
+  "sections_sections_70d64496": {
+    "message": "Sekcje: { sections }"
+  },
   "see_all_ffa422ef": {
     "message": "Zobacz wszystko"
   },
@@ -1205,6 +1205,9 @@
   "show_correct_answers_at_a5475aa3": {
     "message": "Pokaż poprawne odpowiedzi na"
   },
+  "show_grades_8680e38e": {
+    "message": "Pokaż oceny"
+  },
   "show_one_question_at_a_time_52f5b1a0": {
     "message": "Pokaż tylko jedno pytanie na raz"
   },
@@ -1216,6 +1219,9 @@
   },
   "similarity_score_f4b5c343": {
     "message": "Ocena stopnia podobieństwa"
+  },
+  "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
+    "message": "Wystąpił błąd po naszej stronie. Nie martw się – zapisaliśmy szczegóły zdarzenia, wkrótce się tym zajmiemy."
   },
   "star_messages_by_tapping_the_star_in_the_message_1c3e8a80": {
     "message": "Dodaj wiadomość do ulubionych, stukając gwiazdkę w wiadomości."
@@ -1331,9 +1337,6 @@
   "there_currently_is_no_long_description_for_this_it_ea943d61": {
     "message": "Brak dłuższego opisu dla tego elementu."
   },
-  "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
-    "message": "Wystąpił błąd podczas wczytywania listy rejestracji"
-  },
   "there_was_a_problem_dismissing_the_announcement_9c5fb4c": {
     "message": "Wystąpił problem z odrzuceniem ogłoszenia."
   },
@@ -1358,8 +1361,8 @@
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
     "message": "Wystąpił problem z wczytaniem testów."
   },
-  "there_was_a_problem_retreiving_the_terms_of_use_3a5fa00c": {
-    "message": "Wystąpił błąd z pobraniem Warunków korzystania"
+  "there_was_a_problem_retrieving_the_terms_of_use_df58f7b9": {
+    "message": "Wystąpił problem z pobraniem Warunków korzystania"
   },
   "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
     "message": "Wystąpił problem z zapisywaniem oceny. Spróbuj ponownie."
@@ -1367,11 +1370,11 @@
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "Wystąpił problem z wczytaniem załącznika."
   },
-  "there_was_an_error_loading_the_file_19deb988": {
-    "message": "Wystąpił problem z wczytaniem pliku"
-  },
   "there_was_an_error_loading_the_file_a046378e": {
     "message": "Wystąpił problem z wczytaniem pliku."
+  },
+  "there_was_an_error_loading_the_list_of_enrollments_7dc8bafe": {
+    "message": "Wystąpił błąd podczas wczytywania listy rejestracji"
   },
   "there_was_an_error_loading_the_quiz_preview_3f3c8104": {
     "message": "Wystąpił problem z wczytaniem podglądu testu."
@@ -1384,6 +1387,9 @@
   },
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "Wystąpił problem z wczytaniem Twoich wiadomości."
+  },
+  "there_was_an_unexepected_error_fd6f2bf": {
+    "message": "Wystąpił nieoczekiwany błąd."
   },
   "there_was_an_unexpected_error_please_try_again_5e08774e": {
     "message": "Wystąpił nieoczekiwany błąd. Spróbuj ponownie."
@@ -1490,6 +1496,10 @@
   "unread_e9c1b19c": {
     "message": "Nieprzeczytany"
   },
+  "unread_plural_one_unread_other_unread_5d48c74f": {
+    "message": "{ unread, plural,\n    one {# Nieprzeczytany}\n  other {# Nieprzeczytany}\n}",
+    "description": "Number of unread discussion posts"
+  },
   "until_date_f3b9f367": {
     "message": "Do { date }"
   },
@@ -1564,6 +1574,9 @@
   },
   "welcome_73d18b4d": {
     "message": "Witamy!"
+  },
+  "whoops_de2cf9fc": {
+    "message": "Ups!"
   },
   "yes_dde87d5": {
     "message": "Tak"

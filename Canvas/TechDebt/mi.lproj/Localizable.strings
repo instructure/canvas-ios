@@ -521,6 +521,9 @@
 /* (No Comment) */
 "Enter User ID and Domain." = "Tomo ID Kaiwhakamahi me te Rohe.";
 
+/* No comment provided by engineer. */
+"Enter folder name" = "E tomo ingoa kōpaki";
+
 /* Submission input view placeholder text */
 "Enter submission" = "Tomo tukunga";
 

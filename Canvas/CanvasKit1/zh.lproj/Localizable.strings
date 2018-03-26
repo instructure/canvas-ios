@@ -149,6 +149,9 @@
 "Video" = "视频";
 
 /* No comment provided by engineer. */
+"Video Error" = "视频错误";
+
+/* No comment provided by engineer. */
 "Warning" = "警告";
 
 /* Accessibility label for out or grading style */

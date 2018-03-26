@@ -7,6 +7,9 @@
 /* No comment provided by engineer. */
 "Cancel" = "Отменить";
 
+/* No comment provided by engineer. */
+"Cancel Request" = "Отменить запрос";
+
 /* Label displayed when forcing canvas login */
 "Canvas Login" = "Вход в Canvas";
 
@@ -18,6 +21,9 @@
 
 /* No comment provided by engineer. */
 "Choose One" = "Выберите один";
+
+/* No comment provided by engineer. */
+"Continue Editing" = "Продолжить редактирование";
 
 /* No comment provided by engineer. */
 "Describe the feature here" = "Опишите функцию здесь";

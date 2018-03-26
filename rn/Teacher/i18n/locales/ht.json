@@ -8,9 +8,6 @@
   "a_description_is_required_54b5f1f6": {
     "message": "Yon deskripsyon obligatwa"
   },
-  "a_message_is_required_129e1814": {
-    "message": "Yon mesaj obligatwa"
-  },
   "a_title_is_required_71222850": {
     "message": "Yon tit obligatwa"
   },
@@ -76,6 +73,9 @@
   },
   "add_title_4f788d37": {
     "message": "Ajoute tit"
+  },
+  "add_title_required_8d9bdeaa": {
+    "message": "Ajoute tit (obligatwa)"
   },
   "after_date_e5d9b0e1": {
     "message": "Aprè { date }"
@@ -365,6 +365,9 @@
   "course_settings_f6d0bbf8": {
     "message": "Paramèt Kou"
   },
+  "coursename_sections_faeee6fc": {
+    "message": "{ courseName } Seksyon"
+  },
   "courses_43204aae": {
     "message": "Kou"
   },
@@ -596,8 +599,8 @@
   "filter_inbox_dae0ff8f": {
     "message": "Filtè Bwat resepsyon"
   },
-  "filter_numselected_f4793ab8": {
-    "message": "Filtè ({ numSelected })"
+  "filter_numselected_number_2e4c17e3": {
+    "message": "Filtè ({ numSelected, number })"
   },
   "filter_people_b34b567b": {
     "message": "Filtre Moun"
@@ -610,9 +613,6 @@
   },
   "for_974cbb84": {
     "message": "Pou"
-  },
-  "show_grades_8680e38e": {
-    "message": "Afiche Klas"
   },
   "for_e3490d05": {
     "message": "Pou:"
@@ -962,11 +962,8 @@
   "ordered_list_5fb1ce41": {
     "message": "Lis Kòmande"
   },
-  "out_of_points_c40a0475": {
-    "message": "Sou { points }"
-  },
-  "out_of_score_c17b26bb": {
-    "message": "Sou { score }"
+  "out_of_points_number_42209979": {
+    "message": "Sou { points, number }"
   },
   "page_details_847e35e6": {
     "message": "Detay Paj"
@@ -1006,9 +1003,6 @@
   },
   "points_number_out_of_totalpoints_number_291efb47": {
     "message": "{ points, number } sou { totalPoints, number }"
-  },
-  "points_number_pts_cc4a4a59": {
-    "message": "{ points, number }pwen yo"
   },
   "points_possible_must_be_a_number_4a592dc6": {
     "message": "Pwen ki posib yo dwe se yon chif"
@@ -1166,6 +1160,12 @@
   "section_sectionname_a455be11": {
     "message": "Seksyon: { sectionName }"
   },
+  "sections_94731e51": {
+    "message": "Seksyon"
+  },
+  "sections_sections_70d64496": {
+    "message": "Seksyon: { sections }"
+  },
   "see_all_ffa422ef": {
     "message": "Gade Tout"
   },
@@ -1205,6 +1205,9 @@
   "show_correct_answers_at_a5475aa3": {
     "message": "Afiche Bon Repons Nan"
   },
+  "show_grades_8680e38e": {
+    "message": "Afiche Klas"
+  },
   "show_one_question_at_a_time_52f5b1a0": {
     "message": "Afiche Kesyon Yonn pa Yonn"
   },
@@ -1216,6 +1219,9 @@
   },
   "similarity_score_f4b5c343": {
     "message": "Nòt Resanblans"
+  },
+  "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
+    "message": "Gen yon bagay ki pase mal bò kote nou. Pa enkyete w, nou anrejistre sa e nap travay sou li nan yon tan ki pa lwen."
   },
   "star_messages_by_tapping_the_star_in_the_message_1c3e8a80": {
     "message": "Tape sou etwal nan mesaj yo pou ka make yo"
@@ -1331,9 +1337,6 @@
   "there_currently_is_no_long_description_for_this_it_ea943d61": {
     "message": "Pou kounye a pa gen deskripsyon long pou eleman sa a."
   },
-  "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
-    "message": "Te gen yon erè nan chajman lis enskripsyon an"
-  },
   "there_was_a_problem_dismissing_the_announcement_9c5fb4c": {
     "message": "Te gen yon pwoblèm pou rejte anons lan."
   },
@@ -1358,8 +1361,8 @@
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
     "message": "Te gen yon pwoblèm nan chajman quiz yo."
   },
-  "there_was_a_problem_retreiving_the_terms_of_use_3a5fa00c": {
-    "message": "Te gen yon pwoblèm pou jwenn Kondisyon Itilizasyon yo"
+  "there_was_a_problem_retrieving_the_terms_of_use_df58f7b9": {
+    "message": "Gen yon pwoblèm ki pase pandan rekiperasyon Kondisyon Itilizasyon an"
   },
   "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
     "message": "Te gen yon pwoblèm pou anrejistre nòt la. Tanpri eseye ankò."
@@ -1367,11 +1370,11 @@
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "Te gen erè nan chajman atachman an."
   },
-  "there_was_an_error_loading_the_file_19deb988": {
-    "message": "Te gen yon erè pou telechaje fichye an"
-  },
   "there_was_an_error_loading_the_file_a046378e": {
     "message": "Te gen yon erè nan chajman fichye a."
+  },
+  "there_was_an_error_loading_the_list_of_enrollments_7dc8bafe": {
+    "message": "Gen yon erè ki pase pandan chajman lis enskripsyon yo"
   },
   "there_was_an_error_loading_the_quiz_preview_3f3c8104": {
     "message": "Te gen yon erè nan chajman apèsi quiz la."
@@ -1384,6 +1387,9 @@
   },
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "Te gen yon pwoblèm nan chajman mesaj ou a."
+  },
+  "there_was_an_unexepected_error_fd6f2bf": {
+    "message": "Gen yon erè ki fèt sanzatann."
   },
   "there_was_an_unexpected_error_please_try_again_5e08774e": {
     "message": "Te gen yon erè sanzatann. Tanpri eseye ankò."
@@ -1490,6 +1496,10 @@
   "unread_e9c1b19c": {
     "message": "San li"
   },
+  "unread_plural_one_unread_other_unread_5d48c74f": {
+    "message": "{ unread, plural,\n    one {# San li}\n  other {# San li}\n}",
+    "description": "Number of unread discussion posts"
+  },
   "until_date_f3b9f367": {
     "message": "Jiska { date }"
   },
@@ -1564,6 +1574,9 @@
   },
   "welcome_73d18b4d": {
     "message": "Bienveni!"
+  },
+  "whoops_de2cf9fc": {
+    "message": "Whoops!"
   },
   "yes_dde87d5": {
     "message": "Wi"

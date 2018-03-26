@@ -521,6 +521,9 @@
 /* (No Comment) */
 "Enter User ID and Domain." = "Digite ID de Usuário e Domínio.";
 
+/* No comment provided by engineer. */
+"Enter folder name" = "Inserir um nome da pasta";
+
 /* Submission input view placeholder text */
 "Enter submission" = "Digitar envio";
 

@@ -8,9 +8,6 @@
   "a_description_is_required_54b5f1f6": {
     "message": "説明が必要です"
   },
-  "a_message_is_required_129e1814": {
-    "message": "メッセージは必須です"
-  },
   "a_title_is_required_71222850": {
     "message": "タイトルは必須です"
   },
@@ -76,6 +73,9 @@
   },
   "add_title_4f788d37": {
     "message": "タイトルを追加"
+  },
+  "add_title_required_8d9bdeaa": {
+    "message": "件名を追加してください（必須）"
   },
   "after_date_e5d9b0e1": {
     "message": "後{ date }"
@@ -365,6 +365,9 @@
   "course_settings_f6d0bbf8": {
     "message": "コース設定"
   },
+  "coursename_sections_faeee6fc": {
+    "message": "{ courseName } セクション"
+  },
   "courses_43204aae": {
     "message": "コース"
   },
@@ -596,8 +599,8 @@
   "filter_inbox_dae0ff8f": {
     "message": "受信トレイをフィルタリングする"
   },
-  "filter_numselected_f4793ab8": {
-    "message": "フィルター ({ numSelected })"
+  "filter_numselected_number_2e4c17e3": {
+    "message": "フィルター ({ numSelected, number })"
   },
   "filter_people_b34b567b": {
     "message": "人々をフィルタリングする"
@@ -607,9 +610,6 @@
   },
   "final_grade_4d7f6545": {
     "message": "最終的な成績"
-  },
-  "show_grades_8680e38e": {
-    "message": "成績を表示する"
   },
   "for_974cbb84": {
     "message": "対象"
@@ -962,11 +962,8 @@
   "ordered_list_5fb1ce41": {
     "message": "順序リスト"
   },
-  "out_of_points_c40a0475": {
-    "message": "配点{ points }"
-  },
-  "out_of_score_c17b26bb": {
-    "message": "配点{ score }"
+  "out_of_points_number_42209979": {
+    "message": "{ points, number } から"
   },
   "page_details_847e35e6": {
     "message": "ページ詳細"
@@ -1006,9 +1003,6 @@
   },
   "points_number_out_of_totalpoints_number_291efb47": {
     "message": "{ points, number } 中{ totalPoints, number }"
-  },
-  "points_number_pts_cc4a4a59": {
-    "message": "{ points, number }ポイント"
   },
   "points_possible_must_be_a_number_4a592dc6": {
     "message": "配点は数値で入力してください"
@@ -1166,6 +1160,12 @@
   "section_sectionname_a455be11": {
     "message": "セクション：{ sectionName }"
   },
+  "sections_94731e51": {
+    "message": "セクション"
+  },
+  "sections_sections_70d64496": {
+    "message": "セクション：{ sections }"
+  },
   "see_all_ffa422ef": {
     "message": "すべてを見る"
   },
@@ -1205,6 +1205,9 @@
   "show_correct_answers_at_a5475aa3": {
     "message": "正解を表示"
   },
+  "show_grades_8680e38e": {
+    "message": "成績を表示"
+  },
   "show_one_question_at_a_time_52f5b1a0": {
     "message": "一度に1つの質問を表示する"
   },
@@ -1216,6 +1219,9 @@
   },
   "similarity_score_f4b5c343": {
     "message": "類似スコア"
+  },
+  "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
+    "message": "こちらで何か問題が起こりました。心配はご無用です。これを記録しましたので、まもなく解決します。"
   },
   "star_messages_by_tapping_the_star_in_the_message_1c3e8a80": {
     "message": "メッセージのスターをタップすると、メッセージにスターが付きます。"
@@ -1331,9 +1337,6 @@
   "there_currently_is_no_long_description_for_this_it_ea943d61": {
     "message": "現在、この項目の詳細な説明はありません。"
   },
-  "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
-    "message": "登録リストの読み込み中にエラーが発生しました。"
-  },
   "there_was_a_problem_dismissing_the_announcement_9c5fb4c": {
     "message": "広告を却下する際に問題が発生しました。"
   },
@@ -1358,8 +1361,8 @@
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
     "message": "クイズを読み込み中、問題がありました。."
   },
-  "there_was_a_problem_retreiving_the_terms_of_use_3a5fa00c": {
-    "message": "利用規約を読み込み中に問題が発生しました"
+  "there_was_a_problem_retrieving_the_terms_of_use_df58f7b9": {
+    "message": "利用規約の取得中に問題が発生しました"
   },
   "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
     "message": "成績を保存する際に問題がありました。再度試してください。"
@@ -1367,11 +1370,11 @@
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "添付読み込み中にエラーが発生しました。"
   },
-  "there_was_an_error_loading_the_file_19deb988": {
-    "message": "ファイル読み込み中にエラーが発生しました"
-  },
   "there_was_an_error_loading_the_file_a046378e": {
     "message": "ファイル読み込み中にエラーが発生しました。"
+  },
+  "there_was_an_error_loading_the_list_of_enrollments_7dc8bafe": {
+    "message": "登録リストの読み込み中にエラーが発生しました"
   },
   "there_was_an_error_loading_the_quiz_preview_3f3c8104": {
     "message": "クイズプレビューの読み込み中にエラーが発生しました。"
@@ -1384,6 +1387,9 @@
   },
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "メッセージの読み込み中、問題がありました。"
+  },
+  "there_was_an_unexepected_error_fd6f2bf": {
+    "message": "予期しないエラーがありました。"
   },
   "there_was_an_unexpected_error_please_try_again_5e08774e": {
     "message": "予期しないエラーがありました。再度試してください。"
@@ -1490,6 +1496,10 @@
   "unread_e9c1b19c": {
     "message": "未読"
   },
+  "unread_plural_one_unread_other_unread_5d48c74f": {
+    "message": "{ unread, plural,\n    one {# 未読}\n  other {# 未読}\n}",
+    "description": "Number of unread discussion posts"
+  },
   "until_date_f3b9f367": {
     "message": "次の日時まで{ date }"
   },
@@ -1564,6 +1574,9 @@
   },
   "welcome_73d18b4d": {
     "message": "どういたしまして！"
+  },
+  "whoops_de2cf9fc": {
+    "message": "しまった！"
   },
   "yes_dde87d5": {
     "message": "はい"

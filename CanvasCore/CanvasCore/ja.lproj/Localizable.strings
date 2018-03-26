@@ -1,5 +1,3 @@
-"Inbox" = "インボックス";
-
 /* Error message component with the report id */
 " Error report ID: (reportID)" = " エラーレポート ID(reportID)";
 
@@ -458,6 +456,12 @@
 
 /* Shows question position */
 "Question %@" = "質問%@";
+
+/* state for a question that has been flagged */
+"Question (number) Flagged" = "質問 (数) がフラグ付けされました";
+
+/* state for unflagged question */
+"Question (number) Unflagged" = "質問 (数) がフラグ解除されました";
 
 /* label for the number of questions */
 "Questions" = "質問";

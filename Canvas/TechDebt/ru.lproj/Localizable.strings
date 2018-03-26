@@ -521,6 +521,9 @@
 /* (No Comment) */
 "Enter User ID and Domain." = "Ввести ID пользователя и домен.";
 
+/* No comment provided by engineer. */
+"Enter folder name" = "Введите имя папки";
+
 /* Submission input view placeholder text */
 "Enter submission" = "Ввести отправку";
 

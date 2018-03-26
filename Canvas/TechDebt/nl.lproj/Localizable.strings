@@ -521,6 +521,9 @@
 /* (No Comment) */
 "Enter User ID and Domain." = "Gebruikers ID en domein invoeren";
 
+/* No comment provided by engineer. */
+"Enter folder name" = "Mapnaam invoeren";
+
 /* Submission input view placeholder text */
 "Enter submission" = "Indiening invoeren";
 

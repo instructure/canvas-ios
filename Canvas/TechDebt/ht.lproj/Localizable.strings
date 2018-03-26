@@ -521,6 +521,9 @@
 /* (No Comment) */
 "Enter User ID and Domain." = "Antre ID itilizatè e Domèn.";
 
+/* No comment provided by engineer. */
+"Enter folder name" = "Antre non dosye";
+
 /* Submission input view placeholder text */
 "Enter submission" = "Antre soumisyon";
 

@@ -8,9 +8,6 @@
   "a_description_is_required_54b5f1f6": {
     "message": "A description is required"
   },
-  "a_message_is_required_129e1814": {
-    "message": "A message is required"
-  },
   "a_title_is_required_71222850": {
     "message": "A title is required"
   },
@@ -76,6 +73,9 @@
   },
   "add_title_4f788d37": {
     "message": "Add title"
+  },
+  "add_title_required_8d9bdeaa": {
+    "message": "Add title (required)"
   },
   "after_date_e5d9b0e1": {
     "message": "After { date }"
@@ -365,6 +365,9 @@
   "course_settings_f6d0bbf8": {
     "message": "Course Settings"
   },
+  "coursename_sections_faeee6fc": {
+    "message": "{ courseName } Sections"
+  },
   "courses_43204aae": {
     "message": "Courses"
   },
@@ -596,8 +599,8 @@
   "filter_inbox_dae0ff8f": {
     "message": "Filter Inbox"
   },
-  "filter_numselected_f4793ab8": {
-    "message": "Filter ({ numSelected })"
+  "filter_numselected_number_2e4c17e3": {
+    "message": "Filter ({ numSelected, number })"
   },
   "filter_people_b34b567b": {
     "message": "Filter People"
@@ -959,11 +962,8 @@
   "ordered_list_5fb1ce41": {
     "message": "Ordered List"
   },
-  "out_of_points_c40a0475": {
-    "message": "Out of { points }"
-  },
-  "out_of_score_c17b26bb": {
-    "message": "Out of { score }"
+  "out_of_points_number_42209979": {
+    "message": "Out of { points, number }"
   },
   "page_details_847e35e6": {
     "message": "Page Details"
@@ -1003,9 +1003,6 @@
   },
   "points_number_out_of_totalpoints_number_291efb47": {
     "message": "{ points, number } out of { totalPoints, number }"
-  },
-  "points_number_pts_cc4a4a59": {
-    "message": "{ points, number }pts"
   },
   "points_possible_must_be_a_number_4a592dc6": {
     "message": "Points possible must be a number"
@@ -1136,9 +1133,6 @@
   "schedule_student_availability_332154a": {
     "message": "Schedule student availability"
   },
-  "show_grades_8680e38e": {
-    "message": "Show Grades"
-  },
   "score_number_pointspossible_number_fd8705b8": {
     "message": "{ score, number }/{ pointsPossible, number }"
   },
@@ -1165,6 +1159,12 @@
   },
   "section_sectionname_a455be11": {
     "message": "Section: { sectionName }"
+  },
+  "sections_94731e51": {
+    "message": "Sections"
+  },
+  "sections_sections_70d64496": {
+    "message": "Sections: { sections }"
   },
   "see_all_ffa422ef": {
     "message": "See All"
@@ -1205,6 +1205,9 @@
   "show_correct_answers_at_a5475aa3": {
     "message": "Show Correct Answers At"
   },
+  "show_grades_8680e38e": {
+    "message": "Show Grades"
+  },
   "show_one_question_at_a_time_52f5b1a0": {
     "message": "Show One Question at a Time"
   },
@@ -1216,6 +1219,9 @@
   },
   "similarity_score_f4b5c343": {
     "message": "Similarity Score"
+  },
+  "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
+    "message": "Something went wrong on our end. Don't worry, we've recorded this and will be taking care of it shortly."
   },
   "star_messages_by_tapping_the_star_in_the_message_1c3e8a80": {
     "message": "Star messages by tapping the star in the message."
@@ -1331,9 +1337,6 @@
   "there_currently_is_no_long_description_for_this_it_ea943d61": {
     "message": "There currently is no long description for this item."
   },
-  "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
-    "message": "There was an error loading the list of enrolments"
-  },
   "there_was_a_problem_dismissing_the_announcement_9c5fb4c": {
     "message": "There was a problem dismissing the announcement."
   },
@@ -1358,8 +1361,8 @@
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
     "message": "There was a problem loading the quizzes."
   },
-  "there_was_a_problem_retreiving_the_terms_of_use_3a5fa00c": {
-    "message": "There was a problem retrieving the Terms Of Use"
+  "there_was_a_problem_retrieving_the_terms_of_use_df58f7b9": {
+    "message": "There was a problem retrieving the Terms of Use"
   },
   "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
     "message": "There was a problem saving the grade. Please try again."
@@ -1367,11 +1370,11 @@
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "There was an error loading the attachment."
   },
-  "there_was_an_error_loading_the_file_19deb988": {
-    "message": "There was an error loading the file"
-  },
   "there_was_an_error_loading_the_file_a046378e": {
     "message": "There was an error loading the file."
+  },
+  "there_was_an_error_loading_the_list_of_enrollments_7dc8bafe": {
+    "message": "There was an error loading the list of enrolments"
   },
   "there_was_an_error_loading_the_quiz_preview_3f3c8104": {
     "message": "There was an error loading the quiz preview."
@@ -1384,6 +1387,9 @@
   },
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "There was a problem loading your messages."
+  },
+  "there_was_an_unexepected_error_fd6f2bf": {
+    "message": "There was an unexpected error."
   },
   "there_was_an_unexpected_error_please_try_again_5e08774e": {
     "message": "There was an unexpected error. Please try again."
@@ -1490,6 +1496,10 @@
   "unread_e9c1b19c": {
     "message": "Unread"
   },
+  "unread_plural_one_unread_other_unread_5d48c74f": {
+    "message": "{ unread, plural,\n    one {# Unread}\n  other {# Unread}\n}",
+    "description": "Number of unread discussion posts"
+  },
   "until_date_f3b9f367": {
     "message": "Until { date }"
   },
@@ -1564,6 +1574,9 @@
   },
   "welcome_73d18b4d": {
     "message": "Welcome!"
+  },
+  "whoops_de2cf9fc": {
+    "message": "Whoops!"
   },
   "yes_dde87d5": {
     "message": "Yes"

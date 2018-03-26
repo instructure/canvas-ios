@@ -8,9 +8,6 @@
   "a_description_is_required_54b5f1f6": {
     "message": "En beskrivelse er påkrævet"
   },
-  "a_message_is_required_129e1814": {
-    "message": "En besked er påkrævet"
-  },
   "a_title_is_required_71222850": {
     "message": "En titel er påkrævet"
   },
@@ -76,6 +73,9 @@
   },
   "add_title_4f788d37": {
     "message": "Tilføj titel"
+  },
+  "add_title_required_8d9bdeaa": {
+    "message": "Tilføj titel (påkrævet)"
   },
   "after_date_e5d9b0e1": {
     "message": "Efter { date }"
@@ -365,6 +365,9 @@
   "course_settings_f6d0bbf8": {
     "message": "Fagindstillinger"
   },
+  "coursename_sections_faeee6fc": {
+    "message": "{ courseName } Sektioner"
+  },
   "courses_43204aae": {
     "message": "Kurser"
   },
@@ -596,17 +599,14 @@
   "filter_inbox_dae0ff8f": {
     "message": "Filtrér indbakke"
   },
-  "filter_numselected_f4793ab8": {
-    "message": "Filtrer ({ numSelected })"
+  "filter_numselected_number_2e4c17e3": {
+    "message": "Filtrer ({ numSelected, number })"
   },
   "filter_people_b34b567b": {
     "message": "Filtrer brugere"
   },
   "filter_submissions_81bc50de": {
     "message": "Filtrer afleveringer"
-  },
-  "show_grades_8680e38e": {
-    "message": "Vis karakterer"
   },
   "final_grade_4d7f6545": {
     "message": "Endelig karakter"
@@ -962,11 +962,8 @@
   "ordered_list_5fb1ce41": {
     "message": "Ordnet liste"
   },
-  "out_of_points_c40a0475": {
-    "message": "Ud af { points }"
-  },
-  "out_of_score_c17b26bb": {
-    "message": "Ud af { score }"
+  "out_of_points_number_42209979": {
+    "message": "Ud af { points, number }"
   },
   "page_details_847e35e6": {
     "message": "Sidedetaljer"
@@ -1006,9 +1003,6 @@
   },
   "points_number_out_of_totalpoints_number_291efb47": {
     "message": "{ points, number } ud af { totalPoints, number }"
-  },
-  "points_number_pts_cc4a4a59": {
-    "message": "{ points, number }point"
   },
   "points_possible_must_be_a_number_4a592dc6": {
     "message": "Mulige point skal være et tal"
@@ -1166,6 +1160,12 @@
   "section_sectionname_a455be11": {
     "message": "Sektion: { sectionName }"
   },
+  "sections_94731e51": {
+    "message": "Sektioner"
+  },
+  "sections_sections_70d64496": {
+    "message": "Sektioner: { sections }"
+  },
   "see_all_ffa422ef": {
     "message": "Se alle"
   },
@@ -1205,6 +1205,9 @@
   "show_correct_answers_at_a5475aa3": {
     "message": "Vis korrekte svar d."
   },
+  "show_grades_8680e38e": {
+    "message": "Vis karakterer"
+  },
   "show_one_question_at_a_time_52f5b1a0": {
     "message": "Vis et spørgsmål ad gangen"
   },
@@ -1216,6 +1219,9 @@
   },
   "similarity_score_f4b5c343": {
     "message": "Lighedsscore"
+  },
+  "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
+    "message": "Noget gik galt hos os. Du skal ikke bekymre dig, vi har optaget det og tager os af det snarest."
   },
   "star_messages_by_tapping_the_star_in_the_message_1c3e8a80": {
     "message": "Giv stjerne til beskeder ved at trykke på stjernen i beskeden."
@@ -1331,9 +1337,6 @@
   "there_currently_is_no_long_description_for_this_it_ea943d61": {
     "message": "Der er i øjeblikket ingen lang beskrivelse af dette element."
   },
-  "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
-    "message": "Der opstod en fejl under indlæsning af listen over tilmeldinger."
-  },
   "there_was_a_problem_dismissing_the_announcement_9c5fb4c": {
     "message": "Der opstod et problem ved afvisning af beskeden."
   },
@@ -1358,7 +1361,7 @@
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
     "message": "Der opstod et problem ved indlæsning af quizzer."
   },
-  "there_was_a_problem_retreiving_the_terms_of_use_3a5fa00c": {
+  "there_was_a_problem_retrieving_the_terms_of_use_df58f7b9": {
     "message": "Der opstod et problem ved hentning af Betingelser for brug"
   },
   "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
@@ -1367,11 +1370,11 @@
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "Der opstod en fejl under indlæsning af den vedhæftede fil."
   },
-  "there_was_an_error_loading_the_file_19deb988": {
-    "message": "Der opstod en fejl ved indlæsning af filen"
-  },
   "there_was_an_error_loading_the_file_a046378e": {
     "message": "Der opstod en fejl ved indlæsning af filen."
+  },
+  "there_was_an_error_loading_the_list_of_enrollments_7dc8bafe": {
+    "message": "Der opstod en fejl under indlæsning af listen over tilmeldinger."
   },
   "there_was_an_error_loading_the_quiz_preview_3f3c8104": {
     "message": "Der opstod en fejl ved indlæsning af quizzens forhåndsvisning."
@@ -1384,6 +1387,9 @@
   },
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "Der opstod et problem ved indlæsning af dine meddelelser."
+  },
+  "there_was_an_unexepected_error_fd6f2bf": {
+    "message": "Der opstod en uventet fejl."
   },
   "there_was_an_unexpected_error_please_try_again_5e08774e": {
     "message": "Der opstod en uventet fejl. Prøv venligst igen."
@@ -1490,6 +1496,10 @@
   "unread_e9c1b19c": {
     "message": "Ikke læst"
   },
+  "unread_plural_one_unread_other_unread_5d48c74f": {
+    "message": "{ unread, plural,\n    one {# Ikke læst}\n  other {# Ikke læst}\n}",
+    "description": "Number of unread discussion posts"
+  },
   "until_date_f3b9f367": {
     "message": "Indtil { date }"
   },
@@ -1564,6 +1574,9 @@
   },
   "welcome_73d18b4d": {
     "message": "Velkommen!"
+  },
+  "whoops_de2cf9fc": {
+    "message": "Ups!"
   },
   "yes_dde87d5": {
     "message": "Ja"

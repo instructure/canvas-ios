@@ -8,9 +8,6 @@
   "a_description_is_required_54b5f1f6": {
     "message": "Vous devez entrer une description"
   },
-  "a_message_is_required_129e1814": {
-    "message": "Message obligatoire"
-  },
   "a_title_is_required_71222850": {
     "message": "Titre obligatoire"
   },
@@ -76,6 +73,9 @@
   },
   "add_title_4f788d37": {
     "message": "Ajouter un titre"
+  },
+  "add_title_required_8d9bdeaa": {
+    "message": "Ajouter le titre (obligatoire)"
   },
   "after_date_e5d9b0e1": {
     "message": "Après { date }"
@@ -365,6 +365,9 @@
   "course_settings_f6d0bbf8": {
     "message": "Paramètres du cours"
   },
+  "coursename_sections_faeee6fc": {
+    "message": "Sections { courseName }"
+  },
   "courses_43204aae": {
     "message": "Cours"
   },
@@ -596,8 +599,8 @@
   "filter_inbox_dae0ff8f": {
     "message": "Filtrer la boîte de réception"
   },
-  "filter_numselected_f4793ab8": {
-    "message": "Filtre ({ numSelected })"
+  "filter_numselected_number_2e4c17e3": {
+    "message": "Filtre ({ numSelected, number })"
   },
   "filter_people_b34b567b": {
     "message": "Filtrer les personnes"
@@ -607,9 +610,6 @@
   },
   "final_grade_4d7f6545": {
     "message": "Note Finale"
-  },
-  "show_grades_8680e38e": {
-    "message": "Afficher les notes"
   },
   "for_974cbb84": {
     "message": "Pour"
@@ -962,11 +962,8 @@
   "ordered_list_5fb1ce41": {
     "message": "Liste dans le bon ordre"
   },
-  "out_of_points_c40a0475": {
-    "message": "Sur { points }"
-  },
-  "out_of_score_c17b26bb": {
-    "message": "Sur { score }"
+  "out_of_points_number_42209979": {
+    "message": "Sur { points, number }"
   },
   "page_details_847e35e6": {
     "message": "Détails de la page"
@@ -1006,9 +1003,6 @@
   },
   "points_number_out_of_totalpoints_number_291efb47": {
     "message": "{ points, number } sur { totalPoints, number }"
-  },
-  "points_number_pts_cc4a4a59": {
-    "message": "{ points, number } pts"
   },
   "points_possible_must_be_a_number_4a592dc6": {
     "message": "Les points possibles doivent être spécifiés par un nombre"
@@ -1166,6 +1160,12 @@
   "section_sectionname_a455be11": {
     "message": "Section : { sectionName }"
   },
+  "sections_94731e51": {
+    "message": "Sections"
+  },
+  "sections_sections_70d64496": {
+    "message": "Sections : { sections }"
+  },
   "see_all_ffa422ef": {
     "message": "Tout voir"
   },
@@ -1205,6 +1205,9 @@
   "show_correct_answers_at_a5475aa3": {
     "message": "Montrer les réponses correctes à"
   },
+  "show_grades_8680e38e": {
+    "message": "Afficher les notes"
+  },
   "show_one_question_at_a_time_52f5b1a0": {
     "message": "Montrer une question à la fois"
   },
@@ -1216,6 +1219,9 @@
   },
   "similarity_score_f4b5c343": {
     "message": "Score de similarité"
+  },
+  "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
+    "message": "Une erreur est survenue de notre part. Ne vous inquiétez pas, nous l'avons enregistré et nous nous en occuperons sous peu."
   },
   "star_messages_by_tapping_the_star_in_the_message_1c3e8a80": {
     "message": "Marquez des messages d''une étoile en appuyant sur l''icône étoile située dans le message."
@@ -1331,9 +1337,6 @@
   "there_currently_is_no_long_description_for_this_it_ea943d61": {
     "message": "Il n’y a aucune description longue pour cet élément actuellement."
   },
-  "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
-    "message": "Une erreur est survenue pendant le chargement de la liste des participants"
-  },
   "there_was_a_problem_dismissing_the_announcement_9c5fb4c": {
     "message": "Un problème est survenu lors du rejet de l'annonce."
   },
@@ -1358,8 +1361,8 @@
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
     "message": "Une erreur est survenue lors du téléchargement des questionnaires."
   },
-  "there_was_a_problem_retreiving_the_terms_of_use_3a5fa00c": {
-    "message": "Un problème est survenu pendant la récupération des Conditions d'utilisation"
+  "there_was_a_problem_retrieving_the_terms_of_use_df58f7b9": {
+    "message": "Une erreur est survenue lors de la récupération des conditions d'utilisation"
   },
   "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
     "message": "Un problème est survenu lors de la sauvegarde de la note. Veuillez réessayer."
@@ -1367,11 +1370,11 @@
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "Une erreur est survenue pendant le chargement de la pièce jointe."
   },
-  "there_was_an_error_loading_the_file_19deb988": {
-    "message": "Une erreur est survenue pendant le chargement du fichier"
-  },
   "there_was_an_error_loading_the_file_a046378e": {
     "message": "Une erreur est survenue lors du chargement du fichier."
+  },
+  "there_was_an_error_loading_the_list_of_enrollments_7dc8bafe": {
+    "message": "Une erreur est survenue lors du chargement de la liste des inscriptions"
   },
   "there_was_an_error_loading_the_quiz_preview_3f3c8104": {
     "message": "Une erreur est survenue lors du chargement de l'aperçu du quiz."
@@ -1384,6 +1387,9 @@
   },
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "Un problème est survenu pendant le chargement de vos messages."
+  },
+  "there_was_an_unexepected_error_fd6f2bf": {
+    "message": "Une erreur inattendue est survenue."
   },
   "there_was_an_unexpected_error_please_try_again_5e08774e": {
     "message": "Erreur inattendue. Veuillez réessayer."
@@ -1490,6 +1496,10 @@
   "unread_e9c1b19c": {
     "message": "Non lu"
   },
+  "unread_plural_one_unread_other_unread_5d48c74f": {
+    "message": "{ unread, plural,\n    one {# Non lu}\n  other {# Non lu}\n}",
+    "description": "Number of unread discussion posts"
+  },
   "until_date_f3b9f367": {
     "message": "Jusqu’au { date }"
   },
@@ -1564,6 +1574,9 @@
   },
   "welcome_73d18b4d": {
     "message": "Bienvenue !"
+  },
+  "whoops_de2cf9fc": {
+    "message": "Oups !"
   },
   "yes_dde87d5": {
     "message": "Oui"

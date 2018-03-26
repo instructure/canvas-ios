@@ -1,5 +1,3 @@
-"Inbox" = "Inkorg";
-
 /* Error message component with the report id */
 " Error report ID: (reportID)" = " ID felrapport: (reportID)";
 
@@ -458,6 +456,12 @@
 
 /* Shows question position */
 "Question %@" = "Fråga %@";
+
+/* state for a question that has been flagged */
+"Question (number) Flagged" = "Fråga (nummer) flaggad";
+
+/* state for unflagged question */
+"Question (number) Unflagged" = "Fråga (nummer) ej-flaggad";
 
 /* label for the number of questions */
 "Questions" = "Frågor";

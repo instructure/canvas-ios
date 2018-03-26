@@ -8,9 +8,6 @@
   "a_description_is_required_54b5f1f6": {
     "message": "Требуется описание"
   },
-  "a_message_is_required_129e1814": {
-    "message": "Требуется сообщение"
-  },
   "a_title_is_required_71222850": {
     "message": "Требуется заголовок"
   },
@@ -76,6 +73,9 @@
   },
   "add_title_4f788d37": {
     "message": "Добавить заголовок"
+  },
+  "add_title_required_8d9bdeaa": {
+    "message": "Добавить заголовок (обязательно)"
   },
   "after_date_e5d9b0e1": {
     "message": "После { date }"
@@ -254,9 +254,6 @@
   "cancel_caeb1e68": {
     "message": "Отменить"
   },
-  "show_grades_8680e38e": {
-    "message": "Показать оценки"
-  },
   "canvas_parent_app_f9236a3a": {
     "message": "Основное приложение Canvas"
   },
@@ -367,6 +364,9 @@
   },
   "course_settings_f6d0bbf8": {
     "message": "Настройки курса"
+  },
+  "coursename_sections_faeee6fc": {
+    "message": "Разделы { courseName }"
   },
   "courses_43204aae": {
     "message": "Курсы"
@@ -599,8 +599,8 @@
   "filter_inbox_dae0ff8f": {
     "message": "Фильтровать Входящие"
   },
-  "filter_numselected_f4793ab8": {
-    "message": "Фильтр ({ numSelected })"
+  "filter_numselected_number_2e4c17e3": {
+    "message": "Фильтр ({ numSelected, number })"
   },
   "filter_people_b34b567b": {
     "message": "Фильтрация людей"
@@ -962,11 +962,8 @@
   "ordered_list_5fb1ce41": {
     "message": "Упорядоченный список"
   },
-  "out_of_points_c40a0475": {
-    "message": "Из { points }"
-  },
-  "out_of_score_c17b26bb": {
-    "message": "Из { score }"
+  "out_of_points_number_42209979": {
+    "message": "Из { points, number }"
   },
   "page_details_847e35e6": {
     "message": "Данные страницы"
@@ -1006,9 +1003,6 @@
   },
   "points_number_out_of_totalpoints_number_291efb47": {
     "message": "{ points, number } из { totalPoints, number }"
-  },
-  "points_number_pts_cc4a4a59": {
-    "message": "{ points, number }баллов"
   },
   "points_possible_must_be_a_number_4a592dc6": {
     "message": "Значение возможных баллов должно быть числом"
@@ -1166,6 +1160,12 @@
   "section_sectionname_a455be11": {
     "message": "Раздел: { sectionName }"
   },
+  "sections_94731e51": {
+    "message": "Разделы"
+  },
+  "sections_sections_70d64496": {
+    "message": "Разделы: { sections }"
+  },
   "see_all_ffa422ef": {
     "message": "Смотреть все"
   },
@@ -1205,6 +1205,9 @@
   "show_correct_answers_at_a5475aa3": {
     "message": "Показать правильные ответы в"
   },
+  "show_grades_8680e38e": {
+    "message": "Показать оценки"
+  },
   "show_one_question_at_a_time_52f5b1a0": {
     "message": "Показывать по одному вопросу за раз"
   },
@@ -1216,6 +1219,9 @@
   },
   "similarity_score_f4b5c343": {
     "message": "Оценка сходства"
+  },
+  "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
+    "message": "У нас что-то пошло не так. Не беспокойтесь, мы записали это и примем необходимые меры в ближайшее время."
   },
   "star_messages_by_tapping_the_star_in_the_message_1c3e8a80": {
     "message": "Отметьте сообщения звездочкой касанием к звездочке в сообщении."
@@ -1331,9 +1337,6 @@
   "there_currently_is_no_long_description_for_this_it_ea943d61": {
     "message": "В настоящее время нет длинного описания данной позиции."
   },
-  "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
-    "message": "При загрузке списка регистраций возникла ошибка"
-  },
   "there_was_a_problem_dismissing_the_announcement_9c5fb4c": {
     "message": "Возникла проблема с отменой этой аннотации."
   },
@@ -1358,7 +1361,7 @@
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
     "message": "Проблема при загрузке контрольных."
   },
-  "there_was_a_problem_retreiving_the_terms_of_use_3a5fa00c": {
+  "there_was_a_problem_retrieving_the_terms_of_use_df58f7b9": {
     "message": "Не удалось получить условия использования"
   },
   "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
@@ -1367,11 +1370,11 @@
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "Произошла ошибка при загрузке вложения."
   },
-  "there_was_an_error_loading_the_file_19deb988": {
-    "message": "Произошла ошибка при загрузке файла"
-  },
   "there_was_an_error_loading_the_file_a046378e": {
     "message": "Произошла ошибка при загрузке файла."
+  },
+  "there_was_an_error_loading_the_list_of_enrollments_7dc8bafe": {
+    "message": "Произошла ошибка при загрузке списка зачислений"
   },
   "there_was_an_error_loading_the_quiz_preview_3f3c8104": {
     "message": "Проблема при загрузке предпросмотра теста."
@@ -1384,6 +1387,9 @@
   },
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "Проблема при загрузке ваших сообщений."
+  },
+  "there_was_an_unexepected_error_fd6f2bf": {
+    "message": "Произошла непредвиденная ошибка."
   },
   "there_was_an_unexpected_error_please_try_again_5e08774e": {
     "message": "Возникла непредвиденная ошибка. Попробуйте еще раз."
@@ -1490,6 +1496,10 @@
   "unread_e9c1b19c": {
     "message": "Не прочитано"
   },
+  "unread_plural_one_unread_other_unread_5d48c74f": {
+    "message": "{ unread, plural,\n    one {# Не прочитано}\n  other {# Не прочитано}\n}",
+    "description": "Number of unread discussion posts"
+  },
   "until_date_f3b9f367": {
     "message": "До { date }"
   },
@@ -1564,6 +1574,9 @@
   },
   "welcome_73d18b4d": {
     "message": "Добро пожаловать!"
+  },
+  "whoops_de2cf9fc": {
+    "message": "Ой!"
   },
   "yes_dde87d5": {
     "message": "Да"

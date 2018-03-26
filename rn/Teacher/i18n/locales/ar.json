@@ -8,9 +8,6 @@
   "a_description_is_required_54b5f1f6": {
     "message": "الوصف مطلوب"
   },
-  "a_message_is_required_129e1814": {
-    "message": "الرسالة مطلوبة"
-  },
   "a_title_is_required_71222850": {
     "message": "العنوان مطلوب"
   },
@@ -76,6 +73,9 @@
   },
   "add_title_4f788d37": {
     "message": "إضافة عنوان"
+  },
+  "add_title_required_8d9bdeaa": {
+    "message": "إضافة عنوان (مطلوب)"
   },
   "after_date_e5d9b0e1": {
     "message": "بعد { date }"
@@ -365,6 +365,9 @@
   "course_settings_f6d0bbf8": {
     "message": "إعدادات المساق"
   },
+  "coursename_sections_faeee6fc": {
+    "message": "أقسام { courseName }"
+  },
   "courses_43204aae": {
     "message": "المساقات"
   },
@@ -596,17 +599,14 @@
   "filter_inbox_dae0ff8f": {
     "message": "تصفية صندوق الوارد"
   },
-  "filter_numselected_f4793ab8": {
-    "message": "عامل تصفية ({ numSelected })"
+  "filter_numselected_number_2e4c17e3": {
+    "message": "عامل تصفية ({ numSelected, number })"
   },
   "filter_people_b34b567b": {
     "message": "تصفية الأشخاص"
   },
   "filter_submissions_81bc50de": {
     "message": "تصفية الإرسالات"
-  },
-  "show_grades_8680e38e": {
-    "message": "عرض الدرجات"
   },
   "final_grade_4d7f6545": {
     "message": "الدرجة النهائية"
@@ -962,11 +962,8 @@
   "ordered_list_5fb1ce41": {
     "message": "قائمة مرتبة"
   },
-  "out_of_points_c40a0475": {
-    "message": "من إجمالي { points }"
-  },
-  "out_of_score_c17b26bb": {
-    "message": "من إجمالي { score }"
+  "out_of_points_number_42209979": {
+    "message": "من أصل { points, number }"
   },
   "page_details_847e35e6": {
     "message": "تفاصيل الصفحة"
@@ -1006,9 +1003,6 @@
   },
   "points_number_out_of_totalpoints_number_291efb47": {
     "message": "{ points, number } من إجمالي { totalPoints, number }"
-  },
-  "points_number_pts_cc4a4a59": {
-    "message": "{ points, number } نقاط"
   },
   "points_possible_must_be_a_number_4a592dc6": {
     "message": "النقاط الممكنة لابد أن تكون رقمًا"
@@ -1166,6 +1160,12 @@
   "section_sectionname_a455be11": {
     "message": "القسم: { sectionName }"
   },
+  "sections_94731e51": {
+    "message": "الأقسام"
+  },
+  "sections_sections_70d64496": {
+    "message": "الأقسام: { sections }"
+  },
   "see_all_ffa422ef": {
     "message": "عرض الكل"
   },
@@ -1205,6 +1205,9 @@
   "show_correct_answers_at_a5475aa3": {
     "message": "عرض الأجوبة الصحيحة في"
   },
+  "show_grades_8680e38e": {
+    "message": "عرض الدرجات"
+  },
   "show_one_question_at_a_time_52f5b1a0": {
     "message": "عرض سؤال واحد في كل مرة"
   },
@@ -1216,6 +1219,9 @@
   },
   "similarity_score_f4b5c343": {
     "message": "درجة التشابه"
+  },
+  "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
+    "message": "حدث مشكلة من طرفنا. لا تقلق، لقد سجلنا تلك المشكلة وسنقوم بحلها بعد قليل."
   },
   "star_messages_by_tapping_the_star_in_the_message_1c3e8a80": {
     "message": "وضع علامة نجمة على الرسائل من خلال الضغط على النجمة الموجودة في الرسالة."
@@ -1331,9 +1337,6 @@
   "there_currently_is_no_long_description_for_this_it_ea943d61": {
     "message": "لا يوجد حاليًا أي وصف مطوّل لهذا العنصر."
   },
-  "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
-    "message": "حدث خطأ أثناء تحميل قائمة التسجيلات"
-  },
   "there_was_a_problem_dismissing_the_announcement_9c5fb4c": {
     "message": "حدثت مشكلة أثناء تجاهل الإعلان."
   },
@@ -1358,7 +1361,7 @@
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
     "message": "حدثت مشكلة أثناء تحميل الاختبارات الموجزة."
   },
-  "there_was_a_problem_retreiving_the_terms_of_use_3a5fa00c": {
+  "there_was_a_problem_retrieving_the_terms_of_use_df58f7b9": {
     "message": "حدثت مشكلة أثناء استرداد شروط الاستخدام"
   },
   "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
@@ -1367,11 +1370,11 @@
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "حدث خطأ أثناء تحميل المرفق."
   },
-  "there_was_an_error_loading_the_file_19deb988": {
-    "message": "حدث خطأ أثناء تحميل الملف"
-  },
   "there_was_an_error_loading_the_file_a046378e": {
     "message": "حدث خطأ أثناء تحميل الملف."
+  },
+  "there_was_an_error_loading_the_list_of_enrollments_7dc8bafe": {
+    "message": "حدث خطأ أثناء تحميل قائمة التسجيلات"
   },
   "there_was_an_error_loading_the_quiz_preview_3f3c8104": {
     "message": "حدث خطأ أثناء تحميل معاينة الاختبار الموجز."
@@ -1384,6 +1387,9 @@
   },
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "حدثت مشكلة أثناء تحميل رسائلك."
+  },
+  "there_was_an_unexepected_error_fd6f2bf": {
+    "message": "حدث خطأ غير متوقع."
   },
   "there_was_an_unexpected_error_please_try_again_5e08774e": {
     "message": "حدث خطأ غير متوقع. يرجى إعادة المحاولة."
@@ -1490,6 +1496,10 @@
   "unread_e9c1b19c": {
     "message": "غير مقروء"
   },
+  "unread_plural_one_unread_other_unread_5d48c74f": {
+    "message": "{ unread, plural,\n    one {# غير مقروء}\n  other {# غير مقروء}\n}",
+    "description": "Number of unread discussion posts"
+  },
   "until_date_f3b9f367": {
     "message": "حتى { date }"
   },
@@ -1564,6 +1574,9 @@
   },
   "welcome_73d18b4d": {
     "message": "مرحبًا!"
+  },
+  "whoops_de2cf9fc": {
+    "message": "أوبس!"
   },
   "yes_dde87d5": {
     "message": "نعم"

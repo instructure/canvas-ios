@@ -8,9 +8,6 @@
   "a_description_is_required_54b5f1f6": {
     "message": "Er is een beschrijving vereist"
   },
-  "a_message_is_required_129e1814": {
-    "message": "Een bericht is vereist"
-  },
   "a_title_is_required_71222850": {
     "message": "Een titel is vereist"
   },
@@ -76,6 +73,9 @@
   },
   "add_title_4f788d37": {
     "message": "Titel toevoegen"
+  },
+  "add_title_required_8d9bdeaa": {
+    "message": "Titel toevoegen (vereist)"
   },
   "after_date_e5d9b0e1": {
     "message": "Na { date }"
@@ -323,9 +323,6 @@
   "copyright_holder_386cc8b8": {
     "message": "Houder van auteursrecht"
   },
-  "show_grades_8680e38e": {
-    "message": "Cijfers tonen"
-  },
   "could_not_get_list_of_assignments_76aa2c7e": {
     "message": "Kan lijst met opdrachten niet ophalen"
   },
@@ -367,6 +364,9 @@
   },
   "course_settings_f6d0bbf8": {
     "message": "Cursusinstellingen"
+  },
+  "coursename_sections_faeee6fc": {
+    "message": "{ courseName } secties"
   },
   "courses_43204aae": {
     "message": "Cursussen"
@@ -599,8 +599,8 @@
   "filter_inbox_dae0ff8f": {
     "message": "Inbox filteren"
   },
-  "filter_numselected_f4793ab8": {
-    "message": "Filter ({ numSelected })"
+  "filter_numselected_number_2e4c17e3": {
+    "message": "Filter ({ numSelected, number })"
   },
   "filter_people_b34b567b": {
     "message": "Personen filteren"
@@ -962,11 +962,8 @@
   "ordered_list_5fb1ce41": {
     "message": "Geordende lijst"
   },
-  "out_of_points_c40a0475": {
-    "message": "Vanuit { points }"
-  },
-  "out_of_score_c17b26bb": {
-    "message": "Van { score }"
+  "out_of_points_number_42209979": {
+    "message": "Vanuit { points, number }"
   },
   "page_details_847e35e6": {
     "message": "Paginadetails"
@@ -1006,9 +1003,6 @@
   },
   "points_number_out_of_totalpoints_number_291efb47": {
     "message": "{ points, number } van { totalPoints, number }"
-  },
-  "points_number_pts_cc4a4a59": {
-    "message": "{ points, number }ptn"
   },
   "points_possible_must_be_a_number_4a592dc6": {
     "message": "Mogelijke punten moeten een getal zijn"
@@ -1166,6 +1160,12 @@
   "section_sectionname_a455be11": {
     "message": "Sectie: { sectionName }"
   },
+  "sections_94731e51": {
+    "message": "Secties"
+  },
+  "sections_sections_70d64496": {
+    "message": "Secties: { sections }"
+  },
   "see_all_ffa422ef": {
     "message": "Alles weergeven"
   },
@@ -1205,6 +1205,9 @@
   "show_correct_answers_at_a5475aa3": {
     "message": "Juiste antwoorden tonen op"
   },
+  "show_grades_8680e38e": {
+    "message": "Cijfers tonen"
+  },
   "show_one_question_at_a_time_52f5b1a0": {
     "message": "Een antwoord per keer tonen"
   },
@@ -1216,6 +1219,9 @@
   },
   "similarity_score_f4b5c343": {
     "message": "Vergelijkbaarheidsscore"
+  },
+  "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
+    "message": "Er is iets fout gegaan aan onze zijde. Maar maak je geen zorgen, we hebben dit vastgelegd en zullen het zo spoedig mogelijk oplossen."
   },
   "star_messages_by_tapping_the_star_in_the_message_1c3e8a80": {
     "message": "Geef berichten een ster door op de ster in het bericht te tikken."
@@ -1331,9 +1337,6 @@
   "there_currently_is_no_long_description_for_this_it_ea943d61": {
     "message": "Er is momenteel geen beschrijving voor dit item."
   },
-  "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
-    "message": "Er is een probleem opgetreden bij het laden van de lijst met inschrijvingen."
-  },
   "there_was_a_problem_dismissing_the_announcement_9c5fb4c": {
     "message": "Er is een probleem met het afwijzen van de aankondiging."
   },
@@ -1358,7 +1361,7 @@
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
     "message": "Er is een probleem ontstaan bij het laden van de toetsen."
   },
-  "there_was_a_problem_retreiving_the_terms_of_use_3a5fa00c": {
+  "there_was_a_problem_retrieving_the_terms_of_use_df58f7b9": {
     "message": "Er is een probleem met het ophalen van de gebruiksvoorwaarden"
   },
   "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
@@ -1367,11 +1370,11 @@
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "Er is een fout met het laden van de bijlage."
   },
-  "there_was_an_error_loading_the_file_19deb988": {
-    "message": "Er is een fout met het laden van het bestand"
-  },
   "there_was_an_error_loading_the_file_a046378e": {
     "message": "Er is een fout met het laden van het bestand."
+  },
+  "there_was_an_error_loading_the_list_of_enrollments_7dc8bafe": {
+    "message": "Er is een fout opgetreden bij het laden van de lijst met inschrijvingen"
   },
   "there_was_an_error_loading_the_quiz_preview_3f3c8104": {
     "message": "Er is een fout opgetreden bij het laden van de toetspreview."
@@ -1384,6 +1387,9 @@
   },
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "Er is een probleem met het laden van je berichten."
+  },
+  "there_was_an_unexepected_error_fd6f2bf": {
+    "message": "Er is een onverwachte fout opgetreden."
   },
   "there_was_an_unexpected_error_please_try_again_5e08774e": {
     "message": "Er is een onverwachte fout opgetreden. Probeer het opnieuw."
@@ -1490,6 +1496,10 @@
   "unread_e9c1b19c": {
     "message": "Ongelezen"
   },
+  "unread_plural_one_unread_other_unread_5d48c74f": {
+    "message": "{ unread, plural,\n    one {# Ongelezen}\n  other {# Ongelezen}\n}",
+    "description": "Number of unread discussion posts"
+  },
   "until_date_f3b9f367": {
     "message": "Tot { date }"
   },
@@ -1564,6 +1574,9 @@
   },
   "welcome_73d18b4d": {
     "message": "Welkom!"
+  },
+  "whoops_de2cf9fc": {
+    "message": "Oeps!"
   },
   "yes_dde87d5": {
     "message": "Ja"

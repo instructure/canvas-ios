@@ -7,6 +7,9 @@
 /* No comment provided by engineer. */
 "Cancel" = "取消";
 
+/* No comment provided by engineer. */
+"Cancel Request" = "取消請求";
+
 /* Label displayed when forcing canvas login */
 "Canvas Login" = "Canvas 登入";
 
@@ -18,6 +21,9 @@
 
 /* No comment provided by engineer. */
 "Choose One" = "選擇一個";
+
+/* No comment provided by engineer. */
+"Continue Editing" = "繼續編輯";
 
 /* No comment provided by engineer. */
 "Describe the feature here" = "請形容這功能";

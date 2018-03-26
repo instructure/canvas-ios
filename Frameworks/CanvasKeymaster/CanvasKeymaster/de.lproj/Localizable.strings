@@ -7,6 +7,9 @@
 /* No comment provided by engineer. */
 "Cancel" = "Abbrechen";
 
+/* No comment provided by engineer. */
+"Cancel Request" = "Anfrage stornieren";
+
 /* Label displayed when forcing canvas login */
 "Canvas Login" = "Anmeldung bei Canvas";
 
@@ -18,6 +21,9 @@
 
 /* No comment provided by engineer. */
 "Choose One" = "Bitte eins auswählen";
+
+/* No comment provided by engineer. */
+"Continue Editing" = "Weiter bearbeiten";
 
 /* No comment provided by engineer. */
 "Describe the feature here" = "Beschreibe hier die Funktion.";

@@ -149,6 +149,9 @@
 "Video" = "Video";
 
 /* No comment provided by engineer. */
+"Video Error" = "Fout in video";
+
+/* No comment provided by engineer. */
 "Warning" = "Waarschuwing";
 
 /* Accessibility label for out or grading style */
