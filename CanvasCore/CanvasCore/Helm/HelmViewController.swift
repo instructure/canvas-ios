@@ -653,12 +653,12 @@ fileprivate struct Associated {
 }
 
 extension UIViewController {
-    func addModalDismissButton(buttonTitle: String? , animated: Bool = true ) {
-        var dismissTitle = NSLocalizedString("Done", comment: "")
+    func addModalDismissButton(buttonTitle: String?) {
+        var dismissTitle = NSLocalizedString("Done", tableName: nil, bundle: .core, value: "Done", comment: "")
         if let buttonTitle = buttonTitle {
             dismissTitle = buttonTitle
         }
-        let button = UIBarButtonItem(title: dismissTitle, style: .plain, target: self, action:#selector(dismissModal))
+        let button = UIBarButtonItem(title: dismissTitle, style: .plain, target: self, action:#selector(dismissModalWithAnimation))
         button.accessibilityIdentifier = "screen.dismiss"
         if navigationItem.rightBarButtonItems?.count ?? 0 == 0 {
             button.style = .done
@@ -666,6 +666,10 @@ extension UIViewController {
         } else {
             navigationItem.leftBarButtonItem = button
         }
+    }
+    
+    func dismissModalWithAnimation() {
+        dismissModal(animated: true)
     }
     
     func dismissModal(animated: Bool) {
