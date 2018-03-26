@@ -7,6 +7,7 @@ exports[`EditFile passes the correct props to EditItem 1`] = `
   getCourseLicenses={[Function]}
   item={
     Object {
+      "content-type": "application/document",
       "display_name": "Book Report",
       "filename": "/bookreport",
       "hidden": false,

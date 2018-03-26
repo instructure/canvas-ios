@@ -38,4 +38,5 @@ export const file: Template<File> = template({
   unlock_at: null,
   lock_at: null,
   usage_rights: usageRights(),
+  'content-type': 'application/document',
 })

@@ -45,6 +45,7 @@ exports[`Attachments renders attachments 1`] = `
         Array [
           Object {
             "data": Object {
+              "content-type": "application/document",
               "display_name": "Book Report",
               "filename": "Attachment 1.jpg",
               "hidden": false,
@@ -74,6 +75,7 @@ exports[`Attachments renders attachments 1`] = `
           },
           Object {
             "data": Object {
+              "content-type": "application/document",
               "display_name": "Book Report",
               "filename": "Attachment 1.jpg",
               "hidden": false,

@@ -19,8 +19,8 @@
 import React from 'react'
 import { ActionSheetIOS } from 'react-native'
 import AttachmentView from '../AttachmentView'
-import renderer from 'react-test-renderer'
 import md5 from 'md5'
+import { shallow } from 'enzyme'
 
 import * as templates from '../../../__templates__'
 
@@ -50,11 +50,12 @@ let defaultProps = {
 
 describe('AttachmentView', () => {
   it('renders a pdf', async () => {
-    let tree = renderer.create(
+    let tree = shallow(
       <AttachmentView {...defaultProps} />
     )
-    await tree.getInstance().fetchFile()
-    expect(tree.toJSON()).toMatchSnapshot()
+    await tree.instance().fetchFile()
+    tree.update()
+    expect(tree.find('CanvasWebView').length).toEqual(1)
   })
 
   it('renders an image', async () => {
@@ -68,11 +69,12 @@ describe('AttachmentView', () => {
       },
     }
 
-    let tree = renderer.create(
+    let tree = shallow(
       <AttachmentView {...props} />
     )
-    await tree.getInstance().fetchFile()
-    expect(tree.toJSON()).toMatchSnapshot()
+    await tree.instance().fetchFile()
+    tree.update()
+    expect(tree.find('Image').length).toEqual(1)
   })
 
   it('renders unsupported stuffs', async () => {
@@ -86,11 +88,12 @@ describe('AttachmentView', () => {
       },
     }
 
-    let tree = renderer.create(
+    let tree = shallow(
       <AttachmentView {...props} />
     )
-    await tree.getInstance().fetchFile()
-    expect(tree.toJSON()).toMatchSnapshot()
+    await tree.instance().fetchFile()
+    tree.update()
+    expect(tree.find('Text').props().children.includes('not supported')).toEqual(true)
   })
 
   it('renders a video', async () => {
@@ -104,11 +107,12 @@ describe('AttachmentView', () => {
       },
     }
 
-    let tree = renderer.create(
+    let tree = shallow(
       <AttachmentView {...props} />
     )
-    await tree.getInstance().fetchFile()
-    expect(tree.toJSON()).toMatchSnapshot()
+    await tree.instance().fetchFile()
+    tree.update()
+    expect(tree.find('Video').length).toEqual(1)
   })
 
   it('renders audio', async () => {
@@ -122,11 +126,12 @@ describe('AttachmentView', () => {
       },
     }
 
-    let tree = renderer.create(
+    let tree = shallow(
       <AttachmentView {...props} />
     )
-    await tree.getInstance().fetchFile()
-    expect(tree.toJSON()).toMatchSnapshot()
+    await tree.instance().fetchFile()
+    tree.update()
+    expect(tree.find('Video').length).toEqual(1)
   })
 
   it('renders audio with unknown mime class', async () => {
@@ -141,30 +146,60 @@ describe('AttachmentView', () => {
       },
     }
 
-    let tree = renderer.create(
+    let tree = shallow(
       <AttachmentView {...props} />
     )
-    await tree.getInstance().fetchFile()
-    expect(tree.toJSON()).toMatchSnapshot()
+    await tree.instance().fetchFile()
+    tree.update()
+    expect(tree.find('Video').length).toEqual(1)
   })
 
-  it('opens share sheet', () => {
+  it('renders the Video tag with the current width and 16:9 height', async () => {
+    let props = {
+      navigator: templates.navigator(),
+      attachment: {
+        id: '1',
+        display_name: 'Something.mp4',
+        url: '',
+        mime_class: 'video',
+      },
+    }
+
+    let tree = shallow(
+      <AttachmentView {...props} />
+    )
+    await tree.instance().fetchFile()
+    tree.setState({ size: { width: 16 } })
+    tree.update()
+
+    expect(tree.find('Video').props().style).toEqual({
+      width: 16,
+      height: 9,
+    })
+  })
+
+  it('opens share sheet', async () => {
     const props = {
       ...defaultProps,
       navigator: templates.navigator({
         dismiss: jest.fn(),
       }),
     }
-    let tree = renderer.create(
+    let tree = shallow(
       <AttachmentView {...props} />
     )
-    let instance = tree.getInstance()
+    await tree.instance().fetchFile()
+    tree.update()
 
-    return instance.state.downloadPromise.then(r => {
-      instance.share()
-      expect(ActionSheetIOS.showShareActionSheetWithOptions).toHaveBeenCalledWith({
+    let screen = tree.find('Screen')
+    screen.props().rightBarButtons[0].action()
+
+    expect(ActionSheetIOS.showShareActionSheetWithOptions).toHaveBeenCalledWith(
+      {
         url: `file://caches/${md5(props.attachment.url)}.pdf`,
-      }, expect.any(Function), expect.any(Function))
-    })
+      },
+      expect.any(Function),
+      expect.any(Function)
+    )
   })
 })

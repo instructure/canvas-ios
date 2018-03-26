@@ -30,6 +30,7 @@ export type File = {
   unlock_at: ?string,
   lock_at: ?string,
   usage_rights: UsageRights,
+  'content-type': string,
 }
 
 export type UpdateFileParameters = {

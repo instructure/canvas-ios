@@ -21,7 +21,6 @@
 import React, { Component } from 'react'
 import {
   View,
-  WebView,
   Image,
   StyleSheet,
   Text,
@@ -41,6 +40,7 @@ import Images from '../../images'
 import Navigator from '../../routing/Navigator'
 import Video from './Video'
 import md5 from 'md5'
+import CanvasWebView from './CanvasWebView'
 
 type Props = {
   attachment: Attachment,
@@ -143,7 +143,13 @@ export default class AttachmentView extends Component<Props, State> {
         if (this.props.attachment['content-type'] && this.props.attachment['content-type'].indexOf('audio') !== -1) {
           body = this.renderAudioVisual()
         } else {
-          body = <WebView source={{ uri: this.state.filePath }} style={styles.document} />
+          body = (
+            <CanvasWebView
+              navigator={this.props.navigator}
+              source={{ uri: this.state.filePath }}
+              style={styles.document}
+            />
+          )
         }
     }
     return body
@@ -151,7 +157,7 @@ export default class AttachmentView extends Component<Props, State> {
 
   renderAudioVisual () {
     return (
-      <View style={styles.centeredContainer} onLayout={this.handleLayout}>
+      <View style={styles.centeredContainer}>
         <Video
           // $FlowFixMe
           source={{ uri: this.state.filePath }}
@@ -174,7 +180,7 @@ export default class AttachmentView extends Component<Props, State> {
           action: this.share,
         }]}
       >
-        <View style={styles.container}>
+        <View style={styles.container} onLayout={this.handleLayout}>
           { (this.state.filePath == null) &&
             <View style={styles.centeredContainer}>
               <ActivityIndicator />

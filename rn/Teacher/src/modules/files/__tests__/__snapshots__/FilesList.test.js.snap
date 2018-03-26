@@ -57,6 +57,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
             "updated_at": "",
           },
           Object {
+            "content-type": "application/document",
             "display_name": "Book Report",
             "filename": "/bookreport",
             "hidden": false,
@@ -78,6 +79,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
             },
           },
           Object {
+            "content-type": "application/document",
             "display_name": "Book Report",
             "filename": "/bookreport",
             "hidden": false,
@@ -994,6 +996,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
             "updated_at": "",
           },
           Object {
+            "content-type": "application/document",
             "display_name": "Book Report",
             "filename": "/bookreport",
             "hidden": false,
@@ -1015,6 +1018,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
             },
           },
           Object {
+            "content-type": "application/document",
             "display_name": "Book Report",
             "filename": "/bookreport",
             "hidden": false,
@@ -1931,6 +1935,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
             "updated_at": "",
           },
           Object {
+            "content-type": "application/document",
             "display_name": "Book Report",
             "filename": "/bookreport",
             "hidden": false,
@@ -1952,6 +1957,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
             },
           },
           Object {
+            "content-type": "application/document",
             "display_name": "Book Report",
             "filename": "/bookreport",
             "hidden": false,
@@ -2868,6 +2874,7 @@ exports[`FilesList sending weird data into the progress update function should n
             "updated_at": "",
           },
           Object {
+            "content-type": "application/document",
             "display_name": "Book Report",
             "filename": "/bookreport",
             "hidden": false,
@@ -2889,6 +2896,7 @@ exports[`FilesList sending weird data into the progress update function should n
             },
           },
           Object {
+            "content-type": "application/document",
             "display_name": "Book Report",
             "filename": "/bookreport",
             "hidden": false,
@@ -3805,6 +3813,7 @@ exports[`FilesList should render 1`] = `
             "updated_at": "",
           },
           Object {
+            "content-type": "application/document",
             "display_name": "Book Report",
             "filename": "/bookreport",
             "hidden": false,
@@ -3826,6 +3835,7 @@ exports[`FilesList should render 1`] = `
             },
           },
           Object {
+            "content-type": "application/document",
             "display_name": "Book Report",
             "filename": "/bookreport",
             "hidden": false,
@@ -4742,6 +4752,7 @@ exports[`FilesList should render for course files 1`] = `
             "updated_at": "",
           },
           Object {
+            "content-type": "application/document",
             "display_name": "Book Report",
             "filename": "/bookreport",
             "hidden": false,
@@ -4763,6 +4774,7 @@ exports[`FilesList should render for course files 1`] = `
             },
           },
           Object {
+            "content-type": "application/document",
             "display_name": "Book Report",
             "filename": "/bookreport",
             "hidden": false,
@@ -5679,6 +5691,7 @@ exports[`FilesList should render for user files 1`] = `
             "updated_at": "",
           },
           Object {
+            "content-type": "application/document",
             "display_name": "Book Report",
             "filename": "/bookreport",
             "hidden": false,
@@ -5700,6 +5713,7 @@ exports[`FilesList should render for user files 1`] = `
             },
           },
           Object {
+            "content-type": "application/document",
             "display_name": "Book Report",
             "filename": "/bookreport",
             "hidden": false,
@@ -6616,6 +6630,7 @@ exports[`FilesList should render with folders 1`] = `
             "updated_at": "",
           },
           Object {
+            "content-type": "application/document",
             "display_name": "Book Report",
             "filename": "/bookreport",
             "hidden": false,
@@ -6637,6 +6652,7 @@ exports[`FilesList should render with folders 1`] = `
             },
           },
           Object {
+            "content-type": "application/document",
             "display_name": "Book Report",
             "filename": "/bookreport",
             "hidden": false,

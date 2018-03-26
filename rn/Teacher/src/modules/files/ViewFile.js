@@ -215,6 +215,7 @@ export default class ViewFile extends Component<Props, State> {
   renderPreview () {
     const { file } = this.state
     const { error, localPath, width } = this.state
+
     if (error) {
       return (
         <View style={styles.centeredContainer}>
@@ -222,7 +223,11 @@ export default class ViewFile extends Component<Props, State> {
         </View>
       )
     }
-    switch (file && file.mime_class) {
+    let mimeClass = file && file.mime_class
+    if (file && file['content-type'].includes('audio')) {
+      mimeClass = 'audio'
+    }
+    switch (mimeClass) {
       case 'image':
         return (
           <View style={styles.imageContainer}>
@@ -232,7 +237,7 @@ export default class ViewFile extends Component<Props, State> {
       case 'audio':
       case 'video':
         return (
-          <View style={styles.centeredContainer} onLayout={this.handleLayout}>
+          <View style={styles.centeredContainer}>
             <Video
               source={{ uri: localPath || '' }}
               style={{ width, height: Math.ceil(width * 9.0 / 16.0) }}
@@ -289,7 +294,7 @@ export default class ViewFile extends Component<Props, State> {
         }]}
         showDismissButton={false}
       >
-        <View style={styles.container}>
+        <View style={styles.container} onLayout={this.handleLayout}>
           {!loadingDone ? (
             <View style={styles.centeredContainer}>
               <ActivityIndicator />
