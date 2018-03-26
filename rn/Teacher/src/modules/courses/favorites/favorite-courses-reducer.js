@@ -57,7 +57,7 @@ function toggleFavoriteCourse (
 export const favoriteCourses: Reducer<FavoriteCoursesState, any> = handleActions({
   [refreshCourses.toString()]: handleAsync({
     pending: (state) => {
-      return { ...state, pending: state.pending + 1 }
+      return { ...state, pending: state.pending + 1, error: undefined }
     },
     resolved: (state, { result: [coursesResponse] }) => {
       const favorites: EntityRefs = coursesResponse.data
@@ -69,6 +69,7 @@ export const favoriteCourses: Reducer<FavoriteCoursesState, any> = handleActions
         ...state,
         courseRefs: favorites,
         pending: state.pending - 1,
+        error: undefined,
       }
     },
     rejected: (state, { error: response }) => {

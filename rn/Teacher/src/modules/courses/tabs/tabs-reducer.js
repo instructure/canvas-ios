@@ -28,12 +28,13 @@ let { refreshTabs } = TabsActions
 
 export const tabs: Reducer<TabsState, any> = handleActions({
   [refreshTabs.toString()]: handleAsync({
-    pending: (state) => ({ ...state, pending: state.pending + 1 }),
+    pending: (state) => ({ ...state, pending: state.pending + 1, error: undefined }),
     resolved: (state, { result }) => {
       return {
         ...state,
         tabs: result.data,
         pending: state.pending - 1,
+        error: undefined,
       }
     },
     rejected: (state, { error }) => {

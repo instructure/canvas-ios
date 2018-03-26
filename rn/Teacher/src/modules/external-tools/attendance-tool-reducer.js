@@ -25,7 +25,7 @@ const { refreshLTITools } = Actions
 
 const attendanceTool = handleActions({
   [refreshLTITools.toString()]: handleAsync({
-    pending: state => ({ ...state, pending: state.pending + 1 }),
+    pending: state => ({ ...state, pending: state.pending + 1, error: undefined }),
     resolved: (state, { result }: { result: { data: Array<LtiLaunchDefinition> } }) => {
       let id = null
       for (let i = 0; i < result.data.length; ++i) {
