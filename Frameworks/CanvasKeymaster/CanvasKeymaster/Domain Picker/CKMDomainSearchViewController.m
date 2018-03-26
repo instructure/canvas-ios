@@ -22,6 +22,7 @@
 @property (nonatomic, weak) IBOutlet UIButton *closeButton;
 @property (nonatomic, weak) IBOutlet UIActivityIndicatorView *spinner;
 @property (nonatomic, weak) CKMDomainSuggestionTableViewController *suggestionTableViewController;
+@property (nonatomic) BOOL poppedKeyboardOnFirstAppear;
 
 @end
 
@@ -54,11 +55,16 @@
         NSString *text = value.second;
         return @([fetching boolValue] && text.length > 0);
     }] deliverOnMainThread];
+    
+    self.poppedKeyboardOnFirstAppear = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.searchTextField becomeFirstResponder];
+    if (!self.poppedKeyboardOnFirstAppear) {
+        self.poppedKeyboardOnFirstAppear = YES;
+        [self.searchTextField becomeFirstResponder];
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
