@@ -16,7 +16,7 @@ let MAX_NUM_RETRIES = 3
 let COURSE_ROW_HEIGHT: CGFloat = 55
 let DEFAULT_ERROR_MESSAGE = NSLocalizedString("Failed to load grades", comment: "")
 
-fileprivate extension CanvasKeymaster {
+private extension CanvasKeymaster {
     static func multipleClientsAreLoggedIn() -> Bool {
         return CanvasKeymaster.the().numberOfClients > 1
     }
@@ -26,6 +26,7 @@ enum GradesWidgetError: Error {
     case multipleClientsLoggedIn
     case notLoggedIn
     case noFavoritedCourses
+    case deviceLocked
 
     var localizedDescription: String {
         switch self {
@@ -35,12 +36,38 @@ enum GradesWidgetError: Error {
             return NSLocalizedString("Log in with Canvas", comment: "")
         case .noFavoritedCourses:
             return NSLocalizedString("You have not set any favorite courses.", comment: "")
+        case .deviceLocked:
+            return NSLocalizedString("Unlock your device to view your grades.", comment: "")
         }
     }
 }
 
-func isRetryable (_ error: Error) -> Bool {
+func isRetryable(_ error: Error) -> Bool {
     return !(error is DecodingError) && !(error is NetworkError)
+}
+
+func isDeviceLocked() -> Bool {
+    guard let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else {
+        return true
+    }
+    let documentsURL = URL(fileURLWithPath: documentsPath)
+    let fileURL = documentsURL.appendingPathComponent("lock-screen-text.txt")
+    if FileManager.default.fileExists(atPath: fileURL.path) {
+        do {
+            _ = try Data(contentsOf: fileURL)
+            return false
+        } catch {
+            return true // read failed, must be locked
+        }
+    }
+
+    do {
+        guard let data = "Lock screen test".data(using: .utf8) else { return true }
+        try data.write(to: fileURL, options: .completeFileProtection)
+        return isDeviceLocked()
+    } catch {
+        return true // default to locked to be safe
+    }
 }
 
 class GradesTodayWidgetViewController: UIViewController {
@@ -114,9 +141,12 @@ class GradesTodayWidgetViewController: UIViewController {
     }
 
     func logIn() {
-        guard !CanvasKeymaster.multipleClientsAreLoggedIn() else {
-            showError(GradesWidgetError.multipleClientsLoggedIn)
-            return
+        if isDeviceLocked() {
+            return showError(GradesWidgetError.deviceLocked)
+        }
+
+        if CanvasKeymaster.multipleClientsAreLoggedIn() {
+            return showError(GradesWidgetError.multipleClientsLoggedIn)
         }
 
         showError(GradesWidgetError.notLoggedIn)
