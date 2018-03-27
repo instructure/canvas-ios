@@ -111,6 +111,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         StartupManager.shared.enqueueTask { [weak self] in
+            PushNotifications.record(response.notification)
             let userInfo = response.notification.request.content.userInfo
 
             // Handle local notifications we know about first

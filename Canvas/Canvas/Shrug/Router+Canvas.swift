@@ -248,6 +248,7 @@ extension Router {
         }
         addContextRoute([.course, .group], subPath: "discussion_topics/:discussionID", handler: discussion)
         addContextRoute([.course, .group], subPath: "discussions/:discussionID", handler: discussion)
+        addContextRoute([.course, .group], subPath: "announcements/:discussionID", handler: discussion)
 
         // Modules
         addContextRoute([.course], subPath: "modules") { contextID, _ in
