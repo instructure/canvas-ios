@@ -230,7 +230,7 @@ static uint16_t in_cksum(const void *buffer, size_t bufferLen) {
 }
 
 - (void)sendPingWithData:(NSData *)data {
-    int                     err;
+    int                     err = 0;
     NSData *                payload;
     NSData *                packet;
     ssize_t                 bytesSent;
@@ -260,9 +260,14 @@ static uint16_t in_cksum(const void *buffer, size_t bufferLen) {
             packet = [self pingPacketWithType:ICMPv6TypeEchoRequest payload:payload requiresChecksum:NO];
         } break;
         default: {
-            assert(NO);
+            err = EPROTONOSUPPORT;
         } break;
     }
+    
+    if (err != 0) {
+        [self didFailWithError:[NSError errorWithDomain:NSPOSIXErrorDomain code:err userInfo:nil]];
+    }
+    
     if (!packet) { return; }
 
     // Send the packet.
