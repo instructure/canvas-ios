@@ -492,7 +492,8 @@
 		9F544E0A1FBB766E00BB2D84 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F544E0C1FBB766E00BB2D84 /* Localizable.strings */; };
 		9FCA1A11205AC2FC00ECB5E9 /* AlertControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA1A10205AC2FC00ECB5E9 /* AlertControls.m */; };
 		9FD18B6B2052DE6800119927 /* LTITools.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD18B6A2052DE6800119927 /* LTITools.m */; };
-		B1411D5A1FE825ED00CD4967 /* AsyncActionNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1411D591FE825ED00CD4967 /* AsyncActionNotification.swift */; };
+		B1411D5A1FE825ED00CD4967 /* CoreDataSyncHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1411D591FE825ED00CD4967 /* CoreDataSyncHelper.swift */; };
+		B196F79B206AB60400DE640F /* CoreDataSync.m in Sources */ = {isa = PBXBuildFile; fileRef = B196F79A206AB60400DE640F /* CoreDataSync.m */; };
 		B1CA05061FE448F300B7D5AA /* NativeNotificationCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = B1CA05041FE448F300B7D5AA /* NativeNotificationCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1CA05071FE448F300B7D5AA /* NativeNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = B1CA05051FE448F300B7D5AA /* NativeNotificationCenter.m */; };
 		B1CE74412020CE92003F2366 /* ExternalToolManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CE74402020CE92003F2366 /* ExternalToolManager.swift */; };
@@ -1102,7 +1103,8 @@
 		9FFBF1B11FBB7687005AC85C /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9FFBF1B21FBB7687005AC85C /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/TimedQuizViewController.strings; sourceTree = "<group>"; };
 		A42B8DF2C9F8BDD47BDCBF67 /* Pods-defaults-CanvasCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasCore.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasCore/Pods-defaults-CanvasCore.release.xcconfig"; sourceTree = "<group>"; };
-		B1411D591FE825ED00CD4967 /* AsyncActionNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncActionNotification.swift; sourceTree = "<group>"; };
+		B1411D591FE825ED00CD4967 /* CoreDataSyncHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataSyncHelper.swift; sourceTree = "<group>"; };
+		B196F79A206AB60400DE640F /* CoreDataSync.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataSync.m; sourceTree = "<group>"; };
 		B1CA05041FE448F300B7D5AA /* NativeNotificationCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NativeNotificationCenter.h; path = "CanvasCore/React Native Modules/NativeNotificationCenter/NativeNotificationCenter.h"; sourceTree = SOURCE_ROOT; };
 		B1CA05051FE448F300B7D5AA /* NativeNotificationCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NativeNotificationCenter.m; path = "CanvasCore/React Native Modules/NativeNotificationCenter/NativeNotificationCenter.m"; sourceTree = SOURCE_ROOT; };
 		B1CE74402020CE92003F2366 /* ExternalToolManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalToolManager.swift; sourceTree = "<group>"; };
@@ -1692,6 +1694,8 @@
 				9FD18B6A2052DE6800119927 /* LTITools.m */,
 				9FCA1A10205AC2FC00ECB5E9 /* AlertControls.m */,
 				B1F4E8CB206179CC0056074A /* NativeFileSystem.m */,
+				B196F79A206AB60400DE640F /* CoreDataSync.m */,
+				B1411D591FE825ED00CD4967 /* CoreDataSyncHelper.swift */,
 			);
 			path = "React Native Modules";
 			sourceTree = "<group>";
@@ -2775,7 +2779,6 @@
 			children = (
 				B1CA05041FE448F300B7D5AA /* NativeNotificationCenter.h */,
 				B1CA05051FE448F300B7D5AA /* NativeNotificationCenter.m */,
-				B1411D591FE825ED00CD4967 /* AsyncActionNotification.swift */,
 			);
 			path = NativeNotificationCenter;
 			sourceTree = "<group>";
@@ -3033,6 +3036,7 @@
 				4938ACF21F8FD2340069F43D /* TodoKit.xcdatamodeld in Sources */,
 				4961F5A91F8FB2A90093EC86 /* HairlineView.swift in Sources */,
 				496C7D661F8C00250010DC03 /* TabBarBadgeCounts.m in Sources */,
+				B196F79B206AB60400DE640F /* CoreDataSync.m in Sources */,
 				49CE97A41F900D0000121A43 /* BackdropServerHandling.swift in Sources */,
 				4930204E1F902364006BD777 /* Values.swift in Sources */,
 				49CE96A21F8FF4A700121A43 /* Dispatcher.swift in Sources */,
@@ -3365,7 +3369,7 @@
 				49CE966E1F8FF41B00121A43 /* SubmissionViewController.swift in Sources */,
 				49CE968D1F8FF41B00121A43 /* SubmissionAuditLoggingService.swift in Sources */,
 				2CAF1B3D1F72B295007225DF /* Secrets.swift in Sources */,
-				B1411D5A1FE825ED00CD4967 /* AsyncActionNotification.swift in Sources */,
+				B1411D5A1FE825ED00CD4967 /* CoreDataSyncHelper.swift in Sources */,
 				494AE09A1F843A09001A8F31 /* DrawerHandleViewManager.m in Sources */,
 				497CA7791F82D19A00501613 /* UITraitEnvironmentExtensions.swift in Sources */,
 				49CE973C1F8FFEA600121A43 /* SubmissionEvent.swift in Sources */,

@@ -25,6 +25,41 @@ import Marshal
 extension SynchronizedModel where Self: NSManagedObject {
     public typealias ModelPageSignalProducer = SignalProducer<[Self], NSError>
     
+    public static func sync(_ localPredicate: NSPredicate? = nil, inContext context: NSManagedObjectContext, jsonArray: [JSONObject], completion: @escaping (NSError?) -> Void) {
+        context.perform {
+            do {
+                let fetchLocal: NSFetchRequest<Self> = context.fetch(localPredicate, sortDescriptors: nil)
+                fetchLocal.includesPropertyValues = false
+                fetchLocal.returnsObjectsAsFaults = true
+                fetchLocal.includesSubentities = true
+                var existing = try Set(context.findAll(fromFetchRequest: fetchLocal))
+                Self.upsert(inContext: context, jsonArray: jsonArray) { result in
+                    switch result {
+                    case .success(let models):
+                        context.perform {
+                            for model in models {
+                                existing.remove(model)
+                            }
+                            for item in existing {
+                                item.delete(inContext: context)
+                            }
+                            do {
+                                try context.saveFRD()
+                                completion(nil)
+                            } catch let e as NSError {
+                                completion(e)
+                            }
+                        }
+                    case .failure(let error):
+                        completion(error)
+                    }
+                }
+            } catch let e as NSError {
+                completion(e)
+            }
+        }
+    }
+    
     public static func syncSignalProducer(_ localPredicate: NSPredicate? = nil, includeSubentities: Bool = true, inContext context: NSManagedObjectContext, fetchRemote: SignalProducer<[JSONObject], NSError>, postProcess: @escaping (Self, JSONObject) throws -> Void = { _, _ in }) -> ModelPageSignalProducer {
         
         let syncContextModelsSignal = ModelPageSignalProducer({ observer, compositeDisposable in

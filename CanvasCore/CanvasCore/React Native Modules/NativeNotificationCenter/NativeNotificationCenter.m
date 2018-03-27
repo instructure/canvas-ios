@@ -8,8 +8,6 @@
 
 #import "NativeNotificationCenter.h"
 
-NSString * const AsyncActionNotificationName = @"com.instructure.CanvasCore.AsyncActionNotification";
-
 @implementation NativeNotificationCenter
 
 RCT_EXPORT_MODULE()
@@ -17,16 +15,6 @@ RCT_EXPORT_MODULE()
 RCT_EXPORT_METHOD(postNotification:(NSString *)name userInfo:(NSDictionary *)userInfo)
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:name object:nil userInfo:userInfo];
-}
-
-RCT_EXPORT_METHOD(postAsyncActionNotification:(NSDictionary *)action)
-{
-    [self postNotification:AsyncActionNotificationName userInfo:action];
-}
-
-- (NSDictionary *)constantsToExport
-{
-    return @{ @"asyncActionNotification": AsyncActionNotificationName };
 }
 
 - (dispatch_queue_t)methodQueue

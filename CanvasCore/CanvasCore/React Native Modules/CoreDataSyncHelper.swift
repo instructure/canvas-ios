@@ -80,63 +80,81 @@ private enum AsyncAction {
         return nil
     }
 
-    func syncProducer(_ session: Session) -> SignalProducer<Void, NSError> {
+    func sync(_ session: Session, completion: @escaping () -> Void) {
         switch self {
         case .refreshCourses(let courses, let customColors):
-            let remote = SignalProducer<[JSONObject], NSError>(value: courses)
-            let courses = attemptProducer { try session.enrollmentManagedObjectContext() }
-                .flatMap(.latest) { Course.syncSignalProducer(inContext: $0, fetchRemote: remote) }
-                .map { _ in () }
-
-            let colors = attemptProducer { try session.enrollmentManagedObjectContext() }
-                .flatMap(.latest) { Enrollment.writeFavoriteColors(customColors, inContext: $0) }
-                .map { _ in () }
-
-            return courses.concat(colors)
+            do {
+                let context = try session.enrollmentManagedObjectContext()
+                let colors = try Enrollment.parseColors(customColors)
+                Course.sync(inContext: context, jsonArray: courses) { error in
+                    if (error == nil) {
+                        Enrollment.writeFavoriteColors(colors, inContext: context) { _ in
+                            completion()
+                        }
+                    } else {
+                        completion()
+                    }
+                }
+            } catch {
+                completion()
+            }
         case .updateCourseColor(let courseID, let hex):
             let contextID = ContextID(id: courseID, context: .course)
-            guard let color = UIColor.colorFromHexString(hex) else { return .empty }
-            return attemptProducer { try session.enrollmentManagedObjectContext() }
-                .flatMap(.latest) { Enrollment.writeFavoriteColors([contextID: color], inContext: $0) }
+            guard let color = UIColor.colorFromHexString(hex) else { return completion() }
+            do {
+                let context = try session.enrollmentManagedObjectContext()
+                Enrollment.writeFavoriteColors([contextID: color], inContext: context) { _ in
+                    completion()
+                }
+            } catch {
+                completion()
+            }
         case .toggleFavorite(let courseID, let isFavorite):
-            return attemptProducer {
-                let context = try session.enrollmentManagedObjectContext().syncContext
+            do {
+                let context = try session.enrollmentManagedObjectContext()
                 context.perform() {
                     do {
                         let contextID = ContextID(id: courseID, context: .course)
                         let enrollment = try Course.findOne(contextID, inContext: context)
                         enrollment?.isFavorite = isFavorite
                         try context.save()
-                    } catch {}
+                        completion()
+                    } catch {
+                        completion()
+                    }
                 }
+            } catch {
+                completion()
             }
         case .refreshCourseTabs(let courseID, let tabs):
             let contextID = ContextID(id: courseID, context: .course)
             let predicate = NSPredicate(format: "%K == %@", "rawContextID", contextID.canvasContextID)
-            let remote = SignalProducer<[JSONObject], NSError>(value: tabs)
-            let tabs   = attemptProducer { try session.enrollmentManagedObjectContext() }
-                .flatMap(.latest) { Tab.syncSignalProducer(predicate, inContext: $0, fetchRemote: remote) }
-                .map { _ in () }
-            return tabs
+            do {
+                let context = try session.enrollmentManagedObjectContext()
+                Tab.sync(predicate, inContext: context, jsonArray: tabs) { _ in
+                    completion()
+                }
+            } catch {
+                completion()
+            }
         case .refreshGroupsForUser(let groups):
-            let remote = SignalProducer<[JSONObject], NSError>(value: groups)
-            return attemptProducer { try session.enrollmentManagedObjectContext() }
-                .flatMap(.latest) { Group.syncSignalProducer(inContext: $0, fetchRemote: remote) }
-                .map { _ in () }
+            do {
+                let context = try session.enrollmentManagedObjectContext()
+                Group.sync(inContext: context, jsonArray: groups) { _ in
+                    completion()
+                }
+            } catch {
+                completion()
+            }
         }
     }
 }
 
-public func startSyncingAsyncActions(_ session: Session) -> Disposable? {
-    return NotificationCenter.default
-        .reactive
-        .notifications(forName: Notification.Name(rawValue: AsyncActionNotificationName))
-        .map { $0.userInfo }
-        .skipNil()
-        .map(Action.init)
-        .skipNil()
-        .map(AsyncAction.init)
-        .skipNil()
-        .flatMap(.latest) { $0.syncProducer(session) }
-        .observe(Observer())
+public class CoreDataSyncHelper: NSObject {
+    public static func syncAction(_ info: [String: Any], completion: @escaping () -> Void) {
+        guard let action = Action(userInfo: info) else { return completion() }
+        guard let asyncAction = AsyncAction(action: action) else { return completion() }
+        guard let session = CanvasKeymaster.the().currentClient?.authSession else { return completion() }
+        asyncAction.sync(session, completion: completion)
+    }
 }

@@ -15,6 +15,7 @@
 //
 
 /* @flow */
+import { NativeModules } from 'react-native'
 import { createStore, applyMiddleware } from 'redux'
 import promiseMiddleware from '../../src/redux/middleware/redux-promise'
 import freeze from 'redux-freeze'
@@ -39,7 +40,15 @@ export async function testAsyncReducer<R> (reducer: R, action: any, defaultState
   states.push(store.getState())
   try {
     let promise = action.payload && action.payload.promise ? action.payload.promise : action.payload
+    let sync
+    if (action.payload && action.payload.syncToNative) {
+      sync = Promise.resolve()
+      NativeModules.CoreDataSync.syncAction = jest.fn(() => sync)
+    }
     await promise
+    if (sync) {
+      await sync
+    }
   } catch (e) {}
   states.push(store.getState())
   return states
@@ -61,7 +70,15 @@ export async function testAsyncAction (action: any, defaultState: any): Promise<
   store.dispatch(action)
   try {
     let promise = action.payload && action.payload.promise ? action.payload.promise : action.payload
+    let sync
+    if (promise.syncToNative) {
+      sync = Promise.resolve()
+      NativeModules.CoreDataSync.syncAction = jest.fn(() => sync)
+    }
     await promise
+    if (sync) {
+      await sync
+    }
   } catch (e) {}
   return store.getActions()
 }

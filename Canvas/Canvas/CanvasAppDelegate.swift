@@ -31,7 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let loginConfig = LoginConfiguration(mobileVerifyName: "iCanvas", logo: UIImage(named: "student-logomark")!, fullLogo: UIImage(named: "student-logo")!)
     var session: Session?
     var window: UIWindow?
-    var syncDisposable: Disposable?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         if unitTesting {
             return true

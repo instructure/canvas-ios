@@ -9,8 +9,6 @@ extension AppDelegate: RCTBridgeDelegate {
         HelmManager.shared.onReactLoginComplete = {
             guard let session = self.session, let window = self.window else { return }
 
-            self.syncDisposable = startSyncingAsyncActions(session)
-
             let root = rootViewController(session)
             self.addClearCacheGesture(root.view)
 
