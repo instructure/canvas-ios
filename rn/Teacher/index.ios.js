@@ -33,7 +33,7 @@ import setupI18n from './i18n/setup'
 import { setSession, compareSessions, getSessionUnsafe, httpCache } from './src/canvas-api'
 import { registerScreens } from './src/routing/register-screens'
 import { setupBrandingFromNativeBrandingInfo } from './src/common/branding'
-import logout from './src/redux/logout-action'
+import logoutAction from './src/redux/logout-action'
 import loginVerify from './src/common/login-verify'
 import { hydrateStoreFromPersistedState } from './src/redux/middleware/persist'
 import hydrate from './src/redux/hydrate-action'
@@ -70,6 +70,12 @@ const {
   Helm,
 } = NativeModules
 
+function logout () {
+  setSession(null)
+  httpCache.clear()
+  store.dispatch(logoutAction)
+}
+
 const loginHandler = async ({
   appId,
   authToken,
@@ -92,6 +98,10 @@ const loginHandler = async ({
   App.setCurrentApp(appId)
   stopUpdatingBadgeCounts()
 
+  if (!authToken || !baseURL) {
+    return logout()
+  }
+
   if (user) {
     // flow already thinks the id is a string but it's not so coerce ;)
     user.id = user.id.toString()
@@ -101,50 +111,44 @@ const loginHandler = async ({
     setupBrandingFromNativeBrandingInfo(branding)
   }
 
-  if (!authToken || !baseURL) {
-    setSession(null)
-    store.dispatch(logout)
-  } else {
-    const session = { authToken, baseURL, user, actAsUserID }
-    const previous = getSessionUnsafe()
-    if (previous && !compareSessions(session, previous)) {
-      setSession(null)
-      store.dispatch(logout)
-    }
-
-    if (countryCode !== 'CA') {
-      global.crashReporter.setUser(user.id)
-      shouldLogUserInfo = true
-    }
-
-    PushNotificationIOS.addEventListener('notification', (notification) => {
-      const navigator = new Navigator('')
-      navigator.showNotification(notification)
-      notification.finish(PushNotificationIOS.FetchResult.NewData)
-    })
-
-    Linking.addEventListener('url', (event) => {
-      const navigator = new Navigator('')
-      navigator.show(event.url, {
-        modal: true,
-        embedInNavigationController: true,
-        deepLink: true,
-      })
-    })
-
-    setSession(session)
-    if (!skipHydrate) {
-      await hydrateStoreFromPersistedState(store)
-      await httpCache.hydrate()
-    } else {
-      store.dispatch(hydrate())
-    }
-    await featureFlagSetup()
-    registerScreens(store)
-    Helm.loginComplete()
-    loginVerify()
-    beginUpdatingBadgeCounts()
+  const session = { authToken, baseURL, user, actAsUserID }
+  const previous = getSessionUnsafe()
+  if (previous && !compareSessions(session, previous)) {
+    logout()
   }
+
+  if (countryCode !== 'CA') {
+    global.crashReporter.setUser(user.id)
+    shouldLogUserInfo = true
+  }
+
+  PushNotificationIOS.addEventListener('notification', (notification) => {
+    const navigator = new Navigator('')
+    navigator.showNotification(notification)
+    notification.finish(PushNotificationIOS.FetchResult.NewData)
+  })
+
+  Linking.addEventListener('url', (event) => {
+    const navigator = new Navigator('')
+    navigator.show(event.url, {
+      modal: true,
+      embedInNavigationController: true,
+      deepLink: true,
+    })
+  })
+
+  setSession(session)
+  if (!skipHydrate) {
+    await hydrateStoreFromPersistedState(store)
+    await httpCache.hydrate()
+  } else {
+    store.dispatch(hydrate())
+  }
+  await featureFlagSetup()
+  registerScreens(store)
+  Helm.loginComplete()
+  loginVerify()
+  beginUpdatingBadgeCounts()
 }
 
 if (NativeLogin.isTesting) {
