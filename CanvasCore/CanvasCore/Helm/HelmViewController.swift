@@ -368,18 +368,18 @@ public final class HelmViewController: UIViewController, HelmScreen {
         }
         
         if let tint = screenConfig.navBarColor {
-            navigationController?.navigationBar.barTintColor = tint
+            navigationController?.syncBarTintColor(tint)
         }
         
         if let navBarButtonColor = screenConfig[PropKeys.navBarButtonColor] ?? HelmManager.shared.defaultScreenConfiguration[moduleName]?[PropKeys.navBarButtonColor] {
             if let navBarButtonColorNone = navBarButtonColor as? String, navBarButtonColorNone == "none" {
-                navigationController?.navigationBar.tintColor = nil
+                navigationController?.syncTintColor(nil)
             } else {
-                navigationController?.navigationBar.tintColor = RCTConvert.uiColor(navBarButtonColor)
+                navigationController?.syncTintColor(RCTConvert.uiColor(navBarButtonColor))
             }
         } else {
             if screenConfig[PropKeys.navBarStyle] as? String == "dark" {
-                navigationController?.navigationBar.tintColor = .white
+                navigationController?.syncTintColor(.white)
             }
         }
         
@@ -638,7 +638,7 @@ public final class HelmViewController: UIViewController, HelmScreen {
             let count = viewControllers.count
             if count > 1, let nextViewController = viewControllers[count - 2] as? HelmViewController {
                 if let tint = nextViewController.screenConfig.navBarColor {
-                    navigationController?.navigationBar.barTintColor = tint
+                    navigationController?.syncBarTintColor(tint)
                 }
                 translucent = nextViewController.screenConfig.navBarTransparent
             }

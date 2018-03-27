@@ -16,17 +16,6 @@
 
 import UIKit
 
-class HelmSplitViewControllerWrapper: UIViewController {
-    
-    override var childViewControllerForStatusBarStyle: UIViewController? {
-        return childViewControllers.first
-    }
-    
-    override var childViewControllerForStatusBarHidden: UIViewController? {
-        return childViewControllers.first
-    }
-}
-
 open class HelmSplitViewController: UISplitViewController {
 
     public init() {
@@ -62,6 +51,16 @@ open class HelmSplitViewController: UISplitViewController {
         super.traitCollectionDidChange(previousTraitCollection)
         let notification = Notification.Name(rawValue: "HelmSplitViewControllerTraitsUpdated")
         NotificationCenter.default.post(name: notification, object: nil, userInfo: nil)
+    }
+    
+    open override func showDetailViewController(_ vc: UIViewController, sender: Any?) {
+        super.showDetailViewController(vc, sender: sender)
+        self.masterNavigationController?.syncStyles()
+    }
+    
+    open override func show(_ vc: UIViewController, sender: Any?) {
+        super.show(vc, sender: sender)
+        self.masterNavigationController?.syncStyles()
     }
 }
 

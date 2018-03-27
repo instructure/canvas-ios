@@ -66,7 +66,7 @@
             return avatarURL != nil;
     }] flattenMap:^__kindof RACStream *(NSURL *avatarURL) {
         return [RACSignal createSignal:^RACDisposable *(id <RACSubscriber> subscriber) {
-            NSURLSessionDataTask *avatarTask = [client GET:avatarURL.absoluteString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+            NSURLSessionDataTask *avatarTask = [client GET:avatarURL.absoluteString parameters:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
                 [subscriber sendNext:responseObject];
                 [subscriber sendCompleted];
             } failure:^(NSURLSessionDataTask *task, NSError *error) {

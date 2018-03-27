@@ -37,10 +37,6 @@ public class HelmNavigationController: UINavigationController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     public override var prefersStatusBarHidden: Bool {
         return topViewController?.prefersStatusBarHidden ?? super.prefersStatusBarHidden
     }

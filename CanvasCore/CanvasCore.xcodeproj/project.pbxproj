@@ -306,7 +306,7 @@
 		497CA76E1F82D19600501613 /* Helm.m in Sources */ = {isa = PBXBuildFile; fileRef = 497CA75F1F82D18900501613 /* Helm.m */; };
 		497CA76F1F82D19600501613 /* Helm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA7661F82D18B00501613 /* Helm.swift */; };
 		497CA7701F82D19600501613 /* HelmConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA7621F82D18900501613 /* HelmConstants.swift */; };
-		497CA7721F82D19600501613 /* HelmNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA7611F82D18900501613 /* HelmNavigationViewController.swift */; };
+		497CA7721F82D19600501613 /* HelmNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA7611F82D18900501613 /* HelmNavigationController.swift */; };
 		497CA7731F82D19600501613 /* HelmSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA7651F82D18A00501613 /* HelmSplitViewController.swift */; };
 		497CA7741F82D19600501613 /* HelmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA7631F82D18A00501613 /* HelmViewController.swift */; };
 		497CA7751F82D19600501613 /* NoAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA7601F82D18900501613 /* NoAnimatedTransitioning.swift */; };
@@ -844,7 +844,7 @@
 		497C0F891FACD0D200084032 /* CanvasWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasWebView.swift; sourceTree = "<group>"; };
 		497CA75F1F82D18900501613 /* Helm.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Helm.m; sourceTree = "<group>"; };
 		497CA7601F82D18900501613 /* NoAnimatedTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoAnimatedTransitioning.swift; sourceTree = "<group>"; };
-		497CA7611F82D18900501613 /* HelmNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelmNavigationViewController.swift; sourceTree = "<group>"; };
+		497CA7611F82D18900501613 /* HelmNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelmNavigationController.swift; sourceTree = "<group>"; };
 		497CA7621F82D18900501613 /* HelmConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelmConstants.swift; sourceTree = "<group>"; };
 		497CA7631F82D18A00501613 /* HelmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelmViewController.swift; sourceTree = "<group>"; };
 		497CA7651F82D18A00501613 /* HelmSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelmSplitViewController.swift; sourceTree = "<group>"; };
@@ -2221,7 +2221,7 @@
 				497CA75F1F82D18900501613 /* Helm.m */,
 				497CA7661F82D18B00501613 /* Helm.swift */,
 				497CA7621F82D18900501613 /* HelmConstants.swift */,
-				497CA7611F82D18900501613 /* HelmNavigationViewController.swift */,
+				497CA7611F82D18900501613 /* HelmNavigationController.swift */,
 				497CA7651F82D18A00501613 /* HelmSplitViewController.swift */,
 				497CA7631F82D18A00501613 /* HelmViewController.swift */,
 				497CA7601F82D18900501613 /* NoAnimatedTransitioning.swift */,
@@ -3236,7 +3236,7 @@
 				49CE967D1F8FF41B00121A43 /* NextOrSubmitView.swift in Sources */,
 				3BD43DE91FD20597001A6B34 /* EmptyViewController.swift in Sources */,
 				493020791F902462006BD777 /* ContextID.swift in Sources */,
-				497CA7721F82D19600501613 /* HelmNavigationViewController.swift in Sources */,
+				497CA7721F82D19600501613 /* HelmNavigationController.swift in Sources */,
 				4961F5921F8FB2230093EC86 /* PagedViewController.swift in Sources */,
 				49CE96E11F8FFC4400121A43 /* MasteryPathAssignment+Collections.swift in Sources */,
 				49CE967A1F8FF41B00121A43 /* DropdownAnswersPickerView.swift in Sources */,
