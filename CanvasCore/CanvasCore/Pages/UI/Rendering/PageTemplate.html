@@ -135,7 +135,12 @@
         const target = document.querySelector(`a[name=${location.hash.slice(1)}],${location.hash}`)
         if (target) target.scrollIntoView()
       }
-      window.webkit.messageHandlers.height.postMessage({ height: document.getElementById('_end_').offsetTop })
+      const sendHeight = () => {
+        window.webkit.messageHandlers.height.postMessage({ height: document.getElementById('_end_').offsetTop })
+      }
+      sendHeight()
+      // re-send height every time a new style, script, img, or iframe loads
+      document.addEventListener('load', sendHeight, true)
     })
   </script>
 </body>
