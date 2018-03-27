@@ -148,7 +148,6 @@ class QuizPresentingViewController: UIViewController {
 
                 flaggedButton.frame = flagView.bounds
                 flaggedButton.setImage(flagImage?.withRenderingMode(.alwaysTemplate), for: UIControlState())
-                flaggedButton.tintColor = UIColor.white
                 flaggedButton.addTarget(self, action: #selector(QuizPresentingViewController.openDrawer(_:)), for: .touchUpInside)
                 flaggedButton.accessibilityHint = NSLocalizedString("0 Questions Answered", tableName: "Localizable", bundle: .core, value: "", comment: "Accessiblity hint for question drawer button")
                 flagView.addSubview(flaggedButton)
@@ -228,7 +227,6 @@ class QuizPresentingViewController: UIViewController {
         timerLabel.frame = CGRect(x: 0, y: 0, width: 300, height: 40)
         timerLabel.textAlignment = .center
         timerLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)
-        timerLabel.textColor = UIColor.white
         timerLabel.text = ""
         timerLabel.isUserInteractionEnabled = true
         
