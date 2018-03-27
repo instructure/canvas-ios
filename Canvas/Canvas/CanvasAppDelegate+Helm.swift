@@ -28,33 +28,6 @@ extension AppDelegate: RCTBridgeDelegate {
             self.showLoadingState()
         }
 
-        HelmManager.shared.registerNativeViewController(for: "/courses/:courseID/tabs/:tabID", factory: { props in
-            guard let tabID = props["tabID"] as? String else { return nil }
-            guard let courseID = props["courseID"] as? String else { return nil }
-            
-            guard let session = CanvasKeymaster.the().currentClient?.authSession else { return nil }
-            let contextID = ContextID.course(withID: courseID)
-
-            guard let tabs = try? Tab.collection(session, contextID: contextID) else { return nil }
-            guard let tab = tabs.filter({ $0.id == tabID }).first else { return nil }
-            guard let url = tab.routingURL(session) else { return nil }
-            guard let controller = Router.shared().controller(forHandling: url) else {
-                DispatchQueue.main.async {
-                    Router.shared().fallbackHandler(url, self.window?.rootViewController)
-                }
-                return nil
-            }
-
-            // Work around all these controllers not setting the nav color
-            DispatchQueue.main.async {
-                controller.navigationController?.navigationBar.barTintColor = (session.enrollmentsDataSource[ContextID(id: courseID, context: .course)] as? Course)?.color.value ?? .black
-                controller.navigationController?.navigationBar.tintColor = .white
-                controller.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-            }
-
-            return controller
-        })
-
         HelmManager.shared.registerNativeViewController(for: "/courses/:courseID/assignments/:assignmentID", factory: { props in
             guard let courseID = props["courseID"] as? String else { return nil }
             guard let assignmentID = props["assignmentID"] as? String else { return nil }
@@ -96,7 +69,26 @@ extension AppDelegate: RCTBridgeDelegate {
             let url = URL(string: "api/v1/groups/\(groupID)/tabs")
             return Router.shared().controller(forHandling: url)
         })
-
+        
+        let nativeFactory: ([String: Any]) -> UIViewController? = { props in
+            guard let route = props["route"] as? String else { return nil }
+            let url = URL(string: "api/v1/\(route)")
+            let controller = Router.shared().controller(forHandling: url)
+            
+                // Work around all these controllers not setting the nav color
+            DispatchQueue.main.async {
+                guard let color = RCTConvert.uiColor(props["color"]) else { return }
+                controller?.navigationController?.navigationBar.barTintColor = color
+                controller?.navigationController?.navigationBar.tintColor = .white
+                controller?.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+            }
+            
+            return controller
+        }
+        
+        HelmManager.shared.registerNativeViewController(for: "/native-route/*route", factory: nativeFactory)
+        HelmManager.shared.registerNativeViewController(for: "/native-route-master/*route", factory: nativeFactory)
+        
         HelmManager.shared.registerSharedNativeViewControllers()
     }
 

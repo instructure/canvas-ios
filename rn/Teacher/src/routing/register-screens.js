@@ -157,7 +157,6 @@ export function registerScreens (store: Store): void {
   registerScreen('/files/:fileID', wrap(ViewFile), store, { deepLink: true })
   registerScreen('/profile/settings')
   registerScreen('/support/:type')
-  registerScreen('/courses/:courseID/tabs/:tabID')
   registerScreen('/ui', wrap(UI), store)
   registerScreen('/push-notifications', wrap(PushNotifications), store)
   registerScreen('/feature-flags', wrap(FeatureFlags), store)
@@ -179,5 +178,9 @@ export function registerScreens (store: Store): void {
   if (isStudent()) {
     registerScreen('/courses/:courseID/quizzes/:quizID', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/quizzes', null, store, { deepLink: true })
+    // Calls the old routing method
+    registerScreen('/native-route/*route')
+    // Calls the old routing method as well, but with the canBecomeMaster option
+    registerScreen('/native-route-master/*route', null, null, { canBecomeMaster: true })
   }
 }

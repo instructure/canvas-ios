@@ -82,8 +82,15 @@ export class CourseDetails extends Component<CourseDetailsProps, any> {
         } else if (tab.id === 'home' && this.props.course && this.props.course.default_view === 'wiki') {
           const url = `/courses/${this.props.courseID}/pages/front_page`
           this.props.navigator.show(url)
+        } else if (tab.id === 'home' && this.props.course && this.props.course.default_view) {
+          let view = this.props.course.default_view
+          if (view === 'feed') {
+            view = 'activity_stream'
+          }
+          const url = `native-route/courses/${this.props.courseID}/${view}`
+          this.props.navigator.show(url, undefined, { color: processColor(this.props.color) })
         } else {
-          const url = `/courses/${this.props.courseID}/tabs/${tab.id}`
+          const url = `/native-route-master${tab.html_url}`
           this.props.navigator.show(url)
         }
       }
