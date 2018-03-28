@@ -104,6 +104,10 @@ public class CanvadocView: UIView {
     }
     required public init?(coder aDecoder: NSCoder) { fatalError("nope") }
     
+    deinit {
+        self.pdfViewController?.annotationStateManager.remove(self)
+    }
+    
     override public func layoutSubviews() {
         super.layoutSubviews()
         
@@ -127,9 +131,9 @@ public class CanvadocView: UIView {
         openInButton.center = activityIndicator.center
         
         if let insets = pdfViewController?.configuration.additionalScrollViewFrameInsets, insets.bottom != self.bottomInset {
-            pdfViewController?.updateConfigurationWithoutReloading { config in
+            pdfViewController?.updateConfigurationWithoutReloading { [weak self] config in
                 var updated = insets
-                updated.bottom = self.bottomInset
+                updated.bottom = self?.bottomInset ?? 0.0
                 config.additionalScrollViewFrameInsets = updated
             }
         }
@@ -182,9 +186,9 @@ public class CanvadocView: UIView {
         client.requestSerializer = AFHTTPRequestSerializer()
         client.responseSerializer = AFHTTPResponseSerializer()
         client.requestSerializer.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-        client.setTaskWillPerformHTTPRedirectionBlock { (session, task, response, request) in
+        client.setTaskWillPerformHTTPRedirectionBlock { [weak self] (session, task, response, request) in
             
-            guard let requestURL = request.url else {
+            guard let requestURL = request.url, let me = self else {
                 return request
             }
             
@@ -193,12 +197,12 @@ public class CanvadocView: UIView {
             components.path = (components.path as NSString).deletingLastPathComponent
             
             if let goodURL = components.url {
-                CanvadocsPDFDocumentPresenter.loadPDFViewController(goodURL, with: teacherAppConfiguration(bottomInset: self.bottomInset)) { (pdfViewController, errors) in
+                CanvadocsPDFDocumentPresenter.loadPDFViewController(goodURL, with: teacherAppConfiguration(bottomInset: me.bottomInset)) { [weak self] (pdfViewController, errors) in
                     if let pdfViewController = pdfViewController as? PSPDFViewController {
-                        self.activityIndicator.stopAnimating()
-                        self.embed(pdfViewController: pdfViewController)
+                        self?.activityIndicator.stopAnimating()
+                        self?.embed(pdfViewController: pdfViewController)
                     } else  {
-                        self.downloadFallback()
+                        self?.downloadFallback()
                     }
                 }
             }
@@ -213,8 +217,8 @@ public class CanvadocView: UIView {
         client.get(previewPath, parameters: params, progress: nil, success: { (task, response) in
             // successful load doesn't actually mean anything except the redirect happened
         }) { (task, error) in
-            DispatchQueue.main.async {
-                self.activityIndicator.stopAnimating()
+            DispatchQueue.main.async { [weak self] in
+                self?.activityIndicator.stopAnimating()
                 let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
                 let dismiss = NSLocalizedString("Dismiss", tableName: nil, bundle: .core, value: "Dismiss", comment: "")
                 alert.addAction(UIAlertAction(title: dismiss, style: .default, handler: nil))
@@ -286,9 +290,9 @@ extension CanvadocView: URLSessionDownloadDelegate {
             
             self.fallbackLocalURL = fileURL
             
-            DispatchQueue.main.async {
-                self.activityIndicator.stopAnimating()
-                self.openInButton.isHidden = false
+            DispatchQueue.main.async { [weak self] in
+                self?.activityIndicator.stopAnimating()
+                self?.openInButton.isHidden = false
             }
         }
     }
