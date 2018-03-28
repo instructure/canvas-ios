@@ -189,27 +189,6 @@ extension Router {
             return HelmViewController(moduleName: "/courses/:courseID", props: ["courseID": courseID, "navigatorOptions": ["modal": true]])
         }
         
-        let moduleItemDetailFactory: (ContextID, [String: Any]) throws -> UIViewController? = { contextID, params in
-            guard let query = params["query"] as? [String: Any], let moduleItemID = query["module_item_id"] as? CustomStringConvertible, let currentSession = currentSession else {
-                return nil
-            }
-            return try ModuleItemDetailViewController(session: currentSession, courseID: contextID.id, moduleItemID: moduleItemID.description, route: route)
-        }
-
-        let pageDetailFactory: (ContextID, [String: Any]) throws -> UIViewController? = { contextID, params in
-            let url = params["url"] as! String
-            if let moduleItemDetail = try moduleItemDetailFactory(contextID, params) {
-                return moduleItemDetail
-            }
-            guard let currentSession = currentSession else { return nil }
-            return try Page.DetailViewController(session: currentSession, contextID: contextID, url: url, route: route)
-        }
-        addContextRoute([.course, .group], subPath: "pages/:url", handler: pageDetailFactory)
-        addContextRoute([.course, .group], subPath: "wiki/:url", handler: pageDetailFactory)
-        addContextRoute([.course, .group], subPath: "front_page") { contextID, _ in
-            guard let currentSession = currentSession else { return nil }
-            return try Page.FrontPageDetailViewController(session: currentSession, contextID: contextID, route: route)
-        }
         addContextRoute([.course, .group], subPath: "pages_home") { contextID, _ in
             guard let currentSession = currentSession else { return nil }
             return try PagesHomeViewController(session: currentSession, contextID: contextID, listViewModelFactory: pagesListViewModelFactory, route: route)

@@ -26,6 +26,20 @@ let HelmPrefersModalPresentation = "prefersModalPresentation"
 let DrawerTransition = DrawerTransitionDelegate()
 typealias HelmPreActionHandler = (HelmViewController) -> Void
 
+public struct HelmViewControllerFactory {
+    public typealias Props = [String: Any]
+    public typealias Builder = (Props) -> UIViewController?
+    public typealias Presenter = (UIViewController, UIViewController) -> ()
+    
+    public let builder: Builder
+    public let presenter: Presenter?
+    
+    public init(builder: @escaping Builder, presenter: Presenter? = nil) {
+        self.builder = builder
+        self.presenter = presenter
+    }
+}
+
 @objc(HelmManager)
 open class HelmManager: NSObject {
 
@@ -42,7 +56,7 @@ open class HelmManager: NSObject {
     private var viewControllers = NSMapTable<NSString, HelmViewController>(keyOptions: .strongMemory, valueOptions: .weakMemory)
     private(set) var defaultScreenConfiguration: [ModuleName: [String: Any]] = [:]
     fileprivate(set) var masterModules = Set<ModuleName>()
-    private var nativeViewControllerFactories: [ModuleName: (factory: ([String: Any])->UIViewController?, customPresentation: ((_ current: UIViewController, _ new: UIViewController)->())?)] = [:]
+    private var nativeViewControllerFactories: [ModuleName: HelmViewControllerFactory] = [:]
 
     fileprivate var pushTransitioningDelegate = PushTransitioningDelegate()
 
@@ -68,8 +82,8 @@ open class HelmManager: NSObject {
 
     //  MARK: - Screen Configuration
 
-    open func registerNativeViewController(for moduleName: ModuleName, factory: @escaping ([String: Any]) -> UIViewController?, withCustomPresentation presentation: ((_ current: UIViewController, _ new: UIViewController)->())? = nil) {
-        nativeViewControllerFactories[moduleName] = (factory, presentation)
+    open func registerNativeViewController(for moduleName: ModuleName, factory: @escaping HelmViewControllerFactory.Builder, withCustomPresentation presentation: HelmViewControllerFactory.Presenter? = nil) {
+        nativeViewControllerFactories[moduleName] = HelmViewControllerFactory(builder: factory, presenter: presentation)
     }
 
     open func registerSharedNativeViewControllers() {
@@ -122,7 +136,7 @@ open class HelmManager: NSObject {
         var propsFRD = props
         propsFRD[PropKeys.navigatorOptions] = options
 
-        if let factory = nativeViewControllerFactories[destinationModule]?.factory {
+        if let factory = nativeViewControllerFactories[destinationModule]?.builder {
             guard let vc = factory(propsFRD) else { return }
             viewController = vc
 
@@ -264,9 +278,9 @@ open class HelmManager: NSObject {
         var propsFRD = props
         propsFRD[PropKeys.navigatorOptions] = options
 
-        if let stuff = nativeViewControllerFactories[module] {
-            let factory = stuff.factory
-            guard let viewController = factory(propsFRD) else {
+        if let factory = nativeViewControllerFactories[module] {
+            let builder = factory.builder
+            guard let viewController = builder(propsFRD) else {
                 callback?()
                 return
             }
@@ -275,15 +289,15 @@ open class HelmManager: NSObject {
             let nav = toPresent as? UINavigationController
             if let embedInNavigationController = options["embedInNavigationController"] as? Bool,
                 embedInNavigationController,
-                stuff.customPresentation == nil,
+                factory.presenter == nil,
                 nav == nil {
                 toPresent = HelmNavigationController(rootViewController: viewController)
             }
 
             configureModalProps(for: toPresent)
 
-            if let customPresentation = stuff.customPresentation {
-                customPresentation(current, viewController)
+            if let presenter = factory.presenter {
+                presenter(current, viewController)
                 callback?()
             } else {
                 viewController.addModalDismissButton(buttonTitle: nil)

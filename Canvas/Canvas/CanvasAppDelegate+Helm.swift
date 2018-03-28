@@ -1,5 +1,6 @@
 import CanvasCore
 import TechDebt
+import Marshal
 
 extension AppDelegate: RCTBridgeDelegate {
     func prepareReactNative() {
@@ -26,25 +27,27 @@ extension AppDelegate: RCTBridgeDelegate {
             self.showLoadingState()
         }
 
-        HelmManager.shared.registerNativeViewController(for: "/courses/:courseID/assignments/:assignmentID", factory: { props in
-            guard let courseID = props["courseID"] as? String else { return nil }
-            guard let assignmentID = props["assignmentID"] as? String else { return nil }
-            let url = URL(string: "api/v1/courses/\(courseID)/assignments/\(assignmentID)")
-            return Router.shared().controller(forHandling: url)
-        })
-        
-        HelmManager.shared.registerNativeViewController(for: "/courses/:courseID/quizzes/:quizID", factory: { props in
-            guard let courseID = props["courseID"] as? String else { return nil }
-            guard let quizID = props["quizID"] as? String else { return nil }
-            let url = URL(string: "api/v1/courses/\(courseID)/quizzes/\(quizID)")
-            return Router.shared().controller(forHandling: url)
-        })
+        registerScreen("/courses/:courseID/assignments/:assignmentID")
+        registerScreen("/courses/:courseID/quizzes")
+        registerScreen("/courses/:courseID/quizzes/:quizID")
+        registerScreen("/:context/:contextID/files/:fileID/download")
+        registerScreen("/files/:fileID/download")
+        registerScreen("/courses/:courseID/modules")
+        registerScreen("/courses/:courseID/modules/:moduleID")
+        registerScreen("/courses/:courseID/modules/:moduleID/items/:itemID")
+        registerScreen("/courses/:courseID/modules/items/:itemID")
 
-        HelmManager.shared.registerNativeViewController(for: "/courses/:courseID/quizzes", factory: { props in
-            guard let courseID = props["courseID"] as? String else { return nil }
-            let url = URL(string: "api/v1/courses/\(courseID)/quizzes")
-            return Router.shared().controller(forHandling: url)
-        })
+        // Pages
+        let pageParamsToProps = { (parameters: [String: Any]) -> [String: Any]? in
+            guard let courseID = try? parameters.stringID("courseID") else { return nil }
+            guard let url: String = try? parameters <| "url" else { return nil }
+            return [
+                "courseID": courseID,
+                "url": url,
+            ]
+        }
+        registerModuleItemScreen("/courses/:courseID/pages/:url", parametersToProps: pageParamsToProps)
+        registerModuleItemScreen("/courses/:courseID/wiki/:url", parametersToProps: pageParamsToProps)
 
         HelmManager.shared.registerNativeViewController(for: "/users/self/files", factory: { props in
             guard let folderController = FolderViewController(interfaceStyle: FolderInterfaceStyleLight) else { return nil }
@@ -101,4 +104,53 @@ extension AppDelegate: RCTBridgeDelegate {
         let url = RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index.ios", fallbackResource: nil)
         return url
     }
+    
+    // Use this if the moduleName maps cleanly to a native route we already have set up.
+    open func registerScreen(_ moduleName: ModuleName) {
+        HelmManager.shared.registerNativeViewController(for: moduleName, factory: { props in
+            guard let url = propsURL(props) else { return nil }
+            return Router.shared().controller(forHandling: url)
+        })
+    }
+    
+    // Use this if the moduleName maps to a RN view
+    // but needs to be embedded in a ModuleItemDetailViewController
+    // when a module_item_id param is present
+    open func registerModuleItemScreen(_ moduleName: ModuleName, parametersToProps: @escaping ([String: Any]) -> [String: Any]?) {
+        let rnModuleName = "\(moduleName)/rn"
+        Router.shared().addRoute(moduleName) { parameters, _ in
+            var props = parametersToProps(parameters ?? [:]) ?? [:]
+            props["location"] = [:]
+            return HelmViewController(moduleName: rnModuleName, props: props)
+        }
+        HelmManager.shared.registerNativeViewController(for: moduleName, factory: { props in
+            return moduleItemDetailViewController(props) ?? HelmViewController(moduleName: rnModuleName, props: props)
+        })
+    }
+}
+
+func propsURL(_ props: [String: Any]) -> URL? {
+    return hrefProp(props).flatMap(URL.init)
+}
+
+func hrefProp(_ props: [String: Any]) -> String? {
+    guard let location = props["location"] as? [String: Any] else { return nil }
+    return location["href"] as? String
+}
+
+func moduleItemDetailViewController(_ props: [String: Any]) -> ModuleItemDetailViewController? {
+    guard let url = propsURL(props) else { return nil }
+    guard let courseID = props["contextID"] as? String ?? props["courseID"] as? String else { return nil }
+    if let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+        let moduleItemID = components.queryItems?.filter({ $0.name == "module_item_id" }).first?.value,
+        let session = CanvasKeymaster.the().currentClient?.authSession {
+        do {
+            return try ModuleItemDetailViewController(session: session, courseID: courseID, moduleItemID: moduleItemID) { (vc, url) in
+                Router.shared().route(from: vc, to: url)
+            }
+        } catch {
+            return nil
+        }
+    }
+    return nil
 }
