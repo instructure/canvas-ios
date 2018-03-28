@@ -4,6 +4,11 @@ exports[`SpeedGraderFilesTab ignores attachments for URL Submissions 1`] = `
 <RCTScrollView>
   <View>
     <RCTScrollView
+      ListEmptyComponent={
+        <ListEmptyComponent
+          title="There are no files to display."
+        />
+      }
       data={
         Array [
           Object {
@@ -147,6 +152,11 @@ exports[`SpeedGraderFilesTab renders a selected 0 index item 1`] = `
 <RCTScrollView>
   <View>
     <RCTScrollView
+      ListEmptyComponent={
+        <ListEmptyComponent
+          title="There are no files to display."
+        />
+      }
       data={
         Array [
           Object {
@@ -306,6 +316,11 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
 <RCTScrollView>
   <View>
     <RCTScrollView
+      ListEmptyComponent={
+        <ListEmptyComponent
+          title="There are no files to display."
+        />
+      }
       data={
         Array [
           Object {
@@ -864,6 +879,11 @@ exports[`SpeedGraderFilesTab renders with a submission 1`] = `
 <RCTScrollView>
   <View>
     <RCTScrollView
+      ListEmptyComponent={
+        <ListEmptyComponent
+          title="There are no files to display."
+        />
+      }
       data={
         Array [
           Object {
@@ -1007,6 +1027,11 @@ exports[`SpeedGraderFilesTab renders without a submission 1`] = `
 <RCTScrollView>
   <View>
     <RCTScrollView
+      ListEmptyComponent={
+        <ListEmptyComponent
+          title="There are no files to display."
+        />
+      }
       data={
         Array [
           Object {

@@ -26,10 +26,12 @@ import {
   Image,
   TouchableHighlight,
 } from 'react-native'
+import i18n from 'format-message'
 import { Text } from '../../../common/text'
 import Images from '../../../images'
 import SpeedGraderActions from '../actions'
 import DrawerState from '../utils/drawer-state'
+import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
 
 export class FilesTab extends Component<FileTabProps> {
 
@@ -112,6 +114,7 @@ export class FilesTab extends Component<FileTabProps> {
           testID='speedgrader.files.list'
           renderItem={this.renderRow}
           extraData={{ selected: this.props.selectedAttachmentIndex }}
+          ListEmptyComponent={<ListEmptyComponent title={i18n('There are no files to display.')} />}
         />
       </ScrollView>
     )
