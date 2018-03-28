@@ -464,7 +464,7 @@ exports[`SubmissionGrader renders wide 1`] = `
       }
     }
   >
-    <A11yGroup
+    <View
       style={
         Object {
           "flex": 1,
@@ -669,7 +669,7 @@ exports[`SubmissionGrader renders wide 1`] = `
                                                         }
                                   }
                       >
-                                  <A11yGroup
+                                  <View
                                               style={
                                                           Object {
                                                                       "flex": 1,
@@ -697,8 +697,8 @@ exports[`SubmissionGrader renders wide 1`] = `
                                                           submissionID="1"
                                                           submissionProps={Object {}}
                                               />
-                                  </A11yGroup>
-                                  <A11yGroup
+                                  </View>
+                                  <View
                                               style={
                                                           Object {
                                                                       "borderLeftColor": "#C7CDD1",
@@ -743,7 +743,7 @@ exports[`SubmissionGrader renders wide 1`] = `
                                                           unsavedChanges={null}
                                                           updateUnsavedChanges={[Function]}
                                               />
-                                  </A11yGroup>
+                                  </View>
                       </View>
                       <ToolTip />
           </A11yGroup>,
@@ -768,8 +768,8 @@ exports[`SubmissionGrader renders wide 1`] = `
         submissionID="1"
         submissionProps={Object {}}
       />
-    </A11yGroup>
-    <A11yGroup
+    </View>
+    <View
       style={
         Object {
           "borderLeftColor": "#C7CDD1",
@@ -993,7 +993,7 @@ exports[`SubmissionGrader renders wide 1`] = `
                                                         }
                                   }
                       >
-                                  <A11yGroup
+                                  <View
                                               style={
                                                           Object {
                                                                       "flex": 1,
@@ -1021,8 +1021,8 @@ exports[`SubmissionGrader renders wide 1`] = `
                                                           submissionID="1"
                                                           submissionProps={Object {}}
                                               />
-                                  </A11yGroup>
-                                  <A11yGroup
+                                  </View>
+                                  <View
                                               style={
                                                           Object {
                                                                       "borderLeftColor": "#C7CDD1",
@@ -1067,7 +1067,7 @@ exports[`SubmissionGrader renders wide 1`] = `
                                                           unsavedChanges={null}
                                                           updateUnsavedChanges={[Function]}
                                               />
-                                  </A11yGroup>
+                                  </View>
                       </View>
                       <ToolTip />
           </A11yGroup>,
@@ -1088,7 +1088,7 @@ exports[`SubmissionGrader renders wide 1`] = `
         unsavedChanges={null}
         updateUnsavedChanges={[Function]}
       />
-    </A11yGroup>
+    </View>
   </View>
   <ToolTip />
 </A11yGroup>

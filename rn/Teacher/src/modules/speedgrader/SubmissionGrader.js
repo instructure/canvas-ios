@@ -270,7 +270,7 @@ export default class SubmissionGrader extends Component<SubmissionGraderProps, S
           userID={this.props.userID}
         />
         <View style={styles.splitView}>
-          <A11yGroup style={styles.left}>
+          <View style={styles.left}>
             <SubmissionPicker
               submissionProps={this.props.submissionProps}
               submissionID={this.props.submissionID}
@@ -283,11 +283,11 @@ export default class SubmissionGrader extends Component<SubmissionGraderProps, S
               }}
               drawerInset={0}
             />
-          </A11yGroup>
-          <A11yGroup style={styles.right}>
+          </View>
+          <View style={styles.right}>
             {this.renderHandleContent()}
             {this.renderTab(this.state.selectedTabIndex)}
-          </A11yGroup>
+          </View>
         </View>
         <ToolTip ref={this.captureToolTip} />
       </A11yGroup>
