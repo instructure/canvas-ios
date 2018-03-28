@@ -76,8 +76,9 @@ open class HelmManager: NSObject {
     }
 
     open func reactWillReload() {
-        self.cleanup()
-        onReactReload()
+        self.cleanup() { [weak self] in
+            self?.onReactReload()
+        }
     }
 
     //  MARK: - Screen Configuration
@@ -332,14 +333,13 @@ open class HelmManager: NSObject {
 
     open func dismissAllModals(_ options: [String: Any], callback: (() -> Void)? = nil) {
         // TODO: maybe not always dismiss the top - UIKit allows dismissing things not the top, dismisses all above
-        guard let vc = topMostViewController() else {
+        guard let vc = UIApplication.shared.keyWindow?.rootViewController, vc.presentedViewController != nil else {
             callback?()
             return
         }
+        
         let animated = options["animated"] as? Bool ?? true
-        vc.dismiss(animated: animated) {
-            self.dismiss(options, callback: callback)
-        }
+        vc.dismiss(animated: animated, completion: callback)
     }
 
     public func traitCollection(_ moduleName: String, callback: @escaping RCTResponseSenderBlock) {
@@ -362,19 +362,20 @@ open class HelmManager: NSObject {
 
         callback([result])
     }
-
-    public func cleanup() {
-
-        // Cleanup is mainly used in rn reload situations or in ui testing
-        // There is a bug where the view controllers are sometimes leaked, and I cannot for the life of me figure out why
-        // This prevents weird rn behavior in cases where those leaks occur
-        let enumerator = viewControllers.objectEnumerator()
-        while let object = enumerator?.nextObject() {
-            guard let vc = object as? HelmViewController else { continue }
-            vc.view = UIView() // nil causes `loadView` to be called again during the dismiss process
+    
+    public func cleanup(callback: (() -> Void)?) {
+        dismissAllModals(["animated": false]) { [weak self] in
+            // Cleanup is mainly used in rn reload situations or in ui testing
+            // There is a bug where the view controllers are sometimes leaked, and I cannot for the life of me figure out why
+            // This prevents weird rn behavior in cases where those leaks occur
+            let enumerator = self?.viewControllers.objectEnumerator()
+            while let object = enumerator?.nextObject() {
+                guard let vc = object as? HelmViewController else { continue }
+                vc.view = UIView() // nil causes `loadView` to be called again during the dismiss process
+            }
+            self?.viewControllers.removeAllObjects()
+            callback?()
         }
-        viewControllers.removeAllObjects()
-        dismissAllModals(["animated": false])
     }
 }
 

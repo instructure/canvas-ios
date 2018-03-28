@@ -196,7 +196,7 @@ RCT_EXPORT_METHOD(stopObserving)
         if (self.injectedLoginInfo) { return; }
         
         if (self.shouldCleanupOnNextLogoutEvent) {
-            [[HelmManager shared] cleanup];
+            [[HelmManager shared] cleanupWithCallback:nil];
             self.shouldCleanupOnNextLogoutEvent = NO;
         }
         
