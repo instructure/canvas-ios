@@ -127,6 +127,10 @@ NativeModules.WebViewHacker = {
   setKeyboardDisplayRequiresUserAction: jest.fn(),
 }
 
+NativeModules.APIBridge = {
+  requestCompleted: jest.fn(),
+}
+
 jest.mock('NativeEventEmitter')
 
 jest.mock('NetInfo', () => ({

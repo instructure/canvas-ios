@@ -13,16 +13,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-    
-    
 
 import UIKit
 import WebKit
 import Cartography
-
-
-
-
 
 class NonNativeQuizTakingViewController: UIViewController {
     
@@ -34,8 +28,11 @@ class NonNativeQuizTakingViewController: UIViewController {
     fileprivate let webView: UIWebView = UIWebView()
     fileprivate var quizHostName = ""
     fileprivate var loggingIn: Bool = false
+    fileprivate var urlForTakingQuiz: URL {
+        return quiz.mobileURL.appending(URLQueryItem(name: "platform", value: "ios")) ?? quiz.mobileURL
+    }
     fileprivate var requestForTakingQuiz: URLRequest {
-        return URLRequest(url: quiz.mobileURL.appending(URLQueryItem(name: "platform", value: "ios")) ?? quiz.mobileURL)
+        return URLRequest(url: urlForTakingQuiz)
     }
     
     init(session: Session, contextID: ContextID, quiz: Quiz, baseURL: URL) {
@@ -76,10 +73,18 @@ class NonNativeQuizTakingViewController: UIViewController {
     }
     
     func beginTakingQuiz() {
-        if let host = requestForTakingQuiz.url?.host {
+        if let host = urlForTakingQuiz.host {
             quizHostName = host
         }
-        webView.loadRequest(requestForTakingQuiz)
+        APIBridge.shared().call("getAuthenticatedSessionURL", args: [urlForTakingQuiz.absoluteString]) { [weak self] response, error in
+            if let data = response as? [String: Any],
+                let sessionURL = data["session_url"] as? String,
+                let url = URL(string: sessionURL) {
+                self?.webView.loadRequest(URLRequest(url: url))
+            } else if let url = self?.urlForTakingQuiz {
+                self?.webView.loadRequest(URLRequest(url: url))
+            }
+        }
     }
     
     func exitQuiz(_ button: UIBarButtonItem?) {

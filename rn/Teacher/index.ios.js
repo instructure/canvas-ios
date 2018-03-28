@@ -42,6 +42,7 @@ import App, { type AppId } from './src/modules/app'
 import device from 'react-native-device-info'
 import Navigator from './src/routing/Navigator'
 import { featureFlagSetup } from './src/common/feature-flags'
+import APIBridge from './src/canvas-api/APIBridge'
 
 import { Client, Configuration } from 'bugsnag-react-native'
 let shouldLogUserInfo = false
@@ -167,3 +168,5 @@ AppState.addEventListener('change', (nextAppState) => {
     updateBadgeCounts()
   }
 })
+
+APIBridge()

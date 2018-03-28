@@ -28,6 +28,8 @@
 		2CB68A351FED6E0600468313 /* StartupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB68A341FED6E0600468313 /* StartupManager.swift */; };
 		2CD20D761FA125EC00F339F7 /* DropViewManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CD20D741FA125EC00F339F7 /* DropViewManager.h */; };
 		2CD20D771FA125EC00F339F7 /* DropViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD20D751FA125EC00F339F7 /* DropViewManager.m */; };
+		2CD3B49C206AB38E006339D8 /* APIBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CD3B49A206AB38E006339D8 /* APIBridge.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2CD3B49D206AB38E006339D8 /* APIBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3B49B206AB38E006339D8 /* APIBridge.m */; };
 		2CD6B5701FD20A9800C7DE15 /* WindowTraitsManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CD6B56E1FD20A9800C7DE15 /* WindowTraitsManager.h */; };
 		2CD6B5711FD20A9800C7DE15 /* WindowTraitsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD6B56F1FD20A9800C7DE15 /* WindowTraitsManager.m */; };
 		2CD7769C200977EC00589D4F /* UIApplicationDelegate+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD7769B200977EC00589D4F /* UIApplicationDelegate+Core.swift */; };
@@ -540,6 +542,8 @@
 		2CB68A341FED6E0600468313 /* StartupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupManager.swift; sourceTree = "<group>"; };
 		2CD20D741FA125EC00F339F7 /* DropViewManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DropViewManager.h; sourceTree = "<group>"; };
 		2CD20D751FA125EC00F339F7 /* DropViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DropViewManager.m; sourceTree = "<group>"; };
+		2CD3B49A206AB38E006339D8 /* APIBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIBridge.h; sourceTree = "<group>"; };
+		2CD3B49B206AB38E006339D8 /* APIBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIBridge.m; sourceTree = "<group>"; };
 		2CD6B56E1FD20A9800C7DE15 /* WindowTraitsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WindowTraitsManager.h; sourceTree = "<group>"; };
 		2CD6B56F1FD20A9800C7DE15 /* WindowTraitsManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WindowTraitsManager.m; sourceTree = "<group>"; };
 		2CD7769B200977EC00589D4F /* UIApplicationDelegate+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplicationDelegate+Core.swift"; sourceTree = "<group>"; };
@@ -1694,6 +1698,8 @@
 				9FD18B6A2052DE6800119927 /* LTITools.m */,
 				9FCA1A10205AC2FC00ECB5E9 /* AlertControls.m */,
 				B1F4E8CB206179CC0056074A /* NativeFileSystem.m */,
+				2CD3B49A206AB38E006339D8 /* APIBridge.h */,
+				2CD3B49B206AB38E006339D8 /* APIBridge.m */,
 				B196F79A206AB60400DE640F /* CoreDataSync.m */,
 				B1411D591FE825ED00CD4967 /* CoreDataSyncHelper.swift */,
 			);
@@ -2821,6 +2827,7 @@
 				494AE0A11F843A09001A8F31 /* ScrollViewDisablerManager.h in Headers */,
 				4930200B1F901CF5006BD777 /* GDataXMLNode.h in Headers */,
 				493020151F901CF5006BD777 /* UITextView+Placeholder.h in Headers */,
+				2CD3B49C206AB38E006339D8 /* APIBridge.h in Headers */,
 				494AE08B1F8436E6001A8F31 /* NativeLoginManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3199,6 +3206,7 @@
 				49CE97411F8FFEA600121A43 /* Scratch.xcdatamodeld in Sources */,
 				49CE96711F8FF41B00121A43 /* LoadingQuestionsView.swift in Sources */,
 				49CE97451F8FFEA600121A43 /* AssignmentGroup.swift in Sources */,
+				2CD3B49D206AB38E006339D8 /* APIBridge.m in Sources */,
 				494BC6061F953D0D00C77257 /* PreSubmissionPDFDocumentPresenter.swift in Sources */,
 				49CE97321F8FFEA600121A43 /* Assignment+ArcLTI.swift in Sources */,
 				49301FD51F9014C6006BD777 /* Session+CalendarEvent.swift in Sources */,
