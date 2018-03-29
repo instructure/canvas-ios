@@ -47,6 +47,11 @@ public class PageTemplateRenderer: NSObject {
         template = template.replacingOccurrences(of: "{$PAGE_BODY$}", with: body)
         template = template.replacingOccurrences(of: "{$PRIMARY_BUTTON_COLOR$}", with: Brand.current.primaryButtonColor.hex)
         template = template.replacingOccurrences(of: "{$LTI_LAUNCH_TEXT$}", with: NSLocalizedString("Launch External Tool", comment: ""))
+
+        let jquery = (body.contains("$(") || body.contains("$."))
+            ? "<script defer src=\"https://code.jquery.com/jquery-1.9.1.min.js\"></script>"
+            : ""
+        template = template.replacingOccurrences(of: "{$JQUERY$}", with: jquery)
         
         return template
     }
