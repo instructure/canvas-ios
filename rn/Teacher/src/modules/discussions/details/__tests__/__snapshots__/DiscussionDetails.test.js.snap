@@ -28,102 +28,329 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
     }
   >
     <RCTScrollView
-      ItemSeparatorComponent={undefined}
+      ListHeaderComponent={
+        <View>
+          <AssignmentSection
+            isFirstRow={true}
+            style={
+              Object {
+                "paddingBottom": 17,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 14,
+              }
+            }
+          >
+            <Heading1>
+              Dear Ivy Iversen, your last name cannot start with your first name
+            </Heading1>
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "marginTop": 2,
+                }
+              }
+            >
+              <PublishedIcon
+                published={true}
+              />
+            </View>
+          </AssignmentSection>
+          <AssignmentSection
+            image={
+              Object {
+                "testUri": "../../../src/images/assignments/Calendar.png",
+              }
+            }
+            onPress={[Function]}
+            showDisclosureIndicator={true}
+            title="Due"
+          >
+            <DueDates
+              assignment={
+                Object {
+                  "assignment_group_id": 1376,
+                  "automatic_peer_reviews": false,
+                  "course_id": "987654321",
+                  "created_at": "2017-03-17T19:15:25Z",
+                  "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+                  "due_at": "2037-06-01T05:59:00Z",
+                  "grade_group_students_individually": false,
+                  "grading_type": "points",
+                  "group_category_id": null,
+                  "has_overrides": false,
+                  "html_url": "http://hostname.tld/whatever",
+                  "id": "123456789",
+                  "lock_at": "2037-06-01T05:59:59Z",
+                  "name": "learn to write code",
+                  "needs_grading_count": 0,
+                  "only_visible_to_overrides": false,
+                  "overrides": Array [],
+                  "peer_reviews": false,
+                  "points_possible": 20,
+                  "position": 1,
+                  "published": true,
+                  "rubric": null,
+                  "rubric_assessment": Object {},
+                  "rubric_settings": null,
+                  "submission_types": Array [
+                    "online_text_entry",
+                    "online_url",
+                    "media_recording",
+                    "online_upload",
+                  ],
+                  "unlock_at": "2017-03-17T06:00:00Z",
+                  "unpublishable": false,
+                  "updated_at": "2017-03-17T19:15:25Z",
+                }
+              }
+            />
+          </AssignmentSection>
+          <AssignmentSection
+            onPress={[Function]}
+            showDisclosureIndicator={true}
+            testID="discussions.submission-graphs"
+            title="Submissions"
+          >
+            <SubmissionBreakdownGraphSection
+              assignmentID="123456789"
+              courseID="1"
+              onPress={[Function]}
+              style={
+                Object {
+                  "marginRight": 40,
+                  "marginTop": 8,
+                }
+              }
+            />
+          </AssignmentSection>
+          <View
+            style={
+              Object {
+                "backgroundColor": "white",
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
+                "flex": 1,
+                "paddingBottom": 16,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 16,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "justifyContent": "flex-start",
+                }
+              }
+            >
+              <Avatar
+                avatarURL="http://www.fillmurray.com/100/100"
+                height={32}
+                onPress={[Function]}
+                style={
+                  Object {
+                    "marginTop": 16,
+                  }
+                }
+                testID="discussion.details.avatar"
+                userName="The Donald"
+              />
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "flex-start",
+                      "flex": 1,
+                      "flexDirection": "column",
+                      "justifyContent": "flex-start",
+                    },
+                    Object {
+                      "marginLeft": 16,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  style={
+                    Object {
+                      "fontSize": 14,
+                      "fontWeight": "600",
+                    }
+                  }
+                >
+                  The Donald
+                </Text>
+                <Text
+                  style={
+                    Object {
+                      "color": "#A5AFB5",
+                      "fontSize": 12,
+                    }
+                  }
+                  testID="discussion.details.post-date-lbl"
+                >
+                  Nov 10 at 9:03 PM
+                </Text>
+              </View>
+              <View>
+                <TouchableHighlight
+                  accessibilityLabel="Reply"
+                  onPress={[Function]}
+                  testID="discussion.details-reply"
+                  underlayColor="transparent"
+                >
+                  <Image
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/rce/undo.png",
+                      }
+                    }
+                    style={
+                      Object {
+                        "height": 18,
+                        "tintColor": "#73818C",
+                        "width": 18,
+                      }
+                    }
+                  />
+                </TouchableHighlight>
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "paddingBottom": 16,
+                  "paddingTop": 16,
+                }
+              }
+            >
+              <CanvasWebView
+                html="<p>And why?</p>"
+                navigator={
+                  Object {
+                    "dismiss": [Function],
+                    "dismissAllModals": [Function],
+                    "isModal": false,
+                    "pop": [Function],
+                    "show": [Function],
+                    "traitCollection": [Function],
+                  }
+                }
+                scrollEnabled={false}
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              />
+            </View>
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "justifyContent": "flex-start",
+                }
+              }
+            >
+              <TouchableHighlight
+                accessibilityTraits="button"
+                onPress={[Function]}
+                testID="discussion-reply"
+                underlayColor="white"
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "#374A59",
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "borderRadius": 4,
+                        "flexDirection": "row",
+                        "flexWrap": "wrap",
+                        "justifyContent": "center",
+                        "paddingHorizontal": 16,
+                        "paddingVertical": 10,
+                      },
+                    ]
+                  }
+                >
+                  <Image
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/rce/undo.png",
+                      }
+                    }
+                    style={
+                      Object {
+                        "height": 18,
+                        "tintColor": "white",
+                        "width": 18,
+                      }
+                    }
+                  />
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "white",
+                        },
+                        Object {
+                          "color": "white",
+                          "fontSize": 14,
+                          "fontWeight": "500",
+                          "marginLeft": 4,
+                        },
+                      ]
+                    }
+                  >
+                    Reply
+                  </Text>
+                </View>
+              </TouchableHighlight>
+            </View>
+          </View>
+          <AssignmentSection
+            style={
+              Object {
+                "paddingBottom": 0,
+              }
+            }
+          >
+            <Heading1>
+              Replies
+            </Heading1>
+          </AssignmentSection>
+          <View />
+        </View>
+      }
       data={
         Array [
           Object {
-            "data": Array [
-              Object {
-                "allow_rating": false,
-                "assignment": null,
-                "assignment_id": "123456789",
-                "author": Object {
-                  "avatar_image_url": "http://www.fillmurray.com/100/100",
-                  "avatar_url": "http://www.fillmurray.com/100/100",
-                  "display_name": "The Donald",
-                  "html_url": "",
-                  "id": "1",
-                  "short_name": "The Donald",
-                },
-                "can_unpublish": true,
-                "delayed_post_at": null,
-                "discussion_subentry_count": 2,
-                "discussion_type": "side_comment",
-                "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
-                "id": "1",
-                "is_section_specific": false,
-                "last_reply_at": "2016-12-11T04:03:17Z",
-                "message": "<p>And why?</p>",
-                "only_graders_can_rate": false,
-                "participants": Object {
-                  "1": Object {
-                    "avatar_image_url": "http://www.fillmurray.com/100/100",
-                    "avatar_url": "http://www.fillmurray.com/100/100",
-                    "display_name": "The Donald",
-                    "html_url": "",
-                    "id": "1",
-                    "short_name": "The Donald",
-                  },
-                },
-                "permissions": Object {
-                  "attach": true,
-                  "delete": true,
-                  "reply": true,
-                  "update": true,
-                },
-                "pinned": false,
-                "position": 1,
-                "posted_at": "2016-11-11T04:03:17Z",
-                "published": true,
-                "read_state": "read",
-                "replies": Array [
-                  Object {
-                    "created_at": "2017-05-23T17:12:04Z",
-                    "id": "25472827",
-                    "message": "<p>1.0</p>",
-                    "parent_id": null,
-                    "rating_count": null,
-                    "rating_sum": null,
-                    "replies": Array [],
-                    "updated_at": "2017-05-23T17:12:04Z",
-                    "user_id": "1",
-                  },
-                ],
-                "require_initial_post": false,
-                "sort_by_rating": false,
-                "subscribed": true,
-                "title": "Dear Ivy Iversen, your last name cannot start with your first name",
-                "unlock_at": null,
-                "unread_count": 1,
-                "user_can_see_posts": true,
-                "user_name": "Ivy Iversen",
-              },
+            "created_at": "2017-05-23T17:12:04Z",
+            "depth": 0,
+            "id": "25472827",
+            "message": "<p>1.0</p>",
+            "myPath": Array [
+              0,
             ],
-            "renderItem": [Function],
-            "title": "",
-          },
-          Object {
-            "data": Array [
-              Object {
-                "created_at": "2017-05-23T17:12:04Z",
-                "depth": 0,
-                "id": "25472827",
-                "message": "<p>1.0</p>",
-                "myPath": Array [
-                  0,
-                ],
-                "parent_id": null,
-                "rating": undefined,
-                "rating_count": null,
-                "rating_sum": null,
-                "readState": "read",
-                "replies": Array [],
-                "updated_at": "2017-05-23T17:12:04Z",
-                "user_id": "1",
-              },
-            ],
-            "renderItem": [Function],
-            "title": "",
+            "parent_id": null,
+            "rating": undefined,
+            "rating_count": null,
+            "rating_sum": null,
+            "readState": "read",
+            "replies": Array [],
+            "updated_at": "2017-05-23T17:12:04Z",
+            "user_id": "1",
           },
         ]
       }
@@ -140,6 +367,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
       initialNumToRender={10}
       keyExtractor={[Function]}
       maxToRenderPerBatch={10}
+      numColumns={1}
       onContentSizeChange={[Function]}
       onEndReachedThreshold={2}
       onLayout={[Function]}
@@ -159,120 +387,20 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
       refreshing={false}
       renderItem={[Function]}
       scrollEventThrottle={50}
-      sections={
-        Array [
-          Object {
-            "data": Array [
-              Object {
-                "allow_rating": false,
-                "assignment": null,
-                "assignment_id": "123456789",
-                "author": Object {
-                  "avatar_image_url": "http://www.fillmurray.com/100/100",
-                  "avatar_url": "http://www.fillmurray.com/100/100",
-                  "display_name": "The Donald",
-                  "html_url": "",
-                  "id": "1",
-                  "short_name": "The Donald",
-                },
-                "can_unpublish": true,
-                "delayed_post_at": null,
-                "discussion_subentry_count": 2,
-                "discussion_type": "side_comment",
-                "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
-                "id": "1",
-                "is_section_specific": false,
-                "last_reply_at": "2016-12-11T04:03:17Z",
-                "message": "<p>And why?</p>",
-                "only_graders_can_rate": false,
-                "participants": Object {
-                  "1": Object {
-                    "avatar_image_url": "http://www.fillmurray.com/100/100",
-                    "avatar_url": "http://www.fillmurray.com/100/100",
-                    "display_name": "The Donald",
-                    "html_url": "",
-                    "id": "1",
-                    "short_name": "The Donald",
-                  },
-                },
-                "permissions": Object {
-                  "attach": true,
-                  "delete": true,
-                  "reply": true,
-                  "update": true,
-                },
-                "pinned": false,
-                "position": 1,
-                "posted_at": "2016-11-11T04:03:17Z",
-                "published": true,
-                "read_state": "read",
-                "replies": Array [
-                  Object {
-                    "created_at": "2017-05-23T17:12:04Z",
-                    "id": "25472827",
-                    "message": "<p>1.0</p>",
-                    "parent_id": null,
-                    "rating_count": null,
-                    "rating_sum": null,
-                    "replies": Array [],
-                    "updated_at": "2017-05-23T17:12:04Z",
-                    "user_id": "1",
-                  },
-                ],
-                "require_initial_post": false,
-                "sort_by_rating": false,
-                "subscribed": true,
-                "title": "Dear Ivy Iversen, your last name cannot start with your first name",
-                "unlock_at": null,
-                "unread_count": 1,
-                "user_can_see_posts": true,
-                "user_name": "Ivy Iversen",
-              },
-            ],
-            "renderItem": [Function],
-            "title": "",
-          },
-          Object {
-            "data": Array [
-              Object {
-                "created_at": "2017-05-23T17:12:04Z",
-                "depth": 0,
-                "id": "25472827",
-                "message": "<p>1.0</p>",
-                "myPath": Array [
-                  0,
-                ],
-                "parent_id": null,
-                "rating": undefined,
-                "rating_count": null,
-                "rating_sum": null,
-                "readState": "read",
-                "replies": Array [],
-                "updated_at": "2017-05-23T17:12:04Z",
-                "user_id": "1",
-              },
-            ],
-            "renderItem": [Function],
-            "title": "",
-          },
-        ]
-      }
-      stickyHeaderIndices={
-        Array [
-          0,
-          3,
-        ]
-      }
-      stickySectionHeadersEnabled={true}
+      stickyHeaderIndices={Array []}
       updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={
+        Array [
+          Object {
+            "onViewableItemsChanged": [Function],
+            "viewabilityConfig": undefined,
+          },
+        ]
+      }
       windowSize={5}
     >
       <RCTRefreshControl />
       <View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        />
         <View
           onLayout={[Function]}
           style={null}
@@ -1284,14 +1412,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
         <View
           onLayout={[Function]}
           style={null}
-        />
-        <View
-          onLayout={[Function]}
-          style={null}
-        />
-        <View
-          onLayout={[Function]}
-          style={null}
         >
           <View
             style={
@@ -1459,11 +1579,17 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "row",
-                        "marginTop": 16,
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "marginBottom": 8,
+                          "marginTop": 16,
+                        },
+                        Object {
+                          "paddingBottom": 8,
+                        },
+                      ]
                     }
                   >
                     <View
@@ -1657,10 +1783,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
             </View>
           </View>
         </View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        />
       </View>
     </RCTScrollView>
   </View>
@@ -1684,137 +1806,179 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
     }
   >
     <RCTScrollView
-      ItemSeparatorComponent={undefined}
+      ListHeaderComponent={
+        <View>
+          <AssignmentSection
+            isFirstRow={true}
+            style={
+              Object {
+                "paddingBottom": 17,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 14,
+              }
+            }
+          >
+            <Heading1>
+              Dear Ivy Iversen, your last name cannot start with your first name
+            </Heading1>
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "marginTop": 2,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#8B969E",
+                    "fontWeight": "500",
+                    "marginRight": 14,
+                  }
+                }
+              >
+                20 pts
+              </Text>
+            </View>
+          </AssignmentSection>
+          <View
+            style={
+              Object {
+                "backgroundColor": "white",
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
+                "flex": 1,
+                "paddingBottom": 16,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 16,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "justifyContent": "flex-start",
+                }
+              }
+            >
+              <Avatar
+                avatarURL="http://www.fillmurray.com/100/100"
+                height={32}
+                onPress={[Function]}
+                style={
+                  Object {
+                    "marginTop": 16,
+                  }
+                }
+                testID="discussion.details.avatar"
+                userName="The Donald"
+              />
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "flex-start",
+                      "flex": 1,
+                      "flexDirection": "column",
+                      "justifyContent": "flex-start",
+                    },
+                    Object {
+                      "marginLeft": 16,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  style={
+                    Object {
+                      "fontSize": 14,
+                      "fontWeight": "600",
+                    }
+                  }
+                >
+                  The Donald
+                </Text>
+                <Text
+                  style={
+                    Object {
+                      "color": "#A5AFB5",
+                      "fontSize": 12,
+                    }
+                  }
+                  testID="discussion.details.post-date-lbl"
+                >
+                  Nov 10 at 9:03 PM
+                </Text>
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "paddingBottom": 16,
+                  "paddingTop": 16,
+                }
+              }
+            >
+              <CanvasWebView
+                html="<p>And why?</p>"
+                navigator={
+                  Object {
+                    "dismiss": [Function],
+                    "dismissAllModals": [Function],
+                    "isModal": false,
+                    "pop": [Function],
+                    "show": [Function],
+                    "traitCollection": [Function],
+                  }
+                }
+                scrollEnabled={false}
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              />
+            </View>
+          </View>
+          <AssignmentSection
+            style={
+              Object {
+                "paddingBottom": 0,
+              }
+            }
+          >
+            <Heading1>
+              Replies
+            </Heading1>
+          </AssignmentSection>
+          <View />
+        </View>
+      }
       data={
         Array [
           Object {
-            "data": Array [
-              Object {
-                "allow_rating": false,
-                "assignment": Object {
-                  "assignment_group_id": 1376,
-                  "automatic_peer_reviews": false,
-                  "course_id": "987654321",
-                  "created_at": "2017-03-17T19:15:25Z",
-                  "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-                  "due_at": "2037-06-01T05:59:00Z",
-                  "grade_group_students_individually": false,
-                  "grading_type": "points",
-                  "group_category_id": null,
-                  "has_overrides": false,
-                  "html_url": "http://hostname.tld/whatever",
-                  "id": "123456789",
-                  "lock_at": "2037-06-01T05:59:59Z",
-                  "name": "learn to write code",
-                  "needs_grading_count": 0,
-                  "only_visible_to_overrides": false,
-                  "overrides": Array [],
-                  "peer_reviews": false,
-                  "points_possible": 20,
-                  "position": 1,
-                  "published": true,
-                  "rubric": null,
-                  "rubric_assessment": Object {},
-                  "rubric_settings": null,
-                  "submission_types": Array [
-                    "online_text_entry",
-                    "online_url",
-                    "media_recording",
-                    "online_upload",
-                  ],
-                  "unlock_at": "2017-03-17T06:00:00Z",
-                  "unpublishable": false,
-                  "updated_at": "2017-03-17T19:15:25Z",
-                },
-                "assignment_id": "123456789",
-                "author": Object {
-                  "avatar_image_url": "http://www.fillmurray.com/100/100",
-                  "avatar_url": "http://www.fillmurray.com/100/100",
-                  "display_name": "The Donald",
-                  "html_url": "",
-                  "id": "1",
-                  "short_name": "The Donald",
-                },
-                "can_unpublish": true,
-                "delayed_post_at": null,
-                "discussion_subentry_count": 2,
-                "discussion_type": "side_comment",
-                "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
-                "id": "1",
-                "is_section_specific": false,
-                "last_reply_at": "2016-12-11T04:03:17Z",
-                "locked_for_user": true,
-                "message": "<p>And why?</p>",
-                "only_graders_can_rate": false,
-                "participants": Object {
-                  "1": Object {
-                    "avatar_image_url": "http://www.fillmurray.com/100/100",
-                    "avatar_url": "http://www.fillmurray.com/100/100",
-                    "display_name": "The Donald",
-                    "html_url": "",
-                    "id": "1",
-                    "short_name": "The Donald",
-                  },
-                },
-                "permissions": Object {
-                  "attach": true,
-                  "delete": true,
-                  "reply": true,
-                  "update": true,
-                },
-                "pinned": false,
-                "position": 1,
-                "posted_at": "2016-11-11T04:03:17Z",
-                "published": true,
-                "read_state": "read",
-                "replies": Array [
-                  Object {
-                    "created_at": "2017-05-23T17:12:04Z",
-                    "id": "25472827",
-                    "message": "<p>1.0</p>",
-                    "parent_id": null,
-                    "rating_count": null,
-                    "rating_sum": null,
-                    "replies": Array [],
-                    "updated_at": "2017-05-23T17:12:04Z",
-                    "user_id": "1",
-                  },
-                ],
-                "require_initial_post": false,
-                "sort_by_rating": false,
-                "subscribed": true,
-                "title": "Dear Ivy Iversen, your last name cannot start with your first name",
-                "unlock_at": null,
-                "unread_count": 1,
-                "user_can_see_posts": true,
-                "user_name": "Ivy Iversen",
-              },
+            "created_at": "2017-05-23T17:12:04Z",
+            "depth": 0,
+            "id": "25472827",
+            "message": "<p>1.0</p>",
+            "myPath": Array [
+              0,
             ],
-            "renderItem": [Function],
-            "title": "",
-          },
-          Object {
-            "data": Array [
-              Object {
-                "created_at": "2017-05-23T17:12:04Z",
-                "depth": 0,
-                "id": "25472827",
-                "message": "<p>1.0</p>",
-                "myPath": Array [
-                  0,
-                ],
-                "parent_id": null,
-                "rating": undefined,
-                "rating_count": null,
-                "rating_sum": null,
-                "readState": "read",
-                "replies": Array [],
-                "updated_at": "2017-05-23T17:12:04Z",
-                "user_id": "1",
-              },
-            ],
-            "renderItem": [Function],
-            "title": "",
+            "parent_id": null,
+            "rating": undefined,
+            "rating_count": null,
+            "rating_sum": null,
+            "readState": "read",
+            "replies": Array [],
+            "updated_at": "2017-05-23T17:12:04Z",
+            "user_id": "1",
           },
         ]
       }
@@ -1831,6 +1995,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
       initialNumToRender={10}
       keyExtractor={[Function]}
       maxToRenderPerBatch={10}
+      numColumns={1}
       onContentSizeChange={[Function]}
       onEndReachedThreshold={2}
       onLayout={[Function]}
@@ -1850,155 +2015,20 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
       refreshing={false}
       renderItem={[Function]}
       scrollEventThrottle={50}
-      sections={
-        Array [
-          Object {
-            "data": Array [
-              Object {
-                "allow_rating": false,
-                "assignment": Object {
-                  "assignment_group_id": 1376,
-                  "automatic_peer_reviews": false,
-                  "course_id": "987654321",
-                  "created_at": "2017-03-17T19:15:25Z",
-                  "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-                  "due_at": "2037-06-01T05:59:00Z",
-                  "grade_group_students_individually": false,
-                  "grading_type": "points",
-                  "group_category_id": null,
-                  "has_overrides": false,
-                  "html_url": "http://hostname.tld/whatever",
-                  "id": "123456789",
-                  "lock_at": "2037-06-01T05:59:59Z",
-                  "name": "learn to write code",
-                  "needs_grading_count": 0,
-                  "only_visible_to_overrides": false,
-                  "overrides": Array [],
-                  "peer_reviews": false,
-                  "points_possible": 20,
-                  "position": 1,
-                  "published": true,
-                  "rubric": null,
-                  "rubric_assessment": Object {},
-                  "rubric_settings": null,
-                  "submission_types": Array [
-                    "online_text_entry",
-                    "online_url",
-                    "media_recording",
-                    "online_upload",
-                  ],
-                  "unlock_at": "2017-03-17T06:00:00Z",
-                  "unpublishable": false,
-                  "updated_at": "2017-03-17T19:15:25Z",
-                },
-                "assignment_id": "123456789",
-                "author": Object {
-                  "avatar_image_url": "http://www.fillmurray.com/100/100",
-                  "avatar_url": "http://www.fillmurray.com/100/100",
-                  "display_name": "The Donald",
-                  "html_url": "",
-                  "id": "1",
-                  "short_name": "The Donald",
-                },
-                "can_unpublish": true,
-                "delayed_post_at": null,
-                "discussion_subentry_count": 2,
-                "discussion_type": "side_comment",
-                "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
-                "id": "1",
-                "is_section_specific": false,
-                "last_reply_at": "2016-12-11T04:03:17Z",
-                "locked_for_user": true,
-                "message": "<p>And why?</p>",
-                "only_graders_can_rate": false,
-                "participants": Object {
-                  "1": Object {
-                    "avatar_image_url": "http://www.fillmurray.com/100/100",
-                    "avatar_url": "http://www.fillmurray.com/100/100",
-                    "display_name": "The Donald",
-                    "html_url": "",
-                    "id": "1",
-                    "short_name": "The Donald",
-                  },
-                },
-                "permissions": Object {
-                  "attach": true,
-                  "delete": true,
-                  "reply": true,
-                  "update": true,
-                },
-                "pinned": false,
-                "position": 1,
-                "posted_at": "2016-11-11T04:03:17Z",
-                "published": true,
-                "read_state": "read",
-                "replies": Array [
-                  Object {
-                    "created_at": "2017-05-23T17:12:04Z",
-                    "id": "25472827",
-                    "message": "<p>1.0</p>",
-                    "parent_id": null,
-                    "rating_count": null,
-                    "rating_sum": null,
-                    "replies": Array [],
-                    "updated_at": "2017-05-23T17:12:04Z",
-                    "user_id": "1",
-                  },
-                ],
-                "require_initial_post": false,
-                "sort_by_rating": false,
-                "subscribed": true,
-                "title": "Dear Ivy Iversen, your last name cannot start with your first name",
-                "unlock_at": null,
-                "unread_count": 1,
-                "user_can_see_posts": true,
-                "user_name": "Ivy Iversen",
-              },
-            ],
-            "renderItem": [Function],
-            "title": "",
-          },
-          Object {
-            "data": Array [
-              Object {
-                "created_at": "2017-05-23T17:12:04Z",
-                "depth": 0,
-                "id": "25472827",
-                "message": "<p>1.0</p>",
-                "myPath": Array [
-                  0,
-                ],
-                "parent_id": null,
-                "rating": undefined,
-                "rating_count": null,
-                "rating_sum": null,
-                "readState": "read",
-                "replies": Array [],
-                "updated_at": "2017-05-23T17:12:04Z",
-                "user_id": "1",
-              },
-            ],
-            "renderItem": [Function],
-            "title": "",
-          },
-        ]
-      }
-      stickyHeaderIndices={
-        Array [
-          0,
-          3,
-        ]
-      }
-      stickySectionHeadersEnabled={true}
+      stickyHeaderIndices={Array []}
       updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={
+        Array [
+          Object {
+            "onViewableItemsChanged": [Function],
+            "viewabilityConfig": undefined,
+          },
+        ]
+      }
       windowSize={5}
     >
       <RCTRefreshControl />
       <View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        />
         <View
           onLayout={[Function]}
           style={null}
@@ -2358,14 +2388,6 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
         <View
           onLayout={[Function]}
           style={null}
-        />
-        <View
-          onLayout={[Function]}
-          style={null}
-        />
-        <View
-          onLayout={[Function]}
-          style={null}
         >
           <View
             style={
@@ -2537,10 +2559,6 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
             </View>
           </View>
         </View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        />
       </View>
     </RCTScrollView>
   </View>
@@ -2564,136 +2582,269 @@ exports[`DiscussionDetails renders in student app 1`] = `
     }
   >
     <RCTScrollView
-      ItemSeparatorComponent={undefined}
+      ListHeaderComponent={
+        <View>
+          <AssignmentSection
+            isFirstRow={true}
+            style={
+              Object {
+                "paddingBottom": 17,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 14,
+              }
+            }
+          >
+            <Heading1>
+              Dear Ivy Iversen, your last name cannot start with your first name
+            </Heading1>
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "marginTop": 2,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#8B969E",
+                    "fontWeight": "500",
+                    "marginRight": 14,
+                  }
+                }
+              >
+                20 pts
+              </Text>
+            </View>
+          </AssignmentSection>
+          <View
+            style={
+              Object {
+                "backgroundColor": "white",
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
+                "flex": 1,
+                "paddingBottom": 16,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 16,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "justifyContent": "flex-start",
+                }
+              }
+            >
+              <Avatar
+                avatarURL="http://www.fillmurray.com/100/100"
+                height={32}
+                onPress={[Function]}
+                style={
+                  Object {
+                    "marginTop": 16,
+                  }
+                }
+                testID="discussion.details.avatar"
+                userName="The Donald"
+              />
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "flex-start",
+                      "flex": 1,
+                      "flexDirection": "column",
+                      "justifyContent": "flex-start",
+                    },
+                    Object {
+                      "marginLeft": 16,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  style={
+                    Object {
+                      "fontSize": 14,
+                      "fontWeight": "600",
+                    }
+                  }
+                >
+                  The Donald
+                </Text>
+                <Text
+                  style={
+                    Object {
+                      "color": "#A5AFB5",
+                      "fontSize": 12,
+                    }
+                  }
+                  testID="discussion.details.post-date-lbl"
+                >
+                  Nov 10 at 9:03 PM
+                </Text>
+              </View>
+              <View>
+                <TouchableHighlight
+                  accessibilityLabel="Reply"
+                  onPress={[Function]}
+                  testID="discussion.details-reply"
+                  underlayColor="transparent"
+                >
+                  <Image
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/rce/undo.png",
+                      }
+                    }
+                    style={
+                      Object {
+                        "height": 18,
+                        "tintColor": "#73818C",
+                        "width": 18,
+                      }
+                    }
+                  />
+                </TouchableHighlight>
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "paddingBottom": 16,
+                  "paddingTop": 16,
+                }
+              }
+            >
+              <CanvasWebView
+                html="<p>And why?</p>"
+                navigator={
+                  Object {
+                    "dismiss": [Function],
+                    "dismissAllModals": [Function],
+                    "isModal": false,
+                    "pop": [Function],
+                    "show": [Function],
+                    "traitCollection": [Function],
+                  }
+                }
+                scrollEnabled={false}
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              />
+            </View>
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "justifyContent": "flex-start",
+                }
+              }
+            >
+              <TouchableHighlight
+                accessibilityTraits="button"
+                onPress={[Function]}
+                testID="discussion-reply"
+                underlayColor="white"
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "#374A59",
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "borderRadius": 4,
+                        "flexDirection": "row",
+                        "flexWrap": "wrap",
+                        "justifyContent": "center",
+                        "paddingHorizontal": 16,
+                        "paddingVertical": 10,
+                      },
+                    ]
+                  }
+                >
+                  <Image
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/rce/undo.png",
+                      }
+                    }
+                    style={
+                      Object {
+                        "height": 18,
+                        "tintColor": "white",
+                        "width": 18,
+                      }
+                    }
+                  />
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "white",
+                        },
+                        Object {
+                          "color": "white",
+                          "fontSize": 14,
+                          "fontWeight": "500",
+                          "marginLeft": 4,
+                        },
+                      ]
+                    }
+                  >
+                    Reply
+                  </Text>
+                </View>
+              </TouchableHighlight>
+            </View>
+          </View>
+          <AssignmentSection
+            style={
+              Object {
+                "paddingBottom": 0,
+              }
+            }
+          >
+            <Heading1>
+              Replies
+            </Heading1>
+          </AssignmentSection>
+          <View />
+        </View>
+      }
       data={
         Array [
           Object {
-            "data": Array [
-              Object {
-                "allow_rating": false,
-                "assignment": Object {
-                  "assignment_group_id": 1376,
-                  "automatic_peer_reviews": false,
-                  "course_id": "987654321",
-                  "created_at": "2017-03-17T19:15:25Z",
-                  "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-                  "due_at": "2037-06-01T05:59:00Z",
-                  "grade_group_students_individually": false,
-                  "grading_type": "points",
-                  "group_category_id": null,
-                  "has_overrides": false,
-                  "html_url": "http://hostname.tld/whatever",
-                  "id": "123456789",
-                  "lock_at": "2037-06-01T05:59:59Z",
-                  "name": "learn to write code",
-                  "needs_grading_count": 0,
-                  "only_visible_to_overrides": false,
-                  "overrides": Array [],
-                  "peer_reviews": false,
-                  "points_possible": 20,
-                  "position": 1,
-                  "published": true,
-                  "rubric": null,
-                  "rubric_assessment": Object {},
-                  "rubric_settings": null,
-                  "submission_types": Array [
-                    "online_text_entry",
-                    "online_url",
-                    "media_recording",
-                    "online_upload",
-                  ],
-                  "unlock_at": "2017-03-17T06:00:00Z",
-                  "unpublishable": false,
-                  "updated_at": "2017-03-17T19:15:25Z",
-                },
-                "assignment_id": "123456789",
-                "author": Object {
-                  "avatar_image_url": "http://www.fillmurray.com/100/100",
-                  "avatar_url": "http://www.fillmurray.com/100/100",
-                  "display_name": "The Donald",
-                  "html_url": "",
-                  "id": "1",
-                  "short_name": "The Donald",
-                },
-                "can_unpublish": true,
-                "delayed_post_at": null,
-                "discussion_subentry_count": 2,
-                "discussion_type": "side_comment",
-                "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
-                "id": "1",
-                "is_section_specific": false,
-                "last_reply_at": "2016-12-11T04:03:17Z",
-                "message": "<p>And why?</p>",
-                "only_graders_can_rate": false,
-                "participants": Object {
-                  "1": Object {
-                    "avatar_image_url": "http://www.fillmurray.com/100/100",
-                    "avatar_url": "http://www.fillmurray.com/100/100",
-                    "display_name": "The Donald",
-                    "html_url": "",
-                    "id": "1",
-                    "short_name": "The Donald",
-                  },
-                },
-                "permissions": Object {
-                  "attach": true,
-                  "delete": true,
-                  "reply": true,
-                  "update": true,
-                },
-                "pinned": false,
-                "position": 1,
-                "posted_at": "2016-11-11T04:03:17Z",
-                "published": true,
-                "read_state": "read",
-                "replies": Array [
-                  Object {
-                    "created_at": "2017-05-23T17:12:04Z",
-                    "id": "25472827",
-                    "message": "<p>1.0</p>",
-                    "parent_id": null,
-                    "rating_count": null,
-                    "rating_sum": null,
-                    "replies": Array [],
-                    "updated_at": "2017-05-23T17:12:04Z",
-                    "user_id": "1",
-                  },
-                ],
-                "require_initial_post": false,
-                "sort_by_rating": false,
-                "subscribed": true,
-                "title": "Dear Ivy Iversen, your last name cannot start with your first name",
-                "unlock_at": null,
-                "unread_count": 1,
-                "user_can_see_posts": true,
-                "user_name": "Ivy Iversen",
-              },
+            "created_at": "2017-05-23T17:12:04Z",
+            "depth": 0,
+            "id": "25472827",
+            "message": "<p>1.0</p>",
+            "myPath": Array [
+              0,
             ],
-            "renderItem": [Function],
-            "title": "",
-          },
-          Object {
-            "data": Array [
-              Object {
-                "created_at": "2017-05-23T17:12:04Z",
-                "depth": 0,
-                "id": "25472827",
-                "message": "<p>1.0</p>",
-                "myPath": Array [
-                  0,
-                ],
-                "parent_id": null,
-                "rating": undefined,
-                "rating_count": null,
-                "rating_sum": null,
-                "readState": "read",
-                "replies": Array [],
-                "updated_at": "2017-05-23T17:12:04Z",
-                "user_id": "1",
-              },
-            ],
-            "renderItem": [Function],
-            "title": "",
+            "parent_id": null,
+            "rating": undefined,
+            "rating_count": null,
+            "rating_sum": null,
+            "readState": "read",
+            "replies": Array [],
+            "updated_at": "2017-05-23T17:12:04Z",
+            "user_id": "1",
           },
         ]
       }
@@ -2710,6 +2861,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
       initialNumToRender={10}
       keyExtractor={[Function]}
       maxToRenderPerBatch={10}
+      numColumns={1}
       onContentSizeChange={[Function]}
       onEndReachedThreshold={2}
       onLayout={[Function]}
@@ -2729,154 +2881,20 @@ exports[`DiscussionDetails renders in student app 1`] = `
       refreshing={false}
       renderItem={[Function]}
       scrollEventThrottle={50}
-      sections={
-        Array [
-          Object {
-            "data": Array [
-              Object {
-                "allow_rating": false,
-                "assignment": Object {
-                  "assignment_group_id": 1376,
-                  "automatic_peer_reviews": false,
-                  "course_id": "987654321",
-                  "created_at": "2017-03-17T19:15:25Z",
-                  "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-                  "due_at": "2037-06-01T05:59:00Z",
-                  "grade_group_students_individually": false,
-                  "grading_type": "points",
-                  "group_category_id": null,
-                  "has_overrides": false,
-                  "html_url": "http://hostname.tld/whatever",
-                  "id": "123456789",
-                  "lock_at": "2037-06-01T05:59:59Z",
-                  "name": "learn to write code",
-                  "needs_grading_count": 0,
-                  "only_visible_to_overrides": false,
-                  "overrides": Array [],
-                  "peer_reviews": false,
-                  "points_possible": 20,
-                  "position": 1,
-                  "published": true,
-                  "rubric": null,
-                  "rubric_assessment": Object {},
-                  "rubric_settings": null,
-                  "submission_types": Array [
-                    "online_text_entry",
-                    "online_url",
-                    "media_recording",
-                    "online_upload",
-                  ],
-                  "unlock_at": "2017-03-17T06:00:00Z",
-                  "unpublishable": false,
-                  "updated_at": "2017-03-17T19:15:25Z",
-                },
-                "assignment_id": "123456789",
-                "author": Object {
-                  "avatar_image_url": "http://www.fillmurray.com/100/100",
-                  "avatar_url": "http://www.fillmurray.com/100/100",
-                  "display_name": "The Donald",
-                  "html_url": "",
-                  "id": "1",
-                  "short_name": "The Donald",
-                },
-                "can_unpublish": true,
-                "delayed_post_at": null,
-                "discussion_subentry_count": 2,
-                "discussion_type": "side_comment",
-                "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
-                "id": "1",
-                "is_section_specific": false,
-                "last_reply_at": "2016-12-11T04:03:17Z",
-                "message": "<p>And why?</p>",
-                "only_graders_can_rate": false,
-                "participants": Object {
-                  "1": Object {
-                    "avatar_image_url": "http://www.fillmurray.com/100/100",
-                    "avatar_url": "http://www.fillmurray.com/100/100",
-                    "display_name": "The Donald",
-                    "html_url": "",
-                    "id": "1",
-                    "short_name": "The Donald",
-                  },
-                },
-                "permissions": Object {
-                  "attach": true,
-                  "delete": true,
-                  "reply": true,
-                  "update": true,
-                },
-                "pinned": false,
-                "position": 1,
-                "posted_at": "2016-11-11T04:03:17Z",
-                "published": true,
-                "read_state": "read",
-                "replies": Array [
-                  Object {
-                    "created_at": "2017-05-23T17:12:04Z",
-                    "id": "25472827",
-                    "message": "<p>1.0</p>",
-                    "parent_id": null,
-                    "rating_count": null,
-                    "rating_sum": null,
-                    "replies": Array [],
-                    "updated_at": "2017-05-23T17:12:04Z",
-                    "user_id": "1",
-                  },
-                ],
-                "require_initial_post": false,
-                "sort_by_rating": false,
-                "subscribed": true,
-                "title": "Dear Ivy Iversen, your last name cannot start with your first name",
-                "unlock_at": null,
-                "unread_count": 1,
-                "user_can_see_posts": true,
-                "user_name": "Ivy Iversen",
-              },
-            ],
-            "renderItem": [Function],
-            "title": "",
-          },
-          Object {
-            "data": Array [
-              Object {
-                "created_at": "2017-05-23T17:12:04Z",
-                "depth": 0,
-                "id": "25472827",
-                "message": "<p>1.0</p>",
-                "myPath": Array [
-                  0,
-                ],
-                "parent_id": null,
-                "rating": undefined,
-                "rating_count": null,
-                "rating_sum": null,
-                "readState": "read",
-                "replies": Array [],
-                "updated_at": "2017-05-23T17:12:04Z",
-                "user_id": "1",
-              },
-            ],
-            "renderItem": [Function],
-            "title": "",
-          },
-        ]
-      }
-      stickyHeaderIndices={
-        Array [
-          0,
-          3,
-        ]
-      }
-      stickySectionHeadersEnabled={true}
+      stickyHeaderIndices={Array []}
       updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={
+        Array [
+          Object {
+            "onViewableItemsChanged": [Function],
+            "viewabilityConfig": undefined,
+          },
+        ]
+      }
       windowSize={5}
     >
       <RCTRefreshControl />
       <View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        />
         <View
           onLayout={[Function]}
           style={null}
@@ -3341,14 +3359,6 @@ exports[`DiscussionDetails renders in student app 1`] = `
         <View
           onLayout={[Function]}
           style={null}
-        />
-        <View
-          onLayout={[Function]}
-          style={null}
-        />
-        <View
-          onLayout={[Function]}
-          style={null}
         >
           <View
             style={
@@ -3516,11 +3526,17 @@ exports[`DiscussionDetails renders in student app 1`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "row",
-                        "marginTop": 16,
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "marginBottom": 8,
+                          "marginTop": 16,
+                        },
+                        Object {
+                          "paddingBottom": 8,
+                        },
+                      ]
                     }
                   >
                     <View
@@ -3609,10 +3625,6 @@ exports[`DiscussionDetails renders in student app 1`] = `
             </View>
           </View>
         </View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        />
       </View>
     </RCTScrollView>
   </View>
@@ -3647,14 +3659,61 @@ exports[`DiscussionDetails renders no replies 1`] = `
     }
   >
     <RCTScrollView
-      ItemSeparatorComponent={undefined}
-      data={
-        Array [
-          Object {
-            "data": Array [
+      ListHeaderComponent={
+        <View>
+          <AssignmentSection
+            isFirstRow={true}
+            style={
               Object {
-                "allow_rating": false,
-                "assignment": Object {
+                "paddingBottom": 17,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 14,
+              }
+            }
+          >
+            <Heading1>
+              Dear Ivy Iversen, your last name cannot start with your first name
+            </Heading1>
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "marginTop": 2,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#8B969E",
+                    "fontWeight": "500",
+                    "marginRight": 14,
+                  }
+                }
+              >
+                20 pts
+              </Text>
+              <PublishedIcon
+                published={true}
+              />
+            </View>
+          </AssignmentSection>
+          <AssignmentSection
+            image={
+              Object {
+                "testUri": "../../../src/images/assignments/Calendar.png",
+              }
+            }
+            onPress={[Function]}
+            showDisclosureIndicator={true}
+            title="Due"
+          >
+            <DueDates
+              assignment={
+                Object {
                   "assignment_group_id": 1376,
                   "automatic_peer_reviews": false,
                   "course_id": "987654321",
@@ -3688,52 +3747,223 @@ exports[`DiscussionDetails renders no replies 1`] = `
                   "unlock_at": "2017-03-17T06:00:00Z",
                   "unpublishable": false,
                   "updated_at": "2017-03-17T19:15:25Z",
-                },
-                "assignment_id": "123456789",
-                "author": Object {
-                  "avatar_image_url": "http://www.fillmurray.com/100/100",
-                  "avatar_url": "http://www.fillmurray.com/100/100",
-                  "display_name": "The Donald",
-                  "html_url": "",
-                  "id": "1",
-                  "short_name": "The Donald",
-                },
-                "can_unpublish": true,
-                "delayed_post_at": null,
-                "discussion_subentry_count": 2,
-                "discussion_type": "side_comment",
-                "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
-                "id": "1",
-                "is_section_specific": false,
-                "last_reply_at": "2016-12-11T04:03:17Z",
-                "message": "<p>And why?</p>",
-                "only_graders_can_rate": false,
-                "permissions": Object {
-                  "attach": true,
-                  "delete": true,
-                  "reply": true,
-                  "update": true,
-                },
-                "pinned": false,
-                "position": 1,
-                "posted_at": "2016-11-11T04:03:17Z",
-                "published": true,
-                "read_state": "read",
-                "require_initial_post": false,
-                "sort_by_rating": false,
-                "subscribed": true,
-                "title": "Dear Ivy Iversen, your last name cannot start with your first name",
-                "unlock_at": null,
-                "unread_count": 1,
-                "user_can_see_posts": true,
-                "user_name": "Ivy Iversen",
-              },
-            ],
-            "renderItem": [Function],
-            "title": "",
-          },
-        ]
+                }
+              }
+            />
+          </AssignmentSection>
+          <AssignmentSection
+            onPress={[Function]}
+            showDisclosureIndicator={true}
+            testID="discussions.submission-graphs"
+            title="Submissions"
+          >
+            <SubmissionBreakdownGraphSection
+              assignmentID="123456789"
+              courseID="1"
+              onPress={[Function]}
+              style={
+                Object {
+                  "marginRight": 40,
+                  "marginTop": 8,
+                }
+              }
+            />
+          </AssignmentSection>
+          <View
+            style={
+              Object {
+                "backgroundColor": "white",
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
+                "flex": 1,
+                "paddingBottom": 16,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 16,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "justifyContent": "flex-start",
+                }
+              }
+            >
+              <Avatar
+                avatarURL="http://www.fillmurray.com/100/100"
+                height={32}
+                onPress={[Function]}
+                style={
+                  Object {
+                    "marginTop": 16,
+                  }
+                }
+                testID="discussion.details.avatar"
+                userName="The Donald"
+              />
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "flex-start",
+                      "flex": 1,
+                      "flexDirection": "column",
+                      "justifyContent": "flex-start",
+                    },
+                    Object {
+                      "marginLeft": 16,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  style={
+                    Object {
+                      "fontSize": 14,
+                      "fontWeight": "600",
+                    }
+                  }
+                >
+                  The Donald
+                </Text>
+                <Text
+                  style={
+                    Object {
+                      "color": "#A5AFB5",
+                      "fontSize": 12,
+                    }
+                  }
+                  testID="discussion.details.post-date-lbl"
+                >
+                  Nov 10 at 9:03 PM
+                </Text>
+              </View>
+              <View>
+                <TouchableHighlight
+                  accessibilityLabel="Reply"
+                  onPress={[Function]}
+                  testID="discussion.details-reply"
+                  underlayColor="transparent"
+                >
+                  <Image
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/rce/undo.png",
+                      }
+                    }
+                    style={
+                      Object {
+                        "height": 18,
+                        "tintColor": "#73818C",
+                        "width": 18,
+                      }
+                    }
+                  />
+                </TouchableHighlight>
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "paddingBottom": 16,
+                  "paddingTop": 16,
+                }
+              }
+            >
+              <CanvasWebView
+                html="<p>And why?</p>"
+                navigator={
+                  Object {
+                    "dismiss": [Function],
+                    "dismissAllModals": [Function],
+                    "isModal": false,
+                    "pop": [Function],
+                    "show": [Function],
+                    "traitCollection": [Function],
+                  }
+                }
+                scrollEnabled={false}
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              />
+            </View>
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "justifyContent": "flex-start",
+                }
+              }
+            >
+              <TouchableHighlight
+                accessibilityTraits="button"
+                onPress={[Function]}
+                testID="discussion-reply"
+                underlayColor="white"
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "#374A59",
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "borderRadius": 4,
+                        "flexDirection": "row",
+                        "flexWrap": "wrap",
+                        "justifyContent": "center",
+                        "paddingHorizontal": 16,
+                        "paddingVertical": 10,
+                      },
+                    ]
+                  }
+                >
+                  <Image
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/rce/undo.png",
+                      }
+                    }
+                    style={
+                      Object {
+                        "height": 18,
+                        "tintColor": "white",
+                        "width": 18,
+                      }
+                    }
+                  />
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "white",
+                        },
+                        Object {
+                          "color": "white",
+                          "fontSize": 14,
+                          "fontWeight": "500",
+                          "marginLeft": 4,
+                        },
+                      ]
+                    }
+                  >
+                    Reply
+                  </Text>
+                </View>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </View>
       }
+      data={Array []}
       disableVirtualization={false}
       extraData={
         Object {
@@ -3747,6 +3977,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
       initialNumToRender={10}
       keyExtractor={[Function]}
       maxToRenderPerBatch={10}
+      numColumns={1}
       onContentSizeChange={[Function]}
       onEndReachedThreshold={2}
       onLayout={[Function]}
@@ -3766,107 +3997,20 @@ exports[`DiscussionDetails renders no replies 1`] = `
       refreshing={false}
       renderItem={[Function]}
       scrollEventThrottle={50}
-      sections={
+      stickyHeaderIndices={Array []}
+      updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={
         Array [
           Object {
-            "data": Array [
-              Object {
-                "allow_rating": false,
-                "assignment": Object {
-                  "assignment_group_id": 1376,
-                  "automatic_peer_reviews": false,
-                  "course_id": "987654321",
-                  "created_at": "2017-03-17T19:15:25Z",
-                  "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-                  "due_at": "2037-06-01T05:59:00Z",
-                  "grade_group_students_individually": false,
-                  "grading_type": "points",
-                  "group_category_id": null,
-                  "has_overrides": false,
-                  "html_url": "http://hostname.tld/whatever",
-                  "id": "123456789",
-                  "lock_at": "2037-06-01T05:59:59Z",
-                  "name": "learn to write code",
-                  "needs_grading_count": 0,
-                  "only_visible_to_overrides": false,
-                  "overrides": Array [],
-                  "peer_reviews": false,
-                  "points_possible": 20,
-                  "position": 1,
-                  "published": true,
-                  "rubric": null,
-                  "rubric_assessment": Object {},
-                  "rubric_settings": null,
-                  "submission_types": Array [
-                    "online_text_entry",
-                    "online_url",
-                    "media_recording",
-                    "online_upload",
-                  ],
-                  "unlock_at": "2017-03-17T06:00:00Z",
-                  "unpublishable": false,
-                  "updated_at": "2017-03-17T19:15:25Z",
-                },
-                "assignment_id": "123456789",
-                "author": Object {
-                  "avatar_image_url": "http://www.fillmurray.com/100/100",
-                  "avatar_url": "http://www.fillmurray.com/100/100",
-                  "display_name": "The Donald",
-                  "html_url": "",
-                  "id": "1",
-                  "short_name": "The Donald",
-                },
-                "can_unpublish": true,
-                "delayed_post_at": null,
-                "discussion_subentry_count": 2,
-                "discussion_type": "side_comment",
-                "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
-                "id": "1",
-                "is_section_specific": false,
-                "last_reply_at": "2016-12-11T04:03:17Z",
-                "message": "<p>And why?</p>",
-                "only_graders_can_rate": false,
-                "permissions": Object {
-                  "attach": true,
-                  "delete": true,
-                  "reply": true,
-                  "update": true,
-                },
-                "pinned": false,
-                "position": 1,
-                "posted_at": "2016-11-11T04:03:17Z",
-                "published": true,
-                "read_state": "read",
-                "require_initial_post": false,
-                "sort_by_rating": false,
-                "subscribed": true,
-                "title": "Dear Ivy Iversen, your last name cannot start with your first name",
-                "unlock_at": null,
-                "unread_count": 1,
-                "user_can_see_posts": true,
-                "user_name": "Ivy Iversen",
-              },
-            ],
-            "renderItem": [Function],
-            "title": "",
+            "onViewableItemsChanged": [Function],
+            "viewabilityConfig": undefined,
           },
         ]
       }
-      stickyHeaderIndices={
-        Array [
-          0,
-        ]
-      }
-      stickySectionHeadersEnabled={true}
-      updateCellsBatchingPeriod={50}
       windowSize={5}
     >
       <RCTRefreshControl />
       <View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        />
         <View
           onLayout={[Function]}
           style={null}
@@ -4819,10 +4963,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
             </View>
           </View>
         </View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        />
       </View>
     </RCTScrollView>
   </View>
@@ -4857,14 +4997,61 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
     }
   >
     <RCTScrollView
-      ItemSeparatorComponent={undefined}
-      data={
-        Array [
-          Object {
-            "data": Array [
+      ListHeaderComponent={
+        <View>
+          <AssignmentSection
+            isFirstRow={true}
+            style={
               Object {
-                "allow_rating": false,
-                "assignment": Object {
+                "paddingBottom": 17,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 14,
+              }
+            }
+          >
+            <Heading1>
+              Dear Ivy Iversen, your last name cannot start with your first name
+            </Heading1>
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "marginTop": 2,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#8B969E",
+                    "fontWeight": "500",
+                    "marginRight": 14,
+                  }
+                }
+              >
+                20 pts
+              </Text>
+              <PublishedIcon
+                published={true}
+              />
+            </View>
+          </AssignmentSection>
+          <AssignmentSection
+            image={
+              Object {
+                "testUri": "../../../src/images/assignments/Calendar.png",
+              }
+            }
+            onPress={[Function]}
+            showDisclosureIndicator={true}
+            title="Due"
+          >
+            <DueDates
+              assignment={
+                Object {
                   "assignment_group_id": 1376,
                   "automatic_peer_reviews": false,
                   "course_id": "987654321",
@@ -4898,51 +5085,303 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                   "unlock_at": "2017-03-17T06:00:00Z",
                   "unpublishable": false,
                   "updated_at": "2017-03-17T19:15:25Z",
-                },
-                "assignment_id": "123456789",
-                "author": Object {
-                  "avatar_image_url": "http://www.fillmurray.com/100/100",
-                  "avatar_url": "http://www.fillmurray.com/100/100",
-                  "display_name": "The Donald",
-                  "html_url": "",
-                  "id": "1",
-                  "short_name": "The Donald",
-                },
-                "can_unpublish": true,
-                "delayed_post_at": null,
-                "discussion_subentry_count": 2,
-                "discussion_type": "side_comment",
-                "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
-                "id": "1",
-                "is_section_specific": false,
-                "last_reply_at": "2016-12-11T04:03:17Z",
-                "message": "<p>And why?</p>",
-                "only_graders_can_rate": false,
-                "participants": Object {
-                  "1": Object {
-                    "avatar_image_url": "http://www.fillmurray.com/100/100",
-                    "avatar_url": "http://www.fillmurray.com/100/100",
-                    "display_name": "The Donald",
-                    "html_url": "",
-                    "id": "1",
-                    "short_name": "The Donald",
-                  },
-                },
-                "permissions": Object {
-                  "attach": true,
-                  "delete": true,
-                  "reply": true,
-                  "update": true,
-                },
-                "pinned": false,
-                "position": 1,
-                "posted_at": "2016-11-11T04:03:17Z",
-                "published": true,
-                "read_state": "read",
+                }
+              }
+            />
+          </AssignmentSection>
+          <AssignmentSection
+            onPress={[Function]}
+            showDisclosureIndicator={true}
+            testID="discussions.submission-graphs"
+            title="Submissions"
+          >
+            <SubmissionBreakdownGraphSection
+              assignmentID="123456789"
+              courseID="1"
+              onPress={[Function]}
+              style={
+                Object {
+                  "marginRight": 40,
+                  "marginTop": 8,
+                }
+              }
+            />
+          </AssignmentSection>
+          <View
+            style={
+              Object {
+                "backgroundColor": "white",
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
+                "flex": 1,
+                "paddingBottom": 16,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 16,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "justifyContent": "flex-start",
+                }
+              }
+            >
+              <Avatar
+                avatarURL="http://www.fillmurray.com/100/100"
+                height={32}
+                onPress={[Function]}
+                style={
+                  Object {
+                    "marginTop": 16,
+                  }
+                }
+                testID="discussion.details.avatar"
+                userName="The Donald"
+              />
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "flex-start",
+                      "flex": 1,
+                      "flexDirection": "column",
+                      "justifyContent": "flex-start",
+                    },
+                    Object {
+                      "marginLeft": 16,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  style={
+                    Object {
+                      "fontSize": 14,
+                      "fontWeight": "600",
+                    }
+                  }
+                >
+                  The Donald
+                </Text>
+                <Text
+                  style={
+                    Object {
+                      "color": "#A5AFB5",
+                      "fontSize": 12,
+                    }
+                  }
+                  testID="discussion.details.post-date-lbl"
+                >
+                  Nov 10 at 9:03 PM
+                </Text>
+              </View>
+              <View>
+                <TouchableHighlight
+                  accessibilityLabel="Reply"
+                  onPress={[Function]}
+                  testID="discussion.details-reply"
+                  underlayColor="transparent"
+                >
+                  <Image
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/rce/undo.png",
+                      }
+                    }
+                    style={
+                      Object {
+                        "height": 18,
+                        "tintColor": "#73818C",
+                        "width": 18,
+                      }
+                    }
+                  />
+                </TouchableHighlight>
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "paddingBottom": 16,
+                  "paddingTop": 16,
+                }
+              }
+            >
+              <CanvasWebView
+                html="<p>And why?</p>"
+                navigator={
+                  Object {
+                    "dismiss": [Function],
+                    "dismissAllModals": [Function],
+                    "isModal": false,
+                    "pop": [Function],
+                    "show": [Function],
+                    "traitCollection": [Function],
+                  }
+                }
+                scrollEnabled={false}
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              />
+            </View>
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "justifyContent": "flex-start",
+                }
+              }
+            >
+              <TouchableHighlight
+                accessibilityTraits="button"
+                onPress={[Function]}
+                testID="discussion-reply"
+                underlayColor="white"
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "#374A59",
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "borderRadius": 4,
+                        "flexDirection": "row",
+                        "flexWrap": "wrap",
+                        "justifyContent": "center",
+                        "paddingHorizontal": 16,
+                        "paddingVertical": 10,
+                      },
+                    ]
+                  }
+                >
+                  <Image
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/rce/undo.png",
+                      }
+                    }
+                    style={
+                      Object {
+                        "height": 18,
+                        "tintColor": "white",
+                        "width": 18,
+                      }
+                    }
+                  />
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "white",
+                        },
+                        Object {
+                          "color": "white",
+                          "fontSize": 14,
+                          "fontWeight": "500",
+                          "marginLeft": 4,
+                        },
+                      ]
+                    }
+                  >
+                    Reply
+                  </Text>
+                </View>
+              </TouchableHighlight>
+            </View>
+          </View>
+          <AssignmentSection
+            style={
+              Object {
+                "paddingBottom": 0,
+              }
+            }
+          >
+            <TouchableHighlight
+              accessibilityLabel="Back to replies"
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              accessible={true}
+              onPress={[Function]}
+              testID="discussion.popToLastDiscussionList"
+              underlayColor="white"
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flex": 1,
+                    "flexDirection": "row",
+                    "marginBottom": 8,
+                  }
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/Back-icon.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "tintColor": "#008EE2",
+                    }
+                  }
+                />
+                <Text
+                  style={
+                    Object {
+                      "color": "#008EE2",
+                      "paddingLeft": 5,
+                    }
+                  }
+                >
+                  Back
+                </Text>
+              </View>
+            </TouchableHighlight>
+          </AssignmentSection>
+        </View>
+      }
+      data={
+        Array [
+          Object {
+            "created_at": "2017-05-23T17:12:04Z",
+            "depth": 0,
+            "id": "1",
+            "message": "<p>1.0</p>",
+            "myPath": Array [
+              0,
+            ],
+            "parent_id": null,
+            "rating": undefined,
+            "rating_count": null,
+            "rating_sum": null,
+            "readState": "read",
+            "replies": Array [
+              Object {
+                "created_at": "2017-05-23T17:12:04Z",
+                "id": "2",
+                "message": "<p>1.0</p>",
+                "parent_id": null,
+                "rating_count": null,
+                "rating_sum": null,
                 "replies": Array [
                   Object {
                     "created_at": "2017-05-23T17:12:04Z",
-                    "id": "1",
+                    "id": "3",
                     "message": "<p>1.0</p>",
                     "parent_id": null,
                     "rating_count": null,
@@ -4950,7 +5389,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     "replies": Array [
                       Object {
                         "created_at": "2017-05-23T17:12:04Z",
-                        "id": "2",
+                        "id": "4",
                         "message": "<p>1.0</p>",
                         "parent_id": null,
                         "rating_count": null,
@@ -4958,36 +5397,12 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                         "replies": Array [
                           Object {
                             "created_at": "2017-05-23T17:12:04Z",
-                            "id": "3",
+                            "id": "5",
                             "message": "<p>1.0</p>",
                             "parent_id": null,
                             "rating_count": null,
                             "rating_sum": null,
-                            "replies": Array [
-                              Object {
-                                "created_at": "2017-05-23T17:12:04Z",
-                                "id": "4",
-                                "message": "<p>1.0</p>",
-                                "parent_id": null,
-                                "rating_count": null,
-                                "rating_sum": null,
-                                "replies": Array [
-                                  Object {
-                                    "created_at": "2017-05-23T17:12:04Z",
-                                    "id": "5",
-                                    "message": "<p>1.0</p>",
-                                    "parent_id": null,
-                                    "rating_count": null,
-                                    "rating_sum": null,
-                                    "replies": Array [],
-                                    "updated_at": "2017-05-23T17:12:04Z",
-                                    "user_id": "1",
-                                  },
-                                ],
-                                "updated_at": "2017-05-23T17:12:04Z",
-                                "user_id": "1",
-                              },
-                            ],
+                            "replies": Array [],
                             "updated_at": "2017-05-23T17:12:04Z",
                             "user_id": "1",
                           },
@@ -5000,34 +5415,90 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     "user_id": "1",
                   },
                 ],
-                "require_initial_post": false,
-                "sort_by_rating": false,
-                "subscribed": true,
-                "title": "Dear Ivy Iversen, your last name cannot start with your first name",
-                "unlock_at": null,
-                "unread_count": 1,
-                "user_can_see_posts": true,
-                "user_name": "Ivy Iversen",
+                "updated_at": "2017-05-23T17:12:04Z",
+                "user_id": "1",
               },
             ],
-            "renderItem": [Function],
-            "title": "",
+            "updated_at": "2017-05-23T17:12:04Z",
+            "user_id": "1",
           },
           Object {
-            "data": Array [
+            "created_at": "2017-05-23T17:12:04Z",
+            "depth": 1,
+            "id": "2",
+            "message": "<p>1.0</p>",
+            "myPath": Array [
+              0,
+              0,
+            ],
+            "parent_id": null,
+            "rating": undefined,
+            "rating_count": null,
+            "rating_sum": null,
+            "readState": "read",
+            "replies": Array [
               Object {
                 "created_at": "2017-05-23T17:12:04Z",
-                "depth": 0,
-                "id": "4",
+                "id": "3",
                 "message": "<p>1.0</p>",
-                "myPath": Array [
-                  0,
-                ],
                 "parent_id": null,
-                "rating": undefined,
                 "rating_count": null,
                 "rating_sum": null,
-                "readState": "read",
+                "replies": Array [
+                  Object {
+                    "created_at": "2017-05-23T17:12:04Z",
+                    "id": "4",
+                    "message": "<p>1.0</p>",
+                    "parent_id": null,
+                    "rating_count": null,
+                    "rating_sum": null,
+                    "replies": Array [
+                      Object {
+                        "created_at": "2017-05-23T17:12:04Z",
+                        "id": "5",
+                        "message": "<p>1.0</p>",
+                        "parent_id": null,
+                        "rating_count": null,
+                        "rating_sum": null,
+                        "replies": Array [],
+                        "updated_at": "2017-05-23T17:12:04Z",
+                        "user_id": "1",
+                      },
+                    ],
+                    "updated_at": "2017-05-23T17:12:04Z",
+                    "user_id": "1",
+                  },
+                ],
+                "updated_at": "2017-05-23T17:12:04Z",
+                "user_id": "1",
+              },
+            ],
+            "updated_at": "2017-05-23T17:12:04Z",
+            "user_id": "1",
+          },
+          Object {
+            "created_at": "2017-05-23T17:12:04Z",
+            "depth": 2,
+            "id": "3",
+            "message": "<p>1.0</p>",
+            "myPath": Array [
+              0,
+              0,
+              0,
+            ],
+            "parent_id": null,
+            "rating": undefined,
+            "rating_count": null,
+            "rating_sum": null,
+            "readState": "read",
+            "replies": Array [
+              Object {
+                "created_at": "2017-05-23T17:12:04Z",
+                "id": "4",
+                "message": "<p>1.0</p>",
+                "parent_id": null,
+                "rating_count": null,
+                "rating_sum": null,
                 "replies": Array [
                   Object {
                     "created_at": "2017-05-23T17:12:04Z",
@@ -5044,27 +5515,9 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                 "updated_at": "2017-05-23T17:12:04Z",
                 "user_id": "1",
               },
-              Object {
-                "created_at": "2017-05-23T17:12:04Z",
-                "depth": 1,
-                "id": "5",
-                "message": "<p>1.0</p>",
-                "myPath": Array [
-                  0,
-                  0,
-                ],
-                "parent_id": null,
-                "rating": undefined,
-                "rating_count": null,
-                "rating_sum": null,
-                "readState": "read",
-                "replies": Array [],
-                "updated_at": "2017-05-23T17:12:04Z",
-                "user_id": "1",
-              },
             ],
-            "renderItem": [Function],
-            "title": "",
+            "updated_at": "2017-05-23T17:12:04Z",
+            "user_id": "1",
           },
         ]
       }
@@ -5081,6 +5534,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
       initialNumToRender={10}
       keyExtractor={[Function]}
       maxToRenderPerBatch={10}
+      numColumns={1}
       onContentSizeChange={[Function]}
       onEndReachedThreshold={2}
       onLayout={[Function]}
@@ -5100,232 +5554,20 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
       refreshing={false}
       renderItem={[Function]}
       scrollEventThrottle={50}
-      sections={
-        Array [
-          Object {
-            "data": Array [
-              Object {
-                "allow_rating": false,
-                "assignment": Object {
-                  "assignment_group_id": 1376,
-                  "automatic_peer_reviews": false,
-                  "course_id": "987654321",
-                  "created_at": "2017-03-17T19:15:25Z",
-                  "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-                  "due_at": "2037-06-01T05:59:00Z",
-                  "grade_group_students_individually": false,
-                  "grading_type": "points",
-                  "group_category_id": null,
-                  "has_overrides": false,
-                  "html_url": "http://hostname.tld/whatever",
-                  "id": "123456789",
-                  "lock_at": "2037-06-01T05:59:59Z",
-                  "name": "learn to write code",
-                  "needs_grading_count": 0,
-                  "only_visible_to_overrides": false,
-                  "overrides": Array [],
-                  "peer_reviews": false,
-                  "points_possible": 20,
-                  "position": 1,
-                  "published": true,
-                  "rubric": null,
-                  "rubric_assessment": Object {},
-                  "rubric_settings": null,
-                  "submission_types": Array [
-                    "online_text_entry",
-                    "online_url",
-                    "media_recording",
-                    "online_upload",
-                  ],
-                  "unlock_at": "2017-03-17T06:00:00Z",
-                  "unpublishable": false,
-                  "updated_at": "2017-03-17T19:15:25Z",
-                },
-                "assignment_id": "123456789",
-                "author": Object {
-                  "avatar_image_url": "http://www.fillmurray.com/100/100",
-                  "avatar_url": "http://www.fillmurray.com/100/100",
-                  "display_name": "The Donald",
-                  "html_url": "",
-                  "id": "1",
-                  "short_name": "The Donald",
-                },
-                "can_unpublish": true,
-                "delayed_post_at": null,
-                "discussion_subentry_count": 2,
-                "discussion_type": "side_comment",
-                "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
-                "id": "1",
-                "is_section_specific": false,
-                "last_reply_at": "2016-12-11T04:03:17Z",
-                "message": "<p>And why?</p>",
-                "only_graders_can_rate": false,
-                "participants": Object {
-                  "1": Object {
-                    "avatar_image_url": "http://www.fillmurray.com/100/100",
-                    "avatar_url": "http://www.fillmurray.com/100/100",
-                    "display_name": "The Donald",
-                    "html_url": "",
-                    "id": "1",
-                    "short_name": "The Donald",
-                  },
-                },
-                "permissions": Object {
-                  "attach": true,
-                  "delete": true,
-                  "reply": true,
-                  "update": true,
-                },
-                "pinned": false,
-                "position": 1,
-                "posted_at": "2016-11-11T04:03:17Z",
-                "published": true,
-                "read_state": "read",
-                "replies": Array [
-                  Object {
-                    "created_at": "2017-05-23T17:12:04Z",
-                    "id": "1",
-                    "message": "<p>1.0</p>",
-                    "parent_id": null,
-                    "rating_count": null,
-                    "rating_sum": null,
-                    "replies": Array [
-                      Object {
-                        "created_at": "2017-05-23T17:12:04Z",
-                        "id": "2",
-                        "message": "<p>1.0</p>",
-                        "parent_id": null,
-                        "rating_count": null,
-                        "rating_sum": null,
-                        "replies": Array [
-                          Object {
-                            "created_at": "2017-05-23T17:12:04Z",
-                            "id": "3",
-                            "message": "<p>1.0</p>",
-                            "parent_id": null,
-                            "rating_count": null,
-                            "rating_sum": null,
-                            "replies": Array [
-                              Object {
-                                "created_at": "2017-05-23T17:12:04Z",
-                                "id": "4",
-                                "message": "<p>1.0</p>",
-                                "parent_id": null,
-                                "rating_count": null,
-                                "rating_sum": null,
-                                "replies": Array [
-                                  Object {
-                                    "created_at": "2017-05-23T17:12:04Z",
-                                    "id": "5",
-                                    "message": "<p>1.0</p>",
-                                    "parent_id": null,
-                                    "rating_count": null,
-                                    "rating_sum": null,
-                                    "replies": Array [],
-                                    "updated_at": "2017-05-23T17:12:04Z",
-                                    "user_id": "1",
-                                  },
-                                ],
-                                "updated_at": "2017-05-23T17:12:04Z",
-                                "user_id": "1",
-                              },
-                            ],
-                            "updated_at": "2017-05-23T17:12:04Z",
-                            "user_id": "1",
-                          },
-                        ],
-                        "updated_at": "2017-05-23T17:12:04Z",
-                        "user_id": "1",
-                      },
-                    ],
-                    "updated_at": "2017-05-23T17:12:04Z",
-                    "user_id": "1",
-                  },
-                ],
-                "require_initial_post": false,
-                "sort_by_rating": false,
-                "subscribed": true,
-                "title": "Dear Ivy Iversen, your last name cannot start with your first name",
-                "unlock_at": null,
-                "unread_count": 1,
-                "user_can_see_posts": true,
-                "user_name": "Ivy Iversen",
-              },
-            ],
-            "renderItem": [Function],
-            "title": "",
-          },
-          Object {
-            "data": Array [
-              Object {
-                "created_at": "2017-05-23T17:12:04Z",
-                "depth": 0,
-                "id": "4",
-                "message": "<p>1.0</p>",
-                "myPath": Array [
-                  0,
-                ],
-                "parent_id": null,
-                "rating": undefined,
-                "rating_count": null,
-                "rating_sum": null,
-                "readState": "read",
-                "replies": Array [
-                  Object {
-                    "created_at": "2017-05-23T17:12:04Z",
-                    "id": "5",
-                    "message": "<p>1.0</p>",
-                    "parent_id": null,
-                    "rating_count": null,
-                    "rating_sum": null,
-                    "replies": Array [],
-                    "updated_at": "2017-05-23T17:12:04Z",
-                    "user_id": "1",
-                  },
-                ],
-                "updated_at": "2017-05-23T17:12:04Z",
-                "user_id": "1",
-              },
-              Object {
-                "created_at": "2017-05-23T17:12:04Z",
-                "depth": 1,
-                "id": "5",
-                "message": "<p>1.0</p>",
-                "myPath": Array [
-                  0,
-                  0,
-                ],
-                "parent_id": null,
-                "rating": undefined,
-                "rating_count": null,
-                "rating_sum": null,
-                "readState": "read",
-                "replies": Array [],
-                "updated_at": "2017-05-23T17:12:04Z",
-                "user_id": "1",
-              },
-            ],
-            "renderItem": [Function],
-            "title": "",
-          },
-        ]
-      }
-      stickyHeaderIndices={
-        Array [
-          0,
-          3,
-        ]
-      }
-      stickySectionHeadersEnabled={true}
+      stickyHeaderIndices={Array []}
       updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={
+        Array [
+          Object {
+            "onViewableItemsChanged": [Function],
+            "viewabilityConfig": undefined,
+          },
+        ]
+      }
       windowSize={5}
     >
       <RCTRefreshControl />
       <View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        />
         <View
           onLayout={[Function]}
           style={null}
@@ -6402,14 +6644,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
         <View
           onLayout={[Function]}
           style={null}
-        />
-        <View
-          onLayout={[Function]}
-          style={null}
-        />
-        <View
-          onLayout={[Function]}
-          style={null}
         >
           <View
             style={
@@ -6544,7 +6778,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     testID="web-container.view"
                   >
                     <CanvasWebView
-                      heightCacheKey="4"
+                      heightCacheKey="1"
                       html="<p>1.0</p>"
                       navigator={
                         Object {
@@ -6577,11 +6811,14 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "row",
-                        "marginTop": 16,
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "marginBottom": 8,
+                          "marginTop": 16,
+                        },
+                      ]
                     }
                   >
                     <View
@@ -6932,7 +7169,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     testID="web-container.view"
                   >
                     <CanvasWebView
-                      heightCacheKey="5"
+                      heightCacheKey="2"
                       html="<p>1.0</p>"
                       navigator={
                         Object {
@@ -6965,11 +7202,14 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "row",
-                        "marginTop": 16,
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "marginBottom": 8,
+                          "marginTop": 16,
+                        },
+                      ]
                     }
                   >
                     <View
@@ -7166,7 +7406,507 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
         <View
           onLayout={[Function]}
           style={null}
-        />
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "row",
+                "paddingHorizontal": 16,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "flexDirection": "row",
+                    "width": 64,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "column",
+                      "justifyContent": "flex-start",
+                      "marginRight": 8,
+                      "width": 24,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "backgroundColor": "#f5f5f5",
+                        "flex": 1,
+                        "width": 1,
+                      }
+                    }
+                  />
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "column",
+                      "justifyContent": "flex-start",
+                      "marginRight": 8,
+                      "width": 24,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "backgroundColor": "#f5f5f5",
+                        "flex": 1,
+                        "width": 1,
+                      }
+                    }
+                  />
+                </View>
+              </View>
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "column",
+                    "justifyContent": "flex-start",
+                    "marginRight": 8,
+                    "marginTop": 10,
+                    "paddingTop": 6,
+                  }
+                }
+              >
+                <View />
+                <Avatar
+                  avatarURL="http://www.fillmurray.com/100/100"
+                  height={24}
+                  onPress={[Function]}
+                  style={
+                    Object {
+                      "backgroundColor": "#f5f5f5",
+                      "borderRadius": 12,
+                      "height": 24,
+                      "marginTop": 12.8,
+                      "width": 24,
+                    }
+                  }
+                  testID="reply.avatar"
+                  userName="The Donald"
+                />
+                <View
+                  style={
+                    Object {
+                      "backgroundColor": "#f5f5f5",
+                      "flex": 1,
+                      "width": 1,
+                    }
+                  }
+                />
+              </View>
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignSelf": "stretch",
+                      "marginTop": 12.8,
+                    }
+                  }
+                >
+                  <Text
+                    accessibilityTraits="header"
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "fontSize": 14,
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-semibold",
+                        },
+                      ]
+                    }
+                  >
+                    The Donald
+                  </Text>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "color": "#8B969E",
+                          "fontSize": 12,
+                          "marginBottom": 16,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
+                    May 23 at 11:12 AM
+                  </Text>
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                      }
+                    }
+                    testID="web-container.view"
+                  >
+                    <CanvasWebView
+                      heightCacheKey="3"
+                      html="<p>1.0</p>"
+                      navigator={
+                        Object {
+                          "dismiss": [Function],
+                          "dismissAllModals": [Function],
+                          "isModal": false,
+                          "pop": [Function],
+                          "show": [Function],
+                          "traitCollection": [Function],
+                        }
+                      }
+                      onError={[Function]}
+                      onFinishedLoading={[Function]}
+                      onHeightChange={[Function]}
+                      onMessage={[Function]}
+                      onNavigation={[Function]}
+                      scrollEnabled={false}
+                      source={
+                        Object {
+                          "baseURL": "http://mobiledev.instructure.com/",
+                          "html": "<p>1.0</p>",
+                        }
+                      }
+                      style={
+                        Object {
+                          "flex": 1,
+                        }
+                      }
+                    />
+                  </View>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "marginBottom": 8,
+                          "marginTop": 16,
+                        },
+                        Object {
+                          "paddingBottom": 8,
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "justifyContent": "flex-start",
+                        }
+                      }
+                    >
+                      <TouchableOpacity
+                        accessibilityTraits="button"
+                        hitSlop={
+                          Object {
+                            "bottom": 15,
+                            "left": 15,
+                            "right": 15,
+                            "top": 15,
+                          }
+                        }
+                        onPress={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": "flex-end",
+                            "paddingBottom": 2,
+                            "paddingRight": 2,
+                            "paddingTop": 2,
+                          }
+                        }
+                        testID="discussion.reply-btn"
+                        textAttributes={
+                          Object {
+                            "color": "#8B969E",
+                            "fontSize": 16,
+                            "fontWeight": "500",
+                          }
+                        }
+                      >
+                        <View>
+                          <Text
+                            accessible={true}
+                            allowFontScaling={true}
+                            ellipsizeMode="tail"
+                            style={
+                              Array [
+                                Object {
+                                  "fontFamily": ".SFUIDisplay",
+                                },
+                                Object {
+                                  "color": "#2D3B45",
+                                  "fontSize": 16,
+                                },
+                                Array [
+                                  Object {
+                                    "color": "#374A59",
+                                    "fontSize": 14,
+                                  },
+                                  Object {
+                                    "fontFamily": ".SFUIDisplay-bold",
+                                  },
+                                  Object {
+                                    "color": "#374A59",
+                                  },
+                                  Object {
+                                    "color": "#8B969E",
+                                    "fontSize": 16,
+                                    "fontWeight": "500",
+                                  },
+                                ],
+                                Object {
+                                  "fontFamily": ".SFUIDisplay-medium",
+                                },
+                              ]
+                            }
+                          >
+                            Reply
+                          </Text>
+                        </View>
+                      </TouchableOpacity>
+                      <Text
+                        accessible={false}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Array [
+                              Object {
+                                "alignSelf": "flex-end",
+                                "paddingBottom": 2,
+                                "paddingRight": 2,
+                                "paddingTop": 2,
+                              },
+                              Object {
+                                "alignSelf": "center",
+                                "color": "#C7CDD1",
+                                "paddingLeft": 10,
+                                "paddingRight": 10,
+                                "textAlign": "center",
+                              },
+                            ],
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
+                      >
+                        |
+                      </Text>
+                      <TouchableOpacity
+                        accessibilityTraits="button"
+                        hitSlop={
+                          Object {
+                            "bottom": 15,
+                            "left": 15,
+                            "right": 15,
+                            "top": 15,
+                          }
+                        }
+                        onPress={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": "flex-end",
+                            "paddingBottom": 2,
+                            "paddingRight": 2,
+                            "paddingTop": 2,
+                          }
+                        }
+                        testID="discussion.edit-btn"
+                        textAttributes={
+                          Object {
+                            "color": "#8B969E",
+                            "fontSize": 16,
+                            "fontWeight": "500",
+                          }
+                        }
+                      >
+                        <View>
+                          <Text
+                            accessible={true}
+                            allowFontScaling={true}
+                            ellipsizeMode="tail"
+                            style={
+                              Array [
+                                Object {
+                                  "fontFamily": ".SFUIDisplay",
+                                },
+                                Object {
+                                  "color": "#2D3B45",
+                                  "fontSize": 16,
+                                },
+                                Array [
+                                  Object {
+                                    "color": "#374A59",
+                                    "fontSize": 14,
+                                  },
+                                  Object {
+                                    "fontFamily": ".SFUIDisplay-bold",
+                                  },
+                                  Object {
+                                    "color": "#374A59",
+                                  },
+                                  Object {
+                                    "color": "#8B969E",
+                                    "fontSize": 16,
+                                    "fontWeight": "500",
+                                  },
+                                ],
+                                Object {
+                                  "fontFamily": ".SFUIDisplay-medium",
+                                },
+                              ]
+                            }
+                          >
+                            Edit
+                          </Text>
+                        </View>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "height": 27,
+                        "justifyContent": "flex-start",
+                        "marginBottom": 16,
+                        "marginTop": 16,
+                        "paddingRight": 16,
+                      }
+                    }
+                  >
+                    <TouchableOpacity
+                      accessibilityComponentType="button"
+                      accessibilityTraits="button"
+                      activeOpacity={0.2}
+                      delayLongPress={undefined}
+                      delayPressIn={undefined}
+                      delayPressOut={undefined}
+                      onLongPress={undefined}
+                      onPress={[Function]}
+                      onPressIn={undefined}
+                      onPressOut={undefined}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "#374A59",
+                            "borderRadius": 8,
+                            "overflow": "hidden",
+                            "padding": 10,
+                          },
+                          Object {
+                            "backgroundColor": "#374A59",
+                          },
+                          Object {
+                            "backgroundColor": "#f5f5f5",
+                            "borderColor": "#C7CDD1",
+                            "borderRadius": 4,
+                            "borderWidth": 1,
+                            "flex": 1,
+                            "padding": 5,
+                          },
+                        ]
+                      }
+                      testID="discussion.more-replies"
+                    >
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        style={
+                          Array [
+                            Object {
+                              "color": "#007aff",
+                              "fontSize": 17,
+                              "fontWeight": "500",
+                              "textAlign": "center",
+                            },
+                            null,
+                            Array [
+                              Object {
+                                "color": "white",
+                              },
+                              Object {
+                                "color": "white",
+                              },
+                              Object {
+                                "color": "#8B969E",
+                                "fontSize": 12,
+                                "fontWeight": "normal",
+                              },
+                            ],
+                            null,
+                          ]
+                        }
+                      >
+                        View more replies
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
       </View>
     </RCTScrollView>
   </View>
@@ -7201,7 +7941,7 @@ exports[`DiscussionDetails renders with no discussion 1`] = `
     }
   >
     <RCTScrollView
-      ItemSeparatorComponent={undefined}
+      ListHeaderComponent={null}
       data={Array []}
       disableVirtualization={false}
       extraData={
@@ -7216,6 +7956,7 @@ exports[`DiscussionDetails renders with no discussion 1`] = `
       initialNumToRender={10}
       keyExtractor={[Function]}
       maxToRenderPerBatch={10}
+      numColumns={1}
       onContentSizeChange={[Function]}
       onEndReachedThreshold={2}
       onLayout={[Function]}
@@ -7235,10 +7976,16 @@ exports[`DiscussionDetails renders with no discussion 1`] = `
       refreshing={false}
       renderItem={[Function]}
       scrollEventThrottle={50}
-      sections={Array []}
       stickyHeaderIndices={Array []}
-      stickySectionHeadersEnabled={true}
       updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={
+        Array [
+          Object {
+            "onViewableItemsChanged": [Function],
+            "viewabilityConfig": undefined,
+          },
+        ]
+      }
       windowSize={5}
     >
       <RCTRefreshControl />
@@ -7276,14 +8023,61 @@ exports[`DiscussionDetails renders with replies 1`] = `
     }
   >
     <RCTScrollView
-      ItemSeparatorComponent={undefined}
-      data={
-        Array [
-          Object {
-            "data": Array [
+      ListHeaderComponent={
+        <View>
+          <AssignmentSection
+            isFirstRow={true}
+            style={
               Object {
-                "allow_rating": false,
-                "assignment": Object {
+                "paddingBottom": 17,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 14,
+              }
+            }
+          >
+            <Heading1>
+              Dear Ivy Iversen, your last name cannot start with your first name
+            </Heading1>
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "marginTop": 2,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#8B969E",
+                    "fontWeight": "500",
+                    "marginRight": 14,
+                  }
+                }
+              >
+                20 pts
+              </Text>
+              <PublishedIcon
+                published={true}
+              />
+            </View>
+          </AssignmentSection>
+          <AssignmentSection
+            image={
+              Object {
+                "testUri": "../../../src/images/assignments/Calendar.png",
+              }
+            }
+            onPress={[Function]}
+            showDisclosureIndicator={true}
+            title="Due"
+          >
+            <DueDates
+              assignment={
+                Object {
                   "assignment_group_id": 1376,
                   "automatic_peer_reviews": false,
                   "course_id": "987654321",
@@ -7317,95 +8111,252 @@ exports[`DiscussionDetails renders with replies 1`] = `
                   "unlock_at": "2017-03-17T06:00:00Z",
                   "unpublishable": false,
                   "updated_at": "2017-03-17T19:15:25Z",
-                },
-                "assignment_id": "123456789",
-                "author": Object {
-                  "avatar_image_url": "http://www.fillmurray.com/100/100",
-                  "avatar_url": "http://www.fillmurray.com/100/100",
-                  "display_name": "The Donald",
-                  "html_url": "",
-                  "id": "1",
-                  "short_name": "The Donald",
-                },
-                "can_unpublish": true,
-                "delayed_post_at": null,
-                "discussion_subentry_count": 2,
-                "discussion_type": "side_comment",
-                "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
-                "id": "1",
-                "is_section_specific": false,
-                "last_reply_at": "2016-12-11T04:03:17Z",
-                "message": "<p>And why?</p>",
-                "only_graders_can_rate": false,
-                "participants": Object {
-                  "1": Object {
-                    "avatar_image_url": "http://www.fillmurray.com/100/100",
-                    "avatar_url": "http://www.fillmurray.com/100/100",
-                    "display_name": "The Donald",
-                    "html_url": "",
-                    "id": "1",
-                    "short_name": "The Donald",
-                  },
-                },
-                "permissions": Object {
-                  "attach": true,
-                  "delete": true,
-                  "reply": true,
-                  "update": true,
-                },
-                "pinned": false,
-                "position": 1,
-                "posted_at": "2016-11-11T04:03:17Z",
-                "published": true,
-                "read_state": "read",
-                "replies": Array [
-                  Object {
-                    "created_at": "2017-05-23T17:12:04Z",
-                    "id": "25472827",
-                    "message": "<p>1.0</p>",
-                    "parent_id": null,
-                    "rating_count": null,
-                    "rating_sum": null,
-                    "replies": Array [],
-                    "updated_at": "2017-05-23T17:12:04Z",
-                    "user_id": "1",
-                  },
-                ],
-                "require_initial_post": false,
-                "sort_by_rating": false,
-                "subscribed": true,
-                "title": "Dear Ivy Iversen, your last name cannot start with your first name",
-                "unlock_at": null,
-                "unread_count": 1,
-                "user_can_see_posts": true,
-                "user_name": "Ivy Iversen",
-              },
-            ],
-            "renderItem": [Function],
-            "title": "",
-          },
-          Object {
-            "data": Array [
+                }
+              }
+            />
+          </AssignmentSection>
+          <AssignmentSection
+            onPress={[Function]}
+            showDisclosureIndicator={true}
+            testID="discussions.submission-graphs"
+            title="Submissions"
+          >
+            <SubmissionBreakdownGraphSection
+              assignmentID="123456789"
+              courseID="1"
+              onPress={[Function]}
+              style={
+                Object {
+                  "marginRight": 40,
+                  "marginTop": 8,
+                }
+              }
+            />
+          </AssignmentSection>
+          <View
+            style={
               Object {
-                "created_at": "2017-05-23T17:12:04Z",
-                "depth": 0,
-                "id": "25472827",
-                "message": "<p>1.0</p>",
-                "myPath": Array [
-                  0,
-                ],
-                "parent_id": null,
-                "rating": undefined,
-                "rating_count": null,
-                "rating_sum": null,
-                "readState": "read",
-                "replies": Array [],
-                "updated_at": "2017-05-23T17:12:04Z",
-                "user_id": "1",
-              },
+                "backgroundColor": "white",
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
+                "flex": 1,
+                "paddingBottom": 16,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 16,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "justifyContent": "flex-start",
+                }
+              }
+            >
+              <Avatar
+                avatarURL="http://www.fillmurray.com/100/100"
+                height={32}
+                onPress={[Function]}
+                style={
+                  Object {
+                    "marginTop": 16,
+                  }
+                }
+                testID="discussion.details.avatar"
+                userName="The Donald"
+              />
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "flex-start",
+                      "flex": 1,
+                      "flexDirection": "column",
+                      "justifyContent": "flex-start",
+                    },
+                    Object {
+                      "marginLeft": 16,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  style={
+                    Object {
+                      "fontSize": 14,
+                      "fontWeight": "600",
+                    }
+                  }
+                >
+                  The Donald
+                </Text>
+                <Text
+                  style={
+                    Object {
+                      "color": "#A5AFB5",
+                      "fontSize": 12,
+                    }
+                  }
+                  testID="discussion.details.post-date-lbl"
+                >
+                  Nov 10 at 9:03 PM
+                </Text>
+              </View>
+              <View>
+                <TouchableHighlight
+                  accessibilityLabel="Reply"
+                  onPress={[Function]}
+                  testID="discussion.details-reply"
+                  underlayColor="transparent"
+                >
+                  <Image
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/rce/undo.png",
+                      }
+                    }
+                    style={
+                      Object {
+                        "height": 18,
+                        "tintColor": "#73818C",
+                        "width": 18,
+                      }
+                    }
+                  />
+                </TouchableHighlight>
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "paddingBottom": 16,
+                  "paddingTop": 16,
+                }
+              }
+            >
+              <CanvasWebView
+                html="<p>And why?</p>"
+                navigator={
+                  Object {
+                    "dismiss": [Function],
+                    "dismissAllModals": [Function],
+                    "isModal": false,
+                    "pop": [Function],
+                    "show": [Function],
+                    "traitCollection": [Function],
+                  }
+                }
+                scrollEnabled={false}
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              />
+            </View>
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "justifyContent": "flex-start",
+                }
+              }
+            >
+              <TouchableHighlight
+                accessibilityTraits="button"
+                onPress={[Function]}
+                testID="discussion-reply"
+                underlayColor="white"
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "#374A59",
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "borderRadius": 4,
+                        "flexDirection": "row",
+                        "flexWrap": "wrap",
+                        "justifyContent": "center",
+                        "paddingHorizontal": 16,
+                        "paddingVertical": 10,
+                      },
+                    ]
+                  }
+                >
+                  <Image
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/rce/undo.png",
+                      }
+                    }
+                    style={
+                      Object {
+                        "height": 18,
+                        "tintColor": "white",
+                        "width": 18,
+                      }
+                    }
+                  />
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "white",
+                        },
+                        Object {
+                          "color": "white",
+                          "fontSize": 14,
+                          "fontWeight": "500",
+                          "marginLeft": 4,
+                        },
+                      ]
+                    }
+                  >
+                    Reply
+                  </Text>
+                </View>
+              </TouchableHighlight>
+            </View>
+          </View>
+          <AssignmentSection
+            style={
+              Object {
+                "paddingBottom": 0,
+              }
+            }
+          >
+            <Heading1>
+              Replies
+            </Heading1>
+          </AssignmentSection>
+          <View />
+        </View>
+      }
+      data={
+        Array [
+          Object {
+            "created_at": "2017-05-23T17:12:04Z",
+            "depth": 0,
+            "id": "25472827",
+            "message": "<p>1.0</p>",
+            "myPath": Array [
+              0,
             ],
-            "renderItem": [Function],
-            "title": "",
+            "parent_id": null,
+            "rating": undefined,
+            "rating_count": null,
+            "rating_sum": null,
+            "readState": "read",
+            "replies": Array [],
+            "updated_at": "2017-05-23T17:12:04Z",
+            "user_id": "1",
           },
         ]
       }
@@ -7422,6 +8373,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
       initialNumToRender={10}
       keyExtractor={[Function]}
       maxToRenderPerBatch={10}
+      numColumns={1}
       onContentSizeChange={[Function]}
       onEndReachedThreshold={2}
       onLayout={[Function]}
@@ -7441,154 +8393,20 @@ exports[`DiscussionDetails renders with replies 1`] = `
       refreshing={false}
       renderItem={[Function]}
       scrollEventThrottle={50}
-      sections={
-        Array [
-          Object {
-            "data": Array [
-              Object {
-                "allow_rating": false,
-                "assignment": Object {
-                  "assignment_group_id": 1376,
-                  "automatic_peer_reviews": false,
-                  "course_id": "987654321",
-                  "created_at": "2017-03-17T19:15:25Z",
-                  "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-                  "due_at": "2037-06-01T05:59:00Z",
-                  "grade_group_students_individually": false,
-                  "grading_type": "points",
-                  "group_category_id": null,
-                  "has_overrides": false,
-                  "html_url": "http://hostname.tld/whatever",
-                  "id": "123456789",
-                  "lock_at": "2037-06-01T05:59:59Z",
-                  "name": "learn to write code",
-                  "needs_grading_count": 0,
-                  "only_visible_to_overrides": false,
-                  "overrides": Array [],
-                  "peer_reviews": false,
-                  "points_possible": 20,
-                  "position": 1,
-                  "published": true,
-                  "rubric": null,
-                  "rubric_assessment": Object {},
-                  "rubric_settings": null,
-                  "submission_types": Array [
-                    "online_text_entry",
-                    "online_url",
-                    "media_recording",
-                    "online_upload",
-                  ],
-                  "unlock_at": "2017-03-17T06:00:00Z",
-                  "unpublishable": false,
-                  "updated_at": "2017-03-17T19:15:25Z",
-                },
-                "assignment_id": "123456789",
-                "author": Object {
-                  "avatar_image_url": "http://www.fillmurray.com/100/100",
-                  "avatar_url": "http://www.fillmurray.com/100/100",
-                  "display_name": "The Donald",
-                  "html_url": "",
-                  "id": "1",
-                  "short_name": "The Donald",
-                },
-                "can_unpublish": true,
-                "delayed_post_at": null,
-                "discussion_subentry_count": 2,
-                "discussion_type": "side_comment",
-                "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
-                "id": "1",
-                "is_section_specific": false,
-                "last_reply_at": "2016-12-11T04:03:17Z",
-                "message": "<p>And why?</p>",
-                "only_graders_can_rate": false,
-                "participants": Object {
-                  "1": Object {
-                    "avatar_image_url": "http://www.fillmurray.com/100/100",
-                    "avatar_url": "http://www.fillmurray.com/100/100",
-                    "display_name": "The Donald",
-                    "html_url": "",
-                    "id": "1",
-                    "short_name": "The Donald",
-                  },
-                },
-                "permissions": Object {
-                  "attach": true,
-                  "delete": true,
-                  "reply": true,
-                  "update": true,
-                },
-                "pinned": false,
-                "position": 1,
-                "posted_at": "2016-11-11T04:03:17Z",
-                "published": true,
-                "read_state": "read",
-                "replies": Array [
-                  Object {
-                    "created_at": "2017-05-23T17:12:04Z",
-                    "id": "25472827",
-                    "message": "<p>1.0</p>",
-                    "parent_id": null,
-                    "rating_count": null,
-                    "rating_sum": null,
-                    "replies": Array [],
-                    "updated_at": "2017-05-23T17:12:04Z",
-                    "user_id": "1",
-                  },
-                ],
-                "require_initial_post": false,
-                "sort_by_rating": false,
-                "subscribed": true,
-                "title": "Dear Ivy Iversen, your last name cannot start with your first name",
-                "unlock_at": null,
-                "unread_count": 1,
-                "user_can_see_posts": true,
-                "user_name": "Ivy Iversen",
-              },
-            ],
-            "renderItem": [Function],
-            "title": "",
-          },
-          Object {
-            "data": Array [
-              Object {
-                "created_at": "2017-05-23T17:12:04Z",
-                "depth": 0,
-                "id": "25472827",
-                "message": "<p>1.0</p>",
-                "myPath": Array [
-                  0,
-                ],
-                "parent_id": null,
-                "rating": undefined,
-                "rating_count": null,
-                "rating_sum": null,
-                "readState": "read",
-                "replies": Array [],
-                "updated_at": "2017-05-23T17:12:04Z",
-                "user_id": "1",
-              },
-            ],
-            "renderItem": [Function],
-            "title": "",
-          },
-        ]
-      }
-      stickyHeaderIndices={
-        Array [
-          0,
-          3,
-        ]
-      }
-      stickySectionHeadersEnabled={true}
+      stickyHeaderIndices={Array []}
       updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={
+        Array [
+          Object {
+            "onViewableItemsChanged": [Function],
+            "viewabilityConfig": undefined,
+          },
+        ]
+      }
       windowSize={5}
     >
       <RCTRefreshControl />
       <View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        />
         <View
           onLayout={[Function]}
           style={null}
@@ -8626,14 +9444,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
         <View
           onLayout={[Function]}
           style={null}
-        />
-        <View
-          onLayout={[Function]}
-          style={null}
-        />
-        <View
-          onLayout={[Function]}
-          style={null}
         >
           <View
             style={
@@ -8801,11 +9611,17 @@ exports[`DiscussionDetails renders with replies 1`] = `
                   </View>
                   <View
                     style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "row",
-                        "marginTop": 16,
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "marginBottom": 8,
+                          "marginTop": 16,
+                        },
+                        Object {
+                          "paddingBottom": 8,
+                        },
+                      ]
                     }
                   >
                     <View
@@ -8999,10 +9815,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
             </View>
           </View>
         </View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        />
       </View>
     </RCTScrollView>
   </View>
@@ -9037,7 +9849,7 @@ exports[`DiscussionDetails renders without a discussion 1`] = `
     }
   >
     <RCTScrollView
-      ItemSeparatorComponent={undefined}
+      ListHeaderComponent={null}
       data={Array []}
       disableVirtualization={false}
       extraData={
@@ -9052,6 +9864,7 @@ exports[`DiscussionDetails renders without a discussion 1`] = `
       initialNumToRender={10}
       keyExtractor={[Function]}
       maxToRenderPerBatch={10}
+      numColumns={1}
       onContentSizeChange={[Function]}
       onEndReachedThreshold={2}
       onLayout={[Function]}
@@ -9071,10 +9884,16 @@ exports[`DiscussionDetails renders without a discussion 1`] = `
       refreshing={false}
       renderItem={[Function]}
       scrollEventThrottle={50}
-      sections={Array []}
       stickyHeaderIndices={Array []}
-      stickySectionHeadersEnabled={true}
       updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={
+        Array [
+          Object {
+            "onViewableItemsChanged": [Function],
+            "viewabilityConfig": undefined,
+          },
+        ]
+      }
       windowSize={5}
     >
       <RCTRefreshControl />

@@ -38,7 +38,7 @@ import colors from '../../../common/colors'
 import images from '../../../images'
 import RichTextEditor from '../../../common/components/rich-text-editor/RichTextEditor'
 import { extractDateFromString } from '../../../utils/dateUtils'
-import ModalActivityIndicator from '../../../common/components/ModalActivityIndicator'
+import ModalOverlay from '../../../common/components/ModalOverlay'
 import { default as EditDiscussionActions } from '../../discussions/edit/actions'
 import { alertError } from '../../../redux/middleware/error-handler'
 import UnmetRequirementBanner from '../../../common/components/UnmetRequirementBanner'
@@ -153,7 +153,7 @@ export class AnnouncementEdit extends Component<Props, any> {
         dismissButtonTitle={i18n('Cancel')}
       >
         <View style={{ flex: 1 }}>
-          <ModalActivityIndicator text={i18n('Saving')} visible={this.state.pending}/>
+          <ModalOverlay text={i18n('Saving')} visible={this.state.pending}/>
           <UnmetRequirementBanner text={i18n('Invalid field')} visible={!this.state.isValid} testID='announcement.edit.unmet-requirement-banner'/>
           <KeyboardAwareScrollView
             style={style.container}

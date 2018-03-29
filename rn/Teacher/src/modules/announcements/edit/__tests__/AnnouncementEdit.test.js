@@ -198,7 +198,7 @@ describe('AnnouncementEdit', () => {
     })
     await component.prop('rightBarButtons')[0].action()
     component.update()
-    const modal = component.find('ModalActivityIndicator')
+    const modal = component.find('ModalOverlay')
     expect(modal.prop('visible')).toBeTruthy()
   })
 

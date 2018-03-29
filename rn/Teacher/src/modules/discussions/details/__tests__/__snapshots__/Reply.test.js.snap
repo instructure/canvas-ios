@@ -151,11 +151,14 @@ exports[`DiscussionReplies ratings renders rating after user rates for first tim
       />
       <View
         style={
-          Object {
-            "flex": 1,
-            "flexDirection": "row",
-            "marginTop": 16,
-          }
+          Array [
+            Object {
+              "flex": 1,
+              "flexDirection": "row",
+              "marginBottom": 8,
+              "marginTop": 16,
+            },
+          ]
         }
       >
         <View
@@ -420,11 +423,14 @@ exports[`DiscussionReplies ratings renders rating after user updates rating 1`] 
       />
       <View
         style={
-          Object {
-            "flex": 1,
-            "flexDirection": "row",
-            "marginTop": 16,
-          }
+          Array [
+            Object {
+              "flex": 1,
+              "flexDirection": "row",
+              "marginBottom": 8,
+              "marginTop": 16,
+            },
+          ]
         }
       >
         <View
@@ -701,11 +707,14 @@ exports[`DiscussionReplies renders 1`] = `
       />
       <View
         style={
-          Object {
-            "flex": 1,
-            "flexDirection": "row",
-            "marginTop": 16,
-          }
+          Array [
+            Object {
+              "flex": 1,
+              "flexDirection": "row",
+              "marginBottom": 8,
+              "marginTop": 16,
+            },
+          ]
         }
       >
         <View

@@ -41,11 +41,12 @@ exports[`Compose renders 1`] = `
       }
     }
   >
-    <ModalActivityIndicator
+    <ModalOverlay
       activityIndicatorColor="#fff"
       animationType="fade"
       backgroundColor="rgba(0,0,0,0.8)"
       height={170}
+      showActivityIndicator={true}
       text="Sending..."
       transparent={true}
       visible={false}
@@ -231,11 +232,12 @@ exports[`Compose renders after picking a course 1`] = `
       }
     }
   >
-    <ModalActivityIndicator
+    <ModalOverlay
       activityIndicatorColor="#fff"
       animationType="fade"
       backgroundColor="rgba(0,0,0,0.8)"
       height={170}
+      showActivityIndicator={true}
       text="Sending..."
       transparent={true}
       visible={false}
@@ -421,11 +423,12 @@ exports[`Compose renders reply 1`] = `
       }
     }
   >
-    <ModalActivityIndicator
+    <ModalOverlay
       activityIndicatorColor="#fff"
       animationType="fade"
       backgroundColor="rgba(0,0,0,0.8)"
       height={170}
+      showActivityIndicator={true}
       text="Sending..."
       transparent={true}
       visible={false}
@@ -690,11 +693,12 @@ exports[`Compose renders with passed in recipients 1`] = `
       }
     }
   >
-    <ModalActivityIndicator
+    <ModalOverlay
       activityIndicatorColor="#fff"
       animationType="fade"
       backgroundColor="rgba(0,0,0,0.8)"
       height={170}
+      showActivityIndicator={true}
       text="Sending..."
       transparent={true}
       visible={false}

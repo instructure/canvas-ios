@@ -1,5 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`renders ModalOverlayText correctly 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Array [
+      Object {
+        "fontFamily": ".SFUIDisplay",
+      },
+      Object {
+        "color": "#fff",
+        "fontFamily": ".SFUIDisplay-semibold",
+        "fontSize": 24,
+      },
+      undefined,
+    ]
+  }
+/>
+`;
+
 exports[`renders heading1 correctly 1`] = `
 <Text
   accessibilityTraits="header"
@@ -36,27 +57,6 @@ exports[`renders heading2 correctly 1`] = `
         "color": "#2D3B45",
         "fontFamily": ".SFUIDisplay-bold",
         "fontSize": 16,
-      },
-      undefined,
-    ]
-  }
-/>
-`;
-
-exports[`renders modalActivityIndicatorAlertText correctly 1`] = `
-<Text
-  accessible={true}
-  allowFontScaling={true}
-  ellipsizeMode="tail"
-  style={
-    Array [
-      Object {
-        "fontFamily": ".SFUIDisplay",
-      },
-      Object {
-        "color": "#fff",
-        "fontFamily": ".SFUIDisplay-semibold",
-        "fontSize": 24,
       },
       undefined,
     ]

@@ -26,7 +26,7 @@ import {
   Heading1,
   Heading2,
   TextInput,
-  ModalActivityIndicatorAlertText,
+  ModalOverlayText,
   Separated,
 } from '../text'
 
@@ -82,9 +82,9 @@ test('renders paragraph correctly', () => {
   expect(tree).toMatchSnapshot()
 })
 
-test('renders modalActivityIndicatorAlertText correctly', () => {
+test('renders ModalOverlayText correctly', () => {
   let tree = renderer.create(
-    <ModalActivityIndicatorAlertText />
+    <ModalOverlayText />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })

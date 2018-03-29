@@ -24,7 +24,7 @@ import Screen from '../../../routing/Screen'
 import RichTextEditor from '../../../common/components/rich-text-editor/RichTextEditor'
 import Actions from './actions'
 import { alertError } from '../../../redux/middleware/error-handler'
-import ModalActivityIndicator from '../../../common/components/ModalActivityIndicator'
+import ModalOverlay from '../../../common/components/ModalOverlay'
 import { isTeacher } from '../../app'
 import Images from '../../../images'
 import {
@@ -90,7 +90,7 @@ export class EditReply extends React.Component<Props, any> {
         dismissButtonTitle={i18n('Cancel')}
       >
         <View style={{ flex: 1 }}>
-          <ModalActivityIndicator text={i18n('Saving')} visible={this.state.pending} />
+          <ModalOverlay text={i18n('Saving')} visible={this.state.pending} />
           <RichTextEditor
             ref={(r) => { this.editor = r }}
             onChangeValue={this._valueChanged('message')}

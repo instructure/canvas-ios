@@ -68,8 +68,8 @@ export function TextInput ({ style, ...props }: Object) {
   return <ReactNative.TextInput style={[styles.font, styles.textInput, style, { fontFamily: font }]} {...props} />
 }
 
-export function ModalActivityIndicatorAlertText ({ style, ...props }: Object) {
-  return <ReactNative.Text style={[styles.font, styles.modalActivityIndicatorAlertText, style]} {...props} />
+export function ModalOverlayText ({ style, ...props }: Object) {
+  return <ReactNative.Text style={[styles.font, styles.modalOverlayText, style]} {...props} />
 }
 
 export function UnmetRequirementBannerText ({ style, ...props }: Object) {
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
   textInput: {
     fontSize: 17,
   },
-  modalActivityIndicatorAlertText: {
+  modalOverlayText: {
     fontSize: 24,
     color: '#fff',
     fontFamily: SEMI_BOLD_FONT,

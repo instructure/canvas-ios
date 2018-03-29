@@ -127,7 +127,7 @@ describe('DiscussionEdit', () => {
   it('shows modal when saving', async () => {
     const tree = shallow(<DiscussionEdit {...props} />)
     await tapDone(tree)
-    expect(tree.find('ModalActivityIndicator').prop('visible')).toBeTruthy()
+    expect(tree.find('ModalOverlay').prop('visible')).toBeTruthy()
   })
 
   it('alerts save errors', async () => {

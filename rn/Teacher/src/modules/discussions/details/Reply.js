@@ -61,6 +61,7 @@ export type Props = {
   isRootReply?: boolean,
   discussionLockedForUser?: boolean,
   rateEntry: Function,
+  isLastReply: boolean,
 }
 
 type State = {
@@ -248,8 +249,12 @@ export default class Reply extends Component<Props, State> {
       color: colors.grey4,
       fontSize: 16,
     }
+    let containerStyles = [style.footerButtonsContainer]
+    if (this.props.isLastReply) {
+      containerStyles.push({ paddingBottom: 8 })
+    }
     return (
-      <View style={style.footerButtonsContainer}>
+      <View style={containerStyles}>
         <View style={style.footerActionsContainer}>
           <LinkButton style={style.footer} textAttributes={buttonTextAttributes} onPress={this._actionReply} testID='discussion.reply-btn'>
             {i18n('Reply')}
@@ -455,6 +460,7 @@ const style = StyleSheet.create({
   },
   footerButtonsContainer: {
     marginTop: global.style.defaultPadding,
+    marginBottom: 8,
     flexDirection: 'row',
     flex: 1,
   },

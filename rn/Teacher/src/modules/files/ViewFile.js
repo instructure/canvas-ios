@@ -25,6 +25,7 @@ import {
   ActivityIndicator,
   TouchableHighlight,
   SafeAreaView,
+  Clipboard,
 } from 'react-native'
 import {
   downloadFile,
@@ -43,6 +44,7 @@ import Video from '../../common/components/Video'
 import { isTeacher } from '../app'
 import CanvasWebView from '../../common/components/CanvasWebView'
 import { alertError } from '../../redux/middleware/error-handler'
+import ModalOverlay from '../../common/components/ModalOverlay'
 
 type Props = {
   context?: CanvasContext,
@@ -65,9 +67,12 @@ type State = {
   course: ?Course,
   error: ?string,
   forcedRefresh: boolean, // If there is a failure we'll do a single retry
+  showCopied: boolean,
 }
 
 export default class ViewFile extends Component<Props, State> {
+  modalTimeout: ?TimeoutID
+
   static defaultProps = {
     getCourse: api.getCourse,
     getFile: api.getFile,
@@ -83,6 +88,7 @@ export default class ViewFile extends Component<Props, State> {
     loadingDone: false,
     error: null,
     forcedRefresh: false,
+    showCopied: false,
   }
 
   componentWillMount () {
@@ -169,6 +175,9 @@ export default class ViewFile extends Component<Props, State> {
 
   componentWillUnmount () {
     if (this.state.jobID) stopDownload(this.state.jobID)
+    if (this.modalTimeout) {
+      clearTimeout(this.modalTimeout)
+    }
   }
 
   handleDone = async () => {
@@ -212,6 +221,16 @@ export default class ViewFile extends Component<Props, State> {
     }
   }
 
+  copyURL = () => {
+    if (this.props.file) {
+      Clipboard.setString(this.props.file.url.split('?')[0])
+      this.setState({ showCopied: true })
+      this.modalTimeout = setTimeout(() => {
+        this.setState({ showCopied: false })
+      }, 1000)
+    }
+  }
+
   renderPreview () {
     const { file } = this.state
     const { error, localPath, width } = this.state
@@ -231,7 +250,13 @@ export default class ViewFile extends Component<Props, State> {
       case 'image':
         return (
           <View style={styles.imageContainer}>
-            <Image source={{ uri: localPath }} resizeMode='contain' style={styles.image} onError={this.handleError} />
+            <Image
+              source={{ uri: localPath }}
+              resizeMode='contain'
+              style={styles.image}
+              onError={this.handleError}
+              testID='view-file.image'
+            />
           </View>
         )
       case 'audio':
@@ -295,6 +320,11 @@ export default class ViewFile extends Component<Props, State> {
         showDismissButton={false}
       >
         <View style={styles.container} onLayout={this.handleLayout}>
+          <ModalOverlay
+            text={i18n('Copied!')}
+            visible={this.state.showCopied}
+            showActivityIndicator={false}
+          />
           {!loadingDone ? (
             <View style={styles.centeredContainer}>
               <ActivityIndicator />
@@ -312,6 +342,16 @@ export default class ViewFile extends Component<Props, State> {
               accessibilityLabel={i18n('Share')}
             >
               <Image source={Images.share} style={styles.toolbarIcon} />
+            </TouchableHighlight>
+            <TouchableHighlight
+              onPress={this.copyURL}
+              style={styles.toolbarButton}
+              underlayColor='transparent'
+              accessibilityTraits='button'
+              testID='view-file.copy-btn'
+              accessibilityLabel={i18n('Copy Link')}
+            >
+              <Image source={Images.rce.link} style={styles.toolbarIcon} />
             </TouchableHighlight>
           </SafeAreaView>
         </View>
@@ -354,6 +394,7 @@ const styles = StyleSheet.create({
     borderTopColor: Colors.grey3,
     backgroundColor: Colors.grey1,
     flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   toolbarButton: {
     paddingLeft: global.style.defaultPadding,

@@ -34,11 +34,12 @@ exports[`DiscussionEdit renders 1`] = `
       }
     }
   >
-    <ModalActivityIndicator
+    <ModalOverlay
       activityIndicatorColor="#fff"
       animationType="fade"
       backgroundColor="rgba(0,0,0,0.8)"
       height={170}
+      showActivityIndicator={true}
       text="Saving"
       transparent={true}
       visible={false}
@@ -248,11 +249,12 @@ exports[`DiscussionEdit renders new form 1`] = `
       }
     }
   >
-    <ModalActivityIndicator
+    <ModalOverlay
       activityIndicatorColor="#fff"
       animationType="fade"
       backgroundColor="rgba(0,0,0,0.8)"
       height={170}
+      showActivityIndicator={true}
       text="Saving"
       transparent={true}
       visible={false}
@@ -455,11 +457,12 @@ exports[`DiscussionEdit updates from props 1`] = `
       }
     }
   >
-    <ModalActivityIndicator
+    <ModalOverlay
       activityIndicatorColor="#fff"
       animationType="fade"
       backgroundColor="rgba(0,0,0,0.8)"
       height={170}
+      showActivityIndicator={true}
       text="Saving"
       transparent={true}
       visible={false}
@@ -669,11 +672,12 @@ exports[`DiscussionEdit updates with new props 1`] = `
       }
     }
   >
-    <ModalActivityIndicator
+    <ModalOverlay
       activityIndicatorColor="#fff"
       animationType="fade"
       backgroundColor="rgba(0,0,0,0.8)"
       height={170}
+      showActivityIndicator={true}
       text="Saving"
       transparent={true}
       visible={true}

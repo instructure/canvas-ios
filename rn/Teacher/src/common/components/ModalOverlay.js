@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { View, StyleSheet, ActivityIndicator, Modal } from 'react-native'
-import { ModalActivityIndicatorAlertText } from '../text'
+import { ModalOverlayText } from '../text'
 
 type Props = {
   style?: Object,
@@ -31,9 +31,10 @@ type Props = {
   backgroundColor: string,
   height: number,
   width: number,
+  showActivityIndicator: boolean,
 }
 
-export default class ModalActivityIndicator extends React.Component<Props> {
+export default class ModalOverlay extends React.Component<Props> {
   static defaultProps = {
     animationType: 'fade',
     transparent: true,
@@ -43,6 +44,7 @@ export default class ModalActivityIndicator extends React.Component<Props> {
     backgroundColor: 'rgba(0,0,0,0.8)',
     width: 170,
     height: 170,
+    showActivityIndicator: true,
   }
 
   render () {
@@ -56,11 +58,16 @@ export default class ModalActivityIndicator extends React.Component<Props> {
           <View style={[style.background, { backgroundColor: this.props.backgroundColor }, { width: this.props.width, height: this.props.height }]}>
             <View style={style.textContainer}>
               <View style={style.textSubContainer}>
-              <ModalActivityIndicatorAlertText style={[style.textContent, this.props.textStyle]}>{this.props.text}</ModalActivityIndicatorAlertText>
+              <ModalOverlayText style={[style.textContent, this.props.textStyle]}>{this.props.text}</ModalOverlayText>
               </View>
             </View>
-            <ActivityIndicator size='large' color={this.props.activityIndicatorColor} style={style.activityIndicator}
-            />
+            {this.props.showActivityIndicator &&
+              <ActivityIndicator
+                size='large'
+                color={this.props.activityIndicatorColor}
+                style={style.activityIndicator}
+              />
+            }
           </View>
         </View>
       </Modal>

@@ -23,7 +23,7 @@ import {
   StyleSheet,
   TouchableHighlight,
   Image,
-  SectionList,
+  FlatList,
   ActionSheetIOS,
   AlertIOS,
   NativeModules,
@@ -112,6 +112,7 @@ export type Props
 }
 
 export class DiscussionDetails extends Component<Props, any> {
+
   constructor (props: Props) {
     super(props)
     this.state = {
@@ -122,6 +123,7 @@ export class DiscussionDetails extends Component<Props, any> {
       entry_ratings: props.entryRatings || {},
       initialPostRequired: false,
     }
+    this.state.flatReplies = this.rootRepliesData()
   }
 
   componentWillUnmount () {
@@ -156,6 +158,7 @@ export class DiscussionDetails extends Component<Props, any> {
     this.setState({
       unread_entries: nextProps.unreadEntries,
       entry_ratings: nextProps.entryRatings || {},
+      flatReplies: this.rootRepliesData(),
     })
   }
 
@@ -178,8 +181,7 @@ export class DiscussionDetails extends Component<Props, any> {
     }
   }
 
-  renderDetails = ({ item, index }: { item: Discussion, index: number }) => {
-    const discussion = item
+  renderDetails = (discussion: Discussion) => {
     const showReplies = discussion.replies && discussion.replies.length > 0
     const points = this._points(discussion)
     let user = discussion.author
@@ -327,7 +329,8 @@ export class DiscussionDetails extends Component<Props, any> {
     } else return (<View/>)
   }
 
-  renderReply = (discussion: Discussion) => ({ item, index }: { item: any, index: number }) => {
+  renderReply = ({ item, index }: { item: any, index: number }) => {
+    const discussion = this.props.discussion || {}
     const reply = item
     let participants = discussion && discussion.participants || []
     let path = (this.state.rootNodePath.length > 1) ? this.state.rootNodePath.concat(reply.myPath.slice(1, reply.myPath.length)) : reply.myPath
@@ -355,6 +358,7 @@ export class DiscussionDetails extends Component<Props, any> {
           rating={reply.rating}
           canRate={this.props.canRate}
           showRating={discussion.allow_rating}
+          isLastReply={this.state.flatReplies.length - 1 === index}
         />
       </View>
     )
@@ -393,15 +397,6 @@ export class DiscussionDetails extends Component<Props, any> {
   }
 
   render () {
-    const { discussion } = this.props
-    let data = []
-    if (discussion) {
-      data.push({ data: [discussion], title: '', renderItem: this.renderDetails })
-      if (discussion.replies) {
-        data.push({ data: this.rootRepliesData() || [], title: '', renderItem: this.renderReply(discussion) })
-      }
-    }
-
     return (
       <Screen
         onTraitCollectionChange={this.onTraitCollectionChange.bind(this)}
@@ -418,10 +413,12 @@ export class DiscussionDetails extends Component<Props, any> {
         ]}
         subtitle={this.props.courseName}>
         <View style={style.sectionListContainer}>
-          <SectionList
+          <FlatList
             refreshing={this.props.refreshing}
             onRefresh={this.props.refresh}
-            sections={data}
+            ListHeaderComponent={this.props.discussion ? this.renderDetails(this.props.discussion) : null}
+            data={this.state.flatReplies}
+            renderItem={this.renderReply}
             onViewableItemsChanged={this._markViewableAsRead}
             initialNumToRender={10}
             extraData={{

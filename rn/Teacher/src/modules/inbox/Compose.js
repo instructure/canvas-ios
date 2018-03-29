@@ -38,7 +38,7 @@ import DisclosureIndicator from '../../common/components/DisclosureIndicator'
 import RowWithSwitch from '../../common/components/rows/RowWithSwitch'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import AutoGrowingTextInput from '../../common/components/AutoGrowingTextInput'
-import ModalActivityIndicator from '../../common/components/ModalActivityIndicator'
+import ModalOverlay from '../../common/components/ModalOverlay'
 import AddressBookToken from './components/AddressBookToken'
 import { createConversation, addMessage, isAbort } from '../../canvas-api'
 import { Text } from '../../common/text'
@@ -261,7 +261,7 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
         ]}
       >
         <View style={{ flex: 1 }}>
-          <ModalActivityIndicator text={i18n('Sending...')} visible={this.state.pending}/>
+          <ModalOverlay text={i18n('Sending...')} visible={this.state.pending}/>
           <KeyboardAwareScrollView
             style={styles.compose}
             ref={e => { this.scrollView = e }}

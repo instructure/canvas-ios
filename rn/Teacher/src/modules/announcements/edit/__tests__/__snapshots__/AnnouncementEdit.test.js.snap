@@ -790,11 +790,12 @@ exports[`AnnouncementEdit updates with new props 1`] = `
       }
     }
   >
-    <ModalActivityIndicator
+    <ModalOverlay
       activityIndicatorColor="#fff"
       animationType="fade"
       backgroundColor="rgba(0,0,0,0.8)"
       height={170}
+      showActivityIndicator={true}
       text="Saving"
       transparent={true}
       visible={true}

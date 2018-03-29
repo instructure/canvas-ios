@@ -34,7 +34,7 @@ import i18n from 'format-message'
 import colors from '../../../common/colors'
 import { mapStateToProps } from './map-state-to-props'
 import CourseSettingsActions from './actions'
-import ModalActivityIndicator from '../../../common/components/ModalActivityIndicator'
+import ModalOverlay from '../../../common/components/ModalOverlay'
 import { alertError } from '../../../redux/middleware/error-handler'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { Text, TextInput } from '../../../common/text'
@@ -118,7 +118,7 @@ export class CourseSettings extends Component<Props, any> {
         dismissButtonTitle={i18n('Cancel')}
       >
         <View style={{ flex: 1 }}>
-          <ModalActivityIndicator text={i18n('Saving')} visible={this.state.pending} />
+          <ModalOverlay text={i18n('Saving')} visible={this.state.pending} />
           <KeyboardAwareScrollView
             style={styles.scrollView}>
             <View style={styles.header}>

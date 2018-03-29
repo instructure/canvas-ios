@@ -41,7 +41,7 @@ import RowWithDateInput from '../../../common/components/rows/RowWithDateInput'
 import colors from '../../../common/colors'
 import RichTextEditor from '../../../common/components/rich-text-editor/RichTextEditor'
 import Images from '../../../images'
-import ModalActivityIndicator from '../../../common/components/ModalActivityIndicator'
+import ModalOverlay from '../../../common/components/ModalOverlay'
 import { default as EditDiscussionActions } from '../../discussions/edit/actions'
 import { default as DiscussionDetailsActions } from '../../discussions/details/actions'
 import { alertError } from '../../../redux/middleware/error-handler'
@@ -201,7 +201,7 @@ export class DiscussionEdit extends Component<Props, any> {
         dismissButtonTitle={i18n('Cancel')}
       >
         <View style={{ flex: 1 }}>
-          <ModalActivityIndicator text={i18n('Saving')} visible={this.state.pending}/>
+          <ModalOverlay text={i18n('Saving')} visible={this.state.pending}/>
           <UnmetRequirementBanner
             text={i18n('Invalid field')}
             visible={Boolean(Object.keys(this.state.errors).length)}

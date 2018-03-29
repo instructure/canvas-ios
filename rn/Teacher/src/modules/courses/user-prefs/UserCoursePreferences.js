@@ -37,7 +37,7 @@ import Screen from '../../../routing/Screen'
 import Navigator from '../../../routing/Navigator'
 import colors from '../../../common/colors'
 import { alertError } from '../../../redux/middleware/error-handler'
-import ModalActivityIndicator from '../../../common/components/ModalActivityIndicator'
+import ModalOverlay from '../../../common/components/ModalOverlay'
 
 const HapticFeedback = NativeModules.HapticFeedback
 
@@ -146,7 +146,7 @@ export class UserCoursePreferences extends Component<Props, any> {
 
   _renderComponent () {
     return (<View style={{ flex: 1 }} onLayout={this.onLayout}>
-          <ModalActivityIndicator text={i18n('Saving')} visible={this.state.pending} />
+          <ModalOverlay text={i18n('Saving')} visible={this.state.pending} />
           <RefreshableScrollView
             style={{ flex: 1 }}
             refreshing={this.props.refreshing}

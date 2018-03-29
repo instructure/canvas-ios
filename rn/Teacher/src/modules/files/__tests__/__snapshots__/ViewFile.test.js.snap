@@ -38,6 +38,17 @@ exports[`ViewFile renders loading while fetching the file 1`] = `
       }
     }
   >
+    <ModalOverlay
+      activityIndicatorColor="#fff"
+      animationType="fade"
+      backgroundColor="rgba(0,0,0,0.8)"
+      height={170}
+      showActivityIndicator={false}
+      text="Copied!"
+      transparent={true}
+      visible={false}
+      width={170}
+    />
     <View
       style={
         Object {
@@ -61,6 +72,7 @@ exports[`ViewFile renders loading while fetching the file 1`] = `
           "borderTopColor": "#A5AFB5",
           "borderTopWidth": 0.5,
           "flexDirection": "row",
+          "justifyContent": "space-between",
         }
       }
     >
@@ -84,6 +96,38 @@ exports[`ViewFile renders loading while fetching the file 1`] = `
           source={
             Object {
               "testUri": "../../../src/images/share.png",
+            }
+          }
+          style={
+            Object {
+              "height": 24,
+              "resizeMode": "contain",
+              "tintColor": "#008EE2",
+              "width": 24,
+            }
+          }
+        />
+      </TouchableHighlight>
+      <TouchableHighlight
+        accessibilityLabel="Copy Link"
+        accessibilityTraits="button"
+        activeOpacity={0.85}
+        onPress={[Function]}
+        style={
+          Object {
+            "paddingBottom": 10,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "paddingTop": 10,
+          }
+        }
+        testID="view-file.copy-btn"
+        underlayColor="transparent"
+      >
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/images/rce/link.png",
             }
           }
           style={

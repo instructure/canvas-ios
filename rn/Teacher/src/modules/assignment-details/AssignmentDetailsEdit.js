@@ -26,7 +26,7 @@ import i18n from 'format-message'
 import EditSectionHeader from '../../common/components/EditSectionHeader'
 import AssignmentDatesEditor from './components/AssignmentDatesEditor'
 import { TextInput, Text } from '../../common/text'
-import ModalActivityIndicator from '../../common/components/ModalActivityIndicator'
+import ModalOverlay from '../../common/components/ModalOverlay'
 import UnmetRequirementBanner from '../../common/components/UnmetRequirementBanner'
 import RequiredFieldSubscript from '../../common/components/RequiredFieldSubscript'
 import { alertError } from '../../redux/middleware/error-handler'
@@ -169,7 +169,7 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
         showDismissButton={false}
       >
         <View style={{ flex: 1 }}>
-          <ModalActivityIndicator text={savingText} visible={this.state.pending}/>
+          <ModalOverlay text={savingText} visible={this.state.pending}/>
           <UnmetRequirementBanner text={this.state.validation.invalid} visible={this.state.validation.invalid} testID={'assignmentDetailsEdit.unmet-requirement-banner'}/>
           <KeyboardAwareScrollView
             style={style.container}

@@ -20,18 +20,22 @@
 
 import 'react-native'
 import React from 'react'
-import ModalActivityIndicator from '../components/ModalActivityIndicator'
-
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer'
+import ModalOverlay from '../components/ModalOverlay'
+import { shallow } from 'enzyme'
 
 const props = {
-  title: 'hello world',
+  text: 'hello world',
 }
 
-test('renders modal activity indicator', () => {
-  let tree = renderer.create(
-    <ModalActivityIndicator {...props} />
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
+describe('ModalActivitiyIndicator', () => {
+  it('renders modal activity indicator', () => {
+    let tree = shallow(<ModalOverlay {...props} />)
+    expect(tree.find('ModalOverlayText').props().children).toEqual(props.text)
+    expect(tree.find('ActivityIndicator').length).toEqual(1)
+  })
+
+  it('doesnt render the activity indicator when told not to', () => {
+    let tree = shallow(<ModalOverlay {...props} showActivityIndicator={false} />)
+    expect(tree.find('AcitivityIndicator').length).toEqual(0)
+  })
 })

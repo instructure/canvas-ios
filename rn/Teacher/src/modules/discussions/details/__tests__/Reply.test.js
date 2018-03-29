@@ -63,6 +63,7 @@ describe('DiscussionReplies', () => {
       showRating: false,
       canRate: false,
       rateEntry: jest.fn(),
+      isLastReply: false,
     }
     jest.clearAllMocks()
   })

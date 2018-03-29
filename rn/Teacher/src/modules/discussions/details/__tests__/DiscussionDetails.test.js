@@ -110,7 +110,7 @@ describe('DiscussionDetails', () => {
       new DiscussionDetails({
         ...props,
         discussion,
-      }).renderDetails({ item: discussion, index: 0 })
+      }).renderDetails(discussion)
     )
     let subtitle = view.find('SubTitle')
     expect(subtitle.props().children).toContain('A Section')
@@ -210,7 +210,7 @@ describe('DiscussionDetails', () => {
     const navigator = template.navigator({
       show: jest.fn(),
     })
-    let tree = shallow(new DiscussionDetails({ ...props, navigator }).renderDetails({ item: props.discussion, index: 0 }))
+    let tree = shallow(new DiscussionDetails({ ...props, navigator }).renderDetails(props.discussion))
     let button = tree.find('[testID="discussion.details-reply"]')
     button.simulate('press')
     expect(navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/1/reply', { modal: true }, {
@@ -640,9 +640,7 @@ describe('DiscussionDetails', () => {
   })
 
   it('does not show require_initial_post message on render', () => {
-    const screen = shallow(<DiscussionDetails {...props} />)
-    const { data: [discussion], renderItem } = screen.find('SectionList').prop('sections')[0]
-    const details = shallow(renderItem({ item: discussion, index: 0 }))
+    const details = shallow(new DiscussionDetails(props).renderDetails(props.discussion))
     expect(details.find('[testID="discussions.details.require_initial_post.message"]')).toHaveLength(0)
   })
 
@@ -651,8 +649,7 @@ describe('DiscussionDetails', () => {
     const screen = shallow(<DiscussionDetails {...props} />)
     screen.setProps({ error: 'require_initial_post' })
     await screen.update()
-    const { data: [discussion], renderItem } = screen.find('SectionList').prop('sections')[0]
-    const details = shallow(renderItem({ item: discussion, index: 0 }))
+    const details = shallow(screen.instance().renderDetails(props.discussion))
     expect(details.find('[testID="discussions.details.require_initial_post.message"]')).toHaveLength(1)
   })
 

@@ -17,7 +17,7 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 import React from 'react'
 import { shallow } from 'enzyme'
-import { ActionSheetIOS } from 'react-native'
+import { ActionSheetIOS, Clipboard } from 'react-native'
 import {
   exists,
   downloadFile,
@@ -26,14 +26,15 @@ import {
 
 import ViewFile from '../ViewFile'
 
-const template = {
-  ...require('../../../__templates__/course'),
-  ...require('../../../__templates__/file'),
-}
+import * as templates from '../../../__templates__/index'
 
-jest.mock('ActionSheetIOS', () => ({
-  showShareActionSheetWithOptions: jest.fn(),
-}))
+jest
+  .mock('ActionSheetIOS', () => ({
+    showShareActionSheetWithOptions: jest.fn(),
+  }))
+  .mock('Clipboard', () => ({
+    setString: jest.fn(),
+  }))
 
 jest.mock('react-native-fs', () => ({
   CachesDirectoryPath: 'caches',
@@ -47,6 +48,7 @@ jest.mock('react-native-fs', () => ({
 
 const selectors = {
   share: '[testID="view-file.share-btn"]',
+  copy: '[testID="view-file.copy-btn"]',
 }
 
 const updatedState = (tree: ShallowWrapper) => new Promise(resolve => tree.setState({}, resolve))
@@ -58,7 +60,7 @@ describe('ViewFile', () => {
       contextID: '1',
       context: 'courses',
       fileID: '24',
-      file: template.file({
+      file: templates.file({
         id: '24',
         filename: 'picture.jpg',
       }),
@@ -67,7 +69,7 @@ describe('ViewFile', () => {
         dismiss: jest.fn(),
       },
       getCourse: jest.fn(() => Promise.resolve({
-        data: template.course({ name: 'New Course' }),
+        data: templates.course({ name: 'New Course' }),
       })),
     }
   })
@@ -128,7 +130,7 @@ describe('ViewFile', () => {
     await Promise.resolve() // wait for file download.
     await updatedState(tree)
     tree.update()
-    expect(tree.find('Image').length).toBe(2)
+    expect(tree.find('[testID="view-file.image"]').length).toBe(1)
   })
 
   it('tries to fetch image again after failing', async () => {
@@ -185,6 +187,25 @@ describe('ViewFile', () => {
       ActionSheetIOS.showShareActionSheetWithOptions.mock.calls[0][1]()
       ActionSheetIOS.showShareActionSheetWithOptions.mock.calls[0][2]()
     }).not.toThrow()
+  })
+
+  it('can copy the file url without any query params to the clipboard', async () => {
+    let originalURL = props.file.url
+    props.file.url = originalURL + '?verifier=somegobblygook'
+    const tree = shallow(<ViewFile {...props} />)
+    await tree.instance().fetchFile(props.file)
+    tree.update()
+    tree.find(selectors.copy).simulate('press')
+    expect(Clipboard.setString).toHaveBeenCalledWith(originalURL)
+  })
+
+  it('shows the copied modal when the copy url button is pressed', async () => {
+    const tree = shallow(<ViewFile {...props} />)
+    await tree.instance().fetchFile(props.file)
+    tree.update()
+    tree.find(selectors.copy).simulate('press')
+    tree.update()
+    expect(tree.find('ModalOverlay').props().visible).toEqual
   })
 
   it('updates the title if the edit screen changes it', async () => {
