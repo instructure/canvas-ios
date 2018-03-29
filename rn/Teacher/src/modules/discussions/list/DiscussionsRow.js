@@ -25,14 +25,14 @@ import {
 } from 'react-native'
 import i18n from 'format-message'
 
-import Row from '../../../common/components/rows/Row'
-import AccessIcon from '../../../common/components/AccessIcon'
-import AccessLine from '../../../common/components/AccessLine'
-import { formattedDueDateWithStatus, formattedDueDate } from '../../../common/formatters'
-import { extractDateFromString } from '../../../utils/dateUtils'
-import Images from '../../../images/'
-import { DotSeparated, Text } from '../../../common/text'
-import { isTeacher } from '../../app'
+import Row from '@common/components/rows/Row'
+import AccessIcon from '@common/components/AccessIcon'
+import AccessLine from '@common/components/AccessLine'
+import { formattedDueDateWithStatus, formattedDueDate } from '@common/formatters'
+import { extractDateFromString } from '@utils/dateUtils'
+import Images from '@images'
+import { DotSeparated, Text } from '@common/text'
+import { isTeacher } from '@modules/app'
 
 export type Props = {
   discussion: Discussion,

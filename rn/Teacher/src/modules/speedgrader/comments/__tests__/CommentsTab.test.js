@@ -21,20 +21,20 @@ import { ActionSheetIOS, AlertIOS, AppState, FlatList } from 'react-native'
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { CommentsTab, mapStateToProps } from '../CommentsTab'
-import { setSession } from '../../../../canvas-api'
+import { setSession } from '@canvas-api'
 import DrawerState from '../../utils/drawer-state'
-import explore from '../../../../../test/helpers/explore'
-import setProps from '../../../../../test/helpers/setProps'
-import Permissions from '../../../../common/permissions'
+import explore from '@test/helpers/explore'
+import setProps from '@test/helpers/setProps'
+import Permissions from '@common/permissions'
 
 const templates = {
-  ...require('../../../../redux/__templates__/app-state'),
-  ...require('../../../../__templates__/submissions'),
-  ...require('../../../../__templates__/session'),
-  ...require('../../../../__templates__/attachment'),
-  ...require('../../../../__templates__/mediaComment'),
-  ...require('../../../../__templates__/assignments'),
-  ...require('../../../../__templates__/quiz'),
+  ...require('@redux/__templates__/app-state'),
+  ...require('@templates/submissions'),
+  ...require('@templates/session'),
+  ...require('@templates/attachment'),
+  ...require('@templates/mediaComment'),
+  ...require('@templates/assignments'),
+  ...require('@templates/quiz'),
 }
 
 jest

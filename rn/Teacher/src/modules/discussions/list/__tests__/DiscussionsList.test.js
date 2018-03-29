@@ -21,8 +21,8 @@ import { ActionSheetIOS, AlertIOS } from 'react-native'
 import renderer from 'react-test-renderer'
 
 import { DiscussionsList, mapStateToProps, type Props } from '../DiscussionsList'
-import explore from '../../../../../test/helpers/explore'
-import app from '../../../app'
+import explore from '@test/helpers/explore'
+import app from '@modules/app'
 
 jest
   .mock('Button', () => 'Button')
@@ -38,9 +38,9 @@ jest
   }))
 
 const template = {
-  ...require('../../../../__templates__/helm'),
-  ...require('../../../../__templates__/discussion'),
-  ...require('../../../../redux/__templates__/app-state'),
+  ...require('@templates/helm'),
+  ...require('@templates/discussion'),
+  ...require('@redux/__templates__/app-state'),
 }
 
 describe('DiscussionsList', () => {

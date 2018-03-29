@@ -31,14 +31,14 @@ import i18n from 'format-message'
 
 import { default as ListActions } from './actions'
 import { default as EditActions } from '../edit/actions'
-import CourseActions from '../../courses/actions'
-import refresh from '../../../utils/refresh'
+import CourseActions from '@modules/courses/actions'
+import refresh from '@utils/refresh'
 import DiscusionsRow from './DiscussionsRow'
-import SectionHeader from '../../../common/components/rows/SectionHeader'
-import Screen from '../../../routing/Screen'
-import Images from '../../../images'
-import ActivityIndicatorView from '../../../common/components/ActivityIndicatorView'
-import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
+import SectionHeader from '@common/components/rows/SectionHeader'
+import Screen from '@routing/Screen'
+import Images from '@images'
+import ActivityIndicatorView from '@common/components/ActivityIndicatorView'
+import ListEmptyComponent from '@common/components/ListEmptyComponent'
 
 const { refreshCourse } = CourseActions
 const { refreshDiscussions } = ListActions

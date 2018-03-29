@@ -17,8 +17,8 @@
 // @flow
 import { shallow } from 'enzyme'
 import React from 'react'
-import * as template from '../../../../__templates__'
-import app from '../../../app'
+import * as template from '@templates'
+import app from '@modules/app'
 import DiscussionsRow from '../DiscussionsRow'
 
 describe('DiscussionsRow', () => {

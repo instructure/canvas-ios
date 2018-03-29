@@ -11,6 +11,11 @@
     "react",
     "import"
   ],
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
+    }
+  },
   "globals": {
     "fetch": true,
     "fail": true,
