@@ -259,7 +259,7 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
         getItemLayout={this.getItemLayout}
         showsHorizontalScrollIndicator={false}
         onMomentumScrollEnd={this.scrollEnded}
-        contentOffset={{ x: this.state.size.width * this.state.currentPageIndex }}
+        initialScrollIndex={this.state.currentPageIndex}
         style={{ marginLeft: -PAGE_GUTTER_HALF_WIDTH, marginRight: -PAGE_GUTTER_HALF_WIDTH }}
       />
     )

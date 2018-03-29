@@ -115,11 +115,6 @@ exports[`SpeedGrader only sets submissions once 1`] = `
     }
   >
     <FlatList
-      contentOffset={
-        Object {
-          "x": 0,
-        }
-      }
       data={
         Array [
           Object {
@@ -150,6 +145,7 @@ exports[`SpeedGrader only sets submissions once 1`] = `
       getItemLayout={[Function]}
       horizontal={true}
       initialNumToRender={null}
+      initialScrollIndex={0}
       keyExtractor={[Function]}
       keyboardShouldPersistTaps="handled"
       maxToRenderPerBatch={10}
@@ -595,11 +591,6 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                               }
                   >
                               <FlatList
-                                          contentOffset={
-                                                      Object {
-                                                                  "x": 0,
-                                                                }
-                                          }
                                           data={
                                                       Array [
                                                                   Object {
@@ -619,6 +610,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                                           getItemLayout={[Function]}
                                           horizontal={true}
                                           initialNumToRender={null}
+                                          initialScrollIndex={0}
                                           keyExtractor={[Function]}
                                           keyboardShouldPersistTaps="handled"
                                           maxToRenderPerBatch={10}
@@ -815,11 +807,6 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                               }
                   >
                               <FlatList
-                                          contentOffset={
-                                                      Object {
-                                                                  "x": 0,
-                                                                }
-                                          }
                                           data={
                                                       Array [
                                                                   Object {
@@ -839,6 +826,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                                           getItemLayout={[Function]}
                                           horizontal={true}
                                           initialNumToRender={null}
+                                          initialScrollIndex={0}
                                           keyExtractor={[Function]}
                                           keyboardShouldPersistTaps="handled"
                                           maxToRenderPerBatch={10}
@@ -1338,11 +1326,6 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                               }
                   >
                               <FlatList
-                                          contentOffset={
-                                                      Object {
-                                                                  "x": 0,
-                                                                }
-                                          }
                                           data={
                                                       Array [
                                                                   Object {
@@ -1362,6 +1345,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                                           getItemLayout={[Function]}
                                           horizontal={true}
                                           initialNumToRender={null}
+                                          initialScrollIndex={0}
                                           keyExtractor={[Function]}
                                           keyboardShouldPersistTaps="handled"
                                           maxToRenderPerBatch={10}
