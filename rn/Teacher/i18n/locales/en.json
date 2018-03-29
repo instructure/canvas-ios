@@ -1133,6 +1133,9 @@
   "request_a_feature_3c8e2079": {
     "message": "Request a Feature"
   },
+  "request_could_not_be_completed_157615ef": {
+    "message": "Request could not be completed."
+  },
   "require_an_access_code_46a02601": {
     "message": "Require an Access Code"
   },
@@ -1357,6 +1360,9 @@
   },
   "there_are_no_discussions_to_display_37bc437f": {
     "message": "There are no discussions to display."
+  },
+  "there_are_no_files_to_display_d3eeb317": {
+    "message": "There are no files to display."
   },
   "there_are_no_pages_to_display_ce6ca4d3": {
     "message": "There are no pages to display."
