@@ -36,6 +36,16 @@ open class SplitViewController: UISplitViewController {
             return viewControllers.first!.preferredStatusBarStyle
         }
     }
+    
+    open override func showDetailViewController(_ vc: UIViewController, sender: Any?) {
+        super.showDetailViewController(vc, sender: sender)
+        self.masterNavigationController?.syncStyles()
+    }
+    
+    open override func show(_ vc: UIViewController, sender: Any?) {
+        super.show(vc, sender: sender)
+        self.masterNavigationController?.syncStyles()
+    }
 }
 
 extension SplitViewController: UISplitViewControllerDelegate {

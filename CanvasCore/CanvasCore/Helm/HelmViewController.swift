@@ -27,7 +27,7 @@ protocol HelmScreen {
     var screenConfigRendered: Bool { get set }
 }
 
-class TitleView: UIView {
+class HelmTitleView: UIView {
     var contentStackView: UIStackView!
     var titleLabel: UILabel!
     var subtitleLabel: UILabel!
@@ -132,7 +132,7 @@ public final class HelmViewController: UIViewController, HelmScreen {
             self.screenConfig.moduleName = self.moduleName
         }
     }
-    fileprivate var twoLineTitleView: TitleView?
+    fileprivate var twoLineTitleView: HelmTitleView?
     public override var title: String?  {
         didSet {
             navigationItem.title = title
@@ -195,7 +195,6 @@ public final class HelmViewController: UIViewController, HelmScreen {
         
         HelmManager.shared.register(screen: self)
         setupSensibleDefaults()
-        
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -205,7 +204,6 @@ public final class HelmViewController: UIViewController, HelmScreen {
     private func setupSensibleDefaults() {
         automaticallyAdjustsScrollViewInsets = false
     }
-    
     
     // MARK: - View lifecycle
     
@@ -318,17 +316,15 @@ public final class HelmViewController: UIViewController, HelmScreen {
         if let backgroundColor = screenConfig[PropKeys.backgroundColor] {
             view.backgroundColor = RCTConvert.uiColor(backgroundColor)
         }
-
+        
         // Nav bar props
-        let drawUnderNavBar = screenConfig[PropKeys.drawUnderNavBar] as? Bool ?? false
-        if (drawUnderNavBar) {
+        if (screenConfig.drawUnderNavigationBar) {
             edgesForExtendedLayout.insert(.top)
         } else {
             edgesForExtendedLayout.remove(.top)
         }
         
-        let drawUnderTabBar = screenConfig[PropKeys.drawUnderTabBar] as? Bool ?? false
-        if (drawUnderTabBar) {
+        if (screenConfig.drawUnderTabBar) {
             edgesForExtendedLayout.insert(.bottom)
         } else {
             edgesForExtendedLayout.remove(.bottom)
@@ -347,7 +343,7 @@ public final class HelmViewController: UIViewController, HelmScreen {
         }
         else {
             navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
-            navigationController?.navigationBar.isTranslucent = screenConfig[PropKeys.navBarTranslucent] as? Bool ?? false
+            navigationController?.navigationBar.isTranslucent = false
         }
         
         if let navBarStyle = screenConfig[PropKeys.navBarStyle] as? String {
@@ -530,10 +526,12 @@ public final class HelmViewController: UIViewController, HelmScreen {
         if let backButtonTitle = screenConfig[PropKeys.backButtonTitle] as? String {
             self.navigationItem.backBarButtonItem = UIBarButtonItem(title: backButtonTitle, style: .plain, target: nil, action: nil)
         }
+        
+        self.navigationController?.syncStyles()
     }
     
-    private func titleView(with title: String, and subtitle: String, given config: HelmScreenConfig) -> TitleView {
-        let titleView = TitleView(frame: CGRect(x: 0, y: 0, width: 0, height: 30))
+    private func titleView(with title: String, and subtitle: String, given config: HelmScreenConfig) -> HelmTitleView {
+        let titleView = HelmTitleView(frame: CGRect(x: 0, y: 0, width: 0, height: 30))
         titleView.titleLabel.text = title
         titleView.subtitleLabel.text = subtitle
         if let testID = screenConfig["testID"] as? String {

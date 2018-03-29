@@ -36,4 +36,12 @@ class HelmScreenConfig {
     var modalPresentationStyle: String? {
         return self[PropKeys.modalPresentationStyle] as? String
     }
+    
+    var drawUnderNavigationBar: Bool {
+        return self[PropKeys.drawUnderNavBar] as? Bool ?? true
+    }
+    
+    var drawUnderTabBar: Bool {
+        return self[PropKeys.drawUnderTabBar] as? Bool ?? true
+    }
 }

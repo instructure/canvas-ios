@@ -38,5 +38,14 @@ public extension UINavigationController {
         detail.navigationBar.shadowImage = master.navigationBar.shadowImage
         detail.navigationBar.isTranslucent = master.navigationBar.isTranslucent
         detail.navigationBar.barStyle = master.navigationBar.barStyle
+        
+        if let titleView = detail.topViewController?.navigationItem.titleView as? HelmTitleView {
+            var color: UIColor = (master.navigationBar.titleTextAttributes?[NSForegroundColorAttributeName] as? UIColor) ?? .black
+            if (master.navigationBar.barStyle != .default) {
+                color = .white
+            }
+            titleView.titleLabel.textColor = color
+            titleView.subtitleLabel.textColor = color
+        }
     }
 }
