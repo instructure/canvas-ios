@@ -232,6 +232,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
               }
             >
               <CanvasWebView
+                automaticallySetHeight={true}
                 html="<p>And why?</p>"
                 navigator={
                   Object {
@@ -243,7 +244,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                     "traitCollection": [Function],
                   }
                 }
-                scrollEnabled={false}
+                scrollEnabled={true}
                 style={
                   Object {
                     "flex": 1,
@@ -1211,6 +1212,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                   testID="web-container.view"
                 >
                   <CanvasWebView
+                    automaticallySetHeight={true}
                     html="<p>And why?</p>"
                     navigator={
                       Object {
@@ -1227,7 +1229,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                     onHeightChange={[Function]}
                     onMessage={[Function]}
                     onNavigation={[Function]}
-                    scrollEnabled={false}
+                    scrollEnabled={true}
                     source={
                       Object {
                         "baseURL": "http://mobiledev.instructure.com/",
@@ -1927,6 +1929,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
               }
             >
               <CanvasWebView
+                automaticallySetHeight={true}
                 html="<p>And why?</p>"
                 navigator={
                   Object {
@@ -1938,7 +1941,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                     "traitCollection": [Function],
                   }
                 }
-                scrollEnabled={false}
+                scrollEnabled={true}
                 style={
                   Object {
                     "flex": 1,
@@ -2269,6 +2272,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                   testID="web-container.view"
                 >
                   <CanvasWebView
+                    automaticallySetHeight={true}
                     html="<p>And why?</p>"
                     navigator={
                       Object {
@@ -2285,7 +2289,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                     onHeightChange={[Function]}
                     onMessage={[Function]}
                     onNavigation={[Function]}
-                    scrollEnabled={false}
+                    scrollEnabled={true}
                     source={
                       Object {
                         "baseURL": "http://mobiledev.instructure.com/",
@@ -2726,6 +2730,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
               }
             >
               <CanvasWebView
+                automaticallySetHeight={true}
                 html="<p>And why?</p>"
                 navigator={
                   Object {
@@ -2737,7 +2742,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                     "traitCollection": [Function],
                   }
                 }
-                scrollEnabled={false}
+                scrollEnabled={true}
                 style={
                   Object {
                     "flex": 1,
@@ -3158,6 +3163,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                   testID="web-container.view"
                 >
                   <CanvasWebView
+                    automaticallySetHeight={true}
                     html="<p>And why?</p>"
                     navigator={
                       Object {
@@ -3174,7 +3180,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                     onHeightChange={[Function]}
                     onMessage={[Function]}
                     onNavigation={[Function]}
-                    scrollEnabled={false}
+                    scrollEnabled={true}
                     source={
                       Object {
                         "baseURL": "http://mobiledev.instructure.com/",
@@ -3874,6 +3880,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
               }
             >
               <CanvasWebView
+                automaticallySetHeight={true}
                 html="<p>And why?</p>"
                 navigator={
                   Object {
@@ -3885,7 +3892,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                     "traitCollection": [Function],
                   }
                 }
-                scrollEnabled={false}
+                scrollEnabled={true}
                 style={
                   Object {
                     "flex": 1,
@@ -4847,6 +4854,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                   testID="web-container.view"
                 >
                   <CanvasWebView
+                    automaticallySetHeight={true}
                     html="<p>And why?</p>"
                     navigator={
                       Object {
@@ -4863,7 +4871,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                     onHeightChange={[Function]}
                     onMessage={[Function]}
                     onNavigation={[Function]}
-                    scrollEnabled={false}
+                    scrollEnabled={true}
                     source={
                       Object {
                         "baseURL": "http://mobiledev.instructure.com/",
@@ -5212,6 +5220,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
               }
             >
               <CanvasWebView
+                automaticallySetHeight={true}
                 html="<p>And why?</p>"
                 navigator={
                   Object {
@@ -5223,7 +5232,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     "traitCollection": [Function],
                   }
                 }
-                scrollEnabled={false}
+                scrollEnabled={true}
                 style={
                   Object {
                     "flex": 1,
@@ -6404,6 +6413,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                   testID="web-container.view"
                 >
                   <CanvasWebView
+                    automaticallySetHeight={true}
                     html="<p>And why?</p>"
                     navigator={
                       Object {
@@ -6420,7 +6430,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     onHeightChange={[Function]}
                     onMessage={[Function]}
                     onNavigation={[Function]}
-                    scrollEnabled={false}
+                    scrollEnabled={true}
                     source={
                       Object {
                         "baseURL": "http://mobiledev.instructure.com/",
@@ -8238,6 +8248,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
               }
             >
               <CanvasWebView
+                automaticallySetHeight={true}
                 html="<p>And why?</p>"
                 navigator={
                   Object {
@@ -8249,7 +8260,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                     "traitCollection": [Function],
                   }
                 }
-                scrollEnabled={false}
+                scrollEnabled={true}
                 style={
                   Object {
                     "flex": 1,
@@ -9243,6 +9254,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                   testID="web-container.view"
                 >
                   <CanvasWebView
+                    automaticallySetHeight={true}
                     html="<p>And why?</p>"
                     navigator={
                       Object {
@@ -9259,7 +9271,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                     onHeightChange={[Function]}
                     onMessage={[Function]}
                     onNavigation={[Function]}
-                    scrollEnabled={false}
+                    scrollEnabled={true}
                     source={
                       Object {
                         "baseURL": "http://mobiledev.instructure.com/",

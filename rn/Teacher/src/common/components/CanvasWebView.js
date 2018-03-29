@@ -26,6 +26,7 @@ export type Props = {
   html?: ?string,
   source?: ?{ html?: ?string, uri?: ?string } | ?number,
   style?: any,
+  automaticallySetHeight?: boolean,
   scrollEnabled: boolean,
   navigator: Navigator,
   contentInset?: { top?: number, left?: number, bottom?: number, right?: number },
@@ -73,9 +74,9 @@ export default class CanvasWebView extends Component<Props, State> {
   }
 
   onHeightChange = (event: { nativeEvent: { height: number } }) => {
-    if (this.props.scrollEnabled) return
-    const height = event.nativeEvent.height
-    this.setHeight(height)
+    if (this.props.automaticallySetHeight || !this.props.scrollEnabled) {
+      this.setHeight(event.nativeEvent.height)
+    }
   }
 
   setHeight = (webViewHeight: ?number) => {

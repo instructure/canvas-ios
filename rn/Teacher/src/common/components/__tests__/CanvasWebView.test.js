@@ -93,7 +93,16 @@ describe('CanvasWebView', () => {
     expect(tree.find('WebView').props().style.height).toEqual(42)
   })
 
-  it('does not update height to fit content if scroll disabled', async () => {
+  it('updates height to fit content if automaticallySetHeight', async () => {
+    const height = 42
+    const tree = shallow(<CanvasWebView {...props} scrollEnabled={true} automaticallySetHeight />)
+    const webView = tree.find('WebView')
+    webView.simulate('HeightChange', { nativeEvent: { height } })
+    tree.update()
+    expect(tree.find('WebView').props().style.height).toEqual(42)
+  })
+
+  it('does not update height to fit content if scroll enabled', async () => {
     const height = 42
     const tree = shallow(<CanvasWebView {...props} scrollEnabled={true} />)
     const webView = tree.find('WebView')
