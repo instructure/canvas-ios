@@ -84,6 +84,7 @@ func applySharedAppConfiguration(to builder: PSPDFConfigurationBuilder) {
     builder.naturalDrawingAnnotationEnabled = true
 
     builder.propertiesForAnnotations = [
+        // .note: [["color"]], // doesn't act like the others, so disable for now
         .highlight: [["color"]],
         PSPDFAnnotationStateVariantIdentifier(.ink, .inkVariantPen): [["color"]],
         .square: [["color"]],
@@ -93,8 +94,8 @@ func applySharedAppConfiguration(to builder: PSPDFConfigurationBuilder) {
         .freeText: [["fontSize"]],
     ]
     
-    builder.overrideClass(PSPDFNoteAnnotation.self, with: CanvadocsCommentAnnotation.self)
-    builder.overrideClass(PSPDFNoteAnnotationView.self, with: CanvadocsCommentAnnotationView.self)
+    builder.overrideClass(PSPDFNoteAnnotation.self, with: CanvadocsPointAnnotation.self)
+    builder.overrideClass(PSPDFNoteAnnotationView.self, with: CanvadocsPointAnnotationView.self)
     builder.overrideClass(PSPDFAnnotationToolbar.self, with: CanvadocsAnnotationToolbar.self)
 }
 

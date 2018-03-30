@@ -11,13 +11,13 @@ import PSPDFKit
 import SwiftSimplify
 
 enum CanvadocsAnnotationType {
-    case highlight(color: String, boundingBoxes: [CGRect], rect: CGRect, contents: String?)
-    case strikeout(color: String, boundingBoxes: [CGRect], rect: CGRect, contents: String?)
+    case highlight(color: String, boundingBoxes: [CGRect], rect: CGRect)
+    case strikeout(color: String, boundingBoxes: [CGRect], rect: CGRect)
     case freeText(fontInfo: (family: String, size: Int), text: String, rect: CGRect, color: String)
-    case comment(text: String, rect: CGRect)
+    case point(color: String, rect: CGRect)
     case commentReply(parent: String, text: String)
-    case ink(gestures: [CanvadocsInkAnnotationGesture], color: String, rect: CGRect, contents: String?)
-    case square(color: String, width: CGFloat, rect: CGRect, contents: String?)
+    case ink(gestures: [CanvadocsInkAnnotationGesture], color: String, rect: CGRect)
+    case square(color: String, width: CGFloat, rect: CGRect)
     case unsupported
 }
 
@@ -98,14 +98,12 @@ struct CanvadocsAnnotation: Codable {
             let boxes = try CanvadocsAnnotation.decodeCoords(with: decoder, in: container)
             let color = try container.decode(String.self, forKey: .color)
             let rect = try CanvadocsAnnotation.decodeRect(with: decoder, in: container)
-            let contents = try container.decodeIfPresent(String.self, forKey: .contents)
-            self.type = .highlight(color: color, boundingBoxes: boxes, rect: rect, contents: contents)
+            self.type = .highlight(color: color, boundingBoxes: boxes, rect: rect)
         case "strikeout":
             let boxes = try CanvadocsAnnotation.decodeCoords(with: decoder, in: container)
             let color = try container.decode(String.self, forKey: .color)
             let rect = try CanvadocsAnnotation.decodeRect(with: decoder, in: container)
-            let contents = try container.decodeIfPresent(String.self, forKey: .contents)
-            self.type = .strikeout(color: color, boundingBoxes: boxes, rect: rect, contents: contents)
+            self.type = .strikeout(color: color, boundingBoxes: boxes, rect: rect)
         case "freetext":
             let fontInfoStr = try container.decodeIfPresent(String.self, forKey: .font)
             let sizeStr = fontInfoStr?.matches(for: "^[^\\d]*(\\d+)").first ?? "12"
@@ -115,10 +113,10 @@ struct CanvadocsAnnotation: Codable {
             let color = try container.decodeIfPresent(String.self, forKey: .color) ?? "#000000"
             let rect = try CanvadocsAnnotation.decodeRect(with: decoder, in: container)
             self.type = .freeText(fontInfo: (family: family, size: size), text: text ?? "", rect: rect, color: color)
-        case "text":
-            let text = try container.decodeIfPresent(String.self, forKey: .contents)
+        case "text": // point
+            let color = try container.decodeIfPresent(String.self, forKey: .color) ?? CanvadocsAnnotationColor.blue.rawValue
             let rect = try CanvadocsAnnotation.decodeRect(with: decoder, in: container)
-            self.type = .comment(text: text ?? "", rect: rect)
+            self.type = .point(color: color, rect: rect)
         case "commentReply":
             let parent = try container.decode(String.self, forKey: .parent)
             let text = try container.decodeIfPresent(String.self, forKey: .contents)
@@ -127,14 +125,12 @@ struct CanvadocsAnnotation: Codable {
             let gestures = try CanvadocsAnnotation.decodeInklist(with: decoder, in: container)
             let rect = try CanvadocsAnnotation.decodeRect(with: decoder, in: container)
             let color = try container.decodeIfPresent(String.self, forKey: .color) ?? "#000000"
-            let contents = try container.decodeIfPresent(String.self, forKey: .contents)
-            self.type = .ink(gestures: gestures, color: color, rect: rect, contents: contents)
+            self.type = .ink(gestures: gestures, color: color, rect: rect)
         case "square":
             let color = try container.decodeIfPresent(String.self, forKey: .color) ?? "#000000"
             let width: CGFloat = try container.decodeIfPresent(CGFloat.self, forKey: .width) ?? 1.0
             let rect = try CanvadocsAnnotation.decodeRect(with: decoder, in: container)
-            let contents = try container.decodeIfPresent(String.self, forKey: .contents)
-            self.type = .square(color: color, width: width, rect: rect, contents: contents)
+            self.type = .square(color: color, width: width, rect: rect)
         default:
             self.type = .unsupported
         }
@@ -156,7 +152,7 @@ struct CanvadocsAnnotation: Codable {
         try container.encode(page, forKey: .page)
         
         switch type {
-        case .highlight(let color, let boundingBoxes, let rect, let contents), .strikeout(let color, let boundingBoxes, let rect, let contents):
+        case .highlight(let color, let boundingBoxes, let rect), .strikeout(let color, let boundingBoxes, let rect):
             try container.encode(color, forKey: .color)
             var boxesContainer = container.nestedUnkeyedContainer(forKey: .coords)
             for boundingBox in boundingBoxes {
@@ -182,9 +178,6 @@ struct CanvadocsAnnotation: Codable {
             default:
                 break
             }
-            if let contents = contents, contents.lengthOfBytes(using: .utf8) > 0 {
-                try container.encode(contents, forKey: .contents)
-            }
         case .freeText(let fontInfo, let text, let rect, let color):
             let font = "\(fontInfo.size) pt \(fontInfo.family)"
             try container.encode(font, forKey: .font)
@@ -192,17 +185,17 @@ struct CanvadocsAnnotation: Codable {
             try container.encode(color, forKey: .color)
             try container.encode("freetext", forKey: .type)
             try encodeRect(rect: rect)
-        case .comment(let text, let rect):
-            try container.encode(text, forKey: .contents)
+        case .point(let color, let rect):
             try encodeRect(rect: rect)
-            try container.encode("text", forKey: .type)
-            try container.encode("#008EE2", forKey: .color)
+            try container.encode("text", forKey: .type) // means "point"
+            try container.encode("point", forKey: .contents) // still required
+            try container.encode(color, forKey: .color)
             try container.encode("Comment", forKey: .icon)
         case .commentReply(let parent, let text):
             try container.encode(text, forKey: .contents)
             try container.encode(parent, forKey: .parent)
             try container.encode("commentReply", forKey: .type)
-        case .ink(let gestures, let color, let rect, let contents):
+        case .ink(let gestures, let color, let rect):
             var inklist = container.nestedContainer(keyedBy: InklistCodingKeys.self, forKey: .inklist)
             var gesturesContainer = inklist.nestedUnkeyedContainer(forKey: .gestures)
             for gesture in gestures {
@@ -217,17 +210,11 @@ struct CanvadocsAnnotation: Codable {
             try container.encode(color, forKey: .color)
             try container.encode("ink", forKey: .type)
             try encodeRect(rect: rect)
-            if let contents = contents, contents.lengthOfBytes(using: .utf8) > 0 {
-                try container.encode(contents, forKey: .contents)
-            }
-        case .square(let color, let width, let rect, let contents):
+        case .square(let color, let width, let rect):
             try container.encode(color, forKey: .color)
             try container.encode(width, forKey: .width)
             try container.encode("square", forKey: .type)
             try encodeRect(rect: rect)
-            if let contents = contents, contents.lengthOfBytes(using: .utf8) > 0 {
-                try container.encode(contents, forKey: .contents)
-            }
         case .unsupported:
             throw NSError(domain: "com.instructure.annotations", code: -1, userInfo: [NSLocalizedFailureReasonErrorKey: "can't encode an unsupported type yo"])
         }
@@ -246,11 +233,11 @@ struct CanvadocsAnnotation: Codable {
         case .highlight:
             let boundingBoxes = pspdfAnnotation.rects?.map { return $0.cgRectValue } ?? []
             guard let color = pspdfAnnotation.color?.hex else { return nil }
-            self.type = .highlight(color: color, boundingBoxes: boundingBoxes, rect: pspdfAnnotation.boundingBox, contents: pspdfAnnotation.contents)
+            self.type = .highlight(color: color, boundingBoxes: boundingBoxes, rect: pspdfAnnotation.boundingBox)
         case .strikeOut:
             let boundingBoxes = pspdfAnnotation.rects?.map { return $0.cgRectValue } ?? []
             guard let color = pspdfAnnotation.color?.hex else { return nil }
-            self.type = .strikeout(color: color, boundingBoxes: boundingBoxes, rect: pspdfAnnotation.boundingBox, contents: pspdfAnnotation.contents)
+            self.type = .strikeout(color: color, boundingBoxes: boundingBoxes, rect: pspdfAnnotation.boundingBox)
         case .freeText:
             guard let freeTextAnnot = pspdfAnnotation as? PSPDFFreeTextAnnotation else { fallthrough }
             let fontFamily = freeTextAnnot.fontName ?? "Helvetica"
@@ -260,14 +247,6 @@ struct CanvadocsAnnotation: Codable {
             let rect = freeTextAnnot.boundingBox
             let color = freeTextAnnot.color?.hex ?? "#000000"
             self.type = .freeText(fontInfo: fontInfo, text: text, rect: rect, color: color)
-        case .note:
-            if let commentReplyAnnot = pspdfAnnotation as? CanvadocsCommentReplyAnnotation {
-                self.type = .commentReply(parent: commentReplyAnnot.inReplyTo ?? "", text: commentReplyAnnot.contents ?? "")
-            } else if let noteAnnot = pspdfAnnotation as? PSPDFNoteAnnotation {
-                self.type = .comment(text: noteAnnot.contents ?? "", rect: noteAnnot.boundingBox)
-            } else {
-                return nil
-            }
         case .ink:
             guard let inkAnnot = pspdfAnnotation as? PSPDFInkAnnotation else { fallthrough }
             guard let color = pspdfAnnotation.color?.hex else { return nil }
@@ -278,20 +257,30 @@ struct CanvadocsAnnotation: Codable {
                     .map { CanvadocsInkAnnotationGesturePoint(x: $0.location.x, y: $0.location.y, width: width(for: $0.intensity), opacity: 1) }
                 gestures.append(points)
             }
-            self.type = .ink(gestures: gestures, color: color, rect: inkAnnot.boundingBox, contents: pspdfAnnotation.contents)
+            self.type = .ink(gestures: gestures, color: color, rect: inkAnnot.boundingBox)
         case .square:
             guard let squareAnnot = pspdfAnnotation as? PSPDFSquareAnnotation else { fallthrough }
             guard let color = pspdfAnnotation.color?.hex else { return nil }
-            self.type = .square(color: color, width: squareAnnot.lineWidth, rect: squareAnnot.boundingBox, contents: pspdfAnnotation.contents)
+            self.type = .square(color: color, width: squareAnnot.lineWidth, rect: squareAnnot.boundingBox)
         default:
-            return nil
+            if let commentReplyAnnot = pspdfAnnotation as? CanvadocsCommentReplyAnnotation {
+                self.type = .commentReply(parent: commentReplyAnnot.inReplyTo ?? "", text: commentReplyAnnot.contents ?? "")
+            } else if let pointAnnot = pspdfAnnotation as? CanvadocsPointAnnotation {
+                let color = pspdfAnnotation.color?.hex ?? CanvadocsAnnotationColor.blue.rawValue
+                self.type = .point(color: color, rect: pointAnnot.boundingBox)
+            } else if let noteAnnot = pspdfAnnotation as? PSPDFNoteAnnotation {
+                let color = pspdfAnnotation.color?.hex ?? CanvadocsAnnotationColor.blue.rawValue
+                self.type = .point(color: color, rect: noteAnnot.boundingBox)
+            } else {
+                return nil
+            }
         }
     }
     
     func pspdfAnnotation(for document: PSPDFDocument) -> PSPDFAnnotation? {
         var pspdfAnnotation: PSPDFAnnotation?
         switch self.type {
-        case .highlight(let color, let boundingBoxes, let rect, let contents), .strikeout(let color, let boundingBoxes, let rect, let contents):
+        case .highlight(let color, let boundingBoxes, let rect), .strikeout(let color, let boundingBoxes, let rect):
             guard let pageInfo = document.pageInfoForPage(at: page) else { return nil }
             
             switch self.type {
@@ -308,7 +297,6 @@ struct CanvadocsAnnotation: Codable {
             pspdfAnnotation?.rects = boundingBoxes.map { NSValue(cgRect: $0) }
             pspdfAnnotation?.boundingBox = rect
             pspdfAnnotation?.color = UIColor.colorFromHexString(color)
-            pspdfAnnotation?.contents = contents
         case .freeText(let fontInfo, let text, let rect, let color):
             let freeTextAnnotation = PSPDFFreeTextAnnotation(contents: text)
             freeTextAnnotation.fontName = fontInfo.family
@@ -317,15 +305,16 @@ struct CanvadocsAnnotation: Codable {
             freeTextAnnotation.fillColor = .white
             freeTextAnnotation.color = UIColor.colorFromHexString(color)
             pspdfAnnotation = freeTextAnnotation
-        case .comment(let text, let rect):
-            let noteAnnotation = PSPDFNoteAnnotation(contents: text)
-            noteAnnotation.boundingBox = rect
-            pspdfAnnotation = noteAnnotation
+        case .point(let color, let rect):
+            let pointAnnotation = CanvadocsPointAnnotation()
+            pointAnnotation.color = UIColor.colorFromHexString(color)
+            pointAnnotation.boundingBox = rect
+            pspdfAnnotation = pointAnnotation
         case .commentReply(let parent, let text):
             let replyAnnot = CanvadocsCommentReplyAnnotation(contents: text)
             replyAnnot.inReplyTo = parent
             pspdfAnnotation = replyAnnot
-        case .ink(let gestures, let color, let rect, let contents):
+        case .ink(let gestures, let color, let rect):
             let inkAnnotation = PSPDFInkAnnotation()
             inkAnnotation.boundingBox = rect
             inkAnnotation.color = .colorFromHexString(color)
@@ -337,14 +326,12 @@ struct CanvadocsAnnotation: Codable {
                 lines.append(line)
             }
             inkAnnotation.lines = lines
-            inkAnnotation.contents = contents
             pspdfAnnotation = inkAnnotation
-        case .square(let color, let width, let rect, let contents):
+        case .square(let color, let width, let rect):
             let squareAnnotation = PSPDFSquareAnnotation()
             squareAnnotation.color = .colorFromHexString(color)
             squareAnnotation.lineWidth = width
             squareAnnotation.boundingBox = rect
-            squareAnnotation.contents = contents
             pspdfAnnotation = squareAnnotation
         case .unsupported:
             return nil
@@ -356,6 +343,19 @@ struct CanvadocsAnnotation: Codable {
         pspdfAnnotation?.creationDate = self.createdAt
         
         return pspdfAnnotation
+    }
+    
+    var isEmpty: Bool {
+        get {
+            switch self.type {
+            case .commentReply(_, let text):
+                return text.isEmpty
+            case .freeText(_, let text, _, _):
+                return text.isEmpty
+            default:
+                return false
+            }
+        }
     }
     
     private static func decodeCoords(with decoder: Decoder, in container: KeyedDecodingContainer<CanvadocsAnnotation.CodingKeys>) throws -> [CGRect] {

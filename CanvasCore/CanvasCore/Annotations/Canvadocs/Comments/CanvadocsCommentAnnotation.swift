@@ -18,18 +18,16 @@ import UIKit
 import PSPDFKit
 import PSPDFKitUI
 
-class CanvadocsCommentAnnotation: PSPDFNoteAnnotation {
-    override var renderAnnotationIcon: UIImage? {
-        return UIImage(named: "pointer", in: Bundle(for: CanvadocsCommentAnnotation.self), compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
-    }
+class CanvadocsPointAnnotation: PSPDFNoteAnnotation {
 }
 
-class CanvadocsCommentAnnotationView: PSPDFNoteAnnotationView {
+class CanvadocsPointAnnotationView: PSPDFNoteAnnotationView {
     override var renderNoteImage: UIImage? {
-        return UIImage(named: "pointer", in: Bundle(for: CanvadocsCommentAnnotation.self), compatibleWith: nil)?.withRenderingMode(.alwaysOriginal)
+        tintColor = annotation?.color ?? CanvadocsAnnotationColor.blue.color
+        return UIImage(named: "pointer", in: Bundle(for: CanvadocsPointAnnotation.self), compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
     }
 }
 
-class CanvadocsCommentReplyAnnotation: CanvadocsCommentAnnotation {
+class CanvadocsCommentReplyAnnotation: PSPDFNoteAnnotation {
     var inReplyTo: String?
 }

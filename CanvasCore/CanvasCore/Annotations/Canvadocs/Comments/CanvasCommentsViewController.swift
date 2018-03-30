@@ -21,19 +21,17 @@ import PSPDFKit
 
 class CanvadocsCommentsViewController: UIViewController {
     
-    var rootComment: PSPDFAnnotation?
-    var templateAnnotation: PSPDFAnnotation?
-    var comments = [PSPDFAnnotation]()
+    var annotation: PSPDFAnnotation!
+    var comments = [CanvadocsCommentReplyAnnotation]()
     var pdfDocument: PSPDFDocument!
-    var newThread: Bool = false
     
     var tableView: UITableView!
     var replyToolbar: CommentReplyView!
     var replyToolbarBottom: NSLayoutConstraint?
     
-    static func new(_ rootComment: PSPDFAnnotation? = nil, pdfDocument: PSPDFDocument) -> CanvadocsCommentsViewController {
+    static func new(_ annotation: PSPDFAnnotation, pdfDocument: PSPDFDocument) -> CanvadocsCommentsViewController {
         let vc = CanvadocsCommentsViewController(nibName: nil, bundle: nil)
-        vc.rootComment = rootComment
+        vc.annotation = annotation
         vc.pdfDocument = pdfDocument
         vc.tableView = UITableView(frame: CGRect.zero, style: .plain)
         vc.replyToolbar = CommentReplyView.instantiate()
@@ -69,40 +67,12 @@ class CanvadocsCommentsViewController: UIViewController {
         })
         
         replyToolbar.sendAction = { [unowned self] in
-            if self.replyToolbar.replyTextView.text.lengthOfBytes(using: String.Encoding.utf8) > 0 { // make sure they actually entered something
-                // Cases to handle:
-                // 1. Contents string on a non note type like a box or highlight
-                // 2. New note
-                // 3. Reply
-                
-                // If we can just set the contents in place, without adding a new annotation
-                if let root = self.rootComment, (root.contents == nil || root.contents == "") && type(of: root) !== PSPDFNoteAnnotation.self {
-                    self.rootComment?.contents = self.replyToolbar.replyTextView.text
-                    self.comments.append(self.rootComment!)
-                    NotificationCenter.default.post(name: NSNotification.Name.PSPDFAnnotationChanged, object: self.rootComment!, userInfo: [PSPDFAnnotationChangedNotificationKeyPathKey: ["contents"]])
-                    do {
-                        try self.pdfDocument.save()
-                    } catch {}
-                } else if self.rootComment == nil {
-                    self.rootComment = PSPDFNoteAnnotation(contents: self.replyToolbar.replyTextView.text)
-                    self.rootComment?.boundingBox = self.templateAnnotation?.boundingBox ?? CGRect.zero
-                    self.rootComment?.pageIndex = self.templateAnnotation?.pageIndex ?? 0
-                    self.rootComment?.user = self.templateAnnotation?.user
-                    self.rootComment?.isEditable = self.templateAnnotation?.isEditable ?? true
-                    self.comments.append(self.rootComment!)
-                    self.pdfDocument.add([self.rootComment!], options: [:])
-                    self.newThread = false
-                } else {
-                    if let baseAnnotation = self.comments.first {
-                        // There must be some text on it already, so this must be a reply
-                        let newAnnotation = CanvadocsCommentReplyAnnotation(contents: self.replyToolbar.replyTextView.text)
-                        newAnnotation.pageIndex = baseAnnotation.pageIndex
-                        newAnnotation.boundingBox = baseAnnotation.boundingBox
-                        newAnnotation.inReplyTo = baseAnnotation.name
-                        self.comments.append(newAnnotation)
-                        self.pdfDocument.add([newAnnotation], options: [:])
-                    }
-                }
+            if !self.replyToolbar.replyTextView.text.isEmpty { // make sure they actually entered something
+                let newAnnotation = CanvadocsCommentReplyAnnotation(contents: self.replyToolbar.replyTextView.text)
+                newAnnotation.pageIndex = self.annotation.pageIndex
+                newAnnotation.inReplyTo = self.annotation.name
+                self.comments.append(newAnnotation)
+                self.pdfDocument.add([newAnnotation], options: [:])
                 self.replyToolbar.clearText()
                 self.tableView.reloadData()
             }
@@ -113,9 +83,10 @@ class CanvadocsCommentsViewController: UIViewController {
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[replyToolbar]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["replyToolbar": replyToolbar]))
         
         navigationItem.title = NSLocalizedString("Comments", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: "")
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(CanvadocsCommentsViewController.close(_:)))
-        if rootComment?.isEditable ?? true {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(CanvadocsCommentsViewController.trash(_:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(CanvadocsCommentsViewController.close(_:)))
+        if annotation.isEditable {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(CanvadocsCommentsViewController.trash(_:)))
+            navigationItem.leftBarButtonItem?.tintColor = CanvadocsAnnotationColor.red.color
         }
     }
     
@@ -124,9 +95,7 @@ class CanvadocsCommentsViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(CanvadocsCommentsViewController.showingKeyboard(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(CanvadocsCommentsViewController.hidingKeyboard(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
-        if rootComment?.contents == nil || rootComment?.contents == "" {
-            replyToolbar.replyTextView.becomeFirstResponder()
-        }
+        replyToolbar.replyTextView.becomeFirstResponder()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -139,9 +108,7 @@ class CanvadocsCommentsViewController: UIViewController {
     }
     
     func trash(_ sender: UIBarButtonItem) {
-        if let rootComment = rootComment {
-            pdfDocument.remove([rootComment], options: [:])
-        }
+        pdfDocument.remove([annotation], options: [:])
         dismiss(animated: true, completion: nil)
     }
 

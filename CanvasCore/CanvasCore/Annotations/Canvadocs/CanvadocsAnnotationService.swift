@@ -61,6 +61,7 @@ class CanvadocsAnnotationService: NSObject {
 
     let sessionURL: URL
     fileprivate let baseURLString: String
+    fileprivate let sessionID: String
     
     var metadata: CanvadocsFileMetadata? = nil
     
@@ -77,6 +78,7 @@ class CanvadocsAnnotationService: NSObject {
     
     init(sessionURL: URL) {
         self.sessionURL = sessionURL
+        self.sessionID = sessionURL.lastPathComponent
         if let components = URLComponents(url: sessionURL, resolvingAgainstBaseURL: false), let scheme = components.scheme, let host = components.host {
             // Strip it down to just this
             var baseURLComponents = URLComponents()
@@ -209,7 +211,9 @@ class CanvadocsAnnotationService: NSObject {
     }
     
     func getAnnotations(_ completed: @escaping (AnnotationsResult)->()) {
-        let url = sessionURL.appendingPathComponent("annotations")
+        guard let url = URL(string: "/2018-03-07/sessions/\(sessionID)/annotations", relativeTo: sessionURL) else {
+            return
+        }
         let request = URLRequest(url: url)
         let completion: (Data?, URLResponse?, Error?) -> Void = { (data, response, error) in
             if let error = error {
@@ -244,7 +248,9 @@ class CanvadocsAnnotationService: NSObject {
     
     func upsertAnnotation(_ annotation: CanvadocsAnnotation, completed: @escaping (Result<CanvadocsAnnotation, CanvadocsAnnotationError>) ->()) {
         guard let annotationID = annotation.id else { return }
-        let url = sessionURL.appendingPathComponent("annotations").appendingPathComponent(annotationID)
+        guard let url = URL(string: "/2018-03-07/sessions/\(sessionID)/annotations/\(annotationID)", relativeTo: sessionURL) else {
+            return
+        }
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
         request.setValue("application/json", forHTTPHeaderField: "Accept")
@@ -288,7 +294,9 @@ class CanvadocsAnnotationService: NSObject {
     
     func deleteAnnotation(_ annotation: CanvadocsAnnotation, completed: @escaping (Result<Bool, NSError>)->()) {
         guard let annotationID = annotation.id else { return }
-        let url = sessionURL.appendingPathComponent("annotations").appendingPathComponent(annotationID)
+        guard let url = URL(string: "/1/sessions/\(sessionID)/annotations/\(annotationID)", relativeTo: sessionURL) else {
+            return
+        }
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
         
