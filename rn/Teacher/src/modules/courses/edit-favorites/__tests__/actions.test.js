@@ -21,46 +21,46 @@ import { testAsyncAction } from '../../../../../test/helpers/async'
 import { apiResponse, apiError } from '../../../../../test/helpers/apiMock'
 import * as courseTemplate from '../../../../__templates__/course'
 
-test('toggleFavorite workflow', async () => {
+test('toggleCourseFavorite workflow', async () => {
   const course = courseTemplate.course({ is_favorite: false })
   let actions = FavoritesActions({ favoriteCourse: apiResponse(1234) })
   let initialState = {
     courses: [course],
   }
-  const result = await testAsyncAction(actions.toggleFavorite(course.id, true), initialState)
+  const result = await testAsyncAction(actions.toggleCourseFavorite(course.id, true), initialState)
 
   expect(result).toMatchObject([
     {
-      type: actions.toggleFavorite.toString(),
+      type: actions.toggleCourseFavorite.toString(),
       payload: {
         courseID: course.id,
       },
       pending: true,
     },
     {
-      type: actions.toggleFavorite.toString(),
+      type: actions.toggleCourseFavorite.toString(),
     },
   ])
 })
 
-test('toggleFavorite workflow error', async () => {
+test('toggleCourseFavorite workflow error', async () => {
   const course = courseTemplate.course({ is_favorite: false })
   let actions = FavoritesActions({ favoriteCourse: apiError() })
   let initialState = {
     courses: [course],
   }
-  const result = await testAsyncAction(actions.toggleFavorite(course.id, true), initialState)
+  const result = await testAsyncAction(actions.toggleCourseFavorite(course.id, true), initialState)
 
   expect(result).toMatchObject([
     {
-      type: actions.toggleFavorite.toString(),
+      type: actions.toggleCourseFavorite.toString(),
       payload: {
         courseID: course.id,
       },
       pending: true,
     },
     {
-      type: actions.toggleFavorite.toString(),
+      type: actions.toggleCourseFavorite.toString(),
       error: true,
       payload: {
         courseID: course.id,

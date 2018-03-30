@@ -26,10 +26,10 @@ const template = {
   ...require('../../../../__templates__/course'),
 }
 
-describe('toggleFavorite', () => {
+describe('toggleCourseFavorite', () => {
   it('favorites a course', async () => {
     const courseID = '4123'
-    const action = FavoritesActions({ favoriteCourse: apiResponse() }).toggleFavorite(courseID, true)
+    const action = FavoritesActions({ favoriteCourse: apiResponse() }).toggleCourseFavorite(courseID, true)
     const initialState = {
       ...defaultState,
       courseRefs: [],
@@ -44,7 +44,7 @@ describe('toggleFavorite', () => {
 
   it('unfavorites a course', async () => {
     const courseID = '3322'
-    const action = FavoritesActions({ unfavoriteCourse: apiResponse() }).toggleFavorite(courseID, false)
+    const action = FavoritesActions({ unfavoriteCourse: apiResponse() }).toggleCourseFavorite(courseID, false)
     const initialState = {
       ...defaultState,
       courseRefs: [courseID],
@@ -59,7 +59,7 @@ describe('toggleFavorite', () => {
 
   it('keeps favorite if favorited again', async () => {
     const courseID = '4123'
-    const action = FavoritesActions({ favoriteCourse: apiResponse() }).toggleFavorite(courseID, true)
+    const action = FavoritesActions({ favoriteCourse: apiResponse() }).toggleCourseFavorite(courseID, true)
     const initialState = {
       ...defaultState,
       courseRefs: [courseID],
@@ -74,7 +74,7 @@ describe('toggleFavorite', () => {
 
   it('reverts favorite on error', async () => {
     const courseID = '588'
-    const action = FavoritesActions({ favoriteCourse: apiError({ message: 'error' }) }).toggleFavorite(courseID, true)
+    const action = FavoritesActions({ favoriteCourse: apiError({ message: 'error' }) }).toggleCourseFavorite(courseID, true)
     const initialState: FavoriteCoursesState = {
       ...defaultState,
       courseRefs: [],

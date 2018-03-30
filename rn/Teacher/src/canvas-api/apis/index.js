@@ -33,6 +33,7 @@ import * as mediaComments from './media-comments'
 import * as fileUploads from './file-uploads'
 import * as files from './files'
 import * as accounts from './accounts'
+import * as userCustomData from './user-custom-data'
 
 export default {
   ...accountApi,
@@ -52,4 +53,5 @@ export default {
   ...fileUploads,
   ...files,
   ...accounts,
+  ...userCustomData,
 }

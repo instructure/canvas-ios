@@ -25,9 +25,17 @@ export default function mapStateToProps (state: AppState): EditFavoritesProps {
     .map(({ course }) => course)
     .sort((c1, c2) => localeSort(c1.name, c2.name))
 
+  let groups = Object.keys(state.entities.groups || {})
+    .map(id => state.entities.groups[id])
+    .map(({ group }) => group)
+    .filter((group) => group && !group.concluded)
+    .sort((c1, c2) => localeSort(c1.name, c2.name))
+
   return {
     courses,
-    favorites: state.favoriteCourses.courseRefs,
+    groups,
+    courseFavorites: state.favoriteCourses.courseRefs,
+    groupFavorites: state.favoriteGroups.groupRefs,
     pending: state.favoriteCourses.pending,
   }
 }

@@ -264,15 +264,17 @@ describe('groups', () => {
   const a = courseTemplate.course({ id: 1, name: 'a', sections: [section()] })
   const b = courseTemplate.course({ id: 2, name: 'b', sections: [section()] })
   const courseTemplates = [a, b]
-  const favorites = ['1', '2']
+  const couresFavorites = ['1', '2']
 
   const groupA = groupTemplate.group({ id: '1', name: 'a', course_id: '1' })
   const groupB = groupTemplate.group({ id: '2', name: 'b', account_id: '1' })
   const groupC = groupTemplate.group({ id: '3', name: 'c', account_id: '1' })
+  const groupFavorites = ['1', '2', '3']
 
   const courses = courseStates(courseTemplates)
   const state = appState({
-    favoriteCourses: { courseRefs: favorites },
+    favoriteCourses: { courseRefs: couresFavorites },
+    favoriteGroups: { groupRefs: groupFavorites },
     entities: {
       accountNotifications: { list: [] },
       courses,

@@ -190,6 +190,9 @@ export type Entities = {
 export type FavoriteCoursesState = AsyncState
   & { courseRefs: EntityRefs }
 
+export type FavoriteGroupsState = AsyncState
+  & { groupRefs: EntityRefs }
+
 export type ConversationState = AsyncState & {
   data: Conversation,
 }
@@ -209,6 +212,7 @@ export type ToDoState = {
 
 export type AppState = {
   favoriteCourses: FavoriteCoursesState,
+  favoriteGroups: FavoriteGroupsState,
   entities: Entities,
   inbox: InboxState,
   toDo: ToDoState,

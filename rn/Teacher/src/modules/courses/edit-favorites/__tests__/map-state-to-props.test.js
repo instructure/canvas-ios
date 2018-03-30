@@ -18,7 +18,7 @@
 import mapStateToProps from '../map-state-to-props'
 import { appState } from '../../../../redux/__templates__/app-state'
 
-test('returns the correct props', () => {
+test('returns the correct props with no groups', () => {
   let state = appState({
     entities: {
       courses: {
@@ -42,5 +42,41 @@ test('returns the correct props', () => {
   })
   let props = mapStateToProps(state)
   expect(props.courses).toEqual([state.entities.courses['2'].course, state.entities.courses['1'].course])
-  expect(props.favorites).toEqual(state.favoriteCourses.courseRefs)
+  expect(props.courseFavorites).toEqual(state.favoriteCourses.courseRefs)
+})
+
+test('returns the correct props', () => {
+  let state = appState({
+    entities: {
+      courses: {
+        '1': {
+          course: {
+            name: 'trump university',
+          },
+        },
+        '2': {
+          course: {
+            name: 'harvard',
+          },
+        },
+      },
+      groups: {
+        '1': { group: { name: 'alpha' } },
+        '2': { group: { name: 'bravo' } },
+      },
+      assignmentGroups: {},
+      gradingPeriods: {},
+    },
+    favoriteCourses: {
+      courseRefs: ['1', '2'],
+    },
+    favoriteGroups: {
+      groupRefs: ['1', '2'],
+    },
+  })
+  let props = mapStateToProps(state)
+  expect(props.courses).toEqual([state.entities.courses['2'].course, state.entities.courses['1'].course])
+  expect(props.groups).toEqual([state.entities.groups['1'].group, state.entities.groups['2'].group])
+  expect(props.courseFavorites).toEqual(state.favoriteCourses.courseRefs)
+  expect(props.groupFavorites).toEqual(state.favoriteGroups.groupRefs)
 })

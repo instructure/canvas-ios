@@ -51,6 +51,10 @@ export const appState: Template<AppState> = template({
     pending: 0,
     courseRefs: [],
   },
+  favoriteGroups: {
+    pending: 0,
+    groupRefs: [],
+  },
   entities: entities(),
   inbox: {
     selectedScope: 'all',

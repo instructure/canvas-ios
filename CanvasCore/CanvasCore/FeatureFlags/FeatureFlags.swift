@@ -17,6 +17,7 @@ public enum FeatureFlagName: String {
     case userFilesFeatureFlag
     case newAssignmentsList
     case newGradesList
+    case favoriteGroups
 }
 
 @objc(FeatureFlags)

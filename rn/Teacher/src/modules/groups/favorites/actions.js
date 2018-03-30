@@ -16,11 +16,22 @@
 
 // @flow
 
-export type Group = {
-  id: string,
-  name: string,
-  group_category_id: string,
-  members_count: number,
-  users?: [UserDisplay],
-  concluded?: boolean,
-}
+import { createAction } from 'redux-actions'
+import canvas from '../../../canvas-api'
+
+export let GroupFavoritesActions = (api: CanvasApi): * => ({
+  updateGroupFavorites: createAction('groups.updateFavorites', (userID: string = 'self', favorites: string[]) => {
+    return {
+      promise: api.updateGroupFavorites(userID, favorites),
+      userID,
+      favorites,
+    }
+  }),
+  refreshGroupFavorites: createAction('groups-for-user-favorites.refresh', (userID?: string = 'self') => ({
+    promise: api.refreshGroupFavorites(userID),
+    userID,
+    handlesError: true,
+  })),
+})
+
+export default (GroupFavoritesActions(canvas): *)

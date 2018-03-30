@@ -25,7 +25,7 @@ import { parseErrorMessage } from '../../../redux/middleware/error-handler'
 import App from '../../app'
 
 let { refreshCourses } = CourseListActions
-let { toggleFavorite } = FavoritesActions
+let { toggleCourseFavorite } = FavoritesActions
 
 export let defaultState: FavoriteCoursesState = {
   courseRefs: [],
@@ -81,7 +81,7 @@ export const favoriteCourses: Reducer<FavoriteCoursesState, any> = handleActions
     },
   }),
 
-  [toggleFavorite.toString()]: handleAsync({
+  [toggleCourseFavorite.toString()]: handleAsync({
     pending: (state, { courseID, markAsFavorite }) => toggleFavoriteCourse(state, courseID, markAsFavorite, +1),
     resolved: (state) => ({ ...state, pending: state.pending - 1 }),
     rejected: (state, { courseID, markAsFavorite, error }) => {

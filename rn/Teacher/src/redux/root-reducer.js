@@ -20,6 +20,7 @@ import { combineReducers, Reducer, Action } from 'redux'
 import { accountNotifications } from '../modules/dashboard/account-notification-reducer'
 import { courses, courseDetailsTabSelectedRow } from '../modules/courses/courses-reducer'
 import { favoriteCourses } from '../modules/courses/favorites/favorite-courses-reducer'
+import { favoriteGroups } from '../modules/groups/favorites/favorite-groups-reducer'
 import { gradingPeriods } from '../modules/assignments/grading-periods-reducer'
 import { assignments } from '../modules/assignments/assignment-entities-reducer'
 import { assignmentGroups } from '../modules/assignments/assignment-group-entities-reducer'
@@ -60,6 +61,7 @@ const entities = combineReducers({
 
 const actualRootReducer: Reducer<AppState, Action> = combineReducers({
   favoriteCourses,
+  favoriteGroups,
   inbox,
   files,
   folders,

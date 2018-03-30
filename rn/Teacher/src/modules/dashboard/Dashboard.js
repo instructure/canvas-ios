@@ -15,6 +15,7 @@ import App from '../app'
 import CoursesActions from '../courses/actions'
 import EnrollmentsActions from '../enrollments/actions'
 import GroupsActions from '../groups/actions'
+import GroupsFavoriteActions from '../groups/favorites/actions'
 import {
   Heading1,
 } from '../../common/text'
@@ -34,6 +35,7 @@ import { getSessionUnsafe } from '../../canvas-api'
 import AccountNotificationActions from './account-notification-actions'
 import { extractGradeInfo } from '../../utils/course-grades'
 import { extractDateFromString } from '../../utils/dateUtils'
+import { featureFlagEnabled } from '../../common/feature-flags'
 
 type ColorfulCourse = { color: string } & Course
 type Props = {
@@ -470,7 +472,8 @@ export function mapStateToProps (isFullDashboard: boolean) {
     const announcements = accountNotifications.list
       .filter(({ id }) => !accountNotifications.closing.includes(id))
 
-    const groups = Object.keys(state.entities.groups)
+    const groupFavorites = state.favoriteGroups.groupRefs
+    let groups = Object.keys(state.entities.groups)
       .filter(id => state.entities.groups[id] &&
         state.entities.groups[id].group &&
         !state.entities.groups[id].group.concluded)
@@ -486,6 +489,10 @@ export function mapStateToProps (isFullDashboard: boolean) {
           color: groupColor || (courseData ? courseData.color : color.lightText),
         }
       })
+
+    if (featureFlagEnabled('favoriteGroups')) {
+      groups = groups.filter((g) => groupFavorites.includes(g.id))
+    }
 
     let allCoursesStringKeys = {}
     const sections = allCourseStates.reduce((obj, { course }) => {
@@ -509,6 +516,7 @@ const Refreshed = refresh(
     props.refreshNotifications()
     props.refreshCourses()
     props.refreshUserEnrollments()
+    props.refreshGroupFavorites()
 
     if (App.current().appId === 'student') {
       props.refreshUsersGroups()
@@ -524,5 +532,6 @@ const Connected = connect(mapStateToProps(true), {
   ...CoursesActions,
   ...EnrollmentsActions,
   ...GroupsActions,
+  ...GroupsFavoriteActions,
 })(Refreshed)
 export default Connected

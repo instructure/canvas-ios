@@ -28,9 +28,9 @@ import Images from '../../../../images/'
 import { Text } from '../../../../common/text'
 
 type Props = {
-  course: Course,
+  course: Course | Group,
   isFavorite: boolean,
-  onPress: (courseID: string, favorited: boolean) => Promise<any>,
+  onPress: (contextID: string, favorited: boolean) => Promise<any>,
 }
 
 export default class CourseFavorite extends Component<Props> {

@@ -18,6 +18,8 @@
 
 export type EditFavoritesProps = {
   courses: Array<Course>,
-  favorites: Array<string>,
+  groups: Group[],
+  courseFavorites: EntityRefs,
+  groupFavorites: EntityRefs,
   pending: number,
 }
