@@ -494,7 +494,11 @@
 
 - (void)loadRequestInWebView:(WKWebView *)webView
 {
-    [webView loadRequest:self];
+    if (self.URL != nil && self.URL.isFileURL) {
+        [webView loadFileURL:self.URL allowingReadAccessToURL:self.URL];
+    } else {
+        [webView loadRequest:self];
+    }
 }
 
 - (BOOL)canOpenInSafari {
