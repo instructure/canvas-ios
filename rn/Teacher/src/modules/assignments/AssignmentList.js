@@ -36,6 +36,7 @@ import CourseActions from '../courses/actions'
 import { mapStateToProps, type AssignmentListProps } from './map-state-to-props'
 import refresh from '../../utils/refresh'
 
+import { isTeacher } from '../app'
 import SectionHeader from '../../common/components/rows/SectionHeader'
 import AssignmentListRowView from './components/AssignmentListRow'
 import { LinkButton } from '../../common/buttons'
@@ -160,7 +161,7 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
 
     if (assignment.quiz_id) {
       this.props.navigator.show(`/courses/${assignment.course_id}/quizzes/${assignment.quiz_id}`)
-    } else if (assignment.discussion_topic) {
+    } else if (assignment.discussion_topic && isTeacher()) {
       this.props.navigator.show(`/courses/${assignment.course_id}/discussion_topics/${assignment.discussion_topic.id}`)
     } else {
       this.props.navigator.show(assignment.html_url)
