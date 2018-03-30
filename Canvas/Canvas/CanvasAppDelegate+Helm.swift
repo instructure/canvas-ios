@@ -49,16 +49,6 @@ extension AppDelegate: RCTBridgeDelegate {
         registerModuleItemScreen("/courses/:courseID/pages/:url", parametersToProps: pageParamsToProps)
         registerModuleItemScreen("/courses/:courseID/wiki/:url", parametersToProps: pageParamsToProps)
 
-        HelmManager.shared.registerNativeViewController(for: "/users/self/files", factory: { props in
-            guard let folderController = FolderViewController(interfaceStyle: FolderInterfaceStyleLight) else { return nil }
-            guard let canvasAPI = CKCanvasAPI.current() else { return nil }
-            folderController.canvasAPI = canvasAPI
-            folderController.title = NSLocalizedString("Files", comment: "")
-            let context = CKContextInfo(from: canvasAPI.user)
-            folderController.loadRootFolder(forContext: context)
-            return UINavigationController(rootViewController: folderController)
-        })
-
         HelmManager.shared.registerNativeViewController(for: "/profile/settings", factory: { props in
             let settings = SettingsViewController.controller(CKCanvasAPI.current())
             return UINavigationController(rootViewController: settings)

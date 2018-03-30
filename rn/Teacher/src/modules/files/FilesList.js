@@ -147,7 +147,7 @@ export class FilesList extends Component<Props, State> {
     const { contextID, context } = this.props
 
     if (item.type === 'file') {
-      this.props.navigator.show(`/${context}/${contextID}/file/${item.id}`, { modal: true }, {
+      this.props.navigator.show(`/${context}/${contextID}/files/${item.id}`, { modal: true }, {
         file: item,
         onChange: this.update,
       })

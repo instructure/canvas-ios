@@ -195,7 +195,7 @@ export default class ViewFile extends Component<Props, State> {
   handleEdit = () => {
     const { context, contextID } = this.props
     if (!context || !contextID) return
-    this.props.navigator.show(`/${context}/${contextID}/file/${this.props.fileID}/edit`, { modal: true }, {
+    this.props.navigator.show(`/${context}/${contextID}/files/${this.props.fileID}/edit`, { modal: true }, {
       courseID: contextID,
       file: this.state.file,
       onChange: this.handleChange,

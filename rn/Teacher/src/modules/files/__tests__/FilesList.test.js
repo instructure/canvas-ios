@@ -135,7 +135,7 @@ describe('FilesList', () => {
 
     instance.onSelectRow(1)
     expect(navigator.show).toHaveBeenCalledWith(
-      '/courses/1/file/111',
+      '/courses/1/files/111',
       { modal: true },
       { file: data[1], onChange: expect.any(Function) }
     )

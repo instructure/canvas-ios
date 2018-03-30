@@ -212,7 +212,7 @@ describe('ViewFile', () => {
     const tree = shallow(<ViewFile {...props} />)
     tree.find('Screen').prop('leftBarButtons')[0].action()
     expect(props.navigator.show).toHaveBeenLastCalledWith(
-      '/courses/1/file/24/edit',
+      '/courses/1/files/24/edit',
       { modal: true },
       {
         courseID: '1',

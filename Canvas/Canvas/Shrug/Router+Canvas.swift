@@ -49,8 +49,14 @@ extension Router {
             let _ = self?.route(from: viewController, to: url)
         }
         
+        addContextRoute([.course], subPath: "tabs") { contextID, _ in
+            return HelmViewController(
+                moduleName: "/courses/:courseID",
+                props: ["courseID": contextID.id]
+            )
+        }
 
-        addContextRoute([.course, .group], subPath: "tabs") { contextID, _ in
+        addContextRoute([.group], subPath: "tabs") { contextID, _ in
             guard let currentSession = currentSession else { return nil }
             return try TabsTableViewController(session: currentSession, contextID: contextID, route: route)
         }
@@ -101,7 +107,7 @@ extension Router {
             return controller
         }
 
-        addContextRoute([.course], subPath: "front_page", handler: oldPagesListFactory)
+        addContextRoute([.course], subPath: "front_page", handler: pagesListFactory)
         addContextRoute([.course], subPath: "pages", handler: pagesListFactory)
         addContextRoute([.course], subPath: "wiki", handler: pagesListFactory)
 
@@ -171,28 +177,37 @@ extension Router {
             )
         }
         
-        addContextRoute([.user], subPath: "/files") { contextID, params in
-            guard let folderController = FolderViewController(interfaceStyle: FolderInterfaceStyleLight) else { return nil }
-            guard let canvasAPI = CKCanvasAPI.current() else { return nil }
-            guard contextID.id.toInt64() == canvasAPI.user.ident else { return nil }
-            folderController.canvasAPI = canvasAPI
-            folderController.title = NSLocalizedString("Files", comment: "")
-            let context = CKContextInfo(from: canvasAPI.user)
-            folderController.loadRootFolder(forContext: context)
-            let navigation = UINavigationController(rootViewController: folderController)
-            navigation.modalPresentationStyle = .formSheet
-            return navigation
-        }
-        
         addRoute("/courses/:courseID") { parameters, _ in
             guard let params = parameters, let courseID = (try? params.stringID("courseID")) else { return nil }
             return HelmViewController(moduleName: "/courses/:courseID", props: ["courseID": courseID, "navigatorOptions": ["modal": true]])
         }
         
-        addContextRoute([.course, .group], subPath: "pages_home") { contextID, _ in
+        let moduleItemDetailFactory: (ContextID, [String: Any]) throws -> UIViewController? = { contextID, params in
+            guard let query = params["query"] as? [String: Any], let moduleItemID = query["module_item_id"] as? CustomStringConvertible, let currentSession = currentSession else {
+                return nil
+            }
+            return try ModuleItemDetailViewController(session: currentSession, courseID: contextID.id, moduleItemID: moduleItemID.description, route: route)
+        }
+
+        let pageDetailFactory: (ContextID, [String: Any]) throws -> UIViewController? = { contextID, params in
+            let url = params["url"] as! String
+            if let moduleItemDetail = try moduleItemDetailFactory(contextID, params) {
+                return moduleItemDetail
+            }
+            guard let currentSession = currentSession else { return nil }
+            return try Page.DetailViewController(session: currentSession, contextID: contextID, url: url, route: route)
+        }
+        addContextRoute([.group], subPath: "pages/:url", handler: pageDetailFactory)
+        addContextRoute([.group], subPath: "wiki/:url", handler: pageDetailFactory)
+
+        addContextRoute([.course], subPath: "pages_home") { contextID, _ in
+            return HelmViewController(moduleName: "/courses/:courseID/pages", props: ["courseID": contextID.id])
+        }
+        addContextRoute([.group], subPath: "pages_home") { contextID, _ in
             guard let currentSession = currentSession else { return nil }
             return try PagesHomeViewController(session: currentSession, contextID: contextID, listViewModelFactory: pagesListViewModelFactory, route: route)
         }
+
         addContextRoute([.course], subPath: "external_tools/:toolID") { contextID, params in
             guard let url = params["url"] as? URL, let currentSession = currentSession else {
                 fatalError("Router passes URL as parameter to route handlers.")
