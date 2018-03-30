@@ -22,7 +22,7 @@ import httpClient from '../httpClient'
 function parseNextFromLinkHeader (response: any): ?string {
   const links = parseLink(response.headers.link)
   if (links && links.next) {
-    return links.next.url
+    return links.next
   }
   return null
 }

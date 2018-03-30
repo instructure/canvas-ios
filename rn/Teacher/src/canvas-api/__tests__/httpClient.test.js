@@ -18,7 +18,7 @@
 /* global FormData:true, Blob:true */
 
 import { AsyncStorage } from 'react-native'
-import httpClient, { isAbort, httpCache } from '../httpClient'
+import httpClient, { isAbort, httpCache, inFlight } from '../httpClient'
 import { setSession } from '../session'
 import * as templates from '../../__templates__'
 
@@ -36,6 +36,7 @@ describe('httpClient', () => {
 
   let request
   beforeEach(() => {
+    inFlight.clear()
     setSession(templates.session({ baseURL: '' }))
     request = {
       abort: jest.fn(),
@@ -141,6 +142,13 @@ describe('httpClient', () => {
       '/courses/1',
       true
     )
+  })
+
+  it('dedupes get requests', () => {
+    const a = httpClient().get('/courses/22')
+    const b = httpClient().get('/courses/22')
+    expect(request.open).toHaveBeenCalledTimes(1)
+    expect(b).toBe(a)
   })
 
   it('passes along headers', () => {
@@ -388,7 +396,7 @@ describe('httpCache', () => {
     httpCache.handle('GET', '/pages', [ page ])
     httpCache.handle('GET', 'expired', null, { ttl: -1 })
     expect(AsyncStorage.setItem).toHaveBeenCalledWith(
-      'http.cache.1.1',
+      httpCache.storageKey,
       expect.stringContaining('"modelConstructor":"PageModel"'),
     )
     const item = AsyncStorage.setItem.mock.calls.slice(-1)[0][1]

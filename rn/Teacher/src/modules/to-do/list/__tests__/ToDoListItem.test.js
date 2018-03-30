@@ -14,101 +14,92 @@
 // limitations under the License.
 //
 
-/* @flow */
+// @flow
 
+import { shallow } from 'enzyme'
 import React from 'react'
-import 'react-native'
-import renderer from 'react-test-renderer'
-import { ToDoListItem, mapStateToProps, type Props } from '../ToDoListItem'
-
-jest
-  .mock('Button', () => 'Button')
-  .mock('TouchableHighlight', () => 'TouchableHighlight')
-  .mock('TouchableOpacity', () => 'TouchableOpacity')
-
-const template = {
-  ...require('../../../../__templates__/toDo'),
-  ...require('../../../../__templates__/course'),
-  ...require('../../../../__templates__/assignments'),
-  ...require('../../../../__templates__/quiz'),
-  ...require('../../../../redux/__templates__/app-state'),
-}
+import { API, httpCache } from '../../../../canvas-api/model-api'
+import * as template from '../../../../__templates__'
+import Connected, { ToDoListItem } from '../ToDoListItem'
 
 describe('ToDoListItem', () => {
-  let props: Props
+  let props
   beforeEach(() => {
+    httpCache.clear()
     props = {
-      item: template.toDoItem(),
-      courseName: 'React Native for Dummies',
-      courseColor: '#000',
-      index: 0,
+      navigator: template.navigator(),
+      item: template.toDoModel({ courseID: '1' }),
+      courseName: 'Course 1',
+      courseColor: '#fff',
+      api: new API({ policy: 'cache-only' }),
+      isLoading: false,
+      loadError: null,
+      refresh: jest.fn(),
       onPress: jest.fn(),
     }
   })
 
+  it('gets courseColor and courseName from the model api', () => {
+    const courseColor = 'green'
+    const course = template.courseModel()
+    httpCache.handle('GET', 'users/self/colors', { custom_colors: { course_1: courseColor } })
+    httpCache.handle('GET', 'courses/1', course)
+    const tree = shallow(<Connected item={props.item} />)
+    expect(tree.find(ToDoListItem).props()).toMatchObject({
+      courseColor,
+      courseName: course.name,
+    })
+  })
+
   it('renders', () => {
-    props.courseColor = null
-    expect(render(props).toJSON()).toMatchSnapshot()
+    const tree = shallow(<ToDoListItem {...props} />)
+    expect(tree).toMatchSnapshot()
   })
 
   it('renders published assignment', () => {
-    props.item = template.toDoItem({
+    props.item = template.toDoModel({
       assignment: template.assignment({ name: 'Assignment 1', published: true }),
     })
-    expect(render(props).toJSON()).toMatchSnapshot()
+    const tree = shallow(<ToDoListItem {...props} />)
+    expect(tree).toMatchSnapshot()
   })
 
   it('renders unpublished assignment', () => {
-    props.item = template.toDoItem({
+    props.item = template.toDoModel({
       assignment: template.assignment({ name: 'Assignment 1', published: false }),
     })
-    expect(render(props).toJSON()).toMatchSnapshot()
+    const tree = shallow(<ToDoListItem {...props} />)
+    expect(tree).toMatchSnapshot()
   })
 
   it('renders quiz', () => {
-    props.item = template.toDoItem({
+    props.item = template.toDoModel({
       assignment: null,
       quiz: template.quiz({ title: 'Quiz 1' }),
     })
-    expect(render(props).toJSON()).toMatchSnapshot()
+    const tree = shallow(<ToDoListItem {...props} />)
+    expect(tree).toMatchSnapshot()
   })
 
   it('renders discussion', () => {
-    props.item = template.toDoItem({
+    props.item = template.toDoModel({
       assignment: template.assignment({ name: 'Assignment 1', submission_types: ['discussion_topic'] }),
     })
-    expect(render(props).toJSON()).toMatchSnapshot()
+    const tree = shallow(<ToDoListItem {...props} />)
+    expect(tree).toMatchSnapshot()
   })
 
   it('renders null due date', () => {
-    props.item = template.toDoItem({
+    props.item = template.toDoModel({
       assignment: template.assignment({ due_at: null }),
     })
-    expect(render(props).toJSON()).toMatchSnapshot()
+    const tree = shallow(<ToDoListItem {...props} />)
+    expect(tree).toMatchSnapshot()
   })
 
-  function render (props: Props, options: any = {}): any {
-    return renderer.create(<ToDoListItem {...props} />, options)
-  }
-})
-
-describe('mapStateToProps', () => {
-  it('maps course state to props', () => {
-    const state = template.appState({
-      entities: {
-        courses: {
-          '33': {
-            color: '#111111',
-            course: template.course({ name: 'Intro to JavaScript' }),
-          },
-        },
-      },
-    })
-    const item = template.toDoItem({ course_id: '33' })
-    const ownProps = { item, onPress: jest.fn(), index: 0 }
-    expect(mapStateToProps(state, ownProps)).toEqual({
-      courseName: 'Intro to JavaScript',
-      courseColor: '#111111',
-    })
+  it('passes the item to onPress', () => {
+    const tree = shallow(<ToDoListItem {...props} />)
+    tree.find('Row').simulate('Press')
+    expect(props.onPress).toHaveBeenCalledWith(props.item)
   })
 })

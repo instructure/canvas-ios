@@ -39,6 +39,7 @@ import AccessLine from '../../../common/components/AccessLine'
 import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
 import { isTeacher } from '../../app'
 import currentWindowTraits, { type WindowTraits } from '../../../utils/windowTraits'
+import localeCompare from '../../../utils/locale-sort'
 
 type Props = {
   courseID: string,
@@ -54,6 +55,7 @@ type Props = {
 type State = {
   selectedPageURL: ?string,
   windowTraits: WindowTraits,
+  pages: PageModel[],
 }
 
 export class PagesList extends React.Component<Props, State> {
@@ -61,14 +63,26 @@ export class PagesList extends React.Component<Props, State> {
   state = {
     selectedPageURL: null,
     windowTraits: currentWindowTraits(),
+    pages: this.prepareList(this.props.pages),
   }
 
   componentWillMount () {
     this.handleTraitChange()
   }
 
-  componentWillReceiveProps ({ loadError }: Props) {
+  componentWillReceiveProps ({ loadError, pages }: Props) {
     if (loadError && loadError !== this.props.loadError) alertError(loadError)
+    if (pages !== this.props.pages) {
+      this.setState({ pages: this.prepareList(pages) })
+    }
+  }
+
+  prepareList (pages: PageModel[]) {
+    return pages.slice().sort((a, b) => {
+      if (a.isFrontPage) return -1
+      if (b.isFrontPage) return 1
+      return localeCompare(a.title, b.title)
+    })
   }
 
   handleTraitChange = () => {
@@ -123,7 +137,7 @@ export class PagesList extends React.Component<Props, State> {
 
   render () {
     this.showFrontPage()
-    const { course, courseColor, isLoading, pages, refresh } = this.props
+    const { course, courseColor, isLoading, refresh } = this.props
     return (
       <Screen
         navBarColor={courseColor}
@@ -142,7 +156,7 @@ export class PagesList extends React.Component<Props, State> {
       >
         <View style={styles.container}>
           <FlatList
-            data={pages}
+            data={this.state.pages}
             extraData={this.state}
             renderItem={this.renderRow}
             keyExtractor={PageModel.keyExtractor}
@@ -230,5 +244,5 @@ const styles = StyleSheet.create({
 export default fetchPropsFor(PagesList, ({ courseID }, api) => ({
   courseColor: api.getCourseColor(courseID),
   course: api.getCourse(courseID),
-  pages: api.getPages('courses', courseID),
+  pages: api.getPages('courses', courseID).list,
 }))

@@ -62,7 +62,7 @@ describe('PagesList', () => {
     const pages = [ template.pageModel() ]
     httpCache.handle('GET', 'users/self/colors', { custom_colors: { course_1: courseColor } })
     httpCache.handle('GET', 'courses/1', course)
-    httpCache.handle('GET', 'courses/1/pages', pages)
+    httpCache.handle('GET', 'courses/1/pages', { list: pages })
     const tree = shallow(<ConnectedPagesList courseID='1' />)
     expect(tree.find(PagesList).props()).toMatchObject({
       courseColor,
@@ -91,6 +91,24 @@ describe('PagesList', () => {
     const row = diveList(tree.find('FlatList')).find('FeatureRow').first()
     expect(row.prop('title')).toBe('Front Page')
     expect(row.prop('subtitle')).toBe('Page 1')
+  })
+
+  it('sorts the pages list', () => {
+    const tree = shallow(<PagesList {...props} />)
+    const pages = [
+      template.pageModel({ title: 'Page B' }),
+      template.pageModel({ isFrontPage: true, title: 'Page 1' }),
+      template.pageModel({ title: 'Page A' }),
+    ]
+    tree.setProps({ pages })
+    const sorted = tree.find('FlatList').prop('data')
+    expect(sorted).toEqual([
+      template.pageModel({ isFrontPage: true, title: 'Page 1' }),
+      template.pageModel({ title: 'Page A' }),
+      template.pageModel({ title: 'Page B' }),
+    ])
+    tree.setProps({ pages }) // not changed
+    expect(tree.find('FlatList').prop('data')).toBe(sorted)
   })
 
   it('shows access icon for teachers', () => {

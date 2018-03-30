@@ -1,11 +1,11 @@
 // @flow
 import httpClient from '../httpClient'
-import { exhaust, paginate } from '../utils/pagination'
 import {
   API,
   httpCache,
-  PageModel,
   CourseModel,
+  PageModel,
+  ToDoModel,
 } from '../model-api'
 import * as template from '../../__templates__'
 
@@ -44,6 +44,17 @@ describe('model api', () => {
       api.delete('/three')
       expect(httpClient().delete).toHaveBeenCalled()
     })
+
+    it('will not try to rehydrate getNextPage for pagination', () => {
+      httpCache.handle('GET', 'users/self/todo', {
+        list: [],
+        next: 'users/self/todo?page=bookmark:asdf',
+      })
+      expect(api.paginate('users/self/todo')).toEqual({
+        list: [],
+        next: 'users/self/todo?page=bookmark:asdf',
+      })
+    })
   })
 
   describe('network-only policy', () => {
@@ -74,6 +85,24 @@ describe('model api', () => {
       api.delete('/three')
       expect(httpClient().delete).toHaveBeenCalled()
     })
+
+    it('will rehydrate getNextPage for pagination', () => {
+      httpCache.handle('GET', 'users/self/todo', {
+        list: [],
+        next: 'users/self/todo?page=bookmark:asdf',
+      })
+      const result = api.paginate('users/self/todo')
+      expect(result).toEqual({
+        list: [],
+        next: 'users/self/todo?page=bookmark:asdf',
+        getNextPage: expect.any(Function),
+      })
+      result.getNextPage()
+      expect(httpClient().get).toHaveBeenCalledWith(
+        'users/self/todo?page=bookmark:asdf',
+        { transform: expect.any(Function) }
+      )
+    })
   })
 
   describe('cache-and-network policy', () => {
@@ -101,6 +130,12 @@ describe('model api', () => {
         'courses/1/pages/test',
         {}
       )
+      httpCache.handle('GET', 'users/self/todo', { list: [] }, { ttl: -1 })
+      api.paginate('users/self/todo')
+      expect(httpClient().get).toHaveBeenCalledWith(
+        'users/self/todo',
+        { transform: expect.any(Function) }
+      )
     })
 
     it('hits the network api for non-GET', () => {
@@ -111,13 +146,80 @@ describe('model api', () => {
       api.delete('/three')
       expect(httpClient().delete).toHaveBeenCalled()
     })
+
+    it('will rehydrate getNextPage for pagination', () => {
+      httpCache.handle('GET', 'users/self/todo', {
+        list: [],
+        next: 'users/self/todo?page=bookmark:asdf',
+      })
+      const result = api.paginate('users/self/todo')
+      expect(result).toEqual({
+        list: [],
+        next: 'users/self/todo?page=bookmark:asdf',
+        getNextPage: expect.any(Function),
+      })
+      result.getNextPage()
+      expect(httpClient().get).toHaveBeenCalledWith(
+        'users/self/todo?page=bookmark:asdf',
+        { transform: expect.any(Function) }
+      )
+    })
   })
 
-  it('exhausts pagination if 99 or more items are requested per page', async () => {
+  describe('pagination', () => {
     const api = new API({ policy: 'network-only' })
-    mock(exhaust).mockImplementation(() => Promise.resolve())
-    api.get('/stars', { params: { per_page: 99 } })
-    expect(exhaust).toHaveBeenCalled()
+
+    it('adds the subsequent pages to the base cache entry', () => {
+      api.paginate('users/self/todo')
+      const config = mock(httpClient().get).mock.calls[0][1]
+      let response = template.apiResponse({
+        data: [ 2 ],
+        headers: { link: template.apiLinkHeader({
+          first: 'users/self/todo?page=1',
+          current: 'users/self/todo?page=2',
+          next: 'users/self/todo?page=3',
+        }) },
+      })
+      const transformed = config.transform(response.data, response)
+      expect(transformed).toBeNull() // we add to prev entry instead
+      httpCache.handle('GET', 'users/self/todo', {
+        list: [ 1 ],
+        next: 'users/self/todo?page=2',
+      })
+      config.transform(response.data, response)
+      const result = api.paginate('users/self/todo')
+      expect(result).toEqual({
+        list: [ 1, 2 ],
+        next: 'users/self/todo?page=3',
+        getNextPage: expect.any(Function),
+      })
+    })
+
+    it('automatically calls getNextPage if page size >= 99', () => {
+      api.paginate('users/self/todo', { params: { per_page: 99 } })
+      const config = mock(httpClient().get).mock.calls[0][1]
+      let response = template.apiResponse({
+        data: [ 1 ],
+        headers: { link: template.apiLinkHeader({
+          first: 'users/self/todo?page=1',
+          current: 'users/self/todo?page=1',
+          next: 'users/self/todo?page=2',
+        }) },
+      })
+      const transformed = config.transform(response.data, response)
+      expect(transformed).toEqual({
+        list: [ 1 ],
+        next: 'users/self/todo?page=2',
+        getNextPage: expect.any(Function),
+      })
+      expect(httpClient().get).toHaveBeenCalledWith(
+        'users/self/todo?page=2',
+        {
+          params: { per_page: 99 },
+          transform: expect.any(Function),
+        }
+      )
+    })
   })
 
   it('calls the listeners during the request lifecycle', async () => {
@@ -185,31 +287,29 @@ describe('model api', () => {
     const api = new API({ policy: 'network-only' })
 
     it('can getPages', () => {
-      expect(api.getPages('courses', '1')).toEqual([])
-      expect(paginate).toHaveBeenCalledWith(
+      expect(api.getPages('courses', '1')).toEqual({
+        list: [],
+        next: null,
+        getNextPage: null,
+      })
+      expect(httpClient().get).toHaveBeenCalledWith(
         'courses/1/pages',
         {
           params: { per_page: 99 },
           transform: expect.any(Function),
         }
       )
-      const args = mock(paginate).mock.calls[0]
-      const result = args[1].transform([
+      const args = mock(httpClient().get).mock.calls[0]
+      const response = template.apiResponse({ data: [
         template.page({ title: 'syllabus' }),
         template.page({ title: 'another' }),
         template.page({ title: 'Front', front_page: true }),
-      ])
-      expect(result).toEqual([
-        new PageModel(template.page({ title: 'Front', front_page: true })),
-        new PageModel(template.page({ title: 'another' })),
+      ] })
+      const result = args[1].transform(response.data, response)
+      expect(result.list).toEqual([
         new PageModel(template.page({ title: 'syllabus' })),
-      ])
-      expect(args[1].transform([
-        template.page({ title: 'Front', front_page: true }),
-        template.page({ title: 'another' }),
-      ])).toEqual([
-        new PageModel(template.page({ title: 'Front', front_page: true })),
         new PageModel(template.page({ title: 'another' })),
+        new PageModel(template.page({ title: 'Front', front_page: true })),
       ])
     })
 
@@ -286,6 +386,32 @@ describe('model api', () => {
         'courses/1/pages/test',
         {}
       )
+    })
+  })
+
+  describe('To Dos', () => {
+    const api = new API({ policy: 'network-only' })
+
+    it('can getToDos', () => {
+      api.getToDos()
+      expect(httpClient().get).toHaveBeenCalledWith(
+        'users/self/todo',
+        { transform: expect.any(Function) }
+      )
+      const { transform } = mock(httpClient().get).mock.calls[0][1]
+      const response = template.apiResponse({
+        data: [ template.toDoItem() ],
+        headers: {
+          link: template.apiLinkHeader({
+            next: 'users/self/todo?page=bookmark:asdf',
+          }),
+        },
+      })
+      expect(transform(response.data, response)).toEqual({
+        list: [ new ToDoModel(template.toDoItem()) ],
+        next: 'users/self/todo?page=bookmark:asdf',
+        getNextPage: expect.any(Function),
+      })
     })
   })
 })

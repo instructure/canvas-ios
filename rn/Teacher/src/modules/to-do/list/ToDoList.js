@@ -14,59 +14,73 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-/* eslint-disable flowtype/require-valid-file-annotation */
+// @flow
 
+import i18n from 'format-message'
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import {
   View,
   StyleSheet,
   FlatList,
-  Alert,
   Image,
 } from 'react-native'
 import Screen from '../../../routing/Screen'
 import color from '../../../common/colors'
 import images from '../../../images'
 import branding from '../../../common/branding'
-import Actions from './actions'
-import canvas from '../../../canvas-api'
-import ToDoListItem from './ToDoListItem'
+import {
+  fetchPropsFor,
+  ToDoModel,
+} from '../../../canvas-api/model-api'
 import RowSeparator from '../../../common/components/rows/RowSeparator'
-import { defaultErrorTitle, parseErrorMessage } from '../../../redux/middleware/error-handler'
-import { gradeProp } from '../../submissions/list/get-submissions-props'
+import { alertError } from '../../../redux/middleware/error-handler'
 import { Text } from '../../../common/text'
-import i18n from 'format-message'
+import ToDoListItem from './ToDoListItem'
 
-const { getToDo } = canvas
-
-type OwnProps = {
-  getToDo: () => Promise<ToDoItem[]>,
+type Props = {
+  navigator: Navigator,
+  list: ToDoModel[],
+  getNextPage: ?() => ApiPromise<any>,
+  isLoading: boolean,
+  loadError: ?Error,
+  refresh: () => void,
 }
 
-type StateProps = {
-  items: ToDoItem[],
+type State = {
+  height: number,
+  list: ToDoModel[],
 }
 
-export type Props = OwnProps & StateProps & NavigationProps & typeof Actions
-
-export class ToDoList extends Component<Props, any> {
-  static defaultProps = {
-    getToDo,
+export class ToDoList extends Component<Props, State> {
+  state = {
+    height: 0,
+    list: this.prepareList(this.props.list),
   }
 
-  constructor (props: Props) {
-    super(props)
+  prepareList (list: ToDoModel[]) {
+    const seen = new Set()
+    return list
+      .filter(todo => (
+        todo.type === 'grading' &&
+        todo.needsGradingCount && todo.needsGradingCount > 0 &&
+        todo.courseID && (todo.assignment || todo.quiz) &&
+        !seen.has(todo.htmlUrl) && seen.add(todo.htmlUrl) // filter out non-unique
+      ))
+  }
 
-    this.state = {
-      refreshing: false,
-      height: 0,
+  componentWillReceiveProps (props: Props) {
+    if (props.loadError && props.loadError !== this.props.loadError) {
+      alertError(props.loadError)
     }
-  }
-
-  // $FlowFixMe
-  async componentDidMount () {
-    await this.refresh()
+    let list = this.state.list
+    if (props.list !== this.props.list) {
+      this.setState({ list: list = this.prepareList(props.list) })
+    }
+    // workaround MBL-9964 the first pages may not actually need grading
+    // and onEndReached would never get called for an empty list
+    if (list.length < 10 && props.getNextPage && props.getNextPage !== this.props.getNextPage) {
+      props.getNextPage()
+    }
   }
 
   render () {
@@ -78,68 +92,35 @@ export class ToDoList extends Component<Props, any> {
         drawUnderNavBar
         navBarImage={branding.headerImage}
       >
-        <View style={styles.container} onLayout={this.onLayout}>
+        <View style={styles.container} onLayout={this.handleLayout}>
           <FlatList
-            data={this.props.items}
+            data={this.state.list}
             renderItem={this.renderItem}
-            refreshing={this.state.refreshing}
-            onRefresh={() => { this.refresh() }}
-            keyExtractor={(item, index) => String(index)}
+            refreshing={this.props.isLoading}
+            onRefresh={this.props.refresh}
+            keyExtractor={ToDoModel.keyExtractor}
             testID='to-do-list.list'
             ItemSeparatorComponent={RowSeparator}
             ListEmptyComponent={this.renderEmpty()}
-            onEndReached={this.onEndReached}
-            onEndReachedThreshold={0.01}
+            onEndReached={this.props.getNextPage}
+            onEndReachedThreshold={0.5}
           />
         </View>
       </Screen>
     )
   }
 
-  renderItem = (({ item, index }: { item: ToDoItem, index: number }) => {
+  renderItem = (({ item }: { item: ToDoModel }) => {
     return (
       <ToDoListItem
         item={item}
-        index={index}
-        onPress={this.onPressItem(item)}
+        onPress={this.showSpeedGrader}
       />
     )
   })
 
-  refresh = async () => {
-    this.setState({ refreshing: true })
-    try {
-      const { data, next } = await this.props.getToDo()
-      this.nextPage = next
-      this.props.refreshedToDo([])
-      this.props.refreshedToDo(data)
-    } catch (error) {
-      Alert.alert(defaultErrorTitle(), parseErrorMessage(error))
-    }
-    this.setState({ refreshing: false })
-  }
-
-  getNextPage = async () => {
-    if (!this.nextPage) return
-    try {
-      const { data, next } = await this.nextPage()
-      this.nextPage = next
-      this.props.refreshedToDo(data)
-    } catch (error) {
-      Alert.alert(defaultErrorTitle(), parseErrorMessage(error))
-    }
-  }
-
-  onEndReached = () => {
-    this.getNextPage()
-  }
-
-  onPressItem = (item: ToDoItem) => () => {
-    this.showSpeedGrader(item)
-  }
-
-  showSpeedGrader = (item: ToDoItem) => {
-    if (!item.course_id) return
+  showSpeedGrader = (item: ToDoModel) => {
+    if (!item.courseID) return
     let assignmentID
     if (item.assignment) {
       assignmentID = item.assignment.id
@@ -147,16 +128,16 @@ export class ToDoList extends Component<Props, any> {
     if (item.quiz) {
       assignmentID = item.quiz.assignment_id
     }
-    const path = `/courses/${item.course_id}/gradebook/speed_grader`
+    const path = `/courses/${item.courseID}/gradebook/speed_grader`
     const filter = (submissions) => submissions.filter(({ grade }) => grade === 'ungraded')
     this.props.navigator.show(
       path,
       { modal: true, modalPresentationStyle: 'fullscreen' },
-      { filter, studentIndex: 0, assignmentID, onDismiss: this.refresh }
+      { filter, studentIndex: 0, assignmentID, onDismiss: this.props.refresh }
     )
   }
 
-  onLayout = (event: any) => {
+  handleLayout = (event: any) => {
     this.setState({ height: event.nativeEvent.layout.height })
   }
 
@@ -191,79 +172,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export function mapStateToProps ({ entities, toDo }: AppState): StateProps {
-  const items = Object.values(toDo.needsGrading)
-    .map(item => {
-      // We can't trust the item's `needs_grading_count` because the server
-      // appears to cache this value for at least a few minutes so we
-      // have to calculate it ourselves.
-      let submissionRefs = []
-      if (item.assignment &&
-        entities.assignments &&
-        entities.assignments[item.assignment.id] &&
-        entities.assignments[item.assignment.id].submissions) {
-        submissionRefs = entities.assignments[item.assignment.id].submissions.refs
-      }
-      if (item.quiz &&
-        entities.quizzes &&
-        entities.quizzes[item.quiz.id] &&
-        entities.quizzes[item.quiz.id].submissions) {
-        submissionRefs = entities.quizzes[item.quiz.id].submissions.refs
-      }
-
-      let submissions = []
-      if (entities.submissions) {
-        submissions = submissionRefs
-          .map(r => entities.submissions[r])
-          .filter(s => s)
-      }
-
-      if (!submissions.length) {
-        return item
-      }
-
-      const needsGradingCount = submissions
-        .filter(s => gradeProp(s.submission) === 'ungraded')
-        .filter(s => {
-          // filter out submissions that were very recently graded
-          const limit = 3 * 60 * 1000 // 3 minutes
-          return s.lastGradedAt == null ||
-            Date.now() > new Date(s.lastGradedAt + limit).getTime()
-        })
-        .length
-
-      return {
-        ...item,
-        needs_grading_count: needsGradingCount,
-      }
-    })
-    .filter(item => item.needs_grading_count && item.needs_grading_count > 0)
-    .sort((a, b) => {
-      /*
-       * oldest due dates at the front
-       * null due dates at the end
-       * then sort by id
-       */
-      const id1 = a.assignment && a.assignment.id || a.quiz && a.quiz.id
-      const id2 = b.assignment && b.assignment.id || b.quiz && b.quiz.id
-      const dueAt1 = a.assignment && a.assignment.due_at || a.quiz && a.quiz.due_at
-      const dueAt2 = b.assignment && b.assignment.due_at || b.quiz && b.quiz.due_at
-
-      if (dueAt1 == null && dueAt2 == null) {
-        return Number(id1) < Number(id2) ? -1 : 1
-      }
-      if (dueAt1 == null) return 1
-      if (dueAt2 == null) return -1
-      if (new Date(dueAt1).getTime() === new Date(dueAt2).getTime()) {
-        return Number(id1) < Number(id2) ? -1 : 1
-      }
-      return new Date(dueAt1) < new Date(dueAt2) ? -1 : 1
-    })
-
-  return {
-    items,
-  }
-}
-
-const Connected = connect(mapStateToProps, Actions)(ToDoList)
-export default (Connected: *)
+export default fetchPropsFor(ToDoList, (_, api) => api.getToDos())

@@ -3,12 +3,12 @@ export * from './fetch-props-for'
 export * from './model'
 export { httpCache } from './httpClient'
 
-import localeCompare from '../utils/locale-sort'
 import httpClient, { httpCache } from './httpClient'
-import { paginate, exhaust } from './utils/pagination'
+import parseLink from './utils/parse-link-header'
 import {
   CourseModel,
   PageModel,
+  ToDoModel,
 } from './model'
 
 type ApiPolicy = 'cache-only' | 'cache-and-network' | 'network-only'
@@ -19,12 +19,20 @@ type ApiOptions = {|
   onAnyComplete?: ApiPromise<any> => void,
   onError?: Error => void,
 |}
+type Paginated<T> = {|
+  list: T,
+  next: ?string,
+  getNextPage: ?(() => ApiPromise<Paginated<T>>),
+|}
 
 const emptyArray = []
+const emptyPaginated: Paginated<any> = {
+  list: emptyArray,
+  next: null,
+  getNextPage: null,
+}
 
 export class API {
-  static cache: Object = {}
-
   options: ApiOptions
 
   constructor (options: ApiOptions) {
@@ -45,12 +53,52 @@ export class API {
       policy === 'network-only' ||
       (policy === 'cache-and-network' && cached.expiresAt < Date.now())
     ) {
-      this.request((config.params && config.params.per_page >= 99)
-        ? exhaust(paginate(url, config))
-        : httpClient().get(url, config)
-      )
+      this.request(httpClient().get(url, config))
     }
     return cached.value || null
+  }
+
+  paginate<T> (url: string, config: ApiConfig = {}): Paginated<T> {
+    const transform = config.transform
+    config.transform = (value: any, response: ApiResponse<any>) => {
+      const list = transform ? transform(value, response) : value
+      const { current, first, next } = parseLink(response.headers.link) || {}
+      const getNextPage = next && (() => {
+        this.request(httpClient().get(next, config))
+      })
+      if (getNextPage && config.params && config.params.per_page >= 99) {
+        getNextPage() // automatically request all pages
+      }
+      if (current && current !== first) {
+        const base = httpCache.get(url, config).value
+        if (base) {
+          base.list = base.list.concat(list)
+          base.next = next
+          base.getNextPage = getNextPage
+        }
+        return null
+      }
+      return {
+        list,
+        next,
+        getNextPage,
+      }
+    }
+
+    const cached = httpCache.get(url, config)
+    const { policy } = this.options
+    if (
+      policy === 'network-only' ||
+      (policy === 'cache-and-network' && cached.expiresAt < Date.now())
+    ) {
+      this.request(httpClient().get(url, config))
+    }
+    // getNextPage won't survive serialization
+    const value = cached.value
+    if (value && value.next && !value.getNextPage && policy !== 'cache-only') {
+      value.getNextPage = () => this.request(httpClient().get(value.next, config))
+    }
+    return value || emptyPaginated
   }
 
   post (url: string, data: *, config: ApiConfig = {}) {
@@ -88,18 +136,13 @@ export class API {
     })
   }
 
-  getPages (context: CanvasContext, contextID: string): PageModel[] {
-    return this.get(`${context}/${contextID}/pages`, {
+  getPages (context: CanvasContext, contextID: string): Paginated<PageModel[]> {
+    return this.paginate(`${context}/${contextID}/pages`, {
       params: {
         per_page: 99,
       },
-      transform: (pages: Page[]) => pages.map(page => new PageModel(page))
-        .sort((a, b) => {
-          if (a.isFrontPage) return -1
-          if (b.isFrontPage) return 1
-          return localeCompare(a.title, b.title)
-        }),
-    }) || emptyArray
+      transform: (pages: Page[]) => pages.map(page => new PageModel(page)),
+    })
   }
 
   createPage (context: CanvasContext, contextID: string, parameters: PageParameters): ApiPromise<PageModel> {
@@ -128,5 +171,11 @@ export class API {
 
   deletePage (context: CanvasContext, contextID: string, url: string): ApiPromise<null> {
     return this.delete(`${context}/${contextID}/pages/${url}`)
+  }
+
+  getToDos (): Paginated<ToDoModel[]> {
+    return this.paginate('users/self/todo', {
+      transform: (todos: ToDoItem[]) => todos.map(todo => new ToDoModel(todo)),
+    })
   }
 }

@@ -16,6 +16,7 @@
 
 // @flow
 
+import { ToDoModel } from '../canvas-api/model'
 import template, { type Template } from '../utils/template'
 import { assignment } from './assignments'
 
@@ -30,3 +31,6 @@ export const toDoItem: Template<ToDoItem> = template({
   course_id: '1',
   group_id: null,
 })
+
+export const toDoModel: Template<ToDoModel> = overrides =>
+  Object.assign(new ToDoModel(toDoItem()), overrides)

@@ -14,102 +14,108 @@
 // limitations under the License.
 //
 
-/* eslint-disable flowtype/require-valid-file-annotation */
+// @flow
 
+import { shallow } from 'enzyme'
 import React from 'react'
-import { Alert } from 'react-native'
-import renderer from 'react-test-renderer'
-import { ToDoList, mapStateToProps, type Props } from '../ToDoList'
-import { defaultErrorTitle } from '../../../../redux/middleware/error-handler'
-import explore from '../../../../../test/helpers/explore'
+import { API, httpCache } from '../../../../canvas-api/model-api'
+import * as template from '../../../../__templates__'
+import { alertError } from '../../../../redux/middleware/error-handler'
+import Connected, { ToDoList } from '../ToDoList'
 
-jest
-  .mock('Button', () => 'Button')
-  .mock('TouchableHighlight', () => 'TouchableHighlight')
-  .mock('TouchableOpacity', () => 'TouchableOpacity')
-  .mock('../ToDoListItem', () => 'ToDoListItem')
+jest.mock('../../../../redux/middleware/error-handler', () => {
+  return { alertError: jest.fn() }
+})
 
-const template = {
-  ...require('../../../../__templates__/toDo'),
-  ...require('../../../../__templates__/helm'),
-  ...require('../../../../__templates__/error'),
-  ...require('../../../../__templates__/assignments'),
-  ...require('../../../../__templates__/quiz'),
-  ...require('../../../../__templates__/submissions'),
-  ...require('../../../../redux/__templates__/app-state'),
-}
+const diveList = (list: any) =>
+  shallow(
+    <list>
+      {list.prop('data').map((item, index) =>
+        <item key={list.prop('keyExtractor')(item)}>
+          {list.prop('renderItem')({ item, index })}
+        </item>
+      )}
+    </list>
+  )
 
 describe('ToDoList', () => {
-  let props: Props
+  let props
   beforeEach(() => {
     props = {
       navigator: template.navigator(),
-      items: [template.toDoItem()],
-      getToDo: jest.fn(() => Promise.resolve({ data: [template.toDoItem()] })),
-      refreshedToDo: jest.fn(),
+      list: [template.toDoModel()],
+      getNextPage: jest.fn(),
+      api: new API({ policy: 'cache-only' }),
+      isLoading: false,
+      loadError: null,
+      refresh: jest.fn(),
     }
   })
 
+  it('gets to dos from the model api', () => {
+    const list = [ template.toDoModel() ]
+    const next = 'users/self/todo?page=2'
+    const getNextPage = jest.fn()
+    httpCache.handle('GET', 'users/self/todo', { list, next, getNextPage })
+    const tree = shallow(<Connected />)
+    expect(tree.find(ToDoList).props()).toMatchObject({
+      list,
+      next,
+      getNextPage,
+    })
+  })
+
   it('renders items', () => {
-    props.items = [template.toDoItem()]
-    expect(render(props).toJSON()).toMatchSnapshot()
+    const tree = shallow(<ToDoList {...props} />)
+    expect(tree).toMatchSnapshot()
   })
 
-  it('refreshes on mount', async () => {
-    const spy = jest.fn(() => Promise.resolve({ data: [template.toDoItem()] }))
-    props.getToDo = spy
-    const view = render(props)
-    await view.getInstance().componentDidMount()
-    expect(spy).toHaveBeenCalled()
+  it('alerts when there is a load error', () => {
+    const tree = shallow(<ToDoList {...props} />)
+    tree.setProps({ loadError: null })
+    expect(alertError).not.toHaveBeenCalled()
+    const loadError = new Error()
+    tree.setProps({ loadError })
+    expect(alertError).toHaveBeenCalledWith(loadError)
   })
 
-  it('dispatches refreshedToDo on refresh', async () => {
-    const spy = jest.fn()
-    props.refreshedToDo = spy
-    const data = [template.toDoItem()]
-    props.getToDo = jest.fn(() => Promise.resolve({ data }))
-    const view = render(props)
-    const list: any = explore(view.toJSON()).selectByType('RCTScrollView')
-    await list.props.onRefresh()
-    expect(spy).toHaveBeenCalledWith(data)
+  it('gets next page immediately if there are less than 10', () => {
+    const tree = shallow(<ToDoList {...props} />)
+    const getNextPage = jest.fn()
+    tree.setProps({
+      list: [
+        template.toDoModel({ needsGradingCount: 0, htmlUrl: '1' }),
+        template.toDoModel({ needsGradingCount: 0, htmlUrl: '2' }),
+        template.toDoModel({ needsGradingCount: 0, htmlUrl: '3' }),
+        template.toDoModel({ needsGradingCount: 0, htmlUrl: '4' }),
+        template.toDoModel({ needsGradingCount: 0, htmlUrl: '5' }),
+        template.toDoModel({ needsGradingCount: 0, htmlUrl: '6' }),
+        template.toDoModel({ needsGradingCount: 0, htmlUrl: '7' }),
+        template.toDoModel({ needsGradingCount: 0, htmlUrl: '8' }),
+        template.toDoModel({ needsGradingCount: 0, htmlUrl: '9' }),
+        template.toDoModel({ needsGradingCount: 0, htmlUrl: '10' }),
+      ],
+      getNextPage,
+    })
+    expect(getNextPage).toHaveBeenCalled()
   })
 
   it('gets next page on end reached', async () => {
-    const data = [template.toDoItem()]
-    const spy = jest.fn(() => Promise.resolve({ data }))
-    props.getToDo = jest.fn(() => Promise.resolve({
-      data,
-      next: spy,
-    }))
-    const view = render(props)
-    await view.getInstance().componentDidMount()
-    const list: any = explore(view.toJSON()).selectByType('RCTScrollView')
-    await list.props.onEndReached()
-    expect(spy).toHaveBeenCalled()
-  })
-
-  it('alerts refresh error', async () => {
-    const spy = jest.fn()
-    // $FlowFixMe
-    Alert.alert = spy
-    props.getToDo = jest.fn(() => Promise.reject(template.error('ERROR')))
-    const view = render(props)
-    const list: any = explore(view.toJSON()).selectByType('RCTScrollView')
-    await list.props.onRefresh()
-    expect(spy).toHaveBeenCalledWith(defaultErrorTitle(), 'ERROR')
+    const tree = shallow(<ToDoList {...props} />)
+    tree.find('FlatList').simulate('EndReached')
+    expect(props.getNextPage).toHaveBeenCalled()
   })
 
   it('shows Speed Grader on assignment press', () => {
-    const spy = jest.fn()
-    props.navigator = template.navigator({ show: spy })
-    props.items = [template.toDoItem({
-      course_id: '222',
+    props.navigator = template.navigator({ show: jest.fn() })
+    props.list = [template.toDoModel({
+      courseID: '222',
       assignment: template.assignment({ id: '1' }),
     })]
-    const view = render(props)
-    const row: any = explore(view.toJSON()).selectByType('ToDoListItem')
-    row.props.onPress()
-    expect(spy).toHaveBeenCalledWith(
+    const tree = shallow(<ToDoList {...props} />)
+    diveList(tree.find('FlatList')).find('ToDoListItem')
+      .simulate('Press', props.list[0])
+    expect(props.navigator.show).toHaveBeenCalledWith(
       '/courses/222/gradebook/speed_grader',
       { modal: true, modalPresentationStyle: 'fullscreen' },
       {
@@ -122,16 +128,16 @@ describe('ToDoList', () => {
   })
 
   it('shows Speed Grader on quiz press', () => {
-    const spy = jest.fn()
-    props.navigator = template.navigator({ show: spy })
-    props.items = [template.toDoItem({
-      course_id: '222',
+    props.navigator = template.navigator({ show: jest.fn() })
+    props.list = [template.toDoModel({
+      courseID: '222',
+      assignment: null,
       quiz: template.quiz({ id: '2', assignment_id: '1' }),
     })]
-    const view = render(props)
-    const row: any = explore(view.toJSON()).selectByType('ToDoListItem')
-    row.props.onPress()
-    expect(spy).toHaveBeenCalledWith(
+    const tree = shallow(<ToDoList {...props} />)
+    diveList(tree.find('FlatList')).find('ToDoListItem')
+      .simulate('Press', props.list[0])
+    expect(props.navigator.show).toHaveBeenCalledWith(
       '/courses/222/gradebook/speed_grader',
       { modal: true, modalPresentationStyle: 'fullscreen' },
       {
@@ -141,161 +147,5 @@ describe('ToDoList', () => {
         onDismiss: expect.any(Function),
       },
     )
-  })
-
-  function render (props: Props, options: any = {}): any {
-    return renderer.create(<ToDoList {...props} />, options)
-  }
-})
-
-describe('mapStateToProps', () => {
-  it('uses counts directly from toDo entities if there are no submissions', () => {
-    const items = [template.toDoItem({ assignment: template.assignment() })]
-    const state = template.appState({
-      toDo: { needsGrading: items },
-      entities: {
-        assignments: {},
-      },
-    })
-    expect(mapStateToProps(state)).toEqual({ items })
-  })
-
-  it('uses submissions to determine needs_grading_count', () => {
-    const assignment = template.assignment({ id: '1' })
-    const ungraded = template.submission({
-      id: '1',
-      grade: null,
-    })
-    const graded = template.submission({
-      id: '2',
-      grade: 'A',
-    })
-    const staleItem = template.toDoItem({
-      assignment,
-      needs_grading_count: 2,
-    })
-    const state = template.appState({
-      toDo: { needsGrading: [staleItem] },
-      entities: {
-        assignments: {
-          '1': {
-            data: assignment,
-            submissions: {
-              pending: 0,
-              refs: [ungraded.id, graded.id],
-            },
-          },
-        },
-        submissions: {
-          [ungraded.id]: {
-            submission: ungraded,
-          },
-          [graded.id]: {
-            submission: graded,
-          },
-        },
-      },
-    })
-    expect(mapStateToProps(state)).toEqual({
-      items: [{ ...staleItem, needs_grading_count: 1 }],
-    })
-  })
-
-  it('it does not include recently graded submissions', () => {
-    const quiz = template.quiz({ id: '1' })
-    const s1 = template.submission({
-      id: '1',
-      grade: null,
-    })
-    const s2 = template.submission({
-      id: '2',
-      grade: null,
-    })
-    const staleItem = template.toDoItem({
-      quiz,
-      needs_grading_count: 2,
-    })
-    const state = template.appState({
-      toDo: { needsGrading: [staleItem] },
-      entities: {
-        quizzes: {
-          '1': {
-            data: quiz,
-            submissions: {
-              pending: 0,
-              refs: [s1.id, s2.id],
-            },
-          },
-        },
-        submissions: {
-          [s1.id]: {
-            submission: s1,
-          },
-          [s2.id]: {
-            submission: s2,
-            lastGradedAt: new Date(Date.now() - 60000).getTime(), // 1 minute ago
-          },
-        },
-      },
-    })
-    expect(mapStateToProps(state)).toEqual({
-      items: [{ ...staleItem, needs_grading_count: 1 }],
-    })
-  })
-
-  it('sorts items correctly', () => {
-    const a1 = template.toDoItem({
-      assignment: template.assignment({
-        due_at: '2016-01-17T19:15:25Z',
-        id: '1',
-        name: 'A',
-      }),
-    })
-    const a2 = template.toDoItem({
-      assignment: template.assignment({
-        due_at: '2016-01-17T19:15:25Z',
-        id: '5',
-        name: 'B',
-      }),
-    })
-    const a3 = template.toDoItem({
-      assignment: null,
-      quiz: template.assignment({
-        due_at: '2017-01-17T19:15:25Z',
-        id: '2',
-        title: 'AA',
-      }),
-    })
-    const a4 = template.toDoItem({
-      assignment: null,
-      quiz: template.assignment({
-        due_at: '2018-01-17T19:15:25Z',
-        id: '22',
-        title: 'AA',
-      }),
-    })
-    const a5 = template.toDoItem({
-      assignment: null,
-      quiz: template.quiz({
-        due_at: null,
-        id: '3',
-        title: 'BB',
-      }),
-    })
-    const a6 = template.toDoItem({
-      assignment: template.assignment({
-        due_at: null,
-        id: '4',
-        name: 'CC',
-      }),
-    })
-    const items = [a1, a2, a3, a4, a5, a6]
-    const state = {
-      toDo: { needsGrading: items },
-      entities: {},
-    }
-    expect(mapStateToProps(state)).toMatchObject({
-      items,
-    })
   })
 })

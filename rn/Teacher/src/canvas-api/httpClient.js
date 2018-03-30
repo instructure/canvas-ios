@@ -58,20 +58,29 @@ export function isAbort (error: Error) {
   return error.message === 'Network request aborted'
 }
 
+export const inFlight: Map<string, ApiPromise<any>> = new Map()
+
 function xhr (method: Method, url: string, data: Body, config: ApiConfig = {}) {
+  const {
+    actAsUserID,
+    authToken,
+  } = getSession()
+
+  const params = { ...config.params }
+  if (actAsUserID) params.as_user_id = actAsUserID
+  const query = serializeParams(params)
+
+  let fullUrl = resolveUrl(url, config)
+  if (query) fullUrl += (fullUrl.includes('?') ? '&' : '?') + query
+
+  const key = `${method} ${fullUrl}`
+  const match = inFlight.get(key)
+  if (method === 'GET' && match) {
+    return match // dedupe in-flight requests
+  }
+
   const request = new XMLHttpRequest()
   const promise: ApiPromise<*> = new Promise((resolve, reject) => {
-    const {
-      actAsUserID,
-      authToken,
-    } = getSession()
-
-    const params = { ...config.params }
-    if (actAsUserID) params.as_user_id = actAsUserID
-    const query = serializeParams(params)
-
-    let fullUrl = resolveUrl(url, config)
-    if (query) fullUrl += (fullUrl.includes('?') ? '&' : '?') + query
     request.open(method, fullUrl, true)
     request.responseType = config.responseType || 'json'
     request.timeout = config.timeout || 0
@@ -116,7 +125,7 @@ function xhr (method: Method, url: string, data: Body, config: ApiConfig = {}) {
               throw new TypeError('Network request failed')
             }
             if (config.transform) {
-              response.data = config.transform(response.data)
+              response.data = config.transform(response.data, response)
             }
             httpCache.handle(method, url, response.data, config, promise)
             resolve(response)
@@ -141,6 +150,7 @@ function xhr (method: Method, url: string, data: Body, config: ApiConfig = {}) {
       request.removeEventListener('error', handler)
       request.removeEventListener('load', handler)
       request.removeEventListener('timeout', handler)
+      inFlight.delete(key)
     } }
     request.addEventListener('abort', handler)
     request.addEventListener('error', handler)
@@ -149,6 +159,7 @@ function xhr (method: Method, url: string, data: Body, config: ApiConfig = {}) {
     request.send(body)
   })
   promise.request = request
+  inFlight.set(key, promise)
   return promise
 }
 
@@ -176,7 +187,7 @@ type CacheEntry = {
 const cache: Map<string, CacheEntry> = new Map()
 const listeners: Set<(?ApiPromise<any>) => void> = new Set()
 export const httpCache = {
-  CACHE_VERSION: 1,
+  CACHE_VERSION: 2,
   notFound: {
     value: null,
     expiresAt: 0,

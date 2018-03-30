@@ -2,1831 +2,480 @@
 
 exports[`ToDoListItem renders 1`] = `
 <View>
-  <View>
-    <TouchableHighlight
-      accessibilityLabel={undefined}
-      accessibilityTraits={
-        Array [
-          "button",
-        ]
-      }
-      accessible={true}
-      onPress={[Function]}
+  <Row
+    accessible={true}
+    disclosureIndicator={true}
+    onPress={[Function]}
+    renderImage={[Function]}
+    testID="to-do.list.https://api.instructure.com/api/v1/path/to/html_url.row"
+    title="learn to write code"
+  >
+    <View
       style={
-        Array [
-          undefined,
-          undefined,
-        ]
+        Object {
+          "flex": 1,
+          "flexDirection": "column",
+        }
       }
-      testID="to-do.list.item-0.row"
     >
-      <View
+      <Text
         style={
           Array [
             Object {
-              "alignItems": "center",
-              "backgroundColor": "white",
-              "flex": 1,
-              "flexDirection": "row",
-              "minHeight": 54,
-              "paddingBottom": 12,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 12,
+              "fontSize": 14,
+              "fontWeight": "600",
             },
             Object {
-              "backgroundColor": "white",
+              "color": "#fff",
             },
           ]
         }
       >
-        <View
-          style={
+        Course 1
+      </Text>
+      <Text
+        style={
+          Object {
+            "color": "#8B969E",
+            "fontSize": 13,
+            "marginTop": 3,
+          }
+        }
+      >
+        Due May 31, 2037 at 11:59 PM
+      </Text>
+      <Text
+        style={
+          Array [
             Object {
               "alignSelf": "flex-start",
-            }
-          }
-        >
-          <View
-            accessibilityLabel="Published"
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 0,
-              }
-            }
-          >
-            <Image
-              source={
-                Object {
-                  "testUri": "../../../src/images/course/Assignment.png",
-                }
-              }
-              style={
-                Object {
-                  "tintColor": null,
-                }
-              }
-              testID="access-icon-image"
-            />
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "bottom": -6,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "position": "absolute",
-                  "right": -5,
-                  "width": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/Published.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 12,
-                    "tintColor": "#00AC18",
-                    "width": 12,
-                  }
-                }
-                testID="access-icon-icon"
-              />
-            </View>
-          </View>
-        </View>
-        <View
-          style={
-            Array [
-              Object {
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              },
-              Object {
-                "marginLeft": 12,
-              },
-            ]
-          }
-        >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            numberOfLines={0}
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Array [
-                  Object {
-                    "fontWeight": "600",
-                  },
-                ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
-              ]
-            }
-          >
-            learn to write code
-          </Text>
-          <View
-            style={
-              Object {
-                "flex": 1,
-                "flexDirection": "column",
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Array [
-                    Object {
-                      "fontSize": 14,
-                      "fontWeight": "600",
-                    },
-                    Object {
-                      "color": "black",
-                    },
-                  ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              React Native for Dummies
-            </Text>
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "color": "#8B969E",
-                    "fontSize": 13,
-                    "marginTop": 3,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                ]
-              }
-            >
-              Due May 31, 2037 at 11:59 PM
-            </Text>
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Array [
-                    Object {
-                      "alignSelf": "flex-start",
-                      "backgroundColor": "white",
-                      "borderRadius": 9,
-                      "borderWidth": 1,
-                      "flex": 0,
-                      "fontSize": 11,
-                      "fontWeight": "600",
-                      "marginTop": 4,
-                      "overflow": "hidden",
-                      "paddingBottom": 1,
-                      "paddingLeft": 6,
-                      "paddingRight": 6,
-                      "paddingTop": 3,
-                    },
-                    Object {
-                      "borderColor": "#374A59",
-                      "color": "#374A59",
-                    },
-                  ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              5 NEED GRADING
-            </Text>
-          </View>
-        </View>
-        <View
-          style={
-            Object {
+              "backgroundColor": "white",
+              "borderRadius": 9,
+              "borderWidth": 1,
               "flex": 0,
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "row",
-                "justifyContent": "flex-end",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignSelf": "center",
-                  "backgroundColor": "transparent",
-                  "borderColor": "#c7c7cc",
-                  "borderRightWidth": 2,
-                  "borderTopWidth": 2,
-                  "height": 10,
-                  "marginLeft": 7,
-                  "transform": Array [
-                    Object {
-                      "rotate": "45deg",
-                    },
-                  ],
-                  "width": 10,
-                }
-              }
-            />
-          </View>
-        </View>
-      </View>
-    </TouchableHighlight>
-  </View>
-  <View
-    style={
-      Object {
-        "backgroundColor": "#00AC18",
-        "bottom": 4,
-        "left": 0,
-        "position": "absolute",
-        "top": 4,
-        "width": 3,
-      }
-    }
+              "fontSize": 11,
+              "fontWeight": "600",
+              "marginTop": 4,
+              "overflow": "hidden",
+              "paddingBottom": 1,
+              "paddingLeft": 6,
+              "paddingRight": 6,
+              "paddingTop": 3,
+            },
+            Object {
+              "borderColor": "#374A59",
+              "color": "#374A59",
+            },
+          ]
+        }
+      >
+        5 NEED GRADING
+      </Text>
+    </View>
+  </Row>
+  <AccessLine
+    disableAppSpecificChecks={false}
+    visible={true}
   />
 </View>
 `;
 
 exports[`ToDoListItem renders discussion 1`] = `
 <View>
-  <View>
-    <TouchableHighlight
-      accessibilityLabel={undefined}
-      accessibilityTraits={
-        Array [
-          "button",
-        ]
-      }
-      accessible={true}
-      onPress={[Function]}
+  <Row
+    accessible={true}
+    disclosureIndicator={true}
+    onPress={[Function]}
+    renderImage={[Function]}
+    testID="to-do.list.https://api.instructure.com/api/v1/path/to/html_url.row"
+    title="Assignment 1"
+  >
+    <View
       style={
-        Array [
-          undefined,
-          undefined,
-        ]
+        Object {
+          "flex": 1,
+          "flexDirection": "column",
+        }
       }
-      testID="to-do.list.item-0.row"
     >
-      <View
+      <Text
         style={
           Array [
             Object {
-              "alignItems": "center",
-              "backgroundColor": "white",
-              "flex": 1,
-              "flexDirection": "row",
-              "minHeight": 54,
-              "paddingBottom": 12,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 12,
+              "fontSize": 14,
+              "fontWeight": "600",
             },
             Object {
-              "backgroundColor": "white",
+              "color": "#fff",
             },
           ]
         }
       >
-        <View
-          style={
+        Course 1
+      </Text>
+      <Text
+        style={
+          Object {
+            "color": "#8B969E",
+            "fontSize": 13,
+            "marginTop": 3,
+          }
+        }
+      >
+        Due May 31, 2037 at 11:59 PM
+      </Text>
+      <Text
+        style={
+          Array [
             Object {
               "alignSelf": "flex-start",
-            }
-          }
-        >
-          <View
-            accessibilityLabel="Published"
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 0,
-              }
-            }
-          >
-            <Image
-              source={
-                Object {
-                  "testUri": "../../../src/images/course/Discussions.png",
-                }
-              }
-              style={
-                Object {
-                  "tintColor": "#000",
-                }
-              }
-              testID="access-icon-image"
-            />
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "bottom": -6,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "position": "absolute",
-                  "right": -5,
-                  "width": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/Published.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 12,
-                    "tintColor": "#00AC18",
-                    "width": 12,
-                  }
-                }
-                testID="access-icon-icon"
-              />
-            </View>
-          </View>
-        </View>
-        <View
-          style={
-            Array [
-              Object {
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              },
-              Object {
-                "marginLeft": 12,
-              },
-            ]
-          }
-        >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            numberOfLines={0}
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Array [
-                  Object {
-                    "fontWeight": "600",
-                  },
-                ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
-              ]
-            }
-          >
-            Assignment 1
-          </Text>
-          <View
-            style={
-              Object {
-                "flex": 1,
-                "flexDirection": "column",
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Array [
-                    Object {
-                      "fontSize": 14,
-                      "fontWeight": "600",
-                    },
-                    Object {
-                      "color": "#000",
-                    },
-                  ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              React Native for Dummies
-            </Text>
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "color": "#8B969E",
-                    "fontSize": 13,
-                    "marginTop": 3,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                ]
-              }
-            >
-              Due May 31, 2037 at 11:59 PM
-            </Text>
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Array [
-                    Object {
-                      "alignSelf": "flex-start",
-                      "backgroundColor": "white",
-                      "borderRadius": 9,
-                      "borderWidth": 1,
-                      "flex": 0,
-                      "fontSize": 11,
-                      "fontWeight": "600",
-                      "marginTop": 4,
-                      "overflow": "hidden",
-                      "paddingBottom": 1,
-                      "paddingLeft": 6,
-                      "paddingRight": 6,
-                      "paddingTop": 3,
-                    },
-                    Object {
-                      "borderColor": "#374A59",
-                      "color": "#374A59",
-                    },
-                  ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              5 NEED GRADING
-            </Text>
-          </View>
-        </View>
-        <View
-          style={
-            Object {
+              "backgroundColor": "white",
+              "borderRadius": 9,
+              "borderWidth": 1,
               "flex": 0,
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "row",
-                "justifyContent": "flex-end",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignSelf": "center",
-                  "backgroundColor": "transparent",
-                  "borderColor": "#c7c7cc",
-                  "borderRightWidth": 2,
-                  "borderTopWidth": 2,
-                  "height": 10,
-                  "marginLeft": 7,
-                  "transform": Array [
-                    Object {
-                      "rotate": "45deg",
-                    },
-                  ],
-                  "width": 10,
-                }
-              }
-            />
-          </View>
-        </View>
-      </View>
-    </TouchableHighlight>
-  </View>
-  <View
-    style={
-      Object {
-        "backgroundColor": "#00AC18",
-        "bottom": 4,
-        "left": 0,
-        "position": "absolute",
-        "top": 4,
-        "width": 3,
-      }
-    }
+              "fontSize": 11,
+              "fontWeight": "600",
+              "marginTop": 4,
+              "overflow": "hidden",
+              "paddingBottom": 1,
+              "paddingLeft": 6,
+              "paddingRight": 6,
+              "paddingTop": 3,
+            },
+            Object {
+              "borderColor": "#374A59",
+              "color": "#374A59",
+            },
+          ]
+        }
+      >
+        5 NEED GRADING
+      </Text>
+    </View>
+  </Row>
+  <AccessLine
+    disableAppSpecificChecks={false}
+    visible={true}
   />
 </View>
 `;
 
 exports[`ToDoListItem renders null due date 1`] = `
 <View>
-  <View>
-    <TouchableHighlight
-      accessibilityLabel={undefined}
-      accessibilityTraits={
-        Array [
-          "button",
-        ]
-      }
-      accessible={true}
-      onPress={[Function]}
+  <Row
+    accessible={true}
+    disclosureIndicator={true}
+    onPress={[Function]}
+    renderImage={[Function]}
+    testID="to-do.list.https://api.instructure.com/api/v1/path/to/html_url.row"
+    title="learn to write code"
+  >
+    <View
       style={
-        Array [
-          undefined,
-          undefined,
-        ]
+        Object {
+          "flex": 1,
+          "flexDirection": "column",
+        }
       }
-      testID="to-do.list.item-0.row"
     >
-      <View
+      <Text
         style={
           Array [
             Object {
-              "alignItems": "center",
-              "backgroundColor": "white",
-              "flex": 1,
-              "flexDirection": "row",
-              "minHeight": 54,
-              "paddingBottom": 12,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 12,
+              "fontSize": 14,
+              "fontWeight": "600",
             },
             Object {
-              "backgroundColor": "white",
+              "color": "#fff",
             },
           ]
         }
       >
-        <View
-          style={
+        Course 1
+      </Text>
+      <Text
+        style={
+          Object {
+            "color": "#8B969E",
+            "fontSize": 13,
+            "marginTop": 3,
+          }
+        }
+      >
+        No Due Date
+      </Text>
+      <Text
+        style={
+          Array [
             Object {
               "alignSelf": "flex-start",
-            }
-          }
-        >
-          <View
-            accessibilityLabel="Published"
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 0,
-              }
-            }
-          >
-            <Image
-              source={
-                Object {
-                  "testUri": "../../../src/images/course/Assignment.png",
-                }
-              }
-              style={
-                Object {
-                  "tintColor": "#000",
-                }
-              }
-              testID="access-icon-image"
-            />
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "bottom": -6,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "position": "absolute",
-                  "right": -5,
-                  "width": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/Published.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 12,
-                    "tintColor": "#00AC18",
-                    "width": 12,
-                  }
-                }
-                testID="access-icon-icon"
-              />
-            </View>
-          </View>
-        </View>
-        <View
-          style={
-            Array [
-              Object {
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              },
-              Object {
-                "marginLeft": 12,
-              },
-            ]
-          }
-        >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            numberOfLines={0}
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Array [
-                  Object {
-                    "fontWeight": "600",
-                  },
-                ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
-              ]
-            }
-          >
-            learn to write code
-          </Text>
-          <View
-            style={
-              Object {
-                "flex": 1,
-                "flexDirection": "column",
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Array [
-                    Object {
-                      "fontSize": 14,
-                      "fontWeight": "600",
-                    },
-                    Object {
-                      "color": "#000",
-                    },
-                  ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              React Native for Dummies
-            </Text>
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "color": "#8B969E",
-                    "fontSize": 13,
-                    "marginTop": 3,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                ]
-              }
-            >
-              No Due Date
-            </Text>
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Array [
-                    Object {
-                      "alignSelf": "flex-start",
-                      "backgroundColor": "white",
-                      "borderRadius": 9,
-                      "borderWidth": 1,
-                      "flex": 0,
-                      "fontSize": 11,
-                      "fontWeight": "600",
-                      "marginTop": 4,
-                      "overflow": "hidden",
-                      "paddingBottom": 1,
-                      "paddingLeft": 6,
-                      "paddingRight": 6,
-                      "paddingTop": 3,
-                    },
-                    Object {
-                      "borderColor": "#374A59",
-                      "color": "#374A59",
-                    },
-                  ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              5 NEED GRADING
-            </Text>
-          </View>
-        </View>
-        <View
-          style={
-            Object {
+              "backgroundColor": "white",
+              "borderRadius": 9,
+              "borderWidth": 1,
               "flex": 0,
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "row",
-                "justifyContent": "flex-end",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignSelf": "center",
-                  "backgroundColor": "transparent",
-                  "borderColor": "#c7c7cc",
-                  "borderRightWidth": 2,
-                  "borderTopWidth": 2,
-                  "height": 10,
-                  "marginLeft": 7,
-                  "transform": Array [
-                    Object {
-                      "rotate": "45deg",
-                    },
-                  ],
-                  "width": 10,
-                }
-              }
-            />
-          </View>
-        </View>
-      </View>
-    </TouchableHighlight>
-  </View>
-  <View
-    style={
-      Object {
-        "backgroundColor": "#00AC18",
-        "bottom": 4,
-        "left": 0,
-        "position": "absolute",
-        "top": 4,
-        "width": 3,
-      }
-    }
+              "fontSize": 11,
+              "fontWeight": "600",
+              "marginTop": 4,
+              "overflow": "hidden",
+              "paddingBottom": 1,
+              "paddingLeft": 6,
+              "paddingRight": 6,
+              "paddingTop": 3,
+            },
+            Object {
+              "borderColor": "#374A59",
+              "color": "#374A59",
+            },
+          ]
+        }
+      >
+        5 NEED GRADING
+      </Text>
+    </View>
+  </Row>
+  <AccessLine
+    disableAppSpecificChecks={false}
+    visible={true}
   />
 </View>
 `;
 
 exports[`ToDoListItem renders published assignment 1`] = `
 <View>
-  <View>
-    <TouchableHighlight
-      accessibilityLabel={undefined}
-      accessibilityTraits={
-        Array [
-          "button",
-        ]
-      }
-      accessible={true}
-      onPress={[Function]}
+  <Row
+    accessible={true}
+    disclosureIndicator={true}
+    onPress={[Function]}
+    renderImage={[Function]}
+    testID="to-do.list.https://api.instructure.com/api/v1/path/to/html_url.row"
+    title="Assignment 1"
+  >
+    <View
       style={
-        Array [
-          undefined,
-          undefined,
-        ]
+        Object {
+          "flex": 1,
+          "flexDirection": "column",
+        }
       }
-      testID="to-do.list.item-0.row"
     >
-      <View
+      <Text
         style={
           Array [
             Object {
-              "alignItems": "center",
-              "backgroundColor": "white",
-              "flex": 1,
-              "flexDirection": "row",
-              "minHeight": 54,
-              "paddingBottom": 12,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 12,
+              "fontSize": 14,
+              "fontWeight": "600",
             },
             Object {
-              "backgroundColor": "white",
+              "color": "#fff",
             },
           ]
         }
       >
-        <View
-          style={
+        Course 1
+      </Text>
+      <Text
+        style={
+          Object {
+            "color": "#8B969E",
+            "fontSize": 13,
+            "marginTop": 3,
+          }
+        }
+      >
+        Due May 31, 2037 at 11:59 PM
+      </Text>
+      <Text
+        style={
+          Array [
             Object {
               "alignSelf": "flex-start",
-            }
-          }
-        >
-          <View
-            accessibilityLabel="Published"
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 0,
-              }
-            }
-          >
-            <Image
-              source={
-                Object {
-                  "testUri": "../../../src/images/course/Assignment.png",
-                }
-              }
-              style={
-                Object {
-                  "tintColor": "#000",
-                }
-              }
-              testID="access-icon-image"
-            />
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "bottom": -6,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "position": "absolute",
-                  "right": -5,
-                  "width": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/Published.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 12,
-                    "tintColor": "#00AC18",
-                    "width": 12,
-                  }
-                }
-                testID="access-icon-icon"
-              />
-            </View>
-          </View>
-        </View>
-        <View
-          style={
-            Array [
-              Object {
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              },
-              Object {
-                "marginLeft": 12,
-              },
-            ]
-          }
-        >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            numberOfLines={0}
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Array [
-                  Object {
-                    "fontWeight": "600",
-                  },
-                ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
-              ]
-            }
-          >
-            Assignment 1
-          </Text>
-          <View
-            style={
-              Object {
-                "flex": 1,
-                "flexDirection": "column",
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Array [
-                    Object {
-                      "fontSize": 14,
-                      "fontWeight": "600",
-                    },
-                    Object {
-                      "color": "#000",
-                    },
-                  ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              React Native for Dummies
-            </Text>
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "color": "#8B969E",
-                    "fontSize": 13,
-                    "marginTop": 3,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                ]
-              }
-            >
-              Due May 31, 2037 at 11:59 PM
-            </Text>
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Array [
-                    Object {
-                      "alignSelf": "flex-start",
-                      "backgroundColor": "white",
-                      "borderRadius": 9,
-                      "borderWidth": 1,
-                      "flex": 0,
-                      "fontSize": 11,
-                      "fontWeight": "600",
-                      "marginTop": 4,
-                      "overflow": "hidden",
-                      "paddingBottom": 1,
-                      "paddingLeft": 6,
-                      "paddingRight": 6,
-                      "paddingTop": 3,
-                    },
-                    Object {
-                      "borderColor": "#374A59",
-                      "color": "#374A59",
-                    },
-                  ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              5 NEED GRADING
-            </Text>
-          </View>
-        </View>
-        <View
-          style={
-            Object {
+              "backgroundColor": "white",
+              "borderRadius": 9,
+              "borderWidth": 1,
               "flex": 0,
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "row",
-                "justifyContent": "flex-end",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignSelf": "center",
-                  "backgroundColor": "transparent",
-                  "borderColor": "#c7c7cc",
-                  "borderRightWidth": 2,
-                  "borderTopWidth": 2,
-                  "height": 10,
-                  "marginLeft": 7,
-                  "transform": Array [
-                    Object {
-                      "rotate": "45deg",
-                    },
-                  ],
-                  "width": 10,
-                }
-              }
-            />
-          </View>
-        </View>
-      </View>
-    </TouchableHighlight>
-  </View>
-  <View
-    style={
-      Object {
-        "backgroundColor": "#00AC18",
-        "bottom": 4,
-        "left": 0,
-        "position": "absolute",
-        "top": 4,
-        "width": 3,
-      }
-    }
+              "fontSize": 11,
+              "fontWeight": "600",
+              "marginTop": 4,
+              "overflow": "hidden",
+              "paddingBottom": 1,
+              "paddingLeft": 6,
+              "paddingRight": 6,
+              "paddingTop": 3,
+            },
+            Object {
+              "borderColor": "#374A59",
+              "color": "#374A59",
+            },
+          ]
+        }
+      >
+        5 NEED GRADING
+      </Text>
+    </View>
+  </Row>
+  <AccessLine
+    disableAppSpecificChecks={false}
+    visible={true}
   />
 </View>
 `;
 
 exports[`ToDoListItem renders quiz 1`] = `
 <View>
-  <View>
-    <TouchableHighlight
-      accessibilityLabel={undefined}
-      accessibilityTraits={
-        Array [
-          "button",
-        ]
-      }
-      accessible={true}
-      onPress={[Function]}
+  <Row
+    accessible={true}
+    disclosureIndicator={true}
+    onPress={[Function]}
+    renderImage={[Function]}
+    testID="to-do.list.https://api.instructure.com/api/v1/path/to/html_url.row"
+    title="Quiz 1"
+  >
+    <View
       style={
-        Array [
-          undefined,
-          undefined,
-        ]
+        Object {
+          "flex": 1,
+          "flexDirection": "column",
+        }
       }
-      testID="to-do.list.item-0.row"
     >
-      <View
+      <Text
         style={
           Array [
             Object {
-              "alignItems": "center",
-              "backgroundColor": "white",
-              "flex": 1,
-              "flexDirection": "row",
-              "minHeight": 54,
-              "paddingBottom": 12,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 12,
+              "fontSize": 14,
+              "fontWeight": "600",
             },
             Object {
-              "backgroundColor": "white",
+              "color": "#fff",
             },
           ]
         }
       >
-        <View
-          style={
+        Course 1
+      </Text>
+      <Text
+        style={
+          Object {
+            "color": "#8B969E",
+            "fontSize": 13,
+            "marginTop": 3,
+          }
+        }
+      >
+        Due Jan 23, 2013 at 11:59 PM
+      </Text>
+      <Text
+        style={
+          Array [
             Object {
               "alignSelf": "flex-start",
-            }
-          }
-        >
-          <View
-            accessibilityLabel="Published"
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 0,
-              }
-            }
-          >
-            <Image
-              source={
-                Object {
-                  "testUri": "../../../src/images/course/Quiz.png",
-                }
-              }
-              style={
-                Object {
-                  "tintColor": "#000",
-                }
-              }
-              testID="access-icon-image"
-            />
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "bottom": -6,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "position": "absolute",
-                  "right": -5,
-                  "width": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/Published.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 12,
-                    "tintColor": "#00AC18",
-                    "width": 12,
-                  }
-                }
-                testID="access-icon-icon"
-              />
-            </View>
-          </View>
-        </View>
-        <View
-          style={
-            Array [
-              Object {
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              },
-              Object {
-                "marginLeft": 12,
-              },
-            ]
-          }
-        >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            numberOfLines={0}
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Array [
-                  Object {
-                    "fontWeight": "600",
-                  },
-                ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
-              ]
-            }
-          >
-            Quiz 1
-          </Text>
-          <View
-            style={
-              Object {
-                "flex": 1,
-                "flexDirection": "column",
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Array [
-                    Object {
-                      "fontSize": 14,
-                      "fontWeight": "600",
-                    },
-                    Object {
-                      "color": "#000",
-                    },
-                  ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              React Native for Dummies
-            </Text>
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "color": "#8B969E",
-                    "fontSize": 13,
-                    "marginTop": 3,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                ]
-              }
-            >
-              Due Jan 23, 2013 at 11:59 PM
-            </Text>
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Array [
-                    Object {
-                      "alignSelf": "flex-start",
-                      "backgroundColor": "white",
-                      "borderRadius": 9,
-                      "borderWidth": 1,
-                      "flex": 0,
-                      "fontSize": 11,
-                      "fontWeight": "600",
-                      "marginTop": 4,
-                      "overflow": "hidden",
-                      "paddingBottom": 1,
-                      "paddingLeft": 6,
-                      "paddingRight": 6,
-                      "paddingTop": 3,
-                    },
-                    Object {
-                      "borderColor": "#374A59",
-                      "color": "#374A59",
-                    },
-                  ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              5 NEED GRADING
-            </Text>
-          </View>
-        </View>
-        <View
-          style={
-            Object {
+              "backgroundColor": "white",
+              "borderRadius": 9,
+              "borderWidth": 1,
               "flex": 0,
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "row",
-                "justifyContent": "flex-end",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignSelf": "center",
-                  "backgroundColor": "transparent",
-                  "borderColor": "#c7c7cc",
-                  "borderRightWidth": 2,
-                  "borderTopWidth": 2,
-                  "height": 10,
-                  "marginLeft": 7,
-                  "transform": Array [
-                    Object {
-                      "rotate": "45deg",
-                    },
-                  ],
-                  "width": 10,
-                }
-              }
-            />
-          </View>
-        </View>
-      </View>
-    </TouchableHighlight>
-  </View>
-  <View
-    style={
-      Object {
-        "backgroundColor": "#00AC18",
-        "bottom": 4,
-        "left": 0,
-        "position": "absolute",
-        "top": 4,
-        "width": 3,
-      }
-    }
+              "fontSize": 11,
+              "fontWeight": "600",
+              "marginTop": 4,
+              "overflow": "hidden",
+              "paddingBottom": 1,
+              "paddingLeft": 6,
+              "paddingRight": 6,
+              "paddingTop": 3,
+            },
+            Object {
+              "borderColor": "#374A59",
+              "color": "#374A59",
+            },
+          ]
+        }
+      >
+        5 NEED GRADING
+      </Text>
+    </View>
+  </Row>
+  <AccessLine
+    disableAppSpecificChecks={false}
+    visible={true}
   />
 </View>
 `;
 
 exports[`ToDoListItem renders unpublished assignment 1`] = `
 <View>
-  <View>
-    <TouchableHighlight
-      accessibilityLabel={undefined}
-      accessibilityTraits={
-        Array [
-          "button",
-        ]
-      }
-      accessible={true}
-      onPress={[Function]}
+  <Row
+    accessible={true}
+    disclosureIndicator={true}
+    onPress={[Function]}
+    renderImage={[Function]}
+    testID="to-do.list.https://api.instructure.com/api/v1/path/to/html_url.row"
+    title="Assignment 1"
+  >
+    <View
       style={
-        Array [
-          undefined,
-          undefined,
-        ]
+        Object {
+          "flex": 1,
+          "flexDirection": "column",
+        }
       }
-      testID="to-do.list.item-0.row"
     >
-      <View
+      <Text
         style={
           Array [
             Object {
-              "alignItems": "center",
-              "backgroundColor": "white",
-              "flex": 1,
-              "flexDirection": "row",
-              "minHeight": 54,
-              "paddingBottom": 12,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 12,
+              "fontSize": 14,
+              "fontWeight": "600",
             },
             Object {
-              "backgroundColor": "white",
+              "color": "#fff",
             },
           ]
         }
       >
-        <View
-          style={
+        Course 1
+      </Text>
+      <Text
+        style={
+          Object {
+            "color": "#8B969E",
+            "fontSize": 13,
+            "marginTop": 3,
+          }
+        }
+      >
+        Due May 31, 2037 at 11:59 PM
+      </Text>
+      <Text
+        style={
+          Array [
             Object {
               "alignSelf": "flex-start",
-            }
-          }
-        >
-          <View
-            accessibilityLabel="Not Published"
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 0,
-              }
-            }
-          >
-            <Image
-              source={
-                Object {
-                  "testUri": "../../../src/images/course/Assignment.png",
-                }
-              }
-              style={
-                Object {
-                  "tintColor": "#000",
-                }
-              }
-              testID="access-icon-image"
-            />
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderRadius": 8,
-                  "bottom": -6,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "position": "absolute",
-                  "right": -5,
-                  "width": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/Unpublished.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 12,
-                    "tintColor": "#8B969E",
-                    "width": 12,
-                  }
-                }
-                testID="access-icon-icon"
-              />
-            </View>
-          </View>
-        </View>
-        <View
-          style={
-            Array [
-              Object {
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              },
-              Object {
-                "marginLeft": 12,
-              },
-            ]
-          }
-        >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            numberOfLines={0}
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Array [
-                  Object {
-                    "fontWeight": "600",
-                  },
-                ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
-              ]
-            }
-          >
-            Assignment 1
-          </Text>
-          <View
-            style={
-              Object {
-                "flex": 1,
-                "flexDirection": "column",
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Array [
-                    Object {
-                      "fontSize": 14,
-                      "fontWeight": "600",
-                    },
-                    Object {
-                      "color": "#000",
-                    },
-                  ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              React Native for Dummies
-            </Text>
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "color": "#8B969E",
-                    "fontSize": 13,
-                    "marginTop": 3,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                ]
-              }
-            >
-              Due May 31, 2037 at 11:59 PM
-            </Text>
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Array [
-                    Object {
-                      "alignSelf": "flex-start",
-                      "backgroundColor": "white",
-                      "borderRadius": 9,
-                      "borderWidth": 1,
-                      "flex": 0,
-                      "fontSize": 11,
-                      "fontWeight": "600",
-                      "marginTop": 4,
-                      "overflow": "hidden",
-                      "paddingBottom": 1,
-                      "paddingLeft": 6,
-                      "paddingRight": 6,
-                      "paddingTop": 3,
-                    },
-                    Object {
-                      "borderColor": "#374A59",
-                      "color": "#374A59",
-                    },
-                  ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              5 NEED GRADING
-            </Text>
-          </View>
-        </View>
-        <View
-          style={
-            Object {
+              "backgroundColor": "white",
+              "borderRadius": 9,
+              "borderWidth": 1,
               "flex": 0,
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "row",
-                "justifyContent": "flex-end",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignSelf": "center",
-                  "backgroundColor": "transparent",
-                  "borderColor": "#c7c7cc",
-                  "borderRightWidth": 2,
-                  "borderTopWidth": 2,
-                  "height": 10,
-                  "marginLeft": 7,
-                  "transform": Array [
-                    Object {
-                      "rotate": "45deg",
-                    },
-                  ],
-                  "width": 10,
-                }
-              }
-            />
-          </View>
-        </View>
-      </View>
-    </TouchableHighlight>
-  </View>
-  <View />
+              "fontSize": 11,
+              "fontWeight": "600",
+              "marginTop": 4,
+              "overflow": "hidden",
+              "paddingBottom": 1,
+              "paddingLeft": 6,
+              "paddingRight": 6,
+              "paddingTop": 3,
+            },
+            Object {
+              "borderColor": "#374A59",
+              "color": "#374A59",
+            },
+          ]
+        }
+      >
+        5 NEED GRADING
+      </Text>
+    </View>
+  </Row>
+  <AccessLine
+    disableAppSpecificChecks={false}
+    visible={false}
+  />
 </View>
 `;

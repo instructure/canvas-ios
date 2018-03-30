@@ -17,7 +17,6 @@
 // @flow
 
 import httpClient from '../httpClient'
-import { paginate } from '../utils/pagination'
 
 export function getCustomColors (): ApiPromise<CustomColors> {
   return httpClient().get('users/self/colors')
@@ -46,11 +45,6 @@ export function createUser (createUserData: CreateUser): ApiPromise<User> {
     communication_channel: createUserData.communication_channel,
   }
   return httpClient().post(`/accounts/self/users`, data)
-}
-
-export function getToDo (): ApiPromise<ToDoItem[]> {
-  const url = 'users/self/todo'
-  return paginate(url)
 }
 
 export function getToDoCount (): ApiPromise<Object> {

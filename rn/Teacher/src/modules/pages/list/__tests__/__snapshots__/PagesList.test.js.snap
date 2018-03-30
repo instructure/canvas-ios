@@ -39,6 +39,7 @@ exports[`PagesList renders empty 1`] = `
       disableVirtualization={false}
       extraData={
         Object {
+          "pages": Array [],
           "selectedPageURL": null,
           "windowTraits": Object {
             "horizontal": "compact",
@@ -98,6 +99,7 @@ exports[`PagesList renders loading 1`] = `
       disableVirtualization={false}
       extraData={
         Object {
+          "pages": Array [],
           "selectedPageURL": null,
           "windowTraits": Object {
             "horizontal": "compact",

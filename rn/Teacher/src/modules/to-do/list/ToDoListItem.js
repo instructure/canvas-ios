@@ -16,8 +16,8 @@
 
 // @flow
 
+import i18n from 'format-message'
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import {
   View,
   StyleSheet,
@@ -27,39 +27,40 @@ import { Text } from '../../../common/text'
 import AccessIcon from '../../../common/components/AccessIcon'
 import AccessLine from '../../../common/components/AccessLine'
 import colors from '../../../common/colors'
-import i18n from 'format-message'
 import images from '../../../images/'
+import {
+  fetchPropsFor,
+  ToDoModel,
+} from '../../../canvas-api/model-api'
 
-type StateProps = {
+type Props = {
   courseName: ?string,
-  courseColor: ?string,
+  courseColor: string,
+  item: ToDoModel,
+  onPress: (ToDoModel) => void,
 }
 
-type OwnProps = {
-  item: ToDoItem,
-  index: number,
-  onPress: (ToDoItem) => void,
-}
+export class ToDoListItem extends Component<Props> {
+  handlePress = () => {
+    this.props.onPress(this.props.item)
+  }
 
-export type Props = StateProps & OwnProps
-
-export class ToDoListItem extends Component<Props, any> {
   render () {
     if (this.props.item.assignment) {
-      return this._renderAssignment(this.props.item.assignment, this.props.item.needs_grading_count || 0)
+      return this.renderAssignment(this.props.item.assignment, this.props.item.needsGradingCount || 0)
     }
 
     if (this.props.item.quiz) {
-      return this._renderQuiz(this.props.item.quiz, this.props.item.needs_grading_count || 0)
+      return this.renderQuiz(this.props.item.quiz, this.props.item.needsGradingCount || 0)
     }
   }
 
-  _renderAssignment (assignment: Assignment, needsGradingCount: number) {
+  renderAssignment (assignment: Assignment, needsGradingCount: number) {
     let image = images.course.assignments
     if (assignment.submission_types.includes('discussion_topic')) {
       image = images.course.discussions
     }
-    return this._renderNeedsGrading(
+    return this.renderNeedsGrading(
       assignment.name,
       assignment.due_at,
       needsGradingCount,
@@ -68,8 +69,8 @@ export class ToDoListItem extends Component<Props, any> {
     )
   }
 
-  _renderQuiz (quiz: Quiz, needsGradingCount: number) {
-    return this._renderNeedsGrading(
+  renderQuiz (quiz: Quiz, needsGradingCount: number) {
+    return this.renderNeedsGrading(
       quiz.title,
       quiz.due_at,
       needsGradingCount,
@@ -78,7 +79,7 @@ export class ToDoListItem extends Component<Props, any> {
     )
   }
 
-  _renderNeedsGrading (title: string, dueAt: ?string, count: number, entry: Quiz | Assignment, image: any) {
+  renderNeedsGrading (title: string, dueAt: ?string, count: number, entry: Quiz | Assignment, image: any) {
     const renderIcon = () => {
       return (
         <View style={styles.icon}>
@@ -104,36 +105,31 @@ export class ToDoListItem extends Component<Props, any> {
 
     return (
       <View>
-        <View>
-          <Row
-            title={title}
-            renderImage={renderIcon}
-            testID={`to-do.list.item-${this.props.index}.row`}
-            onPress={this.props.onPress}
-            disclosureIndicator
-            accessible
-          >
-            <View style={{ flex: 1, flexDirection: 'column' }}>
-              <Text
-                style={[styles.courseName, { color: this.props.courseColor || 'black' }]}
-              >
-                {this.props.courseName}
-              </Text>
-              <Text style={styles.dueDate}>{dueLabel}</Text>
-              <Text
-                style={[
-                  styles.needsGrading,
-                  {
-                    color: colors.primaryBrandColor,
-                    borderColor: colors.primaryBrandColor,
-                  },
-                ]}
-              >
-                {text}
-              </Text>
-            </View>
-          </Row>
-        </View>
+        <Row
+          title={title}
+          renderImage={renderIcon}
+          testID={`to-do.list.${ToDoModel.keyExtractor(this.props.item)}.row`}
+          onPress={this.handlePress}
+          disclosureIndicator
+          accessible
+        >
+          <View style={{ flex: 1, flexDirection: 'column' }}>
+            <Text
+              style={[styles.courseName, { color: this.props.courseColor || 'black' }]}
+            >
+              {this.props.courseName}
+            </Text>
+            <Text style={styles.dueDate}>{dueLabel}</Text>
+            <Text
+              style={[ styles.needsGrading, {
+                color: colors.primaryBrandColor,
+                borderColor: colors.primaryBrandColor,
+              } ]}
+            >
+              {text}
+            </Text>
+          </View>
+        </Row>
         <AccessLine visible={entry.published} />
       </View>
     )
@@ -178,21 +174,10 @@ const styles = StyleSheet.create({
   },
 })
 
-export function mapStateToProps ({ entities }: AppState, { item }: OwnProps): StateProps {
-  let courseName = null
-  let courseColor = null
-
-  if (item.course_id && entities.courses && entities.courses[item.course_id]) {
-    const { color, course } = entities.courses[item.course_id]
-    courseColor = color
-    courseName = course && course.name
-  }
-
+export default fetchPropsFor(ToDoListItem, ({ item }, api) => {
+  const course = api.getCourse(item.courseID || '')
   return {
-    courseName,
-    courseColor,
+    courseName: course && course.name || '',
+    courseColor: api.getCourseColor(item.courseID || ''),
   }
-}
-
-const Connected = connect(mapStateToProps)(ToDoListItem)
-export default (Connected: *)
+})

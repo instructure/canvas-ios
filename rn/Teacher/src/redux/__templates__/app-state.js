@@ -18,10 +18,6 @@
 
 import template, { type Template } from '../../utils/template'
 
-export const toDoState: Template<ToDoState> = template({
-  items: [],
-})
-
 export const entities: Template<Entities> = template({
   accountNotifications: {
     pending: 0,
@@ -73,5 +69,4 @@ export const appState: Template<AppState> = template({
     showsGradesOnCourseCards: true,
     externalTools: [],
   },
-  toDo: toDoState(),
 })

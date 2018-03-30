@@ -3,6 +3,7 @@
 export * from '../redux/__templates__/app-state'
 export * from './account-notification'
 export * from './addressBook'
+export * from './api'
 export * from './assignments'
 export * from './attachment'
 export * from './conversations'

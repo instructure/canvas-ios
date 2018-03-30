@@ -138,5 +138,6 @@ export function fetchPropsFor<OrigProps, QueryProps> (
       return <View {...this.props} {...this.state} />
     }
   }
+  Wrapper.displayName = View.displayName || View.name
   return hoistStatics(Wrapper, View)
 }

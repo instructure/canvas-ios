@@ -60,3 +60,20 @@ export class PageModel extends Model<Page> {
   published = this.raw.published
   isFrontPage = this.raw.front_page
 }
+
+export class ToDoModel extends Model<ToDoItem> {
+  static keyExtractor (todo: ToDoModel) {
+    return todo.htmlUrl
+  }
+
+  type = this.raw.type
+  assignment = this.raw.assignment
+  quiz = this.raw.quiz
+  ignoreUrl = this.raw.ignore
+  ignorePermanentlyUrl = this.raw.ignore_permanently
+  htmlUrl = this.raw.html_url
+  needsGradingCount = this.raw.needs_grading_count
+  contextType = this.raw.context_type
+  courseID = this.raw.course_id
+  groupID = this.raw.group_id
+}

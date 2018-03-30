@@ -16,8 +16,17 @@
 
 // @flow
 
-import { createActions } from 'redux-actions'
+import template, { type Template } from '../utils/template'
 
-export default (createActions({
-  refreshedToDo: (items: ToDoItem[]) => ({ items }),
-}): *)
+export const apiConfig: Template<ApiConfig> = template({})
+
+export const apiResponse: Template<ApiResponse<any>> = template({
+  data: null,
+  config: apiConfig(),
+  headers: { link: null },
+  status: 200,
+  statusText: 'OK',
+})
+
+export const apiLinkHeader = (links: { [string]: string }) =>
+  Object.keys(links).map(rel => `<${links[rel]}>; rel="${rel}"`).join(',')

@@ -206,16 +206,11 @@ export type InboxState = {
   archived: AsyncRefs,
 }
 
-export type ToDoState = {
-  items: ToDoItem[],
-}
-
 export type AppState = {
   favoriteCourses: FavoriteCoursesState,
   favoriteGroups: FavoriteGroupsState,
   entities: Entities,
   inbox: InboxState,
-  toDo: ToDoState,
   asyncActions: { [string]: AsyncActionState },
   userInfo: UserInfo,
 }
