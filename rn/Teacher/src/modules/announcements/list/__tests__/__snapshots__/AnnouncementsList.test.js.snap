@@ -460,7 +460,7 @@ exports[`AnnouncementsList renders 1`] = `
                       ]
                     }
                   >
-                    Nov 14 at 4:55 PM
+                    Last post Dec 10 at 9:03 PM
                   </Text>
                 </View>
               </View>
@@ -633,7 +633,7 @@ exports[`AnnouncementsList renders 1`] = `
                       ]
                     }
                   >
-                    Oct 28 at 3:16 PM
+                    Last post Dec 10 at 9:03 PM
                   </Text>
                 </View>
               </View>
@@ -1158,7 +1158,7 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
                       ]
                     }
                   >
-                    Nov 14 at 4:55 PM
+                    Last post Dec 10 at 9:03 PM
                   </Text>
                 </View>
               </View>
@@ -1331,7 +1331,7 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
                       ]
                     }
                   >
-                    Oct 28 at 3:16 PM
+                    Last post Dec 10 at 9:03 PM
                   </Text>
                 </View>
               </View>
@@ -1711,7 +1711,7 @@ exports[`AnnouncementsList renders with no create_announcement permission 1`] = 
                       ]
                     }
                   >
-                    Nov 14 at 4:55 PM
+                    Last post Dec 10 at 9:03 PM
                   </Text>
                 </View>
               </View>
@@ -1884,7 +1884,7 @@ exports[`AnnouncementsList renders with no create_announcement permission 1`] = 
                       ]
                     }
                   >
-                    Oct 28 at 3:16 PM
+                    Last post Dec 10 at 9:03 PM
                   </Text>
                 </View>
               </View>
