@@ -39,6 +39,7 @@ import Permissions from '@common/permissions'
 import i18n from 'format-message'
 import bytes from '@utils/locale-bytes'
 import striptags from 'striptags'
+import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
 
 const Actions = {
   ...SubmissionCommentActions,
@@ -168,7 +169,6 @@ export class CommentsTab extends Component<CommentsTabProps, any> {
       {...item}
       anonymous={this.props.anonymous}
       testID={'submission-comment-' + item.key}
-      style={{ transform: [{ rotate: '180deg' }] }}
       retryPendingComment={this.makeAComment}
       deletePendingComment={this.deletePendingComment}
       switchFile={this.switchFile}
@@ -184,13 +184,17 @@ export class CommentsTab extends Component<CommentsTabProps, any> {
     // $FlowFixMe
     const rows = this.props.commentRows
     let hasPending = this.props.commentRows.some(c => c.pending)
+    let containerStyles = {}
+    if (rows.length === 0) containerStyles = { flex: 1, justifyContent: 'center' }
     return (
       <View style={{ flex: 1 }}>
         <FlatList
           showsVerticalScrollIndicator={false}
-          style={{ transform: [{ rotate: '180deg' }] }}
+          inverted={true}
           data={rows}
           renderItem={this.renderComment}
+          ListEmptyComponent={<ListEmptyComponent title={i18n('There are no comments to display.')} />}
+          contentContainerStyle={containerStyles}
         />
         { this.state.shouldShowStatus &&
           <CommentStatus

@@ -141,6 +141,14 @@ test('comments render properly', () => {
   expect(tree).toMatchSnapshot()
 })
 
+test('empty state renders properly', () => {
+  const tree = shallow(<CommentsTab commentRows={[]} drawerState={new DrawerState()}/>)
+  let flatlist = tree.find('Component').first()
+  let props = flatlist.props().children[0].props
+  expect(props['ListEmptyComponent'].props.title).toBe('There are no comments to display.')
+  expect(props['contentContainerStyle'].justifyContent).toBe('center')
+})
+
 test('calling switchFile will call the correct actions', () => {
   let actions = {
     selectSubmissionFromHistory: jest.fn(),

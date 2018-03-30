@@ -17,13 +17,7 @@ exports[`comments render properly 1`] = `
               "paddingHorizontal": 16,
               "paddingVertical": 8,
             },
-            Object {
-              "transform": Array [
-                Object {
-                  "rotate": "180deg",
-                },
-              ],
-            },
+            undefined,
           ]
         }
       >
@@ -262,13 +256,7 @@ exports[`comments render properly 1`] = `
               "paddingHorizontal": 16,
               "paddingVertical": 8,
             },
-            Object {
-              "transform": Array [
-                Object {
-                  "rotate": "180deg",
-                },
-              ],
-            },
+            undefined,
           ]
         }
       >
@@ -506,13 +494,7 @@ exports[`comments render properly 1`] = `
               "paddingHorizontal": 16,
               "paddingVertical": 8,
             },
-            Object {
-              "transform": Array [
-                Object {
-                  "rotate": "180deg",
-                },
-              ],
-            },
+            undefined,
           ]
         }
       >
@@ -681,13 +663,7 @@ exports[`comments render properly 1`] = `
               "paddingHorizontal": 16,
               "paddingVertical": 8,
             },
-            Object {
-              "transform": Array [
-                Object {
-                  "rotate": "180deg",
-                },
-              ],
-            },
+            undefined,
           ]
         }
       >
@@ -854,13 +830,7 @@ exports[`comments render properly 1`] = `
               "paddingHorizontal": 16,
               "paddingVertical": 8,
             },
-            Object {
-              "transform": Array [
-                Object {
-                  "rotate": "180deg",
-                },
-              ],
-            },
+            undefined,
           ]
         }
       >
@@ -1033,13 +1003,7 @@ exports[`comments render properly 1`] = `
               "paddingHorizontal": 16,
               "paddingVertical": 8,
             },
-            Object {
-              "transform": Array [
-                Object {
-                  "rotate": "180deg",
-                },
-              ],
-            },
+            undefined,
           ]
         }
       >
