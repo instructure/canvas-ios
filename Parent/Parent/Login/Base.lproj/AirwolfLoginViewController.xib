@@ -16,7 +16,6 @@
                 <outlet property="cancelButton" destination="g5q-Iz-QjI" id="yzf-ND-TFY"/>
                 <outlet property="canvasLoginButton" destination="NBN-Ir-Nor" id="Zy7-6f-AHq"/>
                 <outlet property="confirmPasswordField" destination="qMf-5a-PCQ" id="Jkd-3f-Wo6"/>
-                <outlet property="createAccountButton" destination="cBu-44-Ntj" id="FmC-lf-vrC"/>
                 <outlet property="emailField" destination="y1y-qJ-k36" id="6z1-IA-Li8"/>
                 <outlet property="emailFieldTopCollapsedConstraint" destination="3ZC-Z7-VuH" id="4u8-DB-Hj9"/>
                 <outlet property="fieldContainerHeightConstraint" destination="Iht-hU-MRg" id="dFV-nz-QEj"/>
@@ -43,7 +42,6 @@
                 <outletCollection property="allItems" destination="RIt-Gd-vf8" collectionClass="NSMutableArray" id="uEx-oU-Tpb"/>
                 <outletCollection property="allItems" destination="kAT-Mr-VaH" collectionClass="NSMutableArray" id="0Og-Y8-u2G"/>
                 <outletCollection property="allItems" destination="qMf-5a-PCQ" collectionClass="NSMutableArray" id="XGR-AS-mxI"/>
-                <outletCollection property="allItems" destination="cBu-44-Ntj" collectionClass="NSMutableArray" id="Qhz-XA-UB9"/>
                 <outletCollection property="allItems" destination="Zjh-td-3qY" collectionClass="NSMutableArray" id="4JP-n4-eRa"/>
                 <outletCollection property="allItems" destination="g5q-Iz-QjI" collectionClass="NSMutableArray" id="82T-4s-J6Q"/>
                 <outletCollection property="changePasswordStateItems" destination="RIt-Gd-vf8" collectionClass="NSMutableArray" id="9oX-wc-JDY"/>
@@ -63,7 +61,6 @@
                 <outletCollection property="loginStateItems" destination="y1y-qJ-k36" collectionClass="NSMutableArray" id="3eq-hA-OBD"/>
                 <outletCollection property="loginStateItems" destination="K7R-tF-i2c" collectionClass="NSMutableArray" id="oeE-Ru-WGg"/>
                 <outletCollection property="loginStateItems" destination="RIt-Gd-vf8" collectionClass="NSMutableArray" id="r2V-Ie-QgW"/>
-                <outletCollection property="loginStateItems" destination="cBu-44-Ntj" collectionClass="NSMutableArray" id="wOb-6J-Gg1"/>
                 <outletCollection property="loginStateItems" destination="Zjh-td-3qY" collectionClass="NSMutableArray" id="bgs-R4-SFm"/>
                 <outletCollection property="forgotPasswordStateItems" destination="y1y-qJ-k36" collectionClass="NSMutableArray" id="L0l-Fq-rqg"/>
                 <outletCollection property="forgotPasswordStateItems" destination="g5q-Iz-QjI" collectionClass="NSMutableArray" id="8mB-GJ-Fi2"/>
@@ -86,7 +83,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bCb-gI-z2L">
-                            <rect key="frame" x="20" y="52" width="335" height="590"/>
+                            <rect key="frame" x="20" y="52" width="335" height="551"/>
                             <subviews>
                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="parent_logo" translatesAutoresizingMaskIntoConstraints="NO" id="mD1-mU-LCt">
                                     <rect key="frame" x="55.5" y="39" width="224" height="58"/>
@@ -230,27 +227,8 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cBu-44-Ntj">
-                                    <rect key="frame" x="96.5" y="421" width="142" height="34"/>
-                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <accessibility key="accessibilityConfiguration" identifier="create_account_button"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="142" id="NgI-By-tJE"/>
-                                        <constraint firstAttribute="height" constant="34" id="jL1-fO-LcI"/>
-                                    </constraints>
-                                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <state key="normal" title="Create Account"/>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="8"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                    <connections>
-                                        <action selector="createAccountButtonTapped:" destination="-1" eventType="touchUpInside" id="O4L-6h-6To"/>
-                                    </connections>
-                                </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zjh-td-3qY">
-                                    <rect key="frame" x="96.5" y="460" width="142" height="34"/>
+                                    <rect key="frame" x="96.5" y="421" width="142" height="34"/>
                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     <accessibility key="accessibilityConfiguration" identifier="forgot_password_button"/>
                                     <constraints>
@@ -296,7 +274,7 @@
                                     <rect key="frame" x="157.5" y="380" width="20" height="20"/>
                                 </activityIndicatorView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBN-Ir-Nor">
-                                    <rect key="frame" x="63.5" y="502" width="184" height="34"/>
+                                    <rect key="frame" x="63.5" y="463" width="184" height="34"/>
                                     <accessibility key="accessibilityConfiguration" identifier="login_with_canvas_button"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="34" id="W7C-FD-d5w"/>
@@ -348,7 +326,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lrh-s1-05r">
-                                    <rect key="frame" x="97" y="544" width="142" height="34"/>
+                                    <rect key="frame" x="97" y="505" width="142" height="34"/>
                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     <accessibility key="accessibilityConfiguration" identifier="forgot_password_button"/>
                                     <constraints>
@@ -379,13 +357,11 @@
                                 <constraint firstItem="dbH-uS-X2F" firstAttribute="centerX" secondItem="ghx-JN-SS0" secondAttribute="centerX" id="9Op-TV-Pr1"/>
                                 <constraint firstItem="g5q-Iz-QjI" firstAttribute="centerX" secondItem="bCb-gI-z2L" secondAttribute="centerX" id="ANy-xP-P7E"/>
                                 <constraint firstItem="ghx-JN-SS0" firstAttribute="centerX" secondItem="bCb-gI-z2L" secondAttribute="centerX" id="Dky-gJ-03w"/>
-                                <constraint firstItem="cBu-44-Ntj" firstAttribute="centerX" secondItem="bCb-gI-z2L" secondAttribute="centerX" id="LzG-ZN-goF"/>
                                 <constraint firstItem="i9A-lG-qDQ" firstAttribute="leading" secondItem="dbH-uS-X2F" secondAttribute="leading" id="Mgn-2c-Lq8"/>
                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="375" id="Plf-SD-LsX"/>
-                                <constraint firstItem="cBu-44-Ntj" firstAttribute="top" secondItem="dbH-uS-X2F" secondAttribute="bottom" constant="10" id="QM5-up-dJi"/>
-                                <constraint firstItem="Zjh-td-3qY" firstAttribute="top" secondItem="cBu-44-Ntj" secondAttribute="bottom" constant="5" id="SlJ-TZ-4fp"/>
                                 <constraint firstItem="i9A-lG-qDQ" firstAttribute="top" secondItem="mD1-mU-LCt" secondAttribute="bottom" constant="42" id="Smb-oS-ane"/>
                                 <constraint firstItem="lrh-s1-05r" firstAttribute="centerX" secondItem="bCb-gI-z2L" secondAttribute="centerX" id="TLR-Jf-SuS"/>
+                                <constraint firstItem="Zjh-td-3qY" firstAttribute="top" secondItem="dbH-uS-X2F" secondAttribute="bottom" constant="10" id="TXQ-C6-cf7"/>
                                 <constraint firstItem="lrh-s1-05r" firstAttribute="top" secondItem="NBN-Ir-Nor" secondAttribute="bottom" constant="8" id="X0a-eR-5Qt"/>
                                 <constraint firstItem="Aye-kE-zWM" firstAttribute="trailing" secondItem="mD1-mU-LCt" secondAttribute="trailing" id="bAQ-YY-tSA"/>
                                 <constraint firstItem="i9A-lG-qDQ" firstAttribute="trailing" secondItem="dbH-uS-X2F" secondAttribute="trailing" id="cMr-cm-IBc"/>
