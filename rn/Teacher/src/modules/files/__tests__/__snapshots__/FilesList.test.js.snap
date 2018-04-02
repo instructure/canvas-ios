@@ -228,15 +228,20 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                       }
                     >
                       <Image
+                        resizeMode="cover"
                         source={
                           Object {
                             "testUri": "../../../src/images/files/folder.png",
                           }
                         }
                         style={
-                          Object {
-                            "tintColor": "#73818C",
-                          }
+                          Array [
+                            false,
+                            Object {
+                              "minHeight": 24,
+                              "minWidth": 24,
+                            },
+                          ]
                         }
                         testID="access-icon-image"
                       />
@@ -487,15 +492,20 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                       }
                     >
                       <Image
+                        resizeMode="cover"
                         source={
                           Object {
                             "testUri": "../../../src/images/Document.png",
                           }
                         }
                         style={
-                          Object {
-                            "tintColor": "#73818C",
-                          }
+                          Array [
+                            false,
+                            Object {
+                              "minHeight": 24,
+                              "minWidth": 24,
+                            },
+                          ]
                         }
                         testID="access-icon-image"
                       />
@@ -746,15 +756,20 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                       }
                     >
                       <Image
+                        resizeMode="cover"
                         source={
                           Object {
                             "testUri": "../../../src/images/Document.png",
                           }
                         }
                         style={
-                          Object {
-                            "tintColor": "#73818C",
-                          }
+                          Array [
+                            false,
+                            Object {
+                              "minHeight": 24,
+                              "minWidth": 24,
+                            },
+                          ]
                         }
                         testID="access-icon-image"
                       />
@@ -925,6 +940,21 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
       </View>
     </RCTScrollView>
     <AttachmentPicker
+      fileTypes={
+        Array [
+          "all",
+        ]
+      }
+      navigator={
+        Object {
+          "dismiss": [Function],
+          "dismissAllModals": [Function],
+          "isModal": false,
+          "pop": [Function],
+          "show": [Function],
+          "traitCollection": [Function],
+        }
+      }
       style={
         Object {
           "bottom": 0,
@@ -1167,15 +1197,20 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                       }
                     >
                       <Image
+                        resizeMode="cover"
                         source={
                           Object {
                             "testUri": "../../../src/images/files/folder.png",
                           }
                         }
                         style={
-                          Object {
-                            "tintColor": "#73818C",
-                          }
+                          Array [
+                            false,
+                            Object {
+                              "minHeight": 24,
+                              "minWidth": 24,
+                            },
+                          ]
                         }
                         testID="access-icon-image"
                       />
@@ -1426,15 +1461,20 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                       }
                     >
                       <Image
+                        resizeMode="cover"
                         source={
                           Object {
                             "testUri": "../../../src/images/Document.png",
                           }
                         }
                         style={
-                          Object {
-                            "tintColor": "#73818C",
-                          }
+                          Array [
+                            false,
+                            Object {
+                              "minHeight": 24,
+                              "minWidth": 24,
+                            },
+                          ]
                         }
                         testID="access-icon-image"
                       />
@@ -1685,15 +1725,20 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                       }
                     >
                       <Image
+                        resizeMode="cover"
                         source={
                           Object {
                             "testUri": "../../../src/images/Document.png",
                           }
                         }
                         style={
-                          Object {
-                            "tintColor": "#73818C",
-                          }
+                          Array [
+                            false,
+                            Object {
+                              "minHeight": 24,
+                              "minWidth": 24,
+                            },
+                          ]
                         }
                         testID="access-icon-image"
                       />
@@ -1864,6 +1909,21 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
       </View>
     </RCTScrollView>
     <AttachmentPicker
+      fileTypes={
+        Array [
+          "all",
+        ]
+      }
+      navigator={
+        Object {
+          "dismiss": [Function],
+          "dismissAllModals": [Function],
+          "isModal": false,
+          "pop": [Function],
+          "show": [Function],
+          "traitCollection": [Function],
+        }
+      }
       style={
         Object {
           "bottom": 0,
@@ -2106,15 +2166,20 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                       }
                     >
                       <Image
+                        resizeMode="cover"
                         source={
                           Object {
                             "testUri": "../../../src/images/files/folder.png",
                           }
                         }
                         style={
-                          Object {
-                            "tintColor": "#73818C",
-                          }
+                          Array [
+                            false,
+                            Object {
+                              "minHeight": 24,
+                              "minWidth": 24,
+                            },
+                          ]
                         }
                         testID="access-icon-image"
                       />
@@ -2365,15 +2430,20 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                       }
                     >
                       <Image
+                        resizeMode="cover"
                         source={
                           Object {
                             "testUri": "../../../src/images/Document.png",
                           }
                         }
                         style={
-                          Object {
-                            "tintColor": "#73818C",
-                          }
+                          Array [
+                            false,
+                            Object {
+                              "minHeight": 24,
+                              "minWidth": 24,
+                            },
+                          ]
                         }
                         testID="access-icon-image"
                       />
@@ -2624,15 +2694,20 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                       }
                     >
                       <Image
+                        resizeMode="cover"
                         source={
                           Object {
                             "testUri": "../../../src/images/Document.png",
                           }
                         }
                         style={
-                          Object {
-                            "tintColor": "#73818C",
-                          }
+                          Array [
+                            false,
+                            Object {
+                              "minHeight": 24,
+                              "minWidth": 24,
+                            },
+                          ]
                         }
                         testID="access-icon-image"
                       />
@@ -2803,6 +2878,21 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
       </View>
     </RCTScrollView>
     <AttachmentPicker
+      fileTypes={
+        Array [
+          "all",
+        ]
+      }
+      navigator={
+        Object {
+          "dismiss": [Function],
+          "dismissAllModals": [Function],
+          "isModal": false,
+          "pop": [Function],
+          "show": [Function],
+          "traitCollection": [Function],
+        }
+      }
       style={
         Object {
           "bottom": 0,
@@ -3045,15 +3135,20 @@ exports[`FilesList sending weird data into the progress update function should n
                       }
                     >
                       <Image
+                        resizeMode="cover"
                         source={
                           Object {
                             "testUri": "../../../src/images/files/folder.png",
                           }
                         }
                         style={
-                          Object {
-                            "tintColor": "#73818C",
-                          }
+                          Array [
+                            false,
+                            Object {
+                              "minHeight": 24,
+                              "minWidth": 24,
+                            },
+                          ]
                         }
                         testID="access-icon-image"
                       />
@@ -3304,15 +3399,20 @@ exports[`FilesList sending weird data into the progress update function should n
                       }
                     >
                       <Image
+                        resizeMode="cover"
                         source={
                           Object {
                             "testUri": "../../../src/images/Document.png",
                           }
                         }
                         style={
-                          Object {
-                            "tintColor": "#73818C",
-                          }
+                          Array [
+                            false,
+                            Object {
+                              "minHeight": 24,
+                              "minWidth": 24,
+                            },
+                          ]
                         }
                         testID="access-icon-image"
                       />
@@ -3563,15 +3663,20 @@ exports[`FilesList sending weird data into the progress update function should n
                       }
                     >
                       <Image
+                        resizeMode="cover"
                         source={
                           Object {
                             "testUri": "../../../src/images/Document.png",
                           }
                         }
                         style={
-                          Object {
-                            "tintColor": "#73818C",
-                          }
+                          Array [
+                            false,
+                            Object {
+                              "minHeight": 24,
+                              "minWidth": 24,
+                            },
+                          ]
                         }
                         testID="access-icon-image"
                       />
@@ -3742,6 +3847,21 @@ exports[`FilesList sending weird data into the progress update function should n
       </View>
     </RCTScrollView>
     <AttachmentPicker
+      fileTypes={
+        Array [
+          "all",
+        ]
+      }
+      navigator={
+        Object {
+          "dismiss": [Function],
+          "dismissAllModals": [Function],
+          "isModal": false,
+          "pop": [Function],
+          "show": [Function],
+          "traitCollection": [Function],
+        }
+      }
       style={
         Object {
           "bottom": 0,
@@ -3984,15 +4104,20 @@ exports[`FilesList should render 1`] = `
                       }
                     >
                       <Image
+                        resizeMode="cover"
                         source={
                           Object {
                             "testUri": "../../../src/images/files/folder.png",
                           }
                         }
                         style={
-                          Object {
-                            "tintColor": "#73818C",
-                          }
+                          Array [
+                            false,
+                            Object {
+                              "minHeight": 24,
+                              "minWidth": 24,
+                            },
+                          ]
                         }
                         testID="access-icon-image"
                       />
@@ -4243,15 +4368,20 @@ exports[`FilesList should render 1`] = `
                       }
                     >
                       <Image
+                        resizeMode="cover"
                         source={
                           Object {
                             "testUri": "../../../src/images/Document.png",
                           }
                         }
                         style={
-                          Object {
-                            "tintColor": "#73818C",
-                          }
+                          Array [
+                            false,
+                            Object {
+                              "minHeight": 24,
+                              "minWidth": 24,
+                            },
+                          ]
                         }
                         testID="access-icon-image"
                       />
@@ -4502,15 +4632,20 @@ exports[`FilesList should render 1`] = `
                       }
                     >
                       <Image
+                        resizeMode="cover"
                         source={
                           Object {
                             "testUri": "../../../src/images/Document.png",
                           }
                         }
                         style={
-                          Object {
-                            "tintColor": "#73818C",
-                          }
+                          Array [
+                            false,
+                            Object {
+                              "minHeight": 24,
+                              "minWidth": 24,
+                            },
+                          ]
                         }
                         testID="access-icon-image"
                       />
@@ -4681,6 +4816,21 @@ exports[`FilesList should render 1`] = `
       </View>
     </RCTScrollView>
     <AttachmentPicker
+      fileTypes={
+        Array [
+          "all",
+        ]
+      }
+      navigator={
+        Object {
+          "dismiss": [Function],
+          "dismissAllModals": [Function],
+          "isModal": false,
+          "pop": [Function],
+          "show": [Function],
+          "traitCollection": [Function],
+        }
+      }
       style={
         Object {
           "bottom": 0,
@@ -4923,15 +5073,20 @@ exports[`FilesList should render for course files 1`] = `
                       }
                     >
                       <Image
+                        resizeMode="cover"
                         source={
                           Object {
                             "testUri": "../../../src/images/files/folder.png",
                           }
                         }
                         style={
-                          Object {
-                            "tintColor": "red",
-                          }
+                          Array [
+                            false,
+                            Object {
+                              "minHeight": 24,
+                              "minWidth": 24,
+                            },
+                          ]
                         }
                         testID="access-icon-image"
                       />
@@ -5182,15 +5337,20 @@ exports[`FilesList should render for course files 1`] = `
                       }
                     >
                       <Image
+                        resizeMode="cover"
                         source={
                           Object {
                             "testUri": "../../../src/images/Document.png",
                           }
                         }
                         style={
-                          Object {
-                            "tintColor": "#73818C",
-                          }
+                          Array [
+                            false,
+                            Object {
+                              "minHeight": 24,
+                              "minWidth": 24,
+                            },
+                          ]
                         }
                         testID="access-icon-image"
                       />
@@ -5441,15 +5601,20 @@ exports[`FilesList should render for course files 1`] = `
                       }
                     >
                       <Image
+                        resizeMode="cover"
                         source={
                           Object {
                             "testUri": "../../../src/images/Document.png",
                           }
                         }
                         style={
-                          Object {
-                            "tintColor": "#73818C",
-                          }
+                          Array [
+                            false,
+                            Object {
+                              "minHeight": 24,
+                              "minWidth": 24,
+                            },
+                          ]
                         }
                         testID="access-icon-image"
                       />
@@ -5620,6 +5785,21 @@ exports[`FilesList should render for course files 1`] = `
       </View>
     </RCTScrollView>
     <AttachmentPicker
+      fileTypes={
+        Array [
+          "all",
+        ]
+      }
+      navigator={
+        Object {
+          "dismiss": [Function],
+          "dismissAllModals": [Function],
+          "isModal": false,
+          "pop": [Function],
+          "show": [Function],
+          "traitCollection": [Function],
+        }
+      }
       style={
         Object {
           "bottom": 0,
@@ -5862,15 +6042,20 @@ exports[`FilesList should render for user files 1`] = `
                       }
                     >
                       <Image
+                        resizeMode="cover"
                         source={
                           Object {
                             "testUri": "../../../src/images/files/folder.png",
                           }
                         }
                         style={
-                          Object {
-                            "tintColor": "#73818C",
-                          }
+                          Array [
+                            false,
+                            Object {
+                              "minHeight": 24,
+                              "minWidth": 24,
+                            },
+                          ]
                         }
                         testID="access-icon-image"
                       />
@@ -6121,15 +6306,20 @@ exports[`FilesList should render for user files 1`] = `
                       }
                     >
                       <Image
+                        resizeMode="cover"
                         source={
                           Object {
                             "testUri": "../../../src/images/Document.png",
                           }
                         }
                         style={
-                          Object {
-                            "tintColor": "#73818C",
-                          }
+                          Array [
+                            false,
+                            Object {
+                              "minHeight": 24,
+                              "minWidth": 24,
+                            },
+                          ]
                         }
                         testID="access-icon-image"
                       />
@@ -6380,15 +6570,20 @@ exports[`FilesList should render for user files 1`] = `
                       }
                     >
                       <Image
+                        resizeMode="cover"
                         source={
                           Object {
                             "testUri": "../../../src/images/Document.png",
                           }
                         }
                         style={
-                          Object {
-                            "tintColor": "#73818C",
-                          }
+                          Array [
+                            false,
+                            Object {
+                              "minHeight": 24,
+                              "minWidth": 24,
+                            },
+                          ]
                         }
                         testID="access-icon-image"
                       />
@@ -6559,6 +6754,21 @@ exports[`FilesList should render for user files 1`] = `
       </View>
     </RCTScrollView>
     <AttachmentPicker
+      fileTypes={
+        Array [
+          "all",
+        ]
+      }
+      navigator={
+        Object {
+          "dismiss": [Function],
+          "dismissAllModals": [Function],
+          "isModal": false,
+          "pop": [Function],
+          "show": [Function],
+          "traitCollection": [Function],
+        }
+      }
       style={
         Object {
           "bottom": 0,
@@ -6801,15 +7011,20 @@ exports[`FilesList should render with folders 1`] = `
                       }
                     >
                       <Image
+                        resizeMode="cover"
                         source={
                           Object {
                             "testUri": "../../../src/images/files/folder.png",
                           }
                         }
                         style={
-                          Object {
-                            "tintColor": "#73818C",
-                          }
+                          Array [
+                            false,
+                            Object {
+                              "minHeight": 24,
+                              "minWidth": 24,
+                            },
+                          ]
                         }
                         testID="access-icon-image"
                       />
@@ -7060,15 +7275,20 @@ exports[`FilesList should render with folders 1`] = `
                       }
                     >
                       <Image
+                        resizeMode="cover"
                         source={
                           Object {
                             "testUri": "../../../src/images/Document.png",
                           }
                         }
                         style={
-                          Object {
-                            "tintColor": "#73818C",
-                          }
+                          Array [
+                            false,
+                            Object {
+                              "minHeight": 24,
+                              "minWidth": 24,
+                            },
+                          ]
                         }
                         testID="access-icon-image"
                       />
@@ -7319,15 +7539,20 @@ exports[`FilesList should render with folders 1`] = `
                       }
                     >
                       <Image
+                        resizeMode="cover"
                         source={
                           Object {
                             "testUri": "../../../src/images/Document.png",
                           }
                         }
                         style={
-                          Object {
-                            "tintColor": "#73818C",
-                          }
+                          Array [
+                            false,
+                            Object {
+                              "minHeight": 24,
+                              "minWidth": 24,
+                            },
+                          ]
                         }
                         testID="access-icon-image"
                       />
@@ -7498,6 +7723,21 @@ exports[`FilesList should render with folders 1`] = `
       </View>
     </RCTScrollView>
     <AttachmentPicker
+      fileTypes={
+        Array [
+          "all",
+        ]
+      }
+      navigator={
+        Object {
+          "dismiss": [Function],
+          "dismissAllModals": [Function],
+          "isModal": false,
+          "pop": [Function],
+          "show": [Function],
+          "traitCollection": [Function],
+        }
+      }
       style={
         Object {
           "bottom": 0,
@@ -7578,6 +7818,21 @@ exports[`FilesList should render with no data at all 1`] = `
       <View />
     </RCTScrollView>
     <AttachmentPicker
+      fileTypes={
+        Array [
+          "all",
+        ]
+      }
+      navigator={
+        Object {
+          "dismiss": [Function],
+          "dismissAllModals": [Function],
+          "isModal": false,
+          "pop": [Function],
+          "show": [Function],
+          "traitCollection": [Function],
+        }
+      }
       style={
         Object {
           "bottom": 0,
@@ -7590,4 +7845,42 @@ exports[`FilesList should render with no data at all 1`] = `
     />
   </DropView>
 </Screen>
+`;
+
+exports[`FilesList uses correct icon for videos 1`] = `
+<AccessIcon
+  disableAppSpecificChecks={false}
+  entry={
+    Object {
+      "content-type": "application/document",
+      "display_name": "Book Report",
+      "filename": "/bookreport",
+      "hidden": false,
+      "id": "111",
+      "key": "file-1",
+      "lock_at": null,
+      "locked": false,
+      "mime_class": "video",
+      "parent_folder_id": null,
+      "preview_url": "/",
+      "size": 488212,
+      "thumbnail_url": "http://fillmurray.com/322/200",
+      "type": "file",
+      "unlock_at": null,
+      "url": "http://canvaslms.com/bookreport",
+      "usage_rights": Object {
+        "legal_copyright": "",
+        "use_justification": "own_copyright",
+      },
+    }
+  }
+  image={
+    Object {
+      "testUri": "../../../src/images/files/media-icon.png",
+    }
+  }
+  showAccessIcon={true}
+  statusOffset={Object {}}
+  tintColor="#73818C"
+/>
 `;

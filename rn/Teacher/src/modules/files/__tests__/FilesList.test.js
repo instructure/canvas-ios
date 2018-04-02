@@ -18,6 +18,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { ActionSheetIOS, AlertIOS, Alert } from 'react-native'
+import { shallow } from 'enzyme'
 
 import { FilesList, mapStateToProps } from '../FilesList'
 
@@ -286,6 +287,40 @@ describe('FilesList', () => {
     const instance = tree.getInstance()
     instance.updateUploadProgress({ loaded: 'sdfsdjkf', total: 100 })
     expect(tree.toJSON()).toMatchSnapshot()
+  })
+
+  it('shows image thumbnails', () => {
+    const thumb = 'https://instructure.com/s3/thumb.jpg'
+    const data = [
+      template.file({
+        type: 'file',
+        key: 'file-1',
+        thumbnail_url: thumb,
+        mime_class: 'image',
+      }),
+    ]
+    const view = shallow(<FilesList data={data} navigator={template.navigator()} />)
+    const item = shallow(view.find('FlatList').prop('renderItem')({ item: data[0], index: 0 }))
+    const row = item.find('Row')
+    const image = shallow(row.prop('renderImage')())
+    const icon = image.find('AccessIcon')
+    expect(icon.prop('image').uri).toEqual(thumb)
+  })
+
+  it('uses correct icon for videos', () => {
+    const data = [
+      template.file({
+        type: 'file',
+        key: 'file-1',
+        mime_class: 'video',
+      }),
+    ]
+    const view = shallow(<FilesList data={data} navigator={template.navigator()} />)
+    const item = shallow(view.find('FlatList').prop('renderItem')({ item: data[0], index: 0 }))
+    const row = item.find('Row')
+    const image = shallow(row.prop('renderImage')())
+    const icon = image.find('AccessIcon')
+    expect(icon).toMatchSnapshot()
   })
 
   describe('map state to props', () => {

@@ -31,14 +31,18 @@ import AudioRecorder from '../../common/components/AudioRecorder'
 import i18n from 'format-message'
 import Permissions from '../../common/permissions'
 
-export type MediaType = 'camera' | 'audio' | 'photo_library' | 'file'
-type Callback = (Attachment, MediaType) => *
+export type FileType = 'all' | 'image' | 'video' | 'audio'
+
+type Source = 'camera' | 'audio' | 'photoLibrary' | 'files'
+
+type Callback = (Attachment, Source) => *
 
 type Options = {
   imagePicker: any, // options passed to react-native-image-picker
 }
+
 type Props = {
-  mediaTypes: Array<MediaType>,
+  fileTypes: Array<FileType>,
 }
 
 const IMAGE_PICKER_PERMISSION_ERRORS = {
@@ -52,9 +56,26 @@ export const DEFAULT_OPTIONS: Options = {
   },
 }
 
+function possibleSources (fileType: FileType) {
+  let sources = []
+  switch (fileType) {
+    case 'all':
+      sources = ['camera', 'photoLibrary', 'audio', 'files']
+      break
+    case 'video':
+    case 'image':
+      sources = ['camera', 'photoLibrary', 'files']
+      break
+    case 'audio':
+      sources = ['audio', 'files']
+      break
+  }
+  return sources
+}
+
 export default class AttachmentPicker extends Component<Props, any> {
   static defaultProps = {
-    mediaTypes: ['camera', 'audio', 'photo_library', 'file'],
+    fileTypes: ['all'],
   }
 
   constructor (props: Props) {
@@ -67,17 +88,26 @@ export default class AttachmentPicker extends Component<Props, any> {
     }
   }
 
+  sources = () => {
+    let sources = new Set()
+    this.props.fileTypes.forEach((fileType) => {
+      possibleSources(fileType).forEach(t => sources.add(t))
+    })
+    return Array.from(sources).sort()
+  }
+
   show (options: ?Options, callback: Callback) {
-    const labels: { [MediaType]: string } = {
+    const labels: { [Source]: string } = {
       camera: i18n('Use Camera'),
       audio: i18n('Record Audio'),
-      photo_library: i18n('Choose From Library'),
-      file: i18n('Upload File'),
+      photoLibrary: i18n('Choose From Library'),
+      files: i18n('Upload File'),
     }
+    const sources = this.sources()
     ActionSheetIOS.showActionSheetWithOptions({
-      options: [...this.props.mediaTypes.map(t => labels[t]), i18n('Cancel')],
-      cancelButtonIndex: this.props.mediaTypes.length,
-    }, this._chooseUploadOption(options, callback))
+      options: [...sources.map(t => labels[t]), i18n('Cancel')],
+      cancelButtonIndex: sources.length,
+    }, this.chooseUploadOption(options, callback))
   }
 
   cancel () {
@@ -86,7 +116,7 @@ export default class AttachmentPicker extends Component<Props, any> {
 
   useCamera (options: ?Options, callback: Callback) {
     const opts = options && options.imagePicker || DEFAULT_OPTIONS.imagePicker
-    ImagePicker.launchCamera(opts, this._handleImagePickerResponse(callback, 'camera'))
+    ImagePicker.launchCamera(opts, this.handleImagePickerResponse(callback, 'camera'))
   }
 
   async recordAudio (options: ?Options, callback: Callback) {
@@ -103,15 +133,39 @@ export default class AttachmentPicker extends Component<Props, any> {
 
   useLibrary (options: ?Options, callback: Callback) {
     const opts = options && options.imagePicker || DEFAULT_OPTIONS.imagePicker
-    ImagePicker.launchImageLibrary(opts, this._handleImagePickerResponse(callback, 'photo_library'))
+    ImagePicker.launchImageLibrary(opts, this.handleImagePickerResponse(callback, 'photoLibrary'))
+  }
+
+  documentPickerFileTypes = () => {
+    const { allFiles, images, video, audio } = DocumentPickerUtil
+    const types = this.props.fileTypes
+
+    if (types.includes('all')) {
+      return [allFiles()]
+    }
+
+    let pickerTypes = []
+    if (types.includes('image')) {
+      pickerTypes.push(images())
+    }
+
+    if (types.includes('video')) {
+      pickerTypes.push(video())
+    }
+
+    if (types.includes('audio')) {
+      pickerTypes.push(audio())
+    }
+
+    return pickerTypes
   }
 
   pickDocument (options: ?Options, callback: Callback) {
     DocumentPicker.show({
-      filetype: [DocumentPickerUtil.allFiles()],
+      filetype: this.documentPickerFileTypes(),
       top: 12,
       left: this.state.width - 30,
-    }, this._handleDocumentPickerResponse(callback))
+    }, this.handleDocumentPickerResponse(callback))
   }
 
   onLayout = ({ nativeEvent }: { nativeEvent: any }) => {
@@ -135,8 +189,8 @@ export default class AttachmentPicker extends Component<Props, any> {
           <View style={style.audioRecorderContainer}>
             <View style={{ height: 250 }}>
               <AudioRecorder
-                onFinishedRecording={this._handleAudioRecorderResponse}
-                onCancel={this._onAudioRecorderCancel}
+                onFinishedRecording={this.handleAudioRecorderResponse}
+                onCancel={this.onAudioRecorderCancel}
               />
             </View>
           </View>
@@ -145,21 +199,22 @@ export default class AttachmentPicker extends Component<Props, any> {
     )
   }
 
-  _chooseUploadOption (options: ?Options, callback: Callback) {
+  chooseUploadOption (options: ?Options, callback: Callback) {
     return (index: number) => {
-      if (index >= this.props.mediaTypes.length) {
+      const sources = this.sources()
+      if (index >= sources.length) {
         return this.cancel()
       }
-      switch (this.props.mediaTypes[index]) {
+      switch (sources[index]) {
         case 'camera': return this.useCamera(options, callback)
         case 'audio': return this.recordAudio(options, callback)
-        case 'photo_library': return this.useLibrary(options, callback)
-        case 'file': return this.pickDocument(options, callback)
+        case 'photoLibrary': return this.useLibrary(options, callback)
+        case 'files': return this.pickDocument(options, callback)
       }
     }
   }
 
-  _handleImagePickerResponse (callback: Callback, type: MediaType) {
+  handleImagePickerResponse (callback: Callback, source: Source) {
     return async (response: any) => {
       if (response.error) {
         if (IMAGE_PICKER_PERMISSION_ERRORS[response.error]) {
@@ -199,11 +254,11 @@ export default class AttachmentPicker extends Component<Props, any> {
         display_name: name,
         mime_class: isVideo ? 'video' : 'image',
       }
-      callback(attachment, type)
+      callback(attachment, source)
     }
   }
 
-  _handleAudioRecorderResponse = (response: any) => {
+  handleAudioRecorderResponse = (response: any) => {
     this.setState({ audioRecorderVisible: false })
     const attachment = {
       uri: response.filePath,
@@ -213,12 +268,12 @@ export default class AttachmentPicker extends Component<Props, any> {
     this.state.recordAudioCallback(attachment, 'audio')
   }
 
-  _onAudioRecorderCancel = () => {
+  onAudioRecorderCancel = () => {
     this.setState({ audioRecorderVisible: false })
   }
 
-  _handleDocumentPickerResponse = (callback: Callback) => {
-    return (error, result) => {
+  handleDocumentPickerResponse = (callback: Callback) => {
+    return (error: any, result: *) => {
       if (error) {
         AlertIOS.alert(i18n('Upload error'))
         return
@@ -230,7 +285,7 @@ export default class AttachmentPicker extends Component<Props, any> {
         size: fileSize,
         mime_class: 'file',
       }
-      callback(attachment, 'file')
+      callback(attachment, 'files')
     }
   }
 }

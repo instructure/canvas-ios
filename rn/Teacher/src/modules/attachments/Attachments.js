@@ -27,7 +27,7 @@ import { parseErrorMessage } from '../../redux/middleware/error-handler'
 import i18n from 'format-message'
 import images from '../../images'
 import AttachmentRow from './AttachmentRow'
-import AttachmentPicker, { type MediaType } from './AttachmentPicker'
+import AttachmentPicker, { type FileType } from './AttachmentPicker'
 import EmptyAttachments from './EmptyAttachments'
 import uuid from 'uuid/v1'
 import { uploadAttachment, isAbort, uploadMedia, type Progress } from '../../canvas-api'
@@ -65,7 +65,7 @@ export type Props = NavigationProps & {
   onComplete: (Array<Attachment>) => void,
   uploadAttachment: typeof uploadAttachment,
   uploadMedia: typeof uploadMedia,
-  mediaTypes?: Array<MediaType>,
+  fileTypes?: Array<FileType>,
 }
 
 export default class Attachments extends Component<Props, any> {
@@ -143,7 +143,8 @@ export default class Attachments extends Component<Props, any> {
           <AttachmentPicker
             style={styles.attachmentPicker}
             ref={this.captureAttachmentPicker}
-            mediaTypes={this.props.mediaTypes}
+            fileTypes={this.props.fileTypes || ['all']}
+            navigator={this.props.navigator}
           />
         </View>
       </Screen>
@@ -315,7 +316,7 @@ export default class Attachments extends Component<Props, any> {
       onProgress: this.updateProgress(attachment.id),
       cancelUpload: this.captureCancel(attachment),
     })
-    return { ...attachment, id: mediaID, mediaID }
+    return { ...attachment, id: mediaID, media_entry_id: mediaID }
   }
 
   uploadAsMediaComment = (attachment: Attachment) => {

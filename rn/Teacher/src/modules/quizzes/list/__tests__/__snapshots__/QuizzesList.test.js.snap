@@ -398,15 +398,20 @@ exports[`QuizzesList renders in correct order 1`] = `
                       }
                     >
                       <Image
+                        resizeMode="cover"
                         source={
                           Object {
                             "testUri": "../../../src/images/course/Quiz.png",
                           }
                         }
                         style={
-                          Object {
-                            "tintColor": null,
-                          }
+                          Array [
+                            false,
+                            Object {
+                              "minHeight": 24,
+                              "minWidth": 24,
+                            },
+                          ]
                         }
                         testID="access-icon-image"
                       />
@@ -745,15 +750,20 @@ exports[`QuizzesList renders in correct order 1`] = `
                       }
                     >
                       <Image
+                        resizeMode="cover"
                         source={
                           Object {
                             "testUri": "../../../src/images/course/Quiz.png",
                           }
                         }
                         style={
-                          Object {
-                            "tintColor": null,
-                          }
+                          Array [
+                            false,
+                            Object {
+                              "minHeight": 24,
+                              "minWidth": 24,
+                            },
+                          ]
                         }
                         testID="access-icon-image"
                       />
@@ -1344,15 +1354,20 @@ exports[`QuizzesList renders quizzes 1`] = `
                       }
                     >
                       <Image
+                        resizeMode="cover"
                         source={
                           Object {
                             "testUri": "../../../src/images/course/Quiz.png",
                           }
                         }
                         style={
-                          Object {
-                            "tintColor": null,
-                          }
+                          Array [
+                            false,
+                            Object {
+                              "minHeight": 24,
+                              "minWidth": 24,
+                            },
+                          ]
                         }
                         testID="access-icon-image"
                       />
@@ -1691,15 +1706,20 @@ exports[`QuizzesList renders quizzes 1`] = `
                       }
                     >
                       <Image
+                        resizeMode="cover"
                         source={
                           Object {
                             "testUri": "../../../src/images/course/Quiz.png",
                           }
                         }
                         style={
-                          Object {
-                            "tintColor": null,
-                          }
+                          Array [
+                            false,
+                            Object {
+                              "minHeight": 24,
+                              "minWidth": 24,
+                            },
+                          ]
                         }
                         testID="access-icon-image"
                       />

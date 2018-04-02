@@ -11,15 +11,20 @@ exports[`AccessIcon published takes precedence over other properties 1`] = `
   }
 >
   <Image
+    resizeMode="cover"
     source={
       Object {
         "testUri": "../../../src/images/kabob.png",
       }
     }
     style={
-      Object {
-        "tintColor": "#fff",
-      }
+      Array [
+        false,
+        Object {
+          "minHeight": 24,
+          "minWidth": 24,
+        },
+      ]
     }
     testID="access-icon-image"
   />
@@ -68,15 +73,20 @@ exports[`AccessIcon shows published when not locked or hidden 1`] = `
   }
 >
   <Image
+    resizeMode="cover"
     source={
       Object {
         "testUri": "../../../src/images/kabob.png",
       }
     }
     style={
-      Object {
-        "tintColor": "#fff",
-      }
+      Array [
+        false,
+        Object {
+          "minHeight": 24,
+          "minWidth": 24,
+        },
+      ]
     }
     testID="access-icon-image"
   />
@@ -125,15 +135,20 @@ exports[`AccessIcon shows resticted when hidden 1`] = `
   }
 >
   <Image
+    resizeMode="cover"
     source={
       Object {
         "testUri": "../../../src/images/kabob.png",
       }
     }
     style={
-      Object {
-        "tintColor": "#fff",
-      }
+      Array [
+        false,
+        Object {
+          "minHeight": 24,
+          "minWidth": 24,
+        },
+      ]
     }
     testID="access-icon-image"
   />
@@ -182,15 +197,20 @@ exports[`AccessIcon shows resticted when lock_at is specified 1`] = `
   }
 >
   <Image
+    resizeMode="cover"
     source={
       Object {
         "testUri": "../../../src/images/kabob.png",
       }
     }
     style={
-      Object {
-        "tintColor": "#fff",
-      }
+      Array [
+        false,
+        Object {
+          "minHeight": 24,
+          "minWidth": 24,
+        },
+      ]
     }
     testID="access-icon-image"
   />
@@ -239,15 +259,20 @@ exports[`AccessIcon shows resticted when unlock_at is specified 1`] = `
   }
 >
   <Image
+    resizeMode="cover"
     source={
       Object {
         "testUri": "../../../src/images/kabob.png",
       }
     }
     style={
-      Object {
-        "tintColor": "#fff",
-      }
+      Array [
+        false,
+        Object {
+          "minHeight": 24,
+          "minWidth": 24,
+        },
+      ]
     }
     testID="access-icon-image"
   />
@@ -296,15 +321,20 @@ exports[`AccessIcon shows unpublished when locked 1`] = `
   }
 >
   <Image
+    resizeMode="cover"
     source={
       Object {
         "testUri": "../../../src/images/kabob.png",
       }
     }
     style={
-      Object {
-        "tintColor": "#fff",
-      }
+      Array [
+        false,
+        Object {
+          "minHeight": 24,
+          "minWidth": 24,
+        },
+      ]
     }
     testID="access-icon-image"
   />
@@ -353,15 +383,20 @@ exports[`AccessIcon shows unpublished when published is false 1`] = `
   }
 >
   <Image
+    resizeMode="cover"
     source={
       Object {
         "testUri": "../../../src/images/kabob.png",
       }
     }
     style={
-      Object {
-        "tintColor": "#fff",
-      }
+      Array [
+        false,
+        Object {
+          "minHeight": 24,
+          "minWidth": 24,
+        },
+      ]
     }
     testID="access-icon-image"
   />

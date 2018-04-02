@@ -78,15 +78,20 @@ exports[`renders correctly 1`] = `
             }
           >
             <Image
+              resizeMode="cover"
               source={
                 Object {
                   "testUri": "../../../src/images/course/Assignment.png",
                 }
               }
               style={
-                Object {
-                  "tintColor": "#fff",
-                }
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
               }
               testID="access-icon-image"
             />
@@ -329,15 +334,20 @@ exports[`renders correctly assignment icon 1`] = `
             }
           >
             <Image
+              resizeMode="cover"
               source={
                 Object {
                   "testUri": "../../../src/images/course/Assignment.png",
                 }
               }
               style={
-                Object {
-                  "tintColor": undefined,
-                }
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
               }
               testID="access-icon-image"
             />
@@ -580,15 +590,20 @@ exports[`renders correctly discussion icon 1`] = `
             }
           >
             <Image
+              resizeMode="cover"
               source={
                 Object {
                   "testUri": "../../../src/images/course/Discussions.png",
                 }
               }
               style={
-                Object {
-                  "tintColor": undefined,
-                }
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
               }
               testID="access-icon-image"
             />
@@ -831,15 +846,20 @@ exports[`renders correctly not published icon 1`] = `
             }
           >
             <Image
+              resizeMode="cover"
               source={
                 Object {
                   "testUri": "../../../src/images/course/Assignment.png",
                 }
               }
               style={
-                Object {
-                  "tintColor": undefined,
-                }
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
               }
               testID="access-icon-image"
             />
@@ -1071,15 +1091,20 @@ exports[`renders correctly published icon 1`] = `
             }
           >
             <Image
+              resizeMode="cover"
               source={
                 Object {
                   "testUri": "../../../src/images/course/Assignment.png",
                 }
               }
               style={
-                Object {
-                  "tintColor": undefined,
-                }
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
               }
               testID="access-icon-image"
             />
@@ -1322,15 +1347,20 @@ exports[`renders correctly quiz icon 1`] = `
             }
           >
             <Image
+              resizeMode="cover"
               source={
                 Object {
                   "testUri": "../../../src/images/course/Quiz.png",
                 }
               }
               style={
-                Object {
-                  "tintColor": undefined,
-                }
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
               }
               testID="access-icon-image"
             />
@@ -1573,15 +1603,20 @@ exports[`renders correctly with closed due dates 1`] = `
             }
           >
             <Image
+              resizeMode="cover"
               source={
                 Object {
                   "testUri": "../../../src/images/course/Assignment.png",
                 }
               }
               style={
-                Object {
-                  "tintColor": "#fff",
-                }
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
               }
               testID="access-icon-image"
             />
@@ -1824,15 +1859,20 @@ exports[`renders correctly with needs_grading_count 1`] = `
             }
           >
             <Image
+              resizeMode="cover"
               source={
                 Object {
                   "testUri": "../../../src/images/course/Assignment.png",
                 }
               }
               style={
-                Object {
-                  "tintColor": "#fff",
-                }
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
               }
               testID="access-icon-image"
             />
@@ -2112,15 +2152,20 @@ exports[`renders correctly with needs_grading_count and set to not_graded 1`] = 
             }
           >
             <Image
+              resizeMode="cover"
               source={
                 Object {
                   "testUri": "../../../src/images/course/Assignment.png",
                 }
               }
               style={
-                Object {
-                  "tintColor": "#fff",
-                }
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
               }
               testID="access-icon-image"
             />
@@ -2363,15 +2408,20 @@ exports[`renders correctly with open due dates 1`] = `
             }
           >
             <Image
+              resizeMode="cover"
               source={
                 Object {
                   "testUri": "../../../src/images/course/Assignment.png",
                 }
               }
               style={
-                Object {
-                  "tintColor": "#fff",
-                }
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
               }
               testID="access-icon-image"
             />
@@ -2614,15 +2664,20 @@ exports[`renders correctly with selected props 1`] = `
             }
           >
             <Image
+              resizeMode="cover"
               source={
                 Object {
                   "testUri": "../../../src/images/course/Assignment.png",
                 }
               }
               style={
-                Object {
-                  "tintColor": "#fff",
-                }
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
               }
               testID="access-icon-image"
             />

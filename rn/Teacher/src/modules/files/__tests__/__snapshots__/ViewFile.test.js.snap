@@ -4,15 +4,6 @@ exports[`ViewFile renders loading while fetching the file 1`] = `
 <Screen
   disableGlobalSafeArea={true}
   drawUnderNavBar={true}
-  leftBarButtons={
-    Array [
-      Object {
-        "action": [Function],
-        "testID": "view-file.edit-btn",
-        "title": "Edit",
-      },
-    ]
-  }
   navBarButtonColor="#008EE2"
   navBarStyle="light"
   navBarTitleColor="#2D3B45"
@@ -20,9 +11,8 @@ exports[`ViewFile renders loading while fetching the file 1`] = `
     Array [
       Object {
         "action": [Function],
-        "style": "done",
-        "testID": "view-file.done-btn",
-        "title": "Done",
+        "testID": "view-file.edit-btn",
+        "title": "Edit",
       },
     ]
   }

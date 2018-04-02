@@ -110,13 +110,20 @@ exports[`Attachments renders attachments 1`] = `
       testID="attachments.list.list"
     />
     <AttachmentPicker
-      mediaTypes={
+      fileTypes={
         Array [
-          "camera",
-          "audio",
-          "photo_library",
-          "file",
+          "all",
         ]
+      }
+      navigator={
+        Object {
+          "dismiss": [Function],
+          "dismissAllModals": [Function],
+          "isModal": false,
+          "pop": [Function],
+          "show": [Function],
+          "traitCollection": [Function],
+        }
       }
       style={
         Object {
@@ -179,13 +186,20 @@ exports[`Attachments renders empty state 1`] = `
       testID="attachments.list.list"
     />
     <AttachmentPicker
-      mediaTypes={
+      fileTypes={
         Array [
-          "camera",
-          "audio",
-          "photo_library",
-          "file",
+          "all",
         ]
+      }
+      navigator={
+        Object {
+          "dismiss": [Function],
+          "dismissAllModals": [Function],
+          "isModal": false,
+          "pop": [Function],
+          "show": [Function],
+          "traitCollection": [Function],
+        }
       }
       style={
         Object {

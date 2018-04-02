@@ -68,12 +68,14 @@ export default class AccessIcon extends React.Component<Props> {
       iconStyle = styles.unpublishedIcon
       accessibilityLabel = i18n('Not Published')
     }
+    let isIcon = typeof this.props.image === 'number'
     return (
       <View style={styles.container} accessibilityLabel={accessibilityLabel}>
         <Image
           source={this.props.image}
-          style={{ tintColor: this.props.tintColor }}
+          style={[isIcon && { tintColor: this.props.tintColor }, { minWidth: 24, minHeight: 24 }]}
           testID='access-icon-image'
+          resizeMode='cover'
         />
         { showAccessIcon &&
           <View style={styles.publishedIconContainer}>

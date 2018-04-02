@@ -78,15 +78,20 @@ exports[`UserSubmissionRow renders 1`] = `
             }
           >
             <Image
+              resizeMode="cover"
               source={
                 Object {
                   "testUri": "../../../src/images/course/Assignment.png",
                 }
               }
               style={
-                Object {
-                  "tintColor": "#fff",
-                }
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
               }
               testID="access-icon-image"
             />
@@ -387,15 +392,20 @@ exports[`UserSubmissionRow renders complete 1`] = `
             }
           >
             <Image
+              resizeMode="cover"
               source={
                 Object {
                   "testUri": "../../../src/images/course/Assignment.png",
                 }
               }
               style={
-                Object {
-                  "tintColor": "#fff",
-                }
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
               }
               testID="access-icon-image"
             />
@@ -696,15 +706,20 @@ exports[`UserSubmissionRow renders discussion 1`] = `
             }
           >
             <Image
+              resizeMode="cover"
               source={
                 Object {
                   "testUri": "../../../src/images/course/Discussions.png",
                 }
               }
               style={
-                Object {
-                  "tintColor": "#fff",
-                }
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
               }
               testID="access-icon-image"
             />
@@ -1005,15 +1020,20 @@ exports[`UserSubmissionRow renders excused 1`] = `
             }
           >
             <Image
+              resizeMode="cover"
               source={
                 Object {
                   "testUri": "../../../src/images/course/Assignment.png",
                 }
               }
               style={
-                Object {
-                  "tintColor": "#fff",
-                }
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
               }
               testID="access-icon-image"
             />
@@ -1221,15 +1241,20 @@ exports[`UserSubmissionRow renders incomplete 1`] = `
             }
           >
             <Image
+              resizeMode="cover"
               source={
                 Object {
                   "testUri": "../../../src/images/course/Assignment.png",
                 }
               }
               style={
-                Object {
-                  "tintColor": "#fff",
-                }
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
               }
               testID="access-icon-image"
             />
@@ -1530,15 +1555,20 @@ exports[`UserSubmissionRow renders missing submittion types 1`] = `
             }
           >
             <Image
+              resizeMode="cover"
               source={
                 Object {
                   "testUri": "../../../src/images/course/Assignment.png",
                 }
               }
               style={
-                Object {
-                  "tintColor": "#fff",
-                }
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
               }
               testID="access-icon-image"
             />
@@ -1839,15 +1869,20 @@ exports[`UserSubmissionRow renders needs grading 1`] = `
             }
           >
             <Image
+              resizeMode="cover"
               source={
                 Object {
                   "testUri": "../../../src/images/course/Assignment.png",
                 }
               }
               style={
-                Object {
-                  "tintColor": "#fff",
-                }
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
               }
               testID="access-icon-image"
             />
@@ -2105,15 +2140,20 @@ exports[`UserSubmissionRow renders online quiz 1`] = `
             }
           >
             <Image
+              resizeMode="cover"
               source={
                 Object {
                   "testUri": "../../../src/images/course/Quiz.png",
                 }
               }
               style={
-                Object {
-                  "tintColor": "#fff",
-                }
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
               }
               testID="access-icon-image"
             />
@@ -2414,15 +2454,20 @@ exports[`UserSubmissionRow renders published 1`] = `
             }
           >
             <Image
+              resizeMode="cover"
               source={
                 Object {
                   "testUri": "../../../src/images/course/Assignment.png",
                 }
               }
               style={
-                Object {
-                  "tintColor": "#fff",
-                }
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
               }
               testID="access-icon-image"
             />

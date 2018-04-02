@@ -210,7 +210,7 @@ describe('ViewFile', () => {
 
   it('updates the title if the edit screen changes it', async () => {
     const tree = shallow(<ViewFile {...props} />)
-    tree.find('Screen').prop('leftBarButtons')[0].action()
+    tree.find('Screen').prop('rightBarButtons')[0].action()
     expect(props.navigator.show).toHaveBeenLastCalledWith(
       '/courses/1/files/24/edit',
       { modal: true },
@@ -232,7 +232,7 @@ describe('ViewFile', () => {
   it('closes and calls onChange when deleted', async () => {
     const onChange = jest.fn()
     const tree = shallow(<ViewFile {...props} />)
-    tree.find('Screen').prop('leftBarButtons')[0].action()
+    tree.find('Screen').prop('rightBarButtons')[0].action()
     await props.navigator.show.mock.calls[0][2].onDelete(props.file)
     expect(onChange).not.toHaveBeenCalled()
     tree.setProps({ onChange })
@@ -242,12 +242,16 @@ describe('ViewFile', () => {
 
   it('calls onChange when file has been modified on close', async () => {
     props.onChange = jest.fn()
+    props.navigator = {
+      ...props.navigator,
+      isModal: true,
+    }
     const tree = shallow(<ViewFile {...props} />)
-    await tree.find('Screen').prop('rightBarButtons')[0].action()
+    await tree.find('Screen').prop('leftBarButtons')[0].action()
     expect(props.onChange).not.toHaveBeenCalled()
     expect(props.navigator.dismiss).toHaveBeenCalled()
     tree.instance().handleChange({ ...props.file })
-    await tree.find('Screen').prop('rightBarButtons')[0].action()
+    await tree.find('Screen').prop('leftBarButtons')[0].action()
     expect(props.onChange).toHaveBeenCalled()
   })
 

@@ -138,7 +138,7 @@ describe('RichTextEditor', () => {
     it('should insert video comment', () => {
       props.attachmentUploadPath = '/users/self/files'
       const video = template.attachment({
-        mediaID: '1',
+        media_entry_id: '1',
         uri: 'file:///path/to/video.mov',
         mime_class: 'video',
       })
@@ -161,7 +161,7 @@ describe('RichTextEditor', () => {
       })
       const toolbar = tree.find('RichTextToolbar')
       toolbar.props().insertImage()
-      expect(mock).toHaveBeenCalledWith(video.mediaID)
+      expect(mock).toHaveBeenCalledWith(video.media_entry_id)
     })
   })
 

@@ -108,6 +108,7 @@ const images = {
   },
   files: {
     folder: require('./files/folder.png'),
+    media: require('./files/media-icon.png'),
   },
   masquerade: {
     redPanda: require('./masquerade/red-panda.png'),

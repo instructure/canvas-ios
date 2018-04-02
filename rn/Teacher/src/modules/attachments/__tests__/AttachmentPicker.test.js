@@ -16,6 +16,7 @@
 
 /* eslint-disable flowtype/require-valid-file-annotation */
 
+import { shallow } from 'enzyme'
 import React from 'react'
 import {
   ActionSheetIOS,
@@ -42,7 +43,12 @@ jest
         fileSize: 100,
       })),
     },
-    DocumentPickerUtil: {},
+    DocumentPickerUtil: {
+      allFiles: jest.fn(() => 'content'),
+      images: jest.fn(() => 'image'),
+      video: jest.fn(() => 'video'),
+      audio: jest.fn(() => 'audio'),
+    },
   }))
   .mock('../../../common/permissions')
 
@@ -55,8 +61,8 @@ describe('AttachmentPicker', () => {
 
   let picker
   beforeEach(() => {
-    const mediaTypes = ['camera', 'audio', 'photo_library', 'file']
-    picker = new AttachmentPicker({ mediaTypes })
+    const fileTypes = ['all']
+    picker = new AttachmentPicker({ fileTypes })
   })
 
   it('shows an action sheet with attachment options', () => {
@@ -66,13 +72,63 @@ describe('AttachmentPicker', () => {
     picker.show(null, jest.fn())
     expect(mock).toHaveBeenCalledWith({
       options: [
-        'Use Camera',
         'Record Audio',
-        'Choose From Library',
+        'Use Camera',
         'Upload File',
+        'Choose From Library',
         'Cancel',
       ],
       cancelButtonIndex: 4,
+    }, expect.any(Function))
+  })
+
+  it('shows an action sheet with image attachment options', () => {
+    const mock = jest.fn()
+    const picker = shallow(<AttachmentPicker fileTypes={['image']} />)
+    // $FlowFixMe
+    ActionSheetIOS.showActionSheetWithOptions = mock
+    picker.instance().show(null, jest.fn())
+    expect(mock).toHaveBeenCalledWith({
+      options: [
+        'Use Camera',
+        'Upload File',
+        'Choose From Library',
+        'Cancel',
+      ],
+      cancelButtonIndex: 3,
+    }, expect.any(Function))
+  })
+
+  it('shows an action sheet with audio attachment options', () => {
+    const mock = jest.fn()
+    const picker = shallow(<AttachmentPicker fileTypes={['audio']} />)
+    // $FlowFixMe
+    ActionSheetIOS.showActionSheetWithOptions = mock
+    picker.instance().show(null, jest.fn())
+    expect(mock).toHaveBeenCalledWith({
+      options: [
+        'Record Audio',
+        'Upload File',
+        'Cancel',
+      ],
+      cancelButtonIndex: 2,
+    }, expect.any(Function))
+  })
+
+  it('shows an action sheet with video attachment options', () => {
+    const mock = jest.fn()
+    const picker = shallow(<AttachmentPicker fileTypes={['video']} />)
+    // $FlowFixMe
+    ActionSheetIOS.showActionSheetWithOptions = mock
+    picker.instance().show(null, jest.fn())
+    expect(mock).toHaveBeenCalledWith({
+      options: [
+        'Use Camera',
+        'Upload File',
+        'Choose From Library',
+        'Cancel',
+      ],
+      cancelButtonIndex: 3,
     }, expect.any(Function))
   })
 
@@ -122,7 +178,7 @@ describe('AttachmentPicker', () => {
       display_name: expect.stringMatching(/.mov/),
       size: undefined,
       mime_class: 'video',
-    }, 'photo_library')
+    }, 'photoLibrary')
   })
 
   it('does not return when ImagePicker cancels', () => {
@@ -159,11 +215,28 @@ describe('AttachmentPicker', () => {
     DocumentPickerUtil.allFiles = jest.fn()
     picker.pickDocument(null, jest.fn())
     expect(DocumentPicker.show).toHaveBeenCalledWith({
-      filetype: expect.any(Array),
+      filetype: [DocumentPickerUtil.allFiles()],
       top: 12,
       left: 70,
     }, expect.any(Function))
     expect(DocumentPickerUtil.allFiles).toHaveBeenCalled()
+  })
+
+  it('launches document picker with limited file types', () => {
+    const fileTypes = ['image', 'video', 'audio']
+    const picker = renderer.create(<AttachmentPicker fileTypes={fileTypes} />).getInstance()
+    picker.onLayout({ nativeEvent: { layout: { width: 100, height: 200 } } })
+    DocumentPicker.show = jest.fn()
+    picker.pickDocument(null, jest.fn())
+    expect(DocumentPicker.show).toHaveBeenCalledWith({
+      filetype: [
+        DocumentPickerUtil.images(),
+        DocumentPickerUtil.video(),
+        DocumentPickerUtil.audio(),
+      ],
+      top: 12,
+      left: 70,
+    }, expect.any(Function))
   })
 
   it('alerts document picker errors', () => {
@@ -189,7 +262,7 @@ describe('AttachmentPicker', () => {
       display_name: doc.fileName,
       size: doc.fileSize,
       mime_class: 'file',
-    }, 'file')
+    }, 'files')
   })
 
   it('shows audio recorder', async () => {

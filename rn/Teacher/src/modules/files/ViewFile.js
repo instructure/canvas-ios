@@ -294,9 +294,9 @@ export default class ViewFile extends Component<Props, State> {
     const { course, file, loadingDone } = this.state
     // $FlowFixMe
     const name: string = file ? file.name || file.display_name : ''
-    const leftBarButtons = []
+    const rightBarButtons = []
     if (this.canEdit()) {
-      leftBarButtons.push({
+      rightBarButtons.push({
         testID: 'view-file.edit-btn',
         title: i18n('Edit'),
         action: this.handleEdit,
@@ -310,8 +310,8 @@ export default class ViewFile extends Component<Props, State> {
         navBarButtonColor={Colors.link}
         drawUnderNavBar
         disableGlobalSafeArea
-        leftBarButtons={leftBarButtons}
-        rightBarButtons={[{
+        rightBarButtons={rightBarButtons}
+        leftBarButtons={this.props.navigator.isModal && [{
           testID: 'view-file.done-btn',
           title: i18n('Done'),
           style: 'done',

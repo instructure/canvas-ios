@@ -761,15 +761,20 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
                     }
                   >
                     <Image
+                      resizeMode="cover"
                       source={
                         Object {
                           "testUri": "../../../src/images/course/Assignment.png",
                         }
                       }
                       style={
-                        Object {
-                          "tintColor": "#00BCD5",
-                        }
+                        Array [
+                          false,
+                          Object {
+                            "minHeight": 24,
+                            "minWidth": 24,
+                          },
+                        ]
                       }
                       testID="access-icon-image"
                     />
@@ -1664,15 +1669,20 @@ exports[`ContextCard renders 1`] = `
                     }
                   >
                     <Image
+                      resizeMode="cover"
                       source={
                         Object {
                           "testUri": "../../../src/images/course/Assignment.png",
                         }
                       }
                       style={
-                        Object {
-                          "tintColor": "#00BCD5",
-                        }
+                        Array [
+                          false,
+                          Object {
+                            "minHeight": 24,
+                            "minWidth": 24,
+                          },
+                        ]
                       }
                       testID="access-icon-image"
                     />
@@ -2790,15 +2800,20 @@ exports[`ContextCard renders if there is no enrollment 1`] = `
                     }
                   >
                     <Image
+                      resizeMode="cover"
                       source={
                         Object {
                           "testUri": "../../../src/images/course/Assignment.png",
                         }
                       }
                       style={
-                        Object {
-                          "tintColor": "#00BCD5",
-                        }
+                        Array [
+                          false,
+                          Object {
+                            "minHeight": 24,
+                            "minWidth": 24,
+                          },
+                        ]
                       }
                       testID="access-icon-image"
                     />
@@ -3656,15 +3671,20 @@ exports[`ContextCard renders if there is no section in the enrollment 1`] = `
                     }
                   >
                     <Image
+                      resizeMode="cover"
                       source={
                         Object {
                           "testUri": "../../../src/images/course/Assignment.png",
                         }
                       }
                       style={
-                        Object {
-                          "tintColor": "#00BCD5",
-                        }
+                        Array [
+                          false,
+                          Object {
+                            "minHeight": 24,
+                            "minWidth": 24,
+                          },
+                        ]
                       }
                       testID="access-icon-image"
                     />
@@ -4559,15 +4579,20 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
                     }
                   >
                     <Image
+                      resizeMode="cover"
                       source={
                         Object {
                           "testUri": "../../../src/images/course/Assignment.png",
                         }
                       }
                       style={
-                        Object {
-                          "tintColor": "#00BCD5",
-                        }
+                        Array [
+                          false,
+                          Object {
+                            "minHeight": 24,
+                            "minWidth": 24,
+                          },
+                        ]
                       }
                       testID="access-icon-image"
                     />

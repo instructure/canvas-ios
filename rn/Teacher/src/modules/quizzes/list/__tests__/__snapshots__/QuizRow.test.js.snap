@@ -59,15 +59,20 @@ exports[`QuizRow renders 1`] = `
             }
           >
             <Image
+              resizeMode="cover"
               source={
                 Object {
                   "testUri": "../../../src/images/course/Quiz.png",
                 }
               }
               style={
-                Object {
-                  "tintColor": "#fff",
-                }
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
               }
               testID="access-icon-image"
             />
@@ -404,15 +409,20 @@ exports[`QuizRow renders multiple question count 1`] = `
             }
           >
             <Image
+              resizeMode="cover"
               source={
                 Object {
                   "testUri": "../../../src/images/course/Quiz.png",
                 }
               }
               style={
-                Object {
-                  "tintColor": "#fff",
-                }
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
               }
               testID="access-icon-image"
             />
@@ -749,15 +759,20 @@ exports[`QuizRow renders published 1`] = `
             }
           >
             <Image
+              resizeMode="cover"
               source={
                 Object {
                   "testUri": "../../../src/images/course/Quiz.png",
                 }
               }
               style={
-                Object {
-                  "tintColor": "#fff",
-                }
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
               }
               testID="access-icon-image"
             />
@@ -1095,15 +1110,20 @@ exports[`QuizRow renders selected 1`] = `
             }
           >
             <Image
+              resizeMode="cover"
               source={
                 Object {
                   "testUri": "../../../src/images/course/Quiz.png",
                 }
               }
               style={
-                Object {
-                  "tintColor": "#fff",
-                }
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
               }
               testID="access-icon-image"
             />
@@ -1440,15 +1460,20 @@ exports[`QuizRow renders single question count 1`] = `
             }
           >
             <Image
+              resizeMode="cover"
               source={
                 Object {
                   "testUri": "../../../src/images/course/Quiz.png",
                 }
               }
               style={
-                Object {
-                  "tintColor": "#fff",
-                }
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
               }
               testID="access-icon-image"
             />
@@ -1785,15 +1810,20 @@ exports[`QuizRow renders unpublished 1`] = `
             }
           >
             <Image
+              resizeMode="cover"
               source={
                 Object {
                   "testUri": "../../../src/images/course/Quiz.png",
                 }
               }
               style={
-                Object {
-                  "tintColor": "#fff",
-                }
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
               }
               testID="access-icon-image"
             />
@@ -2119,15 +2149,20 @@ exports[`QuizRow renders without points possible 1`] = `
             }
           >
             <Image
+              resizeMode="cover"
               source={
                 Object {
                   "testUri": "../../../src/images/course/Quiz.png",
                 }
               }
               style={
-                Object {
-                  "tintColor": "#fff",
-                }
+                Array [
+                  false,
+                  Object {
+                    "minHeight": 24,
+                    "minWidth": 24,
+                  },
+                ]
               }
               testID="access-icon-image"
             />

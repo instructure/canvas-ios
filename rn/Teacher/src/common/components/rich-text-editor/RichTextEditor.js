@@ -193,7 +193,7 @@ export default class RichTextEditor extends Component<Props, State> {
         mediaServer: true,
       },
       onComplete: this.insertAttachments,
-      mediaTypes: ['camera', 'photo_library'],
+      fileTypes: ['image', 'video'],
     })
   }
 
@@ -205,8 +205,8 @@ export default class RichTextEditor extends Component<Props, State> {
     // videos
     const videos = attachments.filter(a => a.mime_class === 'video')
     videos
-      .filter(a => a.uri && a.mediaID)
-      .forEach(a => this.editor.insertVideoComment(a.mediaID))
+      .filter(a => a.media_entry_id)
+      .forEach(a => this.editor.insertVideoComment(a.media_entry_id))
   }
 
   toolbarShown (): boolean {

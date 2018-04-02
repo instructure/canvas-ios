@@ -304,7 +304,17 @@ export class FilesList extends Component<Props, State> {
     let statusOffset = {}
     if (item.type === 'file') {
       name = item.display_name
-      icon = images.document
+      switch (item.mime_class) {
+        case 'image':
+          icon = { uri: item.thumbnail_url }
+          break
+        case 'video':
+          icon = images.files.media
+          break
+        default:
+          icon = images.document
+          break
+      }
       subtitle = bytes(item.size)
     } else {
       name = item.name
@@ -387,6 +397,8 @@ export class FilesList extends Component<Props, State> {
             <AttachmentPicker
               style={styles.attachmentPicker}
               ref={this.captureAttachmentPicker}
+              fileTypes={['all']}
+              navigator={this.props.navigator}
             />
         </DropView>
       </Screen>
