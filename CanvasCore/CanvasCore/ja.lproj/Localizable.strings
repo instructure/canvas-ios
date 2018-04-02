@@ -155,9 +155,6 @@
 /* Notification display name for course activities group */
 "Course Activities" = "コースアクティビティ";
 
-/* Button for creating a note from text selection */
-"Create Note" = "ノートを作成する";
-
 /* Header label for a screen that customizes a course */
 "Customize" = "カスタマイズ";
 
@@ -377,9 +374,6 @@
 
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "受けられません";
-
-/* No comment provided by engineer. */
-"Note..." = "ノート...";
 
 /* Error title for push notification registration error */
 "Notification Error" = "通知エラー";

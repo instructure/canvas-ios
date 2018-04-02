@@ -155,9 +155,6 @@
 /* Notification display name for course activities group */
 "Course Activities" = "Cursusactiviteiten";
 
-/* Button for creating a note from text selection */
-"Create Note" = "Aantekening maken";
-
 /* Header label for a screen that customizes a course */
 "Customize" = "Aanpassen";
 
@@ -377,9 +374,6 @@
 
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "Niet beschikbaar";
-
-/* No comment provided by engineer. */
-"Note..." = "Aantekening...";
 
 /* Error title for push notification registration error */
 "Notification Error" = "Meldingsfout";

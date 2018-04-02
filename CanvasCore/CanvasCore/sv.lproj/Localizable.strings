@@ -155,9 +155,6 @@
 /* Notification display name for course activities group */
 "Course Activities" = "Kursaktiviteter";
 
-/* Button for creating a note from text selection */
-"Create Note" = "Skapa anteckning";
-
 /* Header label for a screen that customizes a course */
 "Customize" = "Anpassa";
 
@@ -377,9 +374,6 @@
 
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "Kan inte tas";
-
-/* No comment provided by engineer. */
-"Note..." = "Anteckning...";
 
 /* Error title for push notification registration error */
 "Notification Error" = "Aviseringsfel";

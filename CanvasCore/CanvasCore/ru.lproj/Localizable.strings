@@ -155,9 +155,6 @@
 /* Notification display name for course activities group */
 "Course Activities" = "Активность в рамках курса";
 
-/* Button for creating a note from text selection */
-"Create Note" = "Создать заметку";
-
 /* Header label for a screen that customizes a course */
 "Customize" = "Адаптировать";
 
@@ -377,9 +374,6 @@
 
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "Невозможно пройти";
-
-/* No comment provided by engineer. */
-"Note..." = "Заметка...";
 
 /* Error title for push notification registration error */
 "Notification Error" = "Ошибка уведомления";

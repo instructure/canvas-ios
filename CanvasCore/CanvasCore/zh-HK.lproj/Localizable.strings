@@ -155,9 +155,6 @@
 /* Notification display name for course activities group */
 "Course Activities" = "課程活動";
 
-/* Button for creating a note from text selection */
-"Create Note" = "創建筆記";
-
 /* Header label for a screen that customizes a course */
 "Customize" = "自定義";
 
@@ -377,9 +374,6 @@
 
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "不可用";
-
-/* No comment provided by engineer. */
-"Note..." = "筆記...";
 
 /* Error title for push notification registration error */
 "Notification Error" = "通知錯誤";

@@ -155,9 +155,6 @@
 /* Notification display name for course activities group */
 "Course Activities" = "Ngā mahi ākoranga";
 
-/* Button for creating a note from text selection */
-"Create Note" = "Waihanga Tuhipoka";
-
 /* Header label for a screen that customizes a course */
 "Customize" = "Whakaritea";
 
@@ -377,9 +374,6 @@
 
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "e kore e taaketia ana";
-
-/* No comment provided by engineer. */
-"Note..." = "Mōhio ...";
 
 /* Error title for push notification registration error */
 "Notification Error" = "Hapa whakamōhiotanga";
