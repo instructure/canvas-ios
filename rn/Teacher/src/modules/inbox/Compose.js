@@ -234,6 +234,7 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
       <Screen
         drawUnderNavBar
         title={this.props.navBarTitle || i18n('New Message')}
+        showDismissButton={false}
         leftBarButtons={[{
           title: i18n('Cancel'),
           testID: 'compose-message.cancel',
