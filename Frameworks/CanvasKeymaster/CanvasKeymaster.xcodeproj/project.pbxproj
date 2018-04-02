@@ -10,8 +10,6 @@
 		0427ED71F9517BC9C905670E /* Pods_defaults_CanvasKeymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E66D20238B73967062C6B28D /* Pods_defaults_CanvasKeymaster.framework */; };
 		2C0D62A620335C6300EBE7AB /* CKMDomainSearchViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C0D62A420335C6300EBE7AB /* CKMDomainSearchViewController.h */; };
 		2C0D62A720335C6300EBE7AB /* CKMDomainSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0D62A520335C6300EBE7AB /* CKMDomainSearchViewController.m */; };
-		2C7041AA203CDC7300745253 /* UIAlertController+Show.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C7041A8203CDC7200745253 /* UIAlertController+Show.h */; };
-		2C7041AB203CDC7300745253 /* UIAlertController+Show.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7041A9203CDC7200745253 /* UIAlertController+Show.m */; };
 		2CA6637C20349D7C00F0DCAB /* NSLayoutConstraintHairline.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CA6637A20349D7C00F0DCAB /* NSLayoutConstraintHairline.h */; };
 		2CA6637D20349D7C00F0DCAB /* NSLayoutConstraintHairline.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA6637B20349D7C00F0DCAB /* NSLayoutConstraintHairline.m */; };
 		2CAF046C2033A2A1007BC62D /* x-icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CAF04692033A2A0007BC62D /* x-icon@3x.png */; };
@@ -110,8 +108,6 @@
 		0BA1F2BA47D5098035222EA1 /* Pods_CanvasKeymaster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CanvasKeymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C0D62A420335C6300EBE7AB /* CKMDomainSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CKMDomainSearchViewController.h; sourceTree = "<group>"; };
 		2C0D62A520335C6300EBE7AB /* CKMDomainSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CKMDomainSearchViewController.m; sourceTree = "<group>"; };
-		2C7041A8203CDC7200745253 /* UIAlertController+Show.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIAlertController+Show.h"; path = "../UIAlertController+Show.h"; sourceTree = "<group>"; };
-		2C7041A9203CDC7200745253 /* UIAlertController+Show.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIAlertController+Show.m"; path = "../UIAlertController+Show.m"; sourceTree = "<group>"; };
 		2C73C9C81E0333830064A19D /* CWNotification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CWNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CA6637A20349D7C00F0DCAB /* NSLayoutConstraintHairline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSLayoutConstraintHairline.h; sourceTree = "<group>"; };
 		2CA6637B20349D7C00F0DCAB /* NSLayoutConstraintHairline.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSLayoutConstraintHairline.m; sourceTree = "<group>"; };
@@ -345,15 +341,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2C7041A7203CDC5E00745253 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				2C7041A8203CDC7200745253 /* UIAlertController+Show.h */,
-				2C7041A9203CDC7200745253 /* UIAlertController+Show.m */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		49E545A61909B4AC001AD3BC /* CanvasKeytester */ = {
 			isa = PBXGroup;
 			children = (
@@ -550,7 +537,6 @@
 		B1FC3AF41C98B4E500A8001F /* CanvasKeymaster */ = {
 			isa = PBXGroup;
 			children = (
-				2C7041A7203CDC5E00745253 /* Extensions */,
 				B10E9F7D1E2FDB88000F5D01 /* InfoPlist.strings */,
 				B10E9F771E2FDB87000F5D01 /* Localizable.strings */,
 				B1051E751C909A41007C529F /* Dependencies */,
@@ -587,7 +573,6 @@
 				B1FC3B241C98B65900A8001F /* FXKeychain+CKMKeychain.h in Headers */,
 				B1FC3B141C98B60E00A8001F /* CKMDomainSuggester.h in Headers */,
 				B1FC3B2C1C98B66800A8001F /* SupportTicket.h in Headers */,
-				2C7041AA203CDC7300745253 /* UIAlertController+Show.h in Headers */,
 				B1FC3B0C1C98B60E00A8001F /* CKMMultiUserTableViewCell.h in Headers */,
 				B1FC3B201C98B60E00A8001F /* CKMDomainHelpViewController.h in Headers */,
 				B1FC3B1A1C98B60E00A8001F /* CKMLocationSchoolSuggester.h in Headers */,
@@ -772,7 +757,6 @@
 				2C0D62A720335C6300EBE7AB /* CKMDomainSearchViewController.m in Sources */,
 				B1FC3B2B1C98B66800A8001F /* ImpactTableViewController.m in Sources */,
 				B1FC3B151C98B60E00A8001F /* CKMDomainSuggester.m in Sources */,
-				2C7041AB203CDC7300745253 /* UIAlertController+Show.m in Sources */,
 				6181F12D1DFF365900B94488 /* CKMDomainPickerViewController.m in Sources */,
 				B1FC3B1B1C98B60E00A8001F /* CKMLocationSchoolSuggester.m in Sources */,
 				B1FC3B271C98B66000A8001F /* CLLocation+CKMDistance.m in Sources */,
