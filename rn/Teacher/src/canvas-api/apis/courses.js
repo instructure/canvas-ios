@@ -18,12 +18,17 @@
 
 import { paginate, exhaust } from '../utils/pagination'
 import httpClient from '../httpClient'
+import { isTeacher } from '../../modules/app'
 
 export function getCourses (): ApiPromise<Course[]> {
+  let state = ['available', 'completed']
+  if (isTeacher()) {
+    state.push('unpublished')
+  }
   const courses = paginate('courses', {
     params: {
       include: ['term', 'favorites', 'course_image', 'sections', 'total_scores', 'current_grading_period_scores'],
-      state: ['available', 'completed', 'unpublished'],
+      state,
     },
   })
   return exhaust(courses)
