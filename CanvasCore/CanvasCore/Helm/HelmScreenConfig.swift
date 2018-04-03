@@ -42,6 +42,6 @@ class HelmScreenConfig {
     }
     
     var drawUnderTabBar: Bool {
-        return self[PropKeys.drawUnderTabBar] as? Bool ?? true
+        return self[PropKeys.drawUnderTabBar] as? Bool ?? false
     }
 }
