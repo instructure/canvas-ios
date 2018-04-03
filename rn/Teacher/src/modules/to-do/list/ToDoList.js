@@ -35,6 +35,7 @@ import {
 import RowSeparator from '../../../common/components/rows/RowSeparator'
 import { alertError } from '../../../redux/middleware/error-handler'
 import { Text } from '../../../common/text'
+import { updateBadgeCounts } from '../../tabbar/badge-counts'
 import ToDoListItem from './ToDoListItem'
 
 type Props = {
@@ -83,6 +84,11 @@ export class ToDoList extends Component<Props, State> {
     }
   }
 
+  refresh = () => {
+    updateBadgeCounts()
+    return this.props.refresh()
+  }
+
   render () {
     return (
       <Screen
@@ -97,7 +103,7 @@ export class ToDoList extends Component<Props, State> {
             data={this.state.list}
             renderItem={this.renderItem}
             refreshing={this.props.isLoading}
-            onRefresh={this.props.refresh}
+            onRefresh={this.refresh}
             keyExtractor={ToDoModel.keyExtractor}
             testID='to-do-list.list'
             ItemSeparatorComponent={RowSeparator}
@@ -133,7 +139,7 @@ export class ToDoList extends Component<Props, State> {
     this.props.navigator.show(
       path,
       { modal: true, modalPresentationStyle: 'fullscreen' },
-      { filter, studentIndex: 0, assignmentID, onDismiss: this.props.refresh }
+      { filter, studentIndex: 0, assignmentID, onDismiss: this.refresh }
     )
   }
 

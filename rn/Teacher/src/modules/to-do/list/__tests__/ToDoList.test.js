@@ -21,11 +21,16 @@ import React from 'react'
 import { API, httpCache } from '../../../../canvas-api/model-api'
 import * as template from '../../../../__templates__'
 import { alertError } from '../../../../redux/middleware/error-handler'
+import { updateBadgeCounts } from '../../../tabbar/badge-counts'
 import Connected, { ToDoList } from '../ToDoList'
 
 jest.mock('../../../../redux/middleware/error-handler', () => {
   return { alertError: jest.fn() }
 })
+
+jest.mock('../../../tabbar/badge-counts', () => ({
+  updateBadgeCounts: jest.fn(),
+}))
 
 const diveList = (list: any) =>
   shallow(
@@ -77,6 +82,13 @@ describe('ToDoList', () => {
     const loadError = new Error()
     tree.setProps({ loadError })
     expect(alertError).toHaveBeenCalledWith(loadError)
+  })
+
+  it('updates tab bar todo count on refresh', () => {
+    const tree = shallow(<ToDoList {...props} />)
+    tree.find('FlatList').simulate('Refresh')
+    expect(updateBadgeCounts).toHaveBeenCalled()
+    expect(props.refresh).toHaveBeenCalled()
   })
 
   it('gets next page immediately if there are less than 10', () => {
