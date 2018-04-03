@@ -124,7 +124,7 @@ extension Router {
         
         let fileFactory = { (contextID: ContextID, fileID: String) -> UIViewController in
             return HelmViewController(
-                moduleName: "/:context/:contextID/file/:fileID",
+                moduleName: "/:context/:contextID/files/:fileID",
                 props: ["context": "courses", "contextID": contextID.id, "fileID": fileID, "navigatorOptions": ["modal": true]]
             )
         }

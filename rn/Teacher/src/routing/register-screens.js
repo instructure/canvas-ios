@@ -150,7 +150,6 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/pages', wrap(PagesList), store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/terms-of-use', wrap(TermsOfUse), store)
   registerScreen('/files/:fileID', wrap(ViewFile), store, { deepLink: true })
-  registerScreen('/files/:fileID/download', wrap(ViewFile), store, { deepLink: true })
   registerScreen('/profile/settings')
   registerScreen('/support/:type', undefined, undefined, { deepLink: true })
   registerScreen('/ui', wrap(UI), store)
