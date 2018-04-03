@@ -1,3 +1,5 @@
+"Inbox" = "インボックス";
+
 /* Error message component with the report id */
 " Error report ID: (reportID)" = " エラーレポート ID(reportID)";
 
@@ -26,6 +28,7 @@
 "5 minutes remaining" = "残り時間5分";
 
 /* Notification to alert the user that there is only 30 seconds left in the time quiz */
+
 "30 seconds remaining" = "残り時間30秒";
 
 /* Mark student absent

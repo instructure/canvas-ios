@@ -1,3 +1,5 @@
+"Inbox" = "Bandeja de entrada";
+
 /* Error message component with the report id */
 " Error report ID: (reportID)" = " ID del informe del error: (reportID)";
 

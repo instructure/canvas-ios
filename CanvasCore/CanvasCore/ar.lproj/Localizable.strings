@@ -1,3 +1,5 @@
+"Inbox" = "صندوق الوارد";
+
 /* Error message component with the report id */
 " Error report ID: (reportID)" = " معرف تقرير الخطأ: (reportID)";
 
