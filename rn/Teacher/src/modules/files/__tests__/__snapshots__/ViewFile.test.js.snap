@@ -4,9 +4,7 @@ exports[`ViewFile renders loading while fetching the file 1`] = `
 <Screen
   disableGlobalSafeArea={true}
   drawUnderNavBar={true}
-  navBarButtonColor="#008EE2"
-  navBarStyle="light"
-  navBarTitleColor="#2D3B45"
+  navBarStyle="dark"
   rightBarButtons={
     Array [
       Object {

@@ -290,4 +290,14 @@ describe('ViewFile', () => {
       error: null,
     })
   })
+
+  it('uses the correct navbar style when shown in a modal', async () => {
+    props.file.mime_class = 'image'
+    props.navigator.isModal = true
+    const tree = shallow(<ViewFile {...props} />)
+    await Promise.resolve() // wait for file download.
+    await updatedState(tree)
+    tree.update()
+    expect(tree.find('Screen').props().navBarStyle).toBe('light')
+  })
 })

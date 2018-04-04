@@ -305,9 +305,8 @@ export default class ViewFile extends Component<Props, State> {
     return (
       <Screen
         title={name}
+        navBarStyle={this.props.navigator.isModal ? 'light' : 'dark'}
         subtitle={course && course.name || undefined}
-        navBarTitleColor={Colors.darkText}
-        navBarButtonColor={Colors.link}
         drawUnderNavBar
         disableGlobalSafeArea
         rightBarButtons={rightBarButtons}
