@@ -23,6 +23,7 @@
 #import "iCanvasErrorHandler.h"
 #import "Router.h"
 #import "CBIModuleProgressNotifications.h"
+#import "NSURL+TechDebt.h"
 @import CanvasKit;
 #import "CBILog.h"
 @import CanvasKeymaster;
@@ -141,6 +142,11 @@
     @weakify(self);
     [self.webView loadWithHtml:details title:nil baseURL:baseURL routeToURL:^(NSURL *url){
         @strongify(self);
+        
+        if (self.assignment.ident) {
+            url = [[url copy] urlByAddingQueryParamWithName:@"assignmentID" value:[@(self.assignment.ident) stringValue]];
+        }
+        
         [[Router sharedRouter] routeFromController:self toURL:url];
     }];
 }

@@ -108,8 +108,8 @@
 		492705A31CF4B73200C631C6 /* CKIUser+SwiftCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927055E1CF4B73200C631C6 /* CKIUser+SwiftCompatibility.m */; };
 		492705A61CF4B73200C631C6 /* CKIClient+CBIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705611CF4B73200C631C6 /* CKIClient+CBIClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		492705A71CF4B73200C631C6 /* CKIClient+CBIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705621CF4B73200C631C6 /* CKIClient+CBIClient.m */; };
-		492705B21CF4B73200C631C6 /* NSURL+RemoveFragment.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705701CF4B73200C631C6 /* NSURL+RemoveFragment.h */; };
-		492705B31CF4B73200C631C6 /* NSURL+RemoveFragment.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705711CF4B73200C631C6 /* NSURL+RemoveFragment.m */; };
+		492705B21CF4B73200C631C6 /* NSURL+TechDebt.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705701CF4B73200C631C6 /* NSURL+TechDebt.h */; };
+		492705B31CF4B73200C631C6 /* NSURL+TechDebt.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705711CF4B73200C631C6 /* NSURL+TechDebt.m */; };
 		492705B41CF4B73200C631C6 /* NSArray_in_additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705721CF4B73200C631C6 /* NSArray_in_additions.h */; };
 		492705B51CF4B73200C631C6 /* NSArray_in_additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705731CF4B73200C631C6 /* NSArray_in_additions.m */; };
 		492705B61CF4B73200C631C6 /* NSCache+AvatarCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705741CF4B73200C631C6 /* NSCache+AvatarCache.h */; };
@@ -850,8 +850,8 @@
 		4927055E1CF4B73200C631C6 /* CKIUser+SwiftCompatibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CKIUser+SwiftCompatibility.m"; sourceTree = "<group>"; };
 		492705611CF4B73200C631C6 /* CKIClient+CBIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CKIClient+CBIClient.h"; sourceTree = "<group>"; };
 		492705621CF4B73200C631C6 /* CKIClient+CBIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CKIClient+CBIClient.m"; sourceTree = "<group>"; };
-		492705701CF4B73200C631C6 /* NSURL+RemoveFragment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+RemoveFragment.h"; sourceTree = "<group>"; };
-		492705711CF4B73200C631C6 /* NSURL+RemoveFragment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+RemoveFragment.m"; sourceTree = "<group>"; };
+		492705701CF4B73200C631C6 /* NSURL+TechDebt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+TechDebt.h"; sourceTree = "<group>"; };
+		492705711CF4B73200C631C6 /* NSURL+TechDebt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+TechDebt.m"; sourceTree = "<group>"; };
 		492705721CF4B73200C631C6 /* NSArray_in_additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSArray_in_additions.h; sourceTree = "<group>"; };
 		492705731CF4B73200C631C6 /* NSArray_in_additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArray_in_additions.m; sourceTree = "<group>"; };
 		492705741CF4B73200C631C6 /* NSCache+AvatarCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCache+AvatarCache.h"; sourceTree = "<group>"; };
@@ -1965,7 +1965,7 @@
 				492705611CF4B73200C631C6 /* CKIClient+CBIClient.h */,
 				492705621CF4B73200C631C6 /* CKIClient+CBIClient.m */,
 				4927056A1CF4B73200C631C6 /* MLVC */,
-				4927056F1CF4B73200C631C6 /* NS */,
+				4927056F1CF4B73200C631C6 /* NSURL */,
 				492705721CF4B73200C631C6 /* NSArray_in_additions.h */,
 				492705731CF4B73200C631C6 /* NSArray_in_additions.m */,
 				492705741CF4B73200C631C6 /* NSCache+AvatarCache.h */,
@@ -2020,13 +2020,13 @@
 			path = MLVC;
 			sourceTree = "<group>";
 		};
-		4927056F1CF4B73200C631C6 /* NS */ = {
+		4927056F1CF4B73200C631C6 /* NSURL */ = {
 			isa = PBXGroup;
 			children = (
-				492705701CF4B73200C631C6 /* NSURL+RemoveFragment.h */,
-				492705711CF4B73200C631C6 /* NSURL+RemoveFragment.m */,
+				492705701CF4B73200C631C6 /* NSURL+TechDebt.h */,
+				492705711CF4B73200C631C6 /* NSURL+TechDebt.m */,
 			);
-			path = NS;
+			path = NSURL;
 			sourceTree = "<group>";
 		};
 		492705E61CF4B75300C631C6 /* Colorful */ = {
@@ -3144,7 +3144,7 @@
 				4927068A1CF4B88600C631C6 /* CBIFilesTabViewModel.h in Headers */,
 				49CE976D1F900B4700121A43 /* metamacros.h in Headers */,
 				492706D11CF4BA7B00C631C6 /* CBILockableViewModel.h in Headers */,
-				492705B21CF4B73200C631C6 /* NSURL+RemoveFragment.h in Headers */,
+				492705B21CF4B73200C631C6 /* NSURL+TechDebt.h in Headers */,
 				492706AB1CF4B98900C631C6 /* iCanvasErrorHandler.h in Headers */,
 				49AA2D2F1CF4DC540055862D /* CBIPeopleViewModel.h in Headers */,
 				492705391CF4B70600C631C6 /* CBISubmissionDialogViewModel.h in Headers */,
@@ -4045,7 +4045,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				492706B41CF4B99700C631C6 /* Router+Routes.m in Sources */,
-				492705B31CF4B73200C631C6 /* NSURL+RemoveFragment.m in Sources */,
+				492705B31CF4B73200C631C6 /* NSURL+TechDebt.m in Sources */,
 				492706911CF4B88600C631C6 /* CBIFolderViewModel.m in Sources */,
 				4927068F1CF4B88600C631C6 /* CBIFileViewModel.m in Sources */,
 				492706E51CF4BAB500C631C6 /* VideoRecorderController.m in Sources */,

@@ -207,6 +207,10 @@
     if (fileIdent) {
         self.fileIdent = [fileIdent intValue];
     }
+    NSNumber *assignmentID = params[@"query"][@"assignmentID"];
+    if (assignmentID) {
+        self.assignmentID = [assignmentID intValue];
+    }
     [self fetchFile];
 }
 
@@ -329,13 +333,25 @@
 }
 
 - (NSString * _Nullable)hackishlyGetDefaultAssignmentIfPossible {
+    if (self.assignmentID) {
+        return [@(self.assignmentID) stringValue];
+    }
+    
     CBIAssignmentDetailViewController *assignmentDeets = [self assignmentDeets];
     return assignmentDeets.viewModel.model.id;
 }
 
 - (NSString * _Nullable)hackishlyGetDefaultCourseIfPossible {
     CBIAssignmentDetailViewController *assignmentDeets = [self assignmentDeets];
-    return assignmentDeets.viewModel.model.courseID;
+    if (assignmentDeets.viewModel.model.courseID) {
+        return assignmentDeets.viewModel.model.courseID;
+    }
+    
+    if (self.contextInfo.contextType == CKContextTypeCourse) {
+        return [@(self.contextInfo.ident) stringValue];
+    }
+    
+    return nil;
 }
 
 - (CBIAssignmentDetailViewController * _Nullable)assignmentDeets {

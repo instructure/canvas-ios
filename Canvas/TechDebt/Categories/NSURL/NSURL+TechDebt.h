@@ -13,13 +13,17 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-    
-    
+
 
 #import <Foundation/Foundation.h>
 
-@interface NSURL (RemoveFragment)
+NS_ASSUME_NONNULL_BEGIN
 
--(NSURL *)urlByRemovingFragment;
+@interface NSURL (TechDebt)
 
+- (NSURL *)urlByRemovingFragment;
+- (NSURL *)urlByAddingQueryParamWithName:(NSString *)name value:(NSString *)value;
+    
 @end
+
+NS_ASSUME_NONNULL_END

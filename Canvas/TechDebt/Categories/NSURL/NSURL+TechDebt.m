@@ -16,9 +16,9 @@
     
     
 
-#import "NSURL+RemoveFragment.h"
+#import "NSURL+TechDebt.h"
 
-@implementation NSURL (RemoveFragment)
+@implementation NSURL (TechDebt)
 
 - (NSURL *)urlByRemovingFragment {
     NSString *urlString = [self absoluteString];
@@ -33,4 +33,17 @@
     }
 }
 
+- (NSURL *)urlByAddingQueryParamWithName:(NSString *)name value:(NSString *)value {
+    NSURLComponents *components = [NSURLComponents componentsWithURL:self resolvingAgainstBaseURL:NO];
+    if (components.queryItems) {
+        NSMutableArray *query = [NSMutableArray arrayWithArray:components.queryItems];
+        NSURLQueryItem *queryItem = [NSURLQueryItem queryItemWithName:name value:value];
+        [query addObject:queryItem];
+        components.queryItems = query;
+    }
+    NSURL *newURL = [components URL];
+    if (newURL) { return newURL; }
+    return self;
+}
+    
 @end

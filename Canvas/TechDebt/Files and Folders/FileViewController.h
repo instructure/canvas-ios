@@ -28,6 +28,9 @@
 @property (nonatomic) CKAttachment *file;
 @property uint64_t fileIdent;
 
+// A possible assignment id can be passed through as a query param
+@property uint64_t assignmentID;
+
 @property (nonatomic) float downloadProgress;
 @property (nonatomic, copy) NSURL *url;
 @property CKUploadProgressToolbar *progressToolbar;
