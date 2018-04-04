@@ -272,7 +272,7 @@ extension AppDelegate: NativeLoginManagerDelegate {
         CKCanvasAPI.updateCurrentAPI()
         
         if let brandingInfo = client.branding?.jsonDictionary() as? [String: Any] {
-            Brand.setCurrent(Brand(webPayload: brandingInfo))
+            Brand.setCurrent(Brand(webPayload: brandingInfo), applyInWindow: window)
         }
     }
     
