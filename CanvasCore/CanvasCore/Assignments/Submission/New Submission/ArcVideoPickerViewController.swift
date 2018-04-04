@@ -63,8 +63,15 @@ public class ArcVideoPickerViewController: UIViewController {
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // https://mobiledev.instructure.com/courses/24219/external_tools/282032/resource_selection?launch_type=homework_submission&assignment_id=405404
-        let request = URLRequest(url: arcLTIURL)
-        webView.load(request)
+        APIBridge.shared().call("getAuthenticatedSessionURL", args: [arcLTIURL.absoluteString]) { [weak self] response, error in
+            if let data = response as? [String: Any],
+                let sessionURL = data["session_url"] as? String,
+                let url = URL(string: sessionURL) {
+                self?.webView.load(URLRequest(url: url))
+            } else if let url = self?.arcLTIURL {
+                self?.webView.load(URLRequest(url: url))
+            }
+        }
     }
     
     func close() {

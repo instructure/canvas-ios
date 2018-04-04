@@ -75,14 +75,6 @@ class TabsTableViewController: FetchedTableViewController<Tab> {
         if let selectedTabURL = selectedTabURL, let tab = collection.filter({ $0.routingURL(session) == selectedTabURL }).first, let indexPath = collection.indexPath(forObject: tab), self.splitViewController?.isCollapsed == false {
             tableView.selectRow(at: indexPath, animated: true, scrollPosition: .top)
         }
-        
-        var courses = session.enrollmentsDataSource.enrollmentsObserver.collection.makeIterator()
-        while let course = courses.next() {
-            let contextID = ContextID(id: course.id, context: .course)
-            if self.contextID == contextID {
-                _ = try? session.enrollmentsDataSource.fetchArcLTIToolID(for: contextID, inSession: session).start()
-            }
-        }
     }
     
     override func handleError(_ error: NSError) {

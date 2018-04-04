@@ -65,14 +65,6 @@ open class EnrollmentsDataSource: NSObject {
             }
     }
     
-    open func fetchArcLTIToolID(for contextID: ContextID, inSession session: Session) throws -> SignalProducer<(), NSError> {
-        return try Enrollment.arcLTIToolID(session, for: contextID).observe(on: UIScheduler()).on(value: { [weak self] toolID in
-            let enrollment = self?.enrollmentsObserver[contextID]
-            enrollment?.arcLTIToolID = toolID
-            try? enrollment?.managedObjectContext?.saveFRD()
-        }).map { _ in }
-    }
-    
     @objc open func arcLTIToolId(forCanvasContext canvasContext: String) -> String? {
         guard let contextID = ContextID(canvasContext: canvasContext) else { return nil }
         let enrollment = self.enrollmentsObserver[contextID]

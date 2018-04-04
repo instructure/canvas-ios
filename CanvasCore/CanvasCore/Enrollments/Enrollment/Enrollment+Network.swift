@@ -30,27 +30,23 @@ extension Enrollment {
             .flatMap(.merge, transform: session.emptyResponseSignalProducer)
     }
     
-    public static func arcLTIToolID(_ session: Session, for contextID: ContextID) throws -> SignalProducer<String, NSError> {
-        let path = contextID.apiPath + "/external_tools"
-        let request = try session.GET(path, parameters: ["include_parents": "true"], encoding: .urlEncodedInURL, authorized: true)
-        return session.paginatedJSONSignalProducer(request)
-            .map { jsonLTITools in
-                
-                return jsonLTITools
-                    .filter { json in
-                        guard let url: String = (try? json <| "url") else { return false }
-                        return url.contains("instructuremedia.com/lti/launch")
-                    }
-                
-                    .flatMap { json in
-                        return try? json.stringID("id")
-                    }
-                
-                    // There should only ever be one arc lti me thinks
-                    // See Enrollment.swift - 
-                    // Empty string means we've checked, nil string means we haven't
-                    .first ?? ""
+    public static func arcLTIToolID(courseID: String, callback: @escaping (String?) -> Void) {
+        APIBridge.shared().call("getExternalTools", args: [courseID, ["include_parents": true]], callback: { (result, error) in
+            guard let jsonLTITools = result as? [JSONObject] else {
+                callback(nil)
+                return
             }
+            let arcID = jsonLTITools
+                .filter { json in
+                    guard let url: String = (try? json <| "url") else { return false }
+                    return url.contains("instructuremedia.com/lti/launch")
+                }
+                .flatMap { json in
+                    return try? json.stringID("id")
+                }
+                .first ?? ""
+            callback(arcID)
+        })
     }
     
     public static func getGaugeLTILaunchURL(_ session: Session) throws -> SignalProducer<URL?, NSError> {

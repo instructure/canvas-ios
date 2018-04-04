@@ -132,7 +132,19 @@ private enum AsyncAction {
             do {
                 let context = try session.enrollmentManagedObjectContext()
                 Tab.sync(predicate, inContext: context, jsonArray: tabs) { _ in
-                    completion()
+                    Enrollment.arcLTIToolID(courseID: courseID) { arcID in
+                        context.perform {
+                            do {
+                                if let course: Course = try context.findOne(withValue: courseID, forKey: "id") {
+                                    course.arcLTIToolID = arcID
+                                    try context.save()
+                                }
+                                completion()
+                            } catch {
+                                completion()
+                            }
+                        }
+                    }
                 }
             } catch {
                 completion()

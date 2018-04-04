@@ -44,6 +44,11 @@ export function getExternalTool (courseID: string, id: string, options: GetExter
   return httpClient().get(url, { params })
 }
 
+export function getExternalTools (courseID: string, params: { include_parents?: boolean }): ApiPromise<Array<ExternalTool>> {
+  const tools = paginate(`courses/${courseID}/external_tools`, { params })
+  return exhaust(tools)
+}
+
 export function getSessionlessLaunchURL (courseID: string, options: GetExternalToolOptions): Promise<string> {
   return getExternalTool(courseID, 'sessionless_launch', options).then(response => response.data.url)
 }
