@@ -169,14 +169,6 @@ extension Router {
             return fileListFactory(contextID)
         }
         
-        addRoute("/files/:fileID") { parameters, _ in
-            guard let params = parameters, let fileID = (try? params.stringID("fileID")) else { return  nil }
-            return HelmViewController(
-                moduleName: "/files/:fileID/download",
-                props: ["fileID": fileID, "navigatorOptions": ["modal": true]]
-            )
-        }
-        
         addRoute("/courses/:courseID") { parameters, _ in
             guard let params = parameters, let courseID = (try? params.stringID("courseID")) else { return nil }
             return HelmViewController(moduleName: "/courses/:courseID", props: ["courseID": courseID, "navigatorOptions": ["modal": true]])

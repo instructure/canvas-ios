@@ -31,6 +31,7 @@ extension AppDelegate: RCTBridgeDelegate {
         registerScreen("/courses/:courseID/quizzes")
         registerScreen("/courses/:courseID/quizzes/:quizID")
         registerScreen("/:context/:contextID/files/:fileID/download")
+        registerScreen("/files/:fileID")
         registerScreen("/files/:fileID/download")
         registerScreen("/courses/:courseID/modules")
         registerScreen("/courses/:courseID/modules/:moduleID")

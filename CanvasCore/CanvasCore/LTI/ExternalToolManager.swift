@@ -202,8 +202,12 @@ public class ExternalToolManager: NSObject {
     }
 
     private func present(_ url: URL, from viewController: UIViewController, completionHandler: (() -> Void)? = nil) {
+        var comps = URLComponents(url: url, resolvingAgainstBaseURL: false)
+        comps?.scheme = "https"
+        guard let fixed = comps?.url else { return }
+        
         DispatchQueue.main.async {
-            let safari = SFSafariViewController(url: url)
+            let safari = SFSafariViewController(url: fixed)
             safari.modalPresentationStyle = .overFullScreen
             viewController.present(safari, animated: true, completion: completionHandler)
         }
