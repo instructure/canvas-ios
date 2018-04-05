@@ -62,10 +62,6 @@ extension Router {
         }
         
         addContextRoute([.course], subPath: "assignments") { contextID, _ in
-            guard let currentSession = currentSession else { return nil }
-            guard FeatureFlags.featureFlagEnabled(.newAssignmentsList) else {
-                return try AssignmentsTableViewController(session: currentSession, courseID: contextID.id, route: route)
-            }
             return HelmViewController(
                 moduleName: "/courses/:courseID/assignments",
                 props: ["courseID": contextID.id]
@@ -73,10 +69,6 @@ extension Router {
         }
         
         addContextRoute([.course], subPath: "grades") { contextID, _ in
-            guard let currentSession = currentSession else { return nil }
-            guard FeatureFlags.featureFlagEnabled(.newGradesList) else {
-                return try GradesTableViewController(session: currentSession, courseID: contextID.id, route: route)
-            }
             return HelmViewController(
                 moduleName: "/courses/:courseID/grades",
                 props: ["courseID": contextID.id]

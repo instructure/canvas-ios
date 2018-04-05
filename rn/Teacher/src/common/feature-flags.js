@@ -17,17 +17,14 @@ const { FeatureFlagsManager } = NativeModules
 // from here and see where flow tells us we are still trying to use it
 // This should be an enum so when adding more feature flags it should look like
 // type FeatureFlagName = 'someFeatureFlag' | 'otherFeatureFlag'
-type FeatureFlagName = 'userFilesFeatureFlag' | 'newAssignmentsList' | 'pageViewLogging' | 'newGradesList' | 'favoriteGroups'
+type FeatureFlagName = 'pageViewLogging' | 'favoriteGroups'
 
 // if a feature is listed here it will be turned off
 // unless in development, the current user is on a domain
 // that should always have every feature flag turned on
 // or the domain has been added as an exceptions
 export const featureFlags: { [FeatureFlagName]: FeatureFlag } = {
-  userFilesFeatureFlag: { exempt: [] },
-  newAssignmentsList: { exempt: [] },
   pageViewLogging: { exempt: [] },
-  newGradesList: { exempt: [] },
   favoriteGroups: { exempt: [] },
 }
 

@@ -14,10 +14,7 @@ import CanvasKeymaster
 // This will help when we go to remove a flag we can remove it
 // from here and see where the compiler tells us we are still trying to use it
 public enum FeatureFlagName: String {
-    case userFilesFeatureFlag
-    case newAssignmentsList
     case pageViewLogging
-    case newGradesList
     case favoriteGroups
 }
 
