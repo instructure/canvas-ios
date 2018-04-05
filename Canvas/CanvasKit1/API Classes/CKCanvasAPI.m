@@ -1766,7 +1766,7 @@ static CGFloat overallProgressForDictionaries(NSArray *progressDicts) {
         for (NSDictionary *groupJSON in json) {
             NSNumber *groupID = groupJSON[@"id"];
             NSNumber *groupCategoryID = groupJSON[@"group_category_id"];
-            if ([groupCategoryID isEqualToNumber:assignment.groupCategoryID]) {
+            if ([groupCategoryID isEqual:assignment.groupCategoryID]) {
                 NSString *groupUploadURLString = [NSString stringWithFormat:@"%@://%@/api/v1/groups/%@/files", self.apiProtocol, self.hostname, groupID];
                 completed(nil, YES, [NSURL URLWithString:groupUploadURLString]);
                 return;

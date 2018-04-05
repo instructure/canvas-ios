@@ -18,6 +18,7 @@
 
 import {
   NativeModules,
+  Linking,
 } from 'react-native'
 
 import { registerScreens } from '../register-screens'
@@ -43,6 +44,8 @@ jest.mock('../../canvas-api', () => ({
 jest.mock('react-native-sfsafariviewcontroller', () => ({
   open: jest.fn(),
 }))
+
+jest.mock('Linking', () => ({ openURL: jest.fn() }))
 
 registerScreens({})
 
@@ -172,13 +175,21 @@ describe('Navigator', () => {
   it('opens a webview if we try to deepLink to something that is unsupported', async () => {
     let promise = Promise.resolve({ data: { session_url: 'https://google.com' } })
     canvas.getAuthenticatedSessionURL.mockReturnValueOnce(promise)
-    new Navigator('deepLink').show('/courses/1/modules/3/items', {
+    new Navigator('deepLink').show('https://google.com', {
       deepLink: true,
     })
 
     await promise
 
     expect(SFSafariViewController.open).toHaveBeenCalledWith('https://google.com')
+  })
+
+  it('linking should  be called if something is unsupported and it is not http or https', () => {
+    new Navigator('deepLink').show('mailto:johny@johnny.com', {
+      deepLink: true,
+    })
+
+    expect(Linking.openURL).toHaveBeenCalledWith('mailto:johny@johnny.com')
   })
 
   it('opens a webview with the url if we do not have a route for it', async () => {

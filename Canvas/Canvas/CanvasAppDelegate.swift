@@ -233,13 +233,21 @@ extension AppDelegate {
         // the student app doesn't have as predictable of a tab bar setup and for
         // several views, does not have a route configured for them so for now we
         // will hard code until we move more things over to helm
-        let tabRoutes = ["/", "/calendar", "/to-do", "/notifications", "/conversations"]
+        let tabRoutes = [["/", "", "/courses"], ["/calendar"], ["/to-do"], ["/notifications"], ["/conversations", "/inbox"]]
         StartupManager.shared.enqueueTask({
-            var path = url.path
-            if path.count == 0 { path = "/" }
-            if let index = tabRoutes.index(of: path) {
+            let path = url.path
+            var index: Int?
+            
+            for (i, element) in tabRoutes.enumerated() {
+                if let _ = element.index(of: path) {
+                    index = i
+                    break
+                }
+            }
+            
+            if let i = index {
                 guard let tabBarController = UIApplication.shared.keyWindow?.rootViewController as? UITabBarController else { return }
-                tabBarController.selectedIndex = index
+                tabBarController.selectedIndex = i
                 tabBarController.resetSelectedViewController()
             } else {
                 

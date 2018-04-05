@@ -15,7 +15,7 @@
 //
 
 // @flow
-import { NativeModules, type PushNotificationIOS } from 'react-native'
+import { NativeModules, type PushNotificationIOS, Linking } from 'react-native'
 import { route } from './index'
 import SFSafariViewController from 'react-native-sfsafariviewcontroller'
 import { getAuthenticatedSessionURL } from '../canvas-api'
@@ -67,11 +67,15 @@ export default class Navigator {
   }
 
   async showWebView (url: string) {
-    try {
-      let { data: { session_url: authenticatedURL } } = await getAuthenticatedSessionURL(url)
-      SFSafariViewController.open(authenticatedURL)
-    } catch (err) {
-      SFSafariViewController.open(url)
+    if (url.startsWith('http') || url.startsWith('https')) {
+      try {
+        let { data: { session_url: authenticatedURL } } = await getAuthenticatedSessionURL(url)
+        SFSafariViewController.open(authenticatedURL)
+      } catch (err) {
+        SFSafariViewController.open(url)
+      }
+    } else {
+      Linking.openURL(url)
     }
   }
 

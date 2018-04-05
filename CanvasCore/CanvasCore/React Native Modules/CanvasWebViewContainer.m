@@ -125,9 +125,9 @@ static NSString *WebViewKeyPath = @"webView.scrollView.contentSize";
 
         // Check for a static html source first
         NSString *html = [RCTConvert NSString:source[@"html"]];
-        if (html) {
+        if ([html isKindOfClass:[NSString class]]) {
             NSURL *baseURL = [RCTConvert NSURL:source[@"baseURL"]];
-            if (!baseURL) {
+            if (![baseURL isKindOfClass:[NSURL class]]) {
                 baseURL = [NSURL URLWithString:@"about:blank"];
             }
             @weakify(self);

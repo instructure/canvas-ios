@@ -303,7 +303,8 @@
             // This seems like a little bit of a hack, but it does work without messing up the way things used to work
             for (NSUInteger i = 0; i < routeComponents.count; i++) {
                 if ([routeComponents[i] hasPrefix:@"*"]) {
-                    shouldContinue = YES;
+                    // it should only continue looking if the index of where the * is exists before the end of the incoming url
+                    shouldContinue = i < urlComponents.count;
                 }
             }
             if (!shouldContinue) {
