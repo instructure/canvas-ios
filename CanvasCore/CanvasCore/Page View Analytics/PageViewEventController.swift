@@ -22,7 +22,6 @@ typealias ErrorHandler = (Error?) -> Void
 @objc(PageViewEventController)
 open class PageViewEventController: NSObject {
     open static let instance = PageViewEventController()
-    private var client: CKIClient?
     
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -41,14 +40,14 @@ open class PageViewEventController: NSObject {
     func logPageView(_ eventNameOrPath: String, attributes: [String: Any]? = nil, eventDurationInSeconds: TimeInterval = 0) {
         guard NSClassFromString("EarlGreyImpl") == nil else { return }
         guard FeatureFlags.featureFlagEnabled(.pageViewLogging) else { return }
-        guard let client = client else { return }
+        guard let userID = CanvasKeymaster.the().currentClient?.currentUser.id else { return }
         
         var mutableAttributes = attributes?.convertToPageViewEventDictionary() ?? PageViewEventDictionary()
         if let url = cleanupUrl(url: eventNameOrPath, attributes: mutableAttributes), let codableUrl = try? CodableValue(url) {
             mutableAttributes["url"] = codableUrl
         }
         
-        let event = PageViewEvent(eventName: eventNameOrPath, attributes: mutableAttributes, userID: client.currentUser.id, eventDuration: eventDurationInSeconds)
+        let event = PageViewEvent(eventName: eventNameOrPath, attributes: mutableAttributes, userID: userID, eventDuration: eventDurationInSeconds)
         Persistency.instance.addToQueue(event)
     }
     
@@ -73,16 +72,8 @@ open class PageViewEventController: NSObject {
             NotificationCenter.default.addObserver(self, selector: #selector(PageViewEventController.didEnterBackground(_:)), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(PageViewEventController.willEnterForeground(_:)), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(PageViewEventController.appWillTerminate(_:)), name: NSNotification.Name.UIApplicationWillTerminate, object: nil)
-
-            CanvasKeymaster.the().signalForLogin.subscribeNext { [weak self] (client) in
-                guard let client = client else { return }
-                self?.client = client
-            }
-            
             CanvasKeymaster.the().signalForLogout.subscribeNext({ [weak self] (_) in
-                self?.sync() {
-                    self?.client = nil
-                }
+                self?.sync()
             })
         } else {
             NotificationCenter.default.removeObserver(self)
@@ -111,7 +102,7 @@ open class PageViewEventController: NSObject {
     }
     
     private func populatePlaceholderUrl(urlWithPlaceholders: String?, params: PageViewEventDictionary?) -> String? {
-        guard let baseURL = client?.baseURL,
+        guard let baseURL = CanvasKeymaster.the().currentClient?.baseURL,
             let urlWithPlaceholders = urlWithPlaceholders
             else { return nil }
         var path = urlWithPlaceholders
