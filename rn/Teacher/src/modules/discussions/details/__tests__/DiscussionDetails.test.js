@@ -150,7 +150,7 @@ describe('DiscussionDetails', () => {
       entry_ratings: {},
     })
 
-    let rootNodes = instance.rootRepliesData()
+    let rootNodes = instance.rootRepliesData(discussion)
     let expected = [{
       ...aaaa,
       depth: 0,

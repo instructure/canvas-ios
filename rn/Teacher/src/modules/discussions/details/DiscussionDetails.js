@@ -123,7 +123,7 @@ export class DiscussionDetails extends Component<Props, any> {
       entry_ratings: props.entryRatings || {},
       initialPostRequired: false,
     }
-    this.state.flatReplies = this.rootRepliesData()
+    this.state.flatReplies = this.rootRepliesData(props.discussion)
   }
 
   componentWillUnmount () {
@@ -158,7 +158,7 @@ export class DiscussionDetails extends Component<Props, any> {
     this.setState({
       unread_entries: nextProps.unreadEntries,
       entry_ratings: nextProps.entryRatings || {},
-      flatReplies: this.rootRepliesData(),
+      flatReplies: this.rootRepliesData(nextProps.discussion),
     })
   }
 
@@ -364,8 +364,8 @@ export class DiscussionDetails extends Component<Props, any> {
     )
   }
 
-  rootRepliesData = () => {
-    const { discussion } = this.props
+  rootRepliesData = (discussion: ?Discussion) => {
+    if (!discussion) return []
     let replies = discussion && discussion.replies || []
 
     if (this.state.rootNodePath.length === 0) return this.flattenRepliesData([], 0, replies, [])
@@ -773,7 +773,6 @@ export function mapStateToProps ({ entities }: AppState, ownProps: OwnProps): St
       }
     }
   }
-
   return {
     discussion,
     unreadEntries,
