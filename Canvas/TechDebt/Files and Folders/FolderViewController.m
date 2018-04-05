@@ -35,6 +35,7 @@
 #import "iCanvasErrorHandler.h"
 #import "CBILog.h"
 #import "UIImage+TechDebt.h"
+#import <CanvasCore/CanvasCore-Swift.h>
 
 #import <UserNotifications/UserNotifications.h>
 
@@ -57,6 +58,7 @@
 @interface FolderViewController ()
 
 @property BOOL isCurrentlyDeleting;
+@property (nonatomic, strong) PageViewEventLoggerLegacySupport * pageViewLog;
 
 @end
 
@@ -83,6 +85,7 @@
     
     NSAssert( self != nil, @"Controller creation failed. Did an identifier change?");
     _interfaceStyle = style;
+    self.pageViewLog = [PageViewEventLoggerLegacySupport new];
     return self;
 }
 
@@ -136,6 +139,7 @@
     
     [super viewWillAppear:animated];
     [self updateSelectionOnTableView];
+    [self.pageViewLog start];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -153,6 +157,7 @@
         NSUInteger cancelIndex = [_optionsActionSheet cancelButtonIndex];
         [_optionsActionSheet dismissWithClickedButtonIndex:cancelIndex animated:YES];
     }
+    [self.pageViewLog stopWithEventName:@"/files"];
 }
 
 - (void)updateSelectionOnTableView {

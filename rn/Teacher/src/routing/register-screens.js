@@ -75,7 +75,7 @@ import PushNotifications from '../modules/developer-menu/PushNotifications'
 import SectionSelector from '../modules/announcements/edit/SectionSelector'
 import FeatureFlags from '../modules/developer-menu/FeatureFlags'
 import GradesList from '../modules/grades/GradesList'
-
+import PageViewEvents from '../modules/developer-menu/PageViewEvents'
 import { Store } from 'redux'
 import { registerScreen } from './'
 import { isTeacher, isStudent } from '../modules/app'
@@ -154,6 +154,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/support/:type', undefined, undefined, { deepLink: true })
   registerScreen('/ui', wrap(UI), store)
   registerScreen('/push-notifications', wrap(PushNotifications), store)
+  registerScreen('/page-view-events', wrap(PageViewEvents), store)
   registerScreen('/feature-flags', wrap(FeatureFlags), store)
 
   if (featureFlagEnabled('newGradesList')) {

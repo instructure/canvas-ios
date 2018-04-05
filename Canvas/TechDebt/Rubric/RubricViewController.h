@@ -65,4 +65,6 @@
 @property (nonatomic) CKSubmission *submission;
 
 @property (nonatomic, readonly) UITableView *rubricTableView;
+
+@property (nonatomic) NSString * pageViewName;
 @end

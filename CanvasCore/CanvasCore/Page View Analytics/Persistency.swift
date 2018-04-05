@@ -93,7 +93,7 @@ class Persistency {
     // MARK: - Queue Ops
     
     func batchOfEvents(_ count: Int) -> [PageViewEvent] {
-        return Array(queuedEvents[0...count-1])
+        return queueCount > 0 ? Array(queuedEvents[0...count-1]) : []
     }
     
     func dequeue(_ count: Int = 1, handler: EmptyHandler? = nil) {

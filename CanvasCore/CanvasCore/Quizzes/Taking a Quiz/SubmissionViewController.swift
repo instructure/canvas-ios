@@ -36,7 +36,7 @@ protocol SubmissionInteractor: class {
     func markQuestonFlagged(_ flagged: Bool, forQuestionAtIndex questionIndex: Int)
 }
 
-class SubmissionViewController: UITableViewController {
+class SubmissionViewController: UITableViewController, PageViewEventViewControllerLoggingProtocol {
 
     var quiz: Quiz?
     var questions: [SubmissionQuestion]
@@ -106,7 +106,18 @@ class SubmissionViewController: UITableViewController {
         invisibleTextFieldForDropdowns.inputAccessoryView = dropdownToolbar
         view.addSubview(invisibleTextFieldForDropdowns)
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        startTrackingTimeOnViewController()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        var event = quizService.pageViewName() + "/take"
+        stopTrackingTimeOnViewController(eventName: event)
+    }
+    
     func navigateToQuestionAtIndex(_ questionIndex: Int) {
         let index = Index(questionIndex: questionIndex)
         tableView.scrollToRow(at: index.indexPath, at: .top, animated: true)

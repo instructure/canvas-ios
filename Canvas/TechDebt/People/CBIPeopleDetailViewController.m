@@ -25,11 +25,13 @@
 #import "UIView+Circular.h"
 @import CanvasKeymaster;
 #import "CBILog.h"
+@import CanvasCore;
 
 @interface CBIPeopleDetailViewController () <UIGestureRecognizerDelegate>
 @property (nonatomic, weak) IBOutlet UIImageView *avatarImageView;
 @property (nonatomic, weak) IBOutlet UILabel *nameLabel;
 @property (nonatomic, weak) IBOutlet UIButton *messageButton;
+@property (nonatomic) PageViewEventLoggerLegacySupport * pageViewEventLog;
 @end
 
 @implementation CBIPeopleDetailViewController
@@ -37,6 +39,9 @@
 - (id)init
 {
     self = [[UIStoryboard storyboardWithName:@"CBIPeopleDetail" bundle:[NSBundle bundleForClass:[self class]]] instantiateInitialViewController];
+    if(self) {
+        _pageViewEventLog = [PageViewEventLoggerLegacySupport new];
+    }
     return self;
 }
 
@@ -54,6 +59,16 @@
     doubleTwoFingerTap.numberOfTouchesRequired = 2;
     
     [self.view addGestureRecognizer:doubleTwoFingerTap];
+}
+
+-(void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.pageViewEventLog start];
+}
+
+-(void) viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.pageViewEventLog stopWithEventName:[self.viewModel.model path]];
 }
 
 - (IBAction)sendMessagePressed

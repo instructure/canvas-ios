@@ -81,7 +81,7 @@ func colorfulToDoViewModel(session: Session, toDoItem: Todo) -> ColorfulViewMode
     return vm
 }
 
-class ToDoListViewController: FetchedTableViewController<Todo> {
+class ToDoListViewController: FetchedTableViewController<Todo>, PageViewEventViewControllerLoggingProtocol {
 
     let session: Session
     let route: (UIViewController, URL)->()
@@ -104,6 +104,16 @@ class ToDoListViewController: FetchedTableViewController<Todo> {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = NSLocalizedString("To Do", comment:"Title of the Todo screen")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        startTrackingTimeOnViewController()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        stopTrackingTimeOnViewController(eventName: "/to-do", attributes: ["customPageViewPath": "/"])
     }
 
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {

@@ -211,6 +211,12 @@
         }
     }];
 
+    if([returnedController conformsToProtocol:@protocol(PageViewEventLoggerLegacySupportProtocol)]) {
+        NSString *decodedUrl = [matchURL.absoluteString stringByRemovingPercentEncoding];
+        id<PageViewEventLoggerLegacySupportProtocol> controller = returnedController;
+        [controller setPageViewEventName: decodedUrl];
+    }
+    
     return returnedController;
 }
 

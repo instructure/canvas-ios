@@ -154,7 +154,7 @@ static UIImage *(^iconForSubmissionType)(NSString *) = ^(NSString *submissionTyp
     if ([self.model.submissionType isEqualToString:CKISubmissionTypeOnlineTextEntry]) {
         NSString *body = self.model.body ?: @"";
         CanvasWebViewController *web = [[CanvasWebViewController alloc] initWithWebView:[CanvasWebView new] showDoneButton:YES];
-        
+        web.pageViewName = self.model.htmlURL.absoluteString ?: self.model.previewURL.absoluteString;
         @weakify(web);
         [web.webView loadWithHtml:body title:nil baseURL:TheKeymaster.currentClient.baseURL routeToURL:^(NSURL * _Nonnull url) {
             @strongify(web);

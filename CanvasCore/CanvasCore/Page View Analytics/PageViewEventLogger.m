@@ -13,20 +13,31 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-    
-    
 
-#import <UIKit/UIKit.h>
-#import "MLVCTableViewModel.h"
-@class RACSignal;
+@import Foundation;
+#import <React/RCTBridgeModule.h>
+#import <CanvasCore/CanvasCore-Swift.h>
 
-@interface MLVCTableViewController : UITableViewController
-@property (nonatomic) IBOutlet id<MLVCTableViewModel> viewModel;
+@interface PageViewEventLogger : NSObject<RCTBridgeModule>
+@end
 
-@property (nonatomic, readonly) RACSignal *selectedCellViewModelSignal;
-@property (nonatomic, readonly) RACSignal *tableViewDidAppearSignal;
-@property (nonatomic, strong) id customRefreshControl;
-@property (nonatomic, strong) NSString *url;
+@implementation PageViewEventLogger
 
-- (void)refreshFromRefreshControl:(id)refreshControl;
+RCT_EXPORT_MODULE()
+
+RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(allEvents) {
+    NSString* events = [[PageViewEventController instance] allEvents];
+    return events;
+}
+
+RCT_REMAP_METHOD(clearAllEvents, resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+    [[PageViewEventController instance] clearAllEventsWithHandler:^{
+        resolve(nil);
+    }];
+}
+
+- (dispatch_queue_t)methodQueue {
+    return dispatch_get_main_queue();
+}
+
 @end

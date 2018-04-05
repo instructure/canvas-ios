@@ -53,6 +53,7 @@ type FilesListProps = {
   data: any[], // The folders and files that are currently being shown
   folder: Folder, // The folder that is currently being displayed
   courseColor: ?string, // Color of the course in this files list
+  customPageViewPath?: ?string,
 }
 
 type FileListNavProps = {
@@ -378,6 +379,7 @@ export class FilesList extends Component<Props, State> {
 
     return (
       <Screen
+        customPageViewPath={this.props.customPageViewPath ? this.props.customPageViewPath : null}
         title={title}
         navBarColor={this.props.courseColor}
         navBarStyle={this.props.courseColor ? 'dark' : 'light'}

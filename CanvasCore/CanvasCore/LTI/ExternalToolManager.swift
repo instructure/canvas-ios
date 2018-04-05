@@ -40,10 +40,10 @@ public class ExternalToolManager: NSObject {
 
     @objc
     public func launch(_ launchURL: URL, in session: Session, from viewController: UIViewController, courseID: String?, fallbackURL: URL?, completionHandler: (() -> Void)? = nil) {
-        getSessionlessLaunchURL(forLaunchURL: launchURL, in: session, courseID: courseID) { [weak self, weak viewController] url, error in
+        getSessionlessLaunchURL(forLaunchURL: launchURL, in: session, courseID: courseID) { [weak self, weak viewController] url, pageViewPath, error in
             guard let me = self, let vc = viewController else { return }
             if let url = url {
-                me.present(url, from: vc, completionHandler: completionHandler)
+                me.present(url, pageViewPath: pageViewPath, from: vc, completionHandler: completionHandler)
                 return
             }
             if let error = error {
@@ -58,13 +58,30 @@ public class ExternalToolManager: NSObject {
         }
     }
 
+    func constructPageViewPath(url: URL) -> String? {
+        let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+        let toolID = components?.queryItems?.findFirst({ (item) -> Bool in
+            return item.name == "id"
+        })
+        if let path = url.pathComponents.pathTo(lastComponent: "external_tools"), let toolID = toolID, let id = toolID.value {
+            
+            let pageViewPath: NSString = path as NSString
+            return pageViewPath.appendingPathComponent(id)
+        }
+        return nil
+    }
+    
     @objc
-    public func getSessionlessLaunchURL(forLaunchURL launchURL: URL, in session: Session, courseID: String? = nil, completionHandler: @escaping (URL?, NSError?) -> Void) {
+    public func getSessionlessLaunchURL(forLaunchURL launchURL: URL, in session: Session, courseID: String? = nil, completionHandler: @escaping (URL?, String?, NSError?) -> Void) {
         guard let url = getSessionlessLaunchRequestURL(session, launchURL: launchURL, courseID: courseID) else {
-            completionHandler(nil, error)
+            completionHandler(nil, nil, error)
             return
         }
-
+        var pageViewPath = constructPageViewPath(url: launchURL)
+        if let path = pageViewPath {
+            pageViewPath = path.pruneApiVersionFromPath()
+        }
+        
         var request = URLRequest(url: url).authorized(with: session)
         request.addValue("application/json", forHTTPHeaderField: "Accept")
 
@@ -81,9 +98,9 @@ public class ExternalToolManager: NSObject {
             .start { event in
                 switch event {
                 case .value(let url):
-                    completionHandler(url, nil)
+                    completionHandler(url, pageViewPath,  nil)
                 case .failed(let error):
-                    completionHandler(nil, error)
+                    completionHandler(nil, nil, error)
                 default:
                     break
                 }
@@ -95,9 +112,9 @@ public class ExternalToolManager: NSObject {
             guard let me = self, let vc = viewController else { return }
             switch result {
             case .success(let newURL):
-                me.present(newURL, from: vc, completionHandler: completionHandler)
+                me.present(newURL, pageViewPath: nil, from: vc, completionHandler: completionHandler)
             case .failure(_):
-                me.present(url, from: vc, completionHandler: completionHandler)
+                me.present(url,  pageViewPath: nil, from: vc, completionHandler: completionHandler)
             }
         }
     }
@@ -201,13 +218,13 @@ public class ExternalToolManager: NSObject {
         )
     }
 
-    private func present(_ url: URL, from viewController: UIViewController, completionHandler: (() -> Void)? = nil) {
+    private func present(_ url: URL, pageViewPath: String? ,from viewController: UIViewController, completionHandler: (() -> Void)? = nil) {
         var comps = URLComponents(url: url, resolvingAgainstBaseURL: false)
         comps?.scheme = "https"
-        guard let fixed = comps?.url else { return }
+        guard let _ = comps?.url else { return }
         
         DispatchQueue.main.async {
-            let safari = SFSafariViewController(url: fixed)
+            let safari = ExternalToolSafariViewController(url: url, eventName: pageViewPath)
             safari.modalPresentationStyle = .overFullScreen
             viewController.present(safari, animated: true, completion: completionHandler)
         }
@@ -218,5 +235,26 @@ public class ExternalToolManager: NSObject {
             ErrorReporter.reportError(error, from: viewController)
             completionHandler?()
         }
+    }
+}
+
+public class ExternalToolSafariViewController: SFSafariViewController, PageViewEventViewControllerLoggingProtocol {
+    
+    var eventName: String = ""
+    
+    init(url: URL, eventName: String?) {
+        super.init(url: url, entersReaderIfAvailable: false)
+        self.eventName = eventName ?? url.path
+    }
+    
+    override public func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        startTrackingTimeOnViewController()
+    }
+    
+    override public func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        stopTrackingTimeOnViewController(eventName: eventName)
     }
 }

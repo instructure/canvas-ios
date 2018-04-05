@@ -158,6 +158,7 @@ export class ConversationDetails extends Component <ConversationDetailsProps, an
         navBarButtonColor={color.navBarTextColor}
         statusBarStyle={color.statusBarStyle}
         drawUnderNavBar
+        customPageViewPath={'/conversations'}
         title={i18n('Message Details')}
         rightBarButtons={[
           {

@@ -99,7 +99,7 @@ extension Page {
 
     }
 
-    open class DetailViewController: UIViewController {
+    open class DetailViewController: UIViewController, PageViewEventViewControllerLoggingProtocol {
 
         // MARK: - Properties
 
@@ -169,12 +169,15 @@ extension Page {
         open override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
             refresher.refresh(false)
+            startTrackingTimeOnViewController()
         }
 
         open override func viewWillDisappear(_ animated: Bool) {
             super.viewWillDisappear(animated)
 
             HTTPCookieStorage.shared.cookieAcceptPolicy = .onlyFromMainDocumentDomain
+            let path = (contextID.apiPath + "/page/" + url).pruneApiVersionFromPath()
+            stopTrackingTimeOnViewController(eventName: path)
         }
 
         // MARK: - Helpers

@@ -158,7 +158,7 @@
                 NSURL *externalToolTagAttributesURL = self.assignment.externalToolTagAttributes.url;
                 if ([ExternalToolManager isQuizzesNext: externalToolTagAttributesURL] && self.legacyAssignment.courseIdent) {
                     NSString *courseID = [NSString stringWithFormat:@"%lld", self.legacyAssignment.courseIdent];
-                    [[ExternalToolManager shared] getSessionlessLaunchURLForLaunchURL:self.legacyAssignment.url in:currentSession courseID:courseID completionHandler:^(NSURL * _Nullable url, NSError * _Nullable error) {
+                    [[ExternalToolManager shared] getSessionlessLaunchURLForLaunchURL:self.legacyAssignment.url in:currentSession courseID:courseID completionHandler:^(NSURL * _Nullable url, NSString* _Nullable pageViewPath, NSError * _Nullable error) {
                         dispatch_async(dispatch_get_main_queue(), ^{
                             if (error) {
                                 [self.viewController presentViewController:errorAlert animated:YES completion:nil];

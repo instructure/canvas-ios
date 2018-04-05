@@ -22,7 +22,7 @@ import TechDebt
 import CanvasKeymaster
 import UserNotifications
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UIViewController, PageViewEventViewControllerLoggingProtocol {
     @IBOutlet weak var tableView: UITableView!
     
     var canvasAPI: CKCanvasAPI?
@@ -51,8 +51,13 @@ class SettingsViewController: UIViewController {
         if let selectedRowIndexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selectedRowIndexPath, animated: false)
         }
+        startTrackingTimeOnViewController()
     }
-
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        stopTrackingTimeOnViewController(eventName: "/profile/settings")
+    }
 }
 
 // MARK: UITableViewDataSource, UITableViewDelegate

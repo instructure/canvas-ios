@@ -97,6 +97,7 @@ export class ToDoList extends Component<Props, State> {
         statusBarStyle={color.statusBarStyle}
         drawUnderNavBar
         navBarImage={branding.headerImage}
+        customPageViewPath={'/'}
       >
         <View style={styles.container} onLayout={this.handleLayout}>
           <FlatList

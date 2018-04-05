@@ -41,8 +41,7 @@ extension ColorfulViewModel {
     }
 }
 
-class TabsTableViewController: FetchedTableViewController<Tab> {
-    
+class TabsTableViewController: FetchedTableViewController<Tab>, PageViewEventViewControllerLoggingProtocol {
     let route: (UIViewController, URL)->()
     let session: Session
     let contextID: ContextID
@@ -72,9 +71,16 @@ class TabsTableViewController: FetchedTableViewController<Tab> {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        super.viewWillAppear(animated)
         if let selectedTabURL = selectedTabURL, let tab = collection.filter({ $0.routingURL(session) == selectedTabURL }).first, let indexPath = collection.indexPath(forObject: tab), self.splitViewController?.isCollapsed == false {
             tableView.selectRow(at: indexPath, animated: true, scrollPosition: .top)
         }
+        startTrackingTimeOnViewController()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        stopTrackingTimeOnViewController(eventName: "/groups/\(contextID.id)")
     }
     
     override func handleError(_ error: NSError) {

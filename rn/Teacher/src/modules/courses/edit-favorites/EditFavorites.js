@@ -150,6 +150,7 @@ export class FavoritesList extends Component<Props, State> {
         navBarTitleColor={colors.darkText}
         navBarButtonColor={colors.link}
         title={i18n('Edit Courses')}
+        customPageViewPath={'/courses'}
       >
       <SectionList
         refreshing={this.props.refreshing}

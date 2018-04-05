@@ -38,7 +38,6 @@
 @import PSPDFKit;
 @import PSPDFKitUI;
 @import CanvasKeymaster;
-@import CanvasCore;
 
 // TODO: REMOVE
 
@@ -168,7 +167,7 @@
 
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self setEdgesForExtendedLayout:UIRectEdgeNone];
-    
+    self.pageViewEventLog = [PageViewEventLoggerLegacySupport new];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -178,6 +177,8 @@
     [self.view addSubview:self.activityView];
     
     [Analytics logScreenView:kGAIScreenFilePreview];
+    [self.pageViewEventLog start];
+
 }
 
 
@@ -189,6 +190,7 @@
         _progressToolbar.cancelBlock();
         [_progressToolbar cancel];
     }
+    [self.pageViewEventLog stopWithEventName: self.pageViewEventName];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

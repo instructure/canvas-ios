@@ -17,7 +17,7 @@
 import UIKit
 import CanvasCore
 
-class ModulesTableViewController: FetchedTableViewController<Module> {
+class ModulesTableViewController: FetchedTableViewController<Module>, PageViewEventViewControllerLoggingProtocol {
     let courseID: String
     let route: (UIViewController, URL) -> Void
 
@@ -41,6 +41,16 @@ class ModulesTableViewController: FetchedTableViewController<Module> {
         super.viewDidLoad()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 44
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        startTrackingTimeOnViewController()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        stopTrackingTimeOnViewController(eventName: "/courses/" + courseID + "/modules")
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

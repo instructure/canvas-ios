@@ -206,6 +206,14 @@ typedef enum CBISubmissionState : NSUInteger {
     self.refreshControl.tintColor = [UIColor whiteColor];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    //  url needs to be set before super call for logging
+    if(!self.url) {
+        self.url = [NSString stringWithFormat:@"%@/submissions", self.assignment.htmlURL.absoluteString];
+    }
+    [super viewWillDisappear:animated];
+}
+
 - (bool)isEnrollmentActiveForCourse {
     
     __block bool isActive = NO;

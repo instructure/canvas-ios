@@ -33,7 +33,7 @@ extension CommunicationChannelsViewController {
     }
 }
 
-open class CommunicationChannelsViewController: UITableViewController {
+open class CommunicationChannelsViewController: UITableViewController, PageViewEventViewControllerLoggingProtocol {
     fileprivate var dataController: NotificationKitController!
     fileprivate var datasource: [CommunicationChannel] = []
 
@@ -68,6 +68,12 @@ open class CommunicationChannelsViewController: UITableViewController {
         
         navigationItem.backBarButtonItem?.title = ""
         refreshNotificationSettings()
+        startTrackingTimeOnViewController()
+    }
+    
+    open override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        stopTrackingTimeOnViewController(eventName: "/profile/communication")
     }
 
     func refreshNotificationSettings() {

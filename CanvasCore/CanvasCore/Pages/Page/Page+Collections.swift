@@ -68,13 +68,15 @@ extension Page {
 
     // MARK: - Table View Controller
 
-    open class TableViewController: CanvasCore.TableViewController {
+    open class TableViewController: CanvasCore.TableViewController, PageViewEventViewControllerLoggingProtocol {
 
         fileprivate (set) open var collection: FetchedCollection<Page>
         var route: (UIViewController, URL)->()
+        fileprivate var contextID: ContextID
 
         public init(session: Session, contextID: ContextID, viewModelFactory: @escaping (Session, Page) -> ColorfulViewModel, route: @escaping (UIViewController, URL) -> ()) throws {
             self.route = route
+            self.contextID = contextID
             self.collection = try Page.collectionAlphabetical(session, contextID: contextID)
 
             super.init()
@@ -96,6 +98,16 @@ extension Page {
             route(self, page.routingUrl)
         }
 
+        override open func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            startTrackingTimeOnViewController()
+        }
+        
+        override open func viewWillDisappear(_ animated: Bool) {
+            super.viewWillDisappear(animated)
+            let path = (contextID.apiPath + "/pages").pruneApiVersionFromPath()
+            stopTrackingTimeOnViewController(eventName: path)
+        }
     }
 
 }

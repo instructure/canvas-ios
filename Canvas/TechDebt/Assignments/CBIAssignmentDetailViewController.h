@@ -22,4 +22,5 @@
 @interface CBIAssignmentDetailViewController : MLVCViewController
 @property (nonatomic, strong) CBIAssignmentViewModel *viewModel;
 @property (weak, nonatomic) IBOutlet UIView *toolbarControl;
+@property (nonatomic) NSString* moduleItemID;
 @end

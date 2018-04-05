@@ -21,7 +21,7 @@ import ReactiveSwift
 import Crashlytics
 import CanvasCore
 
-open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, CalendarViewDataSource {
+open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, CalendarViewDataSource, PageViewEventViewControllerLoggingProtocol {
 
     // ---------------------------------------------
     // MARK: - Instance Variables
@@ -149,13 +149,14 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
 
         // Scrolling needs to happen after viewDidAppear so we're hiding this until after that happens
         self.calendarView?.alpha = 0.0
-
+        startTrackingTimeOnViewController()
     }
 
     open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
         self.toastManager?.endToast()
+        stopTrackingTimeOnViewController(eventName: "/calendar")
     }
 
     open override func viewDidAppear(_ animated: Bool) {

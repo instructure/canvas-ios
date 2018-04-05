@@ -25,6 +25,11 @@
 #import "RubricViewController.h"
 #import "iCanvasErrorHandler.h"
 #import "CBILog.h"
+@import CanvasCore;
+
+@interface RubricViewController()
+@property (nonatomic) PageViewEventLoggerLegacySupport *pageViewEventLog;
+@end
 
 @implementation RubricViewController
 
@@ -39,6 +44,7 @@
     
     if (self) {
         self.submission = aSubmission;
+        self.pageViewEventLog = [PageViewEventLoggerLegacySupport new];
     }
     
     return self;
@@ -75,6 +81,12 @@
     [super viewWillAppear:animated];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self fetchSubmission];
+    [self.pageViewEventLog start];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.pageViewEventLog stopWithEventName:self.pageViewName];
 }
 
 - (void)fetchAssignment

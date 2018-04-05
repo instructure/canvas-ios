@@ -57,6 +57,8 @@ type ScreenProps = {
   dismissButtonTitle?: string,
   showDismissButton?: boolean,
 
+  customPageViewPath?: ?string,
+
   children?: React$Node,
   disableGlobalSafeArea?: boolean,
 }

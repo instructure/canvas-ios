@@ -16,7 +16,18 @@
 
 import Foundation
 
-public typealias PageViewEventDictionary = [String: String]
+typealias PageViewEventDictionary = [String: CodableValue]
+extension Dictionary where Key: ExpressibleByStringLiteral, Value: Any {
+    func convertToPageViewEventDictionary() -> PageViewEventDictionary {
+        var obj = PageViewEventDictionary()
+        for (k, v) in self {
+            if let codableValue = try? CodableValue(v), let key = k as? String {
+                obj[key] = codableValue
+            }
+        }
+        return obj
+    }
+}
 
 public struct PageViewEvent: Codable {
     let eventName: String
@@ -31,7 +42,7 @@ public struct PageViewEvent: Codable {
         self.timestamp = timestamp
         self.userID = userID
 
-        if let attributes = attributes {
+        if let attributes = attributes, attributes.count > 0 {
             self.attributes = attributes
         }
     }

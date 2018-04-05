@@ -122,7 +122,7 @@ public class HelmNavigationItem: UINavigationItem {
     }
 }
 
-public final class HelmViewController: UIViewController, HelmScreen {
+public final class HelmViewController: UIViewController, HelmScreen, PageViewEventViewControllerLoggingProtocol {
     
     public let moduleName: String
     let screenInstanceID: String
@@ -224,13 +224,19 @@ public final class HelmViewController: UIViewController, HelmScreen {
         super.viewWillAppear(animated)
         isVisible = true
         handleStyles()
+        startTrackingTimeOnViewController()
     }
     
     public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         isVisible = false
+        
+        var attributes = props
+        if let customPageViewPath = screenConfig[PropKeys.customPageViewPath] as? String {
+            attributes[PropKeys.customPageViewPath] = customPageViewPath
+        }
+        stopTrackingTimeOnViewController(eventName: moduleName, attributes: attributes)
     }
-    
     
     // MARK: - Status bar
     

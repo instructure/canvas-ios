@@ -58,8 +58,10 @@ export class PageDetails extends Component<Props> {
 
   render () {
     const { course, courseColor, page, location } = this.props
+    const customPageViewPath = page && page.isFrontPage && course ? { customPageViewPath: `/courses/${course.id}/wiki` } : {}
     return (
       <Screen
+        {...customPageViewPath}
         navBarColor={courseColor}
         navBarStyle='dark'
         title={i18n('Page Details')}

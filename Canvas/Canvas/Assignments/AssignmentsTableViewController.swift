@@ -227,7 +227,7 @@ func cacheKey(_ courseID: String, gradingPeriodID: String?) -> String {
     return ["assignments", courseID, gradingPeriodID].flatMap { $0 }.joined(separator: "//")
 }
 
-class GradesTableViewController: AssignmentsTableViewController {
+class GradesTableViewController: AssignmentsTableViewController, PageViewEventViewControllerLoggingProtocol{
     let gradesCollection: FetchedCollection<Grade>
 
     override init(session: Session, courseID: String, route: @escaping (UIViewController, URL) -> ()) throws {
@@ -263,6 +263,16 @@ class GradesTableViewController: AssignmentsTableViewController {
         header.tableView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: header.includeGradingPeriods ? 88 : 44)
         tableView.tableHeaderView = header.tableView
 //        configureSearchController(header.tableView)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        startTrackingTimeOnViewController()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        stopTrackingTimeOnViewController(eventName: "/courses/\(courseID)/grades")
     }
 
     override func viewModelFactory(_ assignment: Assignment) -> ColorfulViewModel {

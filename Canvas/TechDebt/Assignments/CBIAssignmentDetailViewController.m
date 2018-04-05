@@ -40,11 +40,12 @@
 
 @import CanvasKeymaster;
 @import Masonry;
+@import CanvasCore;
 
 static NSUInteger const CBIAssignmentDetailNumMinutesInHour = 60;
 static NSUInteger const CBIAssignmentDetailNumMinutesInDay = 60 * 24;
 
-@interface CBIAssignmentDetailViewController () <UIActionSheetDelegate, SKStoreProductViewControllerDelegate>
+@interface CBIAssignmentDetailViewController () <UIActionSheetDelegate, SKStoreProductViewControllerDelegate, ModuleItemEmbeddedProtocol>
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
@@ -55,7 +56,7 @@ static NSUInteger const CBIAssignmentDetailNumMinutesInDay = 60 * 24;
 @property (strong, nonatomic) CBILocalNotificationHandler *localNotificationHandler;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *preparingTabsActivityIndicator;
 @property (nonatomic) NSInteger previousSelectedTab;
-
+@property (nonatomic) PageViewEventLoggerLegacySupport *pageViewEventLog;
 @end
 
 @implementation CBIAssignmentDetailViewController
@@ -70,6 +71,8 @@ static NSUInteger const CBIAssignmentDetailNumMinutesInDay = 60 * 24;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.pageViewEventLog = [PageViewEventLoggerLegacySupport new];
     
     RAC(self, view.tintColor) = RACObserve(self, viewModel.tintColor);
     
@@ -121,6 +124,22 @@ static NSUInteger const CBIAssignmentDetailNumMinutesInDay = 60 * 24;
     self.extendedLayoutIncludesOpaqueBars = YES;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.pageViewEventLog start];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    CKIAssignment *assignment = self.viewModel.model;
+    NSString *path = [NSString stringWithFormat:@"%@", assignment.htmlURL.absoluteString];
+    if (self.moduleItemID) {
+        path = [NSString stringWithFormat:@"%@?module_item_id=%@", path, self.moduleItemID];
+    }
+    [self.pageViewEventLog stopWithEventName:path];
+}
+
+
 - (void)setupRightBarButtonItems {
     CKIAssignment *assignment = self.viewModel.model;
     if ([assignment.dueAt compare:[NSDate date]] == NSOrderedDescending) {
@@ -153,6 +172,7 @@ static NSUInteger const CBIAssignmentDetailNumMinutesInDay = 60 * 24;
      {
          submission.assignment = backwardsCompatibleAssignment;
          self.rubricController = [self.rubricController initWithSubmission:submission];
+         self.rubricController.pageViewName = [NSString stringWithFormat:@"%@/submissions/%llu", assignment.htmlURL.absoluteString, submission.ident];
          CBIGradeDetailView *gradeView = [[CBIGradeDetailView alloc] initWithAssignment:backwardsCompatibleAssignment andSubmission:submission];
          self.rubricController.rubricTableView.tableHeaderView = gradeView;
      }];

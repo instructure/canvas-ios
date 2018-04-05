@@ -24,7 +24,7 @@ import Cartography
 
 import Result
 
-open class QuizIntroViewController: UIViewController {
+open class QuizIntroViewController: UIViewController, PageViewEventViewControllerLoggingProtocol {
     
     // This class controls what pages are visible initially to the user
     // Based on the quiz setup, possible pages are:
@@ -98,8 +98,13 @@ open class QuizIntroViewController: UIViewController {
     
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         self.quizController.refreshQuiz()
+        startTrackingTimeOnViewController()
+    }
+
+    override open func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        stopTrackingTimeOnViewController(eventName: quizController.service.pageViewName())
     }
     
     override open func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

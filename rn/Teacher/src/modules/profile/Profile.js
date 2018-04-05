@@ -169,7 +169,7 @@ export class Profile extends Component<Object, State> {
 
   userFiles = async () => {
     await this.props.navigator.dismiss()
-    this.props.navigator.show('/users/self/files', { modal: true })
+    this.props.navigator.show('/users/self/files', { modal: true }, { customPageViewPath: '/files' })
   }
 
   toggleShowGrades = () => {

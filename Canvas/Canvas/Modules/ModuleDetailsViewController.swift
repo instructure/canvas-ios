@@ -19,7 +19,7 @@ import CanvasCore
 import SafariServices
 import ReactiveSwift
 
-class ModuleDetailsViewController: CanvasCore.TableViewController {
+class ModuleDetailsViewController: CanvasCore.TableViewController, PageViewEventViewControllerLoggingProtocol {
     let session: Session
     let courseID: String
     let viewModel: ModuleViewModel
@@ -65,6 +65,16 @@ class ModuleDetailsViewController: CanvasCore.TableViewController {
         super.viewDidLoad()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 44
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        startTrackingTimeOnViewController()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        stopTrackingTimeOnViewController(eventName: "/courses/" + courseID + "/modules/" + viewModel.moduleID)
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

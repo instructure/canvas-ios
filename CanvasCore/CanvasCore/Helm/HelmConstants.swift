@@ -49,4 +49,7 @@ struct PropKeys {
     static let modal = "modal"
     static let modalPresentationStyle = "modalPresentationStyle"
     static let modalTransitionStyle = "modalTransitionStyle"
+    
+    //  page view stuff
+    static let customPageViewPath = "customPageViewPath"
 }

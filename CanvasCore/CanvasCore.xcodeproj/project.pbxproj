@@ -39,6 +39,10 @@
 		2CE40C9D1F87D37300ECEACB /* PSPDFViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B31F843B59001A8F31 /* PSPDFViewManager.m */; };
 		2CF6DEB62006A039007A5591 /* UIViewController+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF6DEB52006A039007A5591 /* UIViewController+Core.swift */; };
 		2CFAFBD11FD21B3800F22C7F /* WindowTraits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFAFBD01FD21B3800F22C7F /* WindowTraits.swift */; };
+		3B10AC0B206D8838007EFC2F /* Array+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B10AC0A206D8838007EFC2F /* Array+Core.swift */; };
+		3B1B0456205090F800CB256A /* String+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0455205090F800CB256A /* String+Core.swift */; };
+		3B210C282051B7640062F6A7 /* CodableValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B210C272051B7640062F6A7 /* CodableValue.swift */; };
+		3B210C2A2051DCA50062F6A7 /* PageViewEventViewControllerLoggingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B210C292051DCA50062F6A7 /* PageViewEventViewControllerLoggingProtocol.swift */; };
 		3BA0F9B620069CEB00E64448 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA0F9B520069CEB00E64448 /* UIView+AutoLayout.swift */; };
 		3BA8BE9B1FE2ED85003EC4FD /* SubmissionConfirmationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BA8BE9D1FE2ED85003EC4FD /* SubmissionConfirmationViewController.xib */; };
 		3BBEAA4920472704004D334C /* PageViewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBEAA4820472704004D334C /* PageViewEvent.swift */; };
@@ -47,6 +51,7 @@
 		3BD43DE91FD20597001A6B34 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD43DE81FD20597001A6B34 /* EmptyViewController.swift */; };
 		3BDE87761FD76BE600912CB3 /* UISplitViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */; };
 		3BF2B3D020475DBA00B5E5E5 /* PageViewEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2B3CF20475DBA00B5E5E5 /* PageViewEventController.swift */; };
+		3BF2B3D7204F058800B5E5E5 /* PageViewEventLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2B3D5204F058800B5E5E5 /* PageViewEventLogger.m */; };
 		4902ADBE1FB26E860004837D /* LTIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4902ADBD1FB26E860004837D /* LTIViewController.swift */; };
 		490F91F11FB0F94A00A7DA38 /* CanvasWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490F91F01FB0F94A00A7DA38 /* CanvasWebViewController.swift */; };
 		49295B501F86D3B2001DAB1F /* HelmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49295B4F1F86D3B2001DAB1F /* HelmTests.swift */; };
@@ -550,6 +555,10 @@
 		2CD7769D201111F700589D4F /* EnrollmentSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollmentSplitViewController.swift; sourceTree = "<group>"; };
 		2CF6DEB52006A039007A5591 /* UIViewController+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Core.swift"; sourceTree = "<group>"; };
 		2CFAFBD01FD21B3800F22C7F /* WindowTraits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowTraits.swift; sourceTree = "<group>"; };
+		3B10AC0A206D8838007EFC2F /* Array+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Core.swift"; sourceTree = "<group>"; };
+		3B1B0455205090F800CB256A /* String+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Core.swift"; sourceTree = "<group>"; };
+		3B210C272051B7640062F6A7 /* CodableValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableValue.swift; sourceTree = "<group>"; };
+		3B210C292051DCA50062F6A7 /* PageViewEventViewControllerLoggingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewEventViewControllerLoggingProtocol.swift; sourceTree = "<group>"; };
 		3BA0F9B520069CEB00E64448 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		3BA8BE9C1FE2ED85003EC4FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SubmissionConfirmationViewController.xib; sourceTree = "<group>"; };
 		3BA8BE9F1FE2ED98003EC4FD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
@@ -578,6 +587,7 @@
 		3BD43DE81FD20597001A6B34 /* EmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
 		3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISplitViewControllerExtensions.swift; sourceTree = "<group>"; };
 		3BF2B3CF20475DBA00B5E5E5 /* PageViewEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewEventController.swift; sourceTree = "<group>"; };
+		3BF2B3D5204F058800B5E5E5 /* PageViewEventLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PageViewEventLogger.m; sourceTree = "<group>"; };
 		4902ADBD1FB26E860004837D /* LTIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTIViewController.swift; sourceTree = "<group>"; };
 		490F91F01FB0F94A00A7DA38 /* CanvasWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasWebViewController.swift; sourceTree = "<group>"; };
 		4917183E1F8EE797008B4599 /* Session+DiscussionKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+DiscussionKit.swift"; sourceTree = "<group>"; };
@@ -1212,6 +1222,7 @@
 			children = (
 				B1F4E8CD206188DC0056074A /* RCE */,
 				9F2E363320507F0B00A2B031 /* FeatureFlags */,
+				3B210C392052F64E0062F6A7 /* Codable */,
 				3BBEAA47204726E4004D334C /* Page View Analytics */,
 				49301FB51F901235006BD777 /* Activity Stream */,
 				49301FF41F901CA0006BD777 /* Annotations */,
@@ -1290,6 +1301,8 @@
 				2CD7769B200977EC00589D4F /* UIApplicationDelegate+Core.swift */,
 				2C4FAD3120487DD6000551EB /* UINavigationController+Core.swift */,
 				2C4EBB3A204DFC820085D00E /* UITabBarController+Core.swift */,
+				3B1B0455205090F800CB256A /* String+Core.swift */,
+				3B10AC0A206D8838007EFC2F /* Array+Core.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1302,12 +1315,22 @@
 			path = "Startup Manager";
 			sourceTree = "<group>";
 		};
+		3B210C392052F64E0062F6A7 /* Codable */ = {
+			isa = PBXGroup;
+			children = (
+				3B210C272051B7640062F6A7 /* CodableValue.swift */,
+			);
+			path = Codable;
+			sourceTree = "<group>";
+		};
 		3BBEAA47204726E4004D334C /* Page View Analytics */ = {
 			isa = PBXGroup;
 			children = (
 				3BBEAA4820472704004D334C /* PageViewEvent.swift */,
 				3BBEAA4A20472984004D334C /* Persistency.swift */,
 				3BF2B3CF20475DBA00B5E5E5 /* PageViewEventController.swift */,
+				3BF2B3D5204F058800B5E5E5 /* PageViewEventLogger.m */,
+				3B210C292051DCA50062F6A7 /* PageViewEventViewControllerLoggingProtocol.swift */,
 			);
 			path = "Page View Analytics";
 			sourceTree = "<group>";
@@ -3096,6 +3119,7 @@
 				4961F53E1F8FAD9A0093EC86 /* WhizzyNeverScrollingTextView.swift in Sources */,
 				49301FF11F901854006BD777 /* CommunicationChannel.swift in Sources */,
 				494AE09E1F843A09001A8F31 /* NativeAccessibility.m in Sources */,
+				3B10AC0B206D8838007EFC2F /* Array+Core.swift in Sources */,
 				49CE97331F8FFEA600121A43 /* NewSubmission.swift in Sources */,
 				4961F62B1F8FB7070093EC86 /* EnrollmentsDataSource.swift in Sources */,
 				4961F67A1F8FB9620093EC86 /* DocumentOption.swift in Sources */,
@@ -3154,6 +3178,7 @@
 				49CE972E1F8FFEA600121A43 /* Assignment+Collections.swift in Sources */,
 				490F91F11FB0F94A00A7DA38 /* CanvasWebViewController.swift in Sources */,
 				49CE96611F8FF41B00121A43 /* TimedQuizViewController.swift in Sources */,
+				3B210C2A2051DCA50062F6A7 /* PageViewEventViewControllerLoggingProtocol.swift in Sources */,
 				497CA77B1F82D19A00501613 /* UIUserInterfaceSizeClassExtensions.swift in Sources */,
 				496C7D641F8BEF690010DC03 /* TabBarBadgeCounts.swift in Sources */,
 				4961F5EA1F8FB4030093EC86 /* SynchronizedModel.swift in Sources */,
@@ -3209,6 +3234,7 @@
 				2CD3B49D206AB38E006339D8 /* APIBridge.m in Sources */,
 				494BC6061F953D0D00C77257 /* PreSubmissionPDFDocumentPresenter.swift in Sources */,
 				49CE97321F8FFEA600121A43 /* Assignment+ArcLTI.swift in Sources */,
+				3BF2B3D7204F058800B5E5E5 /* PageViewEventLogger.m in Sources */,
 				49301FD51F9014C6006BD777 /* Session+CalendarEvent.swift in Sources */,
 				4961F6841F8FB9620093EC86 /* Colors.swift in Sources */,
 				4961F53F1F8FAD9A0093EC86 /* UIWebView+PostProcessing.swift in Sources */,
@@ -3275,6 +3301,7 @@
 				4961F6861F8FB9620093EC86 /* FileUpload.swift in Sources */,
 				2C3283B42009651B00810C1B /* MasqueradableWindow.swift in Sources */,
 				4961F5D31F8FB3E80093EC86 /* CollectionViewController.swift in Sources */,
+				3B210C282051B7640062F6A7 /* CodableValue.swift in Sources */,
 				4961F5E11F8FB3F20093EC86 /* LockableModel.swift in Sources */,
 				49CE96E01F8FFC4400121A43 /* ModuleItem+Network.swift in Sources */,
 				4930204A1F902364006BD777 /* Uncollect.swift in Sources */,
@@ -3445,6 +3472,7 @@
 				49CE973E1F8FFEA600121A43 /* Submission+Collections.swift in Sources */,
 				49CE974D1F8FFEA600121A43 /* Rubric+Details.swift in Sources */,
 				49CE968E1F8FF41B00121A43 /* TimedQuizSubmissionService.swift in Sources */,
+				3B1B0456205090F800CB256A /* String+Core.swift in Sources */,
 				4961F58C1F8FB21F0093EC86 /* Brand.swift in Sources */,
 				494AE0A21F843A09001A8F31 /* ScrollViewDisablerManager.m in Sources */,
 				49CE96991F8FF41B00121A43 /* NSError+QuizKit.swift in Sources */,

@@ -11,15 +11,16 @@ import UIKit
 import ReactiveSwift
 import ReactiveCocoa
 
-open class CanvasWebViewController: UIViewController {
+open class CanvasWebViewController: UIViewController, PageViewEventViewControllerLoggingProtocol {
     public let webView: CanvasWebView
+    public var pageViewName: String?
     private let showDoneButton: Bool
     
     let canBack: DynamicProperty<Bool>
     let canForward: DynamicProperty<Bool>
     let isLoading: DynamicProperty<Bool>
     let webTitle: DynamicProperty<String>
-
+    
     public init(webView: CanvasWebView = CanvasWebView(), showDoneButton: Bool = false) {
         self.webView = webView
         self.showDoneButton = showDoneButton
@@ -57,11 +58,15 @@ open class CanvasWebViewController: UIViewController {
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setToolbarHidden(false, animated: animated)
+        startTrackingTimeOnViewController()
     }
     
     open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setToolbarHidden(true, animated: animated)
+        if let pageViewName = pageViewName  {
+            stopTrackingTimeOnViewController(eventName: pageViewName)
+        }
     }
     
     // MARK: initialize UI

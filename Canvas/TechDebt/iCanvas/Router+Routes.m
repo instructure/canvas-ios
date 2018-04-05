@@ -69,9 +69,10 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
     return [UIDevice currentDevice].userInterfaceIdiom;
 }
 
-- (id)MLVCTableViewControllerForViewModel:(id)viewModel screenName:(NSString *)name canBeMaster:(BOOL)canBecomeMaster style:(UITableViewStyle)style
+- (id)MLVCTableViewControllerForViewModel:(id)viewModel screenName:(NSString *)name canBeMaster:(BOOL)canBecomeMaster style:(UITableViewStyle)style url:(NSString*) url
 {
     MLVCTableViewController *tableViewController = [[MLVCTableViewController alloc] initWithStyle:style];
+    tableViewController.url = url;
     [tableViewController trackScreenViewWithScreenName:name];
     tableViewController.viewModel = viewModel;
     return tableViewController;
@@ -101,8 +102,8 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
         }
 
         ((CBIColorfulViewModel *)viewModel).tintColor = [self tintColorForContextID:params[@"contextID"] contextClass:type];
-        
-        return [self MLVCTableViewControllerForViewModel:viewModel screenName:@"Files List Screen" canBeMaster:YES style:UITableViewStylePlain];
+        NSString * url = [params[@"url"] description];
+        return [self MLVCTableViewControllerForViewModel:viewModel screenName:@"Files List Screen" canBeMaster:YES style:UITableViewStylePlain url:url];
     };
 }
 
@@ -120,8 +121,8 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
         }
 
         ((CBIColorfulViewModel *)viewModel).tintColor = [self tintColorForContextID:params[@"contextID"] contextClass:type];
-
-        return [self MLVCTableViewControllerForViewModel:viewModel screenName:@"Folder List Screen" canBeMaster:YES style:UITableViewStylePlain];
+        NSString * url = [params[@"url"] description];
+        return [self MLVCTableViewControllerForViewModel:viewModel screenName:@"Folder List Screen" canBeMaster:YES style:UITableViewStylePlain url: url];
     };
 }
 
@@ -158,8 +159,8 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
         }
         
         ((CBIColorfulViewModel *)viewModel).tintColor = [self tintColorForContextID:params[@"contextID"] contextClass:type];
-
-        return [self MLVCTableViewControllerForViewModel:viewModel screenName:@"People Tab" canBeMaster:YES style:UITableViewStylePlain];
+        NSString * url = [params[@"url"] description];
+        return [self MLVCTableViewControllerForViewModel:viewModel screenName:@"People Tab" canBeMaster:YES style:UITableViewStylePlain url: url];
     };
 }
 
@@ -205,8 +206,8 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
         }
         
         ((CBIColorfulViewModel *)viewModel).tintColor = [TheKeymaster.currentClient.authSession colorForCourse:[params[@"courseID"] description]];
-        
-        return [self MLVCTableViewControllerForViewModel:viewModel screenName:@"Syllabus List Screen" canBeMaster:YES style:UITableViewStyleGrouped];
+        NSString * url  = [params[@"url"] description];
+        return [self MLVCTableViewControllerForViewModel:viewModel screenName:@"Syllabus List Screen" canBeMaster:YES style:UITableViewStyleGrouped url: url];
     };
     
     [self addRoutesWithDictionary:@{
@@ -261,7 +262,8 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
                 viewModel.tintColor = [UIColor prettyBlack];
             }
         
-            return [self MLVCTableViewControllerForViewModel:viewModel screenName:@"Folder List Screen" canBeMaster:YES style:UITableViewStylePlain];
+            NSString * url = [params[@"url"] description];
+            return [self MLVCTableViewControllerForViewModel:viewModel screenName:@"Folder List Screen" canBeMaster:YES style:UITableViewStylePlain url: url];
         },
         @"/courses/:contextID/people" : [self usersBlockForClass:[CKICourse class]],
         @"/courses/:contextID/users" : [self usersBlockForClass:[CKICourse class]],
@@ -294,8 +296,8 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
             }
         
             quizzesTabViewModel.tintColor = [self tintColorForContextID:contextID contextClass:[CKICourse class]];
-        
-            return [self MLVCTableViewControllerForViewModel:quizzesTabViewModel screenName:@"Quizzes List Screen" canBeMaster:YES style:UITableViewStylePlain];
+            NSString * url = [params[@"url"] description];
+            return [self MLVCTableViewControllerForViewModel:quizzesTabViewModel screenName:@"Quizzes List Screen" canBeMaster:YES style:UITableViewStylePlain url: url];
         },
         @"/courses/:contextID/settings" : ^(NSDictionary *params, CBIFileViewModel *viewModel) {
             UnsupportedViewController *unsupportedVC = [UnsupportedViewController new];

@@ -55,3 +55,10 @@ protocol QuizService {
     
     func serviceForAuditLoggingSubmission(_ submission: QuizSubmission) -> SubmissionAuditLoggingService
 }
+
+extension QuizService {
+    func pageViewName() -> String {
+        let event: NSString = baseURL.absoluteString as NSString
+        return event.appendingPathComponent(context.apiPath.pruneApiVersionFromPath() + "/quizzes/" + quizID)
+    }
+}

@@ -121,6 +121,10 @@ export default class DeveloperMenu extends Component<DeveloperMenuProps, any> {
     this.props.navigator.show('/push-notifications')
   }
 
+  viewPageViews = () => {
+    this.props.navigator.show('/page-view-events')
+  }
+
   viewFeatureFlags = () => {
     this.props.navigator.show('/feature-flags')
   }
@@ -187,6 +191,8 @@ export default class DeveloperMenu extends Component<DeveloperMenuProps, any> {
             <RowWithSwitch title='Enable Experimental Features' onValueChange={this.toggleExperimentalFeatures} value={featureFlagEnabled} />
             <RowSeparator />
             <Row title='View Push Notifications' disclosureIndicator onPress={this.viewPushNotifications} />
+            <RowSeparator />
+            <Row title='View Page Views' disclosureIndicator onPress={this.viewPageViews} />
             <RowSeparator />
             <Row title='View Feature Flags' disclosureIndicator onPress={this.viewFeatureFlags} />
             <RowSeparator />

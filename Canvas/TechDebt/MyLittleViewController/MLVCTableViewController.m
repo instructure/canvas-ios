@@ -21,11 +21,13 @@
 #import "MLVCTableViewCellViewModel.h"
 @import ReactiveObjC;
 #import <objc/runtime.h>
+@import CanvasCore;
 
 #define CURRENT_SYSTEM_VERSION_IS_IOS8_PLUS ([[[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."][0] intValue] >= 8)
 
 @interface MLVCTableViewController ()
 @property (nonatomic) RACDisposable *beginUpdates, *endUpdates, *groupInserted, *groupDeleted, *objectInserted, *objectDeleted;
+@property (nonatomic) PageViewEventLoggerLegacySupport *pageViewEventLog;
 @end
 
 CGFloat tableViewHeightForRowAtIndexPath(MLVCTableViewController *self, SEL _cmd, UITableView *tableView, NSIndexPath *indexPath) {
@@ -62,6 +64,7 @@ CGFloat tableViewHeightForRowAtIndexPath(MLVCTableViewController *self, SEL _cmd
     self = [super initWithStyle:style];
     if (self) {
         RAC(self, title) = RACObserve(self, viewModel.viewControllerTitle);
+        self.pageViewEventLog = [PageViewEventLoggerLegacySupport new];
     }
     return self;
 }
@@ -131,6 +134,7 @@ CGFloat tableViewHeightForRowAtIndexPath(MLVCTableViewController *self, SEL _cmd
             }
         }];
     }
+    [self.pageViewEventLog start];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -140,6 +144,7 @@ CGFloat tableViewHeightForRowAtIndexPath(MLVCTableViewController *self, SEL _cmd
     if ([self.viewModel respondsToSelector:@selector(viewController:viewWillDisappear:)]) {
         [self.viewModel viewController:self viewWillDisappear:animated];
     }
+    [self.pageViewEventLog stopWithEventName:self.url];
 }
 
 

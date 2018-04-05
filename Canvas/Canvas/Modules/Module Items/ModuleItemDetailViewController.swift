@@ -137,6 +137,10 @@ class ModuleItemDetailViewController: UIViewController {
             view.addConstraint(NSLayoutConstraint(item: vc.view, attribute: .bottom, relatedBy: .equal, toItem: toolbar, attribute: .top, multiplier: 1, constant: 0))
             view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|[childView]|", options: [], metrics: nil, views: ["childView": vc.view]))
 
+            if let moduleProtocol = vc as? ModuleItemEmbeddedProtocol {
+                moduleProtocol.moduleItemID = self.viewModel.moduleItemID.value
+            }
+            
             viewModel.moduleItemBecameActive()
             updateNavigationBarButtonItems(vc)
             toolbarItems = vc.toolbarItems

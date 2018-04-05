@@ -2,6 +2,7 @@
 
 exports[`ConversationDetails doesnt render messages that are pendingDelete 1`] = `
 <Screen
+  customPageViewPath="/conversations"
   drawUnderNavBar={true}
   navBarButtonColor="#374A59"
   navBarColor="#374A59"
@@ -222,6 +223,7 @@ exports[`ConversationDetails doesnt render messages that are pendingDelete 1`] =
 
 exports[`ConversationDetails renders correctly 1`] = `
 <Screen
+  customPageViewPath="/conversations"
   drawUnderNavBar={true}
   navBarButtonColor="#374A59"
   navBarColor="#374A59"
@@ -442,6 +444,7 @@ exports[`ConversationDetails renders correctly 1`] = `
 
 exports[`ConversationDetails renders correctly with no conversation 1`] = `
 <Screen
+  customPageViewPath="/conversations"
   drawUnderNavBar={true}
   navBarButtonColor="#374A59"
   navBarColor="#374A59"
@@ -516,6 +519,7 @@ exports[`ConversationDetails renders correctly with no conversation 1`] = `
 
 exports[`ConversationDetails renders correctly with some messages 1`] = `
 <Screen
+  customPageViewPath="/conversations"
   drawUnderNavBar={true}
   navBarButtonColor="#374A59"
   navBarColor="#374A59"
@@ -1203,6 +1207,7 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
 
 exports[`ConversationDetails renders with alternate data 1`] = `
 <Screen
+  customPageViewPath="/conversations"
   drawUnderNavBar={true}
   navBarButtonColor="#374A59"
   navBarColor="#374A59"
