@@ -117,7 +117,6 @@ export function registerScreens (store: Store): void {
   registerScreen('/:context/:contextID/files', wrap(FilesList), store, { deepLink: true })
   registerScreen('/:context/:contextID/files/folder/*subFolder', wrap(FilesList), store, { deepLink: true })
   registerScreen('/:context/:contextID/folders/*subFolder', wrap(FilesList), store, { deepLink: true })
-  registerScreen('/:context/:contextID/files/:fileID', wrap(ViewFile), store, { deepLink: true })
   registerScreen('/:context/:contextID/files/:fileID/edit', wrap(EditFile), store)
   registerScreen('/folders/:folderID/edit', wrap(EditFolder), store)
   registerScreen('/picker', wrap(PickerPage), store)
@@ -149,7 +148,6 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/wiki', wrap(PagesList), store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/courses/:courseID/pages', wrap(PagesList), store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/terms-of-use', wrap(TermsOfUse), store)
-  registerScreen('/files/:fileID', wrap(ViewFile), store, { deepLink: true })
   registerScreen('/profile/settings')
   registerScreen('/support/:type', undefined, undefined, { deepLink: true })
   registerScreen('/ui', wrap(UI), store)
@@ -162,8 +160,12 @@ export function registerScreens (store: Store): void {
   }
 
   if (isTeacher()) {
+    // Files
+    registerScreen('/files/:fileID', wrap(ViewFile), store, { deepLink: true })
     registerScreen('/files/:fileID/download', wrap(ViewFile), store, { deepLink: true })
+    registerScreen('/:context/:contextID/files/:fileID', wrap(ViewFile), store, { deepLink: true })
     registerScreen('/:context/:contextID/files/:fileID/download', wrap(ViewFile), store, { deepLink: true })
+
     registerScreen('/courses/:courseID/quizzes', wrap(QuizzesList), store, { canBecomeMaster: true, deepLink: true })
     registerScreen('/courses/:courseID/quizzes/:quizID', wrap(QuizDetails), store, { deepLink: true })
     registerScreen('/courses/:courseID/quizzes/:quizID/preview', wrap(QuizPreview), store)
@@ -176,10 +178,14 @@ export function registerScreens (store: Store): void {
   }
 
   if (isStudent()) {
+    // Files
+    registerScreen('/files/:fileID', null, store, { deepLink: true })
+    registerScreen('/files/:fileID/download', null, store, { deepLink: true })
+    registerScreen('/:context/:contextID/files/:fileID', null, store, { deepLink: true })
+    registerScreen('/:context/:contextID/files/:fileID/download', null, store, { deepLink: true })
+
     registerScreen('/courses/:courseID/quizzes/:quizID', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/quizzes', null, store, { deepLink: true })
-    registerScreen('/files/:fileID/download', null, store, { deepLink: true })
-    registerScreen('/:context/:contextID/files/:fileID/download', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/pages/:url', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/wiki/:url', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/pages/:url/rn', wrap(PageDetails), store)

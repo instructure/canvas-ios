@@ -27,12 +27,15 @@ extension AppDelegate: RCTBridgeDelegate {
             self.showLoadingState()
         }
 
+        // Files
+        registerScreen("/files/:fileID")
+        registerScreen("/files/:fileID/download")
+        registerScreen("/:context/:contextID/files/:fileID")
+        registerScreen("/:context/:contextID/files/:fileID/download")
+
         registerScreen("/courses/:courseID/assignments/:assignmentID")
         registerScreen("/courses/:courseID/quizzes")
         registerScreen("/courses/:courseID/quizzes/:quizID")
-        registerScreen("/:context/:contextID/files/:fileID/download")
-        registerScreen("/files/:fileID")
-        registerScreen("/files/:fileID/download")
         registerScreen("/courses/:courseID/modules")
         registerScreen("/courses/:courseID/modules/:moduleID")
         registerScreen("/courses/:courseID/modules/:moduleID/items/:itemID")

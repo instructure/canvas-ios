@@ -59,7 +59,11 @@ class ModuleItemViewModel: NSObject {
                 default: break
                 }
             }
-            return url.flatMap(Router.shared().controller)
+            if let url = url {
+                let controller = Router.shared().controller(forHandling: url)
+                return controller
+            }
+            return nil
         }
     }()
 

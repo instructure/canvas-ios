@@ -28,6 +28,7 @@ class ModuleItemDetailViewController: UIViewController {
     let viewModel: ModuleItemViewModel
     let refresher: Refresher
     let route: (UIViewController, URL) -> Void
+    var embeddedVC: UIViewController?
 
     lazy var toolbar: UIToolbar = {
         let toolbar = UIToolbar()
@@ -84,10 +85,16 @@ class ModuleItemDetailViewController: UIViewController {
             guard let me = self else { return }
             ErrorReporter.reportError(error, from: me)
         }
+
+        NotificationCenter.default.addObserver(self, selector: #selector(handleBarButtonsChange), name: NSNotification.Name(rawValue: "FileViewControllerBarButtonItemsDidChange"), object: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -144,6 +151,8 @@ class ModuleItemDetailViewController: UIViewController {
             viewModel.moduleItemBecameActive()
             updateNavigationBarButtonItems(vc)
             toolbarItems = vc.toolbarItems
+
+            embeddedVC = vc
         }
     }
 
@@ -155,5 +164,11 @@ class ModuleItemDetailViewController: UIViewController {
         }
         
         navigationItem.rightBarButtonItems = items
+    }
+
+    func handleBarButtonsChange(sender: Any) {
+        if let current = embeddedVC {
+            updateNavigationBarButtonItems(current)
+        }
     }
 }

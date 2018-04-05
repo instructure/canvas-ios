@@ -362,9 +362,10 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
     };
     
     [self addRoutesWithDictionary:@{
-        @"/groups/:groupIdent/files/:fileIdent" : [FileViewController class],
-        @"/files" : [FileViewController class],
-        @"/courses/:courseIdent/files/:fileIdent/download" : [FileViewController class],
+        @"/groups/:groupIdent/files/:fileIdent" : fileDownloadConstructor,
+        @"/groups/:groupIdent/files/:fileIdent/download" : fileDownloadConstructor,
+        @"/courses/:courseIdent/files/:fileIdent" : fileDownloadConstructor,
+        @"/courses/:courseIdent/files/:fileIdent/download" : fileDownloadConstructor,
         @"/files/:fileIdent/download" : fileDownloadConstructor,
         @"/files/:fileIdent" : fileDownloadConstructor,
     }];

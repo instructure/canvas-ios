@@ -404,13 +404,15 @@
         [self.view addSubview:childView];
         [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[childView]|" options:0 metrics:nil views:@{@"childView":childView}]];
         [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[childView]|" options:0 metrics:nil views:@{@"childView":childView}]];
-        [contentChildController didMoveToParentViewController:self];
 
         actionButton.enabled = YES;
 
         if ([contentChildController isKindOfClass:[PSPDFViewController class]]) {
             self.navigationItem.rightBarButtonItems = contentChildController.navigationItem.rightBarButtonItems;
+            [[NSNotificationCenter defaultCenter] postNotificationName: @"FileViewControllerBarButtonItemsDidChange" object:nil];
         }
+
+         [contentChildController didMoveToParentViewController:self];
     } else {
         actionButton.enabled = NO;
         

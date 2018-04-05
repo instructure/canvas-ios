@@ -121,18 +121,28 @@ extension Router {
                 props: ["context": "courses", "contextID": contextID.id]
             )
         }
-        
-        let fileFactory = { (contextID: ContextID, fileID: String) -> UIViewController in
-            return HelmViewController(
-                moduleName: "/:context/:contextID/files/:fileID",
-                props: ["context": "courses", "contextID": contextID.id, "fileID": fileID, "navigatorOptions": ["modal": true]]
-            )
+
+        addRoute("/files") { parameters, _ in
+            if let parameters = parameters, let query = parameters["query"] as? Dictionary<String, Any>,
+                let fileID = query["preview"] as? String,
+                let url = URL(string: "/files/\(fileID)") {
+                // route to native file details
+                return Router.shared().controller(forHandling: url)
+            }
+
+            if let url = URL(string: "/files") {
+                return Router.shared().controller(forHandling: url)
+            }
+
+            return nil
         }
         
         addContextRoute([.course], subPath: "files") { contextID, params in
             if let query = params["query"] as? Dictionary<String, Any>,
-                let fileID = query["preview"] as? String {
-                return fileFactory(contextID, fileID)
+                let fileID = query["preview"] as? String,
+                let url = URL(string: "/courses/\(contextID.id)/files/\(fileID)") {
+                    // route to native file details
+                    return Router.shared().controller(forHandling: url)
             }
             
             return fileListFactory(contextID)
@@ -140,8 +150,10 @@ extension Router {
         
         addContextRoute([.course], subPath: "files/folder/*subFolder") { contextID, params in
             if let query = params["query"] as? Dictionary<String, Any>,
-                let fileID = query["preview"] as? String {
-                return fileFactory(contextID, fileID)
+                let fileID = query["preview"] as? String,
+                let url = URL(string: "/courses/\(contextID.id)/files/\(fileID)") {
+                    // route to native file details
+                    return Router.shared().controller(forHandling: url)
             }
             
             if let subFolder = params["subFolder"] as? String {
@@ -158,14 +170,6 @@ extension Router {
             guard let folderID = params["folderID"] as? String else { return fileListFactory(contextID) }
             if folderID == "root" { return fileListFactory(contextID) }
             // We don't support routing to a specific folderID yet, that's to come later
-            return fileListFactory(contextID)
-        }
-        
-        addContextRoute([.course], subPath: "files/:fileID") { contextID, params in
-            if let fileID = params["fileID"] as? NSNumber {
-                return fileFactory(contextID, fileID.stringValue)
-            }
-            
             return fileListFactory(contextID)
         }
         
