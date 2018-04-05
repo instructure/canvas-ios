@@ -68,7 +68,7 @@ class AssignmentsTableViewController: FetchedTableViewController<Assignment>, UI
     let courseID: String
     let route: (UIViewController, URL)->()
     
-    var header: GradingPeriod.Header!
+    var header: GradingPeriod.Header?
     var searchController: UISearchController!
     
     var multipleGradingPeriodsEnabled: Bool {
@@ -83,7 +83,7 @@ class AssignmentsTableViewController: FetchedTableViewController<Assignment>, UI
         super.init()
 
         header = try GradingPeriod.Header(session: self.session, courseID: self.courseID, viewController: self, includeGradingPeriods: multipleGradingPeriodsEnabled)
-        header.selectedGradingPeriod.producer
+        header?.selectedGradingPeriod.producer
             .startWithValues { [weak self] item in
                 guard let me = self else { return }
                 
@@ -107,8 +107,8 @@ class AssignmentsTableViewController: FetchedTableViewController<Assignment>, UI
         definesPresentationContext = true
 
         if multipleGradingPeriodsEnabled {
-            header.tableView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 44)
-            tableView.tableHeaderView = header.tableView
+            header?.tableView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 44)
+            tableView.tableHeaderView = header?.tableView
 //            configureSearchController(header.tableView)
         } else {
 //            configureSearchController(tableView)
@@ -117,7 +117,7 @@ class AssignmentsTableViewController: FetchedTableViewController<Assignment>, UI
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        header.tableView.indexPathsForSelectedRows?.forEach { header.tableView.deselectRow(at: $0, animated: true) }
+        header?.tableView.indexPathsForSelectedRows?.forEach { header?.tableView.deselectRow(at: $0, animated: true) }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -193,7 +193,7 @@ class AssignmentsTableViewController: FetchedTableViewController<Assignment>, UI
         let fuzzySearchString = self.fuzzySearchStringFormatter(searchString)
         
         do {
-            try updateCollections(courseID, gradingPeriodID: header.selectedGradingPeriod.value?.gradingPeriodID, name: fuzzySearchString)
+            try updateCollections(courseID, gradingPeriodID: header?.selectedGradingPeriod.value?.gradingPeriodID, name: fuzzySearchString)
         } catch let error as NSError {
             ErrorReporter.reportError(error, from: self)
         }
@@ -240,15 +240,17 @@ class GradesTableViewController: AssignmentsTableViewController, PageViewEventVi
             throw NSError(domain: "com.instructure.ios", code: -1, userInfo: userInfo)
         }
 
-        let gradingPeriod = header.selectedGradingPeriod.signal
-        let grades = gradesCollection.collectionUpdates
+        if let header = header {
+            let gradingPeriod = header.selectedGradingPeriod.signal
+            let grades = gradesCollection.collectionUpdates
 
-        header.grade.value = course.totalGrade(header.selectedGradingPeriod.value)
-        header.grade <~ Signal.combineLatest(gradingPeriod, grades)
-            .observe(on: UIScheduler())
-            .map { gradingPeriodItem, _ in
-                return course.totalGrade(gradingPeriodItem)
-            }
+            header.grade.value = course.totalGrade(header.selectedGradingPeriod.value)
+            header.grade <~ Signal.combineLatest(gradingPeriod, grades)
+                .observe(on: UIScheduler())
+                .map { gradingPeriodItem, _ in
+                    return course.totalGrade(gradingPeriodItem)
+                }
+        }
 
         title = NSLocalizedString("Grades", comment: "Title for Grades view controller")
     }
@@ -260,8 +262,8 @@ class GradesTableViewController: AssignmentsTableViewController, PageViewEventVi
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        header.tableView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: header.includeGradingPeriods ? 88 : 44)
-        tableView.tableHeaderView = header.tableView
+        header?.tableView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: header?.includeGradingPeriods ?? false ? 88 : 44)
+        tableView.tableHeaderView = header?.tableView
 //        configureSearchController(header.tableView)
     }
     

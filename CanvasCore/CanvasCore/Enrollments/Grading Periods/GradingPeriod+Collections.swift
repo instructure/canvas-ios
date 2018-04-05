@@ -149,10 +149,9 @@ extension GradingPeriod {
             return grade.value != nil
         }
 
-        public init(session: Session, courseID: String, viewController: UIViewController, includeGradingPeriods: Bool, grade: MutableProperty<String?> = MutableProperty(nil)) throws {
+        public init?(session: Session, courseID: String, viewController: UIViewController, includeGradingPeriods: Bool, grade: MutableProperty<String?> = MutableProperty(nil)) throws {
             guard let course = session.enrollmentsDataSource[ContextID(id: courseID, context: .course)] as? Course else {
-                let userInfo = [NSLocalizedDescriptionKey: NSLocalizedString("Error loading course.", comment: "")]
-                throw NSError(domain: "com.instructure.ios", code: -1, userInfo: userInfo)
+                return nil
             }
 
             self.includeGradingPeriods = includeGradingPeriods
