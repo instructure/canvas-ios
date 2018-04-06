@@ -72,6 +72,7 @@ type State = {
   contextID: string,
   courseName: string,
   canRate: boolean,
+  initialPostRequired: boolean,
 }
 
 type ViewableReply = {
@@ -121,7 +122,6 @@ export class DiscussionDetails extends Component<Props, any> {
       maxReplyNodeDepth: 2,
       unread_entries: props.unreadEntries || [],
       entry_ratings: props.entryRatings || {},
-      initialPostRequired: false,
     }
     this.state.flatReplies = this.rootRepliesData(props.discussion)
   }
@@ -134,16 +134,7 @@ export class DiscussionDetails extends Component<Props, any> {
 
   componentWillReceiveProps (nextProps: Props) {
     if (nextProps.error && nextProps.error !== this.props.error) {
-      const { error, discussion } = nextProps
-
-      if (error === 'require_initial_post' && discussion && discussion.require_initial_post) {
-        this.setState({ initialPostRequired: true })
-      } else {
-        this.setState({ initialPostRequired: false })
-        alertError(nextProps.error)
-      }
-    } else {
-      this.setState({ initialPostRequired: false })
+      alertError(nextProps.error)
     }
 
     if (this.state.deletePending && !nextProps.pending && !nextProps.error && !nextProps.discussion) {
@@ -297,7 +288,7 @@ export class DiscussionDetails extends Component<Props, any> {
 
         { showReplies && this.renderPopReplyStackButton() }
 
-        { this.state.initialPostRequired &&
+        { this.props.initialPostRequired &&
           <AssignmentSection>
             <Text testID='discussions.details.require_initial_post.message'>
               {i18n('Replies are only visible to those who have posted at least one reply.')}
@@ -731,6 +722,7 @@ export function mapStateToProps ({ entities }: AppState, ownProps: OwnProps): St
   let unreadEntries = []
   let entryRatings = {}
   let course: ?Course
+  let initialPostRequired = true
 
   if (entities && entities.discussions) {
     if (context === 'courses' && entities.courses[contextID]) {
@@ -754,6 +746,7 @@ export function mapStateToProps ({ entities }: AppState, ownProps: OwnProps): St
     entryRatings = state.entry_ratings || {}
     pending = state.pending
     error = state.error
+    initialPostRequired = state.initialPostRequired ? discussion.require_initial_post : false
   }
 
   let assignment = null
@@ -787,6 +780,7 @@ export function mapStateToProps ({ entities }: AppState, ownProps: OwnProps): St
     assignment,
     isAnnouncement,
     canRate,
+    initialPostRequired,
   }
 }
 
@@ -800,6 +794,9 @@ export function shouldRefresh (props: Props): boolean {
 
 export function refreshData (props: Props): void {
   props.refreshDiscussionEntries(props.context, props.contextID, props.discussionID, true)
+
+  // Must refresh single discussion in case user cant view replies.
+  props.refreshSingleDiscussion(props.context, props.contextID, props.discussionID)
 }
 
 let Refreshed = refresh(

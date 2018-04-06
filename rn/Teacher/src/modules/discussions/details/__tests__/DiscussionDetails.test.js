@@ -640,15 +640,15 @@ describe('DiscussionDetails', () => {
   })
 
   it('does not show require_initial_post message on render', () => {
+    props.requireInitialPost = false
     const details = shallow(new DiscussionDetails(props).renderDetails(props.discussion))
     expect(details.find('[testID="discussions.details.require_initial_post.message"]')).toHaveLength(0)
   })
 
-  it('shows require_initial_post message', async () => {
-    props.discussion = template.discussion({ require_initial_post: true })
+  it('shows require_initial_post message', () => {
+    props.initialPostRequired = true
+    props.discussion = template.discussion()
     const screen = shallow(<DiscussionDetails {...props} />)
-    screen.setProps({ error: 'require_initial_post' })
-    await screen.update()
     const details = shallow(screen.instance().renderDetails(props.discussion))
     expect(details.find('[testID="discussions.details.require_initial_post.message"]')).toHaveLength(1)
   })

@@ -143,6 +143,7 @@ export type DiscussionState = AsyncState & {
   },
   unread_entries: string[],
   entry_ratings: { [string]: number },
+  initialPostRequired?: boolean,
 }
 
 export type PendingDiscussionReply = {

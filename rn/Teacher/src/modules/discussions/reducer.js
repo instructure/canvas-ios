@@ -243,14 +243,22 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
           error: null,
           unread_entries: unreadEntries,
           entry_ratings: entryRatings,
+          initialPostRequired: false,
         },
       }
     },
     rejected: (state, { error, discussionID }) => {
       let message = parseErrorMessage(error)
       if (error.response && error.response.status === 403) {
-        message = 'require_initial_post'
+        return {
+          ...state,
+          [discussionID]: {
+            ...state[discussionID],
+            initialPostRequired: true,
+          },
+        }
       }
+
       return {
         ...state,
         [discussionID]: {

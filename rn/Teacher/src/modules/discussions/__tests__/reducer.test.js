@@ -635,6 +635,7 @@ describe('refreshDiscussionEntries', () => {
         entry_ratings: { '4': 1 },
         pending: 0,
         error: null,
+        initialPostRequired: false,
       },
     })
   })
@@ -678,6 +679,7 @@ describe('refreshDiscussionEntries', () => {
         pendingReplies: pending,
         unread_entries: template.discussionView().unread_entries,
         entry_ratings: template.discussionView().entry_ratings,
+        initialPostRequired: false,
       },
     })
   })
@@ -721,6 +723,7 @@ describe('refreshDiscussionEntries', () => {
         pendingReplies: {},
         unread_entries: template.discussionView().unread_entries,
         entry_ratings: template.discussionView().entry_ratings,
+        initialPostRequired: false,
       },
     })
   })
@@ -763,7 +766,25 @@ describe('refreshDiscussionEntries', () => {
         entry_ratings: template.discussionView().entry_ratings,
         pending: 0,
         error: null,
+        initialPostRequired: false,
       },
+    })
+  })
+
+  it('handles rejected when initial post required', () => {
+    const action = {
+      type: refreshDiscussionEntries.toString(),
+      error: true,
+      payload: {
+        discussionID: '1',
+        error: {
+          response: { status: 403 },
+        },
+      },
+    }
+    const result = discussions({}, action)
+    expect(result).toMatchObject({
+      '1': { initialPostRequired: true },
     })
   })
 
@@ -806,6 +827,7 @@ describe('refreshDiscussionEntries', () => {
         pendingReplies: pending,
         unread_entries: template.discussionView().unread_entries,
         entry_ratings: template.discussionView().entry_ratings,
+        initialPostRequired: false,
       },
     })
   })
@@ -848,6 +870,7 @@ describe('refreshDiscussionEntries', () => {
         entry_ratings: template.discussionView().entry_ratings,
         pending: 0,
         error: null,
+        initialPostRequired: false,
       },
     })
   })
