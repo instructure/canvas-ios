@@ -30,7 +30,6 @@
 #import "CBISyllabusViewModel.h"
 #import "CBICalendarEventViewModel.h"
 
-#import "WebBrowserViewController.h"
 #import "CBIFilesTabViewModel.h"
 #import "CBIFolderViewModel.h"
 #import "CBISyllabusDetailViewController.h"
@@ -347,15 +346,7 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
     
     [self addRoute:@"/courses/:courseID/quizzes/:quizID" handler:quizControllerConstructor];
     
-    UIViewController *(^fileDownloadConstructor)(NSDictionary *, CBIQuizViewModel *) = ^ UIViewController *(NSDictionary *params, CBIQuizViewModel *vm) {
-        NSURL *downloadURL = params[@"downloadURL"];
-        
-        if (downloadURL.absoluteString.length) {
-            WebBrowserViewController *browserController = [[WebBrowserViewController alloc] initWithNibName:@"WebBrowserViewController" bundle:[NSBundle bundleForClass:[self class]]];
-            [browserController setUrl:downloadURL];
-            return (UIViewController *)browserController;
-        }
-        
+    UIViewController *(^fileDownloadConstructor)(NSDictionary *, CBIQuizViewModel *) = ^ UIViewController *(NSDictionary *params, CBIQuizViewModel *vm) {        
         FileViewController *fileVC = [[FileViewController alloc] init];
         [fileVC applyRoutingParameters:params];
         return (UIViewController *)fileVC;

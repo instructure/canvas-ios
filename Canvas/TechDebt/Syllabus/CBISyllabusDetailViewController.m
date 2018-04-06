@@ -20,7 +20,6 @@
 #import <CanvasKit/CanvasKit.h>
 #import <CanvasKit1/CanvasKit1.h>
 #import "UIViewController+AnalyticsTracking.h"
-#import "WebBrowserViewController.h"
 #import "UIWebView+SafeAPIURL.h"
 #import "CKIClient+CBIClient.h"
 #import "Router.h"
