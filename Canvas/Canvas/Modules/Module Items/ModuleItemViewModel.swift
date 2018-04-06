@@ -196,7 +196,7 @@ class ModuleItemViewModel: NSObject {
         observer = try ModuleItem.observer(session, moduleItemID: moduleItemID)
         moduleItem = MutableProperty(observer.object)
         moduleItem <~ observer.signal.map { $0.1 }.filter { !($0?.isDeleted ?? false) }
-        moduleID = Property(initial: nil, then: moduleItem.signal.map { $0?.moduleID }.skipRepeats(==))
+        moduleID = Property(initial: nil, then: moduleItem.producer.map { $0?.moduleID }.skipRepeats(==))
 
         let moduleSignal = moduleID
             .signal
