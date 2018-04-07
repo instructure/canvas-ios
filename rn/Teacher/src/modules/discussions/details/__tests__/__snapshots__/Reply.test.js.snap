@@ -266,6 +266,7 @@ exports[`DiscussionReplies ratings renders rating after user rates for first tim
             )
           </Text>
           <TouchableOpacity
+            activeOpacity={0.2}
             onPress={[Function]}
             testID="discussion.reply.rate-btn"
           >
@@ -538,6 +539,7 @@ exports[`DiscussionReplies ratings renders rating after user updates rating 1`] 
             )
           </Text>
           <TouchableOpacity
+            activeOpacity={0.2}
             onPress={[Function]}
             testID="discussion.reply.rate-btn"
           >

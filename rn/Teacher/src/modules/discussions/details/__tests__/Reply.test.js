@@ -21,21 +21,11 @@ import React from 'react'
 import { ActionSheetIOS } from 'react-native'
 import Reply, { type Props } from '../Reply'
 import httpClient from '../../../../canvas-api/httpClient'
+import * as template from '../../../../__templates__'
 
-jest.mock('Button', () => 'Button').mock('TouchableHighlight', () => 'TouchableHighlight').mock('TouchableOpacity', () => 'TouchableOpacity')
-
-const template = {
-  ...require('../../../../__templates__/discussion'),
-  ...require('../../../../__templates__/users'),
-  ...require('../../../../__templates__/helm'),
-  ...require('../../../../__templates__/session'),
-  ...require('../../../../__templates__/file'),
-}
-jest.mock('WebView', () => 'WebView')
-  .mock('ActionSheetIOS', () => ({
-    showActionSheetWithOptions: jest.fn(),
-  }))
-  .mock('../../../../common/components/Avatar', () => 'Avatar')
+jest.mock('ActionSheetIOS', () => ({
+  showActionSheetWithOptions: jest.fn(),
+}))
 
 describe('DiscussionReplies', () => {
   let props: Props
@@ -92,6 +82,16 @@ describe('DiscussionReplies', () => {
 
     expect(tree.find('[testID="discussions.reply-btn"]').length).toEqual(0)
     expect(tree.find('[testID="discussions.edit-btn"]').length).toEqual(0)
+    expect(tree.find('[testID="discussion.reply.rate-btn"]').length).toEqual(0)
+  })
+
+  it('renders likes even if closed as student', () => {
+    props.discussionLockedForUser = true
+    props.showRating = true
+    props.canRate = true
+    let tree = shallow(<Reply {...props} />)
+
+    expect(tree.find('[testID="discussion.reply.rate-btn"]').length).toEqual(1)
   })
 
   it('navigates to the context card when an avatar is pressed', () => {
@@ -251,4 +251,3 @@ describe('DiscussionReplies', () => {
     })
   })
 })
-

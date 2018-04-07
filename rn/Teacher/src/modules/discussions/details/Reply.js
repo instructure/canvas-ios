@@ -135,7 +135,7 @@ export default class Reply extends Component<Props, State> {
   }
 
   render () {
-    let { reply, depth, participants, maxReplyNodeDepth, readState, discussionLockedForUser } = this.props
+    let { reply, depth, participants, maxReplyNodeDepth, readState } = this.props
     participants = participants || {}
 
     let user = this._userFromParticipants(reply, participants)
@@ -189,7 +189,7 @@ export default class Reply extends Component<Props, State> {
             }
 
             {reply.deleted && <View style={{ marginTop: global.style.defaultPadding }}/>}
-            {(!reply.deleted && !discussionLockedForUser) && this._renderButtons()}
+            {!reply.deleted && this._renderButtons()}
             {this._renderMoreRepliesButton(depth, reply, maxReplyNodeDepth)}
 
           </View>
@@ -244,6 +244,9 @@ export default class Reply extends Component<Props, State> {
   }
 
   _renderButtons = () => {
+    const { canRate, showRating, discussionLockedForUser } = this.props
+    if (discussionLockedForUser && !showRating) return
+
     const buttonTextAttributes = {
       fontWeight: '500',
       color: colors.grey4,
@@ -255,20 +258,22 @@ export default class Reply extends Component<Props, State> {
     }
     return (
       <View style={containerStyles}>
-        <View style={style.footerActionsContainer}>
-          <LinkButton style={style.footer} textAttributes={buttonTextAttributes} onPress={this._actionReply} testID='discussion.reply-btn'>
-            {i18n('Reply')}
-          </LinkButton>
-          { this._canEdit() &&
-            <Text style={[style.footer, { color: colors.grey2, textAlign: 'center', alignSelf: 'center', paddingLeft: 10, paddingRight: 10 }]} accessible={false}>|</Text>
-          }
-          { this._canEdit() &&
-            <LinkButton style={style.footer} textAttributes={buttonTextAttributes} onPress={this._actionEdit} testID='discussion.edit-btn'>
-              {i18n('Edit')}
+        { !discussionLockedForUser &&
+          <View style={style.footerActionsContainer}>
+            <LinkButton style={style.footer} textAttributes={buttonTextAttributes} onPress={this._actionReply} testID='discussion.reply-btn'>
+              {i18n('Reply')}
             </LinkButton>
-          }
-        </View>
-        { this.props.showRating &&
+            { this._canEdit() &&
+              <Text style={[style.footer, { color: colors.grey2, textAlign: 'center', alignSelf: 'center', paddingLeft: 10, paddingRight: 10 }]} accessible={false}>|</Text>
+            }
+            { this._canEdit() &&
+              <LinkButton style={style.footer} textAttributes={buttonTextAttributes} onPress={this._actionEdit} testID='discussion.edit-btn'>
+                {i18n('Edit')}
+              </LinkButton>
+            }
+          </View>
+        }
+        { showRating &&
           <View style={style.footerRatingContainer}>
             { this.ratingCount() > 0 &&
               <Text
@@ -284,7 +289,7 @@ export default class Reply extends Component<Props, State> {
                 ({this.formattedRatingCount()})
               </Text>
             }
-            { this.props.canRate &&
+            { canRate &&
               <TouchableOpacity testID='discussion.reply.rate-btn' onPress={this._actionRate}>
                 <Image
                   source={this.hasRated() ? Images.discussions.rated : Images.discussions.rate}
