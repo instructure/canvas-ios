@@ -601,31 +601,6 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
         HelmManager.shared.dismiss(["animated": true])
     }
     
-    func titleViewFromNavBarImagePath(navBarImagePath: Any) -> UIView? {
-        var titleView: UIView? = nil
-        switch (navBarImagePath) {
-        case is String:
-            if let path = navBarImagePath as? String {
-                if (path as NSString).pathExtension == "svg" {
-                    let svgImage = SVGKImage(contentsOf: URL(string: path)!)
-                    let imageView = UIImageView(image: svgImage?.uiImage)
-                    titleView = imageView
-                } else {
-                    let imageView = UIImageView()
-                    imageView.kf.setImage(with: URL(string: path))
-                    titleView = imageView
-                }
-            }
-        case is [String: Any]:
-            let image = RCTConvert.uiImage(navBarImagePath)
-            let imageView = UIImageView(image: image)
-            titleView = imageView
-            break
-        default: break
-        }
-        return titleView
-    }
-    
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         if let onTraitCollectionChange = screenConfig["onTraitCollectionChange"] as? NSString {

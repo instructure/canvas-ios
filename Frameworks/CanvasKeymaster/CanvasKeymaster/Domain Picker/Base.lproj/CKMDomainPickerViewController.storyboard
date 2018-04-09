@@ -223,7 +223,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="MultiUserCell" id="kxs-mq-jpv" customClass="CKMMultiUserTableViewCell">
-                                <rect key="frame" x="0.0" y="29" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="30" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kxs-mq-jpv" id="ZBK-5X-rvS">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
@@ -341,7 +341,7 @@
                                 </accessibility>
                                 <color key="textColor" red="0.20218595859999999" green="0.2543922663" blue="0.29195973279999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL" returnKeyType="go" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="url"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="url"/>
                                 <connections>
                                     <outlet property="delegate" destination="uvg-b7-8aP" id="3au-CC-Mns"/>
                                 </connections>

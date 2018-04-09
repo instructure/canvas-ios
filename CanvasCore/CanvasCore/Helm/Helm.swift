@@ -436,9 +436,7 @@ extension HelmManager {
         case is String:
             if let path = imagePath as? String {
                 if let url = URL(string: path), (path as NSString).pathExtension == "svg" {
-                    let svgImage = SVGKImage(contentsOf: url)
-                    let imageView = UIImageView(image: svgImage?.uiImage)
-                    titleView = imageView
+                    titleView = SVGImageView(url: url)
                 } else {
                     let imageView = UIImageView()
                     imageView.kf.setImage(with: URL(string: path))
