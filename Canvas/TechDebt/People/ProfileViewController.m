@@ -22,7 +22,6 @@
 
 #import "ProfileViewController.h"
 
-#import "FolderViewController.h"
 #import "AboutViewController.h"
 #import "UIImage+ImageEffects.h"
 #import "AFHTTPAvatarImageResponseSerializer.h"
