@@ -112,6 +112,8 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
     open override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.applyDefaultBranding()
+        
         CLSLogv("locale: %@", getVaList([Locale.current.identifier]))
         CLSLogv("calendar: %@", getVaList([Calendar.current.description]))
 

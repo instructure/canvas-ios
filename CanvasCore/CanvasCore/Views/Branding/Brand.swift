@@ -66,14 +66,6 @@ open class Brand: NSObject {
     
     open func apply(_ window: UIWindow) {
         window.tintColor = primaryButtonColor
-        
-        let navAppearance = UINavigationBar.appearance()
-        navAppearance.barTintColor = navBgColor
-        navAppearance.tintColor = navButtonColor
-        navAppearance.titleTextAttributes = [
-            NSForegroundColorAttributeName: navTextColor
-        ]
-        
         let tabsAppearance = UITabBar.appearance()
         tabsAppearance.tintColor = primaryBrandColor
         tabsAppearance.barTintColor = UIColor.white

@@ -82,12 +82,6 @@ class RootTabBarController: UITabBarController {
         navigation.applyDefaultBranding()
         return navigation
     }
-    func profileTab() -> UIViewController {
-        let profileVC = HelmViewController(moduleName: "/profile", props: [:])
-        profileVC.tabBarItem = UITabBarItem(title: NSLocalizedString("Profile", comment: ""), image: UIImage(named: "profile"), selectedImage: nil)
-        profileVC.tabBarItem.accessibilityIdentifier = "tab-bar.profile-btn"
-        return HelmNavigationController(rootViewController: profileVC)
-    }
 }
 
 // UIKit has a bug, when using the custom transitioning apis. Ash Furrow filed this bug back in iOS 8 days:

@@ -114,7 +114,7 @@ class SubmissionViewController: UITableViewController, PageViewEventViewControll
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        var event = quizService.pageViewName() + "/take"
+        let event = quizService.pageViewName() + "/take"
         stopTrackingTimeOnViewController(eventName: event)
     }
     

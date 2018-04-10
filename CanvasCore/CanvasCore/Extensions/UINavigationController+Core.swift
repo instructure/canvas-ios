@@ -11,8 +11,13 @@ import Foundation
 public extension UINavigationController {
     
     public func applyDefaultBranding() {
+        self.navigationBar.barStyle = .black
         self.navigationBar.barTintColor = Brand.current.navBgColor
         self.navigationBar.tintColor = Brand.current.navButtonColor
+        self.navigationBar.titleTextAttributes = [
+            NSForegroundColorAttributeName: Brand.current.navTextColor
+        ]
+        self.navigationBar.isTranslucent = false
     }
     
     // Sets the barTintColor on self as well as a detail in a split view controller situation

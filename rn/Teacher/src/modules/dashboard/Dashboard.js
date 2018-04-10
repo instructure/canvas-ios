@@ -386,7 +386,7 @@ export class Dashboard extends React.Component<Props, State> {
         { ...this.screenProps() }
         navBarHidden={false}
         navBarColor={color.navBarColor}
-        navBarButtonColor={color.navBarTextColor}
+        navBarButtonColor={color.navBarButtonColor}
         statusBarStyle={color.statusBarStyle}
       >{
         this.renderDashboard()
