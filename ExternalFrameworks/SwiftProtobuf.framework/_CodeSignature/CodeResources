@@ -4,71 +4,71 @@
 <dict>
 	<key>files</key>
 	<dict>
-		<key>Headers/gRPC-Swift.h</key>
+		<key>Headers/SwiftProtobuf-Swift.h</key>
 		<data>
-		477lMoayeRNBDMmqePVuV2dab2o=
+		iZzC03Ee3CSWUvihpv2FNIiqyRE=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		ZYnd3r9std1yK5Y/tO1HEiSV7HM=
+		4sfRSdped26Qe1ME8f6B62d6Q/Q=
 		</data>
-		<key>Modules/gRPC.swiftmodule/x86_64.swiftdoc</key>
+		<key>Modules/SwiftProtobuf.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		tcVU1bObvGiyQjBwRyopCfu4SRg=
+		/XZvEtoTXtbFGr2RHXUPpwwQXVY=
 		</data>
-		<key>Modules/gRPC.swiftmodule/x86_64.swiftmodule</key>
+		<key>Modules/SwiftProtobuf.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		sSbhvOBAiNmHVxxjB38rt54KZUQ=
+		nSUTcoUKEW32ttTqSRUmqaMHz5E=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
-		JJW8sF/weLVnE6kmAr57zjw2eQ4=
+		WU9ESagUgmZ53x3oytWykErYPU0=
 		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
-		<key>Headers/gRPC-Swift.h</key>
+		<key>Headers/SwiftProtobuf-Swift.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			477lMoayeRNBDMmqePVuV2dab2o=
+			iZzC03Ee3CSWUvihpv2FNIiqyRE=
 			</data>
 			<key>hash2</key>
 			<data>
-			sQh1ocbTiQYU2si+W1wHi3UM/KdqA9xs4kjuOsoQPpQ=
+			nG1WcIONEwyeMjM3bFEuNXSuUWoiXlMOAdHiJWw+x6k=
 			</data>
 		</dict>
-		<key>Modules/gRPC.swiftmodule/x86_64.swiftdoc</key>
+		<key>Modules/SwiftProtobuf.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			tcVU1bObvGiyQjBwRyopCfu4SRg=
+			/XZvEtoTXtbFGr2RHXUPpwwQXVY=
 			</data>
 			<key>hash2</key>
 			<data>
-			0tE3bmzc/nZtfRwnKRGSaLKi/Sis6DSzMMKXsFh+6z0=
+			YN6wLHl1X3a+ox7lZV5wizqzB7lhb9+cilk4lL2UHIs=
 			</data>
 		</dict>
-		<key>Modules/gRPC.swiftmodule/x86_64.swiftmodule</key>
+		<key>Modules/SwiftProtobuf.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			sSbhvOBAiNmHVxxjB38rt54KZUQ=
+			nSUTcoUKEW32ttTqSRUmqaMHz5E=
 			</data>
 			<key>hash2</key>
 			<data>
-			oNPqUHBOF2g4/j+XpZI5CcAFP5Wc/n2UrN/UQS+TX+Q=
+			XLKAShQHBLOvFsS0yvyrwpSwZAAIvp4JrIMrTHNhPG0=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			JJW8sF/weLVnE6kmAr57zjw2eQ4=
+			WU9ESagUgmZ53x3oytWykErYPU0=
 			</data>
 			<key>hash2</key>
 			<data>
-			i/OWq9cIj5yZsJmE8C1nl1GQTrbDdL5wBrX6LnJukPk=
+			SZzlxUE34tjVOt/QwELh5jz5ri6yVSJfptdxEb2BrAA=
 			</data>
 		</dict>
 	</dict>

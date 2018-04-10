@@ -19,8 +19,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-struct Soseedy_CreateCoursePageRequest: SwiftProtobuf.Message {
-  static let protoMessageName: String = _protobuf_package + ".CreateCoursePageRequest"
+struct Soseedy_CreateCoursePageRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   var courseID: Int64 = 0
 
@@ -33,11 +35,41 @@ struct Soseedy_CreateCoursePageRequest: SwiftProtobuf.Message {
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
+}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
+struct Soseedy_Page {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var url: String = String()
+
+  var title: String = String()
+
+  var body: String = String()
+
+  var published: Bool = false
+
+  var frontPage: Bool = false
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "soseedy"
+
+extension Soseedy_CreateCoursePageRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".CreateCoursePageRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "courseId"),
+    2: .same(proto: "published"),
+    3: .same(proto: "frontPage"),
+    4: .same(proto: "token"),
+  ]
+
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -50,10 +82,6 @@ struct Soseedy_CreateCoursePageRequest: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.courseID != 0 {
       try visitor.visitSingularInt64Field(value: self.courseID, fieldNumber: 1)
@@ -69,29 +97,27 @@ struct Soseedy_CreateCoursePageRequest: SwiftProtobuf.Message {
     }
     try unknownFields.traverse(visitor: &visitor)
   }
+
+  func _protobuf_generated_isEqualTo(other: Soseedy_CreateCoursePageRequest) -> Bool {
+    if self.courseID != other.courseID {return false}
+    if self.published != other.published {return false}
+    if self.frontPage != other.frontPage {return false}
+    if self.token != other.token {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
 }
 
-struct Soseedy_Page: SwiftProtobuf.Message {
+extension Soseedy_Page: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".Page"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "url"),
+    2: .same(proto: "title"),
+    3: .same(proto: "body"),
+    4: .same(proto: "published"),
+    5: .same(proto: "frontPage"),
+  ]
 
-  var url: String = String()
-
-  var title: String = String()
-
-  var body: String = String()
-
-  var published: Bool = false
-
-  var frontPage: Bool = false
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -105,10 +131,6 @@ struct Soseedy_Page: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if !self.url.isEmpty {
       try visitor.visitSingularStringField(value: self.url, fieldNumber: 1)
@@ -127,38 +149,6 @@ struct Soseedy_Page: SwiftProtobuf.Message {
     }
     try unknownFields.traverse(visitor: &visitor)
   }
-}
-
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "soseedy"
-
-extension Soseedy_CreateCoursePageRequest: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "courseId"),
-    2: .same(proto: "published"),
-    3: .same(proto: "frontPage"),
-    4: .same(proto: "token"),
-  ]
-
-  func _protobuf_generated_isEqualTo(other: Soseedy_CreateCoursePageRequest) -> Bool {
-    if self.courseID != other.courseID {return false}
-    if self.published != other.published {return false}
-    if self.frontPage != other.frontPage {return false}
-    if self.token != other.token {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Soseedy_Page: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "url"),
-    2: .same(proto: "title"),
-    3: .same(proto: "body"),
-    4: .same(proto: "published"),
-    5: .same(proto: "frontPage"),
-  ]
 
   func _protobuf_generated_isEqualTo(other: Soseedy_Page) -> Bool {
     if self.url != other.url {return false}

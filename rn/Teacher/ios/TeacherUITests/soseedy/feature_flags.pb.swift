@@ -19,8 +19,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-struct Soseedy_SetAccountFeatureFlagRequest: SwiftProtobuf.Message {
-  static let protoMessageName: String = _protobuf_package + ".SetAccountFeatureFlagRequest"
+struct Soseedy_SetAccountFeatureFlagRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   var feature: String = String()
 
@@ -29,39 +31,13 @@ struct Soseedy_SetAccountFeatureFlagRequest: SwiftProtobuf.Message {
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.feature)
-      case 2: try decoder.decodeSingularStringField(value: &self.state)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.feature.isEmpty {
-      try visitor.visitSingularStringField(value: self.feature, fieldNumber: 1)
-    }
-    if !self.state.isEmpty {
-      try visitor.visitSingularStringField(value: self.state, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Response messages
-struct Soseedy_FeatureFlag: SwiftProtobuf.Message {
-  static let protoMessageName: String = _protobuf_package + ".FeatureFlag"
+struct Soseedy_FeatureFlag {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   var feature: String = String()
 
@@ -72,11 +48,55 @@ struct Soseedy_FeatureFlag: SwiftProtobuf.Message {
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
+}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "soseedy"
+
+extension Soseedy_SetAccountFeatureFlagRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".SetAccountFeatureFlagRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "feature"),
+    2: .same(proto: "state"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.feature)
+      case 2: try decoder.decodeSingularStringField(value: &self.state)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.feature.isEmpty {
+      try visitor.visitSingularStringField(value: self.feature, fieldNumber: 1)
+    }
+    if !self.state.isEmpty {
+      try visitor.visitSingularStringField(value: self.state, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  func _protobuf_generated_isEqualTo(other: Soseedy_SetAccountFeatureFlagRequest) -> Bool {
+    if self.feature != other.feature {return false}
+    if self.state != other.state {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Soseedy_FeatureFlag: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".FeatureFlag"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "feature"),
+    2: .same(proto: "state"),
+    3: .same(proto: "contextType"),
+  ]
+
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -88,10 +108,6 @@ struct Soseedy_FeatureFlag: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if !self.feature.isEmpty {
       try visitor.visitSingularStringField(value: self.feature, fieldNumber: 1)
@@ -104,32 +120,6 @@ struct Soseedy_FeatureFlag: SwiftProtobuf.Message {
     }
     try unknownFields.traverse(visitor: &visitor)
   }
-}
-
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "soseedy"
-
-extension Soseedy_SetAccountFeatureFlagRequest: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "feature"),
-    2: .same(proto: "state"),
-  ]
-
-  func _protobuf_generated_isEqualTo(other: Soseedy_SetAccountFeatureFlagRequest) -> Bool {
-    if self.feature != other.feature {return false}
-    if self.state != other.state {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Soseedy_FeatureFlag: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "feature"),
-    2: .same(proto: "state"),
-    3: .same(proto: "contextType"),
-  ]
 
   func _protobuf_generated_isEqualTo(other: Soseedy_FeatureFlag) -> Bool {
     if self.feature != other.feature {return false}

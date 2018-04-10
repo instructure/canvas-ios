@@ -16,7 +16,7 @@
 #ifndef cgrpc_h
 #define cgrpc_h
 
-#import <stdlib.h>
+#include <stdlib.h>
 
 // This file lists C functions and types used to build Swift gRPC support
 
@@ -91,6 +91,22 @@ typedef enum grpc_completion_type {
   GRPC_OP_COMPLETE
 } grpc_completion_type;
 
+/** Connectivity state of a channel. */
+typedef enum grpc_connectivity_state {
+  /** channel has just been initialized */
+  GRPC_CHANNEL_INIT = -1,
+  /** channel is idle */
+  GRPC_CHANNEL_IDLE,
+  /** channel is connecting */
+  GRPC_CHANNEL_CONNECTING,
+  /** channel is ready for work */
+  GRPC_CHANNEL_READY,
+  /** channel has seen a failure but expects to recover */
+  GRPC_CHANNEL_TRANSIENT_FAILURE,
+  /** channel has seen a failure that it cannot recover from */
+  GRPC_CHANNEL_SHUTDOWN
+} grpc_connectivity_state;
+
 typedef struct grpc_event {
   /** The type of the completion. */
   grpc_completion_type type;
@@ -105,12 +121,16 @@ typedef struct grpc_event {
 #endif
 
 // directly expose a few grpc library functions
-void grpc_init();
-void grpc_shutdown();
-const char *grpc_version_string();
+void grpc_init(void);
+void grpc_shutdown(void);
+const char *grpc_version_string(void);
+const char *grpc_g_stands_for(void);
+
+void cgrpc_completion_queue_drain(cgrpc_completion_queue *cq);
+void grpc_completion_queue_destroy(cgrpc_completion_queue *cq);
 
 // helper
-void cgrpc_free_copied_string(const char *string);
+void cgrpc_free_copied_string(char *string);
 
 // channel support
 cgrpc_channel *cgrpc_channel_create(const char *address);
@@ -124,6 +144,9 @@ cgrpc_call *cgrpc_channel_create_call(cgrpc_channel *channel,
                                       const char *host,
                                       double timeout);
 cgrpc_completion_queue *cgrpc_channel_completion_queue(cgrpc_channel *channel);
+
+grpc_connectivity_state cgrpc_channel_check_connectivity_state(
+    cgrpc_channel *channel, int try_to_connect);
 
 // server support
 cgrpc_server *cgrpc_server_create(const char *address);
@@ -150,9 +173,9 @@ cgrpc_completion_queue *cgrpc_handler_get_completion_queue(cgrpc_handler *h);
 grpc_call_error cgrpc_handler_request_call(cgrpc_handler *h,
                                            cgrpc_metadata_array *metadata,
                                            long tag);
-const char *cgrpc_handler_copy_host(cgrpc_handler *h);
-const char *cgrpc_handler_copy_method(cgrpc_handler *h);
-const char *cgrpc_handler_call_peer(cgrpc_handler *h);
+char *cgrpc_handler_copy_host(cgrpc_handler *h);
+char *cgrpc_handler_copy_method(cgrpc_handler *h);
+char *cgrpc_handler_call_peer(cgrpc_handler *h);
 
 // call support
 void cgrpc_call_destroy(cgrpc_call *call);
@@ -160,22 +183,22 @@ grpc_call_error cgrpc_call_perform(cgrpc_call *call, cgrpc_operations *operation
 void cgrpc_call_cancel(cgrpc_call *call);
 
 // operations
-cgrpc_operations *cgrpc_operations_create();
+cgrpc_operations *cgrpc_operations_create(void);
 void cgrpc_operations_destroy(cgrpc_operations *operations);
 void cgrpc_operations_reserve_space_for_operations(cgrpc_operations *call, int max_operations);
 void cgrpc_operations_add_operation(cgrpc_operations *call, cgrpc_observer *observer);
 
 // metadata support
-cgrpc_metadata_array *cgrpc_metadata_array_create();
+cgrpc_metadata_array *cgrpc_metadata_array_create(void);
 void cgrpc_metadata_array_destroy(cgrpc_metadata_array *array);
 size_t cgrpc_metadata_array_get_count(cgrpc_metadata_array *array);
-const char *cgrpc_metadata_array_copy_key_at_index(cgrpc_metadata_array *array, size_t index);
-const char *cgrpc_metadata_array_copy_value_at_index(cgrpc_metadata_array *array, size_t index);
+char *cgrpc_metadata_array_copy_key_at_index(cgrpc_metadata_array *array, size_t index);
+char *cgrpc_metadata_array_copy_value_at_index(cgrpc_metadata_array *array, size_t index);
 void cgrpc_metadata_array_move_metadata(cgrpc_metadata_array *dest, cgrpc_metadata_array *src);
 void cgrpc_metadata_array_append_metadata(cgrpc_metadata_array *metadata, const char *key, const char *value);
 
 // mutex support
-cgrpc_mutex *cgrpc_mutex_create();
+cgrpc_mutex *cgrpc_mutex_create(void);
 void cgrpc_mutex_destroy(cgrpc_mutex *mu);
 void cgrpc_mutex_lock(cgrpc_mutex *mu);
 void cgrpc_mutex_unlock(cgrpc_mutex *mu);
@@ -192,13 +215,13 @@ int64_t cgrpc_event_tag(grpc_event ev);
 
 // constructors
 cgrpc_observer_send_initial_metadata   *cgrpc_observer_create_send_initial_metadata(cgrpc_metadata_array *metadata);
-cgrpc_observer_send_message            *cgrpc_observer_create_send_message();
-cgrpc_observer_send_close_from_client  *cgrpc_observer_create_send_close_from_client();
+cgrpc_observer_send_message            *cgrpc_observer_create_send_message(void);
+cgrpc_observer_send_close_from_client  *cgrpc_observer_create_send_close_from_client(void);
 cgrpc_observer_send_status_from_server *cgrpc_observer_create_send_status_from_server(cgrpc_metadata_array *metadata);
-cgrpc_observer_recv_initial_metadata   *cgrpc_observer_create_recv_initial_metadata();
-cgrpc_observer_recv_message            *cgrpc_observer_create_recv_message();
-cgrpc_observer_recv_status_on_client   *cgrpc_observer_create_recv_status_on_client();
-cgrpc_observer_recv_close_on_server    *cgrpc_observer_create_recv_close_on_server();
+cgrpc_observer_recv_initial_metadata   *cgrpc_observer_create_recv_initial_metadata(void);
+cgrpc_observer_recv_message            *cgrpc_observer_create_recv_message(void);
+cgrpc_observer_recv_status_on_client   *cgrpc_observer_create_recv_status_on_client(void);
+cgrpc_observer_recv_close_on_server    *cgrpc_observer_create_recv_close_on_server(void);
 
 // destructor
 void cgrpc_observer_destroy(cgrpc_observer *observer);
@@ -237,7 +260,7 @@ cgrpc_metadata_array *cgrpc_observer_recv_status_on_client_get_metadata
 long cgrpc_observer_recv_status_on_client_get_status
 (cgrpc_observer_recv_status_on_client *observer);
 
-const char *cgrpc_observer_recv_status_on_client_copy_status_details
+char *cgrpc_observer_recv_status_on_client_copy_status_details
 (cgrpc_observer_recv_status_on_client *observer);
 
 // GRPC_OP_RECV_CLOSE_ON_SERVER

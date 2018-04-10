@@ -16,7 +16,7 @@ protoc = join(protoc_bin, 'protoc')
 swift_plugin = join(protoc_bin, 'protoc-gen-swift')
 swiftgrpc_plugin = join(protoc_bin, 'protoc-gen-swiftgrpc')
 
-soseedy_dir = join(__dir__, '../../../android-uno/dataseedingapi/src/main/proto')
+soseedy_dir = join(__dir__, '../../../android-uno/automation/dataseedingapi/src/main/proto')
 
 includes = [soseedy_dir]
 
@@ -46,15 +46,19 @@ command_args = [
 
 command = [protoc, command_args].join(new_line).strip
 
-puts command
-`#{command}`
+
+def run_command command
+  puts command
+  raise "failed!!" unless system(command)
+end
+
+run_command command
 
 Dir.glob(File.join(swift_dst, '*.server.pb.swift')) do |file|
   delete file
 end
 
-# package_name.client.swift
-# Packagename_[serviceName]Service
+run_command './build_grpc.jar.sh'
 
 # protoc <your proto files> \
 # --swift_out=. \

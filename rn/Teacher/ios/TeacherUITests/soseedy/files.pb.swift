@@ -47,8 +47,10 @@ enum Soseedy_FileUploadType: SwiftProtobuf.Enum {
 
 }
 
-struct Soseedy_UploadFileRequest: SwiftProtobuf.Message {
-  static let protoMessageName: String = _protobuf_package + ".UploadFileRequest"
+struct Soseedy_UploadFileRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   var courseID: Int64 = 0
 
@@ -65,11 +67,61 @@ struct Soseedy_UploadFileRequest: SwiftProtobuf.Message {
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
+}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
+/// Response messages
+struct Soseedy_FileUploadParams {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var uploadURL: String = String()
+
+  var uploadParams: Dictionary<String,String> = [:]
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Soseedy_Attachment {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var id: Int64 = 0
+
+  var displayName: String = String()
+
+  var fileName: String = String()
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "soseedy"
+
+extension Soseedy_FileUploadType: SwiftProtobuf._ProtoNameProviding {
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "ASSIGNMENT_SUBMISSION"),
+    1: .same(proto: "COMMENT_ATTACHMENT"),
+  ]
+}
+
+extension Soseedy_UploadFileRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".UploadFileRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "courseId"),
+    2: .same(proto: "assignmentId"),
+    3: .same(proto: "token"),
+    4: .same(proto: "fileName"),
+    5: .same(proto: "file"),
+    6: .same(proto: "uploadType"),
+  ]
+
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -84,10 +136,6 @@ struct Soseedy_UploadFileRequest: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.courseID != 0 {
       try visitor.visitSingularInt64Field(value: self.courseID, fieldNumber: 1)
@@ -109,115 +157,6 @@ struct Soseedy_UploadFileRequest: SwiftProtobuf.Message {
     }
     try unknownFields.traverse(visitor: &visitor)
   }
-}
-
-/// Response messages
-struct Soseedy_FileUploadParams: SwiftProtobuf.Message {
-  static let protoMessageName: String = _protobuf_package + ".FileUploadParams"
-
-  var uploadURL: String = String()
-
-  var uploadParams: Dictionary<String,String> = [:]
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.uploadURL)
-      case 2: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufString>.self, value: &self.uploadParams)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.uploadURL.isEmpty {
-      try visitor.visitSingularStringField(value: self.uploadURL, fieldNumber: 1)
-    }
-    if !self.uploadParams.isEmpty {
-      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufString>.self, value: self.uploadParams, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-}
-
-struct Soseedy_Attachment: SwiftProtobuf.Message {
-  static let protoMessageName: String = _protobuf_package + ".Attachment"
-
-  var id: Int64 = 0
-
-  var displayName: String = String()
-
-  var fileName: String = String()
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularInt64Field(value: &self.id)
-      case 2: try decoder.decodeSingularStringField(value: &self.displayName)
-      case 3: try decoder.decodeSingularStringField(value: &self.fileName)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.id != 0 {
-      try visitor.visitSingularInt64Field(value: self.id, fieldNumber: 1)
-    }
-    if !self.displayName.isEmpty {
-      try visitor.visitSingularStringField(value: self.displayName, fieldNumber: 2)
-    }
-    if !self.fileName.isEmpty {
-      try visitor.visitSingularStringField(value: self.fileName, fieldNumber: 3)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-}
-
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "soseedy"
-
-extension Soseedy_FileUploadType: SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "ASSIGNMENT_SUBMISSION"),
-    1: .same(proto: "COMMENT_ATTACHMENT"),
-  ]
-}
-
-extension Soseedy_UploadFileRequest: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "courseId"),
-    2: .same(proto: "assignmentId"),
-    3: .same(proto: "token"),
-    4: .same(proto: "fileName"),
-    5: .same(proto: "file"),
-    6: .same(proto: "uploadType"),
-  ]
 
   func _protobuf_generated_isEqualTo(other: Soseedy_UploadFileRequest) -> Bool {
     if self.courseID != other.courseID {return false}
@@ -231,11 +170,32 @@ extension Soseedy_UploadFileRequest: SwiftProtobuf._MessageImplementationBase, S
   }
 }
 
-extension Soseedy_FileUploadParams: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Soseedy_FileUploadParams: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".FileUploadParams"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "uploadUrl"),
     2: .same(proto: "uploadParams"),
   ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.uploadURL)
+      case 2: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufString>.self, value: &self.uploadParams)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.uploadURL.isEmpty {
+      try visitor.visitSingularStringField(value: self.uploadURL, fieldNumber: 1)
+    }
+    if !self.uploadParams.isEmpty {
+      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufString>.self, value: self.uploadParams, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
 
   func _protobuf_generated_isEqualTo(other: Soseedy_FileUploadParams) -> Bool {
     if self.uploadURL != other.uploadURL {return false}
@@ -245,12 +205,37 @@ extension Soseedy_FileUploadParams: SwiftProtobuf._MessageImplementationBase, Sw
   }
 }
 
-extension Soseedy_Attachment: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Soseedy_Attachment: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".Attachment"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .same(proto: "displayName"),
     3: .same(proto: "fileName"),
   ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt64Field(value: &self.id)
+      case 2: try decoder.decodeSingularStringField(value: &self.displayName)
+      case 3: try decoder.decodeSingularStringField(value: &self.fileName)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.id != 0 {
+      try visitor.visitSingularInt64Field(value: self.id, fieldNumber: 1)
+    }
+    if !self.displayName.isEmpty {
+      try visitor.visitSingularStringField(value: self.displayName, fieldNumber: 2)
+    }
+    if !self.fileName.isEmpty {
+      try visitor.visitSingularStringField(value: self.fileName, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
 
   func _protobuf_generated_isEqualTo(other: Soseedy_Attachment) -> Bool {
     if self.id != other.id {return false}

@@ -19,33 +19,20 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-struct Soseedy_HealthCheckRequest: SwiftProtobuf.Message {
-  static let protoMessageName: String = _protobuf_package + ".HealthCheckRequest"
+struct Soseedy_HealthCheckRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
-struct Soseedy_SeedDataRequest: SwiftProtobuf.Message {
-  static let protoMessageName: String = _protobuf_package + ".SeedDataRequest"
+struct Soseedy_SeedDataRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   var teachers: Int32 = 0
 
@@ -64,11 +51,79 @@ struct Soseedy_SeedDataRequest: SwiftProtobuf.Message {
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
+}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
+struct Soseedy_HealthCheck {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var healthy: Bool = false
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Soseedy_SeededData {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var teachers: [Soseedy_CanvasUser] = []
+
+  var enrollments: [Soseedy_Enrollment] = []
+
+  var students: [Soseedy_CanvasUser] = []
+
+  var courses: [Soseedy_Course] = []
+
+  var favorites: [Soseedy_Favorite] = []
+
+  var discussions: [Soseedy_Discussion] = []
+
+  var announcements: [Soseedy_Discussion] = []
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "soseedy"
+
+extension Soseedy_HealthCheckRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".HealthCheckRequest"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  func _protobuf_generated_isEqualTo(other: Soseedy_HealthCheckRequest) -> Bool {
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Soseedy_SeedDataRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".SeedDataRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "teachers"),
+    2: .same(proto: "students"),
+    3: .same(proto: "courses"),
+    4: .same(proto: "favoriteCourses"),
+    5: .same(proto: "announcements"),
+    6: .same(proto: "discussions"),
+    7: .same(proto: "gradingPeriods"),
+  ]
+
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -84,10 +139,6 @@ struct Soseedy_SeedDataRequest: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.teachers != 0 {
       try visitor.visitSingularInt32Field(value: self.teachers, fieldNumber: 1)
@@ -112,21 +163,26 @@ struct Soseedy_SeedDataRequest: SwiftProtobuf.Message {
     }
     try unknownFields.traverse(visitor: &visitor)
   }
+
+  func _protobuf_generated_isEqualTo(other: Soseedy_SeedDataRequest) -> Bool {
+    if self.teachers != other.teachers {return false}
+    if self.students != other.students {return false}
+    if self.courses != other.courses {return false}
+    if self.favoriteCourses != other.favoriteCourses {return false}
+    if self.announcements != other.announcements {return false}
+    if self.discussions != other.discussions {return false}
+    if self.gradingPeriods != other.gradingPeriods {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
 }
 
-struct Soseedy_HealthCheck: SwiftProtobuf.Message {
+extension Soseedy_HealthCheck: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".HealthCheck"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "healthy"),
+  ]
 
-  var healthy: Bool = false
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -136,41 +192,32 @@ struct Soseedy_HealthCheck: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.healthy != false {
       try visitor.visitSingularBoolField(value: self.healthy, fieldNumber: 1)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
+
+  func _protobuf_generated_isEqualTo(other: Soseedy_HealthCheck) -> Bool {
+    if self.healthy != other.healthy {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
 }
 
-struct Soseedy_SeededData: SwiftProtobuf.Message {
+extension Soseedy_SeededData: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".SeededData"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "teachers"),
+    2: .same(proto: "enrollments"),
+    3: .same(proto: "students"),
+    4: .same(proto: "courses"),
+    5: .same(proto: "favorites"),
+    6: .same(proto: "discussions"),
+    7: .same(proto: "announcements"),
+  ]
 
-  var teachers: [Soseedy_CanvasUser] = []
-
-  var enrollments: [Soseedy_Enrollment] = []
-
-  var students: [Soseedy_CanvasUser] = []
-
-  var courses: [Soseedy_Course] = []
-
-  var favorites: [Soseedy_Favorite] = []
-
-  var discussions: [Soseedy_Discussion] = []
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -180,15 +227,12 @@ struct Soseedy_SeededData: SwiftProtobuf.Message {
       case 4: try decoder.decodeRepeatedMessageField(value: &self.courses)
       case 5: try decoder.decodeRepeatedMessageField(value: &self.favorites)
       case 6: try decoder.decodeRepeatedMessageField(value: &self.discussions)
+      case 7: try decoder.decodeRepeatedMessageField(value: &self.announcements)
       default: break
       }
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if !self.teachers.isEmpty {
       try visitor.visitRepeatedMessageField(value: self.teachers, fieldNumber: 1)
@@ -208,68 +252,11 @@ struct Soseedy_SeededData: SwiftProtobuf.Message {
     if !self.discussions.isEmpty {
       try visitor.visitRepeatedMessageField(value: self.discussions, fieldNumber: 6)
     }
+    if !self.announcements.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.announcements, fieldNumber: 7)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
-}
-
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "soseedy"
-
-extension Soseedy_HealthCheckRequest: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
-
-  func _protobuf_generated_isEqualTo(other: Soseedy_HealthCheckRequest) -> Bool {
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Soseedy_SeedDataRequest: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "teachers"),
-    2: .same(proto: "students"),
-    3: .same(proto: "courses"),
-    4: .same(proto: "favoriteCourses"),
-    5: .same(proto: "announcements"),
-    6: .same(proto: "discussions"),
-    7: .same(proto: "gradingPeriods"),
-  ]
-
-  func _protobuf_generated_isEqualTo(other: Soseedy_SeedDataRequest) -> Bool {
-    if self.teachers != other.teachers {return false}
-    if self.students != other.students {return false}
-    if self.courses != other.courses {return false}
-    if self.favoriteCourses != other.favoriteCourses {return false}
-    if self.announcements != other.announcements {return false}
-    if self.discussions != other.discussions {return false}
-    if self.gradingPeriods != other.gradingPeriods {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Soseedy_HealthCheck: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "healthy"),
-  ]
-
-  func _protobuf_generated_isEqualTo(other: Soseedy_HealthCheck) -> Bool {
-    if self.healthy != other.healthy {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Soseedy_SeededData: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "teachers"),
-    2: .same(proto: "enrollments"),
-    3: .same(proto: "students"),
-    4: .same(proto: "courses"),
-    5: .same(proto: "favorites"),
-    6: .same(proto: "discussions"),
-  ]
 
   func _protobuf_generated_isEqualTo(other: Soseedy_SeededData) -> Bool {
     if self.teachers != other.teachers {return false}
@@ -278,6 +265,7 @@ extension Soseedy_SeededData: SwiftProtobuf._MessageImplementationBase, SwiftPro
     if self.courses != other.courses {return false}
     if self.favorites != other.favorites {return false}
     if self.discussions != other.discussions {return false}
+    if self.announcements != other.announcements {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }

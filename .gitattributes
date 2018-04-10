@@ -1,3 +1,12 @@
 *.snap linguist-generated
-
 scripts/grpc/soseedygrpc-all.jar filter=lfs diff=lfs merge=lfs -text
+scripts/grpc/protoc-3.5.1-osx-x86_64/bin/protoc filter=lfs diff=lfs merge=lfs -text
+scripts/grpc/protoc-3.5.1-osx-x86_64/bin/protoc-gen-swift filter=lfs diff=lfs merge=lfs -text
+scripts/grpc/protoc-3.5.1-osx-x86_64/bin/protoc-gen-swiftgrpc filter=lfs diff=lfs merge=lfs -text
+ExternalFrameworks/SwiftProtobuf.framework filter=lfs diff=lfs merge=lfs -text
+ExternalFrameworks/SwiftProtobufPluginLibrary.framework filter=lfs diff=lfs merge=lfs -text
+ExternalFrameworks/BoringSSL.framework filter=lfs diff=lfs merge=lfs -text
+ExternalFrameworks/BuddyBuildSDK.framework filter=lfs diff=lfs merge=lfs -text
+ExternalFrameworks/CgRPC.framework filter=lfs diff=lfs merge=lfs -text
+ExternalFrameworks/Commander.framework filter=lfs diff=lfs merge=lfs -text
+ExternalFrameworks/SwiftGRPC.framework filter=lfs diff=lfs merge=lfs -text

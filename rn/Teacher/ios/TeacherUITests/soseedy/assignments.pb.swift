@@ -96,8 +96,10 @@ enum Soseedy_SubmissionType: SwiftProtobuf.Enum {
 
 }
 
-struct Soseedy_CreateAssignmentRequest: SwiftProtobuf.Message {
-  static let protoMessageName: String = _protobuf_package + ".CreateAssignmentRequest"
+struct Soseedy_CreateAssignmentRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   var courseID: Int64 = 0
 
@@ -118,11 +120,300 @@ struct Soseedy_CreateAssignmentRequest: SwiftProtobuf.Message {
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
+}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
+struct Soseedy_CreateAssignmentOverrideRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var courseID: Int64 = 0
+
+  var assignmentID: Int64 = 0
+
+  var token: String = String()
+
+  var studentIds: [Int64] = []
+
+  var groupID: Int64 = 0
+
+  var courseSectionID: Int64 = 0
+
+  var dueAt: String = String()
+
+  var unlockAt: String = String()
+
+  var lockAt: String = String()
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Soseedy_SubmitCourseAssignmentRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var submissionType: Soseedy_SubmissionType = .noType
+
+  var courseID: Int64 = 0
+
+  var assignmentID: Int64 = 0
+
+  var studentToken: String = String()
+
+  var body: String = String()
+
+  var url: String = String()
+
+  var fileIds: [Int64] = []
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Soseedy_CreateCourseAssignmentCommentRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var courseID: Int64 = 0
+
+  var assignmentID: Int64 = 0
+
+  var studentToken: String = String()
+
+  var fileIds: [Int64] = []
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Soseedy_SeedAssignmentRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var courseID: Int64 = 0
+
+  var assignments: Int32 = 0
+
+  var withDescription: Bool = false
+
+  var lockAt: String = String()
+
+  var unlockAt: String = String()
+
+  var dueAt: String = String()
+
+  var submissionTypes: [Soseedy_SubmissionType] = []
+
+  var teacherToken: String = String()
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Soseedy_SeedAssignmentSubmissionRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var assignmentID: Int64 = 0
+
+  var courseID: Int64 = 0
+
+  var studentToken: String = String()
+
+  var submissionSeeds: [Soseedy_SubmissionSeed] = []
+
+  var commentSeeds: [Soseedy_CommentSeed] = []
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Soseedy_SubmissionSeed {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var submissionType: Soseedy_SubmissionType = .noType
+
+  var amount: Int32 = 0
+
+  var fileType: Soseedy_FileType = .text
+
+  var attachments: [Soseedy_Attachment] = []
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Soseedy_CommentSeed {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var amount: Int32 = 0
+
+  var fileType: Soseedy_FileType = .text
+
+  var attachments: [Soseedy_Attachment] = []
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Soseedy_Assignment {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var id: Int64 = 0
+
+  var name: String = String()
+
+  var published: Bool = false
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Soseedy_Assignments {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var assignments: [Soseedy_Assignment] = []
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Soseedy_SeededCourseAssignmentSubmissions {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var submissions: [Soseedy_CourseAssignmentSubmission] = []
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Soseedy_AssignmentOverride {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var id: Int64 = 0
+
+  var assignmentID: Int64 = 0
+
+  var title: String = String()
+
+  var studentIds: [Int64] = []
+
+  var groupID: Int64 = 0
+
+  var courseSectionID: Int64 = 0
+
+  var dueAt: String = String()
+
+  var unlockAt: String = String()
+
+  var lockAt: String = String()
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Soseedy_CourseAssignmentSubmission {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var id: Int64 = 0
+
+  var body: String = String()
+
+  var url: String = String()
+
+  var submissionComments: [Soseedy_Comment] = []
+
+  var attachments: [Soseedy_Attachment] = []
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Soseedy_Comment {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var authorName: String = String()
+
+  var comment: String = String()
+
+  var attachments: [Soseedy_Attachment] = []
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "soseedy"
+
+extension Soseedy_FileType: SwiftProtobuf._ProtoNameProviding {
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "TEXT"),
+    1: .same(proto: "PDF"),
+    3: .same(proto: "NONE"),
+  ]
+}
+
+extension Soseedy_SubmissionType: SwiftProtobuf._ProtoNameProviding {
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "NO_TYPE"),
+    1: .same(proto: "ON_PAPER"),
+    2: .same(proto: "ONLINE_QUIZ"),
+    3: .same(proto: "ONLINE_UPLOAD"),
+    4: .same(proto: "ONLINE_TEXT_ENTRY"),
+    5: .same(proto: "ONLINE_URL"),
+    6: .same(proto: "EXTERNAL_TOOL"),
+    7: .same(proto: "DISCUSSION_TOPIC"),
+  ]
+}
+
+extension Soseedy_CreateAssignmentRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".CreateAssignmentRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "courseId"),
+    2: .same(proto: "withDescription"),
+    3: .same(proto: "lockAt"),
+    4: .same(proto: "unlockAt"),
+    5: .same(proto: "dueAt"),
+    6: .same(proto: "submissionTypes"),
+    7: .same(proto: "teacherToken"),
+    8: .same(proto: "groupCategoryId"),
+  ]
+
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -139,10 +430,6 @@ struct Soseedy_CreateAssignmentRequest: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.courseID != 0 {
       try visitor.visitSingularInt64Field(value: self.courseID, fieldNumber: 1)
@@ -170,37 +457,35 @@ struct Soseedy_CreateAssignmentRequest: SwiftProtobuf.Message {
     }
     try unknownFields.traverse(visitor: &visitor)
   }
+
+  func _protobuf_generated_isEqualTo(other: Soseedy_CreateAssignmentRequest) -> Bool {
+    if self.courseID != other.courseID {return false}
+    if self.withDescription != other.withDescription {return false}
+    if self.lockAt != other.lockAt {return false}
+    if self.unlockAt != other.unlockAt {return false}
+    if self.dueAt != other.dueAt {return false}
+    if self.submissionTypes != other.submissionTypes {return false}
+    if self.teacherToken != other.teacherToken {return false}
+    if self.groupCategoryID != other.groupCategoryID {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
 }
 
-struct Soseedy_CreateAssignmentOverrideRequest: SwiftProtobuf.Message {
+extension Soseedy_CreateAssignmentOverrideRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".CreateAssignmentOverrideRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "courseId"),
+    2: .same(proto: "assignmentId"),
+    3: .same(proto: "token"),
+    4: .same(proto: "studentIds"),
+    5: .same(proto: "groupId"),
+    6: .same(proto: "courseSectionId"),
+    7: .same(proto: "dueAt"),
+    8: .same(proto: "unlockAt"),
+    9: .same(proto: "lockAt"),
+  ]
 
-  var courseID: Int64 = 0
-
-  var assignmentID: Int64 = 0
-
-  var token: String = String()
-
-  var studentIds: [Int64] = []
-
-  var groupID: Int64 = 0
-
-  var courseSectionID: Int64 = 0
-
-  var dueAt: String = String()
-
-  var unlockAt: String = String()
-
-  var lockAt: String = String()
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -218,10 +503,6 @@ struct Soseedy_CreateAssignmentOverrideRequest: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.courseID != 0 {
       try visitor.visitSingularInt64Field(value: self.courseID, fieldNumber: 1)
@@ -252,33 +533,34 @@ struct Soseedy_CreateAssignmentOverrideRequest: SwiftProtobuf.Message {
     }
     try unknownFields.traverse(visitor: &visitor)
   }
+
+  func _protobuf_generated_isEqualTo(other: Soseedy_CreateAssignmentOverrideRequest) -> Bool {
+    if self.courseID != other.courseID {return false}
+    if self.assignmentID != other.assignmentID {return false}
+    if self.token != other.token {return false}
+    if self.studentIds != other.studentIds {return false}
+    if self.groupID != other.groupID {return false}
+    if self.courseSectionID != other.courseSectionID {return false}
+    if self.dueAt != other.dueAt {return false}
+    if self.unlockAt != other.unlockAt {return false}
+    if self.lockAt != other.lockAt {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
 }
 
-struct Soseedy_SubmitCourseAssignmentRequest: SwiftProtobuf.Message {
+extension Soseedy_SubmitCourseAssignmentRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".SubmitCourseAssignmentRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "submissionType"),
+    2: .same(proto: "courseId"),
+    3: .same(proto: "assignmentId"),
+    4: .same(proto: "studentToken"),
+    5: .same(proto: "body"),
+    6: .same(proto: "url"),
+    7: .same(proto: "fileIds"),
+  ]
 
-  var submissionType: Soseedy_SubmissionType = .noType
-
-  var courseID: Int64 = 0
-
-  var assignmentID: Int64 = 0
-
-  var studentToken: String = String()
-
-  var body: String = String()
-
-  var url: String = String()
-
-  var fileIds: [Int64] = []
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -294,10 +576,6 @@ struct Soseedy_SubmitCourseAssignmentRequest: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.submissionType != .noType {
       try visitor.visitSingularEnumField(value: self.submissionType, fieldNumber: 1)
@@ -322,27 +600,29 @@ struct Soseedy_SubmitCourseAssignmentRequest: SwiftProtobuf.Message {
     }
     try unknownFields.traverse(visitor: &visitor)
   }
+
+  func _protobuf_generated_isEqualTo(other: Soseedy_SubmitCourseAssignmentRequest) -> Bool {
+    if self.submissionType != other.submissionType {return false}
+    if self.courseID != other.courseID {return false}
+    if self.assignmentID != other.assignmentID {return false}
+    if self.studentToken != other.studentToken {return false}
+    if self.body != other.body {return false}
+    if self.url != other.url {return false}
+    if self.fileIds != other.fileIds {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
 }
 
-struct Soseedy_CreateCourseAssignmentCommentRequest: SwiftProtobuf.Message {
+extension Soseedy_CreateCourseAssignmentCommentRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".CreateCourseAssignmentCommentRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "courseId"),
+    2: .same(proto: "assignmentId"),
+    3: .same(proto: "studentToken"),
+    4: .same(proto: "fileIds"),
+  ]
 
-  var courseID: Int64 = 0
-
-  var assignmentID: Int64 = 0
-
-  var studentToken: String = String()
-
-  var fileIds: [Int64] = []
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -355,10 +635,6 @@ struct Soseedy_CreateCourseAssignmentCommentRequest: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.courseID != 0 {
       try visitor.visitSingularInt64Field(value: self.courseID, fieldNumber: 1)
@@ -374,35 +650,30 @@ struct Soseedy_CreateCourseAssignmentCommentRequest: SwiftProtobuf.Message {
     }
     try unknownFields.traverse(visitor: &visitor)
   }
+
+  func _protobuf_generated_isEqualTo(other: Soseedy_CreateCourseAssignmentCommentRequest) -> Bool {
+    if self.courseID != other.courseID {return false}
+    if self.assignmentID != other.assignmentID {return false}
+    if self.studentToken != other.studentToken {return false}
+    if self.fileIds != other.fileIds {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
 }
 
-struct Soseedy_SeedAssignmentRequest: SwiftProtobuf.Message {
+extension Soseedy_SeedAssignmentRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".SeedAssignmentRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "courseId"),
+    2: .same(proto: "assignments"),
+    3: .same(proto: "withDescription"),
+    4: .same(proto: "lockAt"),
+    5: .same(proto: "unlockAt"),
+    6: .same(proto: "dueAt"),
+    7: .same(proto: "submissionTypes"),
+    8: .same(proto: "teacherToken"),
+  ]
 
-  var courseID: Int64 = 0
-
-  var assignments: Int32 = 0
-
-  var withDescription: Bool = false
-
-  var lockAt: String = String()
-
-  var unlockAt: String = String()
-
-  var dueAt: String = String()
-
-  var submissionTypes: [Soseedy_SubmissionType] = []
-
-  var teacherToken: String = String()
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -419,10 +690,6 @@ struct Soseedy_SeedAssignmentRequest: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.courseID != 0 {
       try visitor.visitSingularInt64Field(value: self.courseID, fieldNumber: 1)
@@ -450,29 +717,31 @@ struct Soseedy_SeedAssignmentRequest: SwiftProtobuf.Message {
     }
     try unknownFields.traverse(visitor: &visitor)
   }
+
+  func _protobuf_generated_isEqualTo(other: Soseedy_SeedAssignmentRequest) -> Bool {
+    if self.courseID != other.courseID {return false}
+    if self.assignments != other.assignments {return false}
+    if self.withDescription != other.withDescription {return false}
+    if self.lockAt != other.lockAt {return false}
+    if self.unlockAt != other.unlockAt {return false}
+    if self.dueAt != other.dueAt {return false}
+    if self.submissionTypes != other.submissionTypes {return false}
+    if self.teacherToken != other.teacherToken {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
 }
 
-struct Soseedy_SeedAssignmentSubmissionRequest: SwiftProtobuf.Message {
+extension Soseedy_SeedAssignmentSubmissionRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".SeedAssignmentSubmissionRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "assignmentId"),
+    2: .same(proto: "courseId"),
+    3: .same(proto: "studentToken"),
+    4: .same(proto: "submissionSeeds"),
+    5: .same(proto: "commentSeeds"),
+  ]
 
-  var assignmentID: Int64 = 0
-
-  var courseID: Int64 = 0
-
-  var studentToken: String = String()
-
-  var submissionSeeds: [Soseedy_SubmissionSeed] = []
-
-  var commentSeeds: [Soseedy_CommentSeed] = []
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -486,10 +755,6 @@ struct Soseedy_SeedAssignmentSubmissionRequest: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.assignmentID != 0 {
       try visitor.visitSingularInt64Field(value: self.assignmentID, fieldNumber: 1)
@@ -508,27 +773,27 @@ struct Soseedy_SeedAssignmentSubmissionRequest: SwiftProtobuf.Message {
     }
     try unknownFields.traverse(visitor: &visitor)
   }
+
+  func _protobuf_generated_isEqualTo(other: Soseedy_SeedAssignmentSubmissionRequest) -> Bool {
+    if self.assignmentID != other.assignmentID {return false}
+    if self.courseID != other.courseID {return false}
+    if self.studentToken != other.studentToken {return false}
+    if self.submissionSeeds != other.submissionSeeds {return false}
+    if self.commentSeeds != other.commentSeeds {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
 }
 
-struct Soseedy_SubmissionSeed: SwiftProtobuf.Message {
+extension Soseedy_SubmissionSeed: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".SubmissionSeed"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "submissionType"),
+    2: .same(proto: "amount"),
+    3: .same(proto: "fileType"),
+    4: .same(proto: "attachments"),
+  ]
 
-  var submissionType: Soseedy_SubmissionType = .noType
-
-  var amount: Int32 = 0
-
-  var fileType: Soseedy_FileType = .text
-
-  var attachments: [Soseedy_Attachment] = []
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -541,10 +806,6 @@ struct Soseedy_SubmissionSeed: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.submissionType != .noType {
       try visitor.visitSingularEnumField(value: self.submissionType, fieldNumber: 1)
@@ -560,25 +821,25 @@ struct Soseedy_SubmissionSeed: SwiftProtobuf.Message {
     }
     try unknownFields.traverse(visitor: &visitor)
   }
+
+  func _protobuf_generated_isEqualTo(other: Soseedy_SubmissionSeed) -> Bool {
+    if self.submissionType != other.submissionType {return false}
+    if self.amount != other.amount {return false}
+    if self.fileType != other.fileType {return false}
+    if self.attachments != other.attachments {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
 }
 
-struct Soseedy_CommentSeed: SwiftProtobuf.Message {
+extension Soseedy_CommentSeed: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".CommentSeed"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "amount"),
+    2: .same(proto: "fileType"),
+    3: .same(proto: "attachments"),
+  ]
 
-  var amount: Int32 = 0
-
-  var fileType: Soseedy_FileType = .text
-
-  var attachments: [Soseedy_Attachment] = []
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -590,10 +851,6 @@ struct Soseedy_CommentSeed: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.amount != 0 {
       try visitor.visitSingularInt32Field(value: self.amount, fieldNumber: 1)
@@ -606,25 +863,24 @@ struct Soseedy_CommentSeed: SwiftProtobuf.Message {
     }
     try unknownFields.traverse(visitor: &visitor)
   }
+
+  func _protobuf_generated_isEqualTo(other: Soseedy_CommentSeed) -> Bool {
+    if self.amount != other.amount {return false}
+    if self.fileType != other.fileType {return false}
+    if self.attachments != other.attachments {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
 }
 
-struct Soseedy_Assignment: SwiftProtobuf.Message {
+extension Soseedy_Assignment: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".Assignment"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "id"),
+    2: .same(proto: "name"),
+    3: .same(proto: "published"),
+  ]
 
-  var id: Int64 = 0
-
-  var name: String = String()
-
-  var published: Bool = false
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -636,10 +892,6 @@ struct Soseedy_Assignment: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.id != 0 {
       try visitor.visitSingularInt64Field(value: self.id, fieldNumber: 1)
@@ -652,21 +904,22 @@ struct Soseedy_Assignment: SwiftProtobuf.Message {
     }
     try unknownFields.traverse(visitor: &visitor)
   }
+
+  func _protobuf_generated_isEqualTo(other: Soseedy_Assignment) -> Bool {
+    if self.id != other.id {return false}
+    if self.name != other.name {return false}
+    if self.published != other.published {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
 }
 
-struct Soseedy_Assignments: SwiftProtobuf.Message {
+extension Soseedy_Assignments: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".Assignments"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "assignments"),
+  ]
 
-  var assignments: [Soseedy_Assignment] = []
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -676,31 +929,26 @@ struct Soseedy_Assignments: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if !self.assignments.isEmpty {
       try visitor.visitRepeatedMessageField(value: self.assignments, fieldNumber: 1)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
+
+  func _protobuf_generated_isEqualTo(other: Soseedy_Assignments) -> Bool {
+    if self.assignments != other.assignments {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
 }
 
-struct Soseedy_SeededCourseAssignmentSubmissions: SwiftProtobuf.Message {
+extension Soseedy_SeededCourseAssignmentSubmissions: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".SeededCourseAssignmentSubmissions"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "submissions"),
+  ]
 
-  var submissions: [Soseedy_CourseAssignmentSubmission] = []
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -710,47 +958,34 @@ struct Soseedy_SeededCourseAssignmentSubmissions: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if !self.submissions.isEmpty {
       try visitor.visitRepeatedMessageField(value: self.submissions, fieldNumber: 1)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
+
+  func _protobuf_generated_isEqualTo(other: Soseedy_SeededCourseAssignmentSubmissions) -> Bool {
+    if self.submissions != other.submissions {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
 }
 
-struct Soseedy_AssignmentOverride: SwiftProtobuf.Message {
+extension Soseedy_AssignmentOverride: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".AssignmentOverride"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "id"),
+    2: .same(proto: "assignmentId"),
+    3: .same(proto: "title"),
+    4: .same(proto: "studentIds"),
+    5: .same(proto: "groupId"),
+    6: .same(proto: "courseSectionId"),
+    7: .same(proto: "dueAt"),
+    8: .same(proto: "unlockAt"),
+    9: .same(proto: "lockAt"),
+  ]
 
-  var id: Int64 = 0
-
-  var assignmentID: Int64 = 0
-
-  var title: String = String()
-
-  var studentIds: [Int64] = []
-
-  var groupID: Int64 = 0
-
-  var courseSectionID: Int64 = 0
-
-  var dueAt: String = String()
-
-  var unlockAt: String = String()
-
-  var lockAt: String = String()
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -768,10 +1003,6 @@ struct Soseedy_AssignmentOverride: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.id != 0 {
       try visitor.visitSingularInt64Field(value: self.id, fieldNumber: 1)
@@ -802,29 +1033,32 @@ struct Soseedy_AssignmentOverride: SwiftProtobuf.Message {
     }
     try unknownFields.traverse(visitor: &visitor)
   }
+
+  func _protobuf_generated_isEqualTo(other: Soseedy_AssignmentOverride) -> Bool {
+    if self.id != other.id {return false}
+    if self.assignmentID != other.assignmentID {return false}
+    if self.title != other.title {return false}
+    if self.studentIds != other.studentIds {return false}
+    if self.groupID != other.groupID {return false}
+    if self.courseSectionID != other.courseSectionID {return false}
+    if self.dueAt != other.dueAt {return false}
+    if self.unlockAt != other.unlockAt {return false}
+    if self.lockAt != other.lockAt {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
 }
 
-struct Soseedy_CourseAssignmentSubmission: SwiftProtobuf.Message {
+extension Soseedy_CourseAssignmentSubmission: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".CourseAssignmentSubmission"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "id"),
+    2: .same(proto: "body"),
+    3: .same(proto: "url"),
+    4: .same(proto: "submissionComments"),
+    5: .same(proto: "attachments"),
+  ]
 
-  var id: Int64 = 0
-
-  var body: String = String()
-
-  var url: String = String()
-
-  var submissionComments: [Soseedy_Comment] = []
-
-  var attachments: [Soseedy_Attachment] = []
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -838,10 +1072,6 @@ struct Soseedy_CourseAssignmentSubmission: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.id != 0 {
       try visitor.visitSingularInt64Field(value: self.id, fieldNumber: 1)
@@ -860,331 +1090,6 @@ struct Soseedy_CourseAssignmentSubmission: SwiftProtobuf.Message {
     }
     try unknownFields.traverse(visitor: &visitor)
   }
-}
-
-struct Soseedy_Comment: SwiftProtobuf.Message {
-  static let protoMessageName: String = _protobuf_package + ".Comment"
-
-  var authorName: String = String()
-
-  var comment: String = String()
-
-  var attachments: [Soseedy_Attachment] = []
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.authorName)
-      case 2: try decoder.decodeSingularStringField(value: &self.comment)
-      case 3: try decoder.decodeRepeatedMessageField(value: &self.attachments)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.authorName.isEmpty {
-      try visitor.visitSingularStringField(value: self.authorName, fieldNumber: 1)
-    }
-    if !self.comment.isEmpty {
-      try visitor.visitSingularStringField(value: self.comment, fieldNumber: 2)
-    }
-    if !self.attachments.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.attachments, fieldNumber: 3)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-}
-
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "soseedy"
-
-extension Soseedy_FileType: SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "TEXT"),
-    1: .same(proto: "PDF"),
-    3: .same(proto: "NONE"),
-  ]
-}
-
-extension Soseedy_SubmissionType: SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "NO_TYPE"),
-    1: .same(proto: "ON_PAPER"),
-    2: .same(proto: "ONLINE_QUIZ"),
-    3: .same(proto: "ONLINE_UPLOAD"),
-    4: .same(proto: "ONLINE_TEXT_ENTRY"),
-    5: .same(proto: "ONLINE_URL"),
-    6: .same(proto: "EXTERNAL_TOOL"),
-    7: .same(proto: "DISCUSSION_TOPIC"),
-  ]
-}
-
-extension Soseedy_CreateAssignmentRequest: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "courseId"),
-    2: .same(proto: "withDescription"),
-    3: .same(proto: "lockAt"),
-    4: .same(proto: "unlockAt"),
-    5: .same(proto: "dueAt"),
-    6: .same(proto: "submissionTypes"),
-    7: .same(proto: "teacherToken"),
-    8: .same(proto: "groupCategoryId"),
-  ]
-
-  func _protobuf_generated_isEqualTo(other: Soseedy_CreateAssignmentRequest) -> Bool {
-    if self.courseID != other.courseID {return false}
-    if self.withDescription != other.withDescription {return false}
-    if self.lockAt != other.lockAt {return false}
-    if self.unlockAt != other.unlockAt {return false}
-    if self.dueAt != other.dueAt {return false}
-    if self.submissionTypes != other.submissionTypes {return false}
-    if self.teacherToken != other.teacherToken {return false}
-    if self.groupCategoryID != other.groupCategoryID {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Soseedy_CreateAssignmentOverrideRequest: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "courseId"),
-    2: .same(proto: "assignmentId"),
-    3: .same(proto: "token"),
-    4: .same(proto: "studentIds"),
-    5: .same(proto: "groupId"),
-    6: .same(proto: "courseSectionId"),
-    7: .same(proto: "dueAt"),
-    8: .same(proto: "unlockAt"),
-    9: .same(proto: "lockAt"),
-  ]
-
-  func _protobuf_generated_isEqualTo(other: Soseedy_CreateAssignmentOverrideRequest) -> Bool {
-    if self.courseID != other.courseID {return false}
-    if self.assignmentID != other.assignmentID {return false}
-    if self.token != other.token {return false}
-    if self.studentIds != other.studentIds {return false}
-    if self.groupID != other.groupID {return false}
-    if self.courseSectionID != other.courseSectionID {return false}
-    if self.dueAt != other.dueAt {return false}
-    if self.unlockAt != other.unlockAt {return false}
-    if self.lockAt != other.lockAt {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Soseedy_SubmitCourseAssignmentRequest: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "submissionType"),
-    2: .same(proto: "courseId"),
-    3: .same(proto: "assignmentId"),
-    4: .same(proto: "studentToken"),
-    5: .same(proto: "body"),
-    6: .same(proto: "url"),
-    7: .same(proto: "fileIds"),
-  ]
-
-  func _protobuf_generated_isEqualTo(other: Soseedy_SubmitCourseAssignmentRequest) -> Bool {
-    if self.submissionType != other.submissionType {return false}
-    if self.courseID != other.courseID {return false}
-    if self.assignmentID != other.assignmentID {return false}
-    if self.studentToken != other.studentToken {return false}
-    if self.body != other.body {return false}
-    if self.url != other.url {return false}
-    if self.fileIds != other.fileIds {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Soseedy_CreateCourseAssignmentCommentRequest: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "courseId"),
-    2: .same(proto: "assignmentId"),
-    3: .same(proto: "studentToken"),
-    4: .same(proto: "fileIds"),
-  ]
-
-  func _protobuf_generated_isEqualTo(other: Soseedy_CreateCourseAssignmentCommentRequest) -> Bool {
-    if self.courseID != other.courseID {return false}
-    if self.assignmentID != other.assignmentID {return false}
-    if self.studentToken != other.studentToken {return false}
-    if self.fileIds != other.fileIds {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Soseedy_SeedAssignmentRequest: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "courseId"),
-    2: .same(proto: "assignments"),
-    3: .same(proto: "withDescription"),
-    4: .same(proto: "lockAt"),
-    5: .same(proto: "unlockAt"),
-    6: .same(proto: "dueAt"),
-    7: .same(proto: "submissionTypes"),
-    8: .same(proto: "teacherToken"),
-  ]
-
-  func _protobuf_generated_isEqualTo(other: Soseedy_SeedAssignmentRequest) -> Bool {
-    if self.courseID != other.courseID {return false}
-    if self.assignments != other.assignments {return false}
-    if self.withDescription != other.withDescription {return false}
-    if self.lockAt != other.lockAt {return false}
-    if self.unlockAt != other.unlockAt {return false}
-    if self.dueAt != other.dueAt {return false}
-    if self.submissionTypes != other.submissionTypes {return false}
-    if self.teacherToken != other.teacherToken {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Soseedy_SeedAssignmentSubmissionRequest: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "assignmentId"),
-    2: .same(proto: "courseId"),
-    3: .same(proto: "studentToken"),
-    4: .same(proto: "submissionSeeds"),
-    5: .same(proto: "commentSeeds"),
-  ]
-
-  func _protobuf_generated_isEqualTo(other: Soseedy_SeedAssignmentSubmissionRequest) -> Bool {
-    if self.assignmentID != other.assignmentID {return false}
-    if self.courseID != other.courseID {return false}
-    if self.studentToken != other.studentToken {return false}
-    if self.submissionSeeds != other.submissionSeeds {return false}
-    if self.commentSeeds != other.commentSeeds {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Soseedy_SubmissionSeed: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "submissionType"),
-    2: .same(proto: "amount"),
-    3: .same(proto: "fileType"),
-    4: .same(proto: "attachments"),
-  ]
-
-  func _protobuf_generated_isEqualTo(other: Soseedy_SubmissionSeed) -> Bool {
-    if self.submissionType != other.submissionType {return false}
-    if self.amount != other.amount {return false}
-    if self.fileType != other.fileType {return false}
-    if self.attachments != other.attachments {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Soseedy_CommentSeed: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "amount"),
-    2: .same(proto: "fileType"),
-    3: .same(proto: "attachments"),
-  ]
-
-  func _protobuf_generated_isEqualTo(other: Soseedy_CommentSeed) -> Bool {
-    if self.amount != other.amount {return false}
-    if self.fileType != other.fileType {return false}
-    if self.attachments != other.attachments {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Soseedy_Assignment: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "id"),
-    2: .same(proto: "name"),
-    3: .same(proto: "published"),
-  ]
-
-  func _protobuf_generated_isEqualTo(other: Soseedy_Assignment) -> Bool {
-    if self.id != other.id {return false}
-    if self.name != other.name {return false}
-    if self.published != other.published {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Soseedy_Assignments: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "assignments"),
-  ]
-
-  func _protobuf_generated_isEqualTo(other: Soseedy_Assignments) -> Bool {
-    if self.assignments != other.assignments {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Soseedy_SeededCourseAssignmentSubmissions: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "submissions"),
-  ]
-
-  func _protobuf_generated_isEqualTo(other: Soseedy_SeededCourseAssignmentSubmissions) -> Bool {
-    if self.submissions != other.submissions {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Soseedy_AssignmentOverride: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "id"),
-    2: .same(proto: "assignmentId"),
-    3: .same(proto: "title"),
-    4: .same(proto: "studentIds"),
-    5: .same(proto: "groupId"),
-    6: .same(proto: "courseSectionId"),
-    7: .same(proto: "dueAt"),
-    8: .same(proto: "unlockAt"),
-    9: .same(proto: "lockAt"),
-  ]
-
-  func _protobuf_generated_isEqualTo(other: Soseedy_AssignmentOverride) -> Bool {
-    if self.id != other.id {return false}
-    if self.assignmentID != other.assignmentID {return false}
-    if self.title != other.title {return false}
-    if self.studentIds != other.studentIds {return false}
-    if self.groupID != other.groupID {return false}
-    if self.courseSectionID != other.courseSectionID {return false}
-    if self.dueAt != other.dueAt {return false}
-    if self.unlockAt != other.unlockAt {return false}
-    if self.lockAt != other.lockAt {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Soseedy_CourseAssignmentSubmission: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "id"),
-    2: .same(proto: "body"),
-    3: .same(proto: "url"),
-    4: .same(proto: "submissionComments"),
-    5: .same(proto: "attachments"),
-  ]
 
   func _protobuf_generated_isEqualTo(other: Soseedy_CourseAssignmentSubmission) -> Bool {
     if self.id != other.id {return false}
@@ -1197,12 +1102,37 @@ extension Soseedy_CourseAssignmentSubmission: SwiftProtobuf._MessageImplementati
   }
 }
 
-extension Soseedy_Comment: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Soseedy_Comment: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".Comment"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "authorName"),
     2: .same(proto: "comment"),
     3: .same(proto: "attachments"),
   ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.authorName)
+      case 2: try decoder.decodeSingularStringField(value: &self.comment)
+      case 3: try decoder.decodeRepeatedMessageField(value: &self.attachments)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.authorName.isEmpty {
+      try visitor.visitSingularStringField(value: self.authorName, fieldNumber: 1)
+    }
+    if !self.comment.isEmpty {
+      try visitor.visitSingularStringField(value: self.comment, fieldNumber: 2)
+    }
+    if !self.attachments.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.attachments, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
 
   func _protobuf_generated_isEqualTo(other: Soseedy_Comment) -> Bool {
     if self.authorName != other.authorName {return false}

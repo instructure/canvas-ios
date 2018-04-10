@@ -4,13 +4,13 @@
 <dict>
 	<key>files</key>
 	<dict>
-		<key>Headers/CgRPC.h</key>
+		<key>Headers/cgrpc.h</key>
 		<data>
-		MjTRirzVakn88plopSGRXnJBtc4=
+		E64/aIehwmyus667nxMJWMsWy1w=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		rPgqkLRhc6cZvnfKbmEfo5DjLc4=
+		5t++EQAJDeWspacTwIxmXXKeUO4=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -19,15 +19,15 @@
 	</dict>
 	<key>files2</key>
 	<dict>
-		<key>Headers/CgRPC.h</key>
+		<key>Headers/cgrpc.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			MjTRirzVakn88plopSGRXnJBtc4=
+			E64/aIehwmyus667nxMJWMsWy1w=
 			</data>
 			<key>hash2</key>
 			<data>
-			xFSik1AMAOvXRCF4MyRxuOeVExb0PZ6Gn6Xd5/KWX5Q=
+			cbxxWExo1k/yjP4nyanYfPEOPhTsX2OWXz/jfF0LidI=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

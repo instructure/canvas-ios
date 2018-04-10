@@ -1,18 +1,18 @@
 PODS:
-  - AFNetworking (3.1.0):
-    - AFNetworking/NSURLSession (= 3.1.0)
-    - AFNetworking/Reachability (= 3.1.0)
-    - AFNetworking/Security (= 3.1.0)
-    - AFNetworking/Serialization (= 3.1.0)
-    - AFNetworking/UIKit (= 3.1.0)
-  - AFNetworking/NSURLSession (3.1.0):
+  - AFNetworking (3.2.0):
+    - AFNetworking/NSURLSession (= 3.2.0)
+    - AFNetworking/Reachability (= 3.2.0)
+    - AFNetworking/Security (= 3.2.0)
+    - AFNetworking/Serialization (= 3.2.0)
+    - AFNetworking/UIKit (= 3.2.0)
+  - AFNetworking/NSURLSession (3.2.0):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.1.0)
-  - AFNetworking/Security (3.1.0)
-  - AFNetworking/Serialization (3.1.0)
-  - AFNetworking/UIKit (3.1.0):
+  - AFNetworking/Reachability (3.2.0)
+  - AFNetworking/Security (3.2.0)
+  - AFNetworking/Serialization (3.2.0)
+  - AFNetworking/UIKit (3.2.0):
     - AFNetworking/NSURLSession
   - BugsnagReactNative (2.9.1):
     - BugsnagReactNative/Core (= 2.9.1)
@@ -28,18 +28,18 @@ PODS:
   - CocoaLumberjack/Default (3.4.1)
   - CocoaLumberjack/Extensions (3.4.1):
     - CocoaLumberjack/Default
-  - Crashlytics (3.8.6):
-    - Fabric (~> 1.6.3)
-  - DeviceKit (1.4.0)
-  - EarlGrey (1.12.1)
+  - Crashlytics (3.10.1):
+    - Fabric (~> 1.7.5)
+  - DeviceKit (1.6.0)
+  - EarlGrey (1.13.0)
   - Eureka (3.0.0)
-  - Fabric (1.6.13)
+  - Fabric (1.7.6)
   - FirebaseAnalytics (3.9.0):
     - FirebaseCore (~> 3.6)
     - FirebaseInstanceID (~> 1.0)
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
   - FirebaseCore (3.6.0):
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
   - FirebaseInstanceID (1.0.10):
     - FirebaseCore (~> 3.6)
   - FXKeychain (1.5.3)
@@ -49,9 +49,9 @@ PODS:
   - Google/Core (3.1.0):
     - FirebaseAnalytics (~> 3.2)
   - GoogleAnalytics (3.17.0)
-  - GoogleToolboxForMac/Defines (2.1.1)
-  - GoogleToolboxForMac/NSData+zlib (2.1.1):
-    - GoogleToolboxForMac/Defines (= 2.1.1)
+  - GoogleToolboxForMac/Defines (2.1.3)
+  - "GoogleToolboxForMac/NSData+zlib (2.1.3)":
+    - GoogleToolboxForMac/Defines (= 2.1.3)
   - Interactable (0.0.9):
     - React
   - JSTokenField (1.1)
@@ -138,16 +138,16 @@ PODS:
     - RNSound/Core (= 0.10.4)
   - RNSound/Core (0.10.4):
     - React/Core
-  - SDWebImage (4.1.0):
-    - SDWebImage/Core (= 4.1.0)
-  - SDWebImage/Core (4.1.0)
+  - SDWebImage (4.3.3):
+    - SDWebImage/Core (= 4.3.3)
+  - SDWebImage/Core (4.3.3)
   - SVGKit (2.0.1):
     - CocoaLumberjack (~> 3.x)
-  - SVProgressHUD (2.2.1)
+  - SVProgressHUD (2.2.5)
   - SwiftProtobuf (0.9.905)
   - SwiftSimplify (0.2.0)
   - TBBModal (1.0.2)
-  - TPKeyboardAvoiding (1.3.1)
+  - TPKeyboardAvoiding (1.3.2)
   - yoga (0.51.0.React)
 
 DEPENDENCIES:
@@ -211,74 +211,109 @@ DEPENDENCIES:
   - TPKeyboardAvoiding (~> 1.3)
   - yoga (from `./rn/Teacher/node_modules/react-native/ReactCommon/yoga`)
 
+SPEC REPOS:
+  "git@github.com:instructure/ios-podspecs.git":
+    - JSTokenField
+  https://github.com/CocoaPods/Specs.git:
+    - AFNetworking
+    - Cartography
+    - CocoaLumberjack
+    - Crashlytics
+    - DeviceKit
+    - EarlGrey
+    - Fabric
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseInstanceID
+    - FXKeychain
+    - Google
+    - GoogleAnalytics
+    - GoogleToolboxForMac
+    - Kingfisher
+    - Mantle
+    - Marshal
+    - Masonry
+    - Reachability
+    - ReactiveCocoa
+    - ReactiveObjC
+    - ReactiveObjCBridge
+    - ReactiveSwift
+    - Result
+    - SDWebImage
+    - SVProgressHUD
+    - SwiftProtobuf
+    - SwiftSimplify
+    - TBBModal
+    - TPKeyboardAvoiding
+
 EXTERNAL SOURCES:
   BugsnagReactNative:
-    :path: ./rn/Teacher/node_modules/bugsnag-react-native
+    :path: "./rn/Teacher/node_modules/bugsnag-react-native"
   BVLinearGradient:
-    :path: ./rn/Teacher/node_modules/react-native-linear-gradient
+    :path: "./rn/Teacher/node_modules/react-native-linear-gradient"
   Eureka:
     :branch: feature/Xcode9-Swift3_2
     :git: https://github.com/xmartlabs/Eureka
   Interactable:
-    :path: ./rn/Teacher/node_modules/react-native-interactable
+    :path: "./rn/Teacher/node_modules/react-native-interactable"
   PSPDFKit:
     :podspec: https://customers.pspdfkit.com/cocoapods/8YzxfVzsGsqs4HKYsejmoeD6WEJ9ma/pspdfkit/7.3.1.podspec
   RCTSFSafariViewController:
-    :path: ./rn/Teacher/node_modules/react-native-sfsafariviewcontroller
+    :path: "./rn/Teacher/node_modules/react-native-sfsafariviewcontroller"
   React:
-    :path: ./rn/Teacher/node_modules/react-native/
+    :path: "./rn/Teacher/node_modules/react-native/"
   react-native-blur:
-    :path: ./rn/Teacher/node_modules/react-native-blur
+    :path: "./rn/Teacher/node_modules/react-native-blur"
   react-native-camera:
-    :path: ./rn/Teacher/node_modules/react-native-camera
+    :path: "./rn/Teacher/node_modules/react-native-camera"
   react-native-document-picker:
-    :path: ./rn/Teacher/node_modules/react-native-document-picker
+    :path: "./rn/Teacher/node_modules/react-native-document-picker"
   react-native-image-picker:
-    :path: ./rn/Teacher/node_modules/react-native-image-picker
+    :path: "./rn/Teacher/node_modules/react-native-image-picker"
   react-native-mail:
-    :path: ./rn/Teacher/node_modules/react-native-mail
+    :path: "./rn/Teacher/node_modules/react-native-mail"
   ReactNativeSearchBar:
-    :path: ./rn/Teacher/node_modules/react-native-search-bar
+    :path: "./rn/Teacher/node_modules/react-native-search-bar"
   RNAudio:
-    :path: ./rn/Teacher/node_modules/react-native-audio
+    :path: "./rn/Teacher/node_modules/react-native-audio"
   RNDeviceInfo:
-    :path: ./rn/Teacher/node_modules/react-native-device-info
+    :path: "./rn/Teacher/node_modules/react-native-device-info"
   RNFS:
-    :path: ./rn/Teacher/node_modules/react-native-fs
+    :path: "./rn/Teacher/node_modules/react-native-fs"
   RNSound:
-    :path: ./rn/Teacher/node_modules/react-native-sound
+    :path: "./rn/Teacher/node_modules/react-native-sound"
   SVGKit:
     :branch: 2.x
     :git: https://github.com/SVGKit/SVGKit.git
   yoga:
-    :path: ./rn/Teacher/node_modules/react-native/ReactCommon/yoga
+    :path: "./rn/Teacher/node_modules/react-native/ReactCommon/yoga"
 
 CHECKOUT OPTIONS:
   Eureka:
     :commit: 05acfb04c24a480f1868e671d19b39e0f22fc265
     :git: https://github.com/xmartlabs/Eureka
   SVGKit:
-    :commit: 34781db59cb2c97a1c66067cd8847c6c512ccdd6
+    :commit: 0799e49c6ccd387888c5a6592b93f8b42e41bfeb
     :git: https://github.com/SVGKit/SVGKit.git
 
 SPEC CHECKSUMS:
-  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  AFNetworking: 8ac6017b94ea105479f7776e5288e48ae9c59bb4
   BugsnagReactNative: 0b7626917d3612281d07aea84e5041f123290fee
   BVLinearGradient: 4b3f3bdf1ac1a52a5ef5e65c9585d793a7c3f825
   Cartography: 0538ccb4044acbbda2266335fc58cb4228794d90
   CocoaLumberjack: 2e258a064cacc8eb9a2aca318e24d02a0a7fd56d
-  Crashlytics: 95d05f4e4c19a771250c4bd9ce344d996de32bbf
-  DeviceKit: fa74d97499660e88081718b16688e19217595dba
-  EarlGrey: f7774b813c888ebdb9a21e612d67874d17d5a326
+  Crashlytics: aee1a064cbbf99b32efa3f056a5f458d846bc8ff
+  DeviceKit: 3de509f9db7ae93bf676da5e97b945517bc957cd
+  EarlGrey: 9c50bc1f8e47e361dc2fe2053288bdcaebf9a3e5
   Eureka: 5b9418d7bfdc21ca977d69d124a6409f3e9af2c7
-  Fabric: 2fb5676bc811af011a04513451f463dac6803206
+  Fabric: f8d42c893bb187326a7968b62abe55c36a987a46
   FirebaseAnalytics: e5fe8486efc01bec33f6bf82e2fa9fce4b124052
   FirebaseCore: 9691ee2ade70c098d7cf92440f4303f16d83ca75
   FirebaseInstanceID: b9eedd6846fb5e1f0f7279e1deaa7a7e4cf8392e
   FXKeychain: 2fe54573946ffef634f4e2a2851e6c8f4ea15e76
   Google: 98da4b1a60ed0beb80a290387a28333406a1eb90
   GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
-  GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
+  GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   Interactable: b69c171636bec426b3010e0fc3ef59212ce09dd6
   JSTokenField: f619bc91e942f05b2bf4e67fe46aabd9e7891f5a
   Kingfisher: ed9707a409cc47fddafbcd12a43a9757e3600af5
@@ -304,15 +339,15 @@ SPEC CHECKSUMS:
   RNDeviceInfo: b375b3374cda3203d6d48cea8c07e46ba1169e26
   RNFS: fefeffc4f25a76144c1b53dc0a3258cf64c99962
   RNSound: d0818fe2435254fe30540fae48a429c5ffb72e09
-  SDWebImage: 0e435c14e402a6730315a0fb79f95e68654d55a4
+  SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   SVGKit: 4055d9e809b5db8633755979cfb3b02dc5a8c20d
-  SVProgressHUD: db27c54e6e18bc903341661fc9feb55e04905cc4
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftProtobuf: 9dfa3d4109cf844241d5d055885d5c24cfa9ccdc
   SwiftSimplify: 374ead1c360c6e236539543d6ce5b3abda011080
   TBBModal: 376820c480cac24b262c2e10c0178c67bb288390
-  TPKeyboardAvoiding: 0d6af20e95e2850f4c621841225b59ec7d8dd852
+  TPKeyboardAvoiding: cb69d5ddbe90ce0170e4bc2db1e5e41d4a3ad9a4
   yoga: 17521bbb0dd54a47c0b3ac43253e78cdac7488e0
 
 PODFILE CHECKSUM: 1f8bea098a18b8aca0b6d1f6c9feafb0eb30172a
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.0

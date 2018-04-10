@@ -4,13 +4,74 @@
 <dict>
 	<key>files</key>
 	<dict>
+		<key>Headers/Commander-Swift.h</key>
+		<data>
+		z0FGywOOVO3weoEQ9F+zNCjMKPE=
+		</data>
 		<key>Info.plist</key>
 		<data>
-		Jkaluv6S3HNsgn5kII243gJHE2M=
+		vuLWaYtPVqZ4l4rUBu7HLTZlFJg=
+		</data>
+		<key>Modules/Commander.swiftmodule/x86_64.swiftdoc</key>
+		<data>
+		7IOS7Vug9RSgDTOBYWevbSxqLE8=
+		</data>
+		<key>Modules/Commander.swiftmodule/x86_64.swiftmodule</key>
+		<data>
+		pSb5VFMW0hACr+O3qgKSyKHhkUE=
+		</data>
+		<key>Modules/module.modulemap</key>
+		<data>
+		Hd4grWORPr0hoNFxQpxrQcbcohk=
 		</data>
 	</dict>
 	<key>files2</key>
-	<dict/>
+	<dict>
+		<key>Headers/Commander-Swift.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			z0FGywOOVO3weoEQ9F+zNCjMKPE=
+			</data>
+			<key>hash2</key>
+			<data>
+			hTn7aNwO+8S+H2YOdgPRoG3taw8NaDn38KejA6xY66U=
+			</data>
+		</dict>
+		<key>Modules/Commander.swiftmodule/x86_64.swiftdoc</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			7IOS7Vug9RSgDTOBYWevbSxqLE8=
+			</data>
+			<key>hash2</key>
+			<data>
+			UPgOGJrClmoVA94jA5Mk8OY9JtpSTYWABtZHAuHXXwo=
+			</data>
+		</dict>
+		<key>Modules/Commander.swiftmodule/x86_64.swiftmodule</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			pSb5VFMW0hACr+O3qgKSyKHhkUE=
+			</data>
+			<key>hash2</key>
+			<data>
+			HLnZdKh9IEu4s8qrvDA7gwGTjk6rtN/HSh7cfw/L0hc=
+			</data>
+		</dict>
+		<key>Modules/module.modulemap</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			Hd4grWORPr0hoNFxQpxrQcbcohk=
+			</data>
+			<key>hash2</key>
+			<data>
+			Js975ew3Fnztf4Q6UD3HLtSZ1F0hMtHTWU1soF52ggc=
+			</data>
+		</dict>
+	</dict>
 	<key>rules</key>
 	<dict>
 		<key>^</key>

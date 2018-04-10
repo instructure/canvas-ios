@@ -19,8 +19,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-struct Soseedy_CreateQuizRequest: SwiftProtobuf.Message {
-  static let protoMessageName: String = _protobuf_package + ".CreateQuizRequest"
+struct Soseedy_CreateQuizRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   var courseID: Int64 = 0
 
@@ -39,11 +41,196 @@ struct Soseedy_CreateQuizRequest: SwiftProtobuf.Message {
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
+}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
+struct Soseedy_CreateQuizSubmissionRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var courseID: Int64 = 0
+
+  var quizID: Int64 = 0
+
+  var studentToken: String = String()
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Soseedy_CompleteQuizSubmissionRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var courseID: Int64 = 0
+
+  var quizID: Int64 = 0
+
+  var submissionID: Int64 = 0
+
+  var attempt: Int64 = 0
+
+  var validationToken: String = String()
+
+  var studentToken: String = String()
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Soseedy_CreateQuizQuestionRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var courseID: Int64 = 0
+
+  var quizID: Int64 = 0
+
+  var teacherToken: String = String()
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Soseedy_PublishQuizRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var courseID: Int64 = 0
+
+  var quizID: Int64 = 0
+
+  var teacherToken: String = String()
+
+  var published: Bool = false
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Soseedy_SeedQuizzesRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var courseID: Int64 = 0
+
+  var quizzes: Int32 = 0
+
+  var withDescription: Bool = false
+
+  var lockAt: String = String()
+
+  var unlockAt: String = String()
+
+  var dueAt: String = String()
+
+  var published: Bool = false
+
+  var token: String = String()
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Soseedy_SeedQuizSubmissionRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var courseID: Int64 = 0
+
+  var quizID: Int64 = 0
+
+  var studentToken: String = String()
+
+  var complete: Bool = false
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Soseedy_Quiz {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var id: Int64 = 0
+
+  var title: String = String()
+
+  var published: Bool = false
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Soseedy_QuizSubmission {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var id: Int64 = 0
+
+  var attempt: Int64 = 0
+
+  var validationToken: String = String()
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Soseedy_CreateQuizQuestionResponse {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var id: Int64 = 0
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Soseedy_Quizzes {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var quizzes: [Soseedy_Quiz] = []
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "soseedy"
+
+extension Soseedy_CreateQuizRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".CreateQuizRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "courseId"),
+    2: .same(proto: "withDescription"),
+    3: .same(proto: "lockAt"),
+    4: .same(proto: "unlockAt"),
+    5: .same(proto: "dueAt"),
+    6: .same(proto: "published"),
+    7: .same(proto: "token"),
+  ]
+
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -59,10 +246,6 @@ struct Soseedy_CreateQuizRequest: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.courseID != 0 {
       try visitor.visitSingularInt64Field(value: self.courseID, fieldNumber: 1)
@@ -87,25 +270,28 @@ struct Soseedy_CreateQuizRequest: SwiftProtobuf.Message {
     }
     try unknownFields.traverse(visitor: &visitor)
   }
+
+  func _protobuf_generated_isEqualTo(other: Soseedy_CreateQuizRequest) -> Bool {
+    if self.courseID != other.courseID {return false}
+    if self.withDescription != other.withDescription {return false}
+    if self.lockAt != other.lockAt {return false}
+    if self.unlockAt != other.unlockAt {return false}
+    if self.dueAt != other.dueAt {return false}
+    if self.published != other.published {return false}
+    if self.token != other.token {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
 }
 
-struct Soseedy_CreateQuizSubmissionRequest: SwiftProtobuf.Message {
+extension Soseedy_CreateQuizSubmissionRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".CreateQuizSubmissionRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "courseId"),
+    2: .same(proto: "quizId"),
+    3: .same(proto: "studentToken"),
+  ]
 
-  var courseID: Int64 = 0
-
-  var quizID: Int64 = 0
-
-  var studentToken: String = String()
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -117,10 +303,6 @@ struct Soseedy_CreateQuizSubmissionRequest: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.courseID != 0 {
       try visitor.visitSingularInt64Field(value: self.courseID, fieldNumber: 1)
@@ -133,31 +315,27 @@ struct Soseedy_CreateQuizSubmissionRequest: SwiftProtobuf.Message {
     }
     try unknownFields.traverse(visitor: &visitor)
   }
+
+  func _protobuf_generated_isEqualTo(other: Soseedy_CreateQuizSubmissionRequest) -> Bool {
+    if self.courseID != other.courseID {return false}
+    if self.quizID != other.quizID {return false}
+    if self.studentToken != other.studentToken {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
 }
 
-struct Soseedy_CompleteQuizSubmissionRequest: SwiftProtobuf.Message {
+extension Soseedy_CompleteQuizSubmissionRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".CompleteQuizSubmissionRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "courseId"),
+    2: .same(proto: "quizId"),
+    3: .same(proto: "submissionId"),
+    4: .same(proto: "attempt"),
+    5: .same(proto: "validationToken"),
+    6: .same(proto: "studentToken"),
+  ]
 
-  var courseID: Int64 = 0
-
-  var quizID: Int64 = 0
-
-  var submissionID: Int64 = 0
-
-  var attempt: Int64 = 0
-
-  var validationToken: String = String()
-
-  var studentToken: String = String()
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -172,10 +350,6 @@ struct Soseedy_CompleteQuizSubmissionRequest: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.courseID != 0 {
       try visitor.visitSingularInt64Field(value: self.courseID, fieldNumber: 1)
@@ -197,25 +371,27 @@ struct Soseedy_CompleteQuizSubmissionRequest: SwiftProtobuf.Message {
     }
     try unknownFields.traverse(visitor: &visitor)
   }
+
+  func _protobuf_generated_isEqualTo(other: Soseedy_CompleteQuizSubmissionRequest) -> Bool {
+    if self.courseID != other.courseID {return false}
+    if self.quizID != other.quizID {return false}
+    if self.submissionID != other.submissionID {return false}
+    if self.attempt != other.attempt {return false}
+    if self.validationToken != other.validationToken {return false}
+    if self.studentToken != other.studentToken {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
 }
 
-struct Soseedy_CreateQuizQuestionRequest: SwiftProtobuf.Message {
+extension Soseedy_CreateQuizQuestionRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".CreateQuizQuestionRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "courseId"),
+    2: .same(proto: "quizId"),
+    3: .same(proto: "teacherToken"),
+  ]
 
-  var courseID: Int64 = 0
-
-  var quizID: Int64 = 0
-
-  var teacherToken: String = String()
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -227,10 +403,6 @@ struct Soseedy_CreateQuizQuestionRequest: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.courseID != 0 {
       try visitor.visitSingularInt64Field(value: self.courseID, fieldNumber: 1)
@@ -243,27 +415,25 @@ struct Soseedy_CreateQuizQuestionRequest: SwiftProtobuf.Message {
     }
     try unknownFields.traverse(visitor: &visitor)
   }
+
+  func _protobuf_generated_isEqualTo(other: Soseedy_CreateQuizQuestionRequest) -> Bool {
+    if self.courseID != other.courseID {return false}
+    if self.quizID != other.quizID {return false}
+    if self.teacherToken != other.teacherToken {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
 }
 
-struct Soseedy_PublishQuizRequest: SwiftProtobuf.Message {
+extension Soseedy_PublishQuizRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".PublishQuizRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "courseId"),
+    2: .same(proto: "quizId"),
+    3: .same(proto: "teacherToken"),
+    4: .same(proto: "published"),
+  ]
 
-  var courseID: Int64 = 0
-
-  var quizID: Int64 = 0
-
-  var teacherToken: String = String()
-
-  var published: Bool = false
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -276,10 +446,6 @@ struct Soseedy_PublishQuizRequest: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.courseID != 0 {
       try visitor.visitSingularInt64Field(value: self.courseID, fieldNumber: 1)
@@ -295,35 +461,30 @@ struct Soseedy_PublishQuizRequest: SwiftProtobuf.Message {
     }
     try unknownFields.traverse(visitor: &visitor)
   }
+
+  func _protobuf_generated_isEqualTo(other: Soseedy_PublishQuizRequest) -> Bool {
+    if self.courseID != other.courseID {return false}
+    if self.quizID != other.quizID {return false}
+    if self.teacherToken != other.teacherToken {return false}
+    if self.published != other.published {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
 }
 
-struct Soseedy_SeedQuizzesRequest: SwiftProtobuf.Message {
+extension Soseedy_SeedQuizzesRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".SeedQuizzesRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "courseId"),
+    2: .same(proto: "quizzes"),
+    3: .same(proto: "withDescription"),
+    4: .same(proto: "lockAt"),
+    5: .same(proto: "unlockAt"),
+    6: .same(proto: "dueAt"),
+    7: .same(proto: "published"),
+    8: .same(proto: "token"),
+  ]
 
-  var courseID: Int64 = 0
-
-  var quizzes: Int32 = 0
-
-  var withDescription: Bool = false
-
-  var lockAt: String = String()
-
-  var unlockAt: String = String()
-
-  var dueAt: String = String()
-
-  var published: Bool = false
-
-  var token: String = String()
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -340,10 +501,6 @@ struct Soseedy_SeedQuizzesRequest: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.courseID != 0 {
       try visitor.visitSingularInt64Field(value: self.courseID, fieldNumber: 1)
@@ -371,331 +528,6 @@ struct Soseedy_SeedQuizzesRequest: SwiftProtobuf.Message {
     }
     try unknownFields.traverse(visitor: &visitor)
   }
-}
-
-struct Soseedy_SeedQuizSubmissionRequest: SwiftProtobuf.Message {
-  static let protoMessageName: String = _protobuf_package + ".SeedQuizSubmissionRequest"
-
-  var courseID: Int64 = 0
-
-  var quizID: Int64 = 0
-
-  var studentToken: String = String()
-
-  var complete: Bool = false
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularInt64Field(value: &self.courseID)
-      case 2: try decoder.decodeSingularInt64Field(value: &self.quizID)
-      case 3: try decoder.decodeSingularStringField(value: &self.studentToken)
-      case 4: try decoder.decodeSingularBoolField(value: &self.complete)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.courseID != 0 {
-      try visitor.visitSingularInt64Field(value: self.courseID, fieldNumber: 1)
-    }
-    if self.quizID != 0 {
-      try visitor.visitSingularInt64Field(value: self.quizID, fieldNumber: 2)
-    }
-    if !self.studentToken.isEmpty {
-      try visitor.visitSingularStringField(value: self.studentToken, fieldNumber: 3)
-    }
-    if self.complete != false {
-      try visitor.visitSingularBoolField(value: self.complete, fieldNumber: 4)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-}
-
-struct Soseedy_Quiz: SwiftProtobuf.Message {
-  static let protoMessageName: String = _protobuf_package + ".Quiz"
-
-  var id: Int64 = 0
-
-  var title: String = String()
-
-  var published: Bool = false
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularInt64Field(value: &self.id)
-      case 2: try decoder.decodeSingularStringField(value: &self.title)
-      case 3: try decoder.decodeSingularBoolField(value: &self.published)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.id != 0 {
-      try visitor.visitSingularInt64Field(value: self.id, fieldNumber: 1)
-    }
-    if !self.title.isEmpty {
-      try visitor.visitSingularStringField(value: self.title, fieldNumber: 2)
-    }
-    if self.published != false {
-      try visitor.visitSingularBoolField(value: self.published, fieldNumber: 3)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-}
-
-struct Soseedy_QuizSubmission: SwiftProtobuf.Message {
-  static let protoMessageName: String = _protobuf_package + ".QuizSubmission"
-
-  var id: Int64 = 0
-
-  var attempt: Int64 = 0
-
-  var validationToken: String = String()
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularInt64Field(value: &self.id)
-      case 2: try decoder.decodeSingularInt64Field(value: &self.attempt)
-      case 3: try decoder.decodeSingularStringField(value: &self.validationToken)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.id != 0 {
-      try visitor.visitSingularInt64Field(value: self.id, fieldNumber: 1)
-    }
-    if self.attempt != 0 {
-      try visitor.visitSingularInt64Field(value: self.attempt, fieldNumber: 2)
-    }
-    if !self.validationToken.isEmpty {
-      try visitor.visitSingularStringField(value: self.validationToken, fieldNumber: 3)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-}
-
-struct Soseedy_CreateQuizQuestionResponse: SwiftProtobuf.Message {
-  static let protoMessageName: String = _protobuf_package + ".CreateQuizQuestionResponse"
-
-  var id: Int64 = 0
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularInt64Field(value: &self.id)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.id != 0 {
-      try visitor.visitSingularInt64Field(value: self.id, fieldNumber: 1)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-}
-
-struct Soseedy_Quizzes: SwiftProtobuf.Message {
-  static let protoMessageName: String = _protobuf_package + ".Quizzes"
-
-  var quizzes: [Soseedy_Quiz] = []
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeRepeatedMessageField(value: &self.quizzes)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.quizzes.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.quizzes, fieldNumber: 1)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-}
-
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "soseedy"
-
-extension Soseedy_CreateQuizRequest: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "courseId"),
-    2: .same(proto: "withDescription"),
-    3: .same(proto: "lockAt"),
-    4: .same(proto: "unlockAt"),
-    5: .same(proto: "dueAt"),
-    6: .same(proto: "published"),
-    7: .same(proto: "token"),
-  ]
-
-  func _protobuf_generated_isEqualTo(other: Soseedy_CreateQuizRequest) -> Bool {
-    if self.courseID != other.courseID {return false}
-    if self.withDescription != other.withDescription {return false}
-    if self.lockAt != other.lockAt {return false}
-    if self.unlockAt != other.unlockAt {return false}
-    if self.dueAt != other.dueAt {return false}
-    if self.published != other.published {return false}
-    if self.token != other.token {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Soseedy_CreateQuizSubmissionRequest: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "courseId"),
-    2: .same(proto: "quizId"),
-    3: .same(proto: "studentToken"),
-  ]
-
-  func _protobuf_generated_isEqualTo(other: Soseedy_CreateQuizSubmissionRequest) -> Bool {
-    if self.courseID != other.courseID {return false}
-    if self.quizID != other.quizID {return false}
-    if self.studentToken != other.studentToken {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Soseedy_CompleteQuizSubmissionRequest: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "courseId"),
-    2: .same(proto: "quizId"),
-    3: .same(proto: "submissionId"),
-    4: .same(proto: "attempt"),
-    5: .same(proto: "validationToken"),
-    6: .same(proto: "studentToken"),
-  ]
-
-  func _protobuf_generated_isEqualTo(other: Soseedy_CompleteQuizSubmissionRequest) -> Bool {
-    if self.courseID != other.courseID {return false}
-    if self.quizID != other.quizID {return false}
-    if self.submissionID != other.submissionID {return false}
-    if self.attempt != other.attempt {return false}
-    if self.validationToken != other.validationToken {return false}
-    if self.studentToken != other.studentToken {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Soseedy_CreateQuizQuestionRequest: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "courseId"),
-    2: .same(proto: "quizId"),
-    3: .same(proto: "teacherToken"),
-  ]
-
-  func _protobuf_generated_isEqualTo(other: Soseedy_CreateQuizQuestionRequest) -> Bool {
-    if self.courseID != other.courseID {return false}
-    if self.quizID != other.quizID {return false}
-    if self.teacherToken != other.teacherToken {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Soseedy_PublishQuizRequest: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "courseId"),
-    2: .same(proto: "quizId"),
-    3: .same(proto: "teacherToken"),
-    4: .same(proto: "published"),
-  ]
-
-  func _protobuf_generated_isEqualTo(other: Soseedy_PublishQuizRequest) -> Bool {
-    if self.courseID != other.courseID {return false}
-    if self.quizID != other.quizID {return false}
-    if self.teacherToken != other.teacherToken {return false}
-    if self.published != other.published {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Soseedy_SeedQuizzesRequest: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "courseId"),
-    2: .same(proto: "quizzes"),
-    3: .same(proto: "withDescription"),
-    4: .same(proto: "lockAt"),
-    5: .same(proto: "unlockAt"),
-    6: .same(proto: "dueAt"),
-    7: .same(proto: "published"),
-    8: .same(proto: "token"),
-  ]
 
   func _protobuf_generated_isEqualTo(other: Soseedy_SeedQuizzesRequest) -> Bool {
     if self.courseID != other.courseID {return false}
@@ -711,13 +543,42 @@ extension Soseedy_SeedQuizzesRequest: SwiftProtobuf._MessageImplementationBase, 
   }
 }
 
-extension Soseedy_SeedQuizSubmissionRequest: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Soseedy_SeedQuizSubmissionRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".SeedQuizSubmissionRequest"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "courseId"),
     2: .same(proto: "quizId"),
     3: .same(proto: "studentToken"),
     4: .same(proto: "complete"),
   ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt64Field(value: &self.courseID)
+      case 2: try decoder.decodeSingularInt64Field(value: &self.quizID)
+      case 3: try decoder.decodeSingularStringField(value: &self.studentToken)
+      case 4: try decoder.decodeSingularBoolField(value: &self.complete)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.courseID != 0 {
+      try visitor.visitSingularInt64Field(value: self.courseID, fieldNumber: 1)
+    }
+    if self.quizID != 0 {
+      try visitor.visitSingularInt64Field(value: self.quizID, fieldNumber: 2)
+    }
+    if !self.studentToken.isEmpty {
+      try visitor.visitSingularStringField(value: self.studentToken, fieldNumber: 3)
+    }
+    if self.complete != false {
+      try visitor.visitSingularBoolField(value: self.complete, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
 
   func _protobuf_generated_isEqualTo(other: Soseedy_SeedQuizSubmissionRequest) -> Bool {
     if self.courseID != other.courseID {return false}
@@ -729,12 +590,37 @@ extension Soseedy_SeedQuizSubmissionRequest: SwiftProtobuf._MessageImplementatio
   }
 }
 
-extension Soseedy_Quiz: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Soseedy_Quiz: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".Quiz"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .same(proto: "title"),
     3: .same(proto: "published"),
   ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt64Field(value: &self.id)
+      case 2: try decoder.decodeSingularStringField(value: &self.title)
+      case 3: try decoder.decodeSingularBoolField(value: &self.published)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.id != 0 {
+      try visitor.visitSingularInt64Field(value: self.id, fieldNumber: 1)
+    }
+    if !self.title.isEmpty {
+      try visitor.visitSingularStringField(value: self.title, fieldNumber: 2)
+    }
+    if self.published != false {
+      try visitor.visitSingularBoolField(value: self.published, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
 
   func _protobuf_generated_isEqualTo(other: Soseedy_Quiz) -> Bool {
     if self.id != other.id {return false}
@@ -745,12 +631,37 @@ extension Soseedy_Quiz: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf.
   }
 }
 
-extension Soseedy_QuizSubmission: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Soseedy_QuizSubmission: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".QuizSubmission"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .same(proto: "attempt"),
     3: .same(proto: "validationToken"),
   ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt64Field(value: &self.id)
+      case 2: try decoder.decodeSingularInt64Field(value: &self.attempt)
+      case 3: try decoder.decodeSingularStringField(value: &self.validationToken)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.id != 0 {
+      try visitor.visitSingularInt64Field(value: self.id, fieldNumber: 1)
+    }
+    if self.attempt != 0 {
+      try visitor.visitSingularInt64Field(value: self.attempt, fieldNumber: 2)
+    }
+    if !self.validationToken.isEmpty {
+      try visitor.visitSingularStringField(value: self.validationToken, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
 
   func _protobuf_generated_isEqualTo(other: Soseedy_QuizSubmission) -> Bool {
     if self.id != other.id {return false}
@@ -761,10 +672,27 @@ extension Soseedy_QuizSubmission: SwiftProtobuf._MessageImplementationBase, Swif
   }
 }
 
-extension Soseedy_CreateQuizQuestionResponse: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Soseedy_CreateQuizQuestionResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".CreateQuizQuestionResponse"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
   ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt64Field(value: &self.id)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.id != 0 {
+      try visitor.visitSingularInt64Field(value: self.id, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
 
   func _protobuf_generated_isEqualTo(other: Soseedy_CreateQuizQuestionResponse) -> Bool {
     if self.id != other.id {return false}
@@ -773,10 +701,27 @@ extension Soseedy_CreateQuizQuestionResponse: SwiftProtobuf._MessageImplementati
   }
 }
 
-extension Soseedy_Quizzes: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Soseedy_Quizzes: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".Quizzes"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "quizzes"),
   ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeRepeatedMessageField(value: &self.quizzes)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.quizzes.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.quizzes, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
 
   func _protobuf_generated_isEqualTo(other: Soseedy_Quizzes) -> Bool {
     if self.quizzes != other.quizzes {return false}

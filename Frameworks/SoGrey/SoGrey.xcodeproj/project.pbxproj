@@ -176,7 +176,6 @@
 				49E21B0F1D1C694D00B7B9B4 /* Frameworks */,
 				49E21B101D1C694D00B7B9B4 /* Headers */,
 				49E21B111D1C694D00B7B9B4 /* Resources */,
-				2A0A43F6E597CF5C721FA138 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -230,21 +229,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2A0A43F6E597CF5C721FA138 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../../Pods/Target Support Files/Pods-defaults-SoGrey/Pods-defaults-SoGrey-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		7E2E3059477F4F5D36A5AF8B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

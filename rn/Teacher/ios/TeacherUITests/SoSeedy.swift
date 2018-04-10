@@ -10,19 +10,19 @@ import Foundation
 
 let address = "localhost:50051"
 let secure = false
-let assignmentsClient = Soseedy_SeedyAssignmentsService(address: address, secure: secure)
-let conversationsClient = Soseedy_SeedyConversationsService(address: address, secure: secure)
-let coursesClient = Soseedy_SeedyCoursesService(address: address, secure: secure)
-let discussionsClient = Soseedy_SeedyDiscussionsService(address: address, secure: secure)
-let enrollmentsClient = Soseedy_SeedyEnrollmentsService(address: address, secure: secure)
-let filesClient = Soseedy_SeedyFilesService(address: address, secure: secure)
-let generalClient = Soseedy_SeedyGeneralService(address: address, secure: secure)
-let gradingPeriodsClient = Soseedy_SeedyGradingPeriodsService(address: address, secure: secure)
-let groupsClient = Soseedy_SeedyGroupsService(address: address, secure: secure)
-let pagesClient = Soseedy_SeedyPagesService(address: address, secure: secure)
-let quizzesClient = Soseedy_SeedyQuizzesService(address: address, secure: secure)
-let sectionsClient = Soseedy_SeedySectionsService(address: address, secure: secure)
-let usersClient = Soseedy_SeedyUsersService(address: address, secure: secure)
+let assignmentsClient = Soseedy_SeedyAssignmentsServiceClient(address: address, secure: secure)
+let conversationsClient = Soseedy_SeedyConversationsServiceClient(address: address, secure: secure)
+let coursesClient = Soseedy_SeedyCoursesServiceClient(address: address, secure: secure)
+let discussionsClient = Soseedy_SeedyDiscussionsServiceClient(address: address, secure: secure)
+let enrollmentsClient = Soseedy_SeedyEnrollmentsServiceClient(address: address, secure: secure)
+let filesClient = Soseedy_SeedyFilesServiceClient(address: address, secure: secure)
+let generalClient = Soseedy_SeedyGeneralServiceClient(address: address, secure: secure)
+let gradingPeriodsClient = Soseedy_SeedyGradingPeriodsServiceClient(address: address, secure: secure)
+let groupsClient = Soseedy_SeedyGroupsServiceClient(address: address, secure: secure)
+let pagesClient = Soseedy_SeedyPagesServiceClient(address: address, secure: secure)
+let quizzesClient = Soseedy_SeedyQuizzesServiceClient(address: address, secure: secure)
+let sectionsClient = Soseedy_SeedySectionsServiceClient(address: address, secure: secure)
+let usersClient = Soseedy_SeedyUsersServiceClient(address: address, secure: secure)
 
 // MARK: - Enrollments
 
@@ -35,7 +35,7 @@ enum EnrollmentType: String {
     enrollRequest.courseID = course.id
     enrollRequest.userID = user.id
     enrollRequest.enrollmentType = type.rawValue
-    return try! enrollmentsClient.enrolluserincourse(enrollRequest)
+    return try! enrollmentsClient.enrollUserInCourse(enrollRequest)
 }
 
 func enroll(_ user: Soseedy_CanvasUser, as type: EnrollmentType, inAll courses: [Soseedy_Course]) -> [Soseedy_Enrollment] {
@@ -43,7 +43,7 @@ func enroll(_ user: Soseedy_CanvasUser, as type: EnrollmentType, inAll courses: 
 }
 
 func createUser() -> Soseedy_CanvasUser {
-    return try! usersClient.createcanvasuser(Soseedy_CreateCanvasUserRequest())
+    return try! usersClient.createCanvasUser(Soseedy_CreateCanvasUserRequest())
 }
 
 func createTeacher(in course: Soseedy_Course = createCourse()) -> Soseedy_CanvasUser {
@@ -61,14 +61,14 @@ func createTeacher(inAll courses: [Soseedy_Course]) -> Soseedy_CanvasUser {
 // MARK: - Courses
 
 @discardableResult func createCourse() -> Soseedy_Course {
-    return try! coursesClient.createcourse(Soseedy_CreateCourseRequest())
+    return try! coursesClient.createCourse(Soseedy_CreateCourseRequest())
 }
 
 @discardableResult func favorite(_ course: Soseedy_Course, as user: Soseedy_CanvasUser) -> Soseedy_Favorite {
     var request = Soseedy_AddFavoriteCourseRequest()
     request.courseID = course.id
     request.token = user.token
-    return try! coursesClient.addfavoritecourse(request)
+    return try! coursesClient.addFavoriteCourse(request)
 }
 
 // MARK: - Assignments
@@ -87,5 +87,5 @@ func createAssignment(for course: Soseedy_Course = createCourse(), as teacher: S
     request.teacherToken = teacher.token
     request.withDescription = withDescription
     request.submissionTypes = submissionTypes
-    return try! assignmentsClient.createassignment(request)
+    return try! assignmentsClient.createAssignment(request)
 }

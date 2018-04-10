@@ -19,8 +19,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-struct Soseedy_CreateCourseGroupCategoryRequest: SwiftProtobuf.Message {
-  static let protoMessageName: String = _protobuf_package + ".CreateCourseGroupCategoryRequest"
+struct Soseedy_CreateCourseGroupCategoryRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   var courseID: Int64 = 0
 
@@ -29,38 +31,12 @@ struct Soseedy_CreateCourseGroupCategoryRequest: SwiftProtobuf.Message {
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularInt64Field(value: &self.courseID)
-      case 2: try decoder.decodeSingularStringField(value: &self.teacherToken)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.courseID != 0 {
-      try visitor.visitSingularInt64Field(value: self.courseID, fieldNumber: 1)
-    }
-    if !self.teacherToken.isEmpty {
-      try visitor.visitSingularStringField(value: self.teacherToken, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
-struct Soseedy_CreateGroupRequest: SwiftProtobuf.Message {
-  static let protoMessageName: String = _protobuf_package + ".CreateGroupRequest"
+struct Soseedy_CreateGroupRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   var groupCategoryID: Int64 = 0
 
@@ -69,38 +45,12 @@ struct Soseedy_CreateGroupRequest: SwiftProtobuf.Message {
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularInt64Field(value: &self.groupCategoryID)
-      case 2: try decoder.decodeSingularStringField(value: &self.teacherToken)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.groupCategoryID != 0 {
-      try visitor.visitSingularInt64Field(value: self.groupCategoryID, fieldNumber: 1)
-    }
-    if !self.teacherToken.isEmpty {
-      try visitor.visitSingularStringField(value: self.teacherToken, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
-struct Soseedy_CreateGroupMembershipRequest: SwiftProtobuf.Message {
-  static let protoMessageName: String = _protobuf_package + ".CreateGroupMembershipRequest"
+struct Soseedy_CreateGroupMembershipRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   var groupID: Int64 = 0
 
@@ -111,42 +61,12 @@ struct Soseedy_CreateGroupMembershipRequest: SwiftProtobuf.Message {
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularInt64Field(value: &self.groupID)
-      case 2: try decoder.decodeSingularInt64Field(value: &self.userID)
-      case 3: try decoder.decodeSingularStringField(value: &self.teacherToken)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.groupID != 0 {
-      try visitor.visitSingularInt64Field(value: self.groupID, fieldNumber: 1)
-    }
-    if self.userID != 0 {
-      try visitor.visitSingularInt64Field(value: self.userID, fieldNumber: 2)
-    }
-    if !self.teacherToken.isEmpty {
-      try visitor.visitSingularStringField(value: self.teacherToken, fieldNumber: 3)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
-struct Soseedy_GroupCategory: SwiftProtobuf.Message {
-  static let protoMessageName: String = _protobuf_package + ".GroupCategory"
+struct Soseedy_GroupCategory {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   var id: Int64 = 0
 
@@ -157,42 +77,12 @@ struct Soseedy_GroupCategory: SwiftProtobuf.Message {
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularInt64Field(value: &self.id)
-      case 2: try decoder.decodeSingularStringField(value: &self.name)
-      case 3: try decoder.decodeSingularStringField(value: &self.contextType)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.id != 0 {
-      try visitor.visitSingularInt64Field(value: self.id, fieldNumber: 1)
-    }
-    if !self.name.isEmpty {
-      try visitor.visitSingularStringField(value: self.name, fieldNumber: 2)
-    }
-    if !self.contextType.isEmpty {
-      try visitor.visitSingularStringField(value: self.contextType, fieldNumber: 3)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
-struct Soseedy_Group: SwiftProtobuf.Message {
-  static let protoMessageName: String = _protobuf_package + ".Group"
+struct Soseedy_Group {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   var id: Int64 = 0
 
@@ -209,11 +99,193 @@ struct Soseedy_Group: SwiftProtobuf.Message {
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
+}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
+struct Soseedy_GroupMembership {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var id: Int64 = 0
+
+  var groupID: Int64 = 0
+
+  var userID: Int64 = 0
+
+  var workflowState: String = String()
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "soseedy"
+
+extension Soseedy_CreateCourseGroupCategoryRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".CreateCourseGroupCategoryRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "courseId"),
+    2: .same(proto: "teacherToken"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt64Field(value: &self.courseID)
+      case 2: try decoder.decodeSingularStringField(value: &self.teacherToken)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.courseID != 0 {
+      try visitor.visitSingularInt64Field(value: self.courseID, fieldNumber: 1)
+    }
+    if !self.teacherToken.isEmpty {
+      try visitor.visitSingularStringField(value: self.teacherToken, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  func _protobuf_generated_isEqualTo(other: Soseedy_CreateCourseGroupCategoryRequest) -> Bool {
+    if self.courseID != other.courseID {return false}
+    if self.teacherToken != other.teacherToken {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Soseedy_CreateGroupRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".CreateGroupRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "groupCategoryId"),
+    2: .same(proto: "teacherToken"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt64Field(value: &self.groupCategoryID)
+      case 2: try decoder.decodeSingularStringField(value: &self.teacherToken)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.groupCategoryID != 0 {
+      try visitor.visitSingularInt64Field(value: self.groupCategoryID, fieldNumber: 1)
+    }
+    if !self.teacherToken.isEmpty {
+      try visitor.visitSingularStringField(value: self.teacherToken, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  func _protobuf_generated_isEqualTo(other: Soseedy_CreateGroupRequest) -> Bool {
+    if self.groupCategoryID != other.groupCategoryID {return false}
+    if self.teacherToken != other.teacherToken {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Soseedy_CreateGroupMembershipRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".CreateGroupMembershipRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "groupId"),
+    2: .same(proto: "userId"),
+    3: .same(proto: "teacherToken"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt64Field(value: &self.groupID)
+      case 2: try decoder.decodeSingularInt64Field(value: &self.userID)
+      case 3: try decoder.decodeSingularStringField(value: &self.teacherToken)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.groupID != 0 {
+      try visitor.visitSingularInt64Field(value: self.groupID, fieldNumber: 1)
+    }
+    if self.userID != 0 {
+      try visitor.visitSingularInt64Field(value: self.userID, fieldNumber: 2)
+    }
+    if !self.teacherToken.isEmpty {
+      try visitor.visitSingularStringField(value: self.teacherToken, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  func _protobuf_generated_isEqualTo(other: Soseedy_CreateGroupMembershipRequest) -> Bool {
+    if self.groupID != other.groupID {return false}
+    if self.userID != other.userID {return false}
+    if self.teacherToken != other.teacherToken {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Soseedy_GroupCategory: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".GroupCategory"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "id"),
+    2: .same(proto: "name"),
+    3: .same(proto: "contextType"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt64Field(value: &self.id)
+      case 2: try decoder.decodeSingularStringField(value: &self.name)
+      case 3: try decoder.decodeSingularStringField(value: &self.contextType)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.id != 0 {
+      try visitor.visitSingularInt64Field(value: self.id, fieldNumber: 1)
+    }
+    if !self.name.isEmpty {
+      try visitor.visitSingularStringField(value: self.name, fieldNumber: 2)
+    }
+    if !self.contextType.isEmpty {
+      try visitor.visitSingularStringField(value: self.contextType, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  func _protobuf_generated_isEqualTo(other: Soseedy_GroupCategory) -> Bool {
+    if self.id != other.id {return false}
+    if self.name != other.name {return false}
+    if self.contextType != other.contextType {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Soseedy_Group: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".Group"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "id"),
+    2: .same(proto: "name"),
+    3: .same(proto: "description"),
+    4: .same(proto: "contextType"),
+    5: .same(proto: "courseId"),
+    6: .same(proto: "groupCategoryId"),
+  ]
+
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -228,10 +300,6 @@ struct Soseedy_Group: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.id != 0 {
       try visitor.visitSingularInt64Field(value: self.id, fieldNumber: 1)
@@ -253,27 +321,28 @@ struct Soseedy_Group: SwiftProtobuf.Message {
     }
     try unknownFields.traverse(visitor: &visitor)
   }
+
+  func _protobuf_generated_isEqualTo(other: Soseedy_Group) -> Bool {
+    if self.id != other.id {return false}
+    if self.name != other.name {return false}
+    if self.description_p != other.description_p {return false}
+    if self.contextType != other.contextType {return false}
+    if self.courseID != other.courseID {return false}
+    if self.groupCategoryID != other.groupCategoryID {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
 }
 
-struct Soseedy_GroupMembership: SwiftProtobuf.Message {
+extension Soseedy_GroupMembership: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".GroupMembership"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "id"),
+    2: .same(proto: "groupId"),
+    3: .same(proto: "userId"),
+    4: .same(proto: "workflowState"),
+  ]
 
-  var id: Int64 = 0
-
-  var groupID: Int64 = 0
-
-  var userID: Int64 = 0
-
-  var workflowState: String = String()
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -286,10 +355,6 @@ struct Soseedy_GroupMembership: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.id != 0 {
       try visitor.visitSingularInt64Field(value: self.id, fieldNumber: 1)
@@ -305,101 +370,6 @@ struct Soseedy_GroupMembership: SwiftProtobuf.Message {
     }
     try unknownFields.traverse(visitor: &visitor)
   }
-}
-
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "soseedy"
-
-extension Soseedy_CreateCourseGroupCategoryRequest: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "courseId"),
-    2: .same(proto: "teacherToken"),
-  ]
-
-  func _protobuf_generated_isEqualTo(other: Soseedy_CreateCourseGroupCategoryRequest) -> Bool {
-    if self.courseID != other.courseID {return false}
-    if self.teacherToken != other.teacherToken {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Soseedy_CreateGroupRequest: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "groupCategoryId"),
-    2: .same(proto: "teacherToken"),
-  ]
-
-  func _protobuf_generated_isEqualTo(other: Soseedy_CreateGroupRequest) -> Bool {
-    if self.groupCategoryID != other.groupCategoryID {return false}
-    if self.teacherToken != other.teacherToken {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Soseedy_CreateGroupMembershipRequest: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "groupId"),
-    2: .same(proto: "userId"),
-    3: .same(proto: "teacherToken"),
-  ]
-
-  func _protobuf_generated_isEqualTo(other: Soseedy_CreateGroupMembershipRequest) -> Bool {
-    if self.groupID != other.groupID {return false}
-    if self.userID != other.userID {return false}
-    if self.teacherToken != other.teacherToken {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Soseedy_GroupCategory: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "id"),
-    2: .same(proto: "name"),
-    3: .same(proto: "contextType"),
-  ]
-
-  func _protobuf_generated_isEqualTo(other: Soseedy_GroupCategory) -> Bool {
-    if self.id != other.id {return false}
-    if self.name != other.name {return false}
-    if self.contextType != other.contextType {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Soseedy_Group: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "id"),
-    2: .same(proto: "name"),
-    3: .same(proto: "description"),
-    4: .same(proto: "contextType"),
-    5: .same(proto: "courseId"),
-    6: .same(proto: "groupCategoryId"),
-  ]
-
-  func _protobuf_generated_isEqualTo(other: Soseedy_Group) -> Bool {
-    if self.id != other.id {return false}
-    if self.name != other.name {return false}
-    if self.description_p != other.description_p {return false}
-    if self.contextType != other.contextType {return false}
-    if self.courseID != other.courseID {return false}
-    if self.groupCategoryID != other.groupCategoryID {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Soseedy_GroupMembership: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "id"),
-    2: .same(proto: "groupId"),
-    3: .same(proto: "userId"),
-    4: .same(proto: "workflowState"),
-  ]
 
   func _protobuf_generated_isEqualTo(other: Soseedy_GroupMembership) -> Bool {
     if self.id != other.id {return false}
