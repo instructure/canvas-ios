@@ -54,7 +54,7 @@ public func GREYAssertEqualObjects<T: Equatable>( _ left: @autoclosure () -> T?,
 }
 
 public func GREYAssertNotEqualObjects<T: Equatable>( _ left: @autoclosure () -> T?,
-                                                     _ right: @autoclosure () -> T?, reason: String) {
+                                      _ right: @autoclosure () -> T?, reason: String) {
   GREYAssert(left() != right(), reason, details: "Expected object of the left term to not" +
     " equal the object of the right term")
 }
@@ -101,7 +101,7 @@ open class EarlGrey: NSObject {
                                    file: StaticString = #file,
                                    line: UInt = #line) -> GREYInteraction {
     return EarlGreyImpl.invoked(fromFile: file.description, lineNumber: line)
-      .selectElement(with: matcher)
+             .selectElement(with: matcher)
   }
 
   @available(*, deprecated, renamed: "selectElement(with:)")
@@ -109,22 +109,22 @@ open class EarlGrey: NSObject {
                          file: StaticString = #file,
                          line: UInt = #line) -> GREYElementInteraction {
     return EarlGreyImpl.invoked(fromFile: file.description, lineNumber: line)
-      .selectElement(with: matcher)
+             .selectElement(with: matcher)
   }
 
   open class func setFailureHandler(handler: GREYFailureHandler,
-                                    file: StaticString = #file,
-                                    line: UInt = #line) {
+                                      file: StaticString = #file,
+                                      line: UInt = #line) {
     return EarlGreyImpl.invoked(fromFile: file.description, lineNumber: line)
-      .setFailureHandler(handler)
+             .setFailureHandler(handler)
   }
 
   open class func handle(exception: GREYFrameworkException,
-                         details: String,
-                         file: StaticString = #file,
-                         line: UInt = #line) {
+                           details: String,
+                           file: StaticString = #file,
+                           line: UInt = #line) {
     return EarlGreyImpl.invoked(fromFile: file.description, lineNumber: line)
-      .handle(exception, details: details)
+             .handle(exception, details: details)
   }
 
   @discardableResult open class func rotateDeviceTo(orientation: UIDeviceOrientation,
@@ -132,9 +132,9 @@ open class EarlGrey: NSObject {
                                                     file: StaticString = #file,
                                                     line: UInt = #line)
     -> Bool {
-      return EarlGreyImpl.invoked(fromFile: file.description, lineNumber: line)
-        .rotateDevice(to: orientation,
-                      errorOrNil: errorOrNil)
+    return EarlGreyImpl.invoked(fromFile: file.description, lineNumber: line)
+             .rotateDevice(to: orientation,
+                           errorOrNil: errorOrNil)
   }
 }
 
@@ -181,6 +181,6 @@ extension GREYCondition {
 
   open func waitWithTimeout(seconds: CFTimeInterval, pollInterval: CFTimeInterval)
     -> Bool {
-      return self.wait(withTimeout: seconds, pollInterval: pollInterval)
+    return self.wait(withTimeout: seconds, pollInterval: pollInterval)
   }
 }

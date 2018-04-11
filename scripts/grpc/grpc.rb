@@ -31,13 +31,15 @@ end
 
 includes = includes.map {|path| "-I #{path}"}
 
-swift_dst = File.join(__dir__, '../../rn/Teacher/ios/TeacherUITests/soseedy')
+swift_dst = File.join(__dir__, '../../Frameworks/SoSeedySwift/SoSeedySwift/soseedy')
 FileUtils.rm_rf swift_dst
 FileUtils.mkdir_p swift_dst
 
 command_args = [
     "--plugin=protoc-gen-swift=#{swift_plugin}",
     "--plugin=protoc-gen-swiftgrpc=#{swiftgrpc_plugin}",
+    '--swiftgrpc_opt=Visibility=Public',
+    '--swift_opt=Visibility=Public',
     includes,
     soseedy_protos,
     %Q(--swift_out="#{swift_dst}"),

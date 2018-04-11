@@ -14,17 +14,19 @@
 // limitations under the License.
 //
 
+import SoSeedySwift
+
 class CourseListPageTest: TeacherTest {
 
     func testCourseListEmptyPage_displaysEmptyState() {
-        logIn2(createTeacher())
+        logIn2(SoSeedySwift.createTeacher())
         coursesListPage.assertEmptyStatePageObjects()
     }
 
     func testCourseListPage_displaysList() {
-        let course = createCourse()
-        let user = createTeacher(in: course)
-        favorite(course, as: user)
+        let course = SoSeedySwift.createCourse()
+        let user = SoSeedySwift.createTeacher(in: course)
+        SoSeedySwift.favorite(course, as: user)
         logIn2(user)
         coursesListPage.assertCourseExists(course)
     }

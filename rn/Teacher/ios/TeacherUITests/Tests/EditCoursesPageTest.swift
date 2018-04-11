@@ -14,6 +14,8 @@
 // limitations under the License.
 //
 
+import SoSeedySwift
+
 class EditCoursesPageTest: TeacherTest {
     var courses: [Soseedy_Course]!
 
@@ -32,9 +34,9 @@ class EditCoursesPageTest: TeacherTest {
     func getToEditCoursesPage(numCourses: Int = 1, numFavorites: Int = 0) {
         courses = []
         for _ in 0..<numCourses {
-            courses.append(createCourse())
+            courses.append(SoSeedySwift.createCourse())
         }
-        let teacher = createTeacher(inAll: courses)
+        let teacher = SoSeedySwift.createTeacher(inAll: courses)
         for i in 0..<numFavorites {
             favorite(courses[i], as: teacher)
         }

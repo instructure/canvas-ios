@@ -1,0 +1,9 @@
+StudentUITests:
+ - add_swift: false
+ - add_build_phase: false
+ - add_framework: false
+
+TeacherUITests:
+ - add_swift: false
+ - add_build_phase: false
+ - add_framework: false

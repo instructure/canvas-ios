@@ -14,6 +14,8 @@
 // limitations under the License.
 //
 
+import SoSeedySwift
+
 extension TeacherTest {
 
     enum submissionGraphTitleLabel: String {

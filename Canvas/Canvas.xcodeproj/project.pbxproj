@@ -13,6 +13,10 @@
 		2C0CAD6A1DEF6C30008D90FA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C0CAD6C1DEF6C30008D90FA /* InfoPlist.strings */; };
 		2C0CAD6F1DEF6C31008D90FA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C0CAD711DEF6C31008D90FA /* InfoPlist.strings */; };
 		2C0CAD751DEF6C33008D90FA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C0CAD771DEF6C33008D90FA /* InfoPlist.strings */; };
+		2C51D8D2207D605900CFBEAB /* SoGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C51D8D1207D605900CFBEAB /* SoGrey.framework */; };
+		2C51D8D4207D61B500CFBEAB /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C51D8D3207D61B500CFBEAB /* CanvasCore.framework */; };
+		2C51D8D5207D68BF00CFBEAB /* SoGrey.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C51D8D1207D605900CFBEAB /* SoGrey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2C51D8D6207D6AA800CFBEAB /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C51D8D3207D61B500CFBEAB /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2C6049611F72BB6900252BC5 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049621F72BB6900252BC5 /* CanvasCore.framework */; };
 		2C67B0C61E01F05A00DDD191 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C67B0C51E01F05A00DDD191 /* AssetsLibrary.framework */; };
 		2C67B0C81E01F05F00DDD191 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C67B0C71E01F05F00DDD191 /* CoreTelephony.framework */; };
@@ -601,6 +605,7 @@
 		61F438E31DD4E60B00552D14 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F438E21DD4E60B00552D14 /* AVFoundation.framework */; };
 		61F438E61DD667D900552D14 /* MLVCCollectionController+CBIRefresh.h in Headers */ = {isa = PBXBuildFile; fileRef = 61F438E41DD667D900552D14 /* MLVCCollectionController+CBIRefresh.h */; };
 		61F438E71DD667D900552D14 /* MLVCCollectionController+CBIRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F438E51DD667D900552D14 /* MLVCCollectionController+CBIRefresh.m */; };
+		629213C6A49D3799BCBAE7F2 /* Pods_defaults_common_ui_tests_StudentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1617CAD552082AC99A178C4E /* Pods_defaults_common_ui_tests_StudentUITests.framework */; };
 		7DC912E61FE1CC9200A76B14 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7DC912E81FE1CC9200A76B14 /* Localizable.strings */; };
 		7DC912EB1FE1CC9200A76B14 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7DC912ED1FE1CC9200A76B14 /* InfoPlist.strings */; };
 		8F363586CEA2A05378002836 /* Pods_GradesWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 651295DCB22A2B02F381D94B /* Pods_GradesWidget.framework */; };
@@ -624,6 +629,7 @@
 		B5A790BB1D8C743400ACA9FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5A790A61D8C743400ACA9FE /* Localizable.strings */; };
 		B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E212D51D88856B009D8C07 /* Localizable.strings */; };
 		B5F122C91D8C4D6C0045063A /* Canvas.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 49642BCA1CF4C66200238B3F /* Canvas.entitlements */; };
+		F9055CEF207D4CA30039C9F3 /* StudentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9055CEE207D4CA30039C9F3 /* StudentUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -648,9 +654,28 @@
 			remoteGlobalIDString = 49AA29161CF4D1880055862D;
 			remoteInfo = CanvasKit1;
 		};
+		F9055CF1207D4CA30039C9F3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4927046B1CF4AF7100C631C6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 492704721CF4AF7100C631C6;
+			remoteInfo = Canvas;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		2C51D8C7207D57AE00CFBEAB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2C51D8D5207D68BF00CFBEAB /* SoGrey.framework in Embed Frameworks */,
+				2C51D8D6207D6AA800CFBEAB /* CanvasCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3B6DCCB51FB502CE005EE8D2 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -686,6 +711,7 @@
 		04620E9714197D5A7E2A2FBF /* Pods_TechDebt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TechDebt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		09C21F6FBFA63D9B02B28CA3 /* Pods-defaults-Canvas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Canvas.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-Canvas/Pods-defaults-Canvas.release.xcconfig"; sourceTree = "<group>"; };
 		0DA5C940444CD8D6EE575C91 /* Pods-CanvasKit1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasKit1.release.xcconfig"; path = "../Pods/Target Support Files/Pods-CanvasKit1/Pods-CanvasKit1.release.xcconfig"; sourceTree = "<group>"; };
+		1617CAD552082AC99A178C4E /* Pods_defaults_common_ui_tests_StudentUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_common_ui_tests_StudentUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1624D39115A77E2B728908FB /* Pods_defaults_CanvasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_CanvasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C250EDA2321EF6AAC5611D3 /* Pods-CanvasTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-CanvasTests/Pods-CanvasTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2C0CAD661DEF6C2F008D90FA /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -705,6 +731,11 @@
 		2C0CAD821DEF6E5D008D90FA /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		2C0CAD831DEF6E5D008D90FA /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		2C0CAD841DEF6E5F008D90FA /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		2C51D8C8207D57D900CFBEAB /* SoGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoGrey.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AllTheThings-hkuxdlosjqseyiefrjcrjyxhdecy/Build/Products/Debug-iphonesimulator/SoGrey.framework"; sourceTree = "<group>"; };
+		2C51D8CA207D580A00CFBEAB /* SoGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoGrey.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AllTheThings-hkuxdlosjqseyiefrjcrjyxhdecy/Build/Products/Debug-iphonesimulator/SoGrey.framework"; sourceTree = "<group>"; };
+		2C51D8CC207D58B400CFBEAB /* SoGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoGrey.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AllTheThings-hkuxdlosjqseyiefrjcrjyxhdecy/Build/Products/Debug-iphoneos/SoGrey.framework"; sourceTree = "<group>"; };
+		2C51D8D1207D605900CFBEAB /* SoGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoGrey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C51D8D3207D61B500CFBEAB /* CanvasCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C6049621F72BB6900252BC5 /* CanvasCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C67B0C51E01F05A00DDD191 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		2C67B0C71E01F05F00DDD191 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -1252,6 +1283,7 @@
 		49F9FA581CF8CDC400654758 /* UIImage+TechDebt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+TechDebt.h"; sourceTree = "<group>"; };
 		49F9FA591CF8CDC400654758 /* UIImage+TechDebt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+TechDebt.m"; sourceTree = "<group>"; };
 		49F9FA6E1CF8FC8500654758 /* AppDelegate+Push.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Push.swift"; sourceTree = "<group>"; };
+		4D4A56960FAB1D20518EC6CD /* EarlGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EarlGrey.framework; path = Pods/EarlGrey/EarlGrey/EarlGrey.framework; sourceTree = SOURCE_ROOT; };
 		55719F36E10A651448BD4F1C /* Pods_CanvasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CanvasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E9595491D36CA2D00C86F93 /* CalendarEvent+Display.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CalendarEvent+Display.swift"; sourceTree = "<group>"; };
 		5EB46DBE1D21A75C00C859A4 /* NSDate+DayConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+DayConvenience.swift"; sourceTree = "<group>"; };
@@ -1304,6 +1336,7 @@
 		651295DCB22A2B02F381D94B /* Pods_GradesWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GradesWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		677E77AB5FD06818BC7C618D /* Pods-defaults-CanvasKit1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasKit1.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasKit1/Pods-defaults-CanvasKit1.debug.xcconfig"; sourceTree = "<group>"; };
 		6784CACE8F4CE3D651D62113 /* Pods_defaults_PreSubmissionAnnotations.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_PreSubmissionAnnotations.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		68EB67BC259EAA38000B1E9F /* Pods-defaults-common_ui_tests-StudentUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_ui_tests-StudentUITests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_ui_tests-StudentUITests/Pods-defaults-common_ui_tests-StudentUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6A41FB3501A555E20167FCFB /* Pods-defaults-PreSubmissionAnnotations.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-PreSubmissionAnnotations.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-PreSubmissionAnnotations/Pods-defaults-PreSubmissionAnnotations.release.xcconfig"; sourceTree = "<group>"; };
 		6F2A3A50F7E6F5904365BABE /* Pods_defaults_GradesWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_GradesWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D0C4EC21FE1CD3100AD3538 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -1372,6 +1405,7 @@
 		99747510483FA8853301B9F5 /* Pods-defaults-CanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasTests/Pods-defaults-CanvasTests.release.xcconfig"; sourceTree = "<group>"; };
 		9F61B52B205985A5009C0B13 /* CanvasAppDelegate+Helm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CanvasAppDelegate+Helm.swift"; sourceTree = "<group>"; };
 		A025F6634B44F7120D41717E /* Pods_defaults_common_tests_CanvasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_common_tests_CanvasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A13903D63AE70A2926A48F10 /* Pods-defaults-common_ui_tests-StudentUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_ui_tests-StudentUITests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_ui_tests-StudentUITests/Pods-defaults-common_ui_tests-StudentUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A65BB020C68267C1318E51E7 /* Pods-defaults-Canvas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Canvas.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-Canvas/Pods-defaults-Canvas.debug.xcconfig"; sourceTree = "<group>"; };
 		ACC9687F1D245768006AEAB1 /* Page+ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Page+ViewModel.swift"; sourceTree = "<group>"; };
 		B15737FF1D94C38C00ADBB85 /* ModuleItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleItemDetailViewController.swift; sourceTree = "<group>"; };
@@ -1560,6 +1594,9 @@
 		D8523687029A98FE14374D90 /* Pods-defaults-CanvasKit1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasKit1.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasKit1/Pods-defaults-CanvasKit1.release.xcconfig"; sourceTree = "<group>"; };
 		E95379D1460BDF2C6A9F2EEE /* Pods-defaults-TechDebt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-TechDebt.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-TechDebt/Pods-defaults-TechDebt.release.xcconfig"; sourceTree = "<group>"; };
 		F7E3E8394F9CF33081E5BAFC /* Pods-Canvas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canvas.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Canvas/Pods-Canvas.debug.xcconfig"; sourceTree = "<group>"; };
+		F9055CEC207D4CA30039C9F3 /* StudentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StudentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9055CEE207D4CA30039C9F3 /* StudentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentUITests.swift; sourceTree = "<group>"; };
+		F9055CF0207D4CA30039C9F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F9A705E826B362C3490B4183 /* Pods-defaults-common_tests-CanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_tests-CanvasTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_tests-CanvasTests/Pods-defaults-common_tests-CanvasTests.release.xcconfig"; sourceTree = "<group>"; };
 		FB53AA8A26564C052A94E885 /* Pods_defaults_TechDebt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_TechDebt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -1619,6 +1656,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F9055CE9207D4CA30039C9F3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C51D8D2207D605900CFBEAB /* SoGrey.framework in Frameworks */,
+				629213C6A49D3799BCBAE7F2 /* Pods_defaults_common_ui_tests_StudentUITests.framework in Frameworks */,
+				2C51D8D4207D61B500CFBEAB /* CanvasCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -1664,6 +1711,8 @@
 				6A41FB3501A555E20167FCFB /* Pods-defaults-PreSubmissionAnnotations.release.xcconfig */,
 				0315F9A3A7DA736D9A792FE8 /* Pods-GradesWidget.debug.xcconfig */,
 				43E5B38B510D37257C1FEFA6 /* Pods-GradesWidget.release.xcconfig */,
+				68EB67BC259EAA38000B1E9F /* Pods-defaults-common_ui_tests-StudentUITests.debug.xcconfig */,
+				A13903D63AE70A2926A48F10 /* Pods-defaults-common_ui_tests-StudentUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1682,11 +1731,15 @@
 		4927046A1CF4AF7100C631C6 = {
 			isa = PBXGroup;
 			children = (
+				2C51D8C8207D57D900CFBEAB /* SoGrey.framework */,
+				2C51D8CA207D580A00CFBEAB /* SoGrey.framework */,
+				2C51D8CC207D58B400CFBEAB /* SoGrey.framework */,
 				4927085D1CF4C33700C631C6 /* Dependencies */,
 				492704751CF4AF7100C631C6 /* Canvas */,
 				492704AC1CF4B6D700C631C6 /* TechDebt */,
 				49AA29181CF4D1880055862D /* CanvasKit1 */,
 				3B6DCCA81FB502CE005EE8D2 /* GradesWidget */,
+				F9055CED207D4CA30039C9F3 /* StudentUITests */,
 				492704741CF4AF7100C631C6 /* Products */,
 				5B0FCCDFB07A88D993D5871D /* Frameworks */,
 				3BFCA4310566C5CB96383521 /* Pods */,
@@ -1701,6 +1754,7 @@
 				492704AB1CF4B6D700C631C6 /* TechDebt.framework */,
 				49AA29171CF4D1880055862D /* CanvasKit1.framework */,
 				3B6DCCA51FB502CD005EE8D2 /* GradesWidget.appex */,
+				F9055CEC207D4CA30039C9F3 /* StudentUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2755,6 +2809,8 @@
 				3B6DCCA61FB502CE005EE8D2 /* NotificationCenter.framework */,
 				6F2A3A50F7E6F5904365BABE /* Pods_defaults_GradesWidget.framework */,
 				651295DCB22A2B02F381D94B /* Pods_GradesWidget.framework */,
+				4D4A56960FAB1D20518EC6CD /* EarlGrey.framework */,
+				1617CAD552082AC99A178C4E /* Pods_defaults_common_ui_tests_StudentUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2882,6 +2938,17 @@
 				B1FAE07A2005771A00CDA09C /* UIColor+Hex.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		F9055CED207D4CA30039C9F3 /* StudentUITests */ = {
+			isa = PBXGroup;
+			children = (
+				2C51D8D3207D61B500CFBEAB /* CanvasCore.framework */,
+				2C51D8D1207D605900CFBEAB /* SoGrey.framework */,
+				F9055CEE207D4CA30039C9F3 /* StudentUITests.swift */,
+				F9055CF0207D4CA30039C9F3 /* Info.plist */,
+			);
+			path = StudentUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -3182,13 +3249,34 @@
 			productReference = 49AA29171CF4D1880055862D /* CanvasKit1.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		F9055CEB207D4CA30039C9F3 /* StudentUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F9055CF5207D4CA30039C9F3 /* Build configuration list for PBXNativeTarget "StudentUITests" */;
+			buildPhases = (
+				1813CD78B05DCB1CBBF61149 /* [CP] Check Pods Manifest.lock */,
+				F9055CE8207D4CA30039C9F3 /* Sources */,
+				F9055CE9207D4CA30039C9F3 /* Frameworks */,
+				F9055CEA207D4CA30039C9F3 /* Resources */,
+				F677784A2F686B4CB78AB8A5 /* [CP] Embed Pods Frameworks */,
+				2C51D8C7207D57AE00CFBEAB /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F9055CF2207D4CA30039C9F3 /* PBXTargetDependency */,
+			);
+			name = StudentUITests;
+			productName = StudentUITests;
+			productReference = F9055CEC207D4CA30039C9F3 /* StudentUITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		4927046B1CF4AF7100C631C6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0910;
+				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = Instructure;
 				TargetAttributes = {
@@ -3237,6 +3325,12 @@
 						DevelopmentTeam = B6333T4PXQ;
 						LastSwiftMigration = 0800;
 					};
+					F9055CEB207D4CA30039C9F3 = {
+						CreatedOnToolsVersion = 9.2;
+						DevelopmentTeam = B6333T4PXQ;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 492704721CF4AF7100C631C6;
+					};
 				};
 			};
 			buildConfigurationList = 4927046E1CF4AF7100C631C6 /* Build configuration list for PBXProject "Canvas" */;
@@ -3275,6 +3369,7 @@
 				492704AA1CF4B6D700C631C6 /* TechDebt */,
 				49AA29161CF4D1880055862D /* CanvasKit1 */,
 				3B6DCCA41FB502CD005EE8D2 /* GradesWidget */,
+				F9055CEB207D4CA30039C9F3 /* StudentUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -3454,9 +3549,34 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F9055CEA207D4CA30039C9F3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1813CD78B05DCB1CBBF61149 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-defaults-common_ui_tests-StudentUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		420D38066A53E2683A07A16C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3673,6 +3793,112 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F677784A2F686B4CB78AB8A5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/../Pods/Target Support Files/Pods-defaults-common_ui_tests-StudentUITests/Pods-defaults-common_ui_tests-StudentUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/FXKeychain/FXKeychain.framework",
+				"${BUILT_PRODUCTS_DIR}/Mantle/Mantle.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework",
+				"${BUILT_PRODUCTS_DIR}/BVLinearGradient/BVLinearGradient.framework",
+				"${BUILT_PRODUCTS_DIR}/BugsnagReactNative/BugsnagReactNative.framework",
+				"${BUILT_PRODUCTS_DIR}/Cartography/Cartography.framework",
+				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
+				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
+				"${BUILT_PRODUCTS_DIR}/Interactable/Interactable.framework",
+				"${BUILT_PRODUCTS_DIR}/JSTokenField/JSTokenField.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${PODS_ROOT}/PSPDFKit/PSPDFKit.framework",
+				"${PODS_ROOT}/PSPDFKit/PSPDFKit.framework.dSYM",
+				"${PODS_ROOT}/PSPDFKit/PSPDFKitUI.framework",
+				"${PODS_ROOT}/PSPDFKit/PSPDFKitUI.framework.dSYM",
+				"${BUILT_PRODUCTS_DIR}/RCTSFSafariViewController/RCTSFSafariViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/RNAudio/RNAudio.framework",
+				"${BUILT_PRODUCTS_DIR}/RNDeviceInfo/RNDeviceInfo.framework",
+				"${BUILT_PRODUCTS_DIR}/RNFS/RNFS.framework",
+				"${BUILT_PRODUCTS_DIR}/RNSound/RNSound.framework",
+				"${BUILT_PRODUCTS_DIR}/Reachability/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/React/React.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactNativeSearchBar/ReactNativeSearchBar.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveObjCBridge/ReactiveObjCBridge.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SVGKit/SVGKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftSimplify/SwiftSimplify.framework",
+				"${BUILT_PRODUCTS_DIR}/TBBModal/TBBModal.framework",
+				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-blur/react_native_blur.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-camera/react_native_camera.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-document-picker/react_native_document_picker.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-image-picker/react_native_image_picker.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-mail/react_native_mail.framework",
+				"${BUILT_PRODUCTS_DIR}/yoga/yoga.framework",
+				"${PODS_ROOT}/EarlGrey/EarlGrey/EarlGrey.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftProtobuf/SwiftProtobuf.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FXKeychain.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mantle.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BVLinearGradient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BugsnagReactNative.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cartography.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Interactable.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSTokenField.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKit.framework",
+				"${DWARF_DSYM_FOLDER_PATH}/PSPDFKit.framework.dSYM",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKitUI.framework",
+				"${DWARF_DSYM_FOLDER_PATH}/PSPDFKitUI.framework.dSYM",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTSFSafariViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNAudio.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNDeviceInfo.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNFS.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNSound.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/React.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactNativeSearchBar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjCBridge.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVGKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSimplify.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TBBModal.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_blur.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_camera.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_document_picker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_image_picker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_mail.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/yoga.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EarlGrey.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftProtobuf.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-defaults-common_ui_tests-StudentUITests/Pods-defaults-common_ui_tests-StudentUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -3950,6 +4176,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F9055CE8207D4CA30039C9F3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9055CEF207D4CA30039C9F3 /* StudentUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -3967,6 +4201,11 @@
 			isa = PBXTargetDependency;
 			target = 49AA29161CF4D1880055862D /* CanvasKit1 */;
 			targetProxy = 49AA291C1CF4D1880055862D /* PBXContainerItemProxy */;
+		};
+		F9055CF2207D4CA30039C9F3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 492704721CF4AF7100C631C6 /* Canvas */;
+			targetProxy = F9055CF1207D4CA30039C9F3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -4642,6 +4881,55 @@
 			};
 			name = Release;
 		};
+		F9055CF3207D4CA30039C9F3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 68EB67BC259EAA38000B1E9F /* Pods-defaults-common_ui_tests-StudentUITests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B6333T4PXQ;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = StudentUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.StudentUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Canvas.app/Canvas";
+			};
+			name = Debug;
+		};
+		F9055CF4207D4CA30039C9F3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A13903D63AE70A2926A48F10 /* Pods-defaults-common_ui_tests-StudentUITests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B6333T4PXQ;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = StudentUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.StudentUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Canvas.app/Canvas";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -4686,6 +4974,15 @@
 			buildConfigurations = (
 				49AA29211CF4D1880055862D /* Debug */,
 				49AA29221CF4D1880055862D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F9055CF5207D4CA30039C9F3 /* Build configuration list for PBXNativeTarget "StudentUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F9055CF3207D4CA30039C9F3 /* Debug */,
+				F9055CF4207D4CA30039C9F3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

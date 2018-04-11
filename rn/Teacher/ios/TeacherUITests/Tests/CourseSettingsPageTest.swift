@@ -14,12 +14,14 @@
 // limitations under the License.
 //
 
+import SoSeedySwift
+
 class CourseSettingsPageTest: TeacherTest {
 
     func testSettingsPage_displaysPageObjects() {
-        let course = createCourse()
-        let teacher = createTeacher(in: course)
-        favorite(course, as: teacher)
+        let course = SoSeedySwift.createCourse()
+        let teacher = SoSeedySwift.createTeacher(in: course)
+        SoSeedySwift.favorite(course, as: teacher)
         logIn2(teacher)
         coursesListPage.openCourseDetailsPage(course)
         courseBrowserPage.openCourseSettingsPage()

@@ -14,10 +14,12 @@
 // limitations under the License.
 //
 
+import SoSeedySwift
+
 class InboxPageTest: TeacherTest {
 
     func testInboxPage_displaysPageObjects() {
-        logIn2(createTeacher())
+        logIn2(SoSeedySwift.createTeacher())
         tabBarController.openInboxPage()
         inboxPage.assertPageObjects()
     }

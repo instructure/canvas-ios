@@ -25,4 +25,7 @@
    <FileRef
       location = "group:Frameworks/SoGrey/SoGrey.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Frameworks/SoSeedySwift/SoSeedySwift.xcodeproj">
+   </FileRef>
 </Workspace>

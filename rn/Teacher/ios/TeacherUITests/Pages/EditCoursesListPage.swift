@@ -16,6 +16,7 @@
 
 import SoGrey
 import EarlGrey
+import SoSeedySwift
 
 class EditCoursesListPage {
 

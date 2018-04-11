@@ -18,6 +18,7 @@ import Foundation
 import XCTest
 import CanvasKeymaster
 import EarlGrey
+import SoSeedySwift
 @testable import CanvasCore // for NativeLoginManager
 
 class TeacherTestUtils {

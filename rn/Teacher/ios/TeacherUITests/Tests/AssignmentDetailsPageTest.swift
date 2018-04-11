@@ -14,6 +14,8 @@
 // limitations under the License.
 //
 
+import SoSeedySwift
+
 class AssignmentDetailsPageTest: TeacherTest {
     var assignment: Soseedy_Assignment!
 
@@ -76,10 +78,10 @@ class AssignmentDetailsPageTest: TeacherTest {
         withDescription: Bool = false,
         submissionTypes: [Soseedy_SubmissionType] = []
     ) {
-        let course = createCourse()
-        let user = createTeacher(in: course)
-        favorite(course, as: user)
-        assignment = createAssignment(
+        let course = SoSeedySwift.createCourse()
+        let user = SoSeedySwift.createTeacher(in: course)
+        SoSeedySwift.favorite(course, as: user)
+        assignment = SoSeedySwift.createAssignment(
             for: course,
             as: user,
             withDescription: withDescription,

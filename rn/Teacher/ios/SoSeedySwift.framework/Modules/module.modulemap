@@ -1,0 +1,11 @@
+framework module SoSeedySwift {
+  umbrella header "SoSeedySwift.h"
+
+  export *
+  module * { export * }
+}
+
+module SoSeedySwift.Swift {
+    header "SoSeedySwift-Swift.h"
+    requires objc
+}

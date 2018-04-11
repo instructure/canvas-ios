@@ -124,6 +124,12 @@ abstract_target 'defaults' do
       pod 'EarlGrey', '~> 1.1'
       project 'rn/Teacher/ios/Teacher.xcodeproj'
     end
+
+    target 'StudentUITests' do
+      pod 'SwiftProtobuf', '~> 0.9.904'
+      pod 'EarlGrey', '~> 1.1'
+      project 'Canvas/Canvas.xcodeproj'
+    end
   end
 end
 
