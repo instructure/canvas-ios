@@ -58,6 +58,27 @@ public func createTeacher(inAll courses: [Soseedy_Course]) -> Soseedy_CanvasUser
     return user
 }
 
+// Takes a CanvasUser object and converts it into a hash for NativeLogin
+public func getNativeLoginInfo(_ canvasUser:Soseedy_CanvasUser) -> [String: Any] {
+    let user: [String: Any] = [
+        "id":            canvasUser.id,
+        "name":          canvasUser.name,
+        "primary_email": canvasUser.loginID,
+        "short_name":    canvasUser.shortName,
+        "avatar_url":    canvasUser.avatarURL
+    ]
+    
+    let baseURL = "https://\(canvasUser.domain)/"
+    let authToken = canvasUser.token
+    let loginInfo: [String: Any] = [
+        "authToken": authToken,
+        "baseURL": baseURL,
+        "user": user
+    ]
+    
+    return loginInfo
+}
+
 // MARK: - Courses
 
 @discardableResult public func createCourse() -> Soseedy_Course {

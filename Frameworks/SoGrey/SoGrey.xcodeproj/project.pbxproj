@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C19A66F207E8A30007FD092 /* DashboardPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C19A66E207E8A30007FD092 /* DashboardPage.swift */; };
+		2C9C44F8207EBBCF008A8DF1 /* SoSeedySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9C44F7207EBBCE008A8DF1 /* SoSeedySwift.framework */; };
+		2C9C44FE207EBC24008A8DF1 /* SoSeedySwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9C44F7207EBBCE008A8DF1 /* SoSeedySwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3696136A1F6140C7404BB529 /* Pods_defaults_SoGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB46F2583A3A0958EE74AC43 /* Pods_defaults_SoGrey.framework */; };
 		492246011D1C744A0053766B /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492245FE1D1C744A0053766B /* Class.swift */; };
 		492246021D1C744A0053766B /* EarlGrey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492245FF1D1C744A0053766B /* EarlGrey.swift */; };
@@ -23,9 +26,25 @@
 		F9FC2B881E8D481300064532 /* ElementReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FC2B871E8D481300064532 /* ElementReference.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		2C9C44F3207EA44A008A8DF1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2C9C44FE207EBC24008A8DF1 /* SoSeedySwift.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0678AA8C863643A5B665382B /* Pods-defaults-SoGrey.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-SoGrey.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-SoGrey/Pods-defaults-SoGrey.release.xcconfig"; sourceTree = "<group>"; };
 		08266CCC56596120DB935F98 /* EarlGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EarlGrey.framework; path = Pods/EarlGrey/EarlGrey/EarlGrey.framework; sourceTree = SOURCE_ROOT; };
+		2C19A66E207E8A30007FD092 /* DashboardPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPage.swift; sourceTree = "<group>"; };
+		2C9C44F7207EBBCE008A8DF1 /* SoSeedySwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoSeedySwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		492245FE1D1C744A0053766B /* Class.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Class.swift; sourceTree = "<group>"; };
 		492245FF1D1C744A0053766B /* EarlGrey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EarlGrey.swift; sourceTree = "<group>"; };
 		492246001D1C744A0053766B /* EarlGreyUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EarlGreyUtils.swift; sourceTree = "<group>"; };
@@ -51,15 +70,25 @@
 			files = (
 				3696136A1F6140C7404BB529 /* Pods_defaults_SoGrey.framework in Frameworks */,
 				A2684C796FE5A7D2E028DD02 /* EarlGrey.framework in Frameworks */,
+				2C9C44F8207EBBCF008A8DF1 /* SoSeedySwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C19A66D207E89F5007FD092 /* Page Objects */ = {
+			isa = PBXGroup;
+			children = (
+				2C19A66E207E8A30007FD092 /* DashboardPage.swift */,
+			);
+			name = "Page Objects";
+			sourceTree = "<group>";
+		};
 		492245FB1D1C74250053766B /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				2C9C44F7207EBBCE008A8DF1 /* SoSeedySwift.framework */,
 			);
 			name = Dependencies;
 			sourceTree = "<group>";
@@ -86,6 +115,7 @@
 		49E21B151D1C694D00B7B9B4 /* SoGrey */ = {
 			isa = PBXGroup;
 			children = (
+				2C19A66D207E89F5007FD092 /* Page Objects */,
 				492245FE1D1C744A0053766B /* Class.swift */,
 				492245FF1D1C744A0053766B /* EarlGrey.swift */,
 				492246001D1C744A0053766B /* EarlGreyUtils.swift */,
@@ -176,6 +206,7 @@
 				49E21B0F1D1C694D00B7B9B4 /* Frameworks */,
 				49E21B101D1C694D00B7B9B4 /* Headers */,
 				49E21B111D1C694D00B7B9B4 /* Resources */,
+				2C9C44F3207EA44A008A8DF1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -265,6 +296,7 @@
 				61B536E21E784AD5000FEABB /* PageObject.swift in Sources */,
 				F9FC2B881E8D481300064532 /* ElementReference.swift in Sources */,
 				F95E3D521E89555D000CE6A1 /* WebDriverAtomScripts.swift in Sources */,
+				2C19A66F207E8A30007FD092 /* DashboardPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,6 +427,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SoGrey/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.SoGrey;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -418,6 +451,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SoGrey/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.SoGrey;
 				PRODUCT_NAME = "$(TARGET_NAME)";

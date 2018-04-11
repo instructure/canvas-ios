@@ -29,6 +29,11 @@ class StudentUITests: XCTestCase {
     }
 
     func testDataSeeding() {
-        let teacher = SoSeedySwift.createTeacher()
+        let course = SoSeedySwift.createCourse()
+        let teacher = SoSeedySwift.createTeacher(in: course)
+        SoSeedySwift.favorite(course, as: teacher)
+        let loginInfo = SoSeedySwift.getNativeLoginInfo(teacher)
+        NativeLoginManager.shared().injectLoginInformation(loginInfo)
+        DashboardPage.sharedInstance.assertCourseExists(course)
     }
 }

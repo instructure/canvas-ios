@@ -13,10 +13,6 @@
 		2C0CAD6A1DEF6C30008D90FA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C0CAD6C1DEF6C30008D90FA /* InfoPlist.strings */; };
 		2C0CAD6F1DEF6C31008D90FA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C0CAD711DEF6C31008D90FA /* InfoPlist.strings */; };
 		2C0CAD751DEF6C33008D90FA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C0CAD771DEF6C33008D90FA /* InfoPlist.strings */; };
-		2C51D8D2207D605900CFBEAB /* SoGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C51D8D1207D605900CFBEAB /* SoGrey.framework */; };
-		2C51D8D4207D61B500CFBEAB /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C51D8D3207D61B500CFBEAB /* CanvasCore.framework */; };
-		2C51D8D5207D68BF00CFBEAB /* SoGrey.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C51D8D1207D605900CFBEAB /* SoGrey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2C51D8D6207D6AA800CFBEAB /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C51D8D3207D61B500CFBEAB /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2C6049611F72BB6900252BC5 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049621F72BB6900252BC5 /* CanvasCore.framework */; };
 		2C67B0C61E01F05A00DDD191 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C67B0C51E01F05A00DDD191 /* AssetsLibrary.framework */; };
 		2C67B0C81E01F05F00DDD191 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C67B0C71E01F05F00DDD191 /* CoreTelephony.framework */; };
@@ -28,6 +24,10 @@
 		2C67B0D41E01F08A00DDD191 /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C67B0D31E01F08A00DDD191 /* BuddyBuildSDK.framework */; };
 		2C7041AE203CDDB700745253 /* UIAlertController+TechDebt.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C7041AC203CDDB600745253 /* UIAlertController+TechDebt.h */; };
 		2C7041AF203CDDB700745253 /* UIAlertController+TechDebt.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7041AD203CDDB600745253 /* UIAlertController+TechDebt.m */; };
+		2C9C44FB207EBBFF008A8DF1 /* SoSeedySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9C44FA207EBBFF008A8DF1 /* SoSeedySwift.framework */; };
+		2C9C44FF207EBC2D008A8DF1 /* SoSeedySwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9C44FA207EBBFF008A8DF1 /* SoSeedySwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2C9C4500207EBC2E008A8DF1 /* SoGrey.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9C44FD207EBC0D008A8DF1 /* SoGrey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2C9C4501207EBC30008A8DF1 /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9C44FC207EBC04008A8DF1 /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3B0107A41FBBA7C600062DB2 /* GradeWidgetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B0107A31FBBA7C600062DB2 /* GradeWidgetCell.xib */; };
 		3B1642C31FBA0426006C55D2 /* CanvasKeymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B1642C51FBA0426006C55D2 /* CanvasKeymaster.framework */; };
 		3B6DCCA71FB502CE005EE8D2 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6DCCA61FB502CE005EE8D2 /* NotificationCenter.framework */; };
@@ -670,8 +670,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2C51D8D5207D68BF00CFBEAB /* SoGrey.framework in Embed Frameworks */,
-				2C51D8D6207D6AA800CFBEAB /* CanvasCore.framework in Embed Frameworks */,
+				2C9C44FF207EBC2D008A8DF1 /* SoSeedySwift.framework in Embed Frameworks */,
+				2C9C4500207EBC2E008A8DF1 /* SoGrey.framework in Embed Frameworks */,
+				2C9C4501207EBC30008A8DF1 /* CanvasCore.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -731,11 +732,6 @@
 		2C0CAD821DEF6E5D008D90FA /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		2C0CAD831DEF6E5D008D90FA /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		2C0CAD841DEF6E5F008D90FA /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		2C51D8C8207D57D900CFBEAB /* SoGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoGrey.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AllTheThings-hkuxdlosjqseyiefrjcrjyxhdecy/Build/Products/Debug-iphonesimulator/SoGrey.framework"; sourceTree = "<group>"; };
-		2C51D8CA207D580A00CFBEAB /* SoGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoGrey.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AllTheThings-hkuxdlosjqseyiefrjcrjyxhdecy/Build/Products/Debug-iphonesimulator/SoGrey.framework"; sourceTree = "<group>"; };
-		2C51D8CC207D58B400CFBEAB /* SoGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoGrey.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AllTheThings-hkuxdlosjqseyiefrjcrjyxhdecy/Build/Products/Debug-iphoneos/SoGrey.framework"; sourceTree = "<group>"; };
-		2C51D8D1207D605900CFBEAB /* SoGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoGrey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2C51D8D3207D61B500CFBEAB /* CanvasCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C6049621F72BB6900252BC5 /* CanvasCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C67B0C51E01F05A00DDD191 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		2C67B0C71E01F05F00DDD191 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -749,6 +745,9 @@
 		2C67B0D81E01F25800DDD191 /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BuddyBuildSDK.framework; path = ../ExternalFrameworks/BuddyBuildSDK.framework; sourceTree = "<group>"; };
 		2C7041AC203CDDB600745253 /* UIAlertController+TechDebt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+TechDebt.h"; sourceTree = "<group>"; };
 		2C7041AD203CDDB600745253 /* UIAlertController+TechDebt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+TechDebt.m"; sourceTree = "<group>"; };
+		2C9C44FA207EBBFF008A8DF1 /* SoSeedySwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoSeedySwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C9C44FC207EBC04008A8DF1 /* CanvasCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C9C44FD207EBC0D008A8DF1 /* SoGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoGrey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F60CD48D1AD6AD81369BEFD /* Pods-defaults-PreSubmissionAnnotations.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-PreSubmissionAnnotations.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-PreSubmissionAnnotations/Pods-defaults-PreSubmissionAnnotations.debug.xcconfig"; sourceTree = "<group>"; };
 		3105EE2FF7DE0582A458F38F /* Pods-defaults-TechDebt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-TechDebt.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-TechDebt/Pods-defaults-TechDebt.debug.xcconfig"; sourceTree = "<group>"; };
 		35490A998ED46E2FC6020548 /* Pods_defaults_Canvas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_Canvas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1660,15 +1659,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C51D8D2207D605900CFBEAB /* SoGrey.framework in Frameworks */,
 				629213C6A49D3799BCBAE7F2 /* Pods_defaults_common_ui_tests_StudentUITests.framework in Frameworks */,
-				2C51D8D4207D61B500CFBEAB /* CanvasCore.framework in Frameworks */,
+				2C9C44FB207EBBFF008A8DF1 /* SoSeedySwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C9C44F9207EBBE3008A8DF1 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				2C9C44FA207EBBFF008A8DF1 /* SoSeedySwift.framework */,
+				2C9C44FD207EBC0D008A8DF1 /* SoGrey.framework */,
+				2C9C44FC207EBC04008A8DF1 /* CanvasCore.framework */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
 		3B6DCCA81FB502CE005EE8D2 /* GradesWidget */ = {
 			isa = PBXGroup;
 			children = (
@@ -1731,9 +1739,6 @@
 		4927046A1CF4AF7100C631C6 = {
 			isa = PBXGroup;
 			children = (
-				2C51D8C8207D57D900CFBEAB /* SoGrey.framework */,
-				2C51D8CA207D580A00CFBEAB /* SoGrey.framework */,
-				2C51D8CC207D58B400CFBEAB /* SoGrey.framework */,
 				4927085D1CF4C33700C631C6 /* Dependencies */,
 				492704751CF4AF7100C631C6 /* Canvas */,
 				492704AC1CF4B6D700C631C6 /* TechDebt */,
@@ -2943,8 +2948,7 @@
 		F9055CED207D4CA30039C9F3 /* StudentUITests */ = {
 			isa = PBXGroup;
 			children = (
-				2C51D8D3207D61B500CFBEAB /* CanvasCore.framework */,
-				2C51D8D1207D605900CFBEAB /* SoGrey.framework */,
+				2C9C44F9207EBBE3008A8DF1 /* Dependencies */,
 				F9055CEE207D4CA30039C9F3 /* StudentUITests.swift */,
 				F9055CF0207D4CA30039C9F3 /* Info.plist */,
 			);
@@ -3254,6 +3258,7 @@
 			buildConfigurationList = F9055CF5207D4CA30039C9F3 /* Build configuration list for PBXNativeTarget "StudentUITests" */;
 			buildPhases = (
 				1813CD78B05DCB1CBBF61149 /* [CP] Check Pods Manifest.lock */,
+				2C19A669207E8037007FD092 /* Start gRPC Server */,
 				F9055CE8207D4CA30039C9F3 /* Sources */,
 				F9055CE9207D4CA30039C9F3 /* Frameworks */,
 				F9055CEA207D4CA30039C9F3 /* Resources */,
@@ -3576,6 +3581,20 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		2C19A669207E8037007FD092 /* Start gRPC Server */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Start gRPC Server";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if nc -w 5 -z localhost 50051 ; then\necho \"gRPC already running on port 50051\"\nexit 0\nfi\n\nopen \"$SRCROOT/../scripts/grpc/launchGrpc.command\" || echo \"Failed to start gRPC server\"\n";
 		};
 		420D38066A53E2683A07A16C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

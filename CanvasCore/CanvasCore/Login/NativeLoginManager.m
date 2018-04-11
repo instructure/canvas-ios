@@ -240,8 +240,10 @@ RCT_EXPORT_METHOD(stopObserving)
 
 - (void)injectLoginInformation:(NSDictionary *)info {
     if (!info) {
-        self.injectedLoginInfo = nil;
-        [[[HelmManager shared] bridge] reload];
+        if (self.injectedLoginInfo) {
+            self.injectedLoginInfo = nil;
+            [[[HelmManager shared] bridge] reload];
+        }
     }
     else {
         NSMutableDictionary *mutableInfo = [info mutableCopy];
@@ -250,7 +252,19 @@ RCT_EXPORT_METHOD(stopObserving)
         
         NSString *accessToken = info[@"authToken"];
         NSAssert(accessToken, @"You must provide an access token when injecting login information");
-        [self.delegate didLogin:self.currentClient];
+        NSDictionary *userDictionary = info[@"user"];
+        NSAssert(userDictionary, @"You must provide a user when injecting login information");
+        CKIUser *user = [CKIUser modelFromJSONDictionary:userDictionary];
+        NSAssert(user, @"You must provide a user when injecting login information");
+        NSString *baseURL = info[@"baseURL"];
+        NSAssert(baseURL, @"You must provide a base url when injecting login information");
+        
+        CKIClient *client = [[CKIClient alloc] initWithBaseURL:[NSURL URLWithString:baseURL]];
+        [client setValue:accessToken forKey:@"accessToken"];
+        [client setValue:user forKey:@"currentUser"];
+        self.currentClient = client;
+        [[CanvasKeymaster theKeymaster] setValue:client forKey:@"currentClient"];
+        [self.delegate didLogin:client];
         [[[HelmManager shared] bridge] reload];
     }
 }
