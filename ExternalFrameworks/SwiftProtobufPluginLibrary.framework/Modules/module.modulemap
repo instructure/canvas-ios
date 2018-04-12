@@ -1,4 +1,0 @@
-framework module SwiftProtobufPluginLibrary {
-    header "SwiftProtobufPluginLibrary-Swift.h"
-    requires objc
-}

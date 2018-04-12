@@ -1,6 +1,0 @@
-framework module CgRPC {
-  umbrella header "CgRPC.h"
-
-  export *
-  module * { export * }
-}

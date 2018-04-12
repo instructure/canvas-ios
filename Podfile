@@ -120,16 +120,21 @@ abstract_target 'defaults' do
 
   abstract_target 'common_ui_tests' do
     target 'TeacherUITests' do
-      pod 'SwiftProtobuf', '~> 0.9.904'
       pod 'EarlGrey', '~> 1.1'
+      pod 'SwiftGRPC', git: 'https://github.com/bootstraponline/grpc-swift.git'
       project 'rn/Teacher/ios/Teacher.xcodeproj'
     end
 
     target 'StudentUITests' do
-      pod 'SwiftProtobuf', '~> 0.9.904'
       pod 'EarlGrey', '~> 1.1'
+      pod 'SwiftGRPC', git: 'https://github.com/bootstraponline/grpc-swift.git'
       project 'Canvas/Canvas.xcodeproj'
     end
+  end
+
+  target 'SoSeedySwift' do
+    pod 'SwiftGRPC', git: 'https://github.com/bootstraponline/grpc-swift.git'
+    project 'Frameworks/SoSeedySwift/SoSeedySwift.xcodeproj'
   end
 end
 

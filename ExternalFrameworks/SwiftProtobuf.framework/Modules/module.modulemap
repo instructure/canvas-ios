@@ -1,4 +1,0 @@
-framework module SwiftProtobuf {
-    header "SwiftProtobuf-Swift.h"
-    requires objc
-}

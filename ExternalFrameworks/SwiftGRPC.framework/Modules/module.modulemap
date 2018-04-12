@@ -1,4 +1,0 @@
-framework module SwiftGRPC {
-    header "SwiftGRPC-Swift.h"
-    requires objc
-}
