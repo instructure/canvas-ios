@@ -5,6 +5,36 @@
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "F9055CEB207D4CA30039C9F3"
+               BuildableName = "StudentUITests.xctest"
+               BlueprintName = "StudentUITests"
+               ReferencedContainer = "container:Canvas.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "492704721CF4AF7100C631C6"
+               BuildableName = "Canvas.app"
+               BlueprintName = "Canvas"
+               ReferencedContainer = "container:Canvas.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
    </BuildAction>
    <TestAction
       buildConfiguration = "Debug"
@@ -24,8 +54,6 @@
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <AdditionalOptions>
-      </AdditionalOptions>
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "DYLD_INSERT_LIBRARIES"
@@ -33,6 +61,8 @@
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -45,6 +75,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "492704721CF4AF7100C631C6"
+            BuildableName = "Canvas.app"
+            BlueprintName = "Canvas"
+            ReferencedContainer = "container:Canvas.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

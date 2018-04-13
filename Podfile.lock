@@ -163,7 +163,7 @@ PODS:
   - SVGKit (2.0.1):
     - CocoaLumberjack (~> 3.x)
   - SVProgressHUD (2.2.5)
-  - SwiftGRPC (0.3.3):
+  - SwiftGRPC (0.4.0):
     - BoringSSL (~> 10.0)
     - gRPC-Core (~> 1.11.0-pre2)
     - SwiftProtobuf (~> 1.0.3)
@@ -228,7 +228,7 @@ DEPENDENCIES:
   - SDWebImage (~> 4.1)
   - SVGKit (from `https://github.com/SVGKit/SVGKit.git`, branch `2.x`)
   - SVProgressHUD (~> 2.0)
-  - SwiftGRPC (from `https://github.com/bootstraponline/grpc-swift.git`)
+  - SwiftGRPC (from `https://github.com/grpc/grpc-swift.git`)
   - SwiftSimplify
   - TBBModal (~> 1.0)
   - TPKeyboardAvoiding (~> 1.3)
@@ -312,7 +312,7 @@ EXTERNAL SOURCES:
     :branch: 2.x
     :git: https://github.com/SVGKit/SVGKit.git
   SwiftGRPC:
-    :git: https://github.com/bootstraponline/grpc-swift.git
+    :git: https://github.com/grpc/grpc-swift.git
   yoga:
     :path: "./rn/Teacher/node_modules/react-native/ReactCommon/yoga"
 
@@ -324,8 +324,8 @@ CHECKOUT OPTIONS:
     :commit: 0799e49c6ccd387888c5a6592b93f8b42e41bfeb
     :git: https://github.com/SVGKit/SVGKit.git
   SwiftGRPC:
-    :commit: 9bcd3f7c25d1100acd4344ab049cddcb346e3d5b
-    :git: https://github.com/bootstraponline/grpc-swift.git
+    :commit: cc23b0531a5922af09ed7bb386c02fb7f39e5af0
+    :git: https://github.com/grpc/grpc-swift.git
 
 SPEC CHECKSUMS:
   AFNetworking: 8ac6017b94ea105479f7776e5288e48ae9c59bb4
@@ -376,13 +376,13 @@ SPEC CHECKSUMS:
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   SVGKit: 4055d9e809b5db8633755979cfb3b02dc5a8c20d
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  SwiftGRPC: b288f04ce5164244d00b274ae14ffc972ce8edb7
+  SwiftGRPC: 8520ab1a4e98f4c15443f7d59facb8042ffc3290
   SwiftProtobuf: 5ccc0e4054e37c75800e5744acb2aa80bb72b39c
   SwiftSimplify: 374ead1c360c6e236539543d6ce5b3abda011080
   TBBModal: 376820c480cac24b262c2e10c0178c67bb288390
   TPKeyboardAvoiding: cb69d5ddbe90ce0170e4bc2db1e5e41d4a3ad9a4
   yoga: 17521bbb0dd54a47c0b3ac43253e78cdac7488e0
 
-PODFILE CHECKSUM: 759e432b83dfc8a7e1b7b30b75add36c01f17ed4
+PODFILE CHECKSUM: 7dd4a021a242453c6e867253be57651b57c37973
 
 COCOAPODS: 1.5.0
