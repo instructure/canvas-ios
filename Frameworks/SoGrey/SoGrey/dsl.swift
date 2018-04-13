@@ -19,23 +19,23 @@ import EarlGrey
 
 // MARK: Element timeout and poll
 
-public let elementTimeout:TimeInterval = 4.0 // seconds
+public var elementTimeout:TimeInterval = 4.0 // seconds
 public let elementPoll:TimeInterval = 1.0 // seconds
 
 // MARK: Element selectors
 
 open class e {
 
-  open static func selectBy(id:String, file:StaticString = #file, line:UInt = #line) -> GREYElementInteraction {
-    return EarlGrey.select(elementWithMatcher: grey_accessibilityID(id), file: file, line: line)
+  open static func selectBy(id:String, file:StaticString = #file, line:UInt = #line) -> GREYInteraction {
+    return EarlGrey.selectElement(with: grey_accessibilityID(id), file: file, line: line)
   }
 
-  open static func selectBy(label:String, file:StaticString = #file, line:UInt = #line) -> GREYElementInteraction {
-    return EarlGrey.select(elementWithMatcher: grey_accessibilityLabel(label), file: file, line: line)
+  open static func selectBy(label:String, file:StaticString = #file, line:UInt = #line) -> GREYInteraction {
+    return EarlGrey.selectElement(with: grey_accessibilityLabel(label), file: file, line: line)
   }
 
-  open static func selectBy(matchers:[GREYMatcher], file:StaticString = #file, line:UInt = #line) -> GREYElementInteraction {
-    return EarlGrey.select(elementWithMatcher: grey_allOf(matchers), file: file, line: line)
+  open static func selectBy(matchers:[GREYMatcher], file:StaticString = #file, line:UInt = #line) -> GREYInteraction {
+    return EarlGrey.selectElement(with: grey_allOf(matchers), file: file, line: line)
   }
 
   @available(*, deprecated, message: "Only you can prevent memory leaks 🔥🐻")
@@ -90,7 +90,7 @@ extension GREYInteraction {
     grey_fromFile(file, line)
 
     var errorOrNil: NSError?
-    self.assert(with: grey_notNil(), error: &errorOrNil)
+    self.assert(grey_notNil(), error: &errorOrNil)
     let success = errorOrNil == nil
 
     return success
@@ -126,7 +126,7 @@ extension GREYInteraction {
     }).wait(withTimeout: elementTimeout, pollInterval: elementPoll)
     stopwatch.stop(#function)
 
-    if !success { self.assert(with: grey_nil()) }
+    if !success { self.assert(grey_nil()) }
   }
 
   public func assertExists(file:StaticString = #file, line:UInt = #line) {
@@ -134,13 +134,13 @@ extension GREYInteraction {
     let stopwatch = Stopwatch()
     let success = GREYCondition(name: "Waiting for element to exist", block: { _ in
       var errorOrNil: NSError?
-      self.assert(with: grey_notNil(), error: &errorOrNil)
+      self.assert(grey_notNil(), error: &errorOrNil)
       let success = errorOrNil == nil
       return success
     }).wait(withTimeout: elementTimeout, pollInterval: elementPoll)
     stopwatch.stop(#function)
 
-    if (!success) { self.assert(with: grey_notNil()) }
+    if (!success) { self.assert(grey_notNil()) }
   }
 
   public func assertHidden(file:StaticString = #file, line:UInt = #line) {
@@ -149,13 +149,13 @@ extension GREYInteraction {
     let stopwatch = Stopwatch()
     let success = GREYCondition(name: "Waiting for element to disappear", block: { _ in
       var errorOrNil: NSError?
-      self.assert(with: grey_nil(), error: &errorOrNil)
+      self.assert(grey_nil(), error: &errorOrNil)
       let success = errorOrNil == nil
       return success
     }).wait(withTimeout: elementTimeout, pollInterval: elementPoll)
     stopwatch.stop(#function)
 
-    if (!success) { self.assert(with: grey_nil()) }
+    if (!success) { self.assert(grey_nil()) }
   }
 
   public func assertContains(text:String, file:StaticString = #file, line:UInt = #line) {

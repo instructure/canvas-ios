@@ -11,7 +11,7 @@
 		1D39C6E1D2AC732040A7B9B7 /* Pods_defaults_TechDebt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB53AA8A26564C052A94E885 /* Pods_defaults_TechDebt.framework */; };
 		2C04B039207FE50500C6BD65 /* StudentUITestBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C04B038207FE50500C6BD65 /* StudentUITestBase.swift */; };
 		2C04B03B207FE58700C6BD65 /* DashboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C04B03A207FE58700C6BD65 /* DashboardTests.swift */; };
-		2C04B03D207FE5B400C6BD65 /* LoggedInStudentUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C04B03C207FE5B400C6BD65 /* LoggedInStudentUITest.swift */; };
+		2C04B03D207FE5B400C6BD65 /* StudentUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C04B03C207FE5B400C6BD65 /* StudentUITest.swift */; };
 		2C0CAD651DEF6C2F008D90FA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C0CAD671DEF6C2F008D90FA /* Localizable.strings */; };
 		2C0CAD6A1DEF6C30008D90FA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C0CAD6C1DEF6C30008D90FA /* InfoPlist.strings */; };
 		2C0CAD6F1DEF6C31008D90FA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C0CAD711DEF6C31008D90FA /* InfoPlist.strings */; };
@@ -720,7 +720,7 @@
 		1C250EDA2321EF6AAC5611D3 /* Pods-CanvasTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-CanvasTests/Pods-CanvasTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2C04B038207FE50500C6BD65 /* StudentUITestBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentUITestBase.swift; sourceTree = "<group>"; };
 		2C04B03A207FE58700C6BD65 /* DashboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTests.swift; sourceTree = "<group>"; };
-		2C04B03C207FE5B400C6BD65 /* LoggedInStudentUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInStudentUITest.swift; sourceTree = "<group>"; };
+		2C04B03C207FE5B400C6BD65 /* StudentUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentUITest.swift; sourceTree = "<group>"; };
 		2C0CAD661DEF6C2F008D90FA /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C0CAD6B1DEF6C30008D90FA /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2C0CAD701DEF6C31008D90FA /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1677,7 +1677,7 @@
 			isa = PBXGroup;
 			children = (
 				2C04B038207FE50500C6BD65 /* StudentUITestBase.swift */,
-				2C04B03C207FE5B400C6BD65 /* LoggedInStudentUITest.swift */,
+				2C04B03C207FE5B400C6BD65 /* StudentUITest.swift */,
 			);
 			name = "Test Base Classes";
 			sourceTree = "<group>";
@@ -4224,7 +4224,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C04B03D207FE5B400C6BD65 /* LoggedInStudentUITest.swift in Sources */,
+				2C04B03D207FE5B400C6BD65 /* StudentUITest.swift in Sources */,
 				2C04B03B207FE58700C6BD65 /* DashboardTests.swift in Sources */,
 				F9055CEF207D4CA30039C9F3 /* LoginTests.swift in Sources */,
 				2C04B039207FE50500C6BD65 /* StudentUITestBase.swift in Sources */,

@@ -35,7 +35,7 @@ public struct DriverAtoms {
 
     let jsAtom = JavascriptEvaluation.atomize(script: WebDriverAtomScripts.FIND_ELEMENT_ANDROID, args: locatorJSON, windowReference: nil)
 
-    EarlGrey.select(elementWithMatcher: grey_kindOfClass(UIWebView.self))
+    EarlGrey.selectElement(with: grey_kindOfClass(UIWebView.self))
       .perform(grey_javaScriptExecution(jsAtom, &jsExecutionResult))
 
     guard let jsResult = jsExecutionResult else { return nil }
@@ -59,7 +59,7 @@ public struct DriverAtoms {
                                               args: args,
                                               windowReference: nil)
 
-    EarlGrey.select(elementWithMatcher: grey_kindOfClass(UIWebView.self))
+    EarlGrey.selectElement(with: grey_kindOfClass(UIWebView.self))
       .perform(grey_javaScriptExecution(jsAtom, &jsExecutionResult))
 
     guard let jsResult = jsExecutionResult else { return }

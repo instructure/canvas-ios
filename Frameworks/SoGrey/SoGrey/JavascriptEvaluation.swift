@@ -37,7 +37,7 @@ public struct JavascriptEvaluation {
       scriptBuffer.append("return (");
     }
 
-    for chr in toWrap.characters {
+    for chr in toWrap {
       let c = String(chr)
       switch (chr) {
       case "\"":  // literally: "

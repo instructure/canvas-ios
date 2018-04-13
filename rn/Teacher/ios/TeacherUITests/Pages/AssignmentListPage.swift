@@ -41,11 +41,11 @@ class AssignmentListPage  {
 //        return backButtonElement
 //    }
 
-    private func assignmentCell(_ assignment: Soseedy_Assignment) -> GREYElementInteraction {
+    private func assignmentCell(_ assignment: Soseedy_Assignment) -> GREYInteraction {
         return e.selectBy(id: "assignment-list.assignment-list-row.cell-\(assignment.id)")
     }
 
-    private func assignmentCellSubtitleLabel(_ assignment: Soseedy_Assignment) -> GREYElementInteraction {
+    private func assignmentCellSubtitleLabel(_ assignment: Soseedy_Assignment) -> GREYInteraction {
         return e.selectBy(id: "assignment-list.assignment-list-row.cell-\(assignment.id)-subtitle-lbl")
     }
 

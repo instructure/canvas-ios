@@ -14,7 +14,6 @@
 // limitations under the License.
 //
 
-import SoGrey
 import EarlGrey
 import SoSeedySwift
 
@@ -31,9 +30,9 @@ public class EditDashboardPage {
 
     // MARK: - Helpers
 
-    private func navBarTitleView() -> GREYElementInteraction {
-        let titleViewElement = EarlGrey.select(
-            elementWithMatcher: grey_allOf([grey_accessibilityLabel("Edit Courses"),
+    private func navBarTitleView() -> GREYInteraction {
+        let titleViewElement = EarlGrey.selectElement(
+            with: grey_allOf([grey_accessibilityLabel("Edit Courses"),
                                             grey_accessibilityTrait(UIAccessibilityTraitHeader),
                                             grey_accessibilityTrait(UIAccessibilityTraitStaticText)]))
         return titleViewElement
@@ -78,8 +77,8 @@ public class EditDashboardPage {
             let courseIsFavoritedID = "edit-favorites.course-favorite.\(course.id)-favorited"
             let courseIsNotFavoritedID = "edit-favorites.course-favorite.\(course.id)-not-favorited"
 
-            let courseElement = EarlGrey.select(
-                elementWithMatcher: grey_anyOf([grey_accessibilityID(courseIsFavoritedID),
+            let courseElement = EarlGrey.selectElement(
+                with: grey_anyOf([grey_accessibilityID(courseIsFavoritedID),
                                                 grey_accessibilityID(courseIsNotFavoritedID)]))
 
             courseElement.assertExists()

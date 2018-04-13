@@ -44,7 +44,7 @@ class CoursesListPage {
 //        return "course-card.kabob-\(course.id)"
 //    }
 
-    private func courseCard(_ course: Soseedy_Course) -> GREYElementInteraction {
+    private func courseCard(_ course: Soseedy_Course) -> GREYInteraction {
         return e.selectBy(id: "course-\(course.id)")
     }
 

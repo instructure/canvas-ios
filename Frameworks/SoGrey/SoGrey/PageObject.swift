@@ -35,7 +35,7 @@ extension PageObject {
       print("waiting for \(page) to load")
 
       var errorOrNil: NSError?
-      uniquePageElement().assert(with: grey_notNil(), error: &errorOrNil)
+      uniquePageElement().assert(grey_notNil(), error: &errorOrNil)
       let success = errorOrNil == nil
       return success
     }).wait(withTimeout: 30.0)
@@ -48,7 +48,7 @@ extension PageObject {
         print("waiting for \(page) to load")
         
         var errorOrNil: NSError?
-        element.assert(with: grey_notNil(), error: &errorOrNil)
+        element.assert(grey_notNil(), error: &errorOrNil)
         let success = errorOrNil == nil
         return success
     }).wait(withTimeout: 30.0)

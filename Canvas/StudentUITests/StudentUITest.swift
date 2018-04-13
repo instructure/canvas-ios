@@ -1,11 +1,3 @@
-//
-//  LoggedInStudentUITest.swift
-//  StudentUITests
-//
-//  Created by Layne Moseley on 4/12/18.
-//  Copyright © 2018 Instructure. All rights reserved.
-//
-
 import Foundation
 import XCTest
 import SoGrey
