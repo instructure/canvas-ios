@@ -20,6 +20,7 @@ public class DashboardPage {
     
     private let feedbackButton = e.selectBy(id: "favorited-course-list.feedback-btn")
     private let editButton = e.selectBy(id: "dashboard.edit-btn")
+    private let profileButton = e.selectBy(id: "favorited-course-list.profile-btn")
     private let headerStarImage = e.selectBy(id: "favorited-course-list.header-star-img")
     private let headerCoursesLabel = e.selectBy(id: "favorited-course-list.header-courses-lbl")
     private let seeAllCoursesButton = e.selectBy(id: "dashboard.courses.see-all-btn")
@@ -66,15 +67,10 @@ public class DashboardPage {
         e.selectBy(id: "course-\(course.id)").assertExists()
     }
     
-    //    func assertCourseDoesNotExist(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
-    //        grey_fromFile(file, line)
-    //        e.selectBy(id: courseId(course)).assertHidden()
-    //    }
-    //
-    //    func assertCourseHidden(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
-    //        grey_fromFile(file, line)
-    //        e.selectBy(id: courseId(course)).assertHidden()
-    //    }
+    public func assertCourseDoesNotExist(_ course: Soseedy_Course, _ file: StaticString = #file, _ line: UInt = #line) {
+        grey_fromFile(file, line)
+        e.selectBy(id: "course-\(course.id)").assertHidden()
+    }
     
     // MARK: - UI Actions
     
@@ -95,5 +91,10 @@ public class DashboardPage {
     public func openCourseDetailsPage(_ course: Soseedy_Course, _ file: StaticString = #file, _ line: UInt = #line) {
         grey_fromFile(file, line)
         courseCard(course).tap()
+    }
+    
+    public func openProfile(_ file: StaticString = #file, _ line: UInt = #line) {
+        grey_fromFile(file, line)
+        profileButton.tap()
     }
 }

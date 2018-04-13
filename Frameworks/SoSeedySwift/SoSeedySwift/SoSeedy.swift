@@ -28,6 +28,7 @@ let usersClient = Soseedy_SeedyUsersServiceClient(address: address, secure: secu
 
 public enum EnrollmentType: String {
     case teacher = "TeacherEnrollment"
+    case student = "StudentEnrollment"
 }
 
 @discardableResult public func enroll(_ user: Soseedy_CanvasUser, as type: EnrollmentType, in course: Soseedy_Course) -> Soseedy_Enrollment {
@@ -44,6 +45,18 @@ public func enroll(_ user: Soseedy_CanvasUser, as type: EnrollmentType, inAll co
 
 public func createUser() -> Soseedy_CanvasUser {
     return try! usersClient.createCanvasUser(Soseedy_CreateCanvasUserRequest())
+}
+
+public func createStudent(in course: Soseedy_Course = createCourse()) -> Soseedy_CanvasUser {
+    let user = createUser()
+    enroll(user, as: .student, in: course)
+    return user
+}
+
+public func createStudent(inAll courses: [Soseedy_Course]) -> Soseedy_CanvasUser {
+    let user = createUser()
+    courses.forEach { enroll(user, as: .teacher, in: $0) }
+    return user
 }
 
 public func createTeacher(in course: Soseedy_Course = createCourse()) -> Soseedy_CanvasUser {

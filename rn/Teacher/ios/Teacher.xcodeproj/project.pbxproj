@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0610738F1EA11F5300BEB914 /* TeacherTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0610738E1EA11F5300BEB914 /* TeacherTest.swift */; };
 		061073911EA11FD800BEB914 /* CoursesListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061073901EA11FD800BEB914 /* CoursesListPage.swift */; };
-		061073931EA11FED00BEB914 /* EditCoursesListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061073921EA11FED00BEB914 /* EditCoursesListPage.swift */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		20A0DB89280A80AFF823848C /* Pods_defaults_common_ui_tests_TeacherUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E32426347BE56C907EB34A1 /* Pods_defaults_common_ui_tests_TeacherUITests.framework */; };
 		2C3DE50E1F21498A00AE1D59 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C3DE5101F21498A00AE1D59 /* InfoPlist.strings */; };
@@ -57,7 +56,6 @@
 		F756F77A1EEF0836007C1417 /* AssignmentListPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F756F7791EEF0836007C1417 /* AssignmentListPageTest.swift */; };
 		F79F609F1EFDA57200ED594E /* TeacherTest+FormattedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79F609E1EFDA57200ED594E /* TeacherTest+FormattedString.swift */; };
 		F7A4A8DA1EDE2A5400809880 /* AllCoursesListPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A4A8D91EDE2A5400809880 /* AllCoursesListPageTest.swift */; };
-		F7A4A8FA1EDE2B6100809880 /* AllCoursesListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A4A8F91EDE2B6100809880 /* AllCoursesListPage.swift */; };
 		F99A8E671F06C0DA0032449B /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EDE01E735CA50096592C /* AssetsLibrary.framework */; };
 		F99A8E8A1F06C0EC0032449B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EDFC1E735CAC0096592C /* CoreTelephony.framework */; };
 		F99A8E8B1F06C0F40032449B /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EDFE1E735CB10096592C /* CoreText.framework */; };
@@ -121,7 +119,6 @@
 /* Begin PBXFileReference section */
 		0610738E1EA11F5300BEB914 /* TeacherTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherTest.swift; sourceTree = "<group>"; };
 		061073901EA11FD800BEB914 /* CoursesListPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesListPage.swift; sourceTree = "<group>"; };
-		061073921EA11FED00BEB914 /* EditCoursesListPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCoursesListPage.swift; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Teacher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Teacher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Teacher/Images.xcassets; sourceTree = "<group>"; };
 		1ED095C0D4A9D20D53D1F6BD /* Pods-defaults-common_ui_tests-TeacherUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_ui_tests-TeacherUITests.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-common_ui_tests-TeacherUITests/Pods-defaults-common_ui_tests-TeacherUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -238,7 +235,6 @@
 		F756F7791EEF0836007C1417 /* AssignmentListPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentListPageTest.swift; sourceTree = "<group>"; };
 		F79F609E1EFDA57200ED594E /* TeacherTest+FormattedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TeacherTest+FormattedString.swift"; sourceTree = "<group>"; };
 		F7A4A8D91EDE2A5400809880 /* AllCoursesListPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllCoursesListPageTest.swift; sourceTree = "<group>"; };
-		F7A4A8F91EDE2B6100809880 /* AllCoursesListPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllCoursesListPage.swift; sourceTree = "<group>"; };
 		F99A8E911F06C1450032449B /* bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bridge.h; sourceTree = "<group>"; };
 		F9D224681EB7C51000BB0990 /* EditCoursesPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCoursesPageTest.swift; sourceTree = "<group>"; };
 		F9D909E2207E576200EA43F3 /* SoSeedySwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoSeedySwift.framework; path = "../Debug-iphonesimulator/SoSeedySwift.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -372,7 +368,6 @@
 		61B536C11E783EB2000FEABB /* Pages */ = {
 			isa = PBXGroup;
 			children = (
-				F7A4A8F91EDE2B6100809880 /* AllCoursesListPage.swift */,
 				F756F7731EEF07F5007C1417 /* AssignmentDetailsPage.swift */,
 				F756F7751EEF07FA007C1417 /* AssignmentListPage.swift */,
 				49B274C01E8437D700828E42 /* CanvasLoginPage.swift */,
@@ -380,7 +375,6 @@
 				2F087B531EC509190042C03E /* CourseSettingsPage.swift */,
 				061073901EA11FD800BEB914 /* CoursesListPage.swift */,
 				61B536E31E78599D000FEABB /* DomainPickerPage.swift */,
-				061073921EA11FED00BEB914 /* EditCoursesListPage.swift */,
 				DF02A2081EFC31C000B17B8D /* InboxPage.swift */,
 				61B536DF1E784A4B000FEABB /* Pages.swift */,
 				DF02A22E1EFC43A400B17B8D /* TabBarControllerPage.swift */,
@@ -909,13 +903,11 @@
 				F7A4A8DA1EDE2A5400809880 /* AllCoursesListPageTest.swift in Sources */,
 				0610738F1EA11F5300BEB914 /* TeacherTest.swift in Sources */,
 				F756F7781EEF0830007C1417 /* AssignmentDetailsPageTest.swift in Sources */,
-				061073931EA11FED00BEB914 /* EditCoursesListPage.swift in Sources */,
 				F9D224691EB7C51000BB0990 /* EditCoursesPageTest.swift in Sources */,
 				DF02A2091EFC31C000B17B8D /* InboxPage.swift in Sources */,
 				2F0879101EC3C04F0042C03E /* CourseBrowserPageTest.swift in Sources */,
 				F756F74D1EEF0562007C1417 /* TeacherTest+CourseNavigation.swift in Sources */,
 				F756F77A1EEF0836007C1417 /* AssignmentListPageTest.swift in Sources */,
-				F7A4A8FA1EDE2B6100809880 /* AllCoursesListPage.swift in Sources */,
 				DF02A1E31EFC26BE00B17B8D /* InboxPageTest.swift in Sources */,
 				F756F7741EEF07F5007C1417 /* AssignmentDetailsPage.swift in Sources */,
 			);

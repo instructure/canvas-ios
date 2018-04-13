@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		03DAE3A2A1041407B354AC7C /* Pods_defaults_Canvas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35490A998ED46E2FC6020548 /* Pods_defaults_Canvas.framework */; };
 		1D39C6E1D2AC732040A7B9B7 /* Pods_defaults_TechDebt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB53AA8A26564C052A94E885 /* Pods_defaults_TechDebt.framework */; };
+		2C04B039207FE50500C6BD65 /* StudentUITestBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C04B038207FE50500C6BD65 /* StudentUITestBase.swift */; };
+		2C04B03B207FE58700C6BD65 /* DashboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C04B03A207FE58700C6BD65 /* DashboardTests.swift */; };
+		2C04B03D207FE5B400C6BD65 /* LoggedInStudentUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C04B03C207FE5B400C6BD65 /* LoggedInStudentUITest.swift */; };
 		2C0CAD651DEF6C2F008D90FA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C0CAD671DEF6C2F008D90FA /* Localizable.strings */; };
 		2C0CAD6A1DEF6C30008D90FA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C0CAD6C1DEF6C30008D90FA /* InfoPlist.strings */; };
 		2C0CAD6F1DEF6C31008D90FA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C0CAD711DEF6C31008D90FA /* InfoPlist.strings */; };
@@ -629,7 +632,7 @@
 		B5A790BB1D8C743400ACA9FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5A790A61D8C743400ACA9FE /* Localizable.strings */; };
 		B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E212D51D88856B009D8C07 /* Localizable.strings */; };
 		B5F122C91D8C4D6C0045063A /* Canvas.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 49642BCA1CF4C66200238B3F /* Canvas.entitlements */; };
-		F9055CEF207D4CA30039C9F3 /* StudentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9055CEE207D4CA30039C9F3 /* StudentUITests.swift */; };
+		F9055CEF207D4CA30039C9F3 /* LoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9055CEE207D4CA30039C9F3 /* LoginTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -715,6 +718,9 @@
 		1617CAD552082AC99A178C4E /* Pods_defaults_common_ui_tests_StudentUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_common_ui_tests_StudentUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1624D39115A77E2B728908FB /* Pods_defaults_CanvasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_CanvasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C250EDA2321EF6AAC5611D3 /* Pods-CanvasTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-CanvasTests/Pods-CanvasTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2C04B038207FE50500C6BD65 /* StudentUITestBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentUITestBase.swift; sourceTree = "<group>"; };
+		2C04B03A207FE58700C6BD65 /* DashboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTests.swift; sourceTree = "<group>"; };
+		2C04B03C207FE5B400C6BD65 /* LoggedInStudentUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInStudentUITest.swift; sourceTree = "<group>"; };
 		2C0CAD661DEF6C2F008D90FA /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C0CAD6B1DEF6C30008D90FA /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2C0CAD701DEF6C31008D90FA /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1594,7 +1600,7 @@
 		E95379D1460BDF2C6A9F2EEE /* Pods-defaults-TechDebt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-TechDebt.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-TechDebt/Pods-defaults-TechDebt.release.xcconfig"; sourceTree = "<group>"; };
 		F7E3E8394F9CF33081E5BAFC /* Pods-Canvas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canvas.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Canvas/Pods-Canvas.debug.xcconfig"; sourceTree = "<group>"; };
 		F9055CEC207D4CA30039C9F3 /* StudentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StudentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F9055CEE207D4CA30039C9F3 /* StudentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentUITests.swift; sourceTree = "<group>"; };
+		F9055CEE207D4CA30039C9F3 /* LoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTests.swift; sourceTree = "<group>"; };
 		F9055CF0207D4CA30039C9F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F9A705E826B362C3490B4183 /* Pods-defaults-common_tests-CanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_tests-CanvasTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_tests-CanvasTests/Pods-defaults-common_tests-CanvasTests.release.xcconfig"; sourceTree = "<group>"; };
 		FB53AA8A26564C052A94E885 /* Pods_defaults_TechDebt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_TechDebt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1667,6 +1673,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C04B037207FE4E800C6BD65 /* Test Base Classes */ = {
+			isa = PBXGroup;
+			children = (
+				2C04B038207FE50500C6BD65 /* StudentUITestBase.swift */,
+				2C04B03C207FE5B400C6BD65 /* LoggedInStudentUITest.swift */,
+			);
+			name = "Test Base Classes";
+			sourceTree = "<group>";
+		};
 		2C9C44F9207EBBE3008A8DF1 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
@@ -2948,8 +2963,10 @@
 		F9055CED207D4CA30039C9F3 /* StudentUITests */ = {
 			isa = PBXGroup;
 			children = (
+				2C04B037207FE4E800C6BD65 /* Test Base Classes */,
 				2C9C44F9207EBBE3008A8DF1 /* Dependencies */,
-				F9055CEE207D4CA30039C9F3 /* StudentUITests.swift */,
+				F9055CEE207D4CA30039C9F3 /* LoginTests.swift */,
+				2C04B03A207FE58700C6BD65 /* DashboardTests.swift */,
 				F9055CF0207D4CA30039C9F3 /* Info.plist */,
 			);
 			path = StudentUITests;
@@ -4207,7 +4224,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9055CEF207D4CA30039C9F3 /* StudentUITests.swift in Sources */,
+				2C04B03D207FE5B400C6BD65 /* LoggedInStudentUITest.swift in Sources */,
+				2C04B03B207FE58700C6BD65 /* DashboardTests.swift in Sources */,
+				F9055CEF207D4CA30039C9F3 /* LoginTests.swift in Sources */,
+				2C04B039207FE50500C6BD65 /* StudentUITestBase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

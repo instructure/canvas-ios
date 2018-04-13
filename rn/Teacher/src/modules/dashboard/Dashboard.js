@@ -11,7 +11,7 @@ import { connect } from 'react-redux'
 import refresh from '../../utils/refresh'
 import localeSort from '../../utils/locale-sort'
 import i18n from 'format-message'
-import App from '../app'
+import App, { isTeacher, isStudent } from '../app'
 import CoursesActions from '../courses/actions'
 import EnrollmentsActions from '../enrollments/actions'
 import GroupsActions from '../groups/actions'
@@ -102,7 +102,7 @@ export class Dashboard extends React.Component<Props, State> {
         !newProps.error &&
         !newProps.totalCourseCount &&
         !this.state.showingModal &&
-        App.current().appId === 'teacher' &&
+        isTeacher() &&
         getSessionUnsafe()) {
       this.props.navigator.show('/notATeacher', { modal: true })
       this.setState({
@@ -297,7 +297,7 @@ export class Dashboard extends React.Component<Props, State> {
     }
 
     // Groups
-    if (App.current().appId === 'student' &&
+    if (isStudent() &&
         this.props.groups &&
         this.props.groups.length > 0) {
       sections.push({
@@ -518,13 +518,13 @@ const Refreshed = refresh(
     props.refreshUserEnrollments()
     props.refreshGroupFavorites()
 
-    if (App.current().appId === 'student') {
+    if (isStudent()) {
       props.refreshUsersGroups()
     }
   },
   props => props.courses.length === 0 ||
-    (App.current().appId === 'student' && props.groups.length === 0) ||
-    (App.current().appId === 'student' && Object.keys(props.enrollments).length === 0),
+    (isStudent() && props.groups.length === 0) ||
+    (isStudent() && Object.keys(props.enrollments).length === 0),
   props => Boolean(props.pending)
 )(Dashboard)
 const Connected = connect(mapStateToProps(true), {

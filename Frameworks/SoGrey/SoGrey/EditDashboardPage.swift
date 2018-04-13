@@ -18,11 +18,11 @@ import SoGrey
 import EarlGrey
 import SoSeedySwift
 
-class EditCoursesListPage {
+public class EditDashboardPage {
 
     // MARK: Singleton
 
-    static let sharedInstance = EditCoursesListPage()
+    public static let sharedInstance = EditDashboardPage()
     private init() {}
 
     // MARK: Elements
@@ -53,7 +53,7 @@ class EditCoursesListPage {
 
     // MARK: - Assertions
 
-    func assertPageObjects(_ file: StaticString = #file, _ line: UInt = #line) {
+    public func assertPageObjects(_ file: StaticString = #file, _ line: UInt = #line) {
         grey_fromFile(file, line)
         // navBarTitleView().assertExists()
         doneButton.assertExists()
@@ -71,7 +71,7 @@ class EditCoursesListPage {
 //        courseIsNotFavoritedElement.assertExists()
 //    }
 //
-    func assertHasCourses(_ courses: [Soseedy_Course], _ file: StaticString = #file, _ line: UInt = #line) {
+    public func assertHasCourses(_ courses: [Soseedy_Course], _ file: StaticString = #file, _ line: UInt = #line) {
         grey_fromFile(file, line)
 
         for course in courses {
@@ -88,7 +88,7 @@ class EditCoursesListPage {
 
     // MARK: - UI Actions
 
-    func dismissToFavoriteCoursesPage(_ file: StaticString = #file, _ line: UInt = #line) {
+    public func dismissToFavoriteCoursesPage(_ file: StaticString = #file, _ line: UInt = #line) {
         grey_fromFile(file, line)
         doneButton.tapUntilHidden()
     }

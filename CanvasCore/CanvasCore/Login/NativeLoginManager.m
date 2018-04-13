@@ -248,6 +248,7 @@ RCT_EXPORT_METHOD(stopObserving)
     else {
         NSMutableDictionary *mutableInfo = [info mutableCopy];
         mutableInfo[@"skipHydrate"] = @YES;
+        mutableInfo[@"appId"] = self.app;
         self.injectedLoginInfo = mutableInfo;
         
         NSString *accessToken = info[@"authToken"];

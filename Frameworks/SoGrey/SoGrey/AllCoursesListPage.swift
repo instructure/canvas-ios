@@ -14,15 +14,13 @@
 // limitations under the License.
 //
 
-import SoGrey
 import EarlGrey
 
-class AllCoursesListPage {
+public class AllCoursesListPage {
 
     // MARK: Singleton
 
-    static let sharedInstance = AllCoursesListPage()
-    private let tabBarController = TabBarControllerPage.sharedInstance
+    public static let sharedInstance = AllCoursesListPage()
     private init() {}
 
     // MARK: Elements
@@ -41,9 +39,8 @@ class AllCoursesListPage {
 
     // MARK: - Assertions
 
-    func assertPageObjects(_ file: StaticString = #file, _ line: UInt = #line) {
+    public func assertPageObjects(_ file: StaticString = #file, _ line: UInt = #line) {
         grey_fromFile(file, line)
-        tabBarController.assertTabBarItems()
         navBarTitleView.assertExists()
         backButton.assertExists()
     }
@@ -58,7 +55,7 @@ class AllCoursesListPage {
 
     // MARK: - UI Actions
 
-    func backToCoursesListPage(_ file: StaticString = #file, _ line: UInt = #line) {
+    public func backToCoursesListPage(_ file: StaticString = #file, _ line: UInt = #line) {
         grey_fromFile(file, line)
         backButton.tapUntilHidden()
     }

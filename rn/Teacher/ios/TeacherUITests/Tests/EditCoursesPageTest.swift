@@ -21,14 +21,14 @@ class EditCoursesPageTest: TeacherTest {
 
     func testEditCoursesPage_displaysPageObjects() {
         getToEditCoursesPage()
-        editCoursesListPage.assertPageObjects()
-        editCoursesListPage.dismissToFavoriteCoursesPage()
+        editDashboardPage.assertPageObjects()
+        editDashboardPage.dismissToFavoriteCoursesPage()
     }
 
     func testEditCoursesPage_displaysCourseList() {
         getToEditCoursesPage(numCourses: 2, numFavorites: 1)
-        editCoursesListPage.assertHasCourses(courses)
-        editCoursesListPage.dismissToFavoriteCoursesPage()
+        editDashboardPage.assertHasCourses(courses)
+        editDashboardPage.dismissToFavoriteCoursesPage()
     }
 
     func getToEditCoursesPage(numCourses: Int = 1, numFavorites: Int = 0) {
