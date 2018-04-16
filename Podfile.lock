@@ -182,7 +182,7 @@ DEPENDENCIES:
   - Crashlytics (~> 3.8)
   - DeviceKit (~> 1.0)
   - EarlGrey (~> 1.1)
-  - Eureka (from `https://github.com/xmartlabs/Eureka`, branch `feature/Xcode9-Swift3_2`)
+  - Eureka (from `https://github.com/xmartlabs/Eureka`, branch `Swift-3.3`)
   - Fabric (~> 1.6)
   - FXKeychain (~> 1.5)
   - Google/Analytics
@@ -278,7 +278,7 @@ EXTERNAL SOURCES:
   BVLinearGradient:
     :path: "./rn/Teacher/node_modules/react-native-linear-gradient"
   Eureka:
-    :branch: feature/Xcode9-Swift3_2
+    :branch: Swift-3.3
     :git: https://github.com/xmartlabs/Eureka
   Interactable:
     :path: "./rn/Teacher/node_modules/react-native-interactable"
@@ -318,7 +318,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Eureka:
-    :commit: 05acfb04c24a480f1868e671d19b39e0f22fc265
+    :commit: 8fcc11477411b1ac96339d3d9d0973956ed05151
     :git: https://github.com/xmartlabs/Eureka
   SVGKit:
     :commit: 0799e49c6ccd387888c5a6592b93f8b42e41bfeb
@@ -383,6 +383,6 @@ SPEC CHECKSUMS:
   TPKeyboardAvoiding: cb69d5ddbe90ce0170e4bc2db1e5e41d4a3ad9a4
   yoga: 17521bbb0dd54a47c0b3ac43253e78cdac7488e0
 
-PODFILE CHECKSUM: 7dd4a021a242453c6e867253be57651b57c37973
+PODFILE CHECKSUM: 9d893669cc5a998bbc70239041c9e0ec14ceae55
 
 COCOAPODS: 1.5.0
