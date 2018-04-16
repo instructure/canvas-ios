@@ -123,7 +123,7 @@ export class DiscussionDetails extends Component<Props, any> {
       unread_entries: props.unreadEntries || [],
       entry_ratings: props.entryRatings || {},
     }
-    this.state.flatReplies = this.rootRepliesData(props.discussion)
+    this.state.flatReplies = this.rootRepliesData(props.discussion, [], this.state.maxReplyNodeDepth)
   }
 
   componentWillUnmount () {
@@ -149,7 +149,7 @@ export class DiscussionDetails extends Component<Props, any> {
     this.setState({
       unread_entries: nextProps.unreadEntries,
       entry_ratings: nextProps.entryRatings || {},
-      flatReplies: this.rootRepliesData(nextProps.discussion),
+      flatReplies: this.rootRepliesData(nextProps.discussion, this.state.rootNodePath, this.state.maxReplyNodeDepth),
     })
   }
 
@@ -158,8 +158,10 @@ export class DiscussionDetails extends Component<Props, any> {
   }
 
   traitCollectionDidChange (traits: TraitCollection) {
+    const maxReplyNodeDepth = isRegularDisplayMode(traits) ? 4 : 2
     this.setState({
-      maxReplyNodeDepth: isRegularDisplayMode(traits) ? 4 : 2,
+      maxReplyNodeDepth,
+      flatReplies: this.rootRepliesData(this.props.discussion, this.state.rootNodePath, maxReplyNodeDepth),
     })
   }
 
@@ -355,22 +357,22 @@ export class DiscussionDetails extends Component<Props, any> {
     )
   }
 
-  rootRepliesData = (discussion: ?Discussion) => {
+  rootRepliesData = (discussion: ?Discussion, rootNodePath: number[], maxDepth: number) => {
     if (!discussion) return []
     let replies = discussion && discussion.replies || []
 
-    if (this.state.rootNodePath.length === 0) return this.flattenRepliesData([], 0, replies, [])
+    if (rootNodePath.length === 0) return this.flattenRepliesData([], 0, replies, [], maxDepth)
 
-    let reply = replyFromLocalIndexPath(this.state.rootNodePath, replies, false)
+    let reply = replyFromLocalIndexPath(rootNodePath, replies, false)
     if (reply) {
-      return this.flattenRepliesData([], 0, [reply], [])
+      return this.flattenRepliesData([], 0, [reply], [], maxDepth)
     } else {
       return [reply]
     }
   }
 
-  flattenRepliesData (flatList: DiscussionReply[], depth: number, replies: DiscussionReply[], indexPath: number[]): DiscussionReply[] {
-    if (!replies || depth > this.state.maxReplyNodeDepth) return flatList
+  flattenRepliesData (flatList: DiscussionReply[], depth: number, replies: DiscussionReply[], indexPath: number[], maxDepth: number): DiscussionReply[] {
+    if (!replies || depth > maxDepth) return flatList
 
     for (let i = 0; i < replies.length; i++) {
       const readState = this.checkReadState(replies[i].id)
@@ -382,7 +384,7 @@ export class DiscussionDetails extends Component<Props, any> {
         rating: this.state.entry_ratings[replies[i].id],
       }
       flatList.push(reply)
-      flatList = this.flattenRepliesData(flatList, depth + 1, replies[i].replies, reply.myPath)
+      flatList = this.flattenRepliesData(flatList, depth + 1, replies[i].replies, reply.myPath, maxDepth)
     }
     return flatList
   }
@@ -530,6 +532,7 @@ export class DiscussionDetails extends Component<Props, any> {
   _onPressMoreReplies = (rootPath: number[]) => {
     this.setState({
       rootNodePath: rootPath,
+      flatReplies: this.rootRepliesData(this.props.discussion, rootPath, this.state.maxReplyNodeDepth),
     })
 
     setTimeout(function () { NativeAccessibility.focusElement('discussion.popToLastDiscussionList') }, 500)
@@ -540,6 +543,7 @@ export class DiscussionDetails extends Component<Props, any> {
     if (path.length === 1) path = []
     this.setState({
       rootNodePath: path,
+      flatReplies: this.rootRepliesData(this.props.discussion, path, this.state.maxReplyNodeDepth),
     })
   }
 
