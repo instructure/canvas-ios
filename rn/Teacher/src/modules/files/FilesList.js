@@ -60,6 +60,10 @@ type FileListNavProps = {
   contextID: string,
   context: 'courses' | 'groups' | 'users',
   subFolder?: ?string,
+  canEdit: boolean,
+  canAdd: boolean,
+  canSelectFile: Function,
+  onSelectFile: Function,
 }
 
 type Props =
@@ -93,6 +97,9 @@ export class FilesList extends Component<Props, State> {
     createFolder: canvas.createFolder,
     uploadFile: canvas.uploadAttachment,
     updateFile: canvas.updateFile,
+    canEdit: true,
+    canAdd: true,
+    canSelectFile: () => true,
   }
 
   attachmentPicker: AttachmentPicker
@@ -128,6 +135,7 @@ export class FilesList extends Component<Props, State> {
   }
 
   canEdit = (): boolean => {
+    if (!this.props.canEdit) return false
     // Root folders cannot be edited
     if (!this.props.subFolder) return false
     // If we were unable to find the folder, it can't be edited
@@ -138,6 +146,7 @@ export class FilesList extends Component<Props, State> {
   }
 
   canAdd = (): boolean => {
+    if (!this.props.canAdd) return false
     if (this.state.uploadPending) return false
     if (this.props.context === 'users') return true
     return isTeacher()
@@ -145,9 +154,19 @@ export class FilesList extends Component<Props, State> {
 
   onSelectRow = (index: number) => {
     const item = this.props.data[index]
-    const { contextID, context } = this.props
+    const {
+      contextID,
+      context,
+      onSelectFile,
+      canSelectFile,
+      canEdit,
+      canAdd,
+    } = this.props
 
     if (item.type === 'file') {
+      if (onSelectFile) {
+        return onSelectFile(item)
+      }
       this.props.navigator.show(`/${context}/${contextID}/files/${item.id}`, { modal: true }, {
         file: item,
         onChange: this.update,
@@ -159,7 +178,12 @@ export class FilesList extends Component<Props, State> {
       } else {
         route = `/${context}/${contextID}/files/folder/${item.name}`
       }
-      this.props.navigator.show(route)
+      this.props.navigator.show(route, { modal: false }, {
+        onSelectFile,
+        canSelectFile,
+        canEdit,
+        canAdd,
+      })
     }
   }
 
@@ -436,7 +460,8 @@ export function mapStateToProps (state: Object, props: FileListNavProps) {
   }
 
   const folders = (contextFolders[parentFolder.full_name] || []).map(mapper('folder'))
-  const files = (contextFiles[parentFolder.full_name] || []).map(mapper('file'))
+  const canSelectFile = props.canSelectFile || (() => true)
+  const files = (contextFiles[parentFolder.full_name] || []).map(mapper('file')).filter(canSelectFile)
   const data = [...folders, ...files].sort((a, b) => localeSort(a.name || a.display_name, b.name || b.display_name))
 
   return { data, folder: parentFolder, courseColor }

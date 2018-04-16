@@ -68,6 +68,7 @@ exports[`Attachments renders attachments 1`] = `
             "error": null,
             "fileID": "1",
             "id": "1",
+            "index": 0,
             "progress": Object {
               "loaded": 0,
               "total": 0,
@@ -98,6 +99,7 @@ exports[`Attachments renders attachments 1`] = `
             "error": null,
             "fileID": "2",
             "id": "2",
+            "index": 1,
             "progress": Object {
               "loaded": 0,
               "total": 0,
@@ -134,6 +136,7 @@ exports[`Attachments renders attachments 1`] = `
           "top": 0,
         }
       }
+      userFiles={false}
     />
   </View>
 </Screen>
@@ -210,6 +213,7 @@ exports[`Attachments renders empty state 1`] = `
           "top": 0,
         }
       }
+      userFiles={false}
     />
   </View>
 </Screen>

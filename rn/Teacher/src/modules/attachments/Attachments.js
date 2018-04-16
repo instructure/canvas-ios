@@ -27,7 +27,7 @@ import { parseErrorMessage } from '../../redux/middleware/error-handler'
 import i18n from 'format-message'
 import images from '../../images'
 import AttachmentRow from './AttachmentRow'
-import AttachmentPicker, { type FileType } from './AttachmentPicker'
+import AttachmentPicker, { type FileType, type Source } from './AttachmentPicker'
 import EmptyAttachments from './EmptyAttachments'
 import uuid from 'uuid/v1'
 import { uploadAttachment, isAbort, uploadMedia, type Progress } from '../../canvas-api'
@@ -52,6 +52,7 @@ type AttachmentState = {
   error: null,
   cancel?: ?(() => void),
   data: Attachment,
+  index: number,
 }
 
 type State = {
@@ -66,6 +67,7 @@ export type Props = NavigationProps & {
   uploadAttachment: typeof uploadAttachment,
   uploadMedia: typeof uploadMedia,
   fileTypes?: Array<FileType>,
+  userFiles: boolean,
 }
 
 export default class Attachments extends Component<Props, any> {
@@ -78,6 +80,7 @@ export default class Attachments extends Component<Props, any> {
     storageOptions: {},
     uploadAttachment,
     uploadMedia,
+    userFiles: false,
   }
 
   constructor (props: Props) {
@@ -93,6 +96,7 @@ export default class Attachments extends Component<Props, any> {
           error: null,
           data: attachment,
           fileID: attachment.id,
+          index: Object.keys(current).length,
         },
       }), {}),
     }
@@ -145,6 +149,7 @@ export default class Attachments extends Component<Props, any> {
             ref={this.captureAttachmentPicker}
             fileTypes={this.props.fileTypes || ['all']}
             navigator={this.props.navigator}
+            userFiles={this.props.userFiles}
           />
         </View>
       </Screen>
@@ -206,6 +211,7 @@ export default class Attachments extends Component<Props, any> {
   dismiss = () => {
     const attachments = Object.values(this.state.attachments)
       .filter((a: any) => a.error == null)
+      .sort((a: any, b: any) => a.index - b.index)
       .map((a: any) => a.data)
     this.props.onComplete(attachments)
     this.props.navigator.dismiss()
@@ -219,9 +225,10 @@ export default class Attachments extends Component<Props, any> {
     this.props.navigator.dismiss()
   }
 
-  addAttachment = async (attachment: Attachment) => {
+  addAttachment = async (attachment: Attachment, source: Source) => {
     attachment.id = uuid()
-    const shouldUpload = this.props.storageOptions.uploadPath != null
+    const shouldUpload = source !== 'userFiles' &&
+      (this.props.storageOptions.uploadPath != null || this.uploadAsMediaComment(attachment))
     this.setState({
       attachments: {
         ...this.state.attachments,
@@ -231,11 +238,14 @@ export default class Attachments extends Component<Props, any> {
           error: null,
           data: attachment,
           fileID: shouldUpload ? null : attachment.id,
+          index: Object.keys(this.state.attachments).length,
         },
       },
     })
 
-    await this.uploadAttachment(attachment)
+    if (shouldUpload) {
+      await this.uploadAttachment(attachment)
+    }
   }
 
   removeAttachment = (attachment: AttachmentState) => () => {

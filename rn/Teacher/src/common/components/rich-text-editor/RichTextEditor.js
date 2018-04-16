@@ -194,18 +194,20 @@ export default class RichTextEditor extends Component<Props, State> {
       },
       onComplete: this.insertAttachments,
       fileTypes: ['image', 'video'],
+      userFiles: true,
     })
   }
 
   insertAttachments = (attachments: [Attachment]) => {
     // images
     const images = attachments.filter(a => a.mime_class === 'image')
-    images.forEach(a => this.editor.insertImage(a.url))
+    images.reverse().forEach(a => this.editor.insertImage(a.url))
 
     // videos
     const videos = attachments.filter(a => a.mime_class === 'video')
     videos
       .filter(a => a.media_entry_id)
+      .reverse()
       .forEach(a => this.editor.insertVideoComment(a.media_entry_id))
   }
 
