@@ -1,0 +1,341 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CourseNavigation refreshes courses and tabs 1`] = `
+<CourseNavigation
+  courseID="1"
+  navigator={
+    Object {
+      "dismiss": [Function],
+      "dismissAllModals": [Function],
+      "isModal": false,
+      "pop": [Function],
+      "show": [Function],
+      "traitCollection": [Function],
+    }
+  }
+  refresh={[Function]}
+  refreshCourses={[Function]}
+  refreshLTITools={[Function]}
+  refreshTabs={[Function]}
+  refreshing={false}
+  tabs={Array []}
+/>
+`;
+
+exports[`CourseNavigation refreshes when props change 1`] = `
+<CourseNavigation
+  course={
+    Object {
+      "account_id": "1",
+      "course_code": "rn 101",
+      "default_view": "wiki",
+      "end_at": "2030-02-08T23:13:39Z",
+      "enrollments": Array [
+        Object {
+          "enrollment_state": "active",
+          "role": "TeacherEnrollment",
+          "role_id": "1",
+          "type": "teacher",
+          "user_id": "1",
+        },
+      ],
+      "id": "1",
+      "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+      "is_favorite": true,
+      "name": "Learn React Native",
+      "permissions": Object {
+        "viewAllGrades": true,
+        "viewAnalytics": true,
+      },
+      "short_name": "rn",
+      "term": Object {
+        "created_at": "2018-02-08T23:13:39Z",
+        "end_at": "2030-02-08T23:13:39Z",
+        "id": "1",
+        "name": "Default Term",
+        "start_at": "2018-02-08T23:13:39Z",
+        "workflow_state": "available",
+      },
+      "workflow_state": "available",
+    }
+  }
+  courseID="1"
+  navigator={
+    Object {
+      "dismiss": [Function],
+      "dismissAllModals": [Function],
+      "isModal": false,
+      "pop": [Function],
+      "show": [Function],
+      "traitCollection": [Function],
+    }
+  }
+  refresh={[Function]}
+  refreshCourses={[Function]}
+  refreshLTITools={[Function]}
+  refreshTabs={[Function]}
+  refreshing={false}
+  tabs={Array []}
+/>
+`;
+
+exports[`CourseNavigation renders correctly 1`] = `
+<Screen
+  automaticallyAdjustsScrollViewInsets={false}
+  disableGlobalSafeArea={true}
+  drawUnderNavBar={true}
+  navBarStyle="dark"
+  navBarTransparent={true}
+  onTraitCollectionChange={[Function]}
+  rightBarButtons={
+    Array [
+      Object {
+        "accessibilityLabel": "Edit course settings",
+        "action": [Function],
+        "image": Object {
+          "testUri": "../../../src/images/course/Settings.png",
+        },
+        "testID": "course-details.navigation-edit-course-btn",
+      },
+    ]
+  }
+  showDismissButton={true}
+  statusBarStyle="default"
+  title="rn 101"
+>
+  <TabsList
+    defaultView="wiki"
+    imageURL="https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg"
+    onSelectTab={[Function]}
+    refreshing={false}
+    selectedTabId={null}
+    subtitle="Default Term"
+    tabs={
+      Array [
+        Object {
+          "html_url": "/courses/1/assignments",
+          "id": "assignments",
+          "label": "Home",
+          "position": 0,
+          "type": "internal",
+          "visibility": "public",
+        },
+      ]
+    }
+    title="Learn React Native"
+    windowTraits={
+      Object {
+        "horizontal": "compact",
+        "vertical": "regular",
+      }
+    }
+  />
+</Screen>
+`;
+
+exports[`CourseNavigation renders correctly without tabs 1`] = `
+<Screen
+  automaticallyAdjustsScrollViewInsets={false}
+  disableGlobalSafeArea={true}
+  drawUnderNavBar={true}
+  navBarStyle="dark"
+  navBarTransparent={true}
+  onTraitCollectionChange={[Function]}
+  rightBarButtons={
+    Array [
+      Object {
+        "accessibilityLabel": "Edit course settings",
+        "action": [Function],
+        "image": Object {
+          "testUri": "../../../src/images/course/Settings.png",
+        },
+        "testID": "course-details.navigation-edit-course-btn",
+      },
+    ]
+  }
+  showDismissButton={true}
+  statusBarStyle="default"
+  title="rn 101"
+>
+  <TabsList
+    defaultView="wiki"
+    imageURL="https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg"
+    onSelectTab={[Function]}
+    refreshing={false}
+    selectedTabId={null}
+    subtitle="Default Term"
+    tabs={Array []}
+    title="Learn React Native"
+    windowTraits={
+      Object {
+        "horizontal": "compact",
+        "vertical": "regular",
+      }
+    }
+  />
+</Screen>
+`;
+
+exports[`CourseNavigation renders with empty image url 1`] = `
+<Screen
+  automaticallyAdjustsScrollViewInsets={false}
+  disableGlobalSafeArea={true}
+  drawUnderNavBar={true}
+  navBarStyle="dark"
+  navBarTransparent={true}
+  onTraitCollectionChange={[Function]}
+  rightBarButtons={
+    Array [
+      Object {
+        "accessibilityLabel": "Edit course settings",
+        "action": [Function],
+        "image": Object {
+          "testUri": "../../../src/images/course/Settings.png",
+        },
+        "testID": "course-details.navigation-edit-course-btn",
+      },
+    ]
+  }
+  showDismissButton={true}
+  statusBarStyle="default"
+  title="rn 101"
+>
+  <TabsList
+    defaultView="wiki"
+    imageURL=""
+    onSelectTab={[Function]}
+    refreshing={false}
+    selectedTabId={null}
+    subtitle="Default Term"
+    tabs={
+      Array [
+        Object {
+          "html_url": "/courses/1/assignments",
+          "id": "assignments",
+          "label": "Home",
+          "position": 0,
+          "type": "internal",
+          "visibility": "public",
+        },
+      ]
+    }
+    title="Learn React Native"
+    windowTraits={
+      Object {
+        "horizontal": "compact",
+        "vertical": "regular",
+      }
+    }
+  />
+</Screen>
+`;
+
+exports[`CourseNavigation renders with image url 1`] = `
+<Screen
+  automaticallyAdjustsScrollViewInsets={false}
+  disableGlobalSafeArea={true}
+  drawUnderNavBar={true}
+  navBarStyle="dark"
+  navBarTransparent={true}
+  onTraitCollectionChange={[Function]}
+  rightBarButtons={
+    Array [
+      Object {
+        "accessibilityLabel": "Edit course settings",
+        "action": [Function],
+        "image": Object {
+          "testUri": "../../../src/images/course/Settings.png",
+        },
+        "testID": "course-details.navigation-edit-course-btn",
+      },
+    ]
+  }
+  showDismissButton={true}
+  statusBarStyle="default"
+  title="rn 101"
+>
+  <TabsList
+    defaultView="wiki"
+    imageURL="http://www.fillmurray.com/100/100"
+    onSelectTab={[Function]}
+    refreshing={false}
+    selectedTabId={null}
+    subtitle="Default Term"
+    tabs={
+      Array [
+        Object {
+          "html_url": "/courses/1/assignments",
+          "id": "assignments",
+          "label": "Home",
+          "position": 0,
+          "type": "internal",
+          "visibility": "public",
+        },
+      ]
+    }
+    title="Learn React Native"
+    windowTraits={
+      Object {
+        "horizontal": "compact",
+        "vertical": "regular",
+      }
+    }
+  />
+</Screen>
+`;
+
+exports[`CourseNavigation renders without course 1`] = `<ActivityIndicatorView />`;
+
+exports[`CourseNavigation renders without image url 1`] = `
+<Screen
+  automaticallyAdjustsScrollViewInsets={false}
+  disableGlobalSafeArea={true}
+  drawUnderNavBar={true}
+  navBarStyle="dark"
+  navBarTransparent={true}
+  onTraitCollectionChange={[Function]}
+  rightBarButtons={
+    Array [
+      Object {
+        "accessibilityLabel": "Edit course settings",
+        "action": [Function],
+        "image": Object {
+          "testUri": "../../../src/images/course/Settings.png",
+        },
+        "testID": "course-details.navigation-edit-course-btn",
+      },
+    ]
+  }
+  showDismissButton={true}
+  statusBarStyle="default"
+  title="rn 101"
+>
+  <TabsList
+    defaultView="wiki"
+    imageURL={null}
+    onSelectTab={[Function]}
+    refreshing={false}
+    selectedTabId={null}
+    subtitle="Default Term"
+    tabs={
+      Array [
+        Object {
+          "html_url": "/courses/1/assignments",
+          "id": "assignments",
+          "label": "Home",
+          "position": 0,
+          "type": "internal",
+          "visibility": "public",
+        },
+      ]
+    }
+    title="Learn React Native"
+    windowTraits={
+      Object {
+        "horizontal": "compact",
+        "vertical": "regular",
+      }
+    }
+  />
+</Screen>
+`;

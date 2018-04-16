@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CourseDetailsTab can be pressed 1`] = `
+exports[`TabRow can be pressed 1`] = `
 <SafeAreaView>
   <Row
     border="bottom"
@@ -16,7 +16,6 @@ exports[`CourseDetailsTab can be pressed 1`] = `
         "width": 24,
       }
     }
-    imageTint="white"
     onPress={[Function]}
     testID="courses-details.assignments-cell"
     title="Home"
@@ -29,7 +28,7 @@ exports[`CourseDetailsTab can be pressed 1`] = `
 </SafeAreaView>
 `;
 
-exports[`CourseDetailsTab can be selected 1`] = `
+exports[`TabRow can be selected 1`] = `
 <SafeAreaView>
   <Row
     border="bottom"
@@ -45,7 +44,6 @@ exports[`CourseDetailsTab can be selected 1`] = `
         "width": 24,
       }
     }
-    imageTint="white"
     onPress={[Function]}
     selected={true}
     testID="courses-details.assignments-cell"
@@ -59,7 +57,7 @@ exports[`CourseDetailsTab can be selected 1`] = `
 </SafeAreaView>
 `;
 
-exports[`CourseDetailsTab renders correctly 1`] = `
+exports[`TabRow renders correctly 1`] = `
 <SafeAreaView>
   <Row
     border="bottom"
@@ -75,7 +73,6 @@ exports[`CourseDetailsTab renders correctly 1`] = `
         "width": 24,
       }
     }
-    imageTint="white"
     onPress={[Function]}
     testID="courses-details.assignments-cell"
     title="Home"
@@ -88,7 +85,7 @@ exports[`CourseDetailsTab renders correctly 1`] = `
 </SafeAreaView>
 `;
 
-exports[`CourseDetailsTab shows a default icon 1`] = `
+exports[`TabRow shows a default icon 1`] = `
 <SafeAreaView>
   <Row
     border="bottom"
@@ -104,7 +101,6 @@ exports[`CourseDetailsTab shows a default icon 1`] = `
         "width": 24,
       }
     }
-    imageTint="white"
     onPress={[Function]}
     testID="courses-details.test default icon-cell"
     title="Home"
@@ -117,7 +113,7 @@ exports[`CourseDetailsTab shows a default icon 1`] = `
 </SafeAreaView>
 `;
 
-exports[`CourseDetailsTab uses attendance lti image 1`] = `
+exports[`TabRow uses attendance lti image 1`] = `
 <SafeAreaView>
   <Row
     border="bottom"
@@ -133,7 +129,6 @@ exports[`CourseDetailsTab uses attendance lti image 1`] = `
         "width": 24,
       }
     }
-    imageTint="white"
     onPress={[Function]}
     testID="courses-details./external_tool/-cell"
     title="Home"
@@ -146,7 +141,7 @@ exports[`CourseDetailsTab uses attendance lti image 1`] = `
 </SafeAreaView>
 `;
 
-exports[`CourseDetailsTab uses attendance tab image 1`] = `
+exports[`TabRow uses attendance tab image 1`] = `
 <SafeAreaView>
   <Row
     border="bottom"
@@ -162,7 +157,6 @@ exports[`CourseDetailsTab uses attendance tab image 1`] = `
         "width": 24,
       }
     }
-    imageTint="white"
     onPress={[Function]}
     testID="courses-details.assignments-cell"
     title="Home"

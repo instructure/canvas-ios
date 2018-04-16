@@ -17,7 +17,7 @@
 // @flow
 import AllCourseList from '../modules/courses/all/AllCourseList'
 import EditFavorites from '../modules/courses/edit-favorites/EditFavorites'
-import CourseDetails from '../modules/courses/details/CourseDetails'
+import CourseNavigation from '../modules/courses/CourseNavigation'
 import CourseSettings from '../modules/courses/settings/CourseSettings'
 import UserCoursePreferences from '../modules/courses/user-prefs/UserCoursePreferences'
 import AssignmentList from '../modules/assignments/AssignmentList'
@@ -87,10 +87,12 @@ export function wrap (name: any): Function {
 export function registerScreens (store: Store): void {
   registerScreen('', wrap(Dashboard), store, { deepLink: true })
   registerScreen('/', wrap(Dashboard), store, { deepLink: true })
-  registerScreen('/groups/:groupID', wrap(CourseDetails), store, { canBecomeMaster: true })
+  registerScreen('/groups/:groupID', wrap(CourseNavigation), store, { canBecomeMaster: true, deepLink: true })
+  registerScreen('/groups/:groupID/tabs', wrap(CourseNavigation), store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/courses', wrap(AllCourseList), store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/course_favorites', wrap(EditFavorites), store, { deepLink: true })
-  registerScreen('/courses/:courseID', wrap(CourseDetails), store, { canBecomeMaster: true, deepLink: true })
+  registerScreen('/courses/:courseID', wrap(CourseNavigation), store, { canBecomeMaster: true, deepLink: true })
+  registerScreen('/courses/:courseID/tabs', wrap(CourseNavigation), store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/courses/:courseID/settings', wrap(CourseSettings), store)
   registerScreen('/courses/:courseID/user_preferences', wrap(UserCoursePreferences), store)
   registerScreen('/courses/:courseID/assignments', wrap(AssignmentList), store, { canBecomeMaster: true, deepLink: true })

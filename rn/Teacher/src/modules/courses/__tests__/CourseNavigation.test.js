@@ -18,19 +18,20 @@
 
 import { shallow } from 'enzyme'
 import React from 'react'
-import { CourseDetails, Refreshed } from '../CourseDetails'
-import App from '../../../app'
-import * as LTITools from '../../../../common/LTITools'
+import { CourseNavigation, Refreshed, mapStateToProps } from '../CourseNavigation'
+import App from '../../app'
+import * as LTITools from '../../../common/LTITools'
 
 const template = {
-  ...require('../../../../__templates__/course'),
-  ...require('../../../../__templates__/tab'),
-  ...require('../../../../__templates__/helm'),
+  ...require('../../../__templates__/course'),
+  ...require('../../../__templates__/tab'),
+  ...require('../../../__templates__/helm'),
+  ...require('../../../redux/__templates__/app-state'),
 }
 
 jest
-  .mock('../../../../routing')
-  .mock('../../../../common/LTITools.js', () => ({
+  .mock('../../../routing')
+  .mock('../../../common/LTITools.js', () => ({
     launchExternalTool: jest.fn(),
   }))
 
@@ -45,9 +46,9 @@ const defaultProps = {
   refreshing: false,
 }
 
-describe('CourseDetails', () => {
+describe('CourseNavigation', () => {
   it('renders correctly', () => {
-    const tree = shallow(<CourseDetails {...defaultProps} />)
+    const tree = shallow(<CourseNavigation {...defaultProps} />)
     expect(tree).toMatchSnapshot()
   })
 
@@ -93,25 +94,13 @@ describe('CourseDetails', () => {
   })
 
   it('renders correctly without tabs', () => {
-    const tree = shallow(<CourseDetails {...defaultProps} tabs={[]} />)
+    const tree = shallow(<CourseNavigation {...defaultProps} tabs={[]} />)
     expect(tree).toMatchSnapshot()
   })
 
   it('renders without course', () => {
     const props = { ...defaultProps, course: null }
-    expect(shallow(<CourseDetails {...props} />)).toMatchSnapshot()
-  })
-
-  it('go back to course list', () => {
-    const props = {
-      ...defaultProps,
-      navigator: template.navigator({
-        dismiss: jest.fn(() => Promise.resolve()),
-      }),
-    }
-    const tree = shallow(<CourseDetails {...props} />)
-    tree.instance().back()
-    expect(props.navigator.dismiss).toHaveBeenCalled()
+    expect(shallow(<CourseNavigation {...props} />)).toMatchSnapshot()
   })
 
   it('selects tab', () => {
@@ -128,8 +117,9 @@ describe('CourseDetails', () => {
       }),
     }
 
-    const tree = shallow(<CourseDetails {...props} />)
+    const tree = shallow(<CourseNavigation {...props} />)
     tree
+      .find('TabsList').first().dive()
       .find('OnLayout').first().dive()
       .find('[testID="courses-details.tab.assignments"]')
       .simulate('Press', tab)
@@ -150,8 +140,9 @@ describe('CourseDetails', () => {
         navigator: template.navigator(),
       }
 
-      const tree = shallow(<CourseDetails {...props} />)
+      const tree = shallow(<CourseNavigation {...props} />)
       tree
+        .find('TabsList').first().dive()
         .find('OnLayout').first().dive()
         .find('[testID="courses-details.tab.external_tool_4"]')
         .simulate('Press', tab)
@@ -180,7 +171,7 @@ describe('CourseDetails', () => {
         show: jest.fn(),
       }),
     }
-    const tree = shallow(<CourseDetails {...props} />)
+    const tree = shallow(<CourseNavigation {...props} />)
     tree.find('Screen').prop('rightBarButtons')[0].action()
     expect(props.navigator.show).toHaveBeenCalledWith(
       '/courses/1/settings',
@@ -190,19 +181,19 @@ describe('CourseDetails', () => {
 
   it('renders with image url', () => {
     const course = template.course({ image_download_url: 'http://www.fillmurray.com/100/100' })
-    expect(shallow(<CourseDetails {...defaultProps} course={course} />))
+    expect(shallow(<CourseNavigation {...defaultProps} course={course} />))
       .toMatchSnapshot()
   })
 
   it('renders without image url', () => {
     const course = template.course({ image_download_url: null })
-    expect(shallow(<CourseDetails {...defaultProps} course={course} />))
+    expect(shallow(<CourseNavigation {...defaultProps} course={course} />))
       .toMatchSnapshot()
   })
 
   it('renders with empty image url', () => {
     const course = template.course({ image_download_url: '' })
-    expect(shallow(<CourseDetails {...defaultProps} course={course} />))
+    expect(shallow(<CourseNavigation {...defaultProps} course={course} />))
       .toMatchSnapshot()
   })
 
@@ -224,7 +215,7 @@ describe('CourseDetails', () => {
       tabs: [template.tab({ id: 'home' })],
       navigator,
     }
-    shallow(<CourseDetails {...props} />)
+    shallow(<CourseNavigation {...props} />)
     await Promise.resolve() // wait for next run loop
     expect(navigator.show).toHaveBeenLastCalledWith(props.tabs[0].html_url)
   })
@@ -246,7 +237,7 @@ describe('CourseDetails', () => {
       ...defaultProps,
       navigator,
     }
-    shallow(<CourseDetails {...props} />)
+    shallow(<CourseNavigation {...props} />)
     expect(navigator.show).toHaveBeenLastCalledWith(
       '/courses/1/placeholder',
       {},
@@ -275,9 +266,138 @@ describe('CourseDetails', () => {
       tabs: [template.tab({ id: 'home' })],
       navigator,
     }
-    shallow(<CourseDetails {...props} />)
+    shallow(<CourseNavigation {...props} />)
     await Promise.resolve() // wait for next run loop
     expect(navigator.show).toHaveBeenLastCalledWith(`/courses/${props.course.id}/pages/front_page`)
     App.setCurrentApp(currentApp.appId)
+  })
+})
+
+describe('mapStateToProps', () => {
+  beforeEach(() => {
+    App.setCurrentApp('teacher')
+  })
+
+  it('returns the correct props', () => {
+    const course = template.course({ id: 1 })
+    const tabs = { tabs: [template.tab()], pending: 0 }
+    const attendanceTool = { pending: 0 }
+    const state = template.appState({
+      entities: {
+        courses: {
+          '1': {
+            course,
+            color: '#fff',
+            tabs,
+            attendanceTool,
+          },
+        },
+      },
+      favoriteCourses: {
+        pending: 0,
+        courseRefs: ['1'],
+      },
+    })
+    const expected = {
+      course,
+      tabs: tabs.tabs,
+      color: '#fff',
+      pending: 0,
+      error: undefined,
+    }
+
+    const props = mapStateToProps(state, { courseID: '1' })
+
+    expect(props).toEqual(expected)
+  })
+
+  it('returns basic props without course', () => {
+    const state: { [string]: any } = {
+      entities: {
+        courses: {},
+      },
+      favoriteCourses: {},
+    }
+
+    expect(
+      mapStateToProps(state, { courseID: '1' })
+    ).toEqual({
+      pending: 0,
+      tabs: [],
+      course: null,
+      color: '',
+      attendanceTabID: null,
+    })
+  })
+
+  it('hides attendance tab if it is hidden', () => {
+    const course = template.course({ id: '1' })
+    const tabs = { tabs: [template.tab({ id: '1', hidden: true })], pending: 0 }
+    const attendanceTool = { tabID: '1', pending: 0 }
+    const state = template.appState({
+      entities: {
+        courses: {
+          '1': {
+            course,
+            color: '#fff',
+            tabs,
+            attendanceTool,
+          },
+        },
+      },
+      favoriteCourses: {
+        pending: 0,
+        courseRefs: ['1'],
+      },
+    })
+    const expected = {
+      course,
+      tabs: [],
+      color: '#fff',
+      pending: 0,
+      error: undefined,
+      attendanceTabID: '1',
+    }
+
+    const props = mapStateToProps(state, { courseID: '1' })
+
+    expect(props).toEqual(expected)
+  })
+
+  describe('external tools', () => {
+    function assertExternalToolTabs () {
+      const course = template.course({ id: 1 })
+      const tabs = { tabs: [template.tab({ id: 'context_external_tool_1234' })], pending: 0 }
+      const state = template.appState({
+        entities: {
+          courses: {
+            '1': {
+              course,
+              color: '#fff',
+              tabs,
+              attendanceTool: { pending: 0 },
+            },
+          },
+        },
+        favoriteCourses: {
+          pending: 0,
+          courseRefs: ['1'],
+        },
+      })
+
+      const props = mapStateToProps(state, { courseID: '1' })
+
+      expect(props).toMatchObject({ tabs: tabs.tabs })
+    }
+
+    it('includes them in student', () => {
+      App.setCurrentApp('student')
+      assertExternalToolTabs()
+    })
+
+    it('includes them in teacher', () => {
+      App.setCurrentApp('teacher')
+      assertExternalToolTabs()
+    })
   })
 })

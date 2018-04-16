@@ -20,11 +20,11 @@ import React from 'react'
 import 'react-native'
 
 import i18n from 'format-message'
-import FeatureRow from '../../../../common/components/rows/FeatureRow'
+import FeatureRow from '../../common/components/rows/FeatureRow'
 
 type Props = {
   tab: Tab,
-  course: Course,
+  defaultView: ?string,
   onPress: Function,
   selected: ?boolean,
 }
@@ -37,8 +37,7 @@ export default class CourseDetailsHomeTab extends React.Component<Props, any> {
   }
 
   subtitle = (): ?string => {
-    const { course } = this.props
-    switch (course.default_view) {
+    switch (this.props.defaultView) {
       case 'assignments': return i18n('Assignments')
       case 'feed': return i18n('Recent Activity')
       case 'wiki': return i18n('Front Page')

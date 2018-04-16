@@ -22,18 +22,18 @@
 import React from 'react'
 import { SafeAreaView } from 'react-native'
 
-import Images from '../../../../images'
-import Row from '../../../../common/components/rows/Row'
+import Images from '../../images'
+import Row from '../../common/components/rows/Row'
 
 type Props = {
   tab: Tab,
-  courseColor: string,
+  color: string,
   onPress: Function,
   attendanceTabID: ?string,
   selected: ?boolean,
 }
 
-export default class CourseDetailsTab extends React.Component<Props> {
+export default class TabRow extends React.Component<Props> {
 
   onPress = () => {
     const tab = this.props.tab
@@ -63,7 +63,7 @@ export default class CourseDetailsTab extends React.Component<Props> {
               <Row
                 title={tab.label}
                 image={this.image()}
-                imageTint={this.props.courseColor}
+                imageTint={this.props.color}
                 imageSize={{ height: 24, width: 24 }}
                 onPress={this.onPress}
                 disclosureIndicator

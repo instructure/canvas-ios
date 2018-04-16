@@ -1,87 +1,87 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CourseDetailsHomeTab can be pressed 1`] = `
+exports[`HomeTabRow can be pressed 1`] = `
 <FeatureRow
   disclosureIndicator={true}
   onPress={[Function]}
-  subtitle="Assignments"
+  subtitle={null}
   testID="courses-details.assignments-cell"
   title="Home"
 />
 `;
 
-exports[`CourseDetailsHomeTab can be selected 1`] = `
+exports[`HomeTabRow can be selected 1`] = `
 <FeatureRow
   disclosureIndicator={true}
   onPress={[Function]}
   selected={true}
-  subtitle="Assignments"
+  subtitle={null}
   testID="courses-details.assignments-cell"
   title="Home"
 />
 `;
 
-exports[`CourseDetailsHomeTab renders correctly 1`] = `
+exports[`HomeTabRow renders correctly 1`] = `
 <FeatureRow
   disclosureIndicator={true}
   onPress={[Function]}
-  subtitle="Assignments"
+  subtitle={null}
   testID="courses-details.assignments-cell"
   title="Home"
 />
 `;
 
-exports[`CourseDetailsHomeTab renders correctly for each type 1`] = `
+exports[`HomeTabRow renders correctly for each type 1`] = `
 <FeatureRow
   disclosureIndicator={true}
   onPress={[Function]}
-  subtitle="Assignments"
+  subtitle={null}
   testID="courses-details.assignments-cell"
   title="Home"
 />
 `;
 
-exports[`CourseDetailsHomeTab renders correctly for each type 2`] = `
+exports[`HomeTabRow renders correctly for each type 2`] = `
 <FeatureRow
   disclosureIndicator={true}
   onPress={[Function]}
-  subtitle="Recent Activity"
+  subtitle={null}
   testID="courses-details.assignments-cell"
   title="Home"
 />
 `;
 
-exports[`CourseDetailsHomeTab renders correctly for each type 3`] = `
+exports[`HomeTabRow renders correctly for each type 3`] = `
 <FeatureRow
   disclosureIndicator={true}
   onPress={[Function]}
-  subtitle="Front Page"
+  subtitle={null}
   testID="courses-details.assignments-cell"
   title="Home"
 />
 `;
 
-exports[`CourseDetailsHomeTab renders correctly for each type 4`] = `
+exports[`HomeTabRow renders correctly for each type 4`] = `
 <FeatureRow
   disclosureIndicator={true}
   onPress={[Function]}
-  subtitle="Course Modules"
+  subtitle={null}
   testID="courses-details.assignments-cell"
   title="Home"
 />
 `;
 
-exports[`CourseDetailsHomeTab renders correctly for each type 5`] = `
+exports[`HomeTabRow renders correctly for each type 5`] = `
 <FeatureRow
   disclosureIndicator={true}
   onPress={[Function]}
-  subtitle="Syllabus"
+  subtitle={null}
   testID="courses-details.assignments-cell"
   title="Home"
 />
 `;
 
-exports[`CourseDetailsHomeTab renders correctly for each type 6`] = `
+exports[`HomeTabRow renders correctly for each type 6`] = `
 <FeatureRow
   disclosureIndicator={true}
   onPress={[Function]}

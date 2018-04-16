@@ -18,35 +18,37 @@
 
 import { shallow } from 'enzyme'
 import React from 'react'
-import CourseDetailsTab from '../CourseDetailsTab'
+import HomeTabRow from '../HomeTabRow'
 
 const template = {
-  ...require('../../../../../__templates__/tab'),
+  ...require('../../../__templates__/tab'),
+  ...require('../../../__templates__/course'),
 }
 
 const defaultProps = {
   tab: template.tab(),
+  course: template.course({ 'default_view': 'assignments' }),
   courseColor: 'white',
   onPress: () => {},
 }
 
-describe('CourseDetailsTab', () => {
+describe('HomeTabRow', () => {
   it('renders correctly', () => {
-    const tree = shallow(<CourseDetailsTab {...defaultProps} />)
+    const tree = shallow(<HomeTabRow {...defaultProps} />)
     expect(tree).toMatchSnapshot()
   })
 
-  it('shows a default icon', () => {
-    const props = {
-      ...defaultProps,
-      tab: template.tab({ id: 'test default icon' }),
-    }
-    const tree = shallow(<CourseDetailsTab {...props} />)
-    expect(tree).toMatchSnapshot()
+  it('renders correctly for each type', () => {
+    const types = ['assignments', 'feed', 'wiki', 'modules', 'syllabus', 'whatisthis']
+    types.forEach((type) => {
+      const course = template.course({ 'default_view': type })
+      const tree = shallow(<HomeTabRow {...defaultProps} course={course} />)
+      expect(tree).toMatchSnapshot()
+    })
   })
 
   it('can be selected', () => {
-    const tree = shallow(<CourseDetailsTab {...defaultProps} selected />)
+    const tree = shallow(<HomeTabRow {...defaultProps} selected />)
     expect(tree).toMatchSnapshot()
   })
 
@@ -57,27 +59,9 @@ describe('CourseDetailsTab', () => {
       onPress: onPressed,
     }
 
-    const tree = shallow(<CourseDetailsTab {...props} />)
+    const tree = shallow(<HomeTabRow {...props} />)
     expect(tree).toMatchSnapshot()
-    tree.find('Row').simulate('press')
+    tree.find('FeatureRow').simulate('press')
     expect(onPressed).toHaveBeenCalledTimes(1)
-  })
-
-  it('uses attendance tab image', () => {
-    const props = {
-      ...defaultProps,
-      attendanceTabID: defaultProps.tab.id,
-    }
-    const tree = shallow(<CourseDetailsTab {...props} />)
-    expect(tree).toMatchSnapshot()
-  })
-
-  it('uses attendance lti image', () => {
-    const props = {
-      ...defaultProps,
-      tab: template.tab({ id: '/external_tool/' }),
-    }
-    const tree = shallow(<CourseDetailsTab {...props} />)
-    expect(tree).toMatchSnapshot()
   })
 })

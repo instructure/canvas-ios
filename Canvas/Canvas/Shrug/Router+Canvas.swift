@@ -58,7 +58,14 @@ extension Router {
 
         addContextRoute([.group], subPath: "tabs") { contextID, _ in
             guard let currentSession = currentSession else { return nil }
-            return try TabsTableViewController(session: currentSession, contextID: contextID, route: route)
+            guard FeatureFlags.featureFlagEnabled(.newGroupNavigation) else {
+                return try TabsTableViewController(session: currentSession, contextID: contextID, route: route)
+            }
+            
+            return HelmViewController(
+                moduleName: "/groups/:groupID",
+                props: ["groupID": contextID.id]
+            )
         }
         
         addContextRoute([.course], subPath: "assignments") { contextID, _ in

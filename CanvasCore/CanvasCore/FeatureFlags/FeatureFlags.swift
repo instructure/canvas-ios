@@ -16,6 +16,7 @@ import CanvasKeymaster
 public enum FeatureFlagName: String {
     case pageViewLogging
     case favoriteGroups
+    case newGroupNavigation
 }
 
 @objc(FeatureFlags)
