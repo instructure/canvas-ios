@@ -85,7 +85,7 @@
 /* (No Comment) */
 "%d hours ago" = "%d часов назад";
 
-/* Number of files/folders inside a folder. (Used for all cases except 1 item.) */
+/* (No Comment) */
 "%d items" = "%d элементов";
 
 /* (No Comment) */
@@ -154,7 +154,7 @@
 /* (No Comment) */
 "1 hour ago" = "1 час назад";
 
-/* Number of files/folders inside a folder. (Only used when there is exactly 1 item. */
+/* (No Comment) */
 "1 item" = "1 элемент";
 
 /* (No Comment) */
@@ -205,7 +205,7 @@
 /* No comment provided by engineer. */
 "Add comment" = "Добавить комментарий";
 
-/* Button title for adding a folder to a folder */
+/* (No Comment) */
 "Add folder" = "Добавить папку";
 
 /* (No Comment) */
@@ -295,8 +295,7 @@
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "Не удается предоставить медиа";
 
-/* Button to cancel deleting folders
-   Cancel button title
+/* Cancel button title
    Cancel button title to cancel submitting an Arc video as an assignment submission */
 "Cancel" = "Отменить";
 
@@ -333,7 +332,7 @@
 /* No comment provided by engineer. */
 "Choose a name for the new folder" = "Выберите имя для новой папки";
 
-/* Content of an alert popup */
+/* (No Comment) */
 "Choose a name for the new folder." = "Выберите имя для новой папки.";
 
 /* No comment provided by engineer. */
@@ -420,11 +419,10 @@
 /* (No Comment) */
 "Customize" = "Настроить";
 
-/* Default delete button MLVC
-   Delete Button title */
+/* Default delete button MLVC */
 "Delete" = "Удалить";
 
-/* Button for deleting files or folders. %d will be the number of selected items */
+/* (No Comment) */
 "Delete (%d)" = "Удалить (%d)";
 
 /* (No Comment) */
@@ -473,10 +471,10 @@
 /* (No Comment) */
 "Don't ask me again" = "Не спрашивать меня снова";
 
-/* Button to cancel deleting folders */
+/* (No Comment) */
 "Don't delete" = "Не удалять";
 
-/* Button to stop editing a list */
+/* (No Comment) */
 "Done" = "Готово";
 
 /* Shown when we cancel a file download */
@@ -506,7 +504,7 @@
 /* (No Comment) */
 "Edit Group List" = "Редактировать список группы";
 
-/* Button title for deleting items in a folder */
+/* (No Comment) */
 "Edit items" = "Редактировать элементы";
 
 /* (No Comment) */
@@ -572,7 +570,7 @@
 /* No comment provided by engineer. */
 "File received" = "Файл получен";
 
-/* Title for an alert popup */
+/* (No Comment) */
 "File unavailable" = "Файл недоступен";
 
 /* File upload submission type */
@@ -698,7 +696,7 @@
 /* (No Comment) */
 "Landing Page" = "Целевая страница";
 
-/* Title for an alert popup */
+/* (No Comment) */
 "Large file" = "Большой файл";
 
 /* No comment provided by engineer. */
@@ -713,7 +711,7 @@
 /* Title for legal section on the about page */
 "Legal" = "Легальный";
 
-/* Generic loading title with ellipsis */
+/* (No Comment) */
 "Loading..." = "Загрузка...";
 
 /* (No Comment) */
@@ -809,7 +807,7 @@
 /* Network error title */
 "Network Error" = "Ошибка сети";
 
-/* Title for an alert popup, where the user will be asked to provide a name for the new folder */
+/* No comment provided by engineer. */
 "New Folder" = "Новая папка";
 
 /* No comment provided by engineer. */
@@ -1029,7 +1027,7 @@
 /* (No Comment) */
 "Rubric" = "Рубрика";
 
-/* Title for button confirming showing a file */
+/* (No Comment) */
 "Save" = "Сохранить";
 
 /* Title for Assignment Notifications Sheet */
@@ -1068,16 +1066,16 @@
 /* title for quiz assignment submission button */
 "Show Quiz" = "Показать тест";
 
-/* Title for button confirming showing a file */
+/* (No Comment) */
 "Show file" = "Показать файл";
 
 /* (No Comment) */
 "Show recipients" = "Показать получателей";
 
-/* Message for an error popup */
+/* (No Comment) */
 "Some items could not be deleted" = "Некоторые элементы не могут быть удалены";
 
-/* Message for a warning popup */
+/* (No Comment) */
 "Some selected folders are not empty. Are you sure you want to delete them?" = "Некоторые выбранные папки не являются пустыми. Вы уверены, что хотите удалить их?";
 
 /* 404 Error for missing assignment */
@@ -1167,7 +1165,7 @@
 /* Take a video to use in a comment. */
 "Take a Video..." = "Снять видео...";
 
-/* Displayed in a row when an error occurs loading more items */
+/* (No Comment) */
 "Tap to try again" = "Нажмите, чтобы повторить попытку";
 
 /* (No Comment) */
@@ -1194,7 +1192,7 @@
 /* (No Comment) */
 "The recipients could not be added. Please try again. (%@)" = "Получатели не могут быть добавлены. Пожалуйста, попробуйте еще раз. (%@)";
 
-/* Explanation for while a file is unavailable */
+/* (No Comment) */
 "The server could not be reached" = "Сервера достичь не удалось";
 
 /* (No Comment) */
@@ -1206,7 +1204,7 @@
 /* Error message */
 "There are no actions for this item" = "Отсутствуют действия для этого элемента";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "There are no items to display" = "Нет элементов для отображения";
 
 /* message for media comment upload failure */
@@ -1245,10 +1243,10 @@
 /* Text indicating a file cannot be previewed */
 "This file cannot be displayed on this device." = "Этот файл не может быть отображен на этом устройстве.";
 
-/* Text indicating that a file cannot be opened */
+/* (No Comment) */
 "This file is locked" = "Этот файл заблокирован";
 
-/* Text indicating that a folder cannot be opened */
+/* (No Comment) */
 "This folder is locked" = "Эта папка заблокирована";
 
 /* (No Comment) */
@@ -1287,7 +1285,7 @@
 /* (No Comment) */
 "Uh-oh! No Internet Connection" = "Ой-ой! Нет соединения с интернетом";
 
-/* Error title */
+/* (No Comment) */
 "Unable to load" = "Невозможно загрузить";
 
 /* (No Comment) */
@@ -1326,7 +1324,7 @@
 /* (No Comment) */
 "Upload failed. Reason: (%@)" = "Загрузка не удалась. Причина: (%@)";
 
-/* Button title for adding a file to a folder */
+/* (No Comment) */
 "Upload file" = "Загрузить файл";
 
 /* Error message */
@@ -1334,9 +1332,6 @@
 
 /* (No Comment) */
 "Upload to assignment &quot;%@&quot; failed" = "Не удалось отправить в задание &quot;%@&quot;";
-
-/* Error message */
-"Upload to folder \"%@\" failed" = "Загрузка в папку \"%@\" не удалась";
 
 /* (No Comment) */
 "Upload to folder &quot;%@&quot; failed" = "Не удалось отправить в задание &quot;%@&quot;";
@@ -1359,7 +1354,7 @@
 /* (No Comment) */
 "View" = "Просмотр";
 
-/* Title for a warning popup */
+/* (No Comment) */
 "Warning" = "Warning";
 
 /* error message for failure to load a file submission */
@@ -1419,7 +1414,7 @@
 /* (No Comment) */
 "You should go rate Canvas on the App Store!" = "Вы должны пойти и оценить Canvas на App Store!";
 
-/* Error content */
+/* (No Comment) */
 "Your files could not be found" = "Ваши файлы не могут быть найдены";
 
 /* Media submission type selected with no Kaltura set up */

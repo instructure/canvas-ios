@@ -1,5 +1,3 @@
-"Inbox" = "Skrzynka odbiorcza";
-
 /* Error message component with the report id */
 " Error report ID: (reportID)" = " ID raportu o błędach: (reportID)";
 
@@ -233,9 +231,6 @@
 
 /* error message for when the cache management database fails to load */
 "Error loading cache management database." = "Błąd podczas ładowania basy danych zarządzającej pamięcią podręczną.";
-
-/* No comment provided by engineer. */
-"Error loading course." = "Błąd podczas wczytywania kursu.";
 
 /* No comment provided by engineer. */
 "Error parsing the Roll Call response. Expected (e), received (a)" = "Błąd analizowania odpowiedzi Roll Call. Oczekiwane (e), otrzymane (a)";

@@ -236,7 +236,7 @@
    Assignment module item type */
 "Assignment" = "課題";
 
-/* Title for Assignments view controller */
+/* (No Comment) */
 "Assignments" = "課題";
 
 /* (No Comment) */
@@ -483,10 +483,10 @@
 /* (No Comment) */
 "Edit" = "編集する";
 
-/* Edit course list title */
+/* (No Comment) */
 "Edit Course List" = "コースリストを編集する";
 
-/* Edit group list title */
+/* (No Comment) */
 "Edit Group List" = "グループリストを編集する";
 
 /* (No Comment) */
@@ -521,9 +521,6 @@
 
 /* (No Comment) */
 "Error deleting folder" = "フォルダの消去中にエラーが発生しました";
-
-/* No comment provided by engineer. */
-"Error loading course." = "コースの読み込み中にエラー。";
 
 /* (No Comment) */
 "Event" = "イベント";
@@ -606,7 +603,7 @@
 /* (No Comment) */
 "Graded discussion. %g points possible." = "採点されたディスカッション。 %g ポイントが可能です。";
 
-/* Title for Grades view controller */
+/* (No Comment) */
 "Grades" = "成績";
 
 /* (No Comment) */
@@ -618,7 +615,7 @@
 /* (No Comment) */
 "Help" = "ヘルプ";
 
-/* Accessibility label for toggling grades to hidden */
+/* (No Comment) */
 "Hide Grades" = "成績を非表示にする";
 
 /* (No Comment) */
@@ -1038,9 +1035,6 @@
 /* (No Comment) */
 "Search for recipients" = "受信者を検索する";
 
-/* Placeholder text for search bar on assignments page */
-"Search here..." = "ここを検索する...";
-
 /* No comment provided by engineer. */
 "Select Option" = "オプションを選択";
 
@@ -1071,7 +1065,7 @@
 /* (No Comment) */
 "Settings" = "設定";
 
-/* Accessibility label for toggling grades to visible */
+/* (No Comment) */
 "Show Grades" = "成績を表示する";
 
 /* (No Comment) */
@@ -1328,10 +1322,10 @@
 /* (No Comment) */
 "Unable to upload to server" = "サーバーにアップロードすることができません";
 
-/* Grade unavailable */
+/* (No Comment) */
 "Unavailable" = "利用不可";
 
-/* Title for grade button when no grade is present */
+/* (No Comment) */
 "Ungraded" = "未採点";
 
 /* (No Comment) */

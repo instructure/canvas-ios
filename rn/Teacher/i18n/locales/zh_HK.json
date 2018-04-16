@@ -332,6 +332,9 @@
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
     "message": "{ count, plural,     =0 {0 學生}    one {# 學生}  other {# 學生}}"
   },
+  "count_plural_one_like_other_likes_338617e5": {
+    "message": "{ count, plural,\n    one {# 個「讚好」}\n  other {# 個「讚好」}\n}"
+  },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
     "message": "{ count, plural,    other {需要評分}}"
   },
@@ -404,6 +407,9 @@
   "delay_posting_f45eed7d": {
     "message": "延遲發佈"
   },
+  "delayed_until_8f9c2bb1": {
+    "message": "延遲至： "
+  },
   "delete_a6efa79d": {
     "message": "刪除"
   },
@@ -433,6 +439,9 @@
   },
   "details_98a31b68": {
     "message": "詳情"
+  },
+  "developer_menu_1e80da35": {
+    "message": "開發人員選單"
   },
   "discussion_details_5728ea3d": {
     "message": "討論詳細資料"
@@ -517,6 +526,9 @@
   },
   "edit_folder_f12b1b3c": {
     "message": "編輯資料夾"
+  },
+  "edit_page_5df5916a": {
+    "message": "編輯頁面"
   },
   "edit_quiz_details_72cd055": {
     "message": "編輯測驗詳情"
@@ -641,6 +653,12 @@
   "grade_9c6f076d": {
     "message": "評分"
   },
+  "grade_grade_990eb477": {
+    "message": "評分 { grade }"
+  },
+  "grade_grade_number_percent_cda06b4d": {
+    "message": "評分 { grade, number, percent }"
+  },
   "graded_25cd3fcd": {
     "message": "已評分"
   },
@@ -728,6 +746,9 @@
   "late_2be42b88": {
     "message": "遲交"
   },
+  "late_submissions_late_number_baedf6cf": {
+    "message": "遲交項目 { late, number }"
+  },
   "latest_f604a75": {
     "message": "最新"
   },
@@ -790,6 +811,9 @@
   },
   "missing_1a256b3b": {
     "message": "缺少"
+  },
+  "missing_submissions_missing_number_ea40423d": {
+    "message": "欠交項目 { missing, number }"
   },
   "moderated_grading_unsupported_e3a2bba3": {
     "message": "已調整的評分不受支持"
@@ -1093,6 +1117,9 @@
   },
   "replies_4a8577c8": {
     "message": "回覆"
+  },
+  "replies_are_only_visible_to_those_who_have_posted__30e58953": {
+    "message": "只有曾發送一個或以上回覆的才能查閱回覆。"
   },
   "reply_389d6fb9": {
     "message": "回覆"
@@ -1445,9 +1472,6 @@
   "title_ee03d132": {
     "message": "標題"
   },
-  "title_page_1284a2b9": {
-    "message": "{ title } 頁面"
-  },
   "to_51406be9": {
     "message": "至"
   },
@@ -1459,6 +1483,9 @@
   },
   "to_name_bb3e415e": {
     "message": "至{ name }"
+  },
+  "total_grade_568e719f": {
+    "message": "總評分："
   },
   "try_logging_in_again_7a66111a": {
     "message": "嘗試重新登入"

@@ -236,7 +236,7 @@
    Assignment module item type */
 "Assignment" = "Sesyon";
 
-/* Title for Assignments view controller */
+/* (No Comment) */
 "Assignments" = "Sesyon";
 
 /* (No Comment) */
@@ -483,10 +483,10 @@
 /* (No Comment) */
 "Edit" = "Modifye";
 
-/* Edit course list title */
+/* (No Comment) */
 "Edit Course List" = "Modifye Lis Kou";
 
-/* Edit group list title */
+/* (No Comment) */
 "Edit Group List" = "Modifye Lis Gwoup";
 
 /* (No Comment) */
@@ -521,9 +521,6 @@
 
 /* (No Comment) */
 "Error deleting folder" = "Erè nan eliminasyon dosye";
-
-/* No comment provided by engineer. */
-"Error loading course." = "Erè nan telechajman kou an.";
 
 /* (No Comment) */
 "Event" = "Evènman";
@@ -606,7 +603,7 @@
 /* (No Comment) */
 "Graded discussion. %g points possible." = "Diskisyon klase. %g pwen posib";
 
-/* Title for Grades view controller */
+/* (No Comment) */
 "Grades" = "Klas";
 
 /* (No Comment) */
@@ -618,7 +615,7 @@
 /* (No Comment) */
 "Help" = "Èd";
 
-/* Accessibility label for toggling grades to hidden */
+/* (No Comment) */
 "Hide Grades" = "Kache Klas";
 
 /* (No Comment) */
@@ -1038,9 +1035,6 @@
 /* (No Comment) */
 "Search for recipients" = "Chèche destinatè";
 
-/* Placeholder text for search bar on assignments page */
-"Search here..." = "Chèche la...";
-
 /* No comment provided by engineer. */
 "Select Option" = "Seleksyone Opsyon";
 
@@ -1071,7 +1065,7 @@
 /* (No Comment) */
 "Settings" = "Reglaj";
 
-/* Accessibility label for toggling grades to visible */
+/* (No Comment) */
 "Show Grades" = "Afiche Klas";
 
 /* (No Comment) */
@@ -1328,10 +1322,10 @@
 /* (No Comment) */
 "Unable to upload to server" = "Enposib pou transfere sou sèvè a";
 
-/* Grade unavailable */
+/* (No Comment) */
 "Unavailable" = "Pa disponib";
 
-/* Title for grade button when no grade is present */
+/* (No Comment) */
 "Ungraded" = "San klasifye";
 
 /* (No Comment) */

@@ -653,7 +653,7 @@
 		499D19801C8644A3005A86D2 /* CKILoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKILoginViewController.h; sourceTree = "<group>"; };
 		499D19811C8644A3005A86D2 /* CKILoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKILoginViewController.m; sourceTree = "<group>"; };
 		499D1A5A1C864561005A86D2 /* CanvasKitTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CanvasKitTests-Bridging-Header.h"; sourceTree = "<group>"; };
-		499D1A5B1C864564005A86D2 /* ___ZZZ999CodeCoverageDump.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ___ZZZ999CodeCoverageDump.m; sourceTree = "<group>"; };
+		499D1A5B1C864564005A86D2 /* ___ZZZ999CodeCoverageDump.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "___ZZZ999CodeCoverageDump.m"; sourceTree = "<group>"; };
 		499D1A5C1C864564005A86D2 /* attachment.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = attachment.json; sourceTree = "<group>"; };
 		499D1A5D1C864564005A86D2 /* CanvasKitTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CanvasKitTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		499D1A5E1C864564005A86D2 /* CanvasKitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CanvasKitTests-Info.plist"; sourceTree = "<group>"; };

@@ -236,7 +236,7 @@
    Assignment module item type */
 "Assignment" = "作业";
 
-/* Title for Assignments view controller */
+/* (No Comment) */
 "Assignments" = "作业";
 
 /* (No Comment) */
@@ -483,10 +483,10 @@
 /* (No Comment) */
 "Edit" = "编辑";
 
-/* Edit course list title */
+/* (No Comment) */
 "Edit Course List" = "编辑课程表";
 
-/* Edit group list title */
+/* (No Comment) */
 "Edit Group List" = "编辑小组名单";
 
 /* (No Comment) */
@@ -521,9 +521,6 @@
 
 /* (No Comment) */
 "Error deleting folder" = "错误删除文件夹";
-
-/* No comment provided by engineer. */
-"Error loading course." = "加载课程时出错。";
 
 /* (No Comment) */
 "Event" = "事件、活动";
@@ -606,7 +603,7 @@
 /* (No Comment) */
 "Graded discussion. %g points possible." = "评分讨论。 %g 可能分值。";
 
-/* Title for Grades view controller */
+/* (No Comment) */
 "Grades" = "评分";
 
 /* (No Comment) */
@@ -618,7 +615,7 @@
 /* (No Comment) */
 "Help" = "帮助";
 
-/* Accessibility label for toggling grades to hidden */
+/* (No Comment) */
 "Hide Grades" = "隐藏评分";
 
 /* (No Comment) */
@@ -1038,9 +1035,6 @@
 /* (No Comment) */
 "Search for recipients" = "搜索收件人";
 
-/* Placeholder text for search bar on assignments page */
-"Search here..." = "搜索此处…";
-
 /* No comment provided by engineer. */
 "Select Option" = "选择选项";
 
@@ -1071,7 +1065,7 @@
 /* (No Comment) */
 "Settings" = "设置";
 
-/* Accessibility label for toggling grades to visible */
+/* (No Comment) */
 "Show Grades" = "显示评分";
 
 /* (No Comment) */
@@ -1328,10 +1322,10 @@
 /* (No Comment) */
 "Unable to upload to server" = "无法上传到服务器";
 
-/* Grade unavailable */
+/* (No Comment) */
 "Unavailable" = "不可用";
 
-/* Title for grade button when no grade is present */
+/* (No Comment) */
 "Ungraded" = "未评分";
 
 /* (No Comment) */

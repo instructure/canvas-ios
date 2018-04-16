@@ -13,9 +13,6 @@
 /* Class = "UIButton"; normalTitle = "Forgot Password?"; ObjectID = "Zjh-td-3qY"; */
 "Zjh-td-3qY.normalTitle" = "Zapomniałeś hasła?";
 
-/* Class = "UIButton"; normalTitle = "Create Account"; ObjectID = "cBu-44-Ntj"; */
-"cBu-44-Ntj.normalTitle" = "Utwórz konto";
-
 /* Class = "UIButton"; accessibilityLabel = "Login"; ObjectID = "dbH-uS-X2F"; */
 "dbH-uS-X2F.accessibilityLabel" = "Zaloguj";
 

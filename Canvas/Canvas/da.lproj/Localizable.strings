@@ -236,7 +236,7 @@
    Assignment module item type */
 "Assignment" = "Opgave";
 
-/* Title for Assignments view controller */
+/* (No Comment) */
 "Assignments" = "Opgaver";
 
 /* (No Comment) */
@@ -483,10 +483,10 @@
 /* (No Comment) */
 "Edit" = "Rediger";
 
-/* Edit course list title */
+/* (No Comment) */
 "Edit Course List" = "Rediger kursusliste";
 
-/* Edit group list title */
+/* (No Comment) */
 "Edit Group List" = "Rediger gruppeliste";
 
 /* (No Comment) */
@@ -521,9 +521,6 @@
 
 /* (No Comment) */
 "Error deleting folder" = "Fejl ved sletning af mapper";
-
-/* No comment provided by engineer. */
-"Error loading course." = "Fejl ved indlæsning af fag.";
 
 /* (No Comment) */
 "Event" = "Begivenhed";
@@ -606,7 +603,7 @@
 /* (No Comment) */
 "Graded discussion. %g points possible." = "Bedømt diskussion. %g mulige points.";
 
-/* Title for Grades view controller */
+/* (No Comment) */
 "Grades" = "Karakterer";
 
 /* (No Comment) */
@@ -618,7 +615,7 @@
 /* (No Comment) */
 "Help" = "Hjælp";
 
-/* Accessibility label for toggling grades to hidden */
+/* (No Comment) */
 "Hide Grades" = "Skjul karakterer";
 
 /* (No Comment) */
@@ -1038,9 +1035,6 @@
 /* (No Comment) */
 "Search for recipients" = "Søg efter modtagere";
 
-/* Placeholder text for search bar on assignments page */
-"Search here..." = "Søg her ...";
-
 /* No comment provided by engineer. */
 "Select Option" = "Vælg indstilling";
 
@@ -1071,7 +1065,7 @@
 /* (No Comment) */
 "Settings" = "Indstillinger";
 
-/* Accessibility label for toggling grades to visible */
+/* (No Comment) */
 "Show Grades" = "Vis karakterer";
 
 /* (No Comment) */
@@ -1328,10 +1322,10 @@
 /* (No Comment) */
 "Unable to upload to server" = "Ikke i stand til at uploade til server";
 
-/* Grade unavailable */
+/* (No Comment) */
 "Unavailable" = "Ikke tilgængelig";
 
-/* Title for grade button when no grade is present */
+/* (No Comment) */
 "Ungraded" = "ikke bedømt";
 
 /* (No Comment) */

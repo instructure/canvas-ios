@@ -1,5 +1,3 @@
-"Inbox" = "Inbox";
-
 /* Error message component with the report id */
 " Error report ID: (reportID)" = " ID do relatório de erro: (reportID)";
 
@@ -233,9 +231,6 @@
 
 /* error message for when the cache management database fails to load */
 "Error loading cache management database." = "Erro ao carregar o banco de dados de gerenciamento de cache.";
-
-/* No comment provided by engineer. */
-"Error loading course." = "Erro ao carregar curso.";
 
 /* No comment provided by engineer. */
 "Error parsing the Roll Call response. Expected (e), received (a)" = "Erro ao analisar a resposta da Lista de chamada. Esperado (e), recebido (a)";

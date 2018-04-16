@@ -332,6 +332,9 @@
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
     "message": "{ count, plural,     =0 {0 ngā akong}    one {# akonga}  other {# ngā akonga}}"
   },
+  "count_plural_one_like_other_likes_338617e5": {
+    "message": "{ count, plural,\n    one {# pīrangi}\n  other {# ngā pīrangi}\n}"
+  },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
     "message": "{ count, plural,    one {Me Māka} other {Me Māka}}"
   },
@@ -407,6 +410,9 @@
   "delay_posting_f45eed7d": {
     "message": "Whakaroa tarenga"
   },
+  "delayed_until_8f9c2bb1": {
+    "message": "Whalaroatia kī: "
+  },
   "delete_a6efa79d": {
     "message": "Mukua"
   },
@@ -436,6 +442,9 @@
   },
   "details_98a31b68": {
     "message": "Taipitopito"
+  },
+  "developer_menu_1e80da35": {
+    "message": "Tahua Whakawhanake"
   },
   "discussion_details_5728ea3d": {
     "message": "Taipitoito kōrero"
@@ -520,6 +529,9 @@
   },
   "edit_folder_f12b1b3c": {
     "message": "Whakatika kōpaki"
+  },
+  "edit_page_5df5916a": {
+    "message": "Whakatika Whārangi"
   },
   "edit_quiz_details_72cd055": {
     "message": "Whakatika Quiz taipitopito"
@@ -644,6 +656,12 @@
   "grade_9c6f076d": {
     "message": "Kōeke"
   },
+  "grade_grade_990eb477": {
+    "message": "Kōeke { grade }"
+  },
+  "grade_grade_number_percent_cda06b4d": {
+    "message": "Kōeke { grade, number, percent }"
+  },
   "graded_25cd3fcd": {
     "message": "mākahia"
   },
@@ -731,6 +749,9 @@
   "late_2be42b88": {
     "message": "Te mutunga"
   },
+  "late_submissions_late_number_baedf6cf": {
+    "message": "Ngā tukunga tūreiti { late, number }"
+  },
   "latest_f604a75": {
     "message": "hou"
   },
@@ -793,6 +814,9 @@
   },
   "missing_1a256b3b": {
     "message": "Ngaro"
+  },
+  "missing_submissions_missing_number_ea40423d": {
+    "message": "Ngā tukunga kei te ngaro { missing, number }"
   },
   "moderated_grading_unsupported_e3a2bba3": {
     "message": "Māka whakaōrite tautokona"
@@ -1096,6 +1120,9 @@
   },
   "replies_4a8577c8": {
     "message": "Ngā whakautu"
+  },
+  "replies_are_only_visible_to_those_who_have_posted__30e58953": {
+    "message": "E kitea anake ngā whakautu ki te hunga kua whakairi kotahi te whakautu."
   },
   "reply_389d6fb9": {
     "message": "Whakautu"
@@ -1448,9 +1475,6 @@
   "title_ee03d132": {
     "message": "taitara"
   },
-  "title_page_1284a2b9": {
-    "message": "{ title } Whārangi"
-  },
   "to_51406be9": {
     "message": "Ki a"
   },
@@ -1462,6 +1486,9 @@
   },
   "to_name_bb3e415e": {
     "message": "kī { name }"
+  },
+  "total_grade_568e719f": {
+    "message": "Kōeke Katoa:"
   },
   "try_logging_in_again_7a66111a": {
     "message": "Tarai ki te takiuru anō"

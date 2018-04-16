@@ -332,6 +332,9 @@
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
     "message": "{ count, plural,     =0 {0 studenter}    one {# student}  other {# students}}"
   },
+  "count_plural_one_like_other_likes_338617e5": {
+    "message": "{ count, plural,\n    one {# gilla-markering}\n  other {# gilla-markeringar}\n}"
+  },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
     "message": "{ count, plural,    one {Behöver betygsättning} other {Behöver betygsättas}}"
   },
@@ -404,6 +407,9 @@
   "delay_posting_f45eed7d": {
     "message": "Fördröj inlägg"
   },
+  "delayed_until_8f9c2bb1": {
+    "message": "Fördröjd till: "
+  },
   "delete_a6efa79d": {
     "message": "Ta bort"
   },
@@ -433,6 +439,9 @@
   },
   "details_98a31b68": {
     "message": "Detaljer"
+  },
+  "developer_menu_1e80da35": {
+    "message": "Meny för utvecklare"
   },
   "discussion_details_5728ea3d": {
     "message": "Diskussiondetaljer"
@@ -517,6 +526,9 @@
   },
   "edit_folder_f12b1b3c": {
     "message": "Redigera mapp"
+  },
+  "edit_page_5df5916a": {
+    "message": "Redigera sida"
   },
   "edit_quiz_details_72cd055": {
     "message": "Redigera Quiz detaljer"
@@ -641,6 +653,12 @@
   "grade_9c6f076d": {
     "message": "Betyg"
   },
+  "grade_grade_990eb477": {
+    "message": "Bedöma { grade }"
+  },
+  "grade_grade_number_percent_cda06b4d": {
+    "message": "Bedöma { grade, number, percent }"
+  },
   "graded_25cd3fcd": {
     "message": "Betygsatt"
   },
@@ -728,6 +746,9 @@
   "late_2be42b88": {
     "message": "Sen"
   },
+  "late_submissions_late_number_baedf6cf": {
+    "message": "Sena insändningar { late, number }"
+  },
   "latest_f604a75": {
     "message": "Senaste"
   },
@@ -790,6 +811,9 @@
   },
   "missing_1a256b3b": {
     "message": "Saknas"
+  },
+  "missing_submissions_missing_number_ea40423d": {
+    "message": "Saknade insändningar { missing, number }"
   },
   "moderated_grading_unsupported_e3a2bba3": {
     "message": "Modererad betygsättning stöds inte"
@@ -1093,6 +1117,9 @@
   },
   "replies_4a8577c8": {
     "message": "Svar"
+  },
+  "replies_are_only_visible_to_those_who_have_posted__30e58953": {
+    "message": "Svar är endast synliga för de som har skrivit minst ett svar."
   },
   "reply_389d6fb9": {
     "message": "Svara"
@@ -1445,9 +1472,6 @@
   "title_ee03d132": {
     "message": "Titel"
   },
-  "title_page_1284a2b9": {
-    "message": "{ title } Sida"
-  },
   "to_51406be9": {
     "message": "Till"
   },
@@ -1459,6 +1483,9 @@
   },
   "to_name_bb3e415e": {
     "message": "till { name }"
+  },
+  "total_grade_568e719f": {
+    "message": "Slutbetyg:"
   },
   "try_logging_in_again_7a66111a": {
     "message": "Försök att logga in igen"

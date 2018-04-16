@@ -1,5 +1,3 @@
-"Inbox" = "Postbus";
-
 /* Error message component with the report id */
 " Error report ID: (reportID)" = " Foutrapport-ID: (reportID)";
 
@@ -233,9 +231,6 @@
 
 /* error message for when the cache management database fails to load */
 "Error loading cache management database." = "Fout bij het laden van cache beheer gegevensbestand.";
-
-/* No comment provided by engineer. */
-"Error loading course." = "Fout bij laden van cursus.";
 
 /* No comment provided by engineer. */
 "Error parsing the Roll Call response. Expected (e), received (a)" = "Fout bij het parseren van de Roll Call-reactie. Verwacht (e), ontvangen (a)";

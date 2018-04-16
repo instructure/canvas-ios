@@ -236,7 +236,7 @@
    Assignment module item type */
 "Assignment" = "Taumahi";
 
-/* Title for Assignments view controller */
+/* (No Comment) */
 "Assignments" = "Taumahi";
 
 /* (No Comment) */
@@ -483,10 +483,10 @@
 /* (No Comment) */
 "Edit" = "Whakatika";
 
-/* Edit course list title */
+/* (No Comment) */
 "Edit Course List" = "Whakatika Rārangi Akoranga";
 
-/* Edit group list title */
+/* (No Comment) */
 "Edit Group List" = "Rārangi Whakatika Rōpū";
 
 /* (No Comment) */
@@ -521,9 +521,6 @@
 
 /* (No Comment) */
 "Error deleting folder" = "kōpaki te muku Hapa";
-
-/* No comment provided by engineer. */
-"Error loading course." = "He hapa i te wā e uta ana i te akoranga.";
 
 /* (No Comment) */
 "Event" = "Takahanga";
@@ -606,7 +603,7 @@
 /* (No Comment) */
 "Graded discussion. %g points possible." = "kōrero Mākahia. tohu taea %g.";
 
-/* Title for Grades view controller */
+/* (No Comment) */
 "Grades" = "Kōeke";
 
 /* (No Comment) */
@@ -618,7 +615,7 @@
 /* (No Comment) */
 "Help" = "Āwhina";
 
-/* Accessibility label for toggling grades to hidden */
+/* (No Comment) */
 "Hide Grades" = "Huna Kōeke";
 
 /* (No Comment) */
@@ -1038,9 +1035,6 @@
 /* (No Comment) */
 "Search for recipients" = "Rapu mō ngā kaiwhiwhi";
 
-/* Placeholder text for search bar on assignments page */
-"Search here..." = "Rapu i konei ...";
-
 /* No comment provided by engineer. */
 "Select Option" = "Tīpako kōwhiringa";
 
@@ -1071,7 +1065,7 @@
 /* (No Comment) */
 "Settings" = "Tautuhinga";
 
-/* Accessibility label for toggling grades to visible */
+/* (No Comment) */
 "Show Grades" = "Whakaatu Ngā Kōeke";
 
 /* (No Comment) */
@@ -1328,10 +1322,10 @@
 /* (No Comment) */
 "Unable to upload to server" = "Kāore e taea te tukuatu ki tūmau";
 
-/* Grade unavailable */
+/* (No Comment) */
 "Unavailable" = "Wātea";
 
-/* Title for grade button when no grade is present */
+/* (No Comment) */
 "Ungraded" = "Tē Mākahia";
 
 /* (No Comment) */

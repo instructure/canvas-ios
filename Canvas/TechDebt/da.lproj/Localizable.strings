@@ -85,7 +85,7 @@
 /* (No Comment) */
 "%d hours ago" = "%d timer siden";
 
-/* Number of files/folders inside a folder. (Used for all cases except 1 item.) */
+/* (No Comment) */
 "%d items" = "%d elementer";
 
 /* (No Comment) */
@@ -154,7 +154,7 @@
 /* (No Comment) */
 "1 hour ago" = "1 time siden";
 
-/* Number of files/folders inside a folder. (Only used when there is exactly 1 item. */
+/* (No Comment) */
 "1 item" = "1 element";
 
 /* (No Comment) */
@@ -205,7 +205,7 @@
 /* No comment provided by engineer. */
 "Add comment" = "Tilføj kommentar";
 
-/* Button title for adding a folder to a folder */
+/* (No Comment) */
 "Add folder" = "Tilføj mappe";
 
 /* (No Comment) */
@@ -295,8 +295,7 @@
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "Kan ikke indsende medie";
 
-/* Button to cancel deleting folders
-   Cancel button title
+/* Cancel button title
    Cancel button title to cancel submitting an Arc video as an assignment submission */
 "Cancel" = "Annuller";
 
@@ -333,7 +332,7 @@
 /* No comment provided by engineer. */
 "Choose a name for the new folder" = "Vælg et navn for den nye mappe";
 
-/* Content of an alert popup */
+/* (No Comment) */
 "Choose a name for the new folder." = "Vælg et navn for den nye mappe.";
 
 /* No comment provided by engineer. */
@@ -420,11 +419,10 @@
 /* (No Comment) */
 "Customize" = "Brugertilpasset";
 
-/* Default delete button MLVC
-   Delete Button title */
+/* Default delete button MLVC */
 "Delete" = "Slet";
 
-/* Button for deleting files or folders. %d will be the number of selected items */
+/* (No Comment) */
 "Delete (%d)" = "Slet (%d)";
 
 /* (No Comment) */
@@ -473,10 +471,10 @@
 /* (No Comment) */
 "Don't ask me again" = "Spørg mig ikke igen";
 
-/* Button to cancel deleting folders */
+/* (No Comment) */
 "Don't delete" = "Slet ikke";
 
-/* Button to stop editing a list */
+/* (No Comment) */
 "Done" = "Udført";
 
 /* Shown when we cancel a file download */
@@ -506,7 +504,7 @@
 /* (No Comment) */
 "Edit Group List" = "Rediger gruppeliste";
 
-/* Button title for deleting items in a folder */
+/* (No Comment) */
 "Edit items" = "Rediger elementer";
 
 /* (No Comment) */
@@ -572,7 +570,7 @@
 /* No comment provided by engineer. */
 "File received" = "Fil modtaget";
 
-/* Title for an alert popup */
+/* (No Comment) */
 "File unavailable" = "Fil utilgængelig";
 
 /* File upload submission type */
@@ -698,7 +696,7 @@
 /* (No Comment) */
 "Landing Page" = "Landingsside";
 
-/* Title for an alert popup */
+/* (No Comment) */
 "Large file" = "Stor fil";
 
 /* No comment provided by engineer. */
@@ -713,7 +711,7 @@
 /* Title for legal section on the about page */
 "Legal" = "Juridisk";
 
-/* Generic loading title with ellipsis */
+/* (No Comment) */
 "Loading..." = "Indlæser...";
 
 /* (No Comment) */
@@ -809,7 +807,7 @@
 /* Network error title */
 "Network Error" = "Netværk fejl";
 
-/* Title for an alert popup, where the user will be asked to provide a name for the new folder */
+/* No comment provided by engineer. */
 "New Folder" = "Ny mappe";
 
 /* No comment provided by engineer. */
@@ -1029,7 +1027,7 @@
 /* (No Comment) */
 "Rubric" = "Vurderingskriterie";
 
-/* Title for button confirming showing a file */
+/* (No Comment) */
 "Save" = "Gem";
 
 /* Title for Assignment Notifications Sheet */
@@ -1068,16 +1066,16 @@
 /* title for quiz assignment submission button */
 "Show Quiz" = "Vis Quiz";
 
-/* Title for button confirming showing a file */
+/* (No Comment) */
 "Show file" = "Vis fil";
 
 /* (No Comment) */
 "Show recipients" = "Vis modtagere";
 
-/* Message for an error popup */
+/* (No Comment) */
 "Some items could not be deleted" = "Nogle elementer kan ikke slettes";
 
-/* Message for a warning popup */
+/* (No Comment) */
 "Some selected folders are not empty. Are you sure you want to delete them?" = "Nogle valgte mapper er ikke tomme. Er du sikker på, at du ønsker at slette dem?";
 
 /* 404 Error for missing assignment */
@@ -1167,7 +1165,7 @@
 /* Take a video to use in a comment. */
 "Take a Video..." = "Tag en video...";
 
-/* Displayed in a row when an error occurs loading more items */
+/* (No Comment) */
 "Tap to try again" = "Tap for at prøve igen";
 
 /* (No Comment) */
@@ -1194,7 +1192,7 @@
 /* (No Comment) */
 "The recipients could not be added. Please try again. (%@)" = "Modtagerne kunne ikke tilføjes. Prøv venligst igen. (%@)";
 
-/* Explanation for while a file is unavailable */
+/* (No Comment) */
 "The server could not be reached" = "Serveren kunne ikke nås";
 
 /* (No Comment) */
@@ -1206,7 +1204,7 @@
 /* Error message */
 "There are no actions for this item" = "Der er ingen handlinger for dette element";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "There are no items to display" = "Der er ingen elementer at vise";
 
 /* message for media comment upload failure */
@@ -1245,10 +1243,10 @@
 /* Text indicating a file cannot be previewed */
 "This file cannot be displayed on this device." = "Denne fil kan ikke vises på denne enhed.";
 
-/* Text indicating that a file cannot be opened */
+/* (No Comment) */
 "This file is locked" = "Denne fil er låst";
 
-/* Text indicating that a folder cannot be opened */
+/* (No Comment) */
 "This folder is locked" = "Denne mappe er låst";
 
 /* (No Comment) */
@@ -1287,7 +1285,7 @@
 /* (No Comment) */
 "Uh-oh! No Internet Connection" = "Åh nej! Ingen internetforbindelse";
 
-/* Error title */
+/* (No Comment) */
 "Unable to load" = "Ikke i stand til at indlæse";
 
 /* (No Comment) */
@@ -1326,7 +1324,7 @@
 /* (No Comment) */
 "Upload failed. Reason: (%@)" = "Upload mislykkedes. Årsag: (%@)";
 
-/* Button title for adding a file to a folder */
+/* (No Comment) */
 "Upload file" = "Upload fil";
 
 /* Error message */
@@ -1334,9 +1332,6 @@
 
 /* (No Comment) */
 "Upload to assignment &quot;%@&quot; failed" = "Overførsel til opgave &quot;%@&quot; mislykkedes";
-
-/* Error message */
-"Upload to folder \"%@\" failed" = "Upload tii mappe \"%@\" mislykkedes";
 
 /* (No Comment) */
 "Upload to folder &quot;%@&quot; failed" = "Overførsel til folder &quot;%@&quot; mislykkedes";
@@ -1359,7 +1354,7 @@
 /* (No Comment) */
 "View" = "Se";
 
-/* Title for a warning popup */
+/* (No Comment) */
 "Warning" = "Advarsel";
 
 /* error message for failure to load a file submission */
@@ -1419,7 +1414,7 @@
 /* (No Comment) */
 "You should go rate Canvas on the App Store!" = "Du bør bedømme Canvas i App Store!";
 
-/* Error content */
+/* (No Comment) */
 "Your files could not be found" = "Dine filer kunne ikke findes";
 
 /* Media submission type selected with no Kaltura set up */

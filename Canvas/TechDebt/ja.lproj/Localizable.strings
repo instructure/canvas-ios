@@ -85,7 +85,7 @@
 /* (No Comment) */
 "%d hours ago" = "%d 時間前";
 
-/* Number of files/folders inside a folder. (Used for all cases except 1 item.) */
+/* (No Comment) */
 "%d items" = "%d アイテム";
 
 /* (No Comment) */
@@ -154,7 +154,7 @@
 /* (No Comment) */
 "1 hour ago" = "1 時間前";
 
-/* Number of files/folders inside a folder. (Only used when there is exactly 1 item. */
+/* (No Comment) */
 "1 item" = "1 アイテム";
 
 /* (No Comment) */
@@ -205,7 +205,7 @@
 /* No comment provided by engineer. */
 "Add comment" = "コメントを追加";
 
-/* Button title for adding a folder to a folder */
+/* (No Comment) */
 "Add folder" = "フォルダーを追加";
 
 /* (No Comment) */
@@ -295,8 +295,7 @@
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "メディアを提出できません";
 
-/* Button to cancel deleting folders
-   Cancel button title
+/* Cancel button title
    Cancel button title to cancel submitting an Arc video as an assignment submission */
 "Cancel" = "キャンセル";
 
@@ -333,7 +332,7 @@
 /* No comment provided by engineer. */
 "Choose a name for the new folder" = "新しいフォルダ名を選択する";
 
-/* Content of an alert popup */
+/* (No Comment) */
 "Choose a name for the new folder." = "新しいフォルダ名を選択する。";
 
 /* No comment provided by engineer. */
@@ -420,11 +419,10 @@
 /* (No Comment) */
 "Customize" = "カスタマイズする";
 
-/* Default delete button MLVC
-   Delete Button title */
+/* Default delete button MLVC */
 "Delete" = "消去する";
 
-/* Button for deleting files or folders. %d will be the number of selected items */
+/* (No Comment) */
 "Delete (%d)" = "消去 (%d)";
 
 /* (No Comment) */
@@ -473,10 +471,10 @@
 /* (No Comment) */
 "Don't ask me again" = "二度と聞かないでください";
 
-/* Button to cancel deleting folders */
+/* (No Comment) */
 "Don't delete" = "消去しないでください";
 
-/* Button to stop editing a list */
+/* (No Comment) */
 "Done" = "完了";
 
 /* Shown when we cancel a file download */
@@ -506,7 +504,7 @@
 /* (No Comment) */
 "Edit Group List" = "グループリストを編集する";
 
-/* Button title for deleting items in a folder */
+/* (No Comment) */
 "Edit items" = "アイテムを編集する";
 
 /* (No Comment) */
@@ -572,7 +570,7 @@
 /* No comment provided by engineer. */
 "File received" = "受信したファイル";
 
-/* Title for an alert popup */
+/* (No Comment) */
 "File unavailable" = "ファイルが利用出来ません";
 
 /* File upload submission type */
@@ -698,7 +696,7 @@
 /* (No Comment) */
 "Landing Page" = "ランディングページ";
 
-/* Title for an alert popup */
+/* (No Comment) */
 "Large file" = "大きなファイル";
 
 /* No comment provided by engineer. */
@@ -713,7 +711,7 @@
 /* Title for legal section on the about page */
 "Legal" = "法的な";
 
-/* Generic loading title with ellipsis */
+/* (No Comment) */
 "Loading..." = "ロード中...";
 
 /* (No Comment) */
@@ -809,7 +807,7 @@
 /* Network error title */
 "Network Error" = "ネットワークエラー";
 
-/* Title for an alert popup, where the user will be asked to provide a name for the new folder */
+/* No comment provided by engineer. */
 "New Folder" = "新しいフォルダ";
 
 /* No comment provided by engineer. */
@@ -1029,7 +1027,7 @@
 /* (No Comment) */
 "Rubric" = "解説";
 
-/* Title for button confirming showing a file */
+/* (No Comment) */
 "Save" = "保存する";
 
 /* Title for Assignment Notifications Sheet */
@@ -1068,16 +1066,16 @@
 /* title for quiz assignment submission button */
 "Show Quiz" = "クイズを表示する";
 
-/* Title for button confirming showing a file */
+/* (No Comment) */
 "Show file" = "ファイルを表示する";
 
 /* (No Comment) */
 "Show recipients" = "受信者を表示する";
 
-/* Message for an error popup */
+/* (No Comment) */
 "Some items could not be deleted" = "いくつかのアイテムは、消去することができませんでした";
 
-/* Message for a warning popup */
+/* (No Comment) */
 "Some selected folders are not empty. Are you sure you want to delete them?" = "いくつかの選択されたフォルダは空ではありません。消去しますか？";
 
 /* 404 Error for missing assignment */
@@ -1167,7 +1165,7 @@
 /* Take a video to use in a comment. */
 "Take a Video..." = "動画を撮影...";
 
-/* Displayed in a row when an error occurs loading more items */
+/* (No Comment) */
 "Tap to try again" = "タップして、再度試してください";
 
 /* (No Comment) */
@@ -1194,7 +1192,7 @@
 /* (No Comment) */
 "The recipients could not be added. Please try again. (%@)" = "受信者を追加することができませんでした。時間をおいて再度お試しください。(%@)";
 
-/* Explanation for while a file is unavailable */
+/* (No Comment) */
 "The server could not be reached" = "サーバーに到達できませんでした";
 
 /* (No Comment) */
@@ -1206,7 +1204,7 @@
 /* Error message */
 "There are no actions for this item" = "このアイテムへのアクションはありません";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "There are no items to display" = "表示するアイテムはりません";
 
 /* message for media comment upload failure */
@@ -1245,10 +1243,10 @@
 /* Text indicating a file cannot be previewed */
 "This file cannot be displayed on this device." = "このファイルは、このデバイス上には表示できません。";
 
-/* Text indicating that a file cannot be opened */
+/* (No Comment) */
 "This file is locked" = "このファイルはロックされています";
 
-/* Text indicating that a folder cannot be opened */
+/* (No Comment) */
 "This folder is locked" = "このフォルダはロックされています";
 
 /* (No Comment) */
@@ -1287,7 +1285,7 @@
 /* (No Comment) */
 "Uh-oh! No Internet Connection" = "おっと！インターネットが接続されていません";
 
-/* Error title */
+/* (No Comment) */
 "Unable to load" = "ロードできません";
 
 /* (No Comment) */
@@ -1326,7 +1324,7 @@
 /* (No Comment) */
 "Upload failed. Reason: (%@)" = "アップロードに失敗しました。理由: (%@)";
 
-/* Button title for adding a file to a folder */
+/* (No Comment) */
 "Upload file" = "ファイルをアップロード";
 
 /* Error message */
@@ -1334,9 +1332,6 @@
 
 /* (No Comment) */
 "Upload to assignment &quot;%@&quot; failed" = "課題&quot;%@&quot;へアップロードできませんでした";
-
-/* Error message */
-"Upload to folder \"%@\" failed" = "\"%@\"フォルダへのアップロードに失敗しました";
 
 /* (No Comment) */
 "Upload to folder &quot;%@&quot; failed" = "フォルダ&quot;%@&quot;へアップロードできませんでした";
@@ -1359,7 +1354,7 @@
 /* (No Comment) */
 "View" = "表示";
 
-/* Title for a warning popup */
+/* (No Comment) */
 "Warning" = "警告";
 
 /* error message for failure to load a file submission */
@@ -1419,7 +1414,7 @@
 /* (No Comment) */
 "You should go rate Canvas on the App Store!" = "アプリストアでCanvasを評価してください！";
 
-/* Error content */
+/* (No Comment) */
 "Your files could not be found" = "ファイルが見つかりませんでした";
 
 /* Media submission type selected with no Kaltura set up */

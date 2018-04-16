@@ -332,6 +332,9 @@
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
     "message": "{ count, plural,     =0 {0 elèv}    one {# elèv}  other {# elèv}}"
   },
+  "count_plural_one_like_other_likes_338617e5": {
+    "message": "{ count, plural,\n    one {# jèm}\n  other {# jèm}\n}"
+  },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
     "message": "{ count, plural,    one {Bezwen Klasman} other {Bezwen Klasman}}"
   },
@@ -404,6 +407,9 @@
   "delay_posting_f45eed7d": {
     "message": "Retade Piblikasyon"
   },
+  "delayed_until_8f9c2bb1": {
+    "message": "Retade Jiska: "
+  },
   "delete_a6efa79d": {
     "message": "Efase"
   },
@@ -433,6 +439,9 @@
   },
   "details_98a31b68": {
     "message": "Detay"
+  },
+  "developer_menu_1e80da35": {
+    "message": "Meni Devlopè"
   },
   "discussion_details_5728ea3d": {
     "message": "Detay Diskisyon"
@@ -517,6 +526,9 @@
   },
   "edit_folder_f12b1b3c": {
     "message": "Modifye Fichye"
+  },
+  "edit_page_5df5916a": {
+    "message": "Modifye Paj"
   },
   "edit_quiz_details_72cd055": {
     "message": "Modifye Detay Quiz"
@@ -641,6 +653,12 @@
   "grade_9c6f076d": {
     "message": "Klas"
   },
+  "grade_grade_990eb477": {
+    "message": "Nòt { grade }"
+  },
+  "grade_grade_number_percent_cda06b4d": {
+    "message": "Nòt { grade, number, percent }"
+  },
   "graded_25cd3fcd": {
     "message": "Klase"
   },
@@ -728,6 +746,9 @@
   "late_2be42b88": {
     "message": "Ta"
   },
+  "late_submissions_late_number_baedf6cf": {
+    "message": "Soumisyon Anreta { late, number }"
+  },
   "latest_f604a75": {
     "message": "Dènye"
   },
@@ -790,6 +811,9 @@
   },
   "missing_1a256b3b": {
     "message": "Manke"
+  },
+  "missing_submissions_missing_number_ea40423d": {
+    "message": "Soumisyon Manke { missing, number }"
   },
   "moderated_grading_unsupported_e3a2bba3": {
     "message": "Klasman Modere pa Pran an Chaj"
@@ -1093,6 +1117,9 @@
   },
   "replies_4a8577c8": {
     "message": "Repons"
+  },
+  "replies_are_only_visible_to_those_who_have_posted__30e58953": {
+    "message": "Sèlman moun ki poste yon repons pou pi piti k ap ka wè repons yo."
   },
   "reply_389d6fb9": {
     "message": "Reponn"
@@ -1445,9 +1472,6 @@
   "title_ee03d132": {
     "message": "Tit"
   },
-  "title_page_1284a2b9": {
-    "message": "{ title } Paj"
-  },
   "to_51406be9": {
     "message": "Pou"
   },
@@ -1459,6 +1483,9 @@
   },
   "to_name_bb3e415e": {
     "message": "pou { name }"
+  },
+  "total_grade_568e719f": {
+    "message": "Nòt Total:"
   },
   "try_logging_in_again_7a66111a": {
     "message": "Eseye rekonekte "

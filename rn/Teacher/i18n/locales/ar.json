@@ -332,6 +332,9 @@
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
     "message": "{ count, plural,     =0 {0 طلاب}    one {# طالب}  other {# طلاب}}"
   },
+  "count_plural_one_like_other_likes_338617e5": {
+    "message": "{ count, plural,\n    one {# إعجاب}\n  other {# إعجابات}\n}"
+  },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
     "message": "{ count, plural,    zero {بحاجة إلى تقييم} one {بحاجة إلى تقييم} two {بحاجة إلى تقييم} few {بحاجة إلى تقييم} many {بحاجة إلى تقييم} other {بحاجة إلى تقييم}}"
   },
@@ -404,6 +407,9 @@
   "delay_posting_f45eed7d": {
     "message": "تأخير النشر"
   },
+  "delayed_until_8f9c2bb1": {
+    "message": "تم التأجيل حتى: "
+  },
   "delete_a6efa79d": {
     "message": "حذف"
   },
@@ -433,6 +439,9 @@
   },
   "details_98a31b68": {
     "message": "التفاصيل"
+  },
+  "developer_menu_1e80da35": {
+    "message": "قائمة المطور"
   },
   "discussion_details_5728ea3d": {
     "message": "تفاصيل المناقشة"
@@ -517,6 +526,9 @@
   },
   "edit_folder_f12b1b3c": {
     "message": "تحرير المجلد"
+  },
+  "edit_page_5df5916a": {
+    "message": "تحرير صفحة"
   },
   "edit_quiz_details_72cd055": {
     "message": "تحرير تفاصيل الاختبار الموجز"
@@ -641,6 +653,12 @@
   "grade_9c6f076d": {
     "message": "الدرجة"
   },
+  "grade_grade_990eb477": {
+    "message": "الدرجة { grade }"
+  },
+  "grade_grade_number_percent_cda06b4d": {
+    "message": "الدرجة { grade, number, percent }"
+  },
   "graded_25cd3fcd": {
     "message": "تم منح الدرجات"
   },
@@ -728,6 +746,9 @@
   "late_2be42b88": {
     "message": "متأخر"
   },
+  "late_submissions_late_number_baedf6cf": {
+    "message": "الإرسالات المتأخرة { late, number }"
+  },
   "latest_f604a75": {
     "message": "الأدنى"
   },
@@ -790,6 +811,9 @@
   },
   "missing_1a256b3b": {
     "message": "غير منجزة"
+  },
+  "missing_submissions_missing_number_ea40423d": {
+    "message": "الإرسالات المفقودة { missing, number }"
   },
   "moderated_grading_unsupported_e3a2bba3": {
     "message": "تقييم الدرجات تحت الإشراف غير مدعوم"
@@ -1093,6 +1117,9 @@
   },
   "replies_4a8577c8": {
     "message": "ردود"
+  },
+  "replies_are_only_visible_to_those_who_have_posted__30e58953": {
+    "message": "تظهر الردود فقط للأشخاص الذين أرسلوا ردًا واحدًا على الأقل."
   },
   "reply_389d6fb9": {
     "message": "رد"
@@ -1445,9 +1472,6 @@
   "title_ee03d132": {
     "message": "العنوان"
   },
-  "title_page_1284a2b9": {
-    "message": "{ title } صفحة"
-  },
   "to_51406be9": {
     "message": "إلى"
   },
@@ -1459,6 +1483,9 @@
   },
   "to_name_bb3e415e": {
     "message": "إلى { name }"
+  },
+  "total_grade_568e719f": {
+    "message": "الدرجة الإجمالية:"
   },
   "try_logging_in_again_7a66111a": {
     "message": "حاول تسجيل الدخول مجددًا"

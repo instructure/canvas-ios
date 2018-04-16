@@ -332,6 +332,9 @@
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
     "message": "{ count, plural,     =0 {0 students}    one {# student}  other {# students}}"
   },
+  "count_plural_one_like_other_likes_338617e5": {
+    "message": "{ count, plural,\n    one {# like}\n  other {# likes}\n}"
+  },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
     "message": "{ count, plural,    one {Needs Grading} other {Need grading}}"
   },
@@ -404,6 +407,9 @@
   "delay_posting_f45eed7d": {
     "message": "Delay Posting"
   },
+  "delayed_until_8f9c2bb1": {
+    "message": "Delayed until: "
+  },
   "delete_a6efa79d": {
     "message": "Delete"
   },
@@ -433,6 +439,9 @@
   },
   "details_98a31b68": {
     "message": "Details"
+  },
+  "developer_menu_1e80da35": {
+    "message": "Developer menu"
   },
   "discussion_details_5728ea3d": {
     "message": "Discussion Details"
@@ -517,6 +526,9 @@
   },
   "edit_folder_f12b1b3c": {
     "message": "Edit folder"
+  },
+  "edit_page_5df5916a": {
+    "message": "Edit page"
   },
   "edit_quiz_details_72cd055": {
     "message": "Edit Quiz Details"
@@ -641,6 +653,12 @@
   "grade_9c6f076d": {
     "message": "Mark"
   },
+  "grade_grade_990eb477": {
+    "message": "Grade { grade }"
+  },
+  "grade_grade_number_percent_cda06b4d": {
+    "message": "Grade { grade, number, percent }"
+  },
   "graded_25cd3fcd": {
     "message": "Graded"
   },
@@ -728,6 +746,9 @@
   "late_2be42b88": {
     "message": "Late"
   },
+  "late_submissions_late_number_baedf6cf": {
+    "message": "Late submissions { late, number }"
+  },
   "latest_f604a75": {
     "message": "Latest"
   },
@@ -790,6 +811,9 @@
   },
   "missing_1a256b3b": {
     "message": "Missing"
+  },
+  "missing_submissions_missing_number_ea40423d": {
+    "message": "Missing submissions { missing, number }"
   },
   "moderated_grading_unsupported_e3a2bba3": {
     "message": "Moderated Grading Unsupported"
@@ -1093,6 +1117,9 @@
   },
   "replies_4a8577c8": {
     "message": "Replies"
+  },
+  "replies_are_only_visible_to_those_who_have_posted__30e58953": {
+    "message": "Replies are only visible to those who have posted at least one reply."
   },
   "reply_389d6fb9": {
     "message": "Reply"
@@ -1445,9 +1472,6 @@
   "title_ee03d132": {
     "message": "Title"
   },
-  "title_page_1284a2b9": {
-    "message": "{ title } Page"
-  },
   "to_51406be9": {
     "message": "To"
   },
@@ -1459,6 +1483,9 @@
   },
   "to_name_bb3e415e": {
     "message": "to { name }"
+  },
+  "total_grade_568e719f": {
+    "message": "Total grade:"
   },
   "try_logging_in_again_7a66111a": {
     "message": "Try logging in again"

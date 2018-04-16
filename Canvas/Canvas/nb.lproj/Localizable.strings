@@ -236,7 +236,7 @@
    Assignment module item type */
 "Assignment" = "Oppgave";
 
-/* Title for Assignments view controller */
+/* (No Comment) */
 "Assignments" = "Oppgaver";
 
 /* (No Comment) */
@@ -483,10 +483,10 @@
 /* (No Comment) */
 "Edit" = "Rediger";
 
-/* Edit course list title */
+/* (No Comment) */
 "Edit Course List" = "Rediger emneliste";
 
-/* Edit group list title */
+/* (No Comment) */
 "Edit Group List" = "Rediger gruppeliste";
 
 /* (No Comment) */
@@ -521,9 +521,6 @@
 
 /* (No Comment) */
 "Error deleting folder" = "Feil ved sletting av mappe";
-
-/* No comment provided by engineer. */
-"Error loading course." = "Kunne ikke laste inn emne.";
 
 /* (No Comment) */
 "Event" = "Arrangement";
@@ -606,7 +603,7 @@
 /* (No Comment) */
 "Graded discussion. %g points possible." = "Vurdert diskusjon. %g mulige poeng.";
 
-/* Title for Grades view controller */
+/* (No Comment) */
 "Grades" = "Karakterer";
 
 /* (No Comment) */
@@ -618,7 +615,7 @@
 /* (No Comment) */
 "Help" = "Hjelp";
 
-/* Accessibility label for toggling grades to hidden */
+/* (No Comment) */
 "Hide Grades" = "Skjul vurderinger";
 
 /* (No Comment) */
@@ -1038,9 +1035,6 @@
 /* (No Comment) */
 "Search for recipients" = "Søk etter mottakere";
 
-/* Placeholder text for search bar on assignments page */
-"Search here..." = "Søk her...";
-
 /* No comment provided by engineer. */
 "Select Option" = "Velg et alternativ";
 
@@ -1071,7 +1065,7 @@
 /* (No Comment) */
 "Settings" = "Innstillinger";
 
-/* Accessibility label for toggling grades to visible */
+/* (No Comment) */
 "Show Grades" = "Vis vurderinger";
 
 /* (No Comment) */
@@ -1328,10 +1322,10 @@
 /* (No Comment) */
 "Unable to upload to server" = "Kunne ikke laste opp til server";
 
-/* Grade unavailable */
+/* (No Comment) */
 "Unavailable" = "Utilgjengelig";
 
-/* Title for grade button when no grade is present */
+/* (No Comment) */
 "Ungraded" = "Ikke vurdert";
 
 /* (No Comment) */

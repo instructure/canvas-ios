@@ -1,5 +1,3 @@
-"Inbox" = "Входящие";
-
 /* Error message component with the report id */
 " Error report ID: (reportID)" = " Идентификатор отчета об ошибках: (reportID)";
 
@@ -233,9 +231,6 @@
 
 /* error message for when the cache management database fails to load */
 "Error loading cache management database." = "Ошибка при загрузке базы данных управления кэшем.";
-
-/* No comment provided by engineer. */
-"Error loading course." = "Ошибка загрузки курса.";
 
 /* No comment provided by engineer. */
 "Error parsing the Roll Call response. Expected (e), received (a)" = "Ошибка при анализе ответа проверки присутствия. Ожидалось (e), получено (a)";

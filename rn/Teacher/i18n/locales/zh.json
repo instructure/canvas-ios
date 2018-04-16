@@ -332,6 +332,9 @@
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
     "message": "{ count, plural,     =0 {0 位学生}    one {# 位学生}  other {# 位学生}}"
   },
+  "count_plural_one_like_other_likes_338617e5": {
+    "message": "{ count, plural,\n    one {#个赞}\n  other {#个赞}\n}"
+  },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
     "message": "{ count, plural,    other {需要评分}}"
   },
@@ -404,6 +407,9 @@
   "delay_posting_f45eed7d": {
     "message": "延迟发布"
   },
+  "delayed_until_8f9c2bb1": {
+    "message": "延期至： "
+  },
   "delete_a6efa79d": {
     "message": "删除"
   },
@@ -433,6 +439,9 @@
   },
   "details_98a31b68": {
     "message": "细节"
+  },
+  "developer_menu_1e80da35": {
+    "message": "开发人员菜单"
   },
   "discussion_details_5728ea3d": {
     "message": "讨论详细信息"
@@ -517,6 +526,9 @@
   },
   "edit_folder_f12b1b3c": {
     "message": "编辑文件夹"
+  },
+  "edit_page_5df5916a": {
+    "message": "编辑页面"
   },
   "edit_quiz_details_72cd055": {
     "message": "编辑测验详情"
@@ -641,6 +653,12 @@
   "grade_9c6f076d": {
     "message": "评分"
   },
+  "grade_grade_990eb477": {
+    "message": "评分{ grade }"
+  },
+  "grade_grade_number_percent_cda06b4d": {
+    "message": "评分{ grade, number, percent }"
+  },
   "graded_25cd3fcd": {
     "message": "已评分"
   },
@@ -728,6 +746,9 @@
   "late_2be42b88": {
     "message": "迟到、迟交"
   },
+  "late_submissions_late_number_baedf6cf": {
+    "message": "逾期提交项{ late, number }"
+  },
   "latest_f604a75": {
     "message": "最近"
   },
@@ -790,6 +811,9 @@
   },
   "missing_1a256b3b": {
     "message": "丢失"
+  },
+  "missing_submissions_missing_number_ea40423d": {
+    "message": "缺少提交项{ missing, number }"
   },
   "moderated_grading_unsupported_e3a2bba3": {
     "message": "不支持审核后的评分"
@@ -1093,6 +1117,9 @@
   },
   "replies_4a8577c8": {
     "message": "回复"
+  },
+  "replies_are_only_visible_to_those_who_have_posted__30e58953": {
+    "message": "回复只对至少发布了一条回复的人可见。"
   },
   "reply_389d6fb9": {
     "message": "回复"
@@ -1445,9 +1472,6 @@
   "title_ee03d132": {
     "message": "标题"
   },
-  "title_page_1284a2b9": {
-    "message": "{ title }页面"
-  },
   "to_51406be9": {
     "message": "接收人"
   },
@@ -1459,6 +1483,9 @@
   },
   "to_name_bb3e415e": {
     "message": "截止日期{ name }"
+  },
+  "total_grade_568e719f": {
+    "message": "总评分："
   },
   "try_logging_in_again_7a66111a": {
     "message": "再次尝试登录"

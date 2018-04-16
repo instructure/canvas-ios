@@ -236,7 +236,7 @@
    Assignment module item type */
 "Assignment" = "Assignment";
 
-/* Title for Assignments view controller */
+/* (No Comment) */
 "Assignments" = "Assignments";
 
 /* (No Comment) */
@@ -483,10 +483,10 @@
 /* (No Comment) */
 "Edit" = "Edit";
 
-/* Edit course list title */
+/* (No Comment) */
 "Edit Course List" = "Edit course list";
 
-/* Edit group list title */
+/* (No Comment) */
 "Edit Group List" = "Edit group list";
 
 /* (No Comment) */
@@ -521,9 +521,6 @@
 
 /* (No Comment) */
 "Error deleting folder" = "Error deleting folder";
-
-/* No comment provided by engineer. */
-"Error loading course." = "Error loading course.";
 
 /* (No Comment) */
 "Event" = "Event";
@@ -606,7 +603,7 @@
 /* (No Comment) */
 "Graded discussion. %g points possible." = "Marked discussion. %g points possible.";
 
-/* Title for Grades view controller */
+/* (No Comment) */
 "Grades" = "Marks";
 
 /* (No Comment) */
@@ -618,7 +615,7 @@
 /* (No Comment) */
 "Help" = "Help";
 
-/* Accessibility label for toggling grades to hidden */
+/* (No Comment) */
 "Hide Grades" = "Hide marks";
 
 /* (No Comment) */
@@ -1038,9 +1035,6 @@
 /* (No Comment) */
 "Search for recipients" = "Search for recipients";
 
-/* Placeholder text for search bar on assignments page */
-"Search here..." = "Search here...";
-
 /* No comment provided by engineer. */
 "Select Option" = "Select option";
 
@@ -1071,7 +1065,7 @@
 /* (No Comment) */
 "Settings" = "Settings";
 
-/* Accessibility label for toggling grades to visible */
+/* (No Comment) */
 "Show Grades" = "Show marks";
 
 /* (No Comment) */
@@ -1328,10 +1322,10 @@
 /* (No Comment) */
 "Unable to upload to server" = "Unable to upload to server";
 
-/* Grade unavailable */
+/* (No Comment) */
 "Unavailable" = "Unavailable";
 
-/* Title for grade button when no grade is present */
+/* (No Comment) */
 "Ungraded" = "Ungraded";
 
 /* (No Comment) */

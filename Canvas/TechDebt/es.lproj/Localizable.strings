@@ -85,7 +85,7 @@
 /* (No Comment) */
 "%d hours ago" = "Hace %d horas";
 
-/* Number of files/folders inside a folder. (Used for all cases except 1 item.) */
+/* (No Comment) */
 "%d items" = "%d elementos";
 
 /* (No Comment) */
@@ -154,7 +154,7 @@
 /* (No Comment) */
 "1 hour ago" = "Hace 1 hora";
 
-/* Number of files/folders inside a folder. (Only used when there is exactly 1 item. */
+/* (No Comment) */
 "1 item" = "1 elemento";
 
 /* (No Comment) */
@@ -205,7 +205,7 @@
 /* No comment provided by engineer. */
 "Add comment" = "Agregar comentario";
 
-/* Button title for adding a folder to a folder */
+/* (No Comment) */
 "Add folder" = "Agregar carpeta";
 
 /* (No Comment) */
@@ -295,8 +295,7 @@
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "No puede enviar archivos multimedia";
 
-/* Button to cancel deleting folders
-   Cancel button title
+/* Cancel button title
    Cancel button title to cancel submitting an Arc video as an assignment submission */
 "Cancel" = "Cancelar";
 
@@ -333,7 +332,7 @@
 /* No comment provided by engineer. */
 "Choose a name for the new folder" = "Elegir un nombre para la nueva carpeta";
 
-/* Content of an alert popup */
+/* (No Comment) */
 "Choose a name for the new folder." = "Elegir un nombre para la nueva carpeta.";
 
 /* No comment provided by engineer. */
@@ -420,11 +419,10 @@
 /* (No Comment) */
 "Customize" = "Personalizar";
 
-/* Default delete button MLVC
-   Delete Button title */
+/* Default delete button MLVC */
 "Delete" = "Borrar";
 
-/* Button for deleting files or folders. %d will be the number of selected items */
+/* (No Comment) */
 "Delete (%d)" = "Borrar (%d)";
 
 /* (No Comment) */
@@ -473,10 +471,10 @@
 /* (No Comment) */
 "Don't ask me again" = "No me pregunte de nuevo";
 
-/* Button to cancel deleting folders */
+/* (No Comment) */
 "Don't delete" = "No lo borre";
 
-/* Button to stop editing a list */
+/* (No Comment) */
 "Done" = "Hecho";
 
 /* Shown when we cancel a file download */
@@ -506,7 +504,7 @@
 /* (No Comment) */
 "Edit Group List" = "Editar la lista del grupo";
 
-/* Button title for deleting items in a folder */
+/* (No Comment) */
 "Edit items" = "Editar los elementos";
 
 /* (No Comment) */
@@ -572,7 +570,7 @@
 /* No comment provided by engineer. */
 "File received" = "Archivo recibido";
 
-/* Title for an alert popup */
+/* (No Comment) */
 "File unavailable" = "Archivo no disponible";
 
 /* File upload submission type */
@@ -698,7 +696,7 @@
 /* (No Comment) */
 "Landing Page" = "Página de destino";
 
-/* Title for an alert popup */
+/* (No Comment) */
 "Large file" = "Archivo grande";
 
 /* No comment provided by engineer. */
@@ -713,7 +711,7 @@
 /* Title for legal section on the about page */
 "Legal" = "Legal";
 
-/* Generic loading title with ellipsis */
+/* (No Comment) */
 "Loading..." = "Cargando...";
 
 /* (No Comment) */
@@ -809,7 +807,7 @@
 /* Network error title */
 "Network Error" = "Error de la red";
 
-/* Title for an alert popup, where the user will be asked to provide a name for the new folder */
+/* No comment provided by engineer. */
 "New Folder" = "Nueva carpeta";
 
 /* No comment provided by engineer. */
@@ -1029,7 +1027,7 @@
 /* (No Comment) */
 "Rubric" = "Rúbrica";
 
-/* Title for button confirming showing a file */
+/* (No Comment) */
 "Save" = "Guardar";
 
 /* Title for Assignment Notifications Sheet */
@@ -1068,16 +1066,16 @@
 /* title for quiz assignment submission button */
 "Show Quiz" = "Mostrar la evaluación";
 
-/* Title for button confirming showing a file */
+/* (No Comment) */
 "Show file" = "Mostrar archivo";
 
 /* (No Comment) */
 "Show recipients" = "Mostrar destinatarios";
 
-/* Message for an error popup */
+/* (No Comment) */
 "Some items could not be deleted" = "No se pudieron borrar algunos elementos";
 
-/* Message for a warning popup */
+/* (No Comment) */
 "Some selected folders are not empty. Are you sure you want to delete them?" = "Algunas carpetas seleccionadas no están vacías. ¿Está seguro que desea eliminarlas?";
 
 /* 404 Error for missing assignment */
@@ -1167,7 +1165,7 @@
 /* Take a video to use in a comment. */
 "Take a Video..." = "Tomar un video...";
 
-/* Displayed in a row when an error occurs loading more items */
+/* (No Comment) */
 "Tap to try again" = "Pulsar para volver a intentarlo";
 
 /* (No Comment) */
@@ -1194,7 +1192,7 @@
 /* (No Comment) */
 "The recipients could not be added. Please try again. (%@)" = "No se pudo agregar a los destinatarios. Por favor, inténtelo de nuevo. (%@)";
 
-/* Explanation for while a file is unavailable */
+/* (No Comment) */
 "The server could not be reached" = "El servidor no pudo ser localizado";
 
 /* (No Comment) */
@@ -1206,7 +1204,7 @@
 /* Error message */
 "There are no actions for this item" = "No hay acciones para este elemento";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "There are no items to display" = "No hay elementos para mostrar";
 
 /* message for media comment upload failure */
@@ -1245,10 +1243,10 @@
 /* Text indicating a file cannot be previewed */
 "This file cannot be displayed on this device." = "Este archivo no se puede mostrar en este dispositivo.";
 
-/* Text indicating that a file cannot be opened */
+/* (No Comment) */
 "This file is locked" = "Este archivo está bloqueado";
 
-/* Text indicating that a folder cannot be opened */
+/* (No Comment) */
 "This folder is locked" = "Esta carpeta está bloqueada";
 
 /* (No Comment) */
@@ -1287,7 +1285,7 @@
 /* (No Comment) */
 "Uh-oh! No Internet Connection" = "¡Ay no! No hay conexión de internet";
 
-/* Error title */
+/* (No Comment) */
 "Unable to load" = "No se puede cargar";
 
 /* (No Comment) */
@@ -1326,7 +1324,7 @@
 /* (No Comment) */
 "Upload failed. Reason: (%@)" = "No se pudo subir. Razón: (%@)";
 
-/* Button title for adding a file to a folder */
+/* (No Comment) */
 "Upload file" = "Subir archivo";
 
 /* Error message */
@@ -1334,9 +1332,6 @@
 
 /* (No Comment) */
 "Upload to assignment &quot;%@&quot; failed" = "No se pudo subir a la tarea &quot;%@&quot;";
-
-/* Error message */
-"Upload to folder \"%@\" failed" = "No se pudo subir a la carpeta \"%@\" ";
 
 /* (No Comment) */
 "Upload to folder &quot;%@&quot; failed" = "No se pudo subir a la carpeta &quot;%@&quot;";
@@ -1359,7 +1354,7 @@
 /* (No Comment) */
 "View" = "Ver";
 
-/* Title for a warning popup */
+/* (No Comment) */
 "Warning" = "Advertencia";
 
 /* error message for failure to load a file submission */
@@ -1419,7 +1414,7 @@
 /* (No Comment) */
 "You should go rate Canvas on the App Store!" = "¡Debería calificar Canvas en la Tienda de aplicaciones!";
 
-/* Error content */
+/* (No Comment) */
 "Your files could not be found" = "No se pudo encontrar sus archivos";
 
 /* Media submission type selected with no Kaltura set up */

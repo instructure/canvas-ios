@@ -85,7 +85,7 @@
 /* (No Comment) */
 "%d hours ago" = "%d 小时前";
 
-/* Number of files/folders inside a folder. (Used for all cases except 1 item.) */
+/* (No Comment) */
 "%d items" = "%d 项目";
 
 /* (No Comment) */
@@ -154,7 +154,7 @@
 /* (No Comment) */
 "1 hour ago" = "1 小时前";
 
-/* Number of files/folders inside a folder. (Only used when there is exactly 1 item. */
+/* (No Comment) */
 "1 item" = "1 个项目";
 
 /* (No Comment) */
@@ -205,7 +205,7 @@
 /* No comment provided by engineer. */
 "Add comment" = "添加评论";
 
-/* Button title for adding a folder to a folder */
+/* (No Comment) */
 "Add folder" = "添加文件夹";
 
 /* (No Comment) */
@@ -295,8 +295,7 @@
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "不能提交媒体";
 
-/* Button to cancel deleting folders
-   Cancel button title
+/* Cancel button title
    Cancel button title to cancel submitting an Arc video as an assignment submission */
 "Cancel" = "取消";
 
@@ -333,7 +332,7 @@
 /* No comment provided by engineer. */
 "Choose a name for the new folder" = "为新文件夹选择一个名称";
 
-/* Content of an alert popup */
+/* (No Comment) */
 "Choose a name for the new folder." = "为新文件夹选择一个名称";
 
 /* No comment provided by engineer. */
@@ -420,11 +419,10 @@
 /* (No Comment) */
 "Customize" = "自定义";
 
-/* Default delete button MLVC
-   Delete Button title */
+/* Default delete button MLVC */
 "Delete" = "删除";
 
-/* Button for deleting files or folders. %d will be the number of selected items */
+/* (No Comment) */
 "Delete (%d)" = "删除 (%d)";
 
 /* (No Comment) */
@@ -473,10 +471,10 @@
 /* (No Comment) */
 "Don't ask me again" = "不要再问我";
 
-/* Button to cancel deleting folders */
+/* (No Comment) */
 "Don't delete" = "不要删除";
 
-/* Button to stop editing a list */
+/* (No Comment) */
 "Done" = "完成";
 
 /* Shown when we cancel a file download */
@@ -506,7 +504,7 @@
 /* (No Comment) */
 "Edit Group List" = "编辑小组名单";
 
-/* Button title for deleting items in a folder */
+/* (No Comment) */
 "Edit items" = "编辑项目";
 
 /* (No Comment) */
@@ -572,7 +570,7 @@
 /* No comment provided by engineer. */
 "File received" = "文件收到";
 
-/* Title for an alert popup */
+/* (No Comment) */
 "File unavailable" = "文件不可用";
 
 /* File upload submission type */
@@ -698,7 +696,7 @@
 /* (No Comment) */
 "Landing Page" = "登录页面";
 
-/* Title for an alert popup */
+/* (No Comment) */
 "Large file" = "大文件";
 
 /* No comment provided by engineer. */
@@ -713,7 +711,7 @@
 /* Title for legal section on the about page */
 "Legal" = "合法";
 
-/* Generic loading title with ellipsis */
+/* (No Comment) */
 "Loading..." = "正在载入中...";
 
 /* (No Comment) */
@@ -809,7 +807,7 @@
 /* Network error title */
 "Network Error" = "网络错误";
 
-/* Title for an alert popup, where the user will be asked to provide a name for the new folder */
+/* No comment provided by engineer. */
 "New Folder" = "新文件夹";
 
 /* No comment provided by engineer. */
@@ -1029,7 +1027,7 @@
 /* (No Comment) */
 "Rubric" = "评分细则";
 
-/* Title for button confirming showing a file */
+/* (No Comment) */
 "Save" = "保存";
 
 /* Title for Assignment Notifications Sheet */
@@ -1068,16 +1066,16 @@
 /* title for quiz assignment submission button */
 "Show Quiz" = "显示测验";
 
-/* Title for button confirming showing a file */
+/* (No Comment) */
 "Show file" = "显示文件";
 
 /* (No Comment) */
 "Show recipients" = "显示收件人";
 
-/* Message for an error popup */
+/* (No Comment) */
 "Some items could not be deleted" = "有些项目无法删除";
 
-/* Message for a warning popup */
+/* (No Comment) */
 "Some selected folders are not empty. Are you sure you want to delete them?" = "一些已选定的文件夹不是空白的。您确定真要删除它们吗？";
 
 /* 404 Error for missing assignment */
@@ -1167,7 +1165,7 @@
 /* Take a video to use in a comment. */
 "Take a Video..." = "拍摄一段视频";
 
-/* Displayed in a row when an error occurs loading more items */
+/* (No Comment) */
 "Tap to try again" = "点击重试";
 
 /* (No Comment) */
@@ -1194,7 +1192,7 @@
 /* (No Comment) */
 "The recipients could not be added. Please try again. (%@)" = "无法添加收件人， 请再试一次。(%@)";
 
-/* Explanation for while a file is unavailable */
+/* (No Comment) */
 "The server could not be reached" = "服务器无法连接";
 
 /* (No Comment) */
@@ -1206,7 +1204,7 @@
 /* Error message */
 "There are no actions for this item" = "此项目没有动作";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "There are no items to display" = "没有项目显示";
 
 /* message for media comment upload failure */
@@ -1245,10 +1243,10 @@
 /* Text indicating a file cannot be previewed */
 "This file cannot be displayed on this device." = "这个文件不可在此设备上显示。";
 
-/* Text indicating that a file cannot be opened */
+/* (No Comment) */
 "This file is locked" = "此文件被锁定";
 
-/* Text indicating that a folder cannot be opened */
+/* (No Comment) */
 "This folder is locked" = "此文件夹已被锁定";
 
 /* (No Comment) */
@@ -1287,7 +1285,7 @@
 /* (No Comment) */
 "Uh-oh! No Internet Connection" = "糟糕！没有网络连接";
 
-/* Error title */
+/* (No Comment) */
 "Unable to load" = "无法加载";
 
 /* (No Comment) */
@@ -1326,7 +1324,7 @@
 /* (No Comment) */
 "Upload failed. Reason: (%@)" = "上传失败。原因：(%@)";
 
-/* Button title for adding a file to a folder */
+/* (No Comment) */
 "Upload file" = "上传文件";
 
 /* Error message */
@@ -1334,9 +1332,6 @@
 
 /* (No Comment) */
 "Upload to assignment &quot;%@&quot; failed" = "上传至作业&quot;%@&quot;失败";
-
-/* Error message */
-"Upload to folder \"%@\" failed" = "上传到 \"%@\" 文件夹失败";
 
 /* (No Comment) */
 "Upload to folder &quot;%@&quot; failed" = "上传至文件夹&quot;%@&quot;失败";
@@ -1359,7 +1354,7 @@
 /* (No Comment) */
 "View" = "查看";
 
-/* Title for a warning popup */
+/* (No Comment) */
 "Warning" = "警告";
 
 /* error message for failure to load a file submission */
@@ -1419,7 +1414,7 @@
 /* (No Comment) */
 "You should go rate Canvas on the App Store!" = "您应该去应用程序商店评级Canvas!";
 
-/* Error content */
+/* (No Comment) */
 "Your files could not be found" = "您的文件无法找到";
 
 /* Media submission type selected with no Kaltura set up */

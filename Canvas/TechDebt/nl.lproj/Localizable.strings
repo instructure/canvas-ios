@@ -85,7 +85,7 @@
 /* (No Comment) */
 "%d hours ago" = "%d uur geleden";
 
-/* Number of files/folders inside a folder. (Used for all cases except 1 item.) */
+/* (No Comment) */
 "%d items" = "%d items";
 
 /* (No Comment) */
@@ -154,7 +154,7 @@
 /* (No Comment) */
 "1 hour ago" = "1 uur geleden";
 
-/* Number of files/folders inside a folder. (Only used when there is exactly 1 item. */
+/* (No Comment) */
 "1 item" = "1 item";
 
 /* (No Comment) */
@@ -205,7 +205,7 @@
 /* No comment provided by engineer. */
 "Add comment" = "Opmerking toevoegen";
 
-/* Button title for adding a folder to a folder */
+/* (No Comment) */
 "Add folder" = "Map toevoegen";
 
 /* (No Comment) */
@@ -295,8 +295,7 @@
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "Kan media niet indienen";
 
-/* Button to cancel deleting folders
-   Cancel button title
+/* Cancel button title
    Cancel button title to cancel submitting an Arc video as an assignment submission */
 "Cancel" = "Annuleren";
 
@@ -333,7 +332,7 @@
 /* No comment provided by engineer. */
 "Choose a name for the new folder" = "Een naam voor de nieuwe map kiezen";
 
-/* Content of an alert popup */
+/* (No Comment) */
 "Choose a name for the new folder." = "Een naam voor de nieuwe map kiezen.";
 
 /* No comment provided by engineer. */
@@ -420,11 +419,10 @@
 /* (No Comment) */
 "Customize" = "Aanpassen";
 
-/* Default delete button MLVC
-   Delete Button title */
+/* Default delete button MLVC */
 "Delete" = "Verwijderen";
 
-/* Button for deleting files or folders. %d will be the number of selected items */
+/* (No Comment) */
 "Delete (%d)" = "Verwijderd (%d)";
 
 /* (No Comment) */
@@ -473,10 +471,10 @@
 /* (No Comment) */
 "Don't ask me again" = "Vraag het mij niet nogmaals";
 
-/* Button to cancel deleting folders */
+/* (No Comment) */
 "Don't delete" = "Niet verwijderen";
 
-/* Button to stop editing a list */
+/* (No Comment) */
 "Done" = "Klaar";
 
 /* Shown when we cancel a file download */
@@ -506,7 +504,7 @@
 /* (No Comment) */
 "Edit Group List" = "Groepslijst bewerken";
 
-/* Button title for deleting items in a folder */
+/* (No Comment) */
 "Edit items" = "Items bewerken";
 
 /* (No Comment) */
@@ -572,7 +570,7 @@
 /* No comment provided by engineer. */
 "File received" = "Bestand ontvangen";
 
-/* Title for an alert popup */
+/* (No Comment) */
 "File unavailable" = "Bestand niet beschikbaar";
 
 /* File upload submission type */
@@ -698,7 +696,7 @@
 /* (No Comment) */
 "Landing Page" = "Landingspagina";
 
-/* Title for an alert popup */
+/* (No Comment) */
 "Large file" = "Groot bestand";
 
 /* No comment provided by engineer. */
@@ -713,7 +711,7 @@
 /* Title for legal section on the about page */
 "Legal" = "Juridisch";
 
-/* Generic loading title with ellipsis */
+/* (No Comment) */
 "Loading..." = "Bezig met laden...";
 
 /* (No Comment) */
@@ -809,7 +807,7 @@
 /* Network error title */
 "Network Error" = "Netwerkfout";
 
-/* Title for an alert popup, where the user will be asked to provide a name for the new folder */
+/* No comment provided by engineer. */
 "New Folder" = "Nieuwe map";
 
 /* No comment provided by engineer. */
@@ -1029,7 +1027,7 @@
 /* (No Comment) */
 "Rubric" = "Rubriek";
 
-/* Title for button confirming showing a file */
+/* (No Comment) */
 "Save" = "Opslaan";
 
 /* Title for Assignment Notifications Sheet */
@@ -1068,16 +1066,16 @@
 /* title for quiz assignment submission button */
 "Show Quiz" = "Toets tonen";
 
-/* Title for button confirming showing a file */
+/* (No Comment) */
 "Show file" = "Bestand tonen";
 
 /* (No Comment) */
 "Show recipients" = "Geadresseerden tonen";
 
-/* Message for an error popup */
+/* (No Comment) */
 "Some items could not be deleted" = "Enkele items konden niet verwijderd worden";
 
-/* Message for a warning popup */
+/* (No Comment) */
 "Some selected folders are not empty. Are you sure you want to delete them?" = "Enkele geselecteerde mappen zijn niet leeg. Weet je zeker dat je ze wilt verwijderen?";
 
 /* 404 Error for missing assignment */
@@ -1167,7 +1165,7 @@
 /* Take a video to use in a comment. */
 "Take a Video..." = "Een video maken...";
 
-/* Displayed in a row when an error occurs loading more items */
+/* (No Comment) */
 "Tap to try again" = "Tik om nogmaals te proberen";
 
 /* (No Comment) */
@@ -1194,7 +1192,7 @@
 /* (No Comment) */
 "The recipients could not be added. Please try again. (%@)" = "De geadresseerden konden niet worden toegevoegd. Probeer het nogmaals (%@)";
 
-/* Explanation for while a file is unavailable */
+/* (No Comment) */
 "The server could not be reached" = "De server kon niet bereikt worden";
 
 /* (No Comment) */
@@ -1206,7 +1204,7 @@
 /* Error message */
 "There are no actions for this item" = "Er zijn geen handelingen voor dit item";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "There are no items to display" = "Er zijn geen items om te tonen";
 
 /* message for media comment upload failure */
@@ -1245,10 +1243,10 @@
 /* Text indicating a file cannot be previewed */
 "This file cannot be displayed on this device." = "Dit bestand kan niet getoond worden op dit apparaat.";
 
-/* Text indicating that a file cannot be opened */
+/* (No Comment) */
 "This file is locked" = "Dit bestand is vergrendeld";
 
-/* Text indicating that a folder cannot be opened */
+/* (No Comment) */
 "This folder is locked" = "Deze map is vergrendeld";
 
 /* (No Comment) */
@@ -1287,7 +1285,7 @@
 /* (No Comment) */
 "Uh-oh! No Internet Connection" = "O nee! Geen internetverbinding";
 
-/* Error title */
+/* (No Comment) */
 "Unable to load" = "Kan niet laden";
 
 /* (No Comment) */
@@ -1326,7 +1324,7 @@
 /* (No Comment) */
 "Upload failed. Reason: (%@)" = "Uploaden mislukt Reden: (%@)";
 
-/* Button title for adding a file to a folder */
+/* (No Comment) */
 "Upload file" = "Bestand uploaden";
 
 /* Error message */
@@ -1334,9 +1332,6 @@
 
 /* (No Comment) */
 "Upload to assignment &quot;%@&quot; failed" = "Uploaden naar opdracht &quot;%@&quot; mislukt";
-
-/* Error message */
-"Upload to folder \"%@\" failed" = "Uploaden naar map  \"%@\" mislukt";
 
 /* (No Comment) */
 "Upload to folder &quot;%@&quot; failed" = "Uploaden naar map &quot;%@&quot; mislukt";
@@ -1359,7 +1354,7 @@
 /* (No Comment) */
 "View" = "Bekijken";
 
-/* Title for a warning popup */
+/* (No Comment) */
 "Warning" = "Waarschuwing";
 
 /* error message for failure to load a file submission */
@@ -1419,7 +1414,7 @@
 /* (No Comment) */
 "You should go rate Canvas on the App Store!" = "Ga Canvas eens beoordelen in de App Store!";
 
-/* Error content */
+/* (No Comment) */
 "Your files could not be found" = "Je bestanden konden niet gevonden worden";
 
 /* Media submission type selected with no Kaltura set up */

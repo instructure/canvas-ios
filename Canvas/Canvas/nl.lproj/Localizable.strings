@@ -236,7 +236,7 @@
    Assignment module item type */
 "Assignment" = "Opdracht";
 
-/* Title for Assignments view controller */
+/* (No Comment) */
 "Assignments" = "Opdrachten";
 
 /* (No Comment) */
@@ -483,10 +483,10 @@
 /* (No Comment) */
 "Edit" = "Bewerken";
 
-/* Edit course list title */
+/* (No Comment) */
 "Edit Course List" = "Cursuslijst bewerken";
 
-/* Edit group list title */
+/* (No Comment) */
 "Edit Group List" = "Groepslijst bewerken";
 
 /* (No Comment) */
@@ -521,9 +521,6 @@
 
 /* (No Comment) */
 "Error deleting folder" = "Fout bij het verwijderen van map";
-
-/* No comment provided by engineer. */
-"Error loading course." = "Fout bij laden van cursus.";
 
 /* (No Comment) */
 "Event" = "Evenement";
@@ -606,7 +603,7 @@
 /* (No Comment) */
 "Graded discussion. %g points possible." = "Beoordeelde discussie. %g punten mogelijk.";
 
-/* Title for Grades view controller */
+/* (No Comment) */
 "Grades" = "Cijfers";
 
 /* (No Comment) */
@@ -618,7 +615,7 @@
 /* (No Comment) */
 "Help" = "Help";
 
-/* Accessibility label for toggling grades to hidden */
+/* (No Comment) */
 "Hide Grades" = "Cijfers verbergen";
 
 /* (No Comment) */
@@ -1038,9 +1035,6 @@
 /* (No Comment) */
 "Search for recipients" = "Geadresseerden zoeken";
 
-/* Placeholder text for search bar on assignments page */
-"Search here..." = "Hier zoeken...";
-
 /* No comment provided by engineer. */
 "Select Option" = "Selecteer optie";
 
@@ -1071,7 +1065,7 @@
 /* (No Comment) */
 "Settings" = "Instellingen";
 
-/* Accessibility label for toggling grades to visible */
+/* (No Comment) */
 "Show Grades" = "Cijfers tonen";
 
 /* (No Comment) */
@@ -1328,10 +1322,10 @@
 /* (No Comment) */
 "Unable to upload to server" = "Kan niet naar server uploaden";
 
-/* Grade unavailable */
+/* (No Comment) */
 "Unavailable" = "Niet beschikbaar";
 
-/* Title for grade button when no grade is present */
+/* (No Comment) */
 "Ungraded" = "Niet beoordeeld";
 
 /* (No Comment) */

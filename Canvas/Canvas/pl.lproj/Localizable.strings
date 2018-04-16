@@ -236,7 +236,7 @@
    Assignment module item type */
 "Assignment" = "Zadanie";
 
-/* Title for Assignments view controller */
+/* (No Comment) */
 "Assignments" = "Zadania";
 
 /* (No Comment) */
@@ -483,10 +483,10 @@
 /* (No Comment) */
 "Edit" = "Edytuj";
 
-/* Edit course list title */
+/* (No Comment) */
 "Edit Course List" = "Edytuj listę kursów";
 
-/* Edit group list title */
+/* (No Comment) */
 "Edit Group List" = "Edytuj listę grupy";
 
 /* (No Comment) */
@@ -521,9 +521,6 @@
 
 /* (No Comment) */
 "Error deleting folder" = "Wystąpił błąd podczas usuwania folderu";
-
-/* No comment provided by engineer. */
-"Error loading course." = "Błąd podczas wczytywania kursu.";
 
 /* (No Comment) */
 "Event" = "Wydarzenie";
@@ -606,7 +603,7 @@
 /* (No Comment) */
 "Graded discussion. %g points possible." = "Oceniona dyskusja. %g możliwych punktów.";
 
-/* Title for Grades view controller */
+/* (No Comment) */
 "Grades" = "Oceny";
 
 /* (No Comment) */
@@ -618,7 +615,7 @@
 /* (No Comment) */
 "Help" = "Pomoc";
 
-/* Accessibility label for toggling grades to hidden */
+/* (No Comment) */
 "Hide Grades" = "Ukryj oceny";
 
 /* (No Comment) */
@@ -1038,9 +1035,6 @@
 /* (No Comment) */
 "Search for recipients" = "Szukaj odbiorców";
 
-/* Placeholder text for search bar on assignments page */
-"Search here..." = "Wyszukaj tutaj...";
-
 /* No comment provided by engineer. */
 "Select Option" = "Wybierz opcję";
 
@@ -1071,7 +1065,7 @@
 /* (No Comment) */
 "Settings" = "Ustawienia";
 
-/* Accessibility label for toggling grades to visible */
+/* (No Comment) */
 "Show Grades" = "Pokaż oceny";
 
 /* (No Comment) */
@@ -1328,10 +1322,10 @@
 /* (No Comment) */
 "Unable to upload to server" = "Nie można przesłać do serwera";
 
-/* Grade unavailable */
+/* (No Comment) */
 "Unavailable" = "Niedostępny";
 
-/* Title for grade button when no grade is present */
+/* (No Comment) */
 "Ungraded" = "Nie oceniony";
 
 /* (No Comment) */

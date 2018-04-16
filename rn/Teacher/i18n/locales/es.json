@@ -332,6 +332,9 @@
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
     "message": "{ count, plural,     =0 {0 alumnos}    one {# alumno}  other {# alumnos}}"
   },
+  "count_plural_one_like_other_likes_338617e5": {
+    "message": "{ count, plural,\n    one {# me gusta}\n  other {# me gusta}\n}"
+  },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
     "message": "{ count, plural,    one {Necesita calificación} other {necesitan ser calificados}}"
   },
@@ -404,6 +407,9 @@
   "delay_posting_f45eed7d": {
     "message": "Atrasar la publicación"
   },
+  "delayed_until_8f9c2bb1": {
+    "message": "Retrasado hasta: "
+  },
   "delete_a6efa79d": {
     "message": "Borrar"
   },
@@ -433,6 +439,9 @@
   },
   "details_98a31b68": {
     "message": "Detalles"
+  },
+  "developer_menu_1e80da35": {
+    "message": "Menú del desarrollador"
   },
   "discussion_details_5728ea3d": {
     "message": "Detalles del debate"
@@ -517,6 +526,9 @@
   },
   "edit_folder_f12b1b3c": {
     "message": "Editar carpeta"
+  },
+  "edit_page_5df5916a": {
+    "message": "Editar página"
   },
   "edit_quiz_details_72cd055": {
     "message": "Editar los detalles de la evaluación"
@@ -641,6 +653,12 @@
   "grade_9c6f076d": {
     "message": "Calificación"
   },
+  "grade_grade_990eb477": {
+    "message": "Calificar { grade }"
+  },
+  "grade_grade_number_percent_cda06b4d": {
+    "message": "Calificar { grade, number, percent }"
+  },
   "graded_25cd3fcd": {
     "message": "Calificado"
   },
@@ -728,6 +746,9 @@
   "late_2be42b88": {
     "message": "Atrasado"
   },
+  "late_submissions_late_number_baedf6cf": {
+    "message": "Presentaciones tardías { late, number }"
+  },
   "latest_f604a75": {
     "message": "Más reciente"
   },
@@ -790,6 +811,9 @@
   },
   "missing_1a256b3b": {
     "message": "Falta"
+  },
+  "missing_submissions_missing_number_ea40423d": {
+    "message": "Presentaciones no realizadas { missing, number }"
   },
   "moderated_grading_unsupported_e3a2bba3": {
     "message": "Calificación moderada no compatible"
@@ -1093,6 +1117,9 @@
   },
   "replies_4a8577c8": {
     "message": "Respuestas"
+  },
+  "replies_are_only_visible_to_those_who_have_posted__30e58953": {
+    "message": "Las respuestas son visibles solamente para aquellos que han publicado al menos una respuesta."
   },
   "reply_389d6fb9": {
     "message": "Respuesta"
@@ -1445,9 +1472,6 @@
   "title_ee03d132": {
     "message": "Título"
   },
-  "title_page_1284a2b9": {
-    "message": "{ title } Página"
-  },
   "to_51406be9": {
     "message": "A"
   },
@@ -1459,6 +1483,9 @@
   },
   "to_name_bb3e415e": {
     "message": "a { name }"
+  },
+  "total_grade_568e719f": {
+    "message": "Calificación total:"
   },
   "try_logging_in_again_7a66111a": {
     "message": "Intente volver a iniciar sesión"

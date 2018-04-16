@@ -1,5 +1,3 @@
-"Inbox" = "Pouakauru";
-
 /* Error message component with the report id */
 " Error report ID: (reportID)" = " Rīpoata hapa ID: (reportID)";
 
@@ -233,9 +231,6 @@
 
 /* error message for when the cache management database fails to load */
 "Error loading cache management database." = "Hapa uta whakahaere keteroki pātengi raraunga.";
-
-/* No comment provided by engineer. */
-"Error loading course." = "He hapa i te wā e uta ana i te akoranga.";
 
 /* No comment provided by engineer. */
 "Error parsing the Roll Call response. Expected (e), received (a)" = "Hapa e poroporo ana te whakautu a te Roll Call I tūmanakohia (e), i taea (a)";
