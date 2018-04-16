@@ -1,3 +1,5 @@
+"Inbox" = "Boîte de réception";
+
 /* Error message component with the report id */
 " Error report ID: (reportID)" = " ID du rapport d’erreur : (reportID)";
 
@@ -34,7 +36,6 @@
 
 /* URL submission option */
 "Add Website Address" = "Ajouter une adresse de site internet";
-
 /* Shows the number questions */
 "All %@ Questions" = "Toutes les %@ questions";
 
