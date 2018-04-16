@@ -18,16 +18,8 @@
 import 'react-native'
 import React from 'react'
 import { AddressBook, mapStateToProps, type Props } from '../AddressBook'
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer'
-import explore from '../../../../test/helpers/explore'
-
-const template = {
-  ...require('../../../__templates__/addressBook'),
-  ...require('../../../redux/__templates__/app-state'),
-  ...require('../../../__templates__/helm'),
-  ...require('../../../__templates__/section'),
-}
+import { shallow } from 'enzyme'
+import * as templates from '../../../__templates__/index'
 
 jest
   .mock('TouchableHighlight', () => 'TouchableHighlight')
@@ -35,10 +27,10 @@ jest
   .mock('../../../common/TypeAheadSearch', () => 'TypeAheadSearch')
   .mock('../../../common/components/rows/Row', () => 'Row')
 
-const u1 = template.addressBookResult({
+const u1 = templates.addressBookResult({
   id: '1',
 })
-const u2 = template.addressBookResult({
+const u2 = templates.addressBookResult({
   id: '2',
 })
 
@@ -50,7 +42,7 @@ describe('AddressBook', () => {
       onSelect: jest.fn(),
       context: 'course_1',
       name: 'Address Book Course',
-      navigator: template.navigator(),
+      navigator: templates.navigator(),
       courseID: '1',
       permissions: {
         send_messages: true,
@@ -61,7 +53,7 @@ describe('AddressBook', () => {
   })
 
   it('renders', () => {
-    testRender(props)
+    expect(shallow(<AddressBook {...props} />)).toMatchSnapshot()
   })
 
   it('calls getCoursePermissions when rendered', () => {
@@ -70,7 +62,7 @@ describe('AddressBook', () => {
       getCoursePermissions: jest.fn(),
       permissions: undefined,
     }
-    testRender(newProps)
+    shallow(<AddressBook {...newProps} />)
     expect(newProps.getCoursePermissions).toHaveBeenCalledWith('1')
 
     newProps = {
@@ -78,58 +70,63 @@ describe('AddressBook', () => {
       getCoursePermissions: jest.fn(),
       permissions: {},
     }
-    testRender(newProps)
+    shallow(<AddressBook {...newProps} />)
+    expect(newProps.getCoursePermissions).toHaveBeenCalledWith('1')
+
+    newProps = {
+      ...props,
+      getCoursePermissions: jest.fn(),
+      permissions: { permission: true },
+    }
+    shallow(<AddressBook {...newProps} />)
     expect(newProps.getCoursePermissions).not.toHaveBeenCalled()
   })
 
   it('renders "All in" row', () => {
     props.context = 'course_1'
     props.name = 'React Native for Dummies'
-    const screen = render(props)
-    const rows: any[] = explore(screen.toJSON()).query(({ type }) => type === 'Row')
+    const screen = shallow(<AddressBook {...props} />)
+    const rows = screen.find('FlatList').props().data
     expect(rows).toHaveLength(1)
-    expect(rows[0].props.title).toEqual('All in React Native for Dummies')
+    expect(rows[0].name).toEqual('All in React Native for Dummies')
   })
 
   it('does not render "All in" row if there is a query', () => {
     props.context = 'course_1'
     props.name = 'React Native for Dummies'
-    const screen = render(props)
-    const typeahead: any = explore(screen.toJSON()).selectByType('TypeAheadSearch')
-    typeahead.props.onChangeText('this is a query')
-    const rows: any[] = explore(screen.toJSON()).query(({ type }) => type === 'Row')
+    const screen = shallow(<AddressBook {...props} />)
+    screen.instance()._queryChanged('changeText', 'this is a query')
+    screen.update()
+    const rows = screen.find('FlatList').props().data
     expect(rows).toHaveLength(0)
   })
 
   it('renders type ahead search results', () => {
-    const screen = render(props)
-    const typeahead: any = explore(screen.toJSON()).selectByType('TypeAheadSearch')
-    typeahead.props.onRequestFinished([u1, u2], null)
-    const rows: any[] = explore(screen.toJSON()).query(({ type }) => type === 'Row')
+    const screen = shallow(<AddressBook {...props} />)
+    screen.instance()._requestFinished([u1, u2], null)
+    screen.update()
+    const rows = screen.find('FlatList').props().data
     expect(rows).toHaveLength(3)
   })
 
   it('renders next type ahead search results', () => {
-    const screen = render(props)
-    const typeahead: any = explore(screen.toJSON()).selectByType('TypeAheadSearch')
-    typeahead.props.onRequestStarted()
-    typeahead.props.onRequestFinished([u1], null)
-    typeahead.props.onNextRequestFinished([u2], null)
-    const rows: any[] = explore(screen.toJSON()).query(({ type }) => type === 'Row')
+    const screen = shallow(<AddressBook {...props} />)
+    screen.instance()._requestStarted()
+    screen.instance()._requestFinished([u1], null)
+    screen.instance()._nextRequestFinished([u2], null)
+    screen.update()
+    const rows = screen.find('FlatList').props().data
     expect(rows).toHaveLength(3)
   })
 
   it('pushes next branch', () => {
     props.navigator.show = jest.fn()
-    const teachers = template.addressBookResult({
+    const teachers = templates.addressBookResult({
       id: 'course_1_teachers',
       name: 'Teachers',
     })
-    const screen = render(props)
-    const typeahead: any = explore(screen.toJSON()).selectByType('TypeAheadSearch')
-    typeahead.props.onRequestFinished([teachers], null)
-    const row: any = explore(screen.toJSON()).selectByID('course_1_teachers')
-    row.props.onPress()
+    const row = shallow(new AddressBook(props)._renderRow({ item: teachers }))
+    row.simulate('press')
     expect(props.navigator.show).toHaveBeenCalledWith(
       '/address-book',
       { modal: false },
@@ -143,15 +140,12 @@ describe('AddressBook', () => {
 
   it('selects item', () => {
     props.onSelect = jest.fn()
-    const item = template.addressBookResult({
+    const item = templates.addressBookResult({
       id: '1',
       name: 'E.T.C',
     })
-    const screen = render(props)
-    const typeahead: any = explore(screen.toJSON()).selectByType('TypeAheadSearch')
-    typeahead.props.onRequestFinished([item], null)
-    const row: any = explore(screen.toJSON()).selectByID('1')
-    row.props.onPress()
+    const row = shallow(new AddressBook(props)._renderRow({ item }))
+    row.simulate('press')
     expect(props.onSelect).toHaveBeenCalledWith([item])
   })
 
@@ -159,9 +153,10 @@ describe('AddressBook', () => {
     props.context = 'course_1_teachers'
     props.name = 'Teachers'
     props.onSelect = jest.fn()
-    const screen = render(props)
-    const row: any = explore(screen.toJSON()).query(({ type }) => type === 'Row')[0]
-    row.props.onPress()
+    const screen = shallow(<AddressBook {...props} />)
+    const list = screen.find('FlatList')
+    const row = shallow(screen.instance()._renderRow({ item: list.props().data[0] }))
+    row.simulate('press')
     expect(props.onSelect).toHaveBeenCalledWith([{
       id: 'course_1_teachers',
       name: 'Teachers',
@@ -170,31 +165,25 @@ describe('AddressBook', () => {
 
   it('dismisses on cancel', () => {
     props.navigator.dismiss = jest.fn()
-    const cancel: any = explore(render(props).toJSON()).selectRightBarButton('address-book.cancel')
+    const screen = shallow(<AddressBook {...props} />)
+    const cancel = screen.find('Screen').props().rightBarButtons[0]
     cancel.action()
     expect(props.navigator.dismiss).toHaveBeenCalled()
   })
 
   it('calls next on end reached', () => {
-    const mock = jest.fn()
-    const createNodeMock = ({ type }) => {
-      if (type === 'TypeAheadSearch') {
-        return {
-          next: mock,
-        }
-      }
-    }
-    const screen = render(props, { createNodeMock })
-    const list: any = explore(screen.toJSON()).selectByType('RCTScrollView')
-    list.props.onEndReached()
-    expect(mock).toHaveBeenCalled()
+    const screen = shallow(<AddressBook {...props} />)
+    let next = jest.fn()
+    screen.instance().typeAhead = { next }
+    const list = screen.find('FlatList')
+    list.simulate('endReached')
+    expect(next).toHaveBeenCalled()
   })
 
   it('give type ahead the correct params', () => {
     props.context = 'course_2'
-    const screen = render(props)
-    const typeahead: any = explore(screen.toJSON()).selectByType('TypeAheadSearch')
-    expect(typeahead.props.parameters('Malthael')).toEqual({
+    const typeahead = shallow(new AddressBook(props)._renderSearchBar())
+    expect(typeahead.props().parameters('Malthael')).toEqual({
       context: 'course_2',
       search: 'Malthael',
       synthetic_contexts: 1,
@@ -207,38 +196,32 @@ describe('AddressBook', () => {
     props.permissions = {
       send_message: false,
     }
-    testRender(props)
+    const screen = shallow(<AddressBook {...props} />)
+    const list = screen.find('FlatList')
+    expect(list.props().data).toHaveLength(0)
   })
 
   it('doesnt include "All ..." buttons when the send_message_all is false', () => {
     props.permissions = {
       send_message_all: false,
     }
-    testRender(props)
+    const screen = shallow(<AddressBook {...props} />)
+    const list = screen.find('FlatList')
+    expect(list.props().data).toHaveLength(0)
   })
 
   it('doesnt include groups when the send_message is false', () => {
     props.permissions = {
       send_message: false,
     }
-    let groupResult = template.addressBookResult({ id: 'group_1' })
+    let groupResult = templates.addressBookResult({ id: 'group_1' })
 
-    const screen = render(props)
-    const typeahead: any = explore(screen.toJSON()).selectByType('TypeAheadSearch')
-    typeahead.props.onRequestFinished([u1, u2, groupResult], null)
-    const rows: any[] = explore(screen.toJSON()).query(({ type }) => type === 'Row')
+    const screen = shallow(<AddressBook {...props} />)
+    screen.instance()._requestFinished([u1, u2, groupResult], null)
+    screen.update()
+    const rows = screen.find('FlatList').props().data
     expect(rows).toHaveLength(2)
   })
-
-  function render (props: Props, options: Object = {}) {
-    return renderer.create(
-      <AddressBook {...props} />, options
-    )
-  }
-
-  function testRender (props: Props) {
-    expect(render(props).toJSON()).toMatchSnapshot()
-  }
 })
 
 describe('map state to props', () => {
@@ -246,15 +229,15 @@ describe('map state to props', () => {
     let ownProps = {
       context: 'course_1',
     }
-    expect(mapStateToProps(template.appState(), ownProps).courseID).toEqual('1')
+    expect(mapStateToProps(templates.appState(), ownProps).courseID).toEqual('1')
   })
 
   it('looks up the courseID from section', () => {
     let ownProps = {
       context: 'section_421',
     }
-    let appState = template.appState()
-    appState.entities.sections['421'] = template.section({ course_id: '1' })
+    let appState = templates.appState()
+    appState.entities.sections['421'] = templates.section({ course_id: '1' })
     expect(mapStateToProps(appState, ownProps).courseID).toEqual('1')
   })
 
@@ -262,14 +245,14 @@ describe('map state to props', () => {
     let ownProps = {
       context: 'group_1',
     }
-    expect(mapStateToProps(template.appState(), ownProps).courseID).toBeNull()
+    expect(mapStateToProps(templates.appState(), ownProps).courseID).toBeNull()
   })
 
   it('returns the course permissions', () => {
     let ownProps = {
       context: 'course_1',
     }
-    expect(mapStateToProps(template.appState({
+    expect(mapStateToProps(templates.appState({
       entities: {
         courses: {
           '1': {

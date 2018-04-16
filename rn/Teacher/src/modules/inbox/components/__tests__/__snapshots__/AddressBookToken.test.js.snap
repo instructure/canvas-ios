@@ -24,7 +24,7 @@ exports[`AddressBookToken renders 1`] = `
     ellipsizeMode="tail"
     style={
       Object {
-        "marginLeft": 0,
+        "marginLeft": 8,
       }
     }
   >

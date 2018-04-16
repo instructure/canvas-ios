@@ -74,7 +74,7 @@ export class AddressBook extends Component<AddressBookProps, State> {
   }
 
   componentDidMount () {
-    if (!this.props.permissions && this.props.courseID) {
+    if (!(this.props.permissions && Object.keys(this.props.permissions).length) && this.props.courseID) {
       this.props.getCoursePermissions(this.props.courseID)
     }
   }

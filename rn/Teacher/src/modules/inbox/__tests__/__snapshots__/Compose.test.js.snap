@@ -541,7 +541,7 @@ exports[`Compose renders reply 1`] = `
               "flex": 1,
               "flexDirection": "row",
               "flexWrap": "wrap",
-              "paddingTop": 6,
+              "paddingVertical": 8,
             }
           }
         />

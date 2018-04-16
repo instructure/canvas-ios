@@ -48,7 +48,7 @@ export default class AddressBookToken extends Component<Props, any> {
     const deleteButtonAccessibilityLabel = i18n('Delete recipient { recipient }', {
       recipient: this.props.item.name,
     })
-    let leftTextPadding = this.props.item.avatar_url ? TOKEN_SUBVIEW_SPACING : 0
+    let leftTextPadding = this.props.item.avatar_url ? TOKEN_SUBVIEW_SPACING : 8
     return (
       <View style={styles.token} accessibilityLabel={recipientAccessibilityLabel}>
         { this.props.item.avatar_url &&

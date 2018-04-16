@@ -392,7 +392,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flex: 1,
     flexWrap: 'wrap',
-    paddingTop: 6,
+    paddingVertical: 8,
   },
   forwardedMessage: {
     paddingHorizontal: 16,
