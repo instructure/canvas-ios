@@ -84,7 +84,7 @@ extension AppDelegate: RCTBridgeDelegate {
         HelmManager.shared.registerNativeViewController(for: "/native-route/*route", factory: nativeFactory)
         HelmManager.shared.registerNativeViewController(for: "/native-route-master/*route", factory: nativeFactory)
         
-        HelmManager.shared.registerSharedNativeViewControllers()
+        CanvasCore.registerSharedNativeViewControllers()
     }
 
     func excludeHelmInBranding() {

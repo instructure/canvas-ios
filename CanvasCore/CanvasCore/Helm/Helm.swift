@@ -87,21 +87,6 @@ open class HelmManager: NSObject {
         nativeViewControllerFactories[moduleName] = HelmViewControllerFactory(builder: factory, presenter: presentation)
     }
 
-    open func registerSharedNativeViewControllers() {
-        HelmManager.shared.registerNativeViewController(for: "/support/:type", factory: { props in
-            guard let type = props["type"] as? String else { return nil }
-
-            let storyboard = UIStoryboard(name: "SupportTicket", bundle: Bundle(for: SupportTicketViewController.self))
-            let controller = storyboard.instantiateInitialViewController()!.childViewControllers[0] as! SupportTicketViewController
-            if type == "feature" {
-                controller.ticketType = SupportTicketTypeFeatureRequest
-            } else {
-                controller.ticketType = SupportTicketTypeProblem
-            }
-            return UINavigationController(rootViewController: controller)
-        })
-    }
-
     func register<T: HelmViewController>(screen: T) {
         viewControllers.setObject(screen, forKey: screen.screenInstanceID as NSString)
     }

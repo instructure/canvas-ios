@@ -37,6 +37,6 @@ extension AppDelegate {
             )
         })
         
-        HelmManager.shared.registerSharedNativeViewControllers()
+        CanvasCore.registerSharedNativeViewControllers()
     }
 }
