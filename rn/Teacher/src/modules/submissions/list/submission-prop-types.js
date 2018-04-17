@@ -46,7 +46,8 @@ export type AsyncSubmissionsDataProps = {
 export type SubmissionListDataProps
   = AsyncSubmissionsDataProps
   & {
-    groupAssignment: ?{ groupCategoryID: string, gradeIndividually: boolean },
+    isMissingGroupsData: boolean,
+    isGroupGradedAssignment: boolean,
     courseColor: string,
     courseName: string,
     pointsPossible?: string,

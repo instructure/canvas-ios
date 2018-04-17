@@ -375,10 +375,22 @@ test('refreshSubmissionList', () => {
   expect(props.refreshEnrollments).toHaveBeenCalledWith(props.courseID)
 })
 
-test('refreshSubmissionList (group submissions)', () => {
+test('refreshSubmissionList (missing groups data)', () => {
   refreshSubmissionList({
     ...props,
-    groupAssignment: { groupCategoryID: '2', gradeIndividually: false },
+    isMissingGroupsData: true,
+    isGroupGradedAssignment: false,
+  })
+  expect(props.refreshSubmissions).toHaveBeenCalledWith(props.courseID, props.assignmentID,
+    true)
+  expect(props.refreshGroupsForCourse).toHaveBeenCalledWith(props.courseID)
+})
+
+test('refreshSubmissionList (group graded submissions)', () => {
+  refreshSubmissionList({
+    ...props,
+    isMissingGroupsData: false,
+    isGroupGradedAssignment: true,
   })
   expect(props.refreshSubmissions).toHaveBeenCalledWith(props.courseID, props.assignmentID,
   true)

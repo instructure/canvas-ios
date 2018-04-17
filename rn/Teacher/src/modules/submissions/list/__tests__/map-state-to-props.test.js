@@ -303,3 +303,60 @@ test('gets all submissions if group doesnt exist', () => {
   expect(userIDs).toContain('1')
   expect(userIDs).toContain('2')
 })
+
+test('detect missing groups data', () => {
+  const s1 = t.enrollment({
+    id: '1',
+    type: 'StudentEnrollment',
+    user_id: '1',
+    user: t.user({ id: '1' }),
+  })
+  const s2 = t.enrollment({
+    id: '2',
+    type: 'StudentEnrollment',
+    user_id: '2',
+    user: t.user({ id: '2' }),
+  })
+  const course = t.course()
+  const assignment = t.assignment({
+    group_category_id: '555',
+    grade_group_students_individually: false,
+  })
+  const submission = t.submissionHistory([t.submission({ user_id: '1', assignment_id: assignment.id })])
+  const submission2 = t.submissionHistory([t.submission({ user_id: '2', assignment_id: assignment.id })])
+  const state = t.appState({
+    entities: {
+      enrollments: {
+        [s1.id]: s1,
+        [s2.id]: s2,
+      },
+      courses: {
+        [course.id]: {
+          enrollments: { pending: 0, refs: [s1.id, s2.id] },
+          groups: { pending: 0, refs: ['1'] },
+          enabledFeatures: [],
+        },
+      },
+      assignments: {
+        [assignment.id]: {
+          submissions: { pending: 0, refs: ['1', '2'] },
+          data: assignment,
+        },
+      },
+      groups: { },
+      sections: [t.section({ course_id: course.id })],
+      submissions: {
+        '1': {
+          submission,
+        },
+        '2': {
+          submission: submission2,
+        },
+      },
+    },
+  })
+
+  const { isMissingGroupsData, isGroupGradedAssignment } = mapStateToProps(state, { courseID: course.id, assignmentID: assignment.id })
+  expect(isMissingGroupsData).toBe(true)
+  expect(isGroupGradedAssignment).toBe(false) // Should be true but is false because we are missing the entities.groups lookup data
+})

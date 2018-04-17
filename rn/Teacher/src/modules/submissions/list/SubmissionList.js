@@ -242,7 +242,8 @@ const styles = StyleSheet.create({
 export function refreshSubmissionList (props: SubmissionListProps): void {
   props.refreshSections(props.courseID)
   props.getCourseEnabledFeatures(props.courseID)
-  if (props.groupAssignment && !props.groupAssignment.gradeIndividually) {
+
+  if (props.isMissingGroupsData || props.isGroupGradedAssignment) {
     props.refreshGroupsForCourse(props.courseID)
     props.refreshSubmissions(props.courseID, props.assignmentID, true)
   } else {
