@@ -122,7 +122,17 @@ extension MatchAnswerCell: UIPickerViewDataSource {
 }
 
 extension MatchAnswerCell: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerItems[row]
+    
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return pickerView.heightForTitles(titles: pickerItems)
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let title = pickerItems[row]
+        if let view = view {
+            return view
+        }
+        
+        return pickerView.titleView(title: title)
     }
 }
