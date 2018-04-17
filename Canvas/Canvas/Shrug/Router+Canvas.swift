@@ -237,7 +237,17 @@ extension Router {
         }
         addContextRoute([.course, .group], subPath: "discussion_topics/:discussionID", handler: discussion)
         addContextRoute([.course, .group], subPath: "discussions/:discussionID", handler: discussion)
-        addContextRoute([.course, .group], subPath: "announcements/:discussionID", handler: discussion)
+
+        let announcement: (ContextID, [String: Any]) throws -> UIViewController = { contextID, params in
+            let announcementID: String = try params.stringID("announcementID")
+            var props = contextID.props
+            props["announcementID"] = announcementID
+            return HelmViewController(
+                moduleName: "/:context/:contextID/announcements/:announcementID",
+                props: props
+            )
+        }
+        addContextRoute([.course, .group], subPath: "announcements/:announcementID", handler: announcement)
 
         // Modules
         addContextRoute([.course], subPath: "modules") { contextID, _ in
