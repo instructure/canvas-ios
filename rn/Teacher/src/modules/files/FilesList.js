@@ -173,10 +173,11 @@ export class FilesList extends Component<Props, State> {
       })
     } else {
       let route
+      const name = encodeURIComponent(item.name)
       if (this.props.subFolder) {
-        route = `/${context}/${contextID}/files/folder/${this.props.subFolder}/${item.name}`
+        route = `/${context}/${contextID}/files/folder/${this.props.subFolder}/${name}`
       } else {
-        route = `/${context}/${contextID}/files/folder/${item.name}`
+        route = `/${context}/${contextID}/files/folder/${name}`
       }
       this.props.navigator.show(route, { modal: false }, {
         onSelectFile,

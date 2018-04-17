@@ -113,7 +113,7 @@ describe('FilesList', () => {
     ).getInstance()
 
     instance.onSelectRow(0)
-    expect(navigator.show).toHaveBeenCalledWith('/courses/1/files/folder/some folder', { modal: false }, {
+    expect(navigator.show).toHaveBeenCalledWith('/courses/1/files/folder/some%20folder', { modal: false }, {
       canAdd: true,
       canEdit: true,
       canSelectFile: expect.any(Function),
@@ -128,7 +128,7 @@ describe('FilesList', () => {
     ).getInstance()
 
     instance.onSelectRow(0)
-    expect(navigator.show).toHaveBeenCalledWith('/courses/1/files/folder/something/somewhere/over/the/rainbow/some folder', { modal: false }, {
+    expect(navigator.show).toHaveBeenCalledWith('/courses/1/files/folder/something/somewhere/over/the/rainbow/some%20folder', { modal: false }, {
       canAdd: true,
       canEdit: true,
       canSelectFile: expect.any(Function),

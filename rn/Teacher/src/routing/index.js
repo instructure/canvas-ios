@@ -144,23 +144,25 @@ export function route (url: string, additionalProps: Object = {}): ?RouteOptions
     return
   }
 
-  const path = location.pathname
-  for (let r of routes.keys()) {
-    let params = r.match(path)
-    if (additionalProps && typeof params === 'object') {
-      params = Object.assign(params, additionalProps)
-    }
-    if (params) {
-      params.location = location
-      params.screenInstanceID = Math.random().toString(36).slice(2)
-      routeProps.set(params.screenInstanceID, params)
-      return {
-        screen: r.spec.replace('(/api/v1)', ''),
-        passProps: params,
-        config: routes.get(r) || {},
+  try {
+    const path = location.pathname
+    for (let r of routes.keys()) {
+      let params = r.match(path)
+      if (additionalProps && typeof params === 'object') {
+        params = Object.assign(params, additionalProps)
+      }
+      if (params) {
+        params.location = location
+        params.screenInstanceID = Math.random().toString(36).slice(2)
+        routeProps.set(params.screenInstanceID, params)
+        return {
+          screen: r.spec.replace('(/api/v1)', ''),
+          passProps: params,
+          config: routes.get(r) || {},
+        }
       }
     }
-  }
+  } catch (e) {} // If there is a problem with the url for whatever reason, we'll default to just popping it into a web view
 
   return
 }
