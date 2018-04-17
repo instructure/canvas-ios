@@ -6,36 +6,36 @@ import {
   SectionList,
   StyleSheet,
 } from 'react-native'
-import Screen from '../../routing/Screen'
+import Screen from '@routing/Screen'
 import { connect } from 'react-redux'
-import refresh from '../../utils/refresh'
-import localeSort from '../../utils/locale-sort'
+import refresh from '@utils/refresh'
+import localeSort from '@utils/locale-sort'
 import i18n from 'format-message'
-import App, { isTeacher, isStudent } from '../app'
-import CoursesActions from '../courses/actions'
-import EnrollmentsActions from '../enrollments/actions'
-import GroupsActions from '../groups/actions'
-import GroupsFavoriteActions from '../groups/favorites/actions'
+import App, { isTeacher, isStudent } from '@modules/app'
+import CoursesActions from '@modules/courses/actions'
+import EnrollmentsActions from '@modules/enrollments/actions'
+import GroupsActions from '@modules/groups/actions'
+import GroupsFavoriteActions from '@modules/groups/favorites/actions'
 import {
   Heading1,
-} from '../../common/text'
+} from '@common/text'
 import {
   LinkButton,
-} from '../../common/buttons'
+} from '@common/buttons'
 import GlobalAnnouncementRow from './GlobalAnnouncementRow'
 import CourseInvite from './CourseInvite'
 import GroupRow, { type GroupRowProps } from './GroupRow'
-import CourseCard from '../courses/components/CourseCard'
-import NoCourses from '../courses/components/NoCourses'
-import color from '../../common/colors'
-import Images from '../../images'
-import branding from '../../common/branding'
-import Navigator from '../../routing/Navigator'
-import { getSessionUnsafe } from '../../canvas-api'
+import CourseCard from '@modules/courses/components/CourseCard'
+import NoCourses from '@modules/courses/components/NoCourses'
+import color from '@common/colors'
+import Images from '@images'
+import branding from '@common/branding'
+import Navigator from '@routing/Navigator'
+import { getSessionUnsafe } from '@canvas-api'
 import AccountNotificationActions from './account-notification-actions'
-import { extractGradeInfo } from '../../utils/course-grades'
-import { extractDateFromString } from '../../utils/dateUtils'
-import { featureFlagEnabled } from '../../common/feature-flags'
+import { extractGradeInfo } from '@utils/course-grades'
+import { extractDateFromString } from '@utils/dateUtils'
+import { featureFlagEnabled } from '@common/feature-flags'
 
 type ColorfulCourse = { color: string } & Course
 type Props = {
@@ -474,9 +474,14 @@ export function mapStateToProps (isFullDashboard: boolean) {
 
     const groupFavorites = state.favoriteGroups.groupRefs
     let groups = Object.keys(state.entities.groups)
-      .filter(id => state.entities.groups[id] &&
-        state.entities.groups[id].group &&
-        !state.entities.groups[id].group.concluded)
+      .filter(id => {
+        if (state.entities.groups[id] && state.entities.groups[id].group) {
+          let group = state.entities.groups[id].group
+          return !group.concluded && (!group.course_id || (group.course_id && state.entities.courses[group.course_id]))
+        } else {
+          return false
+        }
+      })
       .map((id) => {
         let group = state.entities.groups[id].group
         let groupColor = state.entities.groups[id].color

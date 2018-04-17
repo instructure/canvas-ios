@@ -264,7 +264,7 @@ describe('groups', () => {
   const a = courseTemplate.course({ id: 1, name: 'a', sections: [section()] })
   const b = courseTemplate.course({ id: 2, name: 'b', sections: [section()] })
   const courseTemplates = [a, b]
-  const couresFavorites = ['1', '2']
+  const courseFavorites = ['1', '2']
 
   const groupA = groupTemplate.group({ id: '1', name: 'a', course_id: '1' })
   const groupB = groupTemplate.group({ id: '2', name: 'b', account_id: '1' })
@@ -273,7 +273,7 @@ describe('groups', () => {
 
   const courses = courseStates(courseTemplates)
   const state = appState({
-    favoriteCourses: { courseRefs: couresFavorites },
+    favoriteCourses: { courseRefs: courseFavorites },
     favoriteGroups: { groupRefs: groupFavorites },
     entities: {
       accountNotifications: { list: [] },
@@ -354,6 +354,29 @@ describe('groups', () => {
           ...state.entities.groups,
           '4': {
             concluded: true,
+          },
+        },
+      },
+    }
+    expect(mapStateToProps(true)(newState).groups).toMatchObject([{
+      id: '1',
+    }, {
+      id: '2',
+    }, {
+      id: '3',
+    }])
+  })
+
+  it('skips groups for a concluded course', () => {
+    let newState = {
+      ...state,
+      entities: {
+        ...state.entities,
+        groups: {
+          ...state.entities.groups,
+          '4': {
+            concluded: false,
+            course_id: 3,
           },
         },
       },
