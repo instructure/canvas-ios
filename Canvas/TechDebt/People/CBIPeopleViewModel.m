@@ -40,7 +40,7 @@
 {
     self = [super init];
     if (self) {
-        RAC(self, name) = RACObserve(self, model.sortableName);
+        RAC(self, name) = RACObserve(self, model.name);
         [self setupAvatar];
     }
     return self;
