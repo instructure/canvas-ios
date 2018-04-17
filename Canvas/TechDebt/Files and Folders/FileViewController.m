@@ -123,8 +123,6 @@
     if (self) {
         self.definesPresentationContext = YES;
         self.activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        CGAffineTransform transform = CGAffineTransformMakeScale(1.5f, 1.5f);
-        self.activityView.transform = transform;
     }
     return self;
 }
@@ -173,14 +171,10 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    self.activityView.center = self.view.center;
     [self.view addSubview:self.activityView];
-    
     [Analytics logScreenView:kGAIScreenFilePreview];
     [self.pageViewEventLog start];
-
 }
-
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -191,10 +185,6 @@
         [_progressToolbar cancel];
     }
     [self.pageViewEventLog stopWithEventName: self.pageViewEventName];
-}
-
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
 }
 
 - (BOOL)prefersStatusBarHidden {
@@ -481,6 +471,8 @@
 }
 
 - (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    self.activityView.center = CGPointMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds));
     [self repositionToolbar];
     [self repositionContainer];
 }
