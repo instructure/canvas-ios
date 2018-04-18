@@ -130,7 +130,7 @@ zss_editor.init = () => {
   document.addEventListener('selectionchange', e => {
     zss_editor.calculateEditorHeightWithCaretPosition()
     zss_editor.setScrollPosition()
-    zss_editor.enabledEditingItems(e)
+    zss_editor.enabledEditingItems()
   })
 
   window.addEventListener('scroll', e => {
@@ -188,6 +188,12 @@ zss_editor.init = () => {
     if (!hasImage && !zss_editor_content.textContent.trim().length) {
       zss_editor_content.textContent = ''
     }
+  })
+
+  zss_editor_content.addEventListener('paste', (e) => {
+    postMessage(JSON.stringify({type: 'EDITOR_PASTE'}))
+    e.stopPropagation()
+    e.preventDefault()
   })
 
   setTimeout(() => {

@@ -12,6 +12,7 @@ exports[`RichTextEditor can be keyboard aware 1`] = `
 >
   <ZSSRichTextEditor
     editorItemsChanged={[Function]}
+    getFile={[Function]}
     navigator={
       Object {
         "dismiss": [Function],
@@ -53,6 +54,7 @@ exports[`RichTextEditor hides toolbar when editor blurs 1`] = `
 >
   <ZSSRichTextEditor
     editorItemsChanged={[Function]}
+    getFile={[Function]}
     navigator={
       Object {
         "dismiss": [Function],
@@ -87,6 +89,7 @@ exports[`RichTextEditor hides toolbar when showToolbar is false 1`] = `
 >
   <ZSSRichTextEditor
     editorItemsChanged={[Function]}
+    getFile={[Function]}
     navigator={
       Object {
         "dismiss": [Function],
@@ -121,6 +124,7 @@ exports[`RichTextEditor renders 1`] = `
 >
   <ZSSRichTextEditor
     editorItemsChanged={[Function]}
+    getFile={[Function]}
     navigator={
       Object {
         "dismiss": [Function],
@@ -155,6 +159,7 @@ exports[`RichTextEditor renders toolbar when editor focused 1`] = `
 >
   <ZSSRichTextEditor
     editorItemsChanged={[Function]}
+    getFile={[Function]}
     navigator={
       Object {
         "dismiss": [Function],
@@ -202,6 +207,7 @@ exports[`RichTextEditor should update active editor items in toolbar 1`] = `
 >
   <ZSSRichTextEditor
     editorItemsChanged={[Function]}
+    getFile={[Function]}
     navigator={
       Object {
         "dismiss": [Function],
@@ -249,6 +255,7 @@ exports[`RichTextEditor should update active editor items in toolbar 2`] = `
 >
   <ZSSRichTextEditor
     editorItemsChanged={[Function]}
+    getFile={[Function]}
     navigator={
       Object {
         "dismiss": [Function],

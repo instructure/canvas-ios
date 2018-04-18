@@ -21,10 +21,12 @@ import {
   StyleSheet,
   WebView,
   NativeModules,
+  Clipboard,
 } from 'react-native'
 
 import isEqual from 'lodash/isEqual'
 import RNFS from 'react-native-fs'
+import canvas from './../../../canvas-api'
 
 const { NativeFileSystem } = NativeModules
 
@@ -35,6 +37,7 @@ type Props = {
   editorItemsChanged?: (items: string[]) => void,
   scrollEnabled?: boolean,
   navigator: Navigator,
+  getFile: typeof canvas.getFile,
 }
 
 type State = {
@@ -43,7 +46,29 @@ type State = {
   items: string[],
 }
 
+function extractFileID (string: string): ?string {
+  // cant have spaces
+  if (string.indexOf(' ') >= 0) {
+    return null
+  }
+
+  // make sure it's a download url
+  const urlMatcher = /^https:\/\/.*[^\s]\/files\/\d+\/download$/
+  if (!string.match(urlMatcher)) {
+    return null
+  }
+
+  const match = string.match(/files\/\d+\/download/)
+
+  // $FlowFixMe - `match` is guaranteed to be defined because of previous check
+  return match[0].split('/')[1]
+}
+
 export default class ZSSRichTextEditor extends Component<Props, State> {
+  static defaultProps = {
+    getFile: canvas.getFile,
+  }
+
   webView: ?WebView
   showingLinkModal: boolean
   onHTML: ?((string) => void)
@@ -163,6 +188,10 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
     this.trigger(`zss_editor.insertVideoComment('${mediaID}');`)
   }
 
+  insertHTML = (html: string) => {
+    this.trigger(`zss_editor.insertHTML('${html}');`)
+  }
+
   trigger = async (js: string) => {
     if (!this.webView) return
     try {
@@ -196,6 +225,33 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
       case 'EDITOR_HTML':
         this._handleHTML(message.data)
         break
+      case 'EDITOR_PASTE':
+        this._handlePaste()
+        break
+    }
+  }
+
+  _handlePaste = async () => {
+    let string = await Clipboard.getString()
+    if (!string) return
+
+    try {
+      let fileID = extractFileID(string)
+      if (fileID) {
+        let { data } = await this.props.getFile(fileID)
+        this.prepareInsert()
+        if (data.mime_class === 'image') {
+          this.insertImage(data.url)
+        } else {
+          this.insertHTML(string)
+        }
+      } else {
+        this.prepareInsert()
+        this.insertHTML(string)
+      }
+    } catch (error) {
+      this.prepareInsert()
+      this.insertHTML(string)
     }
   }
 

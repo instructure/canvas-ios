@@ -17,7 +17,7 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import { shallow } from 'enzyme'
-import { NativeModules } from 'react-native'
+import { NativeModules, Clipboard } from 'react-native'
 import React from 'react'
 import renderer from 'react-test-renderer'
 import RNFS from 'react-native-fs'
@@ -25,9 +25,7 @@ import RNFS from 'react-native-fs'
 import ZSSRichTextEditor from '../ZSSRichTextEditor'
 import explore from '../../../../../test/helpers/explore'
 
-const template = {
-  ...require('../../../../__templates__/helm'),
-}
+import * as template from '../../../../__templates__'
 
 jest
   .mock('ScrollView', () => 'ScrollView')
@@ -329,6 +327,89 @@ describe('ZSSRichTextEditor', () => {
   it('updates html', () => {
     testTrigger((editor) => editor.updateHTML('<div>Hi</div>'))
     testTrigger((editor) => editor.updateHTML(null))
+  })
+
+  describe('paste', () => {
+    async function paste (clipboard: string) {
+      Clipboard.getString = jest.fn(() => Promise.resolve(clipboard))
+      const screen = shallow(<ZSSRichTextEditor />)
+      const webView = screen.find('WebView')
+      webView.getElement().ref({ injectJavaScript: js })
+      webView.simulate('Message', { nativeEvent: { data: JSON.stringify({ type: 'EDITOR_PASTE' }) } })
+      await new Promise((resolve, reject) => process.nextTick(resolve))
+    }
+
+    let js = jest.fn()
+    beforeEach(() => {
+      js.mockClear()
+    })
+
+    it('pastes plain text', async () => {
+      await paste('plain text')
+      expect(js.mock.calls).toMatchSnapshot()
+    })
+
+    it('only pastes if clipboard has a string', async () => {
+      await paste(null)
+      expect(js).not.toHaveBeenCalled()
+    })
+
+    it('will not be tricked by urls with spaces', async () => {
+      await paste('https://one.com/files/1/download https://two.com/files/2/download')
+      expect(js.mock.calls).toMatchSnapshot()
+    })
+
+    it('only matches file download urls', async () => {
+      const notAMatch = 'https://one.com/files/1'
+      await paste(notAMatch)
+      expect(js.mock.calls).toMatchSnapshot()
+    })
+
+    it('downloads and embeds image files', async () => {
+      const image = template.file({
+        mime_class: 'image',
+        url: 'https://verified-download-url.jpg',
+      })
+      const fileURL = 'https://canvas.instructure.com/files/1/download'
+      const getFile = jest.fn(() => Promise.resolve({ data: image }))
+      Clipboard.getString = jest.fn(() => Promise.resolve(fileURL))
+      const screen = shallow(<ZSSRichTextEditor getFile={getFile} />)
+      const webView = screen.find('WebView')
+      webView.getElement().ref({ injectJavaScript: js })
+      webView.simulate('Message', { nativeEvent: { data: JSON.stringify({ type: 'EDITOR_PASTE' }) } })
+      await new Promise((resolve, reject) => process.nextTick(resolve))
+      expect(js.mock.calls).toMatchSnapshot()
+    })
+
+    it('pastes link when file is not an image', async () => {
+      const file = template.file({
+        mime_class: 'file',
+        url: 'https://verified-download-url.jpg',
+      })
+      const fileURL = 'https://canvas.instructure.com/files/1/download'
+      const getFile = jest.fn(() => Promise.resolve({ data: file }))
+      Clipboard.getString = jest.fn(() => Promise.resolve(fileURL))
+      const screen = shallow(<ZSSRichTextEditor getFile={getFile} />)
+      const webView = screen.find('WebView')
+      webView.getElement().ref({ injectJavaScript: js })
+      webView.simulate('Message', { nativeEvent: { data: JSON.stringify({ type: 'EDITOR_PASTE' }) } })
+      await new Promise((resolve, reject) => process.nextTick(resolve))
+      expect(js.mock.calls).toMatchSnapshot()
+    })
+
+    it('catches error and pastes clipboard if network call fails', () => {
+      expect(async () => {
+        const fileURL = 'https://canvas.instructure.com/files/1/download'
+        const getFile = jest.fn(() => Promise.reject('ERROR'))
+        Clipboard.getString = jest.fn(() => Promise.resolve(fileURL))
+        const screen = shallow(<ZSSRichTextEditor getFile={getFile} />)
+        const webView = screen.find('WebView')
+        webView.getElement().ref({ injectJavaScript: js })
+        webView.simulate('Message', { nativeEvent: { data: JSON.stringify({ type: 'EDITOR_PASTE' }) } })
+        await new Promise((resolve, reject) => process.nextTick(resolve))
+        expect(js.mock.calls).toMatchSnapshot()
+      }).not.toThrow()
+    })
   })
 
   function testTrigger (trigger: (editor: any) => void) {
