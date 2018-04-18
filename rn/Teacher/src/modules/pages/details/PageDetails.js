@@ -19,7 +19,6 @@
 import i18n from 'format-message'
 import React, { Component } from 'react'
 import {
-  View,
   StyleSheet,
   ActionSheetIOS,
   Alert,
@@ -32,6 +31,7 @@ import {
   CourseModel,
 } from '../../../canvas-api/model-api'
 import CanvasWebView from '../../../common/components/CanvasWebView'
+import { RefreshableScrollView } from '../../../common/components/RefreshableList'
 import Screen from '../../../routing/Screen'
 import Images from '../../../images'
 import { Heading1 } from '../../../common/text'
@@ -75,9 +75,14 @@ export class PageDetails extends Component<Props> {
           },
         ]}
       >
-        <View style={styles.container}>
+        <RefreshableScrollView
+          style={styles.container}
+          onRefresh={this.props.refresh}
+          refreshing={this.props.isLoading}
+        >
           <Heading1 style={styles.header}>{page ? page.title : ''}</Heading1>
           <CanvasWebView
+            scrollEnabled={false}
             style={{ flex: 1 }}
             source={{
               html: page ? page.body : '',
@@ -85,7 +90,7 @@ export class PageDetails extends Component<Props> {
             }}
             navigator={this.props.navigator}
           />
-        </View>
+        </RefreshableScrollView>
       </Screen>
     )
   }

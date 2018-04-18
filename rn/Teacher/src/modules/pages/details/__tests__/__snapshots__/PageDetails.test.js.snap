@@ -21,7 +21,9 @@ exports[`PageDetails renders 1`] = `
   subtitle="Course 1"
   title="Page Details"
 >
-  <View
+  <RefreshableScrollView
+    onRefresh={[Function]}
+    refreshing={false}
     style={
       Object {
         "flex": 1,
@@ -49,7 +51,7 @@ exports[`PageDetails renders 1`] = `
           "traitCollection": [Function],
         }
       }
-      scrollEnabled={true}
+      scrollEnabled={false}
       source={
         Object {
           "baseURL": "/pages/page-1#jumpto",
@@ -62,7 +64,7 @@ exports[`PageDetails renders 1`] = `
         }
       }
     />
-  </View>
+  </RefreshableScrollView>
 </Screen>
 `;
 
@@ -86,7 +88,9 @@ exports[`PageDetails renders while loading 1`] = `
   statusBarStyle="default"
   title="Page Details"
 >
-  <View
+  <RefreshableScrollView
+    onRefresh={[Function]}
+    refreshing={true}
     style={
       Object {
         "flex": 1,
@@ -112,7 +116,7 @@ exports[`PageDetails renders while loading 1`] = `
           "traitCollection": [Function],
         }
       }
-      scrollEnabled={true}
+      scrollEnabled={false}
       source={
         Object {
           "baseURL": "",
@@ -125,6 +129,6 @@ exports[`PageDetails renders while loading 1`] = `
         }
       }
     />
-  </View>
+  </RefreshableScrollView>
 </Screen>
 `;

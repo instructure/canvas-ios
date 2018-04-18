@@ -66,6 +66,17 @@ describe('PageDetails', () => {
     })
   })
 
+  it('gets front page if the url matches', () => {
+    const page = template.pageModel({ url: 'somewhere' })
+    httpCache.handle('GET', 'users/self/colors', { custom_colors: { course_1: 'green' } })
+    httpCache.handle('GET', 'courses/1', template.courseModel())
+    httpCache.handle('GET', 'courses/1/front_page', page)
+    const tree = shallow(<ConnectedPageDetails courseID='1' url='front_page' />)
+    expect(tree.find(PageDetails).props()).toMatchObject({
+      page,
+    })
+  })
+
   it('renders', () => {
     const tree = shallow(<PageDetails {...props} />)
     expect(tree).toMatchSnapshot()
