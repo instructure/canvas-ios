@@ -46,6 +46,8 @@
 		61B537311E786A58000FEABB /* DomainPickerPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536E31E78599D000FEABB /* DomainPickerPage.swift */; };
 		61BD85FC1EB2933C005A09A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */; };
 		8C2F55972B1A4A3EBFAEEBBD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D063D27A1B3640208ABF74D4 /* libz.tbd */; };
+		B1279FC42087D1B1008BD7A8 /* SoSeedySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1279FC32087D1B1008BD7A8 /* SoSeedySwift.framework */; };
+		B1279FC52087D1C2008BD7A8 /* SoSeedySwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1279FC32087D1B1008BD7A8 /* SoSeedySwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DF02A1E31EFC26BE00B17B8D /* InboxPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF02A1E21EFC26BE00B17B8D /* InboxPageTest.swift */; };
 		DF02A2091EFC31C000B17B8D /* InboxPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF02A2081EFC31C000B17B8D /* InboxPage.swift */; };
 		DF02A22F1EFC43A400B17B8D /* TabBarControllerPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF02A22E1EFC43A400B17B8D /* TabBarControllerPage.swift */; };
@@ -65,7 +67,6 @@
 		F99A8E8F1F06C10F0032449B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE061E735CC60096592C /* QuartzCore.framework */; };
 		F99A8E901F06C1150032449B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE081E735CCB0096592C /* SystemConfiguration.framework */; };
 		F9D224691EB7C51000BB0990 /* EditCoursesPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D224681EB7C51000BB0990 /* EditCoursesPageTest.swift */; };
-		F9D909E5207E577F00EA43F3 /* SoSeedySwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9D909E4207E577700EA43F3 /* SoSeedySwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F9FDB9351C9FB4F9CF7E0F94 /* Pods_defaults_Teacher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */; };
 /* End PBXBuildFile section */
 
@@ -99,7 +100,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F9D909E5207E577F00EA43F3 /* SoSeedySwift.framework in Embed Frameworks */,
+				B1279FC52087D1C2008BD7A8 /* SoSeedySwift.framework in Embed Frameworks */,
 				494BC60B1F954E2900C77257 /* SoGrey.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -222,6 +223,7 @@
 		61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Teacher/AppDelegate.swift; sourceTree = "<group>"; };
 		7448D73B0E788B7806B47BFC /* Pods-defaults-Teacher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.debug.xcconfig"; sourceTree = "<group>"; };
 		9210A7D2CE7CB864C8337310 /* Pods-defaults-Teacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.release.xcconfig"; sourceTree = "<group>"; };
+		B1279FC32087D1B1008BD7A8 /* SoSeedySwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoSeedySwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B170B0651F58756E00B92700 /* SoLazy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D063D27A1B3640208ABF74D4 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		DF02A1E21EFC26BE00B17B8D /* InboxPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxPageTest.swift; sourceTree = "<group>"; };
@@ -237,8 +239,6 @@
 		F7A4A8D91EDE2A5400809880 /* AllCoursesListPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllCoursesListPageTest.swift; sourceTree = "<group>"; };
 		F99A8E911F06C1450032449B /* bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bridge.h; sourceTree = "<group>"; };
 		F9D224681EB7C51000BB0990 /* EditCoursesPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCoursesPageTest.swift; sourceTree = "<group>"; };
-		F9D909E2207E576200EA43F3 /* SoSeedySwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoSeedySwift.framework; path = "../Debug-iphonesimulator/SoSeedySwift.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F9D909E4207E577700EA43F3 /* SoSeedySwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoSeedySwift.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,6 +272,7 @@
 				F99A8E8F1F06C10F0032449B /* QuartzCore.framework in Frameworks */,
 				F99A8E8E1F06C1080032449B /* CoreVideo.framework in Frameworks */,
 				F99A8E8D1F06C1010032449B /* AVFoundation.framework in Frameworks */,
+				B1279FC42087D1B1008BD7A8 /* SoSeedySwift.framework in Frameworks */,
 				F99A8E8C1F06C0FA0032449B /* CoreMedia.framework in Frameworks */,
 				F99A8E8B1F06C0F40032449B /* CoreText.framework in Frameworks */,
 				F99A8E8A1F06C0EC0032449B /* CoreTelephony.framework in Frameworks */,
@@ -305,7 +306,6 @@
 		2C50EDDF1E735CA50096592C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F9D909E4207E577700EA43F3 /* SoSeedySwift.framework */,
 				2C50EE0A1E735CDD0096592C /* BuddyBuildSDK.framework */,
 				2C50EE081E735CCB0096592C /* SystemConfiguration.framework */,
 				2C50EE061E735CC60096592C /* QuartzCore.framework */,
@@ -344,6 +344,7 @@
 		4943EC8A1E5CEF93001DC5B5 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				B1279FC32087D1B1008BD7A8 /* SoSeedySwift.framework */,
 				494BC60A1F954E1A00C77257 /* SoGrey.framework */,
 				497CA7321F82ACF400501613 /* CanvasCore.framework */,
 				2C50EE0C1E735D980096592C /* BuddyBuildSDK.framework */,
@@ -401,7 +402,6 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				F9D909E2207E576200EA43F3 /* SoSeedySwift.framework */,
 				13B07FAE1A68108700A75B9A /* Teacher */,
 				4943EC8A1E5CEF93001DC5B5 /* Dependencies */,
 				61B536591E7749F5000FEABB /* TeacherUITests */,
