@@ -78,9 +78,13 @@ open class Session: NSObject {
     }
     
     open var sessionID: String {
-        let masq = masqueradeAsUserID.map { "-\($0)" } ?? ""
         let host = baseURL.host ?? "unknown-host"
-        return "\(host)-\(user.id)\(masq)"
+        let userID = user.id
+        var components = [host, userID]
+        if let masq = masqueradeAsUserID {
+            components.append(masq)
+        }
+        return components.joined(separator: "-")
     }
     
     open var localStoreDirectoryURL: URL {
