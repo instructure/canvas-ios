@@ -91,12 +91,14 @@ static UIImage *_loadingImage = nil;
     return _loadingImage;
 }
 
-- (void)registerUserAgentForGoogle
-{
+- (void)registerUserAgentForGoogle {
     // Google auth does not support WebViews so we have to send a Safari user agent
+    [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent": self.class.userAgent}];
+}
+
++ (NSString *)userAgent {
     NSString *systemVersion = [[UIDevice currentDevice] systemVersion];
-    NSString *userAgent = [NSString stringWithFormat: [CKILoginViewController safariUserAgent], [systemVersion stringByReplacingOccurrencesOfString:@"." withString:@"_"]];
-    [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent": userAgent}];
+    return [NSString stringWithFormat:[CKILoginViewController safariUserAgent], [systemVersion stringByReplacingOccurrencesOfString:@"." withString:@"_"]];
 }
 
 - (void)unregisterUserAgentForGoogle
@@ -118,6 +120,7 @@ static UIImage *_loadingImage = nil;
         NSHTTPCookie *cookie = [NSHTTPCookie cookieWithProperties:cookieProperties];
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
     }
+    [request setValue:[self.class userAgent] forHTTPHeaderField:@"User-Agent"];
     [self.webView loadRequest:request];
 }
 
