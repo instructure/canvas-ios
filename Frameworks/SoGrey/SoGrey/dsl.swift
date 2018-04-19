@@ -143,6 +143,13 @@ extension GREYInteraction {
     if (!success) { self.assert(grey_notNil()) }
   }
 
+  public func assertDoesNotExist(file:StaticString = #file, line:UInt = #line) {
+    grey_fromFile(file, line)
+    if self.exists() {
+      self.assert(grey_notNil())
+    }
+  }
+
   public func assertHidden(file:StaticString = #file, line:UInt = #line) {
     grey_fromFile(file, line)
 

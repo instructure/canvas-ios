@@ -76,8 +76,13 @@ open class HelmManager: NSObject {
     }
 
     open func reactWillReload() {
-        self.cleanup() { [weak self] in
-            self?.onReactReload()
+        // Clean up happens on log out for UI tests
+        if uiTesting {
+            onReactReload()
+        } else {
+            self.cleanup() { [weak self] in
+                self?.onReactReload()
+            }
         }
     }
 

@@ -69,7 +69,7 @@ public class DashboardPage {
     
     public func assertCourseDoesNotExist(_ course: Soseedy_Course, _ file: StaticString = #file, _ line: UInt = #line) {
         grey_fromFile(file, line)
-        e.selectBy(id: "course-\(course.id)").assertHidden()
+        e.selectBy(id: "course-\(course.id)").assertDoesNotExist()
     }
     
     // MARK: - UI Actions

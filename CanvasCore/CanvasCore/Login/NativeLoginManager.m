@@ -182,33 +182,37 @@ RCT_EXPORT_METHOD(stopObserving)
 }
 
 - (void)setup {
-    
-    self.shouldCleanupOnNextLogoutEvent = NO;
+    BOOL uiTesting = NSClassFromString(@"EarlGreyImpl") != nil;
+    self.shouldCleanupOnNextLogoutEvent = uiTesting; // UI tests always clean up on logout
     [self.logoutObserver dispose];
     [self.loginObserver dispose];
     [self.clientObserver dispose];
     [self.multipleLoginObserver dispose];
     
-    __weak NativeLoginManager *weakSelf = self;
+    @weakify(self);
     void (^logoutHandler)(UIViewController *) = ^void(UIViewController * _Nullable x) {
-        __strong NativeLoginManager *self = weakSelf;
+        @strongify(self);
         self.domainPicker = x;
-        if (self.injectedLoginInfo) { return; }
-        
+
         if (self.shouldCleanupOnNextLogoutEvent) {
-            [[HelmManager shared] cleanupWithCallback:nil];
+            [[HelmManager shared] cleanupWithCallback:^{
+                if (!self.injectedLoginInfo) {
+                    [self.delegate didLogout:x];
+                    [self sendLoginEvent:nil];
+                }
+            }];
             self.shouldCleanupOnNextLogoutEvent = NO;
+        } else {
+            [self.delegate didLogout:x];
+            [self sendLoginEvent:nil];
         }
-        
-        [self.delegate didLogout:x];
-        [self sendLoginEvent:nil];
     };
     
     self.logoutObserver = [TheKeymaster.signalForLogout subscribeNext:logoutHandler];
     self.multipleLoginObserver = [TheKeymaster.signalForCannotLoginAutomatically subscribeNext:logoutHandler];
     
     self.loginObserver = [TheKeymaster.signalForLogin subscribeNext:^(CKIClient * _Nullable client) {
-        __strong NativeLoginManager *self = weakSelf;
+        @strongify(self);
         if (self.injectedLoginInfo) { return; }
         
         [self.delegate didLogin:client];
