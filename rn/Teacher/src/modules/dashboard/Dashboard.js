@@ -473,6 +473,7 @@ export function mapStateToProps (isFullDashboard: boolean) {
       .filter(({ id }) => !accountNotifications.closing.includes(id))
 
     const groupFavorites = state.favoriteGroups.groupRefs
+    const userHasFavoriteGroups = state.favoriteGroups.userHasFavoriteGroups
     let groups = Object.keys(state.entities.groups)
       .filter(id => {
         if (state.entities.groups[id] && state.entities.groups[id].group) {
@@ -496,7 +497,7 @@ export function mapStateToProps (isFullDashboard: boolean) {
       })
 
     if (featureFlagEnabled('favoriteGroups')) {
-      groups = groups.filter((g) => groupFavorites.includes(g.id))
+      if (userHasFavoriteGroups) { groups = groups.filter((g) => groupFavorites.includes(g.id)) }
     }
 
     let allCoursesStringKeys = {}

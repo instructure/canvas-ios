@@ -28,9 +28,10 @@ describe('toggleGroupFavorite', () => {
     const initialState = {
       ...defaultState,
       groupRefs: [],
+      userHasFavoriteGroups: true,
     }
     const states = await testAsyncReducer(favoriteGroups, action, initialState)
-    expect(states).toEqual([{ groupRefs: [], pending: 0 }, { groupRefs: [], pending: 0 }])
+    expect(states).toEqual([{ groupRefs: [], pending: 0, userHasFavoriteGroups: true }, { groupRefs: [], pending: 0, userHasFavoriteGroups: true }])
   })
 
   it('update group favorites', async () => {
@@ -48,8 +49,8 @@ describe('toggleGroupFavorite', () => {
     const states = await testAsyncReducer(favoriteGroups, action, initialState)
     const groupRefs = [groupID]
     expect(states).toEqual([
-      { groupRefs: [], pending: 0 },
-      { groupRefs, pending: 0 },
+      { groupRefs: [], pending: 0, userHasFavoriteGroups: true },
+      { groupRefs, pending: 0, userHasFavoriteGroups: true },
     ])
   })
 
@@ -68,8 +69,8 @@ describe('toggleGroupFavorite', () => {
     const states = await testAsyncReducer(favoriteGroups, action, initialState)
     const groupRefs = [groupID]
     expect(states).toEqual([
-      { groupRefs: [], pending: 0 },
-      { groupRefs, pending: 0 },
+      { groupRefs: [], pending: 0, userHasFavoriteGroups: true },
+      { groupRefs, pending: 0, userHasFavoriteGroups: true },
     ])
   })
 
@@ -85,8 +86,28 @@ describe('toggleGroupFavorite', () => {
     }
     const states = await testAsyncReducer(favoriteGroups, action, initialState)
     expect(states).toEqual([
-      { groupRefs: [], pending: 0 },
-      { groupRefs: [], pending: 0 },
+      { groupRefs: [], pending: 0, userHasFavoriteGroups: true },
+      { groupRefs: [], pending: 0, userHasFavoriteGroups: true },
+    ])
+  })
+
+  it('refresh group favorites error, favorites have never been set', async () => {
+    const action = {
+      type: GroupFavoritesActions({}).refreshGroupFavorites.toString(),
+      error: true,
+      payload: {
+        error: { response: { status: 400, data: { message: 'no data for scope' } } },
+      },
+    }
+
+    const initialState = {
+      ...defaultState,
+      groupRefs: [],
+    }
+    const states = await testAsyncReducer(favoriteGroups, action, initialState)
+    expect(states).toEqual([
+      { groupRefs: [], pending: 0, userHasFavoriteGroups: false },
+      { groupRefs: [], pending: 0, userHasFavoriteGroups: false },
     ])
   })
 })

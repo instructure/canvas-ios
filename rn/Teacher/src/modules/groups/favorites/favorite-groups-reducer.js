@@ -26,6 +26,7 @@ let { updateGroupFavorites, refreshGroupFavorites } = GroupFavoritesActions
 export let defaultState: FavoriteGroupsState = {
   groupRefs: [],
   pending: 0,
+  userHasFavoriteGroups: true,
 }
 
 export const favoriteGroups: Reducer<FavoriteGroupsState, any> = handleActions({
@@ -35,6 +36,7 @@ export const favoriteGroups: Reducer<FavoriteGroupsState, any> = handleActions({
       return {
         ...state,
         groupRefs: favorites,
+        userHasFavoriteGroups: true,
       }
     } }),
 
@@ -44,6 +46,22 @@ export const favoriteGroups: Reducer<FavoriteGroupsState, any> = handleActions({
       return {
         ...state,
         groupRefs: favorites,
+        userHasFavoriteGroups: true,
+      }
+    },
+    rejected: (state, { error }) => {
+      let response = error && error.response || {}
+      let mutatedState = { ...state }
+      let userHasFavoriteGroups = true
+      if (response.status === 400 && response.data && response.data.message === 'no data for scope') {
+        //  favorites have never been set
+        userHasFavoriteGroups = false
+      }
+
+      return {
+        ...mutatedState,
+        groupRefs: [],
+        userHasFavoriteGroups,
       }
     },
   }),

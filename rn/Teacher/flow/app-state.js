@@ -192,7 +192,7 @@ export type FavoriteCoursesState = AsyncState
   & { courseRefs: EntityRefs }
 
 export type FavoriteGroupsState = AsyncState
-  & { groupRefs: EntityRefs }
+  & { groupRefs: EntityRefs, userHasFavoriteGroups: boolean }
 
 export type ConversationState = AsyncState & {
   data: Conversation,

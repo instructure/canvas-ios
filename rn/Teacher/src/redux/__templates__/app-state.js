@@ -50,6 +50,7 @@ export const appState: Template<AppState> = template({
   favoriteGroups: {
     pending: 0,
     groupRefs: [],
+    userHasFavoriteGroups: true,
   },
   entities: entities(),
   inbox: {
