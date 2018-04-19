@@ -33,6 +33,8 @@ extension AppDelegate: RCTBridgeDelegate {
         registerScreen("/:context/:contextID/files/:fileID")
         registerScreen("/:context/:contextID/files/:fileID/download")
 
+        registerScreen("/courses/:courseID/assignments/syllabus")
+        
         registerScreen("/courses/:courseID/assignments/:assignmentID")
         registerScreen("/courses/:courseID/quizzes")
         registerScreen("/courses/:courseID/quizzes/:quizID")
@@ -52,7 +54,8 @@ extension AppDelegate: RCTBridgeDelegate {
         }
         registerModuleItemScreen("/courses/:courseID/pages/:url", parametersToProps: pageParamsToProps)
         registerModuleItemScreen("/courses/:courseID/wiki/:url", parametersToProps: pageParamsToProps)
-
+        
+        
         HelmManager.shared.registerNativeViewController(for: "/profile/settings", factory: { props in
             let settings = SettingsViewController.controller(CKCanvasAPI.current())
             return UINavigationController(rootViewController: settings)
