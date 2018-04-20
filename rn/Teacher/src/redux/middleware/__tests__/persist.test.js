@@ -51,7 +51,7 @@ describe('persistMiddleware', () => {
   it('removes old states', async () => {
     AsyncStorage.getItem = jest.fn(() => null)
     AsyncStorage.getAllKeys = jest.fn(() => {
-      return ['redux.state.1.0', 'something-else']
+      return ['redux.state.1.0', 'redux.state.0.0', 'something-else']
     })
     AsyncStorage.multiRemove = jest.fn()
     AsyncStorage.setItem = jest.fn()
@@ -61,6 +61,9 @@ describe('persistMiddleware', () => {
     })
 
     await hydrateStoreFromPersistedState(store)
-    expect(AsyncStorage.multiRemove).toHaveBeenCalledWith(['redux.state.1.0'])
+    expect(AsyncStorage.multiRemove).toHaveBeenCalledWith([
+      'redux.state.1.0',
+      'redux.state.0.0',
+    ])
   })
 })

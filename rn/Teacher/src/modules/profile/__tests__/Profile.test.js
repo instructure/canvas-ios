@@ -25,13 +25,7 @@ import app from '../../app'
 import renderer from 'react-test-renderer'
 import explore from '../../../../test/helpers/explore'
 
-const template = {
-  ...require('../../../__templates__/session'),
-  ...require('../../../__templates__/helm'),
-  ...require('../../../__templates__/launch-definitions'),
-  ...require('../../../__templates__/users'),
-  ...require('../../../redux/__templates__/app-state'),
-}
+import * as template from '../../../__templates__'
 
 jest.mock('ActionSheetIOS', () => ({
   showActionSheetWithOptions: jest.fn(),

@@ -20,16 +20,18 @@ import { getSessionUnsafe } from '../../canvas-api'
 import type { MiddlewareAPI } from 'redux'
 import hydrate from '../hydrate-action'
 
-const STORE_VERSION = '13'
+const STORE_VERSION = '14'
 
 function storeName (session: Session): string {
-  return `redux.state.${session.user.id}.${STORE_VERSION}`
+  return `redux.state.${session.baseURL}.${session.user.id}.${STORE_VERSION}`
 }
 
 async function removeOldStates (session: Session) {
   await AsyncStorage.multiRemove(
-    (await AsyncStorage.getAllKeys())
-      .filter(k => k.startsWith(`redux.state.${session.user.id}`))
+    (await AsyncStorage.getAllKeys()).filter(k =>
+      k.startsWith('redux.state.') &&
+      !k.endsWith(`.${STORE_VERSION}`)
+    )
   )
 }
 
@@ -69,6 +71,11 @@ export async function hydrateStoreFromPersistedState (store: any): any {
     } catch (err) {}
     store.dispatch(hydrate(appState))
   }
+}
+
+export async function purgeUserStoreData () {
+  let session = getSessionUnsafe()
+  return session && AsyncStorage.removeItem(storeName(session))
 }
 
 const createPersistMiddleware = (timeoutWait: number): MiddlewareAPI => {

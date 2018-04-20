@@ -50,5 +50,9 @@ export function getSessionUnsafe (): ?Session {
 
 // returns true is the sessions are similar, otherwise returns false
 export function compareSessions (s1: Session, s2: Session): boolean {
-  return (s1.user.id === s2.user.id) && (s1.actAsUserID === s2.actAsUserID)
+  return (
+    s1.baseURL === s2.baseURL &&
+    s1.user.id === s2.user.id &&
+    s1.actAsUserID === s2.actAsUserID
+  )
 }

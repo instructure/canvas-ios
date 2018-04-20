@@ -187,18 +187,22 @@ type CacheEntry = {
 const cache: Map<string, CacheEntry> = new Map()
 const listeners: Set<(?ApiPromise<any>) => void> = new Set()
 export const httpCache = {
-  CACHE_VERSION: 2,
+  CACHE_VERSION: 3,
   notFound: {
     value: null,
     expiresAt: 0,
   },
   get storageKey () {
-    const { user } = getSession()
-    return `http.cache.${user.id}.${httpCache.CACHE_VERSION}`
+    const { baseURL, user } = getSession()
+    return `http.cache.${baseURL}.${user.id}.${httpCache.CACHE_VERSION}`
   },
   clear () {
     cache.clear()
-    httpCache.notify()
+    for (const fn of listeners) fn()
+  },
+  purgeUserData () {
+    httpCache.clear()
+    return AsyncStorage.removeItem(httpCache.storageKey)
   },
   cleanup () {
     for (const [ key, entry ] of cache) {
@@ -247,9 +251,11 @@ export const httpCache = {
         }
       } catch (err) {}
     } else {
-      const prefix = httpCache.storageKey.replace(/\.\d+$/, '')
       await AsyncStorage.multiRemove(
-        (await AsyncStorage.getAllKeys()).filter(k => k.startsWith(prefix))
+        (await AsyncStorage.getAllKeys()).filter(k =>
+          k.startsWith('http.cache.') &&
+          !k.endsWith(`.${httpCache.CACHE_VERSION}`)
+        )
       )
     }
     httpCache.notify()

@@ -26,6 +26,7 @@ jest.unmock('../httpClient')
 jest.mock('AsyncStorage', () => ({
   getItem: jest.fn(),
   setItem: jest.fn(),
+  removeItem: jest.fn(),
   getAllKeys: jest.fn(),
   multiRemove: jest.fn(),
 }))
@@ -295,6 +296,11 @@ describe('httpCache', () => {
     setSession(templates.session())
   })
 
+  it('includes baseURL in storageKey', () => {
+    setSession(templates.session({ baseURL: 'https://canvas.docker' }))
+    expect(httpCache.storageKey).toContain('https://canvas.docker')
+  })
+
   it('exposes key generation', () => {
     expect(httpCache.key('/nowhere')).toBe('/api/v1/nowhere')
   })
@@ -350,6 +356,13 @@ describe('httpCache', () => {
       value: 'b',
       expiresAt: 1100,
     })
+  })
+
+  it('can purge the user data', () => {
+    httpCache.purgeUserData()
+    expect(AsyncStorage.removeItem).toHaveBeenCalledWith(
+      httpCache.storageKey,
+    )
   })
 
   it('clears the entry and parent entry on put', () => {
@@ -412,13 +425,13 @@ describe('httpCache', () => {
 
   it('clears stale items from async storage when no item is found', async () => {
     AsyncStorage.getAllKeys.mockImplementationOnce(() => [
-      'http.cache.1.1',
+      'http.cache.0.1',
       'http.cache.1.2',
       'redux.stuff',
     ])
     await httpCache.hydrate()
     expect(AsyncStorage.multiRemove).toHaveBeenCalledWith([
-      'http.cache.1.1',
+      'http.cache.0.1',
       'http.cache.1.2',
     ])
   })

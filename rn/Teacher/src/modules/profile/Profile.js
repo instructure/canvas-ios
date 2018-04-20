@@ -32,6 +32,7 @@ import {
   LayoutAnimation,
 } from 'react-native'
 import i18n from 'format-message'
+import { purgeUserStoreData } from '../../redux/middleware/persist'
 import { Text, Paragraph, Heavy } from '../../common/text'
 import Avatar from '../../common/components/Avatar'
 import Screen from '../../routing/Screen'
@@ -42,7 +43,7 @@ import Row from '../../common/components/rows/Row'
 import RowWithSwitch from '../../common/components/rows/RowWithSwitch'
 import RowSeparator from '../../common/components/rows/RowSeparator'
 import { isStudent } from '../app'
-import canvas, { getSession } from '../../canvas-api'
+import canvas, { getSession, httpCache } from '../../canvas-api'
 import { connect } from 'react-redux'
 import Actions from '../userInfo/actions'
 import StatusBar from '../../common/components/StatusBar'
@@ -99,6 +100,8 @@ export class Profile extends Component<Object, State> {
   }
 
   logout = () => {
+    purgeUserStoreData()
+    httpCache.purgeUserData()
     NativeModules.NativeLogin.logout()
   }
 
