@@ -75,7 +75,7 @@ export type Assignment = {
   only_visible_to_overrides: boolean,
   points_possible: number,
   needs_grading_count: number,
-  submission_types: string[],
+  submission_types: SubmissionType[],
   html_url: string,
   position: number,
   grading_type: GradingType,

@@ -24,6 +24,7 @@ import { Text } from '../../../common/text'
 
 type SubmissionStatusLabelProps = {
   status: SubmissionStatus,
+  onlineSubmissionType?: boolean,
   style?: any,
 }
 
@@ -51,6 +52,8 @@ export default class SubmissionStatusLabel extends Component<SubmissionStatusLab
         title = i18n('Excused')
         break
     }
+
+    if (this.props.onlineSubmissionType !== undefined && !this.props.onlineSubmissionType) { title = '' }
 
     return <Text style={[styles.statusText, this.props.style, { color }]}>{title}</Text>
   }

@@ -33,3 +33,8 @@ export function submissionTypes (): { [string]: string } {
     'none': i18n('None'),
   }
 }
+
+export function submissionTypeIsOnline (submissionType: SubmissionType): boolean {
+  return submissionType !== 'on_paper' && submissionType !== 'none'
+}
+

@@ -31,6 +31,7 @@ import Images from '../../images'
 import { gradeProp, statusProp, dueDate } from '../submissions/list/get-submissions-props'
 import { Grade } from '../submissions/list/SubmissionRow'
 import SubmissionStatusLabel from '../submissions/list/SubmissionStatusLabel'
+import { submissionTypeIsOnline } from '@common/submissionTypes'
 
 type Props = {
   assignment: Assignment,
@@ -49,6 +50,7 @@ export default class GradesListRow extends PureComponent<Props> {
   render () {
     const { assignment, selected, user } = this.props
     const { submission } = assignment
+    const onlineSubmissionType = assignment.submission_types.every(submissionTypeIsOnline)
     const grade = gradeProp(submission)
     const status = statusProp(submission, dueDate(assignment, user))
     return (
@@ -66,7 +68,7 @@ export default class GradesListRow extends PureComponent<Props> {
             height='auto'
             accessories={submission ? <Grade grade={grade} gradingType={assignment.grading_type} /> : undefined}
           >
-            <SubmissionStatusLabel status={status} />
+            <SubmissionStatusLabel status={status} onlineSubmissionType={onlineSubmissionType} />
           </Row>
         </View>
         <AccessLine visible={this.props.assignment.published} testIdPrefix={'grades-list-row'} />
