@@ -78,4 +78,27 @@ open class AirwolfAPI {
     open class func deleteStudentRequest(_ session: Session, parentID: String, studentID: String) throws -> URLRequest {
         return try session.DELETE("/student/\(parentID)/\(studentID)")
     }
+
+    open class func validateSession(_ session: Session, parentID: String, completionHandler: @escaping (_ success: Bool) -> Void) {
+        do {
+            let request = try self.getStudentsRequest(session, parentID: parentID)
+
+            let task = URLSession.shared.dataTask(with: request) {data, response, error in
+                if error != nil {
+                    completionHandler(false)
+                }
+
+                if let httpResponse = response as? HTTPURLResponse {
+                    if (httpResponse.statusCode == 401) {
+                        completionHandler(false)
+                    } else {
+                        completionHandler(true)
+                    }
+                }
+            }
+            task.resume()
+        } catch {
+            completionHandler(false)
+        }
+    }
 }
