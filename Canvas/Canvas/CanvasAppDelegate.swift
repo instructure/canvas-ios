@@ -71,6 +71,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         return self.application(application, handleOpen: url)
     }
+
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        return openCanvasURL(url)
+    }
     
     func configureBugSnag() {
         let configuration = BugsnagConfiguration()
