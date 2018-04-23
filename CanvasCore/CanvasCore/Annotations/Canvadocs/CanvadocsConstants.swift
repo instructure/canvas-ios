@@ -80,11 +80,11 @@ func applySharedAppConfiguration(to builder: PSPDFConfigurationBuilder) {
     builder.shouldHideNavigationBarWithUserInterface = false
     builder.shouldHideStatusBarWithUserInterface = false
     builder.applicationActivities = [PSPDFActivityTypeOpenIn, PSPDFActivityTypeGoToPage, PSPDFActivityTypeSearch]
-    builder.editableAnnotationTypes = [.note, .highlight, .freeText, .strikeOut, .ink, .square]
+    builder.editableAnnotationTypes = [.stamp, .highlight, .freeText, .strikeOut, .ink, .square]
     builder.naturalDrawingAnnotationEnabled = true
 
     builder.propertiesForAnnotations = [
-        // .note: [["color"]], // doesn't act like the others, so disable for now
+        .stamp: [["color"]],
         .highlight: [["color"]],
         PSPDFAnnotationStateVariantIdentifier(.ink, .inkVariantPen): [["color"]],
         .square: [["color"]],
@@ -93,10 +93,9 @@ func applySharedAppConfiguration(to builder: PSPDFConfigurationBuilder) {
         .strikeOut: [[]],
         .freeText: [["fontSize"]],
     ]
-    
-    builder.overrideClass(PSPDFNoteAnnotation.self, with: CanvadocsPointAnnotation.self)
-    builder.overrideClass(PSPDFNoteAnnotationView.self, with: CanvadocsPointAnnotationView.self)
+
     builder.overrideClass(PSPDFAnnotationToolbar.self, with: CanvadocsAnnotationToolbar.self)
+    builder.overrideClass(PSPDFAnnotationStateManager.self, with: CanvadocsAnnotationStateManager.self)
 }
 
 public let canvasAppConfiguration: PSPDFConfiguration = {

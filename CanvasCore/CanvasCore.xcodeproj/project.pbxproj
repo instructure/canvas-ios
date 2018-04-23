@@ -495,6 +495,7 @@
 		49DD239D1F8F9EBE004727F7 /* Session+DiscussionKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4917183E1F8EE797008B4599 /* Session+DiscussionKit.swift */; };
 		49F0F9301F9E50E400DD1512 /* AttendanceStatusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F0F92F1F9E50E300DD1512 /* AttendanceStatusController.swift */; };
 		5C7007265DCAB575C9739092 /* Pods_defaults_CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C6B70EE92D795277E0861B4 /* Pods_defaults_CanvasCore.framework */; };
+		7DF5A776208AAB8000419AB9 /* CanvadocsAnnotationStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF5A775208AAB8000419AB9 /* CanvadocsAnnotationStateManager.swift */; };
 		9F068D64207C082B0040EFFA /* registerSharedNativeViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F068D63207C082B0040EFFA /* registerSharedNativeViewControllers.swift */; };
 		9F2E363520507F3500A2B031 /* FeatureFlags.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2E363420507F3500A2B031 /* FeatureFlags.m */; };
 		9F2E36382050918500A2B031 /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2E36372050918500A2B031 /* FeatureFlags.swift */; };
@@ -1057,6 +1058,7 @@
 		49CE97951F900D0000121A43 /* PandaImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PandaImages.xcassets; sourceTree = "<group>"; };
 		49F0F92F1F9E50E300DD1512 /* AttendanceStatusController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendanceStatusController.swift; sourceTree = "<group>"; };
 		7C6B70EE92D795277E0861B4 /* Pods_defaults_CanvasCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7DF5A775208AAB8000419AB9 /* CanvadocsAnnotationStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvadocsAnnotationStateManager.swift; sourceTree = "<group>"; };
 		9F068D63207C082B0040EFFA /* registerSharedNativeViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registerSharedNativeViewControllers.swift; sourceTree = "<group>"; };
 		9F0A6C871FBB768A009CA750 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9F0A6C881FBB768A009CA750 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1522,6 +1524,7 @@
 				493020041F901CF5006BD777 /* CanvadocsAnnotationProvider.swift */,
 				493020051F901CF5006BD777 /* CanvadocsAnnotationService.swift */,
 				493020061F901CF5006BD777 /* CanvadocsAnnotationToolbar.swift */,
+				7DF5A775208AAB8000419AB9 /* CanvadocsAnnotationStateManager.swift */,
 				493020081F901CF5006BD777 /* CanvadocsConstants.swift */,
 				493020091F901CF5006BD777 /* CanvadocsPDFDocumentPresenter.swift */,
 				4930200A1F901CF5006BD777 /* CanvadocsAnnotation.swift */,
@@ -3102,6 +3105,7 @@
 				4961F5E61F8FB3FC0093EC86 /* Refresher.swift in Sources */,
 				9FCA1A11205AC2FC00ECB5E9 /* AlertControls.m in Sources */,
 				49CE96911F8FF41B00121A43 /* ResponsePage.swift in Sources */,
+				7DF5A776208AAB8000419AB9 /* CanvadocsAnnotationStateManager.swift in Sources */,
 				49CE96581F8FF41B00121A43 /* UIButton+QuizKit.swift in Sources */,
 				49CE96DD1F8FFC4400121A43 /* ModuleItem+Collections.swift in Sources */,
 				49CE966F1F8FF41B00121A43 /* SubmissionConfirmationViewController.swift in Sources */,

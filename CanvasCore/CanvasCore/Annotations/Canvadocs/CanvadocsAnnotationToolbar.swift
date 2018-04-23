@@ -32,7 +32,7 @@ public class CanvadocsAnnotationToolbar: PSPDFAnnotationToolbar {
         barTintColor = .colorFromHexString("#556572")
         tintColor = .white
         
-        let commentGroupItem = PSPDFAnnotationGroupItem(type: .note, variant: nil) { (item, container, tintColor) in
+        let commentGroupItem = PSPDFAnnotationGroupItem(type: .stamp, variant: nil) { (item, container, tintColor) in
             return UIImage(named: "pin", in: Bundle(for: CanvadocsAnnotationToolbar.self), compatibleWith: nil)!.withRenderingMode(.alwaysTemplate)
         }
         let commentGroup = PSPDFAnnotationGroup(items: [commentGroupItem])

@@ -142,7 +142,7 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
         styleManager.setPresets(inkPresets, forKey: .circle, type: PSPDFStyleManagerColorPresetKey)
         styleManager.setPresets(inkPresets, forKey: .line, type: PSPDFStyleManagerColorPresetKey)
         styleManager.setPresets(inkPresets, forKey: .strikeOut, type: PSPDFStyleManagerColorPresetKey)
-        styleManager.setPresets(inkPresets, forKey: .note, type: PSPDFStyleManagerColorPresetKey)
+        styleManager.setPresets(inkPresets, forKey: .stamp, type: PSPDFStyleManagerColorPresetKey)
         styleManager.setPresets(textPresets, forKey: .freeText, type: PSPDFStyleManagerColorPresetKey)
 
         styleManager.setLastUsedValue(CanvadocsHighlightColor.yellow.color, forProperty: "color", forKey: .highlight)
@@ -151,7 +151,7 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
         styleManager.setLastUsedValue(CanvadocsAnnotationColor.red.color, forProperty: "color", forKey: .circle)
         styleManager.setLastUsedValue(CanvadocsAnnotationColor.red.color, forProperty: "color", forKey: .line)
         styleManager.setLastUsedValue(CanvadocsAnnotationColor.red.color, forProperty: "color", forKey: .strikeOut)
-        styleManager.setLastUsedValue(CanvadocsAnnotationColor.blue.color, forProperty: "color", forKey: .note)
+        styleManager.setLastUsedValue(CanvadocsAnnotationColor.blue.color, forProperty: "color", forKey: .stamp)
         styleManager.setLastUsedValue(UIColor.black, forProperty: "color", forKey: .freeText)
         styleManager.setLastUsedValue(UIColor.white, forProperty: "fillColor", forKey: .freeText)
         styleManager.setLastUsedValue(2.0, forProperty: "lineWidth", forKey: PSPDFAnnotationStateVariantIdentifier(.ink, .inkVariantPen))
@@ -192,6 +192,9 @@ extension CanvadocsPDFDocumentPresenter: PSPDFViewControllerDelegate {
 
             let filteredMenuItems = menuItems.filter {
                 guard let identifier = $0.identifier else { return true }
+                if identifier == PSPDFAnnotationMenuInspector {
+                    $0.title = NSLocalizedString("Style", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: "")
+                }
                 return identifier != PSPDFAnnotationMenuCopy && identifier != PSPDFAnnotationMenuNote && !DisabledMenuItems.contains(identifier)
             }
             realMenuItems.append(contentsOf: filteredMenuItems)
@@ -205,15 +208,29 @@ extension CanvadocsPDFDocumentPresenter: PSPDFViewControllerDelegate {
     }
 
     public func pdfViewController(_ pdfController: PSPDFViewController, shouldShow controller: UIViewController, options: [String : Any]? = nil, animated: Bool) -> Bool {
-        if let noteController = controller as? PSPDFNoteAnnotationViewController, let annotation = noteController.annotation, let pdfDocument = pdfController.document {
-                let commentsVC = CanvadocsCommentsViewController.new(annotation, pdfDocument: pdfDocument)
-                commentsVC.comments = self.annotationProvider?.getReplies(to: annotation) ?? []
-                let navigationController = UINavigationController(rootViewController: commentsVC)
-                pdfController.present(navigationController, options: nil, animated: true, sender: nil, completion: nil)
-            
+        if controller is PSPDFStampViewController {
             return false
         }
         return true
+    }
+    
+    public func pdfViewController(_ pdfController: PSPDFViewController, didTapOn pageView: PSPDFPageView, at viewPoint: CGPoint) -> Bool {
+        let state = pdfController.annotationStateManager
+        if state.state == .stamp, let pdfDocument = pdfController.document {
+            let pointAnnotation = CanvadocsPointAnnotation()
+            pointAnnotation.color = state.drawColor
+            pointAnnotation.boundingBox = CGRect(x: 0, y: 0, width: 17 * 2 / 3, height: 24 * 2 / 3)
+            pointAnnotation.pageIndex = pageView.pageIndex
+            pageView.center(pointAnnotation, aroundPDFPoint: pageView.convertPoint(toPDFPoint: viewPoint))
+            pdfDocument.add([ pointAnnotation ], options: nil)
+
+            let commentsVC = CanvadocsCommentsViewController.new(pointAnnotation, pdfDocument: pdfDocument)
+            let navigationController = UINavigationController(rootViewController: commentsVC)
+            pdfController.present(navigationController, options: nil, animated: true, sender: nil, completion: nil)
+
+            return true
+        }
+        return false
     }
 }
 
