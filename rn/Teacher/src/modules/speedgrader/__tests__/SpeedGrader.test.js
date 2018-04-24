@@ -162,6 +162,27 @@ describe('SpeedGrader', () => {
     expect(itemTree).toMatchSnapshot()
   })
 
+  it('can toggle scrolling', () => {
+    const submissions = [templates.submissionProps()]
+    const props = { ...defaultProps, submissions }
+    let instance = new SpeedGrader(props)
+    instance.scrollView = { setNativeProps: jest.fn() }
+    let tree = shallow(instance.renderItem({
+      item: {
+        kehy: submissions[0].userID,
+        submission: submissions[0],
+      },
+      index: 0,
+    }))
+    let submissionGrader = tree.find('SubmissionGrader')
+
+    submissionGrader.props().setScrollEnabled(false)
+    expect(instance.scrollView.setNativeProps).toHaveBeenCalledWith({ scrollEnabled: false })
+
+    submissionGrader.props().setScrollEnabled(true)
+    expect(instance.scrollView.setNativeProps).toHaveBeenCalledWith({ scrollEnabled: true })
+  })
+
   it('supplies getItemLayout', () => {
     let view = shallow(
       <SpeedGrader {...defaultProps} />

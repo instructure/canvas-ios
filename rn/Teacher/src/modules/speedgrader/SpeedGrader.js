@@ -68,6 +68,7 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
   props: SpeedGraderProps
   state: State
   _flatList: ?FlatList
+  scrollView: ?{ setNativeProps: (Object) => void }
 
   static drawerState = new DrawerState()
   static defaultProps = {
@@ -91,6 +92,7 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
       hasScrolledToInitialSubmission: false,
       hasSetInitialDrawerPosition: false,
       submissions: [],
+      scrollEnabled: true,
     }
   }
 
@@ -203,6 +205,9 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
         drawerInset={this.state.drawerInset}
         gradeSubmissionWithRubric={this.props.gradeSubmissionWithRubric}
         selectedTabIndex={this.getInitialTabIndex()}
+        setScrollEnabled={(value) => {
+          this.scrollView.setNativeProps({ scrollEnabled: value })
+        }}
       />
     </A11yGroup>
   }
@@ -261,6 +266,7 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
         onMomentumScrollEnd={this.scrollEnded}
         initialScrollIndex={this.state.currentPageIndex}
         style={{ marginLeft: -PAGE_GUTTER_HALF_WIDTH, marginRight: -PAGE_GUTTER_HALF_WIDTH }}
+        ref={(e) => { this.scrollView = e }}
       />
     )
   }

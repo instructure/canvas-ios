@@ -45,6 +45,7 @@ exports[`Rubric has the correct score 1`] = `
         "ratings": Object {
           "2": 10,
         },
+        "scrollEnabled": true,
       }
     }
     getItem={[Function]}
@@ -147,6 +148,7 @@ exports[`Rubric has the correct score 1`] = `
                 "title": "A possible item",
               }
             }
+            setScrollEnabled={[Function]}
             submissionID="1"
             unsavedChanges={Object {}}
             updateUnsavedChanges={[Function]}
@@ -639,6 +641,7 @@ exports[`Rubric renders a rubric 1`] = `
             "points": 10,
           },
         },
+        "scrollEnabled": true,
       }
     }
     getItem={[Function]}
@@ -741,6 +744,7 @@ exports[`Rubric renders a rubric 1`] = `
                 "title": "A possible item",
               }
             }
+            setScrollEnabled={[Function]}
             submissionID="1"
             unsavedChanges={Object {}}
             updateUnsavedChanges={[Function]}
@@ -1233,6 +1237,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
             "points": 10,
           },
         },
+        "scrollEnabled": true,
       }
     }
     getItem={[Function]}
@@ -1335,6 +1340,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                 "title": "A possible item",
               }
             }
+            setScrollEnabled={[Function]}
             submissionID="1"
             unsavedChanges={Object {}}
             updateUnsavedChanges={[Function]}
@@ -1749,6 +1755,7 @@ exports[`Rubric renders the grade picker when there is no rubric 1`] = `
             "points": 10,
           },
         },
+        "scrollEnabled": true,
       }
     }
     getItem={[Function]}
@@ -1825,6 +1832,7 @@ exports[`Rubric renders the grade picker when there is no rubric 1`] = `
                 "title": "A possible item",
               }
             }
+            setScrollEnabled={[Function]}
             submissionID="1"
             unsavedChanges={Object {}}
             updateUnsavedChanges={[Function]}
@@ -1886,6 +1894,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
             "points": 10,
           },
         },
+        "scrollEnabled": true,
       }
     }
     getItem={[Function]}
@@ -1988,6 +1997,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                 "title": "A possible item",
               }
             }
+            setScrollEnabled={[Function]}
             submissionID="1"
             unsavedChanges={Object {}}
             updateUnsavedChanges={[Function]}

@@ -61,6 +61,7 @@ type SubmissionGraderProps = {
   drawerInset: number,
   navigator: Navigator,
   gradeSubmissionWithRubric: Function,
+  setScrollEnabled: (boolean) => void,
 }
 
 const DRAWER_WIDTH = 375

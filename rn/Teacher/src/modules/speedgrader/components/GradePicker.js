@@ -36,6 +36,7 @@ import Images from '../../../images'
 import colors from '../../../common/colors'
 import branding from '../../../common/branding'
 import { formatGradeText } from '../../../common/formatters'
+import Slider from './Slider'
 
 const PASS_FAIL = 'pass_fail'
 const POINTS = 'points'
@@ -45,6 +46,7 @@ const GPA = 'gpa_scale'
 const NOT_GRADED = 'not_graded'
 
 export class GradePicker extends Component<GradePickerProps, GradePickerState> {
+  slider: ?Slider
 
   constructor (props: GradePickerProps) {
     super(props)
@@ -86,20 +88,43 @@ export class GradePicker extends Component<GradePickerProps, GradePickerState> {
     this.props.gradeSubmission(this.props.courseID, this.props.assignmentID, this.props.userID, this.props.submissionID, promptValue)
   }
 
+  excuseAssignment = () => {
+    this.props.excuseAssignment(this.props.courseID, this.props.assignmentID, this.props.userID, this.props.submissionID)
+  }
+
   openPrompt = () => {
     let buttons = [
       {
+        text: i18n('No Grade'),
+        onPress: () => {
+          if (this.slider) {
+            this.slider.moveTo(0, false)
+          }
+          this.newCustomGrade('')
+        },
+      },
+      {
         text: i18n('OK'),
-        onPress: this.newCustomGrade,
+        onPress: (promptValue: string) => {
+          if (this.slider) {
+            this.slider.moveToScore(promptValue, false)
+          }
+          this.newCustomGrade(promptValue)
+        },
       },
       {
         text: i18n('Cancel'),
       },
     ]
     if (!this.props.excused) {
-      buttons.unshift({
+      buttons.splice(1, 0, {
         text: i18n('Excuse Student'),
-        onPress: () => this.props.excuseAssignment(this.props.courseID, this.props.assignmentID, this.props.userID, this.props.submissionID),
+        onPress: () => {
+          if (this.slider) {
+            this.slider.moveTo(this.slider.width, false)
+          }
+          this.excuseAssignment()
+        },
       })
     }
     let message = ''
@@ -255,6 +280,14 @@ export class GradePicker extends Component<GradePickerProps, GradePickerState> {
           </TouchableOpacity>
         </View>
         {this.renderLatePolicy()}
+        {this.props.gradingType === POINTS && !this.props.useRubricForGrading &&
+          <Slider
+            {...this.props}
+            setScore={this.newCustomGrade}
+            excuseAssignment={this.excuseAssignment}
+            ref={(e) => { this.slider = e }}
+          />
+        }
       </View>
     )
   }
@@ -309,9 +342,9 @@ const styles = StyleSheet.create({
   gradeCellContainer: {
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: 'lightgray',
+    paddingVertical: 12,
   },
   gradeCell: {
-    paddingVertical: 12,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -387,6 +420,7 @@ type GradePickerOwnProps = {
   rubricScore: string,
   useRubricForGrading: boolean,
   navigator: Navigator,
+  setScrollEnabled: (boolean) => void,
 }
 
 type GradePickerDataProps = {

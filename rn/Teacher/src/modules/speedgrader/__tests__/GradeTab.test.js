@@ -44,6 +44,7 @@ let ownProps = {
   isModeratedGrading: false,
   updateUnsavedChanges: jest.fn(),
   unsavedChanges: {},
+  setScrollEnabled: jest.fn(),
 }
 
 let defaultProps = {
@@ -171,6 +172,22 @@ describe('Rubric', () => {
     button.props.onPress()
 
     expect(defaultProps.updateUnsavedChanges).toHaveBeenCalledWith(tree.getInstance().state.ratings)
+  })
+
+  it('can toggle scrolling', () => {
+    let tree = renderer.create(
+      <GradeTab {...defaultProps} />
+    )
+    let instance = tree.getInstance()
+    instance.scrollView.setNativeProps = jest.fn()
+
+    instance.setScrollEnabled(false)
+    expect(instance.scrollView.setNativeProps).toHaveBeenCalledWith({ scrollEnabled: false })
+    expect(defaultProps.setScrollEnabled).toHaveBeenCalledWith(false)
+
+    instance.setScrollEnabled(true)
+    expect(instance.scrollView.setNativeProps).toHaveBeenCalledWith({ scrollEnabled: true })
+    expect(defaultProps.setScrollEnabled).toHaveBeenCalledWith(true)
   })
 })
 

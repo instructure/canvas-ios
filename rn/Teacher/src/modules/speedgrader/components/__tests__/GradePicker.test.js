@@ -96,6 +96,12 @@ describe('GradePicker', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  it('renders the points slider when the grading type is points and doesnt use the rubric for grading', () => {
+    let tree = shallow(<GradePicker {...defaultProps} />)
+    let slider = tree.find('Slider')
+    expect(slider).toHaveLength(1)
+  })
+
   it('renders points and grade', () => {
     let props = {
       ...defaultProps,
@@ -148,34 +154,55 @@ describe('GradePicker', () => {
     expect(AlertIOS.prompt).toHaveBeenCalled()
   })
 
-  it('calls excuseAssignment with the right ids when the excuse button is pressed', () => {
+  it('calls gradeSubmission with no value when No Grade is pressed', () => {
     AlertIOS.prompt = jest.fn((title, message, buttons) => buttons[0].onPress())
+    let tree = renderer.create(
+      <GradePicker {...defaultProps} />
+    )
+    let instance = tree.getInstance()
+    instance.slider.moveTo = jest.fn()
+
+    let button = explore(tree.toJSON()).selectByID('grade-picker.button') || {}
+    button.props.onPress()
+
+    expect(instance.slider.moveTo).toHaveBeenCalledWith(0, false)
+    expect(defaultProps.gradeSubmission).toHaveBeenCalledWith('3', '2', '4', '1', '')
+  })
+
+  it('calls excuseAssignment with the right ids when the excuse button is pressed', () => {
+    AlertIOS.prompt = jest.fn((title, message, buttons) => buttons[1].onPress())
 
     let tree = renderer.create(
       <GradePicker {...defaultProps} />
-    ).toJSON()
+    )
+    let instance = tree.getInstance()
+    instance.slider.moveTo = jest.fn()
 
-    let button = explore(tree).selectByID('grade-picker.button') || {}
+    let button = explore(tree.toJSON()).selectByID('grade-picker.button') || {}
     button.props.onPress()
 
+    expect(instance.slider.moveTo).toHaveBeenCalledWith(instance.slider.width, false)
     expect(defaultProps.excuseAssignment).toHaveBeenCalledWith('3', '2', '4', '1')
   })
 
   it('calls gradeSubmission with the prompt value', () => {
-    AlertIOS.prompt = jest.fn((title, message, buttons) => buttons[1].onPress('yo'))
+    AlertIOS.prompt = jest.fn((title, message, buttons) => buttons[2].onPress('34'))
 
     let tree = renderer.create(
       <GradePicker {...defaultProps} />
-    ).toJSON()
+    )
+    let instance = tree.getInstance()
+    instance.slider.moveToScore = jest.fn()
 
-    let button = explore(tree).selectByID('grade-picker.button') || {}
+    let button = explore(tree.toJSON()).selectByID('grade-picker.button') || {}
     button.props.onPress()
 
-    expect(defaultProps.gradeSubmission).toHaveBeenCalledWith('3', '2', '4', '1', 'yo')
+    expect(instance.slider.moveToScore).toHaveBeenCalledWith('34', false)
+    expect(defaultProps.gradeSubmission).toHaveBeenCalledWith('3', '2', '4', '1', '34')
   })
 
   it('calls gradeSubmission with a % at the end of the grade for percentage grading type if the user leaves it off', () => {
-    AlertIOS.prompt = jest.fn((title, message, buttons) => buttons[1].onPress('80'))
+    AlertIOS.prompt = jest.fn((title, message, buttons) => buttons[2].onPress('80'))
 
     let tree = renderer.create(
       <GradePicker {...defaultProps} gradingType='percent' />
@@ -195,7 +222,7 @@ describe('GradePicker', () => {
     let button = explore(tree).selectByID('grade-picker.button') || {}
     button.props.onPress()
 
-    expect(AlertIOS.prompt.mock.calls[0][2].length).toEqual(2)
+    expect(AlertIOS.prompt.mock.calls[0][2].length).toEqual(3)
     expect(AlertIOS.prompt.mock.calls[0][4]).not.toEqual('')
   })
 
@@ -287,7 +314,7 @@ describe('GradePicker', () => {
   })
 
   it('calls AlertIOS.alert when the grade doesnt stick', () => {
-    AlertIOS.prompt = jest.fn((title, message, buttons) => buttons[1].onPress('asdf'))
+    AlertIOS.prompt = jest.fn((title, message, buttons) => buttons[2].onPress('asdf'))
 
     let view = renderer.create(
       <GradePicker {...defaultProps} />

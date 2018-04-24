@@ -21,6 +21,7 @@
     "fail": true,
     "FormData": true,
     "requestIdleCallback": true,
+    "requestAnimationFrame": true,
   },
   "rules": {
     "react/jsx-uses-vars": [2],

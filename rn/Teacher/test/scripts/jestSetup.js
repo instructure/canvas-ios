@@ -184,6 +184,7 @@ jest.mock('PickerIOS', () => {
 
 jest.mock('AccessibilityInfo', () => ({
   setAccessibilityFocus: jest.fn(),
+  announceForAccessibility: jest.fn(),
 }))
 
 jest.mock('LayoutAnimation', () => {

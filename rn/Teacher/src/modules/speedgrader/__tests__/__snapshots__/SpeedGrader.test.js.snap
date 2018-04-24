@@ -312,6 +312,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
               "drawerInset": 62,
               "hasScrolledToInitialSubmission": false,
               "hasSetInitialDrawerPosition": false,
+              "scrollEnabled": true,
               "size": Object {
                 "height": 1334,
                 "width": 770,
@@ -361,6 +362,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   "drawerInset": 62,
                   "hasScrolledToInitialSubmission": false,
                   "hasSetInitialDrawerPosition": false,
+                  "scrollEnabled": true,
                   "size": Object {
                     "height": 1334,
                     "width": 770,
@@ -482,6 +484,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
               "drawerInset": 62,
               "hasScrolledToInitialSubmission": false,
               "hasSetInitialDrawerPosition": false,
+              "scrollEnabled": true,
               "size": Object {
                 "height": 1334,
                 "width": 770,
@@ -560,6 +563,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   "drawerInset": 62,
                   "hasScrolledToInitialSubmission": false,
                   "hasSetInitialDrawerPosition": false,
+                  "scrollEnabled": true,
                   "size": Object {
                     "height": 1334,
                     "width": 770,
@@ -707,6 +711,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
               "drawerInset": 62,
               "hasScrolledToInitialSubmission": false,
               "hasSetInitialDrawerPosition": false,
+              "scrollEnabled": true,
               "size": Object {
                 "height": 1334,
                 "width": 770,
@@ -776,6 +781,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   "drawerInset": 62,
                   "hasScrolledToInitialSubmission": false,
                   "hasSetInitialDrawerPosition": false,
+                  "scrollEnabled": true,
                   "size": Object {
                     "height": 1334,
                     "width": 770,
@@ -913,6 +919,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
               "drawerInset": 62,
               "hasScrolledToInitialSubmission": false,
               "hasSetInitialDrawerPosition": false,
+              "scrollEnabled": true,
               "size": Object {
                 "height": 1334,
                 "width": 770,
@@ -962,6 +969,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   "drawerInset": 62,
                   "hasScrolledToInitialSubmission": false,
                   "hasSetInitialDrawerPosition": false,
+                  "scrollEnabled": true,
                   "size": Object {
                     "height": 1334,
                     "width": 770,
@@ -1065,6 +1073,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
               "drawerInset": 62,
               "hasScrolledToInitialSubmission": false,
               "hasSetInitialDrawerPosition": false,
+              "scrollEnabled": true,
               "size": Object {
                 "height": 1334,
                 "width": 770,
@@ -1114,6 +1123,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   "drawerInset": 62,
                   "hasScrolledToInitialSubmission": false,
                   "hasSetInitialDrawerPosition": false,
+                  "scrollEnabled": true,
                   "size": Object {
                     "height": 1334,
                     "width": 770,
@@ -1226,6 +1236,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
               "drawerInset": 62,
               "hasScrolledToInitialSubmission": false,
               "hasSetInitialDrawerPosition": false,
+              "scrollEnabled": true,
               "size": Object {
                 "height": 1334,
                 "width": 770,
@@ -1295,6 +1306,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   "drawerInset": 62,
                   "hasScrolledToInitialSubmission": false,
                   "hasSetInitialDrawerPosition": false,
+                  "scrollEnabled": true,
                   "size": Object {
                     "height": 1334,
                     "width": 770,
@@ -1407,6 +1419,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
     selectedAttachmentIndex={null}
     selectedIndex={null}
     selectedTabIndex={-1}
+    setScrollEnabled={[Function]}
     submissionProps={
       Object {
         "avatarURL": "http://www.fillmurray.com/100/100",

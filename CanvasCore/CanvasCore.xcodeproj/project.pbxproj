@@ -501,6 +501,8 @@
 		9F2E36382050918500A2B031 /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2E36372050918500A2B031 /* FeatureFlags.swift */; };
 		9F544E051FBB766E00BB2D84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F544E071FBB766E00BB2D84 /* InfoPlist.strings */; };
 		9F544E0A1FBB766E00BB2D84 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F544E0C1FBB766E00BB2D84 /* Localizable.strings */; };
+		9FA866972086820D000ECFC9 /* Adjustable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA866962086820D000ECFC9 /* Adjustable.swift */; };
+		9FB85499208677DB007499DA /* AdjustableManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB85498208677DB007499DA /* AdjustableManager.m */; };
 		9FCA1A11205AC2FC00ECB5E9 /* AlertControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA1A10205AC2FC00ECB5E9 /* AlertControls.m */; };
 		9FD18B6B2052DE6800119927 /* LTITools.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD18B6A2052DE6800119927 /* LTITools.m */; };
 		B1411D5A1FE825ED00CD4967 /* CoreDataSyncHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1411D591FE825ED00CD4967 /* CoreDataSyncHelper.swift */; };
@@ -1095,9 +1097,11 @@
 		9F5BA8591FBB76A800BDC402 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9F5BA85A1FBB76A800BDC402 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9F5BA85B1FBB76A800BDC402 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/TimedQuizViewController.strings; sourceTree = "<group>"; };
+		9FA866962086820D000ECFC9 /* Adjustable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Adjustable.swift; sourceTree = "<group>"; };
 		9FB32E191FBB76700049DA58 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9FB32E1A1FBB76700049DA58 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9FB32E1B1FBB76710049DA58 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/TimedQuizViewController.strings; sourceTree = "<group>"; };
+		9FB85498208677DB007499DA /* AdjustableManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdjustableManager.m; sourceTree = "<group>"; };
 		9FBCE5EF1FBB767300D0CB43 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		9FBCE5F01FBB767300D0CB43 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		9FBCE5F11FBB767300D0CB43 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/TimedQuizViewController.strings"; sourceTree = "<group>"; };
@@ -1735,6 +1739,8 @@
 				2CD3B49B206AB38E006339D8 /* APIBridge.m */,
 				B196F79A206AB60400DE640F /* CoreDataSync.m */,
 				B1411D591FE825ED00CD4967 /* CoreDataSyncHelper.swift */,
+				9FB85498208677DB007499DA /* AdjustableManager.m */,
+				9FA866962086820D000ECFC9 /* Adjustable.swift */,
 			);
 			path = "React Native Modules";
 			sourceTree = "<group>";
@@ -3177,6 +3183,7 @@
 				49CE972E1F8FFEA600121A43 /* Assignment+Collections.swift in Sources */,
 				490F91F11FB0F94A00A7DA38 /* CanvasWebViewController.swift in Sources */,
 				49CE96611F8FF41B00121A43 /* TimedQuizViewController.swift in Sources */,
+				9FB85499208677DB007499DA /* AdjustableManager.m in Sources */,
 				3B210C2A2051DCA50062F6A7 /* PageViewEventViewControllerLoggingProtocol.swift in Sources */,
 				497CA77B1F82D19A00501613 /* UIUserInterfaceSizeClassExtensions.swift in Sources */,
 				496C7D641F8BEF690010DC03 /* TabBarBadgeCounts.swift in Sources */,
@@ -3414,6 +3421,7 @@
 				49CE96A41F8FF4A700121A43 /* Session+Progress.swift in Sources */,
 				4961F6751F8FB9620093EC86 /* FileUploadTableViewCell.swift in Sources */,
 				49DD23961F8F9EAE004727F7 /* DiscussionTopic+Network.swift in Sources */,
+				9FA866972086820D000ECFC9 /* Adjustable.swift in Sources */,
 				493020571F902364006BD777 /* RAC+SoLazy.swift in Sources */,
 				4961F6271F8FB7050093EC86 /* Course+Collections.swift in Sources */,
 				4961F5401F8FAD9A0093EC86 /* WhizzyWigTableViewCell.swift in Sources */,
