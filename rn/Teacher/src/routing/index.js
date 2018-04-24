@@ -111,6 +111,7 @@ export function wrapComponentInProviders (moduleName: string, generator: () => a
         const headers = {
           // $FlowFixMe
           'Authorization': `Bearer ${session.authToken}`,
+          'GraphQL-Metrics': true,
         }
 
         const client = new ApolloClient({
