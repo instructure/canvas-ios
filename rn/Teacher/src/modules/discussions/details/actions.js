@@ -26,7 +26,7 @@ export let Actions = (api: CanvasApi): * => ({
         api.getAllDiscussionEntries(context, contextID, discussionID, includeNewEntries),
         api.getDiscussion(context, contextID, discussionID),
       ]).then(([view, discussion]) => {
-        if (discussion.data.assignment_id) {
+        if (discussion.data.assignment_id && context !== 'groups') {
           return Promise.all([
             Promise.resolve(view),
             Promise.resolve(discussion),

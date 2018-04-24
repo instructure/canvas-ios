@@ -60,6 +60,40 @@ describe('discussion detail tests', () => {
     ])
   })
 
+  it('should refresh discussion entries with group context and assignment', async () => {
+    const context = 'groups'
+    const contextID = '1'
+    const discussionID = '2'
+    const discussionView = template.discussionView({ view: [] })
+    const discussion = template.discussion({ assignment_id: '42' })
+    const assignment = template.assignment({ id: '42' })
+
+    const api = {
+      getAllDiscussionEntries: apiResponse(discussionView),
+      getDiscussion: apiResponse(discussion),
+      getAssignment: apiResponse(assignment),
+    }
+    const actions = Actions(api)
+    const action = actions.refreshDiscussionEntries(context, contextID, discussionID, false)
+    const state = await testAsyncAction(action)
+
+    expect(state).toMatchObject([
+      {
+        type: actions.refreshDiscussionEntries.toString(),
+        pending: true,
+      },
+      {
+        type: actions.refreshDiscussionEntries.toString(),
+        payload: {
+          result: [{ data: discussionView }, { data: discussion }],
+          context,
+          contextID,
+          discussionID: discussionID,
+        },
+      },
+    ])
+  })
+
   it('should refresh non-assignment discussion entries', async () => {
     const context = 'courses'
     const contextID = '1'
