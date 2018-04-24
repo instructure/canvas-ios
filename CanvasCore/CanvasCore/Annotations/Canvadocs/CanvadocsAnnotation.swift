@@ -51,7 +51,7 @@ struct CanvadocsAnnotation: Codable {
     let userName: String
     let createdAt: Date?
     let modifiedAt: Date?
-    let page: UInt
+    let page: PageIndex
     let type: CanvadocsAnnotationType
     
     enum CodingKeys: String, CodingKey {
@@ -90,7 +90,7 @@ struct CanvadocsAnnotation: Codable {
         self.userName = try container.decode(String.self, forKey: .userName)
         self.createdAt = try container.decode(Date.self, forKey: .createdAt)
         self.modifiedAt = try container.decodeIfPresent(Date.self, forKey: .modifiedAt)
-        self.page = try container.decode(UInt.self, forKey: .page)
+        self.page = try container.decode(PageIndex.self, forKey: .page)
         
         let type = try container.decode(String.self, forKey: .type)
         switch type {
@@ -264,7 +264,7 @@ struct CanvadocsAnnotation: Codable {
             self.type = .square(color: color, width: squareAnnot.lineWidth, rect: squareAnnot.boundingBox)
         default:
             if let commentReplyAnnot = pspdfAnnotation as? CanvadocsCommentReplyAnnotation {
-                self.type = .commentReply(parent: commentReplyAnnot.inReplyTo ?? "", text: commentReplyAnnot.contents ?? "")
+                self.type = .commentReply(parent: commentReplyAnnot.inReplyToName ?? "", text: commentReplyAnnot.contents ?? "")
             } else if let pointAnnot = pspdfAnnotation as? CanvadocsPointAnnotation {
                 let color = pspdfAnnotation.color?.hex ?? CanvadocsAnnotationColor.blue.rawValue
                 self.type = .point(color: color, rect: pointAnnot.boundingBox)
@@ -312,7 +312,7 @@ struct CanvadocsAnnotation: Codable {
             pspdfAnnotation = pointAnnotation
         case .commentReply(let parent, let text):
             let replyAnnot = CanvadocsCommentReplyAnnotation(contents: text)
-            replyAnnot.inReplyTo = parent
+            replyAnnot.inReplyToName = parent
             pspdfAnnotation = replyAnnot
         case .ink(let gestures, let color, let rect):
             let inkAnnotation = PSPDFInkAnnotation()

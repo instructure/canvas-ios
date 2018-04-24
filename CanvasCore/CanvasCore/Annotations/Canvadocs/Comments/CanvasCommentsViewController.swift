@@ -70,7 +70,7 @@ class CanvadocsCommentsViewController: UIViewController {
             if !self.replyToolbar.replyTextView.text.isEmpty { // make sure they actually entered something
                 let newAnnotation = CanvadocsCommentReplyAnnotation(contents: self.replyToolbar.replyTextView.text)
                 newAnnotation.pageIndex = self.annotation.pageIndex
-                newAnnotation.inReplyTo = self.annotation.name
+                newAnnotation.inReplyToName = self.annotation.name
                 self.comments.append(newAnnotation)
                 self.pdfDocument.add([newAnnotation], options: [:])
                 self.replyToolbar.clearText()

@@ -69,7 +69,7 @@ abstract_target 'defaults' do
   pod 'DeviceKit', '~> 1.0'
   pod 'TPKeyboardAvoiding', '~> 1.3'
   pod 'SwiftSimplify'
-  pod 'PSPDFKit', podspec: 'https://customers.pspdfkit.com/cocoapods/8YzxfVzsGsqs4HKYsejmoeD6WEJ9ma/pspdfkit/7.3.1.podspec'
+  pod 'PSPDFKit', podspec: 'https://customers.pspdfkit.com/cocoapods/8YzxfVzsGsqs4HKYsejmoeD6WEJ9ma/pspdfkit/7.5.0.podspec'
 
   target 'Parent' do
     project 'Parent/Parent.xcodeproj'

@@ -59,7 +59,7 @@ class CanvadocsAnnotationProvider: PSPDFContainerAnnotationProvider {
     func getReplies (to: PSPDFAnnotation) -> [CanvadocsCommentReplyAnnotation] {
         var replies: [CanvadocsCommentReplyAnnotation] = []
         for annotation in allAnnotations {
-            if let reply = annotation as? CanvadocsCommentReplyAnnotation, reply.inReplyTo == to.name {
+            if let reply = annotation as? CanvadocsCommentReplyAnnotation, reply.inReplyToName == to.name {
                 replies.append(reply)
             }
         }

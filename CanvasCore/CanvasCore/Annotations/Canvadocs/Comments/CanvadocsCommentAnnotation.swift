@@ -55,5 +55,5 @@ class CanvadocsPointAnnotation: PSPDFStampAnnotation {
 }
 
 class CanvadocsCommentReplyAnnotation: PSPDFNoteAnnotation {
-    var inReplyTo: String?
+    var inReplyToName: String?
 }
