@@ -110,6 +110,7 @@ export type CreateDiscussionParameters = {
   remove_attachment?: boolean,
   specific_sections?: string,
   sections?: Section[],
+  group_topic_children?: DiscussionGroupTopicChildren[],
 }
 
 export type UpdateDiscussionParameters = CreateDiscussionParameters & {
@@ -122,3 +123,8 @@ export type CreateEntryParameters = {
 }
 
 export type DiscussionOriginEntity = CourseState | GroupState
+
+export type DiscussionGroupTopicChildren = {
+  id: string,
+  group_id: string,
+}

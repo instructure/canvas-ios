@@ -241,6 +241,7 @@ export function mapStateToProps ({ entities }: AppState, { context, contextID }:
   let courseName = null
   let pending = false
   let refs: EntityRefs = []
+  let userGroups = []
   let permissions = {
   }
 
@@ -254,6 +255,7 @@ export function mapStateToProps ({ entities }: AppState, { context, contextID }:
       courseName = course.course.name
       permissions = course.permissions || permissions
       pending = !!course.discussions.pending
+      userGroups = entities.groups && Object.keys(entities.groups) || []
     } else if (context === 'groups' &&
       entities.groups &&
       entities.groups[contextID]) {
@@ -266,6 +268,22 @@ export function mapStateToProps ({ entities }: AppState, { context, contextID }:
     }
 
     discussions = refs.map(ref => entities.discussions[ref].data)
+
+    //  check for discussions that (have group discussion children) should be re-directed to a group discussion
+    discussions = discussions.map(d => {
+      if (d.group_category_id && d.group_topic_children) {
+        let groupDiscussion = null
+        d.group_topic_children.forEach(groupChildDiscussion => {
+          if (userGroups.includes(groupChildDiscussion.group_id)) {
+            groupDiscussion = groupChildDiscussion
+          }
+        })
+        if (groupDiscussion) {
+          return { ...d, html_url: `/groups/${groupDiscussion.group_id}/discussion_topics/${groupDiscussion.id}` }
+        }
+      }
+      return d
+    })
   }
 
   return {

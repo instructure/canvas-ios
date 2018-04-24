@@ -266,6 +266,59 @@ describe('map state to prop', () => {
     })
   })
 
+  it('maps state to props course discussions that have group children', () => {
+    const discussions = [
+      template.discussion({ id: '1', group_category_id: '5', group_topic_children: [{ id: '3', group_id: '10' }] }),
+      template.discussion({ id: '2', group_category_id: '5', group_topic_children: [{ id: '4', group_id: '11' }] }),
+    ]
+    const state: AppState = template.appState({
+      entities: {
+        ...template.appState().entities,
+        courses: {
+          '1': {
+            color: '#fff',
+            course: {
+              name: 'Foo',
+            },
+            discussions: {
+              pending: 0,
+              error: null,
+              refs: ['1', '2'],
+            },
+          },
+        },
+        discussions: {
+          '1': {
+            data: discussions[0],
+          },
+          '2': {
+            data: discussions[1],
+          },
+          '3': {
+            data: template.discussion({ title: 'groupd discussion 3' }),
+          },
+          '4': {
+            data: template.discussion({ title: 'groupd discussion 4' }),
+          },
+        },
+        groups: {
+          '10': { data: { name: 'A' } },
+          '11': { data: { name: 'B' } },
+        },
+      },
+    })
+
+    expect(
+      mapStateToProps(state, { context: 'courses', contextID: '1' })
+    ).toMatchObject({
+      discussions: [
+        { ...discussions[0], html_url: '/groups/10/discussion_topics/3' },
+        { ...discussions[1], html_url: '/groups/11/discussion_topics/4' },
+      ],
+      courseColor: '#fff',
+    })
+  })
+
   it('maps state to props group context', () => {
     const discussions = [
       template.discussion({ id: '1' }),
