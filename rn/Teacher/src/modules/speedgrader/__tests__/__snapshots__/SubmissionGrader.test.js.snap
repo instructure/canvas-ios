@@ -450,7 +450,7 @@ exports[`SubmissionGrader renders wide 1`] = `
       Object {
         "borderBottomColor": "#C7CDD1",
         "borderBottomWidth": 0.5,
-        "paddingBottom": 4,
+        "paddingBottom": 16,
       }
     }
     submissionID="1"
@@ -654,7 +654,7 @@ exports[`SubmissionGrader renders wide 1`] = `
                                               Object {
                                                           "borderBottomColor": "#C7CDD1",
                                                           "borderBottomWidth": 0.5,
-                                                          "paddingBottom": 4,
+                                                          "paddingBottom": 16,
                                                         }
                                   }
                                   submissionID="1"
@@ -978,7 +978,7 @@ exports[`SubmissionGrader renders wide 1`] = `
                                               Object {
                                                           "borderBottomColor": "#C7CDD1",
                                                           "borderBottomWidth": 0.5,
-                                                          "paddingBottom": 4,
+                                                          "paddingBottom": 16,
                                                         }
                                   }
                                   submissionID="1"

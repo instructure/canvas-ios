@@ -316,7 +316,7 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
   },
   splitViewHeader: {
-    paddingBottom: 4,
+    paddingBottom: 16,
     borderBottomColor: colors.seperatorColor,
     borderBottomWidth: StyleSheet.hairlineWidth,
   },

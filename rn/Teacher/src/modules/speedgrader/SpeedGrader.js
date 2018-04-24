@@ -144,8 +144,10 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
   }
 
   onLayout = (event: any) => {
+    let viewableAreaChanged = false
     const { width, height } = event.nativeEvent.layout
     if (height !== 0 && (width !== this.state.size.width || height !== this.state.size.height)) {
+      viewableAreaChanged = true
       this.setState({ size: { width, height } })
     }
 
@@ -159,8 +161,10 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
         nextState = { ...nextState, hasSetInitialDrawerPosition: true }
       }
 
-      if (this._flatList && !prevState.hasScrolledToInitialSubmission) {
-        this._flatList.scrollToOffset({ animated: false, offset: this.state.size.width * this.state.currentPageIndex })
+      const scrollToCurrentPageIndex = !prevState.hasScrolledToInitialSubmission || viewableAreaChanged
+
+      if (this._flatList && scrollToCurrentPageIndex) {
+        this._flatList.scrollToOffset({ animated: false, offset: nextState.size.width * this.state.currentPageIndex })
         nextState = { ...nextState, hasScrolledToInitialSubmission: true }
       }
 
