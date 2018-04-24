@@ -2541,14 +2541,14 @@ static CGFloat overallProgressForDictionaries(NSArray *progressDicts) {
                 NSString *arrayKey = [NSString stringWithFormat:@"%@[]", key];
                 NSMutableArray *kvPairs = [NSMutableArray array];
                 for (id arrayValue in theArray) {
-                    NSString *pair = [NSString stringWithFormat:@"%@=%@", [arrayKey realURLEncodedString], [[arrayValue description] realURLEncodedString]];
+                    NSString *pair = [NSString stringWithFormat:@"%@=%@", [arrayKey formEncodedString], [[arrayValue description] formEncodedString]];
                     [kvPairs addObject:pair];
                 }
                 [bodyString appendString:[kvPairs componentsJoinedByString:@"&"]];
             }
             else {
                 [bodyString appendFormat:@"%@=%@",
-                 [key realURLEncodedString], [value realURLEncodedString]];
+                 [key formEncodedString], [value formEncodedString]];
             }
         }
         

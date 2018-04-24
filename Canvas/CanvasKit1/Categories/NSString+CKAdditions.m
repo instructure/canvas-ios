@@ -54,6 +54,16 @@
     return [self stringByAddingPercentEncodingWithAllowedCharacters:allowed];
 }
 
+- (NSString *)formEncodedString {
+    NSString *unreserved = @"*-._ ";
+    NSMutableCharacterSet *allowed = [NSMutableCharacterSet alphanumericCharacterSet];
+    [allowed addCharactersInString:unreserved];
+
+    NSString *encoded = [self stringByAddingPercentEncodingWithAllowedCharacters:allowed];
+    encoded = [encoded stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    return encoded;
+}
+
 - (NSString *)ck_stringByMatching:(NSString *)regexStr capture:(NSUInteger)captureGroup {
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexStr options:0 error:NULL];
     if (regex == nil) {

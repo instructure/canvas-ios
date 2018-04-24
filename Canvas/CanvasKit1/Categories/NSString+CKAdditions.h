@@ -27,6 +27,8 @@
 
 - (NSString *)realURLEncodedString;
 
+- (NSString *)formEncodedString;
+
 - (NSString *)ck_stringByMatching:(NSString *)regex capture:(NSUInteger)captureGroup;
 
 - (NSDictionary *)queryParameters;
