@@ -161,22 +161,6 @@ public class CanvasWebView: WKWebView {
         }
     }
     
-    public override func layoutSubviews() {
-        super.layoutSubviews()
-        updateViewport()
-    }
-    
-    func updateViewport() {
-        // don't mess with the viewport for external sources
-        if case .some(.url) = source {
-            return
-        }
-
-        let width = Int(bounds.width)
-        let js = "(function (width) {let metaViewport = document.querySelector('meta[name=viewport]');if (metaViewport) {metaViewport.content='width = ' + width + ', user-scalable = no';} else {let meta = document.createElement('meta');meta.setAttribute( 'name', 'viewport' );meta.setAttribute( 'content', 'width = '+ width + ', user-scalable = yes' );document.getElementsByTagName('head')[0].appendChild(meta);}})(\(width))"
-        evaluateJavaScript(js, completionHandler: nil)
-    }
-    
     public func htmlContentHeight(completionHandler: @escaping (CGFloat) -> Void) {
         evaluateJavaScript("document.getElementById('_end_').offsetTop") { result, error in
             guard let height = result as? NSNumber else { completionHandler(0.0); return }
@@ -260,9 +244,6 @@ extension CanvasWebView: WKNavigationDelegate {
     }
 
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        if (!webView.isLoading) {
-            updateViewport()
-        }
         finishedLoading?()
     }
 
