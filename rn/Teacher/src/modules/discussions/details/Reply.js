@@ -38,6 +38,7 @@ import { isTeacher } from '../../app'
 import canvas from '../../../canvas-api'
 import httpClient from '../../../canvas-api/httpClient'
 import isEqual from 'lodash/isEqual'
+import RichContent from '../../../common/components/RichContent'
 
 type ReadState = 'read' | 'unread'
 
@@ -66,6 +67,7 @@ export type Props = {
 
 type State = {
   rating: ?number, // used to track rating changes
+  useSimpleRenderer: boolean,
 }
 
 export default class Reply extends Component<Props, State> {
@@ -78,12 +80,17 @@ export default class Reply extends Component<Props, State> {
 
   state: State = {
     rating: null,
+    useSimpleRenderer: this.useSimpleRenderer(this.props.reply.message),
   }
 
   componentWillReceiveProps (nextProps: Props) {
     if (this.props.rating !== nextProps.rating || this.props.reply.rating_sum !== nextProps.reply.rating_sum) {
       // rating was refreshed so reset state's rating
       this.setState({ rating: null })
+    }
+
+    if (this.props.reply.message !== nextProps.reply.message) {
+      this.setState({ useSimpleRenderer: this.useSimpleRenderer(nextProps.reply.message) })
     }
   }
 
@@ -100,6 +107,14 @@ export default class Reply extends Component<Props, State> {
       this.props.myPath.length !== newProps.myPath.length ||
       this.state.rating !== newState.rating
     )
+  }
+
+  useSimpleRenderer (message: ?string) {
+    if (!message) return true
+    let regex = new RegExp('<([a-zA-z]+)', 'g')
+    let results = message.match(regex)
+    if (!results) return false
+    return results.every(result => RichContent.supportedTags.includes(result.substring(1)))
   }
 
   showAttachment = () => {
@@ -166,17 +181,19 @@ export default class Reply extends Component<Props, State> {
               {user.display_name}
             </Text>
             <Text style={style.date}>{i18n("{ date, date, 'MMM d' } at { date, time, short }", { date: new Date(reply.updated_at) })}</Text>
-            <CanvasWebView
-              scrollEnabled={false}
-              style={{ flex: 1 }}
-              html={message}
-              navigator={this.props.navigator}
-              ref={(ref) => { this.webView = ref }}
-              onFinishedLoading={this.onLoad}
-              onMessage={this.onMessage}
-              heightCacheKey={reply.id}
-            />
-
+            {this.state.useSimpleRenderer || reply.deleted
+              ? <RichContent html={message} navigator={this.props.navigator} />
+              : <CanvasWebView
+                  scrollEnabled={false}
+                  style={{ flex: 1 }}
+                  html={message}
+                  navigator={this.props.navigator}
+                  ref={(ref) => { this.webView = ref }}
+                  onFinishedLoading={this.onLoad}
+                  onMessage={this.onMessage}
+                  heightCacheKey={reply.id}
+                />
+            }
             {reply.attachment &&
               <TouchableHighlight testID={`discussion-reply.${reply.id}.attachment`} onPress={this.showAttachment}>
                 <View style={style.attachment}>

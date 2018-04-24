@@ -77,7 +77,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             })
         }
         HelmManager.shared.onReactReload = {
-            NativeLoginManager.shared().stopMasquerding()
             self.showLoadingState()
         }
     }

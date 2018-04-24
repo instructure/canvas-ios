@@ -34,7 +34,7 @@ export type DiscussionView = {
 export type DiscussionReply = {
   created_at: string,
   id: string,
-  message: string,
+  message: ?string,
   parent_id: ?string,
   rating_count: ?number,
   rating_sum: ?number,

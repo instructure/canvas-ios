@@ -127,8 +127,7 @@ exports[`DiscussionReplies ratings renders rating after user rates for first tim
       >
         May 23 at 11:12 AM
       </Text>
-      <CanvasWebView
-        heightCacheKey="1"
+      <RichContent
         html="<p>1.0</p>"
         navigator={
           Object {
@@ -138,14 +137,6 @@ exports[`DiscussionReplies ratings renders rating after user rates for first tim
             "pop": [Function],
             "show": [Function],
             "traitCollection": [Function],
-          }
-        }
-        onFinishedLoading={[Function]}
-        onMessage={[Function]}
-        scrollEnabled={false}
-        style={
-          Object {
-            "flex": 1,
           }
         }
       />
@@ -400,8 +391,7 @@ exports[`DiscussionReplies ratings renders rating after user updates rating 1`] 
       >
         May 23 at 11:12 AM
       </Text>
-      <CanvasWebView
-        heightCacheKey="1"
+      <RichContent
         html="<p>1.0</p>"
         navigator={
           Object {
@@ -411,14 +401,6 @@ exports[`DiscussionReplies ratings renders rating after user updates rating 1`] 
             "pop": [Function],
             "show": [Function],
             "traitCollection": [Function],
-          }
-        }
-        onFinishedLoading={[Function]}
-        onMessage={[Function]}
-        scrollEnabled={false}
-        style={
-          Object {
-            "flex": 1,
           }
         }
       />
@@ -685,8 +667,7 @@ exports[`DiscussionReplies renders 1`] = `
       >
         May 23 at 11:12 AM
       </Text>
-      <CanvasWebView
-        heightCacheKey="1"
+      <RichContent
         html="<p>1.0</p>"
         navigator={
           Object {
@@ -696,14 +677,6 @@ exports[`DiscussionReplies renders 1`] = `
             "pop": [Function],
             "show": [Function],
             "traitCollection": [Function],
-          }
-        }
-        onFinishedLoading={[Function]}
-        onMessage={[Function]}
-        scrollEnabled={false}
-        style={
-          Object {
-            "flex": 1,
           }
         }
       />

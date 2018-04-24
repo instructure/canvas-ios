@@ -23,7 +23,6 @@ extension AppDelegate: RCTBridgeDelegate {
         }
 
         HelmManager.shared.onReactReload = {
-            NativeLoginManager.shared().stopMasquerding()
             self.showLoadingState()
         }
 

@@ -40,17 +40,17 @@ export function Button ({ style, containerStyle, ...props }: Object) {
 
 export class LinkButton extends PureComponent<Object> {
   render () {
+    const {
+      textStyle,
+      ...props
+    } = this.props
     const brandingStyles = { color: colors.primaryButtonColor }
     const textAttributes = this.props.textAttributes || {}
-    const textStyles = [linkButtonStyles.textColor, linkButtonStyles.font, brandingStyles, textAttributes, this.props.textStyle].filter(Boolean)
-    const propsWithoutTextStyle = {
-      ...this.props,
-    }
-    delete propsWithoutTextStyle.textStyle
+    const textStyles = [linkButtonStyles.textColor, linkButtonStyles.font, brandingStyles, textAttributes, textStyle].filter(Boolean)
     return (
       <TouchableOpacity
         hitSlop={{ top: 15, left: 15, bottom: 15, right: 15 }}
-        {...propsWithoutTextStyle}
+        {...props}
         accessibilityTraits='button'
       >
         <View>

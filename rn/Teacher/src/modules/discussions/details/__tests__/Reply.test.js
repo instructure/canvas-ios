@@ -65,7 +65,7 @@ describe('DiscussionReplies', () => {
   it('renders deleted', () => {
     props.reply.deleted = true
     let tree = shallow(<Reply {...props} />)
-    let webview = tree.find('CanvasWebView')
+    let webview = tree.find('RichContent')
     expect(webview.props().html.includes('Deleted this reply.')).toEqual(true)
   })
 
@@ -233,7 +233,9 @@ describe('DiscussionReplies', () => {
       const url = 'https://canvas.instructure.com/files/1/preview?verifier=1234'
       const promise = Promise.resolve({ data: template.file({ url }) })
       httpClient().get = jest.fn(() => promise)
-      const screen = shallow(<Reply {...props} />)
+      let imageReply = template.discussionReply({ id: '1', message: `<img src="${url}" />` })
+
+      const screen = shallow(<Reply {...props} reply={imageReply} />)
       const webView = screen.find('CanvasWebView')
       webView.getElement().ref({ evaluateJavaScript })
 

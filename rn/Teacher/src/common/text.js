@@ -27,10 +27,15 @@ import colors from './colors'
 import flattenStyle from 'flattenStyle'
 
 export const REGULAR_FONT = '.SFUIDisplay'
+export const REGULAR_FONT_ITALIC = '.SFUIDisplay-italic'
 export const MEDIUM_FONT = '.SFUIDisplay-medium'
+export const MEDIUM_FONT_ITALIC = 'SFUIDisplay-medium-italic'
 export const SEMI_BOLD_FONT = '.SFUIDisplay-semibold'
+export const SEMI_BOLD_FONT_ITALIC = '.SFUIDisplay-semibold-italic'
 export const BOLD_FONT = '.SFUIDisplay-bold'
+export const BOLD_FONT_ITALIC = '.SFUIDisplay-bold-italic'
 export const HEAVY_FONT = '.SFUIDisplay-heavy'
+export const HEAVY_FONT_ITALIC = '.SFUIDisplay-heavy-italic'
 
 export function Text ({ style, ...props }: Object) {
   let font = fontFamilyFromStyle(style)
@@ -113,22 +118,50 @@ export function DotSeparated (props: Object) {
   return <Separated {...props} separator={'  •  '} />
 }
 
-const FontWeight: { [string]: string } = {
-  normal: REGULAR_FONT,
-  bold: BOLD_FONT,            // 700 weight
-  semibold: SEMI_BOLD_FONT,   // 600 weight
-  '700': BOLD_FONT,
-  '600': SEMI_BOLD_FONT,
-  '500': MEDIUM_FONT,
-  '300': REGULAR_FONT,
+const FontWeight = {
+  normal: {
+    normal: REGULAR_FONT,
+    italic: REGULAR_FONT_ITALIC,
+  },
+  bold: { // 700 weight
+    normal: BOLD_FONT,
+    italic: BOLD_FONT_ITALIC,
+  },
+  semibold: { // 600 weight
+    normal: SEMI_BOLD_FONT,
+    italic: SEMI_BOLD_FONT_ITALIC,
+  },
+  medium: { // 500 weight
+    normal: MEDIUM_FONT,
+    italic: MEDIUM_FONT_ITALIC,
+  },
+  '700': { // 700 weight
+    normal: BOLD_FONT,
+    italic: BOLD_FONT_ITALIC,
+  },
+  '600': {
+    normal: SEMI_BOLD_FONT,
+    italic: SEMI_BOLD_FONT_ITALIC,
+  },
+  '500': {
+    normal: MEDIUM_FONT,
+    italic: MEDIUM_FONT_ITALIC,
+  },
+  '400': {
+    normal: REGULAR_FONT,
+    italic: REGULAR_FONT_ITALIC,
+  },
+  '300': {
+    normal: REGULAR_FONT,
+    italic: REGULAR_FONT_ITALIC,
+  },
 }
 
 function fontFamilyFromStyle (style: Object): string {
   let styleObj = flattenStyle(style) || {}
-  let fontWeight = styleObj.fontWeight
-  let defaultKey = 'normal'
-  let weight = fontWeight || defaultKey
-  return FontWeight[weight] || FontWeight[defaultKey]
+  let fontWeight = styleObj.fontWeight || 'normal'
+  let fontStyle = styleObj.fontStyle || 'normal'
+  return FontWeight[fontWeight][fontStyle]
 }
 
 const styles = StyleSheet.create({

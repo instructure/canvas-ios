@@ -1539,46 +1539,34 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                   >
                     May 23 at 11:12 AM
                   </Text>
-                  <View
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
                     style={
                       Object {
-                        "flex": 1,
+                        "fontSize": 16,
                       }
                     }
-                    testID="web-container.view"
                   >
-                    <CanvasWebView
-                      heightCacheKey="25472827"
-                      html="<p>1.0</p>"
-                      navigator={
-                        Object {
-                          "dismiss": [Function],
-                          "dismissAllModals": [Function],
-                          "isModal": false,
-                          "pop": [Function],
-                          "show": [Function],
-                          "traitCollection": [Function],
-                        }
-                      }
-                      onError={[Function]}
-                      onFinishedLoading={[Function]}
-                      onHeightChange={[Function]}
-                      onMessage={[Function]}
-                      onNavigation={[Function]}
-                      scrollEnabled={false}
-                      source={
-                        Object {
-                          "baseURL": "http://mobiledev.instructure.com/",
-                          "html": "<p>1.0</p>",
-                        }
-                      }
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
                       style={
-                        Object {
-                          "flex": 1,
-                        }
+                        Array [
+                          Object {
+                            "fontSize": 16,
+                          },
+                          undefined,
+                        ]
                       }
-                    />
-                  </View>
+                    >
+                      
+                      1.0
+                      
+                    </Text>
+                  </Text>
                   <View
                     style={
                       Array [
@@ -2517,46 +2505,34 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                   >
                     May 23 at 11:12 AM
                   </Text>
-                  <View
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
                     style={
                       Object {
-                        "flex": 1,
+                        "fontSize": 16,
                       }
                     }
-                    testID="web-container.view"
                   >
-                    <CanvasWebView
-                      heightCacheKey="25472827"
-                      html="<p>1.0</p>"
-                      navigator={
-                        Object {
-                          "dismiss": [Function],
-                          "dismissAllModals": [Function],
-                          "isModal": false,
-                          "pop": [Function],
-                          "show": [Function],
-                          "traitCollection": [Function],
-                        }
-                      }
-                      onError={[Function]}
-                      onFinishedLoading={[Function]}
-                      onHeightChange={[Function]}
-                      onMessage={[Function]}
-                      onNavigation={[Function]}
-                      scrollEnabled={false}
-                      source={
-                        Object {
-                          "baseURL": "http://mobiledev.instructure.com/",
-                          "html": "<p>1.0</p>",
-                        }
-                      }
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
                       style={
-                        Object {
-                          "flex": 1,
-                        }
+                        Array [
+                          Object {
+                            "fontSize": 16,
+                          },
+                          undefined,
+                        ]
                       }
-                    />
-                  </View>
+                    >
+                      
+                      1.0
+                      
+                    </Text>
+                  </Text>
                   <View />
                 </View>
               </View>
@@ -3490,46 +3466,34 @@ exports[`DiscussionDetails renders in student app 1`] = `
                   >
                     May 23 at 11:12 AM
                   </Text>
-                  <View
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
                     style={
                       Object {
-                        "flex": 1,
+                        "fontSize": 16,
                       }
                     }
-                    testID="web-container.view"
                   >
-                    <CanvasWebView
-                      heightCacheKey="25472827"
-                      html="<p>1.0</p>"
-                      navigator={
-                        Object {
-                          "dismiss": [Function],
-                          "dismissAllModals": [Function],
-                          "isModal": false,
-                          "pop": [Function],
-                          "show": [Function],
-                          "traitCollection": [Function],
-                        }
-                      }
-                      onError={[Function]}
-                      onFinishedLoading={[Function]}
-                      onHeightChange={[Function]}
-                      onMessage={[Function]}
-                      onNavigation={[Function]}
-                      scrollEnabled={false}
-                      source={
-                        Object {
-                          "baseURL": "http://mobiledev.instructure.com/",
-                          "html": "<p>1.0</p>",
-                        }
-                      }
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
                       style={
-                        Object {
-                          "flex": 1,
-                        }
+                        Array [
+                          Object {
+                            "fontSize": 16,
+                          },
+                          undefined,
+                        ]
                       }
-                    />
-                  </View>
+                    >
+                      
+                      1.0
+                      
+                    </Text>
+                  </Text>
                   <View
                     style={
                       Array [
@@ -6664,46 +6628,34 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                   >
                     May 23 at 11:12 AM
                   </Text>
-                  <View
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
                     style={
                       Object {
-                        "flex": 1,
+                        "fontSize": 16,
                       }
                     }
-                    testID="web-container.view"
                   >
-                    <CanvasWebView
-                      heightCacheKey="4"
-                      html="<p>1.0</p>"
-                      navigator={
-                        Object {
-                          "dismiss": [Function],
-                          "dismissAllModals": [Function],
-                          "isModal": false,
-                          "pop": [Function],
-                          "show": [Function],
-                          "traitCollection": [Function],
-                        }
-                      }
-                      onError={[Function]}
-                      onFinishedLoading={[Function]}
-                      onHeightChange={[Function]}
-                      onMessage={[Function]}
-                      onNavigation={[Function]}
-                      scrollEnabled={false}
-                      source={
-                        Object {
-                          "baseURL": "http://mobiledev.instructure.com/",
-                          "html": "<p>1.0</p>",
-                        }
-                      }
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
                       style={
-                        Object {
-                          "flex": 1,
-                        }
+                        Array [
+                          Object {
+                            "fontSize": 16,
+                          },
+                          undefined,
+                        ]
                       }
-                    />
-                  </View>
+                    >
+                      
+                      1.0
+                      
+                    </Text>
+                  </Text>
                   <View
                     style={
                       Array [
@@ -7055,46 +7007,34 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                   >
                     May 23 at 11:12 AM
                   </Text>
-                  <View
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
                     style={
                       Object {
-                        "flex": 1,
+                        "fontSize": 16,
                       }
                     }
-                    testID="web-container.view"
                   >
-                    <CanvasWebView
-                      heightCacheKey="5"
-                      html="<p>1.0</p>"
-                      navigator={
-                        Object {
-                          "dismiss": [Function],
-                          "dismissAllModals": [Function],
-                          "isModal": false,
-                          "pop": [Function],
-                          "show": [Function],
-                          "traitCollection": [Function],
-                        }
-                      }
-                      onError={[Function]}
-                      onFinishedLoading={[Function]}
-                      onHeightChange={[Function]}
-                      onMessage={[Function]}
-                      onNavigation={[Function]}
-                      scrollEnabled={false}
-                      source={
-                        Object {
-                          "baseURL": "http://mobiledev.instructure.com/",
-                          "html": "<p>1.0</p>",
-                        }
-                      }
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
                       style={
-                        Object {
-                          "flex": 1,
-                        }
+                        Array [
+                          Object {
+                            "fontSize": 16,
+                          },
+                          undefined,
+                        ]
                       }
-                    />
-                  </View>
+                    >
+                      
+                      1.0
+                      
+                    </Text>
+                  </Text>
                   <View
                     style={
                       Array [
@@ -8965,46 +8905,34 @@ exports[`DiscussionDetails renders with replies 1`] = `
                   >
                     May 23 at 11:12 AM
                   </Text>
-                  <View
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
                     style={
                       Object {
-                        "flex": 1,
+                        "fontSize": 16,
                       }
                     }
-                    testID="web-container.view"
                   >
-                    <CanvasWebView
-                      heightCacheKey="25472827"
-                      html="<p>1.0</p>"
-                      navigator={
-                        Object {
-                          "dismiss": [Function],
-                          "dismissAllModals": [Function],
-                          "isModal": false,
-                          "pop": [Function],
-                          "show": [Function],
-                          "traitCollection": [Function],
-                        }
-                      }
-                      onError={[Function]}
-                      onFinishedLoading={[Function]}
-                      onHeightChange={[Function]}
-                      onMessage={[Function]}
-                      onNavigation={[Function]}
-                      scrollEnabled={false}
-                      source={
-                        Object {
-                          "baseURL": "http://mobiledev.instructure.com/",
-                          "html": "<p>1.0</p>",
-                        }
-                      }
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
                       style={
-                        Object {
-                          "flex": 1,
-                        }
+                        Array [
+                          Object {
+                            "fontSize": 16,
+                          },
+                          undefined,
+                        ]
                       }
-                    />
-                  </View>
+                    >
+                      
+                      1.0
+                      
+                    </Text>
+                  </Text>
                   <View
                     style={
                       Array [
