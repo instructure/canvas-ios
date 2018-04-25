@@ -36,6 +36,7 @@ import { getSession } from '../../../canvas-api'
 import i18n from 'format-message'
 import find from 'lodash/find'
 import Images from '../../../images'
+import Video from '../../../common/components/Video'
 import { LinkButton } from '../../../common/buttons'
 import Hyperlink from 'react-native-hyperlink'
 
@@ -191,6 +192,13 @@ export default class ConversationMessageRow extends Component<ConversationMessag
               </TouchableOpacity>)
             })
           }
+          { this.props.message.media_comment &&
+              <View style={{ flex: 1, height: 160 }}>
+                <Video
+                  source={{ uri: this.props.message.media_comment.url }}
+                  style={{ flex: 1 }}
+                />
+              </View>}
           { this.props.firstMessage &&
             <LinkButton
               testID='inbox.conversation-message-row.reply-button'
