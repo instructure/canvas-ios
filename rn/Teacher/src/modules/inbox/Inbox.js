@@ -153,7 +153,7 @@ export class Inbox extends Component<InboxProps, any> {
     return (
       <Screen
         navBarColor={color.navBarColor}
-        navBarButtonColor={color.navBarButtonColor}
+        navBarButtonColor={color.navBarTextColor}
         statusBarStyle={color.statusBarStyle}
         drawUnderNavBar
         navBarImage={branding.headerImage}

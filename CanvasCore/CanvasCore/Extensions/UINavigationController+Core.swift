@@ -13,7 +13,7 @@ public extension UINavigationController {
     public func applyDefaultBranding() {
         self.navigationBar.barStyle = .black
         self.navigationBar.barTintColor = Brand.current.navBgColor
-        self.navigationBar.tintColor = Brand.current.navButtonColor
+        self.navigationBar.tintColor = Brand.current.navTextColor
         self.navigationBar.titleTextAttributes = [
             NSForegroundColorAttributeName: Brand.current.navTextColor
         ]

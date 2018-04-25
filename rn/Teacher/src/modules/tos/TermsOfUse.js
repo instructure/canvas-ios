@@ -51,7 +51,7 @@ export default class TermsOfUse extends Component<Props, State> {
       <Screen
         title={i18n('Terms Of Use')}
         navBarColor={colors.navBarColor}
-        navBarButtonColor={colors.navBarButtonColor}
+        navBarButtonColor={colors.navBarTextColor}
         statusBarStyle={colors.statusBarStyle}
       >
         {this.state.loading
