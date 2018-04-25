@@ -84,10 +84,6 @@ class CanvadocsCommentsViewController: UIViewController {
         
         navigationItem.title = NSLocalizedString("Comments", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: "")
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(CanvadocsCommentsViewController.close(_:)))
-        if annotation.isEditable {
-            navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(CanvadocsCommentsViewController.trash(_:)))
-            navigationItem.leftBarButtonItem?.tintColor = CanvadocsAnnotationColor.red.color
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -106,17 +102,26 @@ class CanvadocsCommentsViewController: UIViewController {
     func close(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
-    
-    func trash(_ sender: UIBarButtonItem) {
-        pdfDocument.remove([annotation], options: [:])
-        dismiss(animated: true, completion: nil)
-    }
 
     override var prefersStatusBarHidden: Bool { return true }
 }
 
+extension CanvadocsCommentsViewController: CommentTableViewCellDelegate {
+    func didTapDelete(_ sender: UIButton, reply: CanvadocsCommentReplyAnnotation) {
+        let alert = UIAlertController(title: NSLocalizedString("Delete Comment", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: ""), message: NSLocalizedString("Are you sure you would like to delete this comment?", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: ""), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: ""), style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Delete", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: ""), style: .destructive, handler: { _ in
+            guard let index = self.comments.index(of: reply) else { return }
+            self.pdfDocument.remove([reply], options: [:])
+            self.comments.remove(at: index)
+            self.tableView.reloadData()
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+}
+
 extension CanvadocsCommentsViewController: UITableViewDataSource {
-    func annotationForIndex(_ index: NSInteger) -> PSPDFAnnotation? {
+    func annotationForIndex(_ index: NSInteger) -> CanvadocsCommentReplyAnnotation? {
         return comments[index]
     }
     
@@ -132,8 +137,7 @@ extension CanvadocsCommentsViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell") as! CommentTableViewCell
         
         if let annotation = annotationForIndex(indexPath.row) {
-            cell.userLabel.text = annotation.user
-            cell.commentLabel.text = annotation.contents
+            cell.set(annotation: annotation, delegate: self)
         }
         
         return cell

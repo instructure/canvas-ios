@@ -44,10 +44,9 @@ class CanvadocsAnnotationProvider: PSPDFContainerAnnotationProvider {
                     (annotation as? PSPDFFreeTextAnnotation)?.sizeToFit()
                     annotation.flags.remove(.readOnly) // Allows user to view and add comments
 
-                    if let metadata = service.metadata {
-                        if annotation.user != metadata.annotationMetadata.userName || metadata.annotationMetadata.permissions == .Read {
-                            annotation.isEditable = false
-                        }
+                    if let metadata = service.metadata?.annotationMetadata {
+                        annotation.isEditable = metadata.permissions == .ReadWriteManage ||
+                            (annotation.user == metadata.userName && metadata.permissions == .ReadWrite)
                     }
                     allAnnotations.append(annotation)
                 }

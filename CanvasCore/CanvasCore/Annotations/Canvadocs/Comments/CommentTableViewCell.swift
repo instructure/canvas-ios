@@ -17,11 +17,32 @@
     
 
 import UIKit
+import PSPDFKit
+
+protocol CommentTableViewCellDelegate: class {
+    func didTapDelete(_ sender: UIButton, reply: CanvadocsCommentReplyAnnotation)
+}
 
 class CommentTableViewCell: UITableViewCell {
     
     @IBOutlet var userLabel: UILabel!
     @IBOutlet var commentLabel: UILabel!
+    @IBOutlet var deleteButton: UIButton!
+    
+    var annotation = CanvadocsCommentReplyAnnotation()
+    var delegate: CommentTableViewCellDelegate?
+    
+    func set(annotation: CanvadocsCommentReplyAnnotation, delegate: CommentTableViewCellDelegate) {
+        self.annotation = annotation
+        self.delegate = delegate
+        userLabel.text = annotation.user
+        commentLabel.text = annotation.contents
+        deleteButton.isHidden = !annotation.isEditable
+    }
+    
+    @IBAction func didTapDelete(_ sender: UIButton) {
+        delegate?.didTapDelete(sender, reply: annotation)
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

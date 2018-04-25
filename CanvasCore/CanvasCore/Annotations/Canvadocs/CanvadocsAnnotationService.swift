@@ -303,6 +303,8 @@ class CanvadocsAnnotationService: NSObject {
         let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 completed(.failure(error as NSError))
+            } else if let http = response as? HTTPURLResponse, http.statusCode >= 400 {
+                completed(.failure(NSError(domain: NSURLErrorDomain, code: http.statusCode, userInfo: [ "data": data as Any ])))
             } else {
                 completed(.success(true))
             }
