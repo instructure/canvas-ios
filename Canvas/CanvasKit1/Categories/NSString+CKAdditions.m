@@ -50,7 +50,7 @@
 }
 
 - (NSString *)realURLEncodedString {
-    NSCharacterSet *allowed = [NSCharacterSet characterSetWithCharactersInString:@"!*'();:@&=+$,/?%#[]"];
+    NSCharacterSet *allowed = [NSCharacterSet URLPathAllowedCharacterSet];
     return [self stringByAddingPercentEncodingWithAllowedCharacters:allowed];
 }
 
