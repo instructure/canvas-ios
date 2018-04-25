@@ -2070,7 +2070,7 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                   undefined,
                 ]
               }
-              testID="row-lti-gauge.instructure.com"
+              testID="row-lti-gauge.instructure.com-360860"
             >
               <View
                 style={

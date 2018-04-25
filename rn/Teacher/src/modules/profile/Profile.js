@@ -234,7 +234,7 @@ export class Profile extends Component<Object, State> {
         if (!tool.placements || !tool.placements.global_navigation) return null
         const { title, url } = tool.placements.global_navigation
         const onPress = () => { this.launchExternalTool(url) }
-        return buildRow(title, onPress, null, { testID: `row-lti-${tool.domain}` })
+        return buildRow(title, onPress, null, { testID: `row-lti-${tool.domain}-${tool.definition_id}` })
       }).filter(Boolean)
     }
     return (<View>

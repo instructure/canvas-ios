@@ -128,7 +128,7 @@
       "/node_modules/",
       ".android.js",
       "flow/*.js",
-      "/src/modules/staging",
+      "/src/modules/developer-menu",
       "dangerfile.js",
       "/src/canvas-api/apis",
       "/test/scripts"

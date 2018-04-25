@@ -19,6 +19,7 @@ import { NativeModules, type PushNotificationIOS, Linking } from 'react-native'
 import { route } from './index'
 import SFSafariViewController from 'react-native-sfsafariviewcontroller'
 import { getAuthenticatedSessionURL } from '../canvas-api'
+import { recordRoute } from '../modules/developer-menu/DeveloperMenu'
 
 type ShowOptions = {
   modal: boolean,
@@ -46,6 +47,7 @@ export default class Navigator {
   }
 
   show (url: string, options: Object = { modal: false, modalPresentationStyle: 'formsheet', deepLink: false }, additionalProps: Object = {}) {
+    recordRoute(url, options, additionalProps)
     const r = route(url, additionalProps)
     if (!r) {
       return this.showWebView(url)

@@ -31,17 +31,39 @@ import { route, type RouteOptions } from '../../routing'
 import Navigator from '../../routing/Navigator'
 import Screen from '../../routing/Screen'
 import Row from '../../common/components/rows/Row'
+import SectionHeader from '../../common/components/rows/SectionHeader'
 import RowSeparator from '../../common/components/rows/RowSeparator'
 import RowWithSwitch from '../../common/components/rows/RowWithSwitch'
 import { featureFlagKey } from '../../common/feature-flags'
+import { formattedDueDate } from '../../common/formatters'
 const { NativeNotificationCenter, Helm } = NativeModules
 
 const stagingKey = 'teacher.developermenu.path'
+const routeHistoryKey = 'teacher.developermenu.route-history'
 
 type DeveloperMenuProps = {
   navigator: Navigator,
 }
 
+var routes
+export async function recordRoute (url: string, options: any, props: any) {
+  const ignore = ['/dev-menu']
+  if (ignore.includes(url)) { return }
+
+  if (!routes) {
+    let json = await AsyncStorage.getItem(routeHistoryKey)
+    if (json) {
+      routes = JSON.parse(json)
+    } else {
+      routes = []
+    }
+  }
+
+  const timestamp = (new Date()).toISOString()
+  routes.unshift({ url, options, props, timestamp })
+  routes = routes.slice(0, 50)
+  await AsyncStorage.setItem(routeHistoryKey, JSON.stringify(routes))
+}
 export default class DeveloperMenu extends Component<DeveloperMenuProps, any> {
 
   constructor (props: DeveloperMenuProps) {
@@ -129,6 +151,10 @@ export default class DeveloperMenu extends Component<DeveloperMenuProps, any> {
     this.props.navigator.show('/feature-flags')
   }
 
+  viewRouteHistory = () => {
+    this.props.navigator.show('/route-history')
+  }
+
   toggleExperimentalFeatures = async () => {
     if (this.state.featureFlagEnabled) {
       this.setState({
@@ -157,9 +183,20 @@ export default class DeveloperMenu extends Component<DeveloperMenuProps, any> {
     Helm.reload()
   }
 
+  route = async (route: any) => {
+    await this.props.navigator.dismiss()
+    this.props.navigator.show(route.url, route.options, route.props)
+  }
+
   render () {
     const path = this.state.path || ''
     const featureFlagEnabled = Boolean(this.state.featureFlagEnabled)
+    const routeHistory = routes && routes.length && routes.reduce((accumulator, route) => {
+      const subtitle = formattedDueDate(new Date(route.timestamp))
+      accumulator.push(<Row title={route.url} subtitle={subtitle} key={`${route.url}-${route.timestamp}`}disclosureIndicator onPress={() => this.route(route) } />)
+      accumulator.push(<RowSeparator />)
+      return accumulator
+    }, [<SectionHeader title='Route History' key={'route-history-section-header'} />])
     return (
       <Screen title='Developer Menu'>
         <ScrollView style={styles.mainContainer} >
@@ -196,13 +233,13 @@ export default class DeveloperMenu extends Component<DeveloperMenuProps, any> {
             <RowSeparator />
             <Row title='View Feature Flags' disclosureIndicator onPress={this.viewFeatureFlags} />
             <RowSeparator />
-            <RowSeparator />
             <Row title='Purge Local Storage' disclosureIndicator onPress={this.purgeStorage} />
             <RowSeparator />
             <Row title='Force Crash' disclosureIndicator onPress={this.forceCrash} />
             <RowSeparator />
             <Row title='Force Native Crash' disclosureIndicator onPress={this.forceNativeCrash} />
             <RowSeparator />
+            { routeHistory }
           </View>
         </ScrollView>
       </Screen>

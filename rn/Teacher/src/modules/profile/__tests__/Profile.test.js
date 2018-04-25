@@ -131,7 +131,7 @@ describe('Profile Tests', () => {
     defaultProps.navigator.dismiss = spy
     const row: any = explore(renderer.create(
       <Profile {...defaultProps} />
-    ).toJSON()).selectByID('row-lti-gauge.instructure.com')
+    ).toJSON()).selectByID('row-lti-gauge.instructure.com-360860')
     row.props.onPress()
     expect(spy).toHaveBeenCalled()
   })
