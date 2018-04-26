@@ -22,8 +22,7 @@ retry_command() {
   done
 }
 
-# todo: update student app id after PR is merged and the tmp job is removed.
-STUDENT_EARLGREY_APP_ID="5acff803582ab800014018cd"
+STUDENT_EARLGREY_APP_ID="5ad151f1eb393a0001d5c133"
 TEACHER_RN_EARLGREY_RUN_JOB_ID="5a31998ddb6814000138d68f"
 if [[ "${BUDDYBUILD_APP_ID}" == "${TEACHER_RN_EARLGREY_RUN_JOB_ID}" || "${BUDDYBUILD_APP_ID}" == "${STUDENT_EARLGREY_APP_ID}" ]]
 then
