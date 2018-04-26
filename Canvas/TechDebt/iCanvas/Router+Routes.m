@@ -357,6 +357,8 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
         @"/groups/:groupIdent/files/:fileIdent/download" : fileDownloadConstructor,
         @"/courses/:courseIdent/files/:fileIdent" : fileDownloadConstructor,
         @"/courses/:courseIdent/files/:fileIdent/download" : fileDownloadConstructor,
+        @"/users/:userIdent/files/:fileIdent" : fileDownloadConstructor,
+        @"/users/:userIdent/files/:fileIdent/download" : fileDownloadConstructor,
         @"/files/:fileIdent/download" : fileDownloadConstructor,
         @"/files/:fileIdent" : fileDownloadConstructor,
     }];
