@@ -27,7 +27,9 @@ class CommentTableViewCell: UITableViewCell {
     
     @IBOutlet var userLabel: UILabel!
     @IBOutlet var commentLabel: UILabel!
+    @IBOutlet var removedLabel: UILabel!
     @IBOutlet var deleteButton: UIButton!
+    @IBOutlet weak var removedLabelHeightConstraint: NSLayoutConstraint!
     
     var annotation = CanvadocsCommentReplyAnnotation()
     var delegate: CommentTableViewCellDelegate?
@@ -37,7 +39,22 @@ class CommentTableViewCell: UITableViewCell {
         self.delegate = delegate
         userLabel.text = annotation.user
         commentLabel.text = annotation.contents
-        deleteButton.isHidden = !annotation.isEditable
+        deleteButton.isHidden = !annotation.isEditable || annotation.isDeleted
+        if annotation.isDeleted {
+            removedLabel.isHidden = false
+            removedLabelHeightConstraint.constant = 17
+            let date = DateFormatter.localizedString(from: annotation.deletedAt ?? Date(), dateStyle: .medium, timeStyle: .none)
+            if let deletedBy = annotation.deletedBy ?? annotation.deletedByID {
+                let format = NSLocalizedString("Removed %1$@ by %2$@", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: "")
+                removedLabel.text = String(format: format, date, deletedBy)
+            } else {
+                let format = NSLocalizedString("Removed %1$@", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: "")
+                removedLabel.text = String(format: format, date)
+            }
+        } else {
+            removedLabel.isHidden = true
+            removedLabelHeightConstraint.constant = 0
+        }
     }
     
     @IBAction func didTapDelete(_ sender: UIButton) {

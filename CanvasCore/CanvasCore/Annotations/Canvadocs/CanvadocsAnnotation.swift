@@ -10,6 +10,37 @@ import UIKit
 import PSPDFKit
 import SwiftSimplify
 
+fileprivate var annotationDeletedAtKey: UInt8 = 0
+fileprivate var annotationDeletedByKey: UInt8 = 0
+fileprivate var annotationDeletedByIDKey: UInt8 = 0
+
+extension PSPDFAnnotation {
+    var deletedAt: Date? {
+        get {
+            return objc_getAssociatedObject(self, &annotationDeletedAtKey) as? Date
+        }
+        set(newValue) {
+            objc_setAssociatedObject(self, &annotationDeletedAtKey, newValue, .OBJC_ASSOCIATION_RETAIN)
+        }
+    }
+    var deletedBy: String? {
+        get {
+            return objc_getAssociatedObject(self, &annotationDeletedByKey) as? String
+        }
+        set(newValue) {
+            objc_setAssociatedObject(self, &annotationDeletedByKey, newValue, .OBJC_ASSOCIATION_COPY)
+        }
+    }
+    var deletedByID: String? {
+        get {
+            return objc_getAssociatedObject(self, &annotationDeletedByIDKey) as? String
+        }
+        set(newValue) {
+            objc_setAssociatedObject(self, &annotationDeletedByIDKey, newValue, .OBJC_ASSOCIATION_COPY)
+        }
+    }
+}
+
 enum CanvadocsAnnotationType {
     case highlight(color: String, boundingBoxes: [CGRect], rect: CGRect)
     case strikeout(color: String, boundingBoxes: [CGRect], rect: CGRect)
@@ -53,6 +84,10 @@ struct CanvadocsAnnotation: Codable {
     let modifiedAt: Date?
     let page: PageIndex
     let type: CanvadocsAnnotationType
+    let isDeleted: Bool
+    let deletedAt: Date?
+    let deletedBy: String?
+    let deletedByID: String?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -62,6 +97,10 @@ struct CanvadocsAnnotation: Codable {
         case createdAt = "created_at"
         case modifiedAt = "modified_at"
         case page
+        case deleted
+        case deletedAt = "deleted_at"
+        case deletedBy = "deleted_by"
+        case deletedByID = "deleted_by_id"
         
         case type
         case subject
@@ -91,6 +130,10 @@ struct CanvadocsAnnotation: Codable {
         self.createdAt = try container.decode(Date.self, forKey: .createdAt)
         self.modifiedAt = try container.decodeIfPresent(Date.self, forKey: .modifiedAt)
         self.page = try container.decode(PageIndex.self, forKey: .page)
+        self.isDeleted = try container.decodeIfPresent(Bool.self, forKey: .deleted) ?? false
+        self.deletedAt = try container.decodeIfPresent(Date.self, forKey: .deletedAt)
+        self.deletedBy = try container.decodeIfPresent(String.self, forKey: .deletedBy)
+        self.deletedByID = try container.decodeIfPresent(String.self, forKey: .deletedByID)
         
         let type = try container.decode(String.self, forKey: .type)
         switch type {
@@ -228,6 +271,10 @@ struct CanvadocsAnnotation: Codable {
         self.page = pspdfAnnotation.pageIndex
         self.createdAt = pspdfAnnotation.creationDate
         self.modifiedAt = pspdfAnnotation.lastModified
+        self.isDeleted = pspdfAnnotation.isDeleted
+        self.deletedAt = pspdfAnnotation.deletedAt
+        self.deletedBy = pspdfAnnotation.deletedBy
+        self.deletedByID = pspdfAnnotation.deletedByID
 
         switch pspdfAnnotation.type {
         case .highlight:
@@ -341,6 +388,11 @@ struct CanvadocsAnnotation: Codable {
         pspdfAnnotation?.user = self.userName
         pspdfAnnotation?.pageIndex = self.page
         pspdfAnnotation?.creationDate = self.createdAt
+        pspdfAnnotation?.lastModified = self.modifiedAt
+        pspdfAnnotation?.isDeleted = self.isDeleted // makes most annotations not render
+        pspdfAnnotation?.deletedAt = self.deletedAt
+        pspdfAnnotation?.deletedBy = self.deletedBy
+        pspdfAnnotation?.deletedByID = self.deletedByID
         
         return pspdfAnnotation
     }

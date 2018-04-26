@@ -211,7 +211,7 @@ class CanvadocsAnnotationService: NSObject {
     }
     
     func getAnnotations(_ completed: @escaping (AnnotationsResult)->()) {
-        guard let url = URL(string: "/2018-03-07/sessions/\(sessionID)/annotations", relativeTo: sessionURL) else {
+        guard let url = URL(string: "/2018-04-06/sessions/\(sessionID)/annotations", relativeTo: sessionURL) else {
             return
         }
         let request = URLRequest(url: url)

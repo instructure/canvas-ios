@@ -100,6 +100,10 @@ class CanvadocsCommentsViewController: UIViewController {
     }
     
     func close(_ sender: UIBarButtonItem) {
+        let deleted = comments.filter({ $0.isDeleted })
+        if deleted.count > 0 {
+            pdfDocument.remove(deleted, options: nil)
+        }
         dismiss(animated: true, completion: nil)
     }
 
