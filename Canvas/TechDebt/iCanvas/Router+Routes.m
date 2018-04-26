@@ -307,19 +307,28 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
         @"/courses/:contextID/conferences" : ^(NSDictionary *params, CBIFileViewModel *viewModel) {
             UnsupportedViewController *unsupportedVC = [UnsupportedViewController new];
             unsupportedVC.tabName = NSLocalizedString(@"Conferences",@"Title for Conferences tab");
-            unsupportedVC.canvasURL = params[@"url"];
+            NSURL *baseURL = TheKeymaster.currentClient.baseURL;
+            NSString *path = [NSString stringWithFormat:@"courses/%@/conferences", params[@"contextID"]];
+            NSURL *fullURL = [baseURL URLByAppendingPathComponent: path];
+            unsupportedVC.canvasURL = fullURL;
             return unsupportedVC;
         },
         @"/courses/:contextID/collaborations" : ^(NSDictionary *params, CBIFileViewModel *viewModel) {
             UnsupportedViewController *unsupportedVC = [UnsupportedViewController new];
             unsupportedVC.tabName = NSLocalizedString(@"Collaborations",@"Title for Collaborations tab");
-            unsupportedVC.canvasURL = params[@"url"];
+            NSURL *baseURL = TheKeymaster.currentClient.baseURL;
+            NSString *path = [NSString stringWithFormat:@"courses/%@/collaborations", params[@"contextID"]];
+            NSURL *fullURL = [baseURL URLByAppendingPathComponent: path];
+            unsupportedVC.canvasURL = fullURL;
             return unsupportedVC;
         },
         @"/courses/:contextID/outcomes" : ^(NSDictionary *params, CBIFileViewModel *viewModel) {
             UnsupportedViewController *unsupportedVC = [UnsupportedViewController new];
             unsupportedVC.tabName = NSLocalizedString(@"Outcomes",@"Title for Outcomes tab");
-            unsupportedVC.canvasURL = params[@"url"];
+            NSURL *baseURL = TheKeymaster.currentClient.baseURL;
+            NSString *path = [NSString stringWithFormat:@"courses/%@/outcomes", params[@"contextID"]];
+            NSURL *fullURL = [baseURL URLByAppendingPathComponent: path];
+            unsupportedVC.canvasURL = fullURL;
             return unsupportedVC;
         },
     }];
