@@ -48,6 +48,7 @@ beforeEach(() => {
     assignmentGroups: [group],
     navigator: templates.navigator(),
     gradingPeriods: [gradingPeriod],
+    currentGradingPeriodID: null,
     refreshAssignmentList: jest.fn(),
     updateCourseDetailsSelectedTabSelectedRow: jest.fn(),
     refresh: jest.fn(),
@@ -74,6 +75,58 @@ test('renders correctly when pending', () => {
     <AssignmentList {...defaultProps} pending refreshing={false} />
   )
   expect(tree.find('ActivityIndicatorView').length).toEqual(1)
+})
+
+test('currentGradingPeriodID is used for initial filter', () => {
+  let groupOne = templates.assignmentGroup({
+    id: '1',
+    assignments: [ templates.assignment({ id: '1' }) ],
+  })
+  let groupTwo = templates.assignmentGroup({
+    id: '2',
+    assignments: [ templates.assignment({ id: '2' }) ],
+  })
+  let gradingPeriod = templates.gradingPeriod({
+    assignmentRefs: ['1'],
+  })
+
+  let tree = shallow(
+    <AssignmentList
+      {...defaultProps}
+      currentGradingPeriodID={gradingPeriod.id}
+      assignmentGroups={[groupOne, groupTwo]}
+      gradingPeriods={[gradingPeriod]}
+    />
+  )
+
+  expect(tree.find('Heading1').props().children).toEqual(gradingPeriod.title)
+  expect(tree.find('SectionList').props().sections[0].data).toEqual(groupOne.assignments)
+})
+
+test('currentGradingPeriodID can apply when gradingPeriods loads', () => {
+  let groupOne = templates.assignmentGroup({
+    id: '1',
+    assignments: [ templates.assignment({ id: '1' }) ],
+  })
+  let groupTwo = templates.assignmentGroup({
+    id: '2',
+    assignments: [ templates.assignment({ id: '2' }) ],
+  })
+  let gradingPeriod = templates.gradingPeriod({
+    assignmentRefs: ['1'],
+  })
+
+  let tree = shallow(
+    <AssignmentList
+      {...defaultProps}
+      currentGradingPeriodID={gradingPeriod.id}
+      assignmentGroups={[groupOne, groupTwo]}
+      gradingPeriods={[]}
+    />
+  )
+  tree.setProps({ gradingPeriods: [gradingPeriod] })
+  expect(tree.find('Heading1').props().children).toEqual(gradingPeriod.title)
+  expect(tree.find('SectionList').props().sections[0].data).toEqual(groupOne.assignments)
 })
 
 test('selected assignment', () => {

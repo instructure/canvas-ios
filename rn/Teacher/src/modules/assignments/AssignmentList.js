@@ -79,6 +79,26 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
     gradeError: false,
   }
 
+  componentDidMount () {
+    this.showCurrentPeriod()
+  }
+
+  componentDidUpdate (prevProps: AssignmentListProps) {
+    if (
+      prevProps.gradingPeriods.length !== this.props.gradingPeriods.length ||
+      prevProps.currentGradingPeriodID !== this.props.currentGradingPeriodID
+    ) {
+      this.showCurrentPeriod() // can only updateFilter properly after props is updated
+    }
+  }
+
+  showCurrentPeriod () {
+    const index = this.props.gradingPeriods.findIndex(({ id }) =>
+      id === this.props.currentGradingPeriodID
+    )
+    if (index >= 0) this.updateFilter(index)
+  }
+
   componentWillReceiveProps (nextProps: AssignmentListProps) {
     if (nextProps.assignmentGroups.length && nextProps.gradingPeriods.length) {
       NativeAccessibility.refresh()

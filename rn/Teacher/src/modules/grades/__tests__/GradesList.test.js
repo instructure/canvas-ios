@@ -22,11 +22,16 @@ import { setSession } from '../../../canvas-api'
 import GradesListRow from '../GradesListRow'
 
 describe('mapStateToProps', () => {
-  let course = templates.course()
   let assignmentGroup = templates.assignmentGroup()
   let assignment = templates.assignment()
   let gradingPeriod = templates.gradingPeriod({ id: 1 })
   let gradingPeriodTwo = templates.gradingPeriod({ id: 2 })
+  let course = templates.course({
+    enrollments: [
+      { type: 'teacher', current_grading_period_id: gradingPeriod.id },
+      { type: 'student', current_grading_period_id: gradingPeriodTwo.id },
+    ],
+  })
   let enrollment = templates.enrollment({ course_id: course.id, user_id: '10' })
 
   const defaultState = templates.appState({
@@ -85,6 +90,7 @@ describe('mapStateToProps', () => {
         ...gradingPeriodTwo,
         assignmentRefs: [],
       }],
+      currentGradingPeriodID: gradingPeriodTwo.id,
       courseColor: 'blueish',
     })
   })

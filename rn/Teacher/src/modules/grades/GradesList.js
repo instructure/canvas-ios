@@ -27,6 +27,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID, navigator }
       assignmentGroups: [],
       pending: 0,
       gradingPeriods: [],
+      currentGradingPeriodID: null,
       courseColor: '',
       courseName: '',
       selectedRowID: '',
@@ -64,12 +65,20 @@ export function mapStateToProps ({ entities }: AppState, { courseID, navigator }
   }
 
   let selectedRowID = entities.courseDetailsTabSelectedRow.rowID || ''
+  let currentGradingPeriodID
+  for (const enroll of course.course.enrollments) {
+    if (enroll.type === 'student' && enroll.current_grading_period_id) {
+      currentGradingPeriodID = enroll.current_grading_period_id
+      break
+    }
+  }
 
   return {
     pending,
     error,
     assignmentGroups,
     gradingPeriods,
+    currentGradingPeriodID,
     courseColor,
     courseName,
     selectedRowID,

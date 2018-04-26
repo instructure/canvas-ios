@@ -20,11 +20,16 @@ import { mapStateToProps } from '../map-state-to-props'
 import * as templates from '../../../__templates__/index'
 
 describe('AssignmentList mapStateToProps', () => {
-  let course = templates.course()
   let assignmentGroup = templates.assignmentGroup()
   let assignment = templates.assignment()
   let gradingPeriod = templates.gradingPeriod({ id: 1 })
   let gradingPeriodTwo = templates.gradingPeriod({ id: 2 })
+  let course = templates.course({
+    enrollments: [
+      { type: 'teacher', current_grading_period_id: gradingPeriod.id },
+      { type: 'student', current_grading_period_id: gradingPeriodTwo.id },
+    ],
+  })
 
   let defaultState = templates.appState({
     entities: {
@@ -73,6 +78,7 @@ describe('AssignmentList mapStateToProps', () => {
         ...gradingPeriodTwo,
         assignmentRefs: [],
       }],
+      currentGradingPeriodID: gradingPeriodTwo.id,
       courseColor: 'blueish',
     })
   })

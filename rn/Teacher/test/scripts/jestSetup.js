@@ -48,6 +48,7 @@ global.requestIdleCallback = jest.fn(cb => cb())
 
 NativeModules.NativeAccessibility = {
   focusElement: jest.fn(),
+  refresh: jest.fn(),
 }
 
 NativeModules.NativeLogin = {

@@ -44,7 +44,7 @@ export function getCourseTabs (courseID: string): ApiPromise<Tab[]> {
 export function getCourse (courseID: string): ApiPromise<Course> {
   return httpClient().get(`/courses/${courseID}`, {
     params: {
-      include: ['permissions', 'term', 'favorites', 'course_image', 'sections'],
+      include: ['permissions', 'term', 'favorites', 'course_image', 'sections', 'total_scores', 'current_grading_period_scores'],
     },
   })
 }
