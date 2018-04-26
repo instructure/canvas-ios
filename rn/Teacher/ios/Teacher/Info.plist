@@ -78,6 +78,8 @@
 	<string></string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Attach audio recordings to submission comments.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Attach photos and videos to submission comments.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Upload content to courses.</string>
 	<key>UILaunchStoryboardName</key>
