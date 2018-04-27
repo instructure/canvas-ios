@@ -27,6 +27,7 @@
 		2C67B0D41E01F08A00DDD191 /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C67B0D31E01F08A00DDD191 /* BuddyBuildSDK.framework */; };
 		2C7041AE203CDDB700745253 /* UIAlertController+TechDebt.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C7041AC203CDDB600745253 /* UIAlertController+TechDebt.h */; };
 		2C7041AF203CDDB700745253 /* UIAlertController+TechDebt.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7041AD203CDDB600745253 /* UIAlertController+TechDebt.m */; };
+		2C8E356E20939C2D0071ED94 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2C8E356D20939C2D0071ED94 /* Settings.bundle */; };
 		2C9C44FB207EBBFF008A8DF1 /* SoSeedySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9C44FA207EBBFF008A8DF1 /* SoSeedySwift.framework */; };
 		2C9C44FF207EBC2D008A8DF1 /* SoSeedySwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9C44FA207EBBFF008A8DF1 /* SoSeedySwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2C9C4500207EBC2E008A8DF1 /* SoGrey.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9C44FD207EBC0D008A8DF1 /* SoGrey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -751,6 +752,7 @@
 		2C67B0D81E01F25800DDD191 /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BuddyBuildSDK.framework; path = ../ExternalFrameworks/BuddyBuildSDK.framework; sourceTree = "<group>"; };
 		2C7041AC203CDDB600745253 /* UIAlertController+TechDebt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+TechDebt.h"; sourceTree = "<group>"; };
 		2C7041AD203CDDB600745253 /* UIAlertController+TechDebt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+TechDebt.m"; sourceTree = "<group>"; };
+		2C8E356D20939C2D0071ED94 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		2C9C44FA207EBBFF008A8DF1 /* SoSeedySwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoSeedySwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C9C44FC207EBC04008A8DF1 /* CanvasCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C9C44FD207EBC0D008A8DF1 /* SoGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoGrey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1754,6 +1756,7 @@
 		4927046A1CF4AF7100C631C6 = {
 			isa = PBXGroup;
 			children = (
+				2C8E356D20939C2D0071ED94 /* Settings.bundle */,
 				4927085D1CF4C33700C631C6 /* Dependencies */,
 				492704751CF4AF7100C631C6 /* Canvas */,
 				492704AC1CF4B6D700C631C6 /* TechDebt */,
@@ -3420,6 +3423,7 @@
 				5EB46DEF1D21A75C00C859A4 /* Images.xcassets in Resources */,
 				495D8BB91CFE17D700D41098 /* LaunchScreen.storyboard in Resources */,
 				B5F122C91D8C4D6C0045063A /* Canvas.entitlements in Resources */,
+				2C8E356E20939C2D0071ED94 /* Settings.bundle in Resources */,
 				5EB46DF51D21A75C00C859A4 /* CalendarDayListCell.xib in Resources */,
 				5EB46DFE1D21A75C00C859A4 /* NoResultsView.xib in Resources */,
 				61CF10AB1DBFF93A00B68E45 /* MasteryPathAssignmentInfoCell.xib in Resources */,

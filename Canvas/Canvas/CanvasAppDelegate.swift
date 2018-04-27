@@ -38,6 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             configureBugSnag()
             setupCrashlytics()
         }
+        
+        ResetAppIfNecessary()
         NotificationKitController.setupForPushNotifications(delegate: self)
         TheKeymaster.fetchesBranding = true
         TheKeymaster.delegate = loginConfig

@@ -24,7 +24,7 @@ import Marshal
 import WebKit // fixes random "library not loaded" errors.
 import AVFoundation // fixes random "library not loaded" errors.
 
-private let LocalStoreAppGroupName = "group.com.instructure.Contexts"
+let LocalStoreAppGroupName = "group.com.instructure.Contexts"
 
 open class Session: NSObject {
     public enum LocalStoreDirectory: String {

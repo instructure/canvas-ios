@@ -23,6 +23,7 @@
 		2C50EE0D1E735D980096592C /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE0C1E735D980096592C /* BuddyBuildSDK.framework */; };
 		2C62DC7B1E8BF532006638F3 /* CourseListPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C62DC7A1E8BF532006638F3 /* CourseListPageTest.swift */; };
 		2C7B27A81E6F5A1100E097B9 /* AppIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */; };
+		2C8E35722093AD760071ED94 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2C8E35712093AD760071ED94 /* Settings.bundle */; };
 		2C96863D1FFE9FC4005127A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C96863B1FFE9FC3005127A3 /* LaunchScreen.storyboard */; };
 		2CA347401F2147290000BB79 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CA3473E1F2147290000BB79 /* Localizable.strings */; };
 		2F0879101EC3C04F0042C03E /* CourseBrowserPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F08790F1EC3C04F0042C03E /* CourseBrowserPageTest.swift */; };
@@ -174,6 +175,7 @@
 		2C50EE0C1E735D980096592C /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BuddyBuildSDK.framework; path = ../../../ExternalFrameworks/BuddyBuildSDK.framework; sourceTree = "<group>"; };
 		2C62DC7A1E8BF532006638F3 /* CourseListPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListPageTest.swift; sourceTree = "<group>"; };
 		2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
+		2C8E35712093AD760071ED94 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		2C96863C1FFE9FC3005127A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Teacher/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2CA3473F1F2147290000BB79 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Teacher/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2CA3476A1F21472D0000BB79 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Teacher/de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -402,6 +404,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				2C8E35712093AD760071ED94 /* Settings.bundle */,
 				13B07FAE1A68108700A75B9A /* Teacher */,
 				4943EC8A1E5CEF93001DC5B5 /* Dependencies */,
 				61B536591E7749F5000FEABB /* TeacherUITests */,
@@ -547,6 +550,7 @@
 				2C3DE50E1F21498A00AE1D59 /* InfoPlist.strings in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				2C96863D1FFE9FC4005127A3 /* LaunchScreen.storyboard in Resources */,
+				2C8E35722093AD760071ED94 /* Settings.bundle in Resources */,
 				2C7B27A81E6F5A1100E097B9 /* AppIcon.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

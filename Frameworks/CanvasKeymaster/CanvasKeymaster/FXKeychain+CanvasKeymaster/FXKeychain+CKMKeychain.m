@@ -87,9 +87,25 @@ static const NSString *CBIKeychainClients = @"CBIKeychainClients";
 - (NSArray *)clients
 {
     NSArray *clientDictionaries = [self clientDictionariesFromKeychain];
-    return [[clientDictionaries.rac_sequence map:^id(NSDictionary *dictionary) {
+    NSArray *clients = [[clientDictionaries.rac_sequence map:^id(NSDictionary *dictionary) {
         return [CKIClient clientFromDictionary:dictionary];
     }] array];
+    
+    
+    NSArray *validated = [clients filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(CKIClient *client, NSDictionary<NSString *,id> * _Nullable bindings) {
+        if (!client.accessToken) return NO;
+        if (!client.baseURL) return NO;
+        if (!client.currentUser.id) return NO;
+        
+        return YES;
+    }]];
+    
+    if (validated.count != clients.count) {
+        [self clearKeychain];
+        return @[];
+    }
+    
+    return clients;
 }
 
 - (NSArray *)clientDictionariesFromKeychain

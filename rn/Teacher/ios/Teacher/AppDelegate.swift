@@ -48,6 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             BugsnagReactNative.start()
             Fabric.with([Crashlytics.self, Answers.self])
         }
+        ResetAppIfNecessary()
         setupForPushNotifications()
         preparePSPDFKit()
         window = MasqueradableWindow(frame: UIScreen.main.bounds)
