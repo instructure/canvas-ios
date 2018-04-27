@@ -15,6 +15,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EarlGrey+Detox.h"
 
 //! Project version number for SoGrey.
 FOUNDATION_EXPORT double SoGreyVersionNumber;

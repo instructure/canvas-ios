@@ -101,7 +101,7 @@ open class EarlGrey: NSObject {
                                    file: StaticString = #file,
                                    line: UInt = #line) -> GREYInteraction {
     return EarlGreyImpl.invoked(fromFile: file.description, lineNumber: line)
-             .selectElement(with: matcher)
+             .detox_selectElement(with: matcher)
   }
 
   @available(*, deprecated, renamed: "selectElement(with:)")

@@ -21,6 +21,22 @@
 		49E21B171D1C694D00B7B9B4 /* SoGrey.h in Headers */ = {isa = PBXBuildFile; fileRef = 49E21B161D1C694D00B7B9B4 /* SoGrey.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61B536E21E784AD5000FEABB /* PageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536E11E784AD5000FEABB /* PageObject.swift */; };
 		A2684C796FE5A7D2E028DD02 /* EarlGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08266CCC56596120DB935F98 /* EarlGrey.framework */; };
+		B16E87B72092737A00D35483 /* WXAnimatedDisplayLinkIdlingResource.h in Headers */ = {isa = PBXBuildFile; fileRef = B1414DE32092344D00F3F0DD /* WXAnimatedDisplayLinkIdlingResource.h */; };
+		B16E87B82092737A00D35483 /* WXAnimatedDisplayLinkIdlingResource.m in Sources */ = {isa = PBXBuildFile; fileRef = B1414DE42092344D00F3F0DD /* WXAnimatedDisplayLinkIdlingResource.m */; };
+		B16E87B92092737A00D35483 /* WXJSDisplayLinkIdlingResource.h in Headers */ = {isa = PBXBuildFile; fileRef = B1414DE52092344D00F3F0DD /* WXJSDisplayLinkIdlingResource.h */; };
+		B16E87BA2092737A00D35483 /* WXJSDisplayLinkIdlingResource.m in Sources */ = {isa = PBXBuildFile; fileRef = B1414DE62092344E00F3F0DD /* WXJSDisplayLinkIdlingResource.m */; };
+		B16E87BB2092737A00D35483 /* WXJSTimerObservationIdlingResource.h in Headers */ = {isa = PBXBuildFile; fileRef = B1414DE22092344D00F3F0DD /* WXJSTimerObservationIdlingResource.h */; };
+		B16E87BC2092737A00D35483 /* WXJSTimerObservationIdlingResource.m in Sources */ = {isa = PBXBuildFile; fileRef = B1414DE72092344E00F3F0DD /* WXJSTimerObservationIdlingResource.m */; };
+		B16E87BD2092737A00D35483 /* WXRunLoopIdlingResource.h in Headers */ = {isa = PBXBuildFile; fileRef = B1414DDE2092340F00F3F0DD /* WXRunLoopIdlingResource.h */; };
+		B16E87BE2092737A00D35483 /* WXRunLoopIdlingResource.m in Sources */ = {isa = PBXBuildFile; fileRef = B1414DDF2092340F00F3F0DD /* WXRunLoopIdlingResource.m */; };
+		B16E87BF2092737A00D35483 /* ReactNativeHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = B1414DDC209233F100F3F0DD /* ReactNativeHeaders.h */; };
+		B16E87C02092737A00D35483 /* ReactNativeSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = B1414DD8209233D800F3F0DD /* ReactNativeSupport.h */; };
+		B16E87C12092737A00D35483 /* ReactNativeSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = B1414DD9209233D900F3F0DD /* ReactNativeSupport.m */; };
+		B16E87C22092737A00D35483 /* EarlGreyExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = B1454D842092330F007F86A5 /* EarlGreyExtensions.h */; };
+		B16E87C32092737A00D35483 /* GREYMatchers+Detox.h in Headers */ = {isa = PBXBuildFile; fileRef = B1454D81209232DE007F86A5 /* GREYMatchers+Detox.h */; };
+		B16E87C42092737A00D35483 /* GREYMatchers+Detox.m in Sources */ = {isa = PBXBuildFile; fileRef = B1454D80209232DE007F86A5 /* GREYMatchers+Detox.m */; };
+		B16E87C52092737A00D35483 /* EarlGrey+Detox.h in Headers */ = {isa = PBXBuildFile; fileRef = B1454D7D209232BC007F86A5 /* EarlGrey+Detox.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B16E87C62092737A00D35483 /* EarlGrey+Detox.m in Sources */ = {isa = PBXBuildFile; fileRef = B1454D7C209232BC007F86A5 /* EarlGrey+Detox.m */; };
 		F908C9631E8EBAE800C7FF1B /* dsl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F908C9621E8EBAE800C7FF1B /* dsl.swift */; };
 		F95E3D521E89555D000CE6A1 /* WebDriverAtomScripts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95E3D511E89555D000CE6A1 /* WebDriverAtomScripts.swift */; };
 		F98D9BBF1E8AE18000114F59 /* EvaluationAtom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98D9BBE1E8AE18000114F59 /* EvaluationAtom.swift */; };
@@ -60,6 +76,22 @@
 		49E21B161D1C694D00B7B9B4 /* SoGrey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SoGrey.h; sourceTree = "<group>"; };
 		49E21B181D1C694D00B7B9B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61B536E11E784AD5000FEABB /* PageObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageObject.swift; sourceTree = "<group>"; };
+		B1414DD8209233D800F3F0DD /* ReactNativeSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReactNativeSupport.h; sourceTree = "<group>"; };
+		B1414DD9209233D900F3F0DD /* ReactNativeSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReactNativeSupport.m; sourceTree = "<group>"; };
+		B1414DDC209233F100F3F0DD /* ReactNativeHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReactNativeHeaders.h; sourceTree = "<group>"; };
+		B1414DDE2092340F00F3F0DD /* WXRunLoopIdlingResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXRunLoopIdlingResource.h; sourceTree = "<group>"; };
+		B1414DDF2092340F00F3F0DD /* WXRunLoopIdlingResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXRunLoopIdlingResource.m; sourceTree = "<group>"; };
+		B1414DE22092344D00F3F0DD /* WXJSTimerObservationIdlingResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXJSTimerObservationIdlingResource.h; sourceTree = "<group>"; };
+		B1414DE32092344D00F3F0DD /* WXAnimatedDisplayLinkIdlingResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXAnimatedDisplayLinkIdlingResource.h; sourceTree = "<group>"; };
+		B1414DE42092344D00F3F0DD /* WXAnimatedDisplayLinkIdlingResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXAnimatedDisplayLinkIdlingResource.m; sourceTree = "<group>"; };
+		B1414DE52092344D00F3F0DD /* WXJSDisplayLinkIdlingResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXJSDisplayLinkIdlingResource.h; sourceTree = "<group>"; };
+		B1414DE62092344E00F3F0DD /* WXJSDisplayLinkIdlingResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXJSDisplayLinkIdlingResource.m; sourceTree = "<group>"; };
+		B1414DE72092344E00F3F0DD /* WXJSTimerObservationIdlingResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXJSTimerObservationIdlingResource.m; sourceTree = "<group>"; };
+		B1454D7C209232BC007F86A5 /* EarlGrey+Detox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EarlGrey+Detox.m"; sourceTree = "<group>"; };
+		B1454D7D209232BC007F86A5 /* EarlGrey+Detox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EarlGrey+Detox.h"; sourceTree = "<group>"; };
+		B1454D80209232DE007F86A5 /* GREYMatchers+Detox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GREYMatchers+Detox.m"; sourceTree = "<group>"; };
+		B1454D81209232DE007F86A5 /* GREYMatchers+Detox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GREYMatchers+Detox.h"; sourceTree = "<group>"; };
+		B1454D842092330F007F86A5 /* EarlGreyExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EarlGreyExtensions.h; sourceTree = "<group>"; };
 		CB46F2583A3A0958EE74AC43 /* Pods_defaults_SoGrey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_SoGrey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC37A4627972A784EE9AC71B /* Pods-defaults-SoGrey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-SoGrey.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-SoGrey/Pods-defaults-SoGrey.debug.xcconfig"; sourceTree = "<group>"; };
 		F908C9621E8EBAE800C7FF1B /* dsl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dsl.swift; sourceTree = "<group>"; };
@@ -126,6 +158,7 @@
 		49E21B151D1C694D00B7B9B4 /* SoGrey */ = {
 			isa = PBXGroup;
 			children = (
+				B1454D7B209232A8007F86A5 /* Detox */,
 				2C19A66D207E89F5007FD092 /* Page Objects */,
 				492245FE1D1C744A0053766B /* Class.swift */,
 				492245FF1D1C744A0053766B /* EarlGrey.swift */,
@@ -138,6 +171,29 @@
 				F908C9621E8EBAE800C7FF1B /* dsl.swift */,
 			);
 			path = SoGrey;
+			sourceTree = "<group>";
+		};
+		B1454D7B209232A8007F86A5 /* Detox */ = {
+			isa = PBXGroup;
+			children = (
+				B1414DE32092344D00F3F0DD /* WXAnimatedDisplayLinkIdlingResource.h */,
+				B1414DE42092344D00F3F0DD /* WXAnimatedDisplayLinkIdlingResource.m */,
+				B1414DE52092344D00F3F0DD /* WXJSDisplayLinkIdlingResource.h */,
+				B1414DE62092344E00F3F0DD /* WXJSDisplayLinkIdlingResource.m */,
+				B1414DE22092344D00F3F0DD /* WXJSTimerObservationIdlingResource.h */,
+				B1414DE72092344E00F3F0DD /* WXJSTimerObservationIdlingResource.m */,
+				B1414DDE2092340F00F3F0DD /* WXRunLoopIdlingResource.h */,
+				B1414DDF2092340F00F3F0DD /* WXRunLoopIdlingResource.m */,
+				B1414DDC209233F100F3F0DD /* ReactNativeHeaders.h */,
+				B1414DD8209233D800F3F0DD /* ReactNativeSupport.h */,
+				B1414DD9209233D900F3F0DD /* ReactNativeSupport.m */,
+				B1454D842092330F007F86A5 /* EarlGreyExtensions.h */,
+				B1454D81209232DE007F86A5 /* GREYMatchers+Detox.h */,
+				B1454D80209232DE007F86A5 /* GREYMatchers+Detox.m */,
+				B1454D7D209232BC007F86A5 /* EarlGrey+Detox.h */,
+				B1454D7C209232BC007F86A5 /* EarlGrey+Detox.m */,
+			);
+			name = Detox;
 			sourceTree = "<group>";
 		};
 		C4C3A71E1565878F5DEEDB26 /* Frameworks */ = {
@@ -202,7 +258,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B16E87B72092737A00D35483 /* WXAnimatedDisplayLinkIdlingResource.h in Headers */,
 				49E21B171D1C694D00B7B9B4 /* SoGrey.h in Headers */,
+				B16E87BB2092737A00D35483 /* WXJSTimerObservationIdlingResource.h in Headers */,
+				B16E87B92092737A00D35483 /* WXJSDisplayLinkIdlingResource.h in Headers */,
+				B16E87BF2092737A00D35483 /* ReactNativeHeaders.h in Headers */,
+				B16E87C22092737A00D35483 /* EarlGreyExtensions.h in Headers */,
+				B16E87C02092737A00D35483 /* ReactNativeSupport.h in Headers */,
+				B16E87C32092737A00D35483 /* GREYMatchers+Detox.h in Headers */,
+				B16E87C52092737A00D35483 /* EarlGrey+Detox.h in Headers */,
+				B16E87BD2092737A00D35483 /* WXRunLoopIdlingResource.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,7 +305,7 @@
 				TargetAttributes = {
 					49E21B121D1C694D00B7B9B4 = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0810;
+						LastSwiftMigration = 0930;
 					};
 				};
 			};
@@ -298,15 +363,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				F98D9BBF1E8AE18000114F59 /* EvaluationAtom.swift in Sources */,
+				B16E87BC2092737A00D35483 /* WXJSTimerObservationIdlingResource.m in Sources */,
 				F990755F1E895EE8008EA980 /* DriverAtoms.swift in Sources */,
 				F98D9BC11E8AE8E100114F59 /* JavascriptEvaluation.swift in Sources */,
 				492246021D1C744A0053766B /* EarlGrey.swift in Sources */,
 				492246011D1C744A0053766B /* Class.swift in Sources */,
+				B16E87BA2092737A00D35483 /* WXJSDisplayLinkIdlingResource.m in Sources */,
 				F908C9631E8EBAE800C7FF1B /* dsl.swift in Sources */,
 				F990755D1E895E40008EA980 /* Locator.swift in Sources */,
+				B16E87C12092737A00D35483 /* ReactNativeSupport.m in Sources */,
+				B16E87C42092737A00D35483 /* GREYMatchers+Detox.m in Sources */,
+				B16E87C62092737A00D35483 /* EarlGrey+Detox.m in Sources */,
+				B16E87BE2092737A00D35483 /* WXRunLoopIdlingResource.m in Sources */,
 				492246031D1C744A0053766B /* EarlGreyUtils.swift in Sources */,
 				61B536E21E784AD5000FEABB /* PageObject.swift in Sources */,
 				2C7348852080137F00C562BB /* AllCoursesListPage.swift in Sources */,
+				B16E87B82092737A00D35483 /* WXAnimatedDisplayLinkIdlingResource.m in Sources */,
 				2C734883208010AC00C562BB /* CanvasUITest.swift in Sources */,
 				2C04B03F207FF36B00C6BD65 /* ProfilePage.swift in Sources */,
 				2C04B036207FDF2F00C6BD65 /* EditDashboardPage.swift in Sources */,
@@ -434,6 +506,7 @@
 			baseConfigurationReference = EC37A4627972A784EE9AC71B /* Pods-defaults-SoGrey.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
@@ -448,6 +521,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.SoGrey;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -458,6 +532,7 @@
 			baseConfigurationReference = 0678AA8C863643A5B665382B /* Pods-defaults-SoGrey.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
@@ -472,6 +547,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.SoGrey;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

@@ -48,6 +48,7 @@ PODS:
     - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
   - FirebaseInstanceID (1.0.10):
     - FirebaseCore (~> 3.6)
+  - fishhook (0.2)
   - FXKeychain (1.5.3)
   - Google/Analytics (3.1.0):
     - Google/Core
@@ -186,6 +187,7 @@ DEPENDENCIES:
   - EarlGrey (~> 1.1)
   - Eureka (from `https://github.com/xmartlabs/Eureka`, branch `Swift-3.3`)
   - Fabric (~> 1.6)
+  - fishhook
   - FXKeychain (~> 1.5)
   - Google/Analytics
   - Interactable (from `./rn/Teacher/node_modules/react-native-interactable`)
@@ -251,6 +253,7 @@ SPEC REPOS:
     - FirebaseAnalytics
     - FirebaseCore
     - FirebaseInstanceID
+    - fishhook
     - FXKeychain
     - Google
     - GoogleAnalytics
@@ -344,6 +347,7 @@ SPEC CHECKSUMS:
   FirebaseAnalytics: e5fe8486efc01bec33f6bf82e2fa9fce4b124052
   FirebaseCore: 9691ee2ade70c098d7cf92440f4303f16d83ca75
   FirebaseInstanceID: b9eedd6846fb5e1f0f7279e1deaa7a7e4cf8392e
+  fishhook: ea19933abfe8f2f52c55fd8b6e2718467d3ebc89
   FXKeychain: 2fe54573946ffef634f4e2a2851e6c8f4ea15e76
   Google: 98da4b1a60ed0beb80a290387a28333406a1eb90
   GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
@@ -385,6 +389,6 @@ SPEC CHECKSUMS:
   TPKeyboardAvoiding: cb69d5ddbe90ce0170e4bc2db1e5e41d4a3ad9a4
   yoga: 17521bbb0dd54a47c0b3ac43253e78cdac7488e0
 
-PODFILE CHECKSUM: 691b00708b5bc86ef1b1fc4a20bf4eb99269927b
+PODFILE CHECKSUM: 0d666a02f25aeea0eef7ce4e3669b1f34ad056dc
 
 COCOAPODS: 1.5.0

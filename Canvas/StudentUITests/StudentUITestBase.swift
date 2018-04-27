@@ -14,7 +14,6 @@ class StudentUITestBase: CanvasUITest {
         CanvasKeymaster.the().resetKeymasterForTesting()
         NativeLoginManager.shared().injectLoginInformation(nil)
         GREYTestHelper.enableFastAnimation()
-        elementTimeout = 20 // Student app is slow :(
     }
     
     override func tearDown() {

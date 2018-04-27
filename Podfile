@@ -112,6 +112,7 @@ abstract_target 'defaults' do
   target 'SoGrey' do
     project 'Frameworks/SoGrey/SoGrey.xcodeproj'
     pod 'EarlGrey', '~> 1.1'
+    pod 'fishhook'
   end
 
   target 'CanvasKeymaster' do
@@ -122,12 +123,14 @@ abstract_target 'defaults' do
     target 'TeacherUITests' do
       pod 'EarlGrey', '~> 1.1'
       pod 'SwiftGRPC', git: 'https://github.com/grpc/grpc-swift.git'
+      pod 'fishhook'
       project 'rn/Teacher/ios/Teacher.xcodeproj'
     end
 
     target 'StudentUITests' do
       pod 'EarlGrey', '~> 1.1'
       pod 'SwiftGRPC', git: 'https://github.com/grpc/grpc-swift.git'
+      pod 'fishhook'
       project 'Canvas/Canvas.xcodeproj'
     end
   end
