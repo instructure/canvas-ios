@@ -108,7 +108,7 @@ files.each do |file|
         next
     end
 
-    unless banner_matches
+    if banner_matches
         files_skipped.push(file)
         next
     end
