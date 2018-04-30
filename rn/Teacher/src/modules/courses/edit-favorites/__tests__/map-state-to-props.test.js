@@ -17,8 +17,10 @@
 // @flow
 import mapStateToProps from '../map-state-to-props'
 import { appState } from '../../../../redux/__templates__/app-state'
+import app from '../../../app'
 
 test('returns the correct props with no groups', () => {
+  app.setCurrentApp('student')
   let state = appState({
     entities: {
       courses: {
@@ -46,6 +48,7 @@ test('returns the correct props with no groups', () => {
 })
 
 test('returns the correct props', () => {
+  app.setCurrentApp('student')
   let state = appState({
     entities: {
       courses: {

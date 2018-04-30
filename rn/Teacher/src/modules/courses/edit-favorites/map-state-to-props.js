@@ -18,11 +18,13 @@
 
 import type { EditFavoritesProps } from './prop-types'
 import localeSort from '../../../utils/locale-sort'
+import App from '../../app'
 
 export default function mapStateToProps (state: AppState): EditFavoritesProps {
   let courses = Object.keys(state.entities.courses)
     .map(id => state.entities.courses[id])
     .map(({ course }) => course)
+    .filter(App.current().filterCourse)
     .sort((c1, c2) => localeSort(c1.name, c2.name))
 
   let groups = Object.keys(state.entities.groups || {})
