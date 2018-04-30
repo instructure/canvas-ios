@@ -23,6 +23,6 @@ export function account (): ApiPromise<Account> {
   return httpClient().get('accounts/self')
 }
 
-export function becomeUserPermissions (accountID: string): ApiPromise<Object> {
+export function becomeUserPermissions (accountID: string): ApiPromise<RolePermission> {
   return httpClient().get(`/accounts/${accountID}/permissions?permissions[]=become_user`)
 }
