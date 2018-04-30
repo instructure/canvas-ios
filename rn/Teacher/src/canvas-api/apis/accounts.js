@@ -17,14 +17,12 @@
 // @flow
 
 import httpClient from '../httpClient'
-import { paginate, exhaust } from '../utils/pagination'
 
 // Only admins can hit this api successfully. Otherwise, will send back a 401
 export function account (): ApiPromise<Account> {
   return httpClient().get('accounts/self')
 }
 
-export function roles (accountID: string): ApiPromise<Role[]> {
-  const roles = paginate(`/accounts/${accountID}/roles`)
-  return exhaust(roles)
+export function becomeUserPermissions (accountID: string): ApiPromise<Object> {
+  return httpClient().get(`/accounts/${accountID}/permissions?permissions[]=become_user`)
 }

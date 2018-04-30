@@ -22,7 +22,7 @@ import { testAsyncAction } from '../../../../test/helpers/async'
 
 describe('UserInfo Actions', () => {
   it('refreshses canMasquerade', async () => {
-    let actions = UserInfoActions({ roles: apiResponse([]) })
+    let actions = UserInfoActions({ becomeUserPermissions: apiResponse({ become_user: false }) })
     const result = await testAsyncAction(actions.refreshCanMasquerade())
     expect(result).toMatchObject([{
       type: 'userInfo.canMasquerade',
@@ -30,7 +30,7 @@ describe('UserInfo Actions', () => {
     },
     {
       type: 'userInfo.canMasquerade',
-      payload: { handlesError: true, result: { data: [] } },
+      payload: { handlesError: true, result: { data: { become_user: false } } },
     }])
   })
 })

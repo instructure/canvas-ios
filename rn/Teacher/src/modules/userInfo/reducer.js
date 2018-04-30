@@ -19,8 +19,8 @@
 import { Reducer } from 'redux'
 import { handleActions } from 'redux-actions'
 import Actions from './actions'
-import handleAsync from '../../utils/handleAsync'
-import { getSession } from '../../canvas-api/session'
+import handleAsync from '@utils/handleAsync'
+import { getSession } from '@canvas-api/session'
 
 const { refreshCanMasquerade, updateShowGradesOnDashboard, refreshAccountExternalTools } = Actions
 const defaultState: UserInfo = {
@@ -63,12 +63,10 @@ export const userInfo: Reducer<UserInfo, any> = handleActions({
     pending: (state) => {
       return state
     },
-    resolved: (state, { result }) => {
+    resolved: (state, { result: { data } }) => {
       return {
         ...state,
-        canMasquerade: result.data.reduce((memo, role) => {
-          return memo || isSiteAdmin() || (role.permissions.become_user && role.permissions.become_user.enabled)
-        }, false),
+        canMasquerade: isSiteAdmin() || data.become_user === true,
       }
     },
     rejected: (state) => {

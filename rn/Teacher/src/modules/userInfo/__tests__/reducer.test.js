@@ -87,16 +87,11 @@ describe('userInfo', () => {
 
   describe('refreshCanMasquerade', () => {
     it('can because permissions', () => {
-      const roles = [
-        template.role({
-          permissions: {
-            become_user: template.rolePermissions({ enabled: true }),
-          },
-        }),
-      ]
+      const role = template.role()
+
       const resolved = {
         type: refreshCanMasquerade.toString(),
-        payload: { result: { data: roles } },
+        payload: { result: { data: role } },
       }
 
       expect(userInfo({ canMasquerade: false }, resolved)).toMatchObject({
@@ -105,16 +100,13 @@ describe('userInfo', () => {
     })
 
     it('cant because permissions', () => {
-      const roles = [
-        template.role({
-          permissions: {
-            become_user: template.rolePermissions({ enabled: false }),
-          },
-        }),
-      ]
+      const role = template.role({
+        become_user: false,
+      })
+
       const resolved = {
         type: refreshCanMasquerade.toString(),
-        payload: { result: { data: roles } },
+        payload: { result: { data: role } },
       }
 
       expect(userInfo({ canMasquerade: true }, resolved)).toMatchObject({
