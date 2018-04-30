@@ -23,6 +23,7 @@ import type {
 } from './submission-prop-types'
 import localeSort from '../../../utils/locale-sort'
 import find from 'lodash/find'
+import { isTeacher } from '../../app'
 
 function getEnrollments (courseContent?: CourseContentState, enrollments: EnrollmentsState): Array<Enrollment> {
   if (!courseContent) { return [] }
@@ -71,8 +72,18 @@ export function gradeProp (submission: ?Submission): GradeProp {
     return 'not_submitted'
   }
 
-  if (submission.grade != null && submission.grade_matches_current_submission && submission.workflow_state !== 'pending_review') {
-    return submission.grade
+  if (submission.grade != null) {
+    if (isTeacher()) {
+      // Teachers only see the grade for the current submission
+      if (submission.grade_matches_current_submission && submission.workflow_state !== 'pending_review') {
+        // $FlowFixMe - It has already forgotten that submission.grade must be defined
+        return submission.grade
+      }
+    } else {
+      // Students always see the latest available grade
+      // $FlowFixMe - It has already forgotten that submission.grade must be defined
+      return submission.grade
+    }
   }
 
   return 'ungraded'

@@ -17,12 +17,17 @@
 // @flow
 
 import { gradeProp, statusProp } from '../get-submissions-props'
+import app from '../../../app'
 
 const template = {
   ...require('../../../../__templates__/submissions'),
 }
 
 describe('GetSubmissionsProps gradeProp', () => {
+  beforeEach(() => {
+    app.setCurrentApp('teacher')
+  })
+
   test('null submission', () => {
     const result = gradeProp(null)
     expect(result).toEqual('not_submitted')
@@ -117,5 +122,15 @@ describe('GetSubmissionsProps gradeProp', () => {
     })
     const dueDate = '2018-04-11T05:59:00Z'
     expect(statusProp(submission, dueDate)).toEqual('late')
+  })
+
+  it('returns grade for students', () => {
+    app.setCurrentApp('student')
+    const submission = template.submission({
+      excused: false,
+      grade: 'A-',
+      submitted_at: '2018-04-11T05:59:00Z',
+    })
+    expect(gradeProp(submission)).toEqual('A-')
   })
 })
