@@ -243,6 +243,7 @@ export class DiscussionEdit extends Component<Props, any> {
                 placeholder={i18n('Add description')}
                 navigator={this.props.navigator}
                 attachmentUploadPath={isTeacher() ? `/${this.props.context}/${this.props.contextID}/files` : '/users/self/files'}
+                onFocus={this._scrollToRCE}
               />
             </View>
 
@@ -418,6 +419,12 @@ export class DiscussionEdit extends Component<Props, any> {
 
   _scrollToInput = (event: any) => {
     const input = ReactNative.findNodeHandle(event.target)
+    this.scrollView.scrollToFocusedInput(input)
+  }
+
+  _scrollToRCE = () => {
+    const input = ReactNative.findNodeHandle(this.editor)
+    // $FlowFixMe
     this.scrollView.scrollToFocusedInput(input)
   }
 

@@ -2,7 +2,7 @@
 
 import i18n from 'format-message'
 import React, { Component } from 'react'
-import {
+import ReactNative, {
   View,
   StyleSheet,
   LayoutAnimation,
@@ -127,6 +127,7 @@ export class PageEdit extends Component<Props, State> {
                 placeholder={i18n('Add description')}
                 navigator={this.props.navigator}
                 attachmentUploadPath={`/courses/${this.props.courseID}/files`}
+                onFocus={this._scrollToRCE}
               />
             </View>
 
@@ -240,6 +241,12 @@ export class PageEdit extends Component<Props, State> {
     input &&
     // the types on keyboard-aware-scroll-view were incorrect
     // https://github.com/APSL/react-native-keyboard-aware-scroll-view/pull/207
+    // $FlowFixMe
+    this.scrollView.scrollToFocusedInput(input)
+  }
+
+  _scrollToRCE = () => {
+    const input = ReactNative.findNodeHandle(this.editor)
     // $FlowFixMe
     this.scrollView.scrollToFocusedInput(input)
   }

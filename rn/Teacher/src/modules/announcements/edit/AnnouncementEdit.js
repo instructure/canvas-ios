@@ -185,6 +185,7 @@ export class AnnouncementEdit extends Component<Props, any> {
                 placeholder={i18n('Add description (required)')}
                 navigator={this.props.navigator}
                 attachmentUploadPath={`/${this.props.context}/${this.props.contextID}/files`}
+                onFocus={this._scrollToRCE}
               />
             </View>
             <RequiredFieldSubscript title={i18n('A description is required')} visible={!this.state.isValid} />
@@ -339,6 +340,12 @@ export class AnnouncementEdit extends Component<Props, any> {
 
   _scrollToInput = (event: any) => {
     const input = ReactNative.findNodeHandle(event.target)
+    this.scrollView.scrollToFocusedInput(input)
+  }
+
+  _scrollToRCE = () => {
+    const input = ReactNative.findNodeHandle(this.editor)
+    // $FlowFixMe
     this.scrollView.scrollToFocusedInput(input)
   }
 

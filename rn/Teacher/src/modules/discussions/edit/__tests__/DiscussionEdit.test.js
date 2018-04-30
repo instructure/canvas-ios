@@ -462,6 +462,14 @@ describe('DiscussionEdit', () => {
     )
   })
 
+  it('scrolls view when RichTextEditor receives focus', () => {
+    const spy = jest.fn()
+    const tree = shallow(<DiscussionEdit {...props} />)
+    tree.find('KeyboardAwareScrollView').getElement().ref({ scrollToFocusedInput: spy })
+    tree.find('RichTextEditor').simulate('Focus')
+    expect(spy).toHaveBeenCalled()
+  })
+
   function tapDone (tree: ShallowWrapper) {
     tree.find('Screen').prop('rightBarButtons')
       .find(({ testID }) => testID === 'discussions.edit.doneButton')

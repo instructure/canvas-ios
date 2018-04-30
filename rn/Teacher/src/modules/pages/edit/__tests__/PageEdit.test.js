@@ -211,6 +211,14 @@ describe('PageEdit', () => {
     expect(props.navigator.dismiss).toHaveBeenCalled()
   })
 
+  it('scrolls view when RichTextEditor receives focus', () => {
+    const spy = jest.fn()
+    const tree = shallow(<PageEdit {...props} />)
+    tree.find('KeyboardAwareScrollView').getElement().ref({ scrollToFocusedInput: spy })
+    tree.find('RichTextEditor').simulate('Focus')
+    expect(spy).toHaveBeenCalled()
+  })
+
   function tapDone (tree: any) {
     return tree.find('Screen').prop('rightBarButtons')
       .find(({ testID }) => testID === 'pages.edit.doneButton')

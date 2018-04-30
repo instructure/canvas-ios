@@ -349,6 +349,14 @@ describe('AnnouncementEdit', () => {
     )
   })
 
+  it('scrolls view when RichTextEditor receives focus', () => {
+    const spy = jest.fn()
+    const tree = shallow(<AnnouncementEdit {...props} />)
+    tree.find('KeyboardAwareScrollView').getElement().ref({ scrollToFocusedInput: spy })
+    tree.find('RichTextEditor').simulate('Focus')
+    expect(spy).toHaveBeenCalled()
+  })
+
   function testRender (props: Props) {
     expect(render(props)).toMatchSnapshot()
   }

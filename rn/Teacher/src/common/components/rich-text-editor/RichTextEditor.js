@@ -37,6 +37,7 @@ export type Props = {
   focusOnLoad?: boolean,
   navigator: Navigator,
   attachmentUploadPath: ?string,
+  onFocus?: Function,
 }
 
 type State = {
@@ -154,6 +155,7 @@ export default class RichTextEditor extends Component<Props, State> {
   _onFocus = () => {
     this._setKeyboardSpace()
     this.setState({ editorFocused: true })
+    this.props.onFocus && this.props.onFocus()
   }
 
   _onBlur = () => {

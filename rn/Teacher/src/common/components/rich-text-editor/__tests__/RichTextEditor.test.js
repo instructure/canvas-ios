@@ -295,6 +295,20 @@ describe('RichTextEditor', () => {
     expect(mock).toHaveBeenCalled()
   })
 
+  it('calls onFocus prop when focus is received', () => {
+    const mock = jest.fn()
+    let focusProps = {
+      ...props,
+      onFocus: mock,
+    }
+
+    const tree = shallow(<RichTextEditor {...focusProps} />)
+    tree.getElement().ref({ measureInWindow })
+    const editor = tree.find('ZSSRichTextEditor')
+    editor.simulate('Focus')
+    expect(mock).toHaveBeenCalled()
+  })
+
   function testToolbarAction (action: string) {
     const mock = jest.fn()
     const tree = shallow(<RichTextEditor {...props} />)
