@@ -67,7 +67,7 @@ public class LTIViewController: UIViewController {
     func launch() {
         showLoading(true)
         let presentingVC = navigationController ?? self
-        ExternalToolManager.shared.launch(launchURL, in: session, from: presentingVC, courseID: courseID, fallbackURL: fallbackURL) { [weak self] in
+        ExternalToolManager.shared.launch(launchURL, in: session, from: presentingVC, fallbackURL: fallbackURL) { [weak self] in
             self?.showLoading(false)
         }
     }

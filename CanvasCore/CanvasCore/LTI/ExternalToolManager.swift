@@ -30,30 +30,48 @@ public class ExternalToolManager: NSObject {
 
     @objc
     public func launch(_ launchURL: URL, in session: Session, from viewController: UIViewController, completionHandler: (() -> Void)? = nil) {
-        launch(launchURL, in: session, from: viewController, courseID: nil, fallbackURL: nil, completionHandler: completionHandler)
+        launch(launchURL, in: session, from: viewController, fallbackURL: nil, completionHandler: completionHandler)
     }
 
     @objc
     public func launch(_ launchURL: URL, in session: Session, from viewController: UIViewController, courseID: String? = nil, completionHandler: (() -> Void)? = nil) {
-        launch(launchURL, in: session, from: viewController, courseID: courseID, fallbackURL: nil, completionHandler: completionHandler)
+        launch(launchURL, in: session, from: viewController, fallbackURL: nil, completionHandler: completionHandler)
     }
 
+    /**
+     Launches an external tool.
+
+     - Parameter launchURL: The best url we have to launch the external tool.
+     - Parameter session: The current auth session.
+     - Parameter viewController: The view controller that should present the SFSafariViewController or any errors.
+     - Parameter fallbackURL: Sometimes the API returns a 401 for the request for the sessionless launch url.
+        In that case we show a borderless canvas web using the fallbackURL.
+        The most common scenario is to use the html_url of the external tool item.
+     - Parameter completionHandler: Called once the SFSafariViewController has been presented.
+    */
     @objc
-    public func launch(_ launchURL: URL, in session: Session, from viewController: UIViewController, courseID: String?, fallbackURL: URL?, completionHandler: (() -> Void)? = nil) {
-        getSessionlessLaunchURL(forLaunchURL: launchURL, in: session, courseID: courseID) { [weak self, weak viewController] url, pageViewPath, error in
+    public func launch(_ launchURL: URL, in session: Session, from viewController: UIViewController, fallbackURL: URL?, completionHandler: (() -> Void)? = nil) {
+        getSessionlessLaunchURL(forLaunchURL: launchURL, in: session) { [weak self, weak viewController] url, pageViewPath, error in
             guard let me = self, let vc = viewController else { return }
             if let url = url {
-                me.present(url, pageViewPath: pageViewPath, from: vc, completionHandler: completionHandler)
+                me.present(url, pageViewPath: pageViewPath, from: vc) { [weak self] error in
+                    self?.markViewed(launchURL, session: session)
+                    completionHandler?()
+                }
                 return
             }
             if let error = error {
                 if error.code == 401, let fallbackURL = fallbackURL {
                     // There's a bug with the API that is causing 401 errors which "should" never happen.
-                    // So if it does, load the Canvas Web version.
-                    me.showAuthenticatedURL(fallbackURL, in: session, from: vc, completionHandler: completionHandler)
+                    // So when this happens, load the Canvas Web version.
+                    // Example: https://instructure.atlassian.net/browse/MBL-9506
+                    me.showAuthenticatedURL(fallbackURL, in: session, from: vc) { [weak self] error in
+                        self?.markViewed(launchURL, session: session)
+                        completionHandler?()
+                    }
                     return
                 }
-                me.fail(error, from: vc)
+                me.fail(error, from: vc, completionHandler: completionHandler)
             }
         }
     }
@@ -72,8 +90,8 @@ public class ExternalToolManager: NSObject {
     }
     
     @objc
-    public func getSessionlessLaunchURL(forLaunchURL launchURL: URL, in session: Session, courseID: String? = nil, completionHandler: @escaping (URL?, String?, NSError?) -> Void) {
-        guard let url = getSessionlessLaunchRequestURL(session, launchURL: launchURL, courseID: courseID) else {
+    public func getSessionlessLaunchURL(forLaunchURL launchURL: URL, in session: Session, completionHandler: @escaping (URL?, String?, NSError?) -> Void) {
+        guard let url = getSessionlessLaunchRequestURL(session, launchURL: launchURL) else {
             completionHandler(nil, nil, error)
             return
         }
@@ -153,7 +171,7 @@ public class ExternalToolManager: NSObject {
             }
     }
 
-    private func getSessionlessLaunchRequestURL(_ session: Session, launchURL: URL, courseID: String?) -> URL? {
+    private func getSessionlessLaunchRequestURL(_ session: Session, launchURL: URL) -> URL? {
         /*
          If we already have a sessionless_launch url we can return it.
          This happens in the following scenarios (and most likely more):
@@ -206,19 +224,18 @@ public class ExternalToolManager: NSObject {
         return retrieve[idRange]
     }
 
-    private func markViewed(_ launchURL: URL, in session: Session, for courseID: String) {
-        let context = ContextID.course(withID: courseID)
+    private func markViewed(_ launchURL: URL, session: Session) {
         session.progressDispatcher.dispatch(
             Progress(
                 kind: .viewed,
-                contextID: context,
-                itemType: Progress.ItemType.externalTool,
+                contextID: ContextID.currentUser, // not relevant but cant be nil
+                itemType: Progress.ItemType.legacyModuleProgressShim,
                 itemID: launchURL.absoluteString
             )
         )
     }
 
-    private func present(_ url: URL, pageViewPath: String? ,from viewController: UIViewController, completionHandler: (() -> Void)? = nil) {
+    private func present(_ url: URL, pageViewPath: String?, from viewController: UIViewController, completionHandler: (() -> Void)?) {
         var comps = URLComponents(url: url, resolvingAgainstBaseURL: false)
         comps?.scheme = "https"
         guard let _ = comps?.url else { return }
@@ -230,7 +247,7 @@ public class ExternalToolManager: NSObject {
         }
     }
 
-    private func fail(_ error: NSError, from viewController: UIViewController, completionHandler: (() -> Void)? = nil) {
+    private func fail(_ error: NSError, from viewController: UIViewController, completionHandler: (() -> Void)?) {
         DispatchQueue.main.async {
             ErrorReporter.reportError(error, from: viewController)
             completionHandler?()
