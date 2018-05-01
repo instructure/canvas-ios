@@ -155,6 +155,8 @@ UIColor *CKPostButtonDisabledColor() {
     
     self.imageCache = [[NSCache alloc] init];
     loadingImages = [NSMutableDictionary new];
+    
+    self.placeholderLabel.text = _placeholderText;
 }
 
 - (CKAllowedAttachmentType)allowedAttachmentTypes
@@ -442,8 +444,6 @@ UIColor *CKPostButtonDisabledColor() {
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    self.placeholderLabel.text = _placeholderText;
-
     // This is to get around a nasty web view issue where initially text wasn't pasteable, so to get around that you set and unset text...
     NSString *js = [NSString stringWithFormat:@"setInitialText('%@');", @"INITIAL SET"];
     [self.webView stringByEvaluatingJavaScriptFromString:js];
