@@ -274,7 +274,7 @@ export class DiscussionEdit extends Component<Props, any> {
             />
             }
             { isTeacher() && <RowWithSwitch
-              title={i18n('Users must post before seeing replies')}
+              title={i18n('Students must post before seeing replies')}
               border='bottom'
               value={this.state.require_initial_post}
               onValueChange={this._valueChanged('require_initial_post')}

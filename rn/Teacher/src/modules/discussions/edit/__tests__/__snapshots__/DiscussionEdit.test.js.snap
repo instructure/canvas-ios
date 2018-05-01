@@ -172,7 +172,7 @@ exports[`DiscussionEdit renders 1`] = `
       <RowWithSwitch
         border="bottom"
         onValueChange={[Function]}
-        title="Users must post before seeing replies"
+        title="Students must post before seeing replies"
         value={false}
       />
       <View>
@@ -381,7 +381,7 @@ exports[`DiscussionEdit renders new form 1`] = `
       <RowWithSwitch
         border="bottom"
         onValueChange={[Function]}
-        title="Users must post before seeing replies"
+        title="Students must post before seeing replies"
         value={null}
       />
       <View>
@@ -597,7 +597,7 @@ exports[`DiscussionEdit updates from props 1`] = `
       <RowWithSwitch
         border="bottom"
         onValueChange={[Function]}
-        title="Users must post before seeing replies"
+        title="Students must post before seeing replies"
         value={false}
       />
       <View>
@@ -813,7 +813,7 @@ exports[`DiscussionEdit updates with new props 1`] = `
       <RowWithSwitch
         border="bottom"
         onValueChange={[Function]}
-        title="Users must post before seeing replies"
+        title="Students must post before seeing replies"
         value={false}
       />
       <View>

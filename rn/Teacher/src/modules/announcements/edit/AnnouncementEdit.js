@@ -244,7 +244,7 @@ export class AnnouncementEdit extends Component<Props, any> {
                   </View>
                 }
                 <RowWithSwitch
-                  title={i18n('Users must post before seeing replies')}
+                  title={i18n('Students must post before seeing replies')}
                   border='bottom'
                   value={requireInitialPost}
                   onValueChange={this._valueChanged('require_initial_post')}
