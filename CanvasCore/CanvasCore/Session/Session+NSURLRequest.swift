@@ -67,15 +67,21 @@ extension Session {
         return path
     }
 
-    public func GET(_ path: String, parameters: [String: Any] = [:], encoding: ParameterEncoding = .urlEncodedInURL, authorized: Bool = true) throws -> URLRequest {
+    public func GET(_ path: String, parameters: [String: Any] = [:], encoding: ParameterEncoding = .urlEncodedInURL, authorized: Bool = true, userAgent: String? = nil) throws -> URLRequest {
 
         let url = baseURL.appendingPathComponent(pathByRemovingDuplicateSlash(path))
         
         var paramsPlusPagination = parameters
         paramsPlusPagination["per_page"] = (parameters["per_page"] as? Int) ?? 99
         
-        return try URLRequest(method: .GET, URL: url, parameters: paramsPlusPagination, encoding: encoding)
+        var request = try URLRequest(method: .GET, URL: url, parameters: paramsPlusPagination, encoding: encoding)
             .authorized(authorized, with: self)
+        
+        if let userAgent = userAgent {
+            request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
+        }
+        
+        return request
     }
     
     public func POST(_ path: String, parameters: [String: Any] = [:], encoding: ParameterEncoding = .json, authorized: Bool = true, headers: [String: String] = [:]) throws -> URLRequest {
