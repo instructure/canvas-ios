@@ -23,6 +23,16 @@ class CanvadocsPointAnnotation: PSPDFStampAnnotation {
     override var shouldMaintainAspectRatio: Bool { get { return true } }
 
     override func draw(in context: CGContext, withOptions options: [String : Any]? = nil) {
+        let cgColor = color?.cgColor ?? CanvadocsAnnotationColor.blue.color.cgColor
+        context.setFillColor(cgColor)
+
+        // scale to fit, centered
+        let bb = boundingBox
+        let scale = min(bb.width / 17, bb.height / 24)
+        context.translateBy(x: bb.midX, y: bb.midY)
+        context.scaleBy(x: scale, y: -scale)
+        context.translateBy(x: -8.5, y: -12) // go back half of new 17x24 box
+
         /* SVG Path used by original icon: viewBox="0 0 17 24"
         M 8.21 0
         C 3.684 0 0 3.683 0 8.21
@@ -35,10 +45,6 @@ class CanvadocsPointAnnotation: PSPDFStampAnnotation {
         C 15.498 12.56 16.501 10.469 16.501 8.211
         C 16.5 3.683 12.816 0 8.21 0
         */
-        let cgColor = color?.cgColor ?? CanvadocsAnnotationColor.blue.color.cgColor
-        context.setFillColor(cgColor)
-        context.translateBy(x: boundingBox.minX, y: boundingBox.maxY)
-        context.scaleBy(x: boundingBox.width / 17, y: boundingBox.height / -24)
         context.beginPath()
         context.move(to: CGPoint(x: 8.21, y: 0))
         context.addCurve(to: CGPoint(x: 0, y: 8.21), control1: CGPoint(x: 3.684, y: 0), control2: CGPoint(x: 0, y: 3.683))
