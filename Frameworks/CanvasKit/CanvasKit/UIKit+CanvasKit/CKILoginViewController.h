@@ -16,10 +16,11 @@
 
 #import <UIKit/UIKit.h>
 #import "CKIClient.h"
+@import WebKit;
 
 @interface CKILoginViewController : UIViewController
 
-@property (nonatomic, strong) UIWebView *webView;
+@property (nonatomic, strong) WKWebView * webView;
 
 /**
  Block to be performed when authentication is successful

@@ -20,7 +20,7 @@
 #import "CKIClient.h"
 #import "UIAlertController+Show.h"
 
-@interface CKILoginViewController () <UIWebViewDelegate, NSURLSessionTaskDelegate>
+@interface CKILoginViewController () <WKNavigationDelegate, NSURLSessionTaskDelegate>
 @property (nonatomic, copy) NSURLRequest *request;
 @property (nonatomic) CKIAuthenticationMethod method;
 @property (nonatomic, copy) void(^completionHandler)(NSURLSessionAuthChallengeDisposition, NSURLCredential *);
@@ -51,9 +51,8 @@
     [super viewDidLoad];
     [self registerUserAgentForGoogle];
     [self setTitle:self.request.URL.host];
-    self.webView = [[UIWebView alloc] initWithFrame:self.view.frame];
-    [self.webView setDelegate:self];
-    [self.webView setScalesPageToFit:YES];
+    self.webView = [[WKWebView alloc] initWithFrame:self.view.frame];
+    self.webView.navigationDelegate = self;
     [self.webView setOpaque:NO];
     [self.webView setBackgroundColor:[UIColor whiteColor]];
     self.view = self.webView;
@@ -178,23 +177,25 @@ static UIImage *_loadingImage = nil;
 }
 
 #pragma mark - Webview Delegate
-
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
-    if ([[[request URL] description] isEqualToString:@"about:blank"]) {
-        return NO;
+    if ([[[navigationAction.request URL] description] isEqualToString:@"about:blank"]) {
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
     }
     
     // I dunno why, but we have to wait for the code to be the first param cuz it can keep changing as we follow redirects
-    if ([request.URL.absoluteString containsString:@"/canvas/login?code="]) {
-        self.successBlock([self getValueFromRequest:request withKey:@"code"]);
-        return NO;
-    } else if ([self getValueFromRequest:request withKey:@"error"]) {
+    if ([navigationAction.request.URL.absoluteString containsString:@"/canvas/login?code="]) {
+        self.successBlock([self getValueFromRequest:navigationAction.request withKey:@"code"]);
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
+    } else if ([self getValueFromRequest:navigationAction.request withKey:@"error"]) {
         self.failureBlock([NSError errorWithDomain:@"com.instructure.canvaskit" code:0 userInfo:@{NSLocalizedDescriptionKey: @"Authentication failed. Most likely the user denied the request for access."}]);
-        return NO;
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
     }
     
-    return YES;
+    decisionHandler(WKNavigationActionPolicyAllow);
 }
 
 #pragma mark - OAuth Processing
