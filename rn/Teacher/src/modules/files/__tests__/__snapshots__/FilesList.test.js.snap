@@ -347,7 +347,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                       }
                       testID="file-list.file-list-row.cell-folder-1-subtitle-lbl"
                     >
-                      2 files
+                      3 items
                     </Text>
                   </View>
                   <View
@@ -1317,7 +1317,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                       }
                       testID="file-list.file-list-row.cell-folder-1-subtitle-lbl"
                     >
-                      2 files
+                      3 items
                     </Text>
                   </View>
                   <View
@@ -2287,7 +2287,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                       }
                       testID="file-list.file-list-row.cell-folder-1-subtitle-lbl"
                     >
-                      2 files
+                      3 items
                     </Text>
                   </View>
                   <View
@@ -3257,7 +3257,7 @@ exports[`FilesList sending weird data into the progress update function should n
                       }
                       testID="file-list.file-list-row.cell-folder-1-subtitle-lbl"
                     >
-                      2 files
+                      3 items
                     </Text>
                   </View>
                   <View
@@ -4227,7 +4227,7 @@ exports[`FilesList should render 1`] = `
                       }
                       testID="file-list.file-list-row.cell-folder-1-subtitle-lbl"
                     >
-                      2 files
+                      3 items
                     </Text>
                   </View>
                   <View
@@ -5197,7 +5197,7 @@ exports[`FilesList should render for course files 1`] = `
                       }
                       testID="file-list.file-list-row.cell-folder-1-subtitle-lbl"
                     >
-                      2 files
+                      3 items
                     </Text>
                   </View>
                   <View
@@ -6167,7 +6167,7 @@ exports[`FilesList should render for user files 1`] = `
                       }
                       testID="file-list.file-list-row.cell-folder-1-subtitle-lbl"
                     >
-                      2 files
+                      3 items
                     </Text>
                   </View>
                   <View
@@ -7137,7 +7137,7 @@ exports[`FilesList should render with folders 1`] = `
                       }
                       testID="file-list.file-list-row.cell-folder-1-subtitle-lbl"
                     >
-                      2 files
+                      3 items
                     </Text>
                   </View>
                   <View

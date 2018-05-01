@@ -346,10 +346,10 @@ export class FilesList extends Component<Props, State> {
       name = item.name
       icon = images.files.folder
       subtitle = i18n(`{
-        file_count, plural,
-          one {# file}
-          other {# files}
-      }`, { file_count: item.files_count })
+        item_count, plural,
+          one {# item}
+          other {# items}
+      }`, { item_count: item.files_count + item.folders_count })
       if (this.props.courseColor) {
         tintColor = this.props.courseColor
       }
