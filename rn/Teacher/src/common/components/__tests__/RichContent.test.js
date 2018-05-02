@@ -56,7 +56,7 @@ describe('RichContent', () => {
 
   it('can convert style rules for RN', () => {
     expect(
-      shallow(<RichContent html='<p style="color:#333; min-width:100px;">Some colorful text</p>' navigator={templates.navigator()} />)
+      shallow(<RichContent html='<p style="color:#333; min-width:100px; font-variant: small-caps">Some colorful text</p>' navigator={templates.navigator()} />)
     ).toMatchSnapshot()
   })
 

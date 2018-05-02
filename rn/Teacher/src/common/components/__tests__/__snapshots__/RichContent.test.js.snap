@@ -90,7 +90,10 @@ exports[`RichContent can convert style rules for RN 1`] = `
         },
         Object {
           "color": "#333",
-          "minWidth": "100px",
+          "fontVariant": Array [
+            "small-caps",
+          ],
+          "minWidth": 100,
         },
       ]
     }

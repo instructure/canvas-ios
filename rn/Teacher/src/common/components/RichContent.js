@@ -18,6 +18,15 @@ export default class RichContent extends Component<Props, *> {
     'p', 'i', 'font', 'span', 'a', 'b', 'br', 'div',
   ]
 
+  // Most types transfer to react native styles, but not all of them
+  // Add transform functions here for style keys that require different data types css vs react native StyleSheet
+  static transformers = {
+    'fontVariant': (value: any) => {
+      if (Array.isArray(value)) return value
+      return [value]
+    },
+  }
+
   attributesToProps = (attributes: any) => {
     return attributes.reduce((props, attribute) => {
       switch (attribute.key.content) {
@@ -35,7 +44,20 @@ export default class RichContent extends Component<Props, *> {
                 // $FlowFixMe
                 parts[0] = parts[0].replace(match[0], match[1].toUpperCase())
               }
-              style[parts[0].trim()] = parts[1].trim()
+
+              const key = parts[0].trim()
+              const transformer = RichContent.transformers[key]
+              let value = parts[1].trim()
+              if (transformer) {
+                value = transformer(value)
+              }
+
+              // px values are just numbers in RN
+              if (value.indexOf('px') !== -1) {
+                value = Number(value.replace('px', ''))
+              }
+
+              style[key] = value
               return style
             }, {})
           props['style'] = props['style'] || {}

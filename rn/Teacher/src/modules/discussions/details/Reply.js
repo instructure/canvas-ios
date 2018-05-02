@@ -39,6 +39,7 @@ import canvas from '../../../canvas-api'
 import httpClient from '../../../canvas-api/httpClient'
 import isEqual from 'lodash/isEqual'
 import RichContent from '../../../common/components/RichContent'
+import { featureFlagEnabled } from '@common/feature-flags'
 
 type ReadState = 'read' | 'unread'
 
@@ -111,6 +112,7 @@ export default class Reply extends Component<Props, State> {
 
   useSimpleRenderer (message: ?string) {
     if (!message) return true
+    if (!featureFlagEnabled('simpleDiscussionRenderer')) return false
     let regex = new RegExp('<([a-zA-z]+)', 'g')
     let results = message.match(regex)
     if (!results) return false
