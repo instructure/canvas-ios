@@ -52,6 +52,7 @@ static BOOL PerformedStartupAnimation = NO;
 @property (nonatomic, weak) IBOutlet UIButton *canvasNetworkButton;
 @property (nonatomic, weak) IBOutlet UILabel *forceCanvasLoginLabel;
 @property (nonatomic, weak) IBOutlet UIView *bottomContainer;
+@property (nonatomic, weak) IBOutlet UIButton *customLoginButton;
 @property (nonatomic, strong) UIView *backgroundView;
 
 // Signal Stuff
@@ -62,6 +63,10 @@ static BOOL PerformedStartupAnimation = NO;
 // Previous Logins
 @property (nonatomic, strong) CKMMultiUserTableViewController *multiUserTableViewController;
 @property (nonatomic, strong) NSLayoutConstraint *bottomContainerHiddenConstraint;
+
+// Data from the preload-account-info.plist file
+// Used to bypass mobileverify during development
+@property (nonatomic) NSDictionary *preloadedAccountInfo;
 
 @end
 
@@ -100,6 +105,13 @@ static BOOL PerformedStartupAnimation = NO;
     
     // Start getting all the accounts
     [[CKMLocationSchoolSuggester shared] fetchSchools];
+    
+    NSURL *preloadedAccountInfoURL = [[NSBundle bundleForClass:[self class]] URLForResource:@"preload-account-info" withExtension:@"plist"];
+    if (preloadedAccountInfoURL) {
+        self.preloadedAccountInfo = [NSDictionary dictionaryWithContentsOfURL:preloadedAccountInfoURL];
+        self.customLoginButton.hidden = [self.preloadedAccountInfo[@"client_secret"] length] == 0;
+        [self.customLoginButton setTitle:self.preloadedAccountInfo[@"base_url"] forState:UIControlStateNormal];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -287,6 +299,10 @@ static NSString *const CanvasNetworkDomain = @"learn.canvas.net";
     DDLogVerbose(@"logIntoCanvasNetworkPressed : %@", CanvasNetworkDomain);
     CKIAccountDomain *domain = [[CKIAccountDomain alloc] initWithDomain:CanvasNetworkDomain];
     [self sendDomain:domain];
+}
+
+- (IBAction)customLoginAction:(id)sender {
+    [[CanvasKeymaster theKeymaster] loginWithMobileVerifyDetails:self.preloadedAccountInfo];
 }
 
 #pragma mark - UITextFieldDelegate

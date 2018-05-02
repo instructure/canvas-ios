@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="5Yb-K9-qQn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="5Yb-K9-qQn">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -104,6 +104,13 @@
                                 <color key="textColor" red="0.5869837403" green="0.62711781259999999" blue="0.65633940700000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OcW-eP-myo">
+                                <rect key="frame" x="16" y="34" width="203" height="30"/>
+                                <state key="normal" title="http://twilson.instructure.com"/>
+                                <connections>
+                                    <action selector="customLoginAction:" destination="5Yb-K9-qQn" eventType="touchUpInside" id="ixi-9E-vzY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -112,10 +119,13 @@
                             <constraint firstAttribute="trailing" secondItem="H37-HX-EIG" secondAttribute="trailing" priority="750" id="Ah0-ci-Fae"/>
                             <constraint firstAttribute="centerX" secondItem="1vm-R0-Psi" secondAttribute="centerX" id="CF8-nR-W9Z"/>
                             <constraint firstItem="7yY-o5-DSG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gDM-5n-uiy" secondAttribute="leadingMargin" constant="16" id="FfX-Xp-v2n"/>
+                            <constraint firstItem="OcW-eP-myo" firstAttribute="centerY" secondItem="7yY-o5-DSG" secondAttribute="centerY" id="Gcf-XR-fLo"/>
                             <constraint firstItem="zQQ-hy-gpK" firstAttribute="top" secondItem="ccE-pU-Nuj" secondAttribute="bottom" constant="40" id="OuW-Bf-cNo"/>
                             <constraint firstItem="1vm-R0-Psi" firstAttribute="centerY" secondItem="gDM-5n-uiy" secondAttribute="centerY" priority="999" id="P2e-Pn-vw7"/>
+                            <constraint firstItem="OcW-eP-myo" firstAttribute="leading" secondItem="gDM-5n-uiy" secondAttribute="leadingMargin" id="TOx-93-am3"/>
                             <constraint firstItem="H37-HX-EIG" firstAttribute="centerX" secondItem="gDM-5n-uiy" secondAttribute="centerX" id="bPh-kM-GCA"/>
                             <constraint firstItem="eln-Wg-hVk" firstAttribute="centerX" secondItem="gDM-5n-uiy" secondAttribute="centerX" id="bUw-T7-gww"/>
+                            <constraint firstItem="7yY-o5-DSG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="OcW-eP-myo" secondAttribute="trailing" constant="8" id="cvY-7Y-FO5"/>
                             <constraint firstItem="H37-HX-EIG" firstAttribute="leading" secondItem="gDM-5n-uiy" secondAttribute="leading" priority="750" id="e5Q-Ul-fEJ"/>
                             <constraint firstItem="ccE-pU-Nuj" firstAttribute="centerY" secondItem="gDM-5n-uiy" secondAttribute="centerY" constant="-90" id="fOU-Sa-e1m"/>
                             <constraint firstItem="1vm-R0-Psi" firstAttribute="centerY" secondItem="gDM-5n-uiy" secondAttribute="centerY" constant="-120" id="j9k-HU-dtW"/>
@@ -128,6 +138,7 @@
                     <connections>
                         <outlet property="bottomContainer" destination="H37-HX-EIG" id="yUq-hW-riE"/>
                         <outlet property="canvasNetworkButton" destination="eln-Wg-hVk" id="dXZ-74-8ok"/>
+                        <outlet property="customLoginButton" destination="OcW-eP-myo" id="e69-1c-0TN"/>
                         <outlet property="findSchoolButton" destination="zQQ-hy-gpK" id="SMS-58-0nl"/>
                         <outlet property="forceCanvasLoginLabel" destination="7yY-o5-DSG" id="Dee-fv-HWV"/>
                         <outlet property="fullLogoImageView" destination="ccE-pU-Nuj" id="ZRj-BM-QHN"/>
@@ -144,7 +155,7 @@
             <objects>
                 <tableViewController id="jsa-dV-wAc" customClass="CKMDomainSuggestionTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="MeQ-nj-aZ4">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="478"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="478.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="separatorColor" red="0.5869837403" green="0.62711781259999999" blue="0.65633940700000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -322,20 +333,20 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's your school's name?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXv-Vt-Lud">
-                                <rect key="frame" x="16" y="98" width="315" height="27"/>
+                                <rect key="frame" x="16" y="98" width="315" height="26.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                                 <color key="textColor" red="0.1764705882" green="0.23137254900000001" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RGm-r2-3cE">
-                                <rect key="frame" x="0.0" y="133" width="375" height="1"/>
+                                <rect key="frame" x="0.0" y="132.5" width="375" height="1"/>
                                 <color key="backgroundColor" red="0.5869837403" green="0.62711781259999999" blue="0.65633940700000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="Rgz-9R-1ur" customClass="NSLayoutConstraintHairline"/>
                                 </constraints>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="school.instructure.com" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="xzj-lX-iaI">
-                                <rect key="frame" x="16" y="150" width="343" height="22"/>
+                                <rect key="frame" x="16" y="149.5" width="343" height="22"/>
                                 <accessibility key="accessibilityConfiguration" identifier="searchSchoolTextField">
                                     <accessibilityTraits key="traits" searchField="YES"/>
                                 </accessibility>
@@ -347,20 +358,20 @@
                                 </connections>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s4P-nx-kH2">
-                                <rect key="frame" x="0.0" y="188" width="375" height="1"/>
+                                <rect key="frame" x="0.0" y="187.5" width="375" height="1"/>
                                 <color key="backgroundColor" red="0.5869837403" green="0.62711781259999999" blue="0.65633940700000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="Sd0-py-oYk" customClass="NSLayoutConstraintHairline"/>
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mxb-I8-4zx">
-                                <rect key="frame" x="0.0" y="189" width="375" height="478"/>
+                                <rect key="frame" x="0.0" y="188.5" width="375" height="478.5"/>
                                 <connections>
                                     <segue destination="jsa-dV-wAc" kind="embed" identifier="EmbedSuggestions" id="JtW-Ab-y7f"/>
                                 </connections>
                             </containerView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="oxQ-Ay-g4E">
-                                <rect key="frame" x="339" y="101" width="20" height="20"/>
+                                <rect key="frame" x="339" y="100.5" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

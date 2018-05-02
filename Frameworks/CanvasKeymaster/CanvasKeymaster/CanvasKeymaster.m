@@ -93,15 +93,32 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
 
 - (RACSignal *)clientForMobileVerifiedDomain:(CKIAccountDomain *)accountDomain
 {
+    @weakify(self)
     return [[self mobileVerify:[self domainify:accountDomain.domain]] map:^id(NSDictionary *mobileVerifyDetails) {
-        NSString *clientID = mobileVerifyDetails[CBIMobileVerifyAPIClientIDName];
-        NSString *clientSecret = mobileVerifyDetails[CBIMobileVerifyAPIClientSecretName];
-        NSString *baseURLString = mobileVerifyDetails[CBIMobileVerifyBaseURLName];
-        NSURL *baseURL = [NSURL URLWithString:baseURLString];
-        
-        CKIClient *client = [CKIClient clientWithBaseURL:baseURL clientID:clientID clientSecret:clientSecret authenticationProvider:accountDomain.authenticationProvider];
-        [client.requestSerializer setValue:[self userAgent] forHTTPHeaderField:@"User-Agent"];
-        return client;
+        @strongify(self)
+        return [self clientWithMobileVerifiedDetails:mobileVerifyDetails accountDomain:accountDomain];
+    }];
+}
+
+- (CKIClient *)clientWithMobileVerifiedDetails:(NSDictionary *)details accountDomain:(CKIAccountDomain *)domain {
+    NSString *clientID = details[CBIMobileVerifyAPIClientIDName];
+    NSString *clientSecret = details[CBIMobileVerifyAPIClientSecretName];
+    NSString *baseURLString = details[CBIMobileVerifyBaseURLName];
+    NSURL *baseURL = [NSURL URLWithString:baseURLString];
+    
+    CKIClient *client = [CKIClient clientWithBaseURL:baseURL clientID:clientID clientSecret:clientSecret authenticationProvider:domain.authenticationProvider];
+    [client.requestSerializer setValue:[self userAgent] forHTTPHeaderField:@"User-Agent"];
+    return client;
+}
+
+- (void)loginWithMobileVerifyDetails:(NSDictionary *)details {
+    CKIClient *client = [self clientWithMobileVerifiedDetails:details accountDomain:nil];
+    [[client login] subscribeNext:^(CKIClient *currentClient) {
+        [self setCurrentClient:currentClient];
+        [[FXKeychain sharedKeychain] addClient:currentClient];
+        [_subjectForClientLogin sendNext:currentClient];
+    } error:^(NSError *error) {
+        [self login];
     }];
 }
 

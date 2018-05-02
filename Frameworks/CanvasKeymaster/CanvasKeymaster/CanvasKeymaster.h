@@ -112,6 +112,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)resetKeymasterForTesting;
 
+- (CKIClient *)clientWithMobileVerifiedDetails:(NSDictionary *)details accountDomain:(nullable CKIAccountDomain *)domain;
+
+- (void)loginWithMobileVerifyDetails:(NSDictionary *)details;
+
 @end
 
 @interface CKIClient (CanvasKeymaster)
