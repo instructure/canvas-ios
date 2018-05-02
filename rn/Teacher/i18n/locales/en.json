@@ -599,9 +599,6 @@
   "favorite_courses_fbd356f0": {
     "message": "Favorite Courses"
   },
-  "file_count_plural_one_file_other_files_8ae41de8": {
-    "message": "{ file_count, plural,\n    one {# file}\n  other {# files}\n}"
-  },
   "files_c300e900": {
     "message": "Files"
   },
@@ -745,6 +742,9 @@
   },
   "italic_ac45200a": {
     "message": "Italic"
+  },
+  "item_count_plural_one_item_other_items_88319c63": {
+    "message": "{ item_count, plural,\n    one {# item}\n  other {# items}\n}"
   },
   "last_activity_on_lastactivity_date_mmmm_d_at_lasta_1a7e8430": {
     "message": "Last activity on { lastActivity, date, 'MMMM d' } at { lastActivity, time, short }"
@@ -1292,6 +1292,9 @@
   "students_1b8cd07b": {
     "message": "Students"
   },
+  "students_must_post_before_seeing_replies_1a57eeb2": {
+    "message": "Students must post before seeing replies"
+  },
   "subject_114b2e98": {
     "message": "Subject"
   },
@@ -1601,9 +1604,6 @@
   },
   "user_id_bcace870": {
     "message": "User ID"
-  },
-  "users_must_post_before_seeing_replies_d1761968": {
-    "message": "Users must post before seeing replies"
   },
   "video_b9f27375": {
     "message": "Video"
