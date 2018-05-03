@@ -38,8 +38,8 @@ extension Enrollment {
             }
             let arcID = jsonLTITools
                 .filter { json in
-                    guard let url: String = (try? json <| "url") else { return false }
-                    return url.contains("instructuremedia.com/lti/launch")
+                    guard let domain: String = (try? json <| "domain") else { return false }
+                    return domain.contains("arc.instructure.com")
                 }
                 .flatMap { json in
                     return try? json.stringID("id")
