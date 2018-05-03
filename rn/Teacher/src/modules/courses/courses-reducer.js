@@ -279,7 +279,7 @@ const coursesData: Reducer<CoursesState, any> = handleActions({
         ...state,
         [courseID]: {
           ...state[courseID],
-          permissions: { ...result.data.permissions, ...(state[courseID] && state[courseID].permissions || {}) },
+          permissions: { ...(state[courseID] && state[courseID].permissions || {}), ...result.data.permissions },
         },
       }
     },

@@ -302,7 +302,7 @@ const Refreshed = refresh(
       props.refreshCourse(props.contextID) // this is the only way to get `create discussion` permissions
     }
   },
-  props => props.discussions.length === 0 || Object.keys(props.permissions).length === 0,
+  () => true,
   props => Boolean(props.pending)
 )(DiscussionsList)
 const Connected = connect(mapStateToProps, Actions)(Refreshed)
