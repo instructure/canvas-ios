@@ -6,6 +6,7 @@ exports[`AuthenticatedWebView renders 1`] = `
   testID="web-container.view"
 >
   <CanvasWebView
+    bounces={true}
     onError={[Function]}
     onFinishedLoading={[Function]}
     onHeightChange={[Function]}
@@ -32,6 +33,7 @@ exports[`AuthenticatedWebView renders without uri 1`] = `
   testID="web-container.view"
 >
   <CanvasWebView
+    bounces={true}
     onError={[Function]}
     onFinishedLoading={[Function]}
     onHeightChange={[Function]}

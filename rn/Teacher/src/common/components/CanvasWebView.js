@@ -121,7 +121,7 @@ export default class CanvasWebView extends Component<Props, State> {
   }
 
   render () {
-    const { html, source, style, baseURL } = this.props
+    const { html, source, style, baseURL, automaticallySetHeight, scrollEnabled } = this.props
     let src
     if (html) {
       src = { html, baseURL: baseURL || getSession().baseURL }
@@ -130,6 +130,7 @@ export default class CanvasWebView extends Component<Props, State> {
     }
     const { webViewHeight } = this.state
     const webViewStyle = webViewHeight ? { height: webViewHeight } : { flex: 1 }
+    const bounces = scrollEnabled && !automaticallySetHeight
 
     return (
       <View style={style} testID='web-container.view'>
@@ -143,6 +144,7 @@ export default class CanvasWebView extends Component<Props, State> {
           onNavigation={this.onNavigation}
           onError={this.onError}
           onHeightChange={this.onHeightChange}
+          bounces={bounces}
         />
       </View>
     )

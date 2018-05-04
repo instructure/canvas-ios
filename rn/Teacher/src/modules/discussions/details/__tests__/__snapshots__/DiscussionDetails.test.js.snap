@@ -1213,6 +1213,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                 >
                   <CanvasWebView
                     automaticallySetHeight={true}
+                    bounces={false}
                     html="<p>And why?</p>"
                     navigator={
                       Object {
@@ -2261,6 +2262,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                 >
                   <CanvasWebView
                     automaticallySetHeight={true}
+                    bounces={false}
                     html="<p>And why?</p>"
                     navigator={
                       Object {
@@ -3140,6 +3142,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                 >
                   <CanvasWebView
                     automaticallySetHeight={true}
+                    bounces={false}
                     html="<p>And why?</p>"
                     navigator={
                       Object {
@@ -4819,6 +4822,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                 >
                   <CanvasWebView
                     automaticallySetHeight={true}
+                    bounces={false}
                     html="<p>And why?</p>"
                     navigator={
                       Object {
@@ -6263,6 +6267,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                 >
                   <CanvasWebView
                     automaticallySetHeight={true}
+                    bounces={false}
                     html="<p>And why?</p>"
                     navigator={
                       Object {
@@ -8579,6 +8584,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                 >
                   <CanvasWebView
                     automaticallySetHeight={true}
+                    bounces={false}
                     html="<p>And why?</p>"
                     navigator={
                       Object {

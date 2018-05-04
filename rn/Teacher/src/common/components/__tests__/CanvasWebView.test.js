@@ -141,4 +141,26 @@ describe('CanvasWebView', () => {
     const tree = shallow(<CanvasWebView {...props} scrollEnabled={false} heightCacheKey='2' />)
     expect(tree.find('WebView').props().style.height).toEqual(52)
   })
+
+  it('prevents bounce if scroll is disabled', () => {
+    props.scrollEnabled = false
+    const tree = shallow(<CanvasWebView {...props} />)
+    const webView = tree.find('WebView')
+    expect(webView.prop('bounces')).toEqual(false)
+  })
+
+  it('prevents bounce if height is auto set', () => {
+    props.automaticallySetHeight = true
+    const tree = shallow(<CanvasWebView {...props} />)
+    const webView = tree.find('WebView')
+    expect(webView.prop('bounces')).toEqual(false)
+  })
+
+  it('bounces if scroll enabled and height is not auto set', () => {
+    props.scrollEnabled = true
+    props.automaticallySetHeight = false
+    const tree = shallow(<CanvasWebView {...props} />)
+    const webView = tree.find('WebView')
+    expect(webView.prop('bounces')).toEqual(true)
+  })
 })

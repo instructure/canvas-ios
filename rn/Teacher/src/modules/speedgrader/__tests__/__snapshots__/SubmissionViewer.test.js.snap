@@ -133,6 +133,7 @@ exports[`SubmissionViewer renders a moderated graded assignment submission 1`] =
     testID="web-container.view"
   >
     <CanvasWebView
+      bounces={true}
       contentInset={
         Object {
           "bottom": 0,
@@ -216,6 +217,7 @@ exports[`SubmissionViewer renders an online_text_entry submission 1`] = `
     testID="web-container.view"
   >
     <CanvasWebView
+      bounces={true}
       contentInset={
         Object {
           "bottom": 0,

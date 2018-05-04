@@ -789,6 +789,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
           testID="web-container.view"
         >
           <CanvasWebView
+            bounces={false}
             html="This is quiz 1"
             navigator={
               Object {
@@ -2206,6 +2207,7 @@ exports[`QuizDetails displays access code 1`] = `
           testID="web-container.view"
         >
           <CanvasWebView
+            bounces={false}
             html="This is quiz 1"
             navigator={
               Object {
@@ -3623,6 +3625,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
           testID="web-container.view"
         >
           <CanvasWebView
+            bounces={false}
             html="This is quiz 1"
             navigator={
               Object {
@@ -4924,6 +4927,7 @@ exports[`QuizDetails renders 1`] = `
           testID="web-container.view"
         >
           <CanvasWebView
+            bounces={false}
             html="This is quiz 1"
             navigator={
               Object {
@@ -6283,6 +6287,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
           testID="web-container.view"
         >
           <CanvasWebView
+            bounces={false}
             html="This is quiz 1"
             navigator={
               Object {
@@ -7700,6 +7705,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
           testID="web-container.view"
         >
           <CanvasWebView
+            bounces={false}
             html="This is quiz 1"
             navigator={
               Object {
@@ -9059,6 +9065,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
           testID="web-container.view"
         >
           <CanvasWebView
+            bounces={false}
             html="This is quiz 1"
             navigator={
               Object {
@@ -10418,6 +10425,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
           testID="web-container.view"
         >
           <CanvasWebView
+            bounces={false}
             html="This is quiz 1"
             navigator={
               Object {
@@ -11777,6 +11785,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
           testID="web-container.view"
         >
           <CanvasWebView
+            bounces={false}
             html="This is quiz 1"
             navigator={
               Object {
@@ -13136,6 +13145,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
           testID="web-container.view"
         >
           <CanvasWebView
+            bounces={false}
             html="This is quiz 1"
             navigator={
               Object {
@@ -14495,6 +14505,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
           testID="web-container.view"
         >
           <CanvasWebView
+            bounces={false}
             html="This is quiz 1"
             navigator={
               Object {
@@ -15796,6 +15807,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
           testID="web-container.view"
         >
           <CanvasWebView
+            bounces={false}
             html="This is quiz 1"
             navigator={
               Object {
@@ -17155,6 +17167,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
           testID="web-container.view"
         >
           <CanvasWebView
+            bounces={false}
             html="This is quiz 1"
             navigator={
               Object {
@@ -18546,6 +18559,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
           testID="web-container.view"
         >
           <CanvasWebView
+            bounces={false}
             html="This is quiz 1"
             navigator={
               Object {
@@ -19905,6 +19919,7 @@ exports[`QuizDetails renders assignment group 1`] = `
           testID="web-container.view"
         >
           <CanvasWebView
+            bounces={false}
             html="This is quiz 1"
             navigator={
               Object {
@@ -21322,6 +21337,7 @@ exports[`QuizDetails renders published state 1`] = `
           testID="web-container.view"
         >
           <CanvasWebView
+            bounces={false}
             html="This is quiz 1"
             navigator={
               Object {
@@ -22681,6 +22697,7 @@ exports[`QuizDetails renders published state 2`] = `
           testID="web-container.view"
         >
           <CanvasWebView
+            bounces={false}
             html="This is quiz 1"
             navigator={
               Object {
@@ -24040,6 +24057,7 @@ exports[`QuizDetails renders quiz type 1`] = `
           testID="web-container.view"
         >
           <CanvasWebView
+            bounces={false}
             html="This is quiz 1"
             navigator={
               Object {
@@ -25399,6 +25417,7 @@ exports[`QuizDetails renders quiz type 2`] = `
           testID="web-container.view"
         >
           <CanvasWebView
+            bounces={false}
             html="This is quiz 1"
             navigator={
               Object {
@@ -26758,6 +26777,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
           testID="web-container.view"
         >
           <CanvasWebView
+            bounces={false}
             html="This is quiz 1"
             navigator={
               Object {
@@ -28117,6 +28137,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
           testID="web-container.view"
         >
           <CanvasWebView
+            bounces={false}
             html="This is quiz 1"
             navigator={
               Object {
@@ -29476,6 +29497,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
           testID="web-container.view"
         >
           <CanvasWebView
+            bounces={false}
             html="This is quiz 1"
             navigator={
               Object {
@@ -30835,6 +30857,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
           testID="web-container.view"
         >
           <CanvasWebView
+            bounces={false}
             html="This is quiz 1"
             navigator={
               Object {
@@ -32194,6 +32217,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
           testID="web-container.view"
         >
           <CanvasWebView
+            bounces={false}
             html="This is quiz 1"
             navigator={
               Object {
@@ -33553,6 +33577,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
           testID="web-container.view"
         >
           <CanvasWebView
+            bounces={false}
             html="This is quiz 1"
             navigator={
               Object {
@@ -34912,6 +34937,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
           testID="web-container.view"
         >
           <CanvasWebView
+            bounces={false}
             html="This is quiz 1"
             navigator={
               Object {
@@ -36271,6 +36297,7 @@ exports[`QuizDetails renders time limit 1`] = `
           testID="web-container.view"
         >
           <CanvasWebView
+            bounces={false}
             html="This is quiz 1"
             navigator={
               Object {
@@ -37630,6 +37657,7 @@ exports[`QuizDetails renders time limit 2`] = `
           testID="web-container.view"
         >
           <CanvasWebView
+            bounces={false}
             html="This is quiz 1"
             navigator={
               Object {
@@ -38989,6 +39017,7 @@ exports[`QuizDetails renders view responses 1`] = `
           testID="web-container.view"
         >
           <CanvasWebView
+            bounces={false}
             html="This is quiz 1"
             navigator={
               Object {
@@ -40348,6 +40377,7 @@ exports[`QuizDetails renders view responses 2`] = `
           testID="web-container.view"
         >
           <CanvasWebView
+            bounces={false}
             html="This is quiz 1"
             navigator={
               Object {
@@ -41649,6 +41679,7 @@ exports[`QuizDetails renders view responses 3`] = `
           testID="web-container.view"
         >
           <CanvasWebView
+            bounces={false}
             html="This is quiz 1"
             navigator={
               Object {

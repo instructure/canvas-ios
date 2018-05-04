@@ -68,6 +68,7 @@ exports[`RubricDescription renders 1`] = `
           testID="web-container.view"
         >
           <CanvasWebView
+            bounces={false}
             html="A satisfactory description"
             navigator={
               Object {

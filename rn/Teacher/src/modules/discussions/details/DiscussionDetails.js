@@ -251,7 +251,7 @@ export class DiscussionDetails extends Component<Props, any> {
           { (Boolean(discussion.message) || Boolean(discussion.attachments)) &&
              <View style={style.message}>
                 { Boolean(discussion.message) &&
-                   <CanvasWebView style={{ flex: 1 }} automaticallySetHeight html={discussion.message} navigator={this.props.navigator}/>
+                   <CanvasWebView style={{ flex: 1 }} automaticallySetHeight html={discussion.message} navigator={this.props.navigator} />
                 }
                 { Boolean(discussion.attachments) && discussion.attachments && discussion.attachments.length === 1 &&
                 // should only ever have 1, blocked by UI, but API returns array of 1 :facepalm:
