@@ -230,7 +230,7 @@ export function mapStateToProps (state: AppState, { courseID }: RoutingParams): 
     .filter((tab) => {
       if (tab.id === attendanceTabID && tab.hidden) return false
       if (isStudent()) return !tab.hidden
-      return availableCourseTabs.includes(tab.id) || tab.id.includes('external_tool')
+      return (availableCourseTabs.includes(tab.id) || tab.id.includes('external_tool')) && !tab.hidden
     })
     .sort((t1, t2) => (t1.position - t2.position))
   const error = state.favoriteCourses.error || courseState.tabs.error
