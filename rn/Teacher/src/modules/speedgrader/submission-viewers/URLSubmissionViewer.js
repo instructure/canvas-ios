@@ -87,7 +87,7 @@ export default class URLSubmissionViewer extends Component<Props, State> {
 
   render () {
     const previewUnavailable = i18n('Preview Unavailable')
-    const submissionExplaination = i18n('This submission is a URL to an external page. We\'ve included a snapshot of what the page looked like when it was submitted.')
+    const submissionExplanation = i18n('This submission is a URL to an external page. We\'ve included a snapshot of what the page looked like when it was submitted.')
     const preview = i18n('URL Preview Image')
 
     const { submission } = this.props
@@ -122,7 +122,7 @@ export default class URLSubmissionViewer extends Component<Props, State> {
         <Text
           testID='url-submission-viewer.explanation'
         >
-          {submissionExplaination}
+          {submissionExplanation}
         </Text>
         <LinkButton
           testID='url-submission-viewer.url'

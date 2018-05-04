@@ -17,6 +17,8 @@ exports[`SpeedGrader defaults current page to 0 if userID is not in submissions 
     }
   >
     <View
+      accessibilityLabel="In Progress"
+      accessible={true}
       style={
         Object {
           "alignItems": "center",
@@ -66,6 +68,8 @@ exports[`SpeedGrader defaults current page to 0 without studentIndex 1`] = `
     }
   >
     <View
+      accessibilityLabel="In Progress"
+      accessible={true}
       style={
         Object {
           "alignItems": "center",
@@ -200,6 +204,8 @@ exports[`SpeedGrader renders 1`] = `
     }
   >
     <View
+      accessibilityLabel="In Progress"
+      accessible={true}
       style={
         Object {
           "alignItems": "center",
@@ -233,7 +239,7 @@ exports[`SpeedGrader renders 1`] = `
 `;
 
 exports[`SpeedGrader renders submissions if there are some 1`] = `
-<_class
+<View
   style={
     Array [
       Object {
@@ -272,6 +278,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
             "dismiss": [Function],
             "getInitialTabIndex": [Function],
             "getItemLayout": [Function],
+            "hasRenderedBody": false,
             "onLayout": [Function],
             "props": Object {
               "assignmentID": "1",
@@ -385,6 +392,8 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                               }
                   >
                               <View
+                                          accessibilityLabel="In Progress"
+                                          accessible={true}
                                           style={
                                                       Object {
                                                                   "alignItems": "center",
@@ -426,6 +435,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
             "dismiss": [Function],
             "getInitialTabIndex": [Function],
             "getItemLayout": [Function],
+            "hasRenderedBody": true,
             "onLayout": [Function],
             "props": Object {
               "assignmentID": "1",
@@ -662,6 +672,226 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
             "dismiss": [Function],
             "getInitialTabIndex": [Function],
             "getItemLayout": [Function],
+            "hasRenderedBody": true,
+            "onLayout": [Function],
+            "props": Object {
+              "assignmentID": "1",
+              "assignmentSubmissionTypes": Array [
+                "none",
+              ],
+              "courseID": "1",
+              "drawerPosition": 0,
+              "getCourseEnabledFeatures": [Function],
+              "gradeSubmissionWithRubric": [Function],
+              "navigator": Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "isModal": false,
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              },
+              "onDismiss": [Function],
+              "pending": false,
+              "refresh": [Function],
+              "refreshSubmissionSummary": [Function],
+              "refreshSubmissions": [Function],
+              "refreshing": false,
+              "resetDrawer": [Function],
+              "submissionEntities": Object {},
+              "submissions": Array [
+                Object {
+                  "avatarURL": "http://www.fillmurray.com/100/100",
+                  "grade": "B-",
+                  "name": "Donald Trump",
+                  "sectionID": "1",
+                  "status": "submitted",
+                  "userID": "55",
+                },
+              ],
+              "userID": "1",
+            },
+            "refs": Object {},
+            "renderBody": [Function],
+            "renderItem": [Function],
+            "scrollEnded": [Function],
+            "snapTo": [Function],
+            "state": Object {
+              "currentPageIndex": 0,
+              "currentStudentID": "1",
+              "drawerInset": 62,
+              "hasScrolledToInitialSubmission": false,
+              "hasSetInitialDrawerPosition": false,
+              "scrollEnabled": true,
+              "size": Object {
+                "height": 1334,
+                "width": 770,
+              },
+              "submissions": Array [
+                Object {
+                  "avatarURL": "http://www.fillmurray.com/100/100",
+                  "grade": "B-",
+                  "name": "Donald Trump",
+                  "sectionID": "1",
+                  "status": "submitted",
+                  "userID": "55",
+                },
+              ],
+            },
+            "updater": Updater {
+              "_renderer": ReactShallowRenderer {
+                "_context": Object {},
+                "_element": <SpeedGrader
+                  assignmentID="1"
+                  assignmentSubmissionTypes={
+                              Array [
+                                          "none",
+                                        ]
+                  }
+                  courseID="1"
+                  drawerPosition={0}
+                  getCourseEnabledFeatures={[Function]}
+                  gradeSubmissionWithRubric={[Function]}
+                  navigator={
+                              Object {
+                                          "dismiss": [Function],
+                                          "dismissAllModals": [Function],
+                                          "isModal": false,
+                                          "pop": [Function],
+                                          "show": [Function],
+                                          "traitCollection": [Function],
+                                        }
+                  }
+                  onDismiss={[Function]}
+                  pending={false}
+                  refresh={[Function]}
+                  refreshSubmissionSummary={[Function]}
+                  refreshSubmissions={[Function]}
+                  refreshing={false}
+                  resetDrawer={[Function]}
+                  submissionEntities={Object {}}
+                  submissions={
+                              Array [
+                                          Object {
+                                            "avatarURL": "http://www.fillmurray.com/100/100",
+                                            "grade": "B-",
+                                            "name": "Donald Trump",
+                                            "sectionID": "1",
+                                            "status": "submitted",
+                                            "userID": "55",
+                                          },
+                                        ]
+                  }
+                  userID="1"
+      />,
+                "_forcedUpdate": false,
+                "_instance": [Circular],
+                "_newState": Object {
+                  "currentPageIndex": 0,
+                  "currentStudentID": "1",
+                  "drawerInset": 62,
+                  "hasScrolledToInitialSubmission": false,
+                  "hasSetInitialDrawerPosition": false,
+                  "scrollEnabled": true,
+                  "size": Object {
+                    "height": 1334,
+                    "width": 770,
+                  },
+                  "submissions": Array [
+                    Object {
+                      "avatarURL": "http://www.fillmurray.com/100/100",
+                      "grade": "B-",
+                      "name": "Donald Trump",
+                      "sectionID": "1",
+                      "status": "submitted",
+                      "userID": "55",
+                    },
+                  ],
+                },
+                "_rendered": <Screen
+                  navBarHidden={true}
+                  navBarStyle="light"
+                  noRotationInVerticallyCompact={true}
+                  showDismissButton={true}
+                  statusBarHidden={true}
+                  statusBarStyle="default"
+      >
+                  <View
+                              style={
+                                          Object {
+                                                      "flex": 1,
+                                                    }
+                              }
+                  >
+                              <FlatList
+                                          data={
+                                                      Array [
+                                                                  Object {
+                                                                    "key": "55",
+                                                                    "submission": Object {
+                                                                      "avatarURL": "http://www.fillmurray.com/100/100",
+                                                                      "grade": "B-",
+                                                                      "name": "Donald Trump",
+                                                                      "sectionID": "1",
+                                                                      "status": "submitted",
+                                                                      "userID": "55",
+                                                                    },
+                                                                  },
+                                                                ]
+                                          }
+                                          disableVirtualization={false}
+                                          getItemLayout={[Function]}
+                                          horizontal={true}
+                                          initialNumToRender={null}
+                                          initialScrollIndex={0}
+                                          keyExtractor={[Function]}
+                                          keyboardShouldPersistTaps="handled"
+                                          maxToRenderPerBatch={10}
+                                          numColumns={1}
+                                          onEndReachedThreshold={2}
+                                          onLayout={[Function]}
+                                          onMomentumScrollEnd={[Function]}
+                                          pagingEnabled={true}
+                                          renderItem={[Function]}
+                                          scrollEventThrottle={50}
+                                          showsHorizontalScrollIndicator={false}
+                                          style={
+                                                      Object {
+                                                                  "marginLeft": -10,
+                                                                  "marginRight": -10,
+                                                                }
+                                          }
+                                          updateCellsBatchingPeriod={50}
+                                          windowSize={5}
+                              />
+                              <Tutorial
+                                          tutorials={
+                                                      Array [
+                                                                  Object {
+                                                                    "id": "swipe-tutorial",
+                                                                    "image": Object {
+                                                                      "testUri": "../../../src/images/speedgrader/Swipe.png",
+                                                                    },
+                                                                    "text": "Swipe left or right to view other student submissions",
+                                                                  },
+                                                                ]
+                                          }
+                              />
+                  </View>
+      </Screen>,
+                "_rendering": false,
+                "_updater": [Circular],
+              },
+            },
+          },
+          SpeedGrader {
+            "_captureFlatList": [Function],
+            "componentWillReceiveProps": [Function],
+            "context": Object {},
+            "dismiss": [Function],
+            "getInitialTabIndex": [Function],
+            "getItemLayout": [Function],
+            "hasRenderedBody": true,
             "onLayout": [Function],
             "props": Object {
               "assignmentID": "1",
@@ -879,6 +1109,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
             "dismiss": [Function],
             "getInitialTabIndex": [Function],
             "getItemLayout": [Function],
+            "hasRenderedBody": false,
             "onLayout": [Function],
             "props": Object {
               "assignmentID": "1",
@@ -992,6 +1223,8 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                               }
                   >
                               <View
+                                          accessibilityLabel="In Progress"
+                                          accessible={true}
                                           style={
                                                       Object {
                                                                   "alignItems": "center",
@@ -1033,6 +1266,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
             "dismiss": [Function],
             "getInitialTabIndex": [Function],
             "getItemLayout": [Function],
+            "hasRenderedBody": false,
             "onLayout": [Function],
             "props": Object {
               "assignmentID": "1",
@@ -1146,6 +1380,8 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                               }
                   >
                               <View
+                                          accessibilityLabel="In Progress"
+                                          accessible={true}
                                           style={
                                                       Object {
                                                                   "alignItems": "center",
@@ -1187,6 +1423,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
             "dismiss": [Function],
             "getInitialTabIndex": [Function],
             "getItemLayout": [Function],
+            "hasRenderedBody": true,
             "onLayout": [Function],
             "props": Object {
               "assignmentID": "1",
@@ -1432,5 +1669,5 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
     }
     userID="55"
   />
-</_class>
+</View>
 `;

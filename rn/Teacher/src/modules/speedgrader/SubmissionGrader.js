@@ -280,7 +280,8 @@ export default class SubmissionGrader extends Component<SubmissionGraderProps, S
             <SubmissionViewer
               {...this.props}
               size={{
-                width: width - DRAWER_WIDTH, height,
+                height,
+                width: width - DRAWER_WIDTH,
               }}
               drawerInset={0}
             />

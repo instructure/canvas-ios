@@ -18,6 +18,7 @@
 
 import { shallow } from 'enzyme'
 import React from 'react'
+import { NativeModules } from 'react-native'
 import {
   SpeedGrader,
   mapStateToProps,
@@ -34,6 +35,8 @@ jest.mock('../components/FilesTab')
 jest.mock('../components/SimilarityScore')
 jest.mock('../../../common/components/BottomDrawer')
 jest.mock('knuth-shuffle-seeded', () => jest.fn())
+
+const { NativeAccessibility } = NativeModules
 
 const templates = {
   ...require('../../../__templates__/submissions'),
@@ -82,6 +85,10 @@ let defaultProps = {
 }
 
 describe('SpeedGrader', () => {
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
+
   it('renders', () => {
     let tree = shallow(
       <SpeedGrader {...defaultProps} />
@@ -101,6 +108,20 @@ describe('SpeedGrader', () => {
     )
     let list = tree.find('FlatList')
     expect(list.props().data.length).toEqual(1)
+  })
+
+  it('refreshes accessibility after showing loading indicator', () => {
+    const props = {
+      ...defaultProps,
+      pending: true,
+    }
+    const tree = shallow(<SpeedGrader {...props} />)
+    expect(NativeAccessibility.refresh).not.toHaveBeenCalled()
+    tree.setProps({
+      pending: false,
+      submissions: [templates.submissionProps()],
+    })
+    expect(NativeAccessibility.refresh).toHaveBeenCalled()
   })
 
   it('doesnt set index until there are some submissions', () => {

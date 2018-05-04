@@ -24,6 +24,7 @@ import {
   FlatList,
   Dimensions,
   DeviceInfo,
+  NativeModules,
 } from 'react-native'
 import refresh from '../../utils/refresh'
 import { connect } from 'react-redux'
@@ -50,7 +51,8 @@ import Tutorial from './components/Tutorial'
 import i18n from 'format-message'
 import Images from '../../images'
 import shuffle from 'knuth-shuffle-seeded'
-import A11yGroup from '../../common/components/A11yGroup'
+
+const { NativeAccessibility } = NativeModules
 
 type State = {
   size: { width: number, height: number },
@@ -69,6 +71,7 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
   state: State
   _flatList: ?FlatList
   scrollView: ?{ setNativeProps: (Object) => void }
+  hasRenderedBody = false
 
   static drawerState = new DrawerState()
   static defaultProps = {
@@ -191,7 +194,7 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
       ? this.state.currentStudentID === item.submission.userID
       : index === 0
 
-    return <A11yGroup style={[styles.page, this.state.size]}>
+    return <View style={[styles.page, this.state.size]}>
       <SubmissionGrader
         isCurrentStudent={isCurrentStudent}
         drawerState={SpeedGrader.drawerState}
@@ -213,7 +216,7 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
           this.scrollView.setNativeProps({ scrollEnabled: value })
         }}
       />
-    </A11yGroup>
+    </View>
   }
 
   dismiss = () => {
@@ -248,7 +251,20 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
 
   renderBody = () => {
     if (this.props.pending || !this.state.submissions.length) {
-      return <View style={styles.loadingWrapper}><ActivityIndicator /></View>
+      return (
+        <View
+          accessible={true}
+          accessibilityLabel={i18n('In Progress')}
+          style={styles.loadingWrapper}
+        >
+          <ActivityIndicator />
+        </View>
+      )
+    }
+
+    if (!this.hasRenderedBody) {
+      this.hasRenderedBody = true
+      NativeAccessibility.refresh()
     }
 
     const items = this.state.submissions
