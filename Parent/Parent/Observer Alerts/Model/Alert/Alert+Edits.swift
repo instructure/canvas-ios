@@ -34,9 +34,12 @@ extension Alert {
             let producer = try markDismissed(true, session: session)
             producer.startWithSignal { signal, disposable in
                 signal.observe(on: ManagedObjectContextScheduler(context: context)).observeResult { result in
-                    if case .failure(_) = result {
+                    if case .failure(let e) = result {
                         self.dismissed = false
                         let _ = try? context.save()
+                        if e.code == 401 {
+                            AirwolfAPI.validateSessionAndLogout(session, parentID: session.user.id)
+                        }
                     }
                     
                     completion?(result.map { _ in true })
@@ -61,9 +64,12 @@ extension Alert {
             let producer = try markAsRead(true, session: session)
             producer.startWithSignal { signal, disposable in
                 signal.observe(on: ManagedObjectContextScheduler(context: context)).observeResult { result in
-                    if case .failure(_) = result {
+                    if case .failure(let e) = result {
                         self.read = false
                         let _ = try? context.save()
+                        if e.code == 401 {
+                            AirwolfAPI.validateSessionAndLogout(session, parentID: session.user.id)
+                        }
                     }
                     
                     completion?(result.map { _ in true })

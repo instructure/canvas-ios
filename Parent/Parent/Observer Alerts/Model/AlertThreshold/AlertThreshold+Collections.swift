@@ -44,7 +44,11 @@ extension AlertThreshold {
     public static func refresher(_ session: Session) throws -> Refresher {
         let remote = try AlertThreshold.getAllAlertThresholds(session)
         let context = try session.alertsManagedObjectContext()
-        let sync = AlertThreshold.syncSignalProducer(inContext: context, fetchRemote: remote)
+        let sync = AlertThreshold.syncSignalProducer(inContext: context, fetchRemote: remote).on(failed: {error in
+            if error.code == 401 {
+                AirwolfAPI.validateSessionAndLogout(session, parentID: session.user.id)
+            }
+        })
 
         let key = cacheKey(context)
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)

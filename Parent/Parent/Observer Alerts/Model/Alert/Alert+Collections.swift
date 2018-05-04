@@ -51,7 +51,11 @@ extension Alert {
         let predicate = Alert.observeePredicate(observeeID)
         let remote = try Alert.getObserveeAlerts(session, observeeID: observeeID)
         let context = try session.alertsManagedObjectContext()
-        let sync = Alert.syncSignalProducer(predicate, inContext: context, fetchRemote: remote)
+        let sync = Alert.syncSignalProducer(predicate, inContext: context, fetchRemote: remote).on(failed: {error in
+            if error.code == 401 {
+                AirwolfAPI.validateSessionAndLogout(session, parentID: session.user.id)
+            }
+        })
 
         let key = self.cacheKey(context, [session.user.id, observeeID])
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)

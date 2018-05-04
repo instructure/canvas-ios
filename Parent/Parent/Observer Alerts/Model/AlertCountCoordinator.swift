@@ -34,6 +34,9 @@ open class AlertCountCoordinator: ManagedObjectCountObserver<Alert> {
         let _ = sync.start { event in
             switch event {
             case .failed(let e):
+                if e.code == 401 {
+                    AirwolfAPI.validateSessionAndLogout(self.session, parentID: self.session.user.id)
+                }
                 print(e)
                 fallthrough
             default:

@@ -60,6 +60,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let session = Keymaster.sharedInstance.mostRecentSession() {
             Keymaster.sharedInstance.currentSession = session
             Router.sharedInstance.session = session
+            Router.sharedInstance.routeToLoggedInViewController()
+        } else {
+            Router.sharedInstance.routeToLoggedOutViewController()
         }
 
         window!.makeKeyAndVisible()
@@ -75,19 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AppStoreReview.requestReview()
 
         if let session = Keymaster.sharedInstance.currentSession {
-            AirwolfAPI.validateSession(session, parentID: session.user.id) { success in
-                DispatchQueue.main.async {
-                    if success {
-                        Router.sharedInstance.routeToLoggedInViewController()
-                    } else {
-                        Router.sharedInstance.routeToLoggedOutViewController()
-                    }
-                }
-            }
-        } else {
-            DispatchQueue.main.async {
-                Router.sharedInstance.routeToLoggedOutViewController()
-            }
+            AirwolfAPI.validateSessionAndLogout(session, parentID: session.user.id)
         }
     }
     

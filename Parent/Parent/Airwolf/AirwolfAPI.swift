@@ -109,4 +109,15 @@ open class AirwolfAPI {
             completionHandler(false)
         }
     }
+
+    open class func validateSessionAndLogout(_ session: Session, parentID: String) {
+        validateSession(session, parentID: parentID) {success in
+            if !success {
+                DispatchQueue.main.async {
+                    Keymaster.sharedInstance.logout()
+                    Router.sharedInstance.routeToLoggedOutViewController(animated: true)
+                }
+            }
+        }
+    }
 }

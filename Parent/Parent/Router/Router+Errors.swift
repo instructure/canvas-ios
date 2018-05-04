@@ -32,7 +32,17 @@ extension Router {
                     guard let s = self.session else { self.presentGenericNetworkError(viewController, error: error); return }
                     Student.refreshForAccessRemoved(session: s, from: viewController)
                 case 401:
-                    self.presentNotAuthorizedError(viewController, error: error)
+                    guard let s = self.session else { self.presentNotAuthorizedError(viewController, error: error); return }
+                    AirwolfAPI.validateSession(s, parentID: s.user.id) { success in
+                        if success {
+                            self.presentNotAuthorizedError(viewController, error: error)
+                        } else {
+                            DispatchQueue.main.async {
+                                Keymaster.sharedInstance.logout()
+                                Router.sharedInstance.routeToLoggedOutViewController()
+                            }
+                        }
+                    }
                 case 404:
                     self.presentResourceNotFoundError(viewController, error: error)
                 case 418:

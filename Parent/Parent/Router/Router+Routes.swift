@@ -264,6 +264,7 @@ extension Router {
                 guard let session = self?.session else {
                     fatalError("You can't add a user without a session")
                 }
+
                 let producer = try! Student.checkDomain(session, parentID: session.user.id, domain: domain)
                 producer.observe(on: UIScheduler()).startWithSignal({ signal, disposable in
                     signal.observe { event in
@@ -273,6 +274,7 @@ extension Router {
                             var createAccountTitle = NSLocalizedString("Unable to Add Student", comment: "Title for alert when failing to add student domain")
                             var createAccountMessage = e.localizedDescription
                             if e.code == 401 || e.code == 400 {
+                                AirwolfAPI.validateSessionAndLogout(session, parentID: session.user.id)
                                 createAccountMessage = NSLocalizedString("Invalid student domain.\nPlease double-check the domain and try again.", comment: "Alert Message for invalid domain")
                             } else if e.code == 403 {
                                 createAccountMessage = NSLocalizedString("This institution has not enabled access to the Canvas Parent mobile app.", comment: "Alert Message for institution not authorized")

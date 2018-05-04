@@ -52,6 +52,9 @@ extension AlertThreshold {
 
                             try? context.save()
                             observer.send(error: e)
+                            if e.code == 401 {
+                                AirwolfAPI.validateSessionAndLogout(session, parentID: session.user.id)
+                            }
                         case .value(_):
                             observer.send(value: true)
                         case .completed:
@@ -97,6 +100,9 @@ extension AlertThreshold {
                             alertThreshold.delete(inContext: context)
                             let _ = try? context.save()
                             observer.send(error: e)
+                            if e.code == 401 {
+                                AirwolfAPI.validateSessionAndLogout(session, parentID: session.user.id)
+                            }
                         case .value(_):
                             observer.send(value: true)
                         case .completed:
@@ -133,6 +139,9 @@ extension AlertThreshold {
                             me.threshold = oldThresholdValue
                             let _ = try? context.save()
                             observer.send(error: e)
+                            if e.code == 401 {
+                                AirwolfAPI.validateSessionAndLogout(session, parentID: session.user.id)
+                            }
                         case .value(_):
                             observer.send(value: true)
                         case .completed:
