@@ -50,6 +50,7 @@ frameworks_path      = File.join(destination, 'Frameworks')
 canvas_core_path     = File.join(destination, 'CanvasCore')
 workspace_path       = File.join(destination, workspace_name)
 podfile_path         = File.join(destination, 'Podfile')
+deep_links_path      = File.join(destination, 'rn', 'CanvasPlayground', 'deep-links.json')
 
 # The groups in the workspace that shouldn't be included
 groups_to_remove = %w[]
@@ -176,8 +177,7 @@ raise "Cannot update the Podfile with the correct PSPDFKit license" unless podfi
 podfile_contents.gsub!(pspdfkit_license, "TRIAL-x47r57c_x_ndkkTGJ8Un-fmB8EXXDom1r2FSyQhPZEx2i2uQGGBjZnzJTJ_az2BccXySgrFZK3AwksivROwULg")
 raise "Prod license not removed! Check gsub pattern" if podfile_contents.include?(pspdfkit_license)
 
-# remove SoAutomated
-podfile_contents.gsub!(/target\s*['"]SoAutomated.*?['"]\s*do.*?end\s*/m, '')
-File.write(podfile_path, podfile_contents)
+# Remove twilson deep links
+File.write(deep_links_path, "[]")
 
 puts "PRAISE THE SUN IT'S FINISHED"

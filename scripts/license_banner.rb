@@ -63,7 +63,13 @@ end
 
 # If this test passes the file shouldn't be included in the search of files
 def file_test(file)
-    exceptions = ['.framework/Headers/', '.framework/Versions/', 'CanvasKit1/External Sources/', 'node_modules', 'jquery']
+    exceptions = [
+      '.framework/Headers/',
+      '.framework/Versions/',
+      'CanvasKit1/External Sources/',
+      'node_modules',
+      'jquery'
+    ]
     return false if exceptions.any? { |exception| file.include? exception}
     true
 end
@@ -108,7 +114,7 @@ files.each do |file|
         next
     end
 
-    if banner_matches
+    unless banner_matches
         files_skipped.push(file)
         next
     end
@@ -121,17 +127,23 @@ files.each do |file|
     end
 
     new_contents = text.sub(license_banner_regex, banner)
+    if new_contents == text
+        files_skipped.push(file)
+        next
+    end
     File.write(file, new_contents) unless options[:skip_write]
     files_replaced.push(file)
 end
 
-if options[:skip_write] 
+if options[:skip_write]
     puts "Files to be modified: #{files_replaced.count}"
     if options[:print]
         puts files_replaced.sort
     end
     puts "Files to be skipped: #{files_skipped.count}"
-    puts files_skipped.sort
+    if options[:print]
+      puts files_skipped.sort
+    end
     puts "\n\nFiles with incompatible liceneses: #{files_with_incompatible_license.count}"
     puts files_with_incompatible_license
 else
@@ -140,7 +152,9 @@ else
         puts files_replaced.sort
     end
     puts "Files skipped: #{files_skipped.count}"
-    puts files_skipped.sort
+    if options[:print]
+      puts files_skipped.sort
+    end
     puts "\n\nFiles with incompatible liceneses that were not replaced: #{files_with_incompatible_license.count}"
     puts files_with_incompatible_license
 end
