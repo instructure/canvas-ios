@@ -39,10 +39,10 @@ targets = [workspace_name,
            'Frameworks',
            'Podfile',
            'Podfile.lock',
+           'preload-account-info.plist',
            'ExternalFrameworks',
            'secrets.plist',
            '.gitignore',
-           'fastlane',
            'setup.sh']
 
 destination          = 'ios-open-source'
@@ -153,10 +153,6 @@ FileUtils.cp File.join(opensource_files_dir, 'README.md'), File.join(destination
 google_services_path = File.join(destination, 'Canvas', 'Canvas', 'Shrug', 'GoogleService-Info.plist')
 purge_plist google_services_path
 
-# Remove Matchfile
-FileUtils.rm File.join(destination, 'fastlane', 'Matchfile')
-FileUtils.rm File.join(destination, 'fastlane', 'Appfile')
-
 # Remove buddybuild scripts
 FileUtils.rm File.join(destination, 'rn', 'Teacher', 'ios', 'buddybuild_postbuild.sh')
 FileUtils.rm File.join(destination, 'rn', 'Teacher', 'ios', 'buddybuild_prebuild.sh')
@@ -167,7 +163,6 @@ frameworks_to_remove.each do |folder|
 end
 
 # Replace PSPDFKit stuff in Podfile
-
 expires = Date.new(2018, 10, 1)
 raise "Cannot update Podfile with the correct information. You need to renew the trial Podfile URL with PSPDFKit" unless expires > Date.today
 

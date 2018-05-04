@@ -1,19 +1,19 @@
-![Bitrise Build Status](https://www.bitrise.io/app/e1c9ac2d7363ba93.svg?token=-s_DiLFS7LZ8H5HEs0mSog)
-
 # Instructure iOS
 
 ### Please Note:
 - This repository will be updated frequently with *breaking* changes. Fork with caution.
 
 ## Prerequisites:
-- Xcode 9
-- macOS 10.12
-- [Yarn 1.2.1](https://github.com/yarnpkg/yarn)
-- [Cocoapods 1.3.1](https://cocoapods.org)
+- Xcode 9.3
+- macOS 10.13.4
+- [Nodejs 8.11.1](https://nodejs.org/)
+- [Yarn 1.5.1](https://github.com/yarnpkg/yarn)
+- [Cocoapods 1.5.0](https://cocoapods.org)
 
 ## Installation
 - `./setup`
-- Add required license keys in the keys.plist
+- Add required license keys in the secrets.plist
+- If you want to use PSPDFKit, you will need to modify the Podfile to include your own PSPDFKit podspec url in addition to adding the license to secrets.plist.
 - If you wish to use Google Analytics in Canvas, follow [these directions](http://bit.ly/2dPsV9D) to add a GoogleService-Info.plist to Canvas/Canvas/Shrug/GoogleService-Info.plist
 
 ## Apps
@@ -30,7 +30,7 @@ App | Description
 
 ```
 Copyright (C) 2016 - present  Instructure, Inc.
- 
+
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, version 3 of the License.
@@ -52,9 +52,9 @@ Copyright (C) 2016 - present Instructure, Inc.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
- 
+
     http://www.apache.org/licenses/LICENSE-2.0
- 
+
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
