@@ -27,6 +27,7 @@ import {
   StyleSheet,
   Linking,
   Button,
+  Picker,
 } from 'react-native';
 import links from './deep-links.json'
 
@@ -34,6 +35,7 @@ export default class DeepLinkingScreen extends React.Component {
 
   state = {
     items: [],
+    app: 'student',
   }
 
   static navigationOptions = {
@@ -42,14 +44,14 @@ export default class DeepLinkingScreen extends React.Component {
 
   componentDidMount = async () => {
     let data = await AsyncStorage.getItem('route-items')
-    let items = JSON.parse(data || []).filter((item) => !!item && !!item.url)
-    let predefinedItems = links.map((item) => ({ url: item }))
-    this.setState({ items: [...items, ...predefinedItems] })
+    let savedItems = JSON.parse(data || "[]").filter((item) => !!item && !!item.url)
+    let predefinedItems = links.map((item) => ({ url: item, deletable: false }))
+    this.setState({ items: [...savedItems, ...predefinedItems] })
   }
 
   onPress = (item) => {
-    let url = `canvas-student://${item.url}`
-    Linking.openURL(url)
+    let url = `canvas-${this.state.app}://${item.url}`
+    Linking.openURL(url).catch(err => console.error('Error! Unable to open URL.', err))
   }
 
   onBlur = () => {
@@ -89,6 +91,13 @@ export default class DeepLinkingScreen extends React.Component {
     return (
       <View style={{ flex: 1, backgroundColor: 'white' }}>
         <View>
+          <Picker
+            selectedValue={this.state.app}
+            onValueChange={(itemValue, itemIndex) => this.setState({app: itemValue})}>
+            <Picker.Item label="Student" value="student" />
+            <Picker.Item label="Teacher" value="teacher" />
+          </Picker>
+
           <TextInput
             style={{ height: 34, padding: 8 }}
             onChangeText={(text) => this.setState({text})}
