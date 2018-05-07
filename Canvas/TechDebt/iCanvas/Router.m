@@ -36,7 +36,7 @@
 
 @implementation UIViewController (Push)
 - (UIViewController *)currentLeaf {
-    return self;
+    return self.presentedViewController ? self.presentedViewController.currentLeaf : self;
 }
 @end
 
@@ -221,8 +221,12 @@
 }
 
 - (UIViewController *)routeFromController:(UIViewController *)sourceController toURL:(NSURL *)url {
+    return [self routeFromController:sourceController toURL:url withOptions:nil];
+}
+
+- (UIViewController *)routeFromController:(UIViewController *)sourceController toURL:(NSURL *)url withOptions:(NSDictionary *)options {
     UIViewController *destinationViewController = [self controllerForHandlingBlockFromURL:url];
-    
+
     if (!destinationViewController && self.fallbackHandler) {
         self.fallbackHandler(url, sourceController);
         return nil;
@@ -237,16 +241,27 @@
 
     if ([destinationViewController isKindOfClass:[HelmViewController class]]) {
         HelmViewController *controller = (HelmViewController *)destinationViewController;
-        NSDictionary *navigatorOptions = controller.props[@"navigatorOptions"];
-        if (navigatorOptions && navigatorOptions[@"modal"]) {
+        NSMutableDictionary *props = [controller.props mutableCopy];
+        NSMutableDictionary *navigatorOptions = [props[@"navigatorOptions"] mutableCopy] ?: [NSMutableDictionary new];
+        if ((navigatorOptions && navigatorOptions[@"modal"]) || (options && options[@"modal"])) {
+            navigatorOptions[@"modal"] = @(1);
+            props[@"navigatorOptions"] = navigatorOptions;
+            controller.props = props;
             HelmNavigationController *navigation = [[HelmNavigationController alloc] initWithRootViewController:controller];
             [sourceController presentViewController:navigation animated:YES completion:nil];
             return destinationViewController;
         }
     }
 
+    if (destinationViewController && options && options[@"modal"]) {
+        HelmNavigationController *navigation = [[HelmNavigationController alloc] initWithRootViewController:destinationViewController];
+        [destinationViewController addModalDismissButtonWithButtonTitle:nil];
+        [sourceController presentViewController:navigation animated:YES completion:nil];
+        return destinationViewController;
+    }
+
     [sourceController cbi_transitionToViewController:destinationViewController animated:YES];
-    
+
     return destinationViewController;
 }
 
@@ -259,12 +274,12 @@
     return destinationViewController;
 }
 
-- (void)openCanvasURL:(NSURL *)url {
+- (void)openCanvasURL:(NSURL *)url withOptions:(NSDictionary *)options {
     RACSignal *clientFromSuggestedDomain = [TheKeymaster signalForLoginWithDomain:url.host];
     
     [clientFromSuggestedDomain subscribeNext:^(CKIClient *client) {
         UIViewController *root = UIApplication.sharedApplication.windows[0].rootViewController;
-        [self routeFromController:root.currentLeaf toURL:url];
+        [self routeFromController:root.currentLeaf toURL:url withOptions:options];
     }];
 }
 

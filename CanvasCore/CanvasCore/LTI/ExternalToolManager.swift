@@ -238,7 +238,7 @@ public class ExternalToolManager: NSObject {
     private func present(_ url: URL, pageViewPath: String?, from viewController: UIViewController, completionHandler: (() -> Void)?) {
         var comps = URLComponents(url: url, resolvingAgainstBaseURL: false)
         comps?.scheme = "https"
-        guard let _ = comps?.url else { return }
+        guard let url = comps?.url else { return }
         
         DispatchQueue.main.async {
             let safari = ExternalToolSafariViewController(url: url, eventName: pageViewPath)

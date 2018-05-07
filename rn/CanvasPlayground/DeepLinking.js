@@ -15,7 +15,7 @@
 //
 
 import React from 'react';
-import { 
+import {
   Text,
   View,
   FlatList,
@@ -108,7 +108,7 @@ export default class DeepLinkingScreen extends React.Component {
           />
         </View>
         <Text style={{ padding: 8 }}>Saved Routes:</Text>
-        <FlatList 
+        <FlatList
           data={this.state.items}
           renderItem={this.renderItem}
           ItemSeparatorComponent={this.renderSeperator}

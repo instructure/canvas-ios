@@ -58,6 +58,9 @@ extension AppDelegate: RCTBridgeDelegate {
         registerScreen("/courses/:courseID/modules/:moduleID/items/:itemID")
         registerScreen("/courses/:courseID/modules/items/:itemID")
 
+        registerScreen("/groups/:groupID/conferences")
+        registerScreen("/groups/:groupID/collaborations")
+
         // Pages
         let pageParamsToProps = { (parameters: [String: Any]) -> [String: Any]? in
             guard let courseID = try? parameters.stringID("courseID") else { return nil }

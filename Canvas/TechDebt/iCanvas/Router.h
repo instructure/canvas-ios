@@ -49,12 +49,13 @@ typedef void(^ControllerHandler)(UIViewController *controller);
  @return the view controller that was routed to
  */
 - (UIViewController *)routeFromController:(UIViewController *)sourceController toURL:(NSURL *)url;
+- (UIViewController *)routeFromController:(UIViewController *)sourceController toURL:(NSURL *)url withOptions:(NSDictionary *)options;
 
 /**
  @return the view controller that was routed to
  */
 - (UIViewController *)routeFromController:(UIViewController *)sourceController toViewModel:(CBIViewModel *)viewModel;
 
-- (void)openCanvasURL:(NSURL *)url;
+- (void)openCanvasURL:(NSURL *)url withOptions:(NSDictionary *)options;
 
 @end

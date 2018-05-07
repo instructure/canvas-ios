@@ -56,6 +56,13 @@ extension Router {
             )
         }
 
+        addRoute("/groups/:groupID") { parameters, _ in
+            if let params = parameters, let groupID = try? params.stringID("groupID"), let url = URL(string: "/groups/\(groupID)/tabs") {
+                return Router.shared().controller(forHandling: url)
+            }
+            return nil
+        }
+
         addContextRoute([.group], subPath: "tabs") { contextID, _ in
             guard let currentSession = currentSession else { return nil }
             guard FeatureFlags.featureFlagEnabled(.newGroupNavigation) else {
@@ -115,10 +122,11 @@ extension Router {
         addContextRoute([.group], subPath: "wiki", handler: oldPagesListFactory)
         
         let fileListFactory = { (contextID: ContextID) -> UIViewController in
-            return HelmViewController(
-                moduleName: "/:context/:contextID/files",
-                props: ["context": "courses", "contextID": contextID.id]
-            )
+            var props = ["context": contextID.context.pathComponent, "contextID": contextID.id]
+            if contextID.context == .user {
+                props["customPageViewPath"] = "/files"
+            }
+            return HelmViewController(moduleName: "/:context/:contextID/files", props: props)
         }
 
         addRoute("/files") { parameters, _ in
@@ -129,17 +137,26 @@ extension Router {
                 return Router.shared().controller(forHandling: url)
             }
 
-            if let url = URL(string: "/files") {
+            if let url = URL(string: "/users/self/files") {
+                return Router.shared().controller(forHandling: url)
+            }
+
+            return nil
+        }
+
+        addRoute("/files/folder/*subFolder") { parameters, _ in
+            if  let subFolder = parameters?["subFolder"] as? String,
+                let url = URL(string: "/users/self/files/folder/\(subFolder)") {
                 return Router.shared().controller(forHandling: url)
             }
 
             return nil
         }
         
-        addContextRoute([.course], subPath: "files") { contextID, params in
+        addContextRoute([.course, .group, .user], subPath: "files") { contextID, params in
             if let query = params["query"] as? Dictionary<String, Any>,
                 let fileID = query["preview"] as? String,
-                let url = URL(string: "/courses/\(contextID.id)/files/\(fileID)") {
+                let url = URL(string: "/\(contextID.context.pathComponent)/\(contextID.id)/files/\(fileID)") {
                     // route to native file details
                     return Router.shared().controller(forHandling: url)
             }
@@ -147,7 +164,7 @@ extension Router {
             return fileListFactory(contextID)
         }
         
-        addContextRoute([.course], subPath: "files/folder/*subFolder") { contextID, params in
+        addContextRoute([.course, .group, .user], subPath: "files/folder/*subFolder") { contextID, params in
             if let query = params["query"] as? Dictionary<String, Any>,
                 let fileID = query["preview"] as? String,
                 let url = URL(string: "/courses/\(contextID.id)/files/\(fileID)") {
@@ -158,14 +175,14 @@ extension Router {
             if let subFolder = params["subFolder"] as? String {
                 return HelmViewController(
                     moduleName: "/:context/:contextID/files/folder/*subFolder",
-                    props: ["context": "courses", "contextID": contextID.id, "subFolder": subFolder]
+                    props: ["context": contextID.context.pathComponent, "contextID": contextID.id, "subFolder": subFolder]
                 )
             }
             
             return fileListFactory(contextID)
         }
         
-        addContextRoute([.course], subPath: "folders/:folderID") { contextID, params in
+        addContextRoute([.course, .group, .user], subPath: "folders/:folderID") { contextID, params in
             guard let folderID = params["folderID"] as? String else { return fileListFactory(contextID) }
             if folderID == "root" { return fileListFactory(contextID) }
             // We don't support routing to a specific folderID yet, that's to come later
@@ -174,7 +191,7 @@ extension Router {
         
         addRoute("/courses/:courseID") { parameters, _ in
             guard let params = parameters, let courseID = (try? params.stringID("courseID")) else { return nil }
-            return HelmViewController(moduleName: "/courses/:courseID", props: ["courseID": courseID, "navigatorOptions": ["modal": true]])
+            return HelmViewController(moduleName: "/courses/:courseID", props: ["courseID": courseID])
         }
         
         let moduleItemDetailFactory: (ContextID, [String: Any]) throws -> UIViewController? = { contextID, params in
@@ -256,7 +273,7 @@ extension Router {
             let modulesTab = try Tab.modulesTab(for: contextID, in: currentSession)
             let homeTab = try Tab.homeTab(for: contextID, in: currentSession)
             let modulesAreHome = homeTab != nil && homeTab!.routingURL(currentSession).flatMap { $0.path.contains("/modules") } ?? false
-            if !modulesAreHome, modulesTab == nil || modulesTab!.hidden {
+            if !modulesAreHome, modulesTab?.hidden ?? false {
                 let message = NSLocalizedString("That page has been disabled for this course", comment: "")
                 let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: NSLocalizedString("Dismiss", comment: ""), style: UIAlertActionStyle.default, handler: nil))

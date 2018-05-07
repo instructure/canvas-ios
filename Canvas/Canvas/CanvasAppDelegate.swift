@@ -235,7 +235,7 @@ extension AppDelegate {
         // the student app doesn't have as predictable of a tab bar setup and for
         // several views, does not have a route configured for them so for now we
         // will hard code until we move more things over to helm
-        let tabRoutes = [["/", "", "/courses"], ["/calendar"], ["/to-do"], ["/notifications"], ["/conversations", "/inbox"]]
+        let tabRoutes = [["/", "", "/courses", "/groups"], ["/calendar"], ["/to-do"], ["/notifications"], ["/conversations", "/inbox"]]
         StartupManager.shared.enqueueTask({
             let path = url.path
             var index: Int?
@@ -264,7 +264,7 @@ extension AppDelegate {
                         self.handleError(e)
                     }
                 } else {
-                    Router.shared().openCanvasURL(url)
+                    Router.shared().openCanvasURL(url, withOptions: ["modal": true])
                 }
             }
         })        

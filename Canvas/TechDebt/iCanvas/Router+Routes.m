@@ -130,7 +130,7 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
     return ^ (NSDictionary *params, id viewModel) {
         if(viewModel == nil) {
             CKICourse *course = [type modelWithID:[params[@"contextID"] description]];
-            CKIUser *user = [CKIUser modelWithID:params[@"userID"] context:course];
+            CKIUser *user = [CKIUser modelWithID:[params[@"userID"] stringValue] context:course];
             viewModel = [CBIPeopleViewModel viewModelForModel:user];
         }
 
@@ -331,6 +331,24 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
             unsupportedVC.canvasURL = fullURL;
             return unsupportedVC;
         },
+        @"/groups/:contextID/conferences" : ^(NSDictionary *params, CBIFileViewModel *viewModel) {
+            UnsupportedViewController *unsupportedVC = [UnsupportedViewController new];
+            unsupportedVC.tabName = NSLocalizedString(@"Conferences",@"Title for Conferences tab");
+            NSURL *baseURL = TheKeymaster.currentClient.baseURL;
+            NSString *path = [NSString stringWithFormat:@"groups/%@/conferences", params[@"contextID"]];
+            NSURL *fullURL = [baseURL URLByAppendingPathComponent: path];
+            unsupportedVC.canvasURL = fullURL;
+            return unsupportedVC;
+        },
+        @"/groups/:contextID/collaborations" : ^(NSDictionary *params, CBIFileViewModel *viewModel) {
+            UnsupportedViewController *unsupportedVC = [UnsupportedViewController new];
+            unsupportedVC.tabName = NSLocalizedString(@"Collaborations",@"Title for Collaborations tab");
+            NSURL *baseURL = TheKeymaster.currentClient.baseURL;
+            NSString *path = [NSString stringWithFormat:@"groups/%@/collaborations", params[@"contextID"]];
+            NSURL *fullURL = [baseURL URLByAppendingPathComponent: path];
+            unsupportedVC.canvasURL = fullURL;
+            return unsupportedVC;
+        },
     }];
     
     
@@ -374,7 +392,7 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
     
     [WhizzyWigView setOpenURLHandler:^(NSURL *url) {
         if ([url.host isEqualToString:TheKeymaster.currentClient.baseURL.host]) {
-            [self openCanvasURL:url];
+            [self openCanvasURL:url withOptions:nil];
         } else {
             [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
         }

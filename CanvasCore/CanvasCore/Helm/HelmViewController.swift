@@ -126,7 +126,7 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
     
     public let moduleName: String
     let screenInstanceID: String
-    public let props: Props
+    public var props: Props
     var screenConfig: HelmScreenConfig = HelmScreenConfig(config: [:]) {
         didSet {
             self.screenConfig.moduleName = self.moduleName
@@ -632,7 +632,7 @@ fileprivate struct Associated {
 }
 
 extension UIViewController {
-    func addModalDismissButton(buttonTitle: String?) {
+    public func addModalDismissButton(buttonTitle: String?) {
         var dismissTitle = NSLocalizedString("Done", tableName: nil, bundle: .core, value: "Done", comment: "")
         if let buttonTitle = buttonTitle {
             dismissTitle = buttonTitle
