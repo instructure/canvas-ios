@@ -50,7 +50,6 @@ frameworks_path      = File.join(destination, 'Frameworks')
 canvas_core_path     = File.join(destination, 'CanvasCore')
 workspace_path       = File.join(destination, workspace_name)
 podfile_path         = File.join(destination, 'Podfile')
-deep_links_path      = File.join(destination, 'rn', 'CanvasPlayground', 'deep-links.json')
 
 # The groups in the workspace that shouldn't be included
 groups_to_remove = %w[]
@@ -104,9 +103,10 @@ remove_fabric_from_project File.join(destination, 'Canvas', 'Canvas.xcodeproj')
 remove_fabric_from_project File.join(destination, 'rn', 'Teacher', 'ios', 'Teacher.xcodeproj')
 
 puts "Removing all sensitive data"
-def remove_fabric_from_plist(plist_path)
+def remove_secrets_from_plist(plist_path)
   hash = Plist::parse_xml(plist_path)
   hash.delete 'Fabric'
+  hash.delete 'BugsnagAPIKey'
   File.write(plist_path, hash.to_plist)
 end
 
@@ -134,10 +134,13 @@ def remove_fabric_from_app_delegate(app_delegate_path)
   File.write(app_delegate_path, app_delegate)
 end
 
-remove_fabric_from_plist File.join(destination, 'Canvas', 'Canvas', 'Info.plist')
-remove_fabric_from_plist File.join(destination, 'rn', 'Teacher', 'ios', 'Teacher', 'Info.plist')
+remove_secrets_from_plist File.join(destination, 'Canvas', 'Canvas', 'Info.plist')
+remove_secrets_from_plist File.join(destination, 'rn', 'Teacher', 'ios', 'Teacher', 'Info.plist')
+remove_secrets_from_plist File.join(destination, 'Parent', 'Parent', 'Info.plist')
 
+remove_fabric_from_app_delegate File.join(destination, 'Canvas/Canvas/CanvasAppDelegate.swift')
 remove_fabric_from_app_delegate File.join(destination, 'rn/Teacher/ios/Teacher/AppDelegate.swift')
+remove_fabric_from_app_delegate File.join(destination, 'Parent/Parent/AppDelegate.swift')
 
 # Strip out all of the keys from our stuff, making an empty template file
 prune_plist File.join(destination, 'secrets.plist')
@@ -172,7 +175,14 @@ raise "Cannot update the Podfile with the correct PSPDFKit license" unless podfi
 podfile_contents.gsub!(pspdfkit_license, "TRIAL-x47r57c_x_ndkkTGJ8Un-fmB8EXXDom1r2FSyQhPZEx2i2uQGGBjZnzJTJ_az2BccXySgrFZK3AwksivROwULg")
 raise "Prod license not removed! Check gsub pattern" if podfile_contents.include?(pspdfkit_license)
 
-# Remove twilson deep links
-File.write(deep_links_path, "[]")
+# Remove deep links, exempt domains, & dev domains
+File.write(File.join(destination, 'rn', 'CanvasPlayground', 'deep-links.json'), "[]")
+
+feature_flags_path = File.join(destination, 'rn', 'Teacher', 'src', 'common', 'feature-flags.js')
+File.write(feature_flags_path, File.read(feature_flags_path).sub(/exemptDomains = \[[^\]]*\]/, "exemptDomains = []"))
+
+account_domain_path = File.join(destination, 'Frameworks', 'CanvasKit', 'CanvasKit', 'Models', 'CKIAccountDomain.m')
+File.write(account_domain_path, File.read(account_domain_path).sub(/devDomains = @\[[^\]]*\]/, "devDomains = @[]"))
+
 
 puts "PRAISE THE SUN IT'S FINISHED"

@@ -105,8 +105,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OcW-eP-myo">
-                                <rect key="frame" x="16" y="34" width="203" height="30"/>
-                                <state key="normal" title="http://twilson.instructure.com"/>
+                                <rect key="frame" x="16" y="34" width="212" height="30"/>
+                                <state key="normal" title="http://example.instructure.com"/>
                                 <connections>
                                     <action selector="customLoginAction:" destination="5Yb-K9-qQn" eventType="touchUpInside" id="ixi-9E-vzY"/>
                                 </connections>
@@ -227,7 +227,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="150.5"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="ue2-Oj-Efg">
+                        <view key="tableHeaderView" contentMode="scaleToFill" misplaced="YES" id="ue2-Oj-Efg">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="8"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
