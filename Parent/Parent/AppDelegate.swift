@@ -82,6 +82,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        return route(url)
+    }
+    
     func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?, for notification: UILocalNotification, withResponseInfo responseInfo: [AnyHashable: Any], completionHandler: @escaping () -> Void) {
         // On, iOS 10.0b1 application:didReceiveLocalNotification is not being called when opening the app from a local notification and making it transistion from the background. Instead, this is being called. Not
         // sure if this is a bug or some change in API behavior.
@@ -106,6 +110,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        return route(url)
+    }
+
+    func route(_ url: URL) -> Bool {
         if url.scheme == "canvas-parent" {
             if let _ = Keymaster.sharedInstance.currentSession {
                 Router.sharedInstance.route(self.topViewController, toURL: url, modal: false)
@@ -114,11 +122,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             } else {
                 // should never get here... should either have a session or a window!
             }
+            
+            return true
         }
-
+        
         return false
     }
-
+    
     fileprivate func routeToRemindable(from notification: UILocalNotification) {
         if let urlString = notification.userInfo?[RemindableActionURLKey] as? String, let url = URL(string: urlString) {
             Router.sharedInstance.route(topViewController, toURL: url, modal: true)
