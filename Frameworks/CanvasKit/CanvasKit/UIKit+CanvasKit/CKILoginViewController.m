@@ -68,6 +68,9 @@
                     [self loadLoginRequest];
                 });
             }] resume];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
+    [self.navigationController.navigationBar setTranslucent:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
