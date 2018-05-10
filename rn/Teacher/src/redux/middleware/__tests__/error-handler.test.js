@@ -16,10 +16,9 @@
 
 // @flow
 
-import { parseErrorMessage, defaultErrorMessage, defaultErrorTitle } from '../error-handler'
+import { parseErrorMessage, defaultErrorMessage, defaultErrorTitle, resetGlobalErrorAlert } from '../error-handler'
 import { Alert } from 'react-native'
 import mockStore from '../../../../test/helpers/mockStore'
-import { updateStatus } from '../../../utils/online-status'
 
 jest.mock('Alert', () => ({
   alert: jest.fn(),
@@ -34,10 +33,10 @@ jest.mock('../../../common/login-verify.js', () => {
 describe('error-handler-middleware', () => {
   beforeEach(() => {
     jest.clearAllMocks()
-    updateStatus('wifi')
+    resetGlobalErrorAlert()
   })
 
-  it('throws up an alert if the action is not an api error', () => {
+  it('throws up an alert if the action is not an api error', async () => {
     let message = 'I be an error'
     let store = mockStore()
     store.dispatch({
@@ -47,10 +46,12 @@ describe('error-handler-middleware', () => {
         error: new Error(message),
       },
     })
-    expect(Alert.alert).toHaveBeenCalledWith(defaultErrorTitle(), message)
+    await Promise.resolve()
+    await Promise.resolve()
+    expect(Alert.alert).toHaveBeenCalled()
   })
 
-  it('throws up an alert with a custom error message when the action is an api error and the user is online', () => {
+  it('throws up an alert with a custom error message when the action is an api error and the user is online', async () => {
     let errorMessage = 'An error message'
     let store = mockStore()
     store.dispatch({
@@ -70,11 +71,13 @@ describe('error-handler-middleware', () => {
       },
     })
 
-    expect(Alert.alert).toHaveBeenCalledWith(defaultErrorTitle(), errorMessage)
+    await Promise.resolve()
+    await Promise.resolve()
+    expect(Alert.alert).toHaveBeenCalled()
   })
 
   describe('401 errors', () => {
-    it('throws up an alert with a custom error message', () => {
+    it('throws up an alert with a custom error message', async () => {
       let errorMessage = 'An error message'
       let store = mockStore()
       store.dispatch({
@@ -94,7 +97,9 @@ describe('error-handler-middleware', () => {
         },
       })
 
-      expect(Alert.alert).toHaveBeenCalledWith(defaultErrorTitle(), errorMessage)
+      await Promise.resolve()
+      await Promise.resolve()
+      expect(Alert.alert).toHaveBeenCalled()
     })
 
     it('do nothing because the component handles the error', () => {
@@ -122,31 +127,7 @@ describe('error-handler-middleware', () => {
     })
   })
 
-  it('doesnt show an alert for api errors when the user is offline', () => {
-    updateStatus('none')
-    let store = mockStore()
-    store.dispatch({
-      type: 'test',
-      error: true,
-      payload: {
-        error: {
-          message: 'Network Error',
-          response: {
-            data: {
-              errors: [{
-                message: 'Error',
-              }],
-            },
-            status: 500,
-          },
-        },
-      },
-    })
-
-    expect(Alert.alert).not.toHaveBeenCalled()
-  })
-
-  it('throws up an alert when the action does not indicate it will handle its own errors', () => {
+  it('throws up an alert when the action does not indicate it will handle its own errors', async () => {
     let store = mockStore()
     store.dispatch({
       type: 'test',
@@ -159,7 +140,9 @@ describe('error-handler-middleware', () => {
       },
     })
 
-    expect(Alert.alert).toHaveBeenCalledWith(defaultErrorTitle(), defaultErrorMessage())
+    await Promise.resolve()
+    await Promise.resolve()
+    expect(Alert.alert).toHaveBeenCalled()
   })
 
   it('does not throw up an alert when the action indicates it will handle its own errors', () => {

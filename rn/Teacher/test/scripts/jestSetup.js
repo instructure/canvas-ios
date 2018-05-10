@@ -135,6 +135,7 @@ NativeModules.APIBridge = {
 jest.mock('NativeEventEmitter')
 
 jest.mock('NetInfo', () => ({
+  fetch: jest.fn(() => Promise.resolve('wifi')),
   addEventListener: jest.fn(),
   isConnected: {
     addEventListener: jest.fn(),

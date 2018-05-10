@@ -66,10 +66,8 @@ extension NSError {
         case (NSURLErrorDomain, NSURLErrorTimedOut):                fallthrough
         case (NSURLErrorDomain, NSURLErrorNetworkConnectionLost):   fallthrough
         case (NSURLErrorDomain, NSURLErrorDataNotAllowed):
-            let description = NSLocalizedString("\(localizedDescription)\n\nCheck your connection or applicable carrier data limits and try again.", tableName: "Localizable", bundle: .core, comment: "Error description for network errors resulting from limited or no internet connection. Includes a localized error message from the system e.g. (The request timed out.)")
-            
-            return AlertDetails(title: networkErrorTitle, description: description, actions: justDismiss)
-            
+            // This error is now handled on the react native side
+            return nil;
         case (NSURLErrorDomain, NSURLErrorServerCertificateUntrusted):
             return AlertDetails(title: networkErrorTitle, description: localizedDescription, actions: reportOrDismiss)
             

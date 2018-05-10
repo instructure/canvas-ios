@@ -22,11 +22,10 @@ import errorHandler from './middleware/error-handler'
 import createPersistMiddleware from './middleware/persist'
 import freeze from 'redux-freeze'
 import rootReducer from './root-reducer'
-import gateKeeperMiddleware from './middleware/gate-keeper'
 
 const { __DEV__ } = global
 
-let middleware = [gateKeeperMiddleware, promiseMiddleware, errorHandler, createPersistMiddleware(500)]
+let middleware = [promiseMiddleware, errorHandler, createPersistMiddleware(500)]
 
 if (__DEV__) {
   middleware.push(freeze)

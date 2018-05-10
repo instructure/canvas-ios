@@ -217,6 +217,9 @@ RCT_EXPORT_METHOD(stopObserving)
         
         [self.delegate didLogin:client];
         [self sendLoginEvent:client];
+    } error:^(NSError * _Nullable error) {
+        // I'm not sure what would cause this to error, but in the case the login signal explodes, force a logout
+        [CanvasKeymaster.theKeymaster logout];
     }];
 }
 

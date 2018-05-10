@@ -93,10 +93,12 @@ export class Profile extends Component<Object, State> {
   }
 
   refreshAvatarURL = async () => {
-    const { data } = await this.props.getUserProfile('self')
-    if (data && data.avatar_url) {
-      this.setState({ avatarURL: data.avatar_url })
-    }
+    try {
+      const { data } = await this.props.getUserProfile('self')
+      if (data && data.avatar_url) {
+        this.setState({ avatarURL: data.avatar_url })
+      }
+    } catch (e) {}
   }
 
   logout = () => {

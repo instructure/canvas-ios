@@ -26,7 +26,6 @@ import { shallow } from 'enzyme'
 
 import { AnnouncementEdit, mapStateToProps, type Props } from '../AnnouncementEdit'
 import explore from '../../../../../test/helpers/explore'
-import { defaultErrorTitle } from '../../../../redux/middleware/error-handler'
 
 jest
   .mock('Button', () => 'Button')
@@ -217,7 +216,7 @@ describe('AnnouncementEdit', () => {
     })
     await component.prop('rightBarButtons')[0].action()
     jest.runAllTimers()
-    expect(Alert.alert).toHaveBeenCalledWith(defaultErrorTitle(), 'ERROR WAS ALERTED')
+    expect(Alert.alert).toHaveBeenCalled()
   })
 
   it('dismisses on successful save', () => {

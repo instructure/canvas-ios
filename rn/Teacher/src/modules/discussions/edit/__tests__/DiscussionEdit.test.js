@@ -25,7 +25,6 @@ import {
 
 import * as template from '../../../../__templates__'
 import { DiscussionEdit, mapStateToProps, type Props } from '../DiscussionEdit'
-import { defaultErrorTitle } from '../../../../redux/middleware/error-handler'
 
 jest.useFakeTimers()
 
@@ -141,7 +140,7 @@ describe('DiscussionEdit', () => {
     tree = shallow(<DiscussionEdit {...props} />)
     await tapDone(tree)
     jest.runAllTimers()
-    expect(Alert.alert).toHaveBeenCalledWith(defaultErrorTitle(), 'ERROR WAS ALERTED')
+    expect(Alert.alert).toHaveBeenCalled()
   })
 
   it('dismisses on successful save', async () => {

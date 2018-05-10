@@ -23,7 +23,6 @@ import * as navigatorTemplates from '../../../../__templates__/helm'
 import explore from '../../../../../test/helpers/explore'
 import setProps from '../../../../../test/helpers/setProps'
 import { Alert } from 'react-native'
-import { defaultErrorTitle } from '../../../../redux/middleware/error-handler'
 
 import renderer from 'react-test-renderer'
 
@@ -117,7 +116,7 @@ describe('UserCoursePreferences', () => {
     setProps(component, { error: errorMessage })
     jest.runAllTimers()
 
-    expect(Alert.alert).toHaveBeenCalledWith(defaultErrorTitle(), errorMessage)
+    expect(Alert.alert).toHaveBeenCalled()
   })
 
   it('dismisses error alert and resets name', () => {
@@ -131,7 +130,7 @@ describe('UserCoursePreferences', () => {
     setProps(component, { course: { ...defaultProps.course, name: 'New Course Name' }, error: errorMessage })
     jest.runAllTimers()
 
-    expect(Alert.alert).toHaveBeenCalledWith(defaultErrorTitle(), errorMessage)
+    expect(Alert.alert).toHaveBeenCalled()
     expect(component.toJSON()).toMatchSnapshot()
   })
 

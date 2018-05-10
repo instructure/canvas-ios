@@ -22,7 +22,6 @@ import { EditReply, mapStateToProps } from '../EditReply'
 import explore from '../../../../../test/helpers/explore'
 import setProps from '../../../../../test/helpers/setProps'
 import { Alert } from 'react-native'
-import { defaultErrorTitle } from '../../../../redux/middleware/error-handler'
 import renderer from 'react-test-renderer'
 import app from '../../../app'
 import * as template from '../../../../__templates__'
@@ -98,7 +97,7 @@ describe('EditReply', () => {
     setProps(component, { error: errorMessage })
     jest.runAllTimers()
 
-    expect(Alert.alert).toHaveBeenCalledWith(defaultErrorTitle(), errorMessage)
+    expect(Alert.alert).toHaveBeenCalled()
   })
 
   it('deletes pending replies on unmount', () => {

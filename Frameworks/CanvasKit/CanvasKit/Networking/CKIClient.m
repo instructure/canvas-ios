@@ -549,7 +549,8 @@ NSString *const CKIClientAccessTokenExpiredNotification = @"CKIClientAccessToken
         NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithURL:branding completionHandler:^(NSData *_Nullable data, NSURLResponse *_Nullable response, NSError *_Nullable error) {
             
             void (^handleError)(NSError *) = ^(NSError *error) {
-                [subscriber sendError:error];
+                // Failing to fetch branding is not a fatal error, the user can still log into the app and use it
+                [subscriber sendNext:nil];
                 [subscriber sendCompleted];
             };
             
