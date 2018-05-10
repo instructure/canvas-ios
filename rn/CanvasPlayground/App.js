@@ -16,21 +16,32 @@
 
 import React from 'react'
 import { Text, View } from 'react-native'
-import { TabNavigator, StackNavigator } from 'react-navigation'; // Version can be specified in package.json
+import { TabNavigator, StackNavigator, DrawerNavigator } from 'react-navigation'; // Version can be specified in package.json
 import DeepLinkingScreen from './DeepLinking'
+import NavigationTestScreen from './NavigationTest'
 import { Ionicons } from '@expo/vector-icons'
 
 const DeepLinkStack = StackNavigator({
   'Deep Linking': { screen: DeepLinkingScreen },
 });
 
+const NavigationTestStack = StackNavigator({
+  'Navigation Test': { screen: NavigationTestScreen },
+});
+
 export default TabNavigator({
   'Deep Linking': { screen: DeepLinkStack },
+  'Navigation Test': { screen: NavigationTestStack },
 },
 {
   navigationOptions: ({ navigation }) => ({
     tabBarIcon: ({ focused, tintColor }) => {
-      return <Ionicons name={'ios-link-outline'} size={25} color={tintColor} />
+      switch (navigation.state.key) {
+        case 'Deep Linking':
+          return <Ionicons name={'ios-link-outline'} size={25} color={tintColor} />
+        case 'Navigation Test':
+          return <Ionicons name={'ios-car-outline'} size={25} color={tintColor} />
+      }
     },
   }),
 })

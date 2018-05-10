@@ -16,26 +16,36 @@
 
 import React from 'react';
 import {
-  Text,
-  View,
   FlatList,
   TouchableHighlight,
   Alert,
-  TextInput,
   LayoutAnimation,
-  AsyncStorage,
   StyleSheet,
   Linking,
-  Button,
-  Picker,
+  Platform
 } from 'react-native';
-import links from './deep-links.json'
+import {
+  Root,
+  ListItem,
+  Body,
+  Text,
+  Picker,
+  Icon,
+  Container,
+  Content,
+} from 'native-base'
+import { Font, AppLoading } from 'expo'
+import accounts from './json/Accounts'
 
 export default class DeepLinkingScreen extends React.Component {
 
   state = {
+    loading: true,
     items: [],
     app: 'student',
+    scheme: `canvas-student`,
+    accounts: accounts,
+    selectedAccount: accounts[0]
   }
 
   static navigationOptions = {
@@ -43,77 +53,95 @@ export default class DeepLinkingScreen extends React.Component {
   };
 
   componentDidMount = async () => {
-    let data = await AsyncStorage.getItem('route-items')
-    let savedItems = JSON.parse(data || "[]").filter((item) => !!item && !!item.url)
-    let predefinedItems = links.map((item) => ({ url: item, deletable: false }))
-    this.setState({ items: [...savedItems, ...predefinedItems] })
+    await Font.loadAsync({
+      Roboto: require("native-base/Fonts/Roboto.ttf"),
+      Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf")
+    })
+    this.setState({ loading: false })
   }
 
   onPress = (item) => {
-    let url = `canvas-${this.state.app}://${item.url}`
-    Linking.openURL(url).catch(err => console.error('Error! Unable to open URL.', err))
-  }
-
-  onBlur = () => {
-    if (!this.state.text) return
-    LayoutAnimation.easeInEaseOut()
-    let deletable = this.state.items.filter((item) => item.deletable)
-    let provided = this.state.items.filter((item) => !item.deletable)
-    let items = [...deletable, { url: this.state.text, deletable: true }, ...provided]
-    this.setState({
-      text: null,
-      items,
-    })
-    let toPersist = items.filter((item) => item.deletable)
-    AsyncStorage.setItem('route-items', JSON.stringify(toPersist))
-  }
-
-  deleteItem = (item) => {
-    let items = this.state.items.filter((thing) => thing.url !== item.url)
-    this.setState({ items })
-    AsyncStorage.setItem('route-items', JSON.stringify(items))
+    let scheme = this.state.scheme
+    let url = `${scheme}://${item.url}`
+    Linking.openURL(url).catch(err => alert('Error! Unable to open URL.', err))
   }
 
   renderItem = ({ item }) => {
-    return (<TouchableHighlight onPress={() => this.onPress(item)}>
-              <View style={{ backgroundColor: 'white', padding: 8, flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Text numberOfLines={0}>{item.url}</Text>
-                { item.deletable && <Button title={'Delete'} onPress={() => this.deleteItem(item) } /> }
-              </View>
-            </TouchableHighlight>)
-  }
+    const body = item.title ? (
+      <Body style={{ marginStart: -10 }}>
+        <Text style={{ fontSize: 18 }}>{item.title}</Text>
+        <Text style={{ fontSize: 12 }}>{item.url}</Text>
+      </Body>
+    ) : (
+        <Body style={{ marginStart: -10 }}>
+          <Text style={{ fontSize: 18 }}>{item.url}</Text>
+        </Body>
+      )
 
-  renderSeperator = () => {
-    return <View style={{ height: StyleSheet.hairlineWidth, backgroundColor: 'lightgrey' }} />
+    return (
+      <ListItem button onPress={() => this.onPress(item)} style={{ justifyContent: 'space-between' }}>
+        {body}
+      </ListItem>
+    )
   }
 
   render() {
+    if (this.state.loading) {
+      return (
+        <Root><AppLoading /></Root>
+      )
+    }
+
+    let accounts = this.state.accounts
     return (
-      <View style={{ flex: 1, backgroundColor: 'white' }}>
-        <View>
+      <Container>
+        <Content>
           <Picker
+            iosHeader="Select App"
+            mode="dropdown"
             selectedValue={this.state.app}
-            onValueChange={(itemValue, itemIndex) => this.setState({app: itemValue})}>
+            iosIcon={<Icon name="ios-arrow-down-outline" />}
+            onValueChange={(itemValue, itemIndex) =>
+              this.setState({ app: itemValue, scheme: `canvas-${itemValue}` })
+            }
+          >
             <Picker.Item label="Student" value="student" />
             <Picker.Item label="Teacher" value="teacher" />
+            <Picker.Item label="Parent" value="parent" />
           </Picker>
-
-          <TextInput
-            style={{ height: 34, padding: 8 }}
-            onChangeText={(text) => this.setState({text})}
-            value={this.state.text}
-            placeholder={'Enter a new route'}
-            onBlur={this.onBlur}
-            autoCapitalize={'none'}
-          />
-        </View>
-        <Text style={{ padding: 8 }}>Saved Routes:</Text>
-        <FlatList
-          data={this.state.items}
-          renderItem={this.renderItem}
-          ItemSeparatorComponent={this.renderSeperator}
-          ListFooterComponent={this.renderSeperator} />
-      </View>
+          {Platform.OS === 'android' &&
+            <Picker
+              mode="dropdown"
+              selectedValue={this.state.scheme}
+              onValueChange={(itemValue, itemIndex) =>
+                this.setState({ scheme: itemValue })
+              }
+            >
+              <Picker.Item label={`canvas-${this.state.app}`} value={`canvas-${this.state.app}`} />
+              <Picker.Item label="https" value="https" />
+            </Picker>
+          }
+          <Picker
+            iosHeader="Select Domain"
+            iosIcon={<Icon name="ios-arrow-down-outline" />}
+            mode="dropdown"
+            selectedValue={this.state.selectedAccount.domain}
+            onValueChange={(itemValue, itemIndex) =>
+              this.setState({ selectedAccount: accounts.find((a) => a.domain == itemValue) })
+            }
+          >
+            {accounts.map((a) =>
+              <Picker.Item label={a.domain} value={a.domain} />
+            )}
+          </Picker>
+          <FlatList
+            data={this.state.selectedAccount.urls}
+            renderItem={this.renderItem}
+            extraData={this.state}
+          >
+          </FlatList>
+        </Content>
+      </Container>
     )
   }
 }
