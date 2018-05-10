@@ -96,9 +96,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)switchUser;
 
 /**
- @return a signal that completes when the user is logged into the correct domain
+ @return Returns YES if the currently logged in client matches this host. If not, or if there is no current client, returns NO
  */
-- (RACSignal *)signalForLoginWithDomain:(NSString *)host;
+- (BOOL)currentClientHasHost:(NSString *)host;
 
 /**
  Masquerade as the user with the given id.

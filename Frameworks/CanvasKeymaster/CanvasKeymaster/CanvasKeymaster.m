@@ -324,45 +324,11 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
     }] deliverOn:[RACScheduler mainThreadScheduler]];
 }
 
-- (RACSignal *)signalForLoginWithDomain:(NSString *)host
-{
-    // logged into the correct domain
-    if ((!host && self.currentClient) || [self.currentClient.baseURL.host isEqualToString:host]) {
-        //same domain, return current client as signal
-        return [[RACSignal return:self.currentClient] deliverOn:[RACScheduler mainThreadScheduler]];
-    }
-    
-    // check the keychain
-    FXKeychain *keychain = [FXKeychain sharedKeychain];
-    NSArray *clients = [keychain clients];
-    NSArray *eligibleClients = [clients.rac_sequence filter:^BOOL(CKIClient *aClient) {
-        return [aClient.baseURL.host isEqualToString:host];
-    }].array;
-    
-    // only one client for the domain
-    if (eligibleClients.count == 1) {
-        self.currentClient = eligibleClients.firstObject;
-        [_subjectForClientLogin sendNext:self.currentClient];
-        return [[RACSignal return:self.currentClient] deliverOn:[RACScheduler mainThreadScheduler]];
-    }
-    
-    //case eligibleClients.count > 1 || eligibleClients.count == 0
-    [self logoutWithCompletionBlock:^{
-        [self setCurrentClient:nil];
-        [self loginWithSuggestedDomain:host];
-        
-        if (eligibleClients.count == 0) {
-            //enter domain and send to user credentials page
-            CKIAccountDomain *account = [[CKIAccountDomain alloc] initWithDomain:host];
-            [self.domainPicker sendDomain:account];
-        }
-    }];
-
-    return [[_subjectForClientLogin take:1] deliverOn:[RACScheduler mainThreadScheduler]];
+- (BOOL)currentClientHasHost:(NSString *)host {
+    return [self.currentClient.baseURL.host isEqualToString:host];
 }
 
-- (void)completeLogout
-{
+- (void)completeLogout {
     [self setCurrentClient:nil];
     [self login];
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
