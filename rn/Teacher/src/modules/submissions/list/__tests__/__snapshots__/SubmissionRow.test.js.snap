@@ -19,7 +19,7 @@ exports[`anonymous grading doesnt show users names 1`] = `
     <View
       style={
         Object {
-          "alignItems": "flex-start",
+          "alignItems": "center",
           "backgroundColor": "white",
           "flex": 1,
           "flexDirection": "row",
@@ -69,7 +69,6 @@ exports[`anonymous grading doesnt show users names 1`] = `
               },
               Object {
                 "color": "#2D3B45",
-                "flex": 1,
                 "fontSize": 16,
                 "fontWeight": "600",
               },
@@ -156,7 +155,7 @@ exports[`excused row renders correctly 1`] = `
     <View
       style={
         Object {
-          "alignItems": "flex-start",
+          "alignItems": "center",
           "backgroundColor": "white",
           "flex": 1,
           "flexDirection": "row",
@@ -206,7 +205,6 @@ exports[`excused row renders correctly 1`] = `
               },
               Object {
                 "color": "#2D3B45",
-                "flex": 1,
                 "fontSize": 16,
                 "fontWeight": "600",
               },
@@ -324,7 +322,7 @@ exports[`late graded row renders correctly 1`] = `
     <View
       style={
         Object {
-          "alignItems": "flex-start",
+          "alignItems": "center",
           "backgroundColor": "white",
           "flex": 1,
           "flexDirection": "row",
@@ -374,7 +372,6 @@ exports[`late graded row renders correctly 1`] = `
               },
               Object {
                 "color": "#2D3B45",
-                "flex": 1,
                 "fontSize": 16,
                 "fontWeight": "600",
               },
@@ -492,7 +489,7 @@ exports[`missing ungraded row renders correctly 1`] = `
     <View
       style={
         Object {
-          "alignItems": "flex-start",
+          "alignItems": "center",
           "backgroundColor": "white",
           "flex": 1,
           "flexDirection": "row",
@@ -542,7 +539,6 @@ exports[`missing ungraded row renders correctly 1`] = `
               },
               Object {
                 "color": "#2D3B45",
-                "flex": 1,
                 "fontSize": 16,
                 "fontWeight": "600",
               },
@@ -629,7 +625,7 @@ exports[`submitted not_graded row renders correctly 1`] = `
     <View
       style={
         Object {
-          "alignItems": "flex-start",
+          "alignItems": "center",
           "backgroundColor": "white",
           "flex": 1,
           "flexDirection": "row",
@@ -679,7 +675,6 @@ exports[`submitted not_graded row renders correctly 1`] = `
               },
               Object {
                 "color": "#2D3B45",
-                "flex": 1,
                 "fontSize": 16,
                 "fontWeight": "600",
               },
@@ -766,7 +761,7 @@ exports[`submitted ungraded row renders correctly 1`] = `
     <View
       style={
         Object {
-          "alignItems": "flex-start",
+          "alignItems": "center",
           "backgroundColor": "white",
           "flex": 1,
           "flexDirection": "row",
@@ -816,7 +811,6 @@ exports[`submitted ungraded row renders correctly 1`] = `
               },
               Object {
                 "color": "#2D3B45",
-                "flex": 1,
                 "fontSize": 16,
                 "fontWeight": "600",
               },
@@ -948,7 +942,7 @@ exports[`unsubmitted ungraded row renders correctly 1`] = `
     <View
       style={
         Object {
-          "alignItems": "flex-start",
+          "alignItems": "center",
           "backgroundColor": "white",
           "flex": 1,
           "flexDirection": "row",
@@ -998,7 +992,6 @@ exports[`unsubmitted ungraded row renders correctly 1`] = `
               },
               Object {
                 "color": "#2D3B45",
-                "flex": 1,
                 "fontSize": 16,
                 "fontWeight": "600",
               },

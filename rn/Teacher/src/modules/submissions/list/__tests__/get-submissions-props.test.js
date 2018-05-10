@@ -18,10 +18,7 @@
 
 import { gradeProp, statusProp } from '../get-submissions-props'
 import app from '../../../app'
-
-const template = {
-  ...require('../../../../__templates__/submissions'),
-}
+import * as template from '../../../../__templates__'
 
 describe('GetSubmissionsProps gradeProp', () => {
   beforeEach(() => {
@@ -80,48 +77,50 @@ describe('GetSubmissionsProps gradeProp', () => {
     expect(gradeProp(submission)).toEqual('ungraded')
   })
 
-  test('statusProp missing submission', () => {
-    const submission = template.submission({
-      grade: 12,
-      workflow_state: 'unsubmitted',
-      missing: true,
-    })
-    const dueDate = '2018-04-11T05:59:00Z'
-    expect(statusProp(submission, dueDate)).toEqual('missing')
-  })
-
-  test('statusProp subnission missing', () => {
-    const dueDate = '2018-04-11T05:59:00Z'
-    expect(statusProp(null, dueDate)).toEqual('missing')
-  })
-
-  test('statusProp missing', () => {
-    const submission = template.submission({
-      grade: 12,
-      workflow_state: 'unsubmitted',
+  describe('statusProp', () => {
+    it('considers the submission missing if the flag is true', () => {
+      const submission = template.submission({
+        grade: 12,
+        workflow_state: 'pending_review',
+        missing: true,
+      })
+      const dueDate = '2018-04-11T05:59:00Z'
+      expect(statusProp(submission, dueDate)).toEqual('missing')
     })
 
-    const dueDate = new Date().toUTCString()
-    expect(statusProp(submission, dueDate)).toEqual('missing')
-  })
-
-  test('statusProp submitted', () => {
-    const submission = template.submission({
-      grade: 12,
-      workflow_state: 'pending_review',
+    it('considers null submission missing', () => {
+      const dueDate = '2018-04-11T05:59:00Z'
+      expect(statusProp(null, dueDate)).toEqual('missing')
     })
-    const dueDate = '2018-04-11T05:59:00Z'
-    expect(statusProp(submission, dueDate)).toEqual('submitted')
-  })
 
-  test('statusProp late', () => {
-    const submission = template.submission({
-      grade: 12,
-      workflow_state: 'pending_review',
-      late: true,
+    it('considers worflow unsubmitted missing', () => {
+      const submission = template.submission({
+        grade: 12,
+        workflow_state: 'unsubmitted',
+      })
+
+      const dueDate = new Date().toUTCString()
+      expect(statusProp(submission, dueDate)).toEqual('missing')
     })
-    const dueDate = '2018-04-11T05:59:00Z'
-    expect(statusProp(submission, dueDate)).toEqual('late')
+
+    it('considers pending_review submitted', () => {
+      const submission = template.submission({
+        grade: 12,
+        workflow_state: 'pending_review',
+      })
+      const dueDate = '2018-04-11T05:59:00Z'
+      expect(statusProp(submission, dueDate)).toEqual('submitted')
+    })
+
+    it('considers pending_review late is passed due date', () => {
+      const submission = template.submission({
+        grade: 12,
+        workflow_state: 'pending_review',
+        late: true,
+      })
+      const dueDate = '2018-04-11T05:59:00Z'
+      expect(statusProp(submission, dueDate)).toEqual('late')
+    })
   })
 
   it('returns grade for students', () => {

@@ -68,7 +68,9 @@ export default class GradesListRow extends PureComponent<Props> {
             height='auto'
             accessories={submission ? <Grade grade={grade} gradingType={assignment.grading_type} /> : undefined}
           >
-            <SubmissionStatusLabel status={status} onlineSubmissionType={onlineSubmissionType} />
+            {status &&
+              <SubmissionStatusLabel status={status} onlineSubmissionType={onlineSubmissionType} />
+            }
           </Row>
         </View>
         <AccessLine visible={this.props.assignment.published} testIdPrefix={'grades-list-row'} />

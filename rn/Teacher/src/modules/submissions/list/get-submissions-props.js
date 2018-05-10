@@ -41,8 +41,8 @@ function getSubmissionsByUserID (assignmentContent?: AssignmentContentState, sub
     }, {})
 }
 
-export function statusProp (submission: ?Submission, dueDate: ?string): SubmissionStatus {
-  if (!submission || submission.workflow_state === 'unsubmitted' || !submission.attempt) {
+export function statusProp (submission: ?Submission, dueDate: ?string): ?SubmissionStatus {
+  if (!submission || submission.workflow_state === 'unsubmitted' || submission.missing) {
     if (dueDate && (new Date(dueDate) < new Date())) {
       return 'missing'
     } else {
@@ -52,7 +52,7 @@ export function statusProp (submission: ?Submission, dueDate: ?string): Submissi
 
   if (submission.late) {
     return 'late'
-  } else {
+  } else if (submission.submission_type && submission.submission_type !== 'on_paper' && submission.submission_type !== 'none') {
     return 'submitted'
   }
 }

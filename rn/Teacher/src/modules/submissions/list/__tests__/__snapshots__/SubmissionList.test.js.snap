@@ -256,7 +256,7 @@ exports[`SubmissionList loaded 1`] = `
               <View
                 style={
                   Object {
-                    "alignItems": "flex-start",
+                    "alignItems": "center",
                     "backgroundColor": "white",
                     "flex": 1,
                     "flexDirection": "row",
@@ -363,7 +363,6 @@ exports[`SubmissionList loaded 1`] = `
                         },
                         Object {
                           "color": "#2D3B45",
-                          "flex": 1,
                           "fontSize": 16,
                           "fontWeight": "600",
                         },
@@ -482,7 +481,7 @@ exports[`SubmissionList loaded 1`] = `
               <View
                 style={
                   Object {
-                    "alignItems": "flex-start",
+                    "alignItems": "center",
                     "backgroundColor": "white",
                     "flex": 1,
                     "flexDirection": "row",
@@ -589,7 +588,6 @@ exports[`SubmissionList loaded 1`] = `
                         },
                         Object {
                           "color": "#2D3B45",
-                          "flex": 1,
                           "fontSize": 16,
                           "fontWeight": "600",
                         },
@@ -739,7 +737,7 @@ exports[`SubmissionList loaded 1`] = `
               <View
                 style={
                   Object {
-                    "alignItems": "flex-start",
+                    "alignItems": "center",
                     "backgroundColor": "white",
                     "flex": 1,
                     "flexDirection": "row",
@@ -846,7 +844,6 @@ exports[`SubmissionList loaded 1`] = `
                         },
                         Object {
                           "color": "#2D3B45",
-                          "flex": 1,
                           "fontSize": 16,
                           "fontWeight": "600",
                         },
@@ -1010,7 +1007,7 @@ exports[`SubmissionList loaded 1`] = `
               <View
                 style={
                   Object {
-                    "alignItems": "flex-start",
+                    "alignItems": "center",
                     "backgroundColor": "white",
                     "flex": 1,
                     "flexDirection": "row",
@@ -1117,7 +1114,6 @@ exports[`SubmissionList loaded 1`] = `
                         },
                         Object {
                           "color": "#2D3B45",
-                          "flex": 1,
                           "fontSize": 16,
                           "fontWeight": "600",
                         },
@@ -1724,7 +1720,7 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
               <View
                 style={
                   Object {
-                    "alignItems": "flex-start",
+                    "alignItems": "center",
                     "backgroundColor": "white",
                     "flex": 1,
                     "flexDirection": "row",
@@ -1831,7 +1827,6 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
                         },
                         Object {
                           "color": "#2D3B45",
-                          "flex": 1,
                           "fontSize": 16,
                           "fontWeight": "600",
                         },
@@ -1981,7 +1976,7 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
               <View
                 style={
                   Object {
-                    "alignItems": "flex-start",
+                    "alignItems": "center",
                     "backgroundColor": "white",
                     "flex": 1,
                     "flexDirection": "row",
@@ -2088,7 +2083,6 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
                         },
                         Object {
                           "color": "#2D3B45",
-                          "flex": 1,
                           "fontSize": 16,
                           "fontWeight": "600",
                         },
@@ -2238,7 +2232,7 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
               <View
                 style={
                   Object {
-                    "alignItems": "flex-start",
+                    "alignItems": "center",
                     "backgroundColor": "white",
                     "flex": 1,
                     "flexDirection": "row",
@@ -2345,7 +2339,6 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
                         },
                         Object {
                           "color": "#2D3B45",
-                          "flex": 1,
                           "fontSize": 16,
                           "fontWeight": "600",
                         },
@@ -2697,7 +2690,7 @@ exports[`SubmissionList renders correctly with not_submitted filter 1`] = `
               <View
                 style={
                   Object {
-                    "alignItems": "flex-start",
+                    "alignItems": "center",
                     "backgroundColor": "white",
                     "flex": 1,
                     "flexDirection": "row",
@@ -2804,7 +2797,6 @@ exports[`SubmissionList renders correctly with not_submitted filter 1`] = `
                         },
                         Object {
                           "color": "#2D3B45",
-                          "flex": 1,
                           "fontSize": 16,
                           "fontWeight": "600",
                         },
@@ -3125,7 +3117,7 @@ exports[`SubmissionList renders correctly with ungraded filter 1`] = `
               <View
                 style={
                   Object {
-                    "alignItems": "flex-start",
+                    "alignItems": "center",
                     "backgroundColor": "white",
                     "flex": 1,
                     "flexDirection": "row",
@@ -3232,7 +3224,6 @@ exports[`SubmissionList renders correctly with ungraded filter 1`] = `
                         },
                         Object {
                           "color": "#2D3B45",
-                          "flex": 1,
                           "fontSize": 16,
                           "fontWeight": "600",
                         },

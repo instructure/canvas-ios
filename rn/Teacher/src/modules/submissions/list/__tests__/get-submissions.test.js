@@ -18,42 +18,35 @@
 
 import { getSubmissionsProps, dueDate } from '../get-submissions-props'
 import type { SubmissionDataProps } from '../submission-prop-types'
-
-let t = {
-  ...require('../../../../__templates__/assignments'),
-  ...require('../../../../__templates__/submissions'),
-  ...require('../../../../__templates__/enrollments'),
-  ...require('../../../../__templates__/users'),
-  ...require('../../../../redux/__templates__/app-state'),
-  ...require('../__templates__/submission-props'),
-}
+import * as t from '../../../../__templates__'
+import { submissionProps as tsubmissionProps } from '../__templates__/submission-props'
 
 export const submissionProps: Array<SubmissionDataProps> = [
-  t.submissionProps({
+  tsubmissionProps({
     name: 'S1',
     status: 'none',
     grade: 'not_submitted',
     userID: '1',
   }),
-  t.submissionProps({
+  tsubmissionProps({
     name: 'S2',
     status: 'none',
     grade: 'excused',
     userID: '2',
   }),
-  t.submissionProps({
+  tsubmissionProps({
     name: 'S3',
     status: 'late',
     grade: 'ungraded',
     userID: '3',
   }),
-  t.submissionProps({
+  tsubmissionProps({
     name: 'S4',
     status: 'submitted',
     grade: 'ungraded',
     userID: '4',
   }),
-  t.submissionProps({
+  tsubmissionProps({
     name: 'S6',
     status: 'none',
     grade: 'B+',
@@ -83,6 +76,7 @@ test('submissions', () => {
         submitted_at: undefined,
         workflow_state: 'unsubmitted',
         attempt: null,
+        missing: true,
         excused: true,
         late: true,
       }]),
@@ -133,6 +127,7 @@ test('submissions', () => {
         grade: 'B+',
         workflow_state: 'graded',
         attempt: null,
+        missing: true,
         excused: false,
         late: false,
       }]),

@@ -233,7 +233,7 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
               <View
                 style={
                   Object {
-                    "alignItems": "flex-start",
+                    "alignItems": "center",
                     "backgroundColor": "white",
                     "flex": 1,
                     "flexDirection": "row",
@@ -312,7 +312,6 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
                         },
                         Object {
                           "color": "#2D3B45",
-                          "flex": 1,
                           "fontSize": 16,
                           "fontWeight": "600",
                         },
@@ -662,7 +661,7 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
               <View
                 style={
                   Object {
-                    "alignItems": "flex-start",
+                    "alignItems": "center",
                     "backgroundColor": "white",
                     "flex": 1,
                     "flexDirection": "row",
@@ -741,7 +740,6 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
                         },
                         Object {
                           "color": "#2D3B45",
-                          "flex": 1,
                           "fontSize": 16,
                           "fontWeight": "600",
                         },
@@ -1059,7 +1057,7 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
               <View
                 style={
                   Object {
-                    "alignItems": "flex-start",
+                    "alignItems": "center",
                     "backgroundColor": "white",
                     "flex": 1,
                     "flexDirection": "row",
@@ -1138,7 +1136,6 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
                         },
                         Object {
                           "color": "#2D3B45",
-                          "flex": 1,
                           "fontSize": 16,
                           "fontWeight": "600",
                         },

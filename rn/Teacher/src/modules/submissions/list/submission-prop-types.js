@@ -25,7 +25,7 @@ export type SubmissionDataProps = {
   groupID?: string,
   avatarURL?: string,
   name: string,
-  status: SubmissionStatus,
+  status: ?SubmissionStatus,
   grade: ?GradeProp,
   score?: ?number,
   submissionID: ?string,

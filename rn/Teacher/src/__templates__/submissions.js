@@ -27,6 +27,7 @@ export const submission: Template<Submission> = template({
   submitted_at: '2017-04-05T15:12:45Z',
   excused: false,
   late: false,
+  missing: false,
   workflow_state: 'submitted',
   attachments: [],
   submission_type: 'online_text_entry',

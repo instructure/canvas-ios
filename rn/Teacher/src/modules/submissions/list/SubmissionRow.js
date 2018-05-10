@@ -46,7 +46,7 @@ export type SubmissionRowDataProps = {
   groupID?: string,
   avatarURL: string,
   name: string,
-  status: SubmissionStatus,
+  status: ?SubmissionStatus,
   grade: ?GradeProp,
   gradingType: GradingType,
   score: ?number,
@@ -127,7 +127,9 @@ class SubmissionRow extends Component<SubmissionRowProps, any> {
             style={styles.title}
             ellipsizeMode='tail'
             numberOfLines={2}>{name}</Text>
-          <SubmissionStatusLabel status={status} />
+          {status &&
+            <SubmissionStatusLabel status={status} />
+          }
           {grade === 'ungraded' && gradingType !== 'not_graded' &&
             <Token style={{ alignSelf: 'flex-start', marginTop: 8 }} color={ colors.primaryButton }>
               {i18n('Needs Grading')}
@@ -149,7 +151,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     flexDirection: 'row',
     paddingTop: 10,
     paddingBottom: 10,
@@ -161,7 +163,6 @@ const styles = StyleSheet.create({
     paddingLeft: 8,
   },
   title: {
-    flex: 1,
     fontSize: 16,
     fontWeight: '600',
     color: '#2D3B45',

@@ -63,6 +63,7 @@ export type Submission = {
     | 'pending_review',
   excused: boolean,
   late: boolean,
+  missing: boolean,
   submission_type: ?SubmissionType,
   body: ?string,
   preview_url: string,
