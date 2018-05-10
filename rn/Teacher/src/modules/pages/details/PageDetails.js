@@ -82,7 +82,7 @@ export class PageDetails extends Component<Props> {
         >
           <Heading1 style={styles.header}>{page ? page.title : ''}</Heading1>
           <CanvasWebView
-            scrollEnabled={false}
+            automaticallySetHeight
             style={{ flex: 1 }}
             source={{
               html: page ? page.body : '',

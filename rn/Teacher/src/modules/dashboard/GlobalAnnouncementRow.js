@@ -140,7 +140,7 @@ export default class GlobalAnnouncementRow extends React.Component<Props, State>
                 <Text style={styles.openTitle}>{subject}</Text>
               </View>
               <CanvasWebView
-                scrollEnabled={false}
+                automaticallySetHeight
                 style={styles.message}
                 html={MESSAGE_STYLE + message}
                 navigator={this.props.navigator}

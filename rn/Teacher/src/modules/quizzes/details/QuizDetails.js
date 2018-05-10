@@ -232,7 +232,7 @@ export class QuizDetails extends Component<Props, any> {
 
   checkAssignmentDescription (description: ?string) {
     if (description) {
-      return (<CanvasWebView style={{ flex: 1 }} html={description} scrollEnabled={false} navigator={this.props.navigator}/>)
+      return (<CanvasWebView style={{ flex: 1 }} html={description} automaticallySetHeight navigator={this.props.navigator}/>)
     } else {
       // $FlowFixMe
       return (<DescriptionDefaultView />)

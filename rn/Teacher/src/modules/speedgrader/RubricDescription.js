@@ -17,7 +17,7 @@
 // @flow
 
 import React, { Component } from 'react'
-import { View, StyleSheet, Text, ScrollView } from 'react-native'
+import { View, StyleSheet, Text } from 'react-native'
 import { connect } from 'react-redux'
 import i18n from 'format-message'
 import Navigator from '../../routing/Navigator'
@@ -36,9 +36,7 @@ export class RubricDescription extends Component<*> {
     }
     return (
       <View style={styles.container}>
-        <ScrollView bounces={false}>
-          <CanvasWebView html={this.props.description} scrollEnabled={false} navigator={this.props.navigator}/>
-        </ScrollView>
+        <CanvasWebView html={this.props.description} automaticallySetHeight navigator={this.props.navigator}/>
       </View>
     )
   }

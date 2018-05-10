@@ -41,6 +41,7 @@ exports[`PageDetails renders 1`] = `
       Page 1
     </Heading1>
     <CanvasWebView
+      automaticallySetHeight={true}
       navigator={
         Object {
           "dismiss": [Function],
@@ -51,7 +52,7 @@ exports[`PageDetails renders 1`] = `
           "traitCollection": [Function],
         }
       }
-      scrollEnabled={false}
+      scrollEnabled={true}
       source={
         Object {
           "baseURL": "/pages/page-1#jumpto",
@@ -106,6 +107,7 @@ exports[`PageDetails renders while loading 1`] = `
       }
     />
     <CanvasWebView
+      automaticallySetHeight={true}
       navigator={
         Object {
           "dismiss": [Function],
@@ -116,7 +118,7 @@ exports[`PageDetails renders while loading 1`] = `
           "traitCollection": [Function],
         }
       }
-      scrollEnabled={false}
+      scrollEnabled={true}
       source={
         Object {
           "baseURL": "",

@@ -231,7 +231,7 @@ export class AssignmentDetails extends Component<AssignmentDetailsProps, any> {
           style={{ flex: 1 }}
           html={description}
           testID='assignment-details.description-section-info-lbl'
-          scrollEnabled={false}
+          automaticallySetHeight
           navigator={this.props.navigator}
         />
       )

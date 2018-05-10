@@ -186,7 +186,7 @@ export default class Reply extends Component<Props, State> {
             {this.state.useSimpleRenderer || reply.deleted
               ? <RichContent html={message} navigator={this.props.navigator} />
               : <CanvasWebView
-                  scrollEnabled={false}
+                  automaticallySetHeight
                   style={{ flex: 1 }}
                   html={message}
                   navigator={this.props.navigator}
