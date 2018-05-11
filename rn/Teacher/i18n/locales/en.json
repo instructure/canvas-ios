@@ -734,6 +734,9 @@
   "insert_link_6dc23cae": {
     "message": "Insert Link"
   },
+  "internet_connection_offline_d7c02b88": {
+    "message": "Internet Connection Offline"
+  },
   "invalid_field_54480fae": {
     "message": "Invalid field"
   },
@@ -742,6 +745,9 @@
   },
   "invite_declined_d0a9e398": {
     "message": "Invite declined!"
+  },
+  "it_looks_like_your_internet_connection_is_offline__cf4003": {
+    "message": "It looks like your internet connection is offline. Reconnect to the internet and try again."
   },
   "italic_ac45200a": {
     "message": "Italic"
