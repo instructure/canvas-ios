@@ -254,10 +254,12 @@ open class HelmManager: NSObject {
         }
 
         var nav: UINavigationController? = nil
+        var replaceWithEmpty = false
         if let splitViewController = topViewController as? HelmSplitViewController {
             let sourceViewController = splitViewController.sourceController(moduleName: sourceModule)
             if sourceViewController == splitViewController.detailTopViewController {
                 nav = splitViewController.detailNavigationController
+                replaceWithEmpty = (nav?.viewControllers.count ?? 1) <= 1
             }
             else if sourceViewController == splitViewController.masterTopViewController {
                 nav = splitViewController.masterNavigationController
@@ -268,7 +270,11 @@ open class HelmManager: NSObject {
             assertionFailure("\(#function) invalid controller: \(topViewController)")
             return
         }
-        nav?.popViewController(animated: true)
+        if replaceWithEmpty {
+            nav?.viewControllers = [EmptyViewController(nibName: nil, bundle: nil)]
+        } else {
+            nav?.popViewController(animated: true)
+        }
         callback?()
     }
 
