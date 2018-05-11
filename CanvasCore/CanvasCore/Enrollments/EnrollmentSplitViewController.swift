@@ -21,8 +21,10 @@ public class EnrollmentSplitViewController: HelmSplitViewController {
 
 extension EnrollmentSplitViewController: UINavigationControllerDelegate {    
     public func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        if let masterNav = masterNavigationController, let coursesViewController = masterNav.viewControllers.first, toVC == coursesViewController, operation == .pop {
-            detailTopViewController?.navigationItem.leftBarButtonItem = nil
+        if let masterNav = masterNavigationController, let detailNav = detailNavigationController, let coursesViewController = masterNav.viewControllers.first, toVC == coursesViewController, operation == .pop {
+            // When navigating back to all courses list, detail view should show empty vc
+            detailNav.navigationItem.leftBarButtonItem = nil
+            detailNav.setViewControllers([EmptyViewController()], animated: false)
         }
         return nil
     }

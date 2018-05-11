@@ -182,14 +182,52 @@ open class HelmManager: NSObject {
             if canBecomeMaster {
                 masterModules.insert(destinationModule)
             }
-
-            let sourceViewController = splitViewController.sourceController(moduleName: sourceModule)
-            let resetDetailNavStackIfClickedFromMaster = splitViewController.masterTopViewController == sourceViewController
-
+            
+            // We are in a split view so we have to write overly confusing logic to determine whether a view controller
+            // should be pushed on the current nav controller or be set as the root and only view controller.
+            // We also have to figure out if an expand/collapse button is to be shown so that a detail view can occupy
+            // the entire screen.
             if let nav = navigationControllerForSplitViewControllerPush(splitViewController: splitViewController, sourceModule: sourceModule, destinationModule: destinationModule, props: propsFRD, options: options) {
-                if (resetDetailNavStackIfClickedFromMaster && !canBecomeMaster && splitViewController.viewControllers.count > 1) {
+                
+                // Check to see if a view controller can show the expand/collapse menu item
+                // We only want to show it if a view can't become the master and both the master and detail view controllers are set/visible
+                // This button will show to the right of the Back button if the Back button is visible
+                let sideBySideViews = splitViewController.viewControllers.count > 1
+                let viewCanExpandCollapse = !canBecomeMaster && sideBySideViews
+                if (viewCanExpandCollapse) {
                     viewController.navigationItem.leftBarButtonItem = splitViewController.prettyDisplayModeButtonItem
                     viewController.navigationItem.leftItemsSupplementBackButton = true
+                }
+                
+                // Check to see if the master view is the one pushing this view controller onto the detail view.
+                // If this condition is true, we will replace the details nav stack below and make it the starting
+                // view controller of the detail nav stack.
+                let sourceViewController = splitViewController.sourceController(moduleName: sourceModule)
+                let clickedFromMaster = splitViewController.masterTopViewController == sourceViewController
+                
+                // When the all courses list is displayed as the master, an EmptyViewController is shown on the detail.
+                // We check for this state and use it when deciding whether to push onto or replace the nav stack.
+                // This isn't really necessary per se, but it is strange UI to have a Back button in the detail nav that
+                // takes you back to an empty state view controller
+                var onlyDetailVCWasEmptyVC = false
+                if !canBecomeMaster,
+                    !clickedFromMaster,
+                    sideBySideViews,
+                    let detailNav = splitViewController.detailHelmNavigationController,
+                    detailNav.viewControllers.count == 1,
+                    detailNav.viewControllers[0] is EmptyViewController
+                {
+                    onlyDetailVCWasEmptyVC = true
+                }
+                
+                // Determine whether we replace the nav stack or push onto it using the checks above.
+                // Resetting or replacing the nav stack just means we set the new view controller as the only
+                // view controller on that nav stack. The Back button will not be shown after a replaceInNav call
+                // because there is no other view controller to navigate back to. pushOnToNav will be called if
+                // a VC can be master or this navigation event was initiated from a non-empty detail view. A Back
+                // button will be shown after pushOnToNav is called...as long as the nav.viewControllers.count > 1.
+                let resetDetailNavStack = sideBySideViews && !canBecomeMaster && (clickedFromMaster || onlyDetailVCWasEmptyVC)
+                if (resetDetailNavStack) {
                     replaceInNav(nav)
                     callback?()
                 } else {
