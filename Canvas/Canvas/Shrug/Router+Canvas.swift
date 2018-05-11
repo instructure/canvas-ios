@@ -221,10 +221,12 @@ extension Router {
         }
 
         addContextRoute([.course], subPath: "external_tools/:toolID") { contextID, params in
-            guard let url = params["url"] as? URL, let currentSession = currentSession else {
-                fatalError("Router passes URL as parameter to route handlers.")
-            }
-            return LTIViewController(toolName: "", courseID: contextID.id, launchURL: url, in: currentSession)
+            guard let url = params["url"] as? URL,
+                    let session = currentSession,
+                    let vc = HelmManager.shared.topMostViewController() else { return nil }
+            
+            ExternalToolManager.shared.launch(url, in: session, from: vc, fallbackURL: url)
+            return nil
         }
 
         // Discussions

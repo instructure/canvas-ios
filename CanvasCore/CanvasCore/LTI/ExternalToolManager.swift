@@ -51,7 +51,7 @@ public class ExternalToolManager: NSObject {
     */
     @objc
     public func launch(_ launchURL: URL, in session: Session, from viewController: UIViewController, fallbackURL: URL?, completionHandler: (() -> Void)? = nil) {
-        getSessionlessLaunchURL(forLaunchURL: launchURL, in: session) { [weak self, weak viewController] url, pageViewPath, error in
+        getSessionlessLaunchURL(forLaunchURL: launchURL.ensureHTTPS(), in: session) { [weak self, weak viewController] url, pageViewPath, error in
             guard let me = self, let vc = viewController else { return }
             if let url = url {
                 me.present(url, pageViewPath: pageViewPath, from: vc) { [weak self] error in
@@ -236,12 +236,8 @@ public class ExternalToolManager: NSObject {
     }
 
     private func present(_ url: URL, pageViewPath: String?, from viewController: UIViewController, completionHandler: (() -> Void)?) {
-        var comps = URLComponents(url: url, resolvingAgainstBaseURL: false)
-        comps?.scheme = "https"
-        guard let url = comps?.url else { return }
-        
         DispatchQueue.main.async {
-            let safari = ExternalToolSafariViewController(url: url, eventName: pageViewPath)
+            let safari = ExternalToolSafariViewController(url: url.ensureHTTPS(), eventName: pageViewPath)
             safari.modalPresentationStyle = .overFullScreen
             viewController.present(safari, animated: true, completion: completionHandler)
         }
@@ -252,6 +248,14 @@ public class ExternalToolManager: NSObject {
             ErrorReporter.reportError(error, from: viewController)
             completionHandler?()
         }
+    }
+}
+
+extension URL {
+    func ensureHTTPS() -> URL {
+        var comps = URLComponents(url: self, resolvingAgainstBaseURL: false)
+        comps?.scheme = "https"
+        return comps?.url ?? self
     }
 }
 
