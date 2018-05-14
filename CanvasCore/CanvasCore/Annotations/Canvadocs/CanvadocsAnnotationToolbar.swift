@@ -29,9 +29,6 @@ public class CanvadocsAnnotationToolbar: PSPDFAnnotationToolbar {
     public override init(annotationStateManager: PSPDFAnnotationStateManager) {
         super.init(annotationStateManager: annotationStateManager)
         
-        barTintColor = .colorFromHexString("#556572")
-        tintColor = .white
-        
         let commentGroupItem = PSPDFAnnotationGroupItem(type: .stamp, variant: nil) { (item, container, tintColor) in
             return UIImage(named: "pin", in: Bundle(for: CanvadocsAnnotationToolbar.self), compatibleWith: nil)!.withRenderingMode(.alwaysTemplate)
         }
