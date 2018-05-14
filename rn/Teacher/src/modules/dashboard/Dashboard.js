@@ -47,7 +47,7 @@ import color from '@common/colors'
 import Images from '@images'
 import branding from '@common/branding'
 import Navigator from '@routing/Navigator'
-import { getSessionUnsafe } from '@canvas-api'
+import { getSessionUnsafe, getSession } from '@canvas-api'
 import AccountNotificationActions from './account-notification-actions'
 import { extractGradeInfo } from '@utils/course-grades'
 import { extractDateFromString } from '@utils/dateUtils'
@@ -443,6 +443,7 @@ export function isCourseConcluded (course: Course): boolean {
 export function mapStateToProps (isFullDashboard: boolean) {
   return (state: AppState) => {
     const { courses: allCourses, accountNotifications, enrollments: allEnrollments } = state.entities
+    const user = getSession().user
 
     const allCourseStates = Object.keys(allCourses)
       .map(key => allCourses[key])
@@ -460,6 +461,7 @@ export function mapStateToProps (isFullDashboard: boolean) {
 
     const enrollments = Object.keys(allEnrollments)
       .map(key => allEnrollments[key])
+      .filter(({ user_id: id }) => id === user.id)
       .filter((enroll) => {
         const course = allCoursesStringKeys[enroll.course_id]
         return !!course

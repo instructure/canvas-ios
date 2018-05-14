@@ -26,13 +26,7 @@ import {
 import explore from '../../../../test/helpers/explore'
 import App from '../../app/index'
 
-const template = {
-  ...require('../../../__templates__/course'),
-  ...require('../../../__templates__/enrollments'),
-  ...require('../../../__templates__/section'),
-  ...require('../../../__templates__/group'),
-  ...require('../../../__templates__/helm'),
-}
+import * as template from '../../../__templates__'
 
 jest.mock('TouchableOpacity', () => 'TouchableOpacity')
     .mock('TouchableHighlight', () => 'TouchableHighlight')
