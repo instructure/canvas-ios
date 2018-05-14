@@ -69,6 +69,7 @@ export default class Navigator {
   }
 
   async showWebView (url: string) {
+    url = url.replace(/^canvas-[^:]*:/i, 'https:')
     if (url.startsWith('http') || url.startsWith('https')) {
       try {
         let { data: { session_url: authenticatedURL } } = await getAuthenticatedSessionURL(url)

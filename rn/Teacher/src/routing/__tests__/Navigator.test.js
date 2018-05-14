@@ -201,6 +201,17 @@ describe('Navigator', () => {
     expect(SFSafariViewController.open).toHaveBeenCalledWith('https://google.com')
   })
 
+  it('opens a webview with the https url if we dont route some canvas protocol', async () => {
+    const httpsUrl = 'https://canvas.instructure.com/bogus'
+    const promise = Promise.resolve({ data: { session_url: httpsUrl + '?auth' } })
+    canvas.getAuthenticatedSessionURL.mockReturnValueOnce(promise)
+    new Navigator('push').show('canvas-teacher://canvas.instructure.com/bogus')
+
+    expect(canvas.getAuthenticatedSessionURL).toHaveBeenCalledWith(httpsUrl)
+    await promise
+    expect(SFSafariViewController.open).toHaveBeenCalledWith(httpsUrl + '?auth')
+  })
+
   it('opens the original url if getting the authenticated session url errors', async () => {
     let promise = Promise.reject()
     canvas.getAuthenticatedSessionURL.mockReturnValueOnce(promise)
