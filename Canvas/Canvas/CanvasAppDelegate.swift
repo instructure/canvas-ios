@@ -236,7 +236,7 @@ extension AppDelegate {
         // several views, does not have a route configured for them so for now we
         // will hard code until we move more things over to helm
         let tabRoutes = [["/", "", "/courses", "/groups"], ["/calendar"], ["/to-do"], ["/notifications"], ["/conversations", "/inbox"]]
-        StartupManager.shared.enqueueTask({
+        StartupManager.shared.enqueueTask({ [weak self] in
             let path = url.path
             var index: Int?
             
@@ -249,8 +249,19 @@ extension AppDelegate {
             
             if let i = index {
                 guard let tabBarController = UIApplication.shared.keyWindow?.rootViewController as? UITabBarController else { return }
-                tabBarController.selectedIndex = i
-                tabBarController.resetSelectedViewController()
+                
+                let finish = {
+                    tabBarController.selectedIndex = i
+                    tabBarController.resetSelectedViewController()
+                }
+                
+                if let _ = tabBarController.presentedViewController {
+                    tabBarController.dismiss(animated: true, completion: {
+                        DispatchQueue.main.async(execute: finish)
+                    })
+                } else {
+                    finish()
+                }
             } else {
                 
                 if handleDropboxOpenURL(url) {
@@ -261,7 +272,7 @@ extension AppDelegate {
                     do {
                         try ReceivedFilesViewController.add(toReceivedFiles: url)
                     } catch let e as NSError {
-                        self.handleError(e)
+                        self?.handleError(e)
                     }
                 } else {
                     Router.shared().openCanvasURL(url, withOptions: ["modal": true])
