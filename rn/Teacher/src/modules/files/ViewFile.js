@@ -208,7 +208,11 @@ export default class ViewFile extends Component<Props, State> {
   }
 
   handleDelete = async () => {
-    await this.props.navigator.dismiss()
+    if (this.props.isModal) {
+      await this.props.navigator.dismiss()
+    } else {
+      await this.props.navigator.pop()
+    }
     if (this.props.onChange && this.state.file) this.props.onChange(this.state.file)
   }
 

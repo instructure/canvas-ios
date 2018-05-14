@@ -66,6 +66,7 @@ describe('ViewFile', () => {
       }),
       navigator: {
         show: jest.fn(),
+        pop: jest.fn(),
         dismiss: jest.fn(),
       },
       getCourse: jest.fn(() => Promise.resolve({
@@ -229,7 +230,7 @@ describe('ViewFile', () => {
     expect(tree.find('Screen').prop('title')).toBe('changed name')
   })
 
-  it('closes and calls onChange when deleted', async () => {
+  it('closes and calls onChange when deleted when pushed on a navigation stack', async () => {
     const onChange = jest.fn()
     const tree = shallow(<ViewFile {...props} />)
     tree.find('Screen').prop('rightBarButtons')[0].action()
@@ -237,6 +238,19 @@ describe('ViewFile', () => {
     expect(onChange).not.toHaveBeenCalled()
     tree.setProps({ onChange })
     await props.navigator.show.mock.calls[0][2].onDelete(props.file)
+    expect(props.navigator.pop).toHaveBeenCalled()
+    expect(onChange).toHaveBeenCalled()
+  })
+
+  it('closes and calls onChange when deleted when in a modal', async () => {
+    const onChange = jest.fn()
+    const tree = shallow(<ViewFile {...props} isModal />)
+    tree.find('Screen').prop('rightBarButtons')[0].action()
+    await props.navigator.show.mock.calls[0][2].onDelete(props.file)
+    expect(onChange).not.toHaveBeenCalled()
+    tree.setProps({ onChange })
+    await props.navigator.show.mock.calls[0][2].onDelete(props.file)
+    expect(props.navigator.dismiss).toHaveBeenCalled()
     expect(onChange).toHaveBeenCalled()
   })
 
