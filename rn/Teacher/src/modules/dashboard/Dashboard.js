@@ -448,8 +448,22 @@ export function mapStateToProps (isFullDashboard: boolean) {
       .map(key => allCourses[key])
       .filter(({ course }) => App.current().filterCourse(course))
 
+    let allCoursesStringKeys = {}
+    const sections = allCourseStates.reduce((obj, { course }) => {
+      const courseSections = course.sections || []
+      courseSections.forEach(sec => { obj[sec.id.toString()] = sec })
+      // this doesn't relate to sections,
+      // but take advantage that we're looping through them all
+      allCoursesStringKeys[course.id] = course
+      return obj
+    }, {})
+
     const enrollments = Object.keys(allEnrollments)
       .map(key => allEnrollments[key])
+      .filter((enroll) => {
+        const course = allCoursesStringKeys[enroll.course_id]
+        return !!course
+      })
 
     const totalCourseCount = allCourseStates
       .map(({ course }) => course)
@@ -515,16 +529,6 @@ export function mapStateToProps (isFullDashboard: boolean) {
     if (featureFlagEnabled('favoriteGroups')) {
       if (userHasFavoriteGroups) { groups = groups.filter((g) => groupFavorites.includes(g.id)) }
     }
-
-    let allCoursesStringKeys = {}
-    const sections = allCourseStates.reduce((obj, { course }) => {
-      const courseSections = course.sections || []
-      courseSections.forEach(sec => { obj[sec.id.toString()] = sec })
-      // this doesn't relate to sections,
-      // but take advantage that we're looping through them all
-      allCoursesStringKeys[course.id] = course
-      return obj
-    }, {})
 
     const pending = state.favoriteCourses.pending + accountNotifications.pending
     const error = state.favoriteCourses.error || accountNotifications.error

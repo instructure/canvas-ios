@@ -425,7 +425,9 @@ describe('sections', () => {
 describe('enrollments', () => {
   const a = courseTemplate.course({ id: 1, name: 'a', sections: [section()] })
   const b = courseTemplate.course({ id: 2, name: 'b', sections: [section()] })
-  const courseTemplates = [a, b]
+  const c = courseTemplate.course({ id: 3, name: 'c', sections: [section()] })
+  const d = courseTemplate.course({ id: 4, name: 'd', sections: [section()] })
+  const courseTemplates = [a, b, c, d]
   const favorites = ['1', '2']
 
   const courses = courseStates(courseTemplates)
@@ -440,6 +442,7 @@ describe('enrollments', () => {
         '2': enrollment({ id: '2', course_id: '2' }),
         '3': enrollment({ id: '3', course_id: '3' }),
         '4': enrollment({ id: '4', course_id: '4' }),
+        '5': enrollment({ id: '5', course_id: '5' }),
       },
     },
   })
