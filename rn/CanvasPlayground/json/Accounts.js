@@ -16,13 +16,17 @@
 
 import twilson from './twilson.json'
 import mobiledev from './mobiledev.json'
+import gbowden from './gbowden.json'
 
 const accounts = [{
   domain: 'twilson.instructure.com',
   urls: twilson
 },{
-  domain: 'mobiledev',
+  domain: 'mobiledev.instructure.com',
   urls: mobiledev
+},{
+  domain: 'gbowden.instructure.com',
+  urls: gbowden
 }]
 
 export default accounts

@@ -1,0 +1,22 @@
+[
+  {
+    "url": "gbowden.instructure.com",
+    "title": "Dashboard"
+  },
+  {
+    "url": "gbowden.instructure.com/calendar",
+    "title": "Calendar"
+  },
+  {
+    "url": "gbowden.instructure.com/to-do",
+    "title": "ToDo"
+  },
+  {
+    "url": "gbowden.instructure.com/notifications",
+    "title": "Notifications"
+  },
+  {
+    "url": "gbowden.instructure.com/conversations",
+    "title": "Inbox"
+  }
+]
