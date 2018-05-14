@@ -44,21 +44,8 @@ open class FetchedDetailsCollection<M, DVM>: Collection where M: NSManagedObject
             .map { $0.map(detailsFactory) ?? [] }
             .observeValues { [weak self] deets in
                 if let me = self {
-                    let edits = me.details.distanceTo(deets)
                     me.details = deets
-                    let updates: [CollectionUpdate<DVM>] = edits.map { edit in
-                        switch edit {
-                        case .insert(let item, let index):
-                            return .inserted(IndexPath(row: index, section: 0), item, animated: true)
-                        case .replace(let item, let index):
-                            return .updated(IndexPath(row: index, section: 0), item, animated: true)
-                        case .delete(let item, let index):
-                            return .deleted(IndexPath(row: index, section: 0), item, animated: true)
-                        case .move(let item, let fromIndex, let toIndex):
-                            return .moved(IndexPath(row: fromIndex, section: 0), IndexPath(row: toIndex, section: 0), item, animated: true)
-                        }
-                    }
-                    me.updatesObserver.send(value: updates)
+                    me.updatesObserver.send(value: [.reload])
                 }
             }
     }
