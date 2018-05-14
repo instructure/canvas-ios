@@ -120,7 +120,7 @@ export class PagesList extends React.Component<Props, State> {
       !this.frontPageDidShow &&
       windowTraits.horizontal !== 'compact' &&
       course != null &&
-      pages.length > 0
+      pages.length > 0 && !this.props.navigator.isModal
     ) {
       this.frontPageDidShow = true
       const frontPage = pages.find(page => page.isFrontPage)

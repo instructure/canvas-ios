@@ -43,6 +43,7 @@ const diveList = (list: any) =>
 describe('PagesList', () => {
   let props
   beforeEach(() => {
+    jest.clearAllMocks()
     httpCache.clear()
     props = {
       courseID: '1',
@@ -184,6 +185,25 @@ describe('PagesList', () => {
       '/courses/1/pages/front-page',
       { modal: false },
     )
+  })
+
+  it('does not show front page on deep link modal', () => {
+    props.navigator = template.navigator({
+      traitCollection: (callback) => {
+        callback({
+          screen: {
+            horizontal: 'regular',
+          },
+          window: {
+            horizontal: 'regular',
+          },
+        })
+      },
+      isModal: true,
+    })
+    props.pages = [template.pageModel({ url: 'front-page', isFrontPage: true })]
+    shallow(<PagesList {...props} />)
+    expect(props.navigator.show).not.toHaveBeenCalled()
   })
 
   it('shows placeholder if no front page', () => {
