@@ -27,11 +27,11 @@ extension EventDetailsViewModel {
             ]
 
             if let dueDate = assignment.due {
-                let date: EventDetailsViewModel = .date(start: dueDate, end: dueDate)
+                let date: EventDetailsViewModel = .date(start: dueDate, end: dueDate, allDay: false)
                 deets.insert(date, at: 1)
             }
 
-            if assignment.details.characters.count > 0 {
+            if !assignment.details.isEmpty {
                 deets.append(.details(baseURL: baseURL, deets: assignment.details))
             }
 

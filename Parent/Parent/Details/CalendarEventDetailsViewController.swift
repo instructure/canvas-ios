@@ -36,7 +36,7 @@ extension EventDetailsViewModel {
         ]
 
         if let startAt = calendarEvent.startAt, let endAt = calendarEvent.endAt {
-            let dateVM: EventDetailsViewModel = .date(start: startAt, end: endAt)
+            let dateVM: EventDetailsViewModel = .date(start: startAt, end: endAt, allDay: calendarEvent.allDay)
             vms.insert(dateVM, at: 1)
         }
 

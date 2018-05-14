@@ -31,7 +31,7 @@ enum EventDetailsViewModel: TableViewCellViewModel {
 
     case info(name: String, submissionInfo: String?, submissionColor: UIColor?)
     case reminder(date: Date?, remindable: Remindable, actionURL: URL, context: UIViewController)
-    case date(start: Date, end: Date)
+    case date(start: Date, end: Date, allDay: Bool)
     case location(locationName: String?, address: String?)
     case details(baseURL: URL, deets: String)
 
@@ -53,6 +53,12 @@ enum EventDetailsViewModel: TableViewCellViewModel {
         return dateFormatter
     }()
 
+    static var allDayDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        return formatter
+    }()
+
     func cellForTableView(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         switch self {
         case .info(let name, let submissionInfo, let submissionColor):
@@ -60,14 +66,20 @@ enum EventDetailsViewModel: TableViewCellViewModel {
             cell.titleLabel.text? = name
             cell.submissionLabel.text = submissionInfo ?? ""
             cell.submissionLabel.backgroundColor = submissionColor
-            cell.setShowsSubmissionInfo(submissionInfo != nil && submissionInfo!.characters.count > 0)
+            cell.setShowsSubmissionInfo(submissionInfo?.isEmpty == false)
             return cell
 
-        case .date(let startDate, let endDate):
+        case .date(let startDate, let endDate, let allDay):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: DateCellReuseIdentifier, for: indexPath) as? DetailsDateCell else { fatalError() }
 
-            let str = String(format: NSLocalizedString("%@", comment: "Label indicating when the event takes place"), EventDetailsViewModel.dateFormatter.string(from: startDate, to: endDate))
-            cell.dateLabel.text = str
+            let date: String
+            if allDay {
+                date = EventDetailsViewModel.allDayDateFormatter.string(from: startDate)
+            } else {
+                date = EventDetailsViewModel.dateFormatter.string(from: startDate, to: endDate)
+            }
+
+            cell.dateLabel.text = date
 
             return cell
 
@@ -138,8 +150,8 @@ func ==(lhs: EventDetailsViewModel, rhs: EventDetailsViewModel) -> Bool {
     switch(lhs, rhs) {
     case let (.info(leftName, leftSubmissionInfo, _), .info(rightName, rightSubmissionInfo, _)):
         return leftName == rightName && leftSubmissionInfo == rightSubmissionInfo
-    case let (.date(leftStartDate, leftEndDate), .date(rightStartDate, rightEndDate)):
-        return (leftStartDate == rightStartDate) && (leftEndDate == rightEndDate)
+    case let (.date(leftStartDate, leftEndDate, leftAllDay), .date(rightStartDate, rightEndDate, rightAllDay)):
+        return (leftStartDate == rightStartDate) && (leftEndDate == rightEndDate) && (leftAllDay == rightAllDay)
     case let (.reminder(leftDate, _, _, _), .reminder(rightDate, _, _, _)):
         return leftDate == rightDate
     case let (.location(leftName, leftAddress), .location(rightName, rightAddress)):
