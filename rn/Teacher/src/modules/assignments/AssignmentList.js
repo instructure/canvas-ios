@@ -220,10 +220,8 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
     // don't do anything if the user hits cancel
     if (index === this.props.gradingPeriods.length) return
 
-    // get assignment info for grading period only if we don't have it yet
-    if (this.props.gradingPeriods[index].assignmentRefs.length === 0) {
-      this.props.refreshAssignmentList(this.props.courseID, this.props.gradingPeriods[index].id)
-    }
+    // always get assignment info for grading period, since it might be shared
+    this.props.refreshAssignmentList(this.props.courseID, this.props.gradingPeriods[index].id)
 
     // get the grade for the current grading period
     if (this.props.showTotalScore) {

@@ -365,3 +365,9 @@ test('calls getGradesForGradingPeriod when a filter is updated', async () => {
   tree.update()
   expect(tree.find('[testID="assignment-list.total-grade"] Text').props().children).toEqual(`${grades.current_score}%`)
 })
+
+test('calls refreshAssignmentList when a filter is updated', () => {
+  const tree = shallow(<AssignmentList {...defaultProps} />)
+  tree.instance().updateFilter(0)
+  expect(defaultProps.refreshAssignmentList).toHaveBeenCalledWith(defaultProps.courseID, gradingPeriod.id)
+})
