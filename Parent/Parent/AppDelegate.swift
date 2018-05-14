@@ -19,8 +19,7 @@ import CanvasCore
 import Fabric
 import Crashlytics
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, AppDelegateProtocol {
 
     var window: UIWindow?
 

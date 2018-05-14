@@ -15,6 +15,7 @@ typedef NSString *CanvasApp NS_EXTENSIBLE_STRING_ENUM;
 
 extern CanvasApp _Nonnull CanvasAppStudent;
 extern CanvasApp _Nonnull CanvasAppTeacher;
+extern CanvasApp _Nonnull CanvasAppParent;
 
 NS_ASSUME_NONNULL_BEGIN
 

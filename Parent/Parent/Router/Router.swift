@@ -86,7 +86,9 @@ class Router {
     
      - Returns: UIViewController if we have a mapping that matches the URL provided.  Returns nil if no mapping is available.
     */
-    func viewControllerForURL(_ url: URL) -> UIViewController? {
+    func viewControllerForURL(_ url: URL?) -> UIViewController? {
+        guard let url = url else { return nil }
+        
         return matchURL(url)
     }
     

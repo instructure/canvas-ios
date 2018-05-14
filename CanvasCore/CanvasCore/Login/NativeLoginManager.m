@@ -24,6 +24,7 @@
 
 CanvasApp _Nonnull CanvasAppStudent = @"student";
 CanvasApp _Nonnull CanvasAppTeacher = @"teacher";
+CanvasApp _Nonnull CanvasAppParent = @"parent";
 
 @interface NativeLoginManager ()
 
