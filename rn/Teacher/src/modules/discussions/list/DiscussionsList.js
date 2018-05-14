@@ -126,7 +126,7 @@ export class DiscussionsList extends Component<Props, any> {
   }
 
   _sectionType (discussion: Discussion): string {
-    let type: string = discussion.locked ? 'A_locked' : discussion.pinned ? 'C_pinned' : 'B_discussion'
+    let type: string = discussion.pinned ? 'C_pinned' : discussion.locked ? 'A_locked' : 'B_discussion'
     return type
   }
 

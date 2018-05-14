@@ -97,7 +97,8 @@ describe('DiscussionsList', () => {
   it('renders pinned discussions', () => {
     const one = template.discussion({ id: '1', title: 'discussion 1', pinned: true })
     const two = template.discussion({ id: '2', title: 'discussion 2', locked: true })
-    props.discussions = [one, two]
+    const tre = template.discussion({ id: '3', title: 'discussion 3', locked: true, pinned: true })
+    props.discussions = [one, two, tre]
     testRender(props)
   })
 
