@@ -34,7 +34,6 @@ import Images from '../../../images'
 import Screen from '../../../routing/Screen'
 
 export class NotATeacher extends PureComponent<{}> {
-
   logout = () => {
     NativeModules.NativeLogin.logout()
   }
@@ -60,18 +59,18 @@ export class NotATeacher extends PureComponent<{}> {
             <Paragraph style={style.paragraph} testID='no-teacher.title'>{subtitle}</Paragraph>
           </View>
           <View style={style.subContainer}>
-          <TouchableOpacity onPress={this.openStudent}
-                            testID='no-teacher.open-student'
-                            accessibilityTraits="button"
-                            accessibilityLabel={i18n('Canvas Student App')}>
-            <Image source={Images.noTeacher.student} />
-          </TouchableOpacity>
-          <TouchableOpacity style={{ marginTop: 36 }}
-                            onPress={this.openParent} testID='no-teacher.open-parent'
-                            accessibilityTraits="button"
-                            accessibilityLabel={i18n('Canvas Parent App')}>
-            <Image source={Images.noTeacher.parent} />
-          </TouchableOpacity>
+            <TouchableOpacity onPress={this.openStudent}
+              testID='no-teacher.open-student'
+              accessibilityTraits="button"
+              accessibilityLabel={i18n('Canvas Student App')}>
+              <Image source={Images.noTeacher.student} />
+            </TouchableOpacity>
+            <TouchableOpacity style={{ marginTop: 36 }}
+              onPress={this.openParent} testID='no-teacher.open-parent'
+              accessibilityTraits="button"
+              accessibilityLabel={i18n('Canvas Parent App')}>
+              <Image source={Images.noTeacher.parent} />
+            </TouchableOpacity>
           </View>
           <View style={style.subContainer}>
             <Button title={buttonText} testID='no-teacher.logout' onPress={this.logout} />

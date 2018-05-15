@@ -68,7 +68,6 @@ export type Props = State & typeof Actions & OwnProps & {
 }
 
 export class DiscussionsList extends Component<Props, any> {
-
   renderRow = ({ item, index }: { item: Discussion, index: number }) => {
     return (
       <DiscusionsRow

@@ -65,16 +65,16 @@ export default class CourseFilter extends Component<CourseFilterProps, any> {
     }
 
     return (<View style={styles.headerWrapper}>
-              <View style={styles.header}>
-                <Heading1
-                  style={styles.headerTitle}
-                  numberOfLines={1}
-                  >
-                  { title }
-                </Heading1>
-                { this.renderFilterButton() }
-              </View>
-            </View>)
+      <View style={styles.header}>
+        <Heading1
+          style={styles.headerTitle}
+          numberOfLines={1}
+        >
+          { title }
+        </Heading1>
+        { this.renderFilterButton() }
+      </View>
+    </View>)
   }
 
   renderFilterButton = () => {
@@ -92,13 +92,13 @@ export default class CourseFilter extends Component<CourseFilterProps, any> {
     }
 
     return (<LinkButton
-              testID='inbox.filterByCourse'
-              onPress={onPress}
-              style={styles.filterButton}
-              accessibilityLabel={ accessibilityLabel }
-              >
-              { title }
-            </LinkButton>)
+      testID='inbox.filterByCourse'
+      onPress={onPress}
+      style={styles.filterButton}
+      accessibilityLabel={ accessibilityLabel }
+    >
+      { title }
+    </LinkButton>)
   }
 }
 

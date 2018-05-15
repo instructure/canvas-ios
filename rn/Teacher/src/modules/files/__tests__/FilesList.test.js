@@ -238,15 +238,15 @@ describe('FilesList', () => {
     const folder = template.folder()
     let instance = renderer.create(
       <FilesList data={data}
-                       navigator={navigator}
-                       contextID={courseID}
-                       context={'courses'}
-                       uploadFile={uploadFile}
-                       folder={folder}
-                       getFolderFiles={getFolderFiles}
-                       getFolderFolders={getFolderFolders}
-                       filesUpdated={filesUpdated}
-                       foldersUpdated={jest.fn()} />
+        navigator={navigator}
+        contextID={courseID}
+        context={'courses'}
+        uploadFile={uploadFile}
+        folder={folder}
+        getFolderFiles={getFolderFiles}
+        getFolderFolders={getFolderFolders}
+        filesUpdated={filesUpdated}
+        foldersUpdated={jest.fn()} />
     ).getInstance()
 
     await instance.finishAddFile(template.attachment())
@@ -261,11 +261,11 @@ describe('FilesList', () => {
     const folder = template.folder()
     let instance = renderer.create(
       <FilesList data={data}
-                       navigator={navigator}
-                       contextID={courseID}
-                       context={'courses'}
-                       uploadFile={uploadFile}
-                       folder={folder} />
+        navigator={navigator}
+        contextID={courseID}
+        context={'courses'}
+        uploadFile={uploadFile}
+        folder={folder} />
     ).getInstance()
 
     Alert.alert = jest.fn()
@@ -280,10 +280,10 @@ describe('FilesList', () => {
     const folder = template.folder()
     let tree = renderer.create(
       <FilesList data={data}
-                       navigator={navigator}
-                       contextID={courseID}
-                       context={'courses'}
-                       folder={folder} />
+        navigator={navigator}
+        contextID={courseID}
+        context={'courses'}
+        folder={folder} />
     )
     const instance = tree.getInstance()
     instance.updateUploadProgress({ loaded: 0, total: 100 })
@@ -300,10 +300,10 @@ describe('FilesList', () => {
     const folder = template.folder()
     let tree = renderer.create(
       <FilesList data={data}
-                       navigator={navigator}
-                       contextID={courseID}
-                       context={'courses'}
-                       folder={folder} />
+        navigator={navigator}
+        contextID={courseID}
+        context={'courses'}
+        folder={folder} />
     )
     const instance = tree.getInstance()
     instance.updateUploadProgress({ loaded: 'sdfsdjkf', total: 100 })

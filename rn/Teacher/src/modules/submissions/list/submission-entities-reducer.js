@@ -195,15 +195,15 @@ export const submissions: Reducer<SubmissionsState, any> = handleActions({
   [getUserSubmissions.toString()]: handleAsync({
     resolved: (state, { result }) => {
       const incoming = result.data
-      .reduce((incoming, submission) => ({
-        ...incoming,
-        [submission.id]: {
-          submission,
-          pending: 0,
-          error: null,
-          selectedAttachmentIndex: 0,
-        },
-      }), {})
+        .reduce((incoming, submission) => ({
+          ...incoming,
+          [submission.id]: {
+            submission,
+            pending: 0,
+            error: null,
+            selectedAttachmentIndex: 0,
+          },
+        }), {})
       return { ...state, ...incoming }
     },
   }),

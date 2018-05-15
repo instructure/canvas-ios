@@ -110,7 +110,7 @@ test('cancel update assignment action', () => {
   })
 })
 
-test('should update selected assignment row', async() => {
+test('should update selected assignment row', async () => {
   const rowID = '1'
   const actions = AssignmentListActions()
   const result = actions.updateCourseDetailsSelectedTabSelectedRow(rowID)

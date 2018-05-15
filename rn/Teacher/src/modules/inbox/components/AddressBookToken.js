@@ -36,7 +36,6 @@ type Props = {
 }
 
 export default class AddressBookToken extends Component<Props, any> {
-
   _delete = () => {
     this.props.delete(this.props.item.id)
   }

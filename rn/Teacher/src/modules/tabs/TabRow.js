@@ -34,7 +34,6 @@ type Props = {
 }
 
 export default class TabRow extends React.Component<Props> {
-
   onPress = () => {
     const tab = this.props.tab
     this.props.onPress(tab)
@@ -60,18 +59,18 @@ export default class TabRow extends React.Component<Props> {
   render () {
     const tab = this.props.tab
     return (<SafeAreaView>
-              <Row
-                title={tab.label}
-                image={this.image()}
-                imageTint={this.props.color}
-                imageSize={{ height: 24, width: 24 }}
-                onPress={this.onPress}
-                disclosureIndicator
-                border='bottom'
-                selected={this.props.selected}
-                testID={`courses-details.${tab.id}-cell`}
-                titleStyles={{ fontWeight: '500' }}
-              />
-            </SafeAreaView>)
+      <Row
+        title={tab.label}
+        image={this.image()}
+        imageTint={this.props.color}
+        imageSize={{ height: 24, width: 24 }}
+        onPress={this.onPress}
+        disclosureIndicator
+        border='bottom'
+        selected={this.props.selected}
+        testID={`courses-details.${tab.id}-cell`}
+        titleStyles={{ fontWeight: '500' }}
+      />
+    </SafeAreaView>)
   }
 }

@@ -18,9 +18,9 @@
 
 import React, { PureComponent } from 'react'
 import {
-    View,
-    Text,
-    StyleSheet,
+  View,
+  Text,
+  StyleSheet,
 } from 'react-native'
 
 type Props = {

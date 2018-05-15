@@ -146,54 +146,54 @@ export class UserCoursePreferences extends Component<Props, any> {
 
   _renderComponent () {
     return (<View style={{ flex: 1 }} onLayout={this.onLayout}>
-          <ModalOverlay text={i18n('Saving')} visible={this.state.pending} />
-          <RefreshableScrollView
-            style={{ flex: 1 }}
-            refreshing={this.props.refreshing}
-            onRefresh={this.props.refresh}
-          >
-            <View style={styles.imageWrapper}>
-              {this.props.course.image_download_url &&
-                <Image source={{ uri: this.props.course.image_download_url }} style={styles.image} />
-              }
-              <View
-                style={[
-                  styles.color,
-                  {
-                    backgroundColor: this.props.color,
-                    opacity: this.props.course.image_download_url ? 0.8 : 1,
-                  },
-                ]}
-              />
+      <ModalOverlay text={i18n('Saving')} visible={this.state.pending} />
+      <RefreshableScrollView
+        style={{ flex: 1 }}
+        refreshing={this.props.refreshing}
+        onRefresh={this.props.refresh}
+      >
+        <View style={styles.imageWrapper}>
+          { this.props.course.image_download_url &&
+            <Image source={{ uri: this.props.course.image_download_url }} style={styles.image} />
+          }
+          <View
+            style={[
+              styles.color,
+              {
+                backgroundColor: this.props.color,
+                opacity: this.props.course.image_download_url ? 0.8 : 1,
+              },
+            ]}
+          />
+        </View>
+        <View style={styles.bottom}>
+          <View style={styles.nicknameWrapper}>
+            <Text style={styles.nicknameLabel}>
+              {i18n('Nickname')}
+            </Text>
+            <TextInput
+              value={this.state.name}
+              style={styles.nickname}
+              onChangeText={(text) => this.setState({ name: text })}
+              testID='nameInput'
+            />
+          </View>
+          <View style={styles.separator} />
+          <View>
+            <Text style={styles.colorLabel}>
+              {i18n('Color')}
+            </Text>
+            <Text style={styles.colorDescription}>
+              {i18n('This is your personal color setting. Only you will see this color for the course.')}
+            </Text>
+            <View style={styles.colorButtonsWrapper}>
+              {this._renderColorButtons()}
             </View>
-            <View style={styles.bottom}>
-              <View style={styles.nicknameWrapper}>
-                <Text style={styles.nicknameLabel}>
-                  {i18n('Nickname')}
-                </Text>
-                <TextInput
-                  value={this.state.name}
-                  style={styles.nickname}
-                  onChangeText={(text) => this.setState({ name: text })}
-                  testID='nameInput'
-                />
-              </View>
-              <View style={styles.separator} />
-              <View>
-                <Text style={styles.colorLabel}>
-                  {i18n('Color')}
-                </Text>
-                <Text style={styles.colorDescription}>
-                  {i18n('This is your personal color setting. Only you will see this color for the course.')}
-                </Text>
-                <View style={styles.colorButtonsWrapper}>
-                  {this._renderColorButtons()}
-                </View>
-              </View>
-              <View style={styles.separator} />
-            </View>
-          </RefreshableScrollView>
-        </View>)
+          </View>
+          <View style={styles.separator} />
+        </View>
+      </RefreshableScrollView>
+    </View>)
   }
 
   render () {
@@ -213,7 +213,7 @@ export class UserCoursePreferences extends Component<Props, any> {
         }]}
         showDismissButton={false}
       >
-      { this._renderComponent() }
+        { this._renderComponent() }
       </Screen>
     )
   }

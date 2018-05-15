@@ -176,7 +176,7 @@ describe('SpeedGrader', () => {
         key: submissions[0].userID,
         submission: submissions[0],
       },
-        index: 0,
+      index: 0,
       })
     )
     expect(itemTree).toMatchSnapshot()

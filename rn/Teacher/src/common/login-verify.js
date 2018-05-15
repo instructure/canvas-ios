@@ -23,14 +23,14 @@ import canvas from '../canvas-api'
 export default async function loginVerify (): Promise<boolean> {
   return new Promise((resolve, reject) => {
     canvas.getUserProfile('self')
-    .then(() => resolve(false))
-    .catch((e) => {
-      if (e.response && e.response.status === 401) {
-        resolve(true)
-        NativeModules.NativeLogin.logout()
-      } else {
-        resolve(false)
-      }
-    })
+      .then(() => resolve(false))
+      .catch((e) => {
+        if (e.response && e.response.status === 401) {
+          resolve(true)
+          NativeModules.NativeLogin.logout()
+        } else {
+          resolve(false)
+        }
+      })
   })
 }

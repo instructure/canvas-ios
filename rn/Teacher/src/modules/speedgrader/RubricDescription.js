@@ -25,7 +25,6 @@ import Screen from '../../routing/Screen'
 import CanvasWebView from '../../common/components/CanvasWebView'
 
 export class RubricDescription extends Component<*> {
-
   renderLongDescription () {
     if (!this.props.description || this.props.description.length === 0) {
       return (

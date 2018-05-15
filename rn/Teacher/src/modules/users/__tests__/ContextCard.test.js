@@ -26,9 +26,9 @@ import renderer from 'react-test-renderer'
 import explore from '../../../../test/helpers/explore'
 
 jest.mock('../../../routing/Screen')
-    .mock('TouchableHighlight', () => 'TouchableHighlight')
-    .mock('TouchableOpacity', () => 'TouchableOpacity')
-    .mock('../../../common/components/ErrorView.js', () => 'ErrorView')
+  .mock('TouchableHighlight', () => 'TouchableHighlight')
+  .mock('TouchableOpacity', () => 'TouchableOpacity')
+  .mock('../../../common/components/ErrorView.js', () => 'ErrorView')
 
 const templates = {
   ...require('../../../__templates__/course'),

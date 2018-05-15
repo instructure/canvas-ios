@@ -51,7 +51,6 @@ type CourseSelectProps = {
 } & CourseSelectDataProps
 
 export class CourseSelect extends PureComponent<CourseSelectProps> {
-
   onCourseSelect = (course: Course) => {
     this.props.onSelect(course)
   }
@@ -62,16 +61,16 @@ export class CourseSelect extends PureComponent<CourseSelectProps> {
       border = 'both'
     }
     return <Row title={item.name}
-                border={border}
-                onPress={this.onCourseSelect}
-                identifier={item}
-                testID={`inbox.course-select.course-${item.id}`} />
+      border={border}
+      onPress={this.onCourseSelect}
+      identifier={item}
+      testID={`inbox.course-select.course-${item.id}`} />
   }
 
   renderSectionHeader = ({ section }: any) => {
     return <SectionHeader
-              title={section.title}
-              border={section.key === 0 ? 'top' : 'none'} />
+      title={section.title}
+      border={section.key === 0 ? 'top' : 'none'} />
   }
 
   keyExtractor (item: Course) {

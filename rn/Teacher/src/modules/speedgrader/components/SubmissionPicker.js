@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
   },
   arrowSelecting: {
     transform: [
-     { rotate: '180deg' },
+      { rotate: '180deg' },
     ],
   },
 })

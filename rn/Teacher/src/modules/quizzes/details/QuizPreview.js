@@ -38,7 +38,6 @@ type LocalProps = Props & {
 }
 
 export class QuizPreview extends Component<LocalProps, any> {
-
   webView: ?AuthenticatedWebView
 
   constructor (props: any) {

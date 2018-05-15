@@ -57,7 +57,6 @@ type State = {
 }
 
 export class Profile extends Component<Object, State> {
-
   static defaultProps = {
     account: canvas.account,
     getUserProfile: canvas.getUserProfile,
@@ -222,10 +221,10 @@ export class Profile extends Component<Object, State> {
 
     const buildRow = (title: string, onPress: ?Function, switchProps?: ?Object, testIDProps?: Object = {}) => {
       return (<View key={testIDProps.testID || title}>
-                { onPress && <Row title={title} titleStyles={titleStyles} onPress={onPress} {...testIDProps} />}
-                { switchProps && Object.keys(switchProps).length > 0 && <RowWithSwitch title={title} titleStyles={titleStyles} {...switchProps} />}
-                <RowSeparator style={styles.separator} />
-              </View>)
+        { onPress && <Row title={title} titleStyles={titleStyles} onPress={onPress} {...testIDProps} />}
+        { switchProps && Object.keys(switchProps).length > 0 && <RowWithSwitch title={title} titleStyles={titleStyles} {...switchProps} />}
+        <RowSeparator style={styles.separator} />
+      </View>)
     }
 
     const masquerading = !!session.actAsUserID
@@ -240,15 +239,15 @@ export class Profile extends Component<Object, State> {
       }).filter(Boolean)
     }
     return (<View>
-              { buildRow(i18n('Files'), this.userFiles) }
-              { tools }
-              { (this.props.canMasquerade || masquerading) && buildRow(masqueradeTitle, this.toggleMasquerade) }
-              { isStudent() && buildRow(i18n('Show Grades'), null, { onValueChange: this.toggleShowGrades, value: this.props.showsGradesOnCourseCards }) }
-              { buildRow(i18n('Help'), this.showHelpMenu) }
-              { this.state.showsDeveloperMenu && buildRow(i18n('Developer Menu'), this.showDeveloperMenu) }
-              { !masquerading && buildRow(i18n('Change User'), this.switchUser) }
-              { !masquerading && buildRow(i18n('Log Out'), this.logout) }
-            </View>)
+      { buildRow(i18n('Files'), this.userFiles) }
+      { tools }
+      { (this.props.canMasquerade || masquerading) && buildRow(masqueradeTitle, this.toggleMasquerade) }
+      { isStudent() && buildRow(i18n('Show Grades'), null, { onValueChange: this.toggleShowGrades, value: this.props.showsGradesOnCourseCards }) }
+      { buildRow(i18n('Help'), this.showHelpMenu) }
+      { this.state.showsDeveloperMenu && buildRow(i18n('Developer Menu'), this.showDeveloperMenu) }
+      { !masquerading && buildRow(i18n('Change User'), this.switchUser) }
+      { !masquerading && buildRow(i18n('Log Out'), this.logout) }
+    </View>)
   }
 
   render () {

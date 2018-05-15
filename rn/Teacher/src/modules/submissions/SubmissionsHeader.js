@@ -40,7 +40,6 @@ const mutedSubtitle = i18n('Grades muted')
 const bothSubtitle = i18n('Grades muted, Anonymous grading')
 
 export default class SubmissionsHeader extends Component<SubmissionsHeaderProps, any> {
-
   navigateToFilter = () => {
     this.props.navigator.show('/filter', {
       modal: true,
@@ -60,17 +59,17 @@ export default class SubmissionsHeader extends Component<SubmissionsHeaderProps,
     }
 
     return (<View style={styles.headerWrapper}>
-              <View style={styles.header}>
-                <Heading1
-                  numberOfLines={1}
-                  style={styles.headerTitle}
-                  >
-                  { title }
-                </Heading1>
-                {!!subTitle && <Text style={styles.subtitle}>{subTitle}</Text>}
-              </View>
-              { this.renderFilterButton() }
-            </View>)
+      <View style={styles.header}>
+        <Heading1
+          numberOfLines={1}
+          style={styles.headerTitle}
+        >
+          { title }
+        </Heading1>
+        {!!subTitle && <Text style={styles.subtitle}>{subTitle}</Text>}
+      </View>
+      { this.renderFilterButton() }
+    </View>)
   }
 
   renderFilterButton = () => {
@@ -84,13 +83,13 @@ export default class SubmissionsHeader extends Component<SubmissionsHeaderProps,
     }
 
     return (<LinkButton
-              testID='submission-list.filter'
-              onPress={onPress}
-              style={styles.filterButton}
-              accessibilityLabel={ accessibilityLabel }
-              >
-              { title }
-            </LinkButton>)
+      testID='submission-list.filter'
+      onPress={onPress}
+      style={styles.filterButton}
+      accessibilityLabel={ accessibilityLabel }
+    >
+      { title }
+    </LinkButton>)
   }
 }
 

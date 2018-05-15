@@ -50,7 +50,6 @@ export type ConversationMessageProps = {
 }
 
 export default class ConversationMessageRow extends Component<ConversationMessageProps, any> {
-
   constructor (props: ConversationMessageProps) {
     super(props)
     this.state = {
@@ -144,25 +143,25 @@ export default class ConversationMessageRow extends Component<ConversationMessag
     const date = i18n("{ date, date, 'MMM d' } at { date, time, short }", { date: new Date(message.created_at) })
 
     return (<View style={styles.header}>
-              <View style={{ flexDirection: 'row' }} accessible={true} accessibilityLabel={`${authorName} ${recipientName} ${date}`}>
-                <View style={styles.avatar}>
-                    <Avatar
-                      height={32}
-                      avatarURL={author.avatar_url}
-                      userName={author.name}
-                      onPress={this.props.conversation.context_code ? this.onAvatarPress : undefined}
-                    />
-                  </View>
-                <View>
-                  <Text>
-                    <Text style={styles.author}>{`${authorName} `}</Text>
-                    <Text style={styles.recipient}>{recipientName}</Text>
-                  </Text>
-                  <Text style={styles.dateText}>{date}</Text>
-                </View>
-              </View>
-              { this._renderKabob() }
-            </View>)
+      <View style={{ flexDirection: 'row' }} accessible={true} accessibilityLabel={`${authorName} ${recipientName} ${date}`}>
+        <View style={styles.avatar}>
+          <Avatar
+            height={32}
+            avatarURL={author.avatar_url}
+            userName={author.name}
+            onPress={this.props.conversation.context_code ? this.onAvatarPress : undefined}
+          />
+        </View>
+        <View>
+          <Text>
+            <Text style={styles.author}>{`${authorName} `}</Text>
+            <Text style={styles.recipient}>{recipientName}</Text>
+          </Text>
+          <Text style={styles.dateText}>{date}</Text>
+        </View>
+      </View>
+      { this._renderKabob() }
+    </View>)
   }
 
   render () {
@@ -217,14 +216,14 @@ export default class ConversationMessageRow extends Component<ConversationMessag
   _renderKabob = () => {
     return (
       <TouchableOpacity
-          style={styles.kabobButton}
-          accessibilityTraits='button'
-          accessible
-          accessibilityLabel={i18n('Message options')}
-          underlayColor='#ffffff00'
-          testID={`conversation-message.kabob-${this.props.message.id}`}
-          onPress={this._showActionSheet}
-        >
+        style={styles.kabobButton}
+        accessibilityTraits='button'
+        accessible
+        accessibilityLabel={i18n('Message options')}
+        underlayColor='#ffffff00'
+        testID={`conversation-message.kabob-${this.props.message.id}`}
+        onPress={this._showActionSheet}
+      >
         <Image style={styles.kabob} source={Images.kabob}/>
       </TouchableOpacity>
     )

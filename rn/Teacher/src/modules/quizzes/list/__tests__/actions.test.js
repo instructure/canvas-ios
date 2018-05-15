@@ -49,7 +49,7 @@ describe('refreshQuizzes', () => {
     ])
   })
 
-  it('should update selected quiz row', async() => {
+  it('should update selected quiz row', async () => {
     const rowID = '1'
     const actions = Actions()
     const result = actions.updateCourseDetailsSelectedTabSelectedRow(rowID)

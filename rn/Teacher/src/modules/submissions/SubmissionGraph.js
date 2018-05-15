@@ -78,15 +78,15 @@ export default class SubmissionGraph extends Component<SubmissionGraphProps, any
       <View style={submissionsGraphStyle.container}>
         <View style={submissionsGraphStyle.circleContainer}>
           <Progress.Circle size={submissionCircles.size}
-                           animated={true}
-                           thickness={submissionCircles.thickness}
-                           progress={this.state.progress}
-                           borderWidth={0}
-                           unfilledColor={submissionCircles.backgroundColor}
-                           color={color.primaryBrandColor}
-                           borderColor={color.primaryBrandColor}
-                           showsText={false}
-                           testID={`submissions.submission-graph.${testID}-progress-view`} />
+            animated={true}
+            thickness={submissionCircles.thickness}
+            progress={this.state.progress}
+            borderWidth={0}
+            unfilledColor={submissionCircles.backgroundColor}
+            color={color.primaryBrandColor}
+            borderColor={color.primaryBrandColor}
+            showsText={false}
+            testID={`submissions.submission-graph.${testID}-progress-view`} />
         </View>
         <Text
           style={submissionsGraphStyle.label}

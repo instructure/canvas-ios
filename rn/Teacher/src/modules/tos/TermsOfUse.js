@@ -36,7 +36,6 @@ type State = {
 }
 
 export default class TermsOfUse extends Component<Props, State> {
-
   state = {
     loading: true,
     termsContent: '',
@@ -74,15 +73,15 @@ export default class TermsOfUse extends Component<Props, State> {
           ? <ActivityIndicatorView />
           : this.state.termsError
             ? <View style={styles.container}>
-                <Text>{i18n('There was a problem retrieving the Terms Of Use')}</Text>
-              </View>
+              <Text>{i18n('There was a problem retrieving the Terms Of Use')}</Text>
+            </View>
             : <View style={styles.container}>
-                <CanvasWebView
-                  html={this.state.termsContent}
-                  style={{ flex: 1 }}
-                  navigator={this.props.navigator}
-                />
-              </View>
+              <CanvasWebView
+                html={this.state.termsContent}
+                style={{ flex: 1 }}
+                navigator={this.props.navigator}
+              />
+            </View>
         }
       </Screen>
     )

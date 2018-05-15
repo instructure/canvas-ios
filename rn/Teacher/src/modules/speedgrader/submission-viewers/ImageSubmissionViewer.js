@@ -30,7 +30,6 @@ export default class ImageSubmissionViewer extends Component<{
   width: number,
   height: number,
 }> {
-
   componentDidMount () {
     Image.getSize(this.props.attachment.url, (width, height) => {
       let maxWidth = Math.min(this.props.width, width) - 32

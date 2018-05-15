@@ -30,7 +30,6 @@ type Props = {
 }
 
 export default class CourseDetailsHomeTab extends React.Component<Props, any> {
-
   onPress = () => {
     const tab = this.props.tab
     this.props.onPress(tab)

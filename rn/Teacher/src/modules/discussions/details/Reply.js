@@ -186,15 +186,15 @@ export default class Reply extends Component<Props, State> {
             {this.state.useSimpleRenderer || reply.deleted
               ? <RichContent html={message} navigator={this.props.navigator} />
               : <CanvasWebView
-                  automaticallySetHeight
-                  style={{ flex: 1 }}
-                  html={message}
-                  navigator={this.props.navigator}
-                  ref={(ref) => { this.webView = ref }}
-                  onFinishedLoading={this.onLoad}
-                  onMessage={this.onMessage}
-                  heightCacheKey={reply.id}
-                />
+                automaticallySetHeight
+                style={{ flex: 1 }}
+                html={message}
+                navigator={this.props.navigator}
+                ref={(ref) => { this.webView = ref }}
+                onFinishedLoading={this.onLoad}
+                onMessage={this.onMessage}
+                heightCacheKey={reply.id}
+              />
             }
             {reply.attachment &&
               <TouchableHighlight testID={`discussion-reply.${reply.id}.attachment`} onPress={this.showAttachment}>

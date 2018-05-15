@@ -434,8 +434,8 @@ export function mapStateToProps ({ entities }: AppState, ownProps: RoutingProps)
 
   const submission = submissionID &&
     entities.submissions[submissionID]
-      ? entities.submissions[submissionID].submission
-      : undefined
+    ? entities.submissions[submissionID].submission
+    : undefined
 
   const assignments = entities.assignments[assignmentID]
 

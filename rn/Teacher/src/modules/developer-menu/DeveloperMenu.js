@@ -26,7 +26,7 @@ import {
   AsyncStorage,
   NativeModules,
   SegmentedControlIOS,
- } from 'react-native'
+} from 'react-native'
 import { route, type RouteOptions } from '../../routing'
 import Navigator from '../../routing/Navigator'
 import Screen from '../../routing/Screen'
@@ -65,7 +65,6 @@ export async function recordRoute (url: string, options: any, props: any) {
   await AsyncStorage.setItem(routeHistoryKey, JSON.stringify(routes))
 }
 export default class DeveloperMenu extends Component<DeveloperMenuProps, any> {
-
   constructor (props: DeveloperMenuProps) {
     super(props)
     this.state = {}

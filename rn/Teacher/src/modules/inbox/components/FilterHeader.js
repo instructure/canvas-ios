@@ -35,14 +35,13 @@ export type InboxFilterHeaderProps = {
 }
 
 export default class InboxFilterHeader extends Component<InboxFilterHeaderProps, any> {
-
   constructor (props: InboxFilterHeaderProps) {
     super(props)
     const filters = [{ name: i18n('All'), scope: 'all' },
-                     { name: i18n('Unread'), scope: 'unread' },
-                     { name: i18n('Starred'), scope: 'starred' },
-                     { name: i18n('Sent'), scope: 'sent' },
-                     { name: i18n('Archived'), scope: 'archived' }]
+      { name: i18n('Unread'), scope: 'unread' },
+      { name: i18n('Starred'), scope: 'starred' },
+      { name: i18n('Sent'), scope: 'sent' },
+      { name: i18n('Archived'), scope: 'archived' }]
 
     this.state = {
       filters,
@@ -70,12 +69,12 @@ export default class InboxFilterHeader extends Component<InboxFilterHeaderProps,
 
   render () {
     return (<View style={styles.container}>
-              <ScrollView horizontal={true} contentContainerStyle={styles.scrollView}>
-                {this.state.filters.map((item) => {
-                  return this._renderButton(item)
-                })}
-              </ScrollView>
-            </View>)
+      <ScrollView horizontal={true} contentContainerStyle={styles.scrollView}>
+        {this.state.filters.map((item) => {
+          return this._renderButton(item)
+        })}
+      </ScrollView>
+    </View>)
   }
 }
 

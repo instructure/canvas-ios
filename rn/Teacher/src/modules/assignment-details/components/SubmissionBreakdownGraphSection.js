@@ -59,12 +59,12 @@ export class SubmissionBreakdownGraphSection extends Component<SubmissionBreakdo
   renderNoSubmissions () {
     let noSubmissionsMessage = i18n('Tap to view submissions list.')
     return (
-        <TouchableOpacity underlayColor='#eeeeee00' style={style.common}
-                          key={`submission_dial_highlight_no_submissions`}
-                          testID={`assignment-details.submission-breakdown-graph-section.no-submissions`}
-                          onPress={() => this.props.onPress('') } accessible={false}>
-          <Text accessible={false}>{noSubmissionsMessage}</Text>
-        </TouchableOpacity>
+      <TouchableOpacity underlayColor='#eeeeee00' style={style.common}
+        key={`submission_dial_highlight_no_submissions`}
+        testID={`assignment-details.submission-breakdown-graph-section.no-submissions`}
+        onPress={() => this.props.onPress('') } accessible={false}>
+        <Text accessible={false}>{noSubmissionsMessage}</Text>
+      </TouchableOpacity>
     )
   }
 
@@ -108,7 +108,7 @@ export class SubmissionBreakdownGraphSection extends Component<SubmissionBreakdo
       <View style={[style.container, this.props.style, paperOnly && { paddingLeft: global.style.defaultPadding / 2 }]}>
         {data.map((item, index) =>
           <TouchableOpacity underlayColor='#eeeeee00' style={!paperOnly && style.common} key={`submission_dial_highlight_${index}`}
-                              testID={`assignment-details.submission-breakdown-graph-section.${ids[index]}-dial`} onPress={() => this.onPress(index) } accessibilityTraits='button'>
+            testID={`assignment-details.submission-breakdown-graph-section.${ids[index]}-dial`} onPress={() => this.onPress(index) } accessibilityTraits='button'>
             <View>
               <SubmissionGraph
                 label={labels[index]}

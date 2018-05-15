@@ -37,7 +37,6 @@ import { Text, Heading1 } from '../../common/text'
 import Screen from '../../routing/Screen'
 
 export class AssignmentDueDates extends Component<AssignmentDueDatesProps, any> {
-
   componentWillMount () {
     const studentIDs = new AssignmentDates(this.props.assignment).studentIDs()
     if (studentIDs.length) {
@@ -87,23 +86,23 @@ export class AssignmentDueDates extends Component<AssignmentDueDatesProps, any> 
     }
 
     return (<View style={styles.row} key={date.id || 'base'} >
-              <Heading1>{formattedDueDateWithStatus(dueAt, extractDateFromString(date.lock_at)).join('  •  ')}</Heading1>
-              <View accessible={true}>
-                <Text style={styles.header}>{i18n('For')}</Text>
-                <Text style={styles.content}>{title}</Text>
-              </View>
-              <View style={styles.divider} />
-              <View accessible={true} accessibilityLabel={availableFromAccessibilityLabel}>
-                <Text style={styles.header}>{i18n('Available From')}</Text>
-                <Text style={styles.content}>{availableFrom}</Text>
-              </View>
-              <View style={styles.divider} />
-              <View accessible={true} accessibilityLabel={availableToAccessibiltyLabel}>
-                <Text style={styles.header}>{i18n('Available Until')}</Text>
-                <Text style={styles.content}>{availableTo}</Text>
-              </View>
-              <View style={styles.divider} />
-            </View>)
+      <Heading1>{formattedDueDateWithStatus(dueAt, extractDateFromString(date.lock_at)).join('  •  ')}</Heading1>
+      <View accessible={true}>
+        <Text style={styles.header}>{i18n('For')}</Text>
+        <Text style={styles.content}>{title}</Text>
+      </View>
+      <View style={styles.divider} />
+      <View accessible={true} accessibilityLabel={availableFromAccessibilityLabel}>
+        <Text style={styles.header}>{i18n('Available From')}</Text>
+        <Text style={styles.content}>{availableFrom}</Text>
+      </View>
+      <View style={styles.divider} />
+      <View accessible={true} accessibilityLabel={availableToAccessibiltyLabel}>
+        <Text style={styles.header}>{i18n('Available Until')}</Text>
+        <Text style={styles.content}>{availableTo}</Text>
+      </View>
+      <View style={styles.divider} />
+    </View>)
   }
 
   render () {

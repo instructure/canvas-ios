@@ -356,27 +356,27 @@ export class FilesList extends Component<Props, State> {
     }
     const renderImage = () => {
       return <View style={styles.icon}>
-               <AccessIcon entry={item} image={icon} tintColor={tintColor} statusOffset={statusOffset} disableAppSpecificChecks={this.props.context === 'users'} />
-             </View>
+        <AccessIcon entry={item} image={icon} tintColor={tintColor} statusOffset={statusOffset} disableAppSpecificChecks={this.props.context === 'users'} />
+      </View>
     }
 
     return (<View>
-              <View>
-                <Row
-                  renderImage={renderImage}
-                  title={name}
-                  subtitle={subtitle}
-                  identifier={index}
-                  onPress={this.onSelectRow}
-                  disclosureIndicator
-                  testID={`file-list.file-list-row.cell-${item.key}`} />
-              </View>
-              {(item.hidden || item.lock_at || item.unlock_at) ? (
-                <View style={styles.restrictedIndicatorLine} />
-              ) : (
-                <AccessLine visible={!item.locked} disableAppSpecificChecks={this.props.context === 'users'} />
-              )}
-            </View>)
+      <View>
+        <Row
+          renderImage={renderImage}
+          title={name}
+          subtitle={subtitle}
+          identifier={index}
+          onPress={this.onSelectRow}
+          disclosureIndicator
+          testID={`file-list.file-list-row.cell-${item.key}`} />
+      </View>
+      {(item.hidden || item.lock_at || item.unlock_at) ? (
+        <View style={styles.restrictedIndicatorLine} />
+      ) : (
+        <AccessLine visible={!item.locked} disableAppSpecificChecks={this.props.context === 'users'} />
+      )}
+    </View>)
   }
 
   render () {
@@ -421,12 +421,12 @@ export class FilesList extends Component<Props, State> {
             ListHeaderComponent={this.props.data.length > 0 ? RowSeparator : null}
             ListFooterComponent={this.props.data.length > 0 ? RowSeparator : null}
             ListEmptyComponent={this.state.pending ? null : empty} />
-            <AttachmentPicker
-              style={styles.attachmentPicker}
-              ref={this.captureAttachmentPicker}
-              fileTypes={['all']}
-              navigator={this.props.navigator}
-            />
+          <AttachmentPicker
+            style={styles.attachmentPicker}
+            ref={this.captureAttachmentPicker}
+            fileTypes={['all']}
+            navigator={this.props.navigator}
+          />
         </DropView>
       </Screen>
     )

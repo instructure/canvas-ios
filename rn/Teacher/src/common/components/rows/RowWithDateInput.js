@@ -43,7 +43,6 @@ type DateRowProps = {
 }
 
 export default class RowWithDateInput extends PureComponent<DateRowProps, any> {
-
   render () {
     let detailTextStyle = this.props.selected ? { color: branding.primaryBrandColor } : styles.detailText
     let paddingRightWhenEmpty = this.props.showRemoveButton ? 0 : global.style.defaultPadding
@@ -51,31 +50,33 @@ export default class RowWithDateInput extends PureComponent<DateRowProps, any> {
     let date = extractDateFromString(this.props.date)
     date = date ? i18n("{ date, date, 'MMM d' } { date, time, short }", { date }) : i18n('--')
     return (
-        <View style={[ styles.row, styles.detailsRowContainer ]} >
-            <TouchableHighlight style={{ flex: 1 }} onPress={this.props.onPress} testID={this.props.testID}>
-              <View style={[styles.rowContainer, { paddingRight: paddingRightWhenEmpty }]}>
-                <View style={styles.titlesContainer}>
-                  <Text style={styles.titleText}>{this.props.title}</Text>
-                </View>
-                <View style={styles.detailsRowContainer}>
-                  <Text style={detailTextStyle} testID={this.props.dateTestID}>{date}</Text>
-                </View>
-              </View>
-              </TouchableHighlight>
-              {this.props.showRemoveButton &&
-                <View style={styles.deleteDateTypeButton}>
-                  <TouchableHighlight
-                    underlayColor='transparent'
-                    onPress={this.props.onRemoveDatePress}
-                    accessible={true}
-                    accessibilityLabel={i18n('Remove date')}
-                    accessibilityTraits='button'
-                    testID={this.props.removeButtonTestID}
-                    containerStyle={styles.deleteDateTypeButton}>
-                      <Image source={Images.clear} />
-                  </TouchableHighlight>
-                </View>}
+      <View style={[ styles.row, styles.detailsRowContainer ]} >
+        <TouchableHighlight style={{ flex: 1 }} onPress={this.props.onPress} testID={this.props.testID}>
+          <View style={[styles.rowContainer, { paddingRight: paddingRightWhenEmpty }]}>
+            <View style={styles.titlesContainer}>
+              <Text style={styles.titleText}>{this.props.title}</Text>
             </View>
+            <View style={styles.detailsRowContainer}>
+              <Text style={detailTextStyle} testID={this.props.dateTestID}>{date}</Text>
+            </View>
+          </View>
+        </TouchableHighlight>
+        { this.props.showRemoveButton &&
+          <View style={styles.deleteDateTypeButton}>
+            <TouchableHighlight
+              underlayColor='transparent'
+              onPress={this.props.onRemoveDatePress}
+              accessible={true}
+              accessibilityLabel={i18n('Remove date')}
+              accessibilityTraits='button'
+              testID={this.props.removeButtonTestID}
+              containerStyle={styles.deleteDateTypeButton}
+            >
+              <Image source={Images.clear} />
+            </TouchableHighlight>
+          </View>
+        }
+      </View>
     )
   }
 }

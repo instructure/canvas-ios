@@ -77,7 +77,6 @@ type State = {
 const padding = 8
 
 export class FavoritesList extends Component<Props, State> {
-
   renderCourse = ({ item }: { item: Course }) => {
     return (
       <CourseFavorite
@@ -152,16 +151,16 @@ export class FavoritesList extends Component<Props, State> {
         title={i18n('Edit Courses')}
         customPageViewPath={'/courses'}
       >
-      <SectionList
-        refreshing={this.props.refreshing}
-        onRefresh={this.props.refresh}
-        stickySectionHeadersEnabled={false}
-        renderSectionHeader={this.renderHeader}
-        sections={sections}
-        renderItem={() => {}}
+        <SectionList
+          refreshing={this.props.refreshing}
+          onRefresh={this.props.refresh}
+          stickySectionHeadersEnabled={false}
+          renderSectionHeader={this.renderHeader}
+          sections={sections}
+          renderItem={() => {}}
         // this prop is only necessary because renderItem is not listed as an optional prop
         // https://github.com/facebook/react-native/pull/17262
-      />
+        />
       </Screen>
     )
   }

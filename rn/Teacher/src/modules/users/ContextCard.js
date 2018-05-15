@@ -54,7 +54,6 @@ type ContextCardDataProps = {
 type ContextCardProps = ContextCardOwnProps & ContextCardDataProps
 
 export class ContextCard extends Component< ContextCardProps, any> {
-
   renderHeader () {
     const { course, user, enrollment, isStudent, canViewAnalytics } = this.props
     let sectionName

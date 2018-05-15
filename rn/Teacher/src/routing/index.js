@@ -97,7 +97,7 @@ export function wrapComponentInProviders (moduleName: string, generator: () => a
         let {
           navigatorOptions,
           ...props
-         } = this.props
+        } = this.props
         const navigator = new Navigator(moduleName, navigatorOptions)
 
         if (this.state.hasError) {

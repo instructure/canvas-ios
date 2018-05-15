@@ -92,12 +92,12 @@ export class ConversationDetails extends Component <ConversationDetailsProps, an
   _renderItem = ({ item, index }) => {
     if (!this.props.conversation) return <View />
     return <ConversationMessageRow
-              navigator={this.props.navigator}
-              message={item}
-              conversation={this.props.conversation}
-              onReplyButtonPressed={ () => {} }
-              firstMessage={index === 0}
-              showOptionsActionSheet={this.showOptionsActionSheet} />
+      navigator={this.props.navigator}
+      message={item}
+      conversation={this.props.conversation}
+      onReplyButtonPressed={ () => {} }
+      firstMessage={index === 0}
+      showOptionsActionSheet={this.showOptionsActionSheet} />
   }
 
   _toggleStarred = () => {
@@ -116,20 +116,20 @@ export class ConversationDetails extends Component <ConversationDetailsProps, an
     const star = starred ? Images.starFilled : Images.starLined
 
     return (<View style={styles.header}>
-              <Heading1>{this.props.conversation.subject || i18n('No Subject')}</Heading1>
-              <TouchableOpacity
-                accessibilityLabel={starred ? i18n('Starred') : i18n('Un-starred')}
-                accessibilityTraits='button'
-                testID={`inbox.detail.${starred ? 'starred' : 'not-starred'}`}
-                focusedOpacity={0.7}
-                onPress={this._toggleStarred}
-                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-              >
-                <View style={{ backgroundColor: 'white' }}>
-                  <Image source={star} style={{ tintColor: branding.primaryBrandColor, height: 24, width: 24 }}/>
-                </View>
-              </TouchableOpacity>
-            </View>)
+      <Heading1>{this.props.conversation.subject || i18n('No Subject')}</Heading1>
+      <TouchableOpacity
+        accessibilityLabel={starred ? i18n('Starred') : i18n('Un-starred')}
+        accessibilityTraits='button'
+        testID={`inbox.detail.${starred ? 'starred' : 'not-starred'}`}
+        focusedOpacity={0.7}
+        onPress={this._toggleStarred}
+        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+      >
+        <View style={{ backgroundColor: 'white' }}>
+          <Image source={star} style={{ tintColor: branding.primaryBrandColor, height: 24, width: 24 }}/>
+        </View>
+      </TouchableOpacity>
+    </View>)
   }
 
   _renderComponent = () => {

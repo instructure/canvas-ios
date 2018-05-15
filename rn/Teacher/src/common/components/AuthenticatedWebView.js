@@ -22,7 +22,6 @@ import canvas from '../../canvas-api'
 import CanvasWebView from './CanvasWebView'
 
 export default class AuthenticatedWebView extends React.Component<any, any> {
-
   webView: CanvasWebView
 
   constructor (props: any) {

@@ -18,9 +18,9 @@
 
 import React, { PureComponent } from 'react'
 import {
-    View,
-    StyleSheet,
-    LayoutAnimation,
+  View,
+  StyleSheet,
+  LayoutAnimation,
 } from 'react-native'
 import { UnmetRequirementBannerText } from '../text'
 

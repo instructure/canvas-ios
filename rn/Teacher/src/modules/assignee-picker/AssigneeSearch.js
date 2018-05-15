@@ -147,12 +147,12 @@ export class AssigneeSearch extends Component<AssigneeSearchProps, any> {
 
   renderSearchBar = () => {
     return <SearchBar
-            ref={ (c) => { this.searchBar = c }}
-            onChangeText={this.updateFilterString}
-            onSearchButtonPress={() => this.searchBar.unFocus()}
-            onCancelButtonPress={() => this.searchBar.unFocus()}
-            placeholder={i18n('Search')}
-            />
+      ref={ (c) => { this.searchBar = c }}
+      onChangeText={this.updateFilterString}
+      onSearchButtonPress={() => this.searchBar.unFocus()}
+      onCancelButtonPress={() => this.searchBar.unFocus()}
+      placeholder={i18n('Search')}
+    />
   }
 
   onRowPress = (data: any) => {

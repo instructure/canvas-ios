@@ -33,11 +33,11 @@ import { default as SubmissionActions } from '../submissions/list/actions'
 export let defaultState: AssignmentGroupsState = {}
 
 const { refreshAssignmentList,
-        updateAssignment,
-        refreshAssignment,
-        refreshAssignmentDetails,
-        cancelAssignmentUpdate,
-        anonymousGrading } = Actions
+  updateAssignment,
+  refreshAssignment,
+  refreshAssignmentDetails,
+  cancelAssignmentUpdate,
+  anonymousGrading } = Actions
 const { refreshQuiz } = QuizDetailsActions
 const { refreshDiscussionEntries } = DiscussionDetailsActions
 const { refreshSubmissionSummary, getUserSubmissions } = SubmissionActions

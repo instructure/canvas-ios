@@ -184,30 +184,30 @@ export class SubmissionList extends Component<Props, State> {
         { this.props.pending && !this.props.refreshing
           ? <ActivityIndicatorView />
           : <View style={styles.container}>
-              <SubmissionsHeader
-                filterOptions={this.state.filterOptions}
-                applyFilter={this.applyFilter}
-                filterPromptMessage={i18n('Out of {points, number}', { points: this.props.pointsPossible })}
-                initialFilterType={this.props.filterType}
-                pointsPossible={this.props.pointsPossible}
-                anonymous={this.props.anonymous}
-                muted={this.props.muted}
-                navigator={this.props.navigator}
-              />
-              <FlatList
-                data={this.state.filter(this.props.submissions)}
-                keyExtractor={this.keyExtractor}
-                testID='submission-list'
-                renderItem={this.renderRow}
-                refreshing={this.props.refreshing}
-                onRefresh={this.props.refresh}
-                ItemSeparatorComponent={RowSeparator}
-                ListFooterComponent={RowSeparator}
-                ListEmptyComponent={
-                  <ListEmptyComponent title={i18n('No results')} />
-                }
-                />
-            </View>
+            <SubmissionsHeader
+              filterOptions={this.state.filterOptions}
+              applyFilter={this.applyFilter}
+              filterPromptMessage={i18n('Out of {points, number}', { points: this.props.pointsPossible })}
+              initialFilterType={this.props.filterType}
+              pointsPossible={this.props.pointsPossible}
+              anonymous={this.props.anonymous}
+              muted={this.props.muted}
+              navigator={this.props.navigator}
+            />
+            <FlatList
+              data={this.state.filter(this.props.submissions)}
+              keyExtractor={this.keyExtractor}
+              testID='submission-list'
+              renderItem={this.renderRow}
+              refreshing={this.props.refreshing}
+              onRefresh={this.props.refresh}
+              ItemSeparatorComponent={RowSeparator}
+              ListFooterComponent={RowSeparator}
+              ListEmptyComponent={
+                <ListEmptyComponent title={i18n('No results')} />
+              }
+            />
+          </View>
         }
       </Screen>
     )

@@ -283,8 +283,8 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
                 {this.state.loadingGrade
                   ? <ActivityIndicator />
                   : this.state.currentScore
-                      ? <Text>{i18n.number(this.state.currentScore / 100, 'percent')}</Text>
-                      : <Text>{i18n('N/A')}</Text>
+                    ? <Text>{i18n.number(this.state.currentScore / 100, 'percent')}</Text>
+                    : <Text>{i18n('N/A')}</Text>
                 }
               </View>
             }

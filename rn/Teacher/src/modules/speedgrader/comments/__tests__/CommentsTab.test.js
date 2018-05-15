@@ -475,7 +475,7 @@ test('mapStateToProps returns comment and submission rows', () => {
   setSession(session)
 
   expect(mapStateToProps(appState, ownProps))
-  .toMatchSnapshot()
+    .toMatchSnapshot()
 })
 
 test('mapStateToProps returns anonymous true when anonymous grading is turned on', () => {

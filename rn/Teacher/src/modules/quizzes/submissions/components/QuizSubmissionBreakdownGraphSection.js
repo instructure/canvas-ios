@@ -57,7 +57,6 @@ export type QuizSubmissionBreakdownGraphSectionInitProps = {
 }
 
 export class QuizSubmissionBreakdownGraphSection extends Component<QuizSubmissionBreakdownGraphSectionProps, any> {
-
   componentDidMount () {
     this.props.refreshQuizSubmissions(this.props.courseID, this.props.quizID, this.props.assignmentID)
     if (this.props.assignmentID) {
@@ -89,15 +88,15 @@ export class QuizSubmissionBreakdownGraphSection extends Component<QuizSubmissio
     let labels = [gradedLabel, ungradedLabel, notSubmittedLabel]
 
     return (<View style={styles.container}>
-              {data.map((item, index) =>
-                <TouchableOpacity underlayColor='#eeeeee00' style={{ flex: 1 }} key={`quiz-submission_dial_highlight_${index}`}
-                                    testID={`quiz-submission_dial_${index}`} onPress={() => this.onPress(index) }>
-                  <View>
-                    <SubmissionGraph label={labels[index]} total={submissionTotalCount || 0} current={data[index] || 0} key={index} pending={this.props.pending} />
-                  </View>
-                </TouchableOpacity>
-              )}
-            </View>)
+      {data.map((item, index) =>
+        <TouchableOpacity underlayColor='#eeeeee00' style={{ flex: 1 }} key={`quiz-submission_dial_highlight_${index}`}
+          testID={`quiz-submission_dial_${index}`} onPress={() => this.onPress(index) }>
+          <View>
+            <SubmissionGraph label={labels[index]} total={submissionTotalCount || 0} current={data[index] || 0} key={index} pending={this.props.pending} />
+          </View>
+        </TouchableOpacity>
+      )}
+    </View>)
   }
 
   onPress (itemIndex: number) {
@@ -166,9 +165,9 @@ export function mapStateToProps (state: AppState, ownProps: QuizSubmissionBreakd
       submissionTotalCount = course.enrollments.refs.map((r) => {
         return state.entities.enrollments[r]
       })
-      .filter((r) => r)
-      .filter((r) => r.type === 'StudentEnrollment')
-      .length
+        .filter((r) => r)
+        .filter((r) => r.type === 'StudentEnrollment')
+        .length
       pending = pending || course.enrollments.pending
     }
   }

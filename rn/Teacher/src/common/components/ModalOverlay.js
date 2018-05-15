@@ -50,15 +50,15 @@ export default class ModalOverlay extends React.Component<Props> {
   render () {
     return (
       <Modal animationType={this.props.animationType}
-             transparent={this.props.transparent}
-             visible={this.props.visible}
-             supportedOrientations={['portrait', 'landscape']}
+        transparent={this.props.transparent}
+        visible={this.props.visible}
+        supportedOrientations={['portrait', 'landscape']}
       >
         <View style={[style.container]}>
           <View style={[style.background, { backgroundColor: this.props.backgroundColor }, { width: this.props.width, height: this.props.height }]}>
             <View style={style.textContainer}>
               <View style={style.textSubContainer}>
-              <ModalOverlayText style={[style.textContent, this.props.textStyle]}>{this.props.text}</ModalOverlayText>
+                <ModalOverlayText style={[style.textContent, this.props.textStyle]}>{this.props.text}</ModalOverlayText>
               </View>
             </View>
             {this.props.showActivityIndicator &&

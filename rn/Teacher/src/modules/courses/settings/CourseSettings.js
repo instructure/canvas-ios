@@ -149,16 +149,16 @@ export class CourseSettings extends Component<Props, any> {
               testID='course-settings.toggle-home-picker'
             >
               <View style={styles.row}>
-                  <View style={styles.rowContent}>
-                    <Text style={styles.primaryText} testID='course-settings.set-home-lbl'>
-                      {i18n(`Set 'Home' to...`)}
-                    </Text>
-                    <Text
-                      style={[styles.actionableText, pickerDetailStyle]}
-                      testID='course-settings.home-page-lbl'>
-                      { DISPLAY_NAMES.get(this.state.home) }
-                    </Text>
-                  </View>
+                <View style={styles.rowContent}>
+                  <Text style={styles.primaryText} testID='course-settings.set-home-lbl'>
+                    {i18n(`Set 'Home' to...`)}
+                  </Text>
+                  <Text
+                    style={[styles.actionableText, pickerDetailStyle]}
+                    testID='course-settings.home-page-lbl'>
+                    { DISPLAY_NAMES.get(this.state.home) }
+                  </Text>
+                </View>
               </View>
             </TouchableHighlight>
             <View style={styles.separator}/>

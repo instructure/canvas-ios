@@ -28,9 +28,9 @@ export type ListEmptyComponentProps = {
 export default class ListEmptyComponent extends PureComponent<ListEmptyComponentProps, any> {
   render () {
     return <View style={styles.container}>
-              <Title>{this.props.title}</Title>
-              { this.props.image && <Image source={this.props.image} /> }
-           </View>
+      <Title>{this.props.title}</Title>
+      { this.props.image && <Image source={this.props.image} /> }
+    </View>
   }
 }
 

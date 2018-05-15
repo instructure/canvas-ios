@@ -32,7 +32,6 @@ type RowWithSwitchProps = RowProps & {
 }
 
 export default class RowWithDetail extends Component<RowWithSwitchProps, any> {
-
   render () {
     let detailStyle = this.props.detailSelected ? { color: branding.primaryBrandColor } : {}
     const accessories = (

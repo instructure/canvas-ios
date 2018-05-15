@@ -45,13 +45,12 @@ type Props = {
 }
 
 export default class DueDates extends React.Component<Props, any> {
-
   renderMultipleDueDates () {
     const title = i18n('Multiple Due Dates')
 
     return <View style={styles.container}>
-             <Text>{title}</Text>
-           </View>
+      <Text>{title}</Text>
+    </View>
   }
 
   renderAvailability (dates: AssignmentDates) {
@@ -61,11 +60,11 @@ export default class DueDates extends React.Component<Props, any> {
       const availabilityClosedInfo = i18n('Closed')
 
       return <View>
-               <Text style={styles.textContainer}>
-                 <Text style={styles.descriptionText}>{availabilityClosedTitle}</Text>
-                 <Text style={styles.infoText}>{` ${availabilityClosedInfo}`}</Text>
-               </Text>
-             </View>
+        <Text style={styles.textContainer}>
+          <Text style={styles.descriptionText}>{availabilityClosedTitle}</Text>
+          <Text style={styles.infoText}>{` ${availabilityClosedInfo}`}</Text>
+        </Text>
+      </View>
     }
 
     const availableFromTitle = i18n('Available From:')
@@ -89,19 +88,19 @@ export default class DueDates extends React.Component<Props, any> {
     }
 
     return (<View>
-              <View accessible={true} accessibilityLabel={availableFromAccessibilityLabel}>
-                <Text style={styles.textContainer} testID='assignment-details.assignment-dates.available-from-lbl'>
-                  <Text style={styles.descriptionText}>{availableFromTitle}</Text>
-                  <Text style={styles.infoText}>{` ${availableFromText}`}</Text>
-                </Text>
-              </View>
-              <View accessible={true} accessibilityLabel={availableToAccessibilityLabel}>
-                <Text style={styles.textContainer} testID='assignment-details.assignment-dates.available-to-lbl'>
-                  <Text style={styles.descriptionText}>{availableToTitle}</Text>
-                  <Text style={styles.infoText}>{` ${availableToText}`}</Text>
-                </Text>
-              </View>
-            </View>)
+      <View accessible={true} accessibilityLabel={availableFromAccessibilityLabel}>
+        <Text style={styles.textContainer} testID='assignment-details.assignment-dates.available-from-lbl'>
+          <Text style={styles.descriptionText}>{availableFromTitle}</Text>
+          <Text style={styles.infoText}>{` ${availableFromText}`}</Text>
+        </Text>
+      </View>
+      <View accessible={true} accessibilityLabel={availableToAccessibilityLabel}>
+        <Text style={styles.textContainer} testID='assignment-details.assignment-dates.available-to-lbl'>
+          <Text style={styles.descriptionText}>{availableToTitle}</Text>
+          <Text style={styles.infoText}>{` ${availableToText}`}</Text>
+        </Text>
+      </View>
+    </View>)
   }
 
   renderSingleDueDate (dates: AssignmentDates) {
@@ -118,18 +117,18 @@ export default class DueDates extends React.Component<Props, any> {
     }
 
     return (<View style={styles.container}>
-              <View accessible={true} accessibilityLabel={dueAtAccessibilityLabel}>
-                <Text style={styles.textContainer} testID='assignment-details.assignment-dates.due-date-lbl'>
-                  <Text style={styles.descriptionText}>{dueTitle}</Text>
-                  <Text style={styles.infoText}>{` ${dueAtValue}`}</Text>
-                </Text>
-              </View>
-              <Text style={styles.textContainer} testID='assignment-details.assignment-dates.due-for-lbl'>
-                <Text style={styles.descriptionText}>{forTitle}</Text>
-                <Text style={styles.infoText}>{` ${dates.bestDueDateTitle()}`}</Text>
-              </Text>
-              {availability}
-            </View>)
+      <View accessible={true} accessibilityLabel={dueAtAccessibilityLabel}>
+        <Text style={styles.textContainer} testID='assignment-details.assignment-dates.due-date-lbl'>
+          <Text style={styles.descriptionText}>{dueTitle}</Text>
+          <Text style={styles.infoText}>{` ${dueAtValue}`}</Text>
+        </Text>
+      </View>
+      <Text style={styles.textContainer} testID='assignment-details.assignment-dates.due-for-lbl'>
+        <Text style={styles.descriptionText}>{forTitle}</Text>
+        <Text style={styles.infoText}>{` ${dates.bestDueDateTitle()}`}</Text>
+      </Text>
+      {availability}
+    </View>)
   }
 
   render () {

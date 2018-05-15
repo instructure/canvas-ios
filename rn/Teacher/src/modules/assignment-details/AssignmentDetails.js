@@ -57,56 +57,56 @@ export class AssignmentDetails extends Component<AssignmentDetailsProps, any> {
 
   renderTitle = (assignment: Assignment) => {
     return (<AssignmentSection isFirstRow={true} style={style.topContainer}>
-              <Heading1 testID='assignment-details.assignment-name-lbl'>{assignment.name}</Heading1>
-              <View style={style.pointsContainer}>
-                <Text style={style.points} testID='assignment-details.points-possible-lbl'>
-                  {i18n('{ pointsPossible, number } pts', { pointsPossible: assignment.points_possible })}
-                </Text>
-                <PublishedIcon published={assignment.published} style={style.publishedIcon} />
-              </View>
-          </AssignmentSection>)
+      <Heading1 testID='assignment-details.assignment-name-lbl'>{assignment.name}</Heading1>
+      <View style={style.pointsContainer}>
+        <Text style={style.points} testID='assignment-details.points-possible-lbl'>
+          {i18n('{ pointsPossible, number } pts', { pointsPossible: assignment.points_possible })}
+        </Text>
+        <PublishedIcon published={assignment.published} style={style.publishedIcon} />
+      </View>
+    </AssignmentSection>)
   }
 
   renderDueDates = (assignment: Assignment) => {
     return (<AssignmentSection
-              title={i18n('Due')}
-              accessibilityLabel={i18n('Due Dates, Double tap for details.')}
-              testID='assignment-details.assignment-section.due'
-              image={Images.assignments.calendar}
-              showDisclosureIndicator={true}
-              onPress={this.viewDueDateDetails}>
-              <AssignmentDates assignment={assignment}/>
-            </AssignmentSection>)
+      title={i18n('Due')}
+      accessibilityLabel={i18n('Due Dates, Double tap for details.')}
+      testID='assignment-details.assignment-section.due'
+      image={Images.assignments.calendar}
+      showDisclosureIndicator={true}
+      onPress={this.viewDueDateDetails}>
+      <AssignmentDates assignment={assignment}/>
+    </AssignmentSection>)
   }
 
   renderSubmissionTypes = () => {
     const isExternalTool = this.submissionTypes().includes('external_tool')
     return (<AssignmentSection
-              title={i18n('Submission Types')}
-              testID='assignment-details.assignment-section.submission-type'
-              onPress={isExternalTool ? this.launchExternalTool : null}
-              showDisclosureIndicator={isExternalTool}>
-              <SubmissionType data={this.submissionTypes()} />
-            </AssignmentSection>)
+      title={i18n('Submission Types')}
+      testID='assignment-details.assignment-section.submission-type'
+      onPress={isExternalTool ? this.launchExternalTool : null}
+      showDisclosureIndicator={isExternalTool}>
+      <SubmissionType data={this.submissionTypes()} />
+    </AssignmentSection>)
   }
 
   renderSubmissionSummary = (assignment: Assignment) => {
     let noSubmissions = this.submissionTypes().includes('none')
     if (this.submissionTypes().includes('not_graded')) {
       return (<View style={style.section}>
-                <TouchableOpacity
-                  testID='assignment-details.assignment-section.submissions'
-                  accessibilityLabel={i18n('View all submissions')}
-                  accessibilityTraits='button'
-                  accessible={!noSubmissions}
-                  onPress={this.viewAllSubmissions}
-                >
-                  <View style={style.notGradedSubmissions}>
-                    <Text style={style.header} testID='assignment-details.description-section-title-lbl'>{i18n('Submissions')}</Text>
-                    <DisclosureIndicator />
-                  </View>
-                </TouchableOpacity>
-              </View>)
+        <TouchableOpacity
+          testID='assignment-details.assignment-section.submissions'
+          accessibilityLabel={i18n('View all submissions')}
+          accessibilityTraits='button'
+          accessible={!noSubmissions}
+          onPress={this.viewAllSubmissions}
+        >
+          <View style={style.notGradedSubmissions}>
+            <Text style={style.header} testID='assignment-details.description-section-title-lbl'>{i18n('Submissions')}</Text>
+            <DisclosureIndicator />
+          </View>
+        </TouchableOpacity>
+      </View>)
     }
 
     let submissionContainerAccessibilityTraits = noSubmissions ? {
@@ -116,53 +116,53 @@ export class AssignmentDetails extends Component<AssignmentDetailsProps, any> {
     } : {}
 
     return (<View style={style.section}>
-              <Text style={style.header} testID='assignment-details.assignment-section.submissions-title-lbl'>{i18n('Submissions')}</Text>
-              <View style={style.submissions} {...submissionContainerAccessibilityTraits}>
-                <View style={{ flex: 1, justifyContent: 'flex-start', flexDirection: 'row' }}>
-                  <SubmissionBreakdownGraphSection submissionTypes={assignment.submission_types} onPress={this.onSubmissionDialPress} courseID={this.props.courseID} assignmentID={this.props.assignmentID} style={style.submission}/>
-                </View>
-                <TouchableOpacity
-                  testID='assignment-details.assignment-section.submissions'
-                  accessibilityLabel={i18n('View all submissions')}
-                  accessibilityTraits='button'
-                  accessible={!noSubmissions}
-                  onPress={this.viewAllSubmissions}
-                  style={{
-                    justifyContent: 'center',
-                    width: 44,
-                    alignItems: 'flex-end',
-                    marginTop: 8,
-                    marginBottom: 8,
-                  }}
-                >
-                  <DisclosureIndicator />
-                </TouchableOpacity>
-              </View>
-            </View>)
+      <Text style={style.header} testID='assignment-details.assignment-section.submissions-title-lbl'>{i18n('Submissions')}</Text>
+      <View style={style.submissions} {...submissionContainerAccessibilityTraits}>
+        <View style={{ flex: 1, justifyContent: 'flex-start', flexDirection: 'row' }}>
+          <SubmissionBreakdownGraphSection submissionTypes={assignment.submission_types} onPress={this.onSubmissionDialPress} courseID={this.props.courseID} assignmentID={this.props.assignmentID} style={style.submission}/>
+        </View>
+        <TouchableOpacity
+          testID='assignment-details.assignment-section.submissions'
+          accessibilityLabel={i18n('View all submissions')}
+          accessibilityTraits='button'
+          accessible={!noSubmissions}
+          onPress={this.viewAllSubmissions}
+          style={{
+            justifyContent: 'center',
+            width: 44,
+            alignItems: 'flex-end',
+            marginTop: 8,
+            marginBottom: 8,
+          }}
+        >
+          <DisclosureIndicator />
+        </TouchableOpacity>
+      </View>
+    </View>)
   }
 
   renderDescription = (assignment: Assignment) => {
     return (<View style={style.section}>
-              <Text style={style.header} testID='assignment-details.description-section-title-lbl'>{i18n('Description')}</Text>
-              {this.checkAssignmentDescription(assignment.description)}
-            </View>)
+      <Text style={style.header} testID='assignment-details.description-section-title-lbl'>{i18n('Description')}</Text>
+      {this.checkAssignmentDescription(assignment.description)}
+    </View>)
   }
 
   renderExternalToolButton = () => {
     const isExternalTool = this.submissionTypes().includes('external_tool')
     if (!isExternalTool) return null
     return (<TouchableHighlight
-              onPress={this.launchExternalTool}
-              style={style.launchExternalToolButton}
-              accessible={true}
-              accessibilityLabel={i18n('Launch External Tool')}
-              accessibilityTraits='button'
-              testID='assignment-details.launch-external-tool.button'
-            >
-              <View style={style.launchExternalToolButtonContainer}>
-                <Text style={style.launchExternalToolButtonTitle}>{i18n('Launch External Tool')}</Text>
-              </View>
-            </TouchableHighlight>)
+      onPress={this.launchExternalTool}
+      style={style.launchExternalToolButton}
+      accessible={true}
+      accessibilityLabel={i18n('Launch External Tool')}
+      accessibilityTraits='button'
+      testID='assignment-details.launch-external-tool.button'
+    >
+      <View style={style.launchExternalToolButtonContainer}>
+        <Text style={style.launchExternalToolButtonTitle}>{i18n('Launch External Tool')}</Text>
+      </View>
+    </TouchableHighlight>)
   }
 
   rightBarButtons = () => {

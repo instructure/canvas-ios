@@ -46,7 +46,6 @@ type Props = {
 }
 
 export default class CourseInvite extends React.Component<Props> {
-
   componentWillReceiveProps = (newProps: Props) => {
     const { invite } = newProps
     if (invite.hidden) return
@@ -119,7 +118,7 @@ export default class CourseInvite extends React.Component<Props> {
                   containerStyle={[styles.button, styles.declineButton, declineColor]}
                   testID={`course-invite.${invite.id}.reject-button`}
                   accessibilityTraits='button'
-                  >{i18n('Decline')}</Button>
+                >{i18n('Decline')}</Button>
                 <Button
                   onPress={() => this.handleInvite('accept')}
                   style={{ color: colors.primaryButtonText, fontWeight: '600' }}

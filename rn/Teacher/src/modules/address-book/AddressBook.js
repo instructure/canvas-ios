@@ -63,7 +63,6 @@ function isBranch (id: string): boolean {
 }
 
 export class AddressBook extends Component<AddressBookProps, State> {
-
   typeAhead: ?TypeAheadSearch
 
   state: State = {
@@ -144,45 +143,45 @@ export class AddressBook extends Component<AddressBookProps, State> {
     }
     const avatarName = item.id.startsWith('branch') ? i18n('All') : item.name
     const avatar = (<View style={styles.avatar}>
-                      <Avatar avatarURL={item.avatar_url} userName={avatarName}/>
-                    </View>)
+      <Avatar avatarURL={item.avatar_url} userName={avatarName}/>
+    </View>)
 
     return <Row title={item.name}
-                border={border}
-                renderImage={() => avatar}
-                testID={item.id}
-                disclosureIndicator={isBranch(item.id)}
-                onPress={() => this._onSelectItem(item)} />
+      border={border}
+      renderImage={() => avatar}
+      testID={item.id}
+      disclosureIndicator={isBranch(item.id)}
+      onPress={() => this._onSelectItem(item)} />
   }
 
   _renderSearchBar = () => {
     return <TypeAheadSearch
-            ref={r => { this.typeAhead = r }}
-            endpoint='/search/recipients'
-            parameters={this._buildParams}
-            onRequestStarted={this._requestStarted}
-            onRequestFinished={this._requestFinished}
-            onNextRequestFinished={this._nextRequestFinished}
-            onChangeText={this._queryChanged}
-            defaultQuery=''
-            />
+      ref={r => { this.typeAhead = r }}
+      endpoint='/search/recipients'
+      parameters={this._buildParams}
+      onRequestStarted={this._requestStarted}
+      onRequestFinished={this._requestFinished}
+      onNextRequestFinished={this._nextRequestFinished}
+      onChangeText={this._queryChanged}
+      defaultQuery=''
+    />
   }
 
   _renderComponent = () => {
     const searchBar = this._renderSearchBar()
     const empty = <ListEmptyComponent title={i18n('No results')} />
     return (<View style={styles.container}>
-              <FlatList
-                data={this.data()}
-                renderItem={this._renderRow}
-                ListHeaderComponent={searchBar}
-                ListEmptyComponent={this.state.pending ? null : empty}
-                refreshing={this.state.pending}
-                onEndReached={() => this.typeAhead && this.typeAhead.next()}
-                ItemSeparatorComponent={RowSeparator}
-                keyExtractor={this.keyExtractor}
-              />
-            </View>)
+      <FlatList
+        data={this.data()}
+        renderItem={this._renderRow}
+        ListHeaderComponent={searchBar}
+        ListEmptyComponent={this.state.pending ? null : empty}
+        refreshing={this.state.pending}
+        onEndReached={() => this.typeAhead && this.typeAhead.next()}
+        ItemSeparatorComponent={RowSeparator}
+        keyExtractor={this.keyExtractor}
+      />
+    </View>)
   }
 
   render () {

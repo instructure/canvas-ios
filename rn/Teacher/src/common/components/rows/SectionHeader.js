@@ -33,7 +33,6 @@ type Props = {
 }
 
 export default class SectionHeader extends PureComponent<Props, any> {
-
   render () {
     const key = this.props.sectionKey ? this.props.sectionKey : this.props.title
     const topHairline = this.props.top ? styles.topHairline : undefined

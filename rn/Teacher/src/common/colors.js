@@ -27,10 +27,10 @@ const colors = {
   navBarBg: '#374A59',
   darkText: '#2D3B45',
   lightText: '#7F91A7',
-  grey1: '#f5f5f5',   //  procelain
-  grey2: '#C7CDD1',   //  tiara
-  grey3: '#A5AFB5',   //  heather
-  grey4: '#8B969E',   //  ash
+  grey1: '#f5f5f5', //  procelain
+  grey2: '#C7CDD1', //  tiara
+  grey3: '#A5AFB5', //  heather
+  grey4: '#8B969E', //  ash
   grey5: '#73818C', // some dark grey color
   primaryButton: '#368BD8',
   primaryButtonText: '#fff',
@@ -40,7 +40,7 @@ const colors = {
   errorAnnouncementBg: '#EE0612',
   inviteAnnouncementBg: '#00AC18',
   warningAnnouncementBg: '#FC5E13',
-//  branding properties
+  //  branding properties
   navBarColor: '#374A59',
   navBarButtonColor: '#374A59',
   navBarTextColor: '#374A59',

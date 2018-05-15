@@ -162,11 +162,11 @@ export class Dashboard extends React.Component<Props, State> {
         </Heading1>
         { section.seeAll
           ? <LinkButton
-              testID={section.sectionID + '.see-all-btn'}
-              onPress={section.seeAll}
-            >
-              {i18n('See All')}
-            </LinkButton>
+            testID={section.sectionID + '.see-all-btn'}
+            onPress={section.seeAll}
+          >
+            {i18n('See All')}
+          </LinkButton>
           : undefined
         }
       </View>
@@ -405,8 +405,8 @@ export class Dashboard extends React.Component<Props, State> {
         navBarButtonColor={color.navBarTextColor}
         statusBarStyle={color.statusBarStyle}
       >{
-        this.renderDashboard()
-      }</Screen>
+          this.renderDashboard()
+        }</Screen>
     )
   }
 }

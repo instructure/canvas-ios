@@ -34,7 +34,6 @@ import DrawerState from '../utils/drawer-state'
 import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
 
 export class FilesTab extends Component<FileTabProps> {
-
   listOfFiles () {
     const submission = this.props.submissionProps.submission
     const selectedIndex = this.props.selectedIndex

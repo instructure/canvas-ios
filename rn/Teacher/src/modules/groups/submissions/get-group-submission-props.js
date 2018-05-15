@@ -51,7 +51,7 @@ export function getGroupSubmissionProps (entities: Entities, courseID: string, a
 
   const gradedGroups = groupCategoryID
     ? groupRefs.map(ref => entities.groups[ref].group)
-        .filter(group => group.users && group.users.length > 0 && group.group_category_id === groupCategoryID)
+      .filter(group => group.users && group.users.length > 0 && group.group_category_id === groupCategoryID)
     : []
 
   const submissionRefs = assignmentState && assignmentState.submissions

@@ -357,7 +357,7 @@ export class QuizEdit extends Component<Props, any> {
                           onRemoveDatePress={this._pressedClearDate('show_correct_answers_at')}
                           testID={'quizzes.edit.show-correct-answers-at-row'}
                           removeButtonTestID={'quizzes.edit.clear_show_correct_answers_at_button'}
-                          />
+                        />
                       </View>
                     </View>
                     { this.state.pickers.show_correct_answers_at &&
@@ -382,7 +382,7 @@ export class QuizEdit extends Component<Props, any> {
                           onRemoveDatePress={this._pressedClearDate('hide_correct_answers_at')}
                           testID={'quizzes.edit.hide-correct-answers-at-row'}
                           removeButtonTestID={'quizzes.edit.clear_hide_correct_answers_at_button'}
-                          />
+                        />
                       </View>
                     </View>
                     { this.state.pickers.hide_correct_answers_at &&

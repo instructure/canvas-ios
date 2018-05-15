@@ -63,7 +63,6 @@ export type Props = State & OwnProps & RefreshProps & typeof Actions & {
 }
 
 export class QuizDetails extends Component<Props, any> {
-
   previewQuiz = () => {
     this.props.navigator.show(`/courses/${this.props.courseID}/quizzes/${this.props.quizID}/preview`, { modal: true, modalPresentationStyle: 'fullscreen' })
   }
@@ -101,7 +100,7 @@ export class QuizDetails extends Component<Props, any> {
                 <Text style={style.points}>{`${quiz.points_possible || 0} ${i18n('pts')}`}</Text>
               }
               <PublishedIcon published={quiz.published} />
-          </View>
+            </View>
           </AssignmentSection>
 
           <AssignmentSection

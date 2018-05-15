@@ -22,9 +22,9 @@ import { type QuizSubmissionListDataProps } from './QuizSubmissionList'
 import shuffle from 'knuth-shuffle-seeded'
 
 export function buildRows (enrollments: Enrollment[],
-                           quizSubmissions: { [string]: QuizSubmissionState },
-                           submissions: { [string]: SubmissionState },
-                           sectionIDs: [string]): SubmissionRowDataProps[] {
+  quizSubmissions: { [string]: QuizSubmissionState },
+  submissions: { [string]: SubmissionState },
+  sectionIDs: [string]): SubmissionRowDataProps[] {
   return enrollments.map((enrollment) => {
     const { user } = enrollment
     const quizSubmission = quizSubmissions[user.id]
@@ -100,14 +100,14 @@ export default function mapStateToProps ({ entities }: AppState, { courseID, qui
     quiz.quizSubmissions.refs.map((r) => {
       return entities.quizSubmissions[r]
     })
-    .filter((s) => s)
-    .forEach((s) => { quizSubmissions[s.data.user_id] = s })
+      .filter((s) => s)
+      .forEach((s) => { quizSubmissions[s.data.user_id] = s })
 
     quiz.submissions.refs.map((r) => {
       return entities.submissions[r]
     })
-    .filter((s) => s)
-    .forEach((s) => { submissions[s.submission.user_id] = s })
+      .filter((s) => s)
+      .forEach((s) => { submissions[s.submission.user_id] = s })
 
     if (quiz.data.assignment_id && entities.assignments && entities.assignments[quiz.data.assignment_id]) {
       anonymous = entities.assignments[quiz.data.assignment_id].anonymousGradingOn
@@ -135,12 +135,12 @@ export default function mapStateToProps ({ entities }: AppState, { courseID, qui
               (e.enrollment_state === 'active' ||
               e.enrollment_state === 'invited')
     })
-    .reduce((accum, current) => {
-      if (accum.findIndex(e => e.user_id === current.user_id) >= 0) {
-        return accum
-      }
-      return [...accum, current]
-    }, [])
+      .reduce((accum, current) => {
+        if (accum.findIndex(e => e.user_id === current.user_id) >= 0) {
+          return accum
+        }
+        return [...accum, current]
+      }, [])
 
     if (course.color) {
       courseColor = course.color

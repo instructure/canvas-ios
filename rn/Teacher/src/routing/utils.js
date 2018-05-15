@@ -70,5 +70,5 @@ export function isRegularDisplayMode (traits: TraitCollection): boolean {
   try {
     return traits.window.horizontal === 'regular'
   } catch (e) {}
-  return false   //  default to false
+  return false //  default to false
 }

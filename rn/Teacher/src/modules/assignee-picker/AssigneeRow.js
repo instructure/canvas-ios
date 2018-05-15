@@ -40,16 +40,15 @@ export type Props = {
 }
 
 export default class AssigneeRow extends Component<Props> {
-
   renderImage (): any {
     const assignee = this.props.assignee
     return (<View style={styles.imageContainer}>
-              <Avatar
-                key={assignee.id}
-                avatarURL={assignee.imageURL}
-                userName={assignee.name}
-              />
-            </View>)
+      <Avatar
+        key={assignee.id}
+        avatarURL={assignee.imageURL}
+        userName={assignee.name}
+      />
+    </View>)
   }
 
   onPress = () => {
@@ -69,19 +68,19 @@ export default class AssigneeRow extends Component<Props> {
     const image = this.renderImage()
 
     return (<TouchableHighlight style={styles.touchable} onPress={this.onPress} >
-              <View style={styles.container}>
-                {image}
-                <View style={styles.textContainer}>
-                  <Text numberOfLines={1} style={styles.assigneeName}>{assignee.name}</Text>
-                  { assignee.info && <Text numberOfLines={1} style={styles.assigneeInfo}>{assignee.info}</Text> }
-                </View>
-                { this.props.onDelete && (<View style={styles.deleteButtonContainer}>
-                                            <Button onPress={this.onDelete} style={styles.deleteButton}>
-                                              <Image source={Images.x} />
-                                            </Button>
-                                          </View>) }
-              </View>
-            </TouchableHighlight>)
+      <View style={styles.container}>
+        {image}
+        <View style={styles.textContainer}>
+          <Text numberOfLines={1} style={styles.assigneeName}>{assignee.name}</Text>
+          { assignee.info && <Text numberOfLines={1} style={styles.assigneeInfo}>{assignee.info}</Text> }
+        </View>
+        { this.props.onDelete && (<View style={styles.deleteButtonContainer}>
+          <Button onPress={this.onDelete} style={styles.deleteButton}>
+            <Image source={Images.x} />
+          </Button>
+        </View>) }
+      </View>
+    </TouchableHighlight>)
   }
 }
 

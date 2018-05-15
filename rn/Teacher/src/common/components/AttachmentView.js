@@ -119,8 +119,8 @@ export default class AttachmentView extends Component<Props, State> {
   renderBody () {
     if (this.state.error) {
       return <View style={styles.centeredContainer}>
-               <Text style={styles.errorText}>{this.state.error}</Text>
-             </View>
+        <Text style={styles.errorText}>{this.state.error}</Text>
+      </View>
     }
     let body = <View></View>
     switch (this.props.attachment.mime_class) {

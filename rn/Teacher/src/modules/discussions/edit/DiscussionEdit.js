@@ -249,13 +249,13 @@ export class DiscussionEdit extends Component<Props, any> {
 
             <Heading1 style={style.heading}>{i18n('Options')}</Heading1>
             { this.state.can_unpublish && isTeacher() &&
-               <RowWithSwitch
+              <RowWithSwitch
                 title={i18n('Publish')}
                 border='both'
                 value={this.state.published}
                 onValueChange={this._valueChanged('published')}
                 testID='discussions.edit.published.switch'
-            />
+              />
             }
             <RowWithSwitch
               title={i18n('Allow threaded replies')}
@@ -264,21 +264,23 @@ export class DiscussionEdit extends Component<Props, any> {
               onValueChange={this._valueChanged('discussion_type', b => b ? 'threaded' : 'side_comment')}
               identifier='discussions.edit.discussion_type.switch'
             />
-            {this.props.discussionID &&
-             <RowWithSwitch
-              title={i18n('Subscribe')}
-              border='bottom'
-              value={this.state.subscribed}
-              onValueChange={this._subscribe}
-              identifier='discussions.edit.subscribed.switch'
-            />
+            { this.props.discussionID &&
+              <RowWithSwitch
+                title={i18n('Subscribe')}
+                border='bottom'
+                value={this.state.subscribed}
+                onValueChange={this._subscribe}
+                identifier='discussions.edit.subscribed.switch'
+              />
             }
-            { isTeacher() && <RowWithSwitch
-              title={i18n('Students must post before seeing replies')}
-              border='bottom'
-              value={this.state.require_initial_post}
-              onValueChange={this._valueChanged('require_initial_post')}
-            /> }
+            { isTeacher() &&
+              <RowWithSwitch
+                title={i18n('Students must post before seeing replies')}
+                border='bottom'
+                value={this.state.require_initial_post}
+                onValueChange={this._valueChanged('require_initial_post')}
+              />
+            }
             { this.isGraded() &&
               <View>
                 <RowWithTextInput

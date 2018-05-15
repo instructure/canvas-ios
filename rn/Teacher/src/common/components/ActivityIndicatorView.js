@@ -22,8 +22,8 @@ import { View, StyleSheet, ActivityIndicator } from 'react-native'
 export default class ActivityIndicatorView extends PureComponent<any, any> {
   render () {
     return <View style={styles.container}>
-              <ActivityIndicator style={styles.indicator} />
-           </View>
+      <ActivityIndicator style={styles.indicator} />
+    </View>
   }
 }
 

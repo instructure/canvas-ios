@@ -24,13 +24,13 @@ import { parseErrorMessage } from '../redux/middleware/error-handler'
 export const defaultRefs: AsyncRefs = { refs: [], pending: 0 }
 
 export function asyncRefsReducer (
-    // the name of action to reduce
-    actionName: string,
-    // localized descriptive error message for failures
-    errorMessage: string,
-    // list of entity ids
-    updatedRefs: (any) => ?Array<string>
-  ): Reducer<AsyncRefs, Action> {
+  // the name of action to reduce
+  actionName: string,
+  // localized descriptive error message for failures
+  errorMessage: string,
+  // list of entity ids
+  updatedRefs: (any) => ?Array<string>
+): Reducer<AsyncRefs, Action> {
   return handleActions({
     [actionName]: handleAsync({
       pending: (state) => ({ ...state, pending: state.pending + 1 }),

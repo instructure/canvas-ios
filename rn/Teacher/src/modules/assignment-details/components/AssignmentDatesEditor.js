@@ -477,8 +477,8 @@ export default class AssignmentDatesEditor extends Component<Props, any> {
   renderDatePicker = (date: StagedAssignmentDate, type: ModifyDateType) => {
     if (type === 'none') return <View />
     return <View style={styles.dateEditorContainer}>
-            <DatePickerIOS date={date[type] ? new Date(date[type]) : new Date()} onDateChange={(updated) => this.updateDate(date, type, updated)}/>
-          </View>
+      <DatePickerIOS date={date[type] ? new Date(date[type]) : new Date()} onDateChange={(updated) => this.updateDate(date, type, updated)}/>
+    </View>
   }
 
   renderDateType = (date: StagedAssignmentDate, type: ModifyDateType, selected: boolean) => {
@@ -525,41 +525,41 @@ export default class AssignmentDatesEditor extends Component<Props, any> {
     const canEditAssignees = this.props.canEditAssignees || this.props.canEditAssignees == null
 
     return (<View key={index}>
-              <View style={styles.dateContainer} key={date.id || 'base'} onLayout={ (event) => { this.layouts[date.id] = event.nativeEvent.layout } } >
-                <EditSectionHeader title={title} style={styles.headerText}>
-                  {removeButton}
-                </EditSectionHeader>
-                <TouchableHighlight style={styles.row} onPress={canEditAssignees ? () => this.selectAssignees(date) : undefined}>
-                  <View style={styles.rowContainer}>
-                    <Text style={styles.titleText}>{i18n('Assignees')}</Text>
-                    <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
-                      <Text style={detailTextStyle}>{date.title || i18n('None')}</Text>
-                      { this.props.canEditAssignees &&
-                        <DisclosureIndicator />
-                      }
-                    </View>
-                  </View>
-                </TouchableHighlight>
-                { this.renderDateType(date, 'due_at', date.modifyType === 'due_at')}
-                { date.modifyType === 'due_at' && this.renderDatePicker(date, 'due_at') }
-                { this.renderDateType(date, 'unlock_at', date.modifyType === 'unlock_at')}
-                { date.modifyType === 'unlock_at' && this.renderDatePicker(date, 'unlock_at') }
-                { this.renderDateType(date, 'lock_at', date.modifyType === 'lock_at') }
-                { date.modifyType === 'lock_at' && this.renderDatePicker(date, 'lock_at') }
-              </View>
-              <RequiredFieldSubscript title={requiredAssigneesText} visible={!date.validAssignees} />
-              <RequiredFieldSubscript title={requiredFromToText} visible={!date.validLockDates} />
-              <RequiredFieldSubscript title={requiredDueDateText} visible={!date.validDueDate} />
-            </View>)
+      <View style={styles.dateContainer} key={date.id || 'base'} onLayout={ (event) => { this.layouts[date.id] = event.nativeEvent.layout } } >
+        <EditSectionHeader title={title} style={styles.headerText}>
+          {removeButton}
+        </EditSectionHeader>
+        <TouchableHighlight style={styles.row} onPress={canEditAssignees ? () => this.selectAssignees(date) : undefined}>
+          <View style={styles.rowContainer}>
+            <Text style={styles.titleText}>{i18n('Assignees')}</Text>
+            <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
+              <Text style={detailTextStyle}>{date.title || i18n('None')}</Text>
+              { this.props.canEditAssignees &&
+                <DisclosureIndicator />
+              }
+            </View>
+          </View>
+        </TouchableHighlight>
+        { this.renderDateType(date, 'due_at', date.modifyType === 'due_at')}
+        { date.modifyType === 'due_at' && this.renderDatePicker(date, 'due_at') }
+        { this.renderDateType(date, 'unlock_at', date.modifyType === 'unlock_at')}
+        { date.modifyType === 'unlock_at' && this.renderDatePicker(date, 'unlock_at') }
+        { this.renderDateType(date, 'lock_at', date.modifyType === 'lock_at') }
+        { date.modifyType === 'lock_at' && this.renderDatePicker(date, 'lock_at') }
+      </View>
+      <RequiredFieldSubscript title={requiredAssigneesText} visible={!date.validAssignees} />
+      <RequiredFieldSubscript title={requiredFromToText} visible={!date.validLockDates} />
+      <RequiredFieldSubscript title={requiredDueDateText} visible={!date.validDueDate} />
+    </View>)
   }
 
   renderButton = () => {
     return (<TouchableHighlight style={styles.button} onPress={this.addAdditionalDueDate}>
-             <View style={styles.buttonInnerContainer}>
-                <Image source={Images.add} style={[styles.buttonImage, { tintColor: colors.primaryButtonColor }]} />
-                <Text style={[styles.buttonText, { color: colors.primaryButtonColor }]}>{i18n('Add Due Date')}</Text>
-              </View>
-            </TouchableHighlight>)
+      <View style={styles.buttonInnerContainer}>
+        <Image source={Images.add} style={[styles.buttonImage, { tintColor: colors.primaryButtonColor }]} />
+        <Text style={[styles.buttonText, { color: colors.primaryButtonColor }]}>{i18n('Add Due Date')}</Text>
+      </View>
+    </TouchableHighlight>)
   }
 
   render () {
@@ -567,15 +567,15 @@ export default class AssignmentDatesEditor extends Component<Props, any> {
     const button = this.renderButton()
     const showButton = this.props.canAddDueDates || this.props.canAddDueDates == null
     return (<View style={styles.container}>
-              {rows}
-              <View style={styles.space} />
-              { showButton &&
-                <View>
-                  {button}
-                  <View style={styles.space} />
-                </View>
-              }
-            </View>)
+      {rows}
+      <View style={styles.space} />
+      { showButton &&
+        <View>
+          {button}
+          <View style={styles.space} />
+        </View>
+      }
+    </View>)
   }
 }
 

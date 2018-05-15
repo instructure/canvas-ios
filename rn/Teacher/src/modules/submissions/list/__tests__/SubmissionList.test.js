@@ -393,6 +393,6 @@ test('refreshSubmissionList (group graded submissions)', () => {
     isGroupGradedAssignment: true,
   })
   expect(props.refreshSubmissions).toHaveBeenCalledWith(props.courseID, props.assignmentID,
-  true)
+    true)
   expect(props.refreshGroupsForCourse).toHaveBeenCalledWith(props.courseID)
 })

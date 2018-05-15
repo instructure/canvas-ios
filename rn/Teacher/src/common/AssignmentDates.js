@@ -27,7 +27,6 @@ import i18n from 'format-message'
 import { flatten } from 'lodash'
 
 export default class AssignmentDates {
-
   assignment: Assignment
 
   constructor (assignment: Assignment) {
@@ -148,14 +147,14 @@ export default class AssignmentDates {
 
     // If there are multiple due dates, ensure that they have *all* passed
     return this.allDates()
-    .filter((date) => {
-      if (date.lock_at) {
-        return Date.now() < (new Date(date.lock_at)).getTime()
-      }
+      .filter((date) => {
+        if (date.lock_at) {
+          return Date.now() < (new Date(date.lock_at)).getTime()
+        }
 
-      // This may seem odd to return true, it's because this is in the filter function.
-      // returning true means that the availibility is *not* passed
-      return true
-    }).length === 0
+        // This may seem odd to return true, it's because this is in the filter function.
+        // returning true means that the availibility is *not* passed
+        return true
+      }).length === 0
   }
 }

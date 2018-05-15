@@ -27,7 +27,7 @@ test('Render row with date', () => {
     <RowWithDateInput
       title='Row with a date in it!'
       date='this should be a date'
-       />
+    />
   )
   expect(aRow.toJSON()).toMatchSnapshot()
 })

@@ -27,7 +27,7 @@ test('Render row with detail label', () => {
     <RowWithDetail
       title='Row with a switch in it!'
       detail='this is a detail label'
-       />
+    />
   )
   expect(aRow.toJSON()).toMatchSnapshot()
 })

@@ -33,7 +33,6 @@ type Props = {
 }
 
 export default class RequiredFieldSubscript extends React.Component<Props> {
-
   componentWillUpdate () {
     LayoutAnimation.easeInEaseOut()
   }
@@ -41,9 +40,9 @@ export default class RequiredFieldSubscript extends React.Component<Props> {
   render () {
     if (this.props.visible) {
       return (
-      <View style={styles.visible}>
-        <UnmetRequirementSubscriptText style={styles.subscript} testID={this.props.testID}>{this.props.title}</UnmetRequirementSubscriptText>
-      </View>
+        <View style={styles.visible}>
+          <UnmetRequirementSubscriptText style={styles.subscript} testID={this.props.testID}>{this.props.title}</UnmetRequirementSubscriptText>
+        </View>
       )
     } else {
       return (<View/>)

@@ -886,19 +886,19 @@ describe('refreshAnnouncements', () => {
     }
 
     expect(
-        discussions({}, resolved)
-      ).toEqual({
-        '1': {
-          data: one,
-          pending: 0,
-          error: null,
-        },
-        '2': {
-          data: two,
-          pending: 0,
-          error: null,
-        },
-      })
+      discussions({}, resolved)
+    ).toEqual({
+      '1': {
+        data: one,
+        pending: 0,
+        error: null,
+      },
+      '2': {
+        data: two,
+        pending: 0,
+        error: null,
+      },
+    })
   })
 })
 
@@ -975,14 +975,14 @@ describe('updateDiscussion', () => {
       },
     }
     expect(
-        discussions(initialState, pending)
-      ).toEqual({
-        '45': {
-          data: discussion,
-          pending: 1,
-          error: null,
-        },
-      })
+      discussions(initialState, pending)
+    ).toEqual({
+      '45': {
+        data: discussion,
+        pending: 1,
+        error: null,
+      },
+    })
   })
 
   it('handles resolved', () => {
@@ -1006,15 +1006,15 @@ describe('updateDiscussion', () => {
     }
 
     expect(
-        discussions(initialState, resolved)
-      ).toEqual({
-        ...initialState,
-        '35': {
-          data: discussion,
-          pending: 0,
-          error: null,
-        },
-      })
+      discussions(initialState, resolved)
+    ).toEqual({
+      ...initialState,
+      '35': {
+        data: discussion,
+        pending: 0,
+        error: null,
+      },
+    })
   })
 
   it('handles rejected', () => {
@@ -1038,14 +1038,14 @@ describe('updateDiscussion', () => {
       },
     }
     expect(
-        discussions(initialState, rejected)
-      ).toEqual({
-        '25': {
-          data: discussion,
-          error: 'Wat',
-          pending: 0,
-        },
-      })
+      discussions(initialState, rejected)
+    ).toEqual({
+      '25': {
+        data: discussion,
+        error: 'Wat',
+        pending: 0,
+      },
+    })
   })
 
   it('attaches sections to the discussion', () => {
@@ -1093,14 +1093,14 @@ describe('deleteDiscussion', () => {
       },
     }
     expect(
-        discussions(initialState, pending)
-      ).toEqual({
-        '45': {
-          data: discussion,
-          pending: 1,
-          error: null,
-        },
-      })
+      discussions(initialState, pending)
+    ).toEqual({
+      '45': {
+        data: discussion,
+        pending: 1,
+        error: null,
+      },
+    })
   })
 
   it('handles resolved', () => {
@@ -1123,8 +1123,8 @@ describe('deleteDiscussion', () => {
     }
 
     expect(
-        discussions(initialState, resolved)
-      ).toEqual({})
+      discussions(initialState, resolved)
+    ).toEqual({})
   })
 
   it('handles rejected', () => {
@@ -1147,14 +1147,14 @@ describe('deleteDiscussion', () => {
       },
     }
     expect(
-        discussions(initialState, rejected)
-      ).toEqual({
-        '25': {
-          data: discussion,
-          error: 'Wat',
-          pending: 0,
-        },
-      })
+      discussions(initialState, rejected)
+    ).toEqual({
+      '25': {
+        data: discussion,
+        error: 'Wat',
+        pending: 0,
+      },
+    })
   })
 })
 
@@ -1178,14 +1178,14 @@ describe('subscribeDiscussion', () => {
       },
     }
     expect(
-        discussions(initialState, pending)
-      ).toEqual({
-        '1': {
-          data: { ...discussion, subscribed: true },
-          pending: 0,
-          error: null,
-        },
-      })
+      discussions(initialState, pending)
+    ).toEqual({
+      '1': {
+        data: { ...discussion, subscribed: true },
+        pending: 0,
+        error: null,
+      },
+    })
   })
 
   it('should revert subscribed in rejected', () => {
@@ -1207,14 +1207,14 @@ describe('subscribeDiscussion', () => {
       },
     }
     expect(
-        discussions(initialState, rejected)
-      ).toEqual({
-        '1': {
-          data: discussion,
-          pending: 0,
-          error: null,
-        },
-      })
+      discussions(initialState, rejected)
+    ).toEqual({
+      '1': {
+        data: discussion,
+        pending: 0,
+        error: null,
+      },
+    })
   })
 })
 
@@ -1255,25 +1255,25 @@ describe('createEntry', () => {
       },
     }
     expect(
-        discussions(initialState, resolved)
-      ).toEqual({
-        ...initialState,
-        '2': {
-          data: {
-            ...template.discussion({ id: '2' }),
-            replies: [template.discussionReply({ id: '1' })],
-          },
-          pending: 1,
-          error: 'SOMETHING HAPPENED',
-          replies: {
-            new: {
-              pending: 0,
-              error: null,
-            },
-          },
-          pendingReplies: { [pendingReply.id]: { localIndexPath: [0], data: pendingReply }, [reply.id]: { data: expectedReply } },
+      discussions(initialState, resolved)
+    ).toEqual({
+      ...initialState,
+      '2': {
+        data: {
+          ...template.discussion({ id: '2' }),
+          replies: [template.discussionReply({ id: '1' })],
         },
-      })
+        pending: 1,
+        error: 'SOMETHING HAPPENED',
+        replies: {
+          new: {
+            pending: 0,
+            error: null,
+          },
+        },
+        pendingReplies: { [pendingReply.id]: { localIndexPath: [0], data: pendingReply }, [reply.id]: { data: expectedReply } },
+      },
+    })
   })
 
   it('handles pending', () => {
@@ -1366,25 +1366,25 @@ describe('createEntry', () => {
       },
     }
     expect(
-        discussions(initialState, rejected)
-      ).toEqual({
-        ...initialState,
-        '2': {
-          data: {
-            ...discussion,
-            discussion_subentry_count: 1,
-            last_reply_at: (new Date(0)).toISOString(),
-          },
-          pending: 1,
-          error: 'SOMETHING HAPPENED',
-          replies: {
-            new: {
-              pending: 0,
-              error: 'User not authorized',
-            },
+      discussions(initialState, rejected)
+    ).toEqual({
+      ...initialState,
+      '2': {
+        data: {
+          ...discussion,
+          discussion_subentry_count: 1,
+          last_reply_at: (new Date(0)).toISOString(),
+        },
+        pending: 1,
+        error: 'SOMETHING HAPPENED',
+        replies: {
+          new: {
+            pending: 0,
+            error: 'User not authorized',
           },
         },
-      })
+      },
+    })
   })
 
   it('addOrUpdateReply ADD reply 1 deep side_comment discussion', () => {
@@ -1524,25 +1524,25 @@ describe('editEntry', () => {
       },
     }
     expect(
-        discussions(initialState, resolved)
-      ).toEqual({
-        ...initialState,
-        '2': {
-          data: {
-            ...template.discussion({ id: '2' }),
-            replies: [template.discussionEditReply({ id: '1' })],
-          },
-          pending: 1,
-          error: 'SOMETHING HAPPENED',
-          replies: {
-            edit: {
-              pending: 0,
-              error: null,
-            },
-          },
-          pendingReplies: { [pendingReply.id]: { localIndexPath: [0], data: pendingReply }, [reply.id]: { data: expectedReply } },
+      discussions(initialState, resolved)
+    ).toEqual({
+      ...initialState,
+      '2': {
+        data: {
+          ...template.discussion({ id: '2' }),
+          replies: [template.discussionEditReply({ id: '1' })],
         },
-      })
+        pending: 1,
+        error: 'SOMETHING HAPPENED',
+        replies: {
+          edit: {
+            pending: 0,
+            error: null,
+          },
+        },
+        pendingReplies: { [pendingReply.id]: { localIndexPath: [0], data: pendingReply }, [reply.id]: { data: expectedReply } },
+      },
+    })
   })
 
   it('handles pending', () => {
@@ -1572,21 +1572,21 @@ describe('editEntry', () => {
       },
     }
     expect(
-        discussions(initialState, pending)
-      ).toEqual({
-        ...initialState,
-        '2': {
-          data: template.discussion({ id: '2' }),
-          pending: 1,
-          error: 'SOMETHING HAPPENED',
-          replies: {
-            edit: {
-              pending: 1,
-              error: null,
-            },
+      discussions(initialState, pending)
+    ).toEqual({
+      ...initialState,
+      '2': {
+        data: template.discussion({ id: '2' }),
+        pending: 1,
+        error: 'SOMETHING HAPPENED',
+        replies: {
+          edit: {
+            pending: 1,
+            error: null,
           },
         },
-      })
+      },
+    })
   })
 
   it('handles rejected', () => {
@@ -1617,21 +1617,21 @@ describe('editEntry', () => {
       },
     }
     expect(
-        discussions(initialState, rejected)
-      ).toEqual({
-        ...initialState,
-        '2': {
-          data: template.discussion({ id: '2' }),
-          pending: 1,
-          error: 'SOMETHING HAPPENED',
-          replies: {
-            edit: {
-              pending: 0,
-              error: 'User not authorized',
-            },
+      discussions(initialState, rejected)
+    ).toEqual({
+      ...initialState,
+      '2': {
+        data: template.discussion({ id: '2' }),
+        pending: 1,
+        error: 'SOMETHING HAPPENED',
+        replies: {
+          edit: {
+            pending: 0,
+            error: 'User not authorized',
           },
         },
-      })
+      },
+    })
   })
 })
 

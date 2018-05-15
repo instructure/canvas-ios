@@ -200,14 +200,14 @@ export class AnnouncementEdit extends Component<Props, any> {
                     onPress={this.selectSections}
                     detail={
                       this.state.selectedSections.length
-                      ? this.state.selectedSections
+                        ? this.state.selectedSections
                           .map(id => {
                             let section = this.props.sections.find(s => s.id === id)
                             return section && section.name
                           })
                           .filter(s => s)
                           .join(', ')
-                      : i18n('All')
+                        : i18n('All')
 
                     }
                     accessories={<DisclosureIndicator />}

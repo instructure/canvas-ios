@@ -94,5 +94,4 @@ export default class PageViewEvents extends Component<Props, any> {
     const events = this.data()
     Clipboard.setString(JSON.stringify(events, null, 2))
   }
-
 }

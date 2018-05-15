@@ -51,7 +51,6 @@ type GroupActionsProps = {
 type GroupListProps = RouterProps & GroupActionsProps & NavigationProps & StateProps & RefreshProps
 
 export class GroupList extends Component<GroupListProps, any> {
-
   constructor (props: GroupListProps) {
     super(props)
 
@@ -86,10 +85,10 @@ export class GroupList extends Component<GroupListProps, any> {
     )
 
     return <Row title={item.name}
-                border={border}
-                renderImage={() => avatar}
-                testID={item.id}
-            />
+      border={border}
+      renderImage={() => avatar}
+      testID={item.id}
+    />
   }
 
   _renderComponent = () => {

@@ -14,7 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-  // @flow
+// @flow
 
 import React, { Component } from 'react'
 import {
@@ -159,7 +159,7 @@ export default class CommentInput extends Component<CommentInputProps, State> {
           </View>
         </View>
         <KeyboardSpacer onToggle={this.keyboardChanged} />
-    </View>
+      </View>
     )
   }
 }

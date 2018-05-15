@@ -33,7 +33,7 @@ const { refreshAnnouncements } = AnnouncementActions
 const { refreshDiscussions } = DiscussionActions
 const { refreshGroupsForCourse, refreshGroup, listUsersForGroup, refreshUsersGroups } = Actions
 const { refreshGroupsForCategory } = AssigneeSearchActions
-const group = (state) => (state || {})  // dummy's to appease combineReducers
+const group = (state) => (state || {}) // dummy's to appease combineReducers
 const color = (state) => (state || '')
 
 const groupContents: Reducer<GroupsState, Action> = combineReducers({

@@ -113,7 +113,6 @@ export type Props
 }
 
 export class DiscussionDetails extends Component<Props, any> {
-
   constructor (props: Props) {
     super(props)
     this.state = {
@@ -185,40 +184,46 @@ export class DiscussionDetails extends Component<Props, any> {
       <View>
         <AssignmentSection isFirstRow={true} style={style.topContainer}>
           <Heading1>{discussion.title || i18n('No Title')}</Heading1>
-            { !this.props.isAnnouncement &&
-              <View style={style.pointsContainer}>
-                {Boolean(points) && <Text style={style.points}>{points}</Text>}
-                  {isTeacher() && <PublishedIcon published={discussion.published} />}
-              </View>
-            }
-            { discussion.is_section_specific &&
-              <SubTitle style={style.sectionsText}>
-                {i18n('Sections: {sections}', {
-                  sections: sections.map(section => section.name).join(', '),
-                })}
-              </SubTitle>
-            }
+          { !this.props.isAnnouncement &&
+            <View style={style.pointsContainer}>
+              {Boolean(points) && <Text style={style.points}>{points}</Text>}
+              {isTeacher() && <PublishedIcon published={discussion.published} />}
+            </View>
+          }
+          { discussion.is_section_specific &&
+            <SubTitle style={style.sectionsText}>
+              {i18n('Sections: {sections}', {
+                sections: sections.map(section => section.name).join(', '),
+              })}
+            </SubTitle>
+          }
         </AssignmentSection>
 
-        { isTeacher() && this.props.assignment && <AssignmentSection
-          title={i18n('Due')}
-          image={Images.assignments.calendar}
-          showDisclosureIndicator={true}
-          onPress={this.viewDueDateDetails} >
-          <AssignmentDates assignment={this.props.assignment} />
-        </AssignmentSection>}
+        { isTeacher() && this.props.assignment &&
+          <AssignmentSection
+            title={i18n('Due')}
+            image={Images.assignments.calendar}
+            showDisclosureIndicator={true}
+            onPress={this.viewDueDateDetails}
+          >
+            <AssignmentDates assignment={this.props.assignment} />
+          </AssignmentSection>
+        }
 
-        { isTeacher() && assignmentID && <AssignmentSection
-          title={i18n('Submissions')}
-          testID='discussions.submission-graphs'
-          onPress={() => this.viewSubmissions()}
-          showDisclosureIndicator>
-          <SubmissionBreakdownGraphSection onPress={this.onSubmissionDialPress} courseID={this.props.contextID} assignmentID={assignmentID} style={style.submission}/>
-        </AssignmentSection>}
+        { isTeacher() && assignmentID &&
+          <AssignmentSection
+            title={i18n('Submissions')}
+            testID='discussions.submission-graphs'
+            onPress={() => this.viewSubmissions()}
+            showDisclosureIndicator
+          >
+            <SubmissionBreakdownGraphSection onPress={this.onSubmissionDialPress} courseID={this.props.contextID} assignmentID={assignmentID} style={style.submission}/>
+          </AssignmentSection>
+        }
 
         <View style={style.section} >
           <View style={style.authorContainer}>
-            {user && user.display_name &&
+            { user && user.display_name &&
               <Avatar
                 testID='discussion.details.avatar'
                 height={32}
@@ -231,7 +236,7 @@ export class DiscussionDetails extends Component<Props, any> {
             }
             <View style={[style.authorInfoContainer, { marginLeft: (user && user.display_name) ? global.style.defaultPadding : 0 }]}>
               { user && user.display_name && <Text style={style.authorName}>{user.display_name}</Text> }
-                <Text style={style.authorDate} testID='discussion.details.post-date-lbl'>{i18n("{ date, date, 'MMM d'} at { date, time, short }", { date })}</Text>
+              <Text style={style.authorDate} testID='discussion.details.post-date-lbl'>{i18n("{ date, date, 'MMM d'} at { date, time, short }", { date })}</Text>
             </View>
 
             {!discussion.locked_for_user &&
@@ -249,43 +254,45 @@ export class DiscussionDetails extends Component<Props, any> {
           </View>
 
           { (Boolean(discussion.message) || Boolean(discussion.attachments)) &&
-             <View style={style.message}>
-                { Boolean(discussion.message) &&
-                   <CanvasWebView style={{ flex: 1 }} automaticallySetHeight html={discussion.message} navigator={this.props.navigator} />
-                }
-                { Boolean(discussion.attachments) && discussion.attachments && discussion.attachments.length === 1 &&
+            <View style={style.message}>
+              { Boolean(discussion.message) &&
+                <CanvasWebView style={{ flex: 1 }} automaticallySetHeight html={discussion.message} navigator={this.props.navigator} />
+              }
+              { Boolean(discussion.attachments) && discussion.attachments && discussion.attachments.length === 1 &&
                 // should only ever have 1, blocked by UI, but API returns array of 1 :facepalm:
-                  <TouchableHighlight testID={`discussion.${discussion.id}.attachment`} onPress={this.showAttachment}>
-                    <View style={style.attachment}>
-                      <Image source={Images.attachment} style={style.attachmentIcon} />
-                      <Text style={style.attachmentText}>
-                        {discussion.attachments[0].display_name}
-                      </Text>
-                    </View>
-                  </TouchableHighlight>
-                }
+                <TouchableHighlight testID={`discussion.${discussion.id}.attachment`} onPress={this.showAttachment}>
+                  <View style={style.attachment}>
+                    <Image source={Images.attachment} style={style.attachmentIcon} />
+                    <Text style={style.attachmentText}>
+                      {discussion.attachments[0].display_name}
+                    </Text>
+                  </View>
+                </TouchableHighlight>
+              }
             </View>
           }
 
-          {!discussion.locked_for_user && <View style={style.authorContainer}>
-            <TouchableHighlight
-              underlayColor='white'
-              onPress={this._onPressReply}
-              testID='discussion-reply'
-              accessibilityTraits='button'
-            >
+          {!discussion.locked_for_user &&
+            <View style={style.authorContainer}>
+              <TouchableHighlight
+                underlayColor='white'
+                onPress={this._onPressReply}
+                testID='discussion-reply'
+                accessibilityTraits='button'
+              >
                 <View style={[{ backgroundColor: colors.primaryButtonColor }, style.replyButtonWrapper]}>
                   <Image source={Images.rce.undo} style={{ width: 18, height: 18, tintColor: colors.primaryButtonTextColor }} />
                   <Text style={[{ color: colors.primaryButtonTextColor }, style.reply]}>{i18n('Reply')}</Text>
                 </View>
-            </TouchableHighlight>
-          </View>}
+              </TouchableHighlight>
+            </View>
+          }
         </View>
 
         { showReplies && this.state.rootNodePath.length === 0 &&
-            <AssignmentSection style={{ paddingBottom: 0 }}>
-              <Heading1>{i18n('Replies')}</Heading1>
-            </AssignmentSection>
+          <AssignmentSection style={{ paddingBottom: 0 }}>
+            <Heading1>{i18n('Replies')}</Heading1>
+          </AssignmentSection>
         }
 
         { showReplies && this.renderPopReplyStackButton() }
@@ -297,7 +304,6 @@ export class DiscussionDetails extends Component<Props, any> {
             </Text>
           </AssignmentSection>
         }
-
       </View>
     )
   }
@@ -307,11 +313,11 @@ export class DiscussionDetails extends Component<Props, any> {
       return (
         <AssignmentSection style={{ paddingBottom: 0 }}>
           <TouchableHighlight testID={`discussion.popToLastDiscussionList`}
-                              accessibilityLabel={i18n('Back to replies')}
-                              accessible={true}
-                              accessibilityTraits={['button']}
-                              onPress={this._onPopReplyRootPath}
-                              underlayColor='white'>
+            accessibilityLabel={i18n('Back to replies')}
+            accessible={true}
+            accessibilityTraits={['button']}
+            onPress={this._onPopReplyRootPath}
+            underlayColor='white'>
             <View style={style.popReplyStackContainer}>
               <Image source={Images.backIcon} style={style.popReplyStackIcon}/>
               <Text style={{ paddingLeft: 5, color: colors.link }}>{i18n('Back')}</Text>
@@ -524,7 +530,7 @@ export class DiscussionDetails extends Component<Props, any> {
           one {# pt}
           other {# pts}
         }`
-        , { count: discussion.assignment.points_possible })
+          , { count: discussion.assignment.points_possible })
       return pointsPossible
     }
   }

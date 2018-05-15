@@ -112,7 +112,7 @@ describe('SubmissionPicker', () => {
       submissionProps: {
         ...subProps.submissionProps,
         submission: templates.submissionHistory([
-      { id: '1', grade: null, submitted_at: '2017-04-26T17:46:00Z' },
+          { id: '1', grade: null, submitted_at: '2017-04-26T17:46:00Z' },
         ]),
       },
     }

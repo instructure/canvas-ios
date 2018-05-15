@@ -36,7 +36,6 @@ type Props = {
 }
 
 export default class Avatar extends PureComponent<Props, any> {
-
   // Checks for the crappy default profile picture from canvas
   // If it's one of those things, returns null
   imageURL = () => {

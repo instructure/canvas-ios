@@ -125,57 +125,57 @@ export default class Masquerade extends Component<*, any> {
       outputRange: ['-30deg', '0deg'],
     })
     return (<Screen
-              title={i18n('Act as User')}
-            >
-              <KeyboardAwareScrollView extraScrollHeight={16}>
-                <View style={styles.container}>
-                  <View style={styles.header}>
-                    <View style={styles.innerHeader}>
-                      <Image source={Images.masquerade.whitePanda} style={styles.whitePanda} />
-                      <Animated.Image source={Images.masquerade.redPanda} style={[styles.redPanda, { transform: [{ translateY }, { translateX }, { rotate }] }]} />
-                    </View>
-                  </View>
-                  <View style={styles.infoContainer}>
-                    <Text style={styles.infoText}>
-                      { i18n("\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user.") }
-                    </Text>
-                  </View>
-                  <View style={styles.textInputContainer}>
-                    <TextInput
-                      placeholder={i18n('User ID')}
-                      style={styles.textInput}
-                      returnKeyType={'next'}
-                      ref={(r: any) => { this.userIdTextInput = r }}
-                      onSubmitEditing={ this.nextInput }
-                      onChangeText={this.updateUserId}
-                      autoCapitalize="none"
-                      autoCorrect={false}
-                      value={this.state.userId} />
-                  </View>
-                  <View style={styles.textInputContainer}>
-                    <TextInput
-                      placeholder={i18n('Domain')}
-                      style={styles.textInput}
-                      returnKeyType={'done'}
-                      ref={(r: any) => { this.domainTextInput = r }}
-                      onSubmitEditing={ this.finishInput }
-                      onChangeText={this.updateDomain}
-                      autoCapitalize="none"
-                      autoCorrect={false}
-                      value={this.state.domain} />
-                  </View>
-                  <TouchableHighlight
-                    style={[styles.submitButton, this.state.submitButtonDisabled ? { opacity: 0.5 } : undefined]}
-                    onPress={this.submit}
-                    disabled={this.state.submitButtonDisabled}
-                    accessibilityTraits={buttonTraits}>
-                    <View style={styles.submitButtonContainer}>
-                      <Heading2 style={styles.submitButtonText}>{i18n('Act as User')}</Heading2>
-                    </View>
-                  </TouchableHighlight>
-                </View>
-              </KeyboardAwareScrollView>
-            </Screen>)
+      title={i18n('Act as User')}
+    >
+      <KeyboardAwareScrollView extraScrollHeight={16}>
+        <View style={styles.container}>
+          <View style={styles.header}>
+            <View style={styles.innerHeader}>
+              <Image source={Images.masquerade.whitePanda} style={styles.whitePanda} />
+              <Animated.Image source={Images.masquerade.redPanda} style={[styles.redPanda, { transform: [{ translateY }, { translateX }, { rotate }] }]} />
+            </View>
+          </View>
+          <View style={styles.infoContainer}>
+            <Text style={styles.infoText}>
+              { i18n("\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user.") }
+            </Text>
+          </View>
+          <View style={styles.textInputContainer}>
+            <TextInput
+              placeholder={i18n('User ID')}
+              style={styles.textInput}
+              returnKeyType={'next'}
+              ref={(r: any) => { this.userIdTextInput = r }}
+              onSubmitEditing={ this.nextInput }
+              onChangeText={this.updateUserId}
+              autoCapitalize="none"
+              autoCorrect={false}
+              value={this.state.userId} />
+          </View>
+          <View style={styles.textInputContainer}>
+            <TextInput
+              placeholder={i18n('Domain')}
+              style={styles.textInput}
+              returnKeyType={'done'}
+              ref={(r: any) => { this.domainTextInput = r }}
+              onSubmitEditing={ this.finishInput }
+              onChangeText={this.updateDomain}
+              autoCapitalize="none"
+              autoCorrect={false}
+              value={this.state.domain} />
+          </View>
+          <TouchableHighlight
+            style={[styles.submitButton, this.state.submitButtonDisabled ? { opacity: 0.5 } : undefined]}
+            onPress={this.submit}
+            disabled={this.state.submitButtonDisabled}
+            accessibilityTraits={buttonTraits}>
+            <View style={styles.submitButtonContainer}>
+              <Heading2 style={styles.submitButtonText}>{i18n('Act as User')}</Heading2>
+            </View>
+          </TouchableHighlight>
+        </View>
+      </KeyboardAwareScrollView>
+    </Screen>)
   }
 }
 

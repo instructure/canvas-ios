@@ -31,6 +31,7 @@
     "object-curly-spacing": [2, "always"],
     "comma-dangle": ["error", "always-multiline"],
     "no-multi-str": [0, "never"],
+    "camelcase": 0,
 
     "flowtype/boolean-style": [
       2,

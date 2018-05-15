@@ -74,9 +74,9 @@ export class Inbox extends Component<InboxProps, any> {
 
   _renderItem = ({ item, index }) => {
     return <ConversationRow
-              conversation={item}
-              drawsTopLine={index === 0}
-              onPress={this._onSelectConversation}/>
+      conversation={item}
+      drawsTopLine={index === 0}
+      onPress={this._onSelectConversation}/>
   }
 
   _renderLoading = () => {
@@ -114,21 +114,21 @@ export class Inbox extends Component<InboxProps, any> {
       <View style={styles.container}>
         <FilterHeader selected={this.props.scope} onFilterChange={this._onChangeFilter} />
         <CourseFilter courses={this.props.courses}
-            selectedCourse={this.state.selectedCourse}
-            onClearFilter={this._clearCourseFilter}
-            onSelectFilter={this._updateCourseFilter} />
+          selectedCourse={this.state.selectedCourse}
+          onClearFilter={this._clearCourseFilter}
+          onSelectFilter={this._updateCourseFilter} />
         { conversations.length === 0 && this.props.pending
-            ? this._renderLoading()
-            : <FlatList
-                ListEmptyComponent={this._emptyComponent}
-                data={conversations}
-                renderItem={this._renderItem}
-                refreshing={this.props.refreshing}
-                onRefresh={this.props.refresh}
-                keyExtractor={ (c) => c.id }
-                onEndReached={this.getNextPage}
-                ItemSeparatorComponent={RowSeparator}
-            />
+          ? this._renderLoading()
+          : <FlatList
+            ListEmptyComponent={this._emptyComponent}
+            data={conversations}
+            renderItem={this._renderItem}
+            refreshing={this.props.refreshing}
+            onRefresh={this.props.refresh}
+            keyExtractor={ (c) => c.id }
+            onEndReached={this.getNextPage}
+            ItemSeparatorComponent={RowSeparator}
+          />
         }
       </View>
     )
@@ -137,15 +137,15 @@ export class Inbox extends Component<InboxProps, any> {
   _emptyComponent = () => {
     const starred = this.props.scope === 'starred'
     return (
-        <EmptyInbox
-          image={Images.mail}
-          title={starred ? i18n('No Starred Messages') : i18n('No Messages')}
-          text={
-            starred
+      <EmptyInbox
+        image={Images.mail}
+        title={starred ? i18n('No Starred Messages') : i18n('No Messages')}
+        text={
+          starred
             ? i18n('Star messages by tapping the star in the message.')
             : i18n('Tap the "+" to create a new conversation')
-          }
-        />
+        }
+      />
     )
   }
 

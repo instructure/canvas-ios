@@ -24,16 +24,16 @@ import { createAction, handleActions } from 'redux-actions'
 // Helper method to know if a set of dependent async actions are pending
 export function asyncChecker (state: AppState, dependencies: string[]): boolean {
   const reports = dependencies
-                  .map((d) => d.toString())
-                  .map((d) => state.asyncActions[d]).filter(a => a)
+    .map((d) => d.toString())
+    .map((d) => state.asyncActions[d]).filter(a => a)
   return reports.some(r => r.pending > 0)
 }
 
 // Pass the number of seconds that needs to be elapsed for data to be refreshed
 export function asyncTTLCheck (state: AppState, dependencies: string[], ttl: number): boolean {
   const reports = dependencies
-                  .map((d) => d.toString())
-                  .map((d) => state.asyncActions[d])
+    .map((d) => d.toString())
+    .map((d) => state.asyncActions[d])
   // If any of the actions have never been refreshed, an update should occur
   if (reports.filter(a => a == null).length > 0) return true
   // If the actions exist, but never successfully ended, also should refresh

@@ -59,7 +59,6 @@ type OwnProps = {
 export type Props = OwnProps & State & typeof Actions & RefreshProps & NavigationProps
 
 export class AnnouncementsList extends Component<Props, any> {
-
   render () {
     if (this.props.pending && !this.props.refreshing) {
       return <ActivityIndicatorView />

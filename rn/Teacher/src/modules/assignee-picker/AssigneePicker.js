@@ -43,7 +43,6 @@ import Screen from '../../routing/Screen'
 import DisclosureIndicator from '../../common/components/DisclosureIndicator'
 
 export class AssigneePicker extends Component<AssigneePickerProps, any> {
-
   constructor (props: AssigneePickerProps) {
     super(props)
     this.state = {

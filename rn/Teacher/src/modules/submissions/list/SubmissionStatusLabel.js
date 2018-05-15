@@ -29,7 +29,6 @@ type SubmissionStatusLabelProps = {
 }
 
 export default class SubmissionStatusLabel extends Component<SubmissionStatusLabelProps, any> {
-
   render () {
     let color: string = '#8B969E' // none
     let title: string = i18n('Not Submitted')

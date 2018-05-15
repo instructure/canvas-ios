@@ -176,13 +176,13 @@ test('refreshQuiz', () => {
     },
   }
   expect(
-      assignments(initialState, resolved)
-    ).toEqual({
-      '1': {
-        ...initialState['1'],
-        data: refreshedAssignment,
-      },
-    })
+    assignments(initialState, resolved)
+  ).toEqual({
+    '1': {
+      ...initialState['1'],
+      data: refreshedAssignment,
+    },
+  })
 })
 
 test('refresh quiz with no assignment', () => {
@@ -195,10 +195,10 @@ test('refresh quiz with no assignment', () => {
     },
   }
   expect(
-      assignments({}, resolved)
-    ).toEqual({
+    assignments({}, resolved)
+  ).toEqual({
 
-    })
+  })
 })
 
 test('anonymousGrading', () => {

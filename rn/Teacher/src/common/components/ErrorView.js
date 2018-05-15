@@ -32,9 +32,9 @@ export default class ErrorView extends PureComponent<any, ErrorViewProps> {
   render () {
     const message = parseErrorMessage(this.props.error)
     return <View style={styles.container}>
-            <Heading2 style={styles.message}>{message}</Heading2>
-            { this.props.onRetry && <LinkButton onPress={this.props.onRetry}>{i18n('Retry')}</LinkButton>}
-           </View>
+      <Heading2 style={styles.message}>{message}</Heading2>
+      { this.props.onRetry && <LinkButton onPress={this.props.onRetry}>{i18n('Retry')}</LinkButton>}
+    </View>
   }
 }
 

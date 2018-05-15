@@ -435,7 +435,7 @@ describe('QuizEdit', () => {
     jest.useFakeTimers()
     props.quiz.title = ''
     const component = renderer.create(
-    <QuizEdit {...props} />, options
+      <QuizEdit {...props} />, options
     )
     const doneBtn: any = explore(component.toJSON()).selectRightBarButton('quizzes.edit.doneButton')
     doneBtn.action()
@@ -446,8 +446,8 @@ describe('QuizEdit', () => {
   it('saving invalid name displays banner', () => {
     props.quiz.title = ''
     const component = renderer.create(
-    <QuizEdit {...props} />, options
-  )
+      <QuizEdit {...props} />, options
+    )
     const doneBtn: any = explore(component.toJSON()).selectRightBarButton('quizzes.edit.doneButton')
     doneBtn.action()
     expect(component.toJSON()).toMatchSnapshot()
@@ -456,8 +456,8 @@ describe('QuizEdit', () => {
   it('saving password displays banner', () => {
     props.quiz.access_code = ''
     const component = renderer.create(
-    <QuizEdit {...props} />, options
-  )
+      <QuizEdit {...props} />, options
+    )
     const doneBtn: any = explore(component.toJSON()).selectRightBarButton('quizzes.edit.doneButton')
     doneBtn.action()
     expect(component.toJSON()).toMatchSnapshot()
@@ -468,8 +468,8 @@ describe('QuizEdit', () => {
     props.quiz.show_correct_answers_at = '2017-06-01T07:59:00Z'
     props.quiz.hide_correct_answers_at = '2017-06-01T05:59:00Z'
     const component = renderer.create(
-    <QuizEdit {...props} />, options
-  )
+      <QuizEdit {...props} />, options
+    )
     const doneBtn: any = explore(component.toJSON()).selectRightBarButton('quizzes.edit.doneButton')
     doneBtn.action()
     expect(component.toJSON()).toMatchSnapshot()
@@ -481,8 +481,8 @@ describe('QuizEdit', () => {
       lock_at: '2017-06-01T05:59:00Z',
     }]
     const component = renderer.create(
-    <QuizEdit {...props} />, options
-  )
+      <QuizEdit {...props} />, options
+    )
     const doneBtn: any = explore(component.toJSON()).selectRightBarButton('quizzes.edit.doneButton')
     doneBtn.action()
     expect(component.toJSON()).toMatchSnapshot()

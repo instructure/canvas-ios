@@ -118,7 +118,7 @@ export default class CommentRow extends Component<CommentRowProps, any> {
             submissionID={contents.submissionID}
             key={`commentRow_${i}`}
           />
-          ))
+        ))
       case 'media':
         switch (contents.mediaType) {
           case 'audio':

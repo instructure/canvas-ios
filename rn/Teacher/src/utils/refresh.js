@@ -27,12 +27,12 @@ export type TtlKeyExtractor = (*) => string
 const DEFAULT_TTL_KEY = 'default'
 
 export default function refresh (
-    refreshFunction: RefreshFunction,
-    shouldRefresh: ShouldRefresh,
-    isFetchingData: IsFetchingData,
-    ttl: ?number = 1000 * 60 * 60, // 1 hour
-    ttlKeyExtractor: TtlKeyExtractor = (props) => DEFAULT_TTL_KEY,
-  ) {
+  refreshFunction: RefreshFunction,
+  shouldRefresh: ShouldRefresh,
+  isFetchingData: IsFetchingData,
+  ttl: ?number = 1000 * 60 * 60, // 1 hour
+  ttlKeyExtractor: TtlKeyExtractor = (props) => DEFAULT_TTL_KEY,
+) {
   let updates = {}
 
   return function (TheirComponent: React$ElementType) {

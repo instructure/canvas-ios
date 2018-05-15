@@ -34,9 +34,9 @@ export default class SavingBanner extends PureComponent<SavingBannerProps, any> 
   render () {
     const title = this.props.title || i18n('Saving...')
     return (<View style={[style.container, this.props.style]}>
-              <Text style={style.text}>{title}</Text>
-              <ActivityIndicator style={style.activityIndicator}/>
-            </View>)
+      <Text style={style.text}>{title}</Text>
+      <ActivityIndicator style={style.activityIndicator}/>
+    </View>)
   }
 }
 

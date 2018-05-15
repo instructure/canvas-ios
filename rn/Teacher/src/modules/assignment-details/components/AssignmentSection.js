@@ -31,7 +31,6 @@ import {
 } from 'react-native'
 
 export default class AssignmentSection extends Component<Object> {
-
   render () {
     let dividerStyle = {}
     let headerStyle = {}
@@ -56,8 +55,8 @@ export default class AssignmentSection extends Component<Object> {
             </View>
 
             { this.props.showDisclosureIndicator && <View style={assignmentSectionStyles.disclosureIndicatorContainer} >
-                                                      <DisclosureIndicator style={{ right: 0 }} />
-                                                    </View> }
+              <DisclosureIndicator style={{ right: 0 }} />
+            </View> }
           </View>
         </View>
       </TouchableHighlight>

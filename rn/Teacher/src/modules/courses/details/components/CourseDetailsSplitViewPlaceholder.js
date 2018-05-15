@@ -40,9 +40,9 @@ export default class CourseDetailsSplitViewPlaceholder extends Component<*> {
       >
         <View style={style.container}>
           <View style={style.subContainer}>
-          <Image source={Images.course.placeholder} style={style.icon} resizeMode='contain' />
-          <Text style={style.courseName}>{course.name}</Text>
-          <Text style={style.term}>{courseCode}</Text>
+            <Image source={Images.course.placeholder} style={style.icon} resizeMode='contain' />
+            <Text style={style.courseName}>{course.name}</Text>
+            <Text style={style.term}>{courseCode}</Text>
           </View>
         </View>
       </Screen>

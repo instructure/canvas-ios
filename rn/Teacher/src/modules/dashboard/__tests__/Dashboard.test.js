@@ -29,8 +29,8 @@ import App from '../../app/index'
 import * as template from '../../../__templates__'
 
 jest.mock('TouchableOpacity', () => 'TouchableOpacity')
-    .mock('TouchableHighlight', () => 'TouchableHighlight')
-    .mock('../../../routing/Screen')
+  .mock('TouchableHighlight', () => 'TouchableHighlight')
+  .mock('../../../routing/Screen')
 
 const colors = {
   '1': '#27B9CD',

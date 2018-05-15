@@ -91,22 +91,21 @@ export function Separated (props: Object) {
   const result = props.separated
     .slice(1)
     .reduce((incoming, value) => incoming.concat([
-        (
       <Text key={`separated_key_${uniqueKey}_${count++}`}
-                style={[
-                  props.style,
-                  {
-                    fontSize: props.separatorFontSize || 10,
-                    alignSelf: 'center',
-                    color: colors.grey4,
-                  },
-                ]}
-          >
-            {props.separator}
-          </Text>
-        ),
-      <Text {...props} key={`separated_value_${uniqueKey}_${count}`}>{value}</Text>]),
-      [<Text {...props} key={props.separated[0]}>{props.separated[0]}</Text>])
+        style={[
+          props.style,
+          {
+            fontSize: props.separatorFontSize || 10,
+            alignSelf: 'center',
+            color: colors.grey4,
+          },
+        ]}
+      >
+        {props.separator}
+      </Text>,
+      <Text {...props} key={`separated_value_${uniqueKey}_${count}`}>{value}</Text>,
+    ]),
+    [<Text {...props} key={props.separated[0]}>{props.separated[0]}</Text>])
   return (
     <View style={{ flexDirection: 'row' }}>
       {result}

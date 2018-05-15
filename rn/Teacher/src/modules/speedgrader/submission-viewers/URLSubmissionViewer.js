@@ -95,24 +95,24 @@ export default class URLSubmissionViewer extends Component<Props, State> {
 
     const image = submission.attachments && submission.attachments.length > 0
       ? <ScrollView
-          onLayout={this.onScrollViewLayout}
-          contentContainerStyle={styles.scrollView}
-          maximumZoomScale={2.0}
-          minimumZoomScale={0.5}
-          showsHorizontalScrollIndicator
-          showsVerticalScrollIndicator
-        >
-          <Image
-            accessible
-            accessibilityLabel={preview}
-            testID='url-submission-viewer.preview'
-            style={[styles.image, { height: imageHeight }]}
-            source={{ uri: submission.attachments[0].url }}
-          />
-        </ScrollView>
+        onLayout={this.onScrollViewLayout}
+        contentContainerStyle={styles.scrollView}
+        maximumZoomScale={2.0}
+        minimumZoomScale={0.5}
+        showsHorizontalScrollIndicator
+        showsVerticalScrollIndicator
+      >
+        <Image
+          accessible
+          accessibilityLabel={preview}
+          testID='url-submission-viewer.preview'
+          style={[styles.image, { height: imageHeight }]}
+          source={{ uri: submission.attachments[0].url }}
+        />
+      </ScrollView>
       : <Paragraph style={{ alignSelf: 'center' }}>
-          {previewUnavailable}
-        </Paragraph>
+        {previewUnavailable}
+      </Paragraph>
 
     return (
       <ScrollView

@@ -65,7 +65,6 @@ export type QuizSubmissionListState = {
 }
 
 export class QuizSubmissionList extends Component<QuizSubmissionListProps, any> {
-
   filterOptions: SubmissionFilterOption[]
   selectedFilter: ?Function
 
@@ -183,28 +182,28 @@ export class QuizSubmissionList extends Component<QuizSubmissionListProps, any> 
         {this.props.pending && !this.props.refreshing
           ? <ActivityIndicatorView />
           : <View style={styles.container}>
-              <SubmissionsHeader
-                filterOptions={this.state.filterOptions}
-                applyFilter={this.applyFilter}
-                initialFilterType={this.props.filterType}
-                filterPromptMessage={i18n('Out of {points, number}', { points: this.props.pointsPossible })}
-                navigator={this.props.navigator}
-                pointsPossible={this.props.pointsPossible}
-                anonymous={this.props.anonymous}
-                muted={this.props.muted} />
-              <FlatList
-                data={this.state.filter(this.props.rows)}
-                keyExtractor={this.keyExtractor}
-                testID='quiz-submission-list'
-                renderItem={this.renderRow}
-                refreshing={this.props.refreshing}
-                onRefresh={this.props.refresh}
-                ItemSeparatorComponent={RowSeparator}
-                ListEmptyComponent={
-                  <ListEmptyComponent title={i18n('No results')} />
-                }
-                />
-            </View>
+            <SubmissionsHeader
+              filterOptions={this.state.filterOptions}
+              applyFilter={this.applyFilter}
+              initialFilterType={this.props.filterType}
+              filterPromptMessage={i18n('Out of {points, number}', { points: this.props.pointsPossible })}
+              navigator={this.props.navigator}
+              pointsPossible={this.props.pointsPossible}
+              anonymous={this.props.anonymous}
+              muted={this.props.muted} />
+            <FlatList
+              data={this.state.filter(this.props.rows)}
+              keyExtractor={this.keyExtractor}
+              testID='quiz-submission-list'
+              renderItem={this.renderRow}
+              refreshing={this.props.refreshing}
+              onRefresh={this.props.refresh}
+              ItemSeparatorComponent={RowSeparator}
+              ListEmptyComponent={
+                <ListEmptyComponent title={i18n('No results')} />
+              }
+            />
+          </View>
         }
       </Screen>
     )

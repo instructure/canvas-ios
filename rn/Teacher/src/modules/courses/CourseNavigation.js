@@ -58,7 +58,6 @@ export type CourseNavigationProps = CourseNavigationDataProps
   & { navigator: Navigator }
 
 export class CourseNavigation extends Component<CourseNavigationProps, any> {
-
   state = {
     windowTraits: currentWindowTraits(),
     selectedTabId: null,
