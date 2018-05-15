@@ -127,7 +127,7 @@ enum EventDetailsViewModel: TableViewCellViewModel {
             return cell
         case .location(let locationName, let address):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: LocationCellReuseIdentifier, for: indexPath) as? DetailsLocationCell else { fatalError() }
-            let components = [locationName, address].flatMap { $0 }
+            let components = [locationName, address].flatMap { $0 }.filter { !$0.isEmpty }
             cell.locationLabel.text = components.joined(separator: "\n")
             return cell
 
