@@ -24,6 +24,7 @@ import {
   Image,
 } from 'react-native'
 import i18n from 'format-message'
+import colors from '@common/colors'
 
 import Row from '@common/components/rows/Row'
 import AccessIcon from '@common/components/AccessIcon'
@@ -241,7 +242,7 @@ const style = StyleSheet.create({
     alignSelf: 'center',
     width: 18,
     height: 18,
-    tintColor: '#000',
+    tintColor: colors.grey5,
     transform: [{ rotate: '180deg' }],
   },
 })
