@@ -153,7 +153,7 @@ static UIImage *(^iconForSubmissionType)(NSString *) = ^(NSString *submissionTyp
 - (void)tableViewController:(MLVCTableViewController *)controller didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([self.model.submissionType isEqualToString:CKISubmissionTypeOnlineTextEntry]) {
         NSString *body = self.model.body ?: @"";
-        CanvasWebViewController *web = [[CanvasWebViewController alloc] initWithWebView:[CanvasWebView new] showDoneButton:YES];
+        CanvasWebViewController *web = [[CanvasWebViewController alloc] initWithWebView:[CanvasWebView new] showDoneButton:YES showShareButton:NO];
         web.pageViewName = self.model.htmlURL.absoluteString ?: self.model.previewURL.absoluteString;
         @weakify(web);
         [web.webView loadWithHtml:body title:nil baseURL:TheKeymaster.currentClient.baseURL routeToURL:^(NSURL * _Nonnull url) {

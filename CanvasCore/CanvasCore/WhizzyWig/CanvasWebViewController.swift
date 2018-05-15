@@ -15,15 +15,17 @@ open class CanvasWebViewController: UIViewController, PageViewEventViewControlle
     public let webView: CanvasWebView
     public var pageViewName: String?
     private let showDoneButton: Bool
+    private let showShareButton: Bool
     
     let canBack: DynamicProperty<Bool>
     let canForward: DynamicProperty<Bool>
     let isLoading: DynamicProperty<Bool>
     let webTitle: DynamicProperty<String>
     
-    public init(webView: CanvasWebView = CanvasWebView(), showDoneButton: Bool = false) {
+    public init(webView: CanvasWebView = CanvasWebView(), showDoneButton: Bool = false, showShareButton: Bool = false) {
         self.webView = webView
         self.showDoneButton = showDoneButton
+        self.showShareButton = showShareButton
         
         canBack = DynamicProperty(object: webView, keyPath: "canGoBack")
         canForward = DynamicProperty(object: webView, keyPath: "canGoForward")
@@ -89,15 +91,18 @@ open class CanvasWebViewController: UIViewController, PageViewEventViewControlle
         
         let loadingActivity = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         loadingActivity.reactive.isAnimating <~ isLoading.producer.skipNil()
-        
+
         let loading = UIBarButtonItem(customView: loadingActivity)
         let space: () -> UIBarButtonItem = {
-            let space = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-            space.width = 8
-            return space
+            return UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         }
         
-        let reload = UIBarButtonItem(image: .icon(.refresh), style: .plain, target: webView, action: #selector(WKWebView.reload))
+        let reload = UIBarButtonItem(barButtonSystemItem: .refresh, target: webView, action: #selector(WKWebView.reload))
+
+        var share: UIBarButtonItem?
+        if showShareButton {
+            share = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(didTapShareButton))
+        }
         
         let barItems = [
             back,
@@ -106,15 +111,27 @@ open class CanvasWebViewController: UIViewController, PageViewEventViewControlle
             space(),
             reload,
             space(),
-            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            loading,
+            share,
+            space(),
+            loading
         ]
-        toolbarItems = barItems
+        toolbarItems = barItems.flatMap { $0 }
     }
 
     // MARK: Actions
     @objc
     func done() {
         dismiss(animated: true, completion: nil)
+    }
+
+    @objc
+    func didTapShareButton(sender: UIBarButtonItem) {
+        guard let url = webView.url, let presentingViewController = webView.presentingViewController else {
+            return
+        }
+        let safariActivity = SafariActivity()
+        let viewController = UIActivityViewController(activityItems: [url], applicationActivities: [safariActivity])
+        viewController.popoverPresentationController?.barButtonItem = sender
+        presentingViewController.present(viewController, animated: true, completion: nil)
     }
 }

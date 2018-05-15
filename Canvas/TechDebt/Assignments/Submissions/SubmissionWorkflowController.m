@@ -166,7 +166,7 @@
                             if (url) {
                                 NSURLRequest *request = [NSURLRequest requestWithURL:url];
                                 CanvasWebView *webView = [[CanvasWebView alloc] init];
-                                CanvasWebViewController *controller = [[CanvasWebViewController alloc] initWithWebView:webView showDoneButton:YES];
+                                CanvasWebViewController *controller = [[CanvasWebViewController alloc] initWithWebView:webView showDoneButton:YES showShareButton:YES];
                                 UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:controller];
                                 [self.viewController presentViewController:nav animated:YES completion:^{
                                     [webView loadRequest:request];

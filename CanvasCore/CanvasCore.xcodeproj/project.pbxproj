@@ -508,6 +508,7 @@
 		9FD18B6B2052DE6800119927 /* LTITools.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD18B6A2052DE6800119927 /* LTITools.m */; };
 		B1411D5A1FE825ED00CD4967 /* CoreDataSyncHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1411D591FE825ED00CD4967 /* CoreDataSyncHelper.swift */; };
 		B196F79B206AB60400DE640F /* CoreDataSync.m in Sources */ = {isa = PBXBuildFile; fileRef = B196F79A206AB60400DE640F /* CoreDataSync.m */; };
+		B1BE249720AB13FE00C521C3 /* SafariActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BE249620AB13FE00C521C3 /* SafariActivity.swift */; };
 		B1CA05061FE448F300B7D5AA /* NativeNotificationCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = B1CA05041FE448F300B7D5AA /* NativeNotificationCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1CA05071FE448F300B7D5AA /* NativeNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = B1CA05051FE448F300B7D5AA /* NativeNotificationCenter.m */; };
 		B1CE74412020CE92003F2366 /* ExternalToolManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CE74402020CE92003F2366 /* ExternalToolManager.swift */; };
@@ -1133,6 +1134,7 @@
 		A42B8DF2C9F8BDD47BDCBF67 /* Pods-defaults-CanvasCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasCore.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasCore/Pods-defaults-CanvasCore.release.xcconfig"; sourceTree = "<group>"; };
 		B1411D591FE825ED00CD4967 /* CoreDataSyncHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataSyncHelper.swift; sourceTree = "<group>"; };
 		B196F79A206AB60400DE640F /* CoreDataSync.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataSync.m; sourceTree = "<group>"; };
+		B1BE249620AB13FE00C521C3 /* SafariActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariActivity.swift; sourceTree = "<group>"; };
 		B1CA05041FE448F300B7D5AA /* NativeNotificationCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NativeNotificationCenter.h; path = "CanvasCore/React Native Modules/NativeNotificationCenter/NativeNotificationCenter.h"; sourceTree = SOURCE_ROOT; };
 		B1CA05051FE448F300B7D5AA /* NativeNotificationCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NativeNotificationCenter.m; path = "CanvasCore/React Native Modules/NativeNotificationCenter/NativeNotificationCenter.m"; sourceTree = SOURCE_ROOT; };
 		B1CE74402020CE92003F2366 /* ExternalToolManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalToolManager.swift; sourceTree = "<group>"; };
@@ -1793,6 +1795,7 @@
 				497C0F891FACD0D200084032 /* CanvasWebView.swift */,
 				490F91F01FB0F94A00A7DA38 /* CanvasWebViewController.swift */,
 				B1D59801202A607200855C95 /* CanvasWebView.js */,
+				B1BE249620AB13FE00C521C3 /* SafariActivity.swift */,
 			);
 			path = WhizzyWig;
 			sourceTree = "<group>";
@@ -3329,6 +3332,7 @@
 				4961F53C1F8FAD9A0093EC86 /* WhizzyTextInputCell.swift in Sources */,
 				49301FD31F9014C6006BD777 /* CalendarEvent+Details.swift in Sources */,
 				4961F63F1F8FB71B0093EC86 /* Tab+Network.swift in Sources */,
+				B1BE249720AB13FE00C521C3 /* SafariActivity.swift in Sources */,
 				49CE96961F8FF41B00121A43 /* Answer.swift in Sources */,
 				49CE96BC1F8FF94B00121A43 /* PageAPI.swift in Sources */,
 				493020171F901CF5006BD777 /* CanvadocsAnnotationService.swift in Sources */,
