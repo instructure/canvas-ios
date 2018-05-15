@@ -70,7 +70,7 @@ let ownProps = {
 
 let defaultProps = {
   ...ownProps,
-  pending: false,
+  pending: true,
   refreshing: false,
   refresh: jest.fn(),
   refreshSubmissions: jest.fn(),
@@ -102,6 +102,7 @@ describe('SpeedGrader', () => {
       ...defaultProps,
       submissions: [templates.submissionProps(), templates.submissionProps({ status: 'missing' })],
       filter: subs => subs.filter(sub => sub.status === 'missing'),
+      pending: false,
     }
     let tree = shallow(
       <SpeedGrader {...props} />
@@ -127,24 +128,22 @@ describe('SpeedGrader', () => {
   it('doesnt set index until there are some submissions', () => {
     let props = {
       ...defaultProps,
-      submissions: [],
+      pending: true,
     }
 
     let tree = shallow(
       <SpeedGrader {...props} />
     )
     expect(tree.state()).toMatchObject({
-      submissions: [],
       currentPageIndex: undefined,
     })
 
-    tree.setProps({ submissions: [] })
+    tree.setProps({ submissions: [], pending: true })
     expect(tree.state()).toMatchObject({
-      submissions: [],
       currentPageIndex: undefined,
     })
 
-    tree.setProps({ submissions: [templates.submissionProps()] })
+    tree.setProps({ submissions: [templates.submissionProps()], pending: false })
     expect(tree.state()).toMatchObject({
       submissions: [templates.submissionProps()],
       currentPageIndex: 0,
@@ -168,7 +167,7 @@ describe('SpeedGrader', () => {
 
   it('renders submissions if there are some', () => {
     const submissions = [templates.submissionProps()]
-    const props = { ...defaultProps, submissions }
+    const props = { ...defaultProps, submissions, pending: false }
     let tree = shallow(
       <SpeedGrader {...props} />
     )
@@ -239,7 +238,7 @@ describe('SpeedGrader', () => {
       templates.submissionProps(),
       templates.submissionProps(),
     ]
-    const tree = shallow(<SpeedGrader {...defaultProps} submissions={submissions} />)
+    const tree = shallow(<SpeedGrader {...defaultProps} submissions={submissions} pending={false} />)
     tree.setProps({ submissions: [] })
     expect(tree).toMatchSnapshot()
   })

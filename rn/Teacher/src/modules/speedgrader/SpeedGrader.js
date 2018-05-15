@@ -25,6 +25,7 @@ import {
   Dimensions,
   DeviceInfo,
   NativeModules,
+  Button,
 } from 'react-native'
 import refresh from '../../utils/refresh'
 import { connect } from 'react-redux'
@@ -51,6 +52,7 @@ import Tutorial from './components/Tutorial'
 import i18n from 'format-message'
 import Images from '../../images'
 import shuffle from 'knuth-shuffle-seeded'
+import { Title } from '../../common/text'
 
 const { NativeAccessibility } = NativeModules
 
@@ -60,7 +62,7 @@ type State = {
   drawerInset: number,
   hasScrolledToInitialSubmission: boolean,
   hasSetInitialDrawerPosition: boolean,
-  submissions: Array<SubmissionDataProps>,
+  submissions?: Array<SubmissionDataProps>,
 }
 
 const PAGE_GUTTER_HALF_WIDTH = 10.0
@@ -94,7 +96,6 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
       drawerInset: SpeedGrader.drawerState.drawerHeight(position, height),
       hasScrolledToInitialSubmission: false,
       hasSetInitialDrawerPosition: false,
-      submissions: [],
       scrollEnabled: true,
     }
   }
@@ -115,7 +116,8 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
 
   setSubmissions (props: SpeedGraderProps) {
     // We can only set submissions once because of filters.
-    if (this.state.submissions.length) return
+    // Also don't set if we are still pending...
+    if (this.state.submissions || props.pending) return
 
     const submissions = props.filter
       ? props.filter(props.submissions)
@@ -227,7 +229,7 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
   scrollEnded = (event: Object) => {
     const index = event.nativeEvent.contentOffset.x / this.state.size.width
     this.setState({ currentPageIndex: index })
-    const submission = this.state.submissions[index]
+    const submission = (this.state.submissions || [])[index]
     if (submission) {
       const currentStudentID = submission.userID
       if (currentStudentID !== this.state.currentStudentID) {
@@ -250,14 +252,29 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
   }
 
   renderBody = () => {
-    if (this.props.pending || !this.state.submissions.length) {
+    if (this.props.pending || !this.state.submissions) {
       return (
         <View
-          accessible={true}
+          accessible
           accessibilityLabel={i18n('In Progress')}
           style={styles.loadingWrapper}
         >
           <ActivityIndicator />
+        </View>
+      )
+    }
+
+    // This is rare, but if it does happen, SpeedGrader gets into a loading loop and the app basically explodes
+    // jk, it loads forever and you can't do anything else unless you force close the app
+    if (!this.state.submissions.length) {
+      return (
+        <View
+          accessible
+          accessibilityLabel={i18n('No Submissions to Display')}
+          style={styles.loadingWrapper}
+        >
+          <Title style={{ margin: global.style.defaultPadding, textAlign: 'center' }}>{i18n("It seems there aren't any valid submissions to grade.")}</Title>
+          <Button onPress={this.dismiss} title={i18n('Close')} />
         </View>
       )
     }

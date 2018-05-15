@@ -298,7 +298,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 "traitCollection": [Function],
               },
               "onDismiss": [Function],
-              "pending": false,
+              "pending": true,
               "refresh": [Function],
               "refreshSubmissionSummary": [Function],
               "refreshSubmissions": [Function],
@@ -324,7 +324,6 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 "height": 1334,
                 "width": 770,
               },
-              "submissions": Array [],
             },
             "updater": Updater {
               "_renderer": ReactShallowRenderer {
@@ -351,7 +350,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                                         }
                   }
                   onDismiss={[Function]}
-                  pending={false}
+                  pending={true}
                   refresh={[Function]}
                   refreshSubmissionSummary={[Function]}
                   refreshSubmissions={[Function]}
@@ -374,7 +373,6 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                     "height": 1334,
                     "width": 770,
                   },
-                  "submissions": Array [],
                 },
                 "_rendered": <Screen
                   navBarHidden={true}
@@ -1129,7 +1127,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 "traitCollection": [Function],
               },
               "onDismiss": [Function],
-              "pending": false,
+              "pending": true,
               "refresh": [Function],
               "refreshSubmissionSummary": [Function],
               "refreshSubmissions": [Function],
@@ -1155,7 +1153,6 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 "height": 1334,
                 "width": 770,
               },
-              "submissions": Array [],
             },
             "updater": Updater {
               "_renderer": ReactShallowRenderer {
@@ -1182,7 +1179,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                                         }
                   }
                   onDismiss={[Function]}
-                  pending={false}
+                  pending={true}
                   refresh={[Function]}
                   refreshSubmissionSummary={[Function]}
                   refreshSubmissions={[Function]}
@@ -1205,7 +1202,6 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                     "height": 1334,
                     "width": 770,
                   },
-                  "submissions": Array [],
                 },
                 "_rendered": <Screen
                   navBarHidden={true}
@@ -1312,7 +1308,6 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 "height": 1334,
                 "width": 770,
               },
-              "submissions": Array [],
             },
             "updater": Updater {
               "_renderer": ReactShallowRenderer {
@@ -1362,7 +1357,6 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                     "height": 1334,
                     "width": 770,
                   },
-                  "submissions": Array [],
                 },
                 "_rendered": <Screen
                   navBarHidden={true}
