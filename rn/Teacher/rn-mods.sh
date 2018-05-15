@@ -15,3 +15,7 @@ sed -i '' 's#<fishhook/fishhook.h>#\"fishhook.h\"#g' ./node_modules/react-native
 # https://github.com/facebook/react-native/issues/18079
 # set the warning condition true. (it warns if false)
 sed -i '' -e "s/flatStyles == null || flatStyles.flexWrap !== 'wrap'/true/g" ./node_modules/react-native/Libraries/Lists/VirtualizedList.js
+
+# https://github.com/facebook/react-native/issues/16039
+sed -i '' 's/self.delegate = self;/self.delegate = self;\
+    [self selectRow:0 inComponent:0 animated:YES];/' ./node_modules/react-native/React/Views/RCTPicker.m
