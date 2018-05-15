@@ -472,7 +472,7 @@ const style = StyleSheet.create({
     fontWeight: '600',
   },
   date: {
-    color: colors.grey4,
+    color: colors.grey5,
     fontSize: 12,
     marginBottom: global.style.defaultPadding,
   },

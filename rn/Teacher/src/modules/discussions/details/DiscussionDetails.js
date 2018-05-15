@@ -238,19 +238,6 @@ export class DiscussionDetails extends Component<Props, any> {
               { user && user.display_name && <Text style={style.authorName}>{user.display_name}</Text> }
               <Text style={style.authorDate} testID='discussion.details.post-date-lbl'>{i18n("{ date, date, 'MMM d'} at { date, time, short }", { date })}</Text>
             </View>
-
-            {!discussion.locked_for_user &&
-              <View>
-                <TouchableHighlight
-                  underlayColor='transparent'
-                  onPress={this._onPressReply}
-                  testID='discussion.details-reply'
-                  accessibilityLabel={i18n('Reply')}
-                >
-                  <Image source={Images.rce.undo} style={{ width: 18, height: 18, tintColor: colors.secondaryButton }} />
-                </TouchableHighlight>
-              </View>
-            }
           </View>
 
           { (Boolean(discussion.message) || Boolean(discussion.attachments)) &&
@@ -281,7 +268,7 @@ export class DiscussionDetails extends Component<Props, any> {
                 accessibilityTraits='button'
               >
                 <View style={[{ backgroundColor: colors.primaryButtonColor }, style.replyButtonWrapper]}>
-                  <Image source={Images.rce.undo} style={{ width: 18, height: 18, tintColor: colors.primaryButtonTextColor }} />
+                  <Image source={Images.rce.undo} style={style.replyButtonImage} />
                   <Text style={[{ color: colors.primaryButtonTextColor }, style.reply]}>{i18n('Reply')}</Text>
                 </View>
               </TouchableHighlight>
@@ -634,7 +621,7 @@ const style = StyleSheet.create({
   },
   authorDate: {
     fontSize: 12,
-    color: colors.grey3,
+    color: colors.grey5,
   },
   topContainer: {
     paddingTop: 14,
@@ -659,9 +646,15 @@ const style = StyleSheet.create({
     marginLeft: 4,
     fontWeight: '500',
   },
+  replyButtonImage: {
+    width: 18,
+    height: 18,
+    resizeMode: 'contain',
+    tintColor: colors.primaryButtonTextColor,
+    marginRight: 6,
+  },
   replyButtonWrapper: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
     paddingHorizontal: 16,
     paddingVertical: 10,
     justifyContent: 'center',

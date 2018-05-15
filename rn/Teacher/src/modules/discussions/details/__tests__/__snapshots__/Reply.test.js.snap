@@ -119,7 +119,7 @@ exports[`DiscussionReplies ratings renders rating after user rates for first tim
       <Text
         style={
           Object {
-            "color": "#8B969E",
+            "color": "#73818C",
             "fontSize": 12,
             "marginBottom": 16,
           }
@@ -383,7 +383,7 @@ exports[`DiscussionReplies ratings renders rating after user updates rating 1`] 
       <Text
         style={
           Object {
-            "color": "#8B969E",
+            "color": "#73818C",
             "fontSize": 12,
             "marginBottom": 16,
           }
@@ -659,7 +659,7 @@ exports[`DiscussionReplies renders 1`] = `
       <Text
         style={
           Object {
-            "color": "#8B969E",
+            "color": "#73818C",
             "fontSize": 12,
             "marginBottom": 16,
           }
