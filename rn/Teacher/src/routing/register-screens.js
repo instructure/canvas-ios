@@ -15,6 +15,7 @@
 //
 
 // @flow
+import React from 'react'
 import AllCourseList from '../modules/courses/all/AllCourseList'
 import EditFavorites from '../modules/courses/edit-favorites/EditFavorites'
 import CourseNavigation from '../modules/courses/CourseNavigation'
@@ -84,6 +85,13 @@ export function wrap (name: any): Function {
   return () => name
 }
 
+function fileListRouter (props: any) {
+  if (props.preview) {
+    return (props) => <ViewFile {...props} fileID={props.preview} />
+  }
+  return FilesList
+}
+
 export function registerScreens (store: Store): void {
   registerScreen('', wrap(Dashboard), store, { deepLink: true })
   registerScreen('/', wrap(Dashboard), store, { deepLink: true })
@@ -115,9 +123,9 @@ export function registerScreens (store: Store): void {
   registerScreen('/:context/:contextID/discussion_topics/:discussionID/entries/:entryID/replies', wrap(EditReply), store, { deepLink: true })
   registerScreen('/courses/:courseID/users', wrap(PeopleList), store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/courses/:courseID/address-book', wrap(AddressBook), store)
-  registerScreen('/:context/:contextID/files', wrap(FilesList), store, { canBecomeMaster: true, deepLink: true })
-  registerScreen('/:context/:contextID/files/folder/*subFolder', wrap(FilesList), store, { canBecomeMaster: true, deepLink: true })
-  registerScreen('/:context/:contextID/folders/*subFolder', wrap(FilesList), store, { canBecomeMaster: true, deepLink: true })
+  registerScreen('/:context/:contextID/files', fileListRouter, store, { canBecomeMaster: true, deepLink: true })
+  registerScreen('/:context/:contextID/files/folder/*subFolder', fileListRouter, store, { canBecomeMaster: true, deepLink: true })
+  registerScreen('/:context/:contextID/folders/*subFolder', fileListRouter, store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/:context/:contextID/files/:fileID/edit', wrap(EditFile), store)
   registerScreen('/folders/:folderID/edit', wrap(EditFolder), store)
   registerScreen('/picker', wrap(PickerPage), store)

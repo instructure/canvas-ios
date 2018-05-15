@@ -52,7 +52,7 @@ export function screenID (path: string): string {
 
 export function registerScreen (
   path: string,
-  componentGenerator?: ?(() => any),
+  componentGenerator?: ?((props: any) => any),
   store?: Store,
   options: RouteConfig = { canBecomeMaster: false, checkRoles: false }
 ): void {
@@ -64,7 +64,7 @@ export function registerScreen (
   routes.set(route, options)
 }
 
-export function wrapComponentInProviders (moduleName: string, generator: () => any, store: Store): any {
+export function wrapComponentInProviders (moduleName: string, generator: (props: any) => any, store: Store): any {
   const generatorWrapper = () =>
     class extends React.Component<any, any> {
       static displayName = `Scene(${moduleName})`
@@ -104,7 +104,7 @@ export function wrapComponentInProviders (moduleName: string, generator: () => a
           return <ErrorScreen {...props} navigator={navigator} />
         }
 
-        const ScreenComponent = generator()
+        const ScreenComponent = generator(props)
         const session = getSession()
         // $FlowFixMe
         const uri = `${session.baseURL.replace(/\/?$/, '')}/api/graphql`
@@ -140,7 +140,7 @@ export function wrapComponentInProviders (moduleName: string, generator: () => a
 
 export function route (url: string, additionalProps: Object = {}): ?RouteOptions {
   const baseURL = getSession().baseURL
-  const location = new URL(url, baseURL)
+  const location = new URL(url, baseURL, true)
   if (url.includes('://') && new URL(baseURL).hostname !== location.hostname) {
     return
   }
@@ -153,6 +153,7 @@ export function route (url: string, additionalProps: Object = {}): ?RouteOptions
         params = Object.assign(params, additionalProps)
       }
       if (params) {
+        params = { ...params, ...location.query }
         params.location = location
         params.screenInstanceID = Math.random().toString(36).slice(2)
         routeProps.set(params.screenInstanceID, params)
