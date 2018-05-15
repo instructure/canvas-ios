@@ -70,6 +70,11 @@ open class Brand: NSObject {
         tabsAppearance.tintColor = primaryBrandColor
         tabsAppearance.barTintColor = UIColor.white
         tabsAppearance.unselectedItemTintColor = UIColor(red: 115/255.0, green: 129/255.0, blue: 140/255.0, alpha: 1)
+
+        let navBarAppearance = UINavigationBar.appearance()
+        let customBackButton = UIImage(named: "back_arrow", in: .core, compatibleWith: nil)
+        navBarAppearance.backIndicatorImage = customBackButton
+        navBarAppearance.backIndicatorTransitionMaskImage = customBackButton
     }
     
     open func navBarTitleView() -> UIView? {
