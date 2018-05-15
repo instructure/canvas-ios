@@ -70,7 +70,7 @@ class MatchAnswerCell: UITableViewCell {
         toolbar.barStyle = .default
         toolbar.isTranslucent = true
         toolbar.barTintColor = Brand.current.navBgColor
-        toolbar.tintColor = UIColor.white
+        toolbar.tintColor = Brand.current.navTextColor
         toolbar.sizeToFit()
 
         let doneButton = UIBarButtonItem(title: NSLocalizedString("Done", tableName: "Localizable", bundle: .core, value: "", comment: "Done button"), style: .plain, target: self, action: #selector(MatchAnswerCell.doneButtonSelected))
