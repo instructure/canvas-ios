@@ -320,6 +320,12 @@
   "conversation_options_8be926f3": {
     "message": "Konversationsalternativ"
   },
+  "copied_880dcb1b": {
+    "message": "Kopierad!"
+  },
+  "copy_link_1ffb11a4": {
+    "message": "Kopiera länk"
+  },
   "copyright_holder_386cc8b8": {
     "message": "Upphovsrättsinnehavare"
   },
@@ -824,6 +830,9 @@
   "mute_grades_b85bece1": {
     "message": "Tysta betyg"
   },
+  "my_files_eea33f44": {
+    "message": "Mina filer"
+  },
   "n_a_d6f6c42f": {
     "message": "Ej tillgängligt"
   },
@@ -880,6 +889,9 @@
   },
   "no_e16d9132": {
     "message": "Nej"
+  },
+  "no_grade_3b4d7f3e": {
+    "message": "Inget omdöme"
   },
   "no_internet_connection_9df26cf8": {
     "message": "Ingen internetanslutning"
@@ -1130,6 +1142,9 @@
   "request_a_feature_3c8e2079": {
     "message": "Begär en funktion"
   },
+  "request_could_not_be_completed_157615ef": {
+    "message": "Begäran kunde inte slutföras."
+  },
   "require_an_access_code_46a02601": {
     "message": "Kräv en tillgångskod"
   },
@@ -1352,8 +1367,14 @@
   "there_are_no_assignments_to_display_83b52cf3": {
     "message": "Det finns inga uppgifter att visa."
   },
+  "there_are_no_comments_to_display_bde58f70": {
+    "message": "Det finns inga kommentarer att visa."
+  },
   "there_are_no_discussions_to_display_37bc437f": {
     "message": "Det finns inga diskussioner att visa."
+  },
+  "there_are_no_files_to_display_d3eeb317": {
+    "message": "Det finns inga filer att visa."
   },
   "there_are_no_pages_to_display_ce6ca4d3": {
     "message": "Det finns inga sidor att visa."
@@ -1526,6 +1547,9 @@
   "unread_plural_one_unread_other_unread_5d48c74f": {
     "message": "{ unread, plural,\n    one {# Oläst}\n  other {# Oläst}\n}",
     "description": "Number of unread discussion posts"
+  },
+  "unrecognized_file_format_def0881c": {
+    "message": "Okänt filformat"
   },
   "until_date_f3b9f367": {
     "message": "Tills { date }"

@@ -320,6 +320,12 @@
   "conversation_options_8be926f3": {
     "message": "Опции дискуссии"
   },
+  "copied_880dcb1b": {
+    "message": "Скопировано!"
+  },
+  "copy_link_1ffb11a4": {
+    "message": "Копировать ссылку"
+  },
   "copyright_holder_386cc8b8": {
     "message": "Владелец авторских прав"
   },
@@ -824,6 +830,9 @@
   "mute_grades_b85bece1": {
     "message": "Скрыть оценки"
   },
+  "my_files_eea33f44": {
+    "message": "Мои файлы"
+  },
   "n_a_d6f6c42f": {
     "message": "Н/Д"
   },
@@ -880,6 +889,9 @@
   },
   "no_e16d9132": {
     "message": "Нет"
+  },
+  "no_grade_3b4d7f3e": {
+    "message": "Нет оценки"
   },
   "no_internet_connection_9df26cf8": {
     "message": "Нет интернет-соединения"
@@ -1130,6 +1142,9 @@
   "request_a_feature_3c8e2079": {
     "message": "Запросить функцию"
   },
+  "request_could_not_be_completed_157615ef": {
+    "message": "Не удается обработать запрос."
+  },
   "require_an_access_code_46a02601": {
     "message": "Запросить код доступа"
   },
@@ -1352,8 +1367,14 @@
   "there_are_no_assignments_to_display_83b52cf3": {
     "message": "Нет доступных для отображения заданий."
   },
+  "there_are_no_comments_to_display_bde58f70": {
+    "message": "Нет доступных для отображения комментариев."
+  },
   "there_are_no_discussions_to_display_37bc437f": {
     "message": "Нет доступных для отображения обсуждений."
+  },
+  "there_are_no_files_to_display_d3eeb317": {
+    "message": "Нет доступных для отображения файлов."
   },
   "there_are_no_pages_to_display_ce6ca4d3": {
     "message": "Нет доступных для отображения страниц."
@@ -1526,6 +1547,9 @@
   "unread_plural_one_unread_other_unread_5d48c74f": {
     "message": "{ unread, plural,\n    one {# Не прочитано}\n  other {# Не прочитано}\n}",
     "description": "Number of unread discussion posts"
+  },
+  "unrecognized_file_format_def0881c": {
+    "message": "Неизвестный формат файла"
   },
   "until_date_f3b9f367": {
     "message": "До { date }"

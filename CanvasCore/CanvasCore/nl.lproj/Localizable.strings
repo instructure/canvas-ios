@@ -1,5 +1,3 @@
-"Inbox" = "Postbus";
-
 /* Error message component with the report id */
 " Error report ID: (reportID)" = " Foutrapport-ID: (reportID)";
 
@@ -17,9 +15,6 @@
 
 /* Confirmations alerting user of unanswered questions */
 "%d questions not answered" = "%d vragen niet beantwoord";
-
-/* Error description for network errors resulting from limited or no internet connection. Includes a localized error message from the system e.g. (The request timed out.) */
-"(localizedDescription)\n\nCheck your connection or applicable carrier data limits and try again." = "(localizedDescription)\n\nControleer je verbinding of de geldende datalimieten van je provider en probeer het opnieuw.";
 
 /* Accessiblity hint for question drawer button */
 "0 Questions Answered" = "0 vragen beantwoord";
@@ -69,6 +64,9 @@
 
 /* Confirmation before submitting a quiz */
 "Are you sure you want to submit your answers?" = "Weet je zeker dat je je antwoorden wilt inleveren?";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this comment?" = "Weet je zeker dat je deze opmerking wilt verwijderen?";
 
 /* No comment provided by engineer. */
 "Attendance" = "Aanwezigheid";
@@ -182,6 +180,9 @@
    Delete button for file upload */
 "Delete" = "Verwijderen";
 
+/* No comment provided by engineer. */
+"Delete Comment" = "Opmerking verwijderen";
+
 /* message for delete dialog of audio recorder */
 "Delete recording?" = "Opname wissen?";
 
@@ -267,8 +268,14 @@
 /* Error when submitting an assignment */
 "Failed to Submit" = "Inleveren mislukt";
 
+/* No comment provided by engineer. */
+"Failed to find image at path" = "Kan afbeelding niet vinden op pad";
+
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Laden mislukt (discussionKitModelName) NSManagedObjectModel";
+
+/* No comment provided by engineer. */
+"Failed to write image" = "Kan afbeelding niet schrijven";
 
 /* favorite courses or groups */
 "Favorites" = "Favorieten";
@@ -302,6 +309,9 @@
 
 /* Hides the question list */
 "Hide Question List" = "Vragenlijst verbergen";
+
+/* Inbox tab title */
+"Inbox" = "Inbox";
 
 /* Indigo course color button */
 "Indigo" = "Indigo";
@@ -558,6 +568,9 @@
 /* Student role */
 "Student" = "Cursist";
 
+/* No comment provided by engineer. */
+"Style" = "Stijl";
+
 /* Submit assignment button
    Submit button title
    Turn in this url button */
@@ -715,6 +728,9 @@
 
 /* Alert message when unable to load communication channels */
 "Unable to load any Communication Channels at this time." = "Momenteel niet in staat om communicatiekanalen te laden.";
+
+/* Alert message when unable to load notification preferences */
+"Unable to load any notification preferences at this time.  Error: %@" = "Momenteel niet in staat om meldingsvoorkeuringen te laden.  Fout: %@";
 
 /* Error message when parsing communication preferences */
 "Unable to parse JSON for communication channels" = "Kan JSON niet parseren voor communicatiekanalen";

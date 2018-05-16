@@ -1,6 +1,3 @@
-/* Label indicating when the event takes place */
-"%@" = "%@";
-
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%3$d 的 %1$@ %2$d ";
 

@@ -1,5 +1,3 @@
-"Inbox" = "صندوق الوارد";
-
 /* Error message component with the report id */
 " Error report ID: (reportID)" = " معرف تقرير الخطأ: (reportID)";
 
@@ -17,9 +15,6 @@
 
 /* Confirmations alerting user of unanswered questions */
 "%d questions not answered" = "%d لم يتم إجابة الأسئلة";
-
-/* Error description for network errors resulting from limited or no internet connection. Includes a localized error message from the system e.g. (The request timed out.) */
-"(localizedDescription)\n\nCheck your connection or applicable carrier data limits and try again." = "(localizedDescription)\n\nتحقق من اتصالك أو حدود بيانات شبكة الجوال السارية ثم أعد المحاولة.";
 
 /* Accessiblity hint for question drawer button */
 "0 Questions Answered" = "تم الرد على 0 أسئلة";
@@ -69,6 +64,9 @@
 
 /* Confirmation before submitting a quiz */
 "Are you sure you want to submit your answers?" = "هل تريد حقاً إرسال أجوبتك؟";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this comment?" = "هل أنت متأكد من أنك تود حذف هذا التعليق؟";
 
 /* No comment provided by engineer. */
 "Attendance" = "الحضور";
@@ -182,6 +180,9 @@
    Delete button for file upload */
 "Delete" = "حذف";
 
+/* No comment provided by engineer. */
+"Delete Comment" = "حذف التعليق";
+
 /* message for delete dialog of audio recorder */
 "Delete recording?" = "حذف التسجيل؟";
 
@@ -267,8 +268,14 @@
 /* Error when submitting an assignment */
 "Failed to Submit" = "تعذر الإرسال";
 
+/* No comment provided by engineer. */
+"Failed to find image at path" = "فشل العثور على صورة في المسار";
+
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "تعذر تحميل (discussionKitModelName) NSManagedObjectModel";
+
+/* No comment provided by engineer. */
+"Failed to write image" = "فشل كتابة صورة";
 
 /* favorite courses or groups */
 "Favorites" = "المفضلة";
@@ -302,6 +309,9 @@
 
 /* Hides the question list */
 "Hide Question List" = "إخفاء قائمة الأسئلة";
+
+/* Inbox tab title */
+"Inbox" = "صندوق الوارد";
 
 /* Indigo course color button */
 "Indigo" = "نيلي";
@@ -558,6 +568,9 @@
 /* Student role */
 "Student" = "طالب";
 
+/* No comment provided by engineer. */
+"Style" = "نمط";
+
 /* Submit assignment button
    Submit button title
    Turn in this url button */
@@ -715,6 +728,9 @@
 
 /* Alert message when unable to load communication channels */
 "Unable to load any Communication Channels at this time." = "يتعذر تحميل جميع قنوات الاتصال في الوقت الحالي.";
+
+/* Alert message when unable to load notification preferences */
+"Unable to load any notification preferences at this time.  Error: %@" = "يتعذر تحميل جميع تفضيلات الإعلامات في الوقت الحالي.  خطأ: %@";
 
 /* Error message when parsing communication preferences */
 "Unable to parse JSON for communication channels" = "تعذر تحليل JSON لقنوات الاتصالات";

@@ -320,6 +320,12 @@
   "conversation_options_8be926f3": {
     "message": "Ngā kōwhiringa kōrero"
   },
+  "copied_880dcb1b": {
+    "message": "Tāruatia!"
+  },
+  "copy_link_1ffb11a4": {
+    "message": "Tārua hononga"
+  },
   "copyright_holder_386cc8b8": {
     "message": "Manatārua Kaitiaki"
   },
@@ -827,6 +833,9 @@
   "mute_grades_b85bece1": {
     "message": "Ngā kōeke whakangū"
   },
+  "my_files_eea33f44": {
+    "message": "Aku kōnae"
+  },
   "n_a_d6f6c42f": {
     "message": "N/A"
   },
@@ -883,6 +892,9 @@
   },
   "no_e16d9132": {
     "message": "Kahore"
+  },
+  "no_grade_3b4d7f3e": {
+    "message": "Kaore he Kōeke"
   },
   "no_internet_connection_9df26cf8": {
     "message": "Kāore he hononga ipurangi"
@@ -1133,6 +1145,9 @@
   "request_a_feature_3c8e2079": {
     "message": "Tono he Āhuatanga"
   },
+  "request_could_not_be_completed_157615ef": {
+    "message": "Kaore i taea te whakaoti i te tono."
+  },
   "require_an_access_code_46a02601": {
     "message": "Rapu i te waehere uru"
   },
@@ -1355,8 +1370,14 @@
   "there_are_no_assignments_to_display_83b52cf3": {
     "message": "Kaore ngā whakataunga hei whakaatu."
   },
+  "there_are_no_comments_to_display_bde58f70": {
+    "message": "Kaore he kōrero hei whakātu"
+  },
   "there_are_no_discussions_to_display_37bc437f": {
     "message": "Kaore nga kōreroreo hei whakaatu."
+  },
+  "there_are_no_files_to_display_d3eeb317": {
+    "message": "Kaore he kōnae hei whakātu."
   },
   "there_are_no_pages_to_display_ce6ca4d3": {
     "message": "Kaore ngā whārangi hei whakaatu."
@@ -1529,6 +1550,9 @@
   "unread_plural_one_unread_other_unread_5d48c74f": {
     "message": "{ unread, plural,\n    one {# Pānuihia}\n  other {# Pānuihia}\n}",
     "description": "Number of unread discussion posts"
+  },
+  "unrecognized_file_format_def0881c": {
+    "message": "Kaore i te mōhiotia te kōnae hōputu."
   },
   "until_date_f3b9f367": {
     "message": "tae noa ki { date }"

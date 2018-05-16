@@ -1,5 +1,3 @@
-"Inbox" = "Bandeja de entrada";
-
 /* Error message component with the report id */
 " Error report ID: (reportID)" = " ID del informe del error: (reportID)";
 
@@ -17,9 +15,6 @@
 
 /* Confirmations alerting user of unanswered questions */
 "%d questions not answered" = "%d preguntas no respondidas";
-
-/* Error description for network errors resulting from limited or no internet connection. Includes a localized error message from the system e.g. (The request timed out.) */
-"(localizedDescription)\n\nCheck your connection or applicable carrier data limits and try again." = "(localizedDescription)\n\nCompruebe su conexión o los límites de datos de su operador e intente nuevamente.";
 
 /* Accessiblity hint for question drawer button */
 "0 Questions Answered" = "0 preguntas respondidas";
@@ -69,6 +64,9 @@
 
 /* Confirmation before submitting a quiz */
 "Are you sure you want to submit your answers?" = "¿Está seguro de que desea enviar sus respuestas?";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this comment?" = "¿Está seguro de que desea borrar este comentario?";
 
 /* No comment provided by engineer. */
 "Attendance" = "Asistencia";
@@ -182,6 +180,9 @@
    Delete button for file upload */
 "Delete" = "Eliminar";
 
+/* No comment provided by engineer. */
+"Delete Comment" = "Eliminar comentario";
+
 /* message for delete dialog of audio recorder */
 "Delete recording?" = "¿Desea borrar la grabación?";
 
@@ -267,8 +268,14 @@
 /* Error when submitting an assignment */
 "Failed to Submit" = "No se puedo enviar";
 
+/* No comment provided by engineer. */
+"Failed to find image at path" = "No se pudo encontrar la imagen en la ruta";
+
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "No se pudo cargar (discussionKitModelName) NSManagedObjectModel";
+
+/* No comment provided by engineer. */
+"Failed to write image" = "No se pudo escribir la imagen";
 
 /* favorite courses or groups */
 "Favorites" = "Favoritos";
@@ -302,6 +309,9 @@
 
 /* Hides the question list */
 "Hide Question List" = "Esconder la lista de preguntas";
+
+/* Inbox tab title */
+"Inbox" = "Bandeja de entrada";
 
 /* Indigo course color button */
 "Indigo" = "Índigo";
@@ -558,6 +568,9 @@
 /* Student role */
 "Student" = "Alumno";
 
+/* No comment provided by engineer. */
+"Style" = "Estilo";
+
 /* Submit assignment button
    Submit button title
    Turn in this url button */
@@ -715,6 +728,9 @@
 
 /* Alert message when unable to load communication channels */
 "Unable to load any Communication Channels at this time." = "No se puede cargar ningún Canal de Comunicaciones en este momento.";
+
+/* Alert message when unable to load notification preferences */
+"Unable to load any notification preferences at this time.  Error: %@" = "No se puede cargar ninguna preferencia de notificaciones en este momento.  Error: %@";
 
 /* Error message when parsing communication preferences */
 "Unable to parse JSON for communication channels" = "No se pudo analizar JSON en busca de canales de comunicación";

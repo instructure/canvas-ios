@@ -320,6 +320,12 @@
   "conversation_options_8be926f3": {
     "message": "Gesprächsoptionen"
   },
+  "copied_880dcb1b": {
+    "message": "Kopiert!"
+  },
+  "copy_link_1ffb11a4": {
+    "message": "Link kopieren"
+  },
   "copyright_holder_386cc8b8": {
     "message": "Copyright-Inhaber"
   },
@@ -824,6 +830,9 @@
   "mute_grades_b85bece1": {
     "message": "Noten stummschalten"
   },
+  "my_files_eea33f44": {
+    "message": "Meine Dateien"
+  },
   "n_a_d6f6c42f": {
     "message": "k. A."
   },
@@ -880,6 +889,9 @@
   },
   "no_e16d9132": {
     "message": "Kein"
+  },
+  "no_grade_3b4d7f3e": {
+    "message": "Keine Note"
   },
   "no_internet_connection_9df26cf8": {
     "message": "Keine Internetverbindung"
@@ -1130,6 +1142,9 @@
   "request_a_feature_3c8e2079": {
     "message": "Ein Feature anfordern"
   },
+  "request_could_not_be_completed_157615ef": {
+    "message": "Anforderung konnte nicht abgeschlossen werden."
+  },
   "require_an_access_code_46a02601": {
     "message": "Erfordern einen Zugriffscode"
   },
@@ -1352,8 +1367,14 @@
   "there_are_no_assignments_to_display_83b52cf3": {
     "message": "Es sind keine Aufgaben anzuzeigen."
   },
+  "there_are_no_comments_to_display_bde58f70": {
+    "message": "Es gibt keine Kommentar zum Anzeigen"
+  },
   "there_are_no_discussions_to_display_37bc437f": {
     "message": "Es sind keine Diskussionen anzuzeigen"
+  },
+  "there_are_no_files_to_display_d3eeb317": {
+    "message": "Es sind keine Dateien anzuzeigen."
   },
   "there_are_no_pages_to_display_ce6ca4d3": {
     "message": "Es sind keine Seiten anzuzeigen."
@@ -1526,6 +1547,9 @@
   "unread_plural_one_unread_other_unread_5d48c74f": {
     "message": "{ unread, plural,\n    one {# Ungelesen}\n  other {# Ungelesen}\n}",
     "description": "Number of unread discussion posts"
+  },
+  "unrecognized_file_format_def0881c": {
+    "message": "Unbekanntes Dateiformat"
   },
   "until_date_f3b9f367": {
     "message": "bis { date }"

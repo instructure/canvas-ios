@@ -1,5 +1,3 @@
-"Inbox" = "Pouakauru";
-
 /* Error message component with the report id */
 " Error report ID: (reportID)" = " Rīpoata hapa ID: (reportID)";
 
@@ -17,9 +15,6 @@
 
 /* Confirmations alerting user of unanswered questions */
 "%d questions not answered" = "%d ngā patai kaore i whakautuhia";
-
-/* Error description for network errors resulting from limited or no internet connection. Includes a localized error message from the system e.g. (The request timed out.) */
-"(localizedDescription)\n\nCheck your connection or applicable carrier data limits and try again." = "(localizedDescription)\n\nTirohia tō hononga me ngā raraunga  kawe e tika ana ka ngana anō";
 
 /* Accessiblity hint for question drawer button */
 "0 Questions Answered" = "0 Pātai Tali";
@@ -69,6 +64,9 @@
 
 /* Confirmation before submitting a quiz */
 "Are you sure you want to submit your answers?" = "E tino koe e hiahia ana koe ki te tuku koutou whakautu?";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this comment?" = "E tino hiahia ana koe ki te muku i tēnei kōrero?";
 
 /* No comment provided by engineer. */
 "Attendance" = "Taenga mai";
@@ -182,6 +180,9 @@
    Delete button for file upload */
 "Delete" = "Muku";
 
+/* No comment provided by engineer. */
+"Delete Comment" = "Muku Kōrero";
+
 /* message for delete dialog of audio recorder */
 "Delete recording?" = "Mukua tuhi?";
 
@@ -267,8 +268,14 @@
 /* Error when submitting an assignment */
 "Failed to Submit" = "I rahua te Tuku";
 
+/* No comment provided by engineer. */
+"Failed to find image at path" = "I rahua te kite i te āhua i te huarahi";
+
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "I rahua te uta (discussionKitModelName) NSManagedObjectModel";
+
+/* No comment provided by engineer. */
+"Failed to write image" = "I rahua ki te tuhi āhua";
 
 /* favorite courses or groups */
 "Favorites" = "Makau";
@@ -302,6 +309,9 @@
 
 /* Hides the question list */
 "Hide Question List" = "Huna Rārangi Pātai";
+
+/* Inbox tab title */
+"Inbox" = "Pouakaroto";
 
 /* Indigo course color button */
 "Indigo" = "Indigo";
@@ -558,6 +568,9 @@
 /* Student role */
 "Student" = "Ākonga";
 
+/* No comment provided by engineer. */
+"Style" = "Kāhua";
+
 /* Submit assignment button
    Submit button title
    Turn in this url button */
@@ -715,6 +728,9 @@
 
 /* Alert message when unable to load communication channels */
 "Unable to load any Communication Channels at this time." = "Kaore e taea te uta Awakeri Kōrero i tēnei wā.";
+
+/* Alert message when unable to load notification preferences */
+"Unable to load any notification preferences at this time.  Error: %@" = "Kaore e taea te uta ngā whakamōhiotanga manakohanga i tēnei wā.  Hapa: %@";
 
 /* Error message when parsing communication preferences */
 "Unable to parse JSON for communication channels" = "Kaore i taea te porporo JSON mo ngā awakeri kōrero";

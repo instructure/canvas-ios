@@ -1,5 +1,3 @@
-"Inbox" = "收件箱";
-
 /* Error message component with the report id */
 " Error report ID: (reportID)" = " 报告 ID 出错：(reportID)";
 
@@ -17,9 +15,6 @@
 
 /* Confirmations alerting user of unanswered questions */
 "%d questions not answered" = "%d 未回答的问题";
-
-/* Error description for network errors resulting from limited or no internet connection. Includes a localized error message from the system e.g. (The request timed out.) */
-"(localizedDescription)\n\nCheck your connection or applicable carrier data limits and try again." = "(localizedDescription)\n\n请检查您的连接或相关载体数据限制，并重试。";
 
 /* Accessiblity hint for question drawer button */
 "0 Questions Answered" = "回答了0 个问题";
@@ -69,6 +64,9 @@
 
 /* Confirmation before submitting a quiz */
 "Are you sure you want to submit your answers?" = "您确认想提交答案吗？";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this comment?" = "是否确定要删除此评论？";
 
 /* No comment provided by engineer. */
 "Attendance" = "出勤";
@@ -182,6 +180,9 @@
    Delete button for file upload */
 "Delete" = "删除";
 
+/* No comment provided by engineer. */
+"Delete Comment" = "删除评论";
+
 /* message for delete dialog of audio recorder */
 "Delete recording?" = "删除录制？";
 
@@ -267,8 +268,14 @@
 /* Error when submitting an assignment */
 "Failed to Submit" = "提交失败";
 
+/* No comment provided by engineer. */
+"Failed to find image at path" = "在路径中查找图像失败";
+
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "加载失败（discussionKitModelName）NSManagedObjectModel";
+
+/* No comment provided by engineer. */
+"Failed to write image" = "写入图像失败";
 
 /* favorite courses or groups */
 "Favorites" = "收藏夹";
@@ -302,6 +309,9 @@
 
 /* Hides the question list */
 "Hide Question List" = "隐藏问题列表";
+
+/* Inbox tab title */
+"Inbox" = "收件箱";
 
 /* Indigo course color button */
 "Indigo" = "靛蓝色";
@@ -558,6 +568,9 @@
 /* Student role */
 "Student" = "学生";
 
+/* No comment provided by engineer. */
+"Style" = "样式";
+
 /* Submit assignment button
    Submit button title
    Turn in this url button */
@@ -715,6 +728,9 @@
 
 /* Alert message when unable to load communication channels */
 "Unable to load any Communication Channels at this time." = "暂时无法加载任何通信通道。";
+
+/* Alert message when unable to load notification preferences */
+"Unable to load any notification preferences at this time.  Error: %@" = "暂时无法加载任何通知首选项。错误：%@";
 
 /* Error message when parsing communication preferences */
 "Unable to parse JSON for communication channels" = "无法解析 JSON 的信道";

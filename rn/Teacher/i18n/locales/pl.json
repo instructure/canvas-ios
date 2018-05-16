@@ -320,6 +320,12 @@
   "conversation_options_8be926f3": {
     "message": "Opcje rozmowy"
   },
+  "copied_880dcb1b": {
+    "message": "Skopiowano!"
+  },
+  "copy_link_1ffb11a4": {
+    "message": "Kopiuj łącze"
+  },
   "copyright_holder_386cc8b8": {
     "message": "Właściciel praw autorskich"
   },
@@ -824,6 +830,9 @@
   "mute_grades_b85bece1": {
     "message": "Wyłącz oceny"
   },
+  "my_files_eea33f44": {
+    "message": "Moje pliki"
+  },
   "n_a_d6f6c42f": {
     "message": "Nd."
   },
@@ -880,6 +889,9 @@
   },
   "no_e16d9132": {
     "message": "Nie"
+  },
+  "no_grade_3b4d7f3e": {
+    "message": "Brak oceny"
   },
   "no_internet_connection_9df26cf8": {
     "message": "Brak połączenia internetowego"
@@ -1130,6 +1142,9 @@
   "request_a_feature_3c8e2079": {
     "message": "Zażądaj funkcji"
   },
+  "request_could_not_be_completed_157615ef": {
+    "message": "Nie udało się zrealizować żądania."
+  },
   "require_an_access_code_46a02601": {
     "message": "Wymagaj kodu dostępu"
   },
@@ -1352,8 +1367,14 @@
   "there_are_no_assignments_to_display_83b52cf3": {
     "message": "Brak zadań do wyświetlenia."
   },
+  "there_are_no_comments_to_display_bde58f70": {
+    "message": "Brak komentarzy do wyświetlenia."
+  },
   "there_are_no_discussions_to_display_37bc437f": {
     "message": "Brak dyskusji do wyświetlenia."
+  },
+  "there_are_no_files_to_display_d3eeb317": {
+    "message": "Brak plików do wyświetlenia."
   },
   "there_are_no_pages_to_display_ce6ca4d3": {
     "message": "Brak stron do wyświetlenia."
@@ -1526,6 +1547,9 @@
   "unread_plural_one_unread_other_unread_5d48c74f": {
     "message": "{ unread, plural,\n    one {# Nieprzeczytany}\n  other {# Nieprzeczytany}\n}",
     "description": "Number of unread discussion posts"
+  },
+  "unrecognized_file_format_def0881c": {
+    "message": "Nieznany formatu pliku"
   },
   "until_date_f3b9f367": {
     "message": "Do { date }"

@@ -320,6 +320,12 @@
   "conversation_options_8be926f3": {
     "message": "交談選項"
   },
+  "copied_880dcb1b": {
+    "message": "已複製！"
+  },
+  "copy_link_1ffb11a4": {
+    "message": "複製連結"
+  },
   "copyright_holder_386cc8b8": {
     "message": "版權持有人"
   },
@@ -824,6 +830,9 @@
   "mute_grades_b85bece1": {
     "message": "隱藏評分"
   },
+  "my_files_eea33f44": {
+    "message": "我的檔案"
+  },
   "n_a_d6f6c42f": {
     "message": "不適用"
   },
@@ -880,6 +889,9 @@
   },
   "no_e16d9132": {
     "message": "否"
+  },
+  "no_grade_3b4d7f3e": {
+    "message": "無評分"
   },
   "no_internet_connection_9df26cf8": {
     "message": "沒有網絡連線"
@@ -1130,6 +1142,9 @@
   "request_a_feature_3c8e2079": {
     "message": "請求功能"
   },
+  "request_could_not_be_completed_157615ef": {
+    "message": "無法完成請求。"
+  },
   "require_an_access_code_46a02601": {
     "message": "需要訪問碼"
   },
@@ -1352,8 +1367,14 @@
   "there_are_no_assignments_to_display_83b52cf3": {
     "message": "沒有可顯示的作業。"
   },
+  "there_are_no_comments_to_display_bde58f70": {
+    "message": "沒有可顯示的評論。"
+  },
   "there_are_no_discussions_to_display_37bc437f": {
     "message": "沒有可顯示的討論。"
+  },
+  "there_are_no_files_to_display_d3eeb317": {
+    "message": "沒有可顯示的檔案。"
   },
   "there_are_no_pages_to_display_ce6ca4d3": {
     "message": "沒有可顯示的內容頁。"
@@ -1526,6 +1547,9 @@
   "unread_plural_one_unread_other_unread_5d48c74f": {
     "message": "{ unread, plural,\n    one {# 未讀}\n  other {# 未讀}\n}",
     "description": "Number of unread discussion posts"
+  },
+  "unrecognized_file_format_def0881c": {
+    "message": "無法識別的檔案格式。"
   },
   "until_date_f3b9f367": {
     "message": "直到{ date }"

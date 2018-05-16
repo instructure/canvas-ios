@@ -1,5 +1,3 @@
-"Inbox" = "Inkorg";
-
 /* Error message component with the report id */
 " Error report ID: (reportID)" = " ID felrapport: (reportID)";
 
@@ -17,9 +15,6 @@
 
 /* Confirmations alerting user of unanswered questions */
 "%d questions not answered" = "%d Frågor som inte besvarats";
-
-/* Error description for network errors resulting from limited or no internet connection. Includes a localized error message from the system e.g. (The request timed out.) */
-"(localizedDescription)\n\nCheck your connection or applicable carrier data limits and try again." = "(localizedDescription)\n\nKontrollera din anslutning, eller gällande gränser för bärardata och försök igen.";
 
 /* Accessiblity hint for question drawer button */
 "0 Questions Answered" = "0 frågor besvarade";
@@ -69,6 +64,9 @@
 
 /* Confirmation before submitting a quiz */
 "Are you sure you want to submit your answers?" = "Är du säker på att du vill skicka in dina svar?";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this comment?" = "Är du säker på att du vill ta bort den här kommentaren?";
 
 /* No comment provided by engineer. */
 "Attendance" = "Närvaro";
@@ -182,6 +180,9 @@
    Delete button for file upload */
 "Delete" = "Ta bort";
 
+/* No comment provided by engineer. */
+"Delete Comment" = "Ta bort kommentar";
+
 /* message for delete dialog of audio recorder */
 "Delete recording?" = "Ta bort inspelning?";
 
@@ -267,8 +268,14 @@
 /* Error when submitting an assignment */
 "Failed to Submit" = "Misslyckades att skicka";
 
+/* No comment provided by engineer. */
+"Failed to find image at path" = "Det gick inte att hitta bilden i sökvägen";
+
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Misslyckades att ladda (discussionKitModelName) NSManagedObjectModel";
+
+/* No comment provided by engineer. */
+"Failed to write image" = "Det gick inte att skriva bilden";
 
 /* favorite courses or groups */
 "Favorites" = "Favoriter";
@@ -302,6 +309,9 @@
 
 /* Hides the question list */
 "Hide Question List" = "Dölj frågelista";
+
+/* Inbox tab title */
+"Inbox" = "Inkorgen";
 
 /* Indigo course color button */
 "Indigo" = "Indigo";
@@ -558,6 +568,9 @@
 /* Student role */
 "Student" = "Student";
 
+/* No comment provided by engineer. */
+"Style" = "Stil";
+
 /* Submit assignment button
    Submit button title
    Turn in this url button */
@@ -715,6 +728,9 @@
 
 /* Alert message when unable to load communication channels */
 "Unable to load any Communication Channels at this time." = "Det gick inte att ladda några kommunikationskanaler just nu.";
+
+/* Alert message when unable to load notification preferences */
+"Unable to load any notification preferences at this time.  Error: %@" = "Det går inte att läsa in några inställningar för aviseringar just nu.  Fel: %@";
 
 /* Error message when parsing communication preferences */
 "Unable to parse JSON for communication channels" = "Kan inte analysera JSON för kommunikationskanaler";
