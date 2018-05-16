@@ -287,6 +287,9 @@
   "clear_recording_5a97b475": {
     "message": "Clear recording"
   },
+  "close_d634289d": {
+    "message": "Close"
+  },
   "close_for_comments_ce0e5d00": {
     "message": "Close for comments"
   },
@@ -749,6 +752,9 @@
   "it_looks_like_your_internet_connection_is_offline__cf4003": {
     "message": "It looks like your internet connection is offline. Reconnect to the internet and try again."
   },
+  "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
+    "message": "It seems there aren''t any valid submissions to grade."
+  },
   "italic_ac45200a": {
     "message": "Italic"
   },
@@ -922,6 +928,9 @@
   },
   "no_subject_58b7941c": {
     "message": "No Subject"
+  },
+  "no_submissions_to_display_6f1491cf": {
+    "message": "No Submissions to Display"
   },
   "no_time_limit_2147d9bf": {
     "message": "No Time Limit"
