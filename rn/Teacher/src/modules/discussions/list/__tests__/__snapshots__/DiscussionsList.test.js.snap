@@ -764,7 +764,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Published.png",
+                              "testUri": "../../../src/images/publish-small.png",
                             }
                           }
                           style={
@@ -1198,7 +1198,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Published.png",
+                              "testUri": "../../../src/images/publish-small.png",
                             }
                           }
                           style={
@@ -1945,7 +1945,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Published.png",
+                              "testUri": "../../../src/images/publish-small.png",
                             }
                           }
                           style={
@@ -2346,7 +2346,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Published.png",
+                              "testUri": "../../../src/images/publish-small.png",
                             }
                           }
                           style={
@@ -3200,7 +3200,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Published.png",
+                              "testUri": "../../../src/images/publish-small.png",
                             }
                           }
                           style={
@@ -3634,7 +3634,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Published.png",
+                              "testUri": "../../../src/images/publish-small.png",
                             }
                           }
                           style={
@@ -4684,7 +4684,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Published.png",
+                              "testUri": "../../../src/images/publish-small.png",
                             }
                           }
                           style={
@@ -5118,7 +5118,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Published.png",
+                              "testUri": "../../../src/images/publish-small.png",
                             }
                           }
                           style={
@@ -5608,7 +5608,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Published.png",
+                              "testUri": "../../../src/images/publish-small.png",
                             }
                           }
                           style={

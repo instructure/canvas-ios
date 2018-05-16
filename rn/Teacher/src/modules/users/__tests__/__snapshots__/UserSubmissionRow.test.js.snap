@@ -113,7 +113,7 @@ exports[`UserSubmissionRow renders 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Published.png",
+                    "testUri": "../../../src/images/publish-small.png",
                   }
                 }
                 style={
@@ -427,7 +427,7 @@ exports[`UserSubmissionRow renders complete 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Published.png",
+                    "testUri": "../../../src/images/publish-small.png",
                   }
                 }
                 style={
@@ -741,7 +741,7 @@ exports[`UserSubmissionRow renders discussion 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Published.png",
+                    "testUri": "../../../src/images/publish-small.png",
                   }
                 }
                 style={
@@ -1055,7 +1055,7 @@ exports[`UserSubmissionRow renders excused 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Published.png",
+                    "testUri": "../../../src/images/publish-small.png",
                   }
                 }
                 style={
@@ -1276,7 +1276,7 @@ exports[`UserSubmissionRow renders incomplete 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Published.png",
+                    "testUri": "../../../src/images/publish-small.png",
                   }
                 }
                 style={
@@ -1590,7 +1590,7 @@ exports[`UserSubmissionRow renders missing submittion types 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Published.png",
+                    "testUri": "../../../src/images/publish-small.png",
                   }
                 }
                 style={
@@ -1904,7 +1904,7 @@ exports[`UserSubmissionRow renders needs grading 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Published.png",
+                    "testUri": "../../../src/images/publish-small.png",
                   }
                 }
                 style={
@@ -2175,7 +2175,7 @@ exports[`UserSubmissionRow renders online quiz 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Published.png",
+                    "testUri": "../../../src/images/publish-small.png",
                   }
                 }
                 style={
@@ -2489,7 +2489,7 @@ exports[`UserSubmissionRow renders published 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Published.png",
+                    "testUri": "../../../src/images/publish-small.png",
                   }
                 }
                 style={

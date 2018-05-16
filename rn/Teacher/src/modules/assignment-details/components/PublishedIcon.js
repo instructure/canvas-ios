@@ -69,7 +69,7 @@ const internalStyle = StyleSheet.create({
     alignItems: 'center',
   },
   text: {
-    marginLeft: 5,
+    marginLeft: 6,
     fontWeight: '500',
     color: colors.grey4,
   },

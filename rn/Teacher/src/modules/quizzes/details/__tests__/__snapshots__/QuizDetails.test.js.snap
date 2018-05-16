@@ -153,7 +153,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -185,7 +185,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",
@@ -1572,7 +1572,7 @@ exports[`QuizDetails displays access code 1`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -1604,7 +1604,7 @@ exports[`QuizDetails displays access code 1`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",
@@ -2991,7 +2991,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -3023,7 +3023,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",
@@ -4294,7 +4294,7 @@ exports[`QuizDetails renders 1`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -4326,7 +4326,7 @@ exports[`QuizDetails renders 1`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",
@@ -5655,7 +5655,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -5687,7 +5687,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",
@@ -7074,7 +7074,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -7106,7 +7106,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",
@@ -8435,7 +8435,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -8467,7 +8467,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",
@@ -9796,7 +9796,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -9828,7 +9828,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",
@@ -11157,7 +11157,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -11189,7 +11189,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",
@@ -12518,7 +12518,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -12550,7 +12550,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",
@@ -13879,7 +13879,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -13911,7 +13911,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",
@@ -15182,7 +15182,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -15214,7 +15214,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",
@@ -16543,7 +16543,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -16575,7 +16575,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",
@@ -17904,7 +17904,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -17936,7 +17936,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",
@@ -19297,7 +19297,7 @@ exports[`QuizDetails renders assignment group 1`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -19329,7 +19329,7 @@ exports[`QuizDetails renders assignment group 1`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",
@@ -20716,7 +20716,7 @@ exports[`QuizDetails renders published state 1`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Unpublished.png",
+                        "testUri": "../../../src/images/unpublish.png",
                       }
                     }
                     style={
@@ -20748,7 +20748,7 @@ exports[`QuizDetails renders published state 1`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#8B969E",
@@ -22077,7 +22077,7 @@ exports[`QuizDetails renders published state 2`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -22109,7 +22109,7 @@ exports[`QuizDetails renders published state 2`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",
@@ -23438,7 +23438,7 @@ exports[`QuizDetails renders quiz type 1`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -23470,7 +23470,7 @@ exports[`QuizDetails renders quiz type 1`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",
@@ -24799,7 +24799,7 @@ exports[`QuizDetails renders quiz type 2`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -24831,7 +24831,7 @@ exports[`QuizDetails renders quiz type 2`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",
@@ -26160,7 +26160,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -26192,7 +26192,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",
@@ -27521,7 +27521,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -27553,7 +27553,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",
@@ -28882,7 +28882,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -28914,7 +28914,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",
@@ -30243,7 +30243,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -30275,7 +30275,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",
@@ -31604,7 +31604,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -31636,7 +31636,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",
@@ -32965,7 +32965,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -32997,7 +32997,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",
@@ -34326,7 +34326,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -34358,7 +34358,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",
@@ -35687,7 +35687,7 @@ exports[`QuizDetails renders time limit 1`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -35719,7 +35719,7 @@ exports[`QuizDetails renders time limit 1`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",
@@ -37048,7 +37048,7 @@ exports[`QuizDetails renders time limit 2`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -37080,7 +37080,7 @@ exports[`QuizDetails renders time limit 2`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",
@@ -38409,7 +38409,7 @@ exports[`QuizDetails renders view responses 1`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -38441,7 +38441,7 @@ exports[`QuizDetails renders view responses 1`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",
@@ -39770,7 +39770,7 @@ exports[`QuizDetails renders view responses 2`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -39802,7 +39802,7 @@ exports[`QuizDetails renders view responses 2`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",
@@ -41073,7 +41073,7 @@ exports[`QuizDetails renders view responses 3`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -41105,7 +41105,7 @@ exports[`QuizDetails renders view responses 3`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",
@@ -42376,7 +42376,7 @@ exports[`QuizDetails renders without a description 1`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -42408,7 +42408,7 @@ exports[`QuizDetails renders without a description 1`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",

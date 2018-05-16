@@ -148,7 +148,7 @@ exports[`renders 1`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -180,7 +180,7 @@ exports[`renders 1`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",
@@ -1074,7 +1074,7 @@ exports[`renders as a designer 1`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -1106,7 +1106,7 @@ exports[`renders as a designer 1`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",
@@ -1925,7 +1925,7 @@ exports[`renders loading 1`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -1957,7 +1957,7 @@ exports[`renders loading 1`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",
@@ -2776,7 +2776,7 @@ exports[`renders with no submission types 1`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -2808,7 +2808,7 @@ exports[`renders with no submission types 1`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",
@@ -3627,7 +3627,7 @@ exports[`renders with not_graded submission type 1`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -3659,7 +3659,7 @@ exports[`renders with not_graded submission type 1`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",
@@ -4476,7 +4476,7 @@ exports[`renders without description 1`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/Published.png",
+                        "testUri": "../../../src/images/publish.png",
                       }
                     }
                     style={
@@ -4508,7 +4508,7 @@ exports[`renders without description 1`] = `
                           Object {
                             "color": "#8B969E",
                             "fontWeight": "500",
-                            "marginLeft": 5,
+                            "marginLeft": 6,
                           },
                           Object {
                             "color": "#00AC18",

@@ -46,7 +46,7 @@ exports[`AccessIcon published takes precedence over other properties 1`] = `
     <Image
       source={
         Object {
-          "testUri": "../../../src/images/Published.png",
+          "testUri": "../../../src/images/publish-small.png",
         }
       }
       style={
@@ -108,7 +108,7 @@ exports[`AccessIcon shows published when not locked or hidden 1`] = `
     <Image
       source={
         Object {
-          "testUri": "../../../src/images/Published.png",
+          "testUri": "../../../src/images/publish-small.png",
         }
       }
       style={
@@ -356,7 +356,7 @@ exports[`AccessIcon shows unpublished when locked 1`] = `
     <Image
       source={
         Object {
-          "testUri": "../../../src/images/Unpublished.png",
+          "testUri": "../../../src/images/unpublish-small.png",
         }
       }
       style={
@@ -418,7 +418,7 @@ exports[`AccessIcon shows unpublished when published is false 1`] = `
     <Image
       source={
         Object {
-          "testUri": "../../../src/images/Unpublished.png",
+          "testUri": "../../../src/images/unpublish-small.png",
         }
       }
       style={

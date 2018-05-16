@@ -113,7 +113,7 @@ exports[`renders correctly 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Published.png",
+                    "testUri": "../../../src/images/publish-small.png",
                   }
                 }
                 style={
@@ -369,7 +369,7 @@ exports[`renders correctly assignment icon 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Published.png",
+                    "testUri": "../../../src/images/publish-small.png",
                   }
                 }
                 style={
@@ -625,7 +625,7 @@ exports[`renders correctly discussion icon 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Published.png",
+                    "testUri": "../../../src/images/publish-small.png",
                   }
                 }
                 style={
@@ -881,7 +881,7 @@ exports[`renders correctly not published icon 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Unpublished.png",
+                    "testUri": "../../../src/images/unpublish-small.png",
                   }
                 }
                 style={
@@ -1126,7 +1126,7 @@ exports[`renders correctly published icon 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Published.png",
+                    "testUri": "../../../src/images/publish-small.png",
                   }
                 }
                 style={
@@ -1382,7 +1382,7 @@ exports[`renders correctly quiz icon 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Published.png",
+                    "testUri": "../../../src/images/publish-small.png",
                   }
                 }
                 style={
@@ -1638,7 +1638,7 @@ exports[`renders correctly with closed due dates 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Published.png",
+                    "testUri": "../../../src/images/publish-small.png",
                   }
                 }
                 style={
@@ -1894,7 +1894,7 @@ exports[`renders correctly with needs_grading_count 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Published.png",
+                    "testUri": "../../../src/images/publish-small.png",
                   }
                 }
                 style={
@@ -2187,7 +2187,7 @@ exports[`renders correctly with needs_grading_count and set to not_graded 1`] = 
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Published.png",
+                    "testUri": "../../../src/images/publish-small.png",
                   }
                 }
                 style={
@@ -2443,7 +2443,7 @@ exports[`renders correctly with open due dates 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Published.png",
+                    "testUri": "../../../src/images/publish-small.png",
                   }
                 }
                 style={
@@ -2699,7 +2699,7 @@ exports[`renders correctly with selected props 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Published.png",
+                    "testUri": "../../../src/images/publish-small.png",
                   }
                 }
                 style={

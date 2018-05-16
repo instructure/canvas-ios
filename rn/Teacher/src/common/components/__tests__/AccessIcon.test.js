@@ -37,14 +37,14 @@ describe('AccessIcon', () => {
   it('shows published when not locked or hidden', () => {
     props.entry.published = true
     const tree = shallow(<AccessIcon {...props} />)
-    expect(tree.find('Image').at(1).prop('source')).toBe(Images.published)
+    expect(tree.find('Image').at(1).prop('source')).toBe(Images.publishedSmall)
     expect(tree).toMatchSnapshot()
   })
 
   it('shows unpublished when published is false', () => {
     props.entry.published = false
     const tree = shallow(<AccessIcon {...props} />)
-    expect(tree.find('Image').at(1).prop('source')).toBe(Images.unpublished)
+    expect(tree.find('Image').at(1).prop('source')).toBe(Images.unpublishedSmall)
     expect(tree).toMatchSnapshot()
   })
 
@@ -54,14 +54,14 @@ describe('AccessIcon', () => {
     props.entry.locked = true
     props.entry.unlock_at = '2018-01-01T12:00:00.000Z'
     const tree = shallow(<AccessIcon {...props} />)
-    expect(tree.find('Image').at(1).prop('source')).toBe(Images.published)
+    expect(tree.find('Image').at(1).prop('source')).toBe(Images.publishedSmall)
     expect(tree).toMatchSnapshot()
   })
 
   it('shows unpublished when locked', () => {
     props.entry.locked = true
     const tree = shallow(<AccessIcon {...props} />)
-    expect(tree.find('Image').at(1).prop('source')).toBe(Images.unpublished)
+    expect(tree.find('Image').at(1).prop('source')).toBe(Images.unpublishedSmall)
     expect(tree).toMatchSnapshot()
   })
 

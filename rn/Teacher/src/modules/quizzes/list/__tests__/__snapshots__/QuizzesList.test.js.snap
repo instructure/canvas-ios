@@ -433,7 +433,7 @@ exports[`QuizzesList renders in correct order 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Published.png",
+                              "testUri": "../../../src/images/publish-small.png",
                             }
                           }
                           style={
@@ -785,7 +785,7 @@ exports[`QuizzesList renders in correct order 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Published.png",
+                              "testUri": "../../../src/images/publish-small.png",
                             }
                           }
                           style={
@@ -1389,7 +1389,7 @@ exports[`QuizzesList renders quizzes 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Published.png",
+                              "testUri": "../../../src/images/publish-small.png",
                             }
                           }
                           style={
@@ -1741,7 +1741,7 @@ exports[`QuizzesList renders quizzes 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Published.png",
+                              "testUri": "../../../src/images/publish-small.png",
                             }
                           }
                           style={

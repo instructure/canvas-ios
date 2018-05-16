@@ -797,7 +797,7 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/Published.png",
+                            "testUri": "../../../src/images/publish-small.png",
                           }
                         }
                         style={
@@ -1706,7 +1706,7 @@ exports[`ContextCard renders 1`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/Published.png",
+                            "testUri": "../../../src/images/publish-small.png",
                           }
                         }
                         style={
@@ -2838,7 +2838,7 @@ exports[`ContextCard renders if there is no enrollment 1`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/Published.png",
+                            "testUri": "../../../src/images/publish-small.png",
                           }
                         }
                         style={
@@ -3710,7 +3710,7 @@ exports[`ContextCard renders if there is no section in the enrollment 1`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/Published.png",
+                            "testUri": "../../../src/images/publish-small.png",
                           }
                         }
                         style={
@@ -4619,7 +4619,7 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/Published.png",
+                            "testUri": "../../../src/images/publish-small.png",
                           }
                         }
                         style={

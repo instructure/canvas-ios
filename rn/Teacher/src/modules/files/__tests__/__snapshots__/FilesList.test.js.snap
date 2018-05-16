@@ -264,7 +264,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Published.png",
+                              "testUri": "../../../src/images/publish-small.png",
                             }
                           }
                           style={
@@ -528,7 +528,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Published.png",
+                              "testUri": "../../../src/images/publish-small.png",
                             }
                           }
                           style={
@@ -792,7 +792,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Unpublished.png",
+                              "testUri": "../../../src/images/unpublish-small.png",
                             }
                           }
                           style={
@@ -1234,7 +1234,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Published.png",
+                              "testUri": "../../../src/images/publish-small.png",
                             }
                           }
                           style={
@@ -1498,7 +1498,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Published.png",
+                              "testUri": "../../../src/images/publish-small.png",
                             }
                           }
                           style={
@@ -1762,7 +1762,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Unpublished.png",
+                              "testUri": "../../../src/images/unpublish-small.png",
                             }
                           }
                           style={
@@ -2204,7 +2204,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Published.png",
+                              "testUri": "../../../src/images/publish-small.png",
                             }
                           }
                           style={
@@ -2468,7 +2468,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Published.png",
+                              "testUri": "../../../src/images/publish-small.png",
                             }
                           }
                           style={
@@ -2732,7 +2732,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Unpublished.png",
+                              "testUri": "../../../src/images/unpublish-small.png",
                             }
                           }
                           style={
@@ -3174,7 +3174,7 @@ exports[`FilesList sending weird data into the progress update function should n
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Published.png",
+                              "testUri": "../../../src/images/publish-small.png",
                             }
                           }
                           style={
@@ -3438,7 +3438,7 @@ exports[`FilesList sending weird data into the progress update function should n
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Published.png",
+                              "testUri": "../../../src/images/publish-small.png",
                             }
                           }
                           style={
@@ -3702,7 +3702,7 @@ exports[`FilesList sending weird data into the progress update function should n
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Unpublished.png",
+                              "testUri": "../../../src/images/unpublish-small.png",
                             }
                           }
                           style={
@@ -4144,7 +4144,7 @@ exports[`FilesList should render 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Published.png",
+                              "testUri": "../../../src/images/publish-small.png",
                             }
                           }
                           style={
@@ -4408,7 +4408,7 @@ exports[`FilesList should render 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Published.png",
+                              "testUri": "../../../src/images/publish-small.png",
                             }
                           }
                           style={
@@ -4672,7 +4672,7 @@ exports[`FilesList should render 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Unpublished.png",
+                              "testUri": "../../../src/images/unpublish-small.png",
                             }
                           }
                           style={
@@ -5114,7 +5114,7 @@ exports[`FilesList should render for course files 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Published.png",
+                              "testUri": "../../../src/images/publish-small.png",
                             }
                           }
                           style={
@@ -5378,7 +5378,7 @@ exports[`FilesList should render for course files 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Published.png",
+                              "testUri": "../../../src/images/publish-small.png",
                             }
                           }
                           style={
@@ -5642,7 +5642,7 @@ exports[`FilesList should render for course files 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Unpublished.png",
+                              "testUri": "../../../src/images/unpublish-small.png",
                             }
                           }
                           style={
@@ -6084,7 +6084,7 @@ exports[`FilesList should render for user files 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Published.png",
+                              "testUri": "../../../src/images/publish-small.png",
                             }
                           }
                           style={
@@ -6348,7 +6348,7 @@ exports[`FilesList should render for user files 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Published.png",
+                              "testUri": "../../../src/images/publish-small.png",
                             }
                           }
                           style={
@@ -6612,7 +6612,7 @@ exports[`FilesList should render for user files 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Unpublished.png",
+                              "testUri": "../../../src/images/unpublish-small.png",
                             }
                           }
                           style={
@@ -7054,7 +7054,7 @@ exports[`FilesList should render with folders 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Published.png",
+                              "testUri": "../../../src/images/publish-small.png",
                             }
                           }
                           style={
@@ -7318,7 +7318,7 @@ exports[`FilesList should render with folders 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Published.png",
+                              "testUri": "../../../src/images/publish-small.png",
                             }
                           }
                           style={
@@ -7582,7 +7582,7 @@ exports[`FilesList should render with folders 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/Unpublished.png",
+                              "testUri": "../../../src/images/unpublish-small.png",
                             }
                           }
                           style={

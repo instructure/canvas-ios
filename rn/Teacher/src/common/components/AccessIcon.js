@@ -52,7 +52,7 @@ export default class AccessIcon extends React.Component<Props> {
 
   render () {
     const { published, locked, hidden, lock_at, unlock_at } = this.props.entry
-    let icon = Images.published
+    let icon = Images.publishedSmall
     let iconStyle = styles.publishedIcon
     let accessibilityLabel = i18n('Published')
     let showAccessIcon = this.props.showAccessIcon
@@ -64,7 +64,7 @@ export default class AccessIcon extends React.Component<Props> {
       iconStyle = styles.restrictedIcon
       accessibilityLabel = i18n('Restricted')
     } else if (published === false || (published == null && locked === true)) {
-      icon = Images.unpublished
+      icon = Images.unpublishedSmall
       iconStyle = styles.unpublishedIcon
       accessibilityLabel = i18n('Not Published')
     }

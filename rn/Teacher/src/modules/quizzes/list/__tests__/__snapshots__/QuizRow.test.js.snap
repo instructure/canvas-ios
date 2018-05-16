@@ -94,7 +94,7 @@ exports[`QuizRow renders 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Published.png",
+                    "testUri": "../../../src/images/publish-small.png",
                   }
                 }
                 style={
@@ -444,7 +444,7 @@ exports[`QuizRow renders multiple question count 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Published.png",
+                    "testUri": "../../../src/images/publish-small.png",
                   }
                 }
                 style={
@@ -794,7 +794,7 @@ exports[`QuizRow renders published 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Published.png",
+                    "testUri": "../../../src/images/publish-small.png",
                   }
                 }
                 style={
@@ -1145,7 +1145,7 @@ exports[`QuizRow renders selected 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Published.png",
+                    "testUri": "../../../src/images/publish-small.png",
                   }
                 }
                 style={
@@ -1495,7 +1495,7 @@ exports[`QuizRow renders single question count 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Published.png",
+                    "testUri": "../../../src/images/publish-small.png",
                   }
                 }
                 style={
@@ -1845,7 +1845,7 @@ exports[`QuizRow renders unpublished 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Unpublished.png",
+                    "testUri": "../../../src/images/unpublish-small.png",
                   }
                 }
                 style={
@@ -2184,7 +2184,7 @@ exports[`QuizRow renders without points possible 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/Published.png",
+                    "testUri": "../../../src/images/publish-small.png",
                   }
                 }
                 style={
