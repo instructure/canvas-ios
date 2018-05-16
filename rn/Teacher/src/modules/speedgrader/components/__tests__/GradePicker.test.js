@@ -102,6 +102,34 @@ describe('GradePicker', () => {
     expect(slider).toHaveLength(1)
   })
 
+  it('passes the points slider the score without late policy', () => {
+    let props = {
+      ...defaultProps,
+      score: 10,
+      enteredScore: null,
+      late: false,
+      pointsDeducted: null,
+    }
+
+    let tree = shallow(<GradePicker {...props} />)
+    let slider = tree.find('Slider')
+    expect(slider.prop('score')).toEqual(10)
+  })
+
+  it('passes the points slider the entered score with late policy', () => {
+    let props = {
+      ...defaultProps,
+      score: 10,
+      enteredScore: 100,
+      late: true,
+      pointsDeducted: 90,
+    }
+
+    let tree = shallow(<GradePicker {...props} />)
+    let slider = tree.find('Slider')
+    expect(slider.prop('score')).toEqual(100)
+  })
+
   it('renders points and grade', () => {
     let props = {
       ...defaultProps,
@@ -373,8 +401,8 @@ describe('GradePicker', () => {
       ...defaultProps,
       late: true,
       pointsDeducted: 1,
-      enteredGrade: '9',
-      enteredScore: 9,
+      enteredGrade: null,
+      enteredScore: null,
       grade: null,
       score: null,
     }

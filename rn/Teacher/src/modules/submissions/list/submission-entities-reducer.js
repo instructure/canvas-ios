@@ -118,15 +118,29 @@ export const submissions: Reducer<SubmissionsState, any> = handleActions({
         ? state[submissionID]
         : { pending: 1, submission: result.data, error: null }
 
+      const {
+        grade,
+        score,
+        entered_grade,
+        entered_score,
+        grade_matches_current_submission,
+        late,
+        points_deducted,
+      } = result.data
+
       return {
         ...state,
         [id]: {
           ...submissionState,
           submission: {
             ...submissionState.submission,
-            grade: result.data.grade,
-            score: result.data.score,
-            grade_matches_current_submission: result.data.grade_matches_current_submission,
+            grade,
+            score,
+            entered_grade,
+            entered_score,
+            grade_matches_current_submission,
+            late,
+            points_deducted,
             excused: false,
           },
           pending: submissionState.pending - 1,

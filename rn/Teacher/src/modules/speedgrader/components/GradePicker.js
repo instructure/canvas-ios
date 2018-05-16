@@ -283,6 +283,7 @@ export class GradePicker extends Component<GradePickerProps, GradePickerState> {
         {this.props.gradingType === POINTS && !this.props.useRubricForGrading &&
           <Slider
             {...this.props}
+            score={this.applyLatePolicy() ? this.props.enteredScore : this.props.score}
             setScore={this.newCustomGrade}
             excuseAssignment={this.excuseAssignment}
             ref={(e) => { this.slider = e }}
