@@ -35,6 +35,8 @@ import RowSeparator from '../../../common/components/rows/RowSeparator'
 import ActivityIndicatorView from '../../../common/components/ActivityIndicatorView'
 import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
 import { Text } from '../../../common/text'
+import { isRegularDisplayMode } from '../../../routing/utils'
+import type { TraitCollection } from '../../../routing/Navigator'
 
 const { refreshCourse } = CourseActions
 const { refreshAnnouncements } = ListActions
@@ -59,6 +61,26 @@ type OwnProps = {
 export type Props = OwnProps & State & typeof Actions & RefreshProps & NavigationProps
 
 export class AnnouncementsList extends Component<Props, any> {
+  componentWillMount () {
+    this.onTraitCollectionChange()
+  }
+
+  onTraitCollectionChange () {
+    this.props.navigator.traitCollection((traits) => { this.traitCollectionDidChange(traits) })
+  }
+
+  traitCollectionDidChange (traits: TraitCollection) {
+    this.setState({ isRegularScreenDisplayMode: isRegularDisplayMode(traits) })
+  }
+
+  isRowSelected (item: Discussion): boolean {
+    if (this.state && this.state.selectedRowID) {
+      return this.state.isRegularScreenDisplayMode && this.state.selectedRowID === item.id
+    }
+
+    return false
+  }
+
   render () {
     if (this.props.pending && !this.props.refreshing) {
       return <ActivityIndicatorView />
@@ -69,6 +91,7 @@ export class AnnouncementsList extends Component<Props, any> {
         navBarStyle='dark'
         title={i18n('Announcements')}
         subtitle={this.props.courseName}
+        onTraitCollectionChange={this.onTraitCollectionChange.bind(this)}
         rightBarButtons={ (this.props.permissions && this.props.permissions.create_announcement) && [
           {
             image: Images.add,
@@ -100,6 +123,7 @@ export class AnnouncementsList extends Component<Props, any> {
     let lastReplyDateStr = i18n("{ date, date, 'MMM d'} at { date, time, short }", { date: new Date(item.delayed_post_at || item.last_reply_at) })
     const showDelayedText = item.delayed_post_at && new Date(item.delayed_post_at) > new Date()
     const subtitle = !showDelayedText ? i18n('Last post {lastReplyDateStr}', { lastReplyDateStr }) : lastReplyDateStr
+    const selected = this.isRowSelected(item)
 
     return (
       <Row
@@ -108,7 +132,8 @@ export class AnnouncementsList extends Component<Props, any> {
         height='auto'
         disclosureIndicator={true}
         testID={`announcements.list.announcement.row-${index}`}
-        onPress={this.selectAnnouncement(item)}
+        onPress={() => this.selectAnnouncement(item)}
+        selected={selected}
       >
         <View style={style.subtitleContainer} testID={`announcements.list.announcement.row-${index}.subtitle.custom-container`}>
           {showDelayedText && <Text style={[style.subtitle, style.delay]}>{i18n('Delayed until: ')}</Text>}
@@ -123,7 +148,8 @@ export class AnnouncementsList extends Component<Props, any> {
   }
 
   selectAnnouncement (announcement: Discussion) {
-    return () => this.props.navigator.show(announcement.html_url, { modal: false }, {
+    this.setState({ selectedRowID: announcement.id })
+    this.props.navigator.show(announcement.html_url, { modal: false }, {
       isAnnouncement: true,
     })
   }

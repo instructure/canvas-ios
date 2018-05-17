@@ -5,6 +5,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
   customPageViewPath={null}
   navBarColor={undefined}
   navBarStyle="light"
+  onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
       Object {
@@ -975,6 +976,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
   customPageViewPath={null}
   navBarColor={undefined}
   navBarStyle="light"
+  onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
       Object {
@@ -1945,6 +1947,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
   customPageViewPath={null}
   navBarColor={undefined}
   navBarStyle="light"
+  onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
       Object {
@@ -2915,6 +2918,7 @@ exports[`FilesList sending weird data into the progress update function should n
   customPageViewPath={null}
   navBarColor={undefined}
   navBarStyle="light"
+  onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
       Object {
@@ -3885,6 +3889,7 @@ exports[`FilesList should render 1`] = `
   customPageViewPath={null}
   navBarColor={undefined}
   navBarStyle="light"
+  onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
       Object {
@@ -4855,6 +4860,7 @@ exports[`FilesList should render for course files 1`] = `
   customPageViewPath={null}
   navBarColor="red"
   navBarStyle="dark"
+  onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
       Object {
@@ -5825,6 +5831,7 @@ exports[`FilesList should render for user files 1`] = `
   customPageViewPath={null}
   navBarColor={undefined}
   navBarStyle="light"
+  onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
       Object {
@@ -6795,6 +6802,7 @@ exports[`FilesList should render with folders 1`] = `
   customPageViewPath={null}
   navBarColor={undefined}
   navBarStyle="light"
+  onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
       Object {
@@ -7765,6 +7773,7 @@ exports[`FilesList should render with no data at all 1`] = `
   customPageViewPath={null}
   navBarColor={undefined}
   navBarStyle="light"
+  onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
       Object {

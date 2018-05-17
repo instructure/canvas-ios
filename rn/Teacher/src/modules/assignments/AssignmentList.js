@@ -57,6 +57,7 @@ type State = {
   currentScore: ?number,
   loadingGrade: boolean,
   gradeError: boolean,
+  selectedRowID: ?string,
 }
 
 const { NativeAccessibility } = NativeModules
@@ -77,6 +78,7 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
     currentScore: this.props.currentScore,
     loadingGrade: false,
     gradeError: false,
+    selectedRowID: null,
   }
 
   componentDidMount () {
@@ -97,6 +99,10 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
       id === this.props.currentGradingPeriodID
     )
     if (index >= 0) this.updateFilter(index)
+  }
+
+  componentWillMount () {
+    this.onTraitCollectionChange()
   }
 
   componentWillReceiveProps (nextProps: AssignmentListProps) {
@@ -157,7 +163,7 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
   }
 
   renderRow = ({ item, index }: { item: Assignment, index: number }) => {
-    let selected = this.isRegularScreenDisplayMode && this.props.selectedRowID === item.id
+    let selected = this.isRegularScreenDisplayMode && this.state.selectedRowID === item.id
     let ListRow = this.props.ListRow
     return (
       // $FlowFixMe - for some reason flow doesn't like the default prop
@@ -178,7 +184,7 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
 
   selectedAssignment = (assignment: Assignment) => {
     this.props.updateCourseDetailsSelectedTabSelectedRow(assignment.id)
-
+    this.setState({ selectedRowID: assignment.id })
     if (assignment.quiz_id) {
       this.props.navigator.show(`/courses/${assignment.course_id}/quizzes/${assignment.quiz_id}`)
     } else if (assignment.discussion_topic && isTeacher()) {

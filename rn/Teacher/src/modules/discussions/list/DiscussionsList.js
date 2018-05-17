@@ -39,6 +39,8 @@ import Screen from '@routing/Screen'
 import Images from '@images'
 import ActivityIndicatorView from '@common/components/ActivityIndicatorView'
 import ListEmptyComponent from '@common/components/ListEmptyComponent'
+import { isRegularDisplayMode } from '../../../routing/utils'
+import type { TraitCollection } from '../../../routing/Navigator'
 
 const { refreshCourse } = CourseActions
 const { refreshDiscussions } = ListActions
@@ -61,6 +63,7 @@ type State = {
   courseColor: ?string,
   pending: boolean,
   permissions?: CoursePermissions,
+  selectedRowID: ?string,
 }
 
 export type Props = State & typeof Actions & OwnProps & {
@@ -68,7 +71,28 @@ export type Props = State & typeof Actions & OwnProps & {
 }
 
 export class DiscussionsList extends Component<Props, any> {
+  componentWillMount () {
+    this.onTraitCollectionChange()
+  }
+
+  onTraitCollectionChange () {
+    this.props.navigator.traitCollection((traits) => { this.traitCollectionDidChange(traits) })
+  }
+
+  traitCollectionDidChange (traits: TraitCollection) {
+    this.setState({ isRegularScreenDisplayMode: isRegularDisplayMode(traits) })
+  }
+
+  isRowSelected (item: Discussion): boolean {
+    if (this.state && this.state.selectedRowID) {
+      return this.state.isRegularScreenDisplayMode && this.state.selectedRowID === item.id
+    }
+
+    return false
+  }
+
   renderRow = ({ item, index }: { item: Discussion, index: number }) => {
+    const selected = this.isRowSelected(item)
     return (
       <DiscusionsRow
         discussion={item}
@@ -76,6 +100,7 @@ export class DiscussionsList extends Component<Props, any> {
         tintColor={this.props.courseColor}
         onPress={this._selectedDiscussion}
         onToggleDiscussionGrouping={this._onToggleDiscussionGrouping}
+        selected={selected}
       />
     )
   }
@@ -90,6 +115,7 @@ export class DiscussionsList extends Component<Props, any> {
   }
 
   _selectedDiscussion = (discussion: Discussion) => {
+    this.setState({ selectedRowID: discussion.id })
     this.props.navigator.show(discussion.html_url)
   }
 
@@ -180,6 +206,7 @@ export class DiscussionsList extends Component<Props, any> {
         navBarColor={this.props.courseColor}
         navBarStyle='dark'
         drawUnderNavBar
+        onTraitCollectionChange={this.onTraitCollectionChange.bind(this)}
         rightBarButtons={(this.props.permissions && this.props.permissions.create_discussion_topic) && [
           {
             image: Images.add,
@@ -291,6 +318,7 @@ export function mapStateToProps ({ entities }: AppState, { context, contextID }:
     courseColor,
     courseName,
     permissions,
+    selectedRowID: null,
   }
 }
 

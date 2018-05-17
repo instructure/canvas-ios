@@ -107,7 +107,19 @@ describe('People List', () => {
   })
 
   it('selects item', () => {
-    props.navigator.show = jest.fn()
+    props.navigator = template.navigator({
+      traitCollection: (callback) => {
+        callback({
+          screen: {
+            horizontal: 'regular',
+          },
+          window: {
+            horizontal: 'regular',
+          },
+        })
+      },
+      show: jest.fn(),
+    })
     const item = template.addressBookResult({
       id: '1',
       name: 'E.T.C',
@@ -118,6 +130,8 @@ describe('People List', () => {
     const row: any = explore(screen.toJSON()).selectByID('1')
     row.props.onPress()
     expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/users/1', undefined, { modal: false })
+    expect(screen.getInstance().state.selectedRowID).toBe('1')
+    expect(screen.getInstance()._isRowSelected(item)).toBe(true)
   })
 
   it('calls next on end reached', () => {

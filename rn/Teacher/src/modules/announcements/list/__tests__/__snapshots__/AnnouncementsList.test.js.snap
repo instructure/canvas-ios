@@ -124,6 +124,7 @@ exports[`AnnouncementsList renders 1`] = `
 <Screen
   navBarColor="blue"
   navBarStyle="dark"
+  onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
       Object {
@@ -688,6 +689,7 @@ exports[`AnnouncementsList renders empty list 1`] = `
 <Screen
   navBarColor="blue"
   navBarStyle="dark"
+  onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
       Object {
@@ -822,6 +824,7 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
 <Screen
   navBarColor="blue"
   navBarStyle="dark"
+  onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
       Object {
@@ -1386,6 +1389,7 @@ exports[`AnnouncementsList renders with no create_announcement permission 1`] = 
 <Screen
   navBarColor="blue"
   navBarStyle="dark"
+  onTraitCollectionChange={[Function]}
   rightBarButtons={false}
   subtitle="Im a course"
   title="Announcements"

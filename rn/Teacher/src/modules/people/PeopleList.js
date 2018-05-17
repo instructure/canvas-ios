@@ -34,6 +34,8 @@ import { Heading1 } from '../../common/text'
 import { LinkButton } from '../../common/buttons'
 import { httpClient, isAbort } from '../../canvas-api'
 import RowSeparator from '../../common/components/rows/RowSeparator'
+import { isRegularDisplayMode } from '../../routing/utils'
+import type { TraitCollection } from '../../routing/Navigator'
 
 export type Props = NavigationProps & {
   onSelect: (selected: AddressBookResult[]) => void,
@@ -104,12 +106,25 @@ export class PeopleList extends Component<Props, any> {
       filters: [],
       showFilter: this.props.showFilter === undefined ? true : this.props.showFilter,
       marginBottom: global.tabBarHeight,
+      selectedRowID: null,
     }
   }
 
   componentDidMount () {
     const context = this._courseContext()
     this._fetchFilterOptions(context, this._fetchInitialActionSheetOptionsHandler)
+  }
+
+  componentWillMount () {
+    this._onTraitCollectionChange()
+  }
+
+  _onTraitCollectionChange () {
+    this.props.navigator.traitCollection((traits) => { this._traitCollectionDidChange(traits) })
+  }
+
+  _traitCollectionDidChange (traits: TraitCollection) {
+    this.setState({ isRegularScreenDisplayMode: isRegularDisplayMode(traits) })
   }
 
   _courseContext = (): string => {
@@ -184,6 +199,9 @@ export class PeopleList extends Component<Props, any> {
       this.showItem(item)
       return
     }
+
+    this.setState({ selectedRowID: item.id })
+
     this.props.navigator.show(
       `/courses/${this.props.course.id}/users/${item.id}`,
       undefined,
@@ -209,12 +227,21 @@ export class PeopleList extends Component<Props, any> {
     return item.id
   }
 
+  _isRowSelected (item: AddressBookResult): boolean {
+    if (this.state && this.state.selectedRowID) {
+      return this.state.isRegularScreenDisplayMode && this.state.selectedRowID === item.id
+    }
+
+    return false
+  }
+
   _renderRow = ({ item, index }) => {
     let border = 'bottom'
     if (index === 0) {
       border = 'both'
     }
 
+    const selected = this._isRowSelected(item)
     const membership = this._mapCourseMembership(item)
     const avatarName = item.id.startsWith('branch') ? i18n('All') : item.name
     const avatar = (<View style={styles.avatar}>
@@ -227,7 +254,8 @@ export class PeopleList extends Component<Props, any> {
       renderImage={() => avatar}
       testID={item.id}
       disclosureIndicator={isBranch(item.id)}
-      onPress={() => this._onSelectItem(item)} />
+      onPress={() => this._onSelectItem(item)}
+      selected={selected} />
   }
 
   _renderSearchBar = () => (
@@ -334,6 +362,7 @@ export class PeopleList extends Component<Props, any> {
         drawUnderNavBar
         title={this.props.name || i18n('People')}
         subtitle={(this.props.course && this.props.course.name) || ''}
+        onTraitCollectionChange={this._onTraitCollectionChange.bind(this)}
       >
         { this._renderComponent() }
       </Screen>

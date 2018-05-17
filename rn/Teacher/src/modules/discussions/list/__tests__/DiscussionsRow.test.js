@@ -31,6 +31,7 @@ describe('DiscussionsRow', () => {
       index: 0,
       tintColor: '#fff',
       onToggleDiscussionGrouping: jest.fn(),
+      selected: false,
     }
   })
 

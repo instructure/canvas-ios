@@ -67,6 +67,10 @@ export class QuizzesList extends Component<Props, any> {
   didSelectFirstItem = false
   data: any = []
 
+  componentWillMount () {
+    this.onTraitCollectionChange()
+  }
+
   componentWillReceiveProps (nextProps: Props) {
     if (nextProps.quizzes.length) {
       NativeAccessibility.refresh()
@@ -78,7 +82,7 @@ export class QuizzesList extends Component<Props, any> {
   }
 
   traitCollectionDidChange (traits: TraitCollection) {
-    this.isRegularScreenDisplayMode = isRegularDisplayMode(traits)
+    this.setState({ isRegularScreenDisplayMode: isRegularDisplayMode(traits) })
     if (!this.isRegularScreenDisplayMode) {
       this.didSelectFirstItem = false
     }
@@ -102,7 +106,7 @@ export class QuizzesList extends Component<Props, any> {
   }
 
   renderRow = ({ item, index }: { item: Quiz, index: number }) => {
-    let selected = this.isRegularScreenDisplayMode && this.props.selectedRowID === item.id
+    let selected = this.state && this.state.isRegularScreenDisplayMode && this.state.selectedRowID === item.id
     return (
       <QuizRow
         quiz={item}
@@ -119,6 +123,7 @@ export class QuizzesList extends Component<Props, any> {
   }
 
   _selectedQuiz = (quiz: Quiz) => {
+    this.setState({ selectedRowID: quiz.id })
     this.props.updateCourseDetailsSelectedTabSelectedRow(quiz.id)
     this.props.navigator.show(quiz.html_url)
   }

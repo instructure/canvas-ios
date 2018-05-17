@@ -41,11 +41,12 @@ export type Props = {
   index: number,
   tintColor: ?string,
   onToggleDiscussionGrouping: Function,
+  selected: boolean,
 }
 
 export default class DiscussionsRow extends PureComponent<Props> {
   render () {
-    const discussion = this.props.discussion
+    const { selected, discussion } = this.props
     const points = this.points(discussion)
     const discussionDetails = this.discussionDetails(discussion)
     const unreadDot = this.renderUnreadDot(discussion)
@@ -62,6 +63,7 @@ export default class DiscussionsRow extends PureComponent<Props> {
             testID={`discussion-row-${this.props.index}`}
             onPress={this.onPress}
             height='auto'
+            selected={selected}
           >
             <View style={style.rowContent}>
               <View style={style.mainContentColumn} accessible={false}>

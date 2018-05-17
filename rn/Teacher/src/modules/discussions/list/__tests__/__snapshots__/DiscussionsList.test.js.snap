@@ -5,6 +5,7 @@ exports[`DiscussionsList renders 1`] = `
   drawUnderNavBar={true}
   navBarColor={null}
   navBarStyle="dark"
+  onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
       Object {
@@ -134,6 +135,7 @@ exports[`DiscussionsList renders as student app 1`] = `
   drawUnderNavBar={true}
   navBarColor={null}
   navBarStyle="dark"
+  onTraitCollectionChange={[Function]}
   rightBarButtons={false}
   subtitle={undefined}
   title="Discussions"
@@ -228,6 +230,7 @@ exports[`DiscussionsList renders discussions 1`] = `
   drawUnderNavBar={true}
   navBarColor={null}
   navBarStyle="dark"
+  onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
       Object {
@@ -1545,6 +1548,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
   drawUnderNavBar={true}
   navBarColor={null}
   navBarStyle="dark"
+  onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
       Object {
@@ -2660,6 +2664,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
   drawUnderNavBar={true}
   navBarColor={null}
   navBarStyle="dark"
+  onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
       Object {
@@ -3981,6 +3986,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
   drawUnderNavBar={true}
   navBarColor={null}
   navBarStyle="dark"
+  onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
       Object {
