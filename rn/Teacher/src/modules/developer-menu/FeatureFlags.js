@@ -23,8 +23,15 @@ import {
 
 import Screen from '../../routing/Screen'
 import Row from '../../common/components/rows/Row'
-import { featureFlags, exemptDomains, featureFlagEnabled } from '../../common/feature-flags'
+import { featureFlags, exemptDomains, featureFlagEnabled, type FeatureFlagName } from '../../common/feature-flags'
 import { Heading1, Text } from '../../common/text'
+
+function subtitle (flagName: FeatureFlagName) {
+  const flag = featureFlags[flagName]
+  const domains = (flag.exempt && flag.exempt.domains) || []
+  const apps = (flag.exempt && flag.exempt.apps) || []
+  return `On for: \n${domains.concat(apps).join('\n')}`
+}
 
 export default class FeatureFlags extends Component<any, any> {
   render () {
@@ -40,7 +47,7 @@ export default class FeatureFlags extends Component<any, any> {
               <Row
                 title={flagName}
                 key={flagName}
-                subtitle={`On for: \n${featureFlags[flagName].exempt.join('\n')}`}
+                subtitle={subtitle(flagName)}
                 border='bottom'
                 accessories={<Text>{featureFlagEnabled(flagName) ? 'On' : 'Off'}</Text>}
               />

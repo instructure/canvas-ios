@@ -37,11 +37,17 @@ open class FeatureFlags: NSObject {
             return true
         }
         
-        if let featureFlag = featureFlags[flagName.rawValue] as? [String: Any] {
-            // if the flag exists return whether or not the domain is listed in
-            // the exempt institutions
-            if let institutions = featureFlag["exempt"] as? [String] {
-                return institutions.contains(baseURL)
+        if let featureFlag = featureFlags[flagName.rawValue] as? [String: [String: Any]] {
+            if let exemptions = featureFlag["exempt"] {
+                // if the flag exists return whether or not the domain is listed in
+                // the exemptions
+                if let institutions = exemptions["domains"] as? [String] {
+                    return institutions.contains(baseURL)
+                }
+
+                if let apps = exemptions["apps"] as? [String] {
+                    return apps.contains(NativeLoginManager.shared().app.rawValue)
+                }
             }
         } else {
             // if the flag doesn't exist then it must not be a feature flag

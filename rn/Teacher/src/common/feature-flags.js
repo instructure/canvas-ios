@@ -18,9 +18,15 @@
 
 import { getSession } from '../canvas-api/session'
 import { NativeModules, AsyncStorage } from 'react-native'
+import app, { type AppId } from '../modules/app'
+
+type Exemption = {
+  domains?: Array<string>,
+  apps?: Array<AppId>,
+}
 
 type FeatureFlag = {
-  exempt: string[],
+  exempt?: Exemption,
 }
 
 export const featureFlagKey = 'teacher.developermenu.featureflagkey'
@@ -33,18 +39,18 @@ const { FeatureFlagsManager } = NativeModules
 // from here and see where flow tells us we are still trying to use it
 // This should be an enum so when adding more feature flags it should look like
 // type FeatureFlagName = 'someFeatureFlag' | 'otherFeatureFlag'
-type FeatureFlagName = 'pageViewLogging' | 'favoriteGroups' | 'newGroupNavigation' | 'rceUserFiles' | 'simpleDiscussionRenderer'
+export type FeatureFlagName = 'pageViewLogging' | 'favoriteGroups' | 'newGroupNavigation' | 'rceUserFiles' | 'simpleDiscussionRenderer'
 
 // if a feature is listed here it will be turned off
 // unless in development, the current user is on a domain
 // that should always have every feature flag turned on
 // or the domain has been added as an exceptions
 export const featureFlags: { [FeatureFlagName]: FeatureFlag } = {
-  pageViewLogging: { exempt: [] },
-  favoriteGroups: { exempt: [] },
-  newGroupNavigation: { exempt: [] },
-  rceUserFiles: { exempt: [] },
-  simpleDiscussionRenderer: { exempt: [] },
+  pageViewLogging: {},
+  favoriteGroups: {},
+  newGroupNavigation: {},
+  rceUserFiles: { exempt: { apps: ['teacher'] } },
+  simpleDiscussionRenderer: {},
 }
 
 export const exemptDomains = [
@@ -74,7 +80,11 @@ export function featureFlagEnabled (flagName: FeatureFlagName): boolean {
     return true
   }
 
-  if (flag.exempt.includes(session.baseURL)) {
+  if (flag.exempt && flag.exempt.apps && flag.exempt.apps.includes(app.current().appId)) {
+    return true
+  }
+
+  if (flag.exempt && flag.exempt.domains && flag.exempt.domains.includes(session.baseURL)) {
     return true
   }
 
