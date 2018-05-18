@@ -166,6 +166,8 @@ public final class Soseedy_SeedyAssignmentsServiceClient: ServiceClientBase, Sos
 }
 
 /// To build a server, implement a class that conforms to this protocol.
+/// If one of the methods returning `ServerStatus?` returns nil,
+/// it is expected that you have already returned a status to the client by means of `session.close`.
 public protocol Soseedy_SeedyAssignmentsProvider {
   func createAssignment(request: Soseedy_CreateAssignmentRequest, session: Soseedy_SeedyAssignmentsCreateAssignmentSession) throws -> Soseedy_Assignment
   func createAssignmentOverride(request: Soseedy_CreateAssignmentOverrideRequest, session: Soseedy_SeedyAssignmentsCreateAssignmentOverrideSession) throws -> Soseedy_AssignmentOverride
@@ -219,48 +221,43 @@ public final class Soseedy_SeedyAssignmentsServer: ServiceServer {
     super.init(address: address, certificateString: certificateString, keyString: keyString)
   }
 
-  /// Start the server.
-  public override func handleMethod(_ method: String, handler: Handler, queue: DispatchQueue) throws -> Bool {
+  /// Determines and calls the appropriate request handler, depending on the request's method.
+  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
+  public override func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
     let provider = self.provider
     switch method {
     case "/soseedy.SeedyAssignments/CreateAssignment":
-      try Soseedy_SeedyAssignmentsCreateAssignmentSessionBase(
+      return try Soseedy_SeedyAssignmentsCreateAssignmentSessionBase(
         handler: handler,
         providerBlock: { try provider.createAssignment(request: $0, session: $1 as! Soseedy_SeedyAssignmentsCreateAssignmentSessionBase) })
-          .run(queue: queue)
-      return true
+          .run()
     case "/soseedy.SeedyAssignments/CreateAssignmentOverride":
-      try Soseedy_SeedyAssignmentsCreateAssignmentOverrideSessionBase(
+      return try Soseedy_SeedyAssignmentsCreateAssignmentOverrideSessionBase(
         handler: handler,
         providerBlock: { try provider.createAssignmentOverride(request: $0, session: $1 as! Soseedy_SeedyAssignmentsCreateAssignmentOverrideSessionBase) })
-          .run(queue: queue)
-      return true
+          .run()
     case "/soseedy.SeedyAssignments/SubmitCourseAssignment":
-      try Soseedy_SeedyAssignmentsSubmitCourseAssignmentSessionBase(
+      return try Soseedy_SeedyAssignmentsSubmitCourseAssignmentSessionBase(
         handler: handler,
         providerBlock: { try provider.submitCourseAssignment(request: $0, session: $1 as! Soseedy_SeedyAssignmentsSubmitCourseAssignmentSessionBase) })
-          .run(queue: queue)
-      return true
+          .run()
     case "/soseedy.SeedyAssignments/CreateCourseAssignmentSubmissionComment":
-      try Soseedy_SeedyAssignmentsCreateCourseAssignmentSubmissionCommentSessionBase(
+      return try Soseedy_SeedyAssignmentsCreateCourseAssignmentSubmissionCommentSessionBase(
         handler: handler,
         providerBlock: { try provider.createCourseAssignmentSubmissionComment(request: $0, session: $1 as! Soseedy_SeedyAssignmentsCreateCourseAssignmentSubmissionCommentSessionBase) })
-          .run(queue: queue)
-      return true
+          .run()
     case "/soseedy.SeedyAssignments/SeedAssignments":
-      try Soseedy_SeedyAssignmentsSeedAssignmentsSessionBase(
+      return try Soseedy_SeedyAssignmentsSeedAssignmentsSessionBase(
         handler: handler,
         providerBlock: { try provider.seedAssignments(request: $0, session: $1 as! Soseedy_SeedyAssignmentsSeedAssignmentsSessionBase) })
-          .run(queue: queue)
-      return true
+          .run()
     case "/soseedy.SeedyAssignments/SeedAssignmentSubmission":
-      try Soseedy_SeedyAssignmentsSeedAssignmentSubmissionSessionBase(
+      return try Soseedy_SeedyAssignmentsSeedAssignmentSubmissionSessionBase(
         handler: handler,
         providerBlock: { try provider.seedAssignmentSubmission(request: $0, session: $1 as! Soseedy_SeedyAssignmentsSeedAssignmentSubmissionSessionBase) })
-          .run(queue: queue)
-      return true
+          .run()
     default:
-      return false
+      throw HandleMethodError.unknownMethod
     }
   }
 }

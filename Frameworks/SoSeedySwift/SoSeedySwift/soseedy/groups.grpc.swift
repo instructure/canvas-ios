@@ -100,6 +100,8 @@ public final class Soseedy_SeedyGroupsServiceClient: ServiceClientBase, Soseedy_
 }
 
 /// To build a server, implement a class that conforms to this protocol.
+/// If one of the methods returning `ServerStatus?` returns nil,
+/// it is expected that you have already returned a status to the client by means of `session.close`.
 public protocol Soseedy_SeedyGroupsProvider {
   func createCourseGroupCategory(request: Soseedy_CreateCourseGroupCategoryRequest, session: Soseedy_SeedyGroupsCreateCourseGroupCategorySession) throws -> Soseedy_GroupCategory
   func createGroup(request: Soseedy_CreateGroupRequest, session: Soseedy_SeedyGroupsCreateGroupSession) throws -> Soseedy_Group
@@ -138,30 +140,28 @@ public final class Soseedy_SeedyGroupsServer: ServiceServer {
     super.init(address: address, certificateString: certificateString, keyString: keyString)
   }
 
-  /// Start the server.
-  public override func handleMethod(_ method: String, handler: Handler, queue: DispatchQueue) throws -> Bool {
+  /// Determines and calls the appropriate request handler, depending on the request's method.
+  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
+  public override func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
     let provider = self.provider
     switch method {
     case "/soseedy.SeedyGroups/CreateCourseGroupCategory":
-      try Soseedy_SeedyGroupsCreateCourseGroupCategorySessionBase(
+      return try Soseedy_SeedyGroupsCreateCourseGroupCategorySessionBase(
         handler: handler,
         providerBlock: { try provider.createCourseGroupCategory(request: $0, session: $1 as! Soseedy_SeedyGroupsCreateCourseGroupCategorySessionBase) })
-          .run(queue: queue)
-      return true
+          .run()
     case "/soseedy.SeedyGroups/CreateGroup":
-      try Soseedy_SeedyGroupsCreateGroupSessionBase(
+      return try Soseedy_SeedyGroupsCreateGroupSessionBase(
         handler: handler,
         providerBlock: { try provider.createGroup(request: $0, session: $1 as! Soseedy_SeedyGroupsCreateGroupSessionBase) })
-          .run(queue: queue)
-      return true
+          .run()
     case "/soseedy.SeedyGroups/CreateGroupMembership":
-      try Soseedy_SeedyGroupsCreateGroupMembershipSessionBase(
+      return try Soseedy_SeedyGroupsCreateGroupMembershipSessionBase(
         handler: handler,
         providerBlock: { try provider.createGroupMembership(request: $0, session: $1 as! Soseedy_SeedyGroupsCreateGroupMembershipSessionBase) })
-          .run(queue: queue)
-      return true
+          .run()
     default:
-      return false
+      throw HandleMethodError.unknownMethod
     }
   }
 }

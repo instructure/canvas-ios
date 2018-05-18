@@ -78,6 +78,8 @@ public final class Soseedy_SeedyGeneralServiceClient: ServiceClientBase, Soseedy
 }
 
 /// To build a server, implement a class that conforms to this protocol.
+/// If one of the methods returning `ServerStatus?` returns nil,
+/// it is expected that you have already returned a status to the client by means of `session.close`.
 public protocol Soseedy_SeedyGeneralProvider {
   func getHealthCheck(request: Soseedy_HealthCheckRequest, session: Soseedy_SeedyGeneralGetHealthCheckSession) throws -> Soseedy_HealthCheck
   func seedData(request: Soseedy_SeedDataRequest, session: Soseedy_SeedyGeneralSeedDataSession) throws -> Soseedy_SeededData
@@ -111,24 +113,23 @@ public final class Soseedy_SeedyGeneralServer: ServiceServer {
     super.init(address: address, certificateString: certificateString, keyString: keyString)
   }
 
-  /// Start the server.
-  public override func handleMethod(_ method: String, handler: Handler, queue: DispatchQueue) throws -> Bool {
+  /// Determines and calls the appropriate request handler, depending on the request's method.
+  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
+  public override func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
     let provider = self.provider
     switch method {
     case "/soseedy.SeedyGeneral/GetHealthCheck":
-      try Soseedy_SeedyGeneralGetHealthCheckSessionBase(
+      return try Soseedy_SeedyGeneralGetHealthCheckSessionBase(
         handler: handler,
         providerBlock: { try provider.getHealthCheck(request: $0, session: $1 as! Soseedy_SeedyGeneralGetHealthCheckSessionBase) })
-          .run(queue: queue)
-      return true
+          .run()
     case "/soseedy.SeedyGeneral/SeedData":
-      try Soseedy_SeedyGeneralSeedDataSessionBase(
+      return try Soseedy_SeedyGeneralSeedDataSessionBase(
         handler: handler,
         providerBlock: { try provider.seedData(request: $0, session: $1 as! Soseedy_SeedyGeneralSeedDataSessionBase) })
-          .run(queue: queue)
-      return true
+          .run()
     default:
-      return false
+      throw HandleMethodError.unknownMethod
     }
   }
 }

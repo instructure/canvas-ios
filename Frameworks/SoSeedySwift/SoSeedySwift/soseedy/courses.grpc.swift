@@ -78,6 +78,8 @@ public final class Soseedy_SeedyCoursesServiceClient: ServiceClientBase, Soseedy
 }
 
 /// To build a server, implement a class that conforms to this protocol.
+/// If one of the methods returning `ServerStatus?` returns nil,
+/// it is expected that you have already returned a status to the client by means of `session.close`.
 public protocol Soseedy_SeedyCoursesProvider {
   func createCourse(request: Soseedy_CreateCourseRequest, session: Soseedy_SeedyCoursesCreateCourseSession) throws -> Soseedy_Course
   func addFavoriteCourse(request: Soseedy_AddFavoriteCourseRequest, session: Soseedy_SeedyCoursesAddFavoriteCourseSession) throws -> Soseedy_Favorite
@@ -111,24 +113,23 @@ public final class Soseedy_SeedyCoursesServer: ServiceServer {
     super.init(address: address, certificateString: certificateString, keyString: keyString)
   }
 
-  /// Start the server.
-  public override func handleMethod(_ method: String, handler: Handler, queue: DispatchQueue) throws -> Bool {
+  /// Determines and calls the appropriate request handler, depending on the request's method.
+  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
+  public override func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
     let provider = self.provider
     switch method {
     case "/soseedy.SeedyCourses/CreateCourse":
-      try Soseedy_SeedyCoursesCreateCourseSessionBase(
+      return try Soseedy_SeedyCoursesCreateCourseSessionBase(
         handler: handler,
         providerBlock: { try provider.createCourse(request: $0, session: $1 as! Soseedy_SeedyCoursesCreateCourseSessionBase) })
-          .run(queue: queue)
-      return true
+          .run()
     case "/soseedy.SeedyCourses/AddFavoriteCourse":
-      try Soseedy_SeedyCoursesAddFavoriteCourseSessionBase(
+      return try Soseedy_SeedyCoursesAddFavoriteCourseSessionBase(
         handler: handler,
         providerBlock: { try provider.addFavoriteCourse(request: $0, session: $1 as! Soseedy_SeedyCoursesAddFavoriteCourseSessionBase) })
-          .run(queue: queue)
-      return true
+          .run()
     default:
-      return false
+      throw HandleMethodError.unknownMethod
     }
   }
 }

@@ -78,6 +78,8 @@ public final class Soseedy_SeedyDiscussionsServiceClient: ServiceClientBase, Sos
 }
 
 /// To build a server, implement a class that conforms to this protocol.
+/// If one of the methods returning `ServerStatus?` returns nil,
+/// it is expected that you have already returned a status to the client by means of `session.close`.
 public protocol Soseedy_SeedyDiscussionsProvider {
   func createAnnouncement(request: Soseedy_CreateAnnouncementRequest, session: Soseedy_SeedyDiscussionsCreateAnnouncementSession) throws -> Soseedy_Discussion
   func createDiscussion(request: Soseedy_CreateDiscussionRequest, session: Soseedy_SeedyDiscussionsCreateDiscussionSession) throws -> Soseedy_Discussion
@@ -111,24 +113,23 @@ public final class Soseedy_SeedyDiscussionsServer: ServiceServer {
     super.init(address: address, certificateString: certificateString, keyString: keyString)
   }
 
-  /// Start the server.
-  public override func handleMethod(_ method: String, handler: Handler, queue: DispatchQueue) throws -> Bool {
+  /// Determines and calls the appropriate request handler, depending on the request's method.
+  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
+  public override func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
     let provider = self.provider
     switch method {
     case "/soseedy.SeedyDiscussions/CreateAnnouncement":
-      try Soseedy_SeedyDiscussionsCreateAnnouncementSessionBase(
+      return try Soseedy_SeedyDiscussionsCreateAnnouncementSessionBase(
         handler: handler,
         providerBlock: { try provider.createAnnouncement(request: $0, session: $1 as! Soseedy_SeedyDiscussionsCreateAnnouncementSessionBase) })
-          .run(queue: queue)
-      return true
+          .run()
     case "/soseedy.SeedyDiscussions/CreateDiscussion":
-      try Soseedy_SeedyDiscussionsCreateDiscussionSessionBase(
+      return try Soseedy_SeedyDiscussionsCreateDiscussionSessionBase(
         handler: handler,
         providerBlock: { try provider.createDiscussion(request: $0, session: $1 as! Soseedy_SeedyDiscussionsCreateDiscussionSessionBase) })
-          .run(queue: queue)
-      return true
+          .run()
     default:
-      return false
+      throw HandleMethodError.unknownMethod
     }
   }
 }

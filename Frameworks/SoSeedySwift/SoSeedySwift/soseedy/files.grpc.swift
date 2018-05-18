@@ -56,6 +56,8 @@ public final class Soseedy_SeedyFilesServiceClient: ServiceClientBase, Soseedy_S
 }
 
 /// To build a server, implement a class that conforms to this protocol.
+/// If one of the methods returning `ServerStatus?` returns nil,
+/// it is expected that you have already returned a status to the client by means of `session.close`.
 public protocol Soseedy_SeedyFilesProvider {
   func uploadFile(request: Soseedy_UploadFileRequest, session: Soseedy_SeedyFilesUploadFileSession) throws -> Soseedy_Attachment
 }
@@ -84,18 +86,18 @@ public final class Soseedy_SeedyFilesServer: ServiceServer {
     super.init(address: address, certificateString: certificateString, keyString: keyString)
   }
 
-  /// Start the server.
-  public override func handleMethod(_ method: String, handler: Handler, queue: DispatchQueue) throws -> Bool {
+  /// Determines and calls the appropriate request handler, depending on the request's method.
+  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
+  public override func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
     let provider = self.provider
     switch method {
     case "/soseedy.SeedyFiles/UploadFile":
-      try Soseedy_SeedyFilesUploadFileSessionBase(
+      return try Soseedy_SeedyFilesUploadFileSessionBase(
         handler: handler,
         providerBlock: { try provider.uploadFile(request: $0, session: $1 as! Soseedy_SeedyFilesUploadFileSessionBase) })
-          .run(queue: queue)
-      return true
+          .run()
     default:
-      return false
+      throw HandleMethodError.unknownMethod
     }
   }
 }

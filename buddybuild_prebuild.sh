@@ -31,5 +31,7 @@ then
   retry_command brew tap caskroom/versions
   retry_command brew cask install java8
   sudo ln -sf $(/usr/libexec/java_home)/bin/java /usr/bin/java
+  echo "Starting soseedygrpc-all.jar"
+  /usr/bin/java -jar ./scripts/grpc/soseedygrpc-all.jar &
   exit 0
 fi
