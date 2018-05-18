@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Doesnt render groups when in the teacher app 1`] = `
+exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
 <Screen
   leftBarButtons={
     Array [
@@ -988,7 +988,7 @@ exports[`Doesnt render groups when in the teacher app 1`] = `
 </Screen>
 `;
 
-exports[`Only renders courses when !isFullDashboard 1`] = `
+exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
 <Screen
   navBarButtonColor="#374A59"
   navBarColor="#374A59"
@@ -2151,7 +2151,7 @@ exports[`Only renders courses when !isFullDashboard 1`] = `
 </Screen>
 `;
 
-exports[`render 1`] = `
+exports[`Dashboard render 1`] = `
 <Screen
   leftBarButtons={
     Array [
@@ -2313,27 +2313,6 @@ exports[`render 1`] = `
           "seeAll": [Function],
           "title": "Courses",
         },
-        Object {
-          "data": Array [
-            Object {
-              "color": "#27B9CD",
-              "contextName": "Biology 101",
-              "id": "1",
-              "name": "Group 1",
-              "term": "Bio-101",
-            },
-            Object {
-              "color": "#8F3E99",
-              "contextName": "American Literature Psysicks foobar hello world 401",
-              "id": "2",
-              "name": "Group 2",
-            },
-          ],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.groups",
-          "title": "Groups",
-        },
       ]
     }
     disableVirtualization={false}
@@ -2481,27 +2460,6 @@ exports[`render 1`] = `
           "sectionID": "dashboard.courses",
           "seeAll": [Function],
           "title": "Courses",
-        },
-        Object {
-          "data": Array [
-            Object {
-              "color": "#27B9CD",
-              "contextName": "Biology 101",
-              "id": "1",
-              "name": "Group 1",
-              "term": "Bio-101",
-            },
-            Object {
-              "color": "#8F3E99",
-              "contextName": "American Literature Psysicks foobar hello world 401",
-              "id": "2",
-              "name": "Group 2",
-            },
-          ],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.groups",
-          "title": "Groups",
         },
       ]
     }
@@ -3170,324 +3128,6 @@ exports[`render 1`] = `
         style={null}
       />
       <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View
-          accessibitilityTraits="heading"
-          style={
-            Array [
-              Object {
-                "padding": 8,
-                "width": 359,
-              },
-              Object {
-                "alignItems": "flex-end",
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "paddingBottom": 0,
-                "paddingTop": 16,
-              },
-            ]
-          }
-        >
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
-                },
-                undefined,
-              ]
-            }
-            testID="dashboard.groups.heading-lbl"
-          >
-            Groups
-          </Text>
-        </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <TouchableHighlight
-          onPress={[Function]}
-          testID="group-row-1"
-          underlayColor="transparent"
-        >
-          <View>
-            <View
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "#ffffff01",
-                    "shadowColor": "#000",
-                    "shadowOffset": Object {
-                      "height": 1,
-                      "width": 0,
-                    },
-                    "shadowOpacity": 0.2,
-                    "shadowRadius": 1,
-                  },
-                  Object {
-                    "padding": 8,
-                    "width": 359,
-                  },
-                ]
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "backgroundColor": "white",
-                      "borderColor": "#e3e3e3",
-                      "borderRadius": 4,
-                      "borderWidth": 0.5,
-                      "flex": 1,
-                      "overflow": "hidden",
-                    },
-                    Object {
-                      "flexDirection": "row",
-                      "minHeight": 82,
-                    },
-                  ]
-                }
-              >
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "width": 4,
-                      },
-                      Object {
-                        "backgroundColor": "#27B9CD",
-                      },
-                    ]
-                  }
-                />
-                <View
-                  style={
-                    Object {
-                      "margin": 8,
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "fontSize": 18,
-                          "fontWeight": "600",
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
-                      ]
-                    }
-                  >
-                    Group 1
-                  </Text>
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#7F91A7",
-                          "fontSize": 14,
-                        },
-                        Array [
-                          Object {
-                            "color": "#27B9CD",
-                          },
-                          Object {
-                            "fontSize": 16,
-                            "fontWeight": "600",
-                          },
-                        ],
-                      ]
-                    }
-                  >
-                    Biology 101
-                  </Text>
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#7F91A7",
-                          "fontSize": 14,
-                        },
-                        Object {
-                          "fontSize": 12,
-                          "fontWeight": "600",
-                        },
-                      ]
-                    }
-                  >
-                    BIO-101
-                  </Text>
-                </View>
-              </View>
-            </View>
-          </View>
-        </TouchableHighlight>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <TouchableHighlight
-          onPress={[Function]}
-          testID="group-row-2"
-          underlayColor="transparent"
-        >
-          <View>
-            <View
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "#ffffff01",
-                    "shadowColor": "#000",
-                    "shadowOffset": Object {
-                      "height": 1,
-                      "width": 0,
-                    },
-                    "shadowOpacity": 0.2,
-                    "shadowRadius": 1,
-                  },
-                  Object {
-                    "padding": 8,
-                    "width": 359,
-                  },
-                ]
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "backgroundColor": "white",
-                      "borderColor": "#e3e3e3",
-                      "borderRadius": 4,
-                      "borderWidth": 0.5,
-                      "flex": 1,
-                      "overflow": "hidden",
-                    },
-                    Object {
-                      "flexDirection": "row",
-                      "minHeight": 82,
-                    },
-                  ]
-                }
-              >
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "width": 4,
-                      },
-                      Object {
-                        "backgroundColor": "#8F3E99",
-                      },
-                    ]
-                  }
-                />
-                <View
-                  style={
-                    Object {
-                      "margin": 8,
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "fontSize": 18,
-                          "fontWeight": "600",
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
-                      ]
-                    }
-                  >
-                    Group 2
-                  </Text>
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#7F91A7",
-                          "fontSize": 14,
-                        },
-                        Array [
-                          Object {
-                            "color": "#8F3E99",
-                          },
-                          Object {
-                            "fontSize": 16,
-                            "fontWeight": "600",
-                          },
-                        ],
-                      ]
-                    }
-                  >
-                    American Literature Psysicks foobar hello world 401
-                  </Text>
-                </View>
-              </View>
-            </View>
-          </View>
-        </TouchableHighlight>
-      </View>
-      <View
         style={
           Object {
             "height": 0,
@@ -3499,7 +3139,7 @@ exports[`render 1`] = `
 </Screen>
 `;
 
-exports[`render while pending 1`] = `
+exports[`Dashboard render while pending 1`] = `
 <Screen
   leftBarButtons={
     Array [
@@ -3661,27 +3301,6 @@ exports[`render while pending 1`] = `
           "seeAll": [Function],
           "title": "Courses",
         },
-        Object {
-          "data": Array [
-            Object {
-              "color": "#27B9CD",
-              "contextName": "Biology 101",
-              "id": "1",
-              "name": "Group 1",
-              "term": "Bio-101",
-            },
-            Object {
-              "color": "#8F3E99",
-              "contextName": "American Literature Psysicks foobar hello world 401",
-              "id": "2",
-              "name": "Group 2",
-            },
-          ],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.groups",
-          "title": "Groups",
-        },
       ]
     }
     disableVirtualization={false}
@@ -3829,27 +3448,6 @@ exports[`render while pending 1`] = `
           "sectionID": "dashboard.courses",
           "seeAll": [Function],
           "title": "Courses",
-        },
-        Object {
-          "data": Array [
-            Object {
-              "color": "#27B9CD",
-              "contextName": "Biology 101",
-              "id": "1",
-              "name": "Group 1",
-              "term": "Bio-101",
-            },
-            Object {
-              "color": "#8F3E99",
-              "contextName": "American Literature Psysicks foobar hello world 401",
-              "id": "2",
-              "name": "Group 2",
-            },
-          ],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.groups",
-          "title": "Groups",
         },
       ]
     }
@@ -4518,324 +4116,6 @@ exports[`render while pending 1`] = `
         style={null}
       />
       <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View
-          accessibitilityTraits="heading"
-          style={
-            Array [
-              Object {
-                "padding": 8,
-                "width": 359,
-              },
-              Object {
-                "alignItems": "flex-end",
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "paddingBottom": 0,
-                "paddingTop": 16,
-              },
-            ]
-          }
-        >
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
-                },
-                undefined,
-              ]
-            }
-            testID="dashboard.groups.heading-lbl"
-          >
-            Groups
-          </Text>
-        </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <TouchableHighlight
-          onPress={[Function]}
-          testID="group-row-1"
-          underlayColor="transparent"
-        >
-          <View>
-            <View
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "#ffffff01",
-                    "shadowColor": "#000",
-                    "shadowOffset": Object {
-                      "height": 1,
-                      "width": 0,
-                    },
-                    "shadowOpacity": 0.2,
-                    "shadowRadius": 1,
-                  },
-                  Object {
-                    "padding": 8,
-                    "width": 359,
-                  },
-                ]
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "backgroundColor": "white",
-                      "borderColor": "#e3e3e3",
-                      "borderRadius": 4,
-                      "borderWidth": 0.5,
-                      "flex": 1,
-                      "overflow": "hidden",
-                    },
-                    Object {
-                      "flexDirection": "row",
-                      "minHeight": 82,
-                    },
-                  ]
-                }
-              >
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "width": 4,
-                      },
-                      Object {
-                        "backgroundColor": "#27B9CD",
-                      },
-                    ]
-                  }
-                />
-                <View
-                  style={
-                    Object {
-                      "margin": 8,
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "fontSize": 18,
-                          "fontWeight": "600",
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
-                      ]
-                    }
-                  >
-                    Group 1
-                  </Text>
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#7F91A7",
-                          "fontSize": 14,
-                        },
-                        Array [
-                          Object {
-                            "color": "#27B9CD",
-                          },
-                          Object {
-                            "fontSize": 16,
-                            "fontWeight": "600",
-                          },
-                        ],
-                      ]
-                    }
-                  >
-                    Biology 101
-                  </Text>
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#7F91A7",
-                          "fontSize": 14,
-                        },
-                        Object {
-                          "fontSize": 12,
-                          "fontWeight": "600",
-                        },
-                      ]
-                    }
-                  >
-                    BIO-101
-                  </Text>
-                </View>
-              </View>
-            </View>
-          </View>
-        </TouchableHighlight>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <TouchableHighlight
-          onPress={[Function]}
-          testID="group-row-2"
-          underlayColor="transparent"
-        >
-          <View>
-            <View
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "#ffffff01",
-                    "shadowColor": "#000",
-                    "shadowOffset": Object {
-                      "height": 1,
-                      "width": 0,
-                    },
-                    "shadowOpacity": 0.2,
-                    "shadowRadius": 1,
-                  },
-                  Object {
-                    "padding": 8,
-                    "width": 359,
-                  },
-                ]
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "backgroundColor": "white",
-                      "borderColor": "#e3e3e3",
-                      "borderRadius": 4,
-                      "borderWidth": 0.5,
-                      "flex": 1,
-                      "overflow": "hidden",
-                    },
-                    Object {
-                      "flexDirection": "row",
-                      "minHeight": 82,
-                    },
-                  ]
-                }
-              >
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "width": 4,
-                      },
-                      Object {
-                        "backgroundColor": "#8F3E99",
-                      },
-                    ]
-                  }
-                />
-                <View
-                  style={
-                    Object {
-                      "margin": 8,
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "fontSize": 18,
-                          "fontWeight": "600",
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
-                      ]
-                    }
-                  >
-                    Group 2
-                  </Text>
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#7F91A7",
-                          "fontSize": 14,
-                        },
-                        Array [
-                          Object {
-                            "color": "#8F3E99",
-                          },
-                          Object {
-                            "fontSize": 16,
-                            "fontWeight": "600",
-                          },
-                        ],
-                      ]
-                    }
-                  >
-                    American Literature Psysicks foobar hello world 401
-                  </Text>
-                </View>
-              </View>
-            </View>
-          </View>
-        </TouchableHighlight>
-      </View>
-      <View
         style={
           Object {
             "height": 0,
@@ -4847,7 +4127,7 @@ exports[`render while pending 1`] = `
 </Screen>
 `;
 
-exports[`render without courses and *zero* total courses 1`] = `
+exports[`Dashboard render without courses and *zero* total courses 1`] = `
 <Screen
   leftBarButtons={
     Array [
@@ -4909,27 +4189,6 @@ exports[`render without courses and *zero* total courses 1`] = `
           "seeAll": [Function],
           "title": "Courses",
         },
-        Object {
-          "data": Array [
-            Object {
-              "color": "#27B9CD",
-              "contextName": "Biology 101",
-              "id": "1",
-              "name": "Group 1",
-              "term": "Bio-101",
-            },
-            Object {
-              "color": "#8F3E99",
-              "contextName": "American Literature Psysicks foobar hello world 401",
-              "id": "2",
-              "name": "Group 2",
-            },
-          ],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.groups",
-          "title": "Groups",
-        },
       ]
     }
     disableVirtualization={false}
@@ -4977,27 +4236,6 @@ exports[`render without courses and *zero* total courses 1`] = `
           "sectionID": "dashboard.courses",
           "seeAll": [Function],
           "title": "Courses",
-        },
-        Object {
-          "data": Array [
-            Object {
-              "color": "#27B9CD",
-              "contextName": "Biology 101",
-              "id": "1",
-              "name": "Group 1",
-              "term": "Bio-101",
-            },
-            Object {
-              "color": "#8F3E99",
-              "contextName": "American Literature Psysicks foobar hello world 401",
-              "id": "2",
-              "name": "Group 2",
-            },
-          ],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.groups",
-          "title": "Groups",
         },
       ]
     }
@@ -5117,109 +4355,29 @@ exports[`render without courses and *zero* total courses 1`] = `
         style={null}
       >
         <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "flexDirection": "column",
-                "justifyContent": "center",
-                "paddingHorizontal": 40,
-              },
-              Object {
-                "height": 300,
-                "width": 359,
-              },
-            ]
-          }
+          onLayout={[Function]}
         >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
+          <View
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
+                  "alignItems": "center",
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                  "paddingHorizontal": 40,
                 },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 30,
-                  "lineHeight": 36,
-                  "marginBottom": 8,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
+                Array [
+                  Object {
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "height": -60,
+                    "width": 359,
+                  },
+                ],
               ]
             }
-            testID="no-courses.welcome-lbl"
-          >
-            Welcome!
-          </Text>
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Object {
-                  "color": "#8B969E",
-                  "fontSize": 16,
-                  "lineHeight": 19,
-                  "marginBottom": 40,
-                  "paddingHorizontal": 10,
-                  "textAlign": "center",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-              ]
-            }
-            testID="no-courses.description-lbl"
-          >
-            Add a few of your favorite courses to make this place your home.
-          </Text>
-          <TouchableOpacity
-            accessibilityComponentType="button"
-            accessibilityTraits="button"
-            activeOpacity={0.2}
-            delayLongPress={undefined}
-            delayPressIn={undefined}
-            delayPressOut={undefined}
-            onLongPress={undefined}
-            onPress={[Function]}
-            onPressIn={undefined}
-            onPressOut={undefined}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "#374A59",
-                  "borderRadius": 8,
-                  "overflow": "hidden",
-                  "padding": 10,
-                },
-                Object {
-                  "backgroundColor": "#374A59",
-                },
-                Object {
-                  "borderRadius": 4,
-                  "paddingHorizontal": 24,
-                  "paddingVertical": 16,
-                },
-              ]
-            }
-            testID="no-courses.add-courses-btn"
           >
             <Text
               accessible={true}
@@ -5228,354 +4386,122 @@ exports[`render without courses and *zero* total courses 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#007aff",
-                    "fontSize": 17,
-                    "fontWeight": "500",
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 30,
+                    "lineHeight": 36,
+                    "marginBottom": 8,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                ]
+              }
+              testID="no-courses.welcome-lbl"
+            >
+              Welcome!
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 16,
+                    "lineHeight": 19,
+                    "marginBottom": 40,
+                    "paddingHorizontal": 10,
                     "textAlign": "center",
                   },
-                  null,
-                  Array [
-                    Object {
-                      "color": "white",
-                    },
-                    Object {
-                      "color": "white",
-                    },
-                    Object {
-                      "fontSize": 16,
-                      "lineHeight": 19,
-                    },
-                  ],
-                  null,
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
                 ]
               }
+              testID="no-courses.description-lbl"
             >
-              Add Courses
+              Add a few of your favorite courses to make this place your home.
             </Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      />
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View
-          accessibitilityTraits="heading"
-          style={
-            Array [
-              Object {
-                "padding": 8,
-                "width": 359,
-              },
-              Object {
-                "alignItems": "flex-end",
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "paddingBottom": 0,
-                "paddingTop": 16,
-              },
-            ]
-          }
-        >
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
-                },
-                undefined,
-              ]
-            }
-            testID="dashboard.groups.heading-lbl"
-          >
-            Groups
-          </Text>
-        </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <TouchableHighlight
-          onPress={[Function]}
-          testID="group-row-1"
-          underlayColor="transparent"
-        >
-          <View>
-            <View
+            <TouchableOpacity
+              accessibilityComponentType="button"
+              accessibilityTraits="button"
+              activeOpacity={0.2}
+              delayLongPress={undefined}
+              delayPressIn={undefined}
+              delayPressOut={undefined}
+              onLongPress={undefined}
+              onPress={[Function]}
+              onPressIn={undefined}
+              onPressOut={undefined}
               style={
                 Array [
                   Object {
-                    "backgroundColor": "#ffffff01",
-                    "shadowColor": "#000",
-                    "shadowOffset": Object {
-                      "height": 1,
-                      "width": 0,
-                    },
-                    "shadowOpacity": 0.2,
-                    "shadowRadius": 1,
+                    "backgroundColor": "#374A59",
+                    "borderRadius": 8,
+                    "overflow": "hidden",
+                    "padding": 10,
                   },
                   Object {
-                    "padding": 8,
-                    "width": 359,
+                    "backgroundColor": "#374A59",
+                  },
+                  Object {
+                    "borderRadius": 4,
+                    "paddingHorizontal": 24,
+                    "paddingVertical": 16,
                   },
                 ]
               }
+              testID="no-courses.add-courses-btn"
             >
-              <View
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "white",
-                      "borderColor": "#e3e3e3",
-                      "borderRadius": 4,
-                      "borderWidth": 0.5,
-                      "flex": 1,
-                      "overflow": "hidden",
+                      "color": "#007aff",
+                      "fontSize": 17,
+                      "fontWeight": "500",
+                      "textAlign": "center",
                     },
-                    Object {
-                      "flexDirection": "row",
-                      "minHeight": 82,
-                    },
+                    null,
+                    Array [
+                      Object {
+                        "color": "white",
+                      },
+                      Object {
+                        "color": "white",
+                      },
+                      Object {
+                        "fontSize": 16,
+                        "lineHeight": 19,
+                      },
+                    ],
+                    null,
                   ]
                 }
               >
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "width": 4,
-                      },
-                      Object {
-                        "backgroundColor": "#27B9CD",
-                      },
-                    ]
-                  }
-                />
-                <View
-                  style={
-                    Object {
-                      "margin": 8,
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "fontSize": 18,
-                          "fontWeight": "600",
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
-                      ]
-                    }
-                  >
-                    Group 1
-                  </Text>
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#7F91A7",
-                          "fontSize": 14,
-                        },
-                        Array [
-                          Object {
-                            "color": "#27B9CD",
-                          },
-                          Object {
-                            "fontSize": 16,
-                            "fontWeight": "600",
-                          },
-                        ],
-                      ]
-                    }
-                  >
-                    Biology 101
-                  </Text>
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#7F91A7",
-                          "fontSize": 14,
-                        },
-                        Object {
-                          "fontSize": 12,
-                          "fontWeight": "600",
-                        },
-                      ]
-                    }
-                  >
-                    BIO-101
-                  </Text>
-                </View>
-              </View>
-            </View>
+                Add Courses
+              </Text>
+            </TouchableOpacity>
           </View>
-        </TouchableHighlight>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <TouchableHighlight
-          onPress={[Function]}
-          testID="group-row-2"
-          underlayColor="transparent"
-        >
-          <View>
-            <View
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "#ffffff01",
-                    "shadowColor": "#000",
-                    "shadowOffset": Object {
-                      "height": 1,
-                      "width": 0,
-                    },
-                    "shadowOpacity": 0.2,
-                    "shadowRadius": 1,
-                  },
-                  Object {
-                    "padding": 8,
-                    "width": 359,
-                  },
-                ]
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "backgroundColor": "white",
-                      "borderColor": "#e3e3e3",
-                      "borderRadius": 4,
-                      "borderWidth": 0.5,
-                      "flex": 1,
-                      "overflow": "hidden",
-                    },
-                    Object {
-                      "flexDirection": "row",
-                      "minHeight": 82,
-                    },
-                  ]
-                }
-              >
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "width": 4,
-                      },
-                      Object {
-                        "backgroundColor": "#8F3E99",
-                      },
-                    ]
-                  }
-                />
-                <View
-                  style={
-                    Object {
-                      "margin": 8,
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "fontSize": 18,
-                          "fontWeight": "600",
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
-                      ]
-                    }
-                  >
-                    Group 2
-                  </Text>
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#7F91A7",
-                          "fontSize": 14,
-                        },
-                        Array [
-                          Object {
-                            "color": "#8F3E99",
-                          },
-                          Object {
-                            "fontSize": 16,
-                            "fontWeight": "600",
-                          },
-                        ],
-                      ]
-                    }
-                  >
-                    American Literature Psysicks foobar hello world 401
-                  </Text>
-                </View>
-              </View>
-            </View>
-          </View>
-        </TouchableHighlight>
+        </View>
       </View>
       <View
         onLayout={[Function]}
@@ -5593,7 +4519,7 @@ exports[`render without courses and *zero* total courses 1`] = `
 </Screen>
 `;
 
-exports[`render without favorite courses 1`] = `
+exports[`Dashboard render without favorite courses 1`] = `
 <Screen
   leftBarButtons={
     Array [
@@ -5655,27 +4581,6 @@ exports[`render without favorite courses 1`] = `
           "seeAll": [Function],
           "title": "Courses",
         },
-        Object {
-          "data": Array [
-            Object {
-              "color": "#27B9CD",
-              "contextName": "Biology 101",
-              "id": "1",
-              "name": "Group 1",
-              "term": "Bio-101",
-            },
-            Object {
-              "color": "#8F3E99",
-              "contextName": "American Literature Psysicks foobar hello world 401",
-              "id": "2",
-              "name": "Group 2",
-            },
-          ],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.groups",
-          "title": "Groups",
-        },
       ]
     }
     disableVirtualization={false}
@@ -5723,27 +4628,6 @@ exports[`render without favorite courses 1`] = `
           "sectionID": "dashboard.courses",
           "seeAll": [Function],
           "title": "Courses",
-        },
-        Object {
-          "data": Array [
-            Object {
-              "color": "#27B9CD",
-              "contextName": "Biology 101",
-              "id": "1",
-              "name": "Group 1",
-              "term": "Bio-101",
-            },
-            Object {
-              "color": "#8F3E99",
-              "contextName": "American Literature Psysicks foobar hello world 401",
-              "id": "2",
-              "name": "Group 2",
-            },
-          ],
-          "keyExtractor": [Function],
-          "renderItem": [Function],
-          "sectionID": "dashboard.groups",
-          "title": "Groups",
         },
       ]
     }
@@ -5863,109 +4747,29 @@ exports[`render without favorite courses 1`] = `
         style={null}
       >
         <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "flexDirection": "column",
-                "justifyContent": "center",
-                "paddingHorizontal": 40,
-              },
-              Object {
-                "height": 300,
-                "width": 359,
-              },
-            ]
-          }
+          onLayout={[Function]}
         >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
+          <View
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
+                  "alignItems": "center",
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                  "paddingHorizontal": 40,
                 },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 30,
-                  "lineHeight": 36,
-                  "marginBottom": 8,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
+                Array [
+                  Object {
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "height": -60,
+                    "width": 359,
+                  },
+                ],
               ]
             }
-            testID="no-courses.welcome-lbl"
-          >
-            Welcome!
-          </Text>
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Object {
-                  "color": "#8B969E",
-                  "fontSize": 16,
-                  "lineHeight": 19,
-                  "marginBottom": 40,
-                  "paddingHorizontal": 10,
-                  "textAlign": "center",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-              ]
-            }
-            testID="no-courses.description-lbl"
-          >
-            Add a few of your favorite courses to make this place your home.
-          </Text>
-          <TouchableOpacity
-            accessibilityComponentType="button"
-            accessibilityTraits="button"
-            activeOpacity={0.2}
-            delayLongPress={undefined}
-            delayPressIn={undefined}
-            delayPressOut={undefined}
-            onLongPress={undefined}
-            onPress={[Function]}
-            onPressIn={undefined}
-            onPressOut={undefined}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "#374A59",
-                  "borderRadius": 8,
-                  "overflow": "hidden",
-                  "padding": 10,
-                },
-                Object {
-                  "backgroundColor": "#374A59",
-                },
-                Object {
-                  "borderRadius": 4,
-                  "paddingHorizontal": 24,
-                  "paddingVertical": 16,
-                },
-              ]
-            }
-            testID="no-courses.add-courses-btn"
           >
             <Text
               accessible={true}
@@ -5974,354 +4778,122 @@ exports[`render without favorite courses 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#007aff",
-                    "fontSize": 17,
-                    "fontWeight": "500",
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 30,
+                    "lineHeight": 36,
+                    "marginBottom": 8,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                ]
+              }
+              testID="no-courses.welcome-lbl"
+            >
+              Welcome!
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 16,
+                    "lineHeight": 19,
+                    "marginBottom": 40,
+                    "paddingHorizontal": 10,
                     "textAlign": "center",
                   },
-                  null,
-                  Array [
-                    Object {
-                      "color": "white",
-                    },
-                    Object {
-                      "color": "white",
-                    },
-                    Object {
-                      "fontSize": 16,
-                      "lineHeight": 19,
-                    },
-                  ],
-                  null,
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
                 ]
               }
+              testID="no-courses.description-lbl"
             >
-              Add Courses
+              Add a few of your favorite courses to make this place your home.
             </Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      />
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View
-          accessibitilityTraits="heading"
-          style={
-            Array [
-              Object {
-                "padding": 8,
-                "width": 359,
-              },
-              Object {
-                "alignItems": "flex-end",
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "paddingBottom": 0,
-                "paddingTop": 16,
-              },
-            ]
-          }
-        >
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
-                },
-                undefined,
-              ]
-            }
-            testID="dashboard.groups.heading-lbl"
-          >
-            Groups
-          </Text>
-        </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <TouchableHighlight
-          onPress={[Function]}
-          testID="group-row-1"
-          underlayColor="transparent"
-        >
-          <View>
-            <View
+            <TouchableOpacity
+              accessibilityComponentType="button"
+              accessibilityTraits="button"
+              activeOpacity={0.2}
+              delayLongPress={undefined}
+              delayPressIn={undefined}
+              delayPressOut={undefined}
+              onLongPress={undefined}
+              onPress={[Function]}
+              onPressIn={undefined}
+              onPressOut={undefined}
               style={
                 Array [
                   Object {
-                    "backgroundColor": "#ffffff01",
-                    "shadowColor": "#000",
-                    "shadowOffset": Object {
-                      "height": 1,
-                      "width": 0,
-                    },
-                    "shadowOpacity": 0.2,
-                    "shadowRadius": 1,
+                    "backgroundColor": "#374A59",
+                    "borderRadius": 8,
+                    "overflow": "hidden",
+                    "padding": 10,
                   },
                   Object {
-                    "padding": 8,
-                    "width": 359,
+                    "backgroundColor": "#374A59",
+                  },
+                  Object {
+                    "borderRadius": 4,
+                    "paddingHorizontal": 24,
+                    "paddingVertical": 16,
                   },
                 ]
               }
+              testID="no-courses.add-courses-btn"
             >
-              <View
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "white",
-                      "borderColor": "#e3e3e3",
-                      "borderRadius": 4,
-                      "borderWidth": 0.5,
-                      "flex": 1,
-                      "overflow": "hidden",
+                      "color": "#007aff",
+                      "fontSize": 17,
+                      "fontWeight": "500",
+                      "textAlign": "center",
                     },
-                    Object {
-                      "flexDirection": "row",
-                      "minHeight": 82,
-                    },
+                    null,
+                    Array [
+                      Object {
+                        "color": "white",
+                      },
+                      Object {
+                        "color": "white",
+                      },
+                      Object {
+                        "fontSize": 16,
+                        "lineHeight": 19,
+                      },
+                    ],
+                    null,
                   ]
                 }
               >
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "width": 4,
-                      },
-                      Object {
-                        "backgroundColor": "#27B9CD",
-                      },
-                    ]
-                  }
-                />
-                <View
-                  style={
-                    Object {
-                      "margin": 8,
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "fontSize": 18,
-                          "fontWeight": "600",
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
-                      ]
-                    }
-                  >
-                    Group 1
-                  </Text>
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#7F91A7",
-                          "fontSize": 14,
-                        },
-                        Array [
-                          Object {
-                            "color": "#27B9CD",
-                          },
-                          Object {
-                            "fontSize": 16,
-                            "fontWeight": "600",
-                          },
-                        ],
-                      ]
-                    }
-                  >
-                    Biology 101
-                  </Text>
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#7F91A7",
-                          "fontSize": 14,
-                        },
-                        Object {
-                          "fontSize": 12,
-                          "fontWeight": "600",
-                        },
-                      ]
-                    }
-                  >
-                    BIO-101
-                  </Text>
-                </View>
-              </View>
-            </View>
+                Add Courses
+              </Text>
+            </TouchableOpacity>
           </View>
-        </TouchableHighlight>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <TouchableHighlight
-          onPress={[Function]}
-          testID="group-row-2"
-          underlayColor="transparent"
-        >
-          <View>
-            <View
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "#ffffff01",
-                    "shadowColor": "#000",
-                    "shadowOffset": Object {
-                      "height": 1,
-                      "width": 0,
-                    },
-                    "shadowOpacity": 0.2,
-                    "shadowRadius": 1,
-                  },
-                  Object {
-                    "padding": 8,
-                    "width": 359,
-                  },
-                ]
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "backgroundColor": "white",
-                      "borderColor": "#e3e3e3",
-                      "borderRadius": 4,
-                      "borderWidth": 0.5,
-                      "flex": 1,
-                      "overflow": "hidden",
-                    },
-                    Object {
-                      "flexDirection": "row",
-                      "minHeight": 82,
-                    },
-                  ]
-                }
-              >
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "width": 4,
-                      },
-                      Object {
-                        "backgroundColor": "#8F3E99",
-                      },
-                    ]
-                  }
-                />
-                <View
-                  style={
-                    Object {
-                      "margin": 8,
-                    }
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "fontSize": 18,
-                          "fontWeight": "600",
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
-                      ]
-                    }
-                  >
-                    Group 2
-                  </Text>
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#7F91A7",
-                          "fontSize": 14,
-                        },
-                        Array [
-                          Object {
-                            "color": "#8F3E99",
-                          },
-                          Object {
-                            "fontSize": 16,
-                            "fontWeight": "600",
-                          },
-                        ],
-                      ]
-                    }
-                  >
-                    American Literature Psysicks foobar hello world 401
-                  </Text>
-                </View>
-              </View>
-            </View>
-          </View>
-        </TouchableHighlight>
+        </View>
       </View>
       <View
         onLayout={[Function]}
@@ -6339,7 +4911,7 @@ exports[`render without favorite courses 1`] = `
 </Screen>
 `;
 
-exports[`renders course invites 1`] = `
+exports[`Dashboard renders course invites 1`] = `
 <Screen
   leftBarButtons={
     Array [

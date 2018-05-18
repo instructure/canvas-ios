@@ -75,10 +75,12 @@ type Props = {
 }
 type State = {
   width?: number,
+  height?: number,
   cardSize?: number,
   contentWidth?: number,
   showingModal: boolean,
   fetchingEnrollments: boolean,
+  noCoursesLayout: ?{ y: number },
 }
 type SectionListSection = {
   sectionID: string,
@@ -107,9 +109,12 @@ const padding = 8
 const MIN_CARD_SIZE = 150
 
 export class Dashboard extends React.Component<Props, State> {
+  noCourses: ?View
+
   state: State = {
     showingModal: false,
     fetchingEnrollments: false,
+    noCoursesLayout: null,
   }
 
   componentWillReceiveProps (newProps: Props) {
@@ -127,15 +132,16 @@ export class Dashboard extends React.Component<Props, State> {
     }
   }
 
-  calculateLayout = (width: number) => {
+  calculateLayout = (width: number, height: number) => {
     const contentWidth = width - padding - padding
     const columns = Math.floor(contentWidth / MIN_CARD_SIZE)
     const cardSize = contentWidth / columns
-    this.setState({ cardSize, width, contentWidth })
+    this.setState({ cardSize, width, contentWidth, height })
   }
 
-  onLayout = ({ nativeEvent }: { nativeEvent: { layout: { width: number }}}) => {
-    this.calculateLayout(nativeEvent.layout.width)
+  onLayout = ({ nativeEvent }: { nativeEvent: { layout: { width: number, height: number }}}) => {
+    const { width, height } = nativeEvent.layout
+    this.calculateLayout(width, height)
   }
 
   handleInvite = (courseId: string, enrollmentId: string, action: string) => {
@@ -224,14 +230,43 @@ export class Dashboard extends React.Component<Props, State> {
 
   renderNoFavorites = () => {
     const { contentWidth } = this.state
+    const height = this.state.height || 0
+
+    // center empty state vertically in this section
+    let calculatedHeight
+    if (this.showGroups()) {
+      // make it a percentage of the screen height
+      // so that groups show just enough on all phone sizes
+      calculatedHeight = height * 0.7
+    } else {
+      // fill all remaining space
+      const noCoursesLayout = this.state.noCoursesLayout || { y: 0 }
+      const y = noCoursesLayout ? noCoursesLayout.y : 0
+      const headerHeight = 60
+      calculatedHeight = height - y - headerHeight
+    }
 
     return (
-      <NoCourses
-        key='no-courses'
-        onAddCoursePressed={this.showFavoritesList}
-        style={{ width: contentWidth, height: 300 }}
-      />
+      <View onLayout={this.measureNoCourses} ref={this.captureNoCourses}>
+        <NoCourses
+          key='no-courses'
+          onAddCoursePressed={this.showFavoritesList}
+          style={[styles.noCourses, { width: contentWidth, height: calculatedHeight }]}
+        />
+      </View>
     )
+  }
+
+  captureNoCourses = (ref: ?View) => {
+    this.noCourses = ref
+  }
+
+  measureNoCourses = () => {
+    if (this.noCourses && !this.state.noCoursesLayout) {
+      this.noCourses.measure((vx, vy, width, height, x, y) => {
+        this.setState({ noCoursesLayout: { y } })
+      })
+    }
   }
 
   renderGroup = ({ item }: { item: GroupRowProps }) => {
@@ -313,9 +348,7 @@ export class Dashboard extends React.Component<Props, State> {
     }
 
     // Groups
-    if (isStudent() &&
-        this.props.groups &&
-        this.props.groups.length > 0) {
+    if (this.showGroups()) {
       sections.push({
         sectionID: 'dashboard.groups',
         title: i18n('Groups'),
@@ -326,6 +359,10 @@ export class Dashboard extends React.Component<Props, State> {
     }
 
     return sections
+  }
+
+  showGroups = () => {
+    return isStudent() && this.props.groups && this.props.groups.length > 0
   }
 
   renderDashboard = () => {
@@ -404,9 +441,9 @@ export class Dashboard extends React.Component<Props, State> {
         navBarColor={color.navBarColor}
         navBarButtonColor={color.navBarTextColor}
         statusBarStyle={color.statusBarStyle}
-      >{
-          this.renderDashboard()
-        }</Screen>
+      >
+        {this.renderDashboard()}
+      </Screen>
     )
   }
 }
@@ -423,6 +460,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     padding,
+  },
+  noCourses: {
+    flexDirection: 'column',
+    justifyContent: 'center',
   },
 })
 
