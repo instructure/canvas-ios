@@ -20,10 +20,11 @@ import CocoaLumberjack
 
 public class LoginConfiguration: NSObject, CanvasKeymasterDelegate {
     
-    public init(mobileVerifyName: String, logo: UIImage, fullLogo: UIImage) {
+    public init(mobileVerifyName: String, logo: UIImage, fullLogo: UIImage, supportsCanvasNetworkLogin: Bool = true) {
         self.appNameForMobileVerify = mobileVerifyName
         self.logoForDomainPicker = logo
         self.fullLogoForDomainPicker = fullLogo
+        self.supportsCanvasNetworkLogin = supportsCanvasNetworkLogin
     }
     
   public let logFileManager: DDLogFileManagerDefault = {
@@ -34,6 +35,7 @@ public class LoginConfiguration: NSObject, CanvasKeymasterDelegate {
   public var appNameForMobileVerify: String
   public let logoForDomainPicker: UIImage
   public let fullLogoForDomainPicker: UIImage
+  public let supportsCanvasNetworkLogin: Bool
     
   public var backgroundViewForDomainPicker: UIView {
     let view = UIView()

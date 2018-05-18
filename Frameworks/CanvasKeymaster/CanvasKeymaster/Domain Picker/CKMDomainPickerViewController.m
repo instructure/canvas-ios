@@ -89,6 +89,7 @@ static BOOL PerformedStartupAnimation = NO;
     self.logoImageStageTwoConstraint.active = false;
     self.findSchoolButton.layer.cornerRadius = 5.0;
     self.findSchoolButton.clipsToBounds = YES;
+    self.canvasNetworkButton.hidden = !TheKeymaster.delegate.supportsCanvasNetworkLogin;
     
     self.bottomContainerHiddenConstraint = [self.view.bottomAnchor constraintEqualToAnchor:self.bottomContainer.topAnchor];
     self.bottomContainerHiddenConstraint.active = true;

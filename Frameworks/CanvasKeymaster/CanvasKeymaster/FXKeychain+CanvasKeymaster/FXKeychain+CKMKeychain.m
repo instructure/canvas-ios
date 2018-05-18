@@ -77,7 +77,7 @@ static const NSString *CBIKeychainClients = @"CBIKeychainClients";
 + (instancetype)sharedKeychain
 {
     NSString *bundleID = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleIdentifierKey];
-    if ([bundleID isEqualToString:@"com.instructure.ios.teacher"]) {
+    if ([bundleID isEqualToString:@"com.instructure.ios.teacher"] || [bundleID isEqualToString:@"com.instructure.parentapp"]) {
         return [FXKeychain defaultKeychain];
     }
     

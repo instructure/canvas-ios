@@ -42,7 +42,7 @@ import device from 'react-native-device-info'
 import Row from '@common/components/rows/Row'
 import RowWithSwitch from '@common/components/rows/RowWithSwitch'
 import RowSeparator from '@common/components/rows/RowSeparator'
-import { isStudent } from '@modules/app'
+import { isStudent, isParent } from '@modules/app'
 import canvas, { getSession, httpCache } from '@canvas-api'
 import { connect } from 'react-redux'
 import Actions from '@modules/userInfo/actions'
@@ -176,6 +176,11 @@ export class Profile extends Component<Object, State> {
     this.props.navigator.show('/users/self/files', { modal: true }, { customPageViewPath: '/files' })
   }
 
+  manageObserverStudents = async () => {
+    await this.props.navigator.dismiss()
+    this.props.navigator.show('/parent/manage-students', { modal: true })
+  }
+
   toggleShowGrades = () => {
     this.props.updateShowGradesOnDashboard(!this.props.showsGradesOnCourseCards)
   }
@@ -239,6 +244,7 @@ export class Profile extends Component<Object, State> {
       }).filter(Boolean)
     }
     return (<View>
+      { isParent() && buildRow(i18n('Manage Students'), this.manageObserverStudents)}
       { buildRow(i18n('Files'), this.userFiles) }
       { tools }
       { (this.props.canMasquerade || masquerading) && buildRow(masqueradeTitle, this.toggleMasquerade) }

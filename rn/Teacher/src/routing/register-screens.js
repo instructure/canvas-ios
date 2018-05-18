@@ -79,7 +79,7 @@ import GradesList from '../modules/grades/GradesList'
 import PageViewEvents from '../modules/developer-menu/PageViewEvents'
 import { Store } from 'redux'
 import { registerScreen } from './'
-import { isTeacher, isStudent } from '../modules/app'
+import { isTeacher, isStudent, isParent } from '../modules/app'
 
 export function wrap (name: any): Function {
   return () => name
@@ -205,5 +205,9 @@ export function registerScreens (store: Store): void {
     registerScreen('/native-route/*route')
     // Calls the old routing method as well, but with the canBecomeMaster option
     registerScreen('/native-route-master/*route', null, null, { canBecomeMaster: true })
+  }
+
+  if (isParent()) {
+    registerScreen('/parent/manage-students', null, null, { canBecomeMaster: true })
   }
 }

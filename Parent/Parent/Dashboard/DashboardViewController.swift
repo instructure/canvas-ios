@@ -13,27 +13,21 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-    
-    
+
 
 import UIKit
-
 
 import Result
 import CoreData
 import ReactiveSwift
-
 import CanvasCore
-import CanvasCore
-
-
-import CanvasCore
-
 
 typealias DashboardSettingsAction = (_ session: Session)->Void
 typealias DashboardSelectCalendarEventAction = (_ session: Session, _ observeeID: String, _ calendarEvent: CalendarEvent)->Void
 typealias DashboardSelectCourseAction = (_ session: Session, _ observeeID: String, _ course: Course)->Void
 typealias DashboardSelectAlertAction = (_ session: Session, _ observeeID: String, _ alert: Alert)->Void
+
+let DrawerTransition = DrawerTransitionDelegate()
 
 class DashboardViewController: UIViewController {
     enum TabIndex: Int {
@@ -43,7 +37,6 @@ class DashboardViewController: UIViewController {
     // Views created from storyboard
     @IBOutlet var carouselContainerView: UIView!
     @IBOutlet var observeeNameLabel: UILabel!
-    @IBOutlet weak var settingsButton: UIButton!
 
     @IBOutlet weak var coursesTabView: DashboardTabView!
     @IBOutlet weak var calendarTabView: DashboardTabView!
@@ -62,7 +55,6 @@ class DashboardViewController: UIViewController {
 
     var session: Session!
     
-    var settingsButtonAction: DashboardSettingsAction? = nil
     var selectCourseAction: DashboardSelectCourseAction? = nil
     var selectCalendarEventAction: DashboardSelectCalendarEventAction? = nil
     var selectAlertAction: DashboardSelectAlertAction? = nil
@@ -123,7 +115,6 @@ class DashboardViewController: UIViewController {
         do {
             try setupCarousel()
             setupTabs()
-            setupSettingButton()
             try setupNoStudentsViewController()
         } catch let error as NSError {
             print(error)
@@ -201,14 +192,6 @@ class DashboardViewController: UIViewController {
         tabs = [coursesTabView, calendarTabView, alertsTabView]
         selectTabAtIndex(.courses)
     }
-    
-    func setupSettingButton() {
-        settingsButton.setImage(UIImage(named: "icon_cog")?.withRenderingMode(.alwaysTemplate), for: UIControlState())
-        settingsButton.setImage(UIImage(named: "icon_cog_fill")?.withRenderingMode(.alwaysTemplate), for: .selected)
-        settingsButton.accessibilityLabel = NSLocalizedString("Settings", comment: "Settings Button Title")
-        settingsButton.accessibilityIdentifier = "settings_button"
-        settingsButton.tintColor = UIAccessibilityIsReduceTransparencyEnabled() ? UIColor.black : UIColor.white
-    }
 
     func setupNoStudentsViewController() throws {
         noStudentsViewController = NoStudentsViewController()
@@ -257,7 +240,6 @@ class DashboardViewController: UIViewController {
             alertTabBadgeCountCoordinator = nil
             alertsTabView.badgeView.badgeValue = 0
         }
-
     }
     
     // ---------------------------------------------
@@ -337,8 +319,11 @@ class DashboardViewController: UIViewController {
         self.pageViewController?.setViewControllers([alertsViewController], direction: .forward, animated: true, completion: { _ in })
     }
     
-    @IBAction func settingsButtonPressed(_ sender: UIButton) {
-        settingsButtonAction?(self.session)
+    @IBAction func drawerDashboardButtonPreseed(_ sender: UIButton) {
+        let dashboard = HelmViewController(moduleName: "/profile", props: [:])
+        dashboard.modalPresentationStyle = .custom
+        dashboard.transitioningDelegate = DrawerTransition
+        self.present(dashboard, animated: true, completion: nil)
     }
     
     // ---------------------------------------------

@@ -38,6 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) UIView *backgroundViewForDomainPicker;
 @property (nonatomic, readonly) UIImage *logoForDomainPicker;
 @property (nonatomic, readonly) UIImage *fullLogoForDomainPicker;
+@property (nonatomic, readonly) BOOL supportsCanvasNetworkLogin;
 @property (nonatomic, readonly, nullable) NSString *logFilePath;
 @end
 

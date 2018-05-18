@@ -220,10 +220,6 @@ extension Router {
             }
             
             let dashboardVC = DashboardViewController.new(session: session)
-            dashboardVC.settingsButtonAction = { [weak dashboardVC] session in
-                guard let dashboardVC = dashboardVC else { return }
-                self.route(dashboardVC, toURL: self.settingsRoute(), animated: true, modal: true)
-            }
             dashboardVC.selectCalendarEventAction = { [weak dashboardVC] session, studentID, calendarEvent in
                 guard let dashboardVC = dashboardVC else { return }
                 guard let courseID = ContextID(canvasContext: calendarEvent.contextCode)?.id else {

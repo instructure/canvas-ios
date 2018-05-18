@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="RfP-iM-Wap">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="RfP-iM-Wap">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -142,18 +143,6 @@
                                     <outlet property="titleLabel" destination="Cyr-5h-ISn" id="mRG-eH-uBp"/>
                                 </connections>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Jd-6d-Mng">
-                                <rect key="frame" x="325" y="30" width="40" height="40"/>
-                                <accessibility key="accessibilityConfiguration" identifier="settings_button"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="rxf-Jq-SgS"/>
-                                    <constraint firstAttribute="height" constant="40" id="vVi-GO-2HP"/>
-                                </constraints>
-                                <state key="normal" image="icon_cog"/>
-                                <connections>
-                                    <action selector="settingsButtonPressed:" destination="RfP-iM-Wap" eventType="touchUpInside" id="p61-pJ-UK6"/>
-                                </connections>
-                            </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cdc-P3-RTh">
                                 <rect key="frame" x="0.0" y="198" width="375" height="469"/>
                                 <connections>
@@ -167,6 +156,18 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LhY-UH-BvJ" userLabel="Hamburger Button">
+                                <rect key="frame" x="16" y="28" width="22" height="22"/>
+                                <accessibility key="accessibilityConfiguration" identifier="parent-drawer-button" label="Settings"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="22" id="WBI-uc-NFt"/>
+                                    <constraint firstAttribute="height" constant="22" id="kJQ-s7-bEz"/>
+                                </constraints>
+                                <state key="normal" image="hamburger"/>
+                                <connections>
+                                    <action selector="drawerDashboardButtonPreseed:" destination="RfP-iM-Wap" eventType="touchUpInside" id="dL6-FI-rm6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -174,6 +175,7 @@
                             <constraint firstItem="cdc-P3-RTh" firstAttribute="top" secondItem="ax4-W0-zFC" secondAttribute="bottom" constant="61" id="CaD-H9-6OO">
                                 <variation key="heightClass=compact" constant="57"/>
                             </constraint>
+                            <constraint firstItem="LhY-UH-BvJ" firstAttribute="leading" secondItem="utC-55-lT3" secondAttribute="leadingMargin" id="DJH-tD-Kyb"/>
                             <constraint firstItem="cdc-P3-RTh" firstAttribute="leading" secondItem="utC-55-lT3" secondAttribute="leading" id="EKt-38-ub8"/>
                             <constraint firstItem="wp1-PN-6an" firstAttribute="height" secondItem="ggc-Op-DMI" secondAttribute="height" id="ESv-BL-VQY"/>
                             <constraint firstItem="Yya-kZ-MC1" firstAttribute="leading" secondItem="wp1-PN-6an" secondAttribute="trailing" id="GOh-p1-Jc0"/>
@@ -184,12 +186,11 @@
                             <constraint firstItem="wp1-PN-6an" firstAttribute="width" secondItem="Yya-kZ-MC1" secondAttribute="width" id="SVv-U0-hKM"/>
                             <constraint firstItem="ax4-W0-zFC" firstAttribute="centerX" secondItem="utC-55-lT3" secondAttribute="centerX" id="W7X-CE-4ME"/>
                             <constraint firstItem="Yya-kZ-MC1" firstAttribute="height" secondItem="wp1-PN-6an" secondAttribute="height" id="ZMq-78-HhS"/>
-                            <constraint firstItem="5Jd-6d-Mng" firstAttribute="top" secondItem="Hwq-Ta-nc8" secondAttribute="bottom" constant="10" id="a6C-ng-JKm"/>
                             <constraint firstAttribute="trailing" secondItem="k8J-bS-THt" secondAttribute="trailing" constant="50" id="bw0-pK-aX3"/>
                             <constraint firstItem="cdc-P3-RTh" firstAttribute="top" secondItem="Yya-kZ-MC1" secondAttribute="bottom" constant="4" id="c5W-5O-30n">
                                 <variation key="heightClass=compact" constant="8"/>
                             </constraint>
-                            <constraint firstAttribute="trailing" secondItem="5Jd-6d-Mng" secondAttribute="trailing" constant="10" id="fz9-od-d5q"/>
+                            <constraint firstItem="LhY-UH-BvJ" firstAttribute="top" secondItem="Hwq-Ta-nc8" secondAttribute="bottom" constant="8" id="dfk-8Y-tPc"/>
                             <constraint firstAttribute="bottom" secondItem="cdc-P3-RTh" secondAttribute="bottom" id="gCH-90-a1q"/>
                             <constraint firstAttribute="trailing" secondItem="Yya-kZ-MC1" secondAttribute="trailing" id="h97-dq-o1l"/>
                             <constraint firstItem="Yya-kZ-MC1" firstAttribute="top" secondItem="wp1-PN-6an" secondAttribute="top" id="rMn-6j-7p3"/>
@@ -206,7 +207,6 @@
                         <outlet property="carouselContainerView" destination="k8J-bS-THt" id="VmY-dJ-uO1"/>
                         <outlet property="coursesTabView" destination="ggc-Op-DMI" id="zoh-OM-Spg"/>
                         <outlet property="observeeNameLabel" destination="ax4-W0-zFC" id="Rl1-33-Hb3"/>
-                        <outlet property="settingsButton" destination="5Jd-6d-Mng" id="viL-hG-BeQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FdI-AJ-YUC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -223,6 +223,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icon_cog" width="34" height="34"/>
+        <image name="hamburger" width="22" height="16"/>
     </resources>
 </document>

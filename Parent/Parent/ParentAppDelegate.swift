@@ -30,7 +30,8 @@ class ParentAppDelegate: UIResponder, AppDelegateProtocol {
     var session: Session?
     let loginConfig = LoginConfiguration(mobileVerifyName: "iosParent",
                                          logo: UIImage(named: "parent-logomark")!,
-                                         fullLogo: UIImage(named: "parent-logo")!)
+                                         fullLogo: UIImage(named: "parent-logo")!,
+                                         supportsCanvasNetworkLogin: false)
     
     var visibleController: UIViewController {
         guard var vc = window?.rootViewController else { ❨╯°□°❩╯⌢"No root view controller?!" }
@@ -48,11 +49,6 @@ class ParentAppDelegate: UIResponder, AppDelegateProtocol {
             configureBugSnag()
             setupCrashlytics()
         }
-        
-        UserDefaults.standard.set(true, forKey: "reset_cache_on_next_launch")
-        
-        // TODO: Remove when logging out is functioning
-        ResetAppIfNecessary()
         
         TheKeymaster.fetchesBranding = false
         TheKeymaster.delegate = loginConfig
@@ -243,7 +239,7 @@ extension ParentAppDelegate: NativeLoginManagerDelegate {
         
         let parentID = "087e9ee5-e271-43cf-a9c3-cbef222ef0d8" // twilson: observer1/password
         let baseURL = URL(string: "https://airwolf-iad-prod.instructure.com")
-        let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6IjYzNF9odHRwczovL3R3aWxzb24uaW5zdHJ1Y3R1cmUuY29tLyIsInBhcmVudF9pZCI6IjA4N2U5ZWU1LWUyNzEtNDNjZi1hOWMzLWNiZWYyMjJlZjBkOCIsInRva2VuSWQiOiIyOGQzMmMwYy1lMzg0LTQyMGEtOGFlOC03M2I5NGNmMjYxNzQiLCJpYXQiOjE1MjUzOTE0MjJ9.Jxh7jz14hHqMwMdc2xG6dhG97SE7P3OokVgWNDiEp_F9xgiBqr3x58-BwyhCNQPoSJVCty2zvNEkkVBec7KsTg"
+        let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6IjYzNF9odHRwczovL3R3aWxzb24uaW5zdHJ1Y3R1cmUuY29tLyIsInBhcmVudF9pZCI6IjA4N2U5ZWU1LWUyNzEtNDNjZi1hOWMzLWNiZWYyMjJlZjBkOCIsInRva2VuSWQiOiIzNjBmMTE1Mi0yNGQ4LTQ1ZTQtOTUyMC1hODhmMmE2NzU5NDUiLCJpYXQiOjE1MjY2NjA0MzN9.6KtkgAMHxfDgLntZyMvlHSYt9i0zzeoSbrAhFjZdq5-q2aI6C8t5GhNq-OWFcu1rfFlFn8OSIKbNj911gjfGng"
         
         let sessionUser = SessionUser(id: parentID, name: "")
         self.session = Session(baseURL: baseURL!, user: sessionUser, token: token)
