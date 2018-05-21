@@ -142,20 +142,11 @@
 /* No comment provided by engineer. */
 "Germany" = "Almay";
 
-/* Help Button Title */
-"Help" = "Èd";
-
-/* Help Guide Button */
-"Help Guide" = "Gid Èd";
-
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Klas sesyon elve pa kapab enferyè a klas sesyon fèb";
 
 /* High Course Grade too Low */
 "High course grade cannot be lower than low course grade" = "Klas kou elve pa kapab enferyè a klas kou fèb";
-
-/* Help Menu Message */
-"How can we help?" = "Kijan nou ka ede?";
 
 /* Status level for issue being reported */
 "I can't get things done until fixed" = "Mwen paka fè anyen jiskaske li ranje";
@@ -271,9 +262,6 @@
 /* Canvas Observer Auth Failed Message */
 "Only Canvas observers can authenticate in Canvas Parent." = "Sèlman obsèvatè Canvas ki ka otantifye nan Canvas Parent.";
 
-/* Open Source Components Button */
-"Open Source Components" = "Konpozan Open Source";
-
 /* Open a url in the application Safari */
 "Open in Safari" = "Ouvri nan Safari";
 
@@ -298,14 +286,8 @@
 /* re-authenticate user when token fails */
 "Repair Access" = "Aksè Reparasyon";
 
-/* Report Problem Button */
-"Report a Problem" = "Rapòte yon Pwoblèm";
-
 /* Support Ticket Creation Failed */
 "Request Failed!  Check network and try again!" = "Demann Echwe!  Verifye rezo epi eseye ankò!";
-
-/* Feature Request Button */
-"Request a Feature" = "Mande yon Opsyon";
 
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "Resous entwouvab. Tanpri eseye ankò.";
@@ -318,13 +300,6 @@
 
 /* Server Error Title */
 "Server Error" = "Erè Sèvè";
-
-/* Settings Button Title
-   Title of the settings screen */
-"Settings" = "Reglaj";
-
-/* Share Some Love Button */
-"Share Some Love" = "Pataje yon ti Lanmou";
 
 /* No comment provided by engineer. */
 "Singapore" = "Sengapou";

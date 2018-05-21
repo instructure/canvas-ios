@@ -142,20 +142,11 @@
 /* No comment provided by engineer. */
 "Germany" = "ドイツ";
 
-/* Help Button Title */
-"Help" = "ヘルプ";
-
-/* Help Guide Button */
-"Help Guide" = "ヘルプガイド";
-
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "高い課題成績は、低い課題成績より低くしないでください";
 
 /* High Course Grade too Low */
 "High course grade cannot be lower than low course grade" = "高いコース成績は、低いコース成績より低くしないでください";
-
-/* Help Menu Message */
-"How can we help?" = "ヘルプが必要ですか？";
 
 /* Status level for issue being reported */
 "I can't get things done until fixed" = "修正されるまで作業が何もできません";
@@ -271,9 +262,6 @@
 /* Canvas Observer Auth Failed Message */
 "Only Canvas observers can authenticate in Canvas Parent." = "Canvas オブサーバーのみが Canvas Parent 内で承認を行うことができます。";
 
-/* Open Source Components Button */
-"Open Source Components" = "オープンソースコンポーネント";
-
 /* Open a url in the application Safari */
 "Open in Safari" = "Safariで開く";
 
@@ -298,14 +286,8 @@
 /* re-authenticate user when token fails */
 "Repair Access" = "アクセスを修復する";
 
-/* Report Problem Button */
-"Report a Problem" = "問題を報告する";
-
 /* Support Ticket Creation Failed */
 "Request Failed!  Check network and try again!" = "リクエストに失敗しました！ネットワークをチェックして、もういちど試してください。";
-
-/* Feature Request Button */
-"Request a Feature" = "機能をリクエストする";
 
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "リソースが見つかりません。再度お試しください。";
@@ -318,13 +300,6 @@
 
 /* Server Error Title */
 "Server Error" = "サーバーエラー";
-
-/* Settings Button Title
-   Title of the settings screen */
-"Settings" = "設定";
-
-/* Share Some Love Button */
-"Share Some Love" = "愛を共有しましょう";
 
 /* No comment provided by engineer. */
 "Singapore" = "シンガポール";

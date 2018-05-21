@@ -142,20 +142,11 @@
 /* No comment provided by engineer. */
 "Germany" = "Duitsland";
 
-/* Help Button Title */
-"Help" = "Help";
-
-/* Help Guide Button */
-"Help Guide" = "Hulpgids";
-
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Hoog beoordelingscijfer kan niet lager zijn dan laag beoordelingscijfer";
 
 /* High Course Grade too Low */
 "High course grade cannot be lower than low course grade" = "Hoog cursuscijfer kan niet lager zijn dan laag cursuscijfer";
-
-/* Help Menu Message */
-"How can we help?" = "Hoe kunnen wij helpen?";
 
 /* Status level for issue being reported */
 "I can't get things done until fixed" = "Ik kan niets doen voordat het opgelost is";
@@ -271,9 +262,6 @@
 /* Canvas Observer Auth Failed Message */
 "Only Canvas observers can authenticate in Canvas Parent." = "Alleen Canvas-waarnemers kunnen verifiëren in Canvas Parent.";
 
-/* Open Source Components Button */
-"Open Source Components" = "Open Source-onderdelen";
-
 /* Open a url in the application Safari */
 "Open in Safari" = "Openen in Safari";
 
@@ -298,14 +286,8 @@
 /* re-authenticate user when token fails */
 "Repair Access" = "Toegang tot reparatie";
 
-/* Report Problem Button */
-"Report a Problem" = "Een probleem melden";
-
 /* Support Ticket Creation Failed */
 "Request Failed!  Check network and try again!" = "Verzoek mislukt!  Controleer het netwerk en probeer het nogmaals!";
-
-/* Feature Request Button */
-"Request a Feature" = "Een functie aanvragen";
 
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "Bron niet gevonden. Probeer het nogmaals.";
@@ -318,13 +300,6 @@
 
 /* Server Error Title */
 "Server Error" = "Serverfout";
-
-/* Settings Button Title
-   Title of the settings screen */
-"Settings" = "Instellingen";
-
-/* Share Some Love Button */
-"Share Some Love" = "Deel wat liefde";
 
 /* No comment provided by engineer. */
 "Singapore" = "Singapore";

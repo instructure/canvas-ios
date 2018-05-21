@@ -142,20 +142,11 @@
 /* No comment provided by engineer. */
 "Germany" = "Tiamana";
 
-/* Help Button Title */
-"Help" = "Āwhina";
-
-/* Help Guide Button */
-"Help Guide" = "Aratohu Āwhina";
-
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "e kore e taea e ohipa teitei kōeke e raro atu kōeke taumahi iti";
 
 /* High Course Grade too Low */
 "High course grade cannot be lower than low course grade" = "e kore e taea e kōeke akoranga tiketike e raro atu kōeke akoranga iti";
-
-/* Help Menu Message */
-"How can we help?" = "Nahea tatou e nehenehe e tauturu ia?";
 
 /* Status level for issue being reported */
 "I can't get things done until fixed" = "Ka taea e kore kia mea mahi ahau tae noa ki pūmau";
@@ -271,9 +262,6 @@
 /* Canvas Observer Auth Failed Message */
 "Only Canvas observers can authenticate in Canvas Parent." = "Ka taea e ngā Canvas kaitirotiro te whakamotuhēhē te Canvas Matua.";
 
-/* Open Source Components Button */
-"Open Source Components" = "Tuwhera i ngā puna wāhanga";
-
 /* Open a url in the application Safari */
 "Open in Safari" = "Tuwhera i roto i te Safari";
 
@@ -298,14 +286,8 @@
 /* re-authenticate user when token fails */
 "Repair Access" = "Uru Tapia";
 
-/* Report Problem Button */
-"Report a Problem" = "Pūrongo i te Raruraru";
-
 /* Support Ticket Creation Failed */
 "Request Failed!  Check network and try again!" = "I rāhua te tono!  Tirohia te whatunga ka ngana anō!";
-
-/* Feature Request Button */
-"Request a Feature" = "Tono te Āhuahira";
 
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "Rauemi kore i kitea. Koa ngana anō.";
@@ -318,13 +300,6 @@
 
 /* Server Error Title */
 "Server Error" = "Hapa Tūmau";
-
-/* Settings Button Title
-   Title of the settings screen */
-"Settings" = "Tautuhinga";
-
-/* Share Some Love Button */
-"Share Some Love" = "A faaite i te tahi aroha";
 
 /* No comment provided by engineer. */
 "Singapore" = "Haragapore";

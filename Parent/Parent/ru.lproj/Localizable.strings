@@ -142,20 +142,11 @@
 /* No comment provided by engineer. */
 "Germany" = "Германия";
 
-/* Help Button Title */
-"Help" = "Справка";
-
-/* Help Guide Button */
-"Help Guide" = "Справочное руководство";
-
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Высокая оценка за задание не может быть ниже низкой оценки за задание";
 
 /* High Course Grade too Low */
 "High course grade cannot be lower than low course grade" = "Высокая оценка за курс не может быть ниже низкой оценки за курс";
-
-/* Help Menu Message */
-"How can we help?" = "Как мы можем помочь?";
 
 /* Status level for issue being reported */
 "I can't get things done until fixed" = "Я не могу добиться цели до решения проблемы";
@@ -271,9 +262,6 @@
 /* Canvas Observer Auth Failed Message */
 "Only Canvas observers can authenticate in Canvas Parent." = "Только пользователи, имеющие статус Наблюдателей Canvas, могут аутентифицироваться в Canvas Parent.";
 
-/* Open Source Components Button */
-"Open Source Components" = "Открыть исходные компоненты";
-
 /* Open a url in the application Safari */
 "Open in Safari" = "Открыть в Safari";
 
@@ -298,14 +286,8 @@
 /* re-authenticate user when token fails */
 "Repair Access" = "Настроить доступ";
 
-/* Report Problem Button */
-"Report a Problem" = "Сообщить о проблеме";
-
 /* Support Ticket Creation Failed */
 "Request Failed!  Check network and try again!" = "Сбой при выполнении запроса!  Проверьте сеть и попробуйте еще раз!";
-
-/* Feature Request Button */
-"Request a Feature" = "Запрос функции";
 
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "Ресурс не найден. Пожалуйста, попробуйте еще раз.";
@@ -318,13 +300,6 @@
 
 /* Server Error Title */
 "Server Error" = "Ошибка сервера";
-
-/* Settings Button Title
-   Title of the settings screen */
-"Settings" = "Настройки";
-
-/* Share Some Love Button */
-"Share Some Love" = "Поделись своей любовью";
 
 /* No comment provided by engineer. */
 "Singapore" = "Сингапур";

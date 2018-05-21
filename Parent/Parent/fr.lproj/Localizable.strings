@@ -142,20 +142,11 @@
 /* No comment provided by engineer. */
 "Germany" = "Allemagne";
 
-/* Help Button Title */
-"Help" = "Aide";
-
-/* Help Guide Button */
-"Help Guide" = "Guide d'aide";
-
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "La note 'élevée' du travail assigné ne peut pas être inférieure à la note 'basse' du travail assigné";
 
 /* High Course Grade too Low */
 "High course grade cannot be lower than low course grade" = "La note 'élevée' du cours ne peut pas être inférieure à la note 'basse' du cours";
-
-/* Help Menu Message */
-"How can we help?" = "Comment pouvons-nous vous aider ?";
 
 /* Status level for issue being reported */
 "I can't get things done until fixed" = "Je ne peux rien faire avant que ce ne soit réparé";
@@ -271,9 +262,6 @@
 /* Canvas Observer Auth Failed Message */
 "Only Canvas observers can authenticate in Canvas Parent." = "Seuls les observateurs Canvas peuvent s'identifier dans Canvas Parent.";
 
-/* Open Source Components Button */
-"Open Source Components" = "Composants Open source";
-
 /* Open a url in the application Safari */
 "Open in Safari" = "Ouvrir avec Safari";
 
@@ -298,14 +286,8 @@
 /* re-authenticate user when token fails */
 "Repair Access" = "Réparer l'accès";
 
-/* Report Problem Button */
-"Report a Problem" = "Signaler un problème";
-
 /* Support Ticket Creation Failed */
 "Request Failed!  Check network and try again!" = "La requête a échoué !  Vérifiez l’état du réseau, puis réessayez !";
-
-/* Feature Request Button */
-"Request a Feature" = "Demander une fonctionnalité ";
 
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "Ressource non trouvée. Veuillez réessayer.";
@@ -318,13 +300,6 @@
 
 /* Server Error Title */
 "Server Error" = "Erreur du serveur";
-
-/* Settings Button Title
-   Title of the settings screen */
-"Settings" = "Paramètres";
-
-/* Share Some Love Button */
-"Share Some Love" = "Partagez votre enthousiasme";
 
 /* No comment provided by engineer. */
 "Singapore" = "Singapour";

@@ -142,20 +142,11 @@
 /* No comment provided by engineer. */
 "Germany" = "Tyskland";
 
-/* Help Button Title */
-"Help" = "Hjælp";
-
-/* Help Guide Button */
-"Help Guide" = "Hjælpeguide";
-
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Høj opgavekarakter kan ikke være lavere end lav opgavekarakter";
 
 /* High Course Grade too Low */
 "High course grade cannot be lower than low course grade" = "Høj kursuskarakter kan ikke være lavere end lav kursuskarakter";
-
-/* Help Menu Message */
-"How can we help?" = "Hvordan kan vi hjælpe?";
 
 /* Status level for issue being reported */
 "I can't get things done until fixed" = "Jeg kan ikke udføre ting før det er fikset";
@@ -271,9 +262,6 @@
 /* Canvas Observer Auth Failed Message */
 "Only Canvas observers can authenticate in Canvas Parent." = "Kun Canvas-observatører kan godkende i Canvas Parent.";
 
-/* Open Source Components Button */
-"Open Source Components" = "Open Source-komponenter";
-
 /* Open a url in the application Safari */
 "Open in Safari" = "Åbn i Safari";
 
@@ -298,14 +286,8 @@
 /* re-authenticate user when token fails */
 "Repair Access" = "Reparer adgang";
 
-/* Report Problem Button */
-"Report a Problem" = "Rapporter et problem";
-
 /* Support Ticket Creation Failed */
 "Request Failed!  Check network and try again!" = "Forespørgsel mislykkedes!  Tjek netværk og prøv igen!";
-
-/* Feature Request Button */
-"Request a Feature" = "Anmod om en funktion";
 
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "Resurse ikke fundet. Prøve venligst igen.";
@@ -318,13 +300,6 @@
 
 /* Server Error Title */
 "Server Error" = "Server fejl";
-
-/* Settings Button Title
-   Title of the settings screen */
-"Settings" = "Indstillinger";
-
-/* Share Some Love Button */
-"Share Some Love" = "Del kærlighed";
 
 /* No comment provided by engineer. */
 "Singapore" = "Singapore";

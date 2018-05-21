@@ -142,20 +142,11 @@
 /* No comment provided by engineer. */
 "Germany" = "Deutschland";
 
-/* Help Button Title */
-"Help" = "Hilfe";
-
-/* Help Guide Button */
-"Help Guide" = "Handbuch";
-
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Gute Aufgabennote kann nicht schlechter sein als schlechte Aufgabennote";
 
 /* High Course Grade too Low */
 "High course grade cannot be lower than low course grade" = "Gute Kursnote kann nicht schlechter sein als schlechte Kursnote";
-
-/* Help Menu Message */
-"How can we help?" = "Wie können wir helfen?";
 
 /* Status level for issue being reported */
 "I can't get things done until fixed" = "Ich kann nicht weiterarbeiten, solange das Problem besteht";
@@ -271,9 +262,6 @@
 /* Canvas Observer Auth Failed Message */
 "Only Canvas observers can authenticate in Canvas Parent." = "Nur Canvas-Beobachter können sich bei Canvas Parent authentifizieren.";
 
-/* Open Source Components Button */
-"Open Source Components" = "Open-Source-Komponenten";
-
 /* Open a url in the application Safari */
 "Open in Safari" = "In Safari öffnen";
 
@@ -298,14 +286,8 @@
 /* re-authenticate user when token fails */
 "Repair Access" = "Zugang reparieren";
 
-/* Report Problem Button */
-"Report a Problem" = "Ein Problem melden";
-
 /* Support Ticket Creation Failed */
 "Request Failed!  Check network and try again!" = "Anfrage fehlgeschlagen.  Bitte überprüfen Sie das Netzwerk, und versuchen Sie es erneut.";
-
-/* Feature Request Button */
-"Request a Feature" = "Ein Feature anfordern";
 
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "Ressource nicht gefunden. Bitte versuchen Sie es erneut.";
@@ -318,13 +300,6 @@
 
 /* Server Error Title */
 "Server Error" = "Serverfehler";
-
-/* Settings Button Title
-   Title of the settings screen */
-"Settings" = "Einstellungen";
-
-/* Share Some Love Button */
-"Share Some Love" = "Seid nett zueinander";
 
 /* No comment provided by engineer. */
 "Singapore" = "Singapur";

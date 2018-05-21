@@ -142,20 +142,11 @@
 /* No comment provided by engineer. */
 "Germany" = "ألمانيا";
 
-/* Help Button Title */
-"Help" = "مساعدة";
-
-/* Help Guide Button */
-"Help Guide" = "دليل المساعدة";
-
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "لا يمكن أن تكون أعلى درجة للمهمة أقل من أدنى درجة للمهمة";
 
 /* High Course Grade too Low */
 "High course grade cannot be lower than low course grade" = "لا يمكن أن تكون أعلى درجة للمساق أقل من أدنى درجة للمساق";
-
-/* Help Menu Message */
-"How can we help?" = "كيف يمكننا مساعدتك؟";
 
 /* Status level for issue being reported */
 "I can't get things done until fixed" = "لا يمكنني إنجاز الأشياء قبل أن يتم إصلاحها";
@@ -271,9 +262,6 @@
 /* Canvas Observer Auth Failed Message */
 "Only Canvas observers can authenticate in Canvas Parent." = "بإمكان مراقبي Canvas وحدهم المصادقة في Canvas Parent.";
 
-/* Open Source Components Button */
-"Open Source Components" = "مكونات مفتوحة المصدر";
-
 /* Open a url in the application Safari */
 "Open in Safari" = "الفتح في Safari";
 
@@ -298,14 +286,8 @@
 /* re-authenticate user when token fails */
 "Repair Access" = "إصلاح الوصول";
 
-/* Report Problem Button */
-"Report a Problem" = "الإبلاغ عن مشكلة";
-
 /* Support Ticket Creation Failed */
 "Request Failed!  Check network and try again!" = "فشل الطلب!  تحقق من الشبكة وحاول مرة أخرى!";
-
-/* Feature Request Button */
-"Request a Feature" = "طلب ميزة";
 
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "لم يتم العثور على المورد. يرجى إعادة المحاولة.";
@@ -318,13 +300,6 @@
 
 /* Server Error Title */
 "Server Error" = "خطأ في الخادم";
-
-/* Settings Button Title
-   Title of the settings screen */
-"Settings" = "الإعدادات";
-
-/* Share Some Love Button */
-"Share Some Love" = "شارك حماسك";
 
 /* No comment provided by engineer. */
 "Singapore" = "سنغافورة";
