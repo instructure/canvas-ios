@@ -133,6 +133,14 @@
   },
   {
     "url": "twilson.instructure.com/files/folder/users_12",
+    "title": "User Files Root Folder"
+  },
+  {
+    "url": "twilson.instructure.com/files/folder/users_12/profile%20pictures",
+    "title": "User Files Folder"
+  },
+  {
+    "url": "twilson.instructure.com/users/12/files/folder/profile%20pictures",
     "title": "User Files Folder"
   },
   {

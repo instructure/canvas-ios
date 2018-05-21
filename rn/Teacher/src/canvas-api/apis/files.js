@@ -42,10 +42,9 @@ export function getFolderFolders (folderID: string): ApiPromise<Folder[]> {
   return exhaust(files)
 }
 
-// Get a single folder for a context by id
-// To get the root folder, pass `root` for `folderID`
-export function getContextFolder (context: CanvasContext, contextID: string, folderID: string): ApiPromise<Folder[]> {
-  const url = `${context}/${contextID}/folders/${folderID}`
+// Get the whole folder hierachy from root to this path inclusive
+export function getContextFolderHierarchy (context: CanvasContext, contextID: string, path: string): ApiPromise<Folder[]> {
+  const url = `${context}/${contextID}/folders/by_path/${path}`
   const options = {
     params: {
       include: ['usage_rights'],

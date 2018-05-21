@@ -81,28 +81,70 @@ describe('FilesList', () => {
 
   it('should call the right methods on update at the root folder', async () => {
     const courseID = '5'
-    const getContextFolder = () => Promise.resolve({ data: template.folder() })
+    const getContextFolderHierarchy = jest.fn(() => Promise.resolve({ data: [ template.folder() ] }))
     const getFolderFolders = () => Promise.resolve({ data: [] })
     const getFolderFiles = () => Promise.resolve({ data: [] })
     const filesUpdated = jest.fn()
+    const folderUpdated = jest.fn()
     const foldersUpdated = jest.fn()
 
-    let tree = renderer.create(
+    const tree = shallow(
       <FilesList
         contextID={courseID}
         context={'courses'}
         data={[]}
-        getContextFolder={getContextFolder}
+        getContextFolderHierarchy={getContextFolderHierarchy}
         getFolderFolders={getFolderFolders}
         getFolderFiles={getFolderFiles}
         filesUpdated={filesUpdated}
+        folderUpdated={folderUpdated}
         foldersUpdated={foldersUpdated}
-        navigator={template.navigator()} />
+        navigator={template.navigator()}
+      />
     )
 
-    await tree.getInstance().update()
+    await tree.instance().update()
+    expect(getContextFolderHierarchy).toHaveBeenCalledWith('courses', courseID, '')
     expect(filesUpdated).toHaveBeenCalled()
     expect(foldersUpdated).toHaveBeenCalled()
+  })
+
+  it('should call the right methods on update at a nested folder', async () => {
+    const courseID = '5'
+    const folders = [
+      template.folder({ id: '1', full_name: 'files' }),
+      template.folder({ id: '2', full_name: 'files/f2' }),
+      template.folder({ id: '3', full_name: 'files/f2/f3' }),
+    ]
+    const getContextFolderHierarchy = jest.fn(() => Promise.resolve({ data: folders }))
+    const getFolderFolders = () => Promise.resolve({ data: [] })
+    const getFolderFiles = () => Promise.resolve({ data: [] })
+    const filesUpdated = jest.fn()
+    const folderUpdated = jest.fn()
+    const foldersUpdated = jest.fn()
+
+    const tree = shallow(
+      <FilesList
+        contextID={courseID}
+        context={'courses'}
+        data={[]}
+        subFolder='f2/f3'
+        getContextFolderHierarchy={getContextFolderHierarchy}
+        getFolderFolders={getFolderFolders}
+        getFolderFiles={getFolderFiles}
+        filesUpdated={filesUpdated}
+        folderUpdated={folderUpdated}
+        foldersUpdated={foldersUpdated}
+        navigator={template.navigator()}
+      />
+    )
+
+    await tree.instance().update()
+    expect(getContextFolderHierarchy).toHaveBeenCalledWith('courses', courseID, 'f2/f3')
+    for (const folder of folders) {
+      expect(folderUpdated).toHaveBeenCalledWith(folder, '5', 'courses')
+    }
+    expect(foldersUpdated).toHaveBeenCalledWith([folders[0]], 'root', '5', 'courses')
   })
 
   it('should navigate properly to a folder', () => {

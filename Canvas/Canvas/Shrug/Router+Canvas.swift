@@ -144,9 +144,19 @@ extension Router {
             return nil
         }
 
-        addRoute("/files/folder/*subFolder") { parameters, _ in
+        // The :ignored part is usually users_{id}, but canvas ignores it, it can be anything and
+        // you will still see your files, and the actual folder path doesn't start until after it.
+        addRoute("/files/folder/:ignored") { parameters, _ in
+            if let url = URL(string: "/users/self/files") {
+                return Router.shared().controller(forHandling: url)
+            }
+
+            return nil
+        }
+        addRoute("/files/folder/:ignored/*subFolder") { parameters, _ in
             if  let subFolder = parameters?["subFolder"] as? String,
-                let url = URL(string: "/users/self/files/folder/\(subFolder)") {
+                let path = subFolder.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlPathAllowed),
+                let url = URL(string: "/users/self/files/folder/\(path)") {
                 return Router.shared().controller(forHandling: url)
             }
 

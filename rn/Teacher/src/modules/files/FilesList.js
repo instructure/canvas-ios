@@ -78,7 +78,7 @@ type Props =
     folderUpdated: Function,
     foldersUpdated: Function,
     filesUpdated: Function,
-    getContextFolder: Function,
+    getContextFolderHierarchy: Function,
     getFolderFolders: Function,
     getFolderFiles: Function,
     getFolder: Function,
@@ -94,7 +94,7 @@ type State = {
 
 export class FilesList extends Component<Props, State> {
   static defaultProps = {
-    getContextFolder: canvas.getContextFolder,
+    getContextFolderHierarchy: canvas.getContextFolderHierarchy,
     getFolderFolders: canvas.getFolderFolders,
     getFolderFiles: canvas.getFolderFiles,
     getFolder: canvas.getFolder,
@@ -124,10 +124,14 @@ export class FilesList extends Component<Props, State> {
   update = async () => {
     this.setState({ pending: true })
     try {
-      let { contextID, context, folder } = this.props
+      let { contextID, context, folder, subFolder } = this.props
       if (!folder) {
-        folder = (await this.props.getContextFolder(context, contextID, 'root')).data
-        this.props.foldersUpdated([folder], 'root', contextID, context)
+        const folders = (await this.props.getContextFolderHierarchy(context, contextID, subFolder || '')).data
+        for (const level of folders) {
+          this.props.folderUpdated(level, contextID, context)
+        }
+        this.props.foldersUpdated([folders[0]], 'root', contextID, context)
+        folder = folders[folders.length - 1]
       }
       const foldersPromise = this.props.getFolderFolders(folder.id)
       const filesPromise = this.props.getFolderFiles(folder.id)
