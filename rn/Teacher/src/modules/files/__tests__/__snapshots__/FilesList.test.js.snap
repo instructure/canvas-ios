@@ -392,18 +392,6 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                 </View>
               </View>
             </View>
-            <View
-              style={
-                Object {
-                  "backgroundColor": "#00AC18",
-                  "bottom": 4,
-                  "left": 0,
-                  "position": "absolute",
-                  "top": 4,
-                  "width": 3,
-                }
-              }
-            />
           </View>
           <View
             style={
@@ -656,18 +644,6 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                 </View>
               </View>
             </View>
-            <View
-              style={
-                Object {
-                  "backgroundColor": "#00AC18",
-                  "bottom": 4,
-                  "left": 0,
-                  "position": "absolute",
-                  "top": 4,
-                  "width": 3,
-                }
-              }
-            />
           </View>
           <View
             style={
@@ -920,7 +896,6 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                 </View>
               </View>
             </View>
-            <View />
           </View>
         </View>
         <View
@@ -1363,18 +1338,6 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                 </View>
               </View>
             </View>
-            <View
-              style={
-                Object {
-                  "backgroundColor": "#00AC18",
-                  "bottom": 4,
-                  "left": 0,
-                  "position": "absolute",
-                  "top": 4,
-                  "width": 3,
-                }
-              }
-            />
           </View>
           <View
             style={
@@ -1627,18 +1590,6 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                 </View>
               </View>
             </View>
-            <View
-              style={
-                Object {
-                  "backgroundColor": "#00AC18",
-                  "bottom": 4,
-                  "left": 0,
-                  "position": "absolute",
-                  "top": 4,
-                  "width": 3,
-                }
-              }
-            />
           </View>
           <View
             style={
@@ -1891,7 +1842,6 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                 </View>
               </View>
             </View>
-            <View />
           </View>
         </View>
         <View
@@ -2334,18 +2284,6 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                 </View>
               </View>
             </View>
-            <View
-              style={
-                Object {
-                  "backgroundColor": "#00AC18",
-                  "bottom": 4,
-                  "left": 0,
-                  "position": "absolute",
-                  "top": 4,
-                  "width": 3,
-                }
-              }
-            />
           </View>
           <View
             style={
@@ -2598,18 +2536,6 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                 </View>
               </View>
             </View>
-            <View
-              style={
-                Object {
-                  "backgroundColor": "#00AC18",
-                  "bottom": 4,
-                  "left": 0,
-                  "position": "absolute",
-                  "top": 4,
-                  "width": 3,
-                }
-              }
-            />
           </View>
           <View
             style={
@@ -2862,7 +2788,6 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                 </View>
               </View>
             </View>
-            <View />
           </View>
         </View>
         <View
@@ -3305,18 +3230,6 @@ exports[`FilesList sending weird data into the progress update function should n
                 </View>
               </View>
             </View>
-            <View
-              style={
-                Object {
-                  "backgroundColor": "#00AC18",
-                  "bottom": 4,
-                  "left": 0,
-                  "position": "absolute",
-                  "top": 4,
-                  "width": 3,
-                }
-              }
-            />
           </View>
           <View
             style={
@@ -3569,18 +3482,6 @@ exports[`FilesList sending weird data into the progress update function should n
                 </View>
               </View>
             </View>
-            <View
-              style={
-                Object {
-                  "backgroundColor": "#00AC18",
-                  "bottom": 4,
-                  "left": 0,
-                  "position": "absolute",
-                  "top": 4,
-                  "width": 3,
-                }
-              }
-            />
           </View>
           <View
             style={
@@ -3833,7 +3734,6 @@ exports[`FilesList sending weird data into the progress update function should n
                 </View>
               </View>
             </View>
-            <View />
           </View>
         </View>
         <View
@@ -4276,18 +4176,6 @@ exports[`FilesList should render 1`] = `
                 </View>
               </View>
             </View>
-            <View
-              style={
-                Object {
-                  "backgroundColor": "#00AC18",
-                  "bottom": 4,
-                  "left": 0,
-                  "position": "absolute",
-                  "top": 4,
-                  "width": 3,
-                }
-              }
-            />
           </View>
           <View
             style={
@@ -4540,18 +4428,6 @@ exports[`FilesList should render 1`] = `
                 </View>
               </View>
             </View>
-            <View
-              style={
-                Object {
-                  "backgroundColor": "#00AC18",
-                  "bottom": 4,
-                  "left": 0,
-                  "position": "absolute",
-                  "top": 4,
-                  "width": 3,
-                }
-              }
-            />
           </View>
           <View
             style={
@@ -4804,7 +4680,6 @@ exports[`FilesList should render 1`] = `
                 </View>
               </View>
             </View>
-            <View />
           </View>
         </View>
         <View
@@ -5247,18 +5122,6 @@ exports[`FilesList should render for course files 1`] = `
                 </View>
               </View>
             </View>
-            <View
-              style={
-                Object {
-                  "backgroundColor": "#00AC18",
-                  "bottom": 4,
-                  "left": 0,
-                  "position": "absolute",
-                  "top": 4,
-                  "width": 3,
-                }
-              }
-            />
           </View>
           <View
             style={
@@ -5511,18 +5374,6 @@ exports[`FilesList should render for course files 1`] = `
                 </View>
               </View>
             </View>
-            <View
-              style={
-                Object {
-                  "backgroundColor": "#00AC18",
-                  "bottom": 4,
-                  "left": 0,
-                  "position": "absolute",
-                  "top": 4,
-                  "width": 3,
-                }
-              }
-            />
           </View>
           <View
             style={
@@ -5775,7 +5626,6 @@ exports[`FilesList should render for course files 1`] = `
                 </View>
               </View>
             </View>
-            <View />
           </View>
         </View>
         <View
@@ -6218,18 +6068,6 @@ exports[`FilesList should render for user files 1`] = `
                 </View>
               </View>
             </View>
-            <View
-              style={
-                Object {
-                  "backgroundColor": "#00AC18",
-                  "bottom": 4,
-                  "left": 0,
-                  "position": "absolute",
-                  "top": 4,
-                  "width": 3,
-                }
-              }
-            />
           </View>
           <View
             style={
@@ -6482,18 +6320,6 @@ exports[`FilesList should render for user files 1`] = `
                 </View>
               </View>
             </View>
-            <View
-              style={
-                Object {
-                  "backgroundColor": "#00AC18",
-                  "bottom": 4,
-                  "left": 0,
-                  "position": "absolute",
-                  "top": 4,
-                  "width": 3,
-                }
-              }
-            />
           </View>
           <View
             style={
@@ -6746,7 +6572,6 @@ exports[`FilesList should render for user files 1`] = `
                 </View>
               </View>
             </View>
-            <View />
           </View>
         </View>
         <View
@@ -7189,18 +7014,6 @@ exports[`FilesList should render with folders 1`] = `
                 </View>
               </View>
             </View>
-            <View
-              style={
-                Object {
-                  "backgroundColor": "#00AC18",
-                  "bottom": 4,
-                  "left": 0,
-                  "position": "absolute",
-                  "top": 4,
-                  "width": 3,
-                }
-              }
-            />
           </View>
           <View
             style={
@@ -7453,18 +7266,6 @@ exports[`FilesList should render with folders 1`] = `
                 </View>
               </View>
             </View>
-            <View
-              style={
-                Object {
-                  "backgroundColor": "#00AC18",
-                  "bottom": 4,
-                  "left": 0,
-                  "position": "absolute",
-                  "top": 4,
-                  "width": 3,
-                }
-              }
-            />
           </View>
           <View
             style={
@@ -7717,7 +7518,6 @@ exports[`FilesList should render with folders 1`] = `
                 </View>
               </View>
             </View>
-            <View />
           </View>
         </View>
         <View

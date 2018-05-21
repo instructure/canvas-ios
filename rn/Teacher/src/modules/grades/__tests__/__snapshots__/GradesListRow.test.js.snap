@@ -1,33 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-<View>
-  <View>
-    <Row
-      border="bottom"
-      disclosureIndicator={true}
-      height="auto"
-      onPress={[Function]}
-      renderImage={[Function]}
-      testID="grades-list.grades-list-row.cell-123456789"
-      title="learn to write code"
-      titleProps={
-        Object {
-          "ellipsizeMode": "tail",
-          "numberOfLines": 2,
-        }
-      }
-    >
-      <SubmissionStatusLabel
-        onlineSubmissionType={true}
-        status="none"
-      />
-    </Row>
-  </View>
-  <AccessLine
-    disableAppSpecificChecks={false}
-    testIdPrefix="grades-list-row"
-    visible={true}
+<Row
+  border="bottom"
+  disclosureIndicator={true}
+  height="auto"
+  onPress={[Function]}
+  renderImage={[Function]}
+  testID="grades-list.grades-list-row.cell-123456789"
+  title="learn to write code"
+  titleProps={
+    Object {
+      "ellipsizeMode": "tail",
+      "numberOfLines": 2,
+    }
+  }
+>
+  <SubmissionStatusLabel
+    onlineSubmissionType={true}
+    status="none"
   />
-</View>
+</Row>
 `;

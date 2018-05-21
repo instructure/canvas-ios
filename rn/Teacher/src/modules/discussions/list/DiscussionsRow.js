@@ -28,7 +28,6 @@ import colors from '@common/colors'
 
 import Row from '@common/components/rows/Row'
 import AccessIcon from '@common/components/AccessIcon'
-import AccessLine from '@common/components/AccessLine'
 import { formattedDueDateWithStatus, formattedDueDate } from '@common/formatters'
 import { extractDateFromString } from '@utils/dateUtils'
 import Images from '@images'
@@ -86,7 +85,6 @@ export default class DiscussionsRow extends PureComponent<Props> {
           </Row>
 
         </View>
-        <AccessLine visible={discussion.published} />
         { unreadDot }
       </View>
     )

@@ -241,18 +241,6 @@ exports[`renders correctly 1`] = `
       </View>
     </View>
   </View>
-  <View
-    style={
-      Object {
-        "backgroundColor": "#00AC18",
-        "bottom": 4,
-        "left": 0,
-        "position": "absolute",
-        "top": 4,
-        "width": 3,
-      }
-    }
-  />
 </View>
 `;
 
@@ -497,18 +485,6 @@ exports[`renders correctly assignment icon 1`] = `
       </View>
     </View>
   </View>
-  <View
-    style={
-      Object {
-        "backgroundColor": "#00AC18",
-        "bottom": 4,
-        "left": 0,
-        "position": "absolute",
-        "top": 4,
-        "width": 3,
-      }
-    }
-  />
 </View>
 `;
 
@@ -753,18 +729,6 @@ exports[`renders correctly discussion icon 1`] = `
       </View>
     </View>
   </View>
-  <View
-    style={
-      Object {
-        "backgroundColor": "#00AC18",
-        "bottom": 4,
-        "left": 0,
-        "position": "absolute",
-        "top": 4,
-        "width": 3,
-      }
-    }
-  />
 </View>
 `;
 
@@ -1009,7 +973,6 @@ exports[`renders correctly not published icon 1`] = `
       </View>
     </View>
   </View>
-  <View />
 </View>
 `;
 
@@ -1254,18 +1217,6 @@ exports[`renders correctly published icon 1`] = `
       </View>
     </View>
   </View>
-  <View
-    style={
-      Object {
-        "backgroundColor": "#00AC18",
-        "bottom": 4,
-        "left": 0,
-        "position": "absolute",
-        "top": 4,
-        "width": 3,
-      }
-    }
-  />
 </View>
 `;
 
@@ -1510,18 +1461,6 @@ exports[`renders correctly quiz icon 1`] = `
       </View>
     </View>
   </View>
-  <View
-    style={
-      Object {
-        "backgroundColor": "#00AC18",
-        "bottom": 4,
-        "left": 0,
-        "position": "absolute",
-        "top": 4,
-        "width": 3,
-      }
-    }
-  />
 </View>
 `;
 
@@ -1766,18 +1705,6 @@ exports[`renders correctly with closed due dates 1`] = `
       </View>
     </View>
   </View>
-  <View
-    style={
-      Object {
-        "backgroundColor": "#00AC18",
-        "bottom": 4,
-        "left": 0,
-        "position": "absolute",
-        "top": 4,
-        "width": 3,
-      }
-    }
-  />
 </View>
 `;
 
@@ -2059,18 +1986,6 @@ exports[`renders correctly with needs_grading_count 1`] = `
       </View>
     </View>
   </View>
-  <View
-    style={
-      Object {
-        "backgroundColor": "#00AC18",
-        "bottom": 4,
-        "left": 0,
-        "position": "absolute",
-        "top": 4,
-        "width": 3,
-      }
-    }
-  />
 </View>
 `;
 
@@ -2315,18 +2230,6 @@ exports[`renders correctly with needs_grading_count and set to not_graded 1`] = 
       </View>
     </View>
   </View>
-  <View
-    style={
-      Object {
-        "backgroundColor": "#00AC18",
-        "bottom": 4,
-        "left": 0,
-        "position": "absolute",
-        "top": 4,
-        "width": 3,
-      }
-    }
-  />
 </View>
 `;
 
@@ -2571,18 +2474,6 @@ exports[`renders correctly with open due dates 1`] = `
       </View>
     </View>
   </View>
-  <View
-    style={
-      Object {
-        "backgroundColor": "#00AC18",
-        "bottom": 4,
-        "left": 0,
-        "position": "absolute",
-        "top": 4,
-        "width": 3,
-      }
-    }
-  />
 </View>
 `;
 
@@ -2827,17 +2718,5 @@ exports[`renders correctly with selected props 1`] = `
       </View>
     </View>
   </View>
-  <View
-    style={
-      Object {
-        "backgroundColor": "#00AC18",
-        "bottom": 4,
-        "left": 0,
-        "position": "absolute",
-        "top": 4,
-        "width": 3,
-      }
-    }
-  />
 </View>
 `;

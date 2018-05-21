@@ -144,10 +144,6 @@ exports[`DiscussionsRow renders 1`] = `
       </View>
     </Row>
   </View>
-  <AccessLine
-    disableAppSpecificChecks={false}
-    visible={true}
-  />
   <View
     style={
       Object {
@@ -308,10 +304,6 @@ exports[`DiscussionsRow renders published 1`] = `
       </View>
     </Row>
   </View>
-  <AccessLine
-    disableAppSpecificChecks={false}
-    visible={true}
-  />
   <View
     style={
       Object {
@@ -472,10 +464,6 @@ exports[`DiscussionsRow renders unpublished 1`] = `
       </View>
     </Row>
   </View>
-  <AccessLine
-    disableAppSpecificChecks={false}
-    visible={false}
-  />
   <View
     style={
       Object {
@@ -618,10 +606,6 @@ exports[`DiscussionsRow renders with no assignment 1`] = `
       </View>
     </Row>
   </View>
-  <AccessLine
-    disableAppSpecificChecks={false}
-    visible={true}
-  />
   <View
     style={
       Object {
@@ -782,10 +766,6 @@ exports[`DiscussionsRow renders with no unread count 1`] = `
       </View>
     </Row>
   </View>
-  <AccessLine
-    disableAppSpecificChecks={false}
-    visible={true}
-  />
   <View />
 </View>
 `;
@@ -934,10 +914,6 @@ exports[`DiscussionsRow renders with points possible 1`] = `
       </View>
     </Row>
   </View>
-  <AccessLine
-    disableAppSpecificChecks={false}
-    visible={true}
-  />
   <View
     style={
       Object {
@@ -1080,10 +1056,6 @@ exports[`DiscussionsRow renders without points possible 1`] = `
       </View>
     </Row>
   </View>
-  <AccessLine
-    disableAppSpecificChecks={false}
-    visible={true}
-  />
   <View
     style={
       Object {

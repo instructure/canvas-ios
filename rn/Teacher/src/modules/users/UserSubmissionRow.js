@@ -26,7 +26,6 @@ import {
 } from 'react-native'
 
 import AccessIcon from '../../common/components/AccessIcon'
-import AccessLine from '../../common/components/AccessLine'
 import { Text } from '../../common/text'
 import Row from '../../common/components/rows/Row'
 import Images from '../../images'
@@ -92,28 +91,23 @@ export default class UserSubmissionRow extends Component<Props, any> {
     const needsGrading = submission.grading_status === 'needs_grading'
 
     return (
-      <View>
-        <View>
-          <Row
-            renderImage={this._renderIcon}
-            title={assignment.name}
-            titleProps={{ ellipsizeMode: 'tail', numberOfLines: 2 }}
-            border='bottom'
-            testID={`user-submission-row.cell-${assignment.id}`}
-            onPress={this.onPress}
-            height='auto'
-          >
-            {this.submissionStatus()}
-            {submission.grading_status === 'graded' && this.grade()}
-            {needsGrading &&
-              <View style={{ flexDirection: 'row' }}>
-                <Token color='#FC5E13'>{i18n('Needs Grading')}</Token>
-              </View>
-            }
-          </Row>
-        </View>
-        <AccessLine visible={assignment.published} />
-      </View>
+      <Row
+        renderImage={this._renderIcon}
+        title={assignment.name}
+        titleProps={{ ellipsizeMode: 'tail', numberOfLines: 2 }}
+        border='bottom'
+        testID={`user-submission-row.cell-${assignment.id}`}
+        onPress={this.onPress}
+        height='auto'
+      >
+        {this.submissionStatus()}
+        {submission.grading_status === 'graded' && this.grade()}
+        {needsGrading &&
+          <View style={{ flexDirection: 'row' }}>
+            <Token color='#FC5E13'>{i18n('Needs Grading')}</Token>
+          </View>
+        }
+      </Row>
     )
   }
 

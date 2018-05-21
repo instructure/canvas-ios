@@ -27,7 +27,6 @@ import {
 import i18n from 'format-message'
 import { formattedDueDateWithStatus } from '../../../common/formatters'
 import AccessIcon from '../../../common/components/AccessIcon'
-import AccessLine from '../../../common/components/AccessLine'
 import AssignmentDates from '../../../common/AssignmentDates'
 import { Text } from '../../../common/text'
 import Row from '../../../common/components/rows/Row'
@@ -95,7 +94,6 @@ export default class AssignmentListRow extends PureComponent<Props> {
             {this.ungradedBubble(assignment)}
           </Row>
         </View>
-        <AccessLine visible={assignment.published} />
       </View>
     )
   }

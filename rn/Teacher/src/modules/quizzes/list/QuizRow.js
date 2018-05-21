@@ -25,7 +25,6 @@ import i18n from 'format-message'
 
 import Row from '../../../common/components/rows/Row'
 import AccessIcon from '../../../common/components/AccessIcon'
-import AccessLine from '../../../common/components/AccessLine'
 import { formattedDueDateWithStatus } from '../../../common/formatters'
 import { extractDateFromString } from '../../../utils/dateUtils'
 import Images from '../../../images/'
@@ -43,27 +42,22 @@ export default class QuizRow extends Component<Props, any> {
   render () {
     const { quiz, selected } = this.props
     return (
-      <View>
-        <View>
-          <Row
-            renderImage={this._renderIcon}
-            title={quiz.title}
-            titleProps={{ ellipsizeMode: 'tail', numberOfLines: 2 }}
-            border='bottom'
-            disclosureIndicator={true}
-            testID={`quiz-row-${this.props.index}`}
-            onPress={this._onPress}
-            height='auto'
-            selected={selected}
-          >
-            <DotSeparated style={style.subtitle} separated={this._dueDate()} />
-            <View style={style.details}>
-              {this._details()}
-            </View>
-          </Row>
+      <Row
+        renderImage={this._renderIcon}
+        title={quiz.title}
+        titleProps={{ ellipsizeMode: 'tail', numberOfLines: 2 }}
+        border='bottom'
+        disclosureIndicator={true}
+        testID={`quiz-row-${this.props.index}`}
+        onPress={this._onPress}
+        height='auto'
+        selected={selected}
+      >
+        <DotSeparated style={style.subtitle} separated={this._dueDate()} />
+        <View style={style.details}>
+          {this._details()}
         </View>
-        <AccessLine visible={quiz.published} />
-      </View>
+      </Row>
     )
   }
 

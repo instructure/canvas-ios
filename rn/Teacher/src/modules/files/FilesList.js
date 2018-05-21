@@ -37,7 +37,6 @@ import RowSeparator from '../../common/components/rows/RowSeparator'
 import find from 'lodash/find'
 import localeSort from '../../utils/locale-sort'
 import AccessIcon from '../../common/components/AccessIcon'
-import AccessLine from '../../common/components/AccessLine'
 import ListEmptyComponent from '../../common/components/ListEmptyComponent'
 import images from '../../images'
 import bytes, { unitFor } from '../../utils/locale-bytes'
@@ -403,11 +402,6 @@ export class FilesList extends Component<Props, State> {
           testID={`file-list.file-list-row.cell-${item.key}`}
           selected={selected} />
       </View>
-      {(item.hidden || item.lock_at || item.unlock_at) ? (
-        <View style={styles.restrictedIndicatorLine} />
-      ) : (
-        <AccessLine visible={!item.locked} disableAppSpecificChecks={this.props.context === 'users'} />
-      )}
     </View>)
   }
 
@@ -504,14 +498,6 @@ export function mapStateToProps (state: Object, props: FileListNavProps) {
 const styles = StyleSheet.create({
   icon: {
     alignSelf: 'flex-start',
-  },
-  restrictedIndicatorLine: {
-    backgroundColor: '#FF0000',
-    position: 'absolute',
-    top: 4,
-    bottom: 4,
-    left: 0,
-    width: 3,
   },
   attachmentPicker: {
     position: 'absolute',

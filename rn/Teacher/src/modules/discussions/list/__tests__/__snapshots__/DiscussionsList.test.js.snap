@@ -1075,18 +1075,6 @@ exports[`DiscussionsList renders discussions 1`] = `
             <View
               style={
                 Object {
-                  "backgroundColor": "#00AC18",
-                  "bottom": 4,
-                  "left": 0,
-                  "position": "absolute",
-                  "top": 4,
-                  "width": 3,
-                }
-              }
-            />
-            <View
-              style={
-                Object {
                   "backgroundColor": "#008EE4",
                   "borderRadius": 2.5,
                   "height": 5,
@@ -1506,18 +1494,6 @@ exports[`DiscussionsList renders discussions 1`] = `
                 </View>
               </TouchableHighlight>
             </View>
-            <View
-              style={
-                Object {
-                  "backgroundColor": "#00AC18",
-                  "bottom": 4,
-                  "left": 0,
-                  "position": "absolute",
-                  "top": 4,
-                  "width": 3,
-                }
-              }
-            />
             <View
               style={
                 Object {
@@ -2224,18 +2200,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
             <View
               style={
                 Object {
-                  "backgroundColor": "#00AC18",
-                  "bottom": 4,
-                  "left": 0,
-                  "position": "absolute",
-                  "top": 4,
-                  "width": 3,
-                }
-              }
-            />
-            <View
-              style={
-                Object {
                   "backgroundColor": "#008EE4",
                   "borderRadius": 2.5,
                   "height": 5,
@@ -2622,18 +2586,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                 </View>
               </TouchableHighlight>
             </View>
-            <View
-              style={
-                Object {
-                  "backgroundColor": "#00AC18",
-                  "bottom": 4,
-                  "left": 0,
-                  "position": "absolute",
-                  "top": 4,
-                  "width": 3,
-                }
-              }
-            />
             <View
               style={
                 Object {
@@ -3513,18 +3465,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
             <View
               style={
                 Object {
-                  "backgroundColor": "#00AC18",
-                  "bottom": 4,
-                  "left": 0,
-                  "position": "absolute",
-                  "top": 4,
-                  "width": 3,
-                }
-              }
-            />
-            <View
-              style={
-                Object {
                   "backgroundColor": "#008EE4",
                   "borderRadius": 2.5,
                   "height": 5,
@@ -3944,18 +3884,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
                 </View>
               </TouchableHighlight>
             </View>
-            <View
-              style={
-                Object {
-                  "backgroundColor": "#00AC18",
-                  "bottom": 4,
-                  "left": 0,
-                  "position": "absolute",
-                  "top": 4,
-                  "width": 3,
-                }
-              }
-            />
             <View
               style={
                 Object {
@@ -4998,18 +4926,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
             <View
               style={
                 Object {
-                  "backgroundColor": "#00AC18",
-                  "bottom": 4,
-                  "left": 0,
-                  "position": "absolute",
-                  "top": 4,
-                  "width": 3,
-                }
-              }
-            />
-            <View
-              style={
-                Object {
                   "backgroundColor": "#008EE4",
                   "borderRadius": 2.5,
                   "height": 5,
@@ -5429,18 +5345,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                 </View>
               </TouchableHighlight>
             </View>
-            <View
-              style={
-                Object {
-                  "backgroundColor": "#00AC18",
-                  "bottom": 4,
-                  "left": 0,
-                  "position": "absolute",
-                  "top": 4,
-                  "width": 3,
-                }
-              }
-            />
             <View
               style={
                 Object {
@@ -5919,18 +5823,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                 </View>
               </TouchableHighlight>
             </View>
-            <View
-              style={
-                Object {
-                  "backgroundColor": "#00AC18",
-                  "bottom": 4,
-                  "left": 0,
-                  "position": "absolute",
-                  "top": 4,
-                  "width": 3,
-                }
-              }
-            />
             <View
               style={
                 Object {

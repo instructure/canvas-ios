@@ -1,481 +1,445 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ToDoListItem renders 1`] = `
-<View>
-  <Row
-    accessible={true}
-    disclosureIndicator={true}
-    onPress={[Function]}
-    renderImage={[Function]}
-    testID="to-do.list.https://api.instructure.com/api/v1/path/to/html_url.row"
-    title="learn to write code"
+<Row
+  accessible={true}
+  disclosureIndicator={true}
+  onPress={[Function]}
+  renderImage={[Function]}
+  testID="to-do.list.https://api.instructure.com/api/v1/path/to/html_url.row"
+  title="learn to write code"
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "column",
+      }
+    }
   >
-    <View
+    <Text
+      style={
+        Array [
+          Object {
+            "fontSize": 14,
+            "fontWeight": "600",
+          },
+          Object {
+            "color": "#fff",
+          },
+        ]
+      }
+    >
+      Course 1
+    </Text>
+    <Text
       style={
         Object {
-          "flex": 1,
-          "flexDirection": "column",
+          "color": "#8B969E",
+          "fontSize": 13,
+          "marginTop": 3,
         }
       }
     >
-      <Text
-        style={
-          Array [
-            Object {
-              "fontSize": 14,
-              "fontWeight": "600",
-            },
-            Object {
-              "color": "#fff",
-            },
-          ]
-        }
-      >
-        Course 1
-      </Text>
-      <Text
-        style={
+      Due May 31, 2037 at 11:59 PM
+    </Text>
+    <Text
+      style={
+        Array [
           Object {
-            "color": "#8B969E",
-            "fontSize": 13,
-            "marginTop": 3,
-          }
-        }
-      >
-        Due May 31, 2037 at 11:59 PM
-      </Text>
-      <Text
-        style={
-          Array [
-            Object {
-              "alignSelf": "flex-start",
-              "backgroundColor": "white",
-              "borderRadius": 9,
-              "borderWidth": 1,
-              "flex": 0,
-              "fontSize": 11,
-              "fontWeight": "600",
-              "marginTop": 4,
-              "overflow": "hidden",
-              "paddingBottom": 1,
-              "paddingLeft": 6,
-              "paddingRight": 6,
-              "paddingTop": 3,
-            },
-            Object {
-              "borderColor": "#374A59",
-              "color": "#374A59",
-            },
-          ]
-        }
-      >
-        5 NEED GRADING
-      </Text>
-    </View>
-  </Row>
-  <AccessLine
-    disableAppSpecificChecks={false}
-    visible={true}
-  />
-</View>
+            "alignSelf": "flex-start",
+            "backgroundColor": "white",
+            "borderRadius": 9,
+            "borderWidth": 1,
+            "flex": 0,
+            "fontSize": 11,
+            "fontWeight": "600",
+            "marginTop": 4,
+            "overflow": "hidden",
+            "paddingBottom": 1,
+            "paddingLeft": 6,
+            "paddingRight": 6,
+            "paddingTop": 3,
+          },
+          Object {
+            "borderColor": "#374A59",
+            "color": "#374A59",
+          },
+        ]
+      }
+    >
+      5 NEED GRADING
+    </Text>
+  </View>
+</Row>
 `;
 
 exports[`ToDoListItem renders discussion 1`] = `
-<View>
-  <Row
-    accessible={true}
-    disclosureIndicator={true}
-    onPress={[Function]}
-    renderImage={[Function]}
-    testID="to-do.list.https://api.instructure.com/api/v1/path/to/html_url.row"
-    title="Assignment 1"
+<Row
+  accessible={true}
+  disclosureIndicator={true}
+  onPress={[Function]}
+  renderImage={[Function]}
+  testID="to-do.list.https://api.instructure.com/api/v1/path/to/html_url.row"
+  title="Assignment 1"
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "column",
+      }
+    }
   >
-    <View
+    <Text
+      style={
+        Array [
+          Object {
+            "fontSize": 14,
+            "fontWeight": "600",
+          },
+          Object {
+            "color": "#fff",
+          },
+        ]
+      }
+    >
+      Course 1
+    </Text>
+    <Text
       style={
         Object {
-          "flex": 1,
-          "flexDirection": "column",
+          "color": "#8B969E",
+          "fontSize": 13,
+          "marginTop": 3,
         }
       }
     >
-      <Text
-        style={
-          Array [
-            Object {
-              "fontSize": 14,
-              "fontWeight": "600",
-            },
-            Object {
-              "color": "#fff",
-            },
-          ]
-        }
-      >
-        Course 1
-      </Text>
-      <Text
-        style={
+      Due May 31, 2037 at 11:59 PM
+    </Text>
+    <Text
+      style={
+        Array [
           Object {
-            "color": "#8B969E",
-            "fontSize": 13,
-            "marginTop": 3,
-          }
-        }
-      >
-        Due May 31, 2037 at 11:59 PM
-      </Text>
-      <Text
-        style={
-          Array [
-            Object {
-              "alignSelf": "flex-start",
-              "backgroundColor": "white",
-              "borderRadius": 9,
-              "borderWidth": 1,
-              "flex": 0,
-              "fontSize": 11,
-              "fontWeight": "600",
-              "marginTop": 4,
-              "overflow": "hidden",
-              "paddingBottom": 1,
-              "paddingLeft": 6,
-              "paddingRight": 6,
-              "paddingTop": 3,
-            },
-            Object {
-              "borderColor": "#374A59",
-              "color": "#374A59",
-            },
-          ]
-        }
-      >
-        5 NEED GRADING
-      </Text>
-    </View>
-  </Row>
-  <AccessLine
-    disableAppSpecificChecks={false}
-    visible={true}
-  />
-</View>
+            "alignSelf": "flex-start",
+            "backgroundColor": "white",
+            "borderRadius": 9,
+            "borderWidth": 1,
+            "flex": 0,
+            "fontSize": 11,
+            "fontWeight": "600",
+            "marginTop": 4,
+            "overflow": "hidden",
+            "paddingBottom": 1,
+            "paddingLeft": 6,
+            "paddingRight": 6,
+            "paddingTop": 3,
+          },
+          Object {
+            "borderColor": "#374A59",
+            "color": "#374A59",
+          },
+        ]
+      }
+    >
+      5 NEED GRADING
+    </Text>
+  </View>
+</Row>
 `;
 
 exports[`ToDoListItem renders null due date 1`] = `
-<View>
-  <Row
-    accessible={true}
-    disclosureIndicator={true}
-    onPress={[Function]}
-    renderImage={[Function]}
-    testID="to-do.list.https://api.instructure.com/api/v1/path/to/html_url.row"
-    title="learn to write code"
+<Row
+  accessible={true}
+  disclosureIndicator={true}
+  onPress={[Function]}
+  renderImage={[Function]}
+  testID="to-do.list.https://api.instructure.com/api/v1/path/to/html_url.row"
+  title="learn to write code"
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "column",
+      }
+    }
   >
-    <View
+    <Text
+      style={
+        Array [
+          Object {
+            "fontSize": 14,
+            "fontWeight": "600",
+          },
+          Object {
+            "color": "#fff",
+          },
+        ]
+      }
+    >
+      Course 1
+    </Text>
+    <Text
       style={
         Object {
-          "flex": 1,
-          "flexDirection": "column",
+          "color": "#8B969E",
+          "fontSize": 13,
+          "marginTop": 3,
         }
       }
     >
-      <Text
-        style={
-          Array [
-            Object {
-              "fontSize": 14,
-              "fontWeight": "600",
-            },
-            Object {
-              "color": "#fff",
-            },
-          ]
-        }
-      >
-        Course 1
-      </Text>
-      <Text
-        style={
+      No Due Date
+    </Text>
+    <Text
+      style={
+        Array [
           Object {
-            "color": "#8B969E",
-            "fontSize": 13,
-            "marginTop": 3,
-          }
-        }
-      >
-        No Due Date
-      </Text>
-      <Text
-        style={
-          Array [
-            Object {
-              "alignSelf": "flex-start",
-              "backgroundColor": "white",
-              "borderRadius": 9,
-              "borderWidth": 1,
-              "flex": 0,
-              "fontSize": 11,
-              "fontWeight": "600",
-              "marginTop": 4,
-              "overflow": "hidden",
-              "paddingBottom": 1,
-              "paddingLeft": 6,
-              "paddingRight": 6,
-              "paddingTop": 3,
-            },
-            Object {
-              "borderColor": "#374A59",
-              "color": "#374A59",
-            },
-          ]
-        }
-      >
-        5 NEED GRADING
-      </Text>
-    </View>
-  </Row>
-  <AccessLine
-    disableAppSpecificChecks={false}
-    visible={true}
-  />
-</View>
+            "alignSelf": "flex-start",
+            "backgroundColor": "white",
+            "borderRadius": 9,
+            "borderWidth": 1,
+            "flex": 0,
+            "fontSize": 11,
+            "fontWeight": "600",
+            "marginTop": 4,
+            "overflow": "hidden",
+            "paddingBottom": 1,
+            "paddingLeft": 6,
+            "paddingRight": 6,
+            "paddingTop": 3,
+          },
+          Object {
+            "borderColor": "#374A59",
+            "color": "#374A59",
+          },
+        ]
+      }
+    >
+      5 NEED GRADING
+    </Text>
+  </View>
+</Row>
 `;
 
 exports[`ToDoListItem renders published assignment 1`] = `
-<View>
-  <Row
-    accessible={true}
-    disclosureIndicator={true}
-    onPress={[Function]}
-    renderImage={[Function]}
-    testID="to-do.list.https://api.instructure.com/api/v1/path/to/html_url.row"
-    title="Assignment 1"
+<Row
+  accessible={true}
+  disclosureIndicator={true}
+  onPress={[Function]}
+  renderImage={[Function]}
+  testID="to-do.list.https://api.instructure.com/api/v1/path/to/html_url.row"
+  title="Assignment 1"
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "column",
+      }
+    }
   >
-    <View
+    <Text
+      style={
+        Array [
+          Object {
+            "fontSize": 14,
+            "fontWeight": "600",
+          },
+          Object {
+            "color": "#fff",
+          },
+        ]
+      }
+    >
+      Course 1
+    </Text>
+    <Text
       style={
         Object {
-          "flex": 1,
-          "flexDirection": "column",
+          "color": "#8B969E",
+          "fontSize": 13,
+          "marginTop": 3,
         }
       }
     >
-      <Text
-        style={
-          Array [
-            Object {
-              "fontSize": 14,
-              "fontWeight": "600",
-            },
-            Object {
-              "color": "#fff",
-            },
-          ]
-        }
-      >
-        Course 1
-      </Text>
-      <Text
-        style={
+      Due May 31, 2037 at 11:59 PM
+    </Text>
+    <Text
+      style={
+        Array [
           Object {
-            "color": "#8B969E",
-            "fontSize": 13,
-            "marginTop": 3,
-          }
-        }
-      >
-        Due May 31, 2037 at 11:59 PM
-      </Text>
-      <Text
-        style={
-          Array [
-            Object {
-              "alignSelf": "flex-start",
-              "backgroundColor": "white",
-              "borderRadius": 9,
-              "borderWidth": 1,
-              "flex": 0,
-              "fontSize": 11,
-              "fontWeight": "600",
-              "marginTop": 4,
-              "overflow": "hidden",
-              "paddingBottom": 1,
-              "paddingLeft": 6,
-              "paddingRight": 6,
-              "paddingTop": 3,
-            },
-            Object {
-              "borderColor": "#374A59",
-              "color": "#374A59",
-            },
-          ]
-        }
-      >
-        5 NEED GRADING
-      </Text>
-    </View>
-  </Row>
-  <AccessLine
-    disableAppSpecificChecks={false}
-    visible={true}
-  />
-</View>
+            "alignSelf": "flex-start",
+            "backgroundColor": "white",
+            "borderRadius": 9,
+            "borderWidth": 1,
+            "flex": 0,
+            "fontSize": 11,
+            "fontWeight": "600",
+            "marginTop": 4,
+            "overflow": "hidden",
+            "paddingBottom": 1,
+            "paddingLeft": 6,
+            "paddingRight": 6,
+            "paddingTop": 3,
+          },
+          Object {
+            "borderColor": "#374A59",
+            "color": "#374A59",
+          },
+        ]
+      }
+    >
+      5 NEED GRADING
+    </Text>
+  </View>
+</Row>
 `;
 
 exports[`ToDoListItem renders quiz 1`] = `
-<View>
-  <Row
-    accessible={true}
-    disclosureIndicator={true}
-    onPress={[Function]}
-    renderImage={[Function]}
-    testID="to-do.list.https://api.instructure.com/api/v1/path/to/html_url.row"
-    title="Quiz 1"
+<Row
+  accessible={true}
+  disclosureIndicator={true}
+  onPress={[Function]}
+  renderImage={[Function]}
+  testID="to-do.list.https://api.instructure.com/api/v1/path/to/html_url.row"
+  title="Quiz 1"
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "column",
+      }
+    }
   >
-    <View
+    <Text
+      style={
+        Array [
+          Object {
+            "fontSize": 14,
+            "fontWeight": "600",
+          },
+          Object {
+            "color": "#fff",
+          },
+        ]
+      }
+    >
+      Course 1
+    </Text>
+    <Text
       style={
         Object {
-          "flex": 1,
-          "flexDirection": "column",
+          "color": "#8B969E",
+          "fontSize": 13,
+          "marginTop": 3,
         }
       }
     >
-      <Text
-        style={
-          Array [
-            Object {
-              "fontSize": 14,
-              "fontWeight": "600",
-            },
-            Object {
-              "color": "#fff",
-            },
-          ]
-        }
-      >
-        Course 1
-      </Text>
-      <Text
-        style={
+      Due Jan 23, 2013 at 11:59 PM
+    </Text>
+    <Text
+      style={
+        Array [
           Object {
-            "color": "#8B969E",
-            "fontSize": 13,
-            "marginTop": 3,
-          }
-        }
-      >
-        Due Jan 23, 2013 at 11:59 PM
-      </Text>
-      <Text
-        style={
-          Array [
-            Object {
-              "alignSelf": "flex-start",
-              "backgroundColor": "white",
-              "borderRadius": 9,
-              "borderWidth": 1,
-              "flex": 0,
-              "fontSize": 11,
-              "fontWeight": "600",
-              "marginTop": 4,
-              "overflow": "hidden",
-              "paddingBottom": 1,
-              "paddingLeft": 6,
-              "paddingRight": 6,
-              "paddingTop": 3,
-            },
-            Object {
-              "borderColor": "#374A59",
-              "color": "#374A59",
-            },
-          ]
-        }
-      >
-        5 NEED GRADING
-      </Text>
-    </View>
-  </Row>
-  <AccessLine
-    disableAppSpecificChecks={false}
-    visible={true}
-  />
-</View>
+            "alignSelf": "flex-start",
+            "backgroundColor": "white",
+            "borderRadius": 9,
+            "borderWidth": 1,
+            "flex": 0,
+            "fontSize": 11,
+            "fontWeight": "600",
+            "marginTop": 4,
+            "overflow": "hidden",
+            "paddingBottom": 1,
+            "paddingLeft": 6,
+            "paddingRight": 6,
+            "paddingTop": 3,
+          },
+          Object {
+            "borderColor": "#374A59",
+            "color": "#374A59",
+          },
+        ]
+      }
+    >
+      5 NEED GRADING
+    </Text>
+  </View>
+</Row>
 `;
 
 exports[`ToDoListItem renders unpublished assignment 1`] = `
-<View>
-  <Row
-    accessible={true}
-    disclosureIndicator={true}
-    onPress={[Function]}
-    renderImage={[Function]}
-    testID="to-do.list.https://api.instructure.com/api/v1/path/to/html_url.row"
-    title="Assignment 1"
+<Row
+  accessible={true}
+  disclosureIndicator={true}
+  onPress={[Function]}
+  renderImage={[Function]}
+  testID="to-do.list.https://api.instructure.com/api/v1/path/to/html_url.row"
+  title="Assignment 1"
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "column",
+      }
+    }
   >
-    <View
+    <Text
+      style={
+        Array [
+          Object {
+            "fontSize": 14,
+            "fontWeight": "600",
+          },
+          Object {
+            "color": "#fff",
+          },
+        ]
+      }
+    >
+      Course 1
+    </Text>
+    <Text
       style={
         Object {
-          "flex": 1,
-          "flexDirection": "column",
+          "color": "#8B969E",
+          "fontSize": 13,
+          "marginTop": 3,
         }
       }
     >
-      <Text
-        style={
-          Array [
-            Object {
-              "fontSize": 14,
-              "fontWeight": "600",
-            },
-            Object {
-              "color": "#fff",
-            },
-          ]
-        }
-      >
-        Course 1
-      </Text>
-      <Text
-        style={
+      Due May 31, 2037 at 11:59 PM
+    </Text>
+    <Text
+      style={
+        Array [
           Object {
-            "color": "#8B969E",
-            "fontSize": 13,
-            "marginTop": 3,
-          }
-        }
-      >
-        Due May 31, 2037 at 11:59 PM
-      </Text>
-      <Text
-        style={
-          Array [
-            Object {
-              "alignSelf": "flex-start",
-              "backgroundColor": "white",
-              "borderRadius": 9,
-              "borderWidth": 1,
-              "flex": 0,
-              "fontSize": 11,
-              "fontWeight": "600",
-              "marginTop": 4,
-              "overflow": "hidden",
-              "paddingBottom": 1,
-              "paddingLeft": 6,
-              "paddingRight": 6,
-              "paddingTop": 3,
-            },
-            Object {
-              "borderColor": "#374A59",
-              "color": "#374A59",
-            },
-          ]
-        }
-      >
-        5 NEED GRADING
-      </Text>
-    </View>
-  </Row>
-  <AccessLine
-    disableAppSpecificChecks={false}
-    visible={false}
-  />
-</View>
+            "alignSelf": "flex-start",
+            "backgroundColor": "white",
+            "borderRadius": 9,
+            "borderWidth": 1,
+            "flex": 0,
+            "fontSize": 11,
+            "fontWeight": "600",
+            "marginTop": 4,
+            "overflow": "hidden",
+            "paddingBottom": 1,
+            "paddingLeft": 6,
+            "paddingRight": 6,
+            "paddingTop": 3,
+          },
+          Object {
+            "borderColor": "#374A59",
+            "color": "#374A59",
+          },
+        ]
+      }
+    >
+      5 NEED GRADING
+    </Text>
+  </View>
+</Row>
 `;

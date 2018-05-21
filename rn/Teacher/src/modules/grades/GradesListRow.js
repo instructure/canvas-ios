@@ -25,7 +25,6 @@ import {
 } from 'react-native'
 
 import AccessIcon from '../../common/components/AccessIcon'
-import AccessLine from '../../common/components/AccessLine'
 import Row from '../../common/components/rows/Row'
 import Images from '../../images'
 import { gradeProp, statusProp, dueDate } from '../submissions/list/get-submissions-props'
@@ -54,27 +53,22 @@ export default class GradesListRow extends PureComponent<Props> {
     const grade = gradeProp(submission)
     const status = statusProp(submission, dueDate(assignment, user))
     return (
-      <View>
-        <View>
-          <Row
-            renderImage={this._renderIcon}
-            title={assignment.name}
-            titleProps={{ ellipsizeMode: 'tail', numberOfLines: 2 }}
-            border='bottom'
-            disclosureIndicator
-            testID={`grades-list.grades-list-row.cell-${assignment.id}`}
-            onPress={this.onPress}
-            selected={selected}
-            height='auto'
-            accessories={submission ? <Grade grade={grade} gradingType={assignment.grading_type} /> : undefined}
-          >
-            {status &&
-              <SubmissionStatusLabel status={status} onlineSubmissionType={onlineSubmissionType} />
-            }
-          </Row>
-        </View>
-        <AccessLine visible={this.props.assignment.published} testIdPrefix={'grades-list-row'} />
-      </View>
+      <Row
+        renderImage={this._renderIcon}
+        title={assignment.name}
+        titleProps={{ ellipsizeMode: 'tail', numberOfLines: 2 }}
+        border='bottom'
+        disclosureIndicator
+        testID={`grades-list.grades-list-row.cell-${assignment.id}`}
+        onPress={this.onPress}
+        selected={selected}
+        height='auto'
+        accessories={submission ? <Grade grade={grade} gradingType={assignment.grading_type} /> : undefined}
+      >
+        {status &&
+          <SubmissionStatusLabel status={status} onlineSubmissionType={onlineSubmissionType} />
+        }
+      </Row>
     )
   }
 
