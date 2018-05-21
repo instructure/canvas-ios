@@ -1931,10 +1931,10 @@ exports[`renders correctly with needs_grading_count 1`] = `
                   "fontWeight": "600",
                   "marginTop": 4,
                   "overflow": "hidden",
-                  "paddingBottom": 1,
+                  "paddingBottom": 2,
                   "paddingLeft": 6,
                   "paddingRight": 6,
-                  "paddingTop": 3,
+                  "paddingTop": 2,
                 },
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
