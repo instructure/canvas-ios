@@ -17,6 +17,30 @@
 import Foundation
 import Result
 
+extension String {
+    init(deviceToken: Data) {
+        self = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
+    }
+}
+
+public struct UserDeviceToken: Equatable {
+    public let session: Session
+    public let token: String
+
+    public static func == (lhs: UserDeviceToken, rhs: UserDeviceToken) -> Bool {
+        return lhs.session.user.id == rhs.session.user.id &&
+            lhs.session.baseURL == rhs.session.baseURL &&
+            lhs.token == rhs.token
+    }
+
+    public static var current: UserDeviceToken?
+
+    public init(session: Session, token: Data) {
+        self.session = session
+        self.token = String(deviceToken: token)
+    }
+}
+
 open class NotificationKitController {
     
     fileprivate var remoteService: RemoteService
@@ -24,10 +48,7 @@ open class NotificationKitController {
     public init(session: Session) {
         self.remoteService = RemoteService(session: session)    }
     
-    public enum RegisterPushNotificationTokenResult {
-        case success()
-        case error(NSError)
-    }
+    public typealias RegisterPushNotificationTokenResult = Result<Void, NSError>
 
     public static func setupForPushNotifications(delegate: UNUserNotificationCenterDelegate) {
         UNUserNotificationCenter.current().delegate = delegate
@@ -44,26 +65,63 @@ open class NotificationKitController {
             if let client = CanvasKeymaster.the().currentClient {
                 let session = client.authSession
                 let controller = NotificationKitController(session: session)
-                controller.registerPushNotificationTokenWithPushService(deviceToken, registrationCompletion: { result in
-                    switch result {
-                    case .success():
-                        break
-                    case .error(let error):
-                        errorHandler(error.addingInfo())
+                let userToken = UserDeviceToken(session: session, token: deviceToken)
+                let register = { () -> Void in
+                    controller.registerPushNotificationTokenWithPushService(userToken) { result in
+                        switch result {
+                        case .success:
+                            UserDeviceToken.current = userToken
+                            break
+                        case .failure(let error):
+                            errorHandler(error.addingInfo())
+                        }
                     }
-                })
+                }
+
+                // Check if the current token is the same as the new one
+                if let currentUserToken = UserDeviceToken.current, currentUserToken != userToken {
+                    // Not the same so deregister the old one before registering the new one.
+                    controller.deregisterPushNotificationTokenWithPushService(currentUserToken) { result in
+                        switch result {
+                        case .success:
+                            register()
+                        case .failure(let error):
+                            errorHandler(error.addingInfo())
+                        }
+                    }
+                } else {
+                    // This is either the very first token or the same token as before
+                    // so we can go ahead and register it
+                    register()
+                }
+            }
+        }
+    }
+
+    public static func deregisterPushNotifications(completionHandler: @escaping (NSError?) -> Void) {
+        guard let userToken = UserDeviceToken.current else {
+            completionHandler(nil)
+            return
+        }
+        let controller = NotificationKitController(session: userToken.session)
+        controller.deregisterPushNotificationTokenWithPushService(userToken) { result in
+            switch result {
+            case .success:
+                UserDeviceToken.current = nil
+                completionHandler(nil)
+            case .failure(let error):
+                completionHandler(error)
             }
         }
     }
     
     // This is super ugly, change with Swift 2.0 - guard
     public typealias RegisterPushNotificationTokenCompletion = (_ result: RegisterPushNotificationTokenResult) -> ()
-    open func registerPushNotificationTokenWithPushService(_ deviceToken: Data, registrationCompletion: @escaping RegisterPushNotificationTokenCompletion) {
-        let token = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
-        self.remoteService.registerPushNotificationTokenWithPushService(token, completion: { (pushNotificationRegistrationResult) -> () in
+    open func registerPushNotificationTokenWithPushService(_ deviceToken: UserDeviceToken, registrationCompletion: @escaping RegisterPushNotificationTokenCompletion) {
+        self.remoteService.registerPushNotificationTokenWithPushService(deviceToken.token, completion: { (pushNotificationRegistrationResult) -> () in
             
             if pushNotificationRegistrationResult.error != nil {
-                registrationCompletion(RegisterPushNotificationTokenResult.error(pushNotificationRegistrationResult.error!))
+                registrationCompletion(RegisterPushNotificationTokenResult.failure(pushNotificationRegistrationResult.error!))
             } else if pushNotificationRegistrationResult.value != nil {
                 
                 // Verify whether user has previously set up notification preferences
@@ -77,7 +135,7 @@ open class NotificationKitController {
                             self.setNotificationPreferenceDefaults(registrationCompletion)
                         } else {
                             // actually had an error, return that
-                            registrationCompletion(RegisterPushNotificationTokenResult.error(notificationPreferencesResult.error!))
+                            registrationCompletion(RegisterPushNotificationTokenResult.failure(notificationPreferencesResult.error!))
                         }
                     } else {
                         // There's no need to look at the data at this point, if it's able to fetch the data then we don't need to setup the notification preferences, the only way a value gets there is if the values get setup
@@ -87,6 +145,10 @@ open class NotificationKitController {
             }
         })
     }
+
+    func deregisterPushNotificationTokenWithPushService(_ deviceToken: UserDeviceToken, completionHandler: @escaping (Result<Void, NSError>) -> Void) {
+        self.remoteService.deregisterPushNotificationTokenWithPushService(deviceToken.token, completion: completionHandler)
+    }
     
     // This is super ugly, change with Swift 2.0 - guard
     fileprivate func setNotificationPreferenceDefaults(_ registrationCompletion: @escaping RegisterPushNotificationTokenCompletion) {
@@ -94,7 +156,7 @@ open class NotificationKitController {
         self.remoteService.getUserCommunicationChannels({ (getChannelsResult) -> () in
             // result.value?.content
             if getChannelsResult.error != nil {
-                registrationCompletion(RegisterPushNotificationTokenResult.error(getChannelsResult.error!))
+                registrationCompletion(RegisterPushNotificationTokenResult.failure(getChannelsResult.error!))
             } else if getChannelsResult.value != nil {
                 if let channels: [CommunicationChannel] = getChannelsResult.value {
                     // Find push notification channel id
@@ -110,7 +172,7 @@ open class NotificationKitController {
                     if channelID != "" {
                         self.remoteService.getNotificationPreferences(channelID, completion: { (getNotificationResult) -> () in
                             if getNotificationResult.error != nil {
-                                registrationCompletion(RegisterPushNotificationTokenResult.error(getNotificationResult.error!))
+                                registrationCompletion(RegisterPushNotificationTokenResult.failure(getNotificationResult.error!))
                             } else if (getNotificationResult.value != nil) {
                                 if let preferences: [NotificationPreference] = getNotificationResult.value {
                                     // We don't use/care about some preferences, strip those out so we're not setting values for ones that we don't let them change through the application
@@ -130,13 +192,13 @@ open class NotificationKitController {
                                     
                                     self.remoteService.setNotificationPreferences(channelID, preferences: actualPreferences, completion: { (setPreferencesResult) -> () in
                                         if setPreferencesResult.error != nil {
-                                            registrationCompletion(.error(setPreferencesResult.error!))
+                                            registrationCompletion(.failure(setPreferencesResult.error!))
                                         } else if (setPreferencesResult.value != nil) {
                                             // need to set the key/value data indicating that this process has happened so that any settings updated by the user after this or on different devices doesn't get overwritten
                                             self.remoteService.updateNotificationPreferencesSetup({ (updateNotificationPreferencesSetupResult) -> () in
                                                 if updateNotificationPreferencesSetupResult.error != nil {
                                                     // error
-                                                    registrationCompletion(.error(updateNotificationPreferencesSetupResult.error!))
+                                                    registrationCompletion(.failure(updateNotificationPreferencesSetupResult.error!))
                                                 } else {
                                                     registrationCompletion(.success())
                                                 }
@@ -147,7 +209,7 @@ open class NotificationKitController {
                                     
                                     let localizedDescription = NSLocalizedString("Unable to parse JSON for communication channels", tableName: "Localizable", bundle: .core, comment: "Error message when parsing communication preferences")
                                     let error = NSError.simpleError(localizedDescription, code: 90210)
-                                    registrationCompletion(.error(error))
+                                    registrationCompletion(.failure(error))
                                 }
                             }
                         })
@@ -155,12 +217,12 @@ open class NotificationKitController {
                         
                         let localizedDescription = NSLocalizedString("No push channel found", tableName: "Localizable", bundle: .core, comment: "Error when push channel cannot be found in notificaitons")
                         let error = NSError.simpleError(localizedDescription, code: 90211)
-                        registrationCompletion(.error(error))
+                        registrationCompletion(.failure(error))
                     }
                 } else {
                     let localizedDescription = NSLocalizedString("Unable to parse JSON for notification preferences", tableName: "Localizable", bundle: .core, comment: "Error message when parsing notification preferences")
                     let error = NSError.simpleError(localizedDescription, code: 90212)
-                    registrationCompletion(.error(error))
+                    registrationCompletion(.failure(error))
                 }
             }
         })

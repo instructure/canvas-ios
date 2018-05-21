@@ -298,6 +298,9 @@ extension AppDelegate: NativeLoginManagerDelegate {
     }
     
     func didLogout(_ controller: UIViewController) {
+        NotificationKitController.deregisterPushNotifications { _ in
+            // this is a no-op because we don't want errors to prevent logging out
+        }
         guard let window = self.window else { return }
         UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {
             window.rootViewController = controller

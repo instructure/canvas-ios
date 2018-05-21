@@ -108,6 +108,19 @@ open class RemoteService {
         
         return attemptProducer { try session.GET(path) }
     }
+
+    func deregisterPushNotificationTokenWithPushService(_ pushToken: String, completion: @escaping (Result<Void, NSError>) -> Void) {
+        requestForPushNotificationDeregistration(pushToken)
+            .flatMap(.concat, transform: session.emptyResponseSignalProducer)
+            .on(completed: { completion(Result(value: ())) })
+            .startWithFailed { e in completion(Result(error: e)) }
+    }
+
+    fileprivate func requestForPushNotificationDeregistration(_ pushToken: String) -> SignalProducer<URLRequest, NSError> {
+        let path = "api/v1/users/self/communication_channels/push"
+        let params = ["push_token": pushToken]
+        return attemptProducer { try session.DELETE(path, parameters: params) }
+    }
     
     // MARK: Retrieve notification preferences for a channel
     //       GET /users/:user_id/communication_channels/:communication_channel_id/notification_preferences
