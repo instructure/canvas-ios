@@ -199,6 +199,7 @@ const styles = StyleSheet.create({
   },
   title: {
     marginTop: 8,
+    fontSize: 18,
     fontWeight: '600',
   },
   code: {

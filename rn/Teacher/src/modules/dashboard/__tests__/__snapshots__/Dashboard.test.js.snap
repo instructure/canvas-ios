@@ -562,6 +562,7 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                       },
                       Object {
                         "color": "#27B9CD",
+                        "fontSize": 18,
                         "fontWeight": "600",
                         "marginTop": 8,
                       },
@@ -745,6 +746,7 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                       },
                       Object {
                         "color": "#8F3E97",
+                        "fontSize": 18,
                         "fontWeight": "600",
                         "marginTop": 8,
                       },
@@ -928,6 +930,7 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                       },
                       Object {
                         "color": "#8F3E99",
+                        "fontSize": 18,
                         "fontWeight": "600",
                         "marginTop": 8,
                       },
@@ -1492,6 +1495,7 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                       },
                       Object {
                         "color": "#27B9CD",
+                        "fontSize": 18,
                         "fontWeight": "600",
                         "marginTop": 8,
                       },
@@ -1675,6 +1679,7 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                       },
                       Object {
                         "color": "#8F3E97",
+                        "fontSize": 18,
                         "fontWeight": "600",
                         "marginTop": 8,
                       },
@@ -1858,6 +1863,7 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                       },
                       Object {
                         "color": "#8F3E99",
+                        "fontSize": 18,
                         "fontWeight": "600",
                         "marginTop": 8,
                       },
@@ -2091,6 +2097,7 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                       },
                       Object {
                         "color": undefined,
+                        "fontSize": 18,
                         "fontWeight": "600",
                         "marginTop": 8,
                       },
@@ -2713,6 +2720,7 @@ exports[`Dashboard render 1`] = `
                       },
                       Object {
                         "color": "#27B9CD",
+                        "fontSize": 18,
                         "fontWeight": "600",
                         "marginTop": 8,
                       },
@@ -2896,6 +2904,7 @@ exports[`Dashboard render 1`] = `
                       },
                       Object {
                         "color": "#8F3E97",
+                        "fontSize": 18,
                         "fontWeight": "600",
                         "marginTop": 8,
                       },
@@ -3079,6 +3088,7 @@ exports[`Dashboard render 1`] = `
                       },
                       Object {
                         "color": "#8F3E99",
+                        "fontSize": 18,
                         "fontWeight": "600",
                         "marginTop": 8,
                       },
@@ -3701,6 +3711,7 @@ exports[`Dashboard render while pending 1`] = `
                       },
                       Object {
                         "color": "#27B9CD",
+                        "fontSize": 18,
                         "fontWeight": "600",
                         "marginTop": 8,
                       },
@@ -3884,6 +3895,7 @@ exports[`Dashboard render while pending 1`] = `
                       },
                       Object {
                         "color": "#8F3E97",
+                        "fontSize": 18,
                         "fontWeight": "600",
                         "marginTop": 8,
                       },
@@ -4067,6 +4079,7 @@ exports[`Dashboard render while pending 1`] = `
                       },
                       Object {
                         "color": "#8F3E99",
+                        "fontSize": 18,
                         "fontWeight": "600",
                         "marginTop": 8,
                       },
@@ -6229,6 +6242,7 @@ exports[`Dashboard renders course invites 1`] = `
                       },
                       Object {
                         "color": "#27B9CD",
+                        "fontSize": 18,
                         "fontWeight": "600",
                         "marginTop": 8,
                       },
@@ -6412,6 +6426,7 @@ exports[`Dashboard renders course invites 1`] = `
                       },
                       Object {
                         "color": "#8F3E97",
+                        "fontSize": 18,
                         "fontWeight": "600",
                         "marginTop": 8,
                       },
@@ -6595,6 +6610,7 @@ exports[`Dashboard renders course invites 1`] = `
                       },
                       Object {
                         "color": "#8F3E99",
+                        "fontSize": 18,
                         "fontWeight": "600",
                         "marginTop": 8,
                       },

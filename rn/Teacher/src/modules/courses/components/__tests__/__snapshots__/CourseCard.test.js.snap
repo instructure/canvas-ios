@@ -134,6 +134,7 @@ exports[`renders 1`] = `
               },
               Object {
                 "color": "#333",
+                "fontSize": 18,
                 "fontWeight": "600",
                 "marginTop": 8,
               },
@@ -358,6 +359,7 @@ exports[`renders with a grade 1`] = `
               },
               Object {
                 "color": "#333",
+                "fontSize": 18,
                 "fontWeight": "600",
                 "marginTop": 8,
               },
@@ -582,6 +584,7 @@ exports[`renders with a grade even if the grade does not exist 1`] = `
               },
               Object {
                 "color": "#333",
+                "fontSize": 18,
                 "fontWeight": "600",
                 "marginTop": 8,
               },
@@ -749,6 +752,7 @@ exports[`renders with empty image url 1`] = `
               },
               Object {
                 "color": "#333",
+                "fontSize": 18,
                 "fontWeight": "600",
                 "marginTop": 8,
               },
@@ -928,6 +932,7 @@ exports[`renders with image url 1`] = `
               },
               Object {
                 "color": "#333",
+                "fontSize": 18,
                 "fontWeight": "600",
                 "marginTop": 8,
               },
@@ -1095,6 +1100,7 @@ exports[`renders without image url 1`] = `
               },
               Object {
                 "color": "#333",
+                "fontSize": 18,
                 "fontWeight": "600",
                 "marginTop": 8,
               },
