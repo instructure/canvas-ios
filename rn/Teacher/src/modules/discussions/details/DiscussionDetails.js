@@ -178,6 +178,7 @@ export class DiscussionDetails extends Component<Props, any> {
     const points = this._points(discussion)
     let user = discussion.author
     const assignmentID = this.props.assignment ? this.props.assignment.id : null
+    const hasValidDate = discussion.delayed_post_at || discussion.posted_at
     const date = new Date(discussion.delayed_post_at || discussion.posted_at)
     const sections = discussion.sections || []
     return (
@@ -236,7 +237,7 @@ export class DiscussionDetails extends Component<Props, any> {
             }
             <View style={[style.authorInfoContainer, { marginLeft: (user && user.display_name) ? global.style.defaultPadding : 0 }]}>
               { user && user.display_name && <Text style={style.authorName}>{user.display_name}</Text> }
-              <Text style={style.authorDate} testID='discussion.details.post-date-lbl'>{i18n("{ date, date, 'MMM d'} at { date, time, short }", { date })}</Text>
+              { hasValidDate && <Text style={style.authorDate} testID='discussion.details.post-date-lbl'>{i18n("{ date, date, 'MMM d'} at { date, time, short }", { date })}</Text> }
             </View>
           </View>
 

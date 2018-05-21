@@ -616,6 +616,15 @@ describe('DiscussionDetails', () => {
     expect(label.children).toEqual(['Oct 27 at 3:16 PM'])
   })
 
+  it('displays no post date', () => {
+    props.discussion = template.discussion({
+      delayed_post_at: null,
+      posted_at: null,
+    })
+    const label: any = explore(render(props).toJSON()).selectByID('discussion.details.post-date-lbl')
+    expect(label).toEqual(null)
+  })
+
   it('navigates to context card when pressing the avatar', () => {
     let avatar = explore(render(props).toJSON()).selectByID('discussion.details.avatar') || {}
     avatar.props.onPress()
