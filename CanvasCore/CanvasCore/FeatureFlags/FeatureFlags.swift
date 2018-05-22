@@ -17,6 +17,7 @@ public enum FeatureFlagName: String {
     case pageViewLogging
     case favoriteGroups
     case newGroupNavigation
+    case newStudentAssignmentView
 }
 
 @objc(FeatureFlags)

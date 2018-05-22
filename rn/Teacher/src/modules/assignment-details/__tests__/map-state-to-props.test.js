@@ -17,13 +17,8 @@
 /* @flow */
 
 import { mapStateToProps, updateMapStateToProps, type AssignmentDetailsProps } from '../map-state-to-props'
-
-const template = {
-  ...require('../../../__templates__/assignments'),
-  ...require('../../../__templates__/course'),
-  ...require('../../../__templates__/helm'),
-  ...require('../../../redux/__templates__/app-state'),
-}
+import * as template from '../../../__templates__'
+import app from '../../app'
 
 test('map state to props assignment', async () => {
   let course = template.course()
@@ -198,6 +193,44 @@ test('map state to props update assignment', async () => {
 
 test('it returns showSubmissionSummary as false if the user is a designer', () => {
   let course = template.course({ enrollments: [{ type: 'designer' }] })
+  let assignment = template.assignment()
+  let assignmentGroup = template.assignmentGroup()
+
+  let state = template.appState({
+    entities: {
+      assignments: {
+        [assignment.id]: { data: assignment, pending: 0 },
+      },
+      courses: {
+        [course.id]: {
+          assignmentGroups: { refs: [assignmentGroup.id] },
+          course: course,
+        },
+      },
+    },
+  })
+
+  let props: AssignmentDetailsProps = {
+    courseID: course.id,
+    assignmentID: assignment.id,
+    course,
+    refreshAssignmentDetails: jest.fn(),
+    navigator: template.navigator(),
+    assignmentDetails: assignment,
+    refresh: jest.fn(),
+    refreshing: false,
+    updateAssignment: jest.fn(),
+    cancelAssignmentUpdate: jest.fn(),
+    getSessionlessLaunchURL: jest.fn(),
+  }
+
+  const result = mapStateToProps(state, props)
+  expect(result.showSubmissionSummary).toEqual(false)
+})
+
+test('it returns showSubmissionSummary as false if the user is a student', () => {
+  app.setCurrentApp('student')
+  let course = template.course()
   let assignment = template.assignment()
   let assignmentGroup = template.assignmentGroup()
 

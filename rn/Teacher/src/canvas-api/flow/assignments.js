@@ -90,6 +90,7 @@ export type Assignment = {
   discussion_topic?: Discussion,
   external_tool_tag_attributes?: { url: ?string },
   submission?: Submission,
+  allowed_extensions?: [string],
 }
 
 export type AssignmentDate = {

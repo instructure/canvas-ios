@@ -40,6 +40,9 @@ import CourseActions from '../courses/actions'
 import Images from '../../images'
 import Screen from '../../routing/Screen'
 import * as LTITools from '../../common/LTITools'
+import { isTeacher, isStudent } from '../app'
+import { formattedDueDate } from '../../common/formatters'
+import AssignmentDatesParser from '../../common/AssignmentDates'
 
 import {
   View,
@@ -67,7 +70,7 @@ export class AssignmentDetails extends Component<AssignmentDetailsProps, any> {
     </AssignmentSection>)
   }
 
-  renderDueDates = (assignment: Assignment) => {
+  renderTeacherDueDates = (assignment: Assignment) => {
     return (<AssignmentSection
       title={i18n('Due')}
       accessibilityLabel={i18n('Due Dates, Double tap for details.')}
@@ -79,6 +82,17 @@ export class AssignmentDetails extends Component<AssignmentDetailsProps, any> {
     </AssignmentSection>)
   }
 
+  renderStudentDueDate = (assignment: Assignment) => {
+    let dates = new AssignmentDatesParser(assignment)
+    let dueAtString = dates.bestDueAt() ? formattedDueDate(dates.bestDueAt()) : i18n('No Due Date')
+
+    return (<AssignmentSection
+      title={i18n('Due')}
+      testID='assignment-details.assignment-section.due'>
+      <Text>{dueAtString}</Text>
+    </AssignmentSection>)
+  }
+
   renderSubmissionTypes = () => {
     const isExternalTool = this.submissionTypes().includes('external_tool')
     return (<AssignmentSection
@@ -87,6 +101,23 @@ export class AssignmentDetails extends Component<AssignmentDetailsProps, any> {
       onPress={isExternalTool ? this.launchExternalTool : null}
       showDisclosureIndicator={isExternalTool}>
       <SubmissionType data={this.submissionTypes()} />
+    </AssignmentSection>)
+  }
+
+  renderFileUploadTypes = (assignment: Assignment) => {
+    if (!assignment.allowed_extensions || !Array.isArray(assignment.allowed_extensions)) return null
+    const extensions = [...assignment.allowed_extensions]
+    let extensionsString
+    if (extensions.length === 1) {
+      extensionsString = assignment.allowed_extensions[0]
+    } else {
+      const lastExtension = extensions.pop()
+      extensionsString = i18n('{ extensions } and { lastExtension }', { extensions: extensions.join(', '), lastExtension })
+    }
+    return (<AssignmentSection
+      title={i18n('File Types')}
+      testID='assignment-details.assignment-section.file-types'>
+      <Text>{extensionsString}</Text>
     </AssignmentSection>)
   }
 
@@ -166,6 +197,7 @@ export class AssignmentDetails extends Component<AssignmentDetailsProps, any> {
   }
 
   rightBarButtons = () => {
+    if (isStudent()) return []
     return [{
       title: i18n('Edit'),
       testID: 'assignment-details.edit-btn',
@@ -188,8 +220,10 @@ export class AssignmentDetails extends Component<AssignmentDetailsProps, any> {
       >
         <RefreshableScrollView refreshing={Boolean(this.props.pending)} onRefresh={this.props.refresh}>
           { this.renderTitle(assignment) }
-          { this.renderDueDates(assignment) }
+          { isTeacher() && this.renderTeacherDueDates(assignment) }
+          { isStudent() && this.renderStudentDueDate(assignment) }
           { this.renderSubmissionTypes() }
+          { isStudent() && this.renderFileUploadTypes(assignment) }
           { this.props.showSubmissionSummary && this.renderSubmissionSummary(assignment) }
           { this.renderDescription(assignment) }
           { this.renderExternalToolButton() }
@@ -235,9 +269,16 @@ export class AssignmentDetails extends Component<AssignmentDetailsProps, any> {
           navigator={this.props.navigator}
         />
       )
+    } else if (isTeacher()) {
+      return (
+        <DescriptionDefaultView
+          testID='assignment-details.description-default-view'
+        />
+      )
     } else {
       return (
         <DescriptionDefaultView
+          text={i18n("This assignment doesn't have a description.")}
           testID='assignment-details.description-default-view'
         />
       )

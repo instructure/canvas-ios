@@ -50,7 +50,6 @@ extension AppDelegate: RCTBridgeDelegate {
 
         registerScreen("/courses/:courseID/assignments/syllabus")
         
-        registerScreen("/courses/:courseID/assignments/:assignmentID")
         registerScreen("/courses/:courseID/quizzes")
         registerScreen("/courses/:courseID/quizzes/:quizID")
         registerScreen("/courses/:courseID/modules")
@@ -83,6 +82,19 @@ extension AppDelegate: RCTBridgeDelegate {
             guard let groupID = props["groupID"] as? String else { return nil }
 
             let url = URL(string: "api/v1/groups/\(groupID)/tabs")
+            return Router.shared().controller(forHandling: url)
+        })
+        
+        HelmManager.shared.registerNativeViewController(for: "/courses/:courseID/assignments/:assignmentID", factory: { props in
+            guard let assignmentID = props["assignmentID"] as? String else { return nil }
+            guard let courseID = props["courseID"] as? String else { return nil }
+            if FeatureFlags.featureFlagEnabled(.newStudentAssignmentView) {
+                return HelmViewController(
+                    moduleName: "/courses/:courseID/assignments/:assignmentID",
+                    props: ["assignmentID": assignmentID, "courseID": courseID]
+                )
+            }
+            guard let url = propsURL(props) else { return nil }
             return Router.shared().controller(forHandling: url)
         })
         
