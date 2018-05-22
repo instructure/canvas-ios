@@ -163,7 +163,6 @@ export function registerScreens (store: Store): void {
   registerScreen('/push-notifications', wrap(PushNotifications), store)
   registerScreen('/page-view-events', wrap(PageViewEvents), store)
   registerScreen('/feature-flags', wrap(FeatureFlags), store)
-  registerScreen('/courses/:courseID/grades', wrap(GradesList), store, { canBecomeMaster: true, deepLink: true })
 
   if (isTeacher()) {
     // Files
@@ -200,6 +199,7 @@ export function registerScreens (store: Store): void {
     registerScreen('/courses/:courseID/modules/:moduleID', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/modules/:moduleID/items/:itemID', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/modules/items/:itemID', null, store, { deepLink: true })
+    registerScreen('/courses/:courseID/grades', wrap(GradesList), store, { canBecomeMaster: true, deepLink: true })
 
     // Calls the old routing method
     registerScreen('/native-route/*route')
