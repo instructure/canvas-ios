@@ -572,6 +572,9 @@
   "excused_cf8792eb": {
     "message": "Excused"
   },
+  "extensions_and_lastextension_f45d68e7": {
+    "message": "{ extensions } and { lastExtension }"
+  },
   "external_tool_c5a6410a": {
     "message": "External Tool"
   },
@@ -601,6 +604,9 @@
   },
   "favorite_courses_fbd356f0": {
     "message": "Favorite Courses"
+  },
+  "file_types_6fa69505": {
+    "message": "File Types"
   },
   "files_c300e900": {
     "message": "Files"
@@ -1477,6 +1483,9 @@
   },
   "this_assignment_does_not_allow_submissions_30af1caa": {
     "message": "This assignment does not allow submissions."
+  },
+  "this_assignment_doesn_t_have_a_description_e2f37ec3": {
+    "message": "This assignment doesn''t have a description."
   },
   "this_assignment_only_allows_on_paper_submissions_f478408a": {
     "message": "This assignment only allows on-paper submissions."
