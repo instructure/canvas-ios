@@ -129,6 +129,7 @@ exports[`renders a single file type 1`] = `
             "dismissAllModals": [Function],
             "isModal": false,
             "pop": [Function],
+            "replace": [Function],
             "show": [Function],
             "traitCollection": [Function],
           }
@@ -267,6 +268,7 @@ exports[`renders even if there is fake data 1`] = `
             "dismissAllModals": [Function],
             "isModal": false,
             "pop": [Function],
+            "replace": [Function],
             "show": [Function],
             "traitCollection": [Function],
           }
@@ -405,6 +407,7 @@ exports[`renders for a student 1`] = `
             "dismissAllModals": [Function],
             "isModal": false,
             "pop": [Function],
+            "replace": [Function],
             "show": [Function],
             "traitCollection": [Function],
           }
@@ -551,6 +554,7 @@ exports[`renders multiple file types 1`] = `
             "dismissAllModals": [Function],
             "isModal": false,
             "pop": [Function],
+            "replace": [Function],
             "show": [Function],
             "traitCollection": [Function],
           }
@@ -689,6 +693,7 @@ exports[`renders without a due date 1`] = `
             "dismissAllModals": [Function],
             "isModal": false,
             "pop": [Function],
+            "replace": [Function],
             "show": [Function],
             "traitCollection": [Function],
           }
