@@ -73,6 +73,7 @@ type State = {
   courseName: string,
   canRate: boolean,
   initialPostRequired: boolean,
+  groups: GroupsState,
 }
 
 type ViewableReply = {
@@ -113,6 +114,8 @@ export type Props
 }
 
 export class DiscussionDetails extends Component<Props, any> {
+  hasReplaced: boolean = false
+
   constructor (props: Props) {
     super(props)
     this.state = {
@@ -134,6 +137,21 @@ export class DiscussionDetails extends Component<Props, any> {
   componentWillReceiveProps (nextProps: Props) {
     if (nextProps.error && nextProps.error !== this.props.error) {
       alertError(nextProps.error)
+    }
+
+    const { discussion } = nextProps
+    if (discussion) {
+      if (!this.hasReplaced && nextProps.context !== 'groups' && discussion.group_category_id && discussion.group_topic_children) {
+        // This is a group discussion but we're showing the main discussion
+        // So replace with the correct group discussion
+        const groups = Object.keys(nextProps.groups)
+        const groupDiscussion = discussion.group_topic_children.find(({ group_id }) => groups.includes(group_id))
+        if (groupDiscussion) {
+          const { group_id, id } = groupDiscussion
+          this.hasReplaced = true
+          this.props.navigator.replace(`/groups/${group_id}/discussion_topics/${id}`)
+        }
+      }
     }
 
     if (this.state.deletePending && !nextProps.pending && !nextProps.error && !nextProps.discussion) {
@@ -770,6 +788,7 @@ export function mapStateToProps ({ entities }: AppState, ownProps: OwnProps): St
       }
     }
   }
+
   return {
     discussion,
     unreadEntries,
@@ -785,6 +804,7 @@ export function mapStateToProps ({ entities }: AppState, ownProps: OwnProps): St
     isAnnouncement,
     canRate,
     initialPostRequired,
+    groups: entities.groups,
   }
 }
 

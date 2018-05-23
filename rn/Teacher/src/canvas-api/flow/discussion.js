@@ -84,6 +84,7 @@ export type Discussion = {
   locked?: boolean,
   sections?: Section[],
   is_section_specific: boolean,
+  group_topic_children?: DiscussionGroupTopicChildren[],
 }
 
 // api params

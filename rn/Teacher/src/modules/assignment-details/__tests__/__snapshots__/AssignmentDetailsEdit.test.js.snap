@@ -935,6 +935,7 @@ exports[`error occurs when done pressed 1`] = `
               "dismissAllModals": [Function],
               "isModal": false,
               "pop": [Function],
+              "replace": [Function],
               "show": [Function],
               "traitCollection": [Function],
             }
@@ -1881,6 +1882,7 @@ exports[`modal saving is shown on assignment update 1`] = `
               "dismissAllModals": [Function],
               "isModal": false,
               "pop": [Function],
+              "replace": [Function],
               "show": [Function],
               "traitCollection": [Function],
             }
@@ -2827,6 +2829,7 @@ exports[`renders 1`] = `
               "dismissAllModals": [Function],
               "isModal": false,
               "pop": [Function],
+              "replace": [Function],
               "show": [Function],
               "traitCollection": [Function],
             }
@@ -3777,6 +3780,7 @@ exports[`saving invalid dates displays banner 1`] = `
               "dismissAllModals": [Function],
               "isModal": false,
               "pop": [Function],
+              "replace": [Function],
               "show": [Function],
               "traitCollection": [Function],
             }
@@ -4761,6 +4765,7 @@ exports[`saving invalid name displays banner 1`] = `
               "dismissAllModals": [Function],
               "isModal": false,
               "pop": [Function],
+              "replace": [Function],
               "show": [Function],
               "traitCollection": [Function],
             }
@@ -5745,6 +5750,7 @@ exports[`saving invalid points possible displays banner 1`] = `
               "dismissAllModals": [Function],
               "isModal": false,
               "pop": [Function],
+              "replace": [Function],
               "show": [Function],
               "traitCollection": [Function],
             }
@@ -6729,6 +6735,7 @@ exports[`saving negative points possible displays banner 1`] = `
               "dismissAllModals": [Function],
               "isModal": false,
               "pop": [Function],
+              "replace": [Function],
               "show": [Function],
               "traitCollection": [Function],
             }

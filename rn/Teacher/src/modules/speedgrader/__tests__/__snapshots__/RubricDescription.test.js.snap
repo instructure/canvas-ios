@@ -30,6 +30,7 @@ exports[`RubricDescription renders 1`] = `
             "dismissAllModals": [Function],
             "isModal": false,
             "pop": [Function],
+            "replace": [Function],
             "show": [Function],
             "traitCollection": [Function],
           }

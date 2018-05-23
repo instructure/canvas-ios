@@ -19,6 +19,7 @@ exports[`RichTextEditor can be keyboard aware 1`] = `
         "dismissAllModals": [Function],
         "isModal": false,
         "pop": [Function],
+        "replace": [Function],
         "show": [Function],
         "traitCollection": [Function],
       }
@@ -61,6 +62,7 @@ exports[`RichTextEditor hides toolbar when editor blurs 1`] = `
         "dismissAllModals": [Function],
         "isModal": false,
         "pop": [Function],
+        "replace": [Function],
         "show": [Function],
         "traitCollection": [Function],
       }
@@ -96,6 +98,7 @@ exports[`RichTextEditor hides toolbar when showToolbar is false 1`] = `
         "dismissAllModals": [Function],
         "isModal": false,
         "pop": [Function],
+        "replace": [Function],
         "show": [Function],
         "traitCollection": [Function],
       }
@@ -131,6 +134,7 @@ exports[`RichTextEditor renders 1`] = `
         "dismissAllModals": [Function],
         "isModal": false,
         "pop": [Function],
+        "replace": [Function],
         "show": [Function],
         "traitCollection": [Function],
       }
@@ -166,6 +170,7 @@ exports[`RichTextEditor renders toolbar when editor focused 1`] = `
         "dismissAllModals": [Function],
         "isModal": false,
         "pop": [Function],
+        "replace": [Function],
         "show": [Function],
         "traitCollection": [Function],
       }
@@ -214,6 +219,7 @@ exports[`RichTextEditor should update active editor items in toolbar 1`] = `
         "dismissAllModals": [Function],
         "isModal": false,
         "pop": [Function],
+        "replace": [Function],
         "show": [Function],
         "traitCollection": [Function],
       }
@@ -262,6 +268,7 @@ exports[`RichTextEditor should update active editor items in toolbar 2`] = `
         "dismissAllModals": [Function],
         "isModal": false,
         "pop": [Function],
+        "replace": [Function],
         "show": [Function],
         "traitCollection": [Function],
       }

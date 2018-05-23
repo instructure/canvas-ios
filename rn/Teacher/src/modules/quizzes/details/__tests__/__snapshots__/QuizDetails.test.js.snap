@@ -798,6 +798,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
                 "dismissAllModals": [Function],
                 "isModal": false,
                 "pop": [Function],
+                "replace": [Function],
                 "show": [Function],
                 "traitCollection": [Function],
               }
@@ -2217,6 +2218,7 @@ exports[`QuizDetails displays access code 1`] = `
                 "dismissAllModals": [Function],
                 "isModal": false,
                 "pop": [Function],
+                "replace": [Function],
                 "show": [Function],
                 "traitCollection": [Function],
               }
@@ -3636,6 +3638,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
                 "dismissAllModals": [Function],
                 "isModal": false,
                 "pop": [Function],
+                "replace": [Function],
                 "show": [Function],
                 "traitCollection": [Function],
               }
@@ -4939,6 +4942,7 @@ exports[`QuizDetails renders 1`] = `
                 "dismissAllModals": [Function],
                 "isModal": false,
                 "pop": [Function],
+                "replace": [Function],
                 "show": [Function],
                 "traitCollection": [Function],
               }
@@ -6300,6 +6304,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
                 "dismissAllModals": [Function],
                 "isModal": false,
                 "pop": [Function],
+                "replace": [Function],
                 "show": [Function],
                 "traitCollection": [Function],
               }
@@ -7719,6 +7724,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
                 "dismissAllModals": [Function],
                 "isModal": false,
                 "pop": [Function],
+                "replace": [Function],
                 "show": [Function],
                 "traitCollection": [Function],
               }
@@ -9080,6 +9086,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
                 "dismissAllModals": [Function],
                 "isModal": false,
                 "pop": [Function],
+                "replace": [Function],
                 "show": [Function],
                 "traitCollection": [Function],
               }
@@ -10441,6 +10448,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
                 "dismissAllModals": [Function],
                 "isModal": false,
                 "pop": [Function],
+                "replace": [Function],
                 "show": [Function],
                 "traitCollection": [Function],
               }
@@ -11802,6 +11810,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
                 "dismissAllModals": [Function],
                 "isModal": false,
                 "pop": [Function],
+                "replace": [Function],
                 "show": [Function],
                 "traitCollection": [Function],
               }
@@ -13163,6 +13172,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
                 "dismissAllModals": [Function],
                 "isModal": false,
                 "pop": [Function],
+                "replace": [Function],
                 "show": [Function],
                 "traitCollection": [Function],
               }
@@ -14524,6 +14534,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
                 "dismissAllModals": [Function],
                 "isModal": false,
                 "pop": [Function],
+                "replace": [Function],
                 "show": [Function],
                 "traitCollection": [Function],
               }
@@ -15827,6 +15838,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
                 "dismissAllModals": [Function],
                 "isModal": false,
                 "pop": [Function],
+                "replace": [Function],
                 "show": [Function],
                 "traitCollection": [Function],
               }
@@ -17188,6 +17200,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
                 "dismissAllModals": [Function],
                 "isModal": false,
                 "pop": [Function],
+                "replace": [Function],
                 "show": [Function],
                 "traitCollection": [Function],
               }
@@ -18581,6 +18594,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                 "dismissAllModals": [Function],
                 "isModal": false,
                 "pop": [Function],
+                "replace": [Function],
                 "show": [Function],
                 "traitCollection": [Function],
               }
@@ -19942,6 +19956,7 @@ exports[`QuizDetails renders assignment group 1`] = `
                 "dismissAllModals": [Function],
                 "isModal": false,
                 "pop": [Function],
+                "replace": [Function],
                 "show": [Function],
                 "traitCollection": [Function],
               }
@@ -21361,6 +21376,7 @@ exports[`QuizDetails renders published state 1`] = `
                 "dismissAllModals": [Function],
                 "isModal": false,
                 "pop": [Function],
+                "replace": [Function],
                 "show": [Function],
                 "traitCollection": [Function],
               }
@@ -22722,6 +22738,7 @@ exports[`QuizDetails renders published state 2`] = `
                 "dismissAllModals": [Function],
                 "isModal": false,
                 "pop": [Function],
+                "replace": [Function],
                 "show": [Function],
                 "traitCollection": [Function],
               }
@@ -24083,6 +24100,7 @@ exports[`QuizDetails renders quiz type 1`] = `
                 "dismissAllModals": [Function],
                 "isModal": false,
                 "pop": [Function],
+                "replace": [Function],
                 "show": [Function],
                 "traitCollection": [Function],
               }
@@ -25444,6 +25462,7 @@ exports[`QuizDetails renders quiz type 2`] = `
                 "dismissAllModals": [Function],
                 "isModal": false,
                 "pop": [Function],
+                "replace": [Function],
                 "show": [Function],
                 "traitCollection": [Function],
               }
@@ -26805,6 +26824,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
                 "dismissAllModals": [Function],
                 "isModal": false,
                 "pop": [Function],
+                "replace": [Function],
                 "show": [Function],
                 "traitCollection": [Function],
               }
@@ -28166,6 +28186,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
                 "dismissAllModals": [Function],
                 "isModal": false,
                 "pop": [Function],
+                "replace": [Function],
                 "show": [Function],
                 "traitCollection": [Function],
               }
@@ -29527,6 +29548,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
                 "dismissAllModals": [Function],
                 "isModal": false,
                 "pop": [Function],
+                "replace": [Function],
                 "show": [Function],
                 "traitCollection": [Function],
               }
@@ -30888,6 +30910,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
                 "dismissAllModals": [Function],
                 "isModal": false,
                 "pop": [Function],
+                "replace": [Function],
                 "show": [Function],
                 "traitCollection": [Function],
               }
@@ -32249,6 +32272,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
                 "dismissAllModals": [Function],
                 "isModal": false,
                 "pop": [Function],
+                "replace": [Function],
                 "show": [Function],
                 "traitCollection": [Function],
               }
@@ -33610,6 +33634,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
                 "dismissAllModals": [Function],
                 "isModal": false,
                 "pop": [Function],
+                "replace": [Function],
                 "show": [Function],
                 "traitCollection": [Function],
               }
@@ -34971,6 +34996,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
                 "dismissAllModals": [Function],
                 "isModal": false,
                 "pop": [Function],
+                "replace": [Function],
                 "show": [Function],
                 "traitCollection": [Function],
               }
@@ -36332,6 +36358,7 @@ exports[`QuizDetails renders time limit 1`] = `
                 "dismissAllModals": [Function],
                 "isModal": false,
                 "pop": [Function],
+                "replace": [Function],
                 "show": [Function],
                 "traitCollection": [Function],
               }
@@ -37693,6 +37720,7 @@ exports[`QuizDetails renders time limit 2`] = `
                 "dismissAllModals": [Function],
                 "isModal": false,
                 "pop": [Function],
+                "replace": [Function],
                 "show": [Function],
                 "traitCollection": [Function],
               }
@@ -39054,6 +39082,7 @@ exports[`QuizDetails renders view responses 1`] = `
                 "dismissAllModals": [Function],
                 "isModal": false,
                 "pop": [Function],
+                "replace": [Function],
                 "show": [Function],
                 "traitCollection": [Function],
               }
@@ -40415,6 +40444,7 @@ exports[`QuizDetails renders view responses 2`] = `
                 "dismissAllModals": [Function],
                 "isModal": false,
                 "pop": [Function],
+                "replace": [Function],
                 "show": [Function],
                 "traitCollection": [Function],
               }
@@ -41718,6 +41748,7 @@ exports[`QuizDetails renders view responses 3`] = `
                 "dismissAllModals": [Function],
                 "isModal": false,
                 "pop": [Function],
+                "replace": [Function],
                 "show": [Function],
                 "traitCollection": [Function],
               }

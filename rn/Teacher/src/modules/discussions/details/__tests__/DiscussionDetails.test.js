@@ -654,6 +654,50 @@ describe('DiscussionDetails', () => {
     expect(alertError).toHaveBeenCalledWith('ERROR!')
   })
 
+  it('replaces with correct group discussion', () => {
+    props.discussion = null
+    props.context = 'courses'
+    props.navigator = template.navigator({ replace: jest.fn() })
+    props.groups = { '4': { group: template.group(), color: '' } }
+    const screen = shallow(<DiscussionDetails {...props} />)
+
+    const discussion = template.discussion({
+      id: '1',
+      group_category_id: '3',
+      group_topic_children: [
+        {
+          id: '49',
+          group_id: '4',
+        },
+      ],
+    })
+    screen.setProps({ discussion })
+
+    expect(props.navigator.replace).toHaveBeenCalledWith('/groups/4/discussion_topics/49')
+  })
+
+  it('wont replace with group discussion more than once', () => {
+    props.discussion = null
+    props.context = 'courses'
+    props.navigator = template.navigator({ replace: jest.fn() })
+    props.groups = { '4': { group: template.group(), color: '' } }
+    const screen = shallow(<DiscussionDetails {...props} />)
+
+    const discussion = template.discussion({
+      id: '1',
+      group_category_id: '3',
+      group_topic_children: [
+        {
+          id: '49',
+          group_id: '4',
+        },
+      ],
+    })
+    screen.setProps({ discussion })
+    screen.setProps({ discussion })
+    expect(props.navigator.replace).toHaveBeenCalledTimes(1)
+  })
+
   function testRender (props: any) {
     expect(render(props).toJSON()).toMatchSnapshot()
   }

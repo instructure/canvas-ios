@@ -217,6 +217,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                     "dismissAllModals": [Function],
                     "isModal": false,
                     "pop": [Function],
+                    "replace": [Function],
                     "show": [Function],
                     "traitCollection": [Function],
                   }
@@ -1176,6 +1177,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                         "dismissAllModals": [Function],
                         "isModal": false,
                         "pop": [Function],
+                        "replace": [Function],
                         "show": [Function],
                         "traitCollection": [Function],
                       }
@@ -1882,6 +1884,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                     "dismissAllModals": [Function],
                     "isModal": false,
                     "pop": [Function],
+                    "replace": [Function],
                     "show": [Function],
                     "traitCollection": [Function],
                   }
@@ -2226,6 +2229,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                         "dismissAllModals": [Function],
                         "isModal": false,
                         "pop": [Function],
+                        "replace": [Function],
                         "show": [Function],
                         "traitCollection": [Function],
                       }
@@ -2649,6 +2653,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                     "dismissAllModals": [Function],
                     "isModal": false,
                     "pop": [Function],
+                    "replace": [Function],
                     "show": [Function],
                     "traitCollection": [Function],
                   }
@@ -3061,6 +3066,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                         "dismissAllModals": [Function],
                         "isModal": false,
                         "pop": [Function],
+                        "replace": [Function],
                         "show": [Function],
                         "traitCollection": [Function],
                       }
@@ -3744,6 +3750,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                     "dismissAllModals": [Function],
                     "isModal": false,
                     "pop": [Function],
+                    "replace": [Function],
                     "show": [Function],
                     "traitCollection": [Function],
                   }
@@ -4697,6 +4704,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                         "dismissAllModals": [Function],
                         "isModal": false,
                         "pop": [Function],
+                        "replace": [Function],
                         "show": [Function],
                         "traitCollection": [Function],
                       }
@@ -5041,6 +5049,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     "dismissAllModals": [Function],
                     "isModal": false,
                     "pop": [Function],
+                    "replace": [Function],
                     "show": [Function],
                     "traitCollection": [Function],
                   }
@@ -6098,6 +6107,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                         "dismissAllModals": [Function],
                         "isModal": false,
                         "pop": [Function],
+                        "replace": [Function],
                         "show": [Function],
                         "traitCollection": [Function],
                       }
@@ -7386,6 +7396,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                     "dismissAllModals": [Function],
                     "isModal": false,
                     "pop": [Function],
+                    "replace": [Function],
                     "show": [Function],
                     "traitCollection": [Function],
                   }
@@ -8371,6 +8382,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                         "dismissAllModals": [Function],
                         "isModal": false,
                         "pop": [Function],
+                        "replace": [Function],
                         "show": [Function],
                         "traitCollection": [Function],
                       }

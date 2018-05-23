@@ -928,6 +928,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
           "dismissAllModals": [Function],
           "isModal": false,
           "pop": [Function],
+          "replace": [Function],
           "show": [Function],
           "traitCollection": [Function],
         }
@@ -1874,6 +1875,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
           "dismissAllModals": [Function],
           "isModal": false,
           "pop": [Function],
+          "replace": [Function],
           "show": [Function],
           "traitCollection": [Function],
         }
@@ -2820,6 +2822,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
           "dismissAllModals": [Function],
           "isModal": false,
           "pop": [Function],
+          "replace": [Function],
           "show": [Function],
           "traitCollection": [Function],
         }
@@ -3766,6 +3769,7 @@ exports[`FilesList sending weird data into the progress update function should n
           "dismissAllModals": [Function],
           "isModal": false,
           "pop": [Function],
+          "replace": [Function],
           "show": [Function],
           "traitCollection": [Function],
         }
@@ -4712,6 +4716,7 @@ exports[`FilesList should render 1`] = `
           "dismissAllModals": [Function],
           "isModal": false,
           "pop": [Function],
+          "replace": [Function],
           "show": [Function],
           "traitCollection": [Function],
         }
@@ -5658,6 +5663,7 @@ exports[`FilesList should render for course files 1`] = `
           "dismissAllModals": [Function],
           "isModal": false,
           "pop": [Function],
+          "replace": [Function],
           "show": [Function],
           "traitCollection": [Function],
         }
@@ -6604,6 +6610,7 @@ exports[`FilesList should render for user files 1`] = `
           "dismissAllModals": [Function],
           "isModal": false,
           "pop": [Function],
+          "replace": [Function],
           "show": [Function],
           "traitCollection": [Function],
         }
@@ -7550,6 +7557,7 @@ exports[`FilesList should render with folders 1`] = `
           "dismissAllModals": [Function],
           "isModal": false,
           "pop": [Function],
+          "replace": [Function],
           "show": [Function],
           "traitCollection": [Function],
         }
@@ -7647,6 +7655,7 @@ exports[`FilesList should render with no data at all 1`] = `
           "dismissAllModals": [Function],
           "isModal": false,
           "pop": [Function],
+          "replace": [Function],
           "show": [Function],
           "traitCollection": [Function],
         }

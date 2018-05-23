@@ -9,6 +9,7 @@ exports[`CourseNavigation refreshes courses and tabs 1`] = `
       "dismissAllModals": [Function],
       "isModal": false,
       "pop": [Function],
+      "replace": [Function],
       "show": [Function],
       "traitCollection": [Function],
     }
@@ -66,6 +67,7 @@ exports[`CourseNavigation refreshes when props change 1`] = `
       "dismissAllModals": [Function],
       "isModal": false,
       "pop": [Function],
+      "replace": [Function],
       "show": [Function],
       "traitCollection": [Function],
     }

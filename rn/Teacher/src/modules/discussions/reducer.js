@@ -274,7 +274,7 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
       [discussionID]: {
         ...state[discussionID],
         data: {
-          ...state[discussionID].data,
+          ...(state[discussionID] && state[discussionID].data),
           ...result.data,
         },
       },

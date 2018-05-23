@@ -126,6 +126,7 @@ exports[`DiscussionEdit renders 1`] = `
               "dismissAllModals": [Function],
               "isModal": false,
               "pop": [Function],
+              "replace": [Function],
               "show": [Function],
               "traitCollection": [Function],
             }
@@ -342,6 +343,7 @@ exports[`DiscussionEdit renders new form 1`] = `
               "dismissAllModals": [Function],
               "isModal": false,
               "pop": [Function],
+              "replace": [Function],
               "show": [Function],
               "traitCollection": [Function],
             }
@@ -551,6 +553,7 @@ exports[`DiscussionEdit updates from props 1`] = `
               "dismissAllModals": [Function],
               "isModal": false,
               "pop": [Function],
+              "replace": [Function],
               "show": [Function],
               "traitCollection": [Function],
             }
@@ -767,6 +770,7 @@ exports[`DiscussionEdit updates with new props 1`] = `
               "dismissAllModals": [Function],
               "isModal": false,
               "pop": [Function],
+              "replace": [Function],
               "show": [Function],
               "traitCollection": [Function],
             }
