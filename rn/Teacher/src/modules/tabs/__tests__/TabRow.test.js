@@ -19,6 +19,7 @@
 import { shallow } from 'enzyme'
 import React from 'react'
 import TabRow from '../TabRow'
+import Images from '../../../images'
 
 const template = {
   ...require('../../../__templates__/tab'),
@@ -79,5 +80,24 @@ describe('TabRow', () => {
     }
     const tree = shallow(<TabRow {...props} />)
     expect(tree).toMatchSnapshot()
+  })
+
+  it('renders hidden if hidden', () => {
+    const props = {
+      ...defaultProps,
+      tab: template.tab({ id: 'files', hidden: true }),
+    }
+    const tree = shallow(<TabRow {...props} />)
+    const accessories = shallow(tree.find('Row').prop('accessories'))
+    expect(accessories.prop('source')).toEqual(Images.invisible)
+  })
+
+  it('does not render hidden icon not hidden', () => {
+    const props = {
+      ...defaultProps,
+      tab: template.tab({ id: 'files', hidden: false }),
+    }
+    const tree = shallow(<TabRow {...props} />)
+    expect(tree.find('Row').prop('accessories')).toBeFalsy()
   })
 })

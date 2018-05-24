@@ -364,6 +364,55 @@ describe('mapStateToProps', () => {
     expect(props).toEqual(expected)
   })
 
+  it('excludes hidden tabs in student', () => {
+    App.setCurrentApp('student')
+    const course = template.course({ id: '1' })
+    const tabs = { tabs: [template.tab({ id: '1', hidden: true })], pending: 0 }
+    const state = template.appState({
+      entities: {
+        courses: {
+          '1': {
+            course,
+            color: '#fff',
+            tabs,
+            attendanceTool: { pending: 0 },
+          },
+        },
+      },
+      favoriteCourses: {
+        pending: 0,
+        courseRefs: ['1'],
+      },
+    })
+    const props = mapStateToProps(state, { courseID: '1' })
+    expect(props).toMatchObject({ tabs: [] })
+  })
+
+  it('includes hidden tabs in teacher', () => {
+    App.setCurrentApp('teacher')
+    const course = template.course({ id: '1' })
+    const tab = template.tab({ id: 'files', hidden: true })
+    const tabs = { tabs: [tab], pending: 0 }
+    const state = template.appState({
+      entities: {
+        courses: {
+          '1': {
+            course,
+            color: '#fff',
+            tabs,
+            attendanceTool: { pending: 0 },
+          },
+        },
+      },
+      favoriteCourses: {
+        pending: 0,
+        courseRefs: ['1'],
+      },
+    })
+    const props = mapStateToProps(state, { courseID: '1' })
+    expect(props).toMatchObject({ tabs: [tab] })
+  })
+
   describe('external tools', () => {
     function assertExternalToolTabs () {
       const course = template.course({ id: 1 })

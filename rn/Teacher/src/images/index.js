@@ -150,6 +150,7 @@ const images = {
   share: require('./share.png'),
   relax: require('./relax.png'),
   hamburger: require('./hamburger.png'),
+  invisible: require('./invisible.png'),
 }
 
 export default (images: *)
