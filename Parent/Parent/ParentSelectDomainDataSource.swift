@@ -26,10 +26,10 @@ class ParentSelectDomainDataSource: NSObject, SelectDomainDataSource  {
     var logoImage: UIImage = UIImage(named: "parent_logo")!
     var mobileVerifyName: String = "iosParent"
     var tintTopColor: UIColor {
-        return ColorScheme.blueColorScheme.inverse().tintTopColor
+        return ColorScheme.blueColorScheme.mainColor
     }
     var tintBottomColor: UIColor {
-        return ColorScheme.blueColorScheme.inverse().tintBottomColor
+        return ColorScheme.blueColorScheme.mainColor
     }
 }
 

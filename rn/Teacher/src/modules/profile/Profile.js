@@ -244,7 +244,7 @@ export class Profile extends Component<Object, State> {
       }).filter(Boolean)
     }
     return (<View>
-      { isParent() && buildRow(i18n('Manage Students'), this.manageObserverStudents)}
+      { isParent() && buildRow(i18n('Manage Children'), this.manageObserverStudents)}
       { buildRow(i18n('Files'), this.userFiles) }
       { tools }
       { (this.props.canMasquerade || masquerading) && buildRow(masqueradeTitle, this.toggleMasquerade) }

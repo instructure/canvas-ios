@@ -23,8 +23,8 @@ import BugsnagReactNative
 
 let TheKeymaster = CanvasKeymaster.the()
 
-//@UIApplicationMain
-class ParentAppDelegate: UIResponder, AppDelegateProtocol {
+@UIApplicationMain
+class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var session: Session?

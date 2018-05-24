@@ -432,7 +432,6 @@ extension Router {
                     self.route(calendarWeekPageVC, toURL: self.standaloneCalendarEventDetailsRoute(studentID: studentID, courseID: courseID.stringValue, calendarEventID: calendarEvent.id), modal: false)
                 }
             }
-            calendarWeekPageVC.useBackgroundView = true
 
             calendarWeekPageVC.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: calendarWeekPageVC, action: #selector(CalendarEventWeekPageViewController.close(_:)))
             calendarWeekPageVC.navigationItem.leftBarButtonItem?.tintColor = .white
@@ -586,8 +585,8 @@ extension Router {
         return appDelegate().window
     }
 
-    func appDelegate() -> AppDelegate {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+    func appDelegate() -> ParentAppDelegate {
+        guard let appDelegate = UIApplication.shared.delegate as? ParentAppDelegate else {
             fatalError("How is the App Delegate wrong?")
         }
 

@@ -46,7 +46,7 @@ struct CourseCellViewModel: TableViewCellViewModel {
     static func tableViewDidLoad(_ tableView: UITableView) {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 107
-        tableView.register(UINib(nibName: "CourseCell", bundle: Bundle(for: AppDelegate.self)), forCellReuseIdentifier: "CourseCell")
+        tableView.register(UINib(nibName: "CourseCell", bundle: Bundle(for: ParentAppDelegate.self)), forCellReuseIdentifier: "CourseCell")
     }
     
     func cellForTableView(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {

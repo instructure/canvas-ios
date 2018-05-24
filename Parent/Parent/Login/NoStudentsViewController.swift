@@ -24,7 +24,6 @@ import CanvasCore
 
 class NoStudentsViewController: UIViewController {
 
-    @IBOutlet var triangleBackgroundGradientView: TriangleBackgroundGradientView!
     @IBOutlet var proceedButton: UIButton!
 
     var proceedAction: ()->Void = { }
@@ -43,9 +42,8 @@ class NoStudentsViewController: UIViewController {
 
         UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, proceedButton);
 
-        let colors = ColorScheme.blueColorScheme.inverse()
-        triangleBackgroundGradientView.diagonal = false
-        triangleBackgroundGradientView.transitionToColors(colors.tintTopColor, tintBottomColor: colors.tintBottomColor) // Flip the colors the other way
+        let colors = ColorScheme.blueColorScheme
+        view.backgroundColor = colors.mainColor
     }
 
     override var preferredStatusBarStyle : UIStatusBarStyle {

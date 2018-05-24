@@ -13,58 +13,54 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-    
-    
 
 import Foundation
 
-
-
-
 struct ColorScheme {
-    let tintTopColor: UIColor
-    let tintBottomColor: UIColor
+    let mainColor: UIColor
     let highlightCellColor: UIColor
+    
+    static let highlightCellColor = UIColor(r: 245, g: 245, b: 245)
 
-    static let blueColorScheme = ColorScheme(tintTopColor: UIColor(r: 0, g: 225, b: 255),
-                                                 tintBottomColor: UIColor(r: 0, g: 30, b: 194),
-                                                 highlightCellColor: UIColor(r: 0, g: 196, b: 255, a: 0.3))
+    static let blueColorScheme = ColorScheme(mainColor: UIColor(r: 0, g: 142, b: 226),
+                                             highlightCellColor: ColorScheme.highlightCellColor)
+    
+    static let orangeColorScheme = ColorScheme(mainColor: UIColor(r: 252, g: 94, b: 19),
+                                               highlightCellColor: ColorScheme.highlightCellColor)
 
-    static let orangeColorScheme = ColorScheme(tintTopColor: UIColor(r: 225, g: 199, b: 0),
-                                                   tintBottomColor: UIColor(r: 255, g: 0, b: 0),
-                                                   highlightCellColor: UIColor(r: 255, g: 193, b: 0, a: 0.3))
+    static let purpleColorScheme = ColorScheme(mainColor: UIColor(r: 84, g: 67, b: 193),
+                                                   highlightCellColor: ColorScheme.highlightCellColor)
 
-    static let purpleColorScheme = ColorScheme(tintTopColor: UIColor(r: 213, g: 0, b: 119),
-                                                   tintBottomColor: UIColor(r: 53, g: 20, b: 211),
-                                                   highlightCellColor: UIColor(r: 185, g: 37, b: 255, a: 0.3))
+    static let greenColorScheme = ColorScheme(mainColor: UIColor(r: 0, g: 172, b: 24),
+                                              highlightCellColor: ColorScheme.highlightCellColor)
 
-    static let greenColorScheme = ColorScheme(tintTopColor: UIColor(r: 150, g: 235, b: 0),
-                                                  tintBottomColor: UIColor(r: 3, g: 190, b: 119),
-                                                  highlightCellColor: UIColor(r: 51, g: 241, b: 42, a: 0.3))
-
-
+    static let pinkColorScheme = ColorScheme(mainColor: UIColor(r: 191, g: 50, b: 164),
+                                             highlightCellColor: ColorScheme.highlightCellColor)
+    
+    static let redColorScheme = ColorScheme(mainColor: UIColor(r: 236, g: 51, b: 73),
+                                             highlightCellColor: ColorScheme.highlightCellColor)
     
     static let colorSchemes: [ColorScheme] = {
         var colorSchemes: [ColorScheme] = []
-
-        colorSchemes.append(ColorScheme.orangeColorScheme)
+        
+        // Put the last color first because of how nextColorSchemeIndex() works
+        // in getting the starting index from UserDefaults
+        colorSchemes.append(ColorScheme.greenColorScheme)
         colorSchemes.append(ColorScheme.blueColorScheme)
         colorSchemes.append(ColorScheme.purpleColorScheme)
-        colorSchemes.append(ColorScheme.greenColorScheme)
+        colorSchemes.append(ColorScheme.pinkColorScheme)
+        colorSchemes.append(ColorScheme.redColorScheme)
+        colorSchemes.append(ColorScheme.orangeColorScheme)
         
         return colorSchemes
     }()
-
-    func inverse() -> ColorScheme {
-        return ColorScheme(tintTopColor: tintBottomColor, tintBottomColor: tintTopColor, highlightCellColor: highlightCellColor)
-    }
 }
 
 class ColorCoordinator {
     static let CurrentIndexKey = "current__color_index"
     static let ColorSchemeDictionaryKey = "color_scheme_dictionary"
 
-    static func colorSchemeForParent() -> ColorScheme {
+static func colorSchemeForParent() -> ColorScheme {
         return ColorScheme.blueColorScheme
     }
 
@@ -93,6 +89,9 @@ class ColorCoordinator {
             return ColorScheme.colorSchemes[nextIndex]
         }
 
+        if colorSchemeIndex >= ColorScheme.colorSchemes.count {
+            return ColorScheme.colorSchemes[0]
+        }
         return ColorScheme.colorSchemes[colorSchemeIndex]
     }
 

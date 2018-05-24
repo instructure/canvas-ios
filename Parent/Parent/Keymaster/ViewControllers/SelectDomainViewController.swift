@@ -56,7 +56,6 @@ open class SelectDomainViewController: UIViewController {
     @IBOutlet weak var searchContainerView: UIView!
     @IBOutlet weak var searchDividerView: UIView!
     @IBOutlet weak var authMethodLabel: UILabel!
-    var backgroundView: TriangleBackgroundGradientView!
 
     @IBOutlet weak var domainSelectionContainerView: UIView!
     @IBOutlet weak var multipleUsersContainerView: UIView!
@@ -188,7 +187,6 @@ open class SelectDomainViewController: UIViewController {
     }
 
     open override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
-        backgroundView.updateImage(self.traitCollection, coordinator: coordinator)
         coordinator.animate(alongsideTransition: { [unowned self] _ in
             self.domainSelectionContainerView.layer.mask = nil
             self.multipleUsersContainerView.layer.mask = nil
@@ -203,14 +201,7 @@ open class SelectDomainViewController: UIViewController {
     // MARK: - View Setup
     // ---------------------------------------------
     func setupBackgroundView() {
-        backgroundView = self.insertTriangleBackgroundView()
-        backgroundView.diagonal = false
-        guard let dataSource = dataSource else {
-            backgroundView.transitionToColors(.red, tintBottomColor: .orange, duration: 0.0)
-            return
-        }
-
-        backgroundView.transitionToColors(dataSource.tintTopColor, tintBottomColor: dataSource.tintBottomColor, duration: 0.0)
+        view.backgroundColor = ColorCoordinator.colorSchemeForParent().mainColor
     }
 
     func setupSearchTextField() {

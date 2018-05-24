@@ -54,7 +54,7 @@ struct CalendarEventCellViewModel: TableViewCellViewModel {
     
     static func tableViewDidLoad(_ tableView: UITableView) {
         tableView.estimatedRowHeight = 76
-        tableView.register(UINib(nibName: "CalendarEventCell", bundle: Bundle(for: AppDelegate.self)), forCellReuseIdentifier: "CalendarEventCellViewModel")
+        tableView.register(UINib(nibName: "CalendarEventCell", bundle: Bundle(for: ParentAppDelegate.self)), forCellReuseIdentifier: "CalendarEventCellViewModel")
     }
     
     func cellForTableView(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {

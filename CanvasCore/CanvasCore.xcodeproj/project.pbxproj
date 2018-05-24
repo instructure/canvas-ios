@@ -207,8 +207,6 @@
 		4961F5A21F8FB2A10093EC86 /* UIColor+Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5891F8FB2130093EC86 /* UIColor+Toast.swift */; };
 		4961F5A31F8FB2A10093EC86 /* ToastNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F58A1F8FB2130093EC86 /* ToastNotification.swift */; };
 		4961F5A41F8FB2A10093EC86 /* TokenLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5661F8FB2100093EC86 /* TokenLabelView.swift */; };
-		4961F5A51F8FB2A50093EC86 /* UIViewController+TriangleBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5851F8FB2130093EC86 /* UIViewController+TriangleBackgroundView.swift */; };
-		4961F5A61F8FB2A50093EC86 /* TriangleBackgroundGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5861F8FB2130093EC86 /* TriangleBackgroundGradientView.swift */; };
 		4961F5A71F8FB2A90093EC86 /* UIImage+URLSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F57E1F8FB2120093EC86 /* UIImage+URLSource.swift */; };
 		4961F5A81F8FB2A90093EC86 /* SmallModalNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F57F1F8FB2120093EC86 /* SmallModalNavigationController.swift */; };
 		4961F5A91F8FB2A90093EC86 /* HairlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5801F8FB2120093EC86 /* HairlineView.swift */; };
@@ -760,8 +758,6 @@
 		4961F5801F8FB2120093EC86 /* HairlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HairlineView.swift; sourceTree = "<group>"; };
 		4961F5811F8FB2120093EC86 /* LeftAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		4961F5831F8FB2130093EC86 /* Brand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
-		4961F5851F8FB2130093EC86 /* UIViewController+TriangleBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+TriangleBackgroundView.swift"; sourceTree = "<group>"; };
-		4961F5861F8FB2130093EC86 /* TriangleBackgroundGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleBackgroundGradientView.swift; sourceTree = "<group>"; };
 		4961F5871F8FB2130093EC86 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		4961F5891F8FB2130093EC86 /* UIColor+Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Toast.swift"; sourceTree = "<group>"; };
 		4961F58A1F8FB2130093EC86 /* ToastNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastNotification.swift; sourceTree = "<group>"; };
@@ -1852,7 +1848,6 @@
 				4961F58B1F8FB2140093EC86 /* SplitViewController.swift */,
 				4961F5881F8FB2130093EC86 /* Toast */,
 				4961F5661F8FB2100093EC86 /* TokenLabelView.swift */,
-				4961F5841F8FB2130093EC86 /* TriBackgroundViewController */,
 				4961F57D1F8FB2120093EC86 /* UIKit+SoPretty */,
 			);
 			path = Views;
@@ -1909,15 +1904,6 @@
 				4961F5831F8FB2130093EC86 /* Brand.swift */,
 			);
 			path = Branding;
-			sourceTree = "<group>";
-		};
-		4961F5841F8FB2130093EC86 /* TriBackgroundViewController */ = {
-			isa = PBXGroup;
-			children = (
-				4961F5851F8FB2130093EC86 /* UIViewController+TriangleBackgroundView.swift */,
-				4961F5861F8FB2130093EC86 /* TriangleBackgroundGradientView.swift */,
-			);
-			path = TriBackgroundViewController;
 			sourceTree = "<group>";
 		};
 		4961F5881F8FB2130093EC86 /* Toast */ = {
@@ -3351,7 +3337,6 @@
 				4961F6221F8FB6F00093EC86 /* EnrollmentViewModel.swift in Sources */,
 				4961F6321F8FB70D0093EC86 /* GradingPeriod+Details.swift in Sources */,
 				4961F6761F8FB9620093EC86 /* FileUpload+Details.swift in Sources */,
-				4961F5A61F8FB2A50093EC86 /* TriangleBackgroundGradientView.swift in Sources */,
 				4961F62D1F8FB7070093EC86 /* Enrollment.swift in Sources */,
 				4938ACF81F8FD2340069F43D /* Todo+Edits.swift in Sources */,
 				49CE96631F8FF41B00121A43 /* QuizController.swift in Sources */,
@@ -3473,7 +3458,6 @@
 				49CE97A61F900D0000121A43 /* BackdropFile.swift in Sources */,
 				2CAF17801F7AF61100EA2742 /* UIFont+Core.swift in Sources */,
 				49301FEE1F901854006BD777 /* CommunicationChannelsViewController.swift in Sources */,
-				4961F5A51F8FB2A50093EC86 /* UIViewController+TriangleBackgroundView.swift in Sources */,
 				4961F5541F8FAF280093EC86 /* AudioRecorderView.swift in Sources */,
 				49CE96981F8FF41B00121A43 /* SubmissionAnswer.swift in Sources */,
 				49CE97991F900D0000121A43 /* User+Details.swift in Sources */,

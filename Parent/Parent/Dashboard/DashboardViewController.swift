@@ -50,7 +50,6 @@ class DashboardViewController: UIViewController {
     var calendarViewController: UIViewController?
     var alertsViewController: UIViewController?
     var tabs: [DashboardTabView]!
-    var backgroundView: TriangleBackgroundGradientView!
     var viewControllers: [UIViewController]!
 
     var session: Session!
@@ -67,7 +66,7 @@ class DashboardViewController: UIViewController {
             if let student = currentStudent {
                 if !UIAccessibilityIsReduceTransparencyEnabled() {
                     let colorScheme = ColorCoordinator.colorSchemeForStudentID(student.id)
-                    backgroundView.transitionToColors(colorScheme.tintTopColor, tintBottomColor: colorScheme.tintBottomColor)
+                    view.backgroundColor = colorScheme.mainColor
                 }
             }
 
@@ -107,9 +106,8 @@ class DashboardViewController: UIViewController {
         if UIAccessibilityIsReduceTransparencyEnabled() {
             observeeNameLabel.textColor = UIColor.black
         } else {
-            self.backgroundView = self.insertTriangleBackgroundView()
             let colorScheme = ColorCoordinator.colorSchemeForParent()
-            backgroundView.transitionToColors(colorScheme.tintTopColor, tintBottomColor: colorScheme.tintBottomColor)
+            view.backgroundColor = colorScheme.mainColor
         }
 
         do {

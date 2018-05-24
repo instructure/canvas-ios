@@ -29,7 +29,6 @@ import Reachability
 
 class AirwolfLoginViewController: UIViewController {
 
-    @IBOutlet var triangleBackgroundGradientView: TriangleBackgroundGradientView!
     @IBOutlet var firstNameField: UITextField!
     @IBOutlet var lastNameField: UITextField!
     @IBOutlet var emailField: UITextField!
@@ -112,9 +111,8 @@ class AirwolfLoginViewController: UIViewController {
         }
         
         let colors = ColorScheme.blueColorScheme
-        triangleBackgroundGradientView.diagonal = false
-        triangleBackgroundGradientView.transitionToColors(colors.tintBottomColor, tintBottomColor: colors.tintTopColor) // Flip the colors the other way
-
+        view.backgroundColor = colors.mainColor
+        
         reachability.reachableBlock = { [weak self] _ in
             DispatchQueue.main.async {
                 self?.checkRegion()

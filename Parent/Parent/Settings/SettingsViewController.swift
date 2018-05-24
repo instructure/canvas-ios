@@ -36,8 +36,6 @@ class SettingsViewController: UIViewController {
     var closeButton: UIBarButtonItem?
     var addButton: UIBarButtonItem?
     @IBOutlet weak var observeesContainerView: UIView!
-
-    var backgroundView: TriangleBackgroundGradientView!
     
     let reuseIdentifier = "SettingsObserveesCell"
     
@@ -85,7 +83,7 @@ class SettingsViewController: UIViewController {
 
         setupObserveeList()
 
-        self.title = NSLocalizedString("Manage Students", comment: "Title of the manage students screen. This screen is used to add/remove students that a parent is observing.")
+        self.title = NSLocalizedString("Manage Children", comment: "Title of the manage children screen. This screen is used to add/remove children that a parent is observing.")
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -98,15 +96,12 @@ class SettingsViewController: UIViewController {
     // ---------------------------------------------
     func setupNavigationBar() {
         self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.navigationBar.barTintColor = ColorCoordinator.colorSchemeForParent().mainColor
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
 
         setupCloseButton()
         setupRightNavigationItem()
-        if let navBar = self.navigationController?.navigationBar as? TriangleGradientNavigationBar {
-            let scheme = ColorCoordinator.colorSchemeForParent()
-            navBar.transitionToColors(scheme.tintTopColor, bottomTintColor: scheme.tintBottomColor)
-        }
     }
 
     func setupRightNavigationItem() {

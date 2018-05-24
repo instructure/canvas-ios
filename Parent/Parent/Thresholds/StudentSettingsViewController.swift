@@ -258,10 +258,10 @@ open class StudentSettingsViewController : FormViewController {
     // MARK: - View Setup
     // ---------------------------------------------
     func setupNavigationBar() {
-        guard let navBar = self.navigationController?.navigationBar as? TriangleGradientNavigationBar else { return }
+        guard let navBar = self.navigationController?.navigationBar else { return }
 
         let scheme = ColorCoordinator.colorSchemeForStudentID(studentID)
-        navBar.transitionToColors(scheme.tintTopColor, bottomTintColor: scheme.tintBottomColor)
+        navBar.backgroundColor = scheme.mainColor
     }
 
     func setupToolbar() {

@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NoStudentsViewController" customModule="Parent" customModuleProvider="target">
             <connections>
                 <outlet property="proceedButton" destination="AlE-cd-Dx6" id="smF-Dz-YTz"/>
-                <outlet property="triangleBackgroundGradientView" destination="X6M-v5-sz2" id="uw8-ni-SWX"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,10 +20,6 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X6M-v5-sz2" customClass="TriangleBackgroundGradientView" customModule="CanvasCore">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NpM-cv-SLd">
                     <rect key="frame" x="57.5" y="134" width="260" height="399.5"/>
                     <subviews>
@@ -111,14 +106,10 @@
             </subviews>
             <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="X6M-v5-sz2" firstAttribute="centerX" secondItem="NpM-cv-SLd" secondAttribute="centerX" id="2L5-Pa-mDQ"/>
-                <constraint firstItem="X6M-v5-sz2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="NEI-gK-YrZ"/>
-                <constraint firstAttribute="bottom" secondItem="X6M-v5-sz2" secondAttribute="bottom" id="PVe-t2-I8N"/>
+                <constraint firstItem="NpM-cv-SLd" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="NGn-f7-Mje"/>
                 <constraint firstItem="NpM-cv-SLd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="33" id="T3e-5l-u8K"/>
                 <constraint firstItem="NpM-cv-SLd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="134" id="ZOe-iR-b0i"/>
-                <constraint firstAttribute="trailing" secondItem="X6M-v5-sz2" secondAttribute="trailing" id="gfJ-yD-4Hg"/>
                 <constraint firstItem="NpM-cv-SLd" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="kCw-CL-fa8"/>
-                <constraint firstItem="X6M-v5-sz2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="mx8-4q-frx"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">

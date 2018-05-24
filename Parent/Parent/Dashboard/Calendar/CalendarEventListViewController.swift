@@ -97,7 +97,7 @@ class CalendarEventListViewController: UITableViewController {
         tableView.estimatedRowHeight = 90
 
         CalendarEventCellViewModel.tableViewDidLoad(tableView)
-        tableView.register(UINib(nibName: "EmptyCalendarEventCell", bundle: Bundle(for: AppDelegate.self)), forCellReuseIdentifier: "EmptyCalendarEventCell")
+        tableView.register(UINib(nibName: "EmptyCalendarEventCell", bundle: Bundle(for: ParentAppDelegate.self)), forCellReuseIdentifier: "EmptyCalendarEventCell")
     }
     
     fileprivate var courseUpdatesDisposable: Disposable?
