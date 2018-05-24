@@ -19,8 +19,13 @@
 #import <TechDebt/MyLittleViewController.h>
 #import "CBIAssignmentViewModel.h"
 
+extern NSInteger const DETAIL_TAB_INDEX;
+extern NSInteger const SUBMISSION_TAB_INDEX;
+extern NSInteger const GRADE_TAB_INDEX;
+
 @interface CBIAssignmentDetailViewController : MLVCViewController
 @property (nonatomic, strong) CBIAssignmentViewModel *viewModel;
 @property (weak, nonatomic) IBOutlet UIView *toolbarControl;
 @property (nonatomic) NSString* moduleItemID;
+@property (nonatomic) NSInteger initialTab;
 @end

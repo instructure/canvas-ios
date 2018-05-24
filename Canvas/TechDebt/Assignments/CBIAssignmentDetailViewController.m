@@ -13,12 +13,6 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-    
-    
-
-#define DETAIL_TAB_INDEX 0
-#define SUBMISSION_TAB_INDEX 1
-#define GRADE_TAB_INDEX 2
 
 #import "CBIAssignmentDetailViewController.h"
 #import "RubricViewController.h"
@@ -45,6 +39,10 @@
 static NSUInteger const CBIAssignmentDetailNumMinutesInHour = 60;
 static NSUInteger const CBIAssignmentDetailNumMinutesInDay = 60 * 24;
 
+NSInteger const DETAIL_TAB_INDEX = 0;
+NSInteger const SUBMISSION_TAB_INDEX = 1;
+NSInteger const GRADE_TAB_INDEX = 2;
+
 @interface CBIAssignmentDetailViewController () <UIActionSheetDelegate, SKStoreProductViewControllerDelegate, ModuleItemEmbeddedProtocol>
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
@@ -65,7 +63,9 @@ static NSUInteger const CBIAssignmentDetailNumMinutesInDay = 60 * 24;
 
 - (id)init
 {
-    return [[UIStoryboard storyboardWithName:@"CBIAssignmentDetail" bundle:[NSBundle bundleForClass:[self class]]] instantiateInitialViewController];
+    CBIAssignmentDetailViewController *me = [[UIStoryboard storyboardWithName:@"CBIAssignmentDetail" bundle:[NSBundle bundleForClass:[self class]]] instantiateInitialViewController];
+    me.initialTab = DETAIL_TAB_INDEX;
+    return me;
 }
 
 - (void)viewDidLoad
@@ -97,7 +97,9 @@ static NSUInteger const CBIAssignmentDetailNumMinutesInDay = 60 * 24;
         self.contentView.hidden = NO;
         [self initializeTabs];
         [self setupSegmentedControl];
-        [self setTab:DETAIL_TAB_INDEX];
+        if (self.initialTab == DETAIL_TAB_INDEX) {
+            [self setTab:DETAIL_TAB_INDEX];
+        }
         [self displayContentLockIfNecessary];
         [self setupRightBarButtonItems];
 
@@ -106,6 +108,9 @@ static NSUInteger const CBIAssignmentDetailNumMinutesInDay = 60 * 24;
         }] subscribeNext:^(MLVCTableViewController *submissionController) {
             @strongify(self);
             self.submissionController = submissionController;
+            if (self.initialTab == SUBMISSION_TAB_INDEX) {
+                [self setTab:SUBMISSION_TAB_INDEX];
+            }
         } error:^(NSError *error) {
             @strongify(self);
 
@@ -255,11 +260,12 @@ static NSUInteger const CBIAssignmentDetailNumMinutesInDay = 60 * 24;
 
 - (void)setTab:(NSInteger)index
 {
+    [self.segmentedControl setSelectedSegmentIndex:index];
     self.previousSelectedTab = index;
     UIViewController *newController;
     if (index == DETAIL_TAB_INDEX) {
         newController = self.detailsController;
-        self.detailsController.topContentInset = [self getContentInset];
+        self.detailsController.topContentInset = CGRectGetMaxY(self.toolbarControl.frame);
         self.detailsController.bottomContentInset = self.tabBarController.tabBar.frame.size.height;
         [self.detailsController.view setAccessibilityElementsHidden:NO];
         [self.submissionController.tableView setAccessibilityElementsHidden:YES];

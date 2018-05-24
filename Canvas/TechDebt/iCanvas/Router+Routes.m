@@ -237,18 +237,19 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
         
 
         @"/courses/:courseID/assignments/:assignmentID/submissions/:submissionID" : ^ (NSDictionary *params, id viewModel) {
-            if(viewModel == nil){
+            if (viewModel == nil) {
                 CKICourse *course = [CKICourse modelWithID:[params[@"courseID"] description]];
                 CKIAssignment *assignment = [CKIAssignment modelWithID:[params[@"assignmentID"] description] context:course];
                 viewModel = [CBIAssignmentViewModel viewModelForModel:assignment];
             }
 
-        ((CBIColorfulViewModel *)viewModel).tintColor = [TheKeymaster.currentClient.authSession colorForCourse:[params[@"courseID"] description]];
+            ((CBIColorfulViewModel *)viewModel).tintColor = [TheKeymaster.currentClient.authSession colorForCourse:[params[@"courseID"] description]];
             CBIAssignmentDetailViewController *assignmentDetailViewController = [CBIAssignmentDetailViewController new];
             [assignmentDetailViewController trackScreenViewWithScreenName:@"Assignment Detail Screen"];
 
             assignmentDetailViewController.viewModel = viewModel;
-        
+            assignmentDetailViewController.initialTab = SUBMISSION_TAB_INDEX;
+
             return assignmentDetailViewController;
         },
         @"/groups/:contextID/files" : [self filesBlockForClass:[CKIGroup class]],
