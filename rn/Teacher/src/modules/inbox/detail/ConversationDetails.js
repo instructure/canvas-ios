@@ -299,6 +299,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
     padding: global.style.defaultPadding,
+    paddingBottom: global.style.defaultPadding / 2,
     borderTopWidth: StyleSheet.hairlineWidth,
     borderTopColor: color.seperatorColor,
   },

@@ -361,8 +361,8 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
+                  "fontFamily": ".SFUIDisplay-heavy",
+                  "fontSize": 24,
                 },
                 undefined,
               ]
@@ -1946,8 +1946,8 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
+                  "fontFamily": ".SFUIDisplay-heavy",
+                  "fontSize": 24,
                 },
                 undefined,
               ]
@@ -2519,8 +2519,8 @@ exports[`Dashboard render 1`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
+                  "fontFamily": ".SFUIDisplay-heavy",
+                  "fontSize": 24,
                 },
                 undefined,
               ]
@@ -3510,8 +3510,8 @@ exports[`Dashboard render while pending 1`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
+                  "fontFamily": ".SFUIDisplay-heavy",
+                  "fontSize": 24,
                 },
                 undefined,
               ]
@@ -4301,8 +4301,8 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
+                  "fontFamily": ".SFUIDisplay-heavy",
+                  "fontSize": 24,
                 },
                 undefined,
               ]
@@ -4693,8 +4693,8 @@ exports[`Dashboard render without favorite courses 1`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
+                  "fontFamily": ".SFUIDisplay-heavy",
+                  "fontSize": 24,
                 },
                 undefined,
               ]
@@ -6041,8 +6041,8 @@ exports[`Dashboard renders course invites 1`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
+                  "fontFamily": ".SFUIDisplay-heavy",
+                  "fontSize": 24,
                 },
                 undefined,
               ]

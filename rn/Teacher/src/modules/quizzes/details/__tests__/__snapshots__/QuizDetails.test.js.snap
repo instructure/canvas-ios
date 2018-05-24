@@ -93,8 +93,8 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -1513,8 +1513,8 @@ exports[`QuizDetails displays access code 1`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -2933,8 +2933,8 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -4237,8 +4237,8 @@ exports[`QuizDetails renders 1`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -5599,8 +5599,8 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -7019,8 +7019,8 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -8381,8 +8381,8 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -9743,8 +9743,8 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -11105,8 +11105,8 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -12467,8 +12467,8 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -13829,8 +13829,8 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -15133,8 +15133,8 @@ exports[`QuizDetails renders allowed attempts 1`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -16495,8 +16495,8 @@ exports[`QuizDetails renders allowed attempts 2`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -17857,8 +17857,8 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -19251,8 +19251,8 @@ exports[`QuizDetails renders assignment group 1`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -20671,8 +20671,8 @@ exports[`QuizDetails renders published state 1`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -22033,8 +22033,8 @@ exports[`QuizDetails renders published state 2`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -23395,8 +23395,8 @@ exports[`QuizDetails renders quiz type 1`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -24757,8 +24757,8 @@ exports[`QuizDetails renders quiz type 2`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -26119,8 +26119,8 @@ exports[`QuizDetails renders scoring policy 1`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -27481,8 +27481,8 @@ exports[`QuizDetails renders scoring policy 2`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -28843,8 +28843,8 @@ exports[`QuizDetails renders scoring policy 3`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -30205,8 +30205,8 @@ exports[`QuizDetails renders show correct answers 1`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -31567,8 +31567,8 @@ exports[`QuizDetails renders show correct answers 2`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -32929,8 +32929,8 @@ exports[`QuizDetails renders shuffle answers 1`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -34291,8 +34291,8 @@ exports[`QuizDetails renders shuffle answers 2`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -35653,8 +35653,8 @@ exports[`QuizDetails renders time limit 1`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -37015,8 +37015,8 @@ exports[`QuizDetails renders time limit 2`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -38377,8 +38377,8 @@ exports[`QuizDetails renders view responses 1`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -39739,8 +39739,8 @@ exports[`QuizDetails renders view responses 2`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -41043,8 +41043,8 @@ exports[`QuizDetails renders view responses 3`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -42347,8 +42347,8 @@ exports[`QuizDetails renders without a description 1`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]

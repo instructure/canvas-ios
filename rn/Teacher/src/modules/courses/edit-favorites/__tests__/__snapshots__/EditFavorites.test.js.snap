@@ -233,24 +233,29 @@ exports[`renders correctly 1`] = `
         style={null}
       >
         <View
-          accessibitilityTraits="heading"
+          accessibilityTraits="header"
           style={
             Array [
               Object {
-                "padding": 8,
+                "backgroundColor": "#f5f5f5",
+                "flex": 1,
+                "justifyContent": "center",
+                "paddingLeft": 16,
+                "paddingRight": 8,
+                "paddingVertical": 4,
               },
               Object {
-                "alignItems": "flex-end",
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "paddingBottom": 0,
-                "paddingTop": 16,
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+              Object {
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
               },
             ]
           }
         >
           <Text
-            accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
             ellipsizeMode="tail"
@@ -261,13 +266,19 @@ exports[`renders correctly 1`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
+                  "fontSize": 16,
                 },
-                undefined,
+                Object {
+                  "backgroundColor": "#f5f5f5",
+                  "color": "#73818C",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
               ]
             }
-            testID="editFavorites.courses.heading-lbl"
           >
             Courses
           </Text>
@@ -765,24 +776,29 @@ exports[`renders correctly as student 1`] = `
         style={null}
       >
         <View
-          accessibitilityTraits="heading"
+          accessibilityTraits="header"
           style={
             Array [
               Object {
-                "padding": 8,
+                "backgroundColor": "#f5f5f5",
+                "flex": 1,
+                "justifyContent": "center",
+                "paddingLeft": 16,
+                "paddingRight": 8,
+                "paddingVertical": 4,
               },
               Object {
-                "alignItems": "flex-end",
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "paddingBottom": 0,
-                "paddingTop": 16,
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+              Object {
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
               },
             ]
           }
         >
           <Text
-            accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
             ellipsizeMode="tail"
@@ -793,13 +809,19 @@ exports[`renders correctly as student 1`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
+                  "fontSize": 16,
                 },
-                undefined,
+                Object {
+                  "backgroundColor": "#f5f5f5",
+                  "color": "#73818C",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
               ]
             }
-            testID="editFavorites.courses.heading-lbl"
           >
             Courses
           </Text>
@@ -1008,24 +1030,26 @@ exports[`renders correctly as student 1`] = `
         style={null}
       >
         <View
-          accessibitilityTraits="heading"
+          accessibilityTraits="header"
           style={
             Array [
               Object {
-                "padding": 8,
+                "backgroundColor": "#f5f5f5",
+                "flex": 1,
+                "justifyContent": "center",
+                "paddingLeft": 16,
+                "paddingRight": 8,
+                "paddingVertical": 4,
               },
               Object {
-                "alignItems": "flex-end",
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "paddingBottom": 0,
-                "paddingTop": 16,
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
               },
+              undefined,
             ]
           }
         >
           <Text
-            accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
             ellipsizeMode="tail"
@@ -1036,13 +1060,19 @@ exports[`renders correctly as student 1`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
+                  "fontSize": 16,
                 },
-                undefined,
+                Object {
+                  "backgroundColor": "#f5f5f5",
+                  "color": "#73818C",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
               ]
             }
-            testID="editFavorites.groups.heading-lbl"
           >
             Groups
           </Text>
@@ -1390,24 +1420,29 @@ exports[`updates when courses prop changes 1`] = `
         style={null}
       >
         <View
-          accessibitilityTraits="heading"
+          accessibilityTraits="header"
           style={
             Array [
               Object {
-                "padding": 8,
+                "backgroundColor": "#f5f5f5",
+                "flex": 1,
+                "justifyContent": "center",
+                "paddingLeft": 16,
+                "paddingRight": 8,
+                "paddingVertical": 4,
               },
               Object {
-                "alignItems": "flex-end",
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "paddingBottom": 0,
-                "paddingTop": 16,
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+              Object {
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
               },
             ]
           }
         >
           <Text
-            accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
             ellipsizeMode="tail"
@@ -1418,13 +1453,19 @@ exports[`updates when courses prop changes 1`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
+                  "fontSize": 16,
                 },
-                undefined,
+                Object {
+                  "backgroundColor": "#f5f5f5",
+                  "color": "#73818C",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
               ]
             }
-            testID="editFavorites.courses.heading-lbl"
           >
             Courses
           </Text>
@@ -1675,24 +1716,29 @@ exports[`updates when courses prop changes 2`] = `
         style={null}
       >
         <View
-          accessibitilityTraits="heading"
+          accessibilityTraits="header"
           style={
             Array [
               Object {
-                "padding": 8,
+                "backgroundColor": "#f5f5f5",
+                "flex": 1,
+                "justifyContent": "center",
+                "paddingLeft": 16,
+                "paddingRight": 8,
+                "paddingVertical": 4,
               },
               Object {
-                "alignItems": "flex-end",
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "paddingBottom": 0,
-                "paddingTop": 16,
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+              Object {
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
               },
             ]
           }
         >
           <Text
-            accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
             ellipsizeMode="tail"
@@ -1703,13 +1749,19 @@ exports[`updates when courses prop changes 2`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
+                  "fontSize": 16,
                 },
-                undefined,
+                Object {
+                  "backgroundColor": "#f5f5f5",
+                  "color": "#73818C",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
               ]
             }
-            testID="editFavorites.courses.heading-lbl"
           >
             Courses
           </Text>

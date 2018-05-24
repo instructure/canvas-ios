@@ -38,8 +38,8 @@ exports[`GradePicker disables the button and has correct text for not graded ass
             },
             Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-semibold",
-              "fontSize": 20,
+              "fontFamily": ".SFUIDisplay-heavy",
+              "fontSize": 24,
             },
             Object {},
           ]
@@ -71,8 +71,8 @@ exports[`GradePicker disables the button and has correct text for not graded ass
               },
               Object {
                 "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
+                "fontFamily": ".SFUIDisplay-heavy",
+                "fontSize": 24,
               },
               undefined,
             ]
@@ -125,8 +125,8 @@ exports[`GradePicker doesnt render late policy if no grade 1`] = `
             },
             Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-semibold",
-              "fontSize": 20,
+              "fontFamily": ".SFUIDisplay-heavy",
+              "fontSize": 24,
             },
             Object {
               "color": "#7F91A7",
@@ -408,8 +408,8 @@ exports[`GradePicker renders late policy with multiple points deducted 1`] = `
             },
             Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-semibold",
-              "fontSize": 20,
+              "fontFamily": ".SFUIDisplay-heavy",
+              "fontSize": 24,
             },
             Object {
               "color": "#7F91A7",
@@ -443,8 +443,8 @@ exports[`GradePicker renders late policy with multiple points deducted 1`] = `
               },
               Object {
                 "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
+                "fontFamily": ".SFUIDisplay-heavy",
+                "fontSize": 24,
               },
               Object {
                 "color": "#7F91A7",
@@ -541,8 +541,8 @@ exports[`GradePicker renders late policy with multiple points deducted 1`] = `
             },
             Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-semibold",
-              "fontSize": 20,
+              "fontFamily": ".SFUIDisplay-heavy",
+              "fontSize": 24,
             },
             undefined,
           ]
@@ -562,8 +562,8 @@ exports[`GradePicker renders late policy with multiple points deducted 1`] = `
             },
             Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-semibold",
-              "fontSize": 20,
+              "fontFamily": ".SFUIDisplay-heavy",
+              "fontSize": 24,
             },
             undefined,
           ]
@@ -818,8 +818,8 @@ exports[`GradePicker renders late policy with single point deducted 1`] = `
             },
             Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-semibold",
-              "fontSize": 20,
+              "fontFamily": ".SFUIDisplay-heavy",
+              "fontSize": 24,
             },
             Object {
               "color": "#7F91A7",
@@ -853,8 +853,8 @@ exports[`GradePicker renders late policy with single point deducted 1`] = `
               },
               Object {
                 "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
+                "fontFamily": ".SFUIDisplay-heavy",
+                "fontSize": 24,
               },
               Object {
                 "color": "#7F91A7",
@@ -951,8 +951,8 @@ exports[`GradePicker renders late policy with single point deducted 1`] = `
             },
             Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-semibold",
-              "fontSize": 20,
+              "fontFamily": ".SFUIDisplay-heavy",
+              "fontSize": 24,
             },
             undefined,
           ]
@@ -972,8 +972,8 @@ exports[`GradePicker renders late policy with single point deducted 1`] = `
             },
             Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-semibold",
-              "fontSize": 20,
+              "fontFamily": ".SFUIDisplay-heavy",
+              "fontSize": 24,
             },
             undefined,
           ]
@@ -1227,8 +1227,8 @@ exports[`GradePicker renders points based grades 1`] = `
             },
             Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-semibold",
-              "fontSize": 20,
+              "fontFamily": ".SFUIDisplay-heavy",
+              "fontSize": 24,
             },
             Object {},
           ]
@@ -1260,8 +1260,8 @@ exports[`GradePicker renders points based grades 1`] = `
               },
               Object {
                 "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
+                "fontFamily": ".SFUIDisplay-heavy",
+                "fontSize": 24,
               },
               undefined,
             ]
@@ -1516,8 +1516,8 @@ exports[`GradePicker renders the activity indicator when pending 1`] = `
             },
             Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-semibold",
-              "fontSize": 20,
+              "fontFamily": ".SFUIDisplay-heavy",
+              "fontSize": 24,
             },
             Object {},
           ]
@@ -1790,8 +1790,8 @@ exports[`GradePicker renders the picker for pass fail assignments 1`] = `
             },
             Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-semibold",
-              "fontSize": 20,
+              "fontFamily": ".SFUIDisplay-heavy",
+              "fontSize": 24,
             },
             Object {},
           ]
@@ -1898,8 +1898,8 @@ exports[`GradePicker renders the rubric score when useRubricForGrading 1`] = `
             },
             Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-semibold",
-              "fontSize": 20,
+              "fontFamily": ".SFUIDisplay-heavy",
+              "fontSize": 24,
             },
             Object {},
           ]
@@ -1931,8 +1931,8 @@ exports[`GradePicker renders the rubric score when useRubricForGrading 1`] = `
               },
               Object {
                 "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
+                "fontFamily": ".SFUIDisplay-heavy",
+                "fontSize": 24,
               },
               undefined,
             ]
@@ -1984,8 +1984,8 @@ exports[`GradePicker renders with excused 1`] = `
             },
             Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-semibold",
-              "fontSize": 20,
+              "fontFamily": ".SFUIDisplay-heavy",
+              "fontSize": 24,
             },
             Object {},
           ]
@@ -2017,8 +2017,8 @@ exports[`GradePicker renders with excused 1`] = `
               },
               Object {
                 "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
+                "fontFamily": ".SFUIDisplay-heavy",
+                "fontSize": 24,
               },
               undefined,
             ]
@@ -2273,8 +2273,8 @@ exports[`GradePicker renders with no grade 1`] = `
             },
             Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-semibold",
-              "fontSize": 20,
+              "fontFamily": ".SFUIDisplay-heavy",
+              "fontSize": 24,
             },
             Object {},
           ]
@@ -2553,8 +2553,8 @@ exports[`GradePicker updates the visible rubric score when useRubricForGrading a
             },
             Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-semibold",
-              "fontSize": 20,
+              "fontFamily": ".SFUIDisplay-heavy",
+              "fontSize": 24,
             },
             Object {},
           ]
@@ -2586,8 +2586,8 @@ exports[`GradePicker updates the visible rubric score when useRubricForGrading a
               },
               Object {
                 "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
+                "fontFamily": ".SFUIDisplay-heavy",
+                "fontSize": 24,
               },
               undefined,
             ]

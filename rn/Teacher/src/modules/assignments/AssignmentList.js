@@ -320,20 +320,16 @@ const styles = StyleSheet.create({
   header: {
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: 'lightgrey',
-    paddingTop: 16,
-    paddingBottom: 8,
-    paddingHorizontal: 16,
+    paddingTop: global.style.defaultPadding,
+    paddingBottom: global.style.defaultPadding / 2,
+    paddingHorizontal: global.style.defaultPadding,
   },
   gradingPeriodHeader: {
     flexDirection: 'row',
     alignItems: 'flex-end',
     justifyContent: 'space-between',
-    marginBottom: 8,
   },
   headerTitle: {
-    fontSize: 20,
-    fontWeight: '600',
-    color: '#2d3b44',
     flex: 1,
   },
   filterButton: {

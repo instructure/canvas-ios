@@ -415,8 +415,8 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -493,8 +493,8 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
                   },
                   Object {
                     "color": "#2D3B45",
-                    "fontFamily": ".SFUIDisplay-semibold",
-                    "fontSize": 20,
+                    "fontFamily": ".SFUIDisplay-heavy",
+                    "fontSize": 24,
                   },
                   Object {
                     "marginBottom": 16,
@@ -1308,8 +1308,8 @@ exports[`ContextCard renders 1`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -1386,8 +1386,8 @@ exports[`ContextCard renders 1`] = `
                   },
                   Object {
                     "color": "#2D3B45",
-                    "fontFamily": ".SFUIDisplay-semibold",
-                    "fontSize": 20,
+                    "fontFamily": ".SFUIDisplay-heavy",
+                    "fontSize": 24,
                   },
                   Object {
                     "marginBottom": 16,
@@ -2038,8 +2038,8 @@ exports[`ContextCard renders for a non student 1`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -2332,8 +2332,8 @@ exports[`ContextCard renders for a user that cannot view analytics 1`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -2677,8 +2677,8 @@ exports[`ContextCard renders if there is no enrollment 1`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -3306,8 +3306,8 @@ exports[`ContextCard renders if there is no section in the enrollment 1`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -3358,8 +3358,8 @@ exports[`ContextCard renders if there is no section in the enrollment 1`] = `
                   },
                   Object {
                     "color": "#2D3B45",
-                    "fontFamily": ".SFUIDisplay-semibold",
-                    "fontSize": 20,
+                    "fontFamily": ".SFUIDisplay-heavy",
+                    "fontSize": 24,
                   },
                   Object {
                     "marginBottom": 16,
@@ -4173,8 +4173,8 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
                     },
                     Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
+                      "fontFamily": ".SFUIDisplay-heavy",
+                      "fontSize": 24,
                     },
                     undefined,
                   ]
@@ -4251,8 +4251,8 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
                   },
                   Object {
                     "color": "#2D3B45",
-                    "fontFamily": ".SFUIDisplay-semibold",
-                    "fontSize": 20,
+                    "fontFamily": ".SFUIDisplay-heavy",
+                    "fontSize": 24,
                   },
                   Object {
                     "marginBottom": 16,

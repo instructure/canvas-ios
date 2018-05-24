@@ -86,8 +86,8 @@ exports[`renders with overrides 1`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
+                  "fontFamily": ".SFUIDisplay-heavy",
+                  "fontSize": 24,
                 },
                 undefined,
               ]
@@ -340,8 +340,8 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
+                  "fontFamily": ".SFUIDisplay-heavy",
+                  "fontSize": 24,
                 },
                 undefined,
               ]
@@ -557,8 +557,8 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
+                  "fontFamily": ".SFUIDisplay-heavy",
+                  "fontSize": 24,
                 },
                 undefined,
               ]
@@ -774,8 +774,8 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
+                  "fontFamily": ".SFUIDisplay-heavy",
+                  "fontSize": 24,
                 },
                 undefined,
               ]
@@ -991,8 +991,8 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
+                  "fontFamily": ".SFUIDisplay-heavy",
+                  "fontSize": 24,
                 },
                 undefined,
               ]

@@ -42,6 +42,7 @@ exports[`ConversationDetails doesnt render messages that are pendingDelete 1`] =
               "flexDirection": "row",
               "justifyContent": "space-between",
               "padding": 16,
+              "paddingBottom": 8,
             }
           }
         >
@@ -134,6 +135,7 @@ exports[`ConversationDetails doesnt render messages that are pendingDelete 1`] =
                 "flexDirection": "row",
                 "justifyContent": "space-between",
                 "padding": 16,
+                "paddingBottom": 8,
               }
             }
           >
@@ -149,8 +151,8 @@ exports[`ConversationDetails doesnt render messages that are pendingDelete 1`] =
                   },
                   Object {
                     "color": "#2D3B45",
-                    "fontFamily": ".SFUIDisplay-semibold",
-                    "fontSize": 20,
+                    "fontFamily": ".SFUIDisplay-heavy",
+                    "fontSize": 24,
                   },
                   undefined,
                 ]
@@ -263,6 +265,7 @@ exports[`ConversationDetails renders correctly 1`] = `
               "flexDirection": "row",
               "justifyContent": "space-between",
               "padding": 16,
+              "paddingBottom": 8,
             }
           }
         >
@@ -355,6 +358,7 @@ exports[`ConversationDetails renders correctly 1`] = `
                 "flexDirection": "row",
                 "justifyContent": "space-between",
                 "padding": 16,
+                "paddingBottom": 8,
               }
             }
           >
@@ -370,8 +374,8 @@ exports[`ConversationDetails renders correctly 1`] = `
                   },
                   Object {
                     "color": "#2D3B45",
-                    "fontFamily": ".SFUIDisplay-semibold",
-                    "fontSize": 20,
+                    "fontFamily": ".SFUIDisplay-heavy",
+                    "fontSize": 24,
                   },
                   undefined,
                 ]
@@ -559,6 +563,7 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
               "flexDirection": "row",
               "justifyContent": "space-between",
               "padding": 16,
+              "paddingBottom": 8,
             }
           }
         >
@@ -668,6 +673,7 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                 "flexDirection": "row",
                 "justifyContent": "space-between",
                 "padding": 16,
+                "paddingBottom": 8,
               }
             }
           >
@@ -683,8 +689,8 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                   },
                   Object {
                     "color": "#2D3B45",
-                    "fontFamily": ".SFUIDisplay-semibold",
-                    "fontSize": 20,
+                    "fontFamily": ".SFUIDisplay-heavy",
+                    "fontSize": 24,
                   },
                   undefined,
                 ]
@@ -1247,6 +1253,7 @@ exports[`ConversationDetails renders with alternate data 1`] = `
               "flexDirection": "row",
               "justifyContent": "space-between",
               "padding": 16,
+              "paddingBottom": 8,
             }
           }
         >
@@ -1339,6 +1346,7 @@ exports[`ConversationDetails renders with alternate data 1`] = `
                 "flexDirection": "row",
                 "justifyContent": "space-between",
                 "padding": 16,
+                "paddingBottom": 8,
               }
             }
           >
@@ -1354,8 +1362,8 @@ exports[`ConversationDetails renders with alternate data 1`] = `
                   },
                   Object {
                     "color": "#2D3B45",
-                    "fontFamily": ".SFUIDisplay-semibold",
-                    "fontSize": 20,
+                    "fontFamily": ".SFUIDisplay-heavy",
+                    "fontSize": 24,
                   },
                   undefined,
                 ]

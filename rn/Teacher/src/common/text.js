@@ -173,9 +173,9 @@ const styles = StyleSheet.create({
     fontFamily: REGULAR_FONT,
   },
   h1: {
-    fontSize: 20,
+    fontSize: 24,
     color: colors.darkText,
-    fontFamily: SEMI_BOLD_FONT,
+    fontFamily: HEAVY_FONT,
   },
   h2: {
     fontSize: 16,

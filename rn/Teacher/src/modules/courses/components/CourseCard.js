@@ -24,7 +24,7 @@ import {
   TouchableHighlight,
 } from 'react-native'
 import i18n from 'format-message'
-import { Text, Heading1 } from '../../../common/text'
+import { Text } from '../../../common/text'
 import Images from '../../../images'
 import A11yGroup from '../../../common/components/A11yGroup'
 import { type CourseGradeInfo } from '../../../utils/course-grades'
@@ -114,11 +114,11 @@ export default class CourseCard extends Component<Props, State> {
               />
               { showGrade &&
                 <View style={styles.gradePill}>
-                  <Heading1
+                  <Text
                     numberOfLines={2}
                     style={[styles.gradeText, { color: this.props.color }]}>
                     { gradeDisplay }
-                  </Heading1>
+                  </Text>
                 </View>
               }
               <TouchableHighlight
@@ -221,5 +221,6 @@ const styles = StyleSheet.create({
   },
   gradeText: {
     fontSize: 14,
+    fontWeight: '600',
   },
 })

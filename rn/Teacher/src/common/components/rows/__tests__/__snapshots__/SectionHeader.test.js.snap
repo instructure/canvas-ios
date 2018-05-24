@@ -6,9 +6,8 @@ exports[`render 1`] = `
   style={
     Array [
       Object {
-        "backgroundColor": "#F5F5F5",
+        "backgroundColor": "#f5f5f5",
         "flex": 1,
-        "height": "auto",
         "justifyContent": "center",
         "paddingLeft": 16,
         "paddingRight": 8,
@@ -18,11 +17,11 @@ exports[`render 1`] = `
         "borderBottomColor": "#C7CDD1",
         "borderBottomWidth": 0.5,
       },
+      undefined,
     ]
   }
 >
   <Text
-    accessibilityTraits="header"
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
@@ -33,14 +32,16 @@ exports[`render 1`] = `
         },
         Object {
           "color": "#2D3B45",
-          "fontFamily": ".SFUIDisplay-semibold",
-          "fontSize": 20,
+          "fontSize": 16,
         },
         Object {
-          "backgroundColor": "#F5F5F5",
+          "backgroundColor": "#f5f5f5",
           "color": "#73818C",
           "fontSize": 14,
           "fontWeight": "600",
+        },
+        Object {
+          "fontFamily": ".SFUIDisplay-semibold",
         },
       ]
     }
@@ -56,9 +57,8 @@ exports[`render without key 1`] = `
   style={
     Array [
       Object {
-        "backgroundColor": "#F5F5F5",
+        "backgroundColor": "#f5f5f5",
         "flex": 1,
-        "height": "auto",
         "justifyContent": "center",
         "paddingLeft": 16,
         "paddingRight": 8,
@@ -76,7 +76,6 @@ exports[`render without key 1`] = `
   }
 >
   <Text
-    accessibilityTraits="header"
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
@@ -87,14 +86,16 @@ exports[`render without key 1`] = `
         },
         Object {
           "color": "#2D3B45",
-          "fontFamily": ".SFUIDisplay-semibold",
-          "fontSize": 20,
+          "fontSize": 16,
         },
         Object {
-          "backgroundColor": "#F5F5F5",
+          "backgroundColor": "#f5f5f5",
           "color": "#73818C",
           "fontSize": 14,
           "fontWeight": "600",
+        },
+        Object {
+          "fontFamily": ".SFUIDisplay-semibold",
         },
       ]
     }

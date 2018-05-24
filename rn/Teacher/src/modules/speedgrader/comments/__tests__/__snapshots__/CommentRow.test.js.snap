@@ -46,8 +46,8 @@ exports[`My message rows render correctly 1`] = `
             },
             Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-semibold",
-              "fontSize": 20,
+              "fontFamily": ".SFUIDisplay-heavy",
+              "fontSize": 24,
             },
             Array [
               Object {
@@ -234,8 +234,8 @@ exports[`Their message rows render correctly 1`] = `
             },
             Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-semibold",
-              "fontSize": 20,
+              "fontFamily": ".SFUIDisplay-heavy",
+              "fontSize": 24,
             },
             Array [
               Object {
@@ -416,8 +416,8 @@ exports[`their submissions render correctly 1`] = `
             },
             Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-semibold",
-              "fontSize": 20,
+              "fontFamily": ".SFUIDisplay-heavy",
+              "fontSize": 24,
             },
             Array [
               Object {
@@ -527,8 +527,8 @@ exports[`video comments without url render correctly 1`] = `
             },
             Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-semibold",
-              "fontSize": 20,
+              "fontFamily": ".SFUIDisplay-heavy",
+              "fontSize": 24,
             },
             Array [
               Object {

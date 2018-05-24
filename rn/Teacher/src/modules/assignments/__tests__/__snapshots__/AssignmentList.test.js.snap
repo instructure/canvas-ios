@@ -36,7 +36,6 @@ exports[`renders correctly 1`] = `
             "alignItems": "flex-end",
             "flexDirection": "row",
             "justifyContent": "space-between",
-            "marginBottom": 8,
           }
         }
         testID="assignment-list.filter-header-view"
@@ -44,10 +43,7 @@ exports[`renders correctly 1`] = `
         <Heading1
           style={
             Object {
-              "color": "#2d3b44",
               "flex": 1,
-              "fontSize": 20,
-              "fontWeight": "600",
             }
           }
           testID="assignment-list.filter-title-lbl"

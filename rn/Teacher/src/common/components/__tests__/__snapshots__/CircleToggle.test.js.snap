@@ -33,7 +33,6 @@ exports[`renders circle toggle correctly 1`] = `
     }
   >
     <Text
-      accessibilityTraits="header"
       accessible={false}
       allowFontScaling={true}
       ellipsizeMode="tail"
@@ -44,12 +43,15 @@ exports[`renders circle toggle correctly 1`] = `
           },
           Object {
             "color": "#2D3B45",
-            "fontFamily": ".SFUIDisplay-semibold",
-            "fontSize": 20,
+            "fontSize": 16,
           },
           Object {
             "color": "#8B969E",
+            "fontSize": 20,
             "fontWeight": "500",
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay-medium",
           },
         ]
       }
@@ -98,7 +100,6 @@ exports[`renders circle toggle when on correctly 1`] = `
     }
   >
     <Text
-      accessibilityTraits="header"
       accessible={false}
       allowFontScaling={true}
       ellipsizeMode="tail"
@@ -109,12 +110,15 @@ exports[`renders circle toggle when on correctly 1`] = `
           },
           Object {
             "color": "#2D3B45",
-            "fontFamily": ".SFUIDisplay-semibold",
-            "fontSize": 20,
+            "fontSize": 16,
           },
           Object {
             "color": "white",
+            "fontSize": 20,
             "fontWeight": "500",
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay-medium",
           },
         ]
       }

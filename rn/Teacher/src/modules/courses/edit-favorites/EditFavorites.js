@@ -17,11 +17,7 @@
 // @flow
 
 import React, { type Element, type ComponentType, Component } from 'react'
-import {
-  StyleSheet,
-  SectionList,
-  View,
-} from 'react-native'
+import { SectionList } from 'react-native'
 import { connect } from 'react-redux'
 import i18n from 'format-message'
 import App from '../../app'
@@ -34,7 +30,7 @@ import refresh from '../../../utils/refresh'
 import Screen from '../../../routing/Screen'
 import Navigator from '../../../routing/Navigator'
 import colors from '../../../common/colors'
-import { Heading1 } from '../../../common/text'
+import SectionHeader from '../../../common/components/rows/SectionHeader'
 import { featureFlagEnabled } from '../../../common/feature-flags'
 
 type SectionListSection = {
@@ -71,12 +67,7 @@ type Props = {
   pending: number,
 } & RefreshProps
 
-type State = {
-}
-
-const padding = 8
-
-export class FavoritesList extends Component<Props, State> {
+export class FavoritesList extends Component<Props> {
   renderCourse = ({ item }: { item: Course }) => {
     return (
       <CourseFavorite
@@ -99,15 +90,12 @@ export class FavoritesList extends Component<Props, State> {
 
   renderHeader = ({ section }: { section: SectionListSection }) => {
     return (
-      <View
-        key={section.sectionID}
-        accessibitilityTraits='heading'
-        style={[{ padding }, styles.header]}
-      >
-        <Heading1 testID={section.sectionID + '.heading-lbl'}>
-          {section.title}
-        </Heading1>
-      </View>
+      <SectionHeader
+        key={section.key}
+        testID={section.sectionID + '.heading-lbl'}
+        title={section.title || ''}
+        top={section.sectionID === 'editFavorites.courses'}
+      />
     )
   }
 
@@ -186,21 +174,3 @@ export let Refreshed = refresh(
 )(FavoritesList)
 let Connected = connect(mapStateToProps, { ...CoursesActions, ...FavoritesActions, ...GroupFavoriteActions })(Refreshed)
 export default (Connected: FavoritesList)
-
-const styles = StyleSheet.create({
-  listStyle: {
-    backgroundColor: '#fff',
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-end',
-    paddingBottom: 0,
-    paddingTop: 16,
-  },
-  gridish: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    padding,
-  },
-})

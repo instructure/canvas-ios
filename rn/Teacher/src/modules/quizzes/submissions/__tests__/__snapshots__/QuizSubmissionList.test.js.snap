@@ -51,14 +51,10 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
               },
               Object {
                 "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
+                "fontFamily": ".SFUIDisplay-heavy",
+                "fontSize": 24,
               },
-              Object {
-                "color": "#2d3b44",
-                "fontSize": 20,
-                "fontWeight": "600",
-              },
+              undefined,
             ]
           }
         >
@@ -479,14 +475,10 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
               },
               Object {
                 "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
+                "fontFamily": ".SFUIDisplay-heavy",
+                "fontSize": 24,
               },
-              Object {
-                "color": "#2d3b44",
-                "fontSize": 20,
-                "fontWeight": "600",
-              },
+              undefined,
             ]
           }
         >
@@ -875,14 +867,10 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
               },
               Object {
                 "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
+                "fontFamily": ".SFUIDisplay-heavy",
+                "fontSize": 24,
               },
-              Object {
-                "color": "#2d3b44",
-                "fontSize": 20,
-                "fontWeight": "600",
-              },
+              undefined,
             ]
           }
         >

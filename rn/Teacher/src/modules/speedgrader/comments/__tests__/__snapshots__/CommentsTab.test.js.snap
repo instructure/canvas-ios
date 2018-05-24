@@ -55,8 +55,8 @@ exports[`comments render properly 1`] = `
                   },
                   Object {
                     "color": "#2D3B45",
-                    "fontFamily": ".SFUIDisplay-semibold",
-                    "fontSize": 20,
+                    "fontFamily": ".SFUIDisplay-heavy",
+                    "fontSize": 24,
                   },
                   Array [
                     Object {
@@ -356,8 +356,8 @@ exports[`comments render properly 1`] = `
                   },
                   Object {
                     "color": "#2D3B45",
-                    "fontFamily": ".SFUIDisplay-semibold",
-                    "fontSize": 20,
+                    "fontFamily": ".SFUIDisplay-heavy",
+                    "fontSize": 24,
                   },
                   Array [
                     Object {
@@ -532,8 +532,8 @@ exports[`comments render properly 1`] = `
                   },
                   Object {
                     "color": "#2D3B45",
-                    "fontFamily": ".SFUIDisplay-semibold",
-                    "fontSize": 20,
+                    "fontFamily": ".SFUIDisplay-heavy",
+                    "fontSize": 24,
                   },
                   Array [
                     Object {
@@ -763,8 +763,8 @@ exports[`comments render properly 1`] = `
                   },
                   Object {
                     "color": "#2D3B45",
-                    "fontFamily": ".SFUIDisplay-semibold",
-                    "fontSize": 20,
+                    "fontFamily": ".SFUIDisplay-heavy",
+                    "fontSize": 24,
                   },
                   Array [
                     Object {
@@ -868,8 +868,8 @@ exports[`comments render properly 1`] = `
                   },
                   Object {
                     "color": "#2D3B45",
-                    "fontFamily": ".SFUIDisplay-semibold",
-                    "fontSize": 20,
+                    "fontFamily": ".SFUIDisplay-heavy",
+                    "fontSize": 24,
                   },
                   Array [
                     Object {
@@ -1103,8 +1103,8 @@ exports[`comments render properly 1`] = `
                   },
                   Object {
                     "color": "#2D3B45",
-                    "fontFamily": ".SFUIDisplay-semibold",
-                    "fontSize": 20,
+                    "fontFamily": ".SFUIDisplay-heavy",
+                    "fontSize": 24,
                   },
                   Array [
                     Object {

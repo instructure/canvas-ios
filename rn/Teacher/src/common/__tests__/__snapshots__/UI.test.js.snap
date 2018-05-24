@@ -61,8 +61,8 @@ exports[`renders UI correctly 1`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
+                  "fontFamily": ".SFUIDisplay-heavy",
+                  "fontSize": 24,
                 },
                 Object {
                   "paddingBottom": 8,

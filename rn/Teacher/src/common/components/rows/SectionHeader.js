@@ -14,32 +14,31 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-/**
-* @flow
-*/
+// @flow
 
 import React, { PureComponent } from 'react'
 import {
   View,
   StyleSheet,
 } from 'react-native'
-import { Heading1 } from '../../../common/text'
+import { Text } from '../../../common/text'
 import color from '../../colors'
 
 type Props = {
   title: string,
-  sectionKey?: string,
   top?: boolean, // Draw a line at the top of the section header. Usually used if the section header is the topmost of the list
 }
 
-export default class SectionHeader extends PureComponent<Props, any> {
+export default class SectionHeader extends PureComponent<Props> {
   render () {
-    const key = this.props.sectionKey ? this.props.sectionKey : this.props.title
-    const topHairline = this.props.top ? styles.topHairline : undefined
-    const containerStyle = [styles.section, styles.bottomHairline, topHairline].filter(Boolean)
+    const containerStyle = [
+      styles.section,
+      styles.bottomHairline,
+      this.props.top ? styles.topHairline : undefined,
+    ]
     return (
-      <View style={containerStyle} key={key} accessibilityTraits='header'>
-        <Heading1 style={styles.title}>{this.props.title}</Heading1>
+      <View style={containerStyle} accessibilityTraits='header'>
+        <Text style={styles.title}>{this.props.title}</Text>
       </View>
     )
   }
@@ -48,17 +47,16 @@ export default class SectionHeader extends PureComponent<Props, any> {
 const styles = StyleSheet.create({
   section: {
     flex: 1,
-    height: 'auto',
-    backgroundColor: '#F5F5F5',
+    backgroundColor: color.grey1,
     justifyContent: 'center',
-    paddingLeft: 16,
-    paddingRight: 8,
+    paddingLeft: global.style.defaultPadding,
+    paddingRight: global.style.defaultPadding / 2,
     paddingVertical: global.style.defaultPadding / 4,
   },
   title: {
     fontSize: 14,
-    backgroundColor: '#F5F5F5',
-    color: '#73818C',
+    backgroundColor: color.grey1,
+    color: color.grey5,
     fontWeight: '600',
   },
   topHairline: {

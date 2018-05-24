@@ -270,7 +270,6 @@ exports[`renders with a grade 1`] = `
           }
         >
           <Text
-            accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
             ellipsizeMode="tail"
@@ -282,17 +281,20 @@ exports[`renders with a grade 1`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
+                  "fontSize": 16,
                 },
                 Array [
                   Object {
                     "fontSize": 14,
+                    "fontWeight": "600",
                   },
                   Object {
                     "color": "#333",
                   },
                 ],
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
               ]
             }
           >
@@ -495,7 +497,6 @@ exports[`renders with a grade even if the grade does not exist 1`] = `
           }
         >
           <Text
-            accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
             ellipsizeMode="tail"
@@ -507,17 +508,20 @@ exports[`renders with a grade even if the grade does not exist 1`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
+                  "fontSize": 16,
                 },
                 Array [
                   Object {
                     "fontSize": 14,
+                    "fontWeight": "600",
                   },
                   Object {
                     "color": "#333",
                   },
                 ],
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
               ]
             }
           >

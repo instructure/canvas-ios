@@ -60,10 +60,7 @@ export default class SubmissionsHeader extends Component<SubmissionsHeaderProps,
 
     return (<View style={styles.headerWrapper}>
       <View style={styles.header}>
-        <Heading1
-          numberOfLines={1}
-          style={styles.headerTitle}
-        >
+        <Heading1 numberOfLines={1}>
           { title }
         </Heading1>
         {!!subTitle && <Text style={styles.subtitle}>{subTitle}</Text>}
@@ -108,11 +105,6 @@ const styles = StyleSheet.create({
   header: {
     flex: 1,
     flexDirection: 'column',
-  },
-  headerTitle: {
-    fontSize: 20,
-    fontWeight: '600',
-    color: '#2d3b44',
   },
   subtitle: {
     color: colors.grey4,

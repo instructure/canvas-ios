@@ -451,8 +451,8 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                           },
                           Object {
                             "color": "#2D3B45",
-                            "fontFamily": ".SFUIDisplay-semibold",
-                            "fontSize": 20,
+                            "fontFamily": ".SFUIDisplay-heavy",
+                            "fontSize": 24,
                           },
                           undefined,
                         ]
@@ -1354,8 +1354,8 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                           },
                           Object {
                             "color": "#2D3B45",
-                            "fontFamily": ".SFUIDisplay-semibold",
-                            "fontSize": 20,
+                            "fontFamily": ".SFUIDisplay-heavy",
+                            "fontSize": 24,
                           },
                           undefined,
                         ]
@@ -2050,8 +2050,8 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                           },
                           Object {
                             "color": "#2D3B45",
-                            "fontFamily": ".SFUIDisplay-semibold",
-                            "fontSize": 20,
+                            "fontFamily": ".SFUIDisplay-heavy",
+                            "fontSize": 24,
                           },
                           undefined,
                         ]
@@ -2323,8 +2323,8 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                           },
                           Object {
                             "color": "#2D3B45",
-                            "fontFamily": ".SFUIDisplay-semibold",
-                            "fontSize": 20,
+                            "fontFamily": ".SFUIDisplay-heavy",
+                            "fontSize": 24,
                           },
                           undefined,
                         ]
@@ -2887,8 +2887,8 @@ exports[`DiscussionDetails renders in student app 1`] = `
                           },
                           Object {
                             "color": "#2D3B45",
-                            "fontFamily": ".SFUIDisplay-semibold",
-                            "fontSize": 20,
+                            "fontFamily": ".SFUIDisplay-heavy",
+                            "fontSize": 24,
                           },
                           undefined,
                         ]
@@ -3243,8 +3243,8 @@ exports[`DiscussionDetails renders in student app 1`] = `
                           },
                           Object {
                             "color": "#2D3B45",
-                            "fontFamily": ".SFUIDisplay-semibold",
-                            "fontSize": 20,
+                            "fontFamily": ".SFUIDisplay-heavy",
+                            "fontSize": 24,
                           },
                           undefined,
                         ]
@@ -3952,8 +3952,8 @@ exports[`DiscussionDetails renders no replies 1`] = `
                           },
                           Object {
                             "color": "#2D3B45",
-                            "fontFamily": ".SFUIDisplay-semibold",
-                            "fontSize": 20,
+                            "fontFamily": ".SFUIDisplay-heavy",
+                            "fontSize": 24,
                           },
                           undefined,
                         ]
@@ -5355,8 +5355,8 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                           },
                           Object {
                             "color": "#2D3B45",
-                            "fontFamily": ".SFUIDisplay-semibold",
-                            "fontSize": 20,
+                            "fontFamily": ".SFUIDisplay-heavy",
+                            "fontSize": 24,
                           },
                           undefined,
                         ]
@@ -7630,8 +7630,8 @@ exports[`DiscussionDetails renders with replies 1`] = `
                           },
                           Object {
                             "color": "#2D3B45",
-                            "fontFamily": ".SFUIDisplay-semibold",
-                            "fontSize": 20,
+                            "fontFamily": ".SFUIDisplay-heavy",
+                            "fontSize": 24,
                           },
                           undefined,
                         ]
@@ -8559,8 +8559,8 @@ exports[`DiscussionDetails renders with replies 1`] = `
                           },
                           Object {
                             "color": "#2D3B45",
-                            "fontFamily": ".SFUIDisplay-semibold",
-                            "fontSize": 20,
+                            "fontFamily": ".SFUIDisplay-heavy",
+                            "fontSize": 24,
                           },
                           undefined,
                         ]
