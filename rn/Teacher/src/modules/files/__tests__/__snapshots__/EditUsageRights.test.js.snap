@@ -2,9 +2,9 @@
 
 exports[`EditUsageRights should render 1`] = `
 <View>
-  <EditSectionHeader
-    title="Usage Rights"
-  />
+  <FormLabel>
+    Usage Rights
+  </FormLabel>
   <RowWithTextInput
     border="both"
     identifier="edit-item.usage_rights.legal_copyright"
@@ -37,9 +37,9 @@ exports[`EditUsageRights should render 1`] = `
 
 exports[`EditUsageRights shows blank when no rights are passed in 1`] = `
 <View>
-  <EditSectionHeader
-    title="Usage Rights"
-  />
+  <FormLabel>
+    Usage Rights
+  </FormLabel>
   <RowWithTextInput
     border="both"
     identifier="edit-item.usage_rights.legal_copyright"

@@ -192,19 +192,14 @@ exports[`AnnouncementEdit renders 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
+                "color": "#73818C",
                 "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
+                "fontSize": 14,
                 "marginBottom": 8,
                 "marginLeft": 16,
                 "marginTop": 16,
               },
+              undefined,
             ]
           }
         >
@@ -291,19 +286,14 @@ exports[`AnnouncementEdit renders 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
+                "color": "#73818C",
                 "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
+                "fontSize": 14,
                 "marginBottom": 8,
                 "marginLeft": 16,
                 "marginTop": 16,
               },
+              undefined,
             ]
           }
         >
@@ -356,19 +346,14 @@ exports[`AnnouncementEdit renders 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
+                  "color": "#73818C",
                   "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
-                },
-                Object {
-                  "color": "#2D3B45",
+                  "fontSize": 14,
                   "marginBottom": 8,
                   "marginLeft": 16,
                   "marginTop": 16,
                 },
+                undefined,
               ]
             }
           >
@@ -822,18 +807,9 @@ exports[`AnnouncementEdit updates with new props 1`] = `
         }
       }
     >
-      <Heading1
-        style={
-          Object {
-            "color": "#2D3B45",
-            "marginBottom": 8,
-            "marginLeft": 16,
-            "marginTop": 16,
-          }
-        }
-      >
+      <FormLabel>
         Title
-      </Heading1>
+      </FormLabel>
       <RowWithTextInput
         border="both"
         defaultValue="Cursed Hollow"
@@ -843,18 +819,9 @@ exports[`AnnouncementEdit updates with new props 1`] = `
         placeholder="Add title"
         title=""
       />
-      <Heading1
-        style={
-          Object {
-            "color": "#2D3B45",
-            "marginBottom": 8,
-            "marginLeft": 16,
-            "marginTop": 16,
-          }
-        }
-      >
+      <FormLabel>
         Description
-      </Heading1>
+      </FormLabel>
       <View
         style={
           Object {
@@ -894,18 +861,9 @@ exports[`AnnouncementEdit updates with new props 1`] = `
         visible={false}
       />
       <View>
-        <Heading1
-          style={
-            Object {
-              "color": "#2D3B45",
-              "marginBottom": 8,
-              "marginLeft": 16,
-              "marginTop": 16,
-            }
-          }
-        >
+        <FormLabel>
           Options
-        </Heading1>
+        </FormLabel>
         <RowWithDetail
           accessories={<DisclosureIndicator />}
           border="both"

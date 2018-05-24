@@ -40,19 +40,14 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
+                "color": "#73818C",
                 "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
+                "fontSize": 14,
                 "marginBottom": 8,
                 "marginLeft": 16,
                 "marginTop": 16,
               },
+              undefined,
             ]
           }
         >
@@ -811,19 +806,14 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
+                "color": "#73818C",
                 "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
+                "fontSize": 14,
                 "marginBottom": 8,
                 "marginLeft": 16,
                 "marginTop": 16,
               },
+              undefined,
             ]
           }
         >
@@ -1582,19 +1572,14 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
+                "color": "#73818C",
                 "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
+                "fontSize": 14,
                 "marginBottom": 8,
                 "marginLeft": 16,
                 "marginTop": 16,
               },
+              undefined,
             ]
           }
         >
@@ -2480,19 +2465,14 @@ exports[`snapshots! render with multiple due dates 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
+                "color": "#73818C",
                 "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
+                "fontSize": 14,
                 "marginBottom": 8,
                 "marginLeft": 16,
                 "marginTop": 16,
               },
+              undefined,
             ]
           }
         >
@@ -3185,19 +3165,14 @@ exports[`snapshots! render with multiple due dates 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
+                "color": "#73818C",
                 "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
+                "fontSize": 14,
                 "marginBottom": 8,
                 "marginLeft": 16,
                 "marginTop": 16,
               },
+              undefined,
             ]
           }
         >
@@ -4083,19 +4058,14 @@ exports[`snapshots! render with single due date 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
+                "color": "#73818C",
                 "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
+                "fontSize": 14,
                 "marginBottom": 8,
                 "marginLeft": 16,
                 "marginTop": 16,
               },
+              undefined,
             ]
           }
         >

@@ -23,9 +23,8 @@ import { connect } from 'react-redux'
 import { updateMapStateToProps, type AssignmentDetailsProps } from './map-state-to-props'
 import AssignmentActions from '../assignments/actions'
 import i18n from 'format-message'
-import EditSectionHeader from '../../common/components/EditSectionHeader'
 import AssignmentDatesEditor from './components/AssignmentDatesEditor'
-import { TextInput, Text } from '../../common/text'
+import { TextInput, Text, FormLabel } from '../../common/text'
 import ModalOverlay from '../../common/components/ModalOverlay'
 import UnmetRequirementBanner from '../../common/components/UnmetRequirementBanner'
 import RequiredFieldSubscript from '../../common/components/RequiredFieldSubscript'
@@ -106,7 +105,8 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
         blurOnSubmit={true}
         onChangeText={ value => this.updateFromInput(fieldName, value) }
         onFocus={(event) => this._scrollToInput}
-        testID={testID}/>
+        testID={testID}
+      />
     )
   }
 
@@ -118,20 +118,22 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
   renderDataMapPicker = () => {
     if (!this.state.showPicker) return <View/>
 
-    return <View>
-      <PickerIOS
-        selectedValue={this.state.pickerSelectedValue}
-        onValueChange={this.pickerValueDidChange.bind(this)}
-        testID='assignmentPicker'>
-        {this.currentPickerMap && Array.from(this.currentPickerMap.keys()).map((key) => (
-          <PickerItemIOS
-            key={key}
-            value={key}
-            label={this.currentPickerMap ? this.currentPickerMap.get(key) : ''}
-          />
-        ))}
-      </PickerIOS>
-    </View>
+    return (
+      <View>
+        <PickerIOS
+          selectedValue={this.state.pickerSelectedValue}
+          onValueChange={this.pickerValueDidChange.bind(this)}
+          testID='assignmentPicker'>
+          {this.currentPickerMap && Array.from(this.currentPickerMap.keys()).map((key) => (
+            <PickerItemIOS
+              key={key}
+              value={key}
+              label={this.currentPickerMap ? this.currentPickerMap.get(key) : ''}
+            />
+          ))}
+        </PickerIOS>
+      </View>
+    )
   }
 
   render () {
@@ -178,14 +180,14 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
             enableAutoAutomaticScroll={false}
           >
             {/* Title */}
-            <EditSectionHeader title={sectionTitle} />
+            <FormLabel>{sectionTitle}</FormLabel>
             <View style={[style.row, style.topRow, style.bottomRow]}>
               { this.renderTextInput('name', titlePlaceHolder, 'titleInput', style.title) }
             </View>
             <RequiredFieldSubscript title={this.state.validation.title} visible={this.state.validation.title} />
 
             {/* Description */}
-            <EditSectionHeader title={sectionDescription} style={{ marginTop: 0 }}/>
+            <FormLabel>{sectionDescription}</FormLabel>
             <TouchableHighlight
               testID='edit-description'
               onPress={this._editDescription}
@@ -200,10 +202,10 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
             </TouchableHighlight>
 
             {/* Points */}
-            <EditSectionHeader title={sectionDetails} />
+            <FormLabel>{sectionDetails}</FormLabel>
             <RowWithTextInput
               title={pointsLabel}
-              border='bottom'
+              border='both'
               placeholder='--'
               inputWidth={200}
               onChangeText={detail => this.updateFromInput('points_possible', detail)}
@@ -212,26 +214,28 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
               onFocus={this._scrollToInput}
               identifier='assignmentDetails.edit.points_possible.input'
             />
-
             <RequiredFieldSubscript title={this.state.validation.points} visible={this.state.validation.points} />
 
             {/* Display Grade As */}
-            <RowWithDetail title={displayGradeAs}
+            <RowWithDetail
+              title={displayGradeAs}
               detailSelected={this.state.showPicker}
               detail={i18n(gradeDisplayOptions().get(this.state.assignment.grading_type) || '')}
               onPress={this.toggleDisplayGradeAsPicker}
-              border={'bottom'}
-              testID="assignment-details.toggle-display-grade-as-picker" />
+              border='bottom'
+              testID="assignment-details.toggle-display-grade-as-picker"
+            />
             {this.renderDataMapPicker()}
 
             {/* Publish */}
             { (!this.props.assignmentDetails.published || this.props.assignmentDetails.unpublishable) &&
               <RowWithSwitch
                 title={publish}
-                border={'bottom'}
+                border='bottom'
                 value={this.defaultValueForBooleanInput('published')}
                 identifier='published'
-                onValueChange={this._updateToggleValue} />
+                onValueChange={this._updateToggleValue}
+              />
             }
 
             {/* Due Dates */}
@@ -239,8 +243,8 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
               assignment={this.props.assignmentDetails}
               ref={(c: any) => { this.datesEditor = c }}
               canEditAssignees={Boolean(this.state.assignment)}
-              navigator={this.props.navigator} />
-
+              navigator={this.props.navigator}
+            />
           </KeyboardAwareScrollView>
         </View>
       </Screen>

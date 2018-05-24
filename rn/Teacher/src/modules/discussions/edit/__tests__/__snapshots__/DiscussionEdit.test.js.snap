@@ -66,18 +66,9 @@ exports[`DiscussionEdit renders 1`] = `
         }
       }
     >
-      <Heading1
-        style={
-          Object {
-            "color": "#2D3B45",
-            "marginBottom": 8,
-            "marginLeft": 16,
-            "marginTop": 16,
-          }
-        }
-      >
+      <FormLabel>
         Title
-      </Heading1>
+      </FormLabel>
       <RowWithTextInput
         border="both"
         defaultValue="Cursed Hollow"
@@ -91,18 +82,9 @@ exports[`DiscussionEdit renders 1`] = `
         testID="discussions.edit.title.validation-error"
         visible={false}
       />
-      <Heading1
-        style={
-          Object {
-            "color": "#2D3B45",
-            "marginBottom": 8,
-            "marginLeft": 16,
-            "marginTop": 16,
-          }
-        }
-      >
+      <FormLabel>
         Description
-      </Heading1>
+      </FormLabel>
       <View
         style={
           Object {
@@ -137,18 +119,9 @@ exports[`DiscussionEdit renders 1`] = `
           showToolbar="always"
         />
       </View>
-      <Heading1
-        style={
-          Object {
-            "color": "#2D3B45",
-            "marginBottom": 8,
-            "marginLeft": 16,
-            "marginTop": 16,
-          }
-        }
-      >
+      <FormLabel>
         Options
-      </Heading1>
+      </FormLabel>
       <RowWithSwitch
         border="both"
         onValueChange={[Function]}
@@ -177,18 +150,9 @@ exports[`DiscussionEdit renders 1`] = `
         value={false}
       />
       <View>
-        <Heading1
-          style={
-            Object {
-              "color": "#2D3B45",
-              "marginBottom": 8,
-              "marginLeft": 16,
-              "marginTop": 16,
-            }
-          }
-        >
+        <FormLabel>
           Availability
-        </Heading1>
+        </FormLabel>
         <RowWithDateInput
           border="bottom"
           date={null}
@@ -283,18 +247,9 @@ exports[`DiscussionEdit renders new form 1`] = `
         }
       }
     >
-      <Heading1
-        style={
-          Object {
-            "color": "#2D3B45",
-            "marginBottom": 8,
-            "marginLeft": 16,
-            "marginTop": 16,
-          }
-        }
-      >
+      <FormLabel>
         Title
-      </Heading1>
+      </FormLabel>
       <RowWithTextInput
         border="both"
         defaultValue={null}
@@ -308,18 +263,9 @@ exports[`DiscussionEdit renders new form 1`] = `
         testID="discussions.edit.title.validation-error"
         visible={false}
       />
-      <Heading1
-        style={
-          Object {
-            "color": "#2D3B45",
-            "marginBottom": 8,
-            "marginLeft": 16,
-            "marginTop": 16,
-          }
-        }
-      >
+      <FormLabel>
         Description
-      </Heading1>
+      </FormLabel>
       <View
         style={
           Object {
@@ -354,18 +300,9 @@ exports[`DiscussionEdit renders new form 1`] = `
           showToolbar="always"
         />
       </View>
-      <Heading1
-        style={
-          Object {
-            "color": "#2D3B45",
-            "marginBottom": 8,
-            "marginLeft": 16,
-            "marginTop": 16,
-          }
-        }
-      >
+      <FormLabel>
         Options
-      </Heading1>
+      </FormLabel>
       <RowWithSwitch
         border="both"
         onValueChange={[Function]}
@@ -387,18 +324,9 @@ exports[`DiscussionEdit renders new form 1`] = `
         value={null}
       />
       <View>
-        <Heading1
-          style={
-            Object {
-              "color": "#2D3B45",
-              "marginBottom": 8,
-              "marginLeft": 16,
-              "marginTop": 16,
-            }
-          }
-        >
+        <FormLabel>
           Availability
-        </Heading1>
+        </FormLabel>
         <RowWithDateInput
           border="bottom"
           date={null}
@@ -493,18 +421,9 @@ exports[`DiscussionEdit updates from props 1`] = `
         }
       }
     >
-      <Heading1
-        style={
-          Object {
-            "color": "#2D3B45",
-            "marginBottom": 8,
-            "marginLeft": 16,
-            "marginTop": 16,
-          }
-        }
-      >
+      <FormLabel>
         Title
-      </Heading1>
+      </FormLabel>
       <RowWithTextInput
         border="both"
         defaultValue="Cursed Hollow"
@@ -518,18 +437,9 @@ exports[`DiscussionEdit updates from props 1`] = `
         testID="discussions.edit.title.validation-error"
         visible={false}
       />
-      <Heading1
-        style={
-          Object {
-            "color": "#2D3B45",
-            "marginBottom": 8,
-            "marginLeft": 16,
-            "marginTop": 16,
-          }
-        }
-      >
+      <FormLabel>
         Description
-      </Heading1>
+      </FormLabel>
       <View
         style={
           Object {
@@ -564,18 +474,9 @@ exports[`DiscussionEdit updates from props 1`] = `
           showToolbar="always"
         />
       </View>
-      <Heading1
-        style={
-          Object {
-            "color": "#2D3B45",
-            "marginBottom": 8,
-            "marginLeft": 16,
-            "marginTop": 16,
-          }
-        }
-      >
+      <FormLabel>
         Options
-      </Heading1>
+      </FormLabel>
       <RowWithSwitch
         border="both"
         onValueChange={[Function]}
@@ -604,18 +505,9 @@ exports[`DiscussionEdit updates from props 1`] = `
         value={false}
       />
       <View>
-        <Heading1
-          style={
-            Object {
-              "color": "#2D3B45",
-              "marginBottom": 8,
-              "marginLeft": 16,
-              "marginTop": 16,
-            }
-          }
-        >
+        <FormLabel>
           Availability
-        </Heading1>
+        </FormLabel>
         <RowWithDateInput
           border="bottom"
           date={null}
@@ -710,18 +602,9 @@ exports[`DiscussionEdit updates with new props 1`] = `
         }
       }
     >
-      <Heading1
-        style={
-          Object {
-            "color": "#2D3B45",
-            "marginBottom": 8,
-            "marginLeft": 16,
-            "marginTop": 16,
-          }
-        }
-      >
+      <FormLabel>
         Title
-      </Heading1>
+      </FormLabel>
       <RowWithTextInput
         border="both"
         defaultValue="Cursed Hollow"
@@ -735,18 +618,9 @@ exports[`DiscussionEdit updates with new props 1`] = `
         testID="discussions.edit.title.validation-error"
         visible={false}
       />
-      <Heading1
-        style={
-          Object {
-            "color": "#2D3B45",
-            "marginBottom": 8,
-            "marginLeft": 16,
-            "marginTop": 16,
-          }
-        }
-      >
+      <FormLabel>
         Description
-      </Heading1>
+      </FormLabel>
       <View
         style={
           Object {
@@ -781,18 +655,9 @@ exports[`DiscussionEdit updates with new props 1`] = `
           showToolbar="always"
         />
       </View>
-      <Heading1
-        style={
-          Object {
-            "color": "#2D3B45",
-            "marginBottom": 8,
-            "marginLeft": 16,
-            "marginTop": 16,
-          }
-        }
-      >
+      <FormLabel>
         Options
-      </Heading1>
+      </FormLabel>
       <RowWithSwitch
         border="both"
         onValueChange={[Function]}
@@ -821,18 +686,9 @@ exports[`DiscussionEdit updates with new props 1`] = `
         value={false}
       />
       <View>
-        <Heading1
-          style={
-            Object {
-              "color": "#2D3B45",
-              "marginBottom": 8,
-              "marginLeft": 16,
-              "marginTop": 16,
-            }
-          }
-        >
+        <FormLabel>
           Availability
-        </Heading1>
+        </FormLabel>
         <RowWithDateInput
           border="bottom"
           date={null}

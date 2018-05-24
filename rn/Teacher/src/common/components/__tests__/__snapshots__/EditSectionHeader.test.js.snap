@@ -24,19 +24,14 @@ exports[`render 1`] = `
     style={
       Array [
         Object {
-          "fontFamily": ".SFUIDisplay",
-        },
-        Object {
-          "color": "#2D3B45",
+          "color": "#73818C",
           "fontFamily": ".SFUIDisplay-semibold",
-          "fontSize": 20,
-        },
-        Object {
-          "color": "#2D3B45",
+          "fontSize": 14,
           "marginBottom": 8,
           "marginLeft": 16,
           "marginTop": 16,
         },
+        undefined,
       ]
     }
   >
@@ -69,19 +64,14 @@ exports[`render no title 1`] = `
     style={
       Array [
         Object {
-          "fontFamily": ".SFUIDisplay",
-        },
-        Object {
-          "color": "#2D3B45",
+          "color": "#73818C",
           "fontFamily": ".SFUIDisplay-semibold",
-          "fontSize": 20,
-        },
-        Object {
-          "color": "#2D3B45",
+          "fontSize": 14,
           "marginBottom": 8,
           "marginLeft": 16,
           "marginTop": 16,
         },
+        undefined,
       ]
     }
   />

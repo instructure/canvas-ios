@@ -89,7 +89,7 @@ exports[`renders correctly 1`] = `
                   "user_id": "1",
                 },
               ],
-              "id": "1",
+              "id": "2",
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": true,
               "name": "Learn React Native",
@@ -194,7 +194,7 @@ exports[`renders correctly 1`] = `
                   "user_id": "1",
                 },
               ],
-              "id": "1",
+              "id": "2",
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": true,
               "name": "Learn React Native",
@@ -406,7 +406,7 @@ exports[`renders correctly 1`] = `
               },
             ]
           }
-          testID="edit-favorites.course-favorite.1-favorited"
+          testID="edit-favorites.course-favorite.2-favorited"
           tvParallaxProperties={undefined}
         >
           <View
@@ -537,7 +537,7 @@ exports[`renders correctly as student 1`] = `
                   "user_id": "1",
                 },
               ],
-              "id": "1",
+              "id": "2",
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": true,
               "name": "Learn React Native",
@@ -684,7 +684,7 @@ exports[`renders correctly as student 1`] = `
                   "user_id": "1",
                 },
               ],
-              "id": "1",
+              "id": "2",
               "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
               "is_favorite": true,
               "name": "Learn React Native",
@@ -938,7 +938,7 @@ exports[`renders correctly as student 1`] = `
               },
             ]
           }
-          testID="edit-favorites.course-favorite.1-favorited"
+          testID="edit-favorites.course-favorite.2-favorited"
           tvParallaxProperties={undefined}
         >
           <View

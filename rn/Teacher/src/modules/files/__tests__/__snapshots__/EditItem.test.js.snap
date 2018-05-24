@@ -40,9 +40,9 @@ exports[`EditItem file renders usage rights editing when feature is enabled 1`] 
         }
       }
     >
-      <EditSectionHeader
-        title="Title"
-      />
+      <FormLabel>
+        Title
+      </FormLabel>
       <RowWithTextInput
         border="both"
         identifier="edit-item.name"
@@ -61,9 +61,9 @@ exports[`EditItem file renders usage rights editing when feature is enabled 1`] 
         title=""
         visible={false}
       />
-      <EditSectionHeader
-        title="Access"
-      />
+      <FormLabel>
+        Access
+      </FormLabel>
       <Row
         border="both"
         disclosureIndicator={true}
@@ -177,9 +177,9 @@ exports[`EditItem folder should render 1`] = `
         }
       }
     >
-      <EditSectionHeader
-        title="Title"
-      />
+      <FormLabel>
+        Title
+      </FormLabel>
       <RowWithTextInput
         border="both"
         identifier="edit-item.name"
@@ -198,9 +198,9 @@ exports[`EditItem folder should render 1`] = `
         title=""
         visible={false}
       />
-      <EditSectionHeader
-        title="Access"
-      />
+      <FormLabel>
+        Access
+      </FormLabel>
       <Row
         border="both"
         disclosureIndicator={true}
@@ -282,9 +282,9 @@ exports[`EditItem folder shows availability when there is a lock_at date 1`] = `
         }
       }
     >
-      <EditSectionHeader
-        title="Title"
-      />
+      <FormLabel>
+        Title
+      </FormLabel>
       <RowWithTextInput
         border="both"
         identifier="edit-item.name"
@@ -303,9 +303,9 @@ exports[`EditItem folder shows availability when there is a lock_at date 1`] = `
         title=""
         visible={false}
       />
-      <EditSectionHeader
-        title="Access"
-      />
+      <FormLabel>
+        Access
+      </FormLabel>
       <Row
         border="both"
         disclosureIndicator={true}
@@ -331,9 +331,9 @@ exports[`EditItem folder shows availability when there is a lock_at date 1`] = `
         }
       />
       <View>
-        <EditSectionHeader
-          title="Availability"
-        />
+        <FormLabel>
+          Availability
+        </FormLabel>
         <RowSeparator />
         <RowWithDateInput
           border="both"
@@ -431,9 +431,9 @@ exports[`EditItem folder shows availability when there is an unlock_at date 1`] 
         }
       }
     >
-      <EditSectionHeader
-        title="Title"
-      />
+      <FormLabel>
+        Title
+      </FormLabel>
       <RowWithTextInput
         border="both"
         identifier="edit-item.name"
@@ -452,9 +452,9 @@ exports[`EditItem folder shows availability when there is an unlock_at date 1`] 
         title=""
         visible={false}
       />
-      <EditSectionHeader
-        title="Access"
-      />
+      <FormLabel>
+        Access
+      </FormLabel>
       <Row
         border="both"
         disclosureIndicator={true}
@@ -480,9 +480,9 @@ exports[`EditItem folder shows availability when there is an unlock_at date 1`] 
         }
       />
       <View>
-        <EditSectionHeader
-          title="Availability"
-        />
+        <FormLabel>
+          Availability
+        </FormLabel>
         <RowSeparator />
         <RowWithDateInput
           border="both"
@@ -580,9 +580,9 @@ exports[`EditItem folder shows the type of restriction when hidden 1`] = `
         }
       }
     >
-      <EditSectionHeader
-        title="Title"
-      />
+      <FormLabel>
+        Title
+      </FormLabel>
       <RowWithTextInput
         border="both"
         identifier="edit-item.name"
@@ -601,9 +601,9 @@ exports[`EditItem folder shows the type of restriction when hidden 1`] = `
         title=""
         visible={false}
       />
-      <EditSectionHeader
-        title="Access"
-      />
+      <FormLabel>
+        Access
+      </FormLabel>
       <Row
         border="both"
         disclosureIndicator={true}

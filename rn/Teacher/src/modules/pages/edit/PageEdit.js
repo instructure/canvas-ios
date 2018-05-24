@@ -27,7 +27,7 @@ import ReactNative, {
 } from 'react-native'
 import Screen from '../../../routing/Screen'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import { Heading1 } from '../../../common/text'
+import { FormLabel } from '../../../common/text'
 import RowWithTextInput from '../../../common/components/rows/RowWithTextInput'
 import RowWithSwitch from '../../../common/components/rows/RowWithSwitch'
 import RowWithDetail from '../../../common/components/rows/RowWithDetail'
@@ -119,7 +119,7 @@ export class PageEdit extends Component<Props, State> {
             ref={(r) => { this.scrollView = r }}
             keyboardDismissMode='on-drag'
           >
-            <Heading1 style={style.heading}>{i18n('Title')}</Heading1>
+            <FormLabel>{i18n('Title')}</FormLabel>
             <RowWithTextInput
               defaultValue={this.state.title}
               border='both'
@@ -129,7 +129,7 @@ export class PageEdit extends Component<Props, State> {
               onFocus={this._scrollToInput}
             />
 
-            <Heading1 style={style.heading}>{i18n('Description')}</Heading1>
+            <FormLabel>{i18n('Description')}</FormLabel>
             <View
               style={style.description}
             >
@@ -147,7 +147,7 @@ export class PageEdit extends Component<Props, State> {
               />
             </View>
 
-            <Heading1 style={style.heading}>{i18n('Details')}</Heading1>
+            <FormLabel>{i18n('Details')}</FormLabel>
             { !this.state.isFrontPage &&
               <RowWithSwitch
                 title={i18n('Publish')}
@@ -272,12 +272,6 @@ const style = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F5F5F5',
-  },
-  heading: {
-    color: colors.darkText,
-    marginLeft: global.style.defaultPadding,
-    marginTop: global.style.defaultPadding,
-    marginBottom: global.style.defaultPadding / 2,
   },
   description: {
     borderTopWidth: StyleSheet.hairlineWidth,

@@ -14,23 +14,24 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-/**
- * @flow
- */
+// @flow
 
 import React, { PureComponent } from 'react'
-import { Heading1 } from '../text'
-import color from '../colors'
+import { FormLabel } from '../text'
 import {
   View,
   StyleSheet,
 } from 'react-native'
 
+/*
+  This component is for a form header with a label and additional components to
+  the side. If only a label is needed, use FormLabel directly.
+*/
 export default class EditSectionHeader extends PureComponent<*> {
   render () {
     return (
       <View style={[style.container, this.props.style]}>
-        <Heading1 style={style.header}>{this.props.title}</Heading1>
+        <FormLabel>{this.props.title}</FormLabel>
         {this.props.children}
       </View>
     )
@@ -45,11 +46,5 @@ const style = StyleSheet.create({
     alignItems: 'center',
     height: 'auto',
     backgroundColor: '#F5F5F5',
-  },
-  header: {
-    color: color.darkText,
-    marginLeft: global.style.defaultPadding,
-    marginTop: global.style.defaultPadding,
-    marginBottom: global.style.defaultPadding / 2,
   },
 })

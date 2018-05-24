@@ -29,7 +29,7 @@ import api from '../../canvas-api'
 import Screen from '../../routing/Screen'
 import Colors from '../../common/colors'
 import Images from '../../images'
-import EditSectionHeader from '../../common/components/EditSectionHeader'
+import { FormLabel } from '../../common/text'
 import RequiredFieldSubscript from '../../common/components/RequiredFieldSubscript'
 import Row from '../../common/components/rows/Row'
 import RowWithDateInput from '../../common/components/rows/RowWithDateInput'
@@ -314,7 +314,7 @@ export default class EditItem extends Component<Props, State> {
             ref={view => { this.scrollView = view }}
           >
             {/* Title */}
-            <EditSectionHeader title={i18n('Title')} />
+            <FormLabel>{i18n('Title')}</FormLabel>
             <RowWithTextInput
               border='both'
               style={styles.title}
@@ -327,7 +327,7 @@ export default class EditItem extends Component<Props, State> {
             <RequiredFieldSubscript title={validation.name} visible={!!validation.name} />
 
             {/* Access */}
-            <EditSectionHeader title={i18n('Access')} />
+            <FormLabel>{i18n('Access')}</FormLabel>
             <Row
               border='both'
               title={this.getAccessOptions()[this.getAccessKey(updated)]}
@@ -350,7 +350,7 @@ export default class EditItem extends Component<Props, State> {
             {/* Availability */}
             {showAvailability &&
               <View>
-                <EditSectionHeader title={i18n('Availability')} />
+                <FormLabel>{i18n('Availability')}</FormLabel>
                 <RowSeparator />
                 <RowWithDateInput
                   border='both'

@@ -207,48 +207,27 @@ exports[`error occurs when done pressed 1`] = `
       }
     >
       <View>
-        <View
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "backgroundColor": "#F5F5F5",
-                "flex": 1,
-                "flexDirection": "row",
-                "height": "auto",
-                "justifyContent": "flex-start",
+                "color": "#73818C",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 14,
+                "marginBottom": 8,
+                "marginLeft": 16,
+                "marginTop": 16,
               },
               undefined,
             ]
           }
         >
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "marginBottom": 8,
-                  "marginLeft": 16,
-                  "marginTop": 16,
-                },
-              ]
-            }
-          >
-            Title
-          </Text>
-        </View>
+          Title
+        </Text>
         <View
           style={
             Array [
@@ -298,50 +277,27 @@ exports[`error occurs when done pressed 1`] = `
           />
         </View>
         <View />
-        <View
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "backgroundColor": "#F5F5F5",
-                "flex": 1,
-                "flexDirection": "row",
-                "height": "auto",
-                "justifyContent": "flex-start",
+                "color": "#73818C",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 14,
+                "marginBottom": 8,
+                "marginLeft": 16,
+                "marginTop": 16,
               },
-              Object {
-                "marginTop": 0,
-              },
+              undefined,
             ]
           }
         >
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "marginBottom": 8,
-                  "marginLeft": 16,
-                  "marginTop": 16,
-                },
-              ]
-            }
-          >
-            Description
-          </Text>
-        </View>
+          Description
+        </Text>
         <TouchableHighlight
           onPress={[Function]}
           testID="edit-description"
@@ -455,48 +411,27 @@ exports[`error occurs when done pressed 1`] = `
             />
           </View>
         </TouchableHighlight>
-        <View
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "backgroundColor": "#F5F5F5",
-                "flex": 1,
-                "flexDirection": "row",
-                "height": "auto",
-                "justifyContent": "flex-start",
+                "color": "#73818C",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 14,
+                "marginBottom": 8,
+                "marginLeft": 16,
+                "marginTop": 16,
               },
               undefined,
             ]
           }
         >
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "marginBottom": 8,
-                  "marginLeft": 16,
-                  "marginTop": 16,
-                },
-              ]
-            }
-          >
-            Details
-          </Text>
-        </View>
+          Details
+        </Text>
         <TouchableHighlight
           accessibilityLabel="Points, "
           accessibilityTraits={
@@ -507,7 +442,10 @@ exports[`error occurs when done pressed 1`] = `
           onPress={[Function]}
           style={
             Array [
-              undefined,
+              Object {
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
+              },
               Object {
                 "borderBottomColor": "#C7CDD1",
                 "borderBottomWidth": 0.5,
@@ -1154,48 +1092,27 @@ exports[`modal saving is shown on assignment update 1`] = `
       }
     >
       <View>
-        <View
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "backgroundColor": "#F5F5F5",
-                "flex": 1,
-                "flexDirection": "row",
-                "height": "auto",
-                "justifyContent": "flex-start",
+                "color": "#73818C",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 14,
+                "marginBottom": 8,
+                "marginLeft": 16,
+                "marginTop": 16,
               },
               undefined,
             ]
           }
         >
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "marginBottom": 8,
-                  "marginLeft": 16,
-                  "marginTop": 16,
-                },
-              ]
-            }
-          >
-            Title
-          </Text>
-        </View>
+          Title
+        </Text>
         <View
           style={
             Array [
@@ -1245,50 +1162,27 @@ exports[`modal saving is shown on assignment update 1`] = `
           />
         </View>
         <View />
-        <View
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "backgroundColor": "#F5F5F5",
-                "flex": 1,
-                "flexDirection": "row",
-                "height": "auto",
-                "justifyContent": "flex-start",
+                "color": "#73818C",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 14,
+                "marginBottom": 8,
+                "marginLeft": 16,
+                "marginTop": 16,
               },
-              Object {
-                "marginTop": 0,
-              },
+              undefined,
             ]
           }
         >
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "marginBottom": 8,
-                  "marginLeft": 16,
-                  "marginTop": 16,
-                },
-              ]
-            }
-          >
-            Description
-          </Text>
-        </View>
+          Description
+        </Text>
         <TouchableHighlight
           onPress={[Function]}
           testID="edit-description"
@@ -1402,48 +1296,27 @@ exports[`modal saving is shown on assignment update 1`] = `
             />
           </View>
         </TouchableHighlight>
-        <View
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "backgroundColor": "#F5F5F5",
-                "flex": 1,
-                "flexDirection": "row",
-                "height": "auto",
-                "justifyContent": "flex-start",
+                "color": "#73818C",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 14,
+                "marginBottom": 8,
+                "marginLeft": 16,
+                "marginTop": 16,
               },
               undefined,
             ]
           }
         >
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "marginBottom": 8,
-                  "marginLeft": 16,
-                  "marginTop": 16,
-                },
-              ]
-            }
-          >
-            Details
-          </Text>
-        </View>
+          Details
+        </Text>
         <TouchableHighlight
           accessibilityLabel="Points, "
           accessibilityTraits={
@@ -1454,7 +1327,10 @@ exports[`modal saving is shown on assignment update 1`] = `
           onPress={[Function]}
           style={
             Array [
-              undefined,
+              Object {
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
+              },
               Object {
                 "borderBottomColor": "#C7CDD1",
                 "borderBottomWidth": 0.5,
@@ -2101,48 +1977,27 @@ exports[`renders 1`] = `
       }
     >
       <View>
-        <View
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "backgroundColor": "#F5F5F5",
-                "flex": 1,
-                "flexDirection": "row",
-                "height": "auto",
-                "justifyContent": "flex-start",
+                "color": "#73818C",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 14,
+                "marginBottom": 8,
+                "marginLeft": 16,
+                "marginTop": 16,
               },
               undefined,
             ]
           }
         >
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "marginBottom": 8,
-                  "marginLeft": 16,
-                  "marginTop": 16,
-                },
-              ]
-            }
-          >
-            Title
-          </Text>
-        </View>
+          Title
+        </Text>
         <View
           style={
             Array [
@@ -2192,50 +2047,27 @@ exports[`renders 1`] = `
           />
         </View>
         <View />
-        <View
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "backgroundColor": "#F5F5F5",
-                "flex": 1,
-                "flexDirection": "row",
-                "height": "auto",
-                "justifyContent": "flex-start",
+                "color": "#73818C",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 14,
+                "marginBottom": 8,
+                "marginLeft": 16,
+                "marginTop": 16,
               },
-              Object {
-                "marginTop": 0,
-              },
+              undefined,
             ]
           }
         >
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "marginBottom": 8,
-                  "marginLeft": 16,
-                  "marginTop": 16,
-                },
-              ]
-            }
-          >
-            Description
-          </Text>
-        </View>
+          Description
+        </Text>
         <TouchableHighlight
           onPress={[Function]}
           testID="edit-description"
@@ -2349,48 +2181,27 @@ exports[`renders 1`] = `
             />
           </View>
         </TouchableHighlight>
-        <View
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "backgroundColor": "#F5F5F5",
-                "flex": 1,
-                "flexDirection": "row",
-                "height": "auto",
-                "justifyContent": "flex-start",
+                "color": "#73818C",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 14,
+                "marginBottom": 8,
+                "marginLeft": 16,
+                "marginTop": 16,
               },
               undefined,
             ]
           }
         >
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "marginBottom": 8,
-                  "marginLeft": 16,
-                  "marginTop": 16,
-                },
-              ]
-            }
-          >
-            Details
-          </Text>
-        </View>
+          Details
+        </Text>
         <TouchableHighlight
           accessibilityLabel="Points, "
           accessibilityTraits={
@@ -2401,7 +2212,10 @@ exports[`renders 1`] = `
           onPress={[Function]}
           style={
             Array [
-              undefined,
+              Object {
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
+              },
               Object {
                 "borderBottomColor": "#C7CDD1",
                 "borderBottomWidth": 0.5,
@@ -3048,48 +2862,27 @@ exports[`saving invalid dates displays banner 1`] = `
       }
     >
       <View>
-        <View
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "backgroundColor": "#F5F5F5",
-                "flex": 1,
-                "flexDirection": "row",
-                "height": "auto",
-                "justifyContent": "flex-start",
+                "color": "#73818C",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 14,
+                "marginBottom": 8,
+                "marginLeft": 16,
+                "marginTop": 16,
               },
               undefined,
             ]
           }
         >
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "marginBottom": 8,
-                  "marginLeft": 16,
-                  "marginTop": 16,
-                },
-              ]
-            }
-          >
-            Title
-          </Text>
-        </View>
+          Title
+        </Text>
         <View
           style={
             Array [
@@ -3139,50 +2932,27 @@ exports[`saving invalid dates displays banner 1`] = `
           />
         </View>
         <View />
-        <View
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "backgroundColor": "#F5F5F5",
-                "flex": 1,
-                "flexDirection": "row",
-                "height": "auto",
-                "justifyContent": "flex-start",
+                "color": "#73818C",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 14,
+                "marginBottom": 8,
+                "marginLeft": 16,
+                "marginTop": 16,
               },
-              Object {
-                "marginTop": 0,
-              },
+              undefined,
             ]
           }
         >
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "marginBottom": 8,
-                  "marginLeft": 16,
-                  "marginTop": 16,
-                },
-              ]
-            }
-          >
-            Description
-          </Text>
-        </View>
+          Description
+        </Text>
         <TouchableHighlight
           onPress={[Function]}
           testID="edit-description"
@@ -3296,48 +3066,27 @@ exports[`saving invalid dates displays banner 1`] = `
             />
           </View>
         </TouchableHighlight>
-        <View
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "backgroundColor": "#F5F5F5",
-                "flex": 1,
-                "flexDirection": "row",
-                "height": "auto",
-                "justifyContent": "flex-start",
+                "color": "#73818C",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 14,
+                "marginBottom": 8,
+                "marginLeft": 16,
+                "marginTop": 16,
               },
               undefined,
             ]
           }
         >
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "marginBottom": 8,
-                  "marginLeft": 16,
-                  "marginTop": 16,
-                },
-              ]
-            }
-          >
-            Details
-          </Text>
-        </View>
+          Details
+        </Text>
         <TouchableHighlight
           accessibilityLabel="Points, "
           accessibilityTraits={
@@ -3348,7 +3097,10 @@ exports[`saving invalid dates displays banner 1`] = `
           onPress={[Function]}
           style={
             Array [
-              undefined,
+              Object {
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
+              },
               Object {
                 "borderBottomColor": "#C7CDD1",
                 "borderBottomWidth": 0.5,
@@ -4002,48 +3754,27 @@ exports[`saving invalid name displays banner 1`] = `
       }
     >
       <View>
-        <View
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "backgroundColor": "#F5F5F5",
-                "flex": 1,
-                "flexDirection": "row",
-                "height": "auto",
-                "justifyContent": "flex-start",
+                "color": "#73818C",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 14,
+                "marginBottom": 8,
+                "marginLeft": 16,
+                "marginTop": 16,
               },
               undefined,
             ]
           }
         >
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "marginBottom": 8,
-                  "marginLeft": 16,
-                  "marginTop": 16,
-                },
-              ]
-            }
-          >
-            Title
-          </Text>
-        </View>
+          Title
+        </Text>
         <View
           style={
             Array [
@@ -4128,50 +3859,27 @@ exports[`saving invalid name displays banner 1`] = `
             A title is required
           </Text>
         </View>
-        <View
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "backgroundColor": "#F5F5F5",
-                "flex": 1,
-                "flexDirection": "row",
-                "height": "auto",
-                "justifyContent": "flex-start",
+                "color": "#73818C",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 14,
+                "marginBottom": 8,
+                "marginLeft": 16,
+                "marginTop": 16,
               },
-              Object {
-                "marginTop": 0,
-              },
+              undefined,
             ]
           }
         >
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "marginBottom": 8,
-                  "marginLeft": 16,
-                  "marginTop": 16,
-                },
-              ]
-            }
-          >
-            Description
-          </Text>
-        </View>
+          Description
+        </Text>
         <TouchableHighlight
           onPress={[Function]}
           testID="edit-description"
@@ -4285,48 +3993,27 @@ exports[`saving invalid name displays banner 1`] = `
             />
           </View>
         </TouchableHighlight>
-        <View
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "backgroundColor": "#F5F5F5",
-                "flex": 1,
-                "flexDirection": "row",
-                "height": "auto",
-                "justifyContent": "flex-start",
+                "color": "#73818C",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 14,
+                "marginBottom": 8,
+                "marginLeft": 16,
+                "marginTop": 16,
               },
               undefined,
             ]
           }
         >
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "marginBottom": 8,
-                  "marginLeft": 16,
-                  "marginTop": 16,
-                },
-              ]
-            }
-          >
-            Details
-          </Text>
-        </View>
+          Details
+        </Text>
         <TouchableHighlight
           accessibilityLabel="Points, "
           accessibilityTraits={
@@ -4337,7 +4024,10 @@ exports[`saving invalid name displays banner 1`] = `
           onPress={[Function]}
           style={
             Array [
-              undefined,
+              Object {
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
+              },
               Object {
                 "borderBottomColor": "#C7CDD1",
                 "borderBottomWidth": 0.5,
@@ -4987,48 +4677,27 @@ exports[`saving invalid points possible displays banner 1`] = `
       }
     >
       <View>
-        <View
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "backgroundColor": "#F5F5F5",
-                "flex": 1,
-                "flexDirection": "row",
-                "height": "auto",
-                "justifyContent": "flex-start",
+                "color": "#73818C",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 14,
+                "marginBottom": 8,
+                "marginLeft": 16,
+                "marginTop": 16,
               },
               undefined,
             ]
           }
         >
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "marginBottom": 8,
-                  "marginLeft": 16,
-                  "marginTop": 16,
-                },
-              ]
-            }
-          >
-            Title
-          </Text>
-        </View>
+          Title
+        </Text>
         <View
           style={
             Array [
@@ -5078,50 +4747,27 @@ exports[`saving invalid points possible displays banner 1`] = `
           />
         </View>
         <View />
-        <View
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "backgroundColor": "#F5F5F5",
-                "flex": 1,
-                "flexDirection": "row",
-                "height": "auto",
-                "justifyContent": "flex-start",
+                "color": "#73818C",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 14,
+                "marginBottom": 8,
+                "marginLeft": 16,
+                "marginTop": 16,
               },
-              Object {
-                "marginTop": 0,
-              },
+              undefined,
             ]
           }
         >
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "marginBottom": 8,
-                  "marginLeft": 16,
-                  "marginTop": 16,
-                },
-              ]
-            }
-          >
-            Description
-          </Text>
-        </View>
+          Description
+        </Text>
         <TouchableHighlight
           onPress={[Function]}
           testID="edit-description"
@@ -5235,48 +4881,27 @@ exports[`saving invalid points possible displays banner 1`] = `
             />
           </View>
         </TouchableHighlight>
-        <View
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "backgroundColor": "#F5F5F5",
-                "flex": 1,
-                "flexDirection": "row",
-                "height": "auto",
-                "justifyContent": "flex-start",
+                "color": "#73818C",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 14,
+                "marginBottom": 8,
+                "marginLeft": 16,
+                "marginTop": 16,
               },
               undefined,
             ]
           }
         >
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "marginBottom": 8,
-                  "marginLeft": 16,
-                  "marginTop": 16,
-                },
-              ]
-            }
-          >
-            Details
-          </Text>
-        </View>
+          Details
+        </Text>
         <TouchableHighlight
           accessibilityLabel="Points, "
           accessibilityTraits={
@@ -5287,7 +4912,10 @@ exports[`saving invalid points possible displays banner 1`] = `
           onPress={[Function]}
           style={
             Array [
-              undefined,
+              Object {
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
+              },
               Object {
                 "borderBottomColor": "#C7CDD1",
                 "borderBottomWidth": 0.5,
@@ -5972,48 +5600,27 @@ exports[`saving negative points possible displays banner 1`] = `
       }
     >
       <View>
-        <View
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "backgroundColor": "#F5F5F5",
-                "flex": 1,
-                "flexDirection": "row",
-                "height": "auto",
-                "justifyContent": "flex-start",
+                "color": "#73818C",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 14,
+                "marginBottom": 8,
+                "marginLeft": 16,
+                "marginTop": 16,
               },
               undefined,
             ]
           }
         >
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "marginBottom": 8,
-                  "marginLeft": 16,
-                  "marginTop": 16,
-                },
-              ]
-            }
-          >
-            Title
-          </Text>
-        </View>
+          Title
+        </Text>
         <View
           style={
             Array [
@@ -6063,50 +5670,27 @@ exports[`saving negative points possible displays banner 1`] = `
           />
         </View>
         <View />
-        <View
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "backgroundColor": "#F5F5F5",
-                "flex": 1,
-                "flexDirection": "row",
-                "height": "auto",
-                "justifyContent": "flex-start",
+                "color": "#73818C",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 14,
+                "marginBottom": 8,
+                "marginLeft": 16,
+                "marginTop": 16,
               },
-              Object {
-                "marginTop": 0,
-              },
+              undefined,
             ]
           }
         >
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "marginBottom": 8,
-                  "marginLeft": 16,
-                  "marginTop": 16,
-                },
-              ]
-            }
-          >
-            Description
-          </Text>
-        </View>
+          Description
+        </Text>
         <TouchableHighlight
           onPress={[Function]}
           testID="edit-description"
@@ -6220,48 +5804,27 @@ exports[`saving negative points possible displays banner 1`] = `
             />
           </View>
         </TouchableHighlight>
-        <View
+        <Text
+          accessibilityTraits="header"
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "backgroundColor": "#F5F5F5",
-                "flex": 1,
-                "flexDirection": "row",
-                "height": "auto",
-                "justifyContent": "flex-start",
+                "color": "#73818C",
+                "fontFamily": ".SFUIDisplay-semibold",
+                "fontSize": 14,
+                "marginBottom": 8,
+                "marginLeft": 16,
+                "marginTop": 16,
               },
               undefined,
             ]
           }
         >
-          <Text
-            accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-semibold",
-                  "fontSize": 20,
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "marginBottom": 8,
-                  "marginLeft": 16,
-                  "marginTop": 16,
-                },
-              ]
-            }
-          >
-            Details
-          </Text>
-        </View>
+          Details
+        </Text>
         <TouchableHighlight
           accessibilityLabel="Points, "
           accessibilityTraits={
@@ -6272,7 +5835,10 @@ exports[`saving negative points possible displays banner 1`] = `
           onPress={[Function]}
           style={
             Array [
-              undefined,
+              Object {
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
+              },
               Object {
                 "borderBottomColor": "#C7CDD1",
                 "borderBottomWidth": 0.5,

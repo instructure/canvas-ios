@@ -28,10 +28,7 @@ jest.mock('../../../redux/middleware/error-handler', () => {
   return { alertError }
 })
 
-const template = {
-  ...require('../../../__templates__/folder'),
-  ...require('../../../__templates__/file'),
-}
+import * as template from '../../../__templates__'
 
 const selector = {
   name: '[identifier="edit-item.name"]',
@@ -137,7 +134,7 @@ describe('EditItem folder', () => {
 
   it('shows availability when scheduling is picked', async () => {
     const tree = shallow(<EditItem {...props} />)
-    expect(tree.find('[title="Availability"]').exists()).toBe(false)
+    expect(tree.find('[children="Availability"]').exists()).toBe(false)
 
     tree.find(selector.publish).simulate('Press')
     expect(props.navigator.show).toHaveBeenCalled()
@@ -149,7 +146,7 @@ describe('EditItem folder', () => {
     props.navigator.show.mock.calls[1][2].onSelect('schedule')
     await updatedState(tree)
 
-    expect(tree.find('[title="Availability"]').exists()).toBe(true)
+    expect(tree.find('[children="Availability"]').exists()).toBe(true)
   })
 
   it('toggles the date pickers when rows are clicked', () => {

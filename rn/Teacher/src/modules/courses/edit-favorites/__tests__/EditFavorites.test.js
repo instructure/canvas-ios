@@ -24,14 +24,11 @@ import App from '../../../app'
 import renderer from 'react-test-renderer'
 import { shallow } from 'enzyme/build/index'
 
-const template = {
-  ...require('../../../../__templates__/group'),
-  ...require('../../../../__templates__/course'),
-  ...require('../../../../__templates__/helm'),
-}
+import * as template from '../../../../__templates__'
+
 let courses = [
   template.course(),
-  template.course(),
+  template.course({ id: '2' }),
 ]
 
 let groups = [

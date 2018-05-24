@@ -40,18 +40,9 @@ exports[`PageEdit renders 1`] = `
         }
       }
     >
-      <Heading1
-        style={
-          Object {
-            "color": "#2D3B45",
-            "marginBottom": 8,
-            "marginLeft": 16,
-            "marginTop": 16,
-          }
-        }
-      >
+      <FormLabel>
         Title
-      </Heading1>
+      </FormLabel>
       <RowWithTextInput
         border="both"
         defaultValue=""
@@ -61,18 +52,9 @@ exports[`PageEdit renders 1`] = `
         placeholder="Add title"
         title=""
       />
-      <Heading1
-        style={
-          Object {
-            "color": "#2D3B45",
-            "marginBottom": 8,
-            "marginLeft": 16,
-            "marginTop": 16,
-          }
-        }
-      >
+      <FormLabel>
         Description
-      </Heading1>
+      </FormLabel>
       <View
         style={
           Object {
@@ -107,18 +89,9 @@ exports[`PageEdit renders 1`] = `
           showToolbar="always"
         />
       </View>
-      <Heading1
-        style={
-          Object {
-            "color": "#2D3B45",
-            "marginBottom": 8,
-            "marginLeft": 16,
-            "marginTop": 16,
-          }
-        }
-      >
+      <FormLabel>
         Details
-      </Heading1>
+      </FormLabel>
       <RowWithSwitch
         border="bottom"
         identifier="pages.edit.published.switch"

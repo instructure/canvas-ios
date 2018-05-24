@@ -29,7 +29,7 @@ import ReactNative, {
 import i18n from 'format-message'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import Screen from '../../../routing/Screen'
-import { Heading1 } from '../../../common/text'
+import { FormLabel } from '../../../common/text'
 import RowWithTextInput from '../../../common/components/rows/RowWithTextInput'
 import RowWithSwitch from '../../../common/components/rows/RowWithSwitch'
 import RowWithDateInput from '../../../common/components/rows/RowWithDateInput'
@@ -161,7 +161,7 @@ export class AnnouncementEdit extends Component<Props, any> {
             enableAutoAutomaticScroll={false}
             ref={(r) => { this.scrollView = r }}
           >
-            <Heading1 style={style.heading}>{i18n('Title')}</Heading1>
+            <FormLabel>{i18n('Title')}</FormLabel>
             <RowWithTextInput
               defaultValue={this.state.title}
               border='both'
@@ -171,10 +171,8 @@ export class AnnouncementEdit extends Component<Props, any> {
               onFocus={this._scrollToInput}
             />
 
-            <Heading1 style={style.heading}>{i18n('Description')}</Heading1>
-            <View
-              style={style.description}
-            >
+            <FormLabel>{i18n('Description')}</FormLabel>
+            <View style={style.description}>
               <RichTextEditor
                 ref={(r) => { this.editor = r }}
                 defaultValue={this.props.message}
@@ -192,7 +190,7 @@ export class AnnouncementEdit extends Component<Props, any> {
 
             { isTeacher() &&
               <View>
-                <Heading1 style={style.heading}>{i18n('Options')}</Heading1>
+                <FormLabel>{i18n('Options')}</FormLabel>
                 {this.props.context === 'courses' &&
                   <RowWithDetail
                     title={i18n('Sections')}
@@ -384,12 +382,6 @@ const style = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F5F5F5',
-  },
-  heading: {
-    color: colors.darkText,
-    marginLeft: global.style.defaultPadding,
-    marginTop: global.style.defaultPadding,
-    marginBottom: global.style.defaultPadding / 2,
   },
   description: {
     borderTopWidth: StyleSheet.hairlineWidth,

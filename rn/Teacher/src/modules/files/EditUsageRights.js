@@ -22,7 +22,7 @@ import {
   PickerIOS,
   View,
 } from 'react-native'
-import EditSectionHeader from '../../common/components/EditSectionHeader'
+import { FormLabel } from '../../common/text'
 import RowWithDetail from '../../common/components/rows/RowWithDetail'
 import RowWithTextInput from '../../common/components/rows/RowWithTextInput'
 
@@ -75,7 +75,7 @@ export default class EditUsageRights extends Component<Props, State> {
     const licenses = this.props.licenses.filter(({ id }) => id.startsWith('cc'))
     return (
       <View>
-        <EditSectionHeader title={i18n('Usage Rights')} />
+        <FormLabel>{i18n('Usage Rights')}</FormLabel>
         <RowWithTextInput
           border='both'
           title={i18n('Copyright Holder')}

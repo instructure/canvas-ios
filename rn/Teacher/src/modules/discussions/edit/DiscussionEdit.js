@@ -33,7 +33,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import Button from 'react-native-button'
 
 import Screen from '../../../routing/Screen'
-import { Heading1 } from '../../../common/text'
+import { FormLabel } from '../../../common/text'
 import RowWithTextInput from '../../../common/components/rows/RowWithTextInput'
 import RowWithSwitch from '../../../common/components/rows/RowWithSwitch'
 import RowWithDetail from '../../../common/components/rows/RowWithDetail'
@@ -214,7 +214,7 @@ export class DiscussionEdit extends Component<Props, any> {
             ref={(r) => { this.scrollView = r }}
             keyboardDismissMode={'on-drag'}
           >
-            <Heading1 style={style.heading}>{i18n('Title')}</Heading1>
+            <FormLabel>{i18n('Title')}</FormLabel>
             <RowWithTextInput
               defaultValue={this.state.title}
               border='both'
@@ -229,7 +229,7 @@ export class DiscussionEdit extends Component<Props, any> {
               testID='discussions.edit.title.validation-error'
             />
 
-            <Heading1 style={style.heading}>{i18n('Description')}</Heading1>
+            <FormLabel>{i18n('Description')}</FormLabel>
             <View
               style={style.description}
             >
@@ -247,7 +247,7 @@ export class DiscussionEdit extends Component<Props, any> {
               />
             </View>
 
-            <Heading1 style={style.heading}>{i18n('Options')}</Heading1>
+            <FormLabel>{i18n('Options')}</FormLabel>
             { this.state.can_unpublish && isTeacher() &&
               <RowWithSwitch
                 title={i18n('Publish')}
@@ -335,7 +335,7 @@ export class DiscussionEdit extends Component<Props, any> {
 
             { isTeacher() && !this.isGraded() &&
               <View>
-                <Heading1 style={style.heading}>{i18n('Availability')}</Heading1>
+                <FormLabel>{i18n('Availability')}</FormLabel>
                 <RowWithDateInput
                   title={i18n('Available From')}
                   date={this.state.delayed_post_at}
@@ -554,12 +554,6 @@ const style = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F5F5F5',
-  },
-  heading: {
-    color: colors.darkText,
-    marginLeft: global.style.defaultPadding,
-    marginTop: global.style.defaultPadding,
-    marginBottom: global.style.defaultPadding / 2,
   },
   description: {
     borderTopWidth: StyleSheet.hairlineWidth,
