@@ -347,6 +347,7 @@ exports[`QuizzesList renders in correct order 1`] = `
                 "button",
               ]
             }
+            activeOpacity={1}
             onPress={[Function]}
             style={
               Array [
@@ -683,6 +684,7 @@ exports[`QuizzesList renders in correct order 1`] = `
                 "button",
               ]
             }
+            activeOpacity={1}
             onPress={[Function]}
             style={
               Array [
@@ -1271,6 +1273,7 @@ exports[`QuizzesList renders quizzes 1`] = `
                 "button",
               ]
             }
+            activeOpacity={1}
             onPress={[Function]}
             style={
               Array [
@@ -1607,6 +1610,7 @@ exports[`QuizzesList renders quizzes 1`] = `
                 "button",
               ]
             }
+            activeOpacity={1}
             onPress={[Function]}
             style={
               Array [

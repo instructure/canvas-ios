@@ -95,10 +95,15 @@ export default class Row extends Component<RowProps> {
       backgroundColor = color.grey1
     }
 
+    if (this.props.selected !== undefined) {
+      // This row uses selected state so dont ever show active state
+      underlayProps.activeOpacity = 1
+    }
+
     const titleStyles = [style.title, this.props.titleStyles].filter(Boolean)
     const subtitleStyles = [style.subtitle, this.props.subtitleStyles].filter(Boolean)
 
-    return (<TouchableHighlight style={[topBorder, bottomBorder]} { ...traits } onPress={this.onPress} testID={this.props.testID} {...underlayProps} >
+    return (<TouchableHighlight style={[topBorder, bottomBorder]} { ...traits } onPress={this.onPress} testID={this.props.testID} {...underlayProps}>
       <View style={[style.container, { backgroundColor }]}>
         { this.props.renderImage && this.props.renderImage() }
         { this.props.image && <Image style={[style.image, { tintColor: this.props.imageTint, height: imageSize.height, width: imageSize.width }]} source={this.props.image} /> }

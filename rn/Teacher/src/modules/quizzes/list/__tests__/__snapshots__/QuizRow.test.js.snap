@@ -8,6 +8,7 @@ exports[`QuizRow renders 1`] = `
       "button",
     ]
   }
+  activeOpacity={1}
   onPress={[Function]}
   style={
     Array [
@@ -342,6 +343,7 @@ exports[`QuizRow renders multiple question count 1`] = `
       "button",
     ]
   }
+  activeOpacity={1}
   onPress={[Function]}
   style={
     Array [
@@ -676,6 +678,7 @@ exports[`QuizRow renders published 1`] = `
       "button",
     ]
   }
+  activeOpacity={1}
   onPress={[Function]}
   style={
     Array [
@@ -1010,6 +1013,7 @@ exports[`QuizRow renders selected 1`] = `
       "button",
     ]
   }
+  activeOpacity={1}
   onPress={[Function]}
   style={
     Array [
@@ -1345,6 +1349,7 @@ exports[`QuizRow renders single question count 1`] = `
       "button",
     ]
   }
+  activeOpacity={1}
   onPress={[Function]}
   style={
     Array [
@@ -1679,6 +1684,7 @@ exports[`QuizRow renders unpublished 1`] = `
       "button",
     ]
   }
+  activeOpacity={1}
   onPress={[Function]}
   style={
     Array [
@@ -2013,6 +2019,7 @@ exports[`QuizRow renders without points possible 1`] = `
       "button",
     ]
   }
+  activeOpacity={1}
   onPress={[Function]}
   style={
     Array [

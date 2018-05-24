@@ -355,6 +355,7 @@ exports[`AnnouncementsList renders 1`] = `
                 "button",
               ]
             }
+            activeOpacity={1}
             onPress={[Function]}
             style={
               Array [
@@ -528,6 +529,7 @@ exports[`AnnouncementsList renders 1`] = `
                 "button",
               ]
             }
+            activeOpacity={1}
             onPress={[Function]}
             style={
               Array [
@@ -1055,6 +1057,7 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
                 "button",
               ]
             }
+            activeOpacity={1}
             onPress={[Function]}
             style={
               Array [
@@ -1228,6 +1231,7 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
                 "button",
               ]
             }
+            activeOpacity={1}
             onPress={[Function]}
             style={
               Array [
@@ -1609,6 +1613,7 @@ exports[`AnnouncementsList renders with no create_announcement permission 1`] = 
                 "button",
               ]
             }
+            activeOpacity={1}
             onPress={[Function]}
             style={
               Array [
@@ -1782,6 +1787,7 @@ exports[`AnnouncementsList renders with no create_announcement permission 1`] = 
                 "button",
               ]
             }
+            activeOpacity={1}
             onPress={[Function]}
             style={
               Array [
