@@ -710,6 +710,9 @@
   "help_4c4968b1": {
     "message": "Help"
   },
+  "hidden_14a032a7": {
+    "message": "Hidden"
+  },
   "hidden_files_inside_will_be_available_with_links_e9e3d233": {
     "message": "Hidden. Files inside will be available with links."
   },
@@ -809,8 +812,8 @@
   "long_description_7d89285c": {
     "message": "Long Description"
   },
-  "manage_students_a7734a46": {
-    "message": "Manage Students"
+  "manage_children_a28d764e": {
+    "message": "Manage Children"
   },
   "mark_all_as_read_8f3bdf57": {
     "message": "Mark All as Read"
