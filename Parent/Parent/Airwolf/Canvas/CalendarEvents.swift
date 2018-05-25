@@ -30,7 +30,7 @@ extension CalendarEvent {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY-MM-dd"
-        dateFormatter.locale = NSLocale(localeIdentifier: "en") as Locale!
+        dateFormatter.locale = NSLocale(localeIdentifier: "en") as Locale
         
         let nillableParams: [String: Any?] = [
             "start_date": dateFormatter.string(from: startDate),
@@ -41,7 +41,7 @@ extension CalendarEvent {
 
         let parameters = Session.rejectNilParameters(nillableParams)
         
-        let request = try session.GET("/canvas/\(session.user.id)/\(studentID)/calendar_events", parameters: parameters)
+        let request = try session.GET("/api/v1/calendar_events", parameters: parameters)
         return session.paginatedJSONSignalProducer(request)
     }
 
@@ -57,7 +57,7 @@ extension CalendarEvent {
 
     // MARK: - Details
     public static func getCourseCalendarEventFromAirwolf(_ session: Session, studentID: String, calendarEventID: String) throws -> SignalProducer<JSONObject, NSError> {
-        let request = try session.GET("/canvas/\(session.user.id)/\(studentID)/calendar_events/\(calendarEventID)")
+        let request = try session.GET("/api/v1/calendar_events/\(calendarEventID)")
         return session.JSONSignalProducer(request)
     }
 

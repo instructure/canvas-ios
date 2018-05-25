@@ -418,18 +418,18 @@ extension Router {
 
     func courseCalendarEventsHandler() -> RouteHandler {
         return { params in
-            guard let session = self.session, let parameters = params, let studentID = parameters["studentID"] as? String, let courseID = parameters["courseID"] as? NSNumber else {
+            guard let session = self.session, let parameters = params, let studentID: String = try? parameters.stringID("studentID"), let courseID: String = try? parameters.stringID("courseID") else {
                 fatalError("You can't show an course without having a session, student and course id!")
             }
 
-            let calendarWeekPageVC = CalendarEventWeekPageViewController.new(session: session, studentID: studentID, contextCodes: [ContextID(id: courseID.stringValue, context: .course).canvasContextID])
+            let calendarWeekPageVC = CalendarEventWeekPageViewController.new(session: session, studentID: studentID, contextCodes: [ContextID(id: courseID, context: .course).canvasContextID])
             calendarWeekPageVC.selectCalendarEventAction = { session, studentID, calendarEvent in
                 switch calendarEvent.type {
                 case .assignment, .quiz:
                     guard let assignmentID = calendarEvent.assignmentID else { fallthrough }
-                    self.route(calendarWeekPageVC, toURL: self.standaloneAssignmentDetailsRoute(studentID: studentID, courseID: courseID.stringValue, assignmentID: assignmentID), modal: false)
+                    self.route(calendarWeekPageVC, toURL: self.standaloneAssignmentDetailsRoute(studentID: studentID, courseID: courseID, assignmentID: assignmentID), modal: false)
                 default:
-                    self.route(calendarWeekPageVC, toURL: self.standaloneCalendarEventDetailsRoute(studentID: studentID, courseID: courseID.stringValue, calendarEventID: calendarEvent.id), modal: false)
+                    self.route(calendarWeekPageVC, toURL: self.standaloneCalendarEventDetailsRoute(studentID: studentID, courseID: courseID, calendarEventID: calendarEvent.id), modal: false)
                 }
             }
 
@@ -439,7 +439,7 @@ extension Router {
             calendarWeekPageVC.navigationItem.leftBarButtonItem?.accessibilityIdentifier = "close_button"
 
             // Only add syllabus if the course has a syllabus
-            session.enrollmentsDataSource(withScope: studentID.stringValue).producer(ContextID(id: courseID.stringValue, context: .course)).observe(on: UIScheduler()).startWithValues { next in
+            session.enrollmentsDataSource(withScope: studentID).producer(ContextID(id: courseID, context: .course)).observe(on: UIScheduler()).startWithValues { next in
                 guard let course = next as? Course else { return }
 
                 calendarWeekPageVC.title = course.name
@@ -451,7 +451,7 @@ extension Router {
                 syllabusButton.accessibilityLabel = NSLocalizedString("Syllabus", comment: "Syllabus Button Title")
                 syllabusButton.accessibilityIdentifier = "syllabus_button"
                 let close = Action<(), (), NoError>() { _ in
-                    self.route(calendarWeekPageVC, toURL: self.courseSyllabusRoute(studentID: studentID.stringValue, courseID: courseID.stringValue))
+                    self.route(calendarWeekPageVC, toURL: self.courseSyllabusRoute(studentID: studentID, courseID: courseID))
                     return .empty
                 }
                 syllabusButton.reactive.pressed = CocoaAction(close)
@@ -459,7 +459,7 @@ extension Router {
                 calendarWeekPageVC.navigationItem.rightBarButtonItem = syllabusButton
             }
 
-            let navController = UINavigationController.coloredTriangleNavigationController(withRootViewController: calendarWeekPageVC, forObservee: studentID.stringValue)
+            let navController = UINavigationController.coloredTriangleNavigationController(withRootViewController: calendarWeekPageVC, forObservee: studentID)
             navController.navigationBar.tintColor = .white
             navController.navigationBar.accessibilityIdentifier = "navigation_bar"
             return navController
@@ -468,11 +468,11 @@ extension Router {
 
     func assignmentDetailsHandler() -> RouteHandler {
         return { params in
-            guard let session = self.session, let parameters = params, let studentID = parameters["studentID"] as? String, let courseID = parameters["courseID"] as? NSNumber, let assignmentID = parameters["assignmentID"] as? NSNumber else {
+            guard let session = self.session, let parameters = params, let studentID = parameters["studentID"] as? NSNumber, let courseID = parameters["courseID"] as? NSNumber, let assignmentID = parameters["assignmentID"] as? NSNumber else {
                 fatalError("You can't show an assignment without having a session, course and assignment id!")
             }
 
-            let assignmentDetailsVC = try! AssignmentDetailsViewController(session: session, studentID: studentID, courseID: courseID.stringValue, assignmentID: assignmentID.stringValue)
+            let assignmentDetailsVC = try! AssignmentDetailsViewController(session: session, studentID: studentID.stringValue, courseID: courseID.stringValue, assignmentID: assignmentID.stringValue)
 
             let closeButton = UIBarButtonItem(barButtonSystemItem: .stop, target: nil, action: nil)
             closeButton.accessibilityLabel = NSLocalizedString("Close", comment: "Close Button Title")
@@ -492,22 +492,22 @@ extension Router {
 
     func standaloneAssignmentDetailsHandler() -> RouteHandler {
         return { params in
-            guard let session = self.session, let parameters = params, let studentID = parameters["studentID"] as? String, let courseID = parameters["courseID"] as? NSNumber, let assignmentID = parameters["assignmentID"] as? NSNumber else {
+            guard let session = self.session, let parameters = params, let studentID = parameters["studentID"] as? NSNumber, let courseID = parameters["courseID"] as? NSNumber, let assignmentID = parameters["assignmentID"] as? NSNumber else {
                 fatalError("You can't show an assignment without having a session, course and assignment id!")
             }
 
-            let assignmentDetailsVC = try! AssignmentDetailsViewController(session: session, studentID: studentID, courseID: courseID.stringValue, assignmentID: assignmentID.stringValue)
+            let assignmentDetailsVC = try! AssignmentDetailsViewController(session: session, studentID: studentID.stringValue, courseID: courseID.stringValue, assignmentID: assignmentID.stringValue)
             return assignmentDetailsVC
         }
     }
 
     func calendarEventDetailsHandler() -> RouteHandler {
         return { params in
-            guard let session = self.session, let parameters = params, let studentID = parameters["studentID"] as? String, let calendarEventID = parameters["calendarEventID"] as? NSNumber, let courseID = parameters["courseID"] as? NSNumber else {
+            guard let session = self.session, let parameters = params, let studentID = parameters["studentID"] as? NSNumber, let calendarEventID = parameters["calendarEventID"] as? NSNumber, let courseID = parameters["courseID"] as? NSNumber else {
                 fatalError("You can't show a calendar event without having a session and a calendar event id!")
             }
 
-            let calendarEventDetailsVC = try! CalendarEventDetailsViewController(session: session, studentID: studentID, courseID: courseID.stringValue, calendarEventID: calendarEventID.stringValue)
+            let calendarEventDetailsVC = try! CalendarEventDetailsViewController(session: session, studentID: studentID.stringValue, courseID: courseID.stringValue, calendarEventID: calendarEventID.stringValue)
 
             let closeButton = UIBarButtonItem(barButtonSystemItem: .stop, target: nil, action: nil)
             closeButton.accessibilityLabel = NSLocalizedString("Close", comment: "Close Button Title")
@@ -527,11 +527,11 @@ extension Router {
 
     func standaloneCalendarEventDetailsHandler() -> RouteHandler {
         return { params in
-            guard let session = self.session, let parameters = params, let studentID = parameters["studentID"] as? String, let calendarEventID = parameters["calendarEventID"] as? NSNumber, let courseID = parameters["courseID"] as? NSNumber else {
+            guard let session = self.session, let parameters = params, let studentID = parameters["studentID"] as? NSNumber, let calendarEventID = parameters["calendarEventID"] as? NSNumber, let courseID = parameters["courseID"] as? NSNumber else {
                 fatalError("You can't show a calendar event without having a session and a calendar event id!")
             }
 
-            let calendarEventDetailsVC = try! CalendarEventDetailsViewController(session: session, studentID: studentID, courseID: courseID.stringValue, calendarEventID: calendarEventID.stringValue)
+            let calendarEventDetailsVC = try! CalendarEventDetailsViewController(session: session, studentID: studentID.stringValue, courseID: courseID.stringValue, calendarEventID: calendarEventID.stringValue)
             calendarEventDetailsVC.navigationItem.leftBarButtonItem?.tintColor = .white
 
             return calendarEventDetailsVC
@@ -540,11 +540,11 @@ extension Router {
 
     func courseSyllabusHandler() -> RouteHandler {
         return { params in
-            guard let session = self.session, let parameters = params, let studentID = parameters["studentID"] as? String, let courseID = parameters["courseID"] as? NSNumber else {
+            guard let session = self.session, let parameters = params, let studentID = parameters["studentID"] as? NSNumber, let courseID = parameters["courseID"] as? NSNumber else {
                 fatalError("You can't show a course syllabus without having a session, course id and an student id!")
             }
 
-            let syllabusVC = CourseSyllabusViewController(courseID: courseID.stringValue, studentID: studentID, session: session)
+            let syllabusVC = CourseSyllabusViewController(courseID: courseID.stringValue, studentID: studentID.stringValue, session: session)
             syllabusVC.navigationItem.title = NSLocalizedString("Syllabus", comment: "")
             return syllabusVC
         }
@@ -552,11 +552,11 @@ extension Router {
 
     func courseAnnouncementHandler() -> RouteHandler {
         return { params in
-            guard let session = self.session, let parameters = params, let studentID = parameters["studentID"] as? String, let courseID = parameters["courseID"] as? NSNumber, let announcementID = parameters["announcementID"] as? NSNumber else {
+            guard let session = self.session, let parameters = params, let studentID = parameters["studentID"] as? NSNumber, let courseID = parameters["courseID"] as? NSNumber, let announcementID = parameters["announcementID"] as? NSNumber else {
                 ❨╯°□°❩╯⌢"You can't show a course announcement with having a session, studentID, courseID and an announcementID dude!"
             }
 
-            let announcementVC = try! AnnouncementDetailsViewController(session: session, studentID: studentID, courseID: courseID.stringValue, announcementID: announcementID.stringValue)
+            let announcementVC = try! AnnouncementDetailsViewController(session: session, studentID: studentID.stringValue, courseID: courseID.stringValue, announcementID: announcementID.stringValue)
             let closeButton = UIBarButtonItem(barButtonSystemItem: .stop, target: nil, action: nil)
             closeButton.accessibilityLabel = NSLocalizedString("Close", comment: "Close Button Title")
             closeButton.accessibilityIdentifier = "close_button"

@@ -234,15 +234,7 @@ extension ParentAppDelegate {
 
 extension ParentAppDelegate: NativeLoginManagerDelegate {
     func didLogin(_ client: CKIClient) {
-        // TODO
-        //let session = client.authSession
-        
-        let parentID = "087e9ee5-e271-43cf-a9c3-cbef222ef0d8" // twilson: observer1/password
-        let baseURL = URL(string: "https://airwolf-iad-prod.instructure.com")
-        let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6IjYzNF9odHRwczovL3R3aWxzb24uaW5zdHJ1Y3R1cmUuY29tLyIsInBhcmVudF9pZCI6IjA4N2U5ZWU1LWUyNzEtNDNjZi1hOWMzLWNiZWYyMjJlZjBkOCIsInRva2VuSWQiOiIzNjBmMTE1Mi0yNGQ4LTQ1ZTQtOTUyMC1hODhmMmE2NzU5NDUiLCJpYXQiOjE1MjY2NjA0MzN9.6KtkgAMHxfDgLntZyMvlHSYt9i0zzeoSbrAhFjZdq5-q2aI6C8t5GhNq-OWFcu1rfFlFn8OSIKbNj911gjfGng"
-        
-        let sessionUser = SessionUser(id: parentID, name: "")
-        self.session = Session(baseURL: baseURL!, user: sessionUser, token: token)
+        self.session = client.authSession
     }
     
     func didLogout(_ controller: UIViewController) {

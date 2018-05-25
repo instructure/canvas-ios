@@ -31,12 +31,65 @@ extension Student {
     }
 
     public static func getStudents(_ session: Session, parentID: String) throws -> SignalProducer<[JSONObject], NSError> {
-        let request = try AirwolfAPI.getStudentsRequest(session, parentID: parentID)
-        return session.paginatedJSONSignalProducer(request)
+        return try getEnrollments(session: session)
+            .map(extractStudents)
+            .map(insertValue(parentID, forKey: "parent_id"))
+            .map(insertValue(session.baseURL.absoluteString, forKey: "student_domain"))
     }
 
     public static func deleteStudent(_ session: Session, parentID: String, studentID: String) throws -> SignalProducer<(), NSError> {
         let request = try AirwolfAPI.deleteStudentRequest(session, parentID: parentID, studentID: studentID)
         return session.emptyResponseSignalProducer(request)
+    }
+
+    private static func getEnrollments(session: Session) throws -> SignalProducer<[JSONObject], NSError> {
+        let request = try session.GET("/api/v1/users/self/enrollments", parameters: ["include": ["observed_users", "avatar_url"]])
+        return session.paginatedJSONSignalProducer(request)
+    }
+
+    private static func extractStudents(_ enrollments: [JSONObject]) -> [JSONObject] {
+        return enrollments.map(extractStudent).filter { $0 != nil }.map { $0! }
+    }
+
+    private static func extractStudent(_ enrollment: JSONObject) -> JSONObject? {
+        // Make sure role is observer
+        guard let role = extractRole(enrollment), role == .ta else {
+            return nil
+        }
+
+        // Make sure observed user is a student
+        guard var observedUser: JSONObject = try? enrollment <| "observed_user",
+            let enrollments: [JSONObject] = try? observedUser <| "enrollments",
+            enrollments.map(extractRole).any({ $0 == .student })
+        else {
+            return nil
+        }
+
+        // Custom keys
+        if let id: String = try? observedUser.stringID("id") {
+            observedUser["student_id"] = id
+        }
+        if let name: String = try? observedUser <| "name" {
+            observedUser["student_name"] = name
+        }
+
+        return observedUser
+    }
+
+    private static func extractRole(_ enrollment: JSONObject) -> UserEnrollmentRole? {
+        if let rawRole: String = try? enrollment <| "role" {
+            return UserEnrollmentRole(rawValue: rawRole)
+        }
+        return nil
+    }
+
+    private static func insertValue(_ value: Any, forKey key: String) -> ([JSONObject]) -> [JSONObject] {
+        return { objects in
+            return objects.map { object in
+                var o = object
+                o[key] = value
+                return o
+            }
+        }
     }
 }
