@@ -29,7 +29,7 @@ if [[ "$BUDDYBUILD_APP_ID" = $TEACHER_RN_EARLGREY_RUN_JOB_ID ]]; then
   retry_command brew tap caskroom/versions
   retry_command brew cask install java8
   echo "Starting soseedygrpc-all.jar"
-  sudo ln -sf $(/usr/libexec/java_home)/bin/java /usr/bin/java
+  sudo ln -sf $(/usr/libexec/java_home -v '1.8*')/bin/java /usr/bin/java
   exit 0
 fi
 
