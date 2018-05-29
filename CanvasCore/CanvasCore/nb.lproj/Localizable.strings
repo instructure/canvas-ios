@@ -506,6 +506,12 @@
 "Remove Formatting" = "Fjerne formattering";
 
 /* No comment provided by engineer. */
+"Removed %1$@" = "Fjernet %1$@";
+
+/* No comment provided by engineer. */
+"Removed %1$@ by %2$@" = "Fjernet %1$@ av %2$@";
+
+/* No comment provided by engineer. */
 "Reply" = "Svar";
 
 /* Button to report an error */

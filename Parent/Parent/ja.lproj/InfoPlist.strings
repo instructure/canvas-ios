@@ -5,5 +5,8 @@
 "NSMicrophoneUsageDescription" = "オーディオ録音をメッセージやディスカッションの投稿に添付するか、課題の提出に入れます。";
 
 /* (No Comment) */
+"NSPhotoLibraryAddUsageDescription" = "写真やビデオをメッセージやディスカッションの投稿に添付するか、課題の提出に入れます。";
+
+/* (No Comment) */
 "NSPhotoLibraryUsageDescription" = "写真やビデオをメッセージやディスカッションの投稿に添付するか、課題の提出に入れます。";
 

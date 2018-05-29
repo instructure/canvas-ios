@@ -596,9 +596,6 @@
   "favorite_courses_fbd356f0": {
     "message": "Kou Prefere"
   },
-  "file_count_plural_one_file_other_files_8ae41de8": {
-    "message": "{ file_count, plural,    one {# fichye} other {# fichye}}"
-  },
   "files_c300e900": {
     "message": "Fichye"
   },
@@ -722,6 +719,9 @@
   "i_hold_the_copyright_71ee91b1": {
     "message": "Mwen gen dwa dotè a"
   },
+  "in_progress_9d1ce8b9": {
+    "message": "Ap Avanse"
+  },
   "incomplete_da3c2ea2": {
     "message": "Enkonplè"
   },
@@ -730,6 +730,9 @@
   },
   "insert_link_6dc23cae": {
     "message": "Ensere Lyen"
+  },
+  "internet_connection_offline_d7c02b88": {
+    "message": "Koneksyon Entènèt Dekonekte"
   },
   "invalid_field_54480fae": {
     "message": "Chan envalid"
@@ -740,8 +743,14 @@
   "invite_declined_d0a9e398": {
     "message": "Envitasyon an refize!"
   },
+  "it_looks_like_your_internet_connection_is_offline__cf4003": {
+    "message": "Ta sanble entènèt ou a dekonekte. Rekonekte entènèt ou a epi eseye ankò."
+  },
   "italic_ac45200a": {
     "message": "Italik"
+  },
+  "item_count_plural_one_item_other_items_88319c63": {
+    "message": "{ item_count, plural,\n    one {# eleman}\n  other {# eleman}\n}"
   },
   "last_activity_on_lastactivity_date_mmmm_d_at_lasta_1a7e8430": {
     "message": "Dènye aktivite le { lastActivity, date, 'MMMM d' } a { lastActivity, time, short }"
@@ -1289,6 +1298,9 @@
   "students_1b8cd07b": {
     "message": "Elèv"
   },
+  "students_must_post_before_seeing_replies_1a57eeb2": {
+    "message": "Elèv yo dwe poste anvan yo wè repons yo"
+  },
   "subject_114b2e98": {
     "message": "Sijè"
   },
@@ -1598,9 +1610,6 @@
   },
   "user_id_bcace870": {
     "message": "ID Itilizatè"
-  },
-  "users_must_post_before_seeing_replies_d1761968": {
-    "message": "Itilizatè yo dwe poste anvan yo wè repons yo"
   },
   "video_b9f27375": {
     "message": "Videyo"

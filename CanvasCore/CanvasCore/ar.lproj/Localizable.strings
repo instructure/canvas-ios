@@ -506,6 +506,12 @@
 "Remove Formatting" = "إزالة التنسيق";
 
 /* No comment provided by engineer. */
+"Removed %1$@" = "تمت الإزالة %1$@";
+
+/* No comment provided by engineer. */
+"Removed %1$@ by %2$@" = "تمت إزالة %1$@ بواسطة %2$@";
+
+/* No comment provided by engineer. */
 "Reply" = "رد";
 
 /* Button to report an error */

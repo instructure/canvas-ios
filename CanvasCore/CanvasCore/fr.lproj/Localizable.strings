@@ -506,6 +506,12 @@
 "Remove Formatting" = "Enlever la mise en page";
 
 /* No comment provided by engineer. */
+"Removed %1$@" = "Supprimé %1$@";
+
+/* No comment provided by engineer. */
+"Removed %1$@ by %2$@" = "Supprimé %1$@ par %2$@";
+
+/* No comment provided by engineer. */
 "Reply" = "Répondre";
 
 /* Button to report an error */

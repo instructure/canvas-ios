@@ -596,9 +596,6 @@
   "favorite_courses_fbd356f0": {
     "message": "最喜愛的課程"
   },
-  "file_count_plural_one_file_other_files_8ae41de8": {
-    "message": "{ file_count, plural,    other {# 檔案}}"
-  },
   "files_c300e900": {
     "message": "資料夾"
   },
@@ -722,6 +719,9 @@
   "i_hold_the_copyright_71ee91b1": {
     "message": "我持有該版權"
   },
+  "in_progress_9d1ce8b9": {
+    "message": "進行中"
+  },
   "incomplete_da3c2ea2": {
     "message": "未完成"
   },
@@ -730,6 +730,9 @@
   },
   "insert_link_6dc23cae": {
     "message": "插入連結"
+  },
+  "internet_connection_offline_d7c02b88": {
+    "message": "網絡連線離線"
   },
   "invalid_field_54480fae": {
     "message": "無效字段"
@@ -740,8 +743,14 @@
   "invite_declined_d0a9e398": {
     "message": "拒絕邀請！"
   },
+  "it_looks_like_your_internet_connection_is_offline__cf4003": {
+    "message": "似乎您的網絡連線已離線。重新連線到網絡並重試。"
+  },
   "italic_ac45200a": {
     "message": "斜體"
+  },
+  "item_count_plural_one_item_other_items_88319c63": {
+    "message": "{ item_count, plural,\n    one {# 項目}\n  other {# 項目}\n}"
   },
   "last_activity_on_lastactivity_date_mmmm_d_at_lasta_1a7e8430": {
     "message": "上次活躍時間於 { lastActivity, date, 'MMMM d' } { lastActivity, time, short }"
@@ -1289,6 +1298,9 @@
   "students_1b8cd07b": {
     "message": "學生"
   },
+  "students_must_post_before_seeing_replies_1a57eeb2": {
+    "message": "學生必須發佈，然後才能看到回覆"
+  },
   "subject_114b2e98": {
     "message": "課程"
   },
@@ -1598,9 +1610,6 @@
   },
   "user_id_bcace870": {
     "message": "使用者 ID"
-  },
-  "users_must_post_before_seeing_replies_d1761968": {
-    "message": "使用者必須發佈，然後才能看到回復"
   },
   "video_b9f27375": {
     "message": "視頻"

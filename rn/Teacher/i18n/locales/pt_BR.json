@@ -596,9 +596,6 @@
   "favorite_courses_fbd356f0": {
     "message": "Cursos Favoritos"
   },
-  "file_count_plural_one_file_other_files_8ae41de8": {
-    "message": "{ file_count, plural,    one {# arquivo} other {# arquivos}}"
-  },
   "files_c300e900": {
     "message": "Arquivos"
   },
@@ -722,6 +719,9 @@
   "i_hold_the_copyright_71ee91b1": {
     "message": "Eu posso o copyright"
   },
+  "in_progress_9d1ce8b9": {
+    "message": "Em progresso"
+  },
   "incomplete_da3c2ea2": {
     "message": "Incompleto"
   },
@@ -730,6 +730,9 @@
   },
   "insert_link_6dc23cae": {
     "message": "Inserir link"
+  },
+  "internet_connection_offline_d7c02b88": {
+    "message": "Conexão de Internet off-line"
   },
   "invalid_field_54480fae": {
     "message": "Campo inválido"
@@ -740,8 +743,14 @@
   "invite_declined_d0a9e398": {
     "message": "Convite recusado!"
   },
+  "it_looks_like_your_internet_connection_is_offline__cf4003": {
+    "message": "Parece que a sua conexão de Internet está off-line. Reconecte-se à Internet e tente novamente."
+  },
   "italic_ac45200a": {
     "message": "Itálico"
+  },
+  "item_count_plural_one_item_other_items_88319c63": {
+    "message": "{ item_count, plural,\n    one {# item}\n  other {# itens}\n}"
   },
   "last_activity_on_lastactivity_date_mmmm_d_at_lasta_1a7e8430": {
     "message": "Última atividade em { lastActivity, date, 'MMMM d' } às { lastActivity, time, short }"
@@ -1289,6 +1298,9 @@
   "students_1b8cd07b": {
     "message": "Alunos"
   },
+  "students_must_post_before_seeing_replies_1a57eeb2": {
+    "message": "Os alunos devem publicar antes de ver as respostas"
+  },
   "subject_114b2e98": {
     "message": "Assunto"
   },
@@ -1598,9 +1610,6 @@
   },
   "user_id_bcace870": {
     "message": "ID de Usuário"
-  },
-  "users_must_post_before_seeing_replies_d1761968": {
-    "message": "Os usuários devem publicar antes de ver as respostas"
   },
   "video_b9f27375": {
     "message": "Vídeo"

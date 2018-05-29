@@ -5,5 +5,8 @@
 "NSMicrophoneUsageDescription" = "إرفاق تسجيلات صوتية لتعليقات الإرسال.";
 
 /* (No Comment) */
+"NSPhotoLibraryAddUsageDescription" = "إرفاق صور ومقاطع فيديو لتعليقات الإرسال.";
+
+/* (No Comment) */
 "NSPhotoLibraryUsageDescription" = "تحميل محتوى للمساقات.";
 

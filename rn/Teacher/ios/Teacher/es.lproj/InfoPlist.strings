@@ -1,8 +1,11 @@
 /* (No Comment) */
-"NSCameraUsageDescription" = "Adjuntar fotografías y videos a comentarios de presentación.";
+"NSCameraUsageDescription" = "Adjuntar fotografías y videos a comentarios sobre presentaciones.";
 
 /* (No Comment) */
 "NSMicrophoneUsageDescription" = "Adjuntar grabaciones de audio a comentarios de presentación.";
+
+/* (No Comment) */
+"NSPhotoLibraryAddUsageDescription" = "Adjuntar fotografías y videos a comentarios sobre presentaciones.";
 
 /* (No Comment) */
 "NSPhotoLibraryUsageDescription" = "Cargar contenido a los cursos.";

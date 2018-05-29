@@ -5,5 +5,8 @@
 "NSMicrophoneUsageDescription" = "把录制的音频附加至消息和讨论贴，或作为作业提交项提交。";
 
 /* (No Comment) */
+"NSPhotoLibraryAddUsageDescription" = "把照片和视频附加至消息和讨论贴，或作为作业提交项提交。";
+
+/* (No Comment) */
 "NSPhotoLibraryUsageDescription" = "把照片和视频附加至消息和讨论贴，或作为作业提交项提交。";
 

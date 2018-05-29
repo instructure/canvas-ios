@@ -5,5 +5,8 @@
 "NSMicrophoneUsageDescription" = "Fügen Sie Audioaufnahmen zu Abgabekommentaren hinzu.";
 
 /* (No Comment) */
+"NSPhotoLibraryAddUsageDescription" = "Fügen Sie Fotos und Videos zu Abgabekommentaren hinzu.";
+
+/* (No Comment) */
 "NSPhotoLibraryUsageDescription" = "Inhalten zu Kursen hochladen";
 

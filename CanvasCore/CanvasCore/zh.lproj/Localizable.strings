@@ -506,6 +506,12 @@
 "Remove Formatting" = "移除格式化";
 
 /* No comment provided by engineer. */
+"Removed %1$@" = "已删除%1$@";
+
+/* No comment provided by engineer. */
+"Removed %1$@ by %2$@" = "已删除 %1$@，删除人%2$@";
+
+/* No comment provided by engineer. */
 "Reply" = "回复";
 
 /* Button to report an error */

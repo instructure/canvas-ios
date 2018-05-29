@@ -8,5 +8,8 @@
 "NSMicrophoneUsageDescription" = "Tāpiritia ngā ōrorongo oro ki ngā karere me ngā kōrerorero tuhinga, ki te huri rānei ia rātou hei tukunga whakataunga.";
 
 /* (No Comment) */
+"NSPhotoLibraryAddUsageDescription" = "Tāpiritia ngā whakāhua me ngā ataata ki ngā karere me ngā kōrerorero tuhinga, ki te huri rānei ia rātou hei tukunga whakataunga.";
+
+/* (No Comment) */
 "NSPhotoLibraryUsageDescription" = "Tāpiritia ngā whakāhua me ngā ataata ki ngā karere me ngā kōrerorero tuhinga, ki te huri rānei ia rātou hei tukunga whakataunga.";
 

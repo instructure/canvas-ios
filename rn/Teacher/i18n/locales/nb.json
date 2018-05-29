@@ -596,9 +596,6 @@
   "favorite_courses_fbd356f0": {
     "message": "Favorittemner"
   },
-  "file_count_plural_one_file_other_files_8ae41de8": {
-    "message": "{ file_count, plural,    one {# fil} other {# filer}}"
-  },
   "files_c300e900": {
     "message": "Filer"
   },
@@ -722,6 +719,9 @@
   "i_hold_the_copyright_71ee91b1": {
     "message": "Jeg har opphavsretten"
   },
+  "in_progress_9d1ce8b9": {
+    "message": "Pågår"
+  },
   "incomplete_da3c2ea2": {
     "message": "Ufullstendig"
   },
@@ -730,6 +730,9 @@
   },
   "insert_link_6dc23cae": {
     "message": "Sett inn lenke"
+  },
+  "internet_connection_offline_d7c02b88": {
+    "message": "Internettilkoblingen er frakoblet"
   },
   "invalid_field_54480fae": {
     "message": "Ugyldig felt"
@@ -740,8 +743,14 @@
   "invite_declined_d0a9e398": {
     "message": "Invitasjonen ble avslått!"
   },
+  "it_looks_like_your_internet_connection_is_offline__cf4003": {
+    "message": "Det ser ut til at du ikke er koblet til Internett. Koble til Internett på nytt og prøv igjen."
+  },
   "italic_ac45200a": {
     "message": "Kursiv"
+  },
+  "item_count_plural_one_item_other_items_88319c63": {
+    "message": "{ item_count, plural,\n    one {# element}\n  other {# elementer}\n}"
   },
   "last_activity_on_lastactivity_date_mmmm_d_at_lasta_1a7e8430": {
     "message": "Siste aktivitet { lastActivity, date, 'MMMM d' } på { lastActivity, time, short }"
@@ -1289,6 +1298,9 @@
   "students_1b8cd07b": {
     "message": "Studenter"
   },
+  "students_must_post_before_seeing_replies_1a57eeb2": {
+    "message": "Studenter må poste før de kan se svar"
+  },
   "subject_114b2e98": {
     "message": "Emne"
   },
@@ -1598,9 +1610,6 @@
   },
   "user_id_bcace870": {
     "message": "Bruker-ID"
-  },
-  "users_must_post_before_seeing_replies_d1761968": {
-    "message": "Brukere må publisere før de kan se svar"
   },
   "video_b9f27375": {
     "message": "Video"

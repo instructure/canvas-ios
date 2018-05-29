@@ -8,5 +8,8 @@
 "NSMicrophoneUsageDescription" = "Attach audio recordings to messages and discussion posts or turn them in as assignment submissions.";
 
 /* (No Comment) */
+"NSPhotoLibraryAddUsageDescription" = "Attach photos and videos to messages and discussion posts or turn them in as assignment submissions.";
+
+/* (No Comment) */
 "NSPhotoLibraryUsageDescription" = "Attach photos and videos to messages and discussion posts or turn them in as assignment submissions.";
 

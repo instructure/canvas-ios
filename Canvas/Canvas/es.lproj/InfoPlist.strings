@@ -1,5 +1,5 @@
 /* (No Comment) */
-"NSCameraUsageDescription" = "Adjunte fotografías y videos a los mensajes y publicaciones de discusión o entréguelos como presentaciones de tarea.";
+"NSCameraUsageDescription" = "Adjunte fotografías y videos a los mensajes y publicaciones de debate o entréguelos como presentaciones de tareas.";
 
 /* (No Comment) */
 "NSLocationWhenInUseUsageDescription" = "Ayúdenos a encontrar escuelas cercanas.";
@@ -8,5 +8,8 @@
 "NSMicrophoneUsageDescription" = "Adjunte grabaciones de audio a los mensajes y publicaciones de discusión o entréguelas en presentaciones de tarea.";
 
 /* (No Comment) */
-"NSPhotoLibraryUsageDescription" = "Adjunte fotografías y videos a los mensajes y publicaciones de discusión o entréguelos como presentaciones de tarea.";
+"NSPhotoLibraryAddUsageDescription" = "Adjunte fotografías y videos a los mensajes y publicaciones de debate o entréguelos como presentaciones de tareas.";
+
+/* (No Comment) */
+"NSPhotoLibraryUsageDescription" = "Adjunte fotografías y videos a los mensajes y publicaciones de debate o entréguelos como presentaciones de tareas.";
 

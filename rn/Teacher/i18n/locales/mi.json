@@ -599,9 +599,6 @@
   "favorite_courses_fbd356f0": {
     "message": "Ngā akoranga makau"
   },
-  "file_count_plural_one_file_other_files_8ae41de8": {
-    "message": "{ file_count, plural,    one {# kōnae} other {# ngā kōnae}}"
-  },
   "files_c300e900": {
     "message": "Kōnae"
   },
@@ -725,6 +722,9 @@
   "i_hold_the_copyright_71ee91b1": {
     "message": "Ka mau ahau i te manatārua"
   },
+  "in_progress_9d1ce8b9": {
+    "message": "Kei roto i te ahunga whakamua"
+  },
   "incomplete_da3c2ea2": {
     "message": "Pahara"
   },
@@ -733,6 +733,9 @@
   },
   "insert_link_6dc23cae": {
     "message": "Whakauru hono"
+  },
+  "internet_connection_offline_d7c02b88": {
+    "message": "Kei te Tuimotu te Hononga Ipurangi"
   },
   "invalid_field_54480fae": {
     "message": "Whīra muhu"
@@ -743,8 +746,14 @@
   "invite_declined_d0a9e398": {
     "message": "Kua whakakoretia te tono!"
   },
+  "it_looks_like_your_internet_connection_is_offline__cf4003": {
+    "message": "He rite kei te tuimotuhia tō hononga ipurangi. Hono anō ki te ipurangi ka ngana anō"
+  },
   "italic_ac45200a": {
     "message": "Italic"
+  },
+  "item_count_plural_one_item_other_items_88319c63": {
+    "message": "{ item_count, plural,\n    one {# tuemi}\n  other {# ngā tuemi}\n}"
   },
   "last_activity_on_lastactivity_date_mmmm_d_at_lasta_1a7e8430": {
     "message": "Mahi whakamutunga i runga  { lastActivity, date, 'MMMM d' } ī { lastActivity, time, short }"
@@ -1292,6 +1301,9 @@
   "students_1b8cd07b": {
     "message": "Ngā Akonga"
   },
+  "students_must_post_before_seeing_replies_1a57eeb2": {
+    "message": "Me whakairi ngā ākonga i mua i te kitenga i ngā whakautu"
+  },
   "subject_114b2e98": {
     "message": "Kaupapa"
   },
@@ -1601,9 +1613,6 @@
   },
   "user_id_bcace870": {
     "message": "Kaiwhakamahi ID"
-  },
-  "users_must_post_before_seeing_replies_d1761968": {
-    "message": "Me whakairi ngā Kaiwhakamahi i mua i te kitenga whakautu"
   },
   "video_b9f27375": {
     "message": "Ataata"

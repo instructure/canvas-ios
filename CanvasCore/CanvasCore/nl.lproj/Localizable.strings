@@ -506,6 +506,12 @@
 "Remove Formatting" = "Formattering verwijderen";
 
 /* No comment provided by engineer. */
+"Removed %1$@" = "Verwijderd %1$@";
+
+/* No comment provided by engineer. */
+"Removed %1$@ by %2$@" = "%1$@ verwijderd door %2$@";
+
+/* No comment provided by engineer. */
 "Reply" = "Antwoord";
 
 /* Button to report an error */

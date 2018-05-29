@@ -5,5 +5,8 @@
 "NSMicrophoneUsageDescription" = "Joindre les enregistrements audio à l’envoi de commentaires.";
 
 /* (No Comment) */
+"NSPhotoLibraryAddUsageDescription" = "Joindre des photos et des vidéos à l’envoi de commentaires.";
+
+/* (No Comment) */
 "NSPhotoLibraryUsageDescription" = "Téléverser du contenu aux cours.";
 

@@ -5,5 +5,8 @@
 "NSMicrophoneUsageDescription" = "Anexe gravações de áudio para comentários de envio.";
 
 /* (No Comment) */
+"NSPhotoLibraryAddUsageDescription" = "Anexe fotos e vídeos para comentários de envio.";
+
+/* (No Comment) */
 "NSPhotoLibraryUsageDescription" = "Carregue conteúdo nos cursos.";
 

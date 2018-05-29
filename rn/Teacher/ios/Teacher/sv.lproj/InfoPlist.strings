@@ -1,8 +1,11 @@
 /* (No Comment) */
-"NSCameraUsageDescription" = "Bifoga foton och videoklipp till inlämningskommentarer.";
+"NSCameraUsageDescription" = "Bifoga foton och videor till inlämningskommentarer.";
 
 /* (No Comment) */
 "NSMicrophoneUsageDescription" = "Anslut ljudinspelningar till inlämningskommentarer.";
+
+/* (No Comment) */
+"NSPhotoLibraryAddUsageDescription" = "Bifoga foton och videor till inlämningskommentarer.";
 
 /* (No Comment) */
 "NSPhotoLibraryUsageDescription" = "Ladda upp innehåll till kurser.";

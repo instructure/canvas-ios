@@ -1,9 +1,12 @@
 /* (No Comment) */
-"NSCameraUsageDescription" = "Legg ved bilder og film til meldinger og diskusjonsinnlegg eller lever dem inn som oppgaveinnleveringer";
+"NSCameraUsageDescription" = "Legg ved bilder og film til meldinger og diskusjonsinnlegg eller lever dem inn som oppgaveinnleveringer.";
 
 /* (No Comment) */
 "NSMicrophoneUsageDescription" = "Legg ved lydinnspillinger til meldinger eller diskusjonsinnlegg eller lever dem inn som oppgaveinnleveringer.";
 
 /* (No Comment) */
-"NSPhotoLibraryUsageDescription" = "Legg ved bilder og film til meldinger og diskusjonsinnlegg eller lever dem inn som oppgaveinnleveringer";
+"NSPhotoLibraryAddUsageDescription" = "Legg ved bilder og film til meldinger og diskusjonsinnlegg eller lever dem inn som oppgaveinnleveringer.";
+
+/* (No Comment) */
+"NSPhotoLibraryUsageDescription" = "Legg ved bilder og film til meldinger og diskusjonsinnlegg eller lever dem inn som oppgaveinnleveringer.";
 

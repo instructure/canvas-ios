@@ -5,5 +5,8 @@
 "NSMicrophoneUsageDescription" = "Attach audio recordings to submission comments.";
 
 /* (No Comment) */
+"NSPhotoLibraryAddUsageDescription" = "Attach photos and videos to submission comments.";
+
+/* (No Comment) */
 "NSPhotoLibraryUsageDescription" = "Upload content to courses.";
 

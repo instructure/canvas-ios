@@ -5,5 +5,8 @@
 "NSMicrophoneUsageDescription" = "Joignez des enregistrements audio aux messages et aux discussions ou envoyez-les comme soumission de travaux.";
 
 /* (No Comment) */
+"NSPhotoLibraryAddUsageDescription" = "Joignez des photos et des vidéos aux messages et aux discussions ou envoyez-les comme soumission de travaux.";
+
+/* (No Comment) */
 "NSPhotoLibraryUsageDescription" = "Joignez des photos et des vidéos aux messages et aux discussions ou envoyez-les comme soumission de travaux.";
 

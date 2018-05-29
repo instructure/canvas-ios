@@ -506,6 +506,12 @@
 "Remove Formatting" = "Tangohia te Hōputu";
 
 /* No comment provided by engineer. */
+"Removed %1$@" = "Kua tangohia %1$@";
+
+/* No comment provided by engineer. */
+"Removed %1$@ by %2$@" = "Kua tangohia%1$@ e %2$@";
+
+/* No comment provided by engineer. */
 "Reply" = "Whakautu";
 
 /* Button to report an error */

@@ -1,5 +1,5 @@
 /* (No Comment) */
-"NSCameraUsageDescription" = "Legg ved bilder og film til meldinger og diskusjonsinnlegg eller lever dem inn som oppgaveinnlevering.";
+"NSCameraUsageDescription" = "Legg ved bilder og film til meldinger og diskusjonsinnlegg eller lever dem inn som oppgaveinnleveringer.";
 
 /* (No Comment) */
 "NSLocationWhenInUseUsageDescription" = "Hjelp oss med å finne skoler nær deg.";
@@ -8,5 +8,8 @@
 "NSMicrophoneUsageDescription" = "Legg ved lydinnspillinger til meldinger og diskusjonsinnlegg eller lever dem inn som oppgaveinnlevering.";
 
 /* (No Comment) */
-"NSPhotoLibraryUsageDescription" = "Legg ved bilder og film til meldinger og diskusjonsinnlegg eller lever dem inn som oppgaveinnlevering.";
+"NSPhotoLibraryAddUsageDescription" = "Legg ved bilder og film til meldinger og diskusjonsinnlegg eller lever dem inn som oppgaveinnleveringer.";
+
+/* (No Comment) */
+"NSPhotoLibraryUsageDescription" = "Legg ved bilder og film til meldinger og diskusjonsinnlegg eller lever dem inn som oppgaveinnleveringer.";
 

@@ -5,5 +5,8 @@
 "NSMicrophoneUsageDescription" = "Koppel audio-opnamen aan berichten en gespreksposts of lever ze in als onderdeel van de opdracht.";
 
 /* (No Comment) */
+"NSPhotoLibraryAddUsageDescription" = "Koppel foto's en video's aan berichten en gespreksposts of lever ze in als onderdeel van de opdracht.";
+
+/* (No Comment) */
 "NSPhotoLibraryUsageDescription" = "Koppel foto's en video's aan berichten en gespreksposts of lever ze in als onderdeel van de opdracht.";
 

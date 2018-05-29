@@ -506,6 +506,12 @@
 "Remove Formatting" = "Удалить форматирование";
 
 /* No comment provided by engineer. */
+"Removed %1$@" = "Удалено %1$@";
+
+/* No comment provided by engineer. */
+"Removed %1$@ by %2$@" = "Удалено %1$@ %2$@";
+
+/* No comment provided by engineer. */
 "Reply" = "Ответить";
 
 /* Button to report an error */

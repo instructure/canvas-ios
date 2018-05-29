@@ -5,5 +5,8 @@
 "NSMicrophoneUsageDescription" = "Прикрепить аудиозаписи к комментариям к отправке.";
 
 /* (No Comment) */
+"NSPhotoLibraryAddUsageDescription" = "Прикрепить фотографии и видеоматериалы к комментариям к отправке.";
+
+/* (No Comment) */
 "NSPhotoLibraryUsageDescription" = "Загрузить контент в курсы.";
 

@@ -506,6 +506,12 @@
 "Remove Formatting" = "Remover el formato";
 
 /* No comment provided by engineer. */
+"Removed %1$@" = "Eliminado %1$@";
+
+/* No comment provided by engineer. */
+"Removed %1$@ by %2$@" = "Eliminado %1$@ por %2$@";
+
+/* No comment provided by engineer. */
 "Reply" = "Respuesta";
 
 /* Button to report an error */

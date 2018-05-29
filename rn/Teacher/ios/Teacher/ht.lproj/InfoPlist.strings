@@ -5,5 +5,8 @@
 "NSMicrophoneUsageDescription" = "Ajoute anrejistreman odyo nan kòmantè soumisyon yo.";
 
 /* (No Comment) */
+"NSPhotoLibraryAddUsageDescription" = "Ajoute foto ak videyo nan kòmantè soumisyon yo.";
+
+/* (No Comment) */
 "NSPhotoLibraryUsageDescription" = "Transfere kontni nan kou yo.";
 

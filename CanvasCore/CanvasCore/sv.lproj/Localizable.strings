@@ -506,6 +506,12 @@
 "Remove Formatting" = "Ta bort formatering";
 
 /* No comment provided by engineer. */
+"Removed %1$@" = "Borttagen %1$@";
+
+/* No comment provided by engineer. */
+"Removed %1$@ by %2$@" = "Borttagna %1$@ av %2$@";
+
+/* No comment provided by engineer. */
 "Reply" = "Svara";
 
 /* Button to report an error */

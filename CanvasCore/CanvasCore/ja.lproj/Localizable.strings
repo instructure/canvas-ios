@@ -506,6 +506,12 @@
 "Remove Formatting" = "フォーマットを取り消す";
 
 /* No comment provided by engineer. */
+"Removed %1$@" = "除去済%1$@";
+
+/* No comment provided by engineer. */
+"Removed %1$@ by %2$@" = "（）により%1$@除去済%2$@";
+
+/* No comment provided by engineer. */
 "Reply" = "返信";
 
 /* Button to report an error */

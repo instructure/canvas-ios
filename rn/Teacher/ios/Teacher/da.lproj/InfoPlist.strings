@@ -5,5 +5,8 @@
 "NSMicrophoneUsageDescription" = "Vedhæft lydoptagelser til afleveringskommentarer.";
 
 /* (No Comment) */
+"NSPhotoLibraryAddUsageDescription" = "Vedhæft billeder og videoer til afleveringskommentarer.";
+
+/* (No Comment) */
 "NSPhotoLibraryUsageDescription" = "Upload indhold til fag.";
 

@@ -13,6 +13,9 @@
 /* Class = "UILabel"; text = "Previous Logins"; ObjectID = "Kpj-4f-cdc"; */
 "Kpj-4f-cdc.text" = "Logins prévios";
 
+/* Class = "UIButton"; normalTitle = "http://example.instructure.com"; ObjectID = "OcW-eP-myo"; */
+"OcW-eP-myo.normalTitle" = "http://example.instructure.com";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "UqJ-Ob-4nT"; */
 "UqJ-Ob-4nT.text" = "Etiqueta";
 

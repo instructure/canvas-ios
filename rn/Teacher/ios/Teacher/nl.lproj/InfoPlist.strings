@@ -5,5 +5,8 @@
 "NSMicrophoneUsageDescription" = "Koppel audio-opnamen aan opmerkingen bij een inzending";
 
 /* (No Comment) */
+"NSPhotoLibraryAddUsageDescription" = "Koppel foto's en video's aan opmerkingen bij een inzending.";
+
+/* (No Comment) */
 "NSPhotoLibraryUsageDescription" = "Upload inhoud aan cursussen.";
 

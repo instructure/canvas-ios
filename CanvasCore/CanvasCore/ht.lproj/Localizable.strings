@@ -506,6 +506,12 @@
 "Remove Formatting" = "Elimine Fòmataj";
 
 /* No comment provided by engineer. */
+"Removed %1$@" = "Elimine %1$@";
+
+/* No comment provided by engineer. */
+"Removed %1$@ by %2$@" = "Elimine %1$@ pa %2$@";
+
+/* No comment provided by engineer. */
 "Reply" = "Reponn";
 
 /* Button to report an error */

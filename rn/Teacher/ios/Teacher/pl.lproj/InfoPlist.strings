@@ -5,5 +5,8 @@
 "NSMicrophoneUsageDescription" = "Załącz nagrania audio do komentarzy do przesyłanych materiałów.";
 
 /* (No Comment) */
+"NSPhotoLibraryAddUsageDescription" = "Załącz zdjęcia i filmy do komentarzy do przesyłanych materiałów.";
+
+/* (No Comment) */
 "NSPhotoLibraryUsageDescription" = "Prześlij zawartość do kursów.";
 
