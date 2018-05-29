@@ -141,10 +141,13 @@ int ddLogLevel =
 }
 
 - (void)addStandardDomainsToArray:(NSMutableArray *)array {
+    
 #if DEBUG
     NSArray *developmentDomains = [CKIAccountDomain developmentSchools];
     [array insertObjects:developmentDomains atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, developmentDomains.count)]];
 #endif
+    
+    [array insertObject:[CKIAccountDomain howDoIFindMySchool] atIndex:0];
 }
 
 @end

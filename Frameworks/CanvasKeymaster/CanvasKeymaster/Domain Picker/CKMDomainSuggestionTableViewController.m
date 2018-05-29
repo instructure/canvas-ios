@@ -108,14 +108,29 @@
     }
     
     cell.textLabel.text = school.name;
-    if (school.domain == nil) {
-        cell.detailTextLabel.text = NSLocalizedStringFromTableInBundle(@"Tap here for help.", nil, [NSBundle bundleForClass:[self class]], @"Subtitle help text describing how to find a school.");
+    if (school.type == CKIAccountDomainTypeCantFindSchool) {
+        NSString *infoText = NSLocalizedStringFromTableInBundle(@"Can't find your school? Try typing the full school URL.", nil, [NSBundle bundleForClass:[self class]], @"Help label when user can't find their school.");
+        NSString *helpText = NSLocalizedStringFromTableInBundle(@"Tap here for help.", nil, [NSBundle bundleForClass:[self class]], @"Subtitle help text describing how to find a school.");
+        NSString *fullText = [NSString stringWithFormat:@"%@ %@", infoText, helpText];
+        NSRange helpRange = [fullText rangeOfString:helpText];
+        if (helpRange.location != NSNotFound) {
+            NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:fullText];
+            UIColor *color = [UIColor colorWithRed:11./255. green:146./255. blue:227./255. alpha:1.0];
+            [attributedText addAttribute:NSForegroundColorAttributeName value:color range:helpRange];
+            cell.textLabel.attributedText = attributedText;
+        } else {
+            cell.textLabel.text = fullText;
+        }
+    } else if (school.type == CKIAccountDomainTypeHowDoIFindMySchool) {
+        NSString *text = NSLocalizedString(@"How do I find my school?", "Help label when domain search has started");
+        NSDictionary *attributes = @{NSForegroundColorAttributeName: [UIColor colorWithRed:11./255. green:146./255. blue:227./255. alpha:1.0]};
+        NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:text attributes:attributes];
+        cell.textLabel.attributedText = attributedText;
     }
     // if we have a current location, let's show it off
     else if (currentLocation && school.distance) {
         NSString *template = NSLocalizedStringFromTableInBundle(@"%@ miles away", nil, [NSBundle bundleForClass:[self class]], @"The distance in miles that a user is from a school.");
         cell.detailTextLabel.text = [NSString stringWithFormat:template, [self.numberFormatter stringFromNumber:school.distance]];
-
     } else {
         cell.detailTextLabel.text = @"";
     }

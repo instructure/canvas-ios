@@ -15,6 +15,9 @@
 		2CAF046C2033A2A1007BC62D /* x-icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CAF04692033A2A0007BC62D /* x-icon@3x.png */; };
 		2CAF046D2033A2A1007BC62D /* x-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CAF046A2033A2A0007BC62D /* x-icon.png */; };
 		2CAF046E2033A2A1007BC62D /* x-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CAF046B2033A2A1007BC62D /* x-icon@2x.png */; };
+		2CB7238F20B5F5CE001C8C3F /* Arrow-Back.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CB7238C20B5F5CE001C8C3F /* Arrow-Back.png */; };
+		2CB7239020B5F5CE001C8C3F /* Arrow-Back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CB7238D20B5F5CE001C8C3F /* Arrow-Back@2x.png */; };
+		2CB7239120B5F5CE001C8C3F /* Arrow-Back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CB7238E20B5F5CE001C8C3F /* Arrow-Back@3x.png */; };
 		2CF6EF4D209912A400B97582 /* preload-account-info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CF6EF4C209912A400B97582 /* preload-account-info.plist */; };
 		3BCAF3CC1F63B12200EEF0A7 /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ADC6FE1C90F9EA00E85895 /* CanvasKit.framework */; };
 		49C0FB30190B167900572CA1 /* LaunchImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49C0FB2F190B167900572CA1 /* LaunchImage.xcassets */; };
@@ -115,6 +118,9 @@
 		2CAF04692033A2A0007BC62D /* x-icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "x-icon@3x.png"; sourceTree = "<group>"; };
 		2CAF046A2033A2A0007BC62D /* x-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "x-icon.png"; sourceTree = "<group>"; };
 		2CAF046B2033A2A1007BC62D /* x-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "x-icon@2x.png"; sourceTree = "<group>"; };
+		2CB7238C20B5F5CE001C8C3F /* Arrow-Back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Arrow-Back.png"; path = "../../../../CanvasCore/CanvasCore/CanvasCore.xcassets/back_arrow.imageset/Arrow-Back.png"; sourceTree = "<group>"; };
+		2CB7238D20B5F5CE001C8C3F /* Arrow-Back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Arrow-Back@2x.png"; path = "../../../../CanvasCore/CanvasCore/CanvasCore.xcassets/back_arrow.imageset/Arrow-Back@2x.png"; sourceTree = "<group>"; };
+		2CB7238E20B5F5CE001C8C3F /* Arrow-Back@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Arrow-Back@3x.png"; path = "../../../../CanvasCore/CanvasCore/CanvasCore.xcassets/back_arrow.imageset/Arrow-Back@3x.png"; sourceTree = "<group>"; };
 		2CF6EF4C209912A400B97582 /* preload-account-info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "preload-account-info.plist"; path = "../../../../preload-account-info.plist"; sourceTree = "<group>"; };
 		4917EDAE1D947C9D009D58B5 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		499F7FDC1C9B6812005CCD00 /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -485,6 +491,9 @@
 				5E274A401914434100E04789 /* icon_cancel_light.png */,
 				5E274A411914434100E04789 /* icon_cancel_light@2x.png */,
 				5E274A421914434100E04789 /* icon_profile@2x.png */,
+				2CB7238C20B5F5CE001C8C3F /* Arrow-Back.png */,
+				2CB7238D20B5F5CE001C8C3F /* Arrow-Back@2x.png */,
+				2CB7238E20B5F5CE001C8C3F /* Arrow-Back@3x.png */,
 			);
 			name = Resources;
 			path = CanvasKeymaster/Resources;
@@ -683,8 +692,11 @@
 				2CAF046E2033A2A1007BC62D /* x-icon@2x.png in Resources */,
 				B1FC3B0A1C98B60E00A8001F /* icon_cancel_light@2x.png in Resources */,
 				B1FC3B071C98B60E00A8001F /* icon_help.png in Resources */,
+				2CB7239020B5F5CE001C8C3F /* Arrow-Back@2x.png in Resources */,
 				B1FC3B221C98B60E00A8001F /* CKMDomainHelpViewController.storyboard in Resources */,
 				B10E9F7B1E2FDB88000F5D01 /* InfoPlist.strings in Resources */,
+				2CB7238F20B5F5CE001C8C3F /* Arrow-Back.png in Resources */,
+				2CB7239120B5F5CE001C8C3F /* Arrow-Back@3x.png in Resources */,
 				2CF6EF4D209912A400B97582 /* preload-account-info.plist in Resources */,
 				B1FC3B031C98B60E00A8001F /* icon_forward_arrow@1x.png in Resources */,
 				B181D2AA1DFB211500114ACE /* SupportTicket.storyboard in Resources */,

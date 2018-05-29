@@ -16,6 +16,11 @@
 
 #import "CKIModel.h"
 
+typedef NS_ENUM(NSUInteger, CKIAccountDomainType) {
+    CKIAccountDomainTypeNormal,
+    CKIAccountDomainTypeCantFindSchool,
+    CKIAccountDomainTypeHowDoIFindMySchool,
+};
 
 @interface CKIAccountDomain : CKIModel
 
@@ -23,9 +28,11 @@
 @property (nonatomic, copy) NSString *domain;
 @property (nonatomic, strong) NSNumber *distance;
 @property (nonatomic, strong) NSString *authenticationProvider;
+@property (nonatomic, readwrite) CKIAccountDomainType type;
 
 + (CKIAccountDomain *)canvasNetSchool;
 + (CKIAccountDomain *)cantFindSchool;
++ (CKIAccountDomain *)howDoIFindMySchool;
 + (NSArray *)developmentSchools;
 
 - (instancetype)initWithDomain:(NSString *)domain;

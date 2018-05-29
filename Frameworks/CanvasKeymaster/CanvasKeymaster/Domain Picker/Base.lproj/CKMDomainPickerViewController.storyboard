@@ -184,25 +184,18 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HelpCell" textLabel="7VQ-qv-Wtk" detailTextLabel="0bi-h7-8TR" style="IBUITableViewCellStyleSubtitle" id="SeJ-uA-oau" userLabel="HelpCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HelpCell" textLabel="7VQ-qv-Wtk" style="IBUITableViewCellStyleDefault" id="SeJ-uA-oau" userLabel="HelpCell">
                                 <rect key="frame" x="0.0" y="66" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SeJ-uA-oau" id="52C-qY-EUV">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7VQ-qv-Wtk">
-                                            <rect key="frame" x="16" y="6" width="28.5" height="17"/>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7VQ-qv-Wtk">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.45098039220000002" green="0.50588235290000005" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0bi-h7-8TR">
-                                            <rect key="frame" x="16" y="23" width="45.5" height="14.5"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
-                                            <color key="textColor" red="0.043032802641391754" green="0.57393699884414673" blue="0.88962823152542114" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -320,7 +313,7 @@
                                     <constraint firstAttribute="height" constant="36" id="teK-5E-QnN"/>
                                 </constraints>
                                 <color key="tintColor" red="0.45098039220000002" green="0.50588235290000005" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" image="x-icon.png"/>
+                                <state key="normal" image="Arrow-Back.png"/>
                                 <connections>
                                     <action selector="goBack:" destination="uvg-b7-8aP" eventType="touchUpInside" id="vB9-eS-4aA"/>
                                 </connections>
@@ -345,7 +338,7 @@
                                     <constraint firstAttribute="height" constant="1" id="Rgz-9R-1ur" customClass="NSLayoutConstraintHairline"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="school.instructure.com" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="xzj-lX-iaI">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Find your school or district" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="xzj-lX-iaI">
                                 <rect key="frame" x="16" y="149.5" width="343" height="22"/>
                                 <accessibility key="accessibilityConfiguration" identifier="searchSchoolTextField">
                                     <accessibilityTraits key="traits" searchField="YES"/>
@@ -415,6 +408,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Arrow-Back.png" width="13" height="24"/>
         <image name="spinner-icon" width="80" height="80"/>
         <image name="student-logo" width="156" height="123"/>
         <image name="student-logomark" width="64" height="64"/>
