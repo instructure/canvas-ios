@@ -48,6 +48,7 @@ import { connect } from 'react-redux'
 import Actions from '@modules/userInfo/actions'
 import StatusBar from '@common/components/StatusBar'
 import * as LTITools from '@common/LTITools'
+import SFSafariViewController from 'react-native-sfsafariviewcontroller'
 
 const developerMenuStorageKey = 'teacher.profile.developermenu'
 
@@ -201,20 +202,59 @@ export class Profile extends Component<Object, State> {
   }
 
   showHelpMenu = () => {
+    let options = [i18n('Report a Problem'), i18n('Request a Feature'), i18n('Cancel')]
     ActionSheetIOS.showActionSheetWithOptions({
       title: i18n('Help'),
-      options: [i18n('Report a Problem'), i18n('Request a Feature'), i18n('Cancel')],
+      options,
       cancelButtonIndex: 2,
     }, async (pressedIndex: number) => {
-      if (pressedIndex === 2) return
+      if (pressedIndex === (options.length - 1)) return
       // the profile itself is presented modally
       // must dismiss before showing another modal
       await this.props.navigator.dismiss()
 
-      if (pressedIndex === 0) {
-        this.props.navigator.show('/support/problem', { modal: true })
-      } else {
-        this.props.navigator.show('/support/feature', { modal: true })
+      switch (pressedIndex) {
+        case 0:
+          this.props.navigator.show('/support/problem', { modal: true })
+          break
+        case 1:
+          this.props.navigator.show('/support/feature', { modal: true })
+          break
+      }
+    })
+  }
+
+  showParentHelpMenu = () => {
+    let options = [
+      i18n('View Canvas Guides'),
+      i18n('Report a Problem'),
+      i18n('Request a Feature'),
+      i18n('Terms of Use'),
+      i18n('Cancel'),
+    ]
+    ActionSheetIOS.showActionSheetWithOptions({
+      title: i18n('Help'),
+      options,
+      cancelButtonIndex: 4,
+    }, async (pressedIndex: number) => {
+      if (pressedIndex === (options.length - 1)) return
+      // the profile itself is presented modally
+      // must dismiss before showing another modal
+      await this.props.navigator.dismiss()
+
+      switch (pressedIndex) {
+        case 0:
+          SFSafariViewController.open('https://community.canvaslms.com/docs/DOC-9919')
+          break
+        case 1:
+          this.props.navigator.show('/support/problem', { modal: true })
+          break
+        case 2:
+          this.props.navigator.show('/support/feature', { modal: true })
+          break
+        case 3:
+          this.props.navigator.show('/terms-of-use', { modal: true })
+          break
       }
     })
   }
@@ -243,8 +283,19 @@ export class Profile extends Component<Object, State> {
         return buildRow(title, onPress, null, { testID: `row-lti-${tool.domain}-${tool.definition_id}` })
       }).filter(Boolean)
     }
+
+    if (isParent()) {
+      return (<View>
+        { buildRow(i18n('Manage Children'), this.manageObserverStudents)}
+        { buildRow(i18n('Help'), this.showParentHelpMenu) }
+        { (this.props.canMasquerade || masquerading) && buildRow(masqueradeTitle, this.toggleMasquerade) }
+        { this.state.showsDeveloperMenu && buildRow(i18n('Developer Menu'), this.showDeveloperMenu) }
+        { !masquerading && buildRow(i18n('Change User'), this.switchUser) }
+        { !masquerading && buildRow(i18n('Log Out'), this.logout) }
+      </View>)
+    }
+
     return (<View>
-      { isParent() && buildRow(i18n('Manage Children'), this.manageObserverStudents)}
       { buildRow(i18n('Files'), this.userFiles) }
       { tools }
       { (this.props.canMasquerade || masquerading) && buildRow(masqueradeTitle, this.toggleMasquerade) }
@@ -253,6 +304,26 @@ export class Profile extends Component<Object, State> {
       { this.state.showsDeveloperMenu && buildRow(i18n('Developer Menu'), this.showDeveloperMenu) }
       { !masquerading && buildRow(i18n('Change User'), this.switchUser) }
       { !masquerading && buildRow(i18n('Log Out'), this.logout) }
+    </View>)
+  }
+
+  renderHeader (user: SessionUser) {
+    return (<View style={styles.header}>
+      <Avatar
+        avatarURL={this.state.avatarURL}
+        userName={user.name}
+        height={56}
+        width={56}
+        testID='profile.avatar' />
+      { !isParent() && <TouchableOpacity
+        onPress={this.settings}
+        testID='profile.navigation-settings-btn'
+        accessibilityLabel={i18n('Settings')}
+        accessibilityTraits='button'
+        style={styles.settingsButtonContainer}
+        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
+        <Image source={Images.course.settings} style={styles.settingsImage}/>
+      </TouchableOpacity> }
     </View>)
   }
 
@@ -269,23 +340,7 @@ export class Profile extends Component<Object, State> {
         <View style={styles.container} testID="module.profile">
           <StatusBar />
           <SafeAreaView style={{ flex: 1 }}>
-            <View style={styles.header}>
-              <Avatar
-                avatarURL={this.state.avatarURL}
-                userName={user.name}
-                height={56}
-                width={56}
-                testID='profile.avatar' />
-              <TouchableOpacity
-                onPress={this.settings}
-                testID='profile.navigation-settings-btn'
-                accessibilityLabel={i18n('Settings')}
-                accessibilityTraits='button'
-                style={styles.settingsButtonContainer}
-                hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
-                <Image source={Images.course.settings} style={styles.settingsImage}/>
-              </TouchableOpacity>
-            </View>
+            { this.renderHeader(user) }
             <View style={styles.infoHeader}>
               { !!name && <Heavy style={styles.name}>{name}</Heavy> }
               { !!user.primary_email && <Paragraph style={styles.email}>{user.primary_email}</Paragraph> }

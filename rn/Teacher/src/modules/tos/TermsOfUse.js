@@ -22,7 +22,6 @@ import { getTermsOfService } from '../../canvas-api/apis/account'
 import Screen from '../../routing/Screen'
 import i18n from 'format-message'
 import CanvasWebView from '../../common/components/CanvasWebView'
-import colors from '../../common/colors'
 
 type Props = {
   navigator: Navigator,
@@ -63,12 +62,7 @@ export default class TermsOfUse extends Component<Props, State> {
 
   render () {
     return (
-      <Screen
-        title={i18n('Terms Of Use')}
-        navBarColor={colors.navBarColor}
-        navBarButtonColor={colors.navBarTextColor}
-        statusBarStyle={colors.statusBarStyle}
-      >
+      <Screen title={i18n('Terms Of Use')} >
         {this.state.loading
           ? <ActivityIndicatorView />
           : this.state.termsError

@@ -97,11 +97,22 @@ describe('Profile Tests', () => {
 
   it('renders correctly for students', () => {
     app.setCurrentApp('student')
-    const tree = renderer.create(
+    const tree = shallow(
       <Profile { ...defaultProps } />
-    ).toJSON()
+    )
 
     expect(tree).toMatchSnapshot()
+    expect(tree.find('[testID="profile.navigation-settings-btn"]').length).toEqual(1)
+  })
+
+  it('renders correctly for parents', () => {
+    app.setCurrentApp('parent')
+    const tree = shallow(
+      <Profile { ...defaultProps } />
+    )
+
+    expect(tree).toMatchSnapshot()
+    expect(tree.find('[testID="profile.navigation-settings-btn"]').length).toEqual(0)
   })
 
   it('renders correctly without masquerade', () => {

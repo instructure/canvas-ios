@@ -820,969 +820,521 @@ exports[`Profile Tests renders correctly 1`] = `
 </View>
 `;
 
-exports[`Profile Tests renders correctly for students 1`] = `
-<View
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
-  testID="module.profile"
+exports[`Profile Tests renders correctly for parents 1`] = `
+<Screen
+  disableGlobalSafeArea={true}
+  navBarButtonColor="#2D3B45"
+  navBarHidden={true}
+  navBarStyle="light"
+  showDismissButton={true}
+  statusBarStyle="default"
 >
   <View
-    style={
-      Object {
-        "height": null,
-      }
-    }
-  />
-  <RCTSafeAreaView
     style={
       Object {
         "flex": 1,
       }
     }
+    testID="module.profile"
   >
-    <View
+    <SavingBanner />
+    <SafeAreaView
       style={
         Object {
-          "flexDirection": "row",
-          "justifyContent": "space-between",
-          "padding": 16,
+          "flex": 1,
         }
       }
     >
       <View
-        accessibilityLabel=""
         style={
-          Array [
-            Object {
-              "overflow": "hidden",
-            },
-            Object {
-              "height": 56,
-              "width": 56,
-            },
-            Object {
-              "borderRadius": 28,
-            },
-            Object {
-              "backgroundColor": "#F5F5F5",
-            },
-          ]
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "padding": 16,
+          }
         }
       >
-        <Image
-          source={
-            Object {
-              "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-            }
-          }
-          style={
-            Object {
-              "height": 56,
-              "width": 56,
-            }
-          }
+        <Avatar
+          avatarURL="https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg"
+          height={56}
+          testID="profile.avatar"
+          userName="Key and Peele"
+          width={56}
         />
       </View>
       <View
-        accessibilityComponentType={undefined}
-        accessibilityLabel="Settings"
-        accessibilityTraits="button"
-        accessible={true}
-        collapsable={undefined}
-        hasTVPreferredFocus={undefined}
-        hitSlop={
-          Object {
-            "bottom": 10,
-            "left": 10,
-            "right": 10,
-            "top": 10,
-          }
-        }
-        isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
         style={
           Object {
-            "alignItems": "center",
-            "height": 24,
-            "justifyContent": "center",
-            "opacity": 1,
-            "width": 24,
+            "paddingBottom": 16,
+            "paddingLeft": 16,
           }
         }
-        testID="profile.navigation-settings-btn"
-        tvParallaxProperties={undefined}
       >
-        <Image
-          source={
-            Object {
-              "testUri": "../../../src/images/course/Settings.png",
-            }
-          }
+        <Heavy
           style={
             Object {
-              "height": 24,
-              "tintColor": "#2D3B45",
-              "width": 24,
+              "fontSize": 24,
             }
           }
-        />
+        >
+          Key and Peele
+        </Heavy>
+        <Paragraph
+          style={
+            Object {
+              "fontSize": 16,
+            }
+          }
+        >
+          keyandpeele@instructure.com
+        </Paragraph>
       </View>
-    </View>
-    <View
-      style={
-        Object {
-          "paddingBottom": 16,
-          "paddingLeft": 16,
-        }
-      }
-    >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-heavy",
-              "fontSize": 24,
-            },
-            Object {
-              "fontSize": 24,
-            },
-          ]
-        }
-      >
-        Key and Peele
-      </Text>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#7F91A7",
-              "fontSize": 16,
-              "lineHeight": 23,
-            },
-            Object {
-              "fontSize": 16,
-            },
-          ]
-        }
-      >
-        keyandpeele@instructure.com
-      </Text>
-    </View>
-    <RCTScrollView>
-      <View>
+      <ScrollViewMock>
         <View>
-          <View>
-            <TouchableHighlight
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
+          <View
+            key="Manage Children"
+          >
+            <Row
               onPress={[Function]}
-              style={
-                Array [
-                  undefined,
-                  undefined,
-                ]
-              }
-              testID={undefined}
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "white",
-                      "flex": 1,
-                      "flexDirection": "row",
-                      "minHeight": 54,
-                      "paddingBottom": 12,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                      "paddingTop": 12,
-                    },
-                    Object {
-                      "backgroundColor": "white",
-                    },
-                  ]
+              title="Manage Children"
+              titleStyles={
+                Object {
+                  "fontSize": 20,
+                  "fontWeight": "300",
                 }
-              >
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      },
-                      Object {
-                        "marginLeft": 0,
-                      },
-                    ]
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    numberOfLines={0}
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Array [
-                          Object {
-                            "fontWeight": "600",
-                          },
-                          Object {
-                            "fontSize": 20,
-                            "fontWeight": "300",
-                          },
-                        ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                      ]
-                    }
-                  >
-                    Files
-                  </Text>
-                </View>
-              </View>
-            </TouchableHighlight>
-            <View
+              }
+            />
+            <RowSeparator
               style={
-                Array [
-                  Object {
-                    "backgroundColor": "#C7CDD1",
-                    "height": 0.5,
-                  },
-                  Object {
-                    "marginLeft": 16,
-                  },
-                ]
+                Object {
+                  "marginLeft": 16,
+                }
               }
             />
           </View>
-          <View>
-            <TouchableHighlight
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
+          <View
+            key="Help"
+          >
+            <Row
               onPress={[Function]}
-              style={
-                Array [
-                  undefined,
-                  undefined,
-                ]
-              }
-              testID={undefined}
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "white",
-                      "flex": 1,
-                      "flexDirection": "row",
-                      "minHeight": 54,
-                      "paddingBottom": 12,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                      "paddingTop": 12,
-                    },
-                    Object {
-                      "backgroundColor": "white",
-                    },
-                  ]
+              title="Help"
+              titleStyles={
+                Object {
+                  "fontSize": 20,
+                  "fontWeight": "300",
                 }
-              >
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      },
-                      Object {
-                        "marginLeft": 0,
-                      },
-                    ]
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    numberOfLines={0}
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Array [
-                          Object {
-                            "fontWeight": "600",
-                          },
-                          Object {
-                            "fontSize": 20,
-                            "fontWeight": "300",
-                          },
-                        ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                      ]
-                    }
-                  >
-                    Act as User
-                  </Text>
-                </View>
-              </View>
-            </TouchableHighlight>
-            <View
+              }
+            />
+            <RowSeparator
               style={
-                Array [
-                  Object {
-                    "backgroundColor": "#C7CDD1",
-                    "height": 0.5,
-                  },
-                  Object {
-                    "marginLeft": 16,
-                  },
-                ]
+                Object {
+                  "marginLeft": 16,
+                }
               }
             />
           </View>
-          <View>
-            <TouchableHighlight
-              accessibilityLabel="Show Grades, Off"
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
+          <View
+            key="Act as User"
+          >
+            <Row
               onPress={[Function]}
-              style={
-                Array [
-                  undefined,
-                  undefined,
-                ]
-              }
-              testID={undefined}
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "white",
-                      "flex": 1,
-                      "flexDirection": "row",
-                      "minHeight": 54,
-                      "paddingBottom": 12,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                      "paddingTop": 12,
-                    },
-                    Object {
-                      "backgroundColor": "white",
-                    },
-                  ]
+              title="Act as User"
+              titleStyles={
+                Object {
+                  "fontSize": 20,
+                  "fontWeight": "300",
                 }
-              >
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      },
-                      Object {
-                        "marginLeft": 0,
-                      },
-                    ]
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    numberOfLines={0}
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Array [
-                          Object {
-                            "fontWeight": "600",
-                          },
-                          Object {
-                            "fontSize": 20,
-                            "fontWeight": "300",
-                          },
-                        ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                      ]
-                    }
-                  >
-                    Show Grades
-                  </Text>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "flex": 0,
-                    }
-                  }
-                >
-                  <View
-                    style={
-                      Object {
-                        "alignItems": "center",
-                        "flex": 1,
-                        "flexDirection": "row",
-                        "justifyContent": "flex-end",
-                      }
-                    }
-                  >
-                    <RCTSwitch
-                      disabled={false}
-                      onChange={[Function]}
-                      onResponderTerminationRequest={[Function]}
-                      onStartShouldSetResponder={[Function]}
-                      onTintColor="#374A59"
-                      onValueChange={[Function]}
-                      style={
-                        Array [
-                          Object {
-                            "height": 31,
-                            "width": 51,
-                          },
-                          undefined,
-                        ]
-                      }
-                      testID={undefined}
-                      tintColor={null}
-                      title="Show Grades"
-                      titleStyles={
-                        Object {
-                          "fontSize": 20,
-                          "fontWeight": "300",
-                        }
-                      }
-                      value={false}
-                    />
-                  </View>
-                </View>
-              </View>
-            </TouchableHighlight>
-            <View
+              }
+            />
+            <RowSeparator
               style={
-                Array [
-                  Object {
-                    "backgroundColor": "#C7CDD1",
-                    "height": 0.5,
-                  },
-                  Object {
-                    "marginLeft": 16,
-                  },
-                ]
+                Object {
+                  "marginLeft": 16,
+                }
               }
             />
           </View>
-          <View>
-            <TouchableHighlight
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
+          <View
+            key="Developer Menu"
+          >
+            <Row
               onPress={[Function]}
-              style={
-                Array [
-                  undefined,
-                  undefined,
-                ]
-              }
-              testID={undefined}
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "white",
-                      "flex": 1,
-                      "flexDirection": "row",
-                      "minHeight": 54,
-                      "paddingBottom": 12,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                      "paddingTop": 12,
-                    },
-                    Object {
-                      "backgroundColor": "white",
-                    },
-                  ]
+              title="Developer Menu"
+              titleStyles={
+                Object {
+                  "fontSize": 20,
+                  "fontWeight": "300",
                 }
-              >
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      },
-                      Object {
-                        "marginLeft": 0,
-                      },
-                    ]
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    numberOfLines={0}
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Array [
-                          Object {
-                            "fontWeight": "600",
-                          },
-                          Object {
-                            "fontSize": 20,
-                            "fontWeight": "300",
-                          },
-                        ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                      ]
-                    }
-                  >
-                    Help
-                  </Text>
-                </View>
-              </View>
-            </TouchableHighlight>
-            <View
+              }
+            />
+            <RowSeparator
               style={
-                Array [
-                  Object {
-                    "backgroundColor": "#C7CDD1",
-                    "height": 0.5,
-                  },
-                  Object {
-                    "marginLeft": 16,
-                  },
-                ]
+                Object {
+                  "marginLeft": 16,
+                }
               }
             />
           </View>
-          <View>
-            <TouchableHighlight
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
+          <View
+            key="Change User"
+          >
+            <Row
               onPress={[Function]}
-              style={
-                Array [
-                  undefined,
-                  undefined,
-                ]
-              }
-              testID={undefined}
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "white",
-                      "flex": 1,
-                      "flexDirection": "row",
-                      "minHeight": 54,
-                      "paddingBottom": 12,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                      "paddingTop": 12,
-                    },
-                    Object {
-                      "backgroundColor": "white",
-                    },
-                  ]
+              title="Change User"
+              titleStyles={
+                Object {
+                  "fontSize": 20,
+                  "fontWeight": "300",
                 }
-              >
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      },
-                      Object {
-                        "marginLeft": 0,
-                      },
-                    ]
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    numberOfLines={0}
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Array [
-                          Object {
-                            "fontWeight": "600",
-                          },
-                          Object {
-                            "fontSize": 20,
-                            "fontWeight": "300",
-                          },
-                        ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                      ]
-                    }
-                  >
-                    Developer Menu
-                  </Text>
-                </View>
-              </View>
-            </TouchableHighlight>
-            <View
+              }
+            />
+            <RowSeparator
               style={
-                Array [
-                  Object {
-                    "backgroundColor": "#C7CDD1",
-                    "height": 0.5,
-                  },
-                  Object {
-                    "marginLeft": 16,
-                  },
-                ]
+                Object {
+                  "marginLeft": 16,
+                }
               }
             />
           </View>
-          <View>
-            <TouchableHighlight
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
+          <View
+            key="Log Out"
+          >
+            <Row
               onPress={[Function]}
-              style={
-                Array [
-                  undefined,
-                  undefined,
-                ]
-              }
-              testID={undefined}
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "white",
-                      "flex": 1,
-                      "flexDirection": "row",
-                      "minHeight": 54,
-                      "paddingBottom": 12,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                      "paddingTop": 12,
-                    },
-                    Object {
-                      "backgroundColor": "white",
-                    },
-                  ]
+              title="Log Out"
+              titleStyles={
+                Object {
+                  "fontSize": 20,
+                  "fontWeight": "300",
                 }
-              >
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      },
-                      Object {
-                        "marginLeft": 0,
-                      },
-                    ]
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    numberOfLines={0}
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Array [
-                          Object {
-                            "fontWeight": "600",
-                          },
-                          Object {
-                            "fontSize": 20,
-                            "fontWeight": "300",
-                          },
-                        ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                      ]
-                    }
-                  >
-                    Change User
-                  </Text>
-                </View>
-              </View>
-            </TouchableHighlight>
-            <View
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "#C7CDD1",
-                    "height": 0.5,
-                  },
-                  Object {
-                    "marginLeft": 16,
-                  },
-                ]
               }
             />
-          </View>
-          <View>
-            <TouchableHighlight
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
-              onPress={[Function]}
+            <RowSeparator
               style={
-                Array [
-                  undefined,
-                  undefined,
-                ]
-              }
-              testID={undefined}
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "white",
-                      "flex": 1,
-                      "flexDirection": "row",
-                      "minHeight": 54,
-                      "paddingBottom": 12,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                      "paddingTop": 12,
-                    },
-                    Object {
-                      "backgroundColor": "white",
-                    },
-                  ]
+                Object {
+                  "marginLeft": 16,
                 }
-              >
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      },
-                      Object {
-                        "marginLeft": 0,
-                      },
-                    ]
-                  }
-                >
-                  <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    numberOfLines={0}
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Array [
-                          Object {
-                            "fontWeight": "600",
-                          },
-                          Object {
-                            "fontSize": 20,
-                            "fontWeight": "300",
-                          },
-                        ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                      ]
-                    }
-                  >
-                    Log Out
-                  </Text>
-                </View>
-              </View>
-            </TouchableHighlight>
-            <View
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "#C7CDD1",
-                    "height": 0.5,
-                  },
-                  Object {
-                    "marginLeft": 16,
-                  },
-                ]
               }
             />
           </View>
         </View>
+      </ScrollViewMock>
+      <View
+        style={
+          Object {
+            "alignItems": "flex-start",
+            "bottom": 0,
+            "padding": 16,
+          }
+        }
+      >
+        <TouchableWithoutFeedback
+          onPress={[Function]}
+          testID="profile-btn-secret-tap"
+        >
+          <Text
+            style={
+              Object {
+                "color": "#73818C",
+                "fontSize": 12,
+              }
+            }
+          >
+            v. 1.0
+          </Text>
+        </TouchableWithoutFeedback>
       </View>
-    </RCTScrollView>
-    <View
+    </SafeAreaView>
+  </View>
+</Screen>
+`;
+
+exports[`Profile Tests renders correctly for students 1`] = `
+<Screen
+  disableGlobalSafeArea={true}
+  navBarButtonColor="#2D3B45"
+  navBarHidden={true}
+  navBarStyle="light"
+  showDismissButton={true}
+  statusBarStyle="default"
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+    testID="module.profile"
+  >
+    <SavingBanner />
+    <SafeAreaView
       style={
         Object {
-          "alignItems": "flex-start",
-          "bottom": 0,
-          "padding": 16,
+          "flex": 1,
         }
       }
     >
-      <Text
-        accessibilityComponentType={undefined}
-        accessibilityLabel={undefined}
-        accessibilityTraits={undefined}
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        hitSlop={undefined}
-        nativeID={undefined}
-        onLayout={undefined}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
-            Object {
-              "color": "#73818C",
-              "fontSize": 12,
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-          ]
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "padding": 16,
+          }
         }
-        testID="profile-btn-secret-tap"
       >
-        v. 1.0
-      </Text>
-    </View>
-  </RCTSafeAreaView>
-</View>
+        <Avatar
+          avatarURL="https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg"
+          height={56}
+          testID="profile.avatar"
+          userName="Key and Peele"
+          width={56}
+        />
+        <TouchableOpacity
+          accessibilityLabel="Settings"
+          accessibilityTraits="button"
+          activeOpacity={0.2}
+          hitSlop={
+            Object {
+              "bottom": 10,
+              "left": 10,
+              "right": 10,
+              "top": 10,
+            }
+          }
+          onPress={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "height": 24,
+              "justifyContent": "center",
+              "width": 24,
+            }
+          }
+          testID="profile.navigation-settings-btn"
+        >
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/images/course/Settings.png",
+              }
+            }
+            style={
+              Object {
+                "height": 24,
+                "tintColor": "#2D3B45",
+                "width": 24,
+              }
+            }
+          />
+        </TouchableOpacity>
+      </View>
+      <View
+        style={
+          Object {
+            "paddingBottom": 16,
+            "paddingLeft": 16,
+          }
+        }
+      >
+        <Heavy
+          style={
+            Object {
+              "fontSize": 24,
+            }
+          }
+        >
+          Key and Peele
+        </Heavy>
+        <Paragraph
+          style={
+            Object {
+              "fontSize": 16,
+            }
+          }
+        >
+          keyandpeele@instructure.com
+        </Paragraph>
+      </View>
+      <ScrollViewMock>
+        <View>
+          <View
+            key="Files"
+          >
+            <Row
+              onPress={[Function]}
+              title="Files"
+              titleStyles={
+                Object {
+                  "fontSize": 20,
+                  "fontWeight": "300",
+                }
+              }
+            />
+            <RowSeparator
+              style={
+                Object {
+                  "marginLeft": 16,
+                }
+              }
+            />
+          </View>
+          <View
+            key="Act as User"
+          >
+            <Row
+              onPress={[Function]}
+              title="Act as User"
+              titleStyles={
+                Object {
+                  "fontSize": 20,
+                  "fontWeight": "300",
+                }
+              }
+            />
+            <RowSeparator
+              style={
+                Object {
+                  "marginLeft": 16,
+                }
+              }
+            />
+          </View>
+          <View
+            key="Show Grades"
+          >
+            <RowWithSwitch
+              onValueChange={[Function]}
+              title="Show Grades"
+              titleStyles={
+                Object {
+                  "fontSize": 20,
+                  "fontWeight": "300",
+                }
+              }
+            />
+            <RowSeparator
+              style={
+                Object {
+                  "marginLeft": 16,
+                }
+              }
+            />
+          </View>
+          <View
+            key="Help"
+          >
+            <Row
+              onPress={[Function]}
+              title="Help"
+              titleStyles={
+                Object {
+                  "fontSize": 20,
+                  "fontWeight": "300",
+                }
+              }
+            />
+            <RowSeparator
+              style={
+                Object {
+                  "marginLeft": 16,
+                }
+              }
+            />
+          </View>
+          <View
+            key="Developer Menu"
+          >
+            <Row
+              onPress={[Function]}
+              title="Developer Menu"
+              titleStyles={
+                Object {
+                  "fontSize": 20,
+                  "fontWeight": "300",
+                }
+              }
+            />
+            <RowSeparator
+              style={
+                Object {
+                  "marginLeft": 16,
+                }
+              }
+            />
+          </View>
+          <View
+            key="Change User"
+          >
+            <Row
+              onPress={[Function]}
+              title="Change User"
+              titleStyles={
+                Object {
+                  "fontSize": 20,
+                  "fontWeight": "300",
+                }
+              }
+            />
+            <RowSeparator
+              style={
+                Object {
+                  "marginLeft": 16,
+                }
+              }
+            />
+          </View>
+          <View
+            key="Log Out"
+          >
+            <Row
+              onPress={[Function]}
+              title="Log Out"
+              titleStyles={
+                Object {
+                  "fontSize": 20,
+                  "fontWeight": "300",
+                }
+              }
+            />
+            <RowSeparator
+              style={
+                Object {
+                  "marginLeft": 16,
+                }
+              }
+            />
+          </View>
+        </View>
+      </ScrollViewMock>
+      <View
+        style={
+          Object {
+            "alignItems": "flex-start",
+            "bottom": 0,
+            "padding": 16,
+          }
+        }
+      >
+        <TouchableWithoutFeedback
+          onPress={[Function]}
+          testID="profile-btn-secret-tap"
+        >
+          <Text
+            style={
+              Object {
+                "color": "#73818C",
+                "fontSize": 12,
+              }
+            }
+          >
+            v. 1.0
+          </Text>
+        </TouchableWithoutFeedback>
+      </View>
+    </SafeAreaView>
+  </View>
+</Screen>
 `;
 
 exports[`Profile Tests renders correctly with lti apps 1`] = `
