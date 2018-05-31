@@ -17,7 +17,7 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import React from 'react'
-import { ActionSheetIOS } from 'react-native'
+import { ActionSheetIOS, NativeModules } from 'react-native'
 import { AssignmentList } from '../AssignmentList'
 import { shallow } from 'enzyme'
 import AssignmentListRow from '../components/AssignmentListRow'
@@ -60,7 +60,7 @@ beforeEach(() => {
     pending: 0,
     ListRow: AssignmentListRow,
   }
-  jest.resetAllMocks()
+  jest.clearAllMocks()
 })
 
 test('renders correctly', () => {
@@ -370,4 +370,25 @@ test('calls refreshAssignmentList when a filter is updated', () => {
   const tree = shallow(<AssignmentList {...defaultProps} />)
   tree.instance().updateFilter(0)
   expect(defaultProps.refreshAssignmentList).toHaveBeenCalledWith(defaultProps.courseID, gradingPeriod.id)
+})
+
+test('tries to request app store review when closing', () => {
+  const tree = shallow(
+    <AssignmentList
+      {...defaultProps}
+      currentScore={89}
+      showTotalScore={false}
+    />
+  )
+  tree.unmount()
+  expect(NativeModules.AppStoreReview.handleSuccessfulSubmit)
+    .not.toHaveBeenCalled()
+  tree.setProps({ currentScore: 95 })
+  tree.unmount()
+  expect(NativeModules.AppStoreReview.handleSuccessfulSubmit)
+    .not.toHaveBeenCalled()
+  tree.setProps({ showTotalScore: true })
+  tree.unmount()
+  expect(NativeModules.AppStoreReview.handleSuccessfulSubmit)
+    .toHaveBeenCalled()
 })

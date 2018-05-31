@@ -75,6 +75,7 @@ import TermsOfUse from '../modules/tos/TermsOfUse'
 import PushNotifications from '../modules/developer-menu/PushNotifications'
 import SectionSelector from '../modules/announcements/edit/SectionSelector'
 import FeatureFlags from '../modules/developer-menu/FeatureFlags'
+import RatingRequest from '../modules/developer-menu/RatingRequest'
 import GradesList from '../modules/grades/GradesList'
 import PageViewEvents from '../modules/developer-menu/PageViewEvents'
 import { Store } from 'redux'
@@ -160,6 +161,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/push-notifications', wrap(PushNotifications), store)
   registerScreen('/page-view-events', wrap(PageViewEvents), store)
   registerScreen('/feature-flags', wrap(FeatureFlags), store)
+  registerScreen('/rating-request', wrap(RatingRequest), store)
 
   if (isTeacher()) {
     // Files

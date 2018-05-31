@@ -124,7 +124,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         if (!uiTesting) {
-            AppStoreReview.requestReview()
+            AppStoreReview.handleLaunch()
         }
     }
     

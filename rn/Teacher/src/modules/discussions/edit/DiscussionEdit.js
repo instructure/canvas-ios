@@ -150,7 +150,13 @@ export class DiscussionEdit extends Component<Props, any> {
     }
 
     if (this.state.pending && !props.pending) {
+      const isNew = !this.props.discussionID
       this.props.navigator.dismissAllModals()
+        .then(() => {
+          if (isNew) {
+            NativeModules.AppStoreReview.handleSuccessfulSubmit()
+          }
+        })
       return
     }
 

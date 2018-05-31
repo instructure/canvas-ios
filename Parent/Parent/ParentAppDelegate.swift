@@ -69,7 +69,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
-        AppStoreReview.requestReview()
+        AppStoreReview.handleLaunch()
 
         // TODO
         //        if let session = Keymaster.sharedInstance.currentSession {

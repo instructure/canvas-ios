@@ -25,6 +25,7 @@ import ReactNative, {
   TouchableOpacity,
   Image,
   LayoutAnimation,
+  NativeModules,
   Alert,
   processColor,
 } from 'react-native'
@@ -138,6 +139,7 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
     promise.then((response) => {
       this.props.refreshInboxSent()
       this.props.navigator.dismissAllModals()
+        .then(() => NativeModules.AppStoreReview.handleSuccessfulSubmit())
     }).catch((thrown) => {
       this.setState({
         pending: false,

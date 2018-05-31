@@ -115,6 +115,13 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
     }
   }
 
+  componentWillUnmount () {
+    const currentScore = this.state.currentScore || 0
+    if (this.props.showTotalScore && currentScore > 90) {
+      NativeModules.AppStoreReview.handleSuccessfulSubmit()
+    }
+  }
+
   onTraitCollectionChange () {
     this.props.navigator.traitCollection((traits) => { this.traitCollectionDidChange(traits) })
   }

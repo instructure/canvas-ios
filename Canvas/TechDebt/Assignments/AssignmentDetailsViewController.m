@@ -79,6 +79,7 @@
     }
 
     [NSHTTPCookieStorage sharedHTTPCookieStorage].cookieAcceptPolicy = NSHTTPCookieAcceptPolicyAlways;
+    [AppStoreReview handleNavigateToAssignment];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -98,6 +99,11 @@
     [super viewWillDisappear:animated];
 
     [NSHTTPCookieStorage sharedHTTPCookieStorage].cookieAcceptPolicy = NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain;
+}
+
+- (void)dealloc
+{
+    [AppStoreReview handleNavigateFromAssignment];
 }
 
 - (void)finishedLoadingContent {

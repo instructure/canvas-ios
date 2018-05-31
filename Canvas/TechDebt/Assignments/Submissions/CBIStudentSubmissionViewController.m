@@ -367,6 +367,7 @@ typedef enum CBISubmissionState : NSUInteger {
                 } completion:^(BOOL finished) {
                     [progressView removeFromSuperview];
                     progressView = nil;
+                    [AppStoreReview handleSuccessfulSubmit];
                 }];
             }];
         }

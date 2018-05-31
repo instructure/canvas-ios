@@ -132,6 +132,12 @@ NativeModules.APIBridge = {
   requestCompleted: jest.fn(),
 }
 
+NativeModules.AppStoreReview = {
+  handleSuccessfulSubmit: jest.fn(),
+  handleNavigateToAssignment: jest.fn(),
+  handleNavigateFromAssignment: jest.fn(),
+}
+
 jest.mock('NativeEventEmitter')
 
 jest.mock('NetInfo', () => ({

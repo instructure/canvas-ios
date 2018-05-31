@@ -17,18 +17,13 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import React from 'react'
+import { NativeModules } from 'react-native'
 import { shallow } from 'enzyme'
 import { Compose, mapStateToProps } from '../Compose'
 import api from '../../../canvas-api'
 import { apiResponse } from '../../../canvas-api/utils/testHelpers'
 
-let template = {
-  ...require('../../../__templates__/helm'),
-  ...require('../../../__templates__/addressBook'),
-  ...require('../../../__templates__/course'),
-  ...require('../../../__templates__/conversations'),
-  ...require('../../../__templates__/attachment'),
-}
+import * as template from '../../../__templates__'
 
 let defaultProps = {
   navigator: template.navigator({
@@ -165,7 +160,7 @@ describe('Compose', () => {
     expect(tree.state('recipients').length).toBe(0)
   })
 
-  it('creates conversation on send', () => {
+  it('creates conversation on send', async () => {
     const u1 = template.addressBookResult({ id: '1' })
     const props = {
       ...defaultProps,
@@ -174,9 +169,11 @@ describe('Compose', () => {
       subject: 'new conversation subject',
       onlySendIndividualMessages: false,
     }
+    const dismiss = Promise.resolve()
+    props.navigator.dismissAllModals = jest.fn(() => dismiss)
 
-    let response = apiResponse(template.conversation())
-    api.createConversation.mockReturnValueOnce(response())
+    let response = apiResponse(template.conversation())()
+    api.createConversation.mockReturnValueOnce(response)
 
     const tree = shallow(<Compose {...props} />)
     tree.find('[testID="compose-message.body-text-input"]').simulate('ChangeText', 'new conversation')
@@ -189,6 +186,10 @@ describe('Compose', () => {
       attachment_ids: [],
       context_code: 'course_1',
     })
+    await response
+    expect(props.navigator.dismissAllModals).toHaveBeenCalled()
+    await dismiss
+    expect(NativeModules.AppStoreReview.handleSuccessfulSubmit).toHaveBeenCalled()
   })
 
   it('adds message on send', () => {

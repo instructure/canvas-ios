@@ -126,12 +126,14 @@ export class DiscussionDetails extends Component<Props, any> {
       entry_ratings: props.entryRatings || {},
     }
     this.state.flatReplies = this.rootRepliesData(props.discussion, [], this.state.maxReplyNodeDepth)
+    NativeModules.AppStoreReview.handleNavigateToAssignment()
   }
 
   componentWillUnmount () {
     if (this.props.discussion) {
       this.props.refreshSingleDiscussion(this.props.context, this.props.contextID, this.props.discussionID)
     }
+    NativeModules.AppStoreReview.handleNavigateFromAssignment()
   }
 
   componentWillReceiveProps (nextProps: Props) {

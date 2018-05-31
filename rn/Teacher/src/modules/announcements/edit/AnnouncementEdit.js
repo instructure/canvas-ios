@@ -119,7 +119,13 @@ export class AnnouncementEdit extends Component<Props, any> {
 
     if (this.props.pending && !props.pending) {
       this.setState({ pending: false }, () => {
+        const isNew = !this.props.announcementID
         this.props.navigator.dismissAllModals()
+          .then(() => {
+            if (isNew) {
+              NativeModules.AppStoreReview.handleSuccessfulSubmit()
+            }
+          })
       })
       return
     }

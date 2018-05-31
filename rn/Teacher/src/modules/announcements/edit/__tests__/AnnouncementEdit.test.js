@@ -51,14 +51,7 @@ jest
   .mock('../../../../common/components/RequiredFieldSubscript', () => 'RequiredFieldSubscript')
   .mock('Switch', () => 'Switch')
 
-const template = {
-  ...require('../../../../__templates__/discussion'),
-  ...require('../../../../__templates__/attachment'),
-  ...require('../../../../__templates__/section'),
-  ...require('../../../../__templates__/error'),
-  ...require('../../../../__templates__/helm'),
-  ...require('../../../../redux/__templates__/app-state'),
-}
+import * as template from '../../../../__templates__'
 
 describe('AnnouncementEdit', () => {
   let props: Props
@@ -219,13 +212,16 @@ describe('AnnouncementEdit', () => {
     expect(Alert.alert).toHaveBeenCalled()
   })
 
-  it('dismisses on successful save', () => {
+  it('dismisses on successful save', async () => {
+    const dismiss = Promise.resolve()
     props.announcementID = null
-    props.navigator.dismissAllModals = jest.fn()
+    props.navigator.dismissAllModals = jest.fn(() => dismiss)
     const component = render(props)
     component.update(<AnnouncementEdit {...props} pending={1} />)
     component.update(<AnnouncementEdit {...props} pending={0} />)
     expect(props.navigator.dismissAllModals).toHaveBeenCalled()
+    await dismiss
+    expect(NativeModules.AppStoreReview.handleSuccessfulSubmit).toHaveBeenCalled()
   })
 
   it('updates with new props', async () => {

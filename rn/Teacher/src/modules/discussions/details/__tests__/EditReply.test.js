@@ -21,7 +21,7 @@ import React from 'react'
 import { EditReply, mapStateToProps } from '../EditReply'
 import explore from '../../../../../test/helpers/explore'
 import setProps from '../../../../../test/helpers/setProps'
-import { Alert } from 'react-native'
+import { Alert, NativeModules } from 'react-native'
 import renderer from 'react-test-renderer'
 import app from '../../../app'
 import * as template from '../../../../__templates__'
@@ -47,7 +47,7 @@ jest
 describe('EditReply', () => {
   let defaultProps
   beforeEach(() => {
-    jest.resetAllMocks()
+    jest.clearAllMocks()
     defaultProps = {
       discussion: template.discussion({ id: '1' }),
       navigator: template.navigator(),
@@ -121,7 +121,7 @@ describe('EditReply', () => {
     expect(component.toJSON()).toMatchSnapshot()
   })
 
-  it('dismisses modal after reply updates', () => {
+  it('dismisses modal after reply updates', async () => {
     let component = renderer.create(
       <EditReply {...defaultProps} />
     )
@@ -133,6 +133,8 @@ describe('EditReply', () => {
     const doneButton: any = explore(component.toJSON()).selectRightBarButton('edit-discussion-reply.done-btn')
     doneButton.action()
     expect(defaultProps.navigator.dismissAllModals).toHaveBeenCalled()
+    await Promise.resolve() // dismissAllModals
+    expect(NativeModules.AppStoreReview.handleSuccessfulSubmit).toHaveBeenCalled()
   })
 
   it('sets message placeholder', () => {
@@ -178,6 +180,8 @@ describe('EditReply', () => {
     await doneButton.action()
     expect(editEntry).toBeCalledWith(defaultProps.context, defaultProps.contextID, editProps.discussionID, editProps.entryID, { attachment: null, message }, [])
     expect(defaultProps.navigator.dismissAllModals).toHaveBeenCalled()
+    await Promise.resolve() // dismissAllModals
+    expect(NativeModules.AppStoreReview.handleSuccessfulSubmit).not.toHaveBeenCalled()
   })
 
   it('cannot add an attachment if it does not have permission', () => {

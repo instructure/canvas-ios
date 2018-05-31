@@ -31,6 +31,7 @@ import {
   View,
   LayoutAnimation,
   processColor,
+  NativeModules,
 } from 'react-native'
 
 type OwnProps = {
@@ -114,8 +115,14 @@ export class EditReply extends React.Component<Props, any> {
       return
     }
     if (this.state.pending && !props.pending) {
+      const isNew = !this.props.isEdit
       this.props.refreshDiscussionEntries(this.props.context, this.props.contextID, this.props.discussionID, true)
       this.props.navigator.dismissAllModals()
+        .then(() => {
+          if (isNew) {
+            NativeModules.AppStoreReview.handleSuccessfulSubmit()
+          }
+        })
       return
     }
   }

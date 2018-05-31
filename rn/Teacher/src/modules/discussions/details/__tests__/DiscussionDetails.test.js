@@ -20,6 +20,7 @@ import React from 'react'
 import {
   ActionSheetIOS,
   AlertIOS,
+  NativeModules,
 } from 'react-native'
 import renderer from 'react-test-renderer'
 
@@ -652,6 +653,15 @@ describe('DiscussionDetails', () => {
     const screen = shallow(<DiscussionDetails {...props} />)
     screen.setProps({ error: 'ERROR!' })
     expect(alertError).toHaveBeenCalledWith('ERROR!')
+  })
+
+  it('informs app store review of navigation', () => {
+    const tree = shallow(<DiscussionDetails {...props} />)
+    expect(NativeModules.AppStoreReview.handleNavigateToAssignment)
+      .toHaveBeenCalled()
+    tree.unmount()
+    expect(NativeModules.AppStoreReview.handleNavigateFromAssignment)
+      .toHaveBeenCalled()
   })
 
   it('replaces with correct group discussion', () => {
