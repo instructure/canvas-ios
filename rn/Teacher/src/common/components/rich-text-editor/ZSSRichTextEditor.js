@@ -122,7 +122,7 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
   }
 
   updateHTML = (html: ?string) => {
-    const cleanHTML = this._escapeJSONString(html || '')
+    const cleanHTML = this.escapeJSONString(html || '')
     this.trigger(`zss_editor.setHTML("${cleanHTML}");`)
   }
 
@@ -231,6 +231,12 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
     }
   }
 
+  paste = (string: string) => {
+    const formatted = this.escapeClipboardString(string)
+    this.prepareInsert()
+    this.insertHTML(formatted)
+  }
+
   _handlePaste = async () => {
     let string = await Clipboard.getString()
     if (!string) return
@@ -239,19 +245,17 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
       let fileID = extractFileID(string)
       if (fileID) {
         let { data } = await this.props.getFile(fileID)
-        this.prepareInsert()
         if (data.mime_class === 'image') {
+          this.prepareInsert()
           this.insertImage(data.url)
         } else {
-          this.insertHTML(string)
+          this.paste(string)
         }
       } else {
-        this.prepareInsert()
-        this.insertHTML(string)
+        this.paste(string)
       }
     } catch (error) {
-      this.prepareInsert()
-      this.insertHTML(string)
+      this.paste(string)
     }
   }
 
@@ -351,7 +355,7 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
 
   // UTILITIES
 
-  _escapeJSONString (string) {
+  escapeJSONString (string: string) {
     return string
       .replace(/[\\]/g, '\\\\')
       .replace(/["]/g, '\\"')
@@ -359,6 +363,20 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
       .replace(/[\b]/g, '\\b')
       .replace(/[\f]/g, '\\f')
       .replace(/[\n]/g, '\\n')
+      .replace(/[\r]/g, '\\r')
+      .replace(/[\t]/g, '\\t')
+  }
+
+  escapeClipboardString (string: string) {
+    // https://stackoverflow.com/a/9204218
+    return string
+      .replace(/[\\]/g, '\\\\')
+      .replace(/["]/g, '\\"')
+      .replace(/[']/g, "\\'")
+      .replace(/[/]/g, '\\/')
+      .replace(/[\b]/g, '\\b')
+      .replace(/[\f]/g, '\\f')
+      .replace(/[\n]/g, '<br>')
       .replace(/[\r]/g, '\\r')
       .replace(/[\t]/g, '\\t')
   }

@@ -349,6 +349,11 @@ describe('ZSSRichTextEditor', () => {
       expect(js.mock.calls).toMatchSnapshot()
     })
 
+    it('replaces newlines with <br>', async () => {
+      await paste('Line One\nLine Two')
+      expect(js.mock.calls).toMatchSnapshot()
+    })
+
     it('only pastes if clipboard has a string', async () => {
       await paste(null)
       expect(js).not.toHaveBeenCalled()

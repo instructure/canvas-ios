@@ -48,7 +48,7 @@ Array [
     "zss_editor.prepareInsert();",
   ],
   Array [
-    "zss_editor.insertHTML('https://canvas.instructure.com/files/1/download');",
+    "zss_editor.insertHTML('https:\\\\/\\\\/canvas.instructure.com\\\\/files\\\\/1\\\\/download');",
   ],
 ]
 `;
@@ -70,7 +70,7 @@ Array [
     "zss_editor.prepareInsert();",
   ],
   Array [
-    "zss_editor.insertHTML('https://one.com/files/1');",
+    "zss_editor.insertHTML('https:\\\\/\\\\/one.com\\\\/files\\\\/1');",
   ],
 ]
 `;
@@ -81,7 +81,7 @@ Array [
     "zss_editor.prepareInsert();",
   ],
   Array [
-    "zss_editor.insertHTML('https://canvas.instructure.com/files/1/download');",
+    "zss_editor.insertHTML('https:\\\\/\\\\/canvas.instructure.com\\\\/files\\\\/1\\\\/download');",
   ],
 ]
 `;
@@ -97,13 +97,24 @@ Array [
 ]
 `;
 
+exports[`ZSSRichTextEditor paste replaces newlines with <br> 1`] = `
+Array [
+  Array [
+    "zss_editor.prepareInsert();",
+  ],
+  Array [
+    "zss_editor.insertHTML('Line One<br>Line Two');",
+  ],
+]
+`;
+
 exports[`ZSSRichTextEditor paste will not be tricked by urls with spaces 1`] = `
 Array [
   Array [
     "zss_editor.prepareInsert();",
   ],
   Array [
-    "zss_editor.insertHTML('https://one.com/files/1/download https://two.com/files/2/download');",
+    "zss_editor.insertHTML('https:\\\\/\\\\/one.com\\\\/files\\\\/1\\\\/download https:\\\\/\\\\/two.com\\\\/files\\\\/2\\\\/download');",
   ],
 ]
 `;
