@@ -60,6 +60,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
         _subjectForClientLogout = [RACSubject new];
         _subjectForClientCannotLogInAutomatically = [RACSubject new];
         self.fetchesBranding = NO;
+        self.automaticallyLogInOnlyUser = YES;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(accessTokenExpired:) name:CKIClientAccessTokenExpiredNotification object:nil];
     }
     return self;
@@ -82,8 +83,8 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
 {
     FXKeychain *keychain = [FXKeychain sharedKeychain];
     NSArray *clients = [keychain clients];
-    // if we only have 1 client, lets log them in automatically
-    if (clients.count == 1) {
+    // if we only have 1 client, let's log them in automatically
+    if (clients.count == 1 && self.automaticallyLogInOnlyUser) {
         return clients.firstObject;
     }
     
@@ -253,8 +254,9 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
     self.domainPicker = [CKMDomainPickerViewController new];
     self.domainPickerNavigationController = [[UINavigationController alloc] initWithRootViewController:self.domainPicker];
     [self.domainPickerNavigationController setNavigationBarHidden:YES animated:NO];
-    
-    RACSignal *signalForClientForUsersDomain =  [[self.domainPicker selectedADomainSignal] flattenMap:^__kindof RACStream * _Nullable(CKIAccountDomain *domain) {
+
+    RACSignal *selectedADomainSignal = host ? [RACSignal return:[[CKIAccountDomain alloc] initWithDomain:host]] : [self.domainPicker selectedADomainSignal];
+    RACSignal *signalForClientForUsersDomain =  [selectedADomainSignal flattenMap:^__kindof RACStream * _Nullable(CKIAccountDomain *domain) {
         return [[self clientForMobileVerifiedDomain:domain] deliverOn:[RACScheduler mainThreadScheduler]];
     }];
     
@@ -270,7 +272,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
     [self loginWithSuggestedDomain:nil];
 }
 
-- (void)loginWithSuggestedDomain:(NSString *)host
+- (void)loginWithSuggestedDomain:(nullable NSString *)host
 {
     RACSignal *signalForClientForUsersDomain = [self clientForSuggestedDomain:host];
     
@@ -283,6 +285,12 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
     }];
     
     [_subjectForClientLogout sendNext:self.domainPickerNavigationController];
+}
+
+- (void)loginWithClient:(CKIClient *)client
+{
+    _currentClient = client;
+    [_subjectForClientLogin sendNext:client];
 }
 
 - (RACSignal *)signalForLogout
@@ -324,8 +332,12 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
     }] deliverOn:[RACScheduler mainThreadScheduler]];
 }
 
-- (BOOL)currentClientHasHost:(NSString *)host {
-    return [self.currentClient.baseURL.host isEqualToString:host];
+- (NSArray<CKIClient *> *)clientsForHost:(NSString *)host {
+    FXKeychain *keychain = [FXKeychain sharedKeychain];
+    NSArray *clients = [keychain clients];
+    return [clients filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(CKIClient *client, NSDictionary<NSString *,id> * _Nullable bindings) {
+        return [client.baseURL.host isEqualToString:host];
+    }]];
 }
 
 - (void)completeLogout {

@@ -224,7 +224,7 @@ RCT_EXPORT_METHOD(stopObserving)
     }];
 }
 
-- (void) sendLoginEvent:(CKIClient*) client {
+- (void)sendLoginEvent:(CKIClient*)client {
     if (client == nil) {
         [[NativeLogin sharedInstance] sendEventWithName:@"Login" body:@{}];
         return;
