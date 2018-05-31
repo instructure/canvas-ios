@@ -1,12 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CourseSettings dismisses modal activity upon save error 1`] = `
-<RCTSafeAreaView
-  style={
-    Object {
-      "flex": 1,
-    }
+<Screen
+  drawUnderNavBar={false}
+  navBarButtonColor="#008EE2"
+  navBarStyle="light"
+  navBarTitleColor="#2D3B45"
+  rightBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "style": "done",
+        "testID": "course-settings.done-btn",
+        "title": "Done",
+      },
+    ]
   }
+  showDismissButton={false}
+  statusBarStyle="default"
+  title="Course Settings"
 >
   <View
     style={
@@ -15,147 +27,57 @@ exports[`CourseSettings dismisses modal activity upon save error 1`] = `
       }
     }
   >
-    <Modal
+    <ModalOverlay
+      activityIndicatorColor="#fff"
       animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
+      backgroundColor="rgba(0,0,0,0.8)"
+      height={170}
+      showActivityIndicator={true}
+      text="Saving"
       transparent={true}
       visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <RCTScrollView
-      automaticallyAdjustContentInsets={false}
-      contentContainerStyle={undefined}
-      contentInset={
-        Object {
-          "bottom": 0,
-        }
-      }
+      width={170}
+    />
+    <KeyboardAwareScrollView
       enableAutoAutomaticScroll={true}
       enableResetScrollToCoords={true}
       extraHeight={75}
       extraScrollHeight={0}
-      keyboardDismissMode="interactive"
       keyboardOpeningTime={250}
-      onScroll={[Function]}
-      scrollEventThrottle={0}
-      showsVerticalScrollIndicator={true}
       style={
         Object {
           "flex": 1,
         }
       }
     >
-      <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "height": 235,
+            "justifyContent": "center",
+            "padding": 10,
+            "paddingTop": 20,
+          }
+        }
+      >
         <View
           style={
             Object {
-              "alignItems": "center",
-              "height": 235,
-              "justifyContent": "center",
-              "padding": 10,
-              "paddingTop": 20,
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
             }
           }
         >
-          <View
+          <Image
+            source={
+              Object {
+                "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+              }
+            }
             style={
               Object {
                 "bottom": 0,
@@ -165,42 +87,90 @@ exports[`CourseSettings dismisses modal activity upon save error 1`] = `
                 "top": 0,
               }
             }
-          >
-            <Image
-              source={
-                Object {
-                  "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-                }
-              }
-              style={
+          />
+          <View
+            style={
+              Array [
                 Object {
                   "bottom": 0,
                   "left": 0,
                   "position": "absolute",
                   "right": 0,
                   "top": 0,
-                }
-              }
-            />
-            <View
-              style={
-                Array [
-                  Object {
-                    "bottom": 0,
-                    "left": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  },
-                  Object {
-                    "backgroundColor": "#333",
-                    "opacity": 0.8,
-                  },
-                ]
-              }
-            />
-          </View>
+                },
+                Object {
+                  "backgroundColor": "#333",
+                  "opacity": 0.8,
+                },
+              ]
+            }
+          />
         </View>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+            "height": 54,
+            "justifyContent": "center",
+            "paddingHorizontal": 16,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#2D3B45",
+                "flex": 2,
+                "fontSize": 16,
+                "fontWeight": "600",
+                "lineHeight": 54,
+              }
+            }
+            testID="course-settings.name-lbl"
+          >
+            Name
+          </Text>
+          <TextInput
+            onChangeText={[Function]}
+            style={
+              Object {
+                "color": "#2D3B45",
+                "flex": 3,
+                "fontSize": 16,
+                "lineHeight": 54,
+                "textAlign": "right",
+              }
+            }
+            testID="course-settings.name-input-textbox"
+            value="Learn React Native"
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          }
+        }
+      />
+      <TouchableHighlight
+        activeOpacity={0.85}
+        onPress={[Function]}
+        testID="course-settings.toggle-home-picker"
+        underlayColor="#eee"
+      >
         <View
           style={
             Object {
@@ -222,45 +192,22 @@ exports[`CourseSettings dismisses modal activity upon save error 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "flex": 2,
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                    "lineHeight": 54,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
+                Object {
+                  "color": "#2D3B45",
+                  "flex": 2,
+                  "fontSize": 16,
+                  "fontWeight": "600",
+                  "lineHeight": 54,
+                }
               }
-              testID="course-settings.name-lbl"
+              testID="course-settings.set-home-lbl"
             >
-              Name
+              Set 'Home' to...
             </Text>
-            <TextInput
-              allowFontScaling={true}
-              onChangeText={[Function]}
+            <Text
               style={
                 Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "fontSize": 17,
-                  },
                   Object {
                     "color": "#2D3B45",
                     "flex": 3,
@@ -268,147 +215,61 @@ exports[`CourseSettings dismisses modal activity upon save error 1`] = `
                     "lineHeight": 54,
                     "textAlign": "right",
                   },
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
+                  Object {},
                 ]
               }
-              testID="course-settings.name-input-textbox"
-              value="Learn React Native"
-            />
+              testID="course-settings.home-page-lbl"
+            >
+              Pages Front Page
+            </Text>
           </View>
         </View>
-        <View
-          style={
+      </TouchableHighlight>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          }
+        }
+      />
+      <View
+        style={
+          Array [
             Object {
-              "backgroundColor": "#C7CDD1",
-              "height": 0.5,
-            }
-          }
-        />
-        <TouchableHighlight
-          onPress={[Function]}
-          testID="course-settings.toggle-home-picker"
-          underlayColor="#eee"
-        >
-          <View
-            style={
-              Object {
-                "flex": 1,
-                "flexDirection": "column",
-                "height": 54,
-                "justifyContent": "center",
-                "paddingHorizontal": 16,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "space-between",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "flex": 2,
-                      "fontSize": 16,
-                      "fontWeight": "600",
-                      "lineHeight": 54,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-                testID="course-settings.set-home-lbl"
-              >
-                Set 'Home' to...
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "color": "#2D3B45",
-                        "flex": 3,
-                        "fontSize": 16,
-                        "lineHeight": 54,
-                        "textAlign": "right",
-                      },
-                      Object {},
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                  ]
-                }
-                testID="course-settings.home-page-lbl"
-              >
-                Pages Front Page
-              </Text>
-            </View>
-          </View>
-        </TouchableHighlight>
-        <View
-          style={
+              "backgroundColor": "white",
+              "flex": 0,
+            },
             Object {
-              "backgroundColor": "#C7CDD1",
-              "height": 0.5,
-            }
-          }
-        />
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "white",
-                "flex": 0,
-              },
-              Object {
-                "height": 150,
-              },
-            ]
-          }
-        />
-      </View>
-    </RCTScrollView>
+              "height": 150,
+            },
+          ]
+        }
+      />
+    </KeyboardAwareScrollView>
   </View>
-</RCTSafeAreaView>
+</Screen>
 `;
 
 exports[`CourseSettings renders 1`] = `
-<RCTSafeAreaView
-  style={
-    Object {
-      "flex": 1,
-    }
+<Screen
+  drawUnderNavBar={false}
+  navBarButtonColor="#008EE2"
+  navBarStyle="light"
+  navBarTitleColor="#2D3B45"
+  rightBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "style": "done",
+        "testID": "course-settings.done-btn",
+        "title": "Done",
+      },
+    ]
   }
+  showDismissButton={false}
+  statusBarStyle="default"
+  title="Course Settings"
 >
   <View
     style={
@@ -417,147 +278,57 @@ exports[`CourseSettings renders 1`] = `
       }
     }
   >
-    <Modal
+    <ModalOverlay
+      activityIndicatorColor="#fff"
       animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
+      backgroundColor="rgba(0,0,0,0.8)"
+      height={170}
+      showActivityIndicator={true}
+      text="Saving"
       transparent={true}
       visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <RCTScrollView
-      automaticallyAdjustContentInsets={false}
-      contentContainerStyle={undefined}
-      contentInset={
-        Object {
-          "bottom": 0,
-        }
-      }
+      width={170}
+    />
+    <KeyboardAwareScrollView
       enableAutoAutomaticScroll={true}
       enableResetScrollToCoords={true}
       extraHeight={75}
       extraScrollHeight={0}
-      keyboardDismissMode="interactive"
       keyboardOpeningTime={250}
-      onScroll={[Function]}
-      scrollEventThrottle={0}
-      showsVerticalScrollIndicator={true}
       style={
         Object {
           "flex": 1,
         }
       }
     >
-      <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "height": 235,
+            "justifyContent": "center",
+            "padding": 10,
+            "paddingTop": 20,
+          }
+        }
+      >
         <View
           style={
             Object {
-              "alignItems": "center",
-              "height": 235,
-              "justifyContent": "center",
-              "padding": 10,
-              "paddingTop": 20,
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
             }
           }
         >
-          <View
+          <Image
+            source={
+              Object {
+                "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+              }
+            }
             style={
               Object {
                 "bottom": 0,
@@ -567,42 +338,90 @@ exports[`CourseSettings renders 1`] = `
                 "top": 0,
               }
             }
-          >
-            <Image
-              source={
-                Object {
-                  "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-                }
-              }
-              style={
+          />
+          <View
+            style={
+              Array [
                 Object {
                   "bottom": 0,
                   "left": 0,
                   "position": "absolute",
                   "right": 0,
                   "top": 0,
-                }
-              }
-            />
-            <View
-              style={
-                Array [
-                  Object {
-                    "bottom": 0,
-                    "left": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  },
-                  Object {
-                    "backgroundColor": "#333",
-                    "opacity": 0.8,
-                  },
-                ]
-              }
-            />
-          </View>
+                },
+                Object {
+                  "backgroundColor": "#333",
+                  "opacity": 0.8,
+                },
+              ]
+            }
+          />
         </View>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+            "height": 54,
+            "justifyContent": "center",
+            "paddingHorizontal": 16,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#2D3B45",
+                "flex": 2,
+                "fontSize": 16,
+                "fontWeight": "600",
+                "lineHeight": 54,
+              }
+            }
+            testID="course-settings.name-lbl"
+          >
+            Name
+          </Text>
+          <TextInput
+            onChangeText={[Function]}
+            style={
+              Object {
+                "color": "#2D3B45",
+                "flex": 3,
+                "fontSize": 16,
+                "lineHeight": 54,
+                "textAlign": "right",
+              }
+            }
+            testID="course-settings.name-input-textbox"
+            value="Learn React Native"
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          }
+        }
+      />
+      <TouchableHighlight
+        activeOpacity={0.85}
+        onPress={[Function]}
+        testID="course-settings.toggle-home-picker"
+        underlayColor="#eee"
+      >
         <View
           style={
             Object {
@@ -624,45 +443,22 @@ exports[`CourseSettings renders 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "flex": 2,
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                    "lineHeight": 54,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
+                Object {
+                  "color": "#2D3B45",
+                  "flex": 2,
+                  "fontSize": 16,
+                  "fontWeight": "600",
+                  "lineHeight": 54,
+                }
               }
-              testID="course-settings.name-lbl"
+              testID="course-settings.set-home-lbl"
             >
-              Name
+              Set 'Home' to...
             </Text>
-            <TextInput
-              allowFontScaling={true}
-              onChangeText={[Function]}
+            <Text
               style={
                 Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "fontSize": 17,
-                  },
                   Object {
                     "color": "#2D3B45",
                     "flex": 3,
@@ -670,147 +466,61 @@ exports[`CourseSettings renders 1`] = `
                     "lineHeight": 54,
                     "textAlign": "right",
                   },
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
+                  Object {},
                 ]
               }
-              testID="course-settings.name-input-textbox"
-              value="Learn React Native"
-            />
+              testID="course-settings.home-page-lbl"
+            >
+              Pages Front Page
+            </Text>
           </View>
         </View>
-        <View
-          style={
+      </TouchableHighlight>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          }
+        }
+      />
+      <View
+        style={
+          Array [
             Object {
-              "backgroundColor": "#C7CDD1",
-              "height": 0.5,
-            }
-          }
-        />
-        <TouchableHighlight
-          onPress={[Function]}
-          testID="course-settings.toggle-home-picker"
-          underlayColor="#eee"
-        >
-          <View
-            style={
-              Object {
-                "flex": 1,
-                "flexDirection": "column",
-                "height": 54,
-                "justifyContent": "center",
-                "paddingHorizontal": 16,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "space-between",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "flex": 2,
-                      "fontSize": 16,
-                      "fontWeight": "600",
-                      "lineHeight": 54,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-                testID="course-settings.set-home-lbl"
-              >
-                Set 'Home' to...
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "color": "#2D3B45",
-                        "flex": 3,
-                        "fontSize": 16,
-                        "lineHeight": 54,
-                        "textAlign": "right",
-                      },
-                      Object {},
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                  ]
-                }
-                testID="course-settings.home-page-lbl"
-              >
-                Pages Front Page
-              </Text>
-            </View>
-          </View>
-        </TouchableHighlight>
-        <View
-          style={
+              "backgroundColor": "white",
+              "flex": 0,
+            },
             Object {
-              "backgroundColor": "#C7CDD1",
-              "height": 0.5,
-            }
-          }
-        />
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "white",
-                "flex": 0,
-              },
-              Object {
-                "height": 150,
-              },
-            ]
-          }
-        />
-      </View>
-    </RCTScrollView>
+              "height": 150,
+            },
+          ]
+        }
+      />
+    </KeyboardAwareScrollView>
   </View>
-</RCTSafeAreaView>
+</Screen>
 `;
 
 exports[`CourseSettings renders a modal activity when saving 1`] = `
-<RCTSafeAreaView
-  style={
-    Object {
-      "flex": 1,
-    }
+<Screen
+  drawUnderNavBar={false}
+  navBarButtonColor="#008EE2"
+  navBarStyle="light"
+  navBarTitleColor="#2D3B45"
+  rightBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "style": "done",
+        "testID": "course-settings.done-btn",
+        "title": "Done",
+      },
+    ]
   }
+  showDismissButton={false}
+  statusBarStyle="default"
+  title="Course Settings"
 >
   <View
     style={
@@ -819,147 +529,57 @@ exports[`CourseSettings renders a modal activity when saving 1`] = `
       }
     }
   >
-    <Modal
+    <ModalOverlay
+      activityIndicatorColor="#fff"
       animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
+      backgroundColor="rgba(0,0,0,0.8)"
+      height={170}
+      showActivityIndicator={true}
+      text="Saving"
       transparent={true}
       visible={true}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <RCTScrollView
-      automaticallyAdjustContentInsets={false}
-      contentContainerStyle={undefined}
-      contentInset={
-        Object {
-          "bottom": 0,
-        }
-      }
+      width={170}
+    />
+    <KeyboardAwareScrollView
       enableAutoAutomaticScroll={true}
       enableResetScrollToCoords={true}
       extraHeight={75}
       extraScrollHeight={0}
-      keyboardDismissMode="interactive"
       keyboardOpeningTime={250}
-      onScroll={[Function]}
-      scrollEventThrottle={0}
-      showsVerticalScrollIndicator={true}
       style={
         Object {
           "flex": 1,
         }
       }
     >
-      <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "height": 235,
+            "justifyContent": "center",
+            "padding": 10,
+            "paddingTop": 20,
+          }
+        }
+      >
         <View
           style={
             Object {
-              "alignItems": "center",
-              "height": 235,
-              "justifyContent": "center",
-              "padding": 10,
-              "paddingTop": 20,
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
             }
           }
         >
-          <View
+          <Image
+            source={
+              Object {
+                "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+              }
+            }
             style={
               Object {
                 "bottom": 0,
@@ -969,42 +589,90 @@ exports[`CourseSettings renders a modal activity when saving 1`] = `
                 "top": 0,
               }
             }
-          >
-            <Image
-              source={
-                Object {
-                  "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-                }
-              }
-              style={
+          />
+          <View
+            style={
+              Array [
                 Object {
                   "bottom": 0,
                   "left": 0,
                   "position": "absolute",
                   "right": 0,
                   "top": 0,
-                }
-              }
-            />
-            <View
-              style={
-                Array [
-                  Object {
-                    "bottom": 0,
-                    "left": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  },
-                  Object {
-                    "backgroundColor": "#333",
-                    "opacity": 0.8,
-                  },
-                ]
-              }
-            />
-          </View>
+                },
+                Object {
+                  "backgroundColor": "#333",
+                  "opacity": 0.8,
+                },
+              ]
+            }
+          />
         </View>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+            "height": 54,
+            "justifyContent": "center",
+            "paddingHorizontal": 16,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#2D3B45",
+                "flex": 2,
+                "fontSize": 16,
+                "fontWeight": "600",
+                "lineHeight": 54,
+              }
+            }
+            testID="course-settings.name-lbl"
+          >
+            Name
+          </Text>
+          <TextInput
+            onChangeText={[Function]}
+            style={
+              Object {
+                "color": "#2D3B45",
+                "flex": 3,
+                "fontSize": 16,
+                "lineHeight": 54,
+                "textAlign": "right",
+              }
+            }
+            testID="course-settings.name-input-textbox"
+            value="Learn React Native"
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          }
+        }
+      />
+      <TouchableHighlight
+        activeOpacity={0.85}
+        onPress={[Function]}
+        testID="course-settings.toggle-home-picker"
+        underlayColor="#eee"
+      >
         <View
           style={
             Object {
@@ -1026,45 +694,22 @@ exports[`CourseSettings renders a modal activity when saving 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "flex": 2,
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                    "lineHeight": 54,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
+                Object {
+                  "color": "#2D3B45",
+                  "flex": 2,
+                  "fontSize": 16,
+                  "fontWeight": "600",
+                  "lineHeight": 54,
+                }
               }
-              testID="course-settings.name-lbl"
+              testID="course-settings.set-home-lbl"
             >
-              Name
+              Set 'Home' to...
             </Text>
-            <TextInput
-              allowFontScaling={true}
-              onChangeText={[Function]}
+            <Text
               style={
                 Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "fontSize": 17,
-                  },
                   Object {
                     "color": "#2D3B45",
                     "flex": 3,
@@ -1072,147 +717,61 @@ exports[`CourseSettings renders a modal activity when saving 1`] = `
                     "lineHeight": 54,
                     "textAlign": "right",
                   },
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
+                  Object {},
                 ]
               }
-              testID="course-settings.name-input-textbox"
-              value="Learn React Native"
-            />
+              testID="course-settings.home-page-lbl"
+            >
+              Pages Front Page
+            </Text>
           </View>
         </View>
-        <View
-          style={
+      </TouchableHighlight>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          }
+        }
+      />
+      <View
+        style={
+          Array [
             Object {
-              "backgroundColor": "#C7CDD1",
-              "height": 0.5,
-            }
-          }
-        />
-        <TouchableHighlight
-          onPress={[Function]}
-          testID="course-settings.toggle-home-picker"
-          underlayColor="#eee"
-        >
-          <View
-            style={
-              Object {
-                "flex": 1,
-                "flexDirection": "column",
-                "height": 54,
-                "justifyContent": "center",
-                "paddingHorizontal": 16,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "space-between",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "flex": 2,
-                      "fontSize": 16,
-                      "fontWeight": "600",
-                      "lineHeight": 54,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-                testID="course-settings.set-home-lbl"
-              >
-                Set 'Home' to...
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "color": "#2D3B45",
-                        "flex": 3,
-                        "fontSize": 16,
-                        "lineHeight": 54,
-                        "textAlign": "right",
-                      },
-                      Object {},
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                  ]
-                }
-                testID="course-settings.home-page-lbl"
-              >
-                Pages Front Page
-              </Text>
-            </View>
-          </View>
-        </TouchableHighlight>
-        <View
-          style={
+              "backgroundColor": "white",
+              "flex": 0,
+            },
             Object {
-              "backgroundColor": "#C7CDD1",
-              "height": 0.5,
-            }
-          }
-        />
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "white",
-                "flex": 0,
-              },
-              Object {
-                "height": 150,
-              },
-            ]
-          }
-        />
-      </View>
-    </RCTScrollView>
+              "height": 150,
+            },
+          ]
+        }
+      />
+    </KeyboardAwareScrollView>
   </View>
-</RCTSafeAreaView>
+</Screen>
 `;
 
 exports[`CourseSettings renders with empty image url 1`] = `
-<RCTSafeAreaView
-  style={
-    Object {
-      "flex": 1,
-    }
+<Screen
+  drawUnderNavBar={false}
+  navBarButtonColor="#008EE2"
+  navBarStyle="light"
+  navBarTitleColor="#2D3B45"
+  rightBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "style": "done",
+        "testID": "course-settings.done-btn",
+        "title": "Done",
+      },
+    ]
   }
+  showDismissButton={false}
+  statusBarStyle="default"
+  title="Course Settings"
 >
   <View
     style={
@@ -1221,176 +780,134 @@ exports[`CourseSettings renders with empty image url 1`] = `
       }
     }
   >
-    <Modal
+    <ModalOverlay
+      activityIndicatorColor="#fff"
       animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
+      backgroundColor="rgba(0,0,0,0.8)"
+      height={170}
+      showActivityIndicator={true}
+      text="Saving"
       transparent={true}
       visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <RCTScrollView
-      automaticallyAdjustContentInsets={false}
-      contentContainerStyle={undefined}
-      contentInset={
-        Object {
-          "bottom": 0,
-        }
-      }
+      width={170}
+    />
+    <KeyboardAwareScrollView
       enableAutoAutomaticScroll={true}
       enableResetScrollToCoords={true}
       extraHeight={75}
       extraScrollHeight={0}
-      keyboardDismissMode="interactive"
       keyboardOpeningTime={250}
-      onScroll={[Function]}
-      scrollEventThrottle={0}
-      showsVerticalScrollIndicator={true}
       style={
         Object {
           "flex": 1,
         }
       }
     >
-      <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "height": 235,
+            "justifyContent": "center",
+            "padding": 10,
+            "paddingTop": 20,
+          }
+        }
+      >
         <View
           style={
             Object {
-              "alignItems": "center",
-              "height": 235,
-              "justifyContent": "center",
-              "padding": 10,
-              "paddingTop": 20,
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
             }
           }
         >
           <View
             style={
+              Array [
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                },
+                Object {
+                  "backgroundColor": "#333",
+                  "opacity": 1,
+                },
+              ]
+            }
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+            "height": 54,
+            "justifyContent": "center",
+            "paddingHorizontal": 16,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            style={
               Object {
-                "bottom": 0,
-                "left": 0,
-                "position": "absolute",
-                "right": 0,
-                "top": 0,
+                "color": "#2D3B45",
+                "flex": 2,
+                "fontSize": 16,
+                "fontWeight": "600",
+                "lineHeight": 54,
               }
             }
+            testID="course-settings.name-lbl"
           >
-            <View
-              style={
-                Array [
-                  Object {
-                    "bottom": 0,
-                    "left": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  },
-                  Object {
-                    "backgroundColor": "#333",
-                    "opacity": 1,
-                  },
-                ]
+            Name
+          </Text>
+          <TextInput
+            onChangeText={[Function]}
+            style={
+              Object {
+                "color": "#2D3B45",
+                "flex": 3,
+                "fontSize": 16,
+                "lineHeight": 54,
+                "textAlign": "right",
               }
-            />
-          </View>
+            }
+            testID="course-settings.name-input-textbox"
+            value="Learn React Native"
+          />
         </View>
+      </View>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          }
+        }
+      />
+      <TouchableHighlight
+        activeOpacity={0.85}
+        onPress={[Function]}
+        testID="course-settings.toggle-home-picker"
+        underlayColor="#eee"
+      >
         <View
           style={
             Object {
@@ -1412,45 +929,22 @@ exports[`CourseSettings renders with empty image url 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "flex": 2,
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                    "lineHeight": 54,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
+                Object {
+                  "color": "#2D3B45",
+                  "flex": 2,
+                  "fontSize": 16,
+                  "fontWeight": "600",
+                  "lineHeight": 54,
+                }
               }
-              testID="course-settings.name-lbl"
+              testID="course-settings.set-home-lbl"
             >
-              Name
+              Set 'Home' to...
             </Text>
-            <TextInput
-              allowFontScaling={true}
-              onChangeText={[Function]}
+            <Text
               style={
                 Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "fontSize": 17,
-                  },
                   Object {
                     "color": "#2D3B45",
                     "flex": 3,
@@ -1458,147 +952,61 @@ exports[`CourseSettings renders with empty image url 1`] = `
                     "lineHeight": 54,
                     "textAlign": "right",
                   },
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
+                  Object {},
                 ]
               }
-              testID="course-settings.name-input-textbox"
-              value="Learn React Native"
-            />
+              testID="course-settings.home-page-lbl"
+            >
+              Pages Front Page
+            </Text>
           </View>
         </View>
-        <View
-          style={
+      </TouchableHighlight>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          }
+        }
+      />
+      <View
+        style={
+          Array [
             Object {
-              "backgroundColor": "#C7CDD1",
-              "height": 0.5,
-            }
-          }
-        />
-        <TouchableHighlight
-          onPress={[Function]}
-          testID="course-settings.toggle-home-picker"
-          underlayColor="#eee"
-        >
-          <View
-            style={
-              Object {
-                "flex": 1,
-                "flexDirection": "column",
-                "height": 54,
-                "justifyContent": "center",
-                "paddingHorizontal": 16,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "space-between",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "flex": 2,
-                      "fontSize": 16,
-                      "fontWeight": "600",
-                      "lineHeight": 54,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-                testID="course-settings.set-home-lbl"
-              >
-                Set 'Home' to...
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "color": "#2D3B45",
-                        "flex": 3,
-                        "fontSize": 16,
-                        "lineHeight": 54,
-                        "textAlign": "right",
-                      },
-                      Object {},
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                  ]
-                }
-                testID="course-settings.home-page-lbl"
-              >
-                Pages Front Page
-              </Text>
-            </View>
-          </View>
-        </TouchableHighlight>
-        <View
-          style={
+              "backgroundColor": "white",
+              "flex": 0,
+            },
             Object {
-              "backgroundColor": "#C7CDD1",
-              "height": 0.5,
-            }
-          }
-        />
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "white",
-                "flex": 0,
-              },
-              Object {
-                "height": 150,
-              },
-            ]
-          }
-        />
-      </View>
-    </RCTScrollView>
+              "height": 150,
+            },
+          ]
+        }
+      />
+    </KeyboardAwareScrollView>
   </View>
-</RCTSafeAreaView>
+</Screen>
 `;
 
 exports[`CourseSettings renders with image url 1`] = `
-<RCTSafeAreaView
-  style={
-    Object {
-      "flex": 1,
-    }
+<Screen
+  drawUnderNavBar={false}
+  navBarButtonColor="#008EE2"
+  navBarStyle="light"
+  navBarTitleColor="#2D3B45"
+  rightBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "style": "done",
+        "testID": "course-settings.done-btn",
+        "title": "Done",
+      },
+    ]
   }
+  showDismissButton={false}
+  statusBarStyle="default"
+  title="Course Settings"
 >
   <View
     style={
@@ -1607,147 +1015,57 @@ exports[`CourseSettings renders with image url 1`] = `
       }
     }
   >
-    <Modal
+    <ModalOverlay
+      activityIndicatorColor="#fff"
       animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
+      backgroundColor="rgba(0,0,0,0.8)"
+      height={170}
+      showActivityIndicator={true}
+      text="Saving"
       transparent={true}
       visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <RCTScrollView
-      automaticallyAdjustContentInsets={false}
-      contentContainerStyle={undefined}
-      contentInset={
-        Object {
-          "bottom": 0,
-        }
-      }
+      width={170}
+    />
+    <KeyboardAwareScrollView
       enableAutoAutomaticScroll={true}
       enableResetScrollToCoords={true}
       extraHeight={75}
       extraScrollHeight={0}
-      keyboardDismissMode="interactive"
       keyboardOpeningTime={250}
-      onScroll={[Function]}
-      scrollEventThrottle={0}
-      showsVerticalScrollIndicator={true}
       style={
         Object {
           "flex": 1,
         }
       }
     >
-      <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "height": 235,
+            "justifyContent": "center",
+            "padding": 10,
+            "paddingTop": 20,
+          }
+        }
+      >
         <View
           style={
             Object {
-              "alignItems": "center",
-              "height": 235,
-              "justifyContent": "center",
-              "padding": 10,
-              "paddingTop": 20,
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
             }
           }
         >
-          <View
+          <Image
+            source={
+              Object {
+                "uri": "http://www.fillmurray.com/100/100",
+              }
+            }
             style={
               Object {
                 "bottom": 0,
@@ -1757,42 +1075,90 @@ exports[`CourseSettings renders with image url 1`] = `
                 "top": 0,
               }
             }
-          >
-            <Image
-              source={
-                Object {
-                  "uri": "http://www.fillmurray.com/100/100",
-                }
-              }
-              style={
+          />
+          <View
+            style={
+              Array [
                 Object {
                   "bottom": 0,
                   "left": 0,
                   "position": "absolute",
                   "right": 0,
                   "top": 0,
-                }
-              }
-            />
-            <View
-              style={
-                Array [
-                  Object {
-                    "bottom": 0,
-                    "left": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  },
-                  Object {
-                    "backgroundColor": "#333",
-                    "opacity": 0.8,
-                  },
-                ]
-              }
-            />
-          </View>
+                },
+                Object {
+                  "backgroundColor": "#333",
+                  "opacity": 0.8,
+                },
+              ]
+            }
+          />
         </View>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+            "height": 54,
+            "justifyContent": "center",
+            "paddingHorizontal": 16,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#2D3B45",
+                "flex": 2,
+                "fontSize": 16,
+                "fontWeight": "600",
+                "lineHeight": 54,
+              }
+            }
+            testID="course-settings.name-lbl"
+          >
+            Name
+          </Text>
+          <TextInput
+            onChangeText={[Function]}
+            style={
+              Object {
+                "color": "#2D3B45",
+                "flex": 3,
+                "fontSize": 16,
+                "lineHeight": 54,
+                "textAlign": "right",
+              }
+            }
+            testID="course-settings.name-input-textbox"
+            value="Learn React Native"
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          }
+        }
+      />
+      <TouchableHighlight
+        activeOpacity={0.85}
+        onPress={[Function]}
+        testID="course-settings.toggle-home-picker"
+        underlayColor="#eee"
+      >
         <View
           style={
             Object {
@@ -1814,45 +1180,22 @@ exports[`CourseSettings renders with image url 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "flex": 2,
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                    "lineHeight": 54,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
+                Object {
+                  "color": "#2D3B45",
+                  "flex": 2,
+                  "fontSize": 16,
+                  "fontWeight": "600",
+                  "lineHeight": 54,
+                }
               }
-              testID="course-settings.name-lbl"
+              testID="course-settings.set-home-lbl"
             >
-              Name
+              Set 'Home' to...
             </Text>
-            <TextInput
-              allowFontScaling={true}
-              onChangeText={[Function]}
+            <Text
               style={
                 Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "fontSize": 17,
-                  },
                   Object {
                     "color": "#2D3B45",
                     "flex": 3,
@@ -1860,147 +1203,61 @@ exports[`CourseSettings renders with image url 1`] = `
                     "lineHeight": 54,
                     "textAlign": "right",
                   },
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
+                  Object {},
                 ]
               }
-              testID="course-settings.name-input-textbox"
-              value="Learn React Native"
-            />
+              testID="course-settings.home-page-lbl"
+            >
+              Pages Front Page
+            </Text>
           </View>
         </View>
-        <View
-          style={
+      </TouchableHighlight>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          }
+        }
+      />
+      <View
+        style={
+          Array [
             Object {
-              "backgroundColor": "#C7CDD1",
-              "height": 0.5,
-            }
-          }
-        />
-        <TouchableHighlight
-          onPress={[Function]}
-          testID="course-settings.toggle-home-picker"
-          underlayColor="#eee"
-        >
-          <View
-            style={
-              Object {
-                "flex": 1,
-                "flexDirection": "column",
-                "height": 54,
-                "justifyContent": "center",
-                "paddingHorizontal": 16,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "space-between",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "flex": 2,
-                      "fontSize": 16,
-                      "fontWeight": "600",
-                      "lineHeight": 54,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-                testID="course-settings.set-home-lbl"
-              >
-                Set 'Home' to...
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "color": "#2D3B45",
-                        "flex": 3,
-                        "fontSize": 16,
-                        "lineHeight": 54,
-                        "textAlign": "right",
-                      },
-                      Object {},
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                  ]
-                }
-                testID="course-settings.home-page-lbl"
-              >
-                Pages Front Page
-              </Text>
-            </View>
-          </View>
-        </TouchableHighlight>
-        <View
-          style={
+              "backgroundColor": "white",
+              "flex": 0,
+            },
             Object {
-              "backgroundColor": "#C7CDD1",
-              "height": 0.5,
-            }
-          }
-        />
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "white",
-                "flex": 0,
-              },
-              Object {
-                "height": 150,
-              },
-            ]
-          }
-        />
-      </View>
-    </RCTScrollView>
+              "height": 150,
+            },
+          ]
+        }
+      />
+    </KeyboardAwareScrollView>
   </View>
-</RCTSafeAreaView>
+</Screen>
 `;
 
 exports[`CourseSettings renders without image url 1`] = `
-<RCTSafeAreaView
-  style={
-    Object {
-      "flex": 1,
-    }
+<Screen
+  drawUnderNavBar={false}
+  navBarButtonColor="#008EE2"
+  navBarStyle="light"
+  navBarTitleColor="#2D3B45"
+  rightBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "style": "done",
+        "testID": "course-settings.done-btn",
+        "title": "Done",
+      },
+    ]
   }
+  showDismissButton={false}
+  statusBarStyle="default"
+  title="Course Settings"
 >
   <View
     style={
@@ -2009,578 +1266,134 @@ exports[`CourseSettings renders without image url 1`] = `
       }
     }
   >
-    <Modal
+    <ModalOverlay
+      activityIndicatorColor="#fff"
       animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
+      backgroundColor="rgba(0,0,0,0.8)"
+      height={170}
+      showActivityIndicator={true}
+      text="Saving"
       transparent={true}
       visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <RCTScrollView
-      automaticallyAdjustContentInsets={false}
-      contentContainerStyle={undefined}
-      contentInset={
-        Object {
-          "bottom": 0,
-        }
-      }
+      width={170}
+    />
+    <KeyboardAwareScrollView
       enableAutoAutomaticScroll={true}
       enableResetScrollToCoords={true}
       extraHeight={75}
       extraScrollHeight={0}
-      keyboardDismissMode="interactive"
       keyboardOpeningTime={250}
-      onScroll={[Function]}
-      scrollEventThrottle={0}
-      showsVerticalScrollIndicator={true}
       style={
         Object {
           "flex": 1,
         }
       }
     >
-      <View>
-        <View
-          style={
-            Object {
-              "alignItems": "center",
-              "height": 235,
-              "justifyContent": "center",
-              "padding": 10,
-              "paddingTop": 20,
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "bottom": 0,
-                "left": 0,
-                "position": "absolute",
-                "right": 0,
-                "top": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "bottom": 0,
-                    "left": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  },
-                  Object {
-                    "backgroundColor": "#333",
-                    "opacity": 1,
-                  },
-                ]
-              }
-            />
-          </View>
-        </View>
-        <View
-          style={
-            Object {
-              "flex": 1,
-              "flexDirection": "column",
-              "height": 54,
-              "justifyContent": "center",
-              "paddingHorizontal": 16,
-            }
-          }
-        >
-          <View
-            style={
-              Object {
-                "flex": 1,
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "flex": 2,
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                    "lineHeight": 54,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-              testID="course-settings.name-lbl"
-            >
-              Name
-            </Text>
-            <TextInput
-              allowFontScaling={true}
-              onChangeText={[Function]}
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "fontSize": 17,
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "flex": 3,
-                    "fontSize": 16,
-                    "lineHeight": 54,
-                    "textAlign": "right",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                ]
-              }
-              testID="course-settings.name-input-textbox"
-              value="Learn React Native"
-            />
-          </View>
-        </View>
-        <View
-          style={
-            Object {
-              "backgroundColor": "#C7CDD1",
-              "height": 0.5,
-            }
-          }
-        />
-        <TouchableHighlight
-          onPress={[Function]}
-          testID="course-settings.toggle-home-picker"
-          underlayColor="#eee"
-        >
-          <View
-            style={
-              Object {
-                "flex": 1,
-                "flexDirection": "column",
-                "height": 54,
-                "justifyContent": "center",
-                "paddingHorizontal": 16,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "space-between",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "flex": 2,
-                      "fontSize": 16,
-                      "fontWeight": "600",
-                      "lineHeight": 54,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-                testID="course-settings.set-home-lbl"
-              >
-                Set 'Home' to...
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "color": "#2D3B45",
-                        "flex": 3,
-                        "fontSize": 16,
-                        "lineHeight": 54,
-                        "textAlign": "right",
-                      },
-                      Object {},
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                  ]
-                }
-                testID="course-settings.home-page-lbl"
-              >
-                Pages Front Page
-              </Text>
-            </View>
-          </View>
-        </TouchableHighlight>
-        <View
-          style={
-            Object {
-              "backgroundColor": "#C7CDD1",
-              "height": 0.5,
-            }
-          }
-        />
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "white",
-                "flex": 0,
-              },
-              Object {
-                "height": 150,
-              },
-            ]
-          }
-        />
-      </View>
-    </RCTScrollView>
-  </View>
-</RCTSafeAreaView>
-`;
-
-exports[`CourseSettings shows home view picker when home row tapped 1`] = `
-<RCTSafeAreaView
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
->
-  <View
-    style={
-      Object {
-        "flex": 1,
-      }
-    }
-  >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
       <View
         style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
+          Object {
+            "alignItems": "center",
+            "height": 235,
+            "justifyContent": "center",
+            "padding": 10,
+            "paddingTop": 20,
+          }
         }
       >
         <View
           style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <RCTScrollView
-      automaticallyAdjustContentInsets={false}
-      contentContainerStyle={undefined}
-      contentInset={
-        Object {
-          "bottom": 0,
-        }
-      }
-      enableAutoAutomaticScroll={true}
-      enableResetScrollToCoords={true}
-      extraHeight={75}
-      extraScrollHeight={0}
-      keyboardDismissMode="interactive"
-      keyboardOpeningTime={250}
-      onScroll={[Function]}
-      scrollEventThrottle={0}
-      showsVerticalScrollIndicator={true}
-      style={
-        Object {
-          "flex": 1,
-        }
-      }
-    >
-      <View>
-        <View
-          style={
             Object {
-              "alignItems": "center",
-              "height": 235,
-              "justifyContent": "center",
-              "padding": 10,
-              "paddingTop": 20,
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
             }
           }
         >
           <View
             style={
-              Object {
-                "bottom": 0,
-                "left": 0,
-                "position": "absolute",
-                "right": 0,
-                "top": 0,
-              }
-            }
-          >
-            <Image
-              source={
-                Object {
-                  "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-                }
-              }
-              style={
+              Array [
                 Object {
                   "bottom": 0,
                   "left": 0,
                   "position": "absolute",
                   "right": 0,
                   "top": 0,
-                }
-              }
-            />
-            <View
-              style={
-                Array [
-                  Object {
-                    "bottom": 0,
-                    "left": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  },
-                  Object {
-                    "backgroundColor": "#333",
-                    "opacity": 0.8,
-                  },
-                ]
-              }
-            />
-          </View>
+                },
+                Object {
+                  "backgroundColor": "#333",
+                  "opacity": 1,
+                },
+              ]
+            }
+          />
         </View>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+            "height": 54,
+            "justifyContent": "center",
+            "paddingHorizontal": 16,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#2D3B45",
+                "flex": 2,
+                "fontSize": 16,
+                "fontWeight": "600",
+                "lineHeight": 54,
+              }
+            }
+            testID="course-settings.name-lbl"
+          >
+            Name
+          </Text>
+          <TextInput
+            onChangeText={[Function]}
+            style={
+              Object {
+                "color": "#2D3B45",
+                "flex": 3,
+                "fontSize": 16,
+                "lineHeight": 54,
+                "textAlign": "right",
+              }
+            }
+            testID="course-settings.name-input-textbox"
+            value="Learn React Native"
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          }
+        }
+      />
+      <TouchableHighlight
+        activeOpacity={0.85}
+        onPress={[Function]}
+        testID="course-settings.toggle-home-picker"
+        underlayColor="#eee"
+      >
         <View
           style={
             Object {
@@ -2602,45 +1415,273 @@ exports[`CourseSettings shows home view picker when home row tapped 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#2D3B45",
+                  "flex": 2,
+                  "fontSize": 16,
+                  "fontWeight": "600",
+                  "lineHeight": 54,
+                }
+              }
+              testID="course-settings.set-home-lbl"
+            >
+              Set 'Home' to...
+            </Text>
+            <Text
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
+                    "flex": 3,
                     "fontSize": 16,
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "flex": 2,
-                    "fontSize": 16,
-                    "fontWeight": "600",
                     "lineHeight": 54,
+                    "textAlign": "right",
                   },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
+                  Object {},
                 ]
               }
-              testID="course-settings.name-lbl"
+              testID="course-settings.home-page-lbl"
             >
-              Name
+              Pages Front Page
             </Text>
-            <TextInput
-              allowFontScaling={true}
-              onChangeText={[Function]}
+          </View>
+        </View>
+      </TouchableHighlight>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          }
+        }
+      />
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 0,
+            },
+            Object {
+              "height": 150,
+            },
+          ]
+        }
+      />
+    </KeyboardAwareScrollView>
+  </View>
+</Screen>
+`;
+
+exports[`CourseSettings shows home view picker when home row tapped 1`] = `
+<Screen
+  drawUnderNavBar={false}
+  navBarButtonColor="#008EE2"
+  navBarStyle="light"
+  navBarTitleColor="#2D3B45"
+  rightBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "style": "done",
+        "testID": "course-settings.done-btn",
+        "title": "Done",
+      },
+    ]
+  }
+  showDismissButton={false}
+  statusBarStyle="default"
+  title="Course Settings"
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <ModalOverlay
+      activityIndicatorColor="#fff"
+      animationType="fade"
+      backgroundColor="rgba(0,0,0,0.8)"
+      height={170}
+      showActivityIndicator={true}
+      text="Saving"
+      transparent={true}
+      visible={false}
+      width={170}
+    />
+    <KeyboardAwareScrollView
+      enableAutoAutomaticScroll={true}
+      enableResetScrollToCoords={true}
+      extraHeight={75}
+      extraScrollHeight={0}
+      keyboardOpeningTime={250}
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "height": 235,
+            "justifyContent": "center",
+            "padding": 10,
+            "paddingTop": 20,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        >
+          <Image
+            source={
+              Object {
+                "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+              }
+            }
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          />
+          <View
+            style={
+              Array [
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                },
+                Object {
+                  "backgroundColor": "#333",
+                  "opacity": 0.8,
+                },
+              ]
+            }
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+            "height": 54,
+            "justifyContent": "center",
+            "paddingHorizontal": 16,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#2D3B45",
+                "flex": 2,
+                "fontSize": 16,
+                "fontWeight": "600",
+                "lineHeight": 54,
+              }
+            }
+            testID="course-settings.name-lbl"
+          >
+            Name
+          </Text>
+          <TextInput
+            onChangeText={[Function]}
+            style={
+              Object {
+                "color": "#2D3B45",
+                "flex": 3,
+                "fontSize": 16,
+                "lineHeight": 54,
+                "textAlign": "right",
+              }
+            }
+            testID="course-settings.name-input-textbox"
+            value="Learn React Native"
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          }
+        }
+      />
+      <TouchableHighlight
+        activeOpacity={0.85}
+        onPress={[Function]}
+        testID="course-settings.toggle-home-picker"
+        underlayColor="#eee"
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "column",
+              "height": 54,
+              "justifyContent": "center",
+              "paddingHorizontal": 16,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#2D3B45",
+                  "flex": 2,
+                  "fontSize": 16,
+                  "fontWeight": "600",
+                  "lineHeight": 54,
+                }
+              }
+              testID="course-settings.set-home-lbl"
+            >
+              Set 'Home' to...
+            </Text>
+            <Text
               style={
                 Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "fontSize": 17,
-                  },
                   Object {
                     "color": "#2D3B45",
                     "flex": 3,
@@ -2649,168 +1690,75 @@ exports[`CourseSettings shows home view picker when home row tapped 1`] = `
                     "textAlign": "right",
                   },
                   Object {
-                    "fontFamily": ".SFUIDisplay",
+                    "color": "#374A59",
                   },
                 ]
               }
-              testID="course-settings.name-input-textbox"
-              value="Learn React Native"
-            />
+              testID="course-settings.home-page-lbl"
+            >
+              Pages Front Page
+            </Text>
           </View>
         </View>
-        <View
-          style={
-            Object {
-              "backgroundColor": "#C7CDD1",
-              "height": 0.5,
-            }
+      </TouchableHighlight>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
           }
+        }
+      />
+      <PickerIOS
+        onValueChange={[Function]}
+        selectedValue="wiki"
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+        testID="course-settings.home-picker"
+      >
+        <Component
+          key="feed"
+          label="Course Activity Stream"
+          value="feed"
         />
-        <TouchableHighlight
-          onPress={[Function]}
-          testID="course-settings.toggle-home-picker"
-          underlayColor="#eee"
-        >
-          <View
-            style={
-              Object {
-                "flex": 1,
-                "flexDirection": "column",
-                "height": 54,
-                "justifyContent": "center",
-                "paddingHorizontal": 16,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "space-between",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "flex": 2,
-                      "fontSize": 16,
-                      "fontWeight": "600",
-                      "lineHeight": 54,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-                testID="course-settings.set-home-lbl"
-              >
-                Set 'Home' to...
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Array [
-                      Object {
-                        "color": "#2D3B45",
-                        "flex": 3,
-                        "fontSize": 16,
-                        "lineHeight": 54,
-                        "textAlign": "right",
-                      },
-                      Object {
-                        "color": "#374A59",
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                  ]
-                }
-                testID="course-settings.home-page-lbl"
-              >
-                Pages Front Page
-              </Text>
-            </View>
-          </View>
-        </TouchableHighlight>
-        <View
-          style={
-            Object {
-              "backgroundColor": "#C7CDD1",
-              "height": 0.5,
-            }
-          }
+        <Component
+          key="wiki"
+          label="Pages Front Page"
+          value="wiki"
         />
-        <PickerIOS
-          onValueChange={[Function]}
-          selectedValue="wiki"
-          style={
-            Object {
-              "flex": 1,
-            }
-          }
-          testID="course-settings.home-picker"
-        >
-          <Item
-            label="Course Activity Stream"
-            value="feed"
-          />
-          <Item
-            label="Pages Front Page"
-            value="wiki"
-          />
-          <Item
-            label="Course Modules"
-            value="modules"
-          />
-          <Item
-            label="Assignments List"
-            value="assignments"
-          />
-          <Item
-            label="Syllabus"
-            value="syllabus"
-          />
-        </PickerIOS>
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "white",
-                "flex": 0,
-              },
-              Object {
-                "height": 0,
-              },
-            ]
-          }
+        <Component
+          key="modules"
+          label="Course Modules"
+          value="modules"
         />
-      </View>
-    </RCTScrollView>
+        <Component
+          key="assignments"
+          label="Assignments List"
+          value="assignments"
+        />
+        <Component
+          key="syllabus"
+          label="Syllabus"
+          value="syllabus"
+        />
+      </PickerIOS>
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "white",
+              "flex": 0,
+            },
+            Object {
+              "height": 0,
+            },
+          ]
+        }
+      />
+    </KeyboardAwareScrollView>
   </View>
-</RCTSafeAreaView>
+</Screen>
 `;

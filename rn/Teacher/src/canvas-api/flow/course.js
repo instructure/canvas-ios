@@ -27,6 +27,7 @@ export type Course = {
   id: string,
   account_id: string,
   name: string,
+  original_name?: ?string,
   course_code: string,
   short_name?: string,
   image_download_url?: ?string,

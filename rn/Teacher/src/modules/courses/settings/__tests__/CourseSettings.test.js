@@ -14,20 +14,15 @@
 // limitations under the License.
 //
 
-/* eslint-disable flowtype/require-valid-file-annotation */
+// @flow
 
+import { shallow } from 'enzyme'
 import React from 'react'
-import { CourseSettings } from '../CourseSettings.js'
-import * as courseTemplates from '../../../../__templates__/course'
-import * as navigatorTemplates from '../../../../__templates__/helm'
-import explore from '../../../../../test/helpers/explore'
-import setProps from '../../../../../test/helpers/setProps'
+import { CourseSettings } from '../CourseSettings'
+import * as templates from '../../../../__templates__'
 import { Alert } from 'react-native'
 
-import renderer from 'react-test-renderer'
-
 jest
-  .mock('TouchableHighlight', () => 'TouchableHighlight')
   .mock('LayoutAnimation', () => ({
     create: jest.fn(),
     configureNext: jest.fn(),
@@ -37,199 +32,133 @@ jest
   .mock('Alert', () => ({
     alert: jest.fn(),
   }))
+  .useFakeTimers()
 
-let templates = { ...courseTemplates, ...navigatorTemplates }
-
-let defaultProps = {
+const defaultProps = {
   navigator: templates.navigator(),
   course: templates.course(),
   color: '#333',
-  updateCourse: jest.fn(() => { console.log('default') }),
+  updateCourse: jest.fn(),
+  pending: 0,
+  error: null,
 }
 
-function toggleHomePicker (component: *) {
-  const homeRow: any = explore(component.toJSON()).selectByID('course-settings.toggle-home-picker')
-  homeRow.props.onPress()
+function toggleHomePicker (tree: *) {
+  tree.find('[testID="course-settings.toggle-home-picker"]').simulate('Press')
 }
 
 describe('CourseSettings', () => {
   beforeEach(() => {
-    jest.resetAllMocks()
+    jest.clearAllMocks()
   })
 
   it('renders', () => {
-    let tree = renderer.create(
-      <CourseSettings { ...defaultProps } />
-    ).toJSON()
-
+    const tree = shallow(<CourseSettings { ...defaultProps } />)
     expect(tree).toMatchSnapshot()
   })
 
   it('renders a modal activity when saving', () => {
-    const props = {
-      ...defaultProps,
-      navigator: templates.navigator({
-        show: jest.fn(),
-      }),
-    }
-    let component = renderer.create(
-      <CourseSettings {...props} />
-    )
-
-    component.getInstance().done()
-    expect(component.toJSON()).toMatchSnapshot()
+    const tree = shallow(<CourseSettings {...defaultProps} />)
+    tree.find('Screen').prop('rightBarButtons')[0].action()
+    tree.update()
+    expect(tree).toMatchSnapshot()
   })
 
   it('presents error alert', () => {
-    jest.useFakeTimers()
-    let component = renderer.create(
-      <CourseSettings {...defaultProps} />
-    )
-
-    setProps(component, { error: 'error' })
+    const tree = shallow(<CourseSettings {...defaultProps} />)
+    tree.setProps({ error: 'error' })
     jest.runAllTimers()
-
     expect(Alert.alert).toHaveBeenCalled()
   })
 
   it('dismisses modal activity upon save error', () => {
-    const props = {
-      ...defaultProps,
-      navigator: templates.navigator({
-        dismiss: jest.fn(),
-      }),
-    }
-    let component = renderer.create(
-      <CourseSettings {...props} />
-    )
-    let updateCourse = jest.fn(() => {
-      setProps(component, { pending: 0, error: 'error' })
+    const tree = shallow(<CourseSettings {...defaultProps} />)
+    const updateCourse = jest.fn(() => {
+      tree.setProps({ pending: 0, error: 'error' })
     })
-    component.update(<CourseSettings {...props} updateCourse={updateCourse} />)
-    component.getInstance().done()
-    expect(component.toJSON()).toMatchSnapshot()
+    tree.setProps({ updateCourse })
+    tree.find('Screen').prop('rightBarButtons')[0].action()
+    tree.update()
+    expect(tree).toMatchSnapshot()
   })
 
   it('shows home view picker when home row tapped', () => {
-    let component = renderer.create(
-      <CourseSettings {...defaultProps} />
-    )
-
-    toggleHomePicker(component)
-
-    expect(component.toJSON()).toMatchSnapshot()
+    const tree = shallow(<CourseSettings {...defaultProps} />)
+    toggleHomePicker(tree)
+    expect(tree).toMatchSnapshot()
   })
 
   it('calls update with new course values on done', () => {
-    const props = {
-      ...defaultProps,
-      updateCourse: jest.fn(),
-      navigator: templates.navigator({
-        dismiss: jest.fn(),
-      }),
-    }
-    let component = renderer.create(
-      <CourseSettings {...props} />
-    )
-    toggleHomePicker(component)
-    let tree = component.toJSON()
-    let nameField = explore(tree).selectByID('course-settings.name-input-textbox') || {}
-    nameField.props.onChangeText('React Native FTW')
-    let homePicker = explore(tree).selectByID('course-settings.home-picker') || {}
-    homePicker.props.onValueChange('syllabus')
-
-    component.getInstance().done()
+    const tree = shallow(<CourseSettings {...defaultProps} />)
+    toggleHomePicker(tree)
+    tree.find('[testID="course-settings.name-input-textbox"]')
+      .simulate('ChangeText', 'React Native FTW')
+    tree.find('[testID="course-settings.home-picker"]')
+      .simulate('ValueChange', 'syllabus')
+    tree.find('Screen').prop('rightBarButtons')[0].action()
+    tree.update()
 
     let updated = {
-      ...props.course,
+      ...defaultProps.course,
       name: 'React Native FTW',
       default_view: 'syllabus',
     }
-    expect(props.updateCourse).toHaveBeenCalledWith(updated, props.course)
+    expect(defaultProps.updateCourse).toHaveBeenCalledWith(updated, defaultProps.course)
   })
 
   it('dismisses modal on done after course updates', () => {
-    const props = {
-      ...defaultProps,
-      navigator: templates.navigator({
-        dismissAllModals: jest.fn(),
-      }),
-    }
-    let component = renderer.create(
-      <CourseSettings {...props} />
-    )
-    let updateCourse = jest.fn(() => {
-      setProps(component, { pending: 0 })
-    })
-    component.update(<CourseSettings {...props} updateCourse={updateCourse} />)
-    component.getInstance().done()
-    expect(props.navigator.dismissAllModals).toHaveBeenCalled()
+    const tree = shallow(<CourseSettings {...defaultProps} />)
+    let updateCourse = jest.fn(() => tree.setProps({ pending: 0 }))
+    tree.setProps({ updateCourse })
+    tree.find('Screen').prop('rightBarButtons')[0].action()
+    tree.update()
+    expect(defaultProps.navigator.dismissAllModals).toHaveBeenCalled()
   })
 
   it('does not dismiss if there was an error', () => {
-    const props = {
-      ...defaultProps,
-      navigator: templates.navigator({
-        dismissAllModals: jest.fn(),
-      }),
-    }
-
-    let component = renderer.create(
-      <CourseSettings {...props} />
-    )
-    let updateCourse = jest.fn(() => {
-      setProps(component, { pending: 0, error: 'there was an error' })
-    })
-    component.update(<CourseSettings {...props} updateCourse={updateCourse} />)
-    component.getInstance().done()
-    expect(props.navigator.dismissAllModals).not.toHaveBeenCalled()
+    const tree = shallow(<CourseSettings {...defaultProps} />)
+    let updateCourse = jest.fn(() => tree.setProps({ pending: 0, error: 'there was an error' }))
+    tree.setProps({ updateCourse })
+    tree.find('Screen').prop('rightBarButtons')[0].action()
+    tree.update()
+    expect(defaultProps.navigator.dismissAllModals).not.toHaveBeenCalled()
   })
 
   it('shows correct label based on course home', () => {
-    const props = {
-      ...defaultProps,
-      course: templates.course({ default_view: 'wiki' }),
-    }
-    let tree = renderer.create(
-      <CourseSettings {...props } />
-    ).toJSON()
+    const tree = shallow(
+      <CourseSettings
+        {...defaultProps }
+        course={templates.course({ default_view: 'wiki' })}
+      />
+    )
+    let label = tree.find('[testID="course-settings.home-page-lbl"]')
+    expect(label.prop('children')).toEqual('Pages Front Page')
 
-    let label = explore(tree).selectByID('course-settings.home-page-lbl') || {}
-    expect(label.children[0]).toEqual('Pages Front Page')
+    tree.find('[testID="course-settings.toggle-home-picker"]').simulate('Press')
+    tree.find('[testID="course-settings.home-picker"]').simulate('ValueChange', 'feed')
 
-    props.course.default_view = 'feed'
-    tree = renderer.create(
-      <CourseSettings {...props } />
-    ).toJSON()
-
-    label = explore(tree).selectByID('course-settings.home-page-lbl') || {}
-    expect(label.children[0]).toEqual('Course Activity Stream')
+    label = tree.find('[testID="course-settings.home-page-lbl"]')
+    expect(label.prop('children')).toEqual('Course Activity Stream')
   })
 
   it('renders with image url', () => {
-    let course = courseTemplates.course({ image_download_url: 'http://www.fillmurray.com/100/100' })
+    const course = templates.course({ image_download_url: 'http://www.fillmurray.com/100/100' })
     expect(
-      renderer.create(
-        <CourseSettings {...defaultProps} course={course} />
-      ).toJSON()
+      shallow(<CourseSettings {...defaultProps} course={course} />)
     ).toMatchSnapshot()
   })
 
   it('renders without image url', () => {
-    let course = courseTemplates.course({ image_download_url: null })
+    const course = templates.course({ image_download_url: null })
     expect(
-      renderer.create(
-        <CourseSettings {...defaultProps} course={course} />
-      ).toJSON()
+      shallow(<CourseSettings {...defaultProps} course={course} />)
     ).toMatchSnapshot()
   })
 
   it('renders with empty image url', () => {
-    let course = courseTemplates.course({ image_download_url: '' })
+    const course = templates.course({ image_download_url: '' })
     expect(
-      renderer.create(
-        <CourseSettings {...defaultProps} course={course} />
-      ).toJSON()
+      shallow(<CourseSettings {...defaultProps} course={course} />)
     ).toMatchSnapshot()
   })
 })

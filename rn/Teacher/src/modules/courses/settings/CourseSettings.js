@@ -14,10 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-/**
- * Created by bkraus on 3/8/17.
- * @flow
- */
+// @flow
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
@@ -53,23 +50,19 @@ type Props = {
   error: ?string,
 }
 
-const DISPLAY_NAMES = new Map([
-  ['feed', i18n('Course Activity Stream')],
-  ['wiki', i18n('Pages Front Page')],
-  ['modules', i18n('Course Modules')],
-  ['assignments', i18n('Assignments List')],
-  ['syllabus', i18n('Syllabus')],
-])
+type State = {
+  name: string,
+  home: $PropertyType<Course, 'default_view'>,
+  pending: boolean,
+  showingPicker: boolean,
+}
 
-export class CourseSettings extends Component<Props, any> {
-  constructor (props: Props) {
-    super(props)
-
-    this.state = {
-      name: this.props.course.original_name ? this.props.course.original_name : this.props.course.name,
-      home: this.props.course.default_view,
-      pending: false,
-    }
+export class CourseSettings extends Component<Props, State> {
+  state = {
+    name: this.props.course.original_name ? this.props.course.original_name : this.props.course.name,
+    home: this.props.course.default_view,
+    pending: false,
+    showingPicker: false,
   }
 
   course = () => ({
@@ -103,6 +96,14 @@ export class CourseSettings extends Component<Props, any> {
   render () {
     let pickerDetailStyle = this.state.showingPicker ? { color: branding.primaryBrandColor } : {}
 
+    const DISPLAY_NAMES = new Map([
+      ['feed', i18n('Course Activity Stream')],
+      ['wiki', i18n('Pages Front Page')],
+      ['modules', i18n('Course Modules')],
+      ['assignments', i18n('Assignments List')],
+      ['syllabus', i18n('Syllabus')],
+    ])
+
     return (
       <Screen
         title={i18n('Course Settings')}
@@ -115,7 +116,7 @@ export class CourseSettings extends Component<Props, any> {
           title: i18n('Done'),
           action: this.done,
         }]}
-        dismissButtonTitle={i18n('Cancel')}
+        showDismissButton={false}
       >
         <View style={{ flex: 1 }}>
           <ModalOverlay text={i18n('Saving')} visible={this.state.pending} />
