@@ -34,12 +34,13 @@ class CommentTableViewCell: UITableViewCell {
     var annotation = CanvadocsCommentReplyAnnotation()
     var delegate: CommentTableViewCellDelegate?
     
-    func set(annotation: CanvadocsCommentReplyAnnotation, delegate: CommentTableViewCellDelegate) {
+    func set(annotation: CanvadocsCommentReplyAnnotation, delegate: CommentTableViewCellDelegate, metadata: CanvadocsAnnotationMetadata) {
         self.annotation = annotation
         self.delegate = delegate
-        userLabel.text = annotation.user
+        userLabel.text = annotation.userName
         commentLabel.text = annotation.contents
-        deleteButton.isHidden = !annotation.isEditable || annotation.isDeleted
+        let isDeletable = (metadata.permissions ?? .None) == .ReadWriteManage || annotation.isEditable
+        deleteButton.isHidden = !isDeletable || annotation.isDeleted
         if annotation.isDeleted {
             removedLabel.isHidden = false
             removedLabelHeightConstraint.constant = 17

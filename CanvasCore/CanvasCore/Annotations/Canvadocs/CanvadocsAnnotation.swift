@@ -10,11 +10,20 @@ import UIKit
 import PSPDFKit
 import SwiftSimplify
 
+fileprivate var annotationUserNameKey: UInt8 = 0
 fileprivate var annotationDeletedAtKey: UInt8 = 0
 fileprivate var annotationDeletedByKey: UInt8 = 0
 fileprivate var annotationDeletedByIDKey: UInt8 = 0
 
 extension PSPDFAnnotation {
+    var userName: String? {
+        get {
+            return objc_getAssociatedObject(self, &annotationUserNameKey) as? String
+        }
+        set(newValue) {
+            objc_setAssociatedObject(self, &annotationUserNameKey, newValue, .OBJC_ASSOCIATION_COPY)
+        }
+    }
     var deletedAt: Date? {
         get {
             return objc_getAssociatedObject(self, &annotationDeletedAtKey) as? Date
@@ -266,8 +275,8 @@ struct CanvadocsAnnotation: Codable {
     init?(pspdfAnnotation: PSPDFAnnotation, onDocument document: PSPDFDocument) {
         self.id = pspdfAnnotation.name
         self.documentID = nil
-        self.userID = nil
-        self.userName = ""
+        self.userID = pspdfAnnotation.user
+        self.userName = pspdfAnnotation.userName ?? ""
         self.page = pspdfAnnotation.pageIndex
         self.createdAt = pspdfAnnotation.creationDate
         self.modifiedAt = pspdfAnnotation.lastModified
@@ -385,7 +394,8 @@ struct CanvadocsAnnotation: Codable {
         }
         
         pspdfAnnotation?.name = self.id
-        pspdfAnnotation?.user = self.userName
+        pspdfAnnotation?.user = self.userID
+        pspdfAnnotation?.userName = self.userName
         pspdfAnnotation?.pageIndex = self.page
         pspdfAnnotation?.creationDate = self.createdAt
         pspdfAnnotation?.lastModified = self.modifiedAt

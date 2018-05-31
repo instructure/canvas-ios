@@ -24,15 +24,17 @@ class CanvadocsCommentsViewController: UIViewController {
     var annotation: PSPDFAnnotation!
     var comments = [CanvadocsCommentReplyAnnotation]()
     var pdfDocument: PSPDFDocument!
+    var metadata: CanvadocsAnnotationMetadata!
     
     var tableView: UITableView!
     var replyToolbar: CommentReplyView!
     var replyToolbarBottom: NSLayoutConstraint?
     
-    static func new(_ annotation: PSPDFAnnotation, pdfDocument: PSPDFDocument) -> CanvadocsCommentsViewController {
+    static func new(_ annotation: PSPDFAnnotation, pdfDocument: PSPDFDocument, metadata: CanvadocsAnnotationMetadata) -> CanvadocsCommentsViewController {
         let vc = CanvadocsCommentsViewController(nibName: nil, bundle: nil)
         vc.annotation = annotation
         vc.pdfDocument = pdfDocument
+        vc.metadata = metadata
         vc.tableView = UITableView(frame: CGRect.zero, style: .plain)
         vc.replyToolbar = CommentReplyView.instantiate()
         return vc
@@ -66,21 +68,29 @@ class CanvadocsCommentsViewController: UIViewController {
             return comment1.creationDate ?? Date() < comment2.creationDate ?? Date()
         })
         
-        replyToolbar.sendAction = { [unowned self] in
-            if !self.replyToolbar.replyTextView.text.isEmpty { // make sure they actually entered something
-                let newAnnotation = CanvadocsCommentReplyAnnotation(contents: self.replyToolbar.replyTextView.text)
-                newAnnotation.pageIndex = self.annotation.pageIndex
-                newAnnotation.inReplyToName = self.annotation.name
-                self.comments.append(newAnnotation)
-                self.pdfDocument.add([newAnnotation], options: [:])
-                self.replyToolbar.clearText()
-                self.tableView.reloadData()
+        let permissions = metadata.permissions ?? .None
+        if permissions == .ReadWrite || permissions == .ReadWriteManage {
+            replyToolbar.isHidden = false
+            replyToolbar.sendAction = { [unowned self] in
+                if !self.replyToolbar.replyTextView.text.isEmpty { // make sure they actually entered something
+                    let newAnnotation = CanvadocsCommentReplyAnnotation(contents: self.replyToolbar.replyTextView.text)
+                    newAnnotation.pageIndex = self.annotation.pageIndex
+                    newAnnotation.inReplyToName = self.annotation.name
+                    newAnnotation.user = self.metadata.userID
+                    newAnnotation.userName = self.metadata.userName
+                    self.comments.append(newAnnotation)
+                    self.pdfDocument.add([newAnnotation], options: [:])
+                    self.replyToolbar.clearText()
+                    self.tableView.reloadData()
+                }
             }
+            replyToolbar.translatesAutoresizingMaskIntoConstraints = false
+            replyToolbarBottom = NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: replyToolbar, attribute: NSLayoutAttribute.bottom, multiplier: 1.0, constant: 0.0)
+            view.addConstraint(replyToolbarBottom!)
+            view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[replyToolbar]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["replyToolbar": replyToolbar]))
+        } else {
+            replyToolbar.isHidden = true
         }
-        replyToolbar.translatesAutoresizingMaskIntoConstraints = false
-        replyToolbarBottom = NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: replyToolbar, attribute: NSLayoutAttribute.bottom, multiplier: 1.0, constant: 0.0)
-        view.addConstraint(replyToolbarBottom!)
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[replyToolbar]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["replyToolbar": replyToolbar]))
         
         navigationItem.title = NSLocalizedString("Comments", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: "")
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(CanvadocsCommentsViewController.close(_:)))
@@ -141,7 +151,7 @@ extension CanvadocsCommentsViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell") as! CommentTableViewCell
         
         if let annotation = annotationForIndex(indexPath.row) {
-            cell.set(annotation: annotation, delegate: self)
+            cell.set(annotation: annotation, delegate: self, metadata: metadata)
         }
         
         return cell

@@ -179,11 +179,11 @@ extension CanvadocsPDFDocumentPresenter: PSPDFViewControllerDelegate {
     }
 
     public func pdfViewController(_ pdfController: PSPDFViewController, shouldShow menuItems: [PSPDFMenuItem], atSuggestedTargetRect rect: CGRect, for annotations: [PSPDFAnnotation]?, in annotationRect: CGRect, on pageView: PSPDFPageView) -> [PSPDFMenuItem] {
-        if annotations?.count == 1, let annotation = annotations?.first {
+        if annotations?.count == 1, let annotation = annotations?.first, let metadata = service.metadata?.annotationMetadata {
             var realMenuItems = [PSPDFMenuItem]()
             realMenuItems.append(PSPDFMenuItem(title: NSLocalizedString("Comments", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: ""), block: {
                 if let pdfDocument = pdfController.document {
-                    let commentsVC = CanvadocsCommentsViewController.new(annotation, pdfDocument: pdfDocument)
+                    let commentsVC = CanvadocsCommentsViewController.new(annotation, pdfDocument: pdfDocument, metadata: metadata)
                     commentsVC.comments = self.annotationProvider?.getReplies(to: annotation) ?? []
                     let navigationController = UINavigationController(rootViewController: commentsVC)
                     pdfController.present(navigationController, options: nil, animated: true, sender: nil, completion: nil)
@@ -195,9 +195,20 @@ extension CanvadocsPDFDocumentPresenter: PSPDFViewControllerDelegate {
                 if identifier == PSPDFAnnotationMenuInspector {
                     $0.title = NSLocalizedString("Style", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: "")
                 }
-                return identifier != PSPDFAnnotationMenuCopy && identifier != PSPDFAnnotationMenuNote && !DisabledMenuItems.contains(identifier)
+                return (
+                    identifier != PSPDFAnnotationMenuRemove &&
+                    identifier != PSPDFAnnotationMenuCopy &&
+                    identifier != PSPDFAnnotationMenuNote &&
+                    !DisabledMenuItems.contains(identifier)
+                )
             }
             realMenuItems.append(contentsOf: filteredMenuItems)
+
+            if annotation.isEditable || metadata.permissions == .ReadWriteManage {
+                realMenuItems.append(PSPDFMenuItem(title: NSLocalizedString("Remove", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: ""), image: .icon(.trash), block: {
+                    pdfController.document?.remove([annotation], options: nil)
+                }, identifier: PSPDFAnnotationMenuRemove))
+            }
             return realMenuItems
         }
 
@@ -216,15 +227,17 @@ extension CanvadocsPDFDocumentPresenter: PSPDFViewControllerDelegate {
     
     public func pdfViewController(_ pdfController: PSPDFViewController, didTapOn pageView: PSPDFPageView, at viewPoint: CGPoint) -> Bool {
         let state = pdfController.annotationStateManager
-        if state.state == .stamp, let pdfDocument = pdfController.document {
+        if state.state == .stamp, let pdfDocument = pdfController.document, let metadata = service.metadata?.annotationMetadata {
             let pointAnnotation = CanvadocsPointAnnotation()
+            pointAnnotation.user = metadata.userID
+            pointAnnotation.userName = metadata.userName
             pointAnnotation.color = state.drawColor
             pointAnnotation.boundingBox = CGRect(x: 0, y: 0, width: 17 * 2 / 3, height: 24 * 2 / 3)
             pointAnnotation.pageIndex = pageView.pageIndex
             pageView.center(pointAnnotation, aroundPDFPoint: pageView.convertPoint(toPDFPoint: viewPoint))
             pdfDocument.add([ pointAnnotation ], options: nil)
 
-            let commentsVC = CanvadocsCommentsViewController.new(pointAnnotation, pdfDocument: pdfDocument)
+            let commentsVC = CanvadocsCommentsViewController.new(pointAnnotation, pdfDocument: pdfDocument, metadata: metadata)
             let navigationController = UINavigationController(rootViewController: commentsVC)
             pdfController.present(navigationController, options: nil, animated: true, sender: nil, completion: nil)
 

@@ -27,12 +27,14 @@ struct CanvadocsFileMetadata {
 
 struct CanvadocsAnnotationMetadata {
     enum Permissions: String {
+        case None = "none"
         case Read = "read"
         case ReadWrite = "readwrite"
         case ReadWriteManage = "readwritemanage"
     }
     
     let enabled: Bool
+    let userID: String?
     let userName: String?
     let permissions: Permissions?
 }
@@ -134,16 +136,17 @@ class CanvadocsAnnotationService: NSObject {
                 var annotationMetadata: CanvadocsAnnotationMetadata?
                 if let annotationSettings = json["annotations"] as? [String: AnyObject] {
                     let enabled = annotationSettings["enabled"] as? Bool ?? false
+                    let userID = annotationSettings["user_id"] as? String
                     let userName = annotationSettings["user_name"] as? String
                     
-                    var permissions: CanvadocsAnnotationMetadata.Permissions = .Read
+                    var permissions: CanvadocsAnnotationMetadata.Permissions = .None
                     if let permissionsStr = annotationSettings["permissions"] as? String, let annotationPermissions = CanvadocsAnnotationMetadata.Permissions(rawValue: permissionsStr) {
                         permissions = annotationPermissions
                     }
                     
-                    annotationMetadata = CanvadocsAnnotationMetadata(enabled: enabled, userName: userName, permissions: permissions)
+                    annotationMetadata = CanvadocsAnnotationMetadata(enabled: enabled, userID: userID, userName: userName, permissions: permissions)
                 } else {
-                    annotationMetadata = CanvadocsAnnotationMetadata(enabled: false, userName: nil, permissions: nil)
+                    annotationMetadata = CanvadocsAnnotationMetadata(enabled: false, userID: nil, userName: nil, permissions: nil)
                 }
                 
                 var pandaPushMetadata: PandaPushMetadata?

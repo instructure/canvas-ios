@@ -37,17 +37,16 @@ class CanvadocsAnnotationProvider: PSPDFContainerAnnotationProvider {
 
         super.init(documentProvider: documentProvider)
 
+        guard let metadata = service.metadata?.annotationMetadata, metadata.enabled else { return }
+
         if let doc = documentProvider.document {
             var allAnnotations: [PSPDFAnnotation] = []
             for canvadocsAnnotation in annotations {
                 if let annotation = canvadocsAnnotation.pspdfAnnotation(for: doc) {
                     (annotation as? PSPDFFreeTextAnnotation)?.sizeToFit()
-                    annotation.flags.remove(.readOnly) // Allows user to view and add comments
-
-                    if let metadata = service.metadata?.annotationMetadata {
-                        annotation.isEditable = metadata.permissions == .ReadWriteManage ||
-                            (annotation.user == metadata.userName && metadata.permissions == .ReadWrite)
-                    }
+                    annotation.flags.remove(.readOnly) // Always allow user to view and add comments
+                    annotation.isEditable = annotation.user == metadata.userID &&
+                        (metadata.permissions == .ReadWriteManage || metadata.permissions == .ReadWrite)
                     allAnnotations.append(annotation)
                 }
             }

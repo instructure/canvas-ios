@@ -61,6 +61,7 @@ public enum Icon: String {
     case refresh
     case settings
     case syllabus
+    case trash
     case user
 
     case todo
