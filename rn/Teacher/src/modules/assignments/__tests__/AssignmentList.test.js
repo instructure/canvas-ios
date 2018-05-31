@@ -285,6 +285,22 @@ test('selects first item on regular horizontal trait collection', () => {
   expect(instance.didSelectFirstItem).toBe(true)
 })
 
+test('does not select first item on regular horizontal trait collection when is modal', () => {
+  defaultProps.navigator.isModal = true
+  let tree = shallow(
+    <AssignmentList {...defaultProps} />
+  )
+
+  let instance = tree.instance()
+  instance.didSelectFirstItem = false
+  instance.isRegularScreenDisplayMode = true
+  instance.selectedAssignment = jest.fn()
+  instance.selectFirstListItemIfNecessary()
+
+  expect(instance.selectedAssignment).toHaveBeenCalledTimes(0)
+  expect(instance.didSelectFirstItem).toBe(false)
+})
+
 test('does not select first item on empty data', () => {
   let tree = shallow(
     <AssignmentList {...defaultProps} />
