@@ -202,7 +202,7 @@ RCT_EXPORT_METHOD(stopObserving)
                     [self sendLoginEvent:nil];
                 }
             }];
-            self.shouldCleanupOnNextLogoutEvent = NO;
+            self.shouldCleanupOnNextLogoutEvent = uiTesting;
         } else {
             [self.delegate didLogout:x];
             [self sendLoginEvent:nil];

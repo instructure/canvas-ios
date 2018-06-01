@@ -24,7 +24,6 @@ class AllCoursesListPageTest: TeacherTest {
 
         coursesListPage.openAllCoursesPage()
         allCoursesListPage.assertPageObjects()
-
     }
 
 }

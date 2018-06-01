@@ -19,6 +19,11 @@ import SoSeedySwift
 class AssignmentListPageTest: TeacherTest {
     var assignment: Soseedy_Assignment!
 
+    func testAssignmentListPage_fullPath() {
+        getToAssignmentList(deepLink: false)
+        assignmentListPage.assertHasAssignment(assignment)
+    }
+
     //TestRail ID = C3109578
     func testAssignmentListPage_displaysAssignment() {
         getToAssignmentList()
@@ -32,13 +37,17 @@ class AssignmentListPageTest: TeacherTest {
 
     }
 
-    func getToAssignmentList() {
+    func getToAssignmentList(deepLink: Bool = true) {
         let course = SoSeedySwift.createCourse()
         let user = SoSeedySwift.createTeacher(in: course)
         SoSeedySwift.favorite(course, as: user)
         assignment = SoSeedySwift.createAssignment(for: course, as: user)
         logIn2(user)
-        coursesListPage.openCourseDetailsPage(course)
-        courseBrowserPage.openAssignmentListPage()
+        if deepLink {
+            deep(link: "/courses/\(course.id)/assignments")
+        } else {
+            coursesListPage.openCourseDetailsPage(course)
+            courseBrowserPage.openAssignmentListPage()
+        }
     }
 }

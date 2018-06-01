@@ -19,6 +19,11 @@ import SoSeedySwift
 class AssignmentDetailsPageTest: TeacherTest {
     var assignment: Soseedy_Assignment!
 
+    func testAssignmentDetailsPage_fullPath() {
+        getToAssignmentDetails(deepLink: false)
+        assignmentDetailsPage.assertAssignmentDetails(assignment.name, publishStatusFormattedString(assignment.published))
+    }
+
     //TestRail ID = C3109579
     func testAssignmentDetailsPage_displaysInstructions() {
         getToAssignmentDetails(withDescription: true)
@@ -76,7 +81,8 @@ class AssignmentDetailsPageTest: TeacherTest {
 
     func getToAssignmentDetails(
         withDescription: Bool = false,
-        submissionTypes: [Soseedy_SubmissionType] = []
+        submissionTypes: [Soseedy_SubmissionType] = [],
+        deepLink: Bool = true
     ) {
         let course = SoSeedySwift.createCourse()
         let user = SoSeedySwift.createTeacher(in: course)
@@ -88,8 +94,12 @@ class AssignmentDetailsPageTest: TeacherTest {
             submissionTypes: submissionTypes
         )
         logIn2(user)
-        coursesListPage.openCourseDetailsPage(course)
-        courseBrowserPage.openAssignmentListPage()
-        assignmentListPage.openAssignmentDetailsPage(assignment)
+        if deepLink {
+            deep(link: "/courses/\(course.id)/assignments/\(assignment.id)")
+        } else {
+            coursesListPage.openCourseDetailsPage(course)
+            courseBrowserPage.openAssignmentListPage()
+            assignmentListPage.openAssignmentDetailsPage(assignment)
+        }
     }
 }
