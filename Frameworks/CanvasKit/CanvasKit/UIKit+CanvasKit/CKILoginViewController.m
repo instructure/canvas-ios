@@ -20,7 +20,7 @@
 #import "CKIClient.h"
 #import "UIAlertController+Show.h"
 
-@interface CKILoginViewController () <WKNavigationDelegate, NSURLSessionTaskDelegate>
+@interface CKILoginViewController () <WKNavigationDelegate, NSURLSessionTaskDelegate, WKUIDelegate>
 @property (nonatomic, copy) NSURLRequest *request;
 @property (nonatomic) CKIAuthenticationMethod method;
 @property (nonatomic, copy) void(^completionHandler)(NSURLSessionAuthChallengeDisposition, NSURLCredential *);
@@ -53,6 +53,7 @@
     [self setTitle:self.request.URL.host];
     self.webView = [[WKWebView alloc] initWithFrame:self.view.frame];
     self.webView.navigationDelegate = self;
+    self.webView.UIDelegate = self;
     [self.webView setOpaque:NO];
     [self.webView setBackgroundColor:[UIColor whiteColor]];
     self.view = self.webView;
@@ -179,7 +180,8 @@ static UIImage *_loadingImage = nil;
     });
 }
 
-#pragma mark - Webview Delegate
+#pragma mark - WKNavigationDelegate
+
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
     if ([[[navigationAction.request URL] description] isEqualToString:@"about:blank"]) {
@@ -199,6 +201,18 @@ static UIImage *_loadingImage = nil;
     }
     
     decisionHandler(WKNavigationActionPolicyAllow);
+}
+
+#pragma mark - WKUIDelegate
+
+- (WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures
+{
+    BOOL newTab = !navigationAction.targetFrame.isMainFrame;
+    if (newTab) {
+        [self.webView loadRequest:navigationAction.request];
+    }
+
+    return nil;
 }
 
 #pragma mark - OAuth Processing
