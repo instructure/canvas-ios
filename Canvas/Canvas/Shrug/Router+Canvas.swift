@@ -100,27 +100,29 @@ extension Router {
             Page.colorfulPageViewModel(session: session, page: page)
         }
 
-        let pagesListFactory: (ContextID, [String: Any]) throws -> UIViewController? = { contextID, _ in
+        let pagesFrontFactory: (ContextID, [String: Any]) throws -> UIViewController? = { contextID, _ in
+            if let url = URL(string: "/\(contextID.context.pathComponent)/\(contextID.id)/pages/front_page") {
+                return Router.shared().controller(forHandling: url)
+            }
+            return nil
+        }
+
+        addContextRoute([.course, .group], subPath: "front_page", handler: pagesFrontFactory)
+        addContextRoute([.course, .group], subPath: "wiki", handler: pagesFrontFactory)
+
+        addContextRoute([.course], subPath: "pages", handler: { contextID, _ in
             return HelmViewController(
                 moduleName: "/courses/:courseID/pages",
                 props: ["courseID": contextID.id]
             )
-        }
+        })
 
-        let oldPagesListFactory: (ContextID, [String: Any]) throws -> UIViewController? = { contextID, _ in
+        addContextRoute([.group], subPath: "pages", handler: { contextID, _ in
             guard let currentSession = currentSession else { return nil }
             let controller = try Page.TableViewController(session: currentSession, contextID: contextID, viewModelFactory: pagesListViewModelFactory, route: route)
             return controller
-        }
+        })
 
-        addContextRoute([.course], subPath: "front_page", handler: pagesListFactory)
-        addContextRoute([.course], subPath: "pages", handler: pagesListFactory)
-        addContextRoute([.course], subPath: "wiki", handler: pagesListFactory)
-
-        addContextRoute([.group], subPath: "front_page", handler: oldPagesListFactory)
-        addContextRoute([.group], subPath: "pages", handler: oldPagesListFactory)
-        addContextRoute([.group], subPath: "wiki", handler: oldPagesListFactory)
-        
         let fileListFactory = { (contextID: ContextID) -> UIViewController in
             var props = ["context": contextID.context.pathComponent, "contextID": contextID.id]
             if contextID.context == .user {
