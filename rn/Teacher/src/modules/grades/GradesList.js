@@ -32,12 +32,6 @@ export function mapStateToProps ({ entities }: AppState, { courseID, navigator }
   const course = entities.courses[courseID]
   let { user } = getSession()
 
-  // $FlowFixMe
-  const enrollment = Object.keys(entities.enrollments)
-    .map(id => entities.enrollments[id])
-    .find(e => e.course_id === courseID && e.user_id === user.id)
-  const currentScore = enrollment ? enrollment.grades.current_score : undefined
-
   if (!course) {
     return {
       assignmentGroups: [],
@@ -50,7 +44,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID, navigator }
       screenTitle: i18n('Grades'),
       ListRow: GradesListRow,
       user,
-      currentScore,
+      currentScore: undefined,
       showTotalScore: true,
     }
   }
@@ -82,9 +76,13 @@ export function mapStateToProps ({ entities }: AppState, { courseID, navigator }
 
   let selectedRowID = entities.courseDetailsTabSelectedRow.rowID || ''
   let currentGradingPeriodID
+  let currentScore
   for (const enroll of course.course.enrollments) {
-    if (enroll.type === 'student' && enroll.current_grading_period_id) {
-      currentGradingPeriodID = enroll.current_grading_period_id
+    if (enroll.type === 'student') {
+      if (enroll.current_grading_period_id) {
+        currentGradingPeriodID = enroll.current_grading_period_id
+      }
+      currentScore = enroll.computed_current_score
       break
     }
   }

@@ -18,11 +18,7 @@
 
 import { mapStateToProps } from '../Dashboard'
 import { normalizeCourse } from '../../courses/courses-reducer'
-import * as courseTemplate from '../../../__templates__/course'
-import { enrollment } from '../../../__templates__/enrollments'
-import { section } from '../../../__templates__/section'
-import * as groupTemplate from '../../../__templates__/group'
-import { appState } from '../../../redux/__templates__/app-state'
+import * as templates from '../../../__templates__'
 import fromPairs from 'lodash/fromPairs'
 import App from '../../app/index'
 
@@ -41,6 +37,7 @@ const observerEnrollment = { type: 'observer' }
 function courseStates (courseTemplates): CoursesState {
   const states: Array<CourseState> = courseTemplates
     .map((course) => normalizeCourse(course, colors))
+  states.forEach(state => { state.enrollments.refs.push('123') })
   const pairs: Array<Array<*>> = states
     .map((courseState) => ([courseState.course.id, courseState]))
   const courses: CoursesState = fromPairs(pairs)
@@ -48,15 +45,15 @@ function courseStates (courseTemplates): CoursesState {
 }
 
 describe('mapStateToProps with favorites', () => {
-  const a = courseTemplate.course({ id: 1, name: 'a', sections: [section()] })
-  const b = courseTemplate.course({ id: 2, name: 'b', sections: [section()] })
-  const c = courseTemplate.course({ id: 3, name: 'c', sections: [section()] })
-  const d = courseTemplate.course({ id: 4, name: 'd', sections: [section()] })
+  const a = templates.course({ id: 1, name: 'a', sections: [templates.section()] })
+  const b = templates.course({ id: 2, name: 'b', sections: [templates.section()] })
+  const c = templates.course({ id: 3, name: 'c', sections: [templates.section()] })
+  const d = templates.course({ id: 4, name: 'd', sections: [templates.section()] })
   const courseTemplates = [a, b, c, d]
   const favorites = ['3', '1', '2']
 
   const courses = courseStates(courseTemplates)
-  const state = appState({
+  const state = templates.appState({
     favoriteCourses: { courseRefs: favorites },
     entities: {
       accountNotifications: { list: [] },
@@ -88,12 +85,12 @@ describe('mapStateToProps with favorites', () => {
 })
 
 describe('mapStateToProps with no favorites', () => {
-  const a = courseTemplate.course({ id: 1, name: 'a', sections: [section()] })
-  const b = courseTemplate.course({ id: 2, name: 'b', sections: [section()] })
+  const a = templates.course({ id: 1, name: 'a', sections: [templates.section()] })
+  const b = templates.course({ id: 2, name: 'b', sections: [templates.section()] })
   const courseTemplates = [a, b]
 
   const courses = courseStates(courseTemplates)
-  const state = appState({
+  const state = templates.appState({
     favoriteCourses: { courseRefs: [] },
     entities: {
       accountNotifications: { list: [] },
@@ -115,7 +112,7 @@ describe('mapStateToProps with no favorites', () => {
 })
 
 describe('mapStateToProps with no courses', () => {
-  const state = appState({
+  const state = templates.appState({
     favoriteCourses: { courseRefs: [] },
     entities: {
       accountNotifications: { list: [] },
@@ -136,12 +133,12 @@ describe('mapStateToProps with no courses', () => {
 })
 
 describe('mapStateToProps with student and observer enrollments', () => {
-  const a = courseTemplate.course({ id: 1, name: 'a', enrollments: [studentEnrollment], sections: [section()] })
-  const b = courseTemplate.course({ id: 2, name: 'b', enrollments: [observerEnrollment], sections: [section()] })
+  const a = templates.course({ id: 1, name: 'a', enrollments: [studentEnrollment], sections: [templates.section()] })
+  const b = templates.course({ id: 2, name: 'b', enrollments: [observerEnrollment], sections: [templates.section()] })
   const courseTemplates = [a, b]
 
   const courses = courseStates(courseTemplates)
-  const state = appState({
+  const state = templates.appState({
     favoriteCourses: { courseRefs: ['1', '2'] },
     entities: {
       accountNotifications: { list: [] },
@@ -163,13 +160,13 @@ describe('mapStateToProps with student and observer enrollments', () => {
 })
 
 describe('mapStateToProps with various teacher enrollments', () => {
-  const a = courseTemplate.course({ id: 1, name: 'a', sections: [section()] })
-  const b = courseTemplate.course({ id: 2, name: 'b', enrollments: [taEnrollment], sections: [section()] })
-  const c = courseTemplate.course({ id: 3, name: 'c', enrollments: [designerEnrollment], sections: [section()] })
+  const a = templates.course({ id: 1, name: 'a', sections: [templates.section()] })
+  const b = templates.course({ id: 2, name: 'b', enrollments: [taEnrollment], sections: [templates.section()] })
+  const c = templates.course({ id: 3, name: 'c', enrollments: [designerEnrollment], sections: [templates.section()] })
   const courseTemplates = [a, b, c]
 
   const courses = courseStates(courseTemplates)
-  const state = appState({
+  const state = templates.appState({
     favoriteCourses: { courseRefs: ['1', '2', '3'] },
     entities: {
       accountNotifications: { list: [] },
@@ -191,12 +188,12 @@ describe('mapStateToProps with various teacher enrollments', () => {
 })
 
 describe('mapStateToProps with teacher and student enrollments', () => {
-  const a = courseTemplate.course({ id: 1, name: 'a', sections: [section()] })
-  const b = courseTemplate.course({ id: 2, name: 'b', enrollments: [studentEnrollment], sections: [section()] })
+  const a = templates.course({ id: 1, name: 'a', sections: [templates.section()] })
+  const b = templates.course({ id: 2, name: 'b', enrollments: [studentEnrollment], sections: [templates.section()] })
   const courseTemplates = [a, b]
 
   const courses = courseStates(courseTemplates)
-  const state = appState({
+  const state = templates.appState({
     favoriteCourses: { courseRefs: ['1', '2'] },
     entities: {
       accountNotifications: { list: [] },
@@ -218,9 +215,9 @@ describe('mapStateToProps with teacher and student enrollments', () => {
 })
 
 describe('all courses mapStateToProps', () => {
-  const a = courseTemplate.course({ id: 1, name: 'a', sections: [section()] })
-  const b = courseTemplate.course({ id: 2, name: 'b', sections: [section()] })
-  const c = courseTemplate.course({ id: 3, name: 'c', sections: [section()] })
+  const a = templates.course({ id: 1, name: 'a', sections: [templates.section()] })
+  const b = templates.course({ id: 2, name: 'b', sections: [templates.section()] })
+  const c = templates.course({ id: 3, name: 'c', sections: [templates.section()] })
   const courseTemplates = [
     a, b, c,
   ]
@@ -238,7 +235,7 @@ describe('all courses mapStateToProps', () => {
     .map((courseState) => ([courseState.course.id, courseState]))
   const courses: CoursesState = fromPairs(pairs)
 
-  const state = appState({
+  const state = templates.appState({
     entities: {
       accountNotifications: { list: [] },
       courses,
@@ -261,18 +258,18 @@ describe('all courses mapStateToProps', () => {
 })
 
 describe('groups', () => {
-  const a = courseTemplate.course({ id: 1, name: 'a', sections: [section()] })
-  const b = courseTemplate.course({ id: 2, name: 'b', sections: [section()] })
+  const a = templates.course({ id: 1, name: 'a', sections: [templates.section()] })
+  const b = templates.course({ id: 2, name: 'b', sections: [templates.section()] })
   const courseTemplates = [a, b]
   const courseFavorites = ['1', '2']
 
-  const groupA = groupTemplate.group({ id: '1', name: 'a', course_id: '1' })
-  const groupB = groupTemplate.group({ id: '2', name: 'b', account_id: '1' })
-  const groupC = groupTemplate.group({ id: '3', name: 'c', account_id: '1' })
+  const groupA = templates.group({ id: '1', name: 'a', course_id: '1' })
+  const groupB = templates.group({ id: '2', name: 'b', account_id: '1' })
+  const groupC = templates.group({ id: '3', name: 'c', account_id: '1' })
   const groupFavorites = ['1', '2', '3']
 
   const courses = courseStates(courseTemplates)
-  const state = appState({
+  const state = templates.appState({
     favoriteCourses: { courseRefs: courseFavorites },
     favoriteGroups: { groupRefs: groupFavorites },
     entities: {
@@ -392,17 +389,17 @@ describe('groups', () => {
 })
 
 describe('sections', () => {
-  const sec1 = section({ course_id: '1', id: '1' })
-  const sec2 = section({ course_id: '2', id: '2' })
-  const sec3 = section({ course_id: '2', id: '3' })
-  const sec4 = section({ course_id: '1' })
-  const a = courseTemplate.course({ id: 1, name: 'a', sections: [sec4, sec1] })
-  const b = courseTemplate.course({ id: 2, name: 'b', sections: [sec2, sec3] })
+  const sec1 = templates.section({ course_id: '1', id: '1' })
+  const sec2 = templates.section({ course_id: '2', id: '2' })
+  const sec3 = templates.section({ course_id: '2', id: '3' })
+  const sec4 = templates.section({ course_id: '1' })
+  const a = templates.course({ id: 1, name: 'a', sections: [sec4, sec1] })
+  const b = templates.course({ id: 2, name: 'b', sections: [sec2, sec3] })
   const courseTemplates = [a, b]
   const favorites = ['1', '2']
 
   const courses = courseStates(courseTemplates)
-  const state = appState({
+  const state = templates.appState({
     favoriteCourses: { courseRefs: favorites },
     entities: {
       accountNotifications: { list: [] },
@@ -423,26 +420,26 @@ describe('sections', () => {
 })
 
 describe('enrollments', () => {
-  const a = courseTemplate.course({ id: 1, name: 'a', sections: [section()] })
-  const b = courseTemplate.course({ id: 2, name: 'b', sections: [section()] })
-  const c = courseTemplate.course({ id: 3, name: 'c', sections: [section()] })
-  const d = courseTemplate.course({ id: 4, name: 'd', sections: [section()] })
+  const a = templates.course({ id: 1, name: 'a', sections: [templates.section()] })
+  const b = templates.course({ id: 2, name: 'b', sections: [templates.section()] })
+  const c = templates.course({ id: 3, name: 'c', sections: [templates.section()] })
+  const d = templates.course({ id: 4, name: 'd', sections: [templates.section()] })
   const courseTemplates = [a, b, c, d]
   const favorites = ['1', '2']
 
   const courses = courseStates(courseTemplates)
-  const state = appState({
+  const state = templates.appState({
     favoriteCourses: { courseRefs: favorites },
     entities: {
       accountNotifications: { list: [] },
       courses,
       groups: {},
       enrollments: {
-        '1': enrollment({ id: '1', course_id: '1', user_id: '1' }),
-        '2': enrollment({ id: '2', course_id: '2', user_id: '1' }),
-        '3': enrollment({ id: '3', course_id: '3', user_id: '2' }),
-        '4': enrollment({ id: '4', course_id: '4', user_id: '3' }),
-        '5': enrollment({ id: '5', course_id: '5', user_id: '1' }),
+        '1': templates.enrollment({ id: '1', course_id: '1', user_id: '1' }),
+        '2': templates.enrollment({ id: '2', course_id: '2', user_id: '1' }),
+        '3': templates.enrollment({ id: '3', course_id: '3', user_id: '2' }),
+        '4': templates.enrollment({ id: '4', course_id: '4', user_id: '3' }),
+        '5': templates.enrollment({ id: '5', course_id: '5', user_id: '1' }),
       },
     },
   })
@@ -460,14 +457,14 @@ describe('not full dashboard -- student', () => {
     let currentApp = App.current().appId
     App.setCurrentApp('student')
 
-    const a = courseTemplate.course({ id: 1, name: 'a', sections: [section()], enrollments: [enrollment({ enrollment_state: 'invited' })] })
-    const b = courseTemplate.course({ id: 2, name: 'b', sections: [section()], enrollments: [enrollment({ enrollment_state: 'rejected' })] })
-    const c = courseTemplate.course({ id: 3, name: 'c', sections: [section()], enrollments: [enrollment({ enrollment_state: 'active' })] })
+    const a = templates.course({ id: 1, name: 'a', sections: [templates.section()], enrollments: [templates.enrollment({ enrollment_state: 'invited' })] })
+    const b = templates.course({ id: 2, name: 'b', sections: [templates.section()], enrollments: [templates.enrollment({ enrollment_state: 'rejected' })] })
+    const c = templates.course({ id: 3, name: 'c', sections: [templates.section()], enrollments: [templates.enrollment({ enrollment_state: 'active' })] })
     const courseTemplates = [a, b, c]
     const favorites = ['3']
 
     const courses = courseStates(courseTemplates)
-    const state = appState({
+    const state = templates.appState({
       favoriteCourses: { courseRefs: favorites },
       entities: {
         accountNotifications: { list: [] },

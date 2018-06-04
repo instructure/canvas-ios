@@ -24,7 +24,7 @@ export function getAssignment (courseID: string, assignmentID: string): ApiPromi
   const url = `courses/${courseID}/assignments/${assignmentID}`
   const options = {
     params: {
-      include: ['overrides'],
+      include: ['overrides', 'observed_users'],
       all_dates: true,
     },
   }

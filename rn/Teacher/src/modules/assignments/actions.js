@@ -22,7 +22,7 @@ import { UPDATE_COURSE_DETAILS_SELECTED_TAB_SELECTED_ROW_ACTION } from '../cours
 
 export let AssignmentListActions = (api: CanvasApi): * => ({
   refreshAssignmentList: createAction('assignmentList.refresh', (courseID: string, gradingPeriodID?: string, includeSubmissions?: boolean = false) => {
-    const include = ['assignments', 'all_dates', 'overrides', 'discussion_topic']
+    const include = ['assignments', 'all_dates', 'overrides', 'discussion_topic', 'observed_users']
     if (includeSubmissions) {
       include.push('submission')
     }

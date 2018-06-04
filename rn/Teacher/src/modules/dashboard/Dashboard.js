@@ -519,6 +519,8 @@ export function mapStateToProps (isFullDashboard: boolean) {
     if (isFullDashboard) {
       // we only want favorite courses here
       courseStates = courseRefs.map(ref => allCourses[ref])
+        // $FlowFixMe
+        .filter(c => c.enrollments.refs.length > 0)
     } else {
       // all courses view
       const blacklist = ['invited', 'rejected'] // except invited and rejected
