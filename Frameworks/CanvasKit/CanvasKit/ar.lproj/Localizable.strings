@@ -4,9 +4,6 @@
 /* (No Comment) */
 "Can't find your school?" = "ألا تستطيع العثور على مدرستك؟";
 
-/* Help label when user can't find their school. */
-"Can't find your school? Try typing the full school URL." = "ألا تستطيع العثور على مدرستك؟ حاول كتابة رابط URL الكامل للمدرسة.";
-
 /* No comment provided by engineer. */
 "Cancel" = "إلغاء";
 

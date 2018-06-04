@@ -4,9 +4,6 @@
 /* (No Comment) */
 "Can't find your school?" = "Finner du ikke skolen din?";
 
-/* Help label when user can't find their school. */
-"Can't find your school? Try typing the full school URL." = "Finner du ikke skolen din? Prøv å skrive hele skolens URL.";
-
 /* No comment provided by engineer. */
 "Cancel" = "Avbryt";
 

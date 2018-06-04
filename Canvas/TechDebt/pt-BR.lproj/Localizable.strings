@@ -757,7 +757,7 @@
 "Media type selector. %@" = "Selecionar tipo de mídia: %@";
 
 /* Add message button */
-"Message Instructor" = "Instrutor de Mensagem";
+"Message Instructor" = "Adicionar um Comentário";
 
 /* (No Comment) */
 "Message Sent." = "Mensagem Enviada.";

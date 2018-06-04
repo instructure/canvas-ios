@@ -4,9 +4,6 @@
 /* (No Comment) */
 "Can't find your school?" = "Kaore e taea te kimi i tō kura?";
 
-/* Help label when user can't find their school. */
-"Can't find your school? Try typing the full school URL." = "Kaore e taea te kimi i tō kura? Ngana ki te pātō te nuinga o te kura url";
-
 /* No comment provided by engineer. */
 "Cancel" = "Whakakore";
 

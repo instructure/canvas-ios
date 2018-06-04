@@ -4,9 +4,6 @@
 /* (No Comment) */
 "Can't find your school?" = "学校が見つかりませんか？";
 
-/* Help label when user can't find their school. */
-"Can't find your school? Try typing the full school URL." = "学校が見つかりませんか？学校の完全なURLを入力してみてください。";
-
 /* No comment provided by engineer. */
 "Cancel" = "キャンセル";
 

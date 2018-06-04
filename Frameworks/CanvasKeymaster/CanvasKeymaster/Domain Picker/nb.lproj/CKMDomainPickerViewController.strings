@@ -1,6 +1,3 @@
-/* Class = "UILabel"; text = "Subtitle"; ObjectID = "0bi-h7-8TR"; */
-"0bi-h7-8TR.text" = "Undertittel";
-
 /* Class = "UILabel"; text = "Title"; ObjectID = "7VQ-qv-Wtk"; */
 "7VQ-qv-Wtk.text" = "Tittel";
 
@@ -33,9 +30,6 @@
 
 /* Class = "UILabel"; text = "Subtitle"; ObjectID = "nTZ-ii-mqn"; */
 "nTZ-ii-mqn.text" = "Undertittel";
-
-/* Class = "UITextField"; placeholder = "school.instructure.com"; ObjectID = "xzj-lX-iaI"; */
-"xzj-lX-iaI.placeholder" = "school.instructure.com";
 
 /* Class = "UIButton"; normalTitle = "Find my school"; ObjectID = "zQQ-hy-gpK"; */
 "zQQ-hy-gpK.normalTitle" = "Finne skolen min";

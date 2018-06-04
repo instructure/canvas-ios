@@ -4,9 +4,6 @@
 /* (No Comment) */
 "Can't find your school?" = "Kun je je school niet vinden?";
 
-/* Help label when user can't find their school. */
-"Can't find your school? Try typing the full school URL." = "Kun je je school niet vinden? Typ de volledige URL van de school.";
-
 /* No comment provided by engineer. */
 "Cancel" = "Annuleren";
 
