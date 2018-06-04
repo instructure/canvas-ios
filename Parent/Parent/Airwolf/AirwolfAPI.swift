@@ -114,8 +114,7 @@ open class AirwolfAPI {
         validateSession(session, parentID: parentID) {success in
             if !success {
                 DispatchQueue.main.async {
-                    Keymaster.sharedInstance.logout()
-                    Router.sharedInstance.routeToLoggedOutViewController(animated: true)
+                    CanvasKeymaster.the().logout()
                 }
             }
         }

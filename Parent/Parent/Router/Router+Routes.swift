@@ -36,14 +36,8 @@ extension NSNotification.Name {
 }
 
 class RouteTemplates {
-    static let loginRouteTemplate = "login"
-    static let resetPasswordTemplate = "forgot_password"
     static let dashboardRouteTemplate = "dashboard"
     static let settingsRouteTemplate = "settings"
-    static let addStudentRouteTemplate = "settings/add_student"
-    static let viewGuidesRouteTemplate = "settings/view_guides"
-    static let reportProblemRouteTemplate = "settings/report_problem"
-    static let requestFeatureRouteTemplate = "settings/request_feature"
     static let studentThresholdRouteTemplate = "students/:studentID/thresholds"
     static let assignmentDetailsTemplate = "students/:studentID/courses/:courseID/assignments/:assignmentID"
     static let standaloneAssignmentDetailsTemplate = "students/:studentID/courses/:courseID/assignments/:assignmentID/standalone"
@@ -55,32 +49,12 @@ class RouteTemplates {
 }
 
 extension Router {
-    func loginRoute(_ baseURL: URL) -> URL {
-        return URL(string: RouteTemplates.loginRouteTemplate)!
-    }
-
     func dashboardRoute() -> URL {
         return URL(string: RouteTemplates.dashboardRouteTemplate)!
     }
 
     func settingsRoute() -> URL {
         return URL(string: RouteTemplates.settingsRouteTemplate)!
-    }
-
-    func addStudentRoute() -> URL {
-        return URL(string: RouteTemplates.addStudentRouteTemplate)!
-    }
-
-    func viewGuidesRoute() -> URL {
-        return URL(string: RouteTemplates.viewGuidesRouteTemplate)!
-    }
-
-    func requestFeatureRoute() -> URL {
-        return URL(string: RouteTemplates.requestFeatureRouteTemplate)!
-    }
-
-    func reportProblemRoute() -> URL {
-        return URL(string: RouteTemplates.reportProblemRouteTemplate)!
     }
 
     func thresholdSettingsRoute(studentID: String) -> URL {
@@ -126,14 +100,8 @@ extension Router {
 
     func addRoutes() {
         let routeDictionary = [
-            RouteTemplates.loginRouteTemplate: loginRouteHandler(),
-            RouteTemplates.resetPasswordTemplate: resetPasswordRouteHandler(),
             RouteTemplates.dashboardRouteTemplate: parentDashboardHandler(),
             RouteTemplates.settingsRouteTemplate: settingsPageHandler(),
-            RouteTemplates.addStudentRouteTemplate: addStudentHandler(),
-            RouteTemplates.viewGuidesRouteTemplate: viewGuidesHandler(),
-            RouteTemplates.reportProblemRouteTemplate: reportProblemHandler(),
-            RouteTemplates.requestFeatureRouteTemplate: requestFeatureHandler(),
             RouteTemplates.studentThresholdRouteTemplate: adjustThresholdsHandler(),
             RouteTemplates.assignmentDetailsTemplate: assignmentDetailsHandler(),
             RouteTemplates.standaloneAssignmentDetailsTemplate: standaloneAssignmentDetailsHandler(),
@@ -151,66 +119,6 @@ extension Router {
             }
         })
         addRoutesWithDictionary(routeDictionary)
-    }
-    
-    func routeToLoggedInViewController(animated: Bool = false) {
-        guard let window = applicationWindow() else {
-            fatalError("We don't have a window?  We're doomed!")
-        }
-
-        if let session = session {
-            NotificationCenter.default.post(name: .loggedIn, object: self, userInfo: [LoggedInNotificationContentsSession: session])
-        }
-
-        let dashboardHandler = Router.sharedInstance.parentDashboardHandler()
-        let dashboardVC = dashboardHandler(nil)
-        Router.sharedInstance.route(window, toRootViewController: dashboardVC, animated: animated)
-    }
-    
-    func routeToLoggedOutViewController(animated: Bool = false) {
-        guard let window = applicationWindow() else {
-            fatalError("We don't have a window?  We're doomed!")
-        }
-
-        NotificationCenter.default.post(name: .loggedOut, object: self)
-
-        let initialHandler = Router.sharedInstance.loginRouteHandler()
-        let initialViewController = initialHandler(nil)
-        Router.sharedInstance.route(window, toRootViewController: initialViewController, animated: animated)
-    }
-    
-    func loginRouteHandler() -> RouteHandler {
-        return { params in
-            let loginViewController = AirwolfLoginViewController(changePasswordInfo: nil)
-            loginViewController.loggedInHandler = { session in
-                Keymaster.sharedInstance.login(session)
-                self.session = session
-                DispatchQueue.main.async {
-                    self.routeToLoggedInViewController(animated: true)
-                }
-            }
-
-            return loginViewController
-        }
-    }
-
-    func resetPasswordRouteHandler() -> RouteHandler {
-        return { params in
-            let fallback = self.loginRouteHandler()(params)
-            guard let params = params, let email = params["username"] as? String, let recoveryToken = params["recovery_token"] as? String else {
-                return fallback
-            }
-
-            let loginViewController = AirwolfLoginViewController(changePasswordInfo: (email: email, token: recoveryToken))
-            loginViewController.loggedInHandler = { session in
-                Keymaster.sharedInstance.login(session)
-                self.session = session
-                DispatchQueue.main.async {
-                    self.routeToLoggedInViewController(animated: true)
-                }
-            }
-            return loginViewController
-        }
     }
     
     func parentDashboardHandler() -> RouteHandler {
@@ -241,120 +149,10 @@ extension Router {
                 self.route(dashboardVC, toURL: self.courseCalendarEventsRoute(studentID: studentID, courseID: course.id), modal: true)
             }
             dashboardVC.logoutAction = {
-                self.logout()
-            }
-            dashboardVC.addStudentAction = { [weak dashboardVC] in
-                guard let dashboardVC = dashboardVC else { return }
-                self.route(dashboardVC, toURL: self.addStudentRoute(), modal: true)
+                
             }
             
             return dashboardVC
-        }
-    }
-
-    func addStudentHandler() -> RouteHandler {
-        return { params in
-            let selectDomainViewController = SelectDomainViewController.new()
-            selectDomainViewController.dataSource = ParentSelectDomainDataSource.instance
-            selectDomainViewController.pickedDomainAction = { [weak self, weak selectDomainViewController] domain, authenticationProvider in
-                guard let session = self?.session else {
-                    fatalError("You can't add a user without a session")
-                }
-
-                let producer = try! Student.checkDomain(session, parentID: session.user.id, domain: domain)
-                producer.observe(on: UIScheduler()).startWithSignal({ signal, disposable in
-                    signal.observe { event in
-                        switch event {
-                        case .failed(let e):
-                            print("Error adding Student Domain: \(e)")
-                            var createAccountTitle = NSLocalizedString("Unable to Add Student", comment: "Title for alert when failing to add student domain")
-                            var createAccountMessage = e.localizedDescription
-                            if e.code == 401 || e.code == 400 {
-                                AirwolfAPI.validateSessionAndLogout(session, parentID: session.user.id)
-                                createAccountMessage = NSLocalizedString("Invalid student domain.\nPlease double-check the domain and try again.", comment: "Alert Message for invalid domain")
-                            } else if e.code == 403 {
-                                createAccountMessage = NSLocalizedString("This institution has not enabled access to the Canvas Parent mobile app.", comment: "Alert Message for institution not authorized")
-                            } else if e.code == 451 {
-                                // just in case the server doesn't give us region info as expected
-                                var region = NSLocalizedString("Unknown", comment: "Unknown region for student account")
-                                do {
-                                    if let data = e.data {
-                                        let json = try JSONParser.JSONObjectWithData(data)
-                                        let airwolfStudentRegion: String = try json <| "studentRegion"
-                                        if let regionName = Region
-                                            .region(forAirwolfRegionID: airwolfStudentRegion)?
-                                            .name {
-                                            region = regionName
-                                        }
-                                    }
-                                } catch let e {
-                                    print("JSON Parsing error for Parent <-> Student mismatch. \(e.localizedDescription)")
-                                }
-                                
-                                createAccountTitle = NSLocalizedString("Unauthorized Region", comment: "")
-                                createAccountMessage = NSLocalizedString("This institution is located outside of your selected region. To add a student at this institution, please use the “Region Picker” option on the login page to select the region of \(region), and create a new account.", comment: "")
-
-                            }
-                            let alert = UIAlertController(title: createAccountTitle, message: createAccountMessage, preferredStyle: .alert)
-                            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                            selectDomainViewController?.present(alert, animated: true, completion: nil)
-                        case .completed:
-                            do {
-                                let addVC = try AddStudentViewController(session: session, domain: domain, authenticationProvider: authenticationProvider) { result in
-                                    if let presentor = selectDomainViewController?.presentingViewController {
-                                        presentor.dismiss(animated: true)
-                                    } else {
-                                        let _ = selectDomainViewController?.navigationController?.popToRootViewController(animated: true)
-                                    }
-                                }
-                                addVC.prompt = NSLocalizedString("Enter student's login information", comment: "Prompt for logging in as student")
-                                selectDomainViewController?.navigationController?.pushViewController(addVC, animated: true)
-                            } catch let e as NSError {
-                                if let selectDomainViewController = selectDomainViewController {
-                                    ErrorReporter.reportError(e, from: selectDomainViewController)
-                                }
-                            }
-                        default:
-                            break
-                        }
-                    }
-                })
-            }
-            selectDomainViewController.useKeymasterLogin = false
-            selectDomainViewController.allowMultipleUsers = false
-            selectDomainViewController.useMobileVerify = false
-            selectDomainViewController.prompt = NSLocalizedString("Find your student's school or district", comment: "Domain Picker Search Placeholder")
-            return UINavigationController(rootViewController: selectDomainViewController)
-        }
-    }
-
-    func viewGuidesHandler() -> RouteHandler {
-        return { params in
-            let webBrowser = WebBrowserViewController(useAPISafeLinks: false, isModal: false)
-            webBrowser.url = URL(string: "https://community.canvaslms.com/community/answers/guides/")!
-            return webBrowser
-        }
-    }
-
-    func reportProblemHandler() -> RouteHandler {
-        return { params in
-            guard let session = self.session else {
-                fatalError("You can't create a ParentDashboardViewController without a Session")
-            }
-
-            let supportTicketVC = SupportTicketViewController.new(session, type: .problem)
-            return supportTicketVC
-        }
-    }
-
-    func requestFeatureHandler() -> RouteHandler {
-        return { params in
-            guard let session = self.session else {
-                fatalError("You can't create a ParentDashboardViewController without a Session")
-            }
-            
-            let supportTicketVC = SupportTicketViewController.new(session, type: .featureRequest)
-            return supportTicketVC
         }
     }
     
@@ -369,34 +167,10 @@ extension Router {
             settingsVC.closeAction = { [weak settingsVC] session in
                 settingsVC?.dismiss(animated: true, completion: nil)
             }
-
-            settingsVC.addObserveeAction = { [weak settingsVC] session in
-                guard let settingsVC = settingsVC else { return }
-                self.route(settingsVC, toURL: self.addStudentRoute(), modal: true)
-            }
-
-            settingsVC.requestFeatureAction = { [weak settingsVC] session in
-                guard let settingsVC = settingsVC else { return }
-                self.route(settingsVC, toURL: self.requestFeatureRoute())
-            }
-
-            settingsVC.reportProblemAction = { [weak settingsVC] session in
-                guard let settingsVC = settingsVC else { return }
-                self.route(settingsVC, toURL: self.reportProblemRoute())
-            }
-
-            settingsVC.viewGuidesAction = { [weak settingsVC] session in
-                guard let settingsVC = settingsVC else { return }
-                self.route(settingsVC, toURL: self.viewGuidesRoute())
-            }
             
             settingsVC.observeeSelectedAction = { [weak settingsVC] session, observee in
                 guard let settingsVC = settingsVC else { return }
                 self.route(settingsVC, toURL: self.thresholdSettingsRoute(studentID: String(observee.id)))
-            }
-            
-            settingsVC.logoutAction = { session in
-                self.logout()
             }
 
             let navigationController = UINavigationController.coloredTriangleNavigationController(withRootViewController: settingsVC)
@@ -571,12 +345,6 @@ extension Router {
             let navController = UINavigationController.coloredTriangleNavigationController(withRootViewController: announcementVC, forObservee: studentID.stringValue)
             return navController
         }
-    }
-
-    func logout() {
-        self.session = nil
-        Keymaster.sharedInstance.logout()
-        routeToLoggedOutViewController(animated: true)
     }
 }
 

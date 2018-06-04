@@ -49,11 +49,6 @@ class SettingsViewController: UIViewController {
     // MARK: - External Closures
     // ---------------------------------------------
     var closeAction: SettingsSessionAction? = nil
-    var logoutAction: SettingsSessionAction? = nil
-    var addObserveeAction: SettingsSessionAction? = nil
-    var viewGuidesAction: SettingsSessionAction? = nil
-    var reportProblemAction: SettingsSessionAction? = nil
-    var requestFeatureAction: SettingsSessionAction? = nil
     var allObserveesAction: SettingsSessionAction? = nil
     var observeeSelectedAction: SettingsObserveeSelectedAction? = nil
     
@@ -101,22 +96,6 @@ class SettingsViewController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
 
         setupCloseButton()
-        setupRightNavigationItem()
-    }
-
-    func setupRightNavigationItem() {
-        setupAddButton()
-        guard let addButton = addButton else { return }
-        self.navigationItem.rightBarButtonItems = [addButton]
-    }
-
-    func setupAddButton() {
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(SettingsViewController.addButtonPressed(_:)))
-        addButton.accessibilityLabel = NSLocalizedString("Add Student", comment: "Add Student Settings Button Title")
-        addButton.accessibilityIdentifier = "add_observee_button"
-        addButton.tintColor = UIColor.white
-
-        self.addButton = addButton
     }
 
     func setupCloseButton() {
@@ -148,13 +127,5 @@ class SettingsViewController: UIViewController {
     // ---------------------------------------------
     @IBAction func closeButtonPressed(_ sender: UIBarButtonItem) {
         closeAction?(viewModel.session)
-    }
-    
-    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
-        addObserveeAction?(viewModel.session)
-    }
-    
-    func addObservee() {
-        addObserveeAction?(viewModel.session)
     }
 }

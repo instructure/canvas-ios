@@ -38,8 +38,7 @@ extension Router {
                             self.presentNotAuthorizedError(viewController, error: error)
                         } else {
                             DispatchQueue.main.async {
-                                Keymaster.sharedInstance.logout()
-                                Router.sharedInstance.routeToLoggedOutViewController()
+                                CanvasKeymaster.the().logout()
                             }
                         }
                     }
@@ -91,10 +90,6 @@ extension Router {
 
         alert.addAction(UIAlertAction(title: NSLocalizedString("Remove Student", comment: "delete student from login"), style: .destructive, handler: { _ in
             self.removeStudentPressed(viewController, dictionary: dictionary)
-        }))
-
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Repair Access", comment: "re-authenticate user when token fails"), style: .default, handler: { _ in
-            self.route(viewController, toURL: self.addStudentRoute(), modal: true)
         }))
 
         viewController.present(alert, animated: true, completion: nil)
