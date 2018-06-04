@@ -20,6 +20,7 @@ import React from 'react'
 import ConversationMessage from '../ConversationMessageRow'
 import { getSession, setSession } from '../../../../canvas-api'
 import explore from '../../../../../test/helpers/explore'
+import { shallow } from 'enzyme'
 
 const template = {
   ...require('../../../../__templates__/conversations'),
@@ -88,6 +89,48 @@ it('renders correctly with author lots of participants', () => {
   const tree = renderer.create(
     <ConversationMessage conversation={convo} message={message} />
   ).toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
+it('renders correctly when there is only one author (current user) and one receiver', () => {
+  const session = getSession()
+
+  const convo = template.conversation({
+    id: '1',
+    participants: [
+      { id: session.user.id, name: 'hey there i am bob' },
+      { id: '1', name: 'hey there i am jane' },
+    ],
+    audience: ['1', '2'], // This covers a tiny edge case where there is a item in the audience array that doesn't exist in the participants array
+  })
+  const message = template.conversationMessage({
+    author_id: session.user.id,
+  })
+
+  const tree = shallow(
+    <ConversationMessage conversation={convo} message={message} />
+  )
+  expect(tree).toMatchSnapshot()
+})
+
+it('renders correctly when there is only one author (not current user) and one receiver', () => {
+  const session = getSession()
+
+  const convo = template.conversation({
+    id: '1',
+    participants: [
+      { id: session.user.id, name: 'hey there i am bob' },
+      { id: '1', name: 'hey there i am jane' },
+    ],
+    audience: [session.user.id],
+  })
+  const message = template.conversationMessage({
+    author_id: '1',
+  })
+
+  const tree = shallow(
+    <ConversationMessage conversation={convo} message={message} />
+  )
   expect(tree).toMatchSnapshot()
 })
 

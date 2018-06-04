@@ -29,7 +29,7 @@ exports[`renders correctly 1`] = `
       }
     >
       <View
-        accessibilityLabel="artorias of the abyss to me May 31 at 11:59 PM"
+        accessibilityLabel="artorias of the abyss + 1 other to me May 31 at 11:59 PM"
         accessible={true}
         style={
           Object {
@@ -98,7 +98,7 @@ exports[`renders correctly 1`] = `
                 ]
               }
             >
-              artorias of the abyss 
+              artorias of the abyss + 1 other 
             </Text>
             <Text
               accessible={true}
@@ -291,6 +291,406 @@ exports[`renders correctly 1`] = `
                 "fontFamily": ".SFUIDisplay",
               },
             ]
+          }
+        >
+          something.pdf
+        </Text>
+      </View>
+    </TouchableOpacity>
+  </View>
+</View>
+`;
+
+exports[`renders correctly when there is only one author (current user) and one receiver 1`] = `
+<View
+  testID="inbox.conversation-message-123456789"
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "white",
+        "borderTopColor": "#C7CDD1",
+        "borderTopWidth": 0.5,
+        "flex": 1,
+        "padding": 16,
+        "paddingTop": 12,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "borderBottomColor": "#C7CDD1",
+          "borderBottomWidth": 0.5,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 12,
+        }
+      }
+    >
+      <View
+        accessibilityLabel="me  May 31 at 11:59 PM"
+        accessible={true}
+        style={
+          Object {
+            "flexDirection": "row",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "height": 32,
+              "marginRight": 8,
+              "width": 32,
+            }
+          }
+        >
+          <Avatar
+            height={32}
+            onPress={[Function]}
+            userName="hey there i am bob"
+          />
+        </View>
+        <View>
+          <Text>
+            <Text
+              style={
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                }
+              }
+            >
+              me 
+            </Text>
+            <Text
+              style={
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 14,
+                }
+              }
+            />
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#8B969E",
+                "fontSize": 12,
+              }
+            }
+          >
+            May 31 at 11:59 PM
+          </Text>
+        </View>
+      </View>
+      <TouchableOpacity
+        accessibilityLabel="Message options"
+        accessibilityTraits="button"
+        accessible={true}
+        onPress={[Function]}
+        style={
+          Object {
+            "alignItems": "flex-end",
+            "height": 32,
+            "justifyContent": "center",
+            "width": 32,
+          }
+        }
+        testID="conversation-message.kabob-123456789"
+        underlayColor="#ffffff00"
+      >
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/images/kabob.png",
+            }
+          }
+          style={
+            Object {
+              "height": 18,
+              "tintColor": "#8B969E",
+              "transform": Array [
+                Object {
+                  "rotate": "180deg",
+                },
+              ],
+              "width": 18,
+            }
+          }
+        />
+      </TouchableOpacity>
+    </View>
+    <TouchableWithoutFeedback
+      onPress={[Function]}
+    >
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "paddingTop": 16,
+          }
+        }
+      >
+        <_class
+          linkStyle={
+            Object {
+              "color": "#2980b9",
+            }
+          }
+          onPress={[Function]}
+        >
+          <Text
+            numberOfLines={2}
+            style={
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              }
+            }
+          >
+            this is neat
+          </Text>
+        </_class>
+      </View>
+    </TouchableWithoutFeedback>
+    <TouchableOpacity
+      key="inbox.conversation-message-123456789.attachment-1"
+      onPress={[Function]}
+      testID="inbox.conversation-message-123456789.attachment-1"
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "marginTop": 8,
+          }
+        }
+      >
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/images/attachment.png",
+            }
+          }
+          style={
+            Object {
+              "tintColor": "#008EE2",
+            }
+          }
+        />
+        <Text
+          style={
+            Object {
+              "color": "#008EE2",
+              "fontFamily": ".SFUIDisplay-bold",
+              "fontSize": 14,
+              "marginLeft": 6,
+            }
+          }
+        >
+          something.pdf
+        </Text>
+      </View>
+    </TouchableOpacity>
+  </View>
+</View>
+`;
+
+exports[`renders correctly when there is only one author (not current user) and one receiver 1`] = `
+<View
+  testID="inbox.conversation-message-123456789"
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "white",
+        "borderTopColor": "#C7CDD1",
+        "borderTopWidth": 0.5,
+        "flex": 1,
+        "padding": 16,
+        "paddingTop": 12,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "borderBottomColor": "#C7CDD1",
+          "borderBottomWidth": 0.5,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 12,
+        }
+      }
+    >
+      <View
+        accessibilityLabel="me  May 31 at 11:59 PM"
+        accessible={true}
+        style={
+          Object {
+            "flexDirection": "row",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "height": 32,
+              "marginRight": 8,
+              "width": 32,
+            }
+          }
+        >
+          <Avatar
+            height={32}
+            onPress={[Function]}
+            userName="hey there i am bob"
+          />
+        </View>
+        <View>
+          <Text>
+            <Text
+              style={
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                }
+              }
+            >
+              me 
+            </Text>
+            <Text
+              style={
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 14,
+                }
+              }
+            />
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#8B969E",
+                "fontSize": 12,
+              }
+            }
+          >
+            May 31 at 11:59 PM
+          </Text>
+        </View>
+      </View>
+      <TouchableOpacity
+        accessibilityLabel="Message options"
+        accessibilityTraits="button"
+        accessible={true}
+        onPress={[Function]}
+        style={
+          Object {
+            "alignItems": "flex-end",
+            "height": 32,
+            "justifyContent": "center",
+            "width": 32,
+          }
+        }
+        testID="conversation-message.kabob-123456789"
+        underlayColor="#ffffff00"
+      >
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/images/kabob.png",
+            }
+          }
+          style={
+            Object {
+              "height": 18,
+              "tintColor": "#8B969E",
+              "transform": Array [
+                Object {
+                  "rotate": "180deg",
+                },
+              ],
+              "width": 18,
+            }
+          }
+        />
+      </TouchableOpacity>
+    </View>
+    <TouchableWithoutFeedback
+      onPress={[Function]}
+    >
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "paddingTop": 16,
+          }
+        }
+      >
+        <_class
+          linkStyle={
+            Object {
+              "color": "#2980b9",
+            }
+          }
+          onPress={[Function]}
+        >
+          <Text
+            numberOfLines={2}
+            style={
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              }
+            }
+          >
+            this is neat
+          </Text>
+        </_class>
+      </View>
+    </TouchableWithoutFeedback>
+    <TouchableOpacity
+      key="inbox.conversation-message-123456789.attachment-1"
+      onPress={[Function]}
+      testID="inbox.conversation-message-123456789.attachment-1"
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "marginTop": 8,
+          }
+        }
+      >
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/images/attachment.png",
+            }
+          }
+          style={
+            Object {
+              "tintColor": "#008EE2",
+            }
+          }
+        />
+        <Text
+          style={
+            Object {
+              "color": "#008EE2",
+              "fontFamily": ".SFUIDisplay-bold",
+              "fontSize": 14,
+              "marginLeft": 6,
+            }
           }
         >
           something.pdf
@@ -631,7 +1031,7 @@ exports[`renders correctly with author lots of participants 1`] = `
       }
     >
       <View
-        accessibilityLabel="me to 3 others May 31 at 11:59 PM"
+        accessibilityLabel="me to 2 others May 31 at 11:59 PM"
         accessible={true}
         style={
           Object {
@@ -725,7 +1125,7 @@ exports[`renders correctly with author lots of participants 1`] = `
                 ]
               }
             >
-              to 3 others
+              to 2 others
             </Text>
           </Text>
           <Text

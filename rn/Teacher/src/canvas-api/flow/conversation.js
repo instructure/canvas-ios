@@ -54,6 +54,7 @@ export type ConversationMessage = {
   media_comment?: MediaComment,
   forwarded_messages?: any,
   attachments: ?Attachment[],
+  participating_user_ids?: string[],
 }
 
 export type CreateConversationParameters = {

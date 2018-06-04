@@ -104,8 +104,12 @@ export default class ConversationMessageRow extends Component<ConversationMessag
 
   _audience = (): ConversationParticipant[] => {
     const participants = this.props.conversation.participants
-    const audience = this.props.conversation.audience
-    return audience.map((id) => find(participants, { id })).filter((a) => a)
+    const audience = this.props.message.participating_user_ids || this.props.conversation.audience
+    const me = getSession().user
+    return audience.map((id) => find(participants, { id })).filter((a) => {
+      if (!a) return false
+      return me.id !== a.id
+    })
   }
 
   // The count of participants minus the author and me
@@ -134,7 +138,7 @@ export default class ConversationMessageRow extends Component<ConversationMessag
         recipientName = i18n('to {count} others', { count: audience.length })
       }
     } else {
-      const extras = (this._extraParicipipantCount() - 1)
+      const extras = this._extraParicipipantCount()
       if (extras > 0) {
         authorName = i18n('{name} + {count, plural, one {# other} other {# others}}', { name: authorName, count: extras })
       }
