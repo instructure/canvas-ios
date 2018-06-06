@@ -21,11 +21,7 @@ import { default as QuizDetailsActions } from '../../quizzes/details/actions'
 import { assignmentGroups } from '../assignment-group-entities-reducer'
 import { apiResponse } from '../../../../test/helpers/apiMock'
 import { testAsyncReducer } from '../../../../test/helpers/async'
-
-const template = {
-  ...require('../../../__templates__/assignments'),
-  ...require('../../../__templates__/quiz'),
-}
+import * as template from '../../../__templates__'
 
 const { refreshQuiz } = QuizDetailsActions
 
@@ -33,7 +29,7 @@ test('refresh assignment groups', async () => {
   const group = template.assignmentGroup()
   let assignmentRefs = group.assignments.map((a) => a.id)
 
-  let action = AssignmentListActions({ getAssignmentGroups: apiResponse([group]) }).refreshAssignmentList(1)
+  let action = AssignmentListActions({ getAssignmentGroups: apiResponse([group]), getAssignments: apiResponse(group.assignments) }).refreshAssignmentList(1)
   let state = await testAsyncReducer(assignmentGroups, action)
 
   delete group.assignments
@@ -83,7 +79,7 @@ test('refresh quiz', () => {
 
 test('refresh assignment groups returns existing state when there is a gradingPeriodID', async () => {
   const group = template.assignmentGroup()
-  let action = AssignmentListActions({ getAssignmentGroups: apiResponse([group]) }).refreshAssignmentList(1, 2)
+  let action = AssignmentListActions({ getAssignmentGroups: apiResponse([group]), getAssignments: apiResponse(group.assignments) }).refreshAssignmentList(1, 2)
   let state = await testAsyncReducer(assignmentGroups, action)
   expect(state).toEqual([{}, {}])
 })

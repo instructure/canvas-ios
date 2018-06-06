@@ -14,24 +14,20 @@
 // limitations under the License.
 //
 
-/* @flow */
+// @flow
 
 import { AssignmentListActions } from '../actions'
 import { default as QuizDetailsActions } from '../../quizzes/details/actions'
 import { assignmentGroups } from '../assignment-group-refs-reducer'
 import { apiResponse, apiError } from '../../../../test/helpers/apiMock'
 import { testAsyncReducer } from '../../../../test/helpers/async'
-
-const template = {
-  ...require('../../../__templates__/assignments'),
-  ...require('../../../__templates__/quiz'),
-}
+import * as template from '../../../__templates__'
 
 const { refreshQuiz } = QuizDetailsActions
 
 test('refresh assignment group refs', async () => {
   const groups = [template.assignmentGroup()]
-  let action = AssignmentListActions({ getAssignmentGroups: apiResponse(groups) }).refreshAssignmentList(1)
+  let action = AssignmentListActions({ getAssignmentGroups: apiResponse(groups), getAssignments: apiResponse(groups[0].assignments) }).refreshAssignmentList(1)
   let state = await testAsyncReducer(assignmentGroups, action)
 
   expect(state).toEqual([
@@ -48,7 +44,7 @@ test('refresh assignment group refs', async () => {
 
 test('refresh assignment group refs doesnt update refs when a grading period id is provided', async () => {
   const groups = [template.assignmentGroup()]
-  let action = AssignmentListActions({ getAssignmentGroups: apiResponse(groups) }).refreshAssignmentList(1, 2)
+  let action = AssignmentListActions({ getAssignmentGroups: apiResponse(groups), getAssignments: apiResponse(groups[0].assignments) }).refreshAssignmentList(1, 2)
   let state = await testAsyncReducer(assignmentGroups, action)
 
   expect(state).toEqual([
@@ -64,7 +60,7 @@ test('refresh assignment group refs doesnt update refs when a grading period id 
 })
 
 test('assignment list with error', async () => {
-  const action = AssignmentListActions({ getAssignmentGroups: apiError({ message: '' }) }).refreshAssignmentList(1, 2)
+  const action = AssignmentListActions({ getAssignmentGroups: apiError({ message: '' }), getAssignments: apiError({ message: '' }) }).refreshAssignmentList(1, 2)
   const state = await testAsyncReducer(assignmentGroups, action)
   expect(state).toEqual([{
     pending: 1,

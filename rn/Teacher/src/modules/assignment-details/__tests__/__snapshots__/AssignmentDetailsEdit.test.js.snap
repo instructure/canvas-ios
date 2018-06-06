@@ -831,7 +831,7 @@ exports[`error occurs when done pressed 1`] = `
         <AssignmentDatesEditor
           assignment={
             Object {
-              "assignment_group_id": 1376,
+              "assignment_group_id": "1376",
               "automatic_peer_reviews": false,
               "course_id": "987654321",
               "created_at": "2017-03-17T19:15:25Z",
@@ -1716,7 +1716,7 @@ exports[`modal saving is shown on assignment update 1`] = `
         <AssignmentDatesEditor
           assignment={
             Object {
-              "assignment_group_id": 1376,
+              "assignment_group_id": "1376",
               "automatic_peer_reviews": false,
               "course_id": "987654321",
               "created_at": "2017-03-17T19:15:25Z",
@@ -2601,7 +2601,7 @@ exports[`renders 1`] = `
         <AssignmentDatesEditor
           assignment={
             Object {
-              "assignment_group_id": 1376,
+              "assignment_group_id": "1376",
               "automatic_peer_reviews": false,
               "course_id": "987654321",
               "created_at": "2017-03-17T19:15:25Z",
@@ -3490,7 +3490,7 @@ exports[`saving invalid dates displays banner 1`] = `
                 "due_at": "2017-06-01T07:59:00Z",
                 "lock_at": "2017-06-01T05:59:00Z",
               },
-              "assignment_group_id": 1376,
+              "assignment_group_id": "1376",
               "automatic_peer_reviews": false,
               "course_id": "987654321",
               "created_at": "2017-03-17T19:15:25Z",
@@ -4413,7 +4413,7 @@ exports[`saving invalid name displays banner 1`] = `
         <AssignmentDatesEditor
           assignment={
             Object {
-              "assignment_group_id": 1376,
+              "assignment_group_id": "1376",
               "automatic_peer_reviews": false,
               "course_id": "987654321",
               "created_at": "2017-03-17T19:15:25Z",
@@ -5336,7 +5336,7 @@ exports[`saving invalid points possible displays banner 1`] = `
         <AssignmentDatesEditor
           assignment={
             Object {
-              "assignment_group_id": 1376,
+              "assignment_group_id": "1376",
               "automatic_peer_reviews": false,
               "course_id": "987654321",
               "created_at": "2017-03-17T19:15:25Z",
@@ -6259,7 +6259,7 @@ exports[`saving negative points possible displays banner 1`] = `
         <AssignmentDatesEditor
           assignment={
             Object {
-              "assignment_group_id": 1376,
+              "assignment_group_id": "1376",
               "automatic_peer_reviews": false,
               "course_id": "987654321",
               "created_at": "2017-03-17T19:15:25Z",

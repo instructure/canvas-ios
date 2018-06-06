@@ -14,18 +14,14 @@
 // limitations under the License.
 //
 
-/* @flow */
+// @flow
 
 import { AssignmentListActions } from '../actions'
 import { CoursesActions } from '../../courses/actions'
 import { gradingPeriods, refs } from '../grading-periods-reducer'
 import { apiResponse } from '../../../../test/helpers/apiMock'
 import { testAsyncReducer } from '../../../../test/helpers/async'
-
-const template = {
-  ...require('../../../__templates__/assignments'),
-  ...require('../../../__templates__/grading-periods'),
-}
+import * as template from '../../../__templates__'
 
 test('refresh grading periods', async () => {
   const gradingPeriod = template.gradingPeriod()
@@ -56,7 +52,7 @@ test('refresh grading periods should keep any existing assignmentRefs', async ()
 
 test('refresh assignment groups list', async () => {
   let group = template.assignmentGroup()
-  let action = AssignmentListActions({ getAssignmentGroups: apiResponse([group]) }).refreshAssignmentList(1, 1)
+  let action = AssignmentListActions({ getAssignmentGroups: apiResponse([group]), getAssignments: apiResponse(group.assignments) }).refreshAssignmentList(1, 1)
   let state = await testAsyncReducer(gradingPeriods, action)
 
   expect(state).toEqual([{}, {
@@ -68,7 +64,7 @@ test('refresh assignment groups list', async () => {
 
 test('refresh assignment groups list with no gradingPeriodID', async () => {
   let group = template.assignmentGroup()
-  let action = AssignmentListActions({ getAssignmentGroups: apiResponse([group]) }).refreshAssignmentList(1, null)
+  let action = AssignmentListActions({ getAssignmentGroups: apiResponse([group]), getAssignments: apiResponse(group.assignments) }).refreshAssignmentList(1, null)
   let state = await testAsyncReducer(gradingPeriods, action)
 
   expect(state).toEqual([{}, {

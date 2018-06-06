@@ -220,7 +220,7 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
       Array [
         Object {
           "assignment": Object {
-            "assignment_group_id": 1376,
+            "assignment_group_id": "1376",
             "automatic_peer_reviews": false,
             "course_id": "987654321",
             "created_at": "2017-03-17T19:15:25Z",
@@ -1113,7 +1113,7 @@ exports[`ContextCard renders 1`] = `
       Array [
         Object {
           "assignment": Object {
-            "assignment_group_id": 1376,
+            "assignment_group_id": "1376",
             "automatic_peer_reviews": false,
             "course_id": "987654321",
             "created_at": "2017-03-17T19:15:25Z",
@@ -2482,7 +2482,7 @@ exports[`ContextCard renders if there is no enrollment 1`] = `
       Array [
         Object {
           "assignment": Object {
-            "assignment_group_id": 1376,
+            "assignment_group_id": "1376",
             "automatic_peer_reviews": false,
             "course_id": "987654321",
             "created_at": "2017-03-17T19:15:25Z",
@@ -3111,7 +3111,7 @@ exports[`ContextCard renders if there is no section in the enrollment 1`] = `
       Array [
         Object {
           "assignment": Object {
-            "assignment_group_id": 1376,
+            "assignment_group_id": "1376",
             "automatic_peer_reviews": false,
             "course_id": "987654321",
             "created_at": "2017-03-17T19:15:25Z",
@@ -3978,7 +3978,7 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
       Array [
         Object {
           "assignment": Object {
-            "assignment_group_id": 1376,
+            "assignment_group_id": "1376",
             "automatic_peer_reviews": false,
             "course_id": "987654321",
             "created_at": "2017-03-17T19:15:25Z",

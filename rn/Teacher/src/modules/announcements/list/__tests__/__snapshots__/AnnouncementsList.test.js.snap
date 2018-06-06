@@ -28,7 +28,7 @@ exports[`AnnouncementsList refreshes when there are no permissions 1`] = `
       Object {
         "allow_rating": false,
         "assignment": Object {
-          "assignment_group_id": 1376,
+          "assignment_group_id": "1376",
           "automatic_peer_reviews": false,
           "course_id": "987654321",
           "created_at": "2017-03-17T19:15:25Z",
@@ -159,7 +159,7 @@ exports[`AnnouncementsList renders 1`] = `
           Object {
             "allow_rating": false,
             "assignment": Object {
-              "assignment_group_id": 1376,
+              "assignment_group_id": "1376",
               "automatic_peer_reviews": false,
               "course_id": "987654321",
               "created_at": "2017-03-17T19:15:25Z",
@@ -235,7 +235,7 @@ exports[`AnnouncementsList renders 1`] = `
           Object {
             "allow_rating": false,
             "assignment": Object {
-              "assignment_group_id": 1376,
+              "assignment_group_id": "1376",
               "automatic_peer_reviews": false,
               "course_id": "987654321",
               "created_at": "2017-03-17T19:15:25Z",
@@ -861,7 +861,7 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
           Object {
             "allow_rating": false,
             "assignment": Object {
-              "assignment_group_id": 1376,
+              "assignment_group_id": "1376",
               "automatic_peer_reviews": false,
               "course_id": "987654321",
               "created_at": "2017-03-17T19:15:25Z",
@@ -937,7 +937,7 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
           Object {
             "allow_rating": false,
             "assignment": Object {
-              "assignment_group_id": 1376,
+              "assignment_group_id": "1376",
               "automatic_peer_reviews": false,
               "course_id": "987654321",
               "created_at": "2017-03-17T19:15:25Z",
@@ -1417,7 +1417,7 @@ exports[`AnnouncementsList renders with no create_announcement permission 1`] = 
           Object {
             "allow_rating": false,
             "assignment": Object {
-              "assignment_group_id": 1376,
+              "assignment_group_id": "1376",
               "automatic_peer_reviews": false,
               "course_id": "987654321",
               "created_at": "2017-03-17T19:15:25Z",
@@ -1493,7 +1493,7 @@ exports[`AnnouncementsList renders with no create_announcement permission 1`] = 
           Object {
             "allow_rating": false,
             "assignment": Object {
-              "assignment_group_id": 1376,
+              "assignment_group_id": "1376",
               "automatic_peer_reviews": false,
               "course_id": "987654321",
               "created_at": "2017-03-17T19:15:25Z",

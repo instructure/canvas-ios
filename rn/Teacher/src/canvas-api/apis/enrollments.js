@@ -44,6 +44,7 @@ export async function getGradesForGradingPeriod (courseID: string, userID: strin
     params: {
       user_id: userID,
       grading_period_id: gradingPeriodID,
+      include: [ 'observed_users' ],
     },
   })
   return enrollment.grades

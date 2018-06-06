@@ -22,12 +22,28 @@ import { UPDATE_COURSE_DETAILS_SELECTED_TAB_SELECTED_ROW_ACTION } from '../cours
 
 export let AssignmentListActions = (api: CanvasApi): * => ({
   refreshAssignmentList: createAction('assignmentList.refresh', (courseID: string, gradingPeriodID?: string, includeSubmissions?: boolean = false) => {
-    const include = ['assignments', 'all_dates', 'overrides', 'discussion_topic', 'observed_users']
+    const include = ['all_dates', 'overrides', 'discussion_topic', 'observed_users']
     if (includeSubmissions) {
       include.push('submission')
     }
+    const promise = Promise.all([
+      api.getAssignmentGroups(courseID, gradingPeriodID),
+      api.getAssignments(courseID, include),
+    ]).then(([ groupsResponse, { data: assignments } ]) => {
+      for (const group of groupsResponse.data) {
+        group.assignments = assignments.filter(({ assignment_group_id }) =>
+          group.id === assignment_group_id
+        )
+      }
+      for (const assignment of assignments) {
+        if (Array.isArray(assignment.submission)) {
+          assignment.submission = assignment.submission[0]
+        }
+      }
+      return groupsResponse
+    })
     return {
-      promise: api.getAssignmentGroups(courseID, gradingPeriodID, include),
+      promise,
       courseID,
       gradingPeriodID,
     }

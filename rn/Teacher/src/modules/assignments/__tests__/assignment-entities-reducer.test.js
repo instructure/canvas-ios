@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-/* @flow */
+// @flow
 
 import { AssignmentListActions } from '../actions'
 import { assignments } from '../assignment-entities-reducer'
@@ -23,20 +23,16 @@ import { testAsyncReducer } from '../../../../test/helpers/async'
 import SubmissionActions from '../../submissions/list/actions'
 import { default as QuizDetailsActions } from '../../quizzes/details/actions'
 import { default as DiscussionDetailsActions } from '../../discussions/details/actions'
+import * as template from '../../../__templates__'
 
 const { refreshSubmissions, refreshSubmissionSummary, getUserSubmissions } = SubmissionActions
 const { refreshQuiz } = QuizDetailsActions
 const { refreshDiscussionEntries } = DiscussionDetailsActions
-const template = {
-  ...require('../../../__templates__/assignments'),
-  ...require('../../../__templates__/submissions'),
-  ...require('../../../__templates__/error'),
-}
 
 test('refresh assignments', async () => {
   const groups = [template.assignmentGroup()]
-  const assignment = template.assignment()
-  let action = AssignmentListActions({ getAssignmentGroups: apiResponse(groups) }).refreshAssignmentList(1, 2)
+  const assignment = groups[0].assignments[0]
+  let action = AssignmentListActions({ getAssignmentGroups: apiResponse(groups), getAssignments: apiResponse(groups[0].assignments) }).refreshAssignmentList(1, 2)
   let state = await testAsyncReducer(assignments, action)
 
   expect(state).toEqual([{}, {

@@ -84,6 +84,7 @@ export type Assignment = {
   rubric_assessment: {
     [string]: RubricAssessment,
   },
+  assignment_group_id?: ?string,
   group_category_id: ?string,
   grade_group_students_individually: boolean,
   quiz_id?: string,

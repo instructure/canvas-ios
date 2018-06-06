@@ -21,7 +21,7 @@ import * as templates from '../../../__templates__/index'
 
 describe('AssignmentList mapStateToProps', () => {
   let assignmentGroup = templates.assignmentGroup()
-  let assignment = templates.assignment()
+  let assignment = assignmentGroup.assignments[0]
   let gradingPeriod = templates.gradingPeriod({ id: 1 })
   let gradingPeriodTwo = templates.gradingPeriod({ id: 2 })
   let course = templates.course({
