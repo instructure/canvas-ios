@@ -22,6 +22,7 @@ typealias ErrorHandler = (Error?) -> Void
 @objc(PageViewEventController)
 open class PageViewEventController: NSObject {
     open static let instance = PageViewEventController()
+    private var requestManager = PageViewEventRequestManager()
     
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -38,8 +39,7 @@ open class PageViewEventController: NSObject {
     
     //  MARK: - Public
     func logPageView(_ eventNameOrPath: String, attributes: [String: Any]? = nil, eventDurationInSeconds: TimeInterval = 0) {
-        guard NSClassFromString("EarlGreyImpl") == nil else { return }
-        guard FeatureFlags.featureFlagEnabled(.pageViewLogging) else { return }
+        if(!appCanLogEvents()) { return }
         guard let userID = CanvasKeymaster.the().currentClient?.currentUser.id else { return }
         
         var mutableAttributes = attributes?.convertToPageViewEventDictionary() ?? PageViewEventDictionary()
@@ -67,21 +67,37 @@ open class PageViewEventController: NSObject {
     
     //  MARK: - Helpers
     
+    fileprivate func appCanLogEvents() -> Bool {
+        let isNotTest = NSClassFromString("EarlGreyImpl") == nil
+        let enabled = FeatureFlags.featureFlagEnabled(.pageViewLogging)
+        let isStudent = NativeLoginManager.shared().app == CanvasApp.student
+        return isNotTest && enabled && isStudent
+    }
+    
     fileprivate func enableAppLifeCycleNotifications(_ enable: Bool) {
         if enable {
             NotificationCenter.default.addObserver(self, selector: #selector(PageViewEventController.didEnterBackground(_:)), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(PageViewEventController.willEnterForeground(_:)), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(PageViewEventController.appWillTerminate(_:)), name: NSNotification.Name.UIApplicationWillTerminate, object: nil)
             CanvasKeymaster.the().signalForLogout.subscribeNext({ [weak self] (_) in
-                self?.sync()
+                self?.sync({ [weak self] in
+                    self?.requestManager.cleanup()
+                })
             })
+            
+            CanvasKeymaster.the().signalForLogin.subscribeNext { [weak self] (client) in
+                self?.sync({ [weak self] in
+                    self?.requestManager.cleanup()
+                })
+            }
         } else {
             NotificationCenter.default.removeObserver(self)
         }
     }
     
     fileprivate func sync(_ handler: EmptyHandler? = nil) {
-        sendEvents { error in
+        if(!appCanLogEvents()) { handler?(); return }
+        requestManager.sendEvents { error in
             handler?()
         }
     }
@@ -122,17 +138,6 @@ open class PageViewEventController: NSObject {
     }
 }
 
-extension PageViewEventController {
-    // TODO - send events here
-    fileprivate func sendEvents(handler: ErrorHandler?) {
-        //  let eventsToSync = Persistency.instance.batchOfEvents(3) // or use Persistency.instance.queueCount
-        //  .... send events to server
-        //  when successful response comes back, dequeue events from disk
-        //  Persistency.isnstance.dequeue(3, handler: handler)
-        handler?(nil)
-    }
-}
-
 // MARK: - RN Logger methods
 extension PageViewEventController {
     open func allEvents() -> String {
@@ -147,10 +152,11 @@ extension PageViewEventController {
 
     //  MARK: - Dev menu
     open func clearAllEvents(handler: (() -> Void)?) {
-        Persistency.instance.dequeue(Persistency.instance.queueCount, handler: {
+        Persistency.instance.dequeue(Persistency.instance.queueCount) {
             handler?()
-        })
+        }
     }
 }
+
 
 

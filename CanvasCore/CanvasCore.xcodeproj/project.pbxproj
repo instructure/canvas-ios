@@ -53,6 +53,7 @@
 		3BBEAA4B20472984004D334C /* Persistency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBEAA4A20472984004D334C /* Persistency.swift */; };
 		3BC7CEC620113F5B001DFF8C /* CKIClient+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC7CEC520113F5B001DFF8C /* CKIClient+Extensions.swift */; };
 		3BD43DE91FD20597001A6B34 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD43DE81FD20597001A6B34 /* EmptyViewController.swift */; };
+		3BD715A620B7562500F5A422 /* PageViewEventRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD715A520B7562500F5A422 /* PageViewEventRequestManager.swift */; };
 		3BDE87761FD76BE600912CB3 /* UISplitViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */; };
 		3BF2B3D020475DBA00B5E5E5 /* PageViewEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2B3CF20475DBA00B5E5E5 /* PageViewEventController.swift */; };
 		3BF2B3D7204F058800B5E5E5 /* PageViewEventLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2B3D5204F058800B5E5E5 /* PageViewEventLogger.m */; };
@@ -596,6 +597,7 @@
 		3BBEAA4A20472984004D334C /* Persistency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistency.swift; sourceTree = "<group>"; };
 		3BC7CEC520113F5B001DFF8C /* CKIClient+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CKIClient+Extensions.swift"; sourceTree = "<group>"; };
 		3BD43DE81FD20597001A6B34 /* EmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
+		3BD715A520B7562500F5A422 /* PageViewEventRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewEventRequestManager.swift; sourceTree = "<group>"; };
 		3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISplitViewControllerExtensions.swift; sourceTree = "<group>"; };
 		3BF2B3CF20475DBA00B5E5E5 /* PageViewEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewEventController.swift; sourceTree = "<group>"; };
 		3BF2B3D5204F058800B5E5E5 /* PageViewEventLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PageViewEventLogger.m; sourceTree = "<group>"; };
@@ -1347,6 +1349,7 @@
 				3BF2B3CF20475DBA00B5E5E5 /* PageViewEventController.swift */,
 				3BF2B3D5204F058800B5E5E5 /* PageViewEventLogger.m */,
 				3B210C292051DCA50062F6A7 /* PageViewEventViewControllerLoggingProtocol.swift */,
+				3BD715A520B7562500F5A422 /* PageViewEventRequestManager.swift */,
 			);
 			path = "Page View Analytics";
 			sourceTree = "<group>";
@@ -3082,6 +3085,7 @@
 				49CE979F1F900D0000121A43 /* InfinitePagedImagesView.swift in Sources */,
 				2CB68A351FED6E0600468313 /* StartupManager.swift in Sources */,
 				49CE96EB1F8FFC4500121A43 /* SoEdventurous.xcdatamodeld in Sources */,
+				3BD715A620B7562500F5A422 /* PageViewEventRequestManager.swift in Sources */,
 				49CE96E31F8FFC4400121A43 /* MasteryPathAssignmentSet.swift in Sources */,
 				2C6796C01FD9E36B00BE7BC0 /* DrawerTransition.swift in Sources */,
 				49CE97371F8FFEA600121A43 /* ArcVideoPickerViewController.swift in Sources */,

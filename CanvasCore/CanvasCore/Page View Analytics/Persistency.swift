@@ -61,7 +61,6 @@ class Persistency {
     }
     
     func saveToFile(_ handler: EmptyHandler? = nil) {
-        if queuedEvents.count == 0 { handler?(); return }
         DispatchQueue.global(qos: .background).async { [weak self] in
             if let weakself = self, let path = self?.storageFileURL()?.path {
                 self?.dispatchQueue.async(flags: .barrier) {
