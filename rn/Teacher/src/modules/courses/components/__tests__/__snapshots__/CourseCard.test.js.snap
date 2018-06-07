@@ -40,7 +40,10 @@ exports[`renders 1`] = `
       <View
         style={
           Object {
+            "borderTopLeftRadius": 4,
+            "borderTopRightRadius": 4,
             "flex": 1,
+            "overflow": "hidden",
           }
         }
       >
@@ -220,7 +223,10 @@ exports[`renders with a grade 1`] = `
       <View
         style={
           Object {
+            "borderTopLeftRadius": 4,
+            "borderTopRightRadius": 4,
             "flex": 1,
+            "overflow": "hidden",
           }
         }
       >
@@ -447,7 +453,10 @@ exports[`renders with a grade even if the grade does not exist 1`] = `
       <View
         style={
           Object {
+            "borderTopLeftRadius": 4,
+            "borderTopRightRadius": 4,
             "flex": 1,
+            "overflow": "hidden",
           }
         }
       >
@@ -674,7 +683,10 @@ exports[`renders with empty image url 1`] = `
       <View
         style={
           Object {
+            "borderTopLeftRadius": 4,
+            "borderTopRightRadius": 4,
             "flex": 1,
+            "overflow": "hidden",
           }
         }
       >
@@ -842,7 +854,10 @@ exports[`renders with image url 1`] = `
       <View
         style={
           Object {
+            "borderTopLeftRadius": 4,
+            "borderTopRightRadius": 4,
             "flex": 1,
+            "overflow": "hidden",
           }
         }
       >
@@ -1022,7 +1037,10 @@ exports[`renders without image url 1`] = `
       <View
         style={
           Object {
+            "borderTopLeftRadius": 4,
+            "borderTopRightRadius": 4,
             "flex": 1,
+            "overflow": "hidden",
           }
         }
       >

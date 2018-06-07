@@ -165,6 +165,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   imageWrapper: {
+    borderTopLeftRadius: 4,
+    borderTopRightRadius: 4,
+    overflow: 'hidden',
     flex: 1,
   },
   image: {

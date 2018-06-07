@@ -468,7 +468,10 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
               <View
                 style={
                   Object {
+                    "borderTopLeftRadius": 4,
+                    "borderTopRightRadius": 4,
                     "flex": 1,
+                    "overflow": "hidden",
                   }
                 }
               >
@@ -652,7 +655,10 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
               <View
                 style={
                   Object {
+                    "borderTopLeftRadius": 4,
+                    "borderTopRightRadius": 4,
                     "flex": 1,
+                    "overflow": "hidden",
                   }
                 }
               >
@@ -836,7 +842,10 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
               <View
                 style={
                   Object {
+                    "borderTopLeftRadius": 4,
+                    "borderTopRightRadius": 4,
                     "flex": 1,
+                    "overflow": "hidden",
                   }
                 }
               >
@@ -1401,7 +1410,10 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
               <View
                 style={
                   Object {
+                    "borderTopLeftRadius": 4,
+                    "borderTopRightRadius": 4,
                     "flex": 1,
+                    "overflow": "hidden",
                   }
                 }
               >
@@ -1585,7 +1597,10 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
               <View
                 style={
                   Object {
+                    "borderTopLeftRadius": 4,
+                    "borderTopRightRadius": 4,
                     "flex": 1,
+                    "overflow": "hidden",
                   }
                 }
               >
@@ -1769,7 +1784,10 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
               <View
                 style={
                   Object {
+                    "borderTopLeftRadius": 4,
+                    "borderTopRightRadius": 4,
                     "flex": 1,
+                    "overflow": "hidden",
                   }
                 }
               >
@@ -2003,7 +2021,10 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
               <View
                 style={
                   Object {
+                    "borderTopLeftRadius": 4,
+                    "borderTopRightRadius": 4,
                     "flex": 1,
+                    "overflow": "hidden",
                   }
                 }
               >
@@ -2626,7 +2647,10 @@ exports[`Dashboard render 1`] = `
               <View
                 style={
                   Object {
+                    "borderTopLeftRadius": 4,
+                    "borderTopRightRadius": 4,
                     "flex": 1,
+                    "overflow": "hidden",
                   }
                 }
               >
@@ -2810,7 +2834,10 @@ exports[`Dashboard render 1`] = `
               <View
                 style={
                   Object {
+                    "borderTopLeftRadius": 4,
+                    "borderTopRightRadius": 4,
                     "flex": 1,
+                    "overflow": "hidden",
                   }
                 }
               >
@@ -2994,7 +3021,10 @@ exports[`Dashboard render 1`] = `
               <View
                 style={
                   Object {
+                    "borderTopLeftRadius": 4,
+                    "borderTopRightRadius": 4,
                     "flex": 1,
+                    "overflow": "hidden",
                   }
                 }
               >
@@ -3617,7 +3647,10 @@ exports[`Dashboard render while pending 1`] = `
               <View
                 style={
                   Object {
+                    "borderTopLeftRadius": 4,
+                    "borderTopRightRadius": 4,
                     "flex": 1,
+                    "overflow": "hidden",
                   }
                 }
               >
@@ -3801,7 +3834,10 @@ exports[`Dashboard render while pending 1`] = `
               <View
                 style={
                   Object {
+                    "borderTopLeftRadius": 4,
+                    "borderTopRightRadius": 4,
                     "flex": 1,
+                    "overflow": "hidden",
                   }
                 }
               >
@@ -3985,7 +4021,10 @@ exports[`Dashboard render while pending 1`] = `
               <View
                 style={
                   Object {
+                    "borderTopLeftRadius": 4,
+                    "borderTopRightRadius": 4,
                     "flex": 1,
+                    "overflow": "hidden",
                   }
                 }
               >
@@ -6148,7 +6187,10 @@ exports[`Dashboard renders course invites 1`] = `
               <View
                 style={
                   Object {
+                    "borderTopLeftRadius": 4,
+                    "borderTopRightRadius": 4,
                     "flex": 1,
+                    "overflow": "hidden",
                   }
                 }
               >
@@ -6332,7 +6374,10 @@ exports[`Dashboard renders course invites 1`] = `
               <View
                 style={
                   Object {
+                    "borderTopLeftRadius": 4,
+                    "borderTopRightRadius": 4,
                     "flex": 1,
+                    "overflow": "hidden",
                   }
                 }
               >
@@ -6516,7 +6561,10 @@ exports[`Dashboard renders course invites 1`] = `
               <View
                 style={
                   Object {
+                    "borderTopLeftRadius": 4,
+                    "borderTopRightRadius": 4,
                     "flex": 1,
+                    "overflow": "hidden",
                   }
                 }
               >
