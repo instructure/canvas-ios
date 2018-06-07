@@ -16,8 +16,23 @@ extension SVGKImage {
         let tempURL = URL(fileURLWithPath: tempPath)
         let fileManager = FileManager.default
         let fetchImage = {
-            let svgImage = SVGKImage(contentsOfFile: tempPath)
-            callback(svgImage?.uiImage)
+            if let source = SVGKSourceLocalFile.source(fromFilename: tempPath), let parser = SVGKParser(source: source) {
+                // Adds only the supported parsers
+                // The default implementation adds unsupported parsers like SVGKParserPatternsAndGradients
+                parser.add(SVGKParserSVG())
+                parser.add(SVGKParserGradient())
+                parser.add(SVGKParserStyles())
+                parser.add(SVGKParserDefsAndUse())
+                parser.add(SVGKParserDOM())
+                if let parsedResult = parser.parseSynchronously() {
+                    let svgImage = SVGKImage(parsedSVG: parsedResult, from: source)
+                    callback(svgImage?.uiImage)
+                } else {
+                    callback(nil)
+                }
+            } else {
+                callback(nil)
+            }
         }
         
         // If the file is already cached, use it immediatly
