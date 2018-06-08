@@ -24,7 +24,7 @@ import {
   StyleSheet,
 } from 'react-native'
 import i18n from 'format-message'
-import { Text } from '../../../common/text'
+import { Text, SEMI_BOLD_FONT } from '../../../common/text'
 import { Button } from '../../../common/buttons'
 import colors from '../../../common/colors'
 
@@ -34,8 +34,6 @@ type Props = {
 }
 
 export class NoCourses extends Component<Props> {
-  props: Props
-
   render () {
     let welcome = i18n('Welcome!')
 
@@ -85,7 +83,7 @@ const styles = StyleSheet.create({
   },
   button: {
     fontSize: 16,
-    lineHeight: 19,
+    fontFamily: SEMI_BOLD_FONT,
   },
   buttonContainer: {
     borderRadius: 4,
@@ -94,4 +92,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default (NoCourses: any)
+export default NoCourses

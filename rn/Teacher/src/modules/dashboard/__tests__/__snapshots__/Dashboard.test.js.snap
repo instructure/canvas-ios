@@ -4541,8 +4541,8 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
                         "color": "white",
                       },
                       Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
                         "fontSize": 16,
-                        "lineHeight": 19,
                       },
                     ],
                     null,
@@ -4933,8 +4933,8 @@ exports[`Dashboard render without favorite courses 1`] = `
                         "color": "white",
                       },
                       Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
                         "fontSize": 16,
-                        "lineHeight": 19,
                       },
                     ],
                     null,

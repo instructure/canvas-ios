@@ -124,8 +124,8 @@ exports[`renders NoCourses correctly 1`] = `
               "color": "white",
             },
             Object {
+              "fontFamily": ".SFUIDisplay-semibold",
               "fontSize": 16,
-              "lineHeight": 19,
             },
           ],
           null,
