@@ -16,7 +16,8 @@
 
 /* @flow */
 
-export default ({
+// needs to be commonjs so eslint-plugin-format-message can read it
+module.exports = {
   ar: require('./ar.json'),
   da: require('./da.json'),
   de: require('./de.json'),
@@ -38,4 +39,4 @@ export default ({
   sv: require('./sv.json'),
   'zh-HK': require('./zh_HK.json'),
   zh: require('./zh.json'),
-}: { [string]: { [string]: { message: string, description?: string } } })
+}

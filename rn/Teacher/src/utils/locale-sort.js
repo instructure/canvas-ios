@@ -18,8 +18,6 @@
 import { NativeModules } from 'react-native'
 import { sanitizeLocale } from '../../i18n/setup'
 
-declare var Intl: any
-
 export default function localeSort (first: any, second: any, locale?: string): number {
   locale = sanitizeLocale(locale || NativeModules.SettingsManager.settings.AppleLocale)
   let collator

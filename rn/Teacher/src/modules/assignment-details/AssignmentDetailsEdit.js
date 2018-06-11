@@ -220,7 +220,7 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
             <RowWithDetail
               title={displayGradeAs}
               detailSelected={this.state.showPicker}
-              detail={i18n(gradeDisplayOptions().get(this.state.assignment.grading_type) || '')}
+              detail={gradeDisplayOptions().get(this.state.assignment.grading_type) || ''}
               onPress={this.toggleDisplayGradeAsPicker}
               border='bottom'
               testID="assignment-details.toggle-display-grade-as-picker"

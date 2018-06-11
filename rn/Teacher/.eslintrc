@@ -1,5 +1,8 @@
 {
-  "extends": ["standard"],
+  "extends": [
+    "standard",
+    "plugin:format-message/recommended"
+  ],
   "parser": "babel-eslint",
   "env": {
     "jest": true,
@@ -9,11 +12,17 @@
   "plugins": [
     "flowtype",
     "react",
-    "import"
+    "import",
+    "format-message"
   ],
   "settings": {
     "import/resolver": {
       "babel-module": {}
+    },
+    "format-message": {
+      "generateId": "underscored_crc32",
+      "sourceLocale": "en",
+      "translations": "./i18n/locales"
     }
   },
   "globals": {
@@ -32,6 +41,10 @@
     "comma-dangle": ["error", "always-multiline"],
     "no-multi-str": [0, "never"],
     "camelcase": 0,
+
+    "format-message/no-top-scope": "warn",
+    "format-message/no-identical-translation": "off",
+    "format-message/no-missing-plural-keyword": "off",
 
     "flowtype/boolean-style": [
       2,
