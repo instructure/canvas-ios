@@ -50,6 +50,8 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
             setupCrashlytics()
         }
         
+        ResetAppIfNecessary()
+        
         TheKeymaster.fetchesBranding = false
         TheKeymaster.delegate = loginConfig
         
