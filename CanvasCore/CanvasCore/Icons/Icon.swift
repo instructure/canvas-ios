@@ -43,7 +43,9 @@ public enum Icon: String {
     case collaboration
     case conference
     case course
+    case courses
     case discussion
+    case dropdown
     case email
     case file
     case grades

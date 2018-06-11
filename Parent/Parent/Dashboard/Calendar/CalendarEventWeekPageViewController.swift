@@ -92,7 +92,7 @@ class CalendarEventWeekPageViewController: UIViewController {
         updateHeaderTitle()
         
         let colorScheme = ColorCoordinator.colorSchemeForStudentID(studentID)
-        view.backgroundColor = colorScheme.mainColor
+        view.backgroundColor = colorScheme.secondaryColor
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

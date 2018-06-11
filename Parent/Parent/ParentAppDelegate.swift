@@ -235,6 +235,10 @@ extension ParentAppDelegate {
 extension ParentAppDelegate: NativeLoginManagerDelegate {
     func didLogin(_ client: CKIClient) {
         self.session = client.authSession
+        
+        // UX requires that students are given color schemes in a specific order.
+        // The method call below ensures that we always start with the first color scheme.
+        ColorCoordinator.clearColorSchemeDictionary()
     }
     
     func didLogout(_ controller: UIViewController) {

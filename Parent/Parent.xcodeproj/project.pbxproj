@@ -111,7 +111,6 @@
 		5E0F9A6D1C739E6A00BB7707 /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F9A581C739E6A00BB7707 /* CourseCell.swift */; };
 		5E0F9A6F1C739E6A00BB7707 /* CourseCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F9A5A1C739E6A00BB7707 /* CourseCellViewModel.swift */; };
 		5E0F9A701C739E6A00BB7707 /* DashboardTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F9A5C1C739E6A00BB7707 /* DashboardTabView.swift */; };
-		5E0F9A711C739E6A00BB7707 /* ObservedUsersCarouselViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F9A5D1C739E6A00BB7707 /* ObservedUsersCarouselViewController.swift */; };
 		5E0F9A731C739E6A00BB7707 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F9A5F1C739E6A00BB7707 /* DashboardViewController.swift */; };
 		5E0F9A741C739E6A00BB7707 /* SettingsObserveeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F9A611C739E6A00BB7707 /* SettingsObserveeCell.swift */; };
 		5E0F9A761C739E6A00BB7707 /* SettingsObserveeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F9A631C739E6A00BB7707 /* SettingsObserveeCellViewModel.swift */; };
@@ -742,7 +741,6 @@
 		5E0F9A581C739E6A00BB7707 /* CourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCell.swift; sourceTree = "<group>"; };
 		5E0F9A5A1C739E6A00BB7707 /* CourseCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCellViewModel.swift; sourceTree = "<group>"; };
 		5E0F9A5C1C739E6A00BB7707 /* DashboardTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardTabView.swift; sourceTree = "<group>"; };
-		5E0F9A5D1C739E6A00BB7707 /* ObservedUsersCarouselViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ObservedUsersCarouselViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5E0F9A5F1C739E6A00BB7707 /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		5E0F9A611C739E6A00BB7707 /* SettingsObserveeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsObserveeCell.swift; sourceTree = "<group>"; };
 		5E0F9A631C739E6A00BB7707 /* SettingsObserveeCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsObserveeCellViewModel.swift; sourceTree = "<group>"; };
@@ -1124,7 +1122,6 @@
 				5E0F9A531C739E6A00BB7707 /* Calendar */,
 				5E0F9A4F1C739E6A00BB7707 /* Alerts */,
 				5E0F9A5B1C739E6A00BB7707 /* DashboardTabView */,
-				5E0F9A5D1C739E6A00BB7707 /* ObservedUsersCarouselViewController.swift */,
 				2CB69BD11D91CE4A0059C5A5 /* DashboardViewController.storyboard */,
 				5E0F9A5F1C739E6A00BB7707 /* DashboardViewController.swift */,
 			);
@@ -1865,7 +1862,6 @@
 				5E4104891C99E06D0021567C /* UIColor+Parent.swift in Sources */,
 				6132D74F1D81FB9C0001FADA /* DetailsLocationCell.swift in Sources */,
 				61E94C611C873C1A00777B95 /* DetailsDescriptionCell.swift in Sources */,
-				5E0F9A711C739E6A00BB7707 /* ObservedUsersCarouselViewController.swift in Sources */,
 				497C48BE1F912BD100A3BC06 /* AlertThreshold.swift in Sources */,
 				5EA8B06A1CB7078500C8A9F1 /* DefaultAvatarCoordinator.swift in Sources */,
 				4938ACDD1F8FD0730069F43D /* SupportTicketViewController.swift in Sources */,
